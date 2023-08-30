@@ -86,7 +86,7 @@ class BuildProductInfo extends StatelessWidget {
               ],
             ),
             Gaps.line(context.colors.greyWhite, 10.h),
-            BuildSellerInfo(shopModel: productModel.shop!),
+            BuildSellerInfo(shopModel: productModel.shop),
             BuildProductDescription(
                 description: productModel.description ?? ""),
             Gaps.vGap10,

@@ -29,7 +29,7 @@ class ApiNames{
   static const String getPopularProducts = "mostpopulars";
   static String toggleWishlist (int id) => "products/$id/wishlist/toggle";
   static const String sendQuery = "product-queries";
-  static const String getVariantPrice = "products";
+  static  String getVariantPrice(int id) => "products/$id/variant/price";
   static const String getDownloadProducts = "orders/digital-purchase-history";
   static String downloadDigitalProduct (int id) => "orders/digital-purchase-history/$id/download-product";
 

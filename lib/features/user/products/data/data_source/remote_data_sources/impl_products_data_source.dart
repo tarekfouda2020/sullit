@@ -97,7 +97,7 @@ class ImplProductsDataSource extends ProductsDataSource {
   Future<Either<Failure, ProductModel>> getVariantPrice(
       VariantPriceParams param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: "${ApiNames.getVariantPrice}/${param.id}/variant/price",
+      url: ApiNames.getVariantPrice(param.id),
       requestMethod: RequestMethod.get,
       responseType: ResType.list,
       showLoader: true,
