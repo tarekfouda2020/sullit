@@ -39,10 +39,10 @@ class BuildProductItem extends StatelessWidget {
                   fit: BoxFit.fill,
                   haveRadius: true,
                   borderRadius: Dimens.borderRadius5PX,
-                  url: productModel.thumbnailImage,
+                  url: productModel.thumbnailImage!,
                 ),
                 Visibility(
-                  visible: productModel.hasDiscount,
+                  visible: productModel.hasDiscount!,
                   child: PositionedDirectional(
                     top: 20.r,
                     child: Container(
@@ -76,7 +76,7 @@ class BuildProductItem extends StatelessWidget {
                               color: context.colors.primary,
                             ),
                             child: Text(
-                              productModel.discount,
+                              productModel.discount!,
                               style: AppTextStyle.s10_w400(
                                 color: context.colors.white,
                               ),
@@ -92,21 +92,21 @@ class BuildProductItem extends StatelessWidget {
                   child: Column(
                     children: [
                       BuildIconItem(
-                        iconData: productModel.isWishlist
+                        iconData: productModel.isWishlist!
                             ? Icons.favorite
                             : Icons.favorite_border,
-                        containerColor: productModel.isWishlist
+                        containerColor: productModel.isWishlist!
                             ? context.colors.primary
                             : context.colors.white,
                         onTap: () => ProductsHelper().toggleFavourite(
-                          id: productModel.id,
+                          id: productModel.id!,
                           onRefresh: onFavRefresh,
                           context: context,
                         ),
                         checkValue: productModel.isWishlist,
                       ),
                       BuildIconItem(
-                        containerColor: productModel.isAddedTCompare ? context.colors.primary : context.colors.white ,
+                        containerColor: productModel.isAddedTCompare! ? context.colors.primary : context.colors.white ,
                         iconData: Icons.compare_arrows,
                         checkValue: productModel.isAddedTCompare,
                         onTap: () {
@@ -132,8 +132,8 @@ class BuildProductItem extends StatelessWidget {
             onTap: () =>
                 AutoRouter.of(context).push(
                   ProductDetailsRoute(
-                    productId: productModel.id,
-                    isResale: productModel.isResale,
+                    productId: productModel.id!,
+                    isResale: productModel.isResale!,
                   ),
                 ),
             child
@@ -143,16 +143,16 @@ class BuildProductItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    productModel.priceHighLowDiscount,
+                    productModel.priceHighLowDiscount!,
                     style: AppTextStyle.s11_bold(
                       color: context.colors.primary,
                     ),
                   ),
                   Gaps.vGap3,
                   Visibility(
-                    visible: productModel.hasDiscount,
+                    visible: productModel.hasDiscount!,
                     child: Text(
-                      productModel.priceHighLow,
+                      productModel.priceHighLow!,
                       style: AppTextStyle.s11_bold(
                         color: context.colors.black,
                       ).copyWith(
@@ -161,7 +161,7 @@ class BuildProductItem extends StatelessWidget {
                     ),
                   ),
                   RatingBar.builder(
-                    initialRating: productModel.rating.toDouble(),
+                    initialRating: productModel.rating!.toDouble(),
                     ignoreGestures: true,
                     minRating: 1,
                     direction: Axis.horizontal,
@@ -177,7 +177,7 @@ class BuildProductItem extends StatelessWidget {
                     onRatingUpdate: (rating) {},
                   ),
                   Text(
-                    productModel.name,
+                    productModel.name!,
                     style: AppTextStyle.s13_w500(
                       color: context.colors.black,
                     ).copyWith(

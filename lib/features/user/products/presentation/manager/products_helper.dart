@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:convert';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,7 +47,7 @@ class ProductsHelper {
   Future<int> addProductToCompare(Product product, BuildContext context) async {
     var isAdded = await isAddedToCompared(product);
     if (isAdded == true) {
-      var data = getIt<ComparedProductsDb>().deleteItem(product.id);
+      var data = getIt<ComparedProductsDb>().deleteItem(product.id!);
       CustomToast.showSimpleToast(
         msg: "Item Deleted From Compare Successfully",
         type: ToastType.success,
@@ -89,15 +91,9 @@ class ProductsHelper {
   }
 
   ProductsTableData _comparedParams(Product product, BuildContext context) {
-    var userId = context.read<UserCubit>().state.model?.id??0;
     return ProductsTableData(
-      userId: userId,
-      productId: product.id,
-      name: product.name,
-      image: product.thumbnailImage,
-      brand: product.brandName,
-      category: product.categoryName,
-      price: product.priceHighLow,
+      product: json.encode(product.toJson()),
+      productId: product.id
     );
   }
 

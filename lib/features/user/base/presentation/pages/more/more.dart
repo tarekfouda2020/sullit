@@ -89,12 +89,8 @@ class _MoreState extends State<More> {
             title: 'Compare',
             icon: Icons.compare_arrows,
             onTap: () {
-              if(auth){
                 AutoRouter.of(context).push(const CompareRoute());
-              }else{
-                CustomToast.showAuthDialog(context);
               }
-            }
           ),
           BuildMoreItem(
               title: 'Track Order',

@@ -22,7 +22,7 @@ final Shop shopModel;
                 ),
                 Gaps.vGap5,
                 Text(
-                  shopModel.name,
+                  shopModel.name!,
                   style: AppTextStyle.s14_w400(
                     color: context.colors.black,
                   ),

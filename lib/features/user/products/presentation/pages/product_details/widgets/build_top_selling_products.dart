@@ -53,7 +53,7 @@ class BuildTopSellingProducts extends StatelessWidget {
                             topProducts[index],
                           ),
                           onCompareRefresh: () {
-                            topProducts[index].isAddedTCompare = !topProducts[index].isAddedTCompare;
+                            topProducts[index].isAddedTCompare = !topProducts[index].isAddedTCompare!;
                             controller.detailsCubit.onUpdateData(controller.detailsCubit.state.data);
                           },
                         ),

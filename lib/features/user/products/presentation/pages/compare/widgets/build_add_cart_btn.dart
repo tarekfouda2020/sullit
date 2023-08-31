@@ -1,11 +1,12 @@
 part of 'compare_widgets_imports.dart';
 class BuildAddCartBtn extends StatelessWidget {
-  const BuildAddCartBtn({Key? key, }) : super(key: key);
+  final Product product;
+  const BuildAddCartBtn({Key? key, required this.product, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () => getIt<ProductsHelper>().addToCartDialog(context, product),
+      onTap: () => getIt<AddToCartHelper>().addToCartDialog(context, product),
       child: Container(
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(

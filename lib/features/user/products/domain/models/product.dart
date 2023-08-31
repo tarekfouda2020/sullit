@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_dynamic_calls
+
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/core/models/domain_models/brand_domain_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
@@ -8,43 +10,89 @@ import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/variant.dart';
 
 class Product extends BaseDomainModel {
-  final int id;
-  final String name;
-  final String thumbnailImage;
-  List<String> images;
-  final bool isMultiple;
-  final String priceHighLowDiscount;
-  final String priceHighLow;
-  final bool hasDiscount;
-  final String discount;
-  final String? strokedPrice;
-  final String? mainPrice;
-  final List<ProductOptions>? choiceOptions;
-  final List<ColorDomainModel>? colors;
-  final int minQty;
-  final String currencySymbol;
+   int? id;
+   String? name;
+   String? thumbnailImage;
+  List<String>? images;
+   bool? isMultiple;
+   String? priceHighLowDiscount;
+   String? priceHighLow;
+   bool? hasDiscount;
+   String? discount;
+   String? strokedPrice;
+   String? mainPrice;
+   List<ProductOptions>? choiceOptions;
+   List<ColorDomainModel>? colors;
+  int? minQty;
+   String? currencySymbol;
   Variant? variant;
-  final List<String>? tags;
-  final num rating;
-  final int sales;
-  final bool isDigital;
-  bool isWishlist;
-  final int sellerId;
-  final int countReviews;
-  final String soldByType;
-  final String soldByName;
-  final Shop? shop;
-  final List<Reviews>? reviews;
-  final bool isResale;
-  final int resellerId;
-  final Category? category;
-  final BrandDomainModel? brand;
-  final String? description;
-  final String? videoProvider;
-  final String? videoLink;
-  final String categoryName;
-  final String brandName;
-  bool isAddedTCompare = false;
+   List<String>? tags;
+   num? rating;
+   int? sales;
+   bool? isDigital;
+  bool? isWishlist;
+   int? sellerId;
+   int? countReviews;
+   String? soldByType;
+   String? soldByName;
+   Shop? shop;
+   List<Reviews>? reviews;
+   bool? isResale;
+   int? resellerId;
+   Category? category;
+   BrandDomainModel? brand;
+   String? description;
+   String? videoProvider;
+   String? videoLink;
+   String? categoryName;
+   String? brandName;
+  bool? isAddedTCompare = false;
+
+  Product.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    thumbnailImage = json['thumbnail_image'];
+    images = json['images'].cast<String>();
+    isMultiple = json['is_multiple'];
+    priceHighLowDiscount = json['price_high_low_discount'];
+    priceHighLow = json['price_high_low'];
+    hasDiscount = json['has_discount'];
+    discount = json['discount'];
+    if (json['choice_options'] != null) {
+      choiceOptions = <ProductOptions>[];
+      json['choice_options'].forEach((v) {
+        choiceOptions!.add(ProductOptions.fromJson(v));
+      });
+    }
+    if (json['colors'] != null) {
+      colors = <ColorDomainModel>[];
+      json['colors'].forEach((v) {
+        colors!.add(ColorDomainModel.fromJson(v));
+      });
+    }
+    minQty = json['min_qty'];
+    currencySymbol = json['currency_symbol'];
+    variant =
+    json['variant'] != null ? Variant.fromJson(json['variant']) : null;
+    tags = json['tags'].cast<String>();
+    rating = json['rating'];
+    sales = json['sales'];
+    isDigital = json['is_digital'];
+    isWishlist = json['is_wishlist'];
+    sellerId = json['seller_id'];
+    countReviews = json['count_reviews'];
+    soldByType = json['sold_by_type'];
+    soldByName = json['sold_by_name'];
+    shop = json['shop'] != null ? Shop.fromJson(json['shop']) : null;
+    isResale = json['is_resale'];
+    resellerId = json['reseller_id'];
+    description = json['description'];
+    videoProvider = json['video_provider'];
+    videoLink = json['video_link'];
+    categoryName = json['category_name'];
+    brandName = json['brand_name'];
+  }
+
 
   Product({
     required this.id,
@@ -84,4 +132,48 @@ class Product extends BaseDomainModel {
     required this.categoryName,
     required this.brandName,
   });
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['thumbnail_image'] = thumbnailImage;
+    data['images'] = images;
+    data['is_multiple'] = isMultiple;
+    data['price_high_low_discount'] = priceHighLowDiscount;
+    data['price_high_low'] = priceHighLow;
+    data['has_discount'] = hasDiscount;
+    data['discount'] = discount;
+    if (choiceOptions != null) {
+      data['choice_options'] = choiceOptions!.map((v) => v.toJson()).toList();
+    }
+    if (colors != null) {
+      data['colors'] = colors!.map((v) => v.toJson()).toList();
+    }
+    data['min_qty'] = minQty;
+    data['currency_symbol'] = currencySymbol;
+    if (variant != null) {
+      data['variant'] = variant!.toJson();
+    }
+    data['tags'] = tags;
+    data['rating'] = rating;
+    data['sales'] = sales;
+    data['is_digital'] = isDigital;
+    data['is_wishlist'] = isWishlist;
+    data['seller_id'] = sellerId;
+    data['count_reviews'] = countReviews;
+    data['sold_by_type'] = soldByType;
+    data['sold_by_name'] = soldByName;
+    if (shop != null) {
+      data['shop'] = shop!.toJson();
+    }
+    data['is_resale'] = isResale;
+    data['reseller_id'] = resellerId;
+    data['description'] = description;
+    data['video_provider'] = videoProvider;
+    data['video_link'] = videoLink;
+    data['category_name'] = categoryName;
+    data['brand_name'] = brandName;
+    return data;
+  }
 }

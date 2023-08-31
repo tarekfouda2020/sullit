@@ -14,7 +14,6 @@ class LoginController {
     if (formKey.currentState!.validate()) {
       btnKey.currentState?.animateForward();
       var params = await _setLoginParams();
-      print(params.toJson());
       var result = await SetLogin().call(params);
       _cashAndRoute(
         context,

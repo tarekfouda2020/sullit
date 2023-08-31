@@ -30,7 +30,7 @@ class BuildColorFilterItem extends StatelessWidget {
           width: 10.r,
           height: 10.r,
           padding: Dimens.paddingAll5PX,
-          color: Color(int.parse(colorModel.code.replaceFirst("#", "0xff"))),
+          color: Color(int.parse(colorModel.code!.replaceFirst("#", "0xff"))),
         ),
       ),
     );

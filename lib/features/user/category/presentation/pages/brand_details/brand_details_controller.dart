@@ -22,7 +22,7 @@ class BrandDetailsController {
   }
 
   void onChangeFav(Product item) {
-    item.isWishlist = !item.isWishlist;
+    item.isWishlist = !item.isWishlist!;
     productsBloc.onUpdateData(productsBloc.state.data);
   }
 }

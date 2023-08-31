@@ -34,7 +34,7 @@ class BuildHomeNewProducts extends StatelessWidget {
                           onFavRefresh: () => controller.onChangeFav(
                             newestProducts[index],
                           ), onCompareRefresh: () {
-                            newestProducts[index].isAddedTCompare = !newestProducts[index].isAddedTCompare;
+                            newestProducts[index].isAddedTCompare = !newestProducts[index].isAddedTCompare!;
                             controller.homeCubit.onUpdateData(controller.homeCubit.state.data);
                         },
                         ),

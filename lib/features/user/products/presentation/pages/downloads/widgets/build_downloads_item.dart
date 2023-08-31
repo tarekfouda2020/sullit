@@ -18,13 +18,13 @@ final DownloadsController controller;
               style: AppTextStyle.s13_w500(color: context.colors.black),
             ),
             Text(
-              productModel.name,
+              productModel.name!,
               style: AppTextStyle.s12_w400(color: context.colors.blackOpacity),
             ),
           ],
         ),
         trailing: BuildOptionItem(
-          onTap: () =>controller.downloadDigitalProduct(productModel.id),
+          onTap: () =>controller.downloadDigitalProduct(productModel.id!),
           iconData: Icons.download,
           customColor: context.colors.blue,
         ),

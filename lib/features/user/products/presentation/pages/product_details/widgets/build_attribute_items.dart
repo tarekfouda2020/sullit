@@ -17,8 +17,7 @@ class BuildAttributeItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool current = optionModel[index]
-        .selectedAttribute
-        .contains(optionModel[index].options[position]);
+        .selectedAttribute!.contains(optionModel[index].options![position]);
     return InkWell(
       onTap: () =>
           controller.onSelectAttributes(context, optionModel, index, position),
@@ -33,7 +32,7 @@ class BuildAttributeItems extends StatelessWidget {
         ),
         alignment: Alignment.center,
         child: Text(
-          optionModel[index].options[position],
+          optionModel[index].options![position],
           style: AppTextStyle.s12_w400(
             color: context.colors.black,
           ),

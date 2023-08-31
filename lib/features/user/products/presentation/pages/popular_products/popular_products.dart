@@ -47,7 +47,7 @@ class _PopularProductsState extends State<PopularProducts> {
               onFavRefresh: () => controller.getPopularProducts(
                   widget.popularProductsModel.id, 1),
               onCompareRefresh: () {
-                item.isAddedTCompare = !item.isAddedTCompare ;
+                item.isAddedTCompare = !item.isAddedTCompare! ;
                 controller.getPopularProducts(widget.popularProductsModel.id, 1);
               },
             ),

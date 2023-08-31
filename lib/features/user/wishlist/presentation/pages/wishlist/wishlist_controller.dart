@@ -10,7 +10,7 @@ class WishlistController {
 
   void onChangeFav(Product item) {
     var allWishList = wishlistBloc.state.data;
-    item.isWishlist = !item.isWishlist;
+    item.isWishlist = !item.isWishlist!;
     allWishList.remove(item);
     wishlistBloc.onUpdateData(allWishList);
   }

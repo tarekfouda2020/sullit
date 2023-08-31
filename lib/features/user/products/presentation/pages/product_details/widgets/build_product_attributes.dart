@@ -22,7 +22,7 @@ class BuildProductAttributes extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  productOptions[index].title,
+                  productOptions[index].title!,
                   style: AppTextStyle.s12_w500(
                     color: context.colors.black,
                   ),

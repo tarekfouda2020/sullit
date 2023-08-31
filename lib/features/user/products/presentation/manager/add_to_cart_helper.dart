@@ -19,33 +19,31 @@ import 'package:injectable/injectable.dart';
 class AddToCartHelper {
   List<String> selectedVariants = [];
   final GenericBloc<int> qtyCubit = GenericBloc(1);
-  final GenericBloc<Product?> productCubit = GenericBloc(null);
 
 
-  void onSelectAttributes(BuildContext context, List<ProductOptions> model,
-      int index, int position) {
+  void onSelectAttributes(BuildContext context, List<ProductOptions> model, GenericBloc<Product?> productCubit, int position,int index) {
     List<String> selected = [];
     var optionItem = model[index];
-    var attributes = optionItem.selectedAttribute;
+    List<String> attributes = optionItem.selectedAttribute!;
     if (optionItem.hasValue == true) {
       attributes.clear();
-      attributes.add(optionItem.options[position]);
+      attributes.add(optionItem.options![position]);
     } else {
-      attributes.add(optionItem.options[position]);
+      attributes.add(optionItem.options![position]);
     }
     optionItem.hasValue = true;
     model.where((element) => element.hasValue == true).map((e) {
-      selected = [...selected, ...e.selectedAttribute];
+      selected.addAll(e.selectedAttribute!);
       selectedVariants = selected;
       return e;
     }).toList();
     qtyCubit.onUpdateData(1);
     productCubit.onUpdateData(productCubit.state.data);
-    getVariantPrice(context);
+    getVariantPrice(context, productCubit);
   }
 
-  void getVariantPrice(BuildContext context) async {
-    var params = _variantPriceParams();
+  void getVariantPrice(BuildContext context, GenericBloc<Product?>productCubit ) async {
+    var params = _variantPriceParams(productCubit.state.data!.id!);
     var result = await GetVariantPrice().call(params);
     if (result != null) {
       productCubit.onUpdateData(result);
@@ -61,8 +59,7 @@ class AddToCartHelper {
     );
   }
 
-  Future<void> addProductToCart(
-      int qty, int? variantId, BuildContext context) async {
+  Future<void> addProductToCart(int qty, int? variantId, BuildContext context) async {
     var params = await _addToCartParams(variantId, qty);
     if (params.variantId == null) {
       CustomToast.showSimpleToast(msg: 'Variant not found. !');
@@ -85,9 +82,9 @@ class AddToCartHelper {
     );
   }
 
-  VariantPriceParams _variantPriceParams() {
+  VariantPriceParams _variantPriceParams(int id) {
     return VariantPriceParams(
-      id: productCubit.state.data!.id,
+      id: id,
       variants: selectedVariants.join(','),
     );
   }
