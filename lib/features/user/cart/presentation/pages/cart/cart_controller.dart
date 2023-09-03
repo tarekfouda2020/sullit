@@ -27,7 +27,6 @@ class CartController {
   }
 
   Future<void> updateCartItem(int qty, int id) async {
-
     var params = await _updateCartItemParams(qty, id);
     await UpdateCartItem().call(params).then(
       (value) {
@@ -35,7 +34,6 @@ class CartController {
       },
     );
   }
-
 
   Future<void> deleteItemFromCart(int id, int index) async {
     var params = await _deleteItemFormCart(id);

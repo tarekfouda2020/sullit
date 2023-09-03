@@ -28,9 +28,7 @@ class ProductDetailsController {
     var result = await GetProductDetails().call(params);
     detailsCubit.onUpdateData(result);
     basicImage = detailsCubit.state.data!.product.images;
-    print(">>>>>${detailsCubit.state.data?.product.variant?.currentStock}");
     _initVariants(context);
-    print(">>>>>${detailsCubit.state.data?.product.variant?.currentStock}");
   }
 
   
@@ -44,7 +42,6 @@ class ProductDetailsController {
         .map((e) => e.selectedAttribute)
         .toList();
     selectedVariants = selectedList.expand((element) => element).toList();
-    log("@@@@@@@@${selectedVariants}");
     if (selectedVariants.isNotEmpty) getVariantPrice(context);
   }
 
