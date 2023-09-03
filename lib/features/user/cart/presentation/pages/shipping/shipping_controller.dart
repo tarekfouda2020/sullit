@@ -32,7 +32,12 @@ class ShippingController {
     addressesBloc.onUpdateData(addressesBloc.state.data);
   }
 
-  Future<void> cartAddAddress(List<CartItem> cartItems, BuildContext context) async {
+  Future<void> cartAddAddress(BuildContext context) async {
+    bool auth = context.read<DeviceCubit>().state.model.auth ;
+    if(!auth){
+      CustomToast.showAuthDialog(context);
+      return;
+    }
     if (addressesBloc.state.data
         .where((element) => element.selected == true)
         .isNotEmpty) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 
 import 'package:flutter_tdd/core/constants/gaps.dart';
@@ -16,6 +17,7 @@ class BuildDrawerHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var user = context.watch<UserCubit>().state.model;
+    bool auth = context.read<DeviceCubit>().state.model.auth ;
     return Column(
       children: [
         Gaps.vGap20,
@@ -26,7 +28,7 @@ class BuildDrawerHeader extends StatelessWidget {
             height: 80.h,
           ),
         ),
-        Padding(
+        if(auth)Padding(
           padding: const EdgeInsetsDirectional.only(start: 20, end: 15,top: 20),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,

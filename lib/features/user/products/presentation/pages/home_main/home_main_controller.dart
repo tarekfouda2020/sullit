@@ -16,11 +16,11 @@ class HomeMainController {
   }
 
   void onChangeFav(Product item) {
-    item.isWishlist = !item.isWishlist;
+    item.isWishlist = !item.isWishlist!;
     homeCubit.onUpdateData(homeCubit.state.data);
   }
   void onAddToCompare(Product item) {
-    item.isAddedTCompare = !item.isAddedTCompare;
+    item.isAddedTCompare = !item.isAddedTCompare!;
     homeCubit.onUpdateData(homeCubit.state.data);
   }
 }

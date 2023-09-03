@@ -1,24 +1,24 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 
 class Shop extends BaseDomainModel {
-  final int id;
-  final int userId;
-  final String name;
-  final String? title;
-  final String? description;
-  final String logo;
-  final String packageInvalidAt;
-  final int products;
-  final int orders;
-  final String? address;
-  final String? email;
-  final String? phone;
-  final String? facebook;
-  final String? google;
-  final String? twitter;
-  final String? instagram;
-  final String? youtube;
-  final int rating;
+   int? id;
+   int? userId;
+   String? name;
+   String? title;
+   String? description;
+   String? logo;
+   String? packageInvalidAt;
+   int? products;
+   int? orders;
+   String? address;
+   String? email;
+   String? phone;
+   String? facebook;
+   String? google;
+   String? twitter;
+   String? instagram;
+   String? youtube;
+   int? rating;
 
   Shop({
     required this.id,
@@ -40,4 +40,46 @@ class Shop extends BaseDomainModel {
     this.youtube,
     required this.rating,
   });
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['user_id'] = userId;
+    data['name'] = name;
+    data['title'] = title;
+    data['description'] = description;
+    data['logo'] = logo;
+    data['package_invalid_at'] = packageInvalidAt;
+    data['email'] = email;
+    data['products'] = products;
+    data['orders'] = orders;
+    data['address'] = address;
+    data['phone'] = phone;
+    data['facebook'] = facebook;
+    data['google'] = google;
+    data['twitter'] = twitter;
+    data['instagram'] = instagram;
+    data['youtube'] = youtube;
+    data['rating'] = rating;
+    return data;
+  }
+  Shop.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    userId = json['user_id'];
+    name = json['name'];
+    title = json['title'];
+    description = json['description'];
+    logo = json['logo'];
+    packageInvalidAt = json['package_invalid_at'];
+    email = json['email'];
+    products = json['products'];
+    orders = json['orders'];
+    address = json['address'];
+    phone = json['phone'];
+    facebook = json['facebook'];
+    google = json['google'];
+    twitter = json['twitter'];
+    instagram = json['instagram'];
+    youtube = json['youtube'];
+    rating = json['rating'];
+  }
 }

@@ -9,6 +9,11 @@ class BuildAddNewAddress extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async{
+        bool auth = context.read<DeviceCubit>().state.model.auth ;
+        if(!auth){
+          CustomToast.showAuthDialog(context);
+          return;
+        }
        var result = await AutoRouter.of(context).push(
           AddNewAddressRoute(addAddressFor: AddAddressFor.cart),
         );

@@ -72,9 +72,9 @@ class BuildCartLoading extends StatelessWidget {
                           iconData: CupertinoIcons.add,
                         ),
                       ),
-                      const BuildShimmerItem(
+                       BuildShimmerItem(
                         height: 10,
-                        width: 200,
+                        width: 190.w,
                       ),
                       BuildShimmerItem(
                         child: BuildCustomBounce(

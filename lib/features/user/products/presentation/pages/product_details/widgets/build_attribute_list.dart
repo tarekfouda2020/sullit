@@ -17,7 +17,7 @@ class BuildAttributeList extends StatelessWidget {
       runSpacing: 5.r,
       spacing: 5.r,
       children: List.generate(
-        productOptions[index].options.length,
+        productOptions[index].options!.length,
         (position) => BuildAttributeItems(
           controller: controller,
           optionModel: productOptions,

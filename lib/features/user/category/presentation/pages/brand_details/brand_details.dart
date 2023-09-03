@@ -37,8 +37,7 @@ class _BrandDetailsState extends State<BrandDetails> {
           productModel: item,
           onFavRefresh: () => controller.onChangeFav(item),
           onCompareRefresh: () {
-            controller.productsBloc.state.data[index].isAddedTCompare =
-                !controller.productsBloc.state.data[index].isAddedTCompare;
+            controller.productsBloc.state.data[index].isAddedTCompare = !controller.productsBloc.state.data[index].isAddedTCompare!;
             controller.productsBloc
                 .onUpdateData(controller.productsBloc.state.data);
           },

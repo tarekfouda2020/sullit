@@ -40,7 +40,7 @@ class BuildProductQty extends StatelessWidget {
                 ),
                 Gaps.hGap10,
                 Visibility(
-                  visible: productModel.variant!.currentStock > 0,
+                  visible: productModel.variant!.currentStock! > 0,
                   child: Text(
                     "(${productModel.variant?.currentStock} Available)",
                     style: AppTextStyle.s14_w400(

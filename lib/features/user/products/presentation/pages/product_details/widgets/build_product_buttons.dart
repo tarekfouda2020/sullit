@@ -30,7 +30,7 @@ final ProductDetailsController controller;
             ),
             Expanded(
               child: InkWell(
-                onTap: () => getIt<ProductsHelper>().addToCartDialog(
+                onTap: () => getIt<AddToCartHelper>().addToCartDialog(
                   context,
                   controller.detailsCubit.state.data!.product,
                 ),

@@ -18,7 +18,6 @@ class _ShippingState extends State<Shipping> {
     return Scaffold(
       appBar: const BuildCustomAppBar(),
       bottomNavigationBar: BuildShippingButtons(
-        cartItems: [],
         controller: controller,
       ),
       body: Column(

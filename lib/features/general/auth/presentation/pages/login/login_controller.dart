@@ -13,11 +13,12 @@ class LoginController {
   void onSubmit(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       btnKey.currentState?.animateForward();
-      var params = _setLoginParams();
-      // log(params.toJson().toString());
-      // return ;
+      var params = await _setLoginParams();
       var result = await SetLogin().call(params);
-      _cashAndRoute(context, result?? UserDomainModel());
+      _cashAndRoute(
+        context,
+        result ?? UserDomainModel(),
+      );
     }
   }
 
@@ -35,10 +36,11 @@ class LoginController {
     );
   }
 
-  LoginParams _setLoginParams(){
+  Future<LoginParams> _setLoginParams()async{
     return LoginParams(
       email: email.text,
       password: password.text,
+      macAddress: await getIt<GetDeviceId>().deviceId
     );
   }
 

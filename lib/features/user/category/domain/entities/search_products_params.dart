@@ -6,7 +6,7 @@ class SearchProductsParams extends BaseDomainModel {
   final num? maxPrice;
   final int? catId;
   final int? brandId;
-  final List<String>? color;
+  final List<String?>? color;
   final List<String>? attributes;
   final int currentPage;
   final int pageSize;

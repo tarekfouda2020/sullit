@@ -6,18 +6,18 @@ class BuildAttributeItems extends StatelessWidget {
   final int index;
   final int position;
 
-  const BuildAttributeItems(
-      {super.key,
-      required this.controller,
-      required this.optionModel,
-      required this.index,
-      required this.position});
+  const BuildAttributeItems({
+    super.key,
+    required this.controller,
+    required this.optionModel,
+    required this.index,
+    required this.position,
+  });
 
   @override
   Widget build(BuildContext context) {
     bool current = optionModel[index]
-        .selectedAttribute
-        .contains(optionModel[index].options[position]);
+        .selectedAttribute!.contains(optionModel[index].options![position]);
     return InkWell(
       onTap: () =>
           controller.onSelectAttributes(context, optionModel, index, position),
@@ -32,7 +32,7 @@ class BuildAttributeItems extends StatelessWidget {
         ),
         alignment: Alignment.center,
         child: Text(
-          optionModel[index].options[position],
+          optionModel[index].options![position],
           style: AppTextStyle.s12_w400(
             color: context.colors.black,
           ),

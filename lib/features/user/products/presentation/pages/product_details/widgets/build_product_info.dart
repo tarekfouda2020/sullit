@@ -31,7 +31,7 @@ class BuildProductInfo extends StatelessWidget {
             Padding(
               padding: Dimens.paddingVertical8PX,
               child: Text(
-                productModel.name,
+                productModel.name!,
                 style: AppTextStyle.s19_w500(
                   color: context.colors.black,
                 ),
@@ -40,7 +40,7 @@ class BuildProductInfo extends StatelessWidget {
             Row(
               children: [
                 RatingBar.builder(
-                  initialRating: productModel.rating.toDouble(),
+                  initialRating: productModel.rating!.toDouble(),
                   ignoreGestures: true,
                   minRating: 1,
                   direction: Axis.horizontal,
@@ -73,7 +73,7 @@ class BuildProductInfo extends StatelessWidget {
                   ),
                 ),
                 Visibility(
-                  visible: productModel.hasDiscount,
+                  visible: productModel.hasDiscount!,
                   child: Text(
                     "${productModel.priceHighLow} ",
                     style: AppTextStyle.s16_w500(

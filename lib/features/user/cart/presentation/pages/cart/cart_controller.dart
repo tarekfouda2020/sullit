@@ -41,7 +41,7 @@ class CartController {
     if (data) {
       CustomToast.showSimpleToast(msg: 'Success delete item');
       cartItemsBloc.state.data.items!.removeAt(index);
-      cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+      getCartItems();
     }
   }
 

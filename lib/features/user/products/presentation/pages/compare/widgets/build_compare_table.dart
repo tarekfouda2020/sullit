@@ -2,7 +2,7 @@ part of 'compare_widgets_imports.dart';
 
 class BuildCompareTable extends StatelessWidget {
   final CompareController controller;
-  final List<ProductsTableData> compareData;
+  final List<Product> compareData;
 
   const BuildCompareTable(
       {super.key, required this.controller, required this.compareData});
@@ -40,11 +40,13 @@ class BuildCompareTable extends StatelessWidget {
               decoration: BoxDecoration(color: context.colors.white),
               children: [
                 BuildPaddedText(text: compareData[index].name),
-                BuildPaddedText(image: compareData[index].image),
-                BuildPaddedText(text: compareData[index].price),
-                BuildPaddedText(text: compareData[index].brand),
-                BuildPaddedText(text: compareData[index].category),
-                const BuildAddCartBtn()
+                BuildPaddedText(image: compareData[index].images!.first),
+                BuildPaddedText(text: compareData[index].priceHighLow),
+                BuildPaddedText(text: compareData[index].brandName),
+                BuildPaddedText(text: compareData[index].categoryName),
+                BuildAddCartBtn(
+                  product: compareData[index],
+                )
               ],
             ),
           )

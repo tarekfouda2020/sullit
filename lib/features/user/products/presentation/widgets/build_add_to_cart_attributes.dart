@@ -1,11 +1,20 @@
-part of 'product_details_widgets_imports.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
+import 'package:flutter_tdd/features/user/products/presentation/widgets/build_add_to_cart_attribute_list.dart';
+
 
 class BuildProductAttributes extends StatelessWidget {
-  final ProductDetailsController controller;
   final List<ProductOptions> productOptions;
+  final GenericBloc<Product?> productCubit ;
 
   const BuildProductAttributes(
-      {super.key, required this.controller, required this.productOptions});
+      {super.key, required this.productOptions, required this.productCubit});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +27,7 @@ class BuildProductAttributes extends StatelessWidget {
           Gaps.vGap10,
           ...List.generate(
             productOptions.length,
-            (index) => Column(
+                (index) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -29,10 +38,10 @@ class BuildProductAttributes extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 Gaps.vGap10,
-                BuildAttributeList(
-                  controller: controller,
+                BuildAddToCartAttributeList(
                   index: index,
                   productOptions: productOptions,
+                  productCubit: productCubit,
                 ),
                 Gaps.vGap15,
               ],

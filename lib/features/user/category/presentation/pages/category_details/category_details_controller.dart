@@ -96,7 +96,7 @@ class CategoryDetailsController {
   }
 
   void onFavChanged(Product model) {
-    model.isWishlist = !model.isWishlist;
+    model.isWishlist = !model.isWishlist!;
     int index = pagingController.itemList!.indexWhere((e) => e.id == model.id);
     pagingController.itemList![index] = model;
     var data = pagingController.itemList;

@@ -1,8 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:convert';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/get_device_id.dart';
@@ -18,12 +21,18 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class ProductsHelper {
-  Future<void> toggleFavourite(
-      {required int id, required Function() onRefresh}) async {
+
+  Future<void> toggleFavourite({required BuildContext context ,required int id, required Function() onRefresh, }) async {
+    bool auth = context.read<DeviceCubit>().state.model.auth;
+    if(!auth){
+      CustomToast.showAuthDialog(context);
+      return  ;
+    }
     var data = await SetToggleFavourite().call(id);
     if (data) {
       CustomToast.showSimpleToast(
         msg: "Item has been added to wishlist",
+
         type: ToastType.success,
       );
     } else {
@@ -38,7 +47,7 @@ class ProductsHelper {
   Future<int> addProductToCompare(Product product, BuildContext context) async {
     var isAdded = await isAddedToCompared(product);
     if (isAdded == true) {
-      var data = getIt<ComparedProductsDb>().deleteItem(product.id);
+      var data = getIt<ComparedProductsDb>().deleteItem(product.id!);
       CustomToast.showSimpleToast(
         msg: "Item Deleted From Compare Successfully",
         type: ToastType.success,
@@ -82,48 +91,15 @@ class ProductsHelper {
   }
 
   ProductsTableData _comparedParams(Product product, BuildContext context) {
-    var userId = context.read<UserCubit>().state.model?.id??0;
     return ProductsTableData(
-      userId: userId,
-      productId: product.id,
-      name: product.name,
-      image: product.thumbnailImage,
-      brand: product.brandName,
-      category: product.categoryName,
-      price: product.priceHighLow,
+      product: json.encode(product.toJson()),
+      productId: product.id
     );
   }
 
-  void addToCartDialog(BuildContext context, Product product) {
-    showDialog(
-      context: context,
-      builder: (context) => BuildAddToCartDialog(
-        product: product,
-      ),
-    );
-  }
 
-  Future<void> addProductToCart(int qty,int? variantId, BuildContext context) async {
-    var params = await _addToCartParams(variantId, qty);
-    if (params.variantId == null) {
-      CustomToast.showSimpleToast(msg: 'Variant not found. !');
-      return;
-    }
-    var data = await AddProductToCart().call(params);
-    if (data != '') {
-      CustomToast.showSimpleToast(msg: 'Product added to your cart. !');
-    }
-    AutoRouter.of(context).pop();
-  }
 
-  Future<AddProductToCartParams> _addToCartParams(
-    int? variantId,
-      int qty
-  ) async {
-    return AddProductToCartParams(
-      quantity: qty,
-      variantId: variantId,
-      macAddress: await getIt<GetDeviceId>().deviceId,
-    );
-  }
+
+
+
 }

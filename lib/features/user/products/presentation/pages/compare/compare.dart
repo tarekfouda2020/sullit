@@ -21,8 +21,8 @@ class _CompareState extends State<Compare> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: "Compare", showBack: true),
-      body: BlocBuilder<GenericBloc<List<ProductsTableData>>,
-          GenericState<List<ProductsTableData>>>(
+      body: BlocBuilder<GenericBloc<List<Product>>,
+          GenericState<List<Product>>>(
         bloc: controller.productsBloc,
         builder: (context, state) {
           return SingleChildScrollView(
@@ -32,7 +32,7 @@ class _CompareState extends State<Compare> {
                 BuildResetButton(controller: controller),
                 BuildCompareTable(
                   controller: controller,
-                  compareData: state.data,
+                  compareData: state.data
                 ),
               ],
             ),

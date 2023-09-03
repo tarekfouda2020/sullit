@@ -29,7 +29,7 @@ class BuildProductDetailsSwiper extends StatelessWidget {
         curve: Curves.bounceIn,
         duration: const Duration(milliseconds: 100),
         child: Text(
-          productModel.name,
+          productModel.name!,
           overflow: TextOverflow.ellipsis,
           style: AppTextStyle.s14_w500(
             color: context.colors.black,
@@ -39,10 +39,11 @@ class BuildProductDetailsSwiper extends StatelessWidget {
       actions: [
         BuildIconItem(
           iconData:
-              productModel.isWishlist ? Icons.favorite : Icons.favorite_border,
+              productModel.isWishlist! ? Icons.favorite : Icons.favorite_border,
           checkValue: productModel.isWishlist,
           onTap: () => getIt<ProductsHelper>().toggleFavourite(
-            id: productModel.id,
+            context: context,
+            id: productModel.id!,
             onRefresh: () => controller.onChangeFav(productModel),
           ),
           padding: Dimens.paddingAll8PX,
@@ -62,12 +63,12 @@ class BuildProductDetailsSwiper extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         background: Swiper(
           autoplay: false,
-          itemCount: productModel.images.length,
+          itemCount: productModel.images!.length,
           pagination: const SwiperPagination(),
           itemBuilder: (BuildContext context, int index) {
             return CachedImage(
               fit: BoxFit.fill,
-              url: productModel.images[index],
+              url: productModel.images![index],
               placeHolder: Center(
                 child: Image.asset(
                   Res.emptyCart,
