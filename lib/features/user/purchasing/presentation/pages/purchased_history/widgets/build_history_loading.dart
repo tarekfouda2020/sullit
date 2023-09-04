@@ -5,12 +5,13 @@ class BuildHistoryLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16).r,
-      itemCount: 5,
-      itemBuilder: (context, index) =>
-          Container(
+    return SizedBox(
+      height: MediaQuery.of(context).size.height,
+      child: GenericListView(
+        type: ListViewType.normal,
+        children: List.generate(
+          4,
+          (index) => Container(
               margin: const EdgeInsets.symmetric(
                 vertical: 5,
               ).r,
@@ -28,19 +29,18 @@ class BuildHistoryLoading extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      const BuildShimmerItem(
-                          height: 10,
-                          width: 40
-                      ),
-                      BuildShimmerItem(child: Text(" : ", style: AppTextStyle.s16_w500(color: context.colors.grey),)),
-                      const BuildShimmerItem(
-                          height: 10,
-                          width: 100
-                      ),
+                      const BuildShimmerItem(height: 10, width: 40),
+                      BuildShimmerItem(
+                          child: Text(
+                        " : ",
+                        style:
+                            AppTextStyle.s16_w500(color: context.colors.grey),
+                      )),
+                      const BuildShimmerItem(height: 10, width: 100),
                       const Spacer(),
                       BuildShimmerItem(
                         child: Icon(
-                          Icons.add_box ,
+                          Icons.add_box,
                           size: 15.sp,
                           color: context.colors.primary,
                         ),
@@ -50,15 +50,14 @@ class BuildHistoryLoading extends StatelessWidget {
                   Gaps.vGap10,
                   Row(
                     children: [
-                      const BuildShimmerItem(
-                          height: 10,
-                          width: 40
-                      ),
-                      BuildShimmerItem(child: Text(" : ", style: AppTextStyle.s12_w400(color: context.colors.grey),)),
-                      const BuildShimmerItem(
-                          height: 10,
-                          width: 40
-                      )
+                      const BuildShimmerItem(height: 10, width: 40),
+                      BuildShimmerItem(
+                          child: Text(
+                        " : ",
+                        style:
+                            AppTextStyle.s12_w400(color: context.colors.grey),
+                      )),
+                      const BuildShimmerItem(height: 10, width: 40)
                     ],
                   ),
                   Gaps.vGap20,
@@ -93,6 +92,8 @@ class BuildHistoryLoading extends StatelessWidget {
                   )
                 ],
               )),
+        ),
+      ),
     );
   }
 }

@@ -1,7 +1,7 @@
-part of'order_summary_widgets_imports.dart';
-class BuildOrderSummaryFields extends StatelessWidget {
-  final OrderSummaryController controller ;
-  const BuildOrderSummaryFields({Key? key, required this.controller}) : super(key: key);
+part of  'track_order_widgets_imports.dart';
+class BuildTrackOrderField extends StatelessWidget {
+  final TrackOrderController controller ;
+  const BuildTrackOrderField({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class BuildOrderSummaryFields extends StatelessWidget {
           hint: "Order code:",
           controller: controller.orderCodeController,
           contentPadding:
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
+          const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
           margin: const EdgeInsets.symmetric(vertical: 10).r,
         ),
         DefaultButton(

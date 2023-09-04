@@ -40,6 +40,9 @@ class BuildProductDetailsSwiper extends StatelessWidget {
         BuildIconItem(
           iconData:
               productModel.isWishlist! ? Icons.favorite : Icons.favorite_border,
+          containerColor: productModel.isWishlist!
+              ? context.colors.primary
+              : context.colors.white,
           checkValue: productModel.isWishlist,
           onTap: () => getIt<ProductsHelper>().toggleFavourite(
             context: context,

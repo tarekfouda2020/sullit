@@ -28,9 +28,9 @@ class _MoreState extends State<More> {
               title: 'DashBoard',
               icon: Icons.home_outlined,
               onTap: () {
-                if(auth){
+                if (auth) {
                   AutoRouter.of(context).push(const DashBoardRoute());
-                }else{
+                } else {
                   CustomToast.showAuthDialog(context);
                 }
               }),
@@ -39,9 +39,9 @@ class _MoreState extends State<More> {
               title: 'Purchased History',
               icon: Icons.file_copy_outlined,
               onTap: () {
-                if(auth){
+                if (auth) {
                   AutoRouter.of(context).push(const PurchasedHistoryRoute());
-                }else{
+                } else {
                   CustomToast.showAuthDialog(context);
                 }
               }),
@@ -49,9 +49,9 @@ class _MoreState extends State<More> {
               title: 'Return Orders',
               icon: Icons.file_copy_outlined,
               onTap: () {
-                if(auth){
+                if (auth) {
                   AutoRouter.of(context).push(const ReturnOrdersRoute());
-                }else{
+                } else {
                   CustomToast.showAuthDialog(context);
                 }
               }),
@@ -59,9 +59,9 @@ class _MoreState extends State<More> {
               title: 'Downloads',
               icon: Icons.download,
               onTap: () {
-                if(auth){
+                if (auth) {
                   AutoRouter.of(context).push(const DownloadsRoute());
-                }else{
+                } else {
                   CustomToast.showAuthDialog(context);
                 }
               }),
@@ -69,9 +69,9 @@ class _MoreState extends State<More> {
               title: 'Blogs',
               icon: Icons.list_alt,
               onTap: () {
-                if(auth){
+                if (auth) {
                   AutoRouter.of(context).push(const BlogsRoute());
-                }else{
+                } else {
                   CustomToast.showAuthDialog(context);
                 }
               }),
@@ -79,38 +79,35 @@ class _MoreState extends State<More> {
               title: 'WishList',
               icon: Icons.favorite_border,
               onTap: () {
-                if(auth){
+                if (auth) {
                   AutoRouter.of(context).push(const WishlistRoute());
-                }else{
+                } else {
                   CustomToast.showAuthDialog(context);
                 }
               }),
           BuildMoreItem(
-            title: 'Compare',
-            icon: Icons.compare_arrows,
-            onTap: () {
+              title: 'Compare',
+              icon: Icons.compare_arrows,
+              onTap: () {
                 AutoRouter.of(context).push(const CompareRoute());
-              }
-          ),
+              }),
           BuildMoreItem(
               title: 'Track Order',
               icon: Icons.summarize_outlined,
               onTap: () {
-                if(auth){
-                  AutoRouter.of(context)
-                      .push(OrderSummaryRoute(isTrackOrder: true));
-                }else {
+                if (auth) {
+                  AutoRouter.of(context).push(TrackOrderRoute());
+                } else {
                   CustomToast.showAuthDialog(context);
                 }
-
               }),
           BuildMoreItem(
               title: 'Conversation',
               icon: Icons.chat,
               onTap: () {
-                if(auth){
+                if (auth) {
                   AutoRouter.of(context).push(const ConversationsRoute());
-                }else{
+                } else {
                   CustomToast.showAuthDialog(context);
                 }
               }),

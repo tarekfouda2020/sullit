@@ -20,40 +20,34 @@ class ProductDetailsController {
     isResale = productResale;
   }
 
-
-
   void getProductDetails(BuildContext context, int productId,
       {bool refresh = true}) async {
     var params = _detailsParams(refresh, productId);
     var result = await GetProductDetails().call(params);
     detailsCubit.onUpdateData(result);
-    basicImage = detailsCubit.state.data!.product.images;
+    basicImage = detailsCubit.state.data!.product.images!;
     _initVariants(context);
   }
 
-  
-
   void _initVariants(BuildContext context) {
     detailsCubit.state.data?.product.choiceOptions?.map((e) {
-      e.selectedAttribute.add(e.options.first);
+      e.selectedAttribute!.add(e.options!.first);
       e.hasValue = true;
     }).toList();
     var selectedList = detailsCubit.state.data!.product.choiceOptions!
         .map((e) => e.selectedAttribute)
         .toList();
-    selectedVariants = selectedList.expand((element) => element).toList();
+    selectedVariants = selectedList.expand((element) => element!).toList();
     if (selectedVariants.isNotEmpty) getVariantPrice(context);
   }
 
   void getVariantPrice(BuildContext context) async {
     var params = _variantPriceParams();
-    log("###${params.paramToQuery()}");
-    log("###${params.toJson()}");
     var details = detailsCubit.state.data;
     var result = await GetVariantPrice().call(params);
     if (result != null) {
       if (result.variant!.image != "") {
-        details?.product.images = [result.variant!.image, ...basicImage];
+        details?.product.images = [result.variant!.image!, ...basicImage];
       } else {
         details?.product.images = basicImage;
       }
@@ -63,7 +57,7 @@ class ProductDetailsController {
   }
 
   void onChangeFav(Product item) {
-    item.isWishlist = !item.isWishlist;
+    item.isWishlist = !item.isWishlist!;
     detailsCubit.onUpdateData(detailsCubit.state.data);
   }
 
@@ -72,16 +66,15 @@ class ProductDetailsController {
     List<String> selected = [];
     var optionItem = model[index];
     var attributes = optionItem.selectedAttribute;
-
     if (optionItem.hasValue == true) {
-      attributes.clear();
-      attributes.add(optionItem.options[position]);
+      attributes!.clear();
+      attributes.add(optionItem.options![position]);
     } else {
-      attributes.add(optionItem.options[position]);
+      attributes!.add(optionItem.options![position]);
     }
     optionItem.hasValue = true;
     model.where((element) => element.hasValue == true).map((e) {
-      selected = [...selected, ...e.selectedAttribute];
+      selected = [...selected, ...e.selectedAttribute!];
       selectedVariants = selected;
       return e;
     }).toList();
@@ -104,10 +97,10 @@ class ProductDetailsController {
 
   void increaseQty() {
     var variantPrice = detailsCubit.state.data?.product.variant;
-    var price = double.parse(variantPrice!.calculablePrice);
+    var price = double.parse(variantPrice!.calculablePrice!);
     price = price / qtyCubit.state.data;
-    if (variantPrice.currentStock >= 1) {
-      if (variantPrice.currentStock > qtyCubit.state.data) {
+    if (variantPrice.currentStock! >= 1) {
+      if (variantPrice.currentStock! > qtyCubit.state.data) {
         var newQty = qtyCubit.state.data + 1;
         var priceQty = newQty * price;
         variantPrice.calculablePrice = priceQty.toString();
@@ -126,7 +119,7 @@ class ProductDetailsController {
 
   void decreaseQty() {
     var variantPrice = detailsCubit.state.data?.product.variant;
-    var price = double.parse(variantPrice!.calculablePrice);
+    var price = double.parse(variantPrice!.calculablePrice!);
     if (qtyCubit.state.data > 1) {
       var priceQty = price - (price / qtyCubit.state.data);
       var newQty = qtyCubit.state.data - 1;
@@ -142,7 +135,7 @@ class ProductDetailsController {
 
   SendQueryParams _sendQueryParams() {
     return SendQueryParams(
-      id: detailsCubit.state.data!.product.id,
+      id: detailsCubit.state.data!.product.id!,
       question: queryController.text,
     );
   }
@@ -150,7 +143,7 @@ class ProductDetailsController {
   VariantPriceParams _variantPriceParams() {
     var resellerId = detailsCubit.state.data!.product.sellerId;
     return VariantPriceParams(
-      id: detailsCubit.state.data!.product.id,
+      id: detailsCubit.state.data!.product.id!,
       resellerId: isResale ? resellerId : 0,
       variants: selectedVariants.join(','),
     );

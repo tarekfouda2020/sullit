@@ -24,6 +24,10 @@ mixin _$OrderModel {
   String get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'order_type')
   String get orderType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'available_return_order')
+  bool get availableReturnOrder => throw _privateConstructorUsedError;
+  @JsonKey(name: 'show_button_pay')
+  bool get showButtonPay => throw _privateConstructorUsedError;
   String get subtotal => throw _privateConstructorUsedError;
   String get shipping => throw _privateConstructorUsedError;
   String get tax => throw _privateConstructorUsedError;
@@ -31,6 +35,8 @@ mixin _$OrderModel {
   String get couponDiscount => throw _privateConstructorUsedError;
   String get total => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
+  @JsonKey(name: 'delivery_status_const')
+  String get deliveryStatusConst => throw _privateConstructorUsedError;
   @JsonKey(name: 'delivery_status')
   String get deliveryStatus => throw _privateConstructorUsedError;
   @JsonKey(name: 'delivery_viewed')
@@ -81,12 +87,15 @@ abstract class $OrderModelCopyWith<$Res> {
       {int id,
       String code,
       @JsonKey(name: 'order_type') String orderType,
+      @JsonKey(name: 'available_return_order') bool availableReturnOrder,
+      @JsonKey(name: 'show_button_pay') bool showButtonPay,
       String subtotal,
       String shipping,
       String tax,
       @JsonKey(name: 'coupon_discount') String couponDiscount,
       String total,
       String date,
+      @JsonKey(name: 'delivery_status_const') String deliveryStatusConst,
       @JsonKey(name: 'delivery_status') String deliveryStatus,
       @JsonKey(name: 'delivery_viewed') bool deliveryViewed,
       @JsonKey(name: 'payment_status_viewed') bool paymentStatusViewed,
@@ -121,12 +130,15 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? id = null,
     Object? code = null,
     Object? orderType = null,
+    Object? availableReturnOrder = null,
+    Object? showButtonPay = null,
     Object? subtotal = null,
     Object? shipping = null,
     Object? tax = null,
     Object? couponDiscount = null,
     Object? total = null,
     Object? date = null,
+    Object? deliveryStatusConst = null,
     Object? deliveryStatus = null,
     Object? deliveryViewed = null,
     Object? paymentStatusViewed = null,
@@ -157,6 +169,14 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.orderType
           : orderType // ignore: cast_nullable_to_non_nullable
               as String,
+      availableReturnOrder: null == availableReturnOrder
+          ? _value.availableReturnOrder
+          : availableReturnOrder // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showButtonPay: null == showButtonPay
+          ? _value.showButtonPay
+          : showButtonPay // ignore: cast_nullable_to_non_nullable
+              as bool,
       subtotal: null == subtotal
           ? _value.subtotal
           : subtotal // ignore: cast_nullable_to_non_nullable
@@ -180,6 +200,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
+              as String,
+      deliveryStatusConst: null == deliveryStatusConst
+          ? _value.deliveryStatusConst
+          : deliveryStatusConst // ignore: cast_nullable_to_non_nullable
               as String,
       deliveryStatus: null == deliveryStatus
           ? _value.deliveryStatus
@@ -261,12 +285,15 @@ abstract class _$$_OrderModelCopyWith<$Res>
       {int id,
       String code,
       @JsonKey(name: 'order_type') String orderType,
+      @JsonKey(name: 'available_return_order') bool availableReturnOrder,
+      @JsonKey(name: 'show_button_pay') bool showButtonPay,
       String subtotal,
       String shipping,
       String tax,
       @JsonKey(name: 'coupon_discount') String couponDiscount,
       String total,
       String date,
+      @JsonKey(name: 'delivery_status_const') String deliveryStatusConst,
       @JsonKey(name: 'delivery_status') String deliveryStatus,
       @JsonKey(name: 'delivery_viewed') bool deliveryViewed,
       @JsonKey(name: 'payment_status_viewed') bool paymentStatusViewed,
@@ -299,12 +326,15 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? id = null,
     Object? code = null,
     Object? orderType = null,
+    Object? availableReturnOrder = null,
+    Object? showButtonPay = null,
     Object? subtotal = null,
     Object? shipping = null,
     Object? tax = null,
     Object? couponDiscount = null,
     Object? total = null,
     Object? date = null,
+    Object? deliveryStatusConst = null,
     Object? deliveryStatus = null,
     Object? deliveryViewed = null,
     Object? paymentStatusViewed = null,
@@ -335,6 +365,14 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.orderType
           : orderType // ignore: cast_nullable_to_non_nullable
               as String,
+      availableReturnOrder: null == availableReturnOrder
+          ? _value.availableReturnOrder
+          : availableReturnOrder // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showButtonPay: null == showButtonPay
+          ? _value.showButtonPay
+          : showButtonPay // ignore: cast_nullable_to_non_nullable
+              as bool,
       subtotal: null == subtotal
           ? _value.subtotal
           : subtotal // ignore: cast_nullable_to_non_nullable
@@ -358,6 +396,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
+              as String,
+      deliveryStatusConst: null == deliveryStatusConst
+          ? _value.deliveryStatusConst
+          : deliveryStatusConst // ignore: cast_nullable_to_non_nullable
               as String,
       deliveryStatus: null == deliveryStatus
           ? _value.deliveryStatus
@@ -435,12 +477,16 @@ class _$_OrderModel extends _OrderModel {
       {required this.id,
       required this.code,
       @JsonKey(name: 'order_type') required this.orderType,
+      @JsonKey(name: 'available_return_order')
+      required this.availableReturnOrder,
+      @JsonKey(name: 'show_button_pay') required this.showButtonPay,
       required this.subtotal,
       required this.shipping,
       required this.tax,
       @JsonKey(name: 'coupon_discount') required this.couponDiscount,
       required this.total,
       required this.date,
+      @JsonKey(name: 'delivery_status_const') required this.deliveryStatusConst,
       @JsonKey(name: 'delivery_status') required this.deliveryStatus,
       @JsonKey(name: 'delivery_viewed') required this.deliveryViewed,
       @JsonKey(name: 'payment_status_viewed') required this.paymentStatusViewed,
@@ -473,6 +519,12 @@ class _$_OrderModel extends _OrderModel {
   @JsonKey(name: 'order_type')
   final String orderType;
   @override
+  @JsonKey(name: 'available_return_order')
+  final bool availableReturnOrder;
+  @override
+  @JsonKey(name: 'show_button_pay')
+  final bool showButtonPay;
+  @override
   final String subtotal;
   @override
   final String shipping;
@@ -485,6 +537,9 @@ class _$_OrderModel extends _OrderModel {
   final String total;
   @override
   final String date;
+  @override
+  @JsonKey(name: 'delivery_status_const')
+  final String deliveryStatusConst;
   @override
   @JsonKey(name: 'delivery_status')
   final String deliveryStatus;
@@ -541,7 +596,7 @@ class _$_OrderModel extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, returnReason: $returnReason, orderDetails: $orderDetails)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, returnReason: $returnReason, orderDetails: $orderDetails)';
   }
 
   @override
@@ -553,6 +608,10 @@ class _$_OrderModel extends _OrderModel {
             (identical(other.code, code) || other.code == code) &&
             (identical(other.orderType, orderType) ||
                 other.orderType == orderType) &&
+            (identical(other.availableReturnOrder, availableReturnOrder) ||
+                other.availableReturnOrder == availableReturnOrder) &&
+            (identical(other.showButtonPay, showButtonPay) ||
+                other.showButtonPay == showButtonPay) &&
             (identical(other.subtotal, subtotal) ||
                 other.subtotal == subtotal) &&
             (identical(other.shipping, shipping) ||
@@ -562,6 +621,8 @@ class _$_OrderModel extends _OrderModel {
                 other.couponDiscount == couponDiscount) &&
             (identical(other.total, total) || other.total == total) &&
             (identical(other.date, date) || other.date == date) &&
+            (identical(other.deliveryStatusConst, deliveryStatusConst) ||
+                other.deliveryStatusConst == deliveryStatusConst) &&
             (identical(other.deliveryStatus, deliveryStatus) ||
                 other.deliveryStatus == deliveryStatus) &&
             (identical(other.deliveryViewed, deliveryViewed) ||
@@ -603,12 +664,15 @@ class _$_OrderModel extends _OrderModel {
         id,
         code,
         orderType,
+        availableReturnOrder,
+        showButtonPay,
         subtotal,
         shipping,
         tax,
         couponDiscount,
         total,
         date,
+        deliveryStatusConst,
         deliveryStatus,
         deliveryViewed,
         paymentStatusViewed,
@@ -646,12 +710,17 @@ abstract class _OrderModel extends OrderModel {
       {required final int id,
       required final String code,
       @JsonKey(name: 'order_type') required final String orderType,
+      @JsonKey(name: 'available_return_order')
+      required final bool availableReturnOrder,
+      @JsonKey(name: 'show_button_pay') required final bool showButtonPay,
       required final String subtotal,
       required final String shipping,
       required final String tax,
       @JsonKey(name: 'coupon_discount') required final String couponDiscount,
       required final String total,
       required final String date,
+      @JsonKey(name: 'delivery_status_const')
+      required final String deliveryStatusConst,
       @JsonKey(name: 'delivery_status') required final String deliveryStatus,
       @JsonKey(name: 'delivery_viewed') required final bool deliveryViewed,
       @JsonKey(name: 'payment_status_viewed')
@@ -685,6 +754,12 @@ abstract class _OrderModel extends OrderModel {
   @JsonKey(name: 'order_type')
   String get orderType;
   @override
+  @JsonKey(name: 'available_return_order')
+  bool get availableReturnOrder;
+  @override
+  @JsonKey(name: 'show_button_pay')
+  bool get showButtonPay;
+  @override
   String get subtotal;
   @override
   String get shipping;
@@ -697,6 +772,9 @@ abstract class _OrderModel extends OrderModel {
   String get total;
   @override
   String get date;
+  @override
+  @JsonKey(name: 'delivery_status_const')
+  String get deliveryStatusConst;
   @override
   @JsonKey(name: 'delivery_status')
   String get deliveryStatus;
