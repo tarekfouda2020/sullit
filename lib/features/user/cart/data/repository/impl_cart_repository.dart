@@ -11,6 +11,8 @@ import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_pa
 import 'package:flutter_tdd/features/user/cart/domain/entities/update_cart_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/coupon_response_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/order_response.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/seller_shipping.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart';
 import 'package:flutter_tdd/features/user/cart/domain/repository/cart_repository.dart';
@@ -44,8 +46,9 @@ class ImplCartRepository extends CartRepository with ModelToDomain{
   }
 
   @override
-  Future<Either<Failure, OrderSummaryModel>> createOrder(CreateOrderParams params)async {
-    return dataSource.createOrder(params);
+  Future<Either<Failure, OrderSummary>> createOrder(CreateOrderParams params)async {
+    var result = await dataSource.createOrder(params);
+    return toDomainResult(result);
   }
   @override
   Future<Either<Failure, String>> addToCart(AddProductToCartParams params)async {
@@ -67,5 +70,11 @@ class ImplCartRepository extends CartRepository with ModelToDomain{
   Future<Either<Failure, List<SellerShipping>>> getShippingInfo(bool param)async {
     var result = await dataSource.getShippingInfo(param);
     return toDomainResultList<SellerShipping, SellerShippingModel>(result);
+  }
+
+  @override
+  Future<Either<Failure, OrderSummary>> getCombinedOrder(int param)async {
+    var result = await dataSource.getCombinedOrder(param);
+    return toDomainResult(result);
   }
 }

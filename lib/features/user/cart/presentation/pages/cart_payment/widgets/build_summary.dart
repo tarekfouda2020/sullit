@@ -1,7 +1,7 @@
-part of 'payment_widgets_imports.dart';
+part of 'cart_payment_widgets_imports.dart';
 
 class BuildSummary extends StatelessWidget {
-final PaymentController controller;
+final CartPaymentController controller;
 final Shipping shipping ;
 
   const BuildSummary({super.key, required this.controller, required this.shipping});

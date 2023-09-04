@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_dynamic_calls
 
+import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
+
 class CreateOrderParams {
   String paymentOption;
 
@@ -16,4 +18,6 @@ class CreateOrderParams {
   };
 
   bool isSuccess (dynamic json)=> json["key"] == "success" ;
+
+
 }

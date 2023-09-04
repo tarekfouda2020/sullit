@@ -1,4 +1,4 @@
-part of 'payment_widgets_imports.dart';
+part of 'cart_payment_widgets_imports.dart';
 
 class BuildSummaryItem extends StatelessWidget {
   final String title;

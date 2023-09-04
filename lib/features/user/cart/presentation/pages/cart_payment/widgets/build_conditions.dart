@@ -1,7 +1,7 @@
-part of 'payment_widgets_imports.dart';
+part of 'cart_payment_widgets_imports.dart';
 
 class BuildConditions extends StatelessWidget {
-  final PaymentController controller;
+  final CartPaymentController controller;
 
   const BuildConditions({super.key, required this.controller});
 

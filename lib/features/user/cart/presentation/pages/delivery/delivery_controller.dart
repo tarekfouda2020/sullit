@@ -18,7 +18,7 @@ class DeliveryController {
     if (data != null) {
       CustomToast.showSimpleToast(
           msg: "The Shipping info has been added successfully");
-      AutoRouter.of(context).push(PaymentRoute(shipping: data));
+      AutoRouter.of(context).push(CartPaymentRoute(shipping: data));
     }
   }
 

@@ -10,6 +10,7 @@ import 'package:flutter_tdd/core/http/models/http_request_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/data_sources/cart_data_sources.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/cart_model/cart_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/coupon_response_model/coupon_response_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/order_response_model/order_response_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/seller_shipping_model/seller_shipping_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/shipping_model/shipping_model.dart';
@@ -17,6 +18,7 @@ import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_para
 import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/update_cart_params.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/add_product_to_cart_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_model/order_model.dart';
 import 'package:injectable/injectable.dart';
@@ -89,7 +91,7 @@ class ImplCartDataSources extends CartDataSources {
       url: ApiNames.storeOrders,
       requestBody: params.toJson(),
       requestMethod: RequestMethod.post,
-      responseType: ResType.list,
+      responseType: ResType.model,
       showLoader: true,
       toJsonFunc: (data) => OrderSummaryModel.fromJson(data),
       responseKey: (data)=> data['data'],
@@ -97,6 +99,7 @@ class ImplCartDataSources extends CartDataSources {
     );
     return await GenericHttpImpl<OrderSummaryModel>().call(model);
   }
+
   @override
   Future<Either<Failure, String>> addToCart (AddProductToCartParams params) async {
     HttpRequestModel model = HttpRequestModel(
@@ -156,5 +159,19 @@ class ImplCartDataSources extends CartDataSources {
       errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<List<SellerShippingModel>>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, OrderSummaryModel>> getCombinedOrder(int param)async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.getCombinedOrder,
+      requestMethod: RequestMethod.get,
+      responseType: ResType.model,
+      showLoader: true,
+      toJsonFunc: (data) => OrderSummaryModel.fromJson(data),
+      responseKey: (data)=> data['data'],
+      errorFunc: (data)=> data["msg"],
+    );
+    return await GenericHttpImpl<OrderSummaryModel>().call(model);
   }
 }
