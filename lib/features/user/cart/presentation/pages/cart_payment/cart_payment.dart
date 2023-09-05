@@ -1,22 +1,22 @@
 // ignore_for_file: library_private_types_in_public_api
 
-part of 'payment_imports.dart';
+part of 'cart_payment_imports.dart';
 
-class Payment extends StatefulWidget {
+class CartPayment extends StatefulWidget {
   final Shipping shipping;
 
-  const Payment({Key? key, required this.shipping}) : super(key: key);
+  const CartPayment({Key? key, required this.shipping}) : super(key: key);
 
   @override
-  _PaymentState createState() => _PaymentState();
+  _CartPaymentState createState() => _CartPaymentState();
 }
 
-class _PaymentState extends State<Payment> {
-  late PaymentController controller;
+class _CartPaymentState extends State<CartPayment> {
+  late CartPaymentController controller;
 
   @override
   void initState() {
-    controller = PaymentController(widget.shipping);
+    controller = CartPaymentController(widget.shipping);
     super.initState();
   }
 

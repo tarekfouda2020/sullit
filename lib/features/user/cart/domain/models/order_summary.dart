@@ -4,12 +4,15 @@ import 'package:flutter_tdd/features/user/cart/domain/models/summary.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_model/order_model.dart';
 
 class OrderSummary extends BaseDomainModel {
-  Summary summary;
+  Summary? summary;
 
-  List<OrderModel> sectionOrders;
+  List<OrderModel>? sectionOrders;
+
+  String? transactionUrl;
 
   OrderSummary({
-    required this.summary,
-    required this.sectionOrders,
+    this.summary,
+    this.sectionOrders,
+    this.transactionUrl,
   });
 }

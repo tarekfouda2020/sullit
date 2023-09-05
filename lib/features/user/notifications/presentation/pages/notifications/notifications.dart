@@ -11,15 +11,44 @@ class Notifications extends StatefulWidget {
 }
 
 class _NotificationsState extends State<Notifications> {
-  final NotificationsController controller = NotificationsController();
+  late NotificationsController controller;
+
+  @override
+  void initState() {
+    controller = NotificationsController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BuildSearchAppBar(homeController: widget.homeController),
-      body: ListView.builder(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16).r,
-        itemCount: 3,
-        itemBuilder: (context, index) => const BuildNotificationsItem(),
+      body: BlocBuilder<GenericBloc<List<NotificationDomainModel>>,
+          GenericState<List<NotificationDomainModel>>>(
+        bloc: controller.notificationsBloc,
+        builder: (context, state) {
+          if (state is GenericUpdateState) {
+            return Visibility(
+              visible: state.data.isNotEmpty,
+              replacement: Center(
+                child: Text(
+                  'No Notifies items.',
+                  style: AppTextStyle.s14_w400(color: context.colors.black),
+                ),
+              ),
+              child: ListView.builder(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 16).r,
+                itemCount: state.data.length,
+                itemBuilder: (context, index) => BuildNotificationsItem(
+                  notification: state.data[index],
+                ),
+              ),
+            );
+          } else {
+            return const BuildNotifiesLoading();
+          }
+        },
       ),
     );
   }

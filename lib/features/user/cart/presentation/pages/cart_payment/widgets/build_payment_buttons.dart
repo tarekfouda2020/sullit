@@ -1,6 +1,6 @@
-part of 'payment_widgets_imports.dart';
+part of 'cart_payment_widgets_imports.dart';
 class BuildPaymentButtons extends StatelessWidget {
-  final PaymentController controller;
+  final CartPaymentController controller;
   const BuildPaymentButtons({Key? key, required this.controller}) : super(key: key);
 
   @override

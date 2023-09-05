@@ -1,6 +1,7 @@
 part of'notifications_widgets_imports.dart';
 class BuildNotificationsItem extends StatelessWidget {
-  const BuildNotificationsItem({Key? key}) : super(key: key);
+  final NotificationDomainModel notification;
+  const BuildNotificationsItem({Key? key, required this.notification}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +18,12 @@ class BuildNotificationsItem extends StatelessWidget {
               ]),
           child: ListTile(
             title: Text(
-              "Your payment process done successfully",
+              notification.text,
               style: AppTextStyle.s12_w400(color: context.colors.black),
             ),
             leading:  Image.asset(Res.suliitLogo,height: 40.r,width: 40.h,),
             trailing: Text(
-              "12/3/2023",
+              notification.createdAt,
               style: AppTextStyle.s12_w400(color: context.colors.blackOpacity),
             ),
             minLeadingWidth: 10.w,

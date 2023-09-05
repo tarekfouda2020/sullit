@@ -1,7 +1,7 @@
-part of 'payment_widgets_imports.dart';
+part of 'cart_payment_widgets_imports.dart';
 
 class BuildPaymentOptions extends StatelessWidget {
-  final PaymentController controller;
+  final CartPaymentController controller;
   final List<PaymentOption> paymentOptions ;
 
   const BuildPaymentOptions({super.key, required this.controller, required this.paymentOptions});

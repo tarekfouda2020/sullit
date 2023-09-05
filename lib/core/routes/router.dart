@@ -24,6 +24,7 @@ part of 'router_imports.dart';
     ...dashboardRoute,
     ...notifyRoute,
     ...productsRoute,
+    ...paymentRoutes,
     ...searchRoute,
     ...wishListRoute,
     ...profileRoute,

@@ -3,14 +3,8 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
-import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/helpers/global_context.dart';
-import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -70,9 +64,11 @@ class HandleErrors {
 
   Either<ServerFailure, Response> statusError(
       Response response, Function(dynamic) errorFunc) {
-    if (response.data["key"] != "success") {
-      CustomToast.showSnakeBar(response.data["msg"].toString(),
-          toastGravity: ToastGravity.BOTTOM);
+    if (response.data["key"] != "success" && response.data['key'] != 'redirect') {
+      CustomToast.showSnakeBar(
+        response.data["msg"].toString(),
+        toastGravity: ToastGravity.BOTTOM,
+      );
       return Left(ServerFailure());
     }
     return Right(response);

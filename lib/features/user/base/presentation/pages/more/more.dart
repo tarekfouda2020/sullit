@@ -25,125 +25,110 @@ class _MoreState extends State<More> {
           //   moreController: controller,
           // ),
           BuildMoreItem(
-              title: 'DashBoard',
-              icon: Icons.home_outlined,
-              onTap: () {
-                if (auth) {
-                  AutoRouter.of(context).push(const DashBoardRoute());
-                } else {
-                  CustomToast.showAuthDialog(context);
-                }
-              }),
+            title: 'DashBoard',
+            icon: Icons.home_outlined,
+            onTap: () => controller.checkAuth(
+              auth,
+              context,
+              MoreRoutes.dashboard,
+            ),
+          ),
           BuildMoreItem(
-              haveStatus: true,
-              title: 'Purchased History',
-              icon: Icons.file_copy_outlined,
-              onTap: () {
-                if (auth) {
-                  AutoRouter.of(context).push(const PurchasedHistoryRoute());
-                } else {
-                  CustomToast.showAuthDialog(context);
-                }
-              }),
+            haveStatus: true,
+            title: 'Purchased History',
+            icon: Icons.file_copy_outlined,
+            onTap: () => controller.checkAuth(
+              auth,
+              context,
+              MoreRoutes.purchasedHistory,
+            ),
+          ),
           BuildMoreItem(
-              title: 'Return Orders',
-              icon: Icons.file_copy_outlined,
-              onTap: () {
-                if (auth) {
-                  AutoRouter.of(context).push(const ReturnOrdersRoute());
-                } else {
-                  CustomToast.showAuthDialog(context);
-                }
-              }),
+            title: 'Return Orders',
+            icon: Icons.file_copy_outlined,
+            onTap: () => controller.checkAuth(
+              auth,
+              context,
+              MoreRoutes.returnOrders,
+            ),
+          ),
           BuildMoreItem(
-              title: 'Downloads',
-              icon: Icons.download,
-              onTap: () {
-                if (auth) {
-                  AutoRouter.of(context).push(const DownloadsRoute());
-                } else {
-                  CustomToast.showAuthDialog(context);
-                }
-              }),
+            title: 'Downloads',
+            icon: Icons.download,
+            onTap: () => controller.checkAuth(
+              auth,
+              context,
+              MoreRoutes.downloads,
+            ),
+          ),
           BuildMoreItem(
-              title: 'Blogs',
-              icon: Icons.list_alt,
-              onTap: () {
-                if (auth) {
-                  AutoRouter.of(context).push(const BlogsRoute());
-                } else {
-                  CustomToast.showAuthDialog(context);
-                }
-              }),
+            title: 'Blogs',
+            icon: Icons.list_alt,
+            onTap: () => controller.checkAuth(
+              auth,
+              context,
+              MoreRoutes.blogs,
+            ),
+          ),
           BuildMoreItem(
-              title: 'WishList',
-              icon: Icons.favorite_border,
-              onTap: () {
-                if (auth) {
-                  AutoRouter.of(context).push(const WishlistRoute());
-                } else {
-                  CustomToast.showAuthDialog(context);
-                }
-              }),
+            title: 'WishList',
+            icon: Icons.favorite_border,
+            onTap: () => controller.checkAuth(
+              auth,
+              context,
+              MoreRoutes.wishlist,
+            ),
+          ),
           BuildMoreItem(
-              title: 'Compare',
-              icon: Icons.compare_arrows,
-              onTap: () {
-                AutoRouter.of(context).push(const CompareRoute());
-              }),
+            title: 'Compare',
+            icon: Icons.compare_arrows,
+            onTap: () => controller.checkAuth(
+              auth,
+              context,
+              MoreRoutes.compare,
+            ),
+          ),
           BuildMoreItem(
-              title: 'Track Order',
-              icon: Icons.summarize_outlined,
-              onTap: () {
-                if (auth) {
-                  AutoRouter.of(context).push(TrackOrderRoute());
-                } else {
-                  CustomToast.showAuthDialog(context);
-                }
-              }),
+            title: 'Track Order',
+            icon: Icons.summarize_outlined,
+            onTap: () => controller.checkAuth(
+              auth,
+              context,
+              MoreRoutes.trackOrder,
+            ),
+          ),
           BuildMoreItem(
-              title: 'Conversation',
-              icon: Icons.chat,
-              onTap: () {
-                if (auth) {
-                  AutoRouter.of(context).push(const ConversationsRoute());
-                } else {
-                  CustomToast.showAuthDialog(context);
-                }
-              }),
+            title: 'Conversation',
+            icon: Icons.chat,
+            onTap: () => controller.checkAuth(
+              auth,
+              context,
+              MoreRoutes.conversations,
+            ),
+          ),
           BuildMoreItem(
-              title: 'My Wallet',
-              icon: Icons.monetization_on_outlined,
-              onTap: () {
-                if (auth) {
-                  AutoRouter.of(context).push(const MyWalletRoute());
-                } else {
-                  CustomToast.showAuthDialog(context);
-                }
-              }),
+            title: 'My Wallet',
+            icon: Icons.monetization_on_outlined,
+            onTap: () =>
+                controller.checkAuth(auth, context, MoreRoutes.myWallet),
+          ),
           BuildMoreItem(
             title: 'Support Tickets',
             icon: Icons.airplane_ticket_outlined,
-            onTap: () {
-              if (auth) {
-                AutoRouter.of(context).push(
-                  const SupportTicketsRoute(),
-                );
-              } else {
-                CustomToast.showAuthDialog(context);
-              }
-            },
+            onTap: () => controller.checkAuth(
+              auth,
+              context,
+              MoreRoutes.supportTickets,
+            ),
           ),
           BuildMoreItem(
             title: 'Manage Profile',
             icon: Icons.person_2_outlined,
-            onTap: () {
-              if (auth) {
-                AutoRouter.of(context).push(ProfileRoute());
-              } else {
-                CustomToast.showAuthDialog(context);
-              }
-            },
+            onTap: () => controller.checkAuth(
+              auth,
+              context,
+              MoreRoutes.profile,
+            ),
           ),
         ],
       ),
