@@ -34,11 +34,7 @@ mixin _$OrderDetailsModel {
   bool get isAvailableReview => throw _privateConstructorUsedError;
   @JsonKey(name: 'msg_cant_review')
   String get msgCantReview => throw _privateConstructorUsedError;
-  ReviewsModel? get review =>
-      throw _privateConstructorUsedError; // @JsonKey(includeFromJson: false, includeToJson: false)
-//     GenericBloc<int>? ratingCubit,
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  TextEditingController? get rateComment => throw _privateConstructorUsedError;
+  ReviewsModel? get review => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -63,9 +59,7 @@ abstract class $OrderDetailsModelCopyWith<$Res> {
       String? tax,
       @JsonKey(name: 'review_is_available') bool isAvailableReview,
       @JsonKey(name: 'msg_cant_review') String msgCantReview,
-      ReviewsModel? review,
-      @JsonKey(includeFromJson: false, includeToJson: false)
-      TextEditingController? rateComment});
+      ReviewsModel? review});
 
   $ProductModelCopyWith<$Res>? get product;
   $ReviewsModelCopyWith<$Res>? get review;
@@ -95,7 +89,6 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
     Object? isAvailableReview = null,
     Object? msgCantReview = null,
     Object? review = freezed,
-    Object? rateComment = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -142,10 +135,6 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
           ? _value.review
           : review // ignore: cast_nullable_to_non_nullable
               as ReviewsModel?,
-      rateComment: freezed == rateComment
-          ? _value.rateComment
-          : rateComment // ignore: cast_nullable_to_non_nullable
-              as TextEditingController?,
     ) as $Val);
   }
 
@@ -193,9 +182,7 @@ abstract class _$$_OrderDetailsModelCopyWith<$Res>
       String? tax,
       @JsonKey(name: 'review_is_available') bool isAvailableReview,
       @JsonKey(name: 'msg_cant_review') String msgCantReview,
-      ReviewsModel? review,
-      @JsonKey(includeFromJson: false, includeToJson: false)
-      TextEditingController? rateComment});
+      ReviewsModel? review});
 
   @override
   $ProductModelCopyWith<$Res>? get product;
@@ -225,7 +212,6 @@ class __$$_OrderDetailsModelCopyWithImpl<$Res>
     Object? isAvailableReview = null,
     Object? msgCantReview = null,
     Object? review = freezed,
-    Object? rateComment = freezed,
   }) {
     return _then(_$_OrderDetailsModel(
       id: null == id
@@ -272,10 +258,6 @@ class __$$_OrderDetailsModelCopyWithImpl<$Res>
           ? _value.review
           : review // ignore: cast_nullable_to_non_nullable
               as ReviewsModel?,
-      rateComment: freezed == rateComment
-          ? _value.rateComment
-          : rateComment // ignore: cast_nullable_to_non_nullable
-              as TextEditingController?,
     ));
   }
 }
@@ -295,8 +277,7 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
       this.tax,
       @JsonKey(name: 'review_is_available') required this.isAvailableReview,
       @JsonKey(name: 'msg_cant_review') required this.msgCantReview,
-      this.review,
-      @JsonKey(includeFromJson: false, includeToJson: false) this.rateComment})
+      this.review})
       : super._();
 
   factory _$_OrderDetailsModel.fromJson(Map<String, dynamic> json) =>
@@ -328,15 +309,10 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
   final String msgCantReview;
   @override
   final ReviewsModel? review;
-// @JsonKey(includeFromJson: false, includeToJson: false)
-//     GenericBloc<int>? ratingCubit,
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  final TextEditingController? rateComment;
 
   @override
   String toString() {
-    return 'OrderDetailsModel(id: $id, product: $product, variation: $variation, quantity: $quantity, availableReturnQty: $availableReturnQty, deliveryType: $deliveryType, price: $price, tax: $tax, isAvailableReview: $isAvailableReview, msgCantReview: $msgCantReview, review: $review, rateComment: $rateComment)';
+    return 'OrderDetailsModel(id: $id, product: $product, variation: $variation, quantity: $quantity, availableReturnQty: $availableReturnQty, deliveryType: $deliveryType, price: $price, tax: $tax, isAvailableReview: $isAvailableReview, msgCantReview: $msgCantReview, review: $review)';
   }
 
   @override
@@ -360,9 +336,7 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
                 other.isAvailableReview == isAvailableReview) &&
             (identical(other.msgCantReview, msgCantReview) ||
                 other.msgCantReview == msgCantReview) &&
-            (identical(other.review, review) || other.review == review) &&
-            (identical(other.rateComment, rateComment) ||
-                other.rateComment == rateComment));
+            (identical(other.review, review) || other.review == review));
   }
 
   @JsonKey(ignore: true)
@@ -379,8 +353,7 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
       tax,
       isAvailableReview,
       msgCantReview,
-      review,
-      rateComment);
+      review);
 
   @JsonKey(ignore: true)
   @override
@@ -411,9 +384,7 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
       @JsonKey(name: 'review_is_available')
       required final bool isAvailableReview,
       @JsonKey(name: 'msg_cant_review') required final String msgCantReview,
-      final ReviewsModel? review,
-      @JsonKey(includeFromJson: false, includeToJson: false)
-      final TextEditingController? rateComment}) = _$_OrderDetailsModel;
+      final ReviewsModel? review}) = _$_OrderDetailsModel;
   const _OrderDetailsModel._() : super._();
 
   factory _OrderDetailsModel.fromJson(Map<String, dynamic> json) =
@@ -445,10 +416,6 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
   String get msgCantReview;
   @override
   ReviewsModel? get review;
-  @override // @JsonKey(includeFromJson: false, includeToJson: false)
-//     GenericBloc<int>? ratingCubit,
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  TextEditingController? get rateComment;
   @override
   @JsonKey(ignore: true)
   _$$_OrderDetailsModelCopyWith<_$_OrderDetailsModel> get copyWith =>

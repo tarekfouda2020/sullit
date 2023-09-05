@@ -47,7 +47,7 @@ class BuildOrderProductItem extends StatelessWidget {
         ),
         Visibility(
           visible: productLength > 1,
-          child: Gaps.line(context.colors.greyWhite, 20.h),
+          child: Gaps.line(context.colors.grey, 20.h),
         )
       ],
     );
