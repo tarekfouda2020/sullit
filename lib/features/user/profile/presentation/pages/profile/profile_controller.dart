@@ -9,27 +9,38 @@ class ProfileController {
   final GlobalKey<FormState> formKey = GlobalKey();
   final GenericBloc<File?> imageCubit = GenericBloc(null);
 
-  TextEditingController nameController = TextEditingController();
-  TextEditingController shopNameController = TextEditingController();
-  TextEditingController shopPhoneController = TextEditingController();
-  TextEditingController shopEmailController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController shopNameController = TextEditingController();
+  final TextEditingController shopPhoneController = TextEditingController();
+  final TextEditingController shopEmailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
-  ProfileController(BuildContext context, Address? address) {
-    getInitialData(context, address);
+  Address? addressModel;
+
+  ProfileController(BuildContext context) {
+    getInitialData(context);
   }
 
-  void getInitialData(BuildContext context, Address? address) {
+  void getInitialData(BuildContext context) {
     var user = context.read<UserCubit>().state.model;
     if (user != UserDomainModel()) {
       nameController.text = user?.name ?? "";
       emailController.text = user?.email ?? "";
       phoneController.text = user?.phone ?? "";
-      addressController.text = address?.address ?? "";
+      // addressController.text = address?.address ?? "";
+    }
+  }
+
+  void navigateToAddresses(BuildContext context) async {
+    var result = await AutoRouter.of(context).push(const AddressesRoute());
+    if (result != null) {
+      addressModel = result as Address;
+      addressController.text = addressModel?.address ?? "";
     }
   }
 
@@ -42,14 +53,15 @@ class ProfileController {
 
   Future<void> removeImage() => imageCubit.onUpdateToInitState(null);
 
-  Future<void> setEditProfile(BuildContext context, Address? address) async {
+  Future<void> setEditProfile(BuildContext context) async {
+    print(">>>>>>${addressModel?.toJson()}");
     var user = context.read<UserCubit>().state.model;
     var params = _profileParams();
     if (emailController.text != user!.email) {
       setEditProfileEmail();
     }
-    if (address != null) {
-      await SetDefaultAddress().call(address.id!);
+    if (addressModel != null) {
+      await SetDefaultAddress().call(addressModel!.id!);
     }
     var data = await SetEditProfile().call(params);
     if (data != UserDomainModel()) {
@@ -64,7 +76,6 @@ class ProfileController {
   Future<void> setEditProfileEmail() async {
     await SetEditProfileEmail().call(emailController.text);
   }
-
 
   void _cashAndRoute(UserDomainModel data, BuildContext context) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();

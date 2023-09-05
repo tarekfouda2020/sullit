@@ -1,8 +1,9 @@
-part of'profile_widgets_imports.dart';
+part of 'profile_widgets_imports.dart';
+
 class BuildProfileButton extends StatelessWidget {
   final ProfileController controller;
-  final Address? address ;
-  const BuildProfileButton({Key? key, required this.controller, this.address})
+
+  const BuildProfileButton({Key? key, required this.controller})
       : super(key: key);
 
   @override
@@ -10,10 +11,9 @@ class BuildProfileButton extends StatelessWidget {
     return DefaultButton(
       title: "Confirm",
       height: 35.h,
-      fontSize: 14,
-      borderRadius: BorderRadius.circular(10).r,
-      margin: const EdgeInsets.only(top: 40).r,
-      onTap: () => controller.setEditProfile(context, address),
+      borderRadius: Dimens.borderRadius10PX,
+      margin: Dimens.paddingAll20PX,
+      onTap: () => controller.setEditProfile(context),
     );
   }
 }

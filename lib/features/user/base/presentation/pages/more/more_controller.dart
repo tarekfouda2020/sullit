@@ -10,12 +10,10 @@ class MoreController {
     }
   }
 
-  void checkAuth(bool auth, BuildContext context, MoreRoutes route) {
+  void checkAuth(BuildContext context, MoreRoutes route) {
+    bool auth = context.read<DeviceCubit>().state.model.auth;
     if (auth) {
-      _getMoreItemRoute(
-        route,
-        context,
-      );
+      _getMoreItemRoute(route, context);
     } else {
       CustomToast.showAuthDialog(context);
     }
@@ -57,7 +55,7 @@ class MoreController {
         AutoRouter.of(context).push(ProfileRoute());
         break;
       case MoreRoutes.trackOrder:
-        AutoRouter.of(context).push(OrderSummaryRoute(isTrackOrder: true));
+        AutoRouter.of(context).push(const TrackOrderRoute());
         break;
     }
   }
