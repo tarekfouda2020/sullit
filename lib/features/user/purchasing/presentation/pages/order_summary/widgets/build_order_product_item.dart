@@ -6,7 +6,10 @@ class BuildOrderProductItem extends StatelessWidget {
   final int productLength;
 
   const BuildOrderProductItem(
-      {super.key, required this.orderDetails, required this.productLength, required this.controller});
+      {super.key,
+      required this.orderDetails,
+      required this.productLength,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -33,16 +36,11 @@ class BuildOrderProductItem extends StatelessWidget {
           title: "Price :",
           subTitle: orderDetails.price,
         ),
-        BuildOrderInfoItem(
-          title: "Review :",
-          subTitle: orderDetails.review?.comment ?? orderDetails.msgCantReview,
-          subTitleColor: context.colors.primary,
-        ),
         Visibility(
           visible: orderDetails.isAvailableReview,
           child: DefaultButton(
-            title: 'Review',
-            onTap: () =>controller.showReviewDialog(context, orderDetails),
+            title: orderDetails.review == null ? 'Add Review' : "View Review",
+            onTap: () => controller.showReviewDialog(context, orderDetails),
             height: 30.h,
             width: 200.w,
           ),

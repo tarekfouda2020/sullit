@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 part of 'purchased_history_imports.dart';
 
 class PurchasedHistoryController {
@@ -25,6 +27,22 @@ class PurchasedHistoryController {
       final nextPageKey = page + 1;
       pagingController.appendPage(data, nextPageKey);
     }
+  }
+
+  void cancelOrder(Orders model) async {
+    getIt<LoadingHelper>().showLoadingDialog();
+    var result = await CancelOrder().call(model.id);
+    if (result.isNotEmpty) {
+      CustomToast.showSimpleToast(msg: result);
+      model.availableCancelOrder = false;
+      int index =
+          pagingController.itemList!.indexWhere((e) => e.id == model.id);
+      pagingController.itemList![index] = model;
+      var data = pagingController.itemList;
+      pagingController.itemList = [];
+      pagingController.itemList = data;
+    }
+    EasyLoading.dismiss();
   }
 
   Future<void> downloadInvoice(int id) async {

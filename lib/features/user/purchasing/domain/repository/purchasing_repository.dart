@@ -8,7 +8,10 @@ import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 
 abstract class PurchasingRepository {
   Future<Either<Failure, List<Orders>>> getPurchaseHistory(GenericPaginateParams param);
+  Future<Either<Failure, List<Orders>>> getReturnOrders(GenericPaginateParams param);
   Future<Either<Failure, Orders>> trackOrder (String param);
   Future<Either<Failure, Orders>> getOrderDetails (GenericParams param);
   Future<Either<Failure, Reviews>> sendReview (SendReviewParams param);
+  Future<Either<Failure, String>> cancelOrder (int param);
+
 }

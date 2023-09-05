@@ -28,7 +28,7 @@ class _PurchasedHistoryState extends State<PurchasedHistory> {
           pagingController: controller.pagingController,
           builderDelegate: PagedChildBuilderDelegate<Orders>(
             firstPageProgressIndicatorBuilder: (_) =>
-                const BuildHistoryLoading(),
+                const BuildLoadingOrders(),
             itemBuilder: (_, item, index) => BuildPurchasedHistoryItem(
               order: item,
               controller: controller,

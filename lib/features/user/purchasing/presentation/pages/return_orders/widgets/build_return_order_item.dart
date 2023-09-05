@@ -1,14 +1,11 @@
-part of 'purchased_history_widgets_imports.dart';
+part of 'return_orders_widgets_imports.dart';
 
-class BuildPurchasedHistoryItem extends StatelessWidget {
+class BuildReturnOrderItem extends StatelessWidget {
   final Orders order;
-  final PurchasedHistoryController controller;
+  final ReturnOrdersController controller;
 
-  const BuildPurchasedHistoryItem({
-    Key? key,
-    required this.order,
-    required this.controller,
-  }) : super(key: key);
+  const BuildReturnOrderItem(
+      {super.key, required this.order, required this.controller});
 
   @override
   Widget build(BuildContext context) {

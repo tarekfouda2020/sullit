@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 part of 'order_summary_imports.dart';
 
 class OrderSummaryController {
@@ -23,23 +25,23 @@ class OrderSummaryController {
     orderDetailsBloc.onUpdateData(result);
   }
 
-  void sendReview(OrderDetails model) async {
+  void sendReview(BuildContext context, OrderDetails model) async {
     if (model.orderReview!.formKey.currentState!.validate()) {
       var params = _sendReviewParams(model);
-      print(">>>>>${params.toJson()}");
       var result = await SendReview().call(params);
       if (result != null) {
         model.review = result;
         model.isAvailableReview=false;
         orderDetailsBloc.onUpdateData(orderDetailsBloc.state.data);
       }
+      AutoRouter.of(context).pop();
     }
   }
 
   void showReviewDialog(BuildContext context, OrderDetails model) {
     showDialog(
       context: context,
-      builder: (context) => BuildSendReviewDialog(
+      builder: (context) => BuildReviewDialog(
         controller: this,
         orderDetailsModel: model,
       ),

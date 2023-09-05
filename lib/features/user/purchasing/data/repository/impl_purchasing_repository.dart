@@ -39,4 +39,16 @@ class ImplPurchasingRepository extends PurchasingRepository with ModelToDomain {
     var result = await dataSource.sendReview(param);
     return toDomainResult(result);
   }
+
+  @override
+  Future<Either<Failure, String>> cancelOrder(int param) async {
+    return await dataSource.cancelOrder(param);
+  }
+
+  @override
+  Future<Either<Failure, List<Orders>>> getReturnOrders(
+      GenericPaginateParams param) async {
+    var result = await dataSource.getReturnOrders(param);
+    return toDomainResultList(result);
+  }
 }

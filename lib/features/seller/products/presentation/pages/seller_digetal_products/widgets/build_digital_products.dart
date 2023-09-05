@@ -128,19 +128,19 @@ class BuildDigitalProducts extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                BuildOptionItem(
+                                BuildOrderOptionItem(
                                   onTap: () {},
                                   iconData: Icons.delete_outline,
                                   iconColor: context.colors.primary,
                                   itemColor: context.colors.greyWhite,
                                 ),
-                                BuildOptionItem(
+                                BuildOrderOptionItem(
                                   onTap: () {},
                                   iconData: Icons.download,
                                   iconColor: context.colors.secondary,
                                   itemColor: context.colors.greyWhite,
                                 ),
-                                BuildOptionItem(
+                                BuildOrderOptionItem(
                                   onTap: () {},
                                   iconData: Icons.edit,
                                   iconColor: context.colors.blue,

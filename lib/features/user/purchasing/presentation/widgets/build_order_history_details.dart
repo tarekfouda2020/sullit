@@ -1,9 +1,8 @@
-part of 'purchased_history_widgets_imports.dart';
-
-class BuildHistoryDetails extends StatelessWidget {
+part of 'purchasing_widgets_imports.dart';
+class BuildOrderHistoryDetails extends StatelessWidget {
   final Orders order;
 
-  const BuildHistoryDetails({super.key, required this.order});
+  const BuildOrderHistoryDetails({super.key, required this.order});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +27,7 @@ class BuildHistoryDetails extends StatelessWidget {
                 ),
               ],
             ),
-            Gaps.line( context.colors.greyWhite,20.h),
+            Gaps.line(context.colors.greyWhite, 20.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -42,8 +41,7 @@ class BuildHistoryDetails extends StatelessWidget {
                 ),
               ],
             ),
-            Gaps.line( context.colors.greyWhite,20.h),
-
+            Gaps.line(context.colors.greyWhite, 20.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

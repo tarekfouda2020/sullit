@@ -14,6 +14,7 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
+import 'package:flutter_tdd/features/user/purchasing/presentation/widgets/purchasing_widgets_imports.dart';
 import '../seller_digetal_products_imports.dart';
 
 part 'build_add_digital_products.dart';

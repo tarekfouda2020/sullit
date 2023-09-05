@@ -25,4 +25,4 @@ part 'build_loading_summary.dart';
 part 'build_order_product_item.dart';
 part 'build_loading_summary_item.dart';
 part 'build_loading_amount.dart';
-part 'build_send_review_dialog.dart';
+part 'build_review_dialog.dart';

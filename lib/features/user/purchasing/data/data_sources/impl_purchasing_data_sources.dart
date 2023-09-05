@@ -73,4 +73,32 @@ class ImplPurchasingDataSources extends PurchasingDataSources {
     );
     return await GenericHttpImpl<ReviewsModel>().call(model);
   }
+
+  @override
+  Future<Either<Failure, String>> cancelOrder(int param) async{
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.cancelOrder(param),
+      requestMethod: RequestMethod.get,
+      responseType: ResType.type,
+      showLoader: true,
+      responseKey: (data) => data['msg'],
+    );
+    return await GenericHttpImpl<String>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, List<OrderModel>>> getReturnOrders(GenericPaginateParams param) async{
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.getReturnOrders + param.paramsToQuery(),
+      requestMethod: RequestMethod.get,
+      refresh: param.refresh,
+      responseType: ResType.list,
+      showLoader: true,
+      toJsonFunc: (json) => List<OrderModel>.from(
+        json.map((e) => OrderModel.fromJson(e)),
+      ),
+      responseKey: (data) => data["data"]["orders"],
+    );
+    return await GenericHttpImpl<List<OrderModel>>().call(model);
+  }
 }

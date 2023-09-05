@@ -8,7 +8,10 @@ import 'package:flutter_tdd/features/user/purchasing/domain/entities/send_review
 
 abstract class PurchasingDataSources {
   Future<Either<Failure, List<OrderModel>>> getPurchaseHistory(GenericPaginateParams param);
+  Future<Either<Failure, List<OrderModel>>> getReturnOrders(GenericPaginateParams param);
   Future<Either<Failure, OrderModel>> trackOrder (String param);
   Future<Either<Failure, OrderModel>> getOrderDetails (GenericParams param);
   Future<Either<Failure, ReviewsModel>> sendReview (SendReviewParams param);
+  Future<Either<Failure, String>> cancelOrder (int param);
+
 }
