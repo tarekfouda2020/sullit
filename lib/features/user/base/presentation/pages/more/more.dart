@@ -24,11 +24,7 @@ class _MoreState extends State<More> {
           BuildMoreItem(
             title: 'DashBoard',
             icon: Icons.home_outlined,
-            onTap: () => controller.checkAuth(
-              auth,
-              context,
-              MoreRoutes.dashboard,
-            ),
+            onTap: () => controller.checkAuth(context, MoreRoutes.dashboard),
           ),
           BuildMoreItem(
             title: 'Classified products',
@@ -43,101 +39,60 @@ class _MoreState extends State<More> {
             haveStatus: true,
             title: 'Purchased History',
             icon: Icons.file_copy_outlined,
-            onTap: () => controller.checkAuth(
-              auth,
-              context,
-              MoreRoutes.purchasedHistory,
-            ),
+            onTap: () =>
+                controller.checkAuth(context, MoreRoutes.purchasedHistory),
           ),
           BuildMoreItem(
             title: 'Return Orders',
             icon: Icons.file_copy_outlined,
-            onTap: () => controller.checkAuth(
-              auth,
-              context,
-              MoreRoutes.returnOrders,
-            ),
+            onTap: () => controller.checkAuth(context, MoreRoutes.returnOrders),
           ),
           BuildMoreItem(
             title: 'Downloads',
             icon: Icons.download,
-            onTap: () => controller.checkAuth(
-              auth,
-              context,
-              MoreRoutes.downloads,
-            ),
+            onTap: () => controller.checkAuth(context, MoreRoutes.downloads),
           ),
           BuildMoreItem(
             title: 'Blogs',
             icon: Icons.list_alt,
-            onTap: () => controller.checkAuth(
-              auth,
-              context,
-              MoreRoutes.blogs,
-            ),
+            onTap: () => controller.checkAuth(context, MoreRoutes.blogs),
           ),
           BuildMoreItem(
             title: 'WishList',
             icon: Icons.favorite_border,
-            onTap: () => controller.checkAuth(
-              auth,
-              context,
-              MoreRoutes.wishlist,
-            ),
+            onTap: () => controller.checkAuth(context, MoreRoutes.wishlist),
           ),
           BuildMoreItem(
             title: 'Compare',
             icon: Icons.compare_arrows,
-            onTap: () => controller.checkAuth(
-              auth,
-              context,
-              MoreRoutes.compare,
-            ),
+            onTap: () => controller.checkAuth(context, MoreRoutes.compare),
           ),
           BuildMoreItem(
             title: 'Track Order',
             icon: Icons.summarize_outlined,
-            onTap: () => controller.checkAuth(
-              auth,
-              context,
-              MoreRoutes.trackOrder,
-            ),
+            onTap: () => controller.checkAuth(context, MoreRoutes.trackOrder),
           ),
           BuildMoreItem(
             title: 'Conversation',
             icon: Icons.chat,
-            onTap: () => controller.checkAuth(
-              auth,
-              context,
-              MoreRoutes.conversations,
-            ),
+            onTap: () =>
+                controller.checkAuth(context, MoreRoutes.conversations),
           ),
           BuildMoreItem(
             title: 'My Wallet',
             icon: Icons.monetization_on_outlined,
-            onTap: () => controller.checkAuth(
-              auth,
-              context,
-              MoreRoutes.myWallet,
-            ),
+            onTap: () => controller.checkAuth(context, MoreRoutes.myWallet),
           ),
           BuildMoreItem(
             title: 'Support Tickets',
             icon: Icons.airplane_ticket_outlined,
-            onTap: () => controller.checkAuth(
-              auth,
-              context,
-              MoreRoutes.supportTickets,
-            ),
+            onTap: () =>
+                controller.checkAuth(context, MoreRoutes.supportTickets),
           ),
           BuildMoreItem(
             title: 'Manage Profile',
             icon: Icons.person_2_outlined,
-            onTap: () => controller.checkAuth(
-              auth,
-              context,
-              MoreRoutes.profile,
-            ),
+            onTap: () => controller.checkAuth(context, MoreRoutes.profile),
           ),
         ],
       ),

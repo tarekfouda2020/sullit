@@ -24,12 +24,6 @@ class AddNewAddressController {
     cityController.currentState?.changeSelectedItem(null);
   }
 
-  void onChangeCity(City? model) {
-    if (model != null) {
-      cityModel = model;
-    }
-  }
-
   void onChangeState(StateDomainModel? model) {
     if (model != null) {
       stateModel = model;
@@ -37,29 +31,35 @@ class AddNewAddressController {
     cityController.currentState?.changeSelectedItem(null);
   }
 
-  Future<List<Country>> getCountries ({bool refresh = true}) async {
+  void onChangeCity(City? model) {
+    if (model != null) {
+      cityModel = model;
+    }
+  }
+
+  Future<List<Country>> getCountries({bool refresh = true}) async {
     var data = await GetCountries().call(refresh);
-    return data ;
+    return data;
   }
 
-  Future<List<StateDomainModel>> getStateByCountryId (BuildContext context) async {
+  Future<List<StateDomainModel>> getStateByCountryId(
+      BuildContext context) async {
     var data = await GetStatesByCountryId().call(countryModel!.id);
-    return data ;
+    return data;
   }
 
-  Future<List<City>> getCitiesByStateId ()async{
+  Future<List<City>> getCitiesByStateId() async {
     var data = await GetCitiesByStateId().call(stateModel!.id);
-    return data ;
+    return data;
   }
 
-  Future<void> addNewAddress(
-      BuildContext context, AddAddressFor addAddressFor) async {
+  Future<void> addNewAddress(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       var params = _addressParams();
       var result = await SetAddNewAddress().call(params);
-      if (result) {
+      if (result != null) {
         CustomToast.showSimpleToast(msg: "Address info added successfully");
-        AutoRouter.of(context).pop(true);
+        AutoRouter.of(context).pop(result);
       }
     }
   }

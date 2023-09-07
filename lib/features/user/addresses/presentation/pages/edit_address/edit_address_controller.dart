@@ -12,10 +12,10 @@ class EditAddressController {
   final GlobalKey<DropdownSearchState> cityController = GlobalKey();
   final LocationCubit locationCubit = LocationCubit();
 
-  EditAddressController(Address address){
-    addressController.text = address.address??"" ;
-    postalCodeController.text = address.postalCode??"" ;
-    phoneController.text = address.phone??"";
+  EditAddressController(Address address) {
+    addressController.text = address.address ?? "";
+    postalCodeController.text = address.postalCode ?? "";
+    phoneController.text = address.phone ?? "";
   }
 
   Country? countryModel;
@@ -59,35 +59,28 @@ class EditAddressController {
     return data;
   }
 
-  Future<void> editAddress(BuildContext context,  Address address) async {
+  Future<void> editAddress(BuildContext context, Address address) async {
     if (formKey.currentState!.validate()) {
       var params = _addressParams(address);
       var result = await SetEditAddress().call(params);
-      if (result) {
-        _showToastAndPop(context);
+      if (result != null) {
+        CustomToast.showSimpleToast(
+          msg: "Address info edited successfully",
+          type: ToastType.success,
+        );
+        AutoRouter.of(context).pop(result);
       }
     }
   }
 
-  void _showToastAndPop(BuildContext context){
-    CustomToast.showSimpleToast(
-      msg: "Address info edited successfully",
-      type: ToastType.success,
-    );
-    AutoRouter.of(context).pushAndPopUntil(
-      const AddressesRoute(),
-      predicate: (route) => false,
-    );
-  }
-
-  EditAddressParams _addressParams( Address address) {
+  EditAddressParams _addressParams(Address address) {
     return EditAddressParams(
-      id: address.id??0,
+      id: address.id ?? 0,
       address: addressController.text,
       postalCode: postalCodeController.text,
-      countryId: countryModel?.id?? address.country!.id,
+      countryId: countryModel?.id ?? address.country!.id,
       stateId: stateModel?.id ?? address.state!.id,
-      cityId: cityModel?.id?? address.city!.id,
+      cityId: cityModel?.id ?? address.city!.id,
       phone: phoneController.text,
       lat: locationCubit.state.model!.lat,
       long: locationCubit.state.model!.lng,

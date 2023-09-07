@@ -1,0 +1,91 @@
+part of 'return_orders_widgets_imports.dart';
+
+class BuildReturnOrderItem extends StatelessWidget {
+  final Orders order;
+  final ReturnOrdersController controller;
+
+  const BuildReturnOrderItem(
+      {super.key, required this.order, required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          margin: Dimens.paddingVertical5PX,
+          padding: Dimens.paddingAll15PX,
+          decoration: CustomDecoration(),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "Code : ",
+                    style: AppTextStyle.s14_w500(color: context.colors.black),
+                  ),
+                  Text(
+                    order.code,
+                    style: AppTextStyle.s14_w500(color: context.colors.primary),
+                  ),
+                  const Spacer(),
+                  InkWell(
+                    onTap: () => controller.onOpenHistory(order),
+                    child: Icon(
+                      order.selected
+                          ? Icons.indeterminate_check_box
+                          : Icons.add_box,
+                      color: context.colors.primary,
+                      size: 20.sp,
+                    ),
+                  )
+                ],
+              ),
+              Gaps.vGap8,
+              Row(
+                children: [
+                  Text(
+                    "Amount : ",
+                    style: AppTextStyle.s14_w500(color: context.colors.black),
+                  ),
+                  Text(
+                    order.total,
+                    style: AppTextStyle.s14_w500(color: context.colors.primary),
+                  ),
+                ],
+              ),
+              Gaps.vGap15,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  BuildOrderOptionItem(
+                    onTap: () => AutoRouter.of(context)
+                        .push(OrderSummaryRoute(orderId: order.id)),
+                    iconData: Icons.remove_red_eye_outlined,
+                    iconColor: context.colors.blueAccent,
+                    itemColor: context.colors.greyWhite,
+                  ),
+                  Visibility(
+                    visible: order.availableCancelOrder,
+                    child: BuildOrderOptionItem(
+                      onTap: () => controller.cancelOrder(order),
+                      iconData: Icons.delete_outline,
+                      iconColor: context.colors.primary,
+                      itemColor: context.colors.greyWhite,
+                    ),
+                  ),
+                  BuildOrderOptionItem(
+                    onTap: () => controller.downloadInvoice(order.id),
+                    iconData: Icons.download,
+                    iconColor: context.colors.yellow,
+                    itemColor: context.colors.greyWhite,
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+        BuildOrderHistoryDetails(order: order),
+      ],
+    );
+  }
+}

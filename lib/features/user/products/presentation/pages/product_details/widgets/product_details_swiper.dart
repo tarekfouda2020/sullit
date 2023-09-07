@@ -40,6 +40,9 @@ class BuildProductDetailsSwiper extends StatelessWidget {
         BuildIconItem(
           iconData:
               productModel.isWishlist! ? Icons.favorite : Icons.favorite_border,
+          containerColor: productModel.isWishlist!
+              ? context.colors.primary
+              : context.colors.white,
           checkValue: productModel.isWishlist,
           onTap: () => getIt<ProductsHelper>().toggleFavourite(
             context: context,
@@ -50,7 +53,8 @@ class BuildProductDetailsSwiper extends StatelessWidget {
         ),
         BuildIconItem(
           iconData: Icons.compare_arrows,
-          onTap: () => getIt<ProductsHelper>().addProductToCompare(productModel, context),
+          onTap: () => getIt<ProductsHelper>()
+              .addProductToCompare(productModel, context),
           padding: Dimens.paddingAll8PX,
         ),
       ],

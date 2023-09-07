@@ -13,49 +13,54 @@ import 'package:flutter_tdd/features/user/addresses/domain/repository/addresses_
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: AddressesRepository)
-class ImplAddressesRepository extends AddressesRepository with ModelToDomain{
+class ImplAddressesRepository extends AddressesRepository with ModelToDomain {
   var dataSources = getIt<AddressesDataSources>();
+
   @override
-  Future<Either<Failure, List<Address>>> getAddress(bool param)async {
+  Future<Either<Failure, List<Address>>> getAddress(bool param) async {
     var result = await dataSources.getAddress(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, bool>> addNewAddress(AddAddressParams params)async {
-    return await dataSources.addNewAddress(params);
+  Future<Either<Failure, Address>> addNewAddress(
+      AddAddressParams params) async {
+    var result = await dataSources.addNewAddress(params);
+    return toDomainResult(result);
   }
 
   @override
-  Future<Either<Failure, List<Country>>> getCountries(bool param)async {
+  Future<Either<Failure, List<Country>>> getCountries(bool param) async {
     var result = await dataSources.getCountries(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, List<StateDomainModel>>> getStatesByCountryId(int param)async {
+  Future<Either<Failure, List<StateDomainModel>>> getStatesByCountryId(
+      int param) async {
     var result = await dataSources.getStatesByCountryId(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, List<City>>> getCitiesByStateId(int param)async {
+  Future<Either<Failure, List<City>>> getCitiesByStateId(int param) async {
     var result = await dataSources.getCitiesByStateId(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, bool>> setDefaultAddress(int param)async {
+  Future<Either<Failure, bool>> setDefaultAddress(int param) async {
     return await dataSources.setDefaultAddress(param);
   }
 
   @override
-  Future<Either<Failure, bool>> deleteAddress(int param)async {
+  Future<Either<Failure, bool>> deleteAddress(int param) async {
     return await dataSources.deleteAddress(param);
   }
 
   @override
-  Future<Either<Failure, bool>> editAddress(EditAddressParams params)async {
-    return await dataSources.editAddress(params);
+  Future<Either<Failure, Address>> editAddress(EditAddressParams params) async {
+    var result = await dataSources.editAddress(params);
+    return toDomainResult(result);
   }
 }

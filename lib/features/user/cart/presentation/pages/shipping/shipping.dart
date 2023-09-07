@@ -30,10 +30,11 @@ class _ShippingState extends State<Shipping> {
                 return Expanded(
                   child: ListView(
                     children: [
-                       BuildAddNewAddress(
-                        addAddressFor: AddAddressFor.cart,
-                        onRefresh: ()=> controller.getAddress(),
-                      ),
+                      BuildNewShipping(controller: controller),
+                      //  BuildAddNewAddress(
+                      //   addAddressFor: AddAddressFor.cart,
+                      //   onRefresh: ()=> controller.getAddress(),
+                      // ),
                       Visibility(
                         visible: state.data.isNotEmpty,
                         replacement: const BuildAddressesEmptyView(),

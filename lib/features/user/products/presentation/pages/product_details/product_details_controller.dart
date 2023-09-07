@@ -13,13 +13,12 @@ class ProductDetailsController {
   List<String> selectedVariants = [];
   List<String> basicImage = [];
 
-  ProductDetailsController(BuildContext context, int productId, bool productResale) {
+  ProductDetailsController(
+      BuildContext context, int productId, bool productResale) {
     getProductDetails(context, productId, refresh: false);
     getProductDetails(context, productId);
     isResale = productResale;
   }
-
-
 
   void getProductDetails(BuildContext context, int productId,
       {bool refresh = true}) async {
@@ -27,12 +26,8 @@ class ProductDetailsController {
     var result = await GetProductDetails().call(params);
     detailsCubit.onUpdateData(result);
     basicImage = detailsCubit.state.data!.product.images!;
-    print(">>>>>${detailsCubit.state.data?.product.variant?.currentStock}");
     _initVariants(context);
-    print(">>>>>${detailsCubit.state.data?.product.variant?.currentStock}");
   }
-
-  
 
   void _initVariants(BuildContext context) {
     detailsCubit.state.data?.product.choiceOptions?.map((e) {
@@ -48,8 +43,6 @@ class ProductDetailsController {
 
   void getVariantPrice(BuildContext context) async {
     var params = _variantPriceParams();
-    log("###${params.paramToQuery()}");
-    log("###${params.toJson()}");
     var details = detailsCubit.state.data;
     var result = await GetVariantPrice().call(params);
     if (result != null) {
@@ -68,7 +61,8 @@ class ProductDetailsController {
     detailsCubit.onUpdateData(detailsCubit.state.data);
   }
 
-  void onSelectAttributes(BuildContext context, List<ProductOptions> model, int index, int position) {
+  void onSelectAttributes(BuildContext context, List<ProductOptions> model,
+      int index, int position) {
     List<String> selected = [];
     var optionItem = model[index];
     var attributes = optionItem.selectedAttribute;

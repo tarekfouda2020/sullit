@@ -127,19 +127,19 @@ class BuildSellerProducts extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    BuildOptionItem(
+                                    BuildOrderOptionItem(
                                       onTap: () {},
                                       iconData: Icons.delete_outline,
                                       iconColor: context.colors.primary,
                                       itemColor: context.colors.greyWhite,
                                     ),
-                                    BuildOptionItem(
+                                    BuildOrderOptionItem(
                                       onTap: () {},
                                       iconData: Icons.copy,
                                       iconColor: context.colors.secondary,
                                       itemColor: context.colors.greyWhite,
                                     ),
-                                    BuildOptionItem(
+                                    BuildOrderOptionItem(
                                       onTap: () {},
                                       iconData: Icons.edit,
                                       iconColor: context.colors.blue,

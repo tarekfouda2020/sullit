@@ -2,8 +2,7 @@
 part of 'add_new_address_imports.dart';
 
 class AddNewAddress extends StatefulWidget {
-  final AddAddressFor addAddressFor ;
-  const AddNewAddress({Key? key, required this.addAddressFor}) : super(key: key);
+  const AddNewAddress({Key? key}) : super(key: key);
 
   @override
   _AddNewAddressState createState() => _AddNewAddressState();
@@ -23,16 +22,17 @@ class _AddNewAddressState extends State<AddNewAddress> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        backgroundColor: context.colors.customBackground,
         appBar: const DefaultAppBar(title: "Add New Address"),
         body: Column(
           children: [
-            BuildAddAddressForm(
-              controller: controller,
-            ),
+            BuildAddAddressForm(controller: controller),
             DefaultButton(
               title: "Save",
-              onTap: () => controller.addNewAddress(context, widget.addAddressFor),
-              margin: const EdgeInsets.all(20),
+              onTap: () => controller.addNewAddress(context),
+              height: 35.h,
+              borderRadius: Dimens.borderRadius10PX,
+              margin: Dimens.paddingAll20PX,
             )
           ],
         ),

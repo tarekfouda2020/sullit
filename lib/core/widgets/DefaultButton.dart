@@ -58,7 +58,7 @@ class DefaultButton extends StatelessWidget {
           child: Text(
              title,
             style: AppTextStyle.s16_w500(color: textColor ?? Colors.white).copyWith(
-              fontSize: fontSize??11,
+              fontSize: fontSize??13,
               fontFamily: fontFamily,
               fontWeight: fontWeight,
             ),

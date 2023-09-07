@@ -77,7 +77,7 @@ dependencies:
   path: ^1.8.2
   flutter_sticky_header: ^0.6.5
   scrollable_list_tab_scroller: ^1.1.0
-  mac_address: ^1.0.0
+#  mac_address: ^1.0.0
   open_file: ^3.3.2
 
 

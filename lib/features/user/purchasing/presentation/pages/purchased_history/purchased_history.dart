@@ -21,17 +21,28 @@ class _PurchasedHistoryState extends State<PurchasedHistory> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: "Purchased History", showBack: true),
-      body: GenericListView(
-        type: ListViewType.api,
-        cubit: controller.purchaseCubit,
-        onRefresh: controller.getPurchasingHistory,
-        padding: Dimens.paddingAll15PX,
-        itemBuilder: (_, index, item) => BuildPurchasedHistoryItem(
-          order: item,
-          controller: controller,
+      body: RefreshIndicator(
+        onRefresh: () => controller.getPurchasingHistory(1),
+        child: PagedListView<int, Orders>(
+          padding: Dimens.paddingAll15PX,
+          pagingController: controller.pagingController,
+          builderDelegate: PagedChildBuilderDelegate<Orders>(
+            firstPageProgressIndicatorBuilder: (_) =>
+                const BuildLoadingOrders(),
+            itemBuilder: (_, item, index) => BuildPurchasedHistoryItem(
+              order: item,
+              controller: controller,
+            ),
+            noItemsFoundIndicatorBuilder: (cxt) {
+              return Text(
+                "No items in the history. !",
+                style: AppTextStyle.s12_w400(
+                  color: context.colors.black,
+                ),
+              );
+            },
+          ),
         ),
-        loadingWidget: const BuildHistoryLoading(),
-        emptyStr: "No items in the history. !",
       ),
     );
   }

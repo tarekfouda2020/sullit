@@ -9,11 +9,11 @@ import 'package:flutter_tdd/features/user/addresses/domain/entities/edit_address
 
 abstract class AddressesDataSources {
   Future<Either<Failure, List<AddressModel>>> getAddress (bool param);
-  Future<Either<Failure, bool>> addNewAddress (AddAddressParams params);
+  Future<Either<Failure, AddressModel>> addNewAddress (AddAddressParams params);
   Future<Either<Failure, List<CountryModel>>> getCountries (bool param);
   Future<Either<Failure, List<StateModel>>> getStatesByCountryId (int param);
   Future<Either<Failure, List<CityModel>>> getCitiesByStateId (int param);
   Future<Either<Failure, bool>> setDefaultAddress (int param);
   Future<Either<Failure, bool>> deleteAddress (int param);
-  Future<Either<Failure, bool>> editAddress (EditAddressParams params);
+  Future<Either<Failure, AddressModel>> editAddress (EditAddressParams params);
 }

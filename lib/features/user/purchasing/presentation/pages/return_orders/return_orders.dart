@@ -8,11 +8,42 @@ class ReturnOrders extends StatefulWidget {
 }
 
 class _ReturnOrdersState extends State<ReturnOrders> {
+  late ReturnOrdersController controller;
+
+  @override
+  void initState() {
+    controller = ReturnOrdersController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: DefaultAppBar(title: "Return Orders", showBack: true),
-
+    return Scaffold(
+      backgroundColor: context.colors.customBackground,
+      appBar: const DefaultAppBar(title: "Return Orders", showBack: true),
+      body: RefreshIndicator(
+        onRefresh: () => controller.getReturnOrders(1),
+        child: PagedListView<int, Orders>(
+          padding: Dimens.paddingAll15PX,
+          pagingController: controller.pagingController,
+          builderDelegate: PagedChildBuilderDelegate<Orders>(
+            firstPageProgressIndicatorBuilder: (_) =>
+                const BuildLoadingOrders(),
+            itemBuilder: (_, item, index) => BuildReturnOrderItem(
+              order: item,
+              controller: controller,
+            ),
+            noItemsFoundIndicatorBuilder: (cxt) {
+              return Text(
+                "No items in the history. !",
+                style: AppTextStyle.s12_w400(
+                  color: context.colors.black,
+                ),
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,15 +1,16 @@
-part of 'shipping_widgets_imports.dart';
+part of 'addresses_widgets_imports.dart';
 
-class BuildAddressItem extends StatelessWidget {
+class BuildAddressTitleItem extends StatelessWidget {
   final String title;
   final String desc;
 
-  const BuildAddressItem({super.key, required this.title, required this.desc});
+  const BuildAddressTitleItem(
+      {super.key, required this.title, required this.desc});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5).r,
+      margin: Dimens.paddingVertical5PX,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -2,8 +2,7 @@
 part of 'profile_imports.dart';
 
 class Profile extends StatefulWidget {
-  final Address? address ;
-  const Profile({Key? key,  this.address}) : super(key: key);
+  const Profile({Key? key}) : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -14,30 +13,27 @@ class _ProfileState extends State<Profile> {
 
   @override
   void initState() {
-    controller = ProfileController(context, widget.address);
+    controller = ProfileController(context);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: "Manage Profile"),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(
-          vertical: 20,
-          horizontal: 16,
-        ).r,
+      body: Column(
         children: [
-          BuildProfileImage(
-            controller: controller,
+          Flexible(
+            child: ListView(
+              padding: Dimens.paddingAll15PX,
+              children: [
+                BuildProfileImage(controller: controller),
+                BuildProfileFormFields(controller: controller),
+              ],
+            ),
           ),
-          BuildProfileFormFields(
-            controller: controller,
-          ),
-          BuildProfileButton(
-            controller: controller,
-            address: widget.address,
-          )
+          BuildProfileButton(controller: controller)
         ],
       ),
     );

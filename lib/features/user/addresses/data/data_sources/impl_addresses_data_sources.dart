@@ -14,8 +14,8 @@ import 'package:flutter_tdd/features/user/addresses/domain/entities/add_address_
 import 'package:flutter_tdd/features/user/addresses/domain/entities/edit_address_params.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as :AddressesDataSources)
-class ImplAddressesDataSources extends AddressesDataSources{
+@Injectable(as: AddressesDataSources)
+class ImplAddressesDataSources extends AddressesDataSources {
   @override
   Future<Either<Failure, List<AddressModel>>> getAddress(bool param) async {
     HttpRequestModel model = HttpRequestModel(
@@ -24,52 +24,55 @@ class ImplAddressesDataSources extends AddressesDataSources{
       refresh: param,
       responseType: ResType.list,
       showLoader: true,
-      toJsonFunc:  (json) => List<AddressModel>.from(
+      toJsonFunc: (json) => List<AddressModel>.from(
         json.map(
-              (e) => AddressModel.fromJson(e),
+          (e) => AddressModel.fromJson(e),
         ),
       ),
       responseKey: (data) => data["data"]["addresses"],
-      errorFunc: (data)=> data["msg"],
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<List<AddressModel>>().call(model);
   }
 
   @override
-  Future<Either<Failure, bool>> addNewAddress(AddAddressParams params)async {
+  Future<Either<Failure, AddressModel>> addNewAddress(
+      AddAddressParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.addUserAddress,
       requestMethod: RequestMethod.post,
       requestBody: params.toJson(),
-      responseType: ResType.type,
+      responseType: ResType.model,
+      toJsonFunc: (json) => AddressModel.fromJson(json),
       showLoader: true,
-      responseKey: (data)=> params.isSuccess(data),
-      errorFunc: (data)=> data["msg"],
+      responseKey: (data) => data['data'],
+      errorFunc: (data) => data["msg"],
     );
-    return await GenericHttpImpl<bool>().call(model);
+    return await GenericHttpImpl<AddressModel>().call(model);
   }
 
   @override
-  Future<Either<Failure, List<CountryModel>>> getCountries(bool param)async {
+  Future<Either<Failure, List<CountryModel>>> getCountries(bool param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.countries,
       requestMethod: RequestMethod.get,
       refresh: param,
       responseType: ResType.list,
       showLoader: true,
-      toJsonFunc:  (json) => List<CountryModel>.from(
+      toJsonFunc: (json) => List<CountryModel>.from(
         json.map(
-              (e) => CountryModel.fromJson(e),
+          (e) => CountryModel.fromJson(e),
         ),
       ),
       responseKey: (data) => data["data"],
-      errorFunc: (data)=> data["msg"],
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<List<CountryModel>>().call(model);
   }
 
   @override
-  Future<Either<Failure, List<StateModel>>> getStatesByCountryId(int param)async {
+  Future<Either<Failure, List<StateModel>>> getStatesByCountryId(
+      int param) async {
     var headers = "?country_id=$param";
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.states + headers,
@@ -77,17 +80,19 @@ class ImplAddressesDataSources extends AddressesDataSources{
       refresh: false,
       responseType: ResType.list,
       showLoader: true,
-      toJsonFunc:  (json) => List<StateModel>.from(
-        json.map((e) => StateModel.fromJson(e),),
+      toJsonFunc: (json) => List<StateModel>.from(
+        json.map(
+          (e) => StateModel.fromJson(e),
+        ),
       ),
       responseKey: (data) => data["data"],
-      errorFunc: (data)=> data["msg"],
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<List<StateModel>>().call(model);
   }
 
   @override
-  Future<Either<Failure, List<CityModel>>> getCitiesByStateId(int param)async {
+  Future<Either<Failure, List<CityModel>>> getCitiesByStateId(int param) async {
     var headers = "?state_id=$param";
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.cities + headers,
@@ -95,52 +100,55 @@ class ImplAddressesDataSources extends AddressesDataSources{
       refresh: false,
       responseType: ResType.list,
       showLoader: true,
-      toJsonFunc:  (json) => List<CityModel>.from(
-        json.map((e) => CityModel.fromJson(e),),
+      toJsonFunc: (json) => List<CityModel>.from(
+        json.map(
+          (e) => CityModel.fromJson(e),
+        ),
       ),
       responseKey: (data) => data["data"],
-      errorFunc: (data)=> data["msg"],
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<List<CityModel>>().call(model);
   }
 
   @override
-  Future<Either<Failure, bool>> setDefaultAddress(int param)async {
+  Future<Either<Failure, bool>> setDefaultAddress(int param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.setDefaultAddress(param),
       requestMethod: RequestMethod.post,
       responseType: ResType.type,
       showLoader: true,
-      responseKey: (data)=> data["key"] == "success",
-      errorFunc: (data)=> data["msg"],
+      responseKey: (data) => data["key"] == "success",
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<bool>().call(model);
   }
 
   @override
-  Future<Either<Failure, bool>> deleteAddress(int param)async {
+  Future<Either<Failure, bool>> deleteAddress(int param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.deleteAddress(param),
       requestMethod: RequestMethod.delete,
       responseType: ResType.type,
       showLoader: true,
-      responseKey: (data)=> data["key"] == "success",
-      errorFunc: (data)=> data["msg"],
+      responseKey: (data) => data["key"] == "success",
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<bool>().call(model);
   }
 
   @override
-  Future<Either<Failure, bool>> editAddress(EditAddressParams params)async {
+  Future<Either<Failure, AddressModel>> editAddress(EditAddressParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.editAddress(params.id),
       requestMethod: RequestMethod.post,
       requestBody: params.toJson(),
-      responseType: ResType.type,
+      responseType: ResType.model,
       showLoader: true,
-      responseKey: (data)=> params.isSuccess(data),
-      errorFunc: (data)=> data["msg"],
+      toJsonFunc: (json) => AddressModel.fromJson(json),
+      responseKey: (data) => data['data'],
+      errorFunc: (data) => data["msg"],
     );
-    return await GenericHttpImpl<bool>().call(model);
+    return await GenericHttpImpl<AddressModel>().call(model);
   }
 }

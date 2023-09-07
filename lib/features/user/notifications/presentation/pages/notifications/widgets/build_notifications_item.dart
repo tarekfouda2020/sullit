@@ -6,7 +6,7 @@ class BuildNotificationsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()=>AutoRouter.of(context).push( OrderSummaryRoute()),
+      // onTap: ()=>AutoRouter.of(context).push( OrderSummaryRoute()),
       child: Container(
           margin: const EdgeInsets.symmetric(vertical: 5,).r,
           decoration: BoxDecoration(

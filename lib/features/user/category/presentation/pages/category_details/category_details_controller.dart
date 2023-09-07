@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 part of 'category_details_imports.dart';
 
 class CategoryDetailsController {

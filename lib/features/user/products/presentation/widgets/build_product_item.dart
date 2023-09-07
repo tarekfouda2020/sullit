@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
@@ -45,119 +43,115 @@ class _BuildProductItemState extends State<BuildProductItem> {
     return Container(
       width: 160.w,
       decoration: CustomDecoration(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Stack(
-              children: [
-                CachedImage(
-                  fit: BoxFit.fill,
-                  haveRadius: true,
-                  borderRadius: Dimens.borderRadius5PX,
-                  url: widget.productModel.thumbnailImage!,
-                ),
-                Visibility(
-                  visible: widget.productModel.hasDiscount!,
-                  child: PositionedDirectional(
-                    top: 20.r,
-                    child: Container(
-                      padding: Dimens.paddingAll3PX,
-                      decoration: BoxDecoration(
-                        color: context.colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: context.colors.greyWhite,
-                            blurRadius: 1,
-                            spreadRadius: 1,
-                          )
-                        ],
-                        borderRadius: const BorderRadiusDirectional.only(
-                          topEnd: Radius.circular(40),
-                          bottomEnd: Radius.circular(40),
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          Text(
-                            "OFF",
-                            style: AppTextStyle.s10_w400(
-                              color: context.colors.primary,
-                            ),
+      child: InkWell(
+        onTap: () => AutoRouter.of(context).push(
+          ProductDetailsRoute(
+            productId: productModel.id!,
+            isResale: productModel.isResale!,
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Stack(
+                children: [
+                  CachedImage(
+                    fit: BoxFit.fill,
+                    haveRadius: true,
+                    borderRadius: Dimens.borderRadius5PX,
+                    url: productModel.thumbnailImage!,
+                  ),
+                  Visibility(
+                    visible: productModel.hasDiscount!,
+                    child: PositionedDirectional(
+                      top: 20.r,
+                      child: Container(
+                        padding: Dimens.paddingAll3PX,
+                        decoration: BoxDecoration(
+                          color: context.colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: context.colors.greyWhite,
+                              blurRadius: 1,
+                              spreadRadius: 1,
+                            )
+                          ],
+                          borderRadius: const BorderRadiusDirectional.only(
+                            topEnd: Radius.circular(40),
+                            bottomEnd: Radius.circular(40),
                           ),
-                          Container(
-                            padding: Dimens.paddingAll5PX,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: context.colors.primary,
-                            ),
-                            child: Text(
-                              widget.productModel.discount!,
+                        ),
+                        child: Row(
+                          children: [
+                            Text(
+                              "OFF",
                               style: AppTextStyle.s10_w400(
-                                color: context.colors.white,
+                                color: context.colors.primary,
                               ),
                             ),
-                          ),
-                        ],
+                            Container(
+                              padding: Dimens.paddingAll5PX,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: context.colors.primary,
+                              ),
+                              child: Text(
+                                productModel.discount!,
+                                style: AppTextStyle.s10_w400(
+                                  color: context.colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                PositionedDirectional(
-                  end: 3,
-                  child: Column(
-                    children: [
-                      BuildIconItem(
-                        iconData: widget.productModel.isWishlist!
-                            ? Icons.favorite
-                            : Icons.favorite_border,
-                        containerColor: widget.productModel.isWishlist!
-                            ? context.colors.primary
-                            : context.colors.white,
-                        onTap: () => ProductsHelper().toggleFavourite(
-                          id: widget.productModel.id!,
-                          onRefresh: widget.onFavRefresh,
-                          context: context,
+                  PositionedDirectional(
+                    end: 3,
+                    child: Column(
+                      children: [
+                        BuildIconItem(
+                          iconData: productModel.isWishlist!
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          containerColor: productModel.isWishlist!
+                              ? context.colors.primary
+                              : context.colors.white,
+                          onTap: () => ProductsHelper().toggleFavourite(
+                            id: productModel.id!,
+                            onRefresh: onFavRefresh,
+                            context: context,
+                          ),
+                          checkValue: productModel.isWishlist,
                         ),
-                        checkValue: widget.productModel.isWishlist,
-                      ),
-                      BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-                        bloc: isAddedToCompareBloc ,
-                        builder: (context, state) {
-                          return BuildIconItem(
-                            containerColor: widget.productModel.isAddedTCompare!
-                                ? context.colors.primary
-                                : context.colors.white,
-                            iconData: Icons.compare_arrows,
-                            checkValue: widget.productModel.isAddedTCompare,
-                            onTap: () {
-                              getIt<ProductsHelper>().addProductToCompare(widget.productModel, context);
-
-                            },
-                          );
-                        },
-                      ),
-                      BuildIconItem(
-                        iconData: Icons.shopping_cart,
-                        onTap: () => getIt<AddToCartHelper>().addToCartDialog(
-                          context,
-                          widget.productModel,
+                        BuildIconItem(
+                          containerColor: productModel.isAddedTCompare!
+                              ? context.colors.primary
+                              : context.colors.white,
+                          iconData: Icons.compare_arrows,
+                          checkValue: productModel.isAddedTCompare,
+                          onTap: () {
+                            getIt<ProductsHelper>()
+                                .addProductToCompare(productModel, context);
+                            onCompareRefresh.call();
+                          },
                         ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          InkWell(
-            onTap: () => AutoRouter.of(context).push(
-              ProductDetailsRoute(
-                productId: widget.productModel.id!,
-                isResale: widget.productModel.isResale!,
+                        BuildIconItem(
+                          iconData: Icons.shopping_cart,
+                          onTap: () => getIt<AddToCartHelper>().addToCartDialog(
+                            context,
+                            productModel,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
             ),
-            child: Padding(
+            Padding(
               padding: Dimens.paddingAll8PX,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -181,7 +175,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                     ),
                   ),
                   RatingBar.builder(
-                    initialRating: widget.productModel.rating!.toDouble(),
+                    initialRating: productModel.rating!.toDouble(),
                     ignoreGestures: true,
                     minRating: 1,
                     direction: Axis.horizontal,
@@ -197,7 +191,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                     onRatingUpdate: (rating) {},
                   ),
                   Text(
-                    widget.productModel.name!,
+                    productModel.name!,
                     style: AppTextStyle.s13_w500(
                       color: context.colors.black,
                     ).copyWith(
@@ -207,8 +201,8 @@ class _BuildProductItemState extends State<BuildProductItem> {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

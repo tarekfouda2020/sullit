@@ -29,7 +29,7 @@ class ApiNames{
   static const String getPopularProducts = "mostpopulars";
   static String toggleWishlist (int id) => "products/$id/wishlist/toggle";
   static const String sendQuery = "product-queries";
-  static const String getVariantPrice = "products";
+  static  String getVariantPrice(int id) => "products/$id/variant/price";
   static const String getDownloadProducts = "orders/digital-purchase-history";
   static String downloadDigitalProduct (int id) => "orders/digital-purchase-history/$id/download-product";
 
@@ -96,7 +96,12 @@ class ApiNames{
 
   //PurchaseHistory
   static const String getPurchaseHistory = "orders/purchase-history";
+  static const String getReturnOrders = "orders/return-orders";
   static String getTrackOrder (String code) => "orders/$code/track-your-order";
   static String downloadInvoice (int id) => "orders/$id/download-invoice";
+  static String getOrderDetails (int id) => "orders/$id/show";
+  static String sendReview (int orderId) => "orders/$orderId/product-review";
+  static String cancelOrder (int orderId) => "orders/$orderId/cancel-order";
+  static String returnOrder (int orderId) => "orders/$orderId/store-return-order";
 
 }

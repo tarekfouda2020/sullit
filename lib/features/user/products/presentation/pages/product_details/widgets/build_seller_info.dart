@@ -1,9 +1,10 @@
 part of 'product_details_widgets_imports.dart';
 
 class BuildSellerInfo extends StatelessWidget {
-final Shop shopModel;
+  final Shop? shopModel;
 
   const BuildSellerInfo({super.key, required this.shopModel});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,7 +23,7 @@ final Shop shopModel;
                 ),
                 Gaps.vGap5,
                 Text(
-                  shopModel.name!,
+                  shopModel?.name ?? "not found",
                   style: AppTextStyle.s14_w400(
                     color: context.colors.black,
                   ),

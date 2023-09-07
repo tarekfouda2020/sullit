@@ -30,6 +30,10 @@ class PopularProductsController {
 
   PopularProductsParams _popularProductsParams(int id, int page, bool refresh) {
     return PopularProductsParams(
-        id: id, currentPage: page, pageSize: pageSize, refresh: refresh);
+      id: id,
+      currentPage: page,
+      pageSize: pageSize,
+      refresh: refresh,
+    );
   }
 }

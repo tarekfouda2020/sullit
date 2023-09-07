@@ -2,7 +2,9 @@ part of 'profile_widgets_imports.dart';
 
 class BuildProfileImage extends StatelessWidget {
   final ProfileController controller;
-  const BuildProfileImage({Key? key, required this.controller}) : super(key: key);
+
+  const BuildProfileImage({Key? key, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,12 +65,9 @@ class BuildProfileImage extends StatelessWidget {
                   padding: const EdgeInsets.all(1),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(
-                          color: Colors.grey
-                      )
-                  ),
+                      border: Border.all(color: Colors.grey)),
                   child: CachedImage(
-                    url: user?.avatarOriginal??"",
+                    url: user?.avatarOriginal ?? "",
                     height: 100,
                     width: 100,
                     borderRadius: BorderRadius.circular(
