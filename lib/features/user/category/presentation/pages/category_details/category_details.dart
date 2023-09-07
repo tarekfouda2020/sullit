@@ -24,12 +24,20 @@ class _CategoryDetailsState extends State<CategoryDetails> {
       backgroundColor: context.colors.customBackground,
       key: controller.scaffold,
       appBar: DefaultAppBar(title: widget.categoryModel.name),
-      drawer: BuildFilterDrawer(categoryDetailsController: controller),
+      drawer: BuildFilterDrawer(
+        categoryDetailsController: controller,
+      ),
       body: Column(
         children: [
-          BuildAllCategoriesView(categoryDetailsController: controller),
-          BuildFilterBar(categoryDetailsController: controller),
-          BuildProducts(controller: controller),
+          BuildAllCategoriesView(
+            categoryDetailsController: controller,
+          ),
+          BuildFilterBar(
+            categoryDetailsController: controller,
+          ),
+          BuildProducts(
+            controller: controller,
+          ),
         ],
       ),
     );

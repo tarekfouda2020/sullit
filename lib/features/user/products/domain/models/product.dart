@@ -1,9 +1,11 @@
 // ignore_for_file: avoid_dynamic_calls
 
+import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/core/models/domain_models/brand_domain_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/color_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/reviews.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
@@ -27,26 +29,73 @@ class Product extends BaseDomainModel {
    String? currencySymbol;
   Variant? variant;
    List<String>? tags;
-   num? rating;
-   int? sales;
-   bool? isDigital;
+  num? rating;
+  int? sales;
+  bool? isDigital;
   bool? isWishlist;
-   int? sellerId;
-   int? countReviews;
-   String? soldByType;
-   String? soldByName;
-   Shop? shop;
-   List<Reviews>? reviews;
-   bool? isResale;
-   int? resellerId;
-   Category? category;
-   BrandDomainModel? brand;
-   String? description;
-   String? videoProvider;
-   String? videoLink;
-   String? categoryName;
-   String? brandName;
-  bool? isAddedTCompare = false;
+  int? sellerId;
+  int? countReviews;
+  String? soldByType;
+  String? soldByName;
+  Shop? shop;
+  List<Reviews>? reviews;
+  bool? isResale;
+  int? resellerId;
+  Category? category;
+  BrandDomainModel? brand;
+  String? description;
+  String? videoProvider;
+  String? videoLink;
+  String? categoryName;
+  String? brandName;
+  bool? isAddedTCompare  ;
+
+  Product({
+    this.id,
+    this.name,
+    this.images,
+    this.thumbnailImage,
+    this.isMultiple,
+    this.priceHighLowDiscount,
+    this.priceHighLow,
+    this.hasDiscount,
+    this.discount,
+    this.strokedPrice,
+    this.variant,
+    this.mainPrice,
+    this.choiceOptions,
+    this.colors,
+    this.minQty,
+    this.currencySymbol,
+    this.tags,
+    this.rating,
+    this.sales,
+    this.isDigital,
+    this.isWishlist,
+    this.sellerId,
+    this.countReviews,
+    this.soldByType,
+    this.soldByName,
+    this.shop,
+    this.reviews,
+    this.isResale,
+    this.resellerId,
+    this.category,
+    this.brand,
+    this.description,
+    this.videoProvider,
+    this.videoLink,
+    this.categoryName,
+    this.brandName,
+    this.isAddedTCompare = false
+  });
+
+  Future<void> isAddedToCompare() async {
+    var items = await getIt<ComparedProductsDb>().getItems();
+    if(items.where((e) => e.productId == id).toList().isNotEmpty){
+      isAddedTCompare = true ;
+    }
+  }
 
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -93,46 +142,6 @@ class Product extends BaseDomainModel {
     brandName = json['brand_name'];
   }
 
-
-  Product({
-    required this.id,
-    required this.name,
-    required this.images,
-    required this.thumbnailImage,
-    required this.isMultiple,
-    required this.priceHighLowDiscount,
-    required this.priceHighLow,
-    required this.hasDiscount,
-    required this.discount,
-    this.strokedPrice,
-    this.variant,
-    this.mainPrice,
-    this.choiceOptions,
-    this.colors,
-    required this.minQty,
-    required this.currencySymbol,
-    this.tags,
-    required this.rating,
-    required this.sales,
-    required this.isDigital,
-    required this.isWishlist,
-    required this.sellerId,
-    required this.countReviews,
-    required this.soldByType,
-    required this.soldByName,
-    this.shop,
-    this.reviews,
-    required this.isResale,
-    required this.resellerId,
-    this.category,
-    this.brand,
-    this.description,
-    this.videoProvider,
-    this.videoLink,
-    required this.categoryName,
-    required this.brandName,
-  });
-
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
@@ -176,4 +185,6 @@ class Product extends BaseDomainModel {
     data['brand_name'] = brandName;
     return data;
   }
+
+
 }

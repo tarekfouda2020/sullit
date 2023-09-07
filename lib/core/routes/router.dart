@@ -32,6 +32,7 @@ part of 'router_imports.dart';
     ...saleRoute,
     ...ticketRoute,
     ...walletRoute,
+    ...customersProductsRoutes
   ],
 )
 class $AppRouter {}

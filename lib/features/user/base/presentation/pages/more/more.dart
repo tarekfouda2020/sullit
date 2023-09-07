@@ -14,6 +14,7 @@ class _MoreState extends State<More> {
 
   @override
   Widget build(BuildContext context) {
+    bool auth = context.read<DeviceCubit>().state.model.auth;
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: BuildSearchAppBar(homeController: widget.homeController),
@@ -24,6 +25,14 @@ class _MoreState extends State<More> {
             title: 'DashBoard',
             icon: Icons.home_outlined,
             onTap: () => controller.checkAuth(context, MoreRoutes.dashboard),
+          ),
+          BuildMoreItem(
+            title: 'Classified products',
+            icon: Icons.diamond_outlined,
+            onTap: () => controller.checkAuth(
+              context,
+              MoreRoutes.classifiedProducts,
+            ),
           ),
           BuildMoreItem(
             haveStatus: true,

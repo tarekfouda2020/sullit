@@ -15,17 +15,10 @@ class BuildSubCategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color color = (subCategoryModel.id == selected ||
-            subCategoryModel.parentId == selected)
-        ? context.colors.primary
-        : context.colors.white;
-    Color textColor = (subCategoryModel.id == selected ||
-            subCategoryModel.parentId == selected)
-        ? context.colors.white
-        : context.colors.primary;
+    Color color = (subCategoryModel.id == selected || subCategoryModel.parentId == selected) ? context.colors.primary : context.colors.white;
+    Color textColor = (subCategoryModel.id == selected || subCategoryModel.parentId == selected) ? context.colors.white : context.colors.primary;
     return InkWell(
-      onTap: () => categoryDetailsController.onSelectSubCategory(
-          context, selected, subCategoryModel, index),
+      onTap: () => categoryDetailsController.onSelectSubCategory(context, selected, subCategoryModel, index),
       child: Container(
         height: 30.h,
         padding: Dimens.paddingHorizontal15PX,
@@ -34,7 +27,6 @@ class BuildSubCategoryItem extends StatelessWidget {
           color: color,
           borderRadius: Dimens.borderRadius5PX,
           border: Border.all(color: context.colors.greyWhite),
-
         ),
         alignment: Alignment.center,
         child: Text(
