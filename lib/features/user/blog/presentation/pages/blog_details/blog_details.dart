@@ -20,8 +20,9 @@ class _BlogDetailsState extends State<BlogDetails> {
         children: [
           CachedImage(
             url: widget.blog.banner,
-            height: 200.spMin,
+            height: 250.spMin,
             width: MediaQuery.of(context).size.width,
+            imgMargin: Dimens.paddingVertical10PX,
           ),
           BuildBlogDetailsView(blog: widget.blog),
         ],
