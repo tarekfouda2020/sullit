@@ -30,7 +30,6 @@ class _MoreState extends State<More> {
             title: 'Classified products',
             icon: Icons.diamond_outlined,
             onTap: () => controller.checkAuth(
-              auth,
               context,
               MoreRoutes.classifiedProducts,
             ),

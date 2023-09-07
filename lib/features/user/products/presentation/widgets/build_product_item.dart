@@ -39,15 +39,14 @@ class _BuildProductItemState extends State<BuildProductItem> {
 
   @override
   Widget build(BuildContext context) {
-    GenericBloc<bool> isAddedToCompareBloc = GenericBloc(false);
     return Container(
       width: 160.w,
       decoration: CustomDecoration(),
       child: InkWell(
         onTap: () => AutoRouter.of(context).push(
           ProductDetailsRoute(
-            productId: productModel.id!,
-            isResale: productModel.isResale!,
+            productId: widget.productModel.id!,
+            isResale: widget.productModel.isResale!,
           ),
         ),
         child: Column(
@@ -60,10 +59,10 @@ class _BuildProductItemState extends State<BuildProductItem> {
                     fit: BoxFit.fill,
                     haveRadius: true,
                     borderRadius: Dimens.borderRadius5PX,
-                    url: productModel.thumbnailImage!,
+                    url: widget.productModel.thumbnailImage!,
                   ),
                   Visibility(
-                    visible: productModel.hasDiscount!,
+                    visible: widget.productModel.hasDiscount!,
                     child: PositionedDirectional(
                       top: 20.r,
                       child: Container(
@@ -97,7 +96,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                                 color: context.colors.primary,
                               ),
                               child: Text(
-                                productModel.discount!,
+                                widget.productModel.discount!,
                                 style: AppTextStyle.s10_w400(
                                   color: context.colors.white,
                                 ),
@@ -113,36 +112,35 @@ class _BuildProductItemState extends State<BuildProductItem> {
                     child: Column(
                       children: [
                         BuildIconItem(
-                          iconData: productModel.isWishlist!
+                          iconData: widget.productModel.isWishlist!
                               ? Icons.favorite
                               : Icons.favorite_border,
-                          containerColor: productModel.isWishlist!
+                          containerColor: widget.productModel.isWishlist!
                               ? context.colors.primary
                               : context.colors.white,
                           onTap: () => ProductsHelper().toggleFavourite(
-                            id: productModel.id!,
-                            onRefresh: onFavRefresh,
-                            context: context,
+                            id: widget.productModel.id!,
+                            context: context, onRefresh:
+                              () {  },
                           ),
-                          checkValue: productModel.isWishlist,
+                          checkValue: widget.productModel.isWishlist,
                         ),
                         BuildIconItem(
-                          containerColor: productModel.isAddedTCompare!
+                          containerColor: widget.productModel.isAddedTCompare!
                               ? context.colors.primary
                               : context.colors.white,
                           iconData: Icons.compare_arrows,
-                          checkValue: productModel.isAddedTCompare,
+                          checkValue: widget.productModel.isAddedTCompare,
                           onTap: () {
-                            getIt<ProductsHelper>()
-                                .addProductToCompare(productModel, context);
-                            onCompareRefresh.call();
+                            getIt<ProductsHelper>().addProductToCompare(widget.productModel, context);
+                            // onCompareRefresh.call();
                           },
                         ),
                         BuildIconItem(
                           iconData: Icons.shopping_cart,
                           onTap: () => getIt<AddToCartHelper>().addToCartDialog(
                             context,
-                            productModel,
+                            widget.productModel,
                           ),
                         ),
                       ],
@@ -175,7 +173,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                     ),
                   ),
                   RatingBar.builder(
-                    initialRating: productModel.rating!.toDouble(),
+                    initialRating: widget.productModel.rating!.toDouble(),
                     ignoreGestures: true,
                     minRating: 1,
                     direction: Axis.horizontal,
@@ -191,7 +189,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                     onRatingUpdate: (rating) {},
                   ),
                   Text(
-                    productModel.name!,
+                    widget.productModel.name!,
                     style: AppTextStyle.s13_w500(
                       color: context.colors.black,
                     ).copyWith(
