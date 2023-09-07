@@ -15,6 +15,10 @@ _$_DashboardsModel _$$_DashboardsModelFromJson(Map<String, dynamic> json) =>
           ? null
           : ShippingAddressModel.fromJson(
               json['default shipping_address'] as Map<String, dynamic>),
+      customerPackage: json['customer_package'] == null
+          ? null
+          : PackagesModel.fromJson(
+              json['customer_package'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_DashboardsModelToJson(_$_DashboardsModel instance) =>
@@ -23,4 +27,5 @@ Map<String, dynamic> _$$_DashboardsModelToJson(_$_DashboardsModel instance) =>
       'wishlist_products_count': instance.wishlistCount,
       'orders_products_count': instance.ordersCount,
       'default shipping_address': instance.defaultAddress?.toJson(),
+      'customer_package': instance.customerPackage?.toJson(),
     };

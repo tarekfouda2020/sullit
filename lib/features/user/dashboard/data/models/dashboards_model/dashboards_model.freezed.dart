@@ -29,6 +29,8 @@ mixin _$DashboardsModel {
   @JsonKey(name: 'default shipping_address')
   ShippingAddressModel? get defaultAddress =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'customer_package')
+  PackagesModel? get customerPackage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,9 +49,11 @@ abstract class $DashboardsModelCopyWith<$Res> {
       @JsonKey(name: 'wishlist_products_count') int wishlistCount,
       @JsonKey(name: 'orders_products_count') int ordersCount,
       @JsonKey(name: 'default shipping_address')
-      ShippingAddressModel? defaultAddress});
+      ShippingAddressModel? defaultAddress,
+      @JsonKey(name: 'customer_package') PackagesModel? customerPackage});
 
   $ShippingAddressModelCopyWith<$Res>? get defaultAddress;
+  $PackagesModelCopyWith<$Res>? get customerPackage;
 }
 
 /// @nodoc
@@ -69,6 +73,7 @@ class _$DashboardsModelCopyWithImpl<$Res, $Val extends DashboardsModel>
     Object? wishlistCount = null,
     Object? ordersCount = null,
     Object? defaultAddress = freezed,
+    Object? customerPackage = freezed,
   }) {
     return _then(_value.copyWith(
       cartCount: null == cartCount
@@ -87,6 +92,10 @@ class _$DashboardsModelCopyWithImpl<$Res, $Val extends DashboardsModel>
           ? _value.defaultAddress
           : defaultAddress // ignore: cast_nullable_to_non_nullable
               as ShippingAddressModel?,
+      customerPackage: freezed == customerPackage
+          ? _value.customerPackage
+          : customerPackage // ignore: cast_nullable_to_non_nullable
+              as PackagesModel?,
     ) as $Val);
   }
 
@@ -99,6 +108,18 @@ class _$DashboardsModelCopyWithImpl<$Res, $Val extends DashboardsModel>
 
     return $ShippingAddressModelCopyWith<$Res>(_value.defaultAddress!, (value) {
       return _then(_value.copyWith(defaultAddress: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PackagesModelCopyWith<$Res>? get customerPackage {
+    if (_value.customerPackage == null) {
+      return null;
+    }
+
+    return $PackagesModelCopyWith<$Res>(_value.customerPackage!, (value) {
+      return _then(_value.copyWith(customerPackage: value) as $Val);
     });
   }
 }
@@ -116,10 +137,13 @@ abstract class _$$_DashboardsModelCopyWith<$Res>
       @JsonKey(name: 'wishlist_products_count') int wishlistCount,
       @JsonKey(name: 'orders_products_count') int ordersCount,
       @JsonKey(name: 'default shipping_address')
-      ShippingAddressModel? defaultAddress});
+      ShippingAddressModel? defaultAddress,
+      @JsonKey(name: 'customer_package') PackagesModel? customerPackage});
 
   @override
   $ShippingAddressModelCopyWith<$Res>? get defaultAddress;
+  @override
+  $PackagesModelCopyWith<$Res>? get customerPackage;
 }
 
 /// @nodoc
@@ -137,6 +161,7 @@ class __$$_DashboardsModelCopyWithImpl<$Res>
     Object? wishlistCount = null,
     Object? ordersCount = null,
     Object? defaultAddress = freezed,
+    Object? customerPackage = freezed,
   }) {
     return _then(_$_DashboardsModel(
       cartCount: null == cartCount
@@ -155,6 +180,10 @@ class __$$_DashboardsModelCopyWithImpl<$Res>
           ? _value.defaultAddress
           : defaultAddress // ignore: cast_nullable_to_non_nullable
               as ShippingAddressModel?,
+      customerPackage: freezed == customerPackage
+          ? _value.customerPackage
+          : customerPackage // ignore: cast_nullable_to_non_nullable
+              as PackagesModel?,
     ));
   }
 }
@@ -167,7 +196,8 @@ class _$_DashboardsModel extends _DashboardsModel {
       {@JsonKey(name: 'cart_products_count') required this.cartCount,
       @JsonKey(name: 'wishlist_products_count') required this.wishlistCount,
       @JsonKey(name: 'orders_products_count') required this.ordersCount,
-      @JsonKey(name: 'default shipping_address') this.defaultAddress})
+      @JsonKey(name: 'default shipping_address') this.defaultAddress,
+      @JsonKey(name: 'customer_package') this.customerPackage})
       : super._();
 
   factory _$_DashboardsModel.fromJson(Map<String, dynamic> json) =>
@@ -185,10 +215,13 @@ class _$_DashboardsModel extends _DashboardsModel {
   @override
   @JsonKey(name: 'default shipping_address')
   final ShippingAddressModel? defaultAddress;
+  @override
+  @JsonKey(name: 'customer_package')
+  final PackagesModel? customerPackage;
 
   @override
   String toString() {
-    return 'DashboardsModel(cartCount: $cartCount, wishlistCount: $wishlistCount, ordersCount: $ordersCount, defaultAddress: $defaultAddress)';
+    return 'DashboardsModel(cartCount: $cartCount, wishlistCount: $wishlistCount, ordersCount: $ordersCount, defaultAddress: $defaultAddress, customerPackage: $customerPackage)';
   }
 
   @override
@@ -203,13 +236,15 @@ class _$_DashboardsModel extends _DashboardsModel {
             (identical(other.ordersCount, ordersCount) ||
                 other.ordersCount == ordersCount) &&
             (identical(other.defaultAddress, defaultAddress) ||
-                other.defaultAddress == defaultAddress));
+                other.defaultAddress == defaultAddress) &&
+            (identical(other.customerPackage, customerPackage) ||
+                other.customerPackage == customerPackage));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, cartCount, wishlistCount, ordersCount, defaultAddress);
+  int get hashCode => Object.hash(runtimeType, cartCount, wishlistCount,
+      ordersCount, defaultAddress, customerPackage);
 
   @JsonKey(ignore: true)
   @override
@@ -232,7 +267,9 @@ abstract class _DashboardsModel extends DashboardsModel {
       required final int wishlistCount,
       @JsonKey(name: 'orders_products_count') required final int ordersCount,
       @JsonKey(name: 'default shipping_address')
-      final ShippingAddressModel? defaultAddress}) = _$_DashboardsModel;
+      final ShippingAddressModel? defaultAddress,
+      @JsonKey(name: 'customer_package')
+      final PackagesModel? customerPackage}) = _$_DashboardsModel;
   const _DashboardsModel._() : super._();
 
   factory _DashboardsModel.fromJson(Map<String, dynamic> json) =
@@ -250,6 +287,9 @@ abstract class _DashboardsModel extends DashboardsModel {
   @override
   @JsonKey(name: 'default shipping_address')
   ShippingAddressModel? get defaultAddress;
+  @override
+  @JsonKey(name: 'customer_package')
+  PackagesModel? get customerPackage;
   @override
   @JsonKey(ignore: true)
   _$$_DashboardsModelCopyWith<_$_DashboardsModel> get copyWith =>

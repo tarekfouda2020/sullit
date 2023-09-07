@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
+import 'package:flutter_tdd/features/user/customers_products/data/models/packages_model/packages_model.dart';
 import 'package:flutter_tdd/features/user/dashboard/data/models/shipping_address_model/shipping_address_model.dart';
 import 'package:flutter_tdd/features/user/dashboard/domain/models/dashboards.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -17,7 +18,9 @@ class DashboardsModel extends BaseApiModel<Dashboards> with _$DashboardsModel {
     @JsonKey(name: 'cart_products_count') required int cartCount,
     @JsonKey(name: 'wishlist_products_count') required int wishlistCount,
     @JsonKey(name: 'orders_products_count') required int ordersCount,
-    @JsonKey(name: 'default shipping_address')  ShippingAddressModel? defaultAddress,
+    @JsonKey(name: 'default shipping_address')
+        ShippingAddressModel? defaultAddress,
+    @JsonKey(name: 'customer_package') PackagesModel? customerPackage,
   }) = _DashboardsModel;
 
   factory DashboardsModel.fromJson(Map<String, dynamic> json) =>
@@ -30,6 +33,7 @@ class DashboardsModel extends BaseApiModel<Dashboards> with _$DashboardsModel {
       ordersCount: ordersCount,
       wishlistCount: wishlistCount,
       defaultAddress: defaultAddress?.toDomainModel(),
+      customerPackage: customerPackage?.toDomainModel(),
     );
   }
 }
