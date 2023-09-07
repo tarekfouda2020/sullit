@@ -7,9 +7,7 @@ import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 class BuildCartStepper extends StatelessWidget {
   final int current;
 
-
-  const BuildCartStepper(
-      {super.key, required this.current});
+  const BuildCartStepper({super.key, required this.current});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +18,8 @@ class BuildCartStepper extends StatelessWidget {
       CupertinoIcons.creditcard,
       CupertinoIcons.check_mark_circled,
     ];
-
     return Container(
-      padding: const EdgeInsets.all(Dimens.dp24),
+      padding: Dimens.paddingAll20PX,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(
@@ -30,11 +27,12 @@ class BuildCartStepper extends StatelessWidget {
           (index) {
             var containerColor =
                 current > index ? context.colors.primary : context.colors.gray;
-            var lineColor = current > index ? context.colors.primary : context.colors.gray;
+            var lineColor =
+                current > index ? context.colors.primary : context.colors.gray;
             return Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(Dimens.dp10),
+                  padding: Dimens.paddingAll10PX,
                   decoration: BoxDecoration(
                     color: containerColor,
                     shape: BoxShape.circle,

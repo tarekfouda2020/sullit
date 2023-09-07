@@ -33,7 +33,7 @@ mixin _$CartItemModel {
   bool get isDigital => throw _privateConstructorUsedError;
   String get total => throw _privateConstructorUsedError;
   @JsonKey(name: "calculable_total")
-  double get calculableTotal => throw _privateConstructorUsedError;
+  num get calculableTotal => throw _privateConstructorUsedError;
   @JsonKey(name: "currency_symbol")
   String get currencySymbol => throw _privateConstructorUsedError;
   @JsonKey(name: "product_id")
@@ -65,7 +65,7 @@ abstract class $CartItemModelCopyWith<$Res> {
       int quantity,
       @JsonKey(name: "is_digital") bool isDigital,
       String total,
-      @JsonKey(name: "calculable_total") double calculableTotal,
+      @JsonKey(name: "calculable_total") num calculableTotal,
       @JsonKey(name: "currency_symbol") String currencySymbol,
       @JsonKey(name: "product_id") int productId,
       @JsonKey(name: "min_qty") int minQty,
@@ -140,7 +140,7 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
       calculableTotal: null == calculableTotal
           ? _value.calculableTotal
           : calculableTotal // ignore: cast_nullable_to_non_nullable
-              as double,
+              as num,
       currencySymbol: null == currencySymbol
           ? _value.currencySymbol
           : currencySymbol // ignore: cast_nullable_to_non_nullable
@@ -179,7 +179,7 @@ abstract class _$$_CartItemModelCopyWith<$Res>
       int quantity,
       @JsonKey(name: "is_digital") bool isDigital,
       String total,
-      @JsonKey(name: "calculable_total") double calculableTotal,
+      @JsonKey(name: "calculable_total") num calculableTotal,
       @JsonKey(name: "currency_symbol") String currencySymbol,
       @JsonKey(name: "product_id") int productId,
       @JsonKey(name: "min_qty") int minQty,
@@ -252,7 +252,7 @@ class __$$_CartItemModelCopyWithImpl<$Res>
       calculableTotal: null == calculableTotal
           ? _value.calculableTotal
           : calculableTotal // ignore: cast_nullable_to_non_nullable
-              as double,
+              as num,
       currencySymbol: null == currencySymbol
           ? _value.currencySymbol
           : currencySymbol // ignore: cast_nullable_to_non_nullable
@@ -320,7 +320,7 @@ class _$_CartItemModel extends _CartItemModel {
   final String total;
   @override
   @JsonKey(name: "calculable_total")
-  final double calculableTotal;
+  final num calculableTotal;
   @override
   @JsonKey(name: "currency_symbol")
   final String currencySymbol;
@@ -411,7 +411,7 @@ abstract class _CartItemModel extends CartItemModel {
       required final int quantity,
       @JsonKey(name: "is_digital") required final bool isDigital,
       required final String total,
-      @JsonKey(name: "calculable_total") required final double calculableTotal,
+      @JsonKey(name: "calculable_total") required final num calculableTotal,
       @JsonKey(name: "currency_symbol") required final String currencySymbol,
       @JsonKey(name: "product_id") required final int productId,
       @JsonKey(name: "min_qty") required final int minQty,
@@ -445,7 +445,7 @@ abstract class _CartItemModel extends CartItemModel {
   String get total;
   @override
   @JsonKey(name: "calculable_total")
-  double get calculableTotal;
+  num get calculableTotal;
   @override
   @JsonKey(name: "currency_symbol")
   String get currencySymbol;

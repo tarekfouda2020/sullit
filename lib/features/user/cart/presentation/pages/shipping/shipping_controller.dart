@@ -5,10 +5,6 @@ part of 'shipping_imports.dart';
 class ShippingController {
   final GenericBloc<List<Address>> addressesBloc = GenericBloc([]);
 
-  ShippingController() {
-    getAddress();
-  }
-
   Future<void> getAddress({bool refresh = true}) async {
     return await GetAddresses().call(refresh).then(
       (value) {
@@ -17,13 +13,11 @@ class ShippingController {
     );
   }
 
-
-
-  void onSelectAddress(Address address, bool? val, BuildContext context, int index) {
-    var auth = context.read<DeviceCubit>().state.model.auth ;
-    if(!auth){
+  void onSelectAddress(BuildContext context, Address address, bool? val) {
+    var auth = context.read<DeviceCubit>().state.model.auth;
+    if (!auth) {
       CustomToast.showAuthDialog(context);
-      return ;
+      return;
     }
     for (var e in addressesBloc.state.data) {
       e.selected = false;
@@ -32,19 +26,35 @@ class ShippingController {
     addressesBloc.onUpdateData(addressesBloc.state.data);
   }
 
+  void onAddNewAddress(BuildContext context) async {
+    var result = await AutoRouter.of(context).push(const AddNewAddressRoute());
+    if (result != null) {
+      Address model = result as Address;
+      addressesBloc.state.data.add(model);
+      addressesBloc.onUpdateData(addressesBloc.state.data);
+    }
+  }
+
+  void onActiveAddress(BuildContext context, Address address) async {
+    var result = await AutoRouter.of(context)
+        .push(ActiveAccountRoute(phone: address.phone!));
+    if (result == true) {
+      address.isActive = true;
+      addressesBloc.onUpdateData(addressesBloc.state.data);
+    }
+  }
+
   Future<void> cartAddAddress(BuildContext context) async {
-    bool auth = context.read<DeviceCubit>().state.model.auth ;
-    if(!auth){
+    bool auth = context.read<DeviceCubit>().state.model.auth;
+    if (!auth) {
       CustomToast.showAuthDialog(context);
       return;
     }
-    if (addressesBloc.state.data
+    var selectedList = addressesBloc.state.data
         .where((element) => element.selected == true)
-        .isNotEmpty) {
-      var data = await AddCartAddress().call(addressesBloc.state.data
-          .where((element) => element.selected == true)
-          .first
-          .id!);
+        .toList();
+    if (selectedList.isNotEmpty) {
+      var data = await AddCartAddress().call(selectedList.first.id!);
       if (data) {
         CustomToast.showSimpleToast(
             msg: "The address has been added successfully");

@@ -6,7 +6,7 @@ class CartDomainModel extends BaseDomainModel {
 
   String? subTotal;
 
-  int? calculableTotal;
+  num? calculableTotal;
 
   String? currencySymbol;
 

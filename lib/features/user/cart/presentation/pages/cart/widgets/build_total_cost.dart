@@ -1,7 +1,7 @@
 part of 'cart_widgets_imports.dart';
 
 class BuildTotalCost extends StatelessWidget {
-  final String price ;
+  final num price ;
   final String currency ;
   const BuildTotalCost({Key? key, required this.price, required this.currency}) : super(key: key);
 

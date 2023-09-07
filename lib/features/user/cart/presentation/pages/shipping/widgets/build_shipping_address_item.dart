@@ -1,40 +1,28 @@
 part of 'shipping_widgets_imports.dart';
 
 class BuildShippingAddressItem extends StatelessWidget {
-  final ShippingController controller ;
-  final Address address ;
-  const BuildShippingAddressItem({Key? key, required this.controller, required this.address}) : super(key: key);
+  final ShippingController controller;
+
+  final Address address;
+
+  const BuildShippingAddressItem(
+      {Key? key, required this.controller, required this.address})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    int index = controller.addressesBloc.state.data.indexOf(address);
     return Container(
-      margin: const EdgeInsets.symmetric(
-        horizontal: Dimens.dp20,
-        vertical: Dimens.dp10,
-      ),
-      padding: const EdgeInsets.all(
-        Dimens.dp10,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: Dimens.borderRadius10PX,
-        color: context.colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: context.colors.greyWhite,
-            spreadRadius: 1,
-            blurRadius: 1,
-          )
-        ],
-      ),
+      margin: Dimens.paddingVertical5PX,
+      padding: Dimens.paddingAll10PX,
+      decoration: CustomDecoration(),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Radio<bool>(
             value: false,
-            groupValue: !controller.addressesBloc.state.data[index].selected!,
+            groupValue: !address.selected!,
             onChanged: (val) =>
-                controller.onSelectAddress(address, val, context, index),
+                controller.onSelectAddress(context, address, val),
             activeColor: context.colors.primary,
           ),
           Gaps.hGap10,
@@ -71,21 +59,19 @@ class BuildShippingAddressItem extends StatelessWidget {
           Visibility(
             visible: address.isActive != true,
             child: InkWell(
-              onTap: () async {
-              var result =  await  AutoRouter.of(context).push(ActiveAccountRoute(phone: address.phone!));
-              if(result == true){
-                address.isActive = true ;
-                controller.addressesBloc.onUpdateData(controller.addressesBloc.state.data);
-              }
-              },
+              onTap: () => controller.onActiveAddress(context, address),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10.r, vertical: 5.r),
+                padding: Dimens.paddingAll8PX,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: Dimens.borderRadius5PX,
                   color: context.colors.primary,
                 ),
-                child: Text('Verify Phone',
-                    style: AppTextStyle.s12_w300(color: context.colors.white)),
+                child: Text(
+                  'Verify Phone',
+                  style: AppTextStyle.s12_w300(
+                    color: context.colors.white,
+                  ),
+                ),
               ),
             ),
           )
@@ -94,4 +80,3 @@ class BuildShippingAddressItem extends StatelessWidget {
     );
   }
 }
-

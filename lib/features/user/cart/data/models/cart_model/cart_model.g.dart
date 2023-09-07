@@ -11,7 +11,7 @@ _$_CartModel _$$_CartModelFromJson(Map<String, dynamic> json) => _$_CartModel(
           .map((e) => CartItemModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       subTotal: json['sub_total'] as String,
-      calculableTotal: json['calculable_total'] as int,
+      calculableTotal: json['calculable_total'] as num,
       currencySymbol: json['currency_symbol'] as String,
     );
 

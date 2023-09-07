@@ -16,7 +16,7 @@ class CartModel extends BaseApiModel<CartDomainModel> with _$CartModel {
   const factory CartModel({
     required List<CartItemModel> items ,
     @JsonKey(name: "sub_total") required String subTotal,
-    @JsonKey(name: "calculable_total") required int calculableTotal,
+    @JsonKey(name: "calculable_total") required num calculableTotal,
     @JsonKey(name: "currency_symbol") required String currencySymbol,
   }) = _CartModel;
 

@@ -24,7 +24,7 @@ mixin _$CartModel {
   @JsonKey(name: "sub_total")
   String get subTotal => throw _privateConstructorUsedError;
   @JsonKey(name: "calculable_total")
-  int get calculableTotal => throw _privateConstructorUsedError;
+  num get calculableTotal => throw _privateConstructorUsedError;
   @JsonKey(name: "currency_symbol")
   String get currencySymbol => throw _privateConstructorUsedError;
 
@@ -42,7 +42,7 @@ abstract class $CartModelCopyWith<$Res> {
   $Res call(
       {List<CartItemModel> items,
       @JsonKey(name: "sub_total") String subTotal,
-      @JsonKey(name: "calculable_total") int calculableTotal,
+      @JsonKey(name: "calculable_total") num calculableTotal,
       @JsonKey(name: "currency_symbol") String currencySymbol});
 }
 
@@ -76,7 +76,7 @@ class _$CartModelCopyWithImpl<$Res, $Val extends CartModel>
       calculableTotal: null == calculableTotal
           ? _value.calculableTotal
           : calculableTotal // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       currencySymbol: null == currencySymbol
           ? _value.currencySymbol
           : currencySymbol // ignore: cast_nullable_to_non_nullable
@@ -95,7 +95,7 @@ abstract class _$$_CartModelCopyWith<$Res> implements $CartModelCopyWith<$Res> {
   $Res call(
       {List<CartItemModel> items,
       @JsonKey(name: "sub_total") String subTotal,
-      @JsonKey(name: "calculable_total") int calculableTotal,
+      @JsonKey(name: "calculable_total") num calculableTotal,
       @JsonKey(name: "currency_symbol") String currencySymbol});
 }
 
@@ -127,7 +127,7 @@ class __$$_CartModelCopyWithImpl<$Res>
       calculableTotal: null == calculableTotal
           ? _value.calculableTotal
           : calculableTotal // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       currencySymbol: null == currencySymbol
           ? _value.currencySymbol
           : currencySymbol // ignore: cast_nullable_to_non_nullable
@@ -164,7 +164,7 @@ class _$_CartModel extends _CartModel {
   final String subTotal;
   @override
   @JsonKey(name: "calculable_total")
-  final int calculableTotal;
+  final num calculableTotal;
   @override
   @JsonKey(name: "currency_symbol")
   final String currencySymbol;
@@ -215,7 +215,7 @@ abstract class _CartModel extends CartModel {
   const factory _CartModel(
       {required final List<CartItemModel> items,
       @JsonKey(name: "sub_total") required final String subTotal,
-      @JsonKey(name: "calculable_total") required final int calculableTotal,
+      @JsonKey(name: "calculable_total") required final num calculableTotal,
       @JsonKey(name: "currency_symbol")
       required final String currencySymbol}) = _$_CartModel;
   const _CartModel._() : super._();
@@ -230,7 +230,7 @@ abstract class _CartModel extends CartModel {
   String get subTotal;
   @override
   @JsonKey(name: "calculable_total")
-  int get calculableTotal;
+  num get calculableTotal;
   @override
   @JsonKey(name: "currency_symbol")
   String get currencySymbol;

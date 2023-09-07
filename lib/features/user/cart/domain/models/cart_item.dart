@@ -10,7 +10,7 @@ class CartItem extends BaseDomainModel {
   int quantity;
   bool isDigital;
   String total;
-  double calculableTotal;
+  num calculableTotal;
   String currencySymbol;
   int productId;
   int minQty;
