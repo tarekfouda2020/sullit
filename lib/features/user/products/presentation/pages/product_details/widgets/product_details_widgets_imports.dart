@@ -18,6 +18,7 @@ import 'package:flutter_tdd/core/widgets/GenericListView.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 import 'package:flutter_tdd/core/widgets/GridFixedHeightDelegate.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
+import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart/widgets/cart_widgets_imports.dart';
 
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
@@ -78,3 +79,4 @@ part 'build_loading_info.dart';
 part 'build_details_view.dart';
 part 'build_own_questions.dart';
 part 'build_attribute_list.dart';
+part 'build_cart_success_dialog.dart';

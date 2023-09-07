@@ -16,17 +16,7 @@ class BuildTopSellingProducts extends StatelessWidget {
           height: 270.spMin,
           padding: Dimens.paddingAll8PX,
           margin: Dimens.paddingHorizontal15PX,
-          decoration: BoxDecoration(
-            borderRadius: Dimens.borderRadius5PX,
-            color: context.colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: context.colors.greyWhite,
-                blurRadius: 1,
-                spreadRadius: 1,
-              )
-            ],
-          ),
+          decoration: CustomDecoration(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -52,10 +42,9 @@ class BuildTopSellingProducts extends StatelessWidget {
                           onFavRefresh: () => controller.onChangeFav(
                             topProducts[index],
                           ),
-                          onCompareRefresh: () {
-                            topProducts[index].isAddedTCompare = !topProducts[index].isAddedTCompare!;
-                            controller.detailsCubit.onUpdateData(controller.detailsCubit.state.data);
-                          },
+                          onCompareRefresh: () => controller.onChangeCompare(
+                            topProducts[index],
+                          ),
                         ),
                       ),
                     ),

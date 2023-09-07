@@ -14,17 +14,7 @@ class BuildProductQueries extends StatelessWidget {
         child: Container(
           padding: Dimens.paddingAll8PX,
           margin: Dimens.paddingHorizontal15PX,
-          decoration: BoxDecoration(
-            borderRadius: Dimens.borderRadius5PX,
-            color: context.colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: context.colors.greyWhite,
-                blurRadius: 1,
-                spreadRadius: 1,
-              )
-            ],
-          ),
+          decoration: CustomDecoration(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -56,7 +46,7 @@ class BuildProductQueries extends StatelessWidget {
                 width: 120.w,
                 height: 30.h,
                 margin: Dimens.paddingHorizontal10PX,
-                borderRadius: BorderRadius.circular(5).r,
+                borderRadius: Dimens.borderRadius5PX,
                 onTap: () => controller.sendQuery(context),
               ),
             ],

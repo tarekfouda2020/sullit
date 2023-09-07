@@ -13,7 +13,7 @@ class _CartState extends State<Cart> {
   late CartController controller;
 
   @override
-  void initState(){
+  void initState() {
     controller = CartController();
     super.initState();
   }
@@ -36,13 +36,15 @@ class _CartState extends State<Cart> {
                     child: Center(
                       child: Text(
                         'No founded Items in cart. ! ',
-                        style: AppTextStyle.s14_w400(color: context.colors.grey),
+                        style:
+                            AppTextStyle.s14_w400(color: context.colors.grey),
                       ),
                     ),
                   ),
                   child: Flexible(
                     child: ListView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: Dimens.dp20),
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: Dimens.dp20),
                       itemCount: state.data.items!.length,
                       itemBuilder: (_, index) => BuildCartItem(
                         cartItem: state.data.items![index],
@@ -55,7 +57,8 @@ class _CartState extends State<Cart> {
                 BuildCartButtons(
                   price: state.data.calculableTotal.toString(),
                   currency: state.data.currencySymbol!,
-                  cartItems: state.data.items!, controller: controller,
+                  cartItems: state.data.items!,
+                  controller: controller,
                 ),
               ],
             );

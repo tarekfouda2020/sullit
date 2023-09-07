@@ -41,6 +41,12 @@ class BuildProductQty extends StatelessWidget {
                 Gaps.hGap10,
                 Visibility(
                   visible: productModel.variant!.currentStock! > 0,
+                  replacement: Text(
+                    "Out Of Stock",
+                    style: AppTextStyle.s15_w700(
+                      color: context.colors.primary,
+                    ),
+                  ),
                   child: Text(
                     "(${productModel.variant?.currentStock} Available)",
                     style: AppTextStyle.s14_w400(

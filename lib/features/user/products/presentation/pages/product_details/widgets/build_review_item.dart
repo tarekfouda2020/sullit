@@ -1,27 +1,17 @@
 part of 'product_details_widgets_imports.dart';
 
 class BuildReviewItem extends StatelessWidget {
-final Reviews reviewModel;
+  final Reviews reviewModel;
 
   const BuildReviewItem({super.key, required this.reviewModel});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsetsDirectional.only(end: Dimens.dp10),
       padding: Dimens.paddingAll8PX,
       width: 230.w,
-      decoration: BoxDecoration(
-        color: context.colors.white,
-        borderRadius: Dimens.borderRadius5PX,
-        border: Border.all(color: context.colors.greyWhite),
-        boxShadow: [
-          BoxShadow(
-            color: context.colors.greyWhite,
-            blurRadius: 1,
-            spreadRadius: 1,
-          )
-        ],
-      ),
+      decoration: CustomDecoration(),
       child: Row(
         children: [
           CachedImage(
@@ -38,9 +28,29 @@ final Reviews reviewModel;
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  reviewModel.userReview.name,
-                  style: AppTextStyle.s13_w500(color: context.colors.black),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      reviewModel.userReview.name,
+                      style: AppTextStyle.s13_w500(color: context.colors.black),
+                    ),
+                    RatingBar.builder(
+                      initialRating: reviewModel.rate.toDouble(),
+                      minRating: 0,
+                      direction: Axis.horizontal,
+                      allowHalfRating: false,
+                      itemCount: 5,
+                      itemSize: 10.sp,
+                      ignoreGestures: true,
+                      itemBuilder: (context, _) => Icon(
+                        Icons.star_rounded,
+                        color: context.colors.yellow,
+                      ),
+                      unratedColor: context.colors.grey,
+                      onRatingUpdate: (rating) {},
+                    ),
+                  ],
                 ),
                 Gaps.vGap5,
                 Text(

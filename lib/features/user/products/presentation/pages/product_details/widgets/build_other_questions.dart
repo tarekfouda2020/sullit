@@ -14,18 +14,8 @@ class BuildOtherQuestions extends StatelessWidget {
         child: Container(
           height: 150.spMin,
           padding: Dimens.paddingAll8PX,
-          margin: Dimens.paddingHorizontal15PX,
-          decoration: BoxDecoration(
-            borderRadius: Dimens.borderRadius5PX,
-            color: context.colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: context.colors.greyWhite,
-                blurRadius: 1,
-                spreadRadius: 1,
-              )
-            ],
-          ),
+          margin: Dimens.standardPadding,
+          decoration: CustomDecoration(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

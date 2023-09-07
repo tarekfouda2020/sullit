@@ -20,8 +20,8 @@ class AddToCartHelper {
   List<String> selectedVariants = [];
   final GenericBloc<int> qtyCubit = GenericBloc(1);
 
-
-  void onSelectAttributes(BuildContext context, List<ProductOptions> model, GenericBloc<Product?> productCubit, int position,int index) {
+  void onSelectAttributes(BuildContext context, List<ProductOptions> model,
+      GenericBloc<Product?> productCubit, int position, int index) {
     List<String> selected = [];
     var optionItem = model[index];
     List<String> attributes = optionItem.selectedAttribute!;
@@ -42,7 +42,8 @@ class AddToCartHelper {
     getVariantPrice(context, productCubit);
   }
 
-  void getVariantPrice(BuildContext context, GenericBloc<Product?>productCubit ) async {
+  void getVariantPrice(
+      BuildContext context, GenericBloc<Product?> productCubit) async {
     var params = _variantPriceParams(productCubit.state.data!.id!);
     var result = await GetVariantPrice().call(params);
     if (result != null) {
@@ -59,8 +60,10 @@ class AddToCartHelper {
     );
   }
 
-  Future<void> addProductToCart(int qty, int? variantId, BuildContext context) async {
+  Future<void> addProductToCart(BuildContext context, int qty, int? variantId,
+      {required Function() onAddCartFunc}) async {
     var params = await _addToCartParams(variantId, qty);
+    print(">>>>>${params.toJson()}");
     if (params.variantId == null) {
       CustomToast.showSimpleToast(msg: 'Variant not found. !');
       return;
@@ -70,7 +73,7 @@ class AddToCartHelper {
       CustomToast.showSimpleToast(
           msg: 'Product added to your cart.', type: ToastType.success);
     }
-    AutoRouter.of(context).pop();
+    onAddCartFunc();
   }
 
   Future<AddProductToCartParams> _addToCartParams(

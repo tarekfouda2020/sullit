@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,7 +42,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                 url: state.data!.images!.first,
                 height: 100.h,
                 borderRadius: BorderRadius.circular(25).r,
-                width: MediaQuery.of(context).size.width*.5,
+                width: MediaQuery.of(context).size.width * .5,
               ),
               Gaps.vGap10,
               Padding(
@@ -130,9 +131,10 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
               ),
               GestureDetector(
                 onTap: () => getIt<AddToCartHelper>().addProductToCart(
+                  context,
                   state.data!.minQty!,
                   state.data!.variant?.id,
-                  context,
+                  onAddCartFunc: () => AutoRouter.of(context).pop(),
                 ),
                 child: Container(
                   margin: EdgeInsets.symmetric(

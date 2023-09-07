@@ -14,17 +14,7 @@ class BuildOwnQuestions extends StatelessWidget {
           height: 150.spMin,
           padding: Dimens.paddingAll8PX,
           margin: Dimens.standardPadding,
-          decoration: BoxDecoration(
-            borderRadius: Dimens.borderRadius5PX,
-            color: context.colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: context.colors.greyWhite,
-                blurRadius: 1,
-                spreadRadius: 1,
-              )
-            ],
-          ),
+          decoration: CustomDecoration(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

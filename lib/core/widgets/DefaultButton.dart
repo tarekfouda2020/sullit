@@ -1,4 +1,3 @@
-
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,8 @@ class DefaultButton extends StatelessWidget {
   final String? fontFamily;
   final FontWeight? fontWeight;
 
-  const DefaultButton({super.key,
+  const DefaultButton({
+    super.key,
     required this.title,
     this.onTap,
     this.color,
@@ -40,29 +40,31 @@ class DefaultButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Color border = color ?? context.colors.primary;
     return IgnorePointer(
-      ignoring: disabled??false,
+      ignoring: disabled ?? false,
       child: Container(
         width: width ?? MediaQuery.of(context).size.width,
-        height: height??45,
-        margin: margin ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        height: height ?? 45,
+        margin:
+            margin ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: ElevatedButton(
           onPressed: onTap,
           style: ElevatedButton.styleFrom(
-              backgroundColor: color ?? context.colors.primary,
-              shape: RoundedRectangleBorder(
-                  borderRadius: borderRadius ?? BorderRadius.circular(10),
-                  side: BorderSide(color: borderColor ?? border, width: 1),
-              ),
-              elevation: elevation??0,
+            backgroundColor: color ?? context.colors.primary,
+            shape: RoundedRectangleBorder(
+              borderRadius: borderRadius ?? BorderRadius.circular(10),
+              side: BorderSide(color: borderColor ?? border, width: 1),
+            ),
+            elevation: elevation ?? 0,
           ),
           child: Text(
-             title,
-            style: AppTextStyle.s16_w500(color: textColor ?? Colors.white).copyWith(
-              fontSize: fontSize??13,
+            title,
+            textAlign: TextAlign.center,
+            style: AppTextStyle.s16_w500(color: textColor ?? Colors.white,)
+                .copyWith(
+              fontSize: fontSize ?? 13,
               fontFamily: fontFamily,
               fontWeight: fontWeight,
             ),
-
           ),
         ),
       ),

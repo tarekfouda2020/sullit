@@ -14,17 +14,7 @@ final ProductDetailsController controller;
           height: 270.spMin,
           padding: Dimens.paddingAll8PX,
           margin: Dimens.standardPadding,
-          decoration: BoxDecoration(
-            borderRadius: Dimens.borderRadius5PX,
-            color: context.colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: context.colors.greyWhite,
-                blurRadius: 1,
-                spreadRadius: 1,
-              )
-            ],
-          ),
+          decoration: CustomDecoration(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -50,10 +40,9 @@ final ProductDetailsController controller;
                           onFavRefresh: () => controller.onChangeFav(
                             relatedProducts[index],
                           ),
-                          onCompareRefresh: () {
-                            relatedProducts[index].isAddedTCompare = !relatedProducts[index].isAddedTCompare!;
-                            controller.detailsCubit.onUpdateData(controller.detailsCubit.state.data);
-                          },
+                          onCompareRefresh: () => controller.onChangeCompare(
+                            relatedProducts[index],
+                          ),
                         ),
                       ),
                     ),

@@ -56,13 +56,8 @@ class ProductDetailsController {
     }
   }
 
-  void onChangeFav(Product item) {
-    item.isWishlist = !item.isWishlist!;
-    detailsCubit.onUpdateData(detailsCubit.state.data);
-  }
-
   void onSelectAttributes(BuildContext context, List<ProductOptions> model,
-      int index, int position) {
+      int index, int position) async {
     List<String> selected = [];
     var optionItem = model[index];
     var attributes = optionItem.selectedAttribute;
@@ -111,9 +106,6 @@ class ProductDetailsController {
             msg: "Only ${variantPrice.currentStock} available in stock");
         return;
       }
-    } else {
-      CustomToast.showSimpleToast(msg: "Out of stock");
-      return;
     }
   }
 
@@ -127,6 +119,42 @@ class ProductDetailsController {
       qtyCubit.onUpdateData(newQty);
       detailsCubit.onUpdateData(detailsCubit.state.data);
     }
+  }
+
+  void onChangeFav(Product item) {
+    item.isWishlist = !item.isWishlist!;
+    detailsCubit.onUpdateData(detailsCubit.state.data);
+  }
+
+  void onChangeCompare(Product item) {
+    item.isAddedTCompare = !item.isAddedTCompare!;
+    detailsCubit.onUpdateData(detailsCubit.state.data);
+  }
+
+  void onBuyProduct(BuildContext context) {
+    getIt<AddToCartHelper>().addProductToCart(
+      context,
+      qtyCubit.state.data,
+      detailsCubit.state.data?.product.variant?.id,
+      onAddCartFunc: () => AutoRouter.of(context).push(
+        const CartRoute(),
+      ),
+    );
+  }
+
+  void onAddToCart(BuildContext context){
+    getIt<AddToCartHelper>().addProductToCart(
+      context,
+      qtyCubit.state.data,
+      detailsCubit.state.data?.product.variant?.id,
+      onAddCartFunc: () => showCartSuccessDialog(context),
+    );
+  }
+  void showCartSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => const BuildCartSuccessDialog(),
+    );
   }
 
   GenericParams _detailsParams(bool refresh, int productId) {
