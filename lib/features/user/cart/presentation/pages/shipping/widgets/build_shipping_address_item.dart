@@ -41,27 +41,27 @@ class BuildShippingAddressItem extends StatelessWidget {
           Flexible(
             child: Column(
               children: [
-                BuildAddressItem(
+                BuildAddressTitleItem(
                   title: "Address",
                   desc: address.address!,
                 ),
-                BuildAddressItem(
+                BuildAddressTitleItem(
                   title: "Postal code",
                   desc: address.postalCode!,
                 ),
-                BuildAddressItem(
+                BuildAddressTitleItem(
                   title: "City",
                   desc: address.city?.name ?? "",
                 ),
-                BuildAddressItem(
+                BuildAddressTitleItem(
                   title: "State",
                   desc: address.state?.name ?? "",
                 ),
-                BuildAddressItem(
+                BuildAddressTitleItem(
                   title: "Country",
                   desc: address.country?.name ?? "",
                 ),
-                BuildAddressItem(
+                BuildAddressTitleItem(
                   title: "Phone",
                   desc: address.phone ?? "",
                 )

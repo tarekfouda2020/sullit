@@ -21,17 +21,20 @@ class _EditAddressState extends State<EditAddress> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: "Edit New Address"),
       body: Column(
         children: [
-          BuildEditAddressForm(controller: controller, address: widget.address,),
+          BuildEditAddressForm(
+            controller: controller,
+            address: widget.address,
+          ),
           DefaultButton(
             title: "Update".toUpperCase(),
-            onTap: () => controller.editAddress(
-              context,
-              widget.address
-            ),
-            margin: const EdgeInsets.all(20),
+            onTap: () => controller.editAddress(context, widget.address),
+            height: 35.h,
+            borderRadius: Dimens.borderRadius10PX,
+            margin: Dimens.paddingAll20PX,
           )
         ],
       ),

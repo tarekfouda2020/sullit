@@ -13,8 +13,8 @@ class Address extends BaseDomainModel {
   String? postalCode;
   String? phone;
   bool? setDefault;
-  double? lat;
-  double? lang;
+  String? lat;
+  String? lang;
   bool? isActive;
   bool? selected = false;
 

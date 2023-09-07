@@ -6,6 +6,7 @@ import 'package:flutter_tdd/features/user/category/domain/entities/generic_pagin
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/reviews.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/data_sources/purchasing_data_sources.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/entities/return_order_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/send_review_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/repository/purchasing_repository.dart';
@@ -50,5 +51,10 @@ class ImplPurchasingRepository extends PurchasingRepository with ModelToDomain {
       GenericPaginateParams param) async {
     var result = await dataSource.getReturnOrders(param);
     return toDomainResultList(result);
+  }
+
+  @override
+  Future<Either<Failure, bool>> returnOrder(ReturnOrderParams param) async {
+    return await dataSource.returnOrder(param);
   }
 }

@@ -4,14 +4,23 @@ import 'package:flutter_tdd/features/user/category/domain/entities/generic_pagin
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/products/data/models/reviews_model/reviews_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_model/order_model.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/entities/return_order_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/send_review_params.dart';
 
 abstract class PurchasingDataSources {
-  Future<Either<Failure, List<OrderModel>>> getPurchaseHistory(GenericPaginateParams param);
-  Future<Either<Failure, List<OrderModel>>> getReturnOrders(GenericPaginateParams param);
-  Future<Either<Failure, OrderModel>> trackOrder (String param);
-  Future<Either<Failure, OrderModel>> getOrderDetails (GenericParams param);
-  Future<Either<Failure, ReviewsModel>> sendReview (SendReviewParams param);
-  Future<Either<Failure, String>> cancelOrder (int param);
+  Future<Either<Failure, List<OrderModel>>> getPurchaseHistory(
+      GenericPaginateParams param);
 
+  Future<Either<Failure, List<OrderModel>>> getReturnOrders(
+      GenericPaginateParams param);
+
+  Future<Either<Failure, OrderModel>> trackOrder(String param);
+
+  Future<Either<Failure, OrderModel>> getOrderDetails(GenericParams param);
+
+  Future<Either<Failure, ReviewsModel>> sendReview(SendReviewParams param);
+
+  Future<Either<Failure, String>> cancelOrder(int param);
+
+  Future<Either<Failure, bool>> returnOrder(ReturnOrderParams param);
 }

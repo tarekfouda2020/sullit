@@ -1,14 +1,17 @@
 part of 'shipping_widgets_imports.dart';
 
 class BuildNewShipping extends StatelessWidget {
-  const BuildNewShipping({Key? key}) : super(key: key);
+  final ShippingController controller;
+
+  const BuildNewShipping({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:()=> AutoRouter.of(context).push( AddNewAddressRoute(addAddressFor: AddAddressFor.cart)),
+      // onTap:()=> AutoRouter.of(context).push( AddNewAddressRoute(addAddressFor: AddAddressFor.cart)),
       child: Container(
-        margin: const EdgeInsets.all(Dimens.dp10),
+        margin: const EdgeInsets.symmetric(
+            horizontal: Dimens.dp20, vertical: Dimens.dp10),
         padding: const EdgeInsets.all(Dimens.dp15),
         decoration: BoxDecoration(
           borderRadius: Dimens.borderRadius10PX,

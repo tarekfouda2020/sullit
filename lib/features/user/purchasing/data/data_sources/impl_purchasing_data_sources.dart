@@ -9,6 +9,7 @@ import 'package:flutter_tdd/features/user/category/domain/entities/generic_pagin
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/products/data/models/reviews_model/reviews_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_model/order_model.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/entities/return_order_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/send_review_params.dart';
 import 'package:injectable/injectable.dart';
 import 'purchasing_data_sources.dart';
@@ -75,7 +76,7 @@ class ImplPurchasingDataSources extends PurchasingDataSources {
   }
 
   @override
-  Future<Either<Failure, String>> cancelOrder(int param) async{
+  Future<Either<Failure, String>> cancelOrder(int param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.cancelOrder(param),
       requestMethod: RequestMethod.get,
@@ -87,7 +88,8 @@ class ImplPurchasingDataSources extends PurchasingDataSources {
   }
 
   @override
-  Future<Either<Failure, List<OrderModel>>> getReturnOrders(GenericPaginateParams param) async{
+  Future<Either<Failure, List<OrderModel>>> getReturnOrders(
+      GenericPaginateParams param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getReturnOrders + param.paramsToQuery(),
       requestMethod: RequestMethod.get,
@@ -100,5 +102,19 @@ class ImplPurchasingDataSources extends PurchasingDataSources {
       responseKey: (data) => data["data"]["orders"],
     );
     return await GenericHttpImpl<List<OrderModel>>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, bool>> returnOrder(ReturnOrderParams param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.returnOrder(param.orderId),
+      requestMethod: RequestMethod.post,
+      responseType: ResType.type,
+      showLoader: true,
+      requestBody: param.toJson(),
+      responseKey: (data) => data["key"] == "success",
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<bool>().call(model);
   }
 }

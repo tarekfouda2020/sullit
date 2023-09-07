@@ -102,5 +102,6 @@ class ApiNames{
   static String getOrderDetails (int id) => "orders/$id/show";
   static String sendReview (int orderId) => "orders/$orderId/product-review";
   static String cancelOrder (int orderId) => "orders/$orderId/cancel-order";
+  static String returnOrder (int orderId) => "orders/$orderId/store-return-order";
 
 }

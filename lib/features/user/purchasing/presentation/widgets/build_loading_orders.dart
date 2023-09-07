@@ -11,7 +11,7 @@ class BuildLoadingOrders extends StatelessWidget {
         type: ListViewType.normal,
         children: List.generate(
           4,
-              (index) => Container(
+          (index) => Container(
             margin: Dimens.paddingVertical5PX,
             padding: Dimens.paddingAll15PX,
             decoration: CustomDecoration(),
@@ -24,7 +24,7 @@ class BuildLoadingOrders extends StatelessWidget {
                       child: Text(
                         " : ",
                         style:
-                        AppTextStyle.s16_w500(color: context.colors.grey),
+                            AppTextStyle.s16_w500(color: context.colors.grey),
                       ),
                     ),
                     BuildShimmerItem(height: 10.h, width: 100.w),
@@ -46,7 +46,7 @@ class BuildLoadingOrders extends StatelessWidget {
                       child: Text(
                         " : ",
                         style:
-                        AppTextStyle.s12_w400(color: context.colors.grey),
+                            AppTextStyle.s12_w400(color: context.colors.grey),
                       ),
                     ),
                     BuildShimmerItem(height: 10.h, width: 60.w),
@@ -59,7 +59,7 @@ class BuildLoadingOrders extends StatelessWidget {
                     BuildShimmerItem(
                       child: BuildOrderOptionItem(
                         onTap: () {},
-                        iconData: Icons.delete_outline,
+                        iconData: Icons.remove_red_eye_outlined,
                         iconColor: context.colors.grey,
                         itemColor: context.colors.greyWhite,
                       ),
@@ -67,7 +67,7 @@ class BuildLoadingOrders extends StatelessWidget {
                     BuildShimmerItem(
                       child: BuildOrderOptionItem(
                         onTap: () {},
-                        iconData: Icons.remove_red_eye_outlined,
+                        iconData: Icons.delete_outline,
                         iconColor: context.colors.grey,
                         itemColor: context.colors.greyWhite,
                       ),

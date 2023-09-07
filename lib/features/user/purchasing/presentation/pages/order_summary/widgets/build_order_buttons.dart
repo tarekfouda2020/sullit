@@ -1,0 +1,30 @@
+part of 'order_summary_widgets_imports.dart';
+
+class BuildOrderButtons extends StatelessWidget {
+  final Orders orderModel;
+
+  const BuildOrderButtons({super.key, required this.orderModel});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Visibility(
+          visible: orderModel.showButtonPay,
+          child: DefaultButton(
+            title: "Complete Payment",
+            onTap: () {},
+          ),
+        ),
+        Visibility(
+          visible: orderModel.availableReturnOrder,
+          child: DefaultButton(
+            title: "Return Order",
+            onTap: () => AutoRouter.of(context)
+                .push(RetrieveOrderRoute(orderModel: orderModel)),
+          ),
+        ),
+      ],
+    );
+  }
+}

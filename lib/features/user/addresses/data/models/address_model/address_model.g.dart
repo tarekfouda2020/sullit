@@ -23,8 +23,8 @@ _$_AddressModel _$$_AddressModelFromJson(Map<String, dynamic> json) =>
       postalCode: json['postal_code'] as String,
       phone: json['phone'] as String,
       setDefault: json['set_default'] as bool,
-      lat: (json['lat'] as num).toDouble(),
-      lang: (json['lang'] as num).toDouble(),
+      lat: json['lat'] as String,
+      lang: json['lang'] as String,
       isActive: json['is_active'] as bool,
     );
 

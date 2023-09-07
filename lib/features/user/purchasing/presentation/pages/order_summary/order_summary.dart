@@ -36,13 +36,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                   controller: controller,
                 ),
                 BuildOrderAmount(orderModel: state.data!),
-                Visibility(
-                  visible: state.data!.showButtonPay,
-                  child: DefaultButton(
-                    title: "Complete Payment",
-                    onTap: () {},
-                  ),
-                )
+                BuildOrderButtons(orderModel: state.data!),
               ],
             );
           } else {

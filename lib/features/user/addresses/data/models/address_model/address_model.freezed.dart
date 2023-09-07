@@ -32,8 +32,8 @@ mixin _$AddressModel {
   String get phone => throw _privateConstructorUsedError;
   @JsonKey(name: "set_default")
   bool get setDefault => throw _privateConstructorUsedError;
-  double get lat => throw _privateConstructorUsedError;
-  double get lang => throw _privateConstructorUsedError;
+  String get lat => throw _privateConstructorUsedError;
+  String get lang => throw _privateConstructorUsedError;
   @JsonKey(name: "is_active")
   bool get isActive => throw _privateConstructorUsedError;
 
@@ -59,8 +59,8 @@ abstract class $AddressModelCopyWith<$Res> {
       @JsonKey(name: "postal_code") String postalCode,
       String phone,
       @JsonKey(name: "set_default") bool setDefault,
-      double lat,
-      double lang,
+      String lat,
+      String lang,
       @JsonKey(name: "is_active") bool isActive});
 
   $CountryModelCopyWith<$Res>? get country;
@@ -134,11 +134,11 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
       lat: null == lat
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       lang: null == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       isActive: null == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
@@ -201,8 +201,8 @@ abstract class _$$_AddressModelCopyWith<$Res>
       @JsonKey(name: "postal_code") String postalCode,
       String phone,
       @JsonKey(name: "set_default") bool setDefault,
-      double lat,
-      double lang,
+      String lat,
+      String lang,
       @JsonKey(name: "is_active") bool isActive});
 
   @override
@@ -277,11 +277,11 @@ class __$$_AddressModelCopyWithImpl<$Res>
       lat: null == lat
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       lang: null == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       isActive: null == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
@@ -334,9 +334,9 @@ class _$_AddressModel extends _AddressModel {
   @JsonKey(name: "set_default")
   final bool setDefault;
   @override
-  final double lat;
+  final String lat;
   @override
-  final double lang;
+  final String lang;
   @override
   @JsonKey(name: "is_active")
   final bool isActive;
@@ -398,8 +398,8 @@ abstract class _AddressModel extends AddressModel {
           @JsonKey(name: "postal_code") required final String postalCode,
           required final String phone,
           @JsonKey(name: "set_default") required final bool setDefault,
-          required final double lat,
-          required final double lang,
+          required final String lat,
+          required final String lang,
           @JsonKey(name: "is_active") required final bool isActive}) =
       _$_AddressModel;
   const _AddressModel._() : super._();
@@ -429,9 +429,9 @@ abstract class _AddressModel extends AddressModel {
   @JsonKey(name: "set_default")
   bool get setDefault;
   @override
-  double get lat;
+  String get lat;
   @override
-  double get lang;
+  String get lang;
   @override
   @JsonKey(name: "is_active")
   bool get isActive;
