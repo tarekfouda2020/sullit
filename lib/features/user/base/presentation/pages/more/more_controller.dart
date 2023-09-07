@@ -52,7 +52,7 @@ class MoreController {
         AutoRouter.of(context).push(const SupportTicketsRoute());
         break;
       case MoreRoutes.profile:
-        AutoRouter.of(context).push(const ProfileRoute());
+        AutoRouter.of(context).push( const ProfileRoute());
         break;
       case MoreRoutes.trackOrder:
         AutoRouter.of(context).push(const TrackOrderRoute());
