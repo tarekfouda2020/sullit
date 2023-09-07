@@ -1,15 +1,15 @@
 part of 'conformation_w_imports.dart';
 
 class BuildOrdersDetails extends StatelessWidget {
-  final OrderSummary? summary;
+  final OrderSummary summary;
 
-  const BuildOrdersDetails({Key? key, this.summary}) : super(key: key);
+  const BuildOrdersDetails({Key? key,required this.summary}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: List.generate(
-        summary!.sectionOrders!.length,
+        summary.sectionOrders!.length,
         (index) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

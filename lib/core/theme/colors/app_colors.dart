@@ -69,5 +69,7 @@ abstract class AppColors {
   Color get transparent;
   Color get drawerColor;
   Color get offWhite;
+  Color get purpleDark;
+  Color get purpleLight;
 
 }

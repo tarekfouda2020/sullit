@@ -84,7 +84,7 @@ class ApiNames{
   static const String storeOrders = "orders/store";
   static const String storeProductToCart = "cart/store";
   static const String cartShippingInfo = "cart/shipping-info";
-  static const String getCombinedOrder = "combined-order";
+  static const String getCombinedOrder = "combined-order/";
   // notifications
   static const String notifications = "notifications";
 

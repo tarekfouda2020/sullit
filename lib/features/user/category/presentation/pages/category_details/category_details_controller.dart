@@ -70,7 +70,6 @@ class CategoryDetailsController {
   Future<void> getPopularProducts(int currentPage,
       {bool refresh = true}) async {
     var params = _productsParams(currentPage, refresh);
-    print(">>>>>>>>${params.toJson()}");
     var data = await GetCategoryProducts().call(params);
     final isLastPage = data.length < pageSize;
     if (currentPage == 1) {
@@ -154,10 +153,12 @@ class CategoryDetailsController {
         .where((element) => element.selected)
         .map((e) => e.code)
         .toList();
-    var attributes = specifications?.attributes.map((e) => e.attributeValues
-        .where((val) => val.selected)
-        .map((element) => element.value)
-        .toList());
+    var attributes = specifications?.attributes.map(
+      (e) => e.attributeValues
+          .where((val) => val.selected)
+          .map((element) => element.value)
+          .toList(),
+    );
     return SearchProductsParams(
       catId: currentCatId,
       brandId: brandId,

@@ -59,6 +59,9 @@ class MoreController {
       case MoreRoutes.trackOrder:
         AutoRouter.of(context).push(OrderSummaryRoute(isTrackOrder: true));
         break;
+      case MoreRoutes.classifiedProducts:
+        AutoRouter.of(context).push(const ClassifiedProductsRoute());
+        break;
     }
   }
 }

@@ -48,25 +48,29 @@ class AppLightColors extends AppColors {
   Color get blueAccent => Colors.blueAccent;
 
   @override
-  // TODO: implement yellow
   Color get yellow => Colors.amber;
 
   @override
-  // TODO: implement green
   Color get green => Colors.green;
 
   @override
-  // TODO: implement green
   Color get darkPurple => const Color(0xFF2E294E);
 
   @override
-  // TODO: implement darkPurple
   Color get transparent =>  Colors.transparent;
+
   @override
-  // TODO: implement drawerColor
   Color get drawerColor => const Color(0xFFe9e9f0);
 
   @override
   Color get offWhite => const Color(0xffF2F2F2);
+
+  @override
+ 
+  Color get purpleDark => const Color(0xffb854a6);
+
+  @override
+  Color get purpleLight => const Color(0xffCF4E97);
+
 
 }

@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
@@ -15,17 +17,31 @@ import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/add_to_cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 
-class BuildProductItem extends StatelessWidget {
+class BuildProductItem extends StatefulWidget {
   final Product productModel;
   final VoidCallback onFavRefresh;
   final VoidCallback onCompareRefresh;
 
+  const BuildProductItem({
+    super.key,
+    required this.productModel,
+    required this.onFavRefresh,
+    required this.onCompareRefresh,
+  });
 
-  const BuildProductItem(
-      {super.key, required this.productModel, required this.onFavRefresh, required this.onCompareRefresh,});
+  @override
+  State<BuildProductItem> createState() => _BuildProductItemState();
+}
+
+class _BuildProductItemState extends State<BuildProductItem> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    GenericBloc<bool> isAddedToCompareBloc = GenericBloc(false);
     return Container(
       width: 160.w,
       decoration: CustomDecoration(),
@@ -39,10 +55,10 @@ class BuildProductItem extends StatelessWidget {
                   fit: BoxFit.fill,
                   haveRadius: true,
                   borderRadius: Dimens.borderRadius5PX,
-                  url: productModel.thumbnailImage!,
+                  url: widget.productModel.thumbnailImage!,
                 ),
                 Visibility(
-                  visible: productModel.hasDiscount!,
+                  visible: widget.productModel.hasDiscount!,
                   child: PositionedDirectional(
                     top: 20.r,
                     child: Container(
@@ -76,7 +92,7 @@ class BuildProductItem extends StatelessWidget {
                               color: context.colors.primary,
                             ),
                             child: Text(
-                              productModel.discount!,
+                              widget.productModel.discount!,
                               style: AppTextStyle.s10_w400(
                                 color: context.colors.white,
                               ),
@@ -92,34 +108,40 @@ class BuildProductItem extends StatelessWidget {
                   child: Column(
                     children: [
                       BuildIconItem(
-                        iconData: productModel.isWishlist!
+                        iconData: widget.productModel.isWishlist!
                             ? Icons.favorite
                             : Icons.favorite_border,
-                        containerColor: productModel.isWishlist!
+                        containerColor: widget.productModel.isWishlist!
                             ? context.colors.primary
                             : context.colors.white,
                         onTap: () => ProductsHelper().toggleFavourite(
-                          id: productModel.id!,
-                          onRefresh: onFavRefresh,
+                          id: widget.productModel.id!,
+                          onRefresh: widget.onFavRefresh,
                           context: context,
                         ),
-                        checkValue: productModel.isWishlist,
+                        checkValue: widget.productModel.isWishlist,
                       ),
-                      BuildIconItem(
-                        containerColor: productModel.isAddedTCompare! ? context.colors.primary : context.colors.white ,
-                        iconData: Icons.compare_arrows,
-                        checkValue: productModel.isAddedTCompare,
-                        onTap: () {
-                          getIt<ProductsHelper>().addProductToCompare(productModel, context);
-                          onCompareRefresh.call();
+                      BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+                        bloc: isAddedToCompareBloc ,
+                        builder: (context, state) {
+                          return BuildIconItem(
+                            containerColor: widget.productModel.isAddedTCompare!
+                                ? context.colors.primary
+                                : context.colors.white,
+                            iconData: Icons.compare_arrows,
+                            checkValue: widget.productModel.isAddedTCompare,
+                            onTap: () {
+                              getIt<ProductsHelper>().addProductToCompare(widget.productModel, context);
+
+                            },
+                          );
                         },
                       ),
                       BuildIconItem(
                         iconData: Icons.shopping_cart,
-                        onTap: () =>
-                            getIt<AddToCartHelper>().addToCartDialog(
+                        onTap: () => getIt<AddToCartHelper>().addToCartDialog(
                           context,
-                          productModel,
+                          widget.productModel,
                         ),
                       ),
                     ],
@@ -129,30 +151,28 @@ class BuildProductItem extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () =>
-                AutoRouter.of(context).push(
-                  ProductDetailsRoute(
-                    productId: productModel.id!,
-                    isResale: productModel.isResale!,
-                  ),
-                ),
-            child
-                : Padding(
+            onTap: () => AutoRouter.of(context).push(
+              ProductDetailsRoute(
+                productId: widget.productModel.id!,
+                isResale: widget.productModel.isResale!,
+              ),
+            ),
+            child: Padding(
               padding: Dimens.paddingAll8PX,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    productModel.priceHighLowDiscount!,
+                    widget.productModel.priceHighLowDiscount!,
                     style: AppTextStyle.s11_bold(
                       color: context.colors.primary,
                     ),
                   ),
                   Gaps.vGap3,
                   Visibility(
-                    visible: productModel.hasDiscount!,
+                    visible: widget.productModel.hasDiscount!,
                     child: Text(
-                      productModel.priceHighLow!,
+                      widget.productModel.priceHighLow!,
                       style: AppTextStyle.s11_bold(
                         color: context.colors.black,
                       ).copyWith(
@@ -161,7 +181,7 @@ class BuildProductItem extends StatelessWidget {
                     ),
                   ),
                   RatingBar.builder(
-                    initialRating: productModel.rating!.toDouble(),
+                    initialRating: widget.productModel.rating!.toDouble(),
                     ignoreGestures: true,
                     minRating: 1,
                     direction: Axis.horizontal,
@@ -177,7 +197,7 @@ class BuildProductItem extends StatelessWidget {
                     onRatingUpdate: (rating) {},
                   ),
                   Text(
-                    productModel.name!,
+                    widget.productModel.name!,
                     style: AppTextStyle.s13_w500(
                       color: context.colors.black,
                     ).copyWith(
@@ -192,5 +212,4 @@ class BuildProductItem extends StatelessWidget {
       ),
     );
   }
-
 }

@@ -164,7 +164,7 @@ class ImplCartDataSources extends CartDataSources {
   @override
   Future<Either<Failure, OrderSummaryModel>> getCombinedOrder(int param)async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.getCombinedOrder,
+      url:'${ApiNames.getCombinedOrder}$param',
       requestMethod: RequestMethod.get,
       responseType: ResType.model,
       showLoader: true,

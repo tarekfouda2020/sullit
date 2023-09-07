@@ -4,8 +4,11 @@ class BuildBestSellingProducts extends StatelessWidget {
   final List<Product> bestSellingProducts;
   final HomeMainController controller;
 
-  const BuildBestSellingProducts(
-      {super.key, required this.bestSellingProducts, required this.controller});
+  const BuildBestSellingProducts({
+    super.key,
+    required this.bestSellingProducts,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +38,8 @@ class BuildBestSellingProducts extends StatelessWidget {
                             bestSellingProducts[index],
                           ),
                           onCompareRefresh: () {
-                            bestSellingProducts[index].isAddedTCompare = bestSellingProducts[index].isAddedTCompare;
-                            controller.homeCubit
-                                .onUpdateData(controller.homeCubit.state.data);
+                            bestSellingProducts[index].isAddedTCompare = !bestSellingProducts[index].isAddedTCompare!;
+                            controller.homeCubit.onUpdateData(controller.homeCubit.state.data);
                           },
                         ),
                       );

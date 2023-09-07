@@ -21,9 +21,6 @@ class _MoreState extends State<More> {
       body: ListView(
         padding: Dimens.paddingAll15PX,
         children: [
-          // BuildMoreHeader(
-          //   moreController: controller,
-          // ),
           BuildMoreItem(
             title: 'DashBoard',
             icon: Icons.home_outlined,
@@ -31,6 +28,15 @@ class _MoreState extends State<More> {
               auth,
               context,
               MoreRoutes.dashboard,
+            ),
+          ),
+          BuildMoreItem(
+            title: 'Classified products',
+            icon: Icons.diamond_outlined,
+            onTap: () => controller.checkAuth(
+              auth,
+              context,
+              MoreRoutes.classifiedProducts,
             ),
           ),
           BuildMoreItem(
@@ -109,8 +115,11 @@ class _MoreState extends State<More> {
           BuildMoreItem(
             title: 'My Wallet',
             icon: Icons.monetization_on_outlined,
-            onTap: () =>
-                controller.checkAuth(auth, context, MoreRoutes.myWallet),
+            onTap: () => controller.checkAuth(
+              auth,
+              context,
+              MoreRoutes.myWallet,
+            ),
           ),
           BuildMoreItem(
             title: 'Support Tickets',

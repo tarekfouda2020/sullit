@@ -10,8 +10,8 @@ class PaymentController {
       (String url) {
         if (url.contains("combined_order_id")) {
           Future.delayed(const Duration(seconds: 2), () {
-            String id = url.split('combined_order_id=').last;
-            AutoRouter.of(context).push(ConfirmationRoute());
+            int id = int.parse(url.split('combined_order_id=').last);
+            AutoRouter.of(context).push(ConfirmationRoute(combinedId: id));
             flutterWebViewPlugin.close();
           });
         } else if (url.contains('Fail')) {
