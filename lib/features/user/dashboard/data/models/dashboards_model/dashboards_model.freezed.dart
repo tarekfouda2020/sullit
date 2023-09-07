@@ -27,7 +27,8 @@ mixin _$DashboardsModel {
   @JsonKey(name: 'orders_products_count')
   int get ordersCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'default shipping_address')
-  String? get defaultAddress => throw _privateConstructorUsedError;
+  ShippingAddressModel? get defaultAddress =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +46,10 @@ abstract class $DashboardsModelCopyWith<$Res> {
       {@JsonKey(name: 'cart_products_count') int cartCount,
       @JsonKey(name: 'wishlist_products_count') int wishlistCount,
       @JsonKey(name: 'orders_products_count') int ordersCount,
-      @JsonKey(name: 'default shipping_address') String? defaultAddress});
+      @JsonKey(name: 'default shipping_address')
+      ShippingAddressModel? defaultAddress});
+
+  $ShippingAddressModelCopyWith<$Res>? get defaultAddress;
 }
 
 /// @nodoc
@@ -82,8 +86,20 @@ class _$DashboardsModelCopyWithImpl<$Res, $Val extends DashboardsModel>
       defaultAddress: freezed == defaultAddress
           ? _value.defaultAddress
           : defaultAddress // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ShippingAddressModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ShippingAddressModelCopyWith<$Res>? get defaultAddress {
+    if (_value.defaultAddress == null) {
+      return null;
+    }
+
+    return $ShippingAddressModelCopyWith<$Res>(_value.defaultAddress!, (value) {
+      return _then(_value.copyWith(defaultAddress: value) as $Val);
+    });
   }
 }
 
@@ -99,7 +115,11 @@ abstract class _$$_DashboardsModelCopyWith<$Res>
       {@JsonKey(name: 'cart_products_count') int cartCount,
       @JsonKey(name: 'wishlist_products_count') int wishlistCount,
       @JsonKey(name: 'orders_products_count') int ordersCount,
-      @JsonKey(name: 'default shipping_address') String? defaultAddress});
+      @JsonKey(name: 'default shipping_address')
+      ShippingAddressModel? defaultAddress});
+
+  @override
+  $ShippingAddressModelCopyWith<$Res>? get defaultAddress;
 }
 
 /// @nodoc
@@ -134,7 +154,7 @@ class __$$_DashboardsModelCopyWithImpl<$Res>
       defaultAddress: freezed == defaultAddress
           ? _value.defaultAddress
           : defaultAddress // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ShippingAddressModel?,
     ));
   }
 }
@@ -164,7 +184,7 @@ class _$_DashboardsModel extends _DashboardsModel {
   final int ordersCount;
   @override
   @JsonKey(name: 'default shipping_address')
-  final String? defaultAddress;
+  final ShippingAddressModel? defaultAddress;
 
   @override
   String toString() {
@@ -212,7 +232,7 @@ abstract class _DashboardsModel extends DashboardsModel {
       required final int wishlistCount,
       @JsonKey(name: 'orders_products_count') required final int ordersCount,
       @JsonKey(name: 'default shipping_address')
-      final String? defaultAddress}) = _$_DashboardsModel;
+      final ShippingAddressModel? defaultAddress}) = _$_DashboardsModel;
   const _DashboardsModel._() : super._();
 
   factory _DashboardsModel.fromJson(Map<String, dynamic> json) =
@@ -229,7 +249,7 @@ abstract class _DashboardsModel extends DashboardsModel {
   int get ordersCount;
   @override
   @JsonKey(name: 'default shipping_address')
-  String? get defaultAddress;
+  ShippingAddressModel? get defaultAddress;
   @override
   @JsonKey(ignore: true)
   _$$_DashboardsModelCopyWith<_$_DashboardsModel> get copyWith =>

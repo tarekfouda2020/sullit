@@ -8,7 +8,7 @@ class Terms extends StatefulWidget {
 }
 
 class _TermsState extends State<Terms> {
-  late TermsController controller ;
+  late TermsController controller;
 
   @override
   void initState() {
@@ -19,13 +19,14 @@ class _TermsState extends State<Terms> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: "Terms and Conditions"),
       body: BlocBuilder<GenericBloc<String?>, GenericState<String?>>(
         bloc: controller.termsCubit,
         builder: (context, state) {
           if (state is GenericUpdateState) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10).r,
+            return SingleChildScrollView(
+              padding: Dimens.paddingAll15PX,
               child: Html(
                 data: state.data,
                 style: {
@@ -43,11 +44,10 @@ class _TermsState extends State<Terms> {
             );
           } else {
             return ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10).r,
-
+              padding: Dimens.paddingAll15PX,
               children: List.generate(
                 100,
-                    (index) => BuildShimmerItem(
+                (index) => BuildShimmerItem(
                   borderRadius: BorderRadius.circular(3),
                   height: 5,
                   margin: const EdgeInsets.symmetric(vertical: 3),

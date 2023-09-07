@@ -8,18 +8,20 @@ class ContactUs extends StatefulWidget {
 }
 
 class _ContactUsState extends State<ContactUs> {
-  late ContactUsController controller ;
+  late ContactUsController controller;
+
   @override
   void initState() {
     controller = ContactUsController(context);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: 'Contact Us'),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16).r,
+      body: Column(
         children: [
           BuildContactUsFields(contactUsData: controller),
           BuildContactUsButton(controller: controller)

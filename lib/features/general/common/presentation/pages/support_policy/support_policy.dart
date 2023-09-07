@@ -8,22 +8,25 @@ class SupportPolicy extends StatefulWidget {
 }
 
 class _SupportPolicyState extends State<SupportPolicy> {
-  late SupportPolicyController controller ;
+  late SupportPolicyController controller;
+
   @override
   void initState() {
     controller = SupportPolicyController();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: "Support Policy"),
       body: BlocBuilder<GenericBloc<String?>, GenericState<String?>>(
         bloc: controller.supportPrivacyBloc,
         builder: (context, state) {
           if (state is GenericUpdateState) {
             return SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10).r,
+              padding: Dimens.paddingAll15PX,
               child: Html(
                 data: state.data,
                 style: {
@@ -41,10 +44,10 @@ class _SupportPolicyState extends State<SupportPolicy> {
             );
           } else {
             return ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10).r,
+              padding: Dimens.paddingAll15PX,
               children: List.generate(
                 80,
-                    (index) => BuildShimmerItem(
+                (index) => BuildShimmerItem(
                   borderRadius: BorderRadius.circular(3),
                   height: 5,
                   margin: const EdgeInsets.symmetric(vertical: 3),

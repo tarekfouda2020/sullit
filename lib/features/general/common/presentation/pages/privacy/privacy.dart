@@ -1,4 +1,5 @@
-part of'privacy_imports.dart';
+part of 'privacy_imports.dart';
+
 class Privacy extends StatefulWidget {
   const Privacy({Key? key}) : super(key: key);
 
@@ -8,21 +9,24 @@ class Privacy extends StatefulWidget {
 
 class _PrivacyState extends State<Privacy> {
   late PrivacyController controller;
+
   @override
   void initState() {
     controller = PrivacyController();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: "Privacy Policy"),
       body: BlocBuilder<GenericBloc<String?>, GenericState<String?>>(
         bloc: controller.privacyBloc,
         builder: (context, state) {
           if (state is GenericUpdateState) {
             return SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10).r,
+              padding: Dimens.paddingAll15PX,
               child: Html(
                 data: state.data,
                 style: {
@@ -40,10 +44,10 @@ class _PrivacyState extends State<Privacy> {
             );
           } else {
             return ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10).r,
+              padding: Dimens.paddingAll15PX,
               children: List.generate(
                 80,
-                    (index) => BuildShimmerItem(
+                (index) => BuildShimmerItem(
                   borderRadius: BorderRadius.circular(3),
                   height: 5,
                   margin: const EdgeInsets.symmetric(vertical: 3),

@@ -1,4 +1,5 @@
-part of'return_policy_import.dart';
+part of 'return_policy_import.dart';
+
 class ReturnPolicy extends StatefulWidget {
   const ReturnPolicy({Key? key}) : super(key: key);
 
@@ -7,23 +8,25 @@ class ReturnPolicy extends StatefulWidget {
 }
 
 class _ReturnPolicyState extends State<ReturnPolicy> {
-  late PrivacyController controller ;
+  late PrivacyController controller;
 
   @override
   void initState() {
     controller = PrivacyController();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: "Return Policy"),
-      body:  BlocBuilder<GenericBloc<String?>, GenericState<String?>>(
+      body: BlocBuilder<GenericBloc<String?>, GenericState<String?>>(
         bloc: controller.privacyBloc,
         builder: (context, state) {
           if (state is GenericUpdateState) {
             return SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10).r,
+              padding: Dimens.paddingAll15PX,
               child: Html(
                 data: state.data,
                 style: {
@@ -41,10 +44,10 @@ class _ReturnPolicyState extends State<ReturnPolicy> {
             );
           } else {
             return ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10).r,
+              padding: Dimens.paddingAll15PX,
               children: List.generate(
                 80,
-                    (index) => BuildShimmerItem(
+                (index) => BuildShimmerItem(
                   borderRadius: BorderRadius.circular(3),
                   height: 5,
                   margin: const EdgeInsets.symmetric(vertical: 3),
