@@ -17,6 +17,7 @@ import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_summary/order_summary_imports.dart';
+import 'package:flutter_tdd/features/user/purchasing/presentation/widgets/purchasing_widgets_imports.dart';
 
 part 'build_order_info_item.dart';
 part 'build_order_amount.dart';
@@ -24,7 +25,6 @@ part 'build_order_info.dart';
 part 'build_order_products.dart';
 part 'build_loading_summary.dart';
 part 'build_order_product_item.dart';
-part 'build_loading_summary_item.dart';
 part 'build_loading_amount.dart';
 part 'build_review_dialog.dart';
 part 'build_order_buttons.dart';

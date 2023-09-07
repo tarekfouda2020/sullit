@@ -38,7 +38,7 @@ class ImplPurchasingDataSources extends PurchasingDataSources {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getTrackOrder(param),
       requestMethod: RequestMethod.get,
-      responseType: ResType.list,
+      responseType: ResType.model,
       showLoader: true,
       toJsonFunc: (json) => OrderModel.fromJson(json),
       responseKey: (data) => data["data"],
@@ -52,8 +52,9 @@ class ImplPurchasingDataSources extends PurchasingDataSources {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getOrderDetails(param.id),
       requestMethod: RequestMethod.get,
-      responseType: ResType.list,
+      responseType: ResType.model,
       showLoader: true,
+      refresh: param.refresh,
       toJsonFunc: (json) => OrderModel.fromJson(json),
       responseKey: (data) => data["data"],
     );

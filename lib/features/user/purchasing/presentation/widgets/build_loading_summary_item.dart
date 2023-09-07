@@ -1,4 +1,4 @@
-part of 'order_summary_widgets_imports.dart';
+part of 'purchasing_widgets_imports.dart';
 
 class BuildLoadingSummaryItem extends StatelessWidget {
   final double width;

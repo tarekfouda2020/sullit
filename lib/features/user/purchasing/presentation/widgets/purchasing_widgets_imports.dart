@@ -18,3 +18,4 @@ import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 part 'build_loading_orders.dart';
 part 'build_order_history_details.dart';
 part 'build_order_option_item.dart';
+part 'build_loading_summary_item.dart';
