@@ -15,6 +15,7 @@ class LoginController {
       btnKey.currentState?.animateForward();
       var params = await _setLoginParams();
       var result = await SetLogin().call(params);
+      print(">>>>>${result?.toJson()}");
       _cashAndRoute(
         context,
         result ?? UserDomainModel(),

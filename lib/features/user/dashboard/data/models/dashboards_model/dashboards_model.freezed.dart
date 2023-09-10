@@ -27,8 +27,7 @@ mixin _$DashboardsModel {
   @JsonKey(name: 'orders_products_count')
   int get ordersCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'default shipping_address')
-  ShippingAddressModel? get defaultAddress =>
-      throw _privateConstructorUsedError;
+  AddressModel? get defaultAddress => throw _privateConstructorUsedError;
   @JsonKey(name: 'customer_package')
   PackagesModel? get customerPackage => throw _privateConstructorUsedError;
 
@@ -48,11 +47,10 @@ abstract class $DashboardsModelCopyWith<$Res> {
       {@JsonKey(name: 'cart_products_count') int cartCount,
       @JsonKey(name: 'wishlist_products_count') int wishlistCount,
       @JsonKey(name: 'orders_products_count') int ordersCount,
-      @JsonKey(name: 'default shipping_address')
-      ShippingAddressModel? defaultAddress,
+      @JsonKey(name: 'default shipping_address') AddressModel? defaultAddress,
       @JsonKey(name: 'customer_package') PackagesModel? customerPackage});
 
-  $ShippingAddressModelCopyWith<$Res>? get defaultAddress;
+  $AddressModelCopyWith<$Res>? get defaultAddress;
   $PackagesModelCopyWith<$Res>? get customerPackage;
 }
 
@@ -91,7 +89,7 @@ class _$DashboardsModelCopyWithImpl<$Res, $Val extends DashboardsModel>
       defaultAddress: freezed == defaultAddress
           ? _value.defaultAddress
           : defaultAddress // ignore: cast_nullable_to_non_nullable
-              as ShippingAddressModel?,
+              as AddressModel?,
       customerPackage: freezed == customerPackage
           ? _value.customerPackage
           : customerPackage // ignore: cast_nullable_to_non_nullable
@@ -101,12 +99,12 @@ class _$DashboardsModelCopyWithImpl<$Res, $Val extends DashboardsModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $ShippingAddressModelCopyWith<$Res>? get defaultAddress {
+  $AddressModelCopyWith<$Res>? get defaultAddress {
     if (_value.defaultAddress == null) {
       return null;
     }
 
-    return $ShippingAddressModelCopyWith<$Res>(_value.defaultAddress!, (value) {
+    return $AddressModelCopyWith<$Res>(_value.defaultAddress!, (value) {
       return _then(_value.copyWith(defaultAddress: value) as $Val);
     });
   }
@@ -136,12 +134,11 @@ abstract class _$$_DashboardsModelCopyWith<$Res>
       {@JsonKey(name: 'cart_products_count') int cartCount,
       @JsonKey(name: 'wishlist_products_count') int wishlistCount,
       @JsonKey(name: 'orders_products_count') int ordersCount,
-      @JsonKey(name: 'default shipping_address')
-      ShippingAddressModel? defaultAddress,
+      @JsonKey(name: 'default shipping_address') AddressModel? defaultAddress,
       @JsonKey(name: 'customer_package') PackagesModel? customerPackage});
 
   @override
-  $ShippingAddressModelCopyWith<$Res>? get defaultAddress;
+  $AddressModelCopyWith<$Res>? get defaultAddress;
   @override
   $PackagesModelCopyWith<$Res>? get customerPackage;
 }
@@ -179,7 +176,7 @@ class __$$_DashboardsModelCopyWithImpl<$Res>
       defaultAddress: freezed == defaultAddress
           ? _value.defaultAddress
           : defaultAddress // ignore: cast_nullable_to_non_nullable
-              as ShippingAddressModel?,
+              as AddressModel?,
       customerPackage: freezed == customerPackage
           ? _value.customerPackage
           : customerPackage // ignore: cast_nullable_to_non_nullable
@@ -214,7 +211,7 @@ class _$_DashboardsModel extends _DashboardsModel {
   final int ordersCount;
   @override
   @JsonKey(name: 'default shipping_address')
-  final ShippingAddressModel? defaultAddress;
+  final AddressModel? defaultAddress;
   @override
   @JsonKey(name: 'customer_package')
   final PackagesModel? customerPackage;
@@ -267,7 +264,7 @@ abstract class _DashboardsModel extends DashboardsModel {
       required final int wishlistCount,
       @JsonKey(name: 'orders_products_count') required final int ordersCount,
       @JsonKey(name: 'default shipping_address')
-      final ShippingAddressModel? defaultAddress,
+      final AddressModel? defaultAddress,
       @JsonKey(name: 'customer_package')
       final PackagesModel? customerPackage}) = _$_DashboardsModel;
   const _DashboardsModel._() : super._();
@@ -286,7 +283,7 @@ abstract class _DashboardsModel extends DashboardsModel {
   int get ordersCount;
   @override
   @JsonKey(name: 'default shipping_address')
-  ShippingAddressModel? get defaultAddress;
+  AddressModel? get defaultAddress;
   @override
   @JsonKey(name: 'customer_package')
   PackagesModel? get customerPackage;

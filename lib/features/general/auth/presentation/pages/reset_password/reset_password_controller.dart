@@ -12,24 +12,36 @@ class ResetPasswordController {
   final GenericBloc<bool> confirmPasswordCubit = GenericBloc(false);
   final GlobalKey<CustomButtonState> btnKey = GlobalKey();
 
-  void initData(String resetEmail) {
+  ResetPasswordController(String resetEmail) {
     email.text = resetEmail;
   }
 
   void resetPassword(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       btnKey.currentState!.animateForward();
-      ResetPasswordParams param = ResetPasswordParams(
-          code: code.text,
-          email: email.text,
-          password: password.text,
-          confirmPassword: confirmPassword.text);
-      var result = await SetResetPassword().call(param);
+      var params = _resetPasswordParams();
+      var result = await SetResetPassword().call(params);
       if (result != "") {
         CustomToast.showSimpleToast(msg: result, type: ToastType.success);
         AutoRouter.of(context).push(LoginRoute());
       }
     }
     btnKey.currentState!.animateReverse();
+  }
+
+  void resendCode() async {
+    var result = await SetResendPasswordCode().call(email.text);
+    if (result != "") {
+      CustomToast.showSimpleToast(msg: result, type: ToastType.success);
+    }
+  }
+
+  ResetPasswordParams _resetPasswordParams() {
+    return ResetPasswordParams(
+      code: code.text,
+      email: email.text,
+      password: password.text,
+      confirmPassword: confirmPassword.text,
+    );
   }
 }

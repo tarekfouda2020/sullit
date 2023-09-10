@@ -5,27 +5,23 @@ class BuildHaveAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: Dimens.paddingVertical20PX,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            "Already have an account?",
-            style: AppTextStyle.s16_w400(color: context.colors.blackOpacity),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          "Already have an account ? ",
+          style: AppTextStyle.s16_w400(color: context.colors.blackOpacity),
+        ),
+        InkWell(
+          onTap: () => AutoRouter.of(context).push(const LoginRoute()),
+          child: Text(
+            "Log In",
+            style: AppTextStyle.s16_w500(color: context.colors.primary),
           ),
-          Gaps.vGap10,
-          InkWell(
-            onTap: () => AutoRouter.of(context).push(const LoginRoute()),
-            child: Text(
-              "Log In",
-              style: AppTextStyle.s16_w400(color: context.colors.primary),
-            ),
-          ),
-          Gaps.vGap20,
-        ],
-      ),
+        ),
+        Gaps.vGap32,
+      ],
     );
   }
 }

@@ -13,7 +13,7 @@ _$_DashboardsModel _$$_DashboardsModelFromJson(Map<String, dynamic> json) =>
       ordersCount: json['orders_products_count'] as int,
       defaultAddress: json['default shipping_address'] == null
           ? null
-          : ShippingAddressModel.fromJson(
+          : AddressModel.fromJson(
               json['default shipping_address'] as Map<String, dynamic>),
       customerPackage: json['customer_package'] == null
           ? null

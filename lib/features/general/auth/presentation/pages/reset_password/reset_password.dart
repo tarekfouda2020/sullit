@@ -10,12 +10,11 @@ class ResetPassword extends StatefulWidget {
 }
 
 class _ResetPasswordState extends State<ResetPassword> {
-  final ResetPasswordController resetPasswordController =
-      ResetPasswordController();
+  late ResetPasswordController controller;
 
   @override
   void initState() {
-    resetPasswordController.initData(widget.email);
+    controller = ResetPasswordController(widget.email);
     super.initState();
   }
 
@@ -24,7 +23,7 @@ class _ResetPasswordState extends State<ResetPassword> {
     return Scaffold(
       appBar: const BuildAuthAppBar(),
       body: ListView(
-        padding: Dimens.paddingHorizontal20PX,
+        padding: Dimens.paddingHorizontal15PX,
         children: [
           const BuildHeaderLogo(),
           const BuildHeaderTitle(
@@ -32,8 +31,9 @@ class _ResetPasswordState extends State<ResetPassword> {
             subTitle:
                 "Enter your email address , new password and confirm password",
           ),
-          ResetPasswordForm(resetPasswordController: resetPasswordController),
-          ResetPasswordButton(resetPasswordController: resetPasswordController),
+          ResetPasswordForm(controller: controller),
+          ResetPasswordButton(controller: controller),
+          BuildResendCode(controller: controller),
         ],
       ),
     );

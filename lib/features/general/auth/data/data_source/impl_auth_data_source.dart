@@ -22,7 +22,7 @@ class ImplAuthDataSource extends AuthDataSource {
       responseType: ResType.model,
       requestMethod: RequestMethod.post,
       responseKey: (data) => data["data"]["user"],
-      requestBody:await param.toJson(),
+      requestBody: param.toJson(),
       showLoader: false,
       toJsonFunc: (json) => UserModel.fromJson(json),
     );
@@ -50,7 +50,7 @@ class ImplAuthDataSource extends AuthDataSource {
       responseType: ResType.type,
       requestBody: {"email": param},
       responseKey: (data) => data["msg"],
-      showLoader: false,
+      showLoader: true,
     );
     return await GenericHttpImpl<String>()(model);
   }

@@ -36,18 +36,18 @@ class BuildDefaultShippingAddress extends StatelessWidget {
                   title: "Postal code",
                   desc: dashboardModel.defaultAddress?.postalCode ?? "",
                 ),
-                // BuildAddressTitleItem(
-                //   title: "City",
-                //   desc: dashboardModel.defaultAddress?.city?.name ?? "",
-                // ),
-                // BuildAddressTitleItem(
-                //   title: "State",
-                //   desc: dashboardModel.defaultAddress?.state?.name ?? "",
-                // ),
-                // BuildAddressTitleItem(
-                //   title: "Country",
-                //   desc: dashboardModel.defaultAddress?.country?.name ?? "",
-                // ),
+                BuildAddressTitleItem(
+                  title: "City",
+                  desc: dashboardModel.defaultAddress?.city?.name ?? "",
+                ),
+                BuildAddressTitleItem(
+                  title: "State",
+                  desc: dashboardModel.defaultAddress?.state?.name ?? "",
+                ),
+                BuildAddressTitleItem(
+                  title: "Country",
+                  desc: dashboardModel.defaultAddress?.country?.name ?? "",
+                ),
                 BuildAddressTitleItem(
                   title: "Phone",
                   desc: dashboardModel.defaultAddress?.phone ?? "",

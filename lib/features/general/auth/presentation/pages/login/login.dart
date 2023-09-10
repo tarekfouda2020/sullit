@@ -20,7 +20,7 @@ class _LoginState extends State<Login> {
         body: GestureDetector(
           onTap: FocusScope.of(context).unfocus,
           child: ListView(
-            padding: Dimens.paddingHorizontal20PX,
+            padding: Dimens.paddingHorizontal15PX,
             children: [
               const BuildHeaderLogo(),
               const BuildHeaderTitle(title: "Login to your account"),

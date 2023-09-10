@@ -21,22 +21,22 @@ class BuildTermsAndConditions extends StatelessWidget {
                 onChanged: (value) =>
                     registerController.termCubit.onUpdateData(value!),
               ),
-              GestureDetector(
-                onTap: () {},
-                child: Row(
-                  children: [
-                    Text(
-                      "By signing up you agree to our ",
-                      style: AppTextStyle.s16_w400(
-                          color: context.colors.blackOpacity),
-                    ),
-                    Text(
+              Row(
+                children: [
+                  Text(
+                    "By signing up you agree to our ",
+                    style: AppTextStyle.s16_w400(
+                        color: context.colors.blackOpacity),
+                  ),
+                  GestureDetector(
+                    onTap: ()=>AutoRouter.of(context).push(const TermsRoute()),
+                    child: Text(
                       "terms and conditions",
                       style:
                           AppTextStyle.s16_w400(color: context.colors.primary),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),

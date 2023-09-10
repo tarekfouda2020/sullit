@@ -16,7 +16,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     return Scaffold(
       appBar: const BuildAuthAppBar(),
       body: ListView(
-        padding: Dimens.paddingHorizontal20PX,
+        padding: Dimens.paddingHorizontal15PX,
         children: [
           const BuildHeaderLogo(),
           const BuildHeaderTitle(

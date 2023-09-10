@@ -22,7 +22,7 @@ class _RegisterState extends State<Register> {
       body: GestureDetector(
         onTap: FocusScope.of(context).unfocus,
         child: ListView(
-          padding: Dimens.paddingHorizontal20PX,
+          padding: Dimens.paddingHorizontal15PX,
           children: [
             const BuildHeaderLogo(),
             const BuildHeaderTitle(title: "Create an account"),
@@ -31,7 +31,7 @@ class _RegisterState extends State<Register> {
             Gaps.vGap10,
             BuildTermsAndConditions(registerController: controller),
             BuildRegisterButton(controller: controller),
-            BuildSellerButton(registerController: controller),
+            // BuildSellerButton(registerController: controller),
             const BuildRegisterSocial(),
             const BuildHaveAccount(),
           ],

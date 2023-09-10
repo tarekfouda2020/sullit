@@ -32,7 +32,7 @@ class ProfileController {
       nameController.text = user?.name ?? "";
       emailController.text = user?.email ?? "";
       phoneController.text = user?.phone ?? "";
-      // addressController.text = address?.address ?? "";
+      addressController.text = user?.address?.address??"";
     }
   }
 

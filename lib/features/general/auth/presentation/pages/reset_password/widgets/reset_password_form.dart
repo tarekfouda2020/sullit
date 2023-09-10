@@ -1,19 +1,19 @@
 part of 'reset_password_widgets_imports.dart';
 
 class ResetPasswordForm extends StatelessWidget {
-  final ResetPasswordController resetPasswordController;
+  final ResetPasswordController controller;
 
-  const ResetPasswordForm({Key? key, required this.resetPasswordController})
+  const ResetPasswordForm({Key? key, required this.controller})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: resetPasswordController.formKey,
+      key: controller.formKey,
       child: Column(
         children: [
           GenericTextField(
-            controller: resetPasswordController.email,
+            controller: controller.email,
             fieldTypes: FieldTypes.readonly,
             type: TextInputType.text,
             action: TextInputAction.next,
@@ -21,7 +21,7 @@ class ResetPasswordForm extends StatelessWidget {
             label: "Email",
           ),
           GenericTextField(
-            controller: resetPasswordController.code,
+            controller: controller.code,
             fieldTypes: FieldTypes.normal,
             type: TextInputType.emailAddress,
             action: TextInputAction.next,
@@ -30,17 +30,17 @@ class ResetPasswordForm extends StatelessWidget {
             label: "Code",
           ),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-            bloc: resetPasswordController.passwordCubit,
+            bloc: controller.passwordCubit,
             builder: (context, state) {
               return GenericTextField(
-                controller: resetPasswordController.password,
+                controller: controller.password,
                 fieldTypes: !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
                 validate: (value) => value?.validatePassword(),
                 label: "Password",
                 suffixIcon: IconButton(
-                  onPressed: () => resetPasswordController.passwordCubit
+                  onPressed: () => controller.passwordCubit
                       .onUpdateData(!state.data),
                   icon: Icon(
                     !state.data
@@ -54,10 +54,10 @@ class ResetPasswordForm extends StatelessWidget {
             },
           ),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-            bloc: resetPasswordController.confirmPasswordCubit,
+            bloc: controller.confirmPasswordCubit,
             builder: (context, state) {
               return GenericTextField(
-                controller: resetPasswordController.confirmPassword,
+                controller: controller.confirmPassword,
                 fieldTypes: !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
@@ -65,7 +65,7 @@ class ResetPasswordForm extends StatelessWidget {
                 label: "Confirm Password",
                 margin: Dimens.inputFieldMargin,
                 suffixIcon: IconButton(
-                  onPressed: () => resetPasswordController.confirmPasswordCubit
+                  onPressed: () => controller.confirmPasswordCubit
                       .onUpdateData(!state.data),
                   icon: Icon(
                     !state.data

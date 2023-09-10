@@ -31,6 +31,7 @@ class CategoryDetailsController {
       {bool refresh = true}) async {
     currentCatId = id;
     var params = _productsParams(1, refresh);
+    print(">>>>>${params.toJson()}");
     var result = await GetSubCategories().call(params);
     _checkSubCategoriesList(result!, id, index);
     RangeValues rangeValues = RangeValues(double.parse(result.priceRange.min),
