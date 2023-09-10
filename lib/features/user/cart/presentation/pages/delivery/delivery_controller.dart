@@ -7,16 +7,23 @@ class DeliveryController {
   final GenericBloc<List<SellerShipping>> sellerShippingBloc = GenericBloc([]);
   Pickup? nearestPointModel;
 
-  DeliveryController() {
-    getShippingInfo(refresh: false);
-    getShippingInfo();
+  Future<void> getShippingInfo({bool refresh = true}) async {
+    return await GetShippingInfo().call(refresh).then(
+          (value) => sellerShippingBloc.onUpdateData(value),
+        );
+  }
+
+  void onChangeType(SellerShipping model, int value) {
+    model.deliveryType = value;
+    sellerShippingBloc.onUpdateData(sellerShippingBloc.state.data);
   }
 
   Future<void> setCartStoreShipping(BuildContext context) async {
     var params = _setCartStoreParams();
     var data = await SetCartStoreShipping().call(params);
     if (data != null) {
-      CustomToast.showSimpleToast(msg: "The Shipping info has been added successfully");
+      CustomToast.showSimpleToast(
+          msg: "The Shipping info has been added successfully");
       AutoRouter.of(context).push(CartPaymentRoute(shipping: data));
     }
   }
@@ -27,15 +34,9 @@ class DeliveryController {
     }
   }
 
-  Future<void> getShippingInfo({bool refresh = true}) async {
-    return await GetShippingInfo().call(refresh).then(
-          (value) => sellerShippingBloc.onUpdateData(value),
-        );
-  }
-
   List<Map> _setCartStoreParams() {
     var shipping = sellerShippingBloc.state.data;
-    var arrangedItems =  shipping
+    var arrangedItems = shipping
         .map(
           (e) => {
             'owner_id': e.deliveryType == 0 ? e.ownerId : nearestPointModel!.id,
@@ -46,7 +47,6 @@ class DeliveryController {
     log(arrangedItems.toString());
     return arrangedItems;
   }
-
 
   Future<void> applyCoupon(String param) async {
     var data = await ApplyCoupon().call(param);

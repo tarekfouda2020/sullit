@@ -15,9 +15,8 @@ class BuildCoupon extends StatelessWidget {
         controller: controller.coupon,
         action: TextInputAction.done,
         type: TextInputType.text,
-        fillColor: context.colors.white,
-        contentPadding: const EdgeInsets.symmetric(
-            horizontal: Dimens.dp10, vertical: Dimens.dp15),
+        fillColor: context.colors.customBackground,
+
         suffixIcon: GestureDetector(
           onTap: () => controller.applyCoupon(),
           child: Container(
@@ -35,7 +34,7 @@ class BuildCoupon extends StatelessWidget {
             ),
           ),
         ),
-        margin: const EdgeInsets.symmetric(vertical: 10),
+        margin: Dimens.paddingVertical8PX,
         validate: (value) => value!.validateEmpty(),
       ),
     );

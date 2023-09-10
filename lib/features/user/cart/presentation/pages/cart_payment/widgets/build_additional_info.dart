@@ -13,7 +13,7 @@ class BuildAdditionalInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: const EdgeInsets.symmetric(vertical: Dimens.dp15),
+            margin: Dimens.paddingVertical10PX,
             child: Text(
               "Any Additional Info ?",
               style: AppTextStyle.s16_w700(color: context.colors.primary),
@@ -27,7 +27,7 @@ class BuildAdditionalInfo extends StatelessWidget {
             controller: controller.additionalInfo,
             max: 4,
             validate: (value) => value!.validateEmpty(),
-            // margin: const EdgeInsets.symmetric(vertical: Dimens.dp10),
+            margin: Dimens.paddingVertical5PX,
           ),
         ],
       ),

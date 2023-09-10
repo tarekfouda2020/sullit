@@ -1,13 +1,15 @@
 part of 'cart_payment_widgets_imports.dart';
 
 class BuildWalletBalance extends StatelessWidget {
-  final String walletBalance ;
-  const BuildWalletBalance({Key? key, required this.walletBalance}) : super(key: key);
+  final String walletBalance;
+
+  const BuildWalletBalance({Key? key, required this.walletBalance})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.only(top: 10.r),
+      padding: Dimens.paddingVertical15PX,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -23,18 +23,19 @@ class _CartPaymentState extends State<CartPayment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.colors.customBackground,
       appBar: const BuildCustomAppBar(),
-      bottomNavigationBar:  BuildPaymentButtons(controller: controller,),
+      bottomNavigationBar: BuildPaymentButtons(controller: controller),
       body: BlocBuilder<GenericBloc<Shipping?>, GenericState<Shipping?>>(
         bloc: controller.shippingBloc,
         builder: (context, state) {
-          if(state is GenericUpdateState){
+          if (state is GenericUpdateState) {
             return Column(
               children: [
                 const BuildCartStepper(current: 4),
                 Flexible(
                   child: ListView(
-                    padding: const EdgeInsets.symmetric(horizontal: Dimens.dp20),
+                    padding: Dimens.paddingHorizontal15PX,
                     children: [
                       BuildSummary(
                         controller: controller,
@@ -42,7 +43,7 @@ class _CartPaymentState extends State<CartPayment> {
                       ),
                       BuildPaymentOptions(
                         controller: controller,
-                        paymentOptions: state.data!.paymentOption!,
+                        shippingModel: state.data!,
                       ),
                       BuildAdditionalInfo(controller: controller),
                       BuildConditions(controller: controller),
@@ -51,7 +52,7 @@ class _CartPaymentState extends State<CartPayment> {
                 ),
               ],
             );
-          }else {
+          } else {
             return Container();
           }
         },

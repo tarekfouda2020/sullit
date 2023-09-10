@@ -1,11 +1,11 @@
 part of 'delivery_widgets_imports.dart';
 
 class BuildDeliveryType extends StatelessWidget {
-  final DeliveryController deliveryController;
+  final DeliveryController controller;
   final SellerShipping shipping;
 
   const BuildDeliveryType(
-      {super.key, required this.deliveryController, required this.shipping});
+      {super.key, required this.controller, required this.shipping});
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +14,12 @@ class BuildDeliveryType extends StatelessWidget {
       children: [
         Container(
           width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.all(Dimens.dp20),
-          margin: const EdgeInsets.symmetric(
-              vertical: Dimens.dp10, horizontal: Dimens.dp10),
+          padding: Dimens.paddingAll15PX,
+          margin: Dimens.paddingVertical8PX,
           decoration: BoxDecoration(
+            color: context.colors.offWhite,
+            border: Border.all(color: context.colors.white),
             borderRadius: Dimens.borderRadius10PX,
-            color: context.colors.greyWhite.withOpacity(.1),
           ),
           child: Text(
             "Choose Delivery Type",
@@ -27,43 +27,31 @@ class BuildDeliveryType extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Dimens.dp20),
+          padding: Dimens.paddingVertical5PX,
           child: Column(
             children: [
               Row(
                 children: [
-                  BuildDeliveryItem(
+                  BuildDeliveryTypeItem(
                     title: "Home Delivery",
                     value: 0,
                     groupValue: shipping.deliveryType,
-                    onChanged: (val) {
-                      shipping.deliveryType = val!;
-                      deliveryController.sellerShippingBloc.onUpdateData(
-                          deliveryController.sellerShippingBloc.state.data);
-                    },
+                    onChanged: (val) => controller.onChangeType(shipping, val!),
                   ),
                   Gaps.hGap10,
-                  BuildDeliveryItem(
-                      title: "Local Pickup",
-                      value: 1,
-                      groupValue: shipping.deliveryType,
-                      onChanged: (val) {
-                        shipping.deliveryType = val!;
-                        deliveryController.sellerShippingBloc.onUpdateData(
-                            deliveryController.sellerShippingBloc.state.data);
-                      }),
+                  BuildDeliveryTypeItem(
+                    title: "Local Pickup",
+                    value: 1,
+                    groupValue: shipping.deliveryType,
+                    onChanged: (val) => controller.onChangeType(shipping, val!),
+                  ),
                 ],
               ),
               Visibility(
                 visible: shipping.deliveryType == 1,
                 replacement: Container(
-                  margin: EdgeInsets.symmetric(
-                    vertical: 10.r,
-                  ),
-                  padding: EdgeInsets.symmetric(
-                    vertical: 15.r,
-                    horizontal: 5.r,
-                  ),
+                  margin: Dimens.paddingVertical10PX,
+                  padding: Dimens.paddingAll15PX,
                   decoration: BoxDecoration(
                     border: Border.all(color: context.colors.greyWhite),
                     borderRadius: Dimens.borderRadius5PX,
@@ -103,7 +91,7 @@ class BuildDeliveryType extends StatelessWidget {
                       id: shipping.pickup.id,
                     ),
                   ],
-                  onChange: (model) => deliveryController.onSelectPoint(model),
+                  onChange: (model) => controller.onSelectPoint(model),
                 ),
               ),
             ],

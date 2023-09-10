@@ -1,18 +1,17 @@
 part of 'cart_payment_widgets_imports.dart';
 
 class BuildSummary extends StatelessWidget {
-final CartPaymentController controller;
-final Shipping shipping ;
+  final CartPaymentController controller;
+  final Shipping shipping;
 
-  const BuildSummary({super.key, required this.controller, required this.shipping});
+  const BuildSummary(
+      {super.key, required this.controller, required this.shipping});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(Dimens.dp15),
-      decoration: BoxDecoration(
-        color: context.colors.greyWhite.withOpacity(.1),
-        borderRadius: Dimens.borderRadius10PX,
-      ),
+      padding: Dimens.paddingAll15PX,
+      decoration: CustomDecoration(),
       child: Column(
         children: [
           Row(
@@ -23,7 +22,7 @@ final Shipping shipping ;
                 style: AppTextStyle.s16_w800(color: context.colors.black),
               ),
               Container(
-                padding: const EdgeInsets.all(5),
+                padding: Dimens.paddingAll5PX,
                 decoration: BoxDecoration(
                     color: context.colors.primary,
                     borderRadius: Dimens.borderRadius5PX),
@@ -34,15 +33,19 @@ final Shipping shipping ;
               )
             ],
           ),
-          Gaps.line(context.colors.primary, 20),
+          Gaps.line(context.colors.primary, 20.h),
           const BuildSummaryHeader(title: "Products", details: "Total"),
           ...List.generate(
-              shipping.summary.items.length,
-              (index) => BuildSummaryItem(
-                  title: shipping.summary.items[index].name,
-                  details: shipping.summary.items[index].total)),
+            shipping.summary.items.length,
+            (index) => BuildSummaryItem(
+              title: shipping.summary.items[index].name,
+              details: shipping.summary.items[index].total,
+            ),
+          ),
           BuildSummaryHeader(
-              title: "Subtotal", details: shipping.summary.subTotal),
+            title: "Subtotal",
+            details: shipping.summary.subTotal,
+          ),
           BuildSummaryHeader(
             title: "Tax",
             details: shipping.summary.tax,
@@ -51,7 +54,7 @@ final Shipping shipping ;
             title: "Total Shipping",
             details: shipping.summary.shipping,
           ),
-          Gaps.line(context.colors.primary, 20),
+          Gaps.line(context.colors.primary, 15.h),
           BuildSummaryHeader(
             title: "Total",
             details: shipping.summary.total,

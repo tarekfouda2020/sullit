@@ -37,13 +37,13 @@ class CartPaymentController {
           data.transactionUrl,
           context,
         );
-      }else {
-        _confirmOrder(context,data );
+      } else {
+        _confirmOrder(context, data);
       }
     }
   }
 
-  void _confirmOrder (BuildContext context, OrderSummary data){
+  void _confirmOrder(BuildContext context, OrderSummary data) {
     CustomToast.showSimpleToast(
       msg: "Thank You for Your Order!",
       type: ToastType.success,
@@ -51,6 +51,14 @@ class CartPaymentController {
     AutoRouter.of(context).push(
       ConfirmationRoute(summary: data),
     );
+  }
+
+  void onChangePayment(Shipping model, int index) {
+    for (var e in model.paymentOption!) {
+      e.selected = false;
+    }
+    model.paymentOption![index].selected = true;
+    shippingBloc.onUpdateData(shippingBloc.state.data);
   }
 
   void _goToPay(String? transactionUrl, BuildContext context) {
