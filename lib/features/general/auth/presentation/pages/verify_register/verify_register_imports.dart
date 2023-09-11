@@ -1,0 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/core/helpers/custom_toast.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
+import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/features/general/auth/domain/use_cases/set_resend_register_code.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_auth_app_bar.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_header_logo.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_header_title.dart';
+part 'verify_register.dart';
+part 'verify_register_controller.dart';

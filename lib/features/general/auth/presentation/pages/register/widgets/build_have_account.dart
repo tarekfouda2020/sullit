@@ -14,10 +14,10 @@ class BuildHaveAccount extends StatelessWidget {
           style: AppTextStyle.s16_w400(color: context.colors.blackOpacity),
         ),
         InkWell(
-          onTap: () => AutoRouter.of(context).push(const LoginRoute()),
+          onTap: () => AutoRouter.of(context).pop(),
           child: Text(
             "Log In",
-            style: AppTextStyle.s16_w500(color: context.colors.primary),
+            style: AppTextStyle.s16_w700(color: context.colors.primary),
           ),
         ),
         Gaps.vGap32,

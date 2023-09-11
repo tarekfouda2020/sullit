@@ -22,18 +22,19 @@ class BuildHeaderTitle extends StatelessWidget {
       children: [
         Text(
           title,
-          style: AppTextStyle.s19_w500(color: context.colors.black),
+          style: AppTextStyle.s18_w500(color: context.colors.black),
         ),
-        subTitle != ""
-            ? Padding(
-                padding: Dimens.headerTitlePadding,
-                child: Text(
-                  subTitle,
-                  style:
-                      AppTextStyle.s16_w400(color: context.colors.blackOpacity),
-                ),
-              )
-            : Gaps.empty,
+        Visibility(
+          visible: subTitle.isNotEmpty,
+          replacement: Gaps.empty,
+          child: Padding(
+            padding: Dimens.headerTitlePadding,
+            child: Text(
+              subTitle,
+              style: AppTextStyle.s16_w400(color: context.colors.blackOpacity),
+            ),
+          ),
+        ),
       ],
     );
   }

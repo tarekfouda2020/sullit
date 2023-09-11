@@ -16,6 +16,7 @@ class ApiNames{
   static const String forgetPassword = "password/forgot";
   static const String resetPassword = "password/reset";
   static const String resendPasswordCode = "password/forgot-resend-code";
+  static const String resendRegisterCode = "email/resend-code";
   static const String logout = "logout";
   static const String verifyPhone = "verification-phone/verify-phone";
 

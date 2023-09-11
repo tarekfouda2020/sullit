@@ -6,6 +6,7 @@ import 'package:flutter_tdd/features/general/auth/presentation/pages/register/re
 import 'package:flutter_tdd/features/general/auth/presentation/pages/register_shop/register_shop_imports.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/pages/reset_password/reset_password_imports.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/pages/splash/splash_imports.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/pages/verify_register/verify_register_imports.dart';
 
 const List<AutoRoute> authRoute = [
   AdaptiveRoute(page: Splash, initial: true),
@@ -15,4 +16,6 @@ const List<AutoRoute> authRoute = [
   AdaptiveRoute(page: ForgetPassword),
   AdaptiveRoute(page: Register),
   AdaptiveRoute(page: RegisterShop),
+  AdaptiveRoute(page: VerifyRegister),
+
 ];

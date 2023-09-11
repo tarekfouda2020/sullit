@@ -23,7 +23,7 @@ class BuildDoNotHaveAccount extends StatelessWidget {
                 onTap: () => AutoRouter.of(context).push(const RegisterRoute()),
                 child: Text(
                   "Register Now",
-                  style: AppTextStyle.s16_w400(color: context.colors.primary),
+                  style: AppTextStyle.s16_w700(color: context.colors.primary),
                 ),
               ),
             ],

@@ -11,6 +11,7 @@ class LoginController {
 
 
   void onSubmit(BuildContext context) async {
+    // AutoRouter.of(context).push(VerifyRegisterRoute(email: email.text));
     if (formKey.currentState!.validate()) {
       btnKey.currentState?.animateForward();
       var params = await _setLoginParams();

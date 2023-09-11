@@ -11,6 +11,7 @@ abstract class AuthRepository{
   Future<Either<Failure, UserDomainModel>> login(LoginParams param);
   Future<Either<Failure, String>> forgetPassword(String param);
   Future<Either<Failure, String>> resendPasswordCode(String param);
+  Future<Either<Failure, String>> resendRegisterCode(String param);
   Future<Either<Failure, String>> resetPassword(ResetPasswordParams param);
   Future<Either<Failure, bool>> verifyPhone (VerifyPhoneParams params);
 }

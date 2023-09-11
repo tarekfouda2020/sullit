@@ -17,10 +17,12 @@ class ImplAuthRepository extends AuthRepository with ModelToDomain {
   var dataSources = getIt<AuthDataSource>();
 
   @override
-  Future<Either<Failure, UserDomainModel>> register(UserRegisterParams params) async {
+  Future<Either<Failure, UserDomainModel>> register(
+      UserRegisterParams params) async {
     var result = await dataSources.register(params);
     return toDomainResult(result);
   }
+
   @override
   Future<Either<Failure, UserDomainModel>> login(LoginParams param) async {
     var result = await dataSources.login(param);
@@ -38,12 +40,18 @@ class ImplAuthRepository extends AuthRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, String>> resetPassword(ResetPasswordParams param) async {
+  Future<Either<Failure, String>> resetPassword(
+      ResetPasswordParams param) async {
     return await dataSources.resetPassword(param);
   }
 
   @override
-  Future<Either<Failure, bool>> verifyPhone(VerifyPhoneParams params)async {
+  Future<Either<Failure, bool>> verifyPhone(VerifyPhoneParams params) async {
     return await dataSources.verifyPhone(params);
+  }
+
+  @override
+  Future<Either<Failure, String>> resendRegisterCode(String param) async {
+    return await dataSources.resendRegisterCode(param);
   }
 }

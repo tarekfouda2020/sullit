@@ -10,6 +10,7 @@ abstract class AuthDataSource{
   Future<Either<Failure, UserModel>> login(LoginParams param);
   Future<Either<Failure, String>> forgetPassword(String param);
   Future<Either<Failure, String>> resendPasswordCode(String param);
+  Future<Either<Failure, String>> resendRegisterCode(String param);
   Future<Either<Failure, String>> resetPassword(ResetPasswordParams param);
   Future<Either<Failure, UserModel>> register (UserRegisterParams params);
   Future<Either<Failure, bool>> verifyPhone (VerifyPhoneParams params);

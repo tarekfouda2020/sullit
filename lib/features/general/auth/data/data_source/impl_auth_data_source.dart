@@ -96,4 +96,17 @@ class ImplAuthDataSource extends AuthDataSource {
     );
     return await GenericHttpImpl<bool>().call(model);
   }
+
+  @override
+  Future<Either<Failure, String>> resendRegisterCode(String param)async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.resendRegisterCode,
+      requestMethod: RequestMethod.post,
+      responseType: ResType.type,
+      requestBody: {"email": param},
+      responseKey: (data) => data["msg"],
+      showLoader: true,
+    );
+    return await GenericHttpImpl<String>()(model);
+  }
 }
