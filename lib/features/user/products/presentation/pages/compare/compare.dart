@@ -12,7 +12,7 @@ class _CompareState extends State<Compare> {
 
   @override
   void initState() {
-    controller = CompareController(context);
+    controller = CompareController();
     super.initState();
   }
 
@@ -21,23 +21,24 @@ class _CompareState extends State<Compare> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: "Compare", showBack: true),
-      body: BlocBuilder<GenericBloc<List<Product>>,
-          GenericState<List<Product>>>(
-        bloc: controller.productsBloc,
-        builder: (context, state) {
-          return SingleChildScrollView(
-            padding: Dimens.standardPadding,
-            child: Column(
-              children: [
-                BuildResetButton(controller: controller),
-                BuildCompareTable(
-                  controller: controller,
-                  compareData: state.data
-                ),
-              ],
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          BuildResetButton(controller: controller),
+          Flexible(
+            child: GenericListView(
+              type: ListViewType.api,
+              onRefresh: controller.getComparedProducts,
+              params: [context],
+              cubit: controller.productsBloc,
+              padding: Dimens.paddingHorizontal15PX,
+              itemBuilder: (_, index, item) => BuildCompareItem(
+                productModel: item,
+                controller: controller,
+              ),
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }
