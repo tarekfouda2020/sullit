@@ -16,10 +16,8 @@ import 'package:flutter_tdd/features/user/products/presentation/widgets/build_ad
 class BuildAddToCartDialog extends StatefulWidget {
   final Product product;
 
-  const BuildAddToCartDialog({
-    Key? key,
-    required this.product,
-  }) : super(key: key);
+  const BuildAddToCartDialog({Key? key, required this.product})
+      : super(key: key);
 
   @override
   State<BuildAddToCartDialog> createState() => _BuildAddToCartDialogState();

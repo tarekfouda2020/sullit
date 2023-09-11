@@ -10,8 +10,8 @@ class BuildSuggestHeader extends StatelessWidget {
     return Container(
       alignment: Alignment.centerRight,
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.all(Dimens.dp15),
-      margin: const EdgeInsets.symmetric(vertical: Dimens.dp5),
+      padding:Dimens.paddingAll20PX,
+      margin:Dimens.paddingVertical5PX,
       decoration: BoxDecoration(
         borderRadius: Dimens.borderRadius10PX,
         color: context.colors.greyWhite.withOpacity(.1),

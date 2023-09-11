@@ -22,7 +22,7 @@ class _NotificationsState extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BuildSearchAppBar(homeController: widget.homeController),
+      appBar: BuildHomeAppBar(homeController: widget.homeController),
       body: BlocBuilder<GenericBloc<List<NotificationDomainModel>>,
           GenericState<List<NotificationDomainModel>>>(
         bloc: controller.notificationsBloc,

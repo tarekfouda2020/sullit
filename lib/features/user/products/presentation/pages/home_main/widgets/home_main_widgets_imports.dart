@@ -36,7 +36,6 @@ part 'build_home_swiper.dart';
 
 part 'build_deals_item.dart';
 
-
 part 'build_home_new_products.dart';
 part 'build_featured_products.dart';
 part 'build_popular_products.dart';

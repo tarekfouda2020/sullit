@@ -10,11 +10,11 @@ class HomeMain extends StatefulWidget {
 }
 
 class _HomeMainState extends State<HomeMain> {
-  late HomeMainController controller ;
+  late HomeMainController controller;
 
   @override
   void initState() {
-    controller = HomeMainController(context);
+    controller = HomeMainController(context, widget.homeController);
     super.initState();
   }
 
@@ -25,19 +25,24 @@ class _HomeMainState extends State<HomeMain> {
         onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
           backgroundColor: context.colors.customBackground,
-          appBar: BuildSearchAppBar(homeController: widget.homeController),
-          body: BlocBuilder<GenericBloc<HomeDomainModel?>, GenericState<HomeDomainModel?>>(
-            bloc: controller.homeCubit,
-            builder: (context, state) {
-              if (state is GenericUpdateState) {
-                return BuildHomeView(
-                  homeDomainModel: state.data!,
-                  controller: controller,
-                );
-              } else {
-                return const BuildLoadingHomeView();
-              }
-            },
+          body: Column(
+            children: [
+              BuildHomeMainAppBar(controller: widget.homeController),
+              BlocBuilder<GenericBloc<HomeDomainModel?>,
+                  GenericState<HomeDomainModel?>>(
+                bloc: controller.homeCubit,
+                builder: (context, state) {
+                  if (state is GenericUpdateState) {
+                    return BuildHomeView(
+                      homeDomainModel: state.data!,
+                      controller: controller,
+                    );
+                  } else {
+                    return const BuildLoadingHomeView();
+                  }
+                },
+              ),
+            ],
           ),
         ),
       ),

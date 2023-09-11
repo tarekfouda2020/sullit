@@ -17,7 +17,7 @@ class _MoreState extends State<More> {
     bool auth = context.read<DeviceCubit>().state.model.auth;
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: BuildSearchAppBar(homeController: widget.homeController),
+      appBar: BuildHomeAppBar(homeController: widget.homeController),
       body: ListView(
         padding: Dimens.paddingAll15PX,
         children: [

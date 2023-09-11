@@ -61,6 +61,8 @@ class Dimens {
   static EdgeInsets headerTitlePadding = const EdgeInsets.only(top: 8, bottom: 30).r;
   static EdgeInsets standardPadding = const EdgeInsets.symmetric(
       horizontal: Dimens.dp15, vertical: Dimens.dp10).r;
+  static EdgeInsets cardMargin = const EdgeInsets.symmetric(
+      horizontal: Dimens.dp15, vertical: Dimens.dp5).r;
 
   static EdgeInsets paddingVertical5PX = const EdgeInsets.symmetric(vertical: 5).r;
   static EdgeInsets paddingVertical8PX = const EdgeInsets.symmetric(vertical: 8).r;

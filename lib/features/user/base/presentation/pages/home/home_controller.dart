@@ -7,8 +7,8 @@ class HomeController {
   late Animation<double> animation;
   late CurvedAnimation curve;
   final GenericBloc<bool> visibleSearch = GenericBloc(false);
+  final TextEditingController searchController=TextEditingController();
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
 
   List<IconData> tabs = [
     Icons.home,
@@ -16,13 +16,19 @@ class HomeController {
     Icons.notifications,
     Icons.account_circle
   ];
-  List<String> tabsText = ["Home", "Categories", "Notifications", "Account"];
 
-  void initBottomNavigation(TickerProvider ticker,int index) {
-    tabController = TabController(length: 4, vsync: ticker,initialIndex: index);
+  List<String> tabsText = [
+    "Home",
+    "Categories",
+    "Notifications",
+    "Account",
+  ];
+
+  void initBottomNavigation(TickerProvider ticker, int index) {
+    tabController =
+        TabController(length: 4, vsync: ticker, initialIndex: index);
     tabController.animateTo(index);
     homeTabCubit.onUpdateData(index);
-
   }
 
   void animateTabsPages(int index, BuildContext context) {
@@ -31,6 +37,7 @@ class HomeController {
       tabController.animateTo(index);
     }
   }
+
   Future<bool> onBackPressed() async {
     SystemNavigator.pop();
     return true;

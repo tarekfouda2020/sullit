@@ -642,9 +642,13 @@ class AppRouter extends _i76.RootStackRouter {
       );
     },
     SearchRoute.name: (routeData) {
+      final args = routeData.argsAs<SearchRouteArgs>();
       return _i76.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i57.Search(),
+        child: _i57.Search(
+          key: args.key,
+          searchText: args.searchText,
+        ),
         opaque: true,
       );
     },
@@ -2157,14 +2161,36 @@ class PaymentRouteArgs {
 
 /// generated route for
 /// [_i57.Search]
-class SearchRoute extends _i76.PageRouteInfo<void> {
-  const SearchRoute()
-      : super(
+class SearchRoute extends _i76.PageRouteInfo<SearchRouteArgs> {
+  SearchRoute({
+    _i79.Key? key,
+    required String searchText,
+  }) : super(
           SearchRoute.name,
           path: '/Search',
+          args: SearchRouteArgs(
+            key: key,
+            searchText: searchText,
+          ),
         );
 
   static const String name = 'SearchRoute';
+}
+
+class SearchRouteArgs {
+  const SearchRouteArgs({
+    this.key,
+    required this.searchText,
+  });
+
+  final _i79.Key? key;
+
+  final String searchText;
+
+  @override
+  String toString() {
+    return 'SearchRouteArgs{key: $key, searchText: $searchText}';
+  }
 }
 
 /// generated route for

@@ -1,7 +1,7 @@
 part of 'search_widgets_imports.dart';
 
 class BuildSearchField extends StatelessWidget {
-  final FilterController controller;
+  final SearchController controller;
 
   const BuildSearchField({super.key, required this.controller});
 
@@ -12,9 +12,18 @@ class BuildSearchField extends StatelessWidget {
       type: TextInputType.text,
       action: TextInputAction.search,
       autoFocus: true,
+      fillColor: context.colors.white,
+      controller: controller.searchController,
       validate: (value) => value?.noValidate(),
       hint: "Search...",
-      margin: const EdgeInsets.all(20),
+      suffixIcon: InkWell(
+        onTap: () => controller.getSearchResults(),
+        child: Icon(
+          Icons.search,
+          color: context.colors.black,
+        ),
+      ),
+      margin: Dimens.standardPadding,
     );
   }
 }

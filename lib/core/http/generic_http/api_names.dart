@@ -44,6 +44,9 @@ class ApiNames{
   static const String brandDetails = "brands/";
   static const String getCategoryProducts = "search";
 
+  //search urls
+  static const String getSearchResult = "live-search";
+
   // blogs
   static const String blogs = "blogs";
 

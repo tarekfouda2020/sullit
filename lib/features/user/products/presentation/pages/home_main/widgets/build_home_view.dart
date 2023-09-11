@@ -9,43 +9,33 @@ class BuildHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: Dimens.paddingVertical10PX,
-      children: [
-        BuildHomeSwiper(
-          slider: homeDomainModel.sliders,
-        ),
-        BuildBanners(
-          banners: homeDomainModel.bannersOne,
-        ),
-        BuildDeals(
-          flashSales: homeDomainModel.flashSales,
-        ),
-        BuildBanners(
-          banners: homeDomainModel.bannersTwo,
-        ),
-        BuildPopularProducts(
-          mostPopularProducts: homeDomainModel.mostPopular,
-        ),
-        BuildBestSellingProducts(
-          bestSellingProducts: homeDomainModel.bestSellingProducts,
-          controller: controller,
-        ),
-        BuildHomeNewProducts(
-          newestProducts: homeDomainModel.newestProducts,
-          controller: controller,
-        ),
-        BuildFeaturedProducts(
-          featuredProducts: homeDomainModel.featuredProducts,
-          controller: controller,
-        ),
-        BuildTopCategories(
-          topCategories: homeDomainModel.topCategories,
-        ),
-        BuildTopBrands(
-          brandList: homeDomainModel.topBrands,
-        )
-      ],
+    return Flexible(
+      child: ListView(
+        padding: Dimens.paddingVertical10PX,
+        children: [
+          BuildHomeSwiper(slider: homeDomainModel.sliders),
+          BuildBanners(banners: homeDomainModel.bannersOne),
+          BuildDeals(flashSales: homeDomainModel.flashSales),
+          BuildBanners(banners: homeDomainModel.bannersTwo),
+          BuildPopularProducts(
+            mostPopularProducts: homeDomainModel.mostPopular,
+          ),
+          BuildBestSellingProducts(
+            bestSellingProducts: homeDomainModel.bestSellingProducts,
+            controller: controller,
+          ),
+          BuildHomeNewProducts(
+            newestProducts: homeDomainModel.newestProducts,
+            controller: controller,
+          ),
+          BuildFeaturedProducts(
+            featuredProducts: homeDomainModel.featuredProducts,
+            controller: controller,
+          ),
+          BuildTopCategories(topCategories: homeDomainModel.topCategories),
+          BuildTopBrands(brandList: homeDomainModel.topBrands)
+        ],
+      ),
     );
   }
 }

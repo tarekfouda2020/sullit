@@ -9,7 +9,8 @@ class BuildCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      elevation: .5,
+      elevation: 0.2,
+      toolbarHeight: 70,
       automaticallyImplyLeading: false,
       backgroundColor: context.colors.white,
       leading: IconButton(
@@ -22,5 +23,5 @@ class BuildCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight+10);
 }

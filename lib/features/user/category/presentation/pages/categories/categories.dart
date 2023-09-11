@@ -17,7 +17,7 @@ class _CategoriesState extends State<Categories> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
-        appBar: BuildSearchAppBar(homeController: widget.homeController),
+        appBar: BuildHomeAppBar(homeController: widget.homeController),
         body: Column(
           children: [
             Gaps.vGap10,

@@ -9,7 +9,7 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/GenericListView.dart';
 import 'package:flutter_tdd/core/widgets/build_empty_data_view.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
-import 'package:flutter_tdd/features/user/base/presentation/widgets/build_search_app_bar.dart';
+import 'package:flutter_tdd/features/user/base/presentation/widgets/build_home_app_bar.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/brand_details_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/use_cases/get_brand_products.dart';
 import 'package:flutter_tdd/features/user/category/presentation/pages/brand_details/widgets/brand_details_w_imports.dart';

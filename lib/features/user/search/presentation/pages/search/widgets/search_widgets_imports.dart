@@ -9,10 +9,16 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 import 'package:flutter_tdd/core/helpers/validator.dart';
+import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
+import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/search/presentation/pages/search/search_imports.dart';
 
 
-part 'build_custom_suggest_item.dart';
+part 'build_category_suggest_item.dart';
+part 'build_product_suggest_item.dart';
+part 'build_product_suggestions.dart';
 part 'build_search_field.dart';
-part 'build_suggest_item.dart';
+part 'build_loading_suggestions.dart';
 part 'build_suggest_header.dart';
