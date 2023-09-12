@@ -64,6 +64,7 @@ class ApiNames{
   // sale urls
   static const String getAllFlashSale = "flash-deals";
   static const String getSaleDetails = "flash-deal-products/";
+  static const String getCoupons = "exclusive-coupons";
 
   // general
   static const String terms = "terms";

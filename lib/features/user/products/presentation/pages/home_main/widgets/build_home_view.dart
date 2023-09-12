@@ -15,7 +15,10 @@ class BuildHomeView extends StatelessWidget {
         children: [
           BuildHomeSwiper(slider: homeDomainModel.sliders),
           BuildBanners(banners: homeDomainModel.bannersOne),
-          BuildDeals(flashSales: homeDomainModel.flashSales),
+          BuildDeals(
+            flashSales: homeDomainModel.flashSales,
+            controller: controller,
+          ),
           BuildBanners(banners: homeDomainModel.bannersTwo),
           BuildPopularProducts(
             mostPopularProducts: homeDomainModel.mostPopular,

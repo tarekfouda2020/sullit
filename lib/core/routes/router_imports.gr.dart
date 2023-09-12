@@ -161,12 +161,12 @@ import 'package:flutter_tdd/features/user/purchasing/presentation/pages/return_o
     as _i62;
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/track_order/track_order_imports.dart'
     as _i63;
-import 'package:flutter_tdd/features/user/sale/presentation/pages/deal_of_the_day/deal_of_the_day_imports.dart'
-    as _i65;
-import 'package:flutter_tdd/features/user/sale/presentation/pages/flash_sale/flash_sale_imports.dart'
-    as _i66;
-import 'package:flutter_tdd/features/user/sale/presentation/pages/sale_details/sale_details_imports.dart'
+import 'package:flutter_tdd/features/user/sale/presentation/pages/coupons/coupons_imports.dart'
     as _i67;
+import 'package:flutter_tdd/features/user/sale/presentation/pages/flash_sale/flash_sale_imports.dart'
+    as _i65;
+import 'package:flutter_tdd/features/user/sale/presentation/pages/sale_details/sale_details_imports.dart'
+    as _i66;
 import 'package:flutter_tdd/features/user/search/presentation/pages/search/search_imports.dart'
     as _i57;
 import 'package:flutter_tdd/features/user/tickets/presentation/pages/support_tickets/support_tickets_imports.dart'
@@ -709,17 +709,10 @@ class AppRouter extends _i76.RootStackRouter {
         opaque: true,
       );
     },
-    DealOfTheDayRoute.name: (routeData) {
-      return _i76.AdaptivePage<dynamic>(
-        routeData: routeData,
-        child: const _i65.DealOfTheDay(),
-        opaque: true,
-      );
-    },
     FlashSaleRoute.name: (routeData) {
       return _i76.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i66.FlashSale(),
+        child: const _i65.FlashSale(),
         opaque: true,
       );
     },
@@ -727,10 +720,17 @@ class AppRouter extends _i76.RootStackRouter {
       final args = routeData.argsAs<SaleDetailsRouteArgs>();
       return _i76.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i67.SaleDetails(
+        child: _i66.SaleDetails(
           key: args.key,
           dealId: args.dealId,
         ),
+        opaque: true,
+      );
+    },
+    CouponsRoute.name: (routeData) {
+      return _i76.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i67.Coupons(),
         opaque: true,
       );
     },
@@ -1055,16 +1055,16 @@ class AppRouter extends _i76.RootStackRouter {
           path: '/retrieve-order',
         ),
         _i76.RouteConfig(
-          DealOfTheDayRoute.name,
-          path: '/deal-of-the-day',
-        ),
-        _i76.RouteConfig(
           FlashSaleRoute.name,
           path: '/flash-sale',
         ),
         _i76.RouteConfig(
           SaleDetailsRoute.name,
           path: '/sale-details',
+        ),
+        _i76.RouteConfig(
+          CouponsRoute.name,
+          path: '/Coupons',
         ),
         _i76.RouteConfig(
           SupportTicketsRoute.name,
@@ -2322,19 +2322,7 @@ class RetrieveOrderRouteArgs {
 }
 
 /// generated route for
-/// [_i65.DealOfTheDay]
-class DealOfTheDayRoute extends _i76.PageRouteInfo<void> {
-  const DealOfTheDayRoute()
-      : super(
-          DealOfTheDayRoute.name,
-          path: '/deal-of-the-day',
-        );
-
-  static const String name = 'DealOfTheDayRoute';
-}
-
-/// generated route for
-/// [_i66.FlashSale]
+/// [_i65.FlashSale]
 class FlashSaleRoute extends _i76.PageRouteInfo<void> {
   const FlashSaleRoute()
       : super(
@@ -2346,7 +2334,7 @@ class FlashSaleRoute extends _i76.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i67.SaleDetails]
+/// [_i66.SaleDetails]
 class SaleDetailsRoute extends _i76.PageRouteInfo<SaleDetailsRouteArgs> {
   SaleDetailsRoute({
     _i79.Key? key,
@@ -2377,6 +2365,18 @@ class SaleDetailsRouteArgs {
   String toString() {
     return 'SaleDetailsRouteArgs{key: $key, dealId: $dealId}';
   }
+}
+
+/// generated route for
+/// [_i67.Coupons]
+class CouponsRoute extends _i76.PageRouteInfo<void> {
+  const CouponsRoute()
+      : super(
+          CouponsRoute.name,
+          path: '/Coupons',
+        );
+
+  static const String name = 'CouponsRoute';
 }
 
 /// generated route for

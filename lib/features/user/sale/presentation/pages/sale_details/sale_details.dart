@@ -43,9 +43,11 @@ class _SaleDetailsState extends State<SaleDetails> {
                     itemCount: state.data!.products.length,
                     itemBuilder: (context, index) => BuildProductItem(
                       productModel: state.data!.products[index],
-                      onFavRefresh: () => controller.getSaleDetails(widget.dealId),
+                      onFavRefresh: () =>
+                          controller.onFavChanged(state.data!.products[index]),
                       onCompareRefresh: () {
-                        state.data!.products[index].isAddedTCompare =!state.data!.products[index].isAddedTCompare!;
+                        state.data!.products[index].isAddedTCompare =
+                            !state.data!.products[index].isAddedTCompare!;
                       },
                     ),
                   ),

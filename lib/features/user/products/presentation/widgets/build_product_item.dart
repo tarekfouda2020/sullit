@@ -15,7 +15,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/add_to_cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 
-class BuildProductItem extends StatefulWidget {
+class BuildProductItem extends StatelessWidget {
   final Product productModel;
   final VoidCallback onFavRefresh;
   final VoidCallback onCompareRefresh;
@@ -28,16 +28,6 @@ class BuildProductItem extends StatefulWidget {
   });
 
   @override
-  State<BuildProductItem> createState() => _BuildProductItemState();
-}
-
-class _BuildProductItemState extends State<BuildProductItem> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       width: 160.w,
@@ -45,8 +35,8 @@ class _BuildProductItemState extends State<BuildProductItem> {
       child: InkWell(
         onTap: () => AutoRouter.of(context).push(
           ProductDetailsRoute(
-            productId: widget.productModel.id!,
-            isResale: widget.productModel.isResale!,
+            productId: productModel.id!,
+            isResale: productModel.isResale!,
           ),
         ),
         child: Column(
@@ -59,10 +49,10 @@ class _BuildProductItemState extends State<BuildProductItem> {
                     fit: BoxFit.fill,
                     haveRadius: true,
                     borderRadius: Dimens.borderRadius5PX,
-                    url: widget.productModel.thumbnailImage!,
+                    url: productModel.thumbnailImage!,
                   ),
                   Visibility(
-                    visible: widget.productModel.hasDiscount!,
+                    visible: productModel.hasDiscount!,
                     child: PositionedDirectional(
                       top: 20.r,
                       child: Container(
@@ -96,7 +86,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                                 color: context.colors.primary,
                               ),
                               child: Text(
-                                widget.productModel.discount!,
+                                productModel.discount!,
                                 style: AppTextStyle.s10_w400(
                                   color: context.colors.white,
                                 ),
@@ -112,35 +102,36 @@ class _BuildProductItemState extends State<BuildProductItem> {
                     child: Column(
                       children: [
                         BuildIconItem(
-                          iconData: widget.productModel.isWishlist!
+                          iconData: productModel.isWishlist!
                               ? Icons.favorite
                               : Icons.favorite_border,
-                          containerColor: widget.productModel.isWishlist!
+                          containerColor: productModel.isWishlist!
                               ? context.colors.primary
                               : context.colors.white,
                           onTap: () => ProductsHelper().toggleFavourite(
-                            id: widget.productModel.id!,
-                            context: context, onRefresh:
-                              () {  },
+                            id: productModel.id!,
+                            context: context,
+                            onRefresh: onFavRefresh,
                           ),
-                          checkValue: widget.productModel.isWishlist,
+                          checkValue: productModel.isWishlist,
                         ),
                         BuildIconItem(
-                          containerColor: widget.productModel.isAddedTCompare!
+                          containerColor: productModel.isAddedTCompare!
                               ? context.colors.primary
                               : context.colors.white,
                           iconData: Icons.compare_arrows,
-                          checkValue: widget.productModel.isAddedTCompare,
+                          checkValue: productModel.isAddedTCompare,
                           onTap: () {
-                            getIt<ProductsHelper>().addProductToCompare(widget.productModel, context);
-                            // onCompareRefresh.call();
+                            getIt<ProductsHelper>().addProductToCompare(
+                                productModel, context);
+                            onCompareRefresh.call();
                           },
                         ),
                         BuildIconItem(
                           iconData: Icons.shopping_cart,
                           onTap: () => getIt<AddToCartHelper>().addToCartDialog(
                             context,
-                            widget.productModel,
+                            productModel,
                           ),
                         ),
                       ],
@@ -155,16 +146,16 @@ class _BuildProductItemState extends State<BuildProductItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.productModel.priceHighLowDiscount!,
+                    productModel.priceHighLowDiscount!,
                     style: AppTextStyle.s11_bold(
                       color: context.colors.primary,
                     ),
                   ),
                   Gaps.vGap3,
                   Visibility(
-                    visible: widget.productModel.hasDiscount!,
+                    visible: productModel.hasDiscount!,
                     child: Text(
-                      widget.productModel.priceHighLow!,
+                      productModel.priceHighLow!,
                       style: AppTextStyle.s11_bold(
                         color: context.colors.black,
                       ).copyWith(
@@ -173,7 +164,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                     ),
                   ),
                   RatingBar.builder(
-                    initialRating: widget.productModel.rating!.toDouble(),
+                    initialRating: productModel.rating!.toDouble(),
                     ignoreGestures: true,
                     minRating: 1,
                     direction: Axis.horizontal,
@@ -189,7 +180,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                     onRatingUpdate: (rating) {},
                   ),
                   Text(
-                    widget.productModel.name!,
+                    productModel.name!,
                     style: AppTextStyle.s13_w500(
                       color: context.colors.black,
                     ).copyWith(

@@ -2,8 +2,10 @@ part of 'home_main_widgets_imports.dart';
 
 class BuildDeals extends StatelessWidget {
   final List<FlashSale> flashSales;
+  final HomeMainController controller;
 
-  const BuildDeals({super.key, required this.flashSales});
+  const BuildDeals(
+      {super.key, required this.flashSales, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +15,7 @@ class BuildDeals extends StatelessWidget {
         (index) => Expanded(
           child: BuildDealsItem(
             flashSaleModel: flashSales[index],
-            onTap: () => AutoRouter.of(context)
-                .push(SaleDetailsRoute(dealId: flashSales[index].id)),
+            controller: controller,
           ),
         ),
       ),

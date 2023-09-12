@@ -3,9 +3,6 @@ part of 'compare_imports.dart';
 class CompareController {
   final GenericBloc<List<Product>> productsBloc = GenericBloc([]);
 
-  // CompareController(BuildContext context) {
-  //   getComparedProducts(context);
-  // }
 
   Future<void> getComparedProducts(BuildContext context,
       {bool refresh = true}) async {

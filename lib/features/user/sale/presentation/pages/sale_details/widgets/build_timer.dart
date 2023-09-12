@@ -26,22 +26,25 @@ class _BuildTimerState extends State<BuildTimer> {
     return BlocBuilder<GenericBloc<TimerEntity>, GenericState<TimerEntity>>(
       bloc: timerCubit,
       builder: (context, state) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            BuildTimeItem(
-              time: state.data.days(),
-            ),
-            BuildTimeItem(
-              time: state.data.hours(),
-            ),
-            BuildTimeItem(
-              time: state.data.minutes(),
-            ),
-            BuildTimeItem(
-              time: state.data.seconds(),
-            ),
-          ],
+        return Padding(
+          padding: Dimens.paddingVertical5PX,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              BuildTimeItem(
+                time: state.data.days(),
+              ),
+              BuildTimeItem(
+                time: state.data.hours(),
+              ),
+              BuildTimeItem(
+                time: state.data.minutes(),
+              ),
+              BuildTimeItem(
+                time: state.data.seconds(),
+              ),
+            ],
+          ),
         );
       },
     );

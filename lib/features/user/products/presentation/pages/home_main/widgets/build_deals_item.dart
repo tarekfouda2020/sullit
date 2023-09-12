@@ -2,14 +2,14 @@ part of 'home_main_widgets_imports.dart';
 
 class BuildDealsItem extends StatelessWidget {
   final FlashSale flashSaleModel;
-  final Function() onTap;
+  final HomeMainController controller;
 
-  const BuildDealsItem({super.key, required this.flashSaleModel, required this.onTap});
+  const BuildDealsItem({super.key, required this.flashSaleModel, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: ()=>controller.navigateToDeals(context, flashSaleModel),
       child: Container(
         margin: Dimens.paddingAll3PX,
         padding: Dimens.paddingVertical8PX,

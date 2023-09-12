@@ -1,8 +1,10 @@
 part of 'sale_details_imports.dart';
-class SaleDetailsController {
-  final GenericBloc<SaleDetailsDomainModel?> saleDetailsBloc = GenericBloc(null);
 
-  SaleDetailsController(int saleId){
+class SaleDetailsController {
+  final GenericBloc<SaleDetailsDomainModel?> saleDetailsBloc =
+      GenericBloc(null);
+
+  SaleDetailsController(int saleId) {
     getSaleDetails(saleId);
   }
 
@@ -10,5 +12,11 @@ class SaleDetailsController {
     return await GetAllDealsProducts().call(saleId).then(
           (value) => saleDetailsBloc.onUpdateData(value),
         );
+  }
+
+  void onFavChanged(Product model) {
+    model.isWishlist = !model.isWishlist!;
+    print(">>>>${model.isWishlist}");
+    saleDetailsBloc.onUpdateData(saleDetailsBloc.state.data);
   }
 }

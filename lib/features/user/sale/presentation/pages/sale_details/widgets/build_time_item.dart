@@ -7,11 +7,11 @@ class BuildTimeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(5),
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+      margin: Dimens.paddingAll5PX,
+      padding: Dimens.paddingAll15PX,
       decoration: BoxDecoration(
-        color: Colors.red,
-        borderRadius: BorderRadius.circular(10),
+        color: context.colors.primary,
+        borderRadius:Dimens.borderRadius10PX,
       ),
       child: Text(
         time,
