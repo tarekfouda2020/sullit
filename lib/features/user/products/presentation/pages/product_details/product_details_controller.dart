@@ -132,7 +132,7 @@ class ProductDetailsController {
   }
 
   void onBuyProduct(BuildContext context) {
-    getIt<AddToCartHelper>().addProductToCart(
+    getIt<CartHelper>().addProductToCart(
       context,
       qtyCubit.state.data,
       detailsCubit.state.data?.product.variant?.id,
@@ -143,7 +143,7 @@ class ProductDetailsController {
   }
 
   void onAddToCart(BuildContext context){
-    getIt<AddToCartHelper>().addProductToCart(
+    getIt<CartHelper>().addProductToCart(
       context,
       qtyCubit.state.data,
       detailsCubit.state.data?.product.variant?.id,

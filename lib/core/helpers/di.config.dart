@@ -36,15 +36,15 @@ import 'package:flutter_tdd/core/http/dio_helper/utils/handle_request_body.dart'
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart' as _i43;
 import 'package:flutter_tdd/core/network/network_info.dart' as _i52;
 import 'package:flutter_tdd/features/general/auth/data/data_source/auth_data_source.dart'
-    as _i9;
+    as _i8;
 import 'package:flutter_tdd/features/general/auth/data/data_source/impl_auth_data_source.dart'
-    as _i10;
+    as _i9;
 import 'package:flutter_tdd/features/general/auth/data/repository/impl_auth_repository.dart'
-    as _i13;
-import 'package:flutter_tdd/features/general/auth/domain/repository/auth_repository.dart'
     as _i12;
-import 'package:flutter_tdd/features/general/auth/presentation/manager/helpers/auth_helper.dart'
+import 'package:flutter_tdd/features/general/auth/domain/repository/auth_repository.dart'
     as _i11;
+import 'package:flutter_tdd/features/general/auth/presentation/manager/helpers/auth_helper.dart'
+    as _i10;
 import 'package:flutter_tdd/features/general/common/data/data_sources/common_data_sources.dart'
     as _i30;
 import 'package:flutter_tdd/features/general/common/data/data_sources/impl_common_data_sources.dart'
@@ -54,33 +54,33 @@ import 'package:flutter_tdd/features/general/common/data/repository/impl_common_
 import 'package:flutter_tdd/features/general/common/domain/repository/common_repository.dart'
     as _i32;
 import 'package:flutter_tdd/features/user/addresses/data/data_sources/addresses_data_sources.dart'
-    as _i5;
+    as _i4;
 import 'package:flutter_tdd/features/user/addresses/data/data_sources/impl_addresses_data_sources.dart'
-    as _i6;
+    as _i5;
 import 'package:flutter_tdd/features/user/addresses/data/repository/impl_addresses_repository.dart'
-    as _i8;
-import 'package:flutter_tdd/features/user/addresses/domain/repository/addresses_repository.dart'
     as _i7;
+import 'package:flutter_tdd/features/user/addresses/domain/repository/addresses_repository.dart'
+    as _i6;
 import 'package:flutter_tdd/features/user/base/data/data_sources/base_data_sources.dart'
-    as _i14;
+    as _i13;
 import 'package:flutter_tdd/features/user/base/data/data_sources/impl_base_data_sources.dart'
-    as _i15;
+    as _i14;
 import 'package:flutter_tdd/features/user/base/data/repository/impl_base_repository.dart'
-    as _i17;
-import 'package:flutter_tdd/features/user/base/domain/repository/base_repository.dart'
     as _i16;
+import 'package:flutter_tdd/features/user/base/domain/repository/base_repository.dart'
+    as _i15;
 import 'package:flutter_tdd/features/user/blog/data/data_sources/blog_data_sources.dart'
-    as _i18;
+    as _i17;
 import 'package:flutter_tdd/features/user/blog/data/data_sources/impl_blog_data_sources.dart'
-    as _i19;
+    as _i18;
 import 'package:flutter_tdd/features/user/blog/data/repository/impl_blog_repository.dart'
-    as _i21;
-import 'package:flutter_tdd/features/user/blog/domain/repository/blog_repository.dart'
     as _i20;
+import 'package:flutter_tdd/features/user/blog/domain/repository/blog_repository.dart'
+    as _i19;
 import 'package:flutter_tdd/features/user/cart/data/data_sources/cart_data_sources.dart'
-    as _i22;
+    as _i21;
 import 'package:flutter_tdd/features/user/cart/data/data_sources/impl_cart_data_sources.dart'
-    as _i23;
+    as _i22;
 import 'package:flutter_tdd/features/user/cart/data/repository/impl_cart_repository.dart'
     as _i25;
 import 'package:flutter_tdd/features/user/cart/domain/repository/cart_repository.dart'
@@ -127,8 +127,8 @@ import 'package:flutter_tdd/features/user/products/data/repository/impl_products
     as _i68;
 import 'package:flutter_tdd/features/user/products/domain/repository/products_repository.dart'
     as _i67;
-import 'package:flutter_tdd/features/user/products/presentation/manager/add_to_cart_helper.dart'
-    as _i4;
+import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart'
+    as _i23;
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart'
     as _i66;
 import 'package:flutter_tdd/features/user/profile/data/data_sources/impl_profile_data_sources.dart'
@@ -202,17 +202,17 @@ extension GetItInjectableX on _i1.GetIt {
       environmentFilter,
     );
     gh.factory<_i3.AddImageHelper>(() => _i3.AddImageHelper());
-    gh.factory<_i4.AddToCartHelper>(() => _i4.AddToCartHelper());
-    gh.factory<_i5.AddressesDataSources>(() => _i6.ImplAddressesDataSources());
-    gh.factory<_i7.AddressesRepository>(() => _i8.ImplAddressesRepository());
-    gh.factory<_i9.AuthDataSource>(() => _i10.ImplAuthDataSource());
-    gh.factory<_i11.AuthHelper>(() => _i11.AuthHelper());
-    gh.factory<_i12.AuthRepository>(() => _i13.ImplAuthRepository());
-    gh.factory<_i14.BaseDataSources>(() => _i15.ImplBaseDataSources());
-    gh.factory<_i16.BaseRepository>(() => _i17.ImplBaseRepository());
-    gh.factory<_i18.BlogDataSources>(() => _i19.ImplBlogDataSources());
-    gh.factory<_i20.BlogRepository>(() => _i21.ImplBlogRepository());
-    gh.factory<_i22.CartDataSources>(() => _i23.ImplCartDataSources());
+    gh.factory<_i4.AddressesDataSources>(() => _i5.ImplAddressesDataSources());
+    gh.factory<_i6.AddressesRepository>(() => _i7.ImplAddressesRepository());
+    gh.factory<_i8.AuthDataSource>(() => _i9.ImplAuthDataSource());
+    gh.factory<_i10.AuthHelper>(() => _i10.AuthHelper());
+    gh.factory<_i11.AuthRepository>(() => _i12.ImplAuthRepository());
+    gh.factory<_i13.BaseDataSources>(() => _i14.ImplBaseDataSources());
+    gh.factory<_i15.BaseRepository>(() => _i16.ImplBaseRepository());
+    gh.factory<_i17.BlogDataSources>(() => _i18.ImplBlogDataSources());
+    gh.factory<_i19.BlogRepository>(() => _i20.ImplBlogRepository());
+    gh.factory<_i21.CartDataSources>(() => _i22.ImplCartDataSources());
+    gh.factory<_i23.CartHelper>(() => _i23.CartHelper());
     gh.factory<_i24.CartRepository>(() => _i25.ImplCartRepository());
     gh.factory<_i26.CategoryDataSources>(() => _i27.ImplCategoryDataSources());
     gh.factory<_i28.CategoryRepository>(() => _i29.ImplCategoryRepository());

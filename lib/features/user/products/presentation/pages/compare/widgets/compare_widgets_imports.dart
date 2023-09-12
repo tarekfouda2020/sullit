@@ -16,7 +16,7 @@ import 'package:flutter_tdd/features/user/cart/domain/use_cases/add_product_to_c
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/widgets/category_details_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
-import 'package:flutter_tdd/features/user/products/presentation/manager/add_to_cart_helper.dart';
+import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/compare/compare_imports.dart';
 import 'package:flutter_tdd/res.dart';

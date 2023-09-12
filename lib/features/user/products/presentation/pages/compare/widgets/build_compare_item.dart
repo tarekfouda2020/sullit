@@ -9,6 +9,7 @@ class BuildCompareItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("#######${productModel.toJson()}");
     return Container(
       decoration: CustomDecoration(),
       padding: Dimens.paddingAll15PX,
@@ -29,7 +30,7 @@ class BuildCompareItem extends StatelessWidget {
               children: [
                 Text(
                   productModel.name ?? "",
-                  style: AppTextStyle.s15_w700(color: context.colors.black),
+                  style: AppTextStyle.s15_w500(color: context.colors.black),
                 ),
                 Gaps.vGap5,
                 BuildHeaderText(
@@ -67,7 +68,7 @@ class BuildCompareItem extends StatelessWidget {
               ),
               BuildIconItem(
                 iconData: Icons.shopping_cart,
-                onTap: () => getIt<AddToCartHelper>().addToCartDialog(
+                onTap: () => getIt<CartHelper>().addToCartDialog(
                   context,
                   productModel,
                 ),

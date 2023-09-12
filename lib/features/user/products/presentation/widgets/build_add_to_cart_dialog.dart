@@ -3,14 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart/widgets/cart_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
-import 'package:flutter_tdd/features/user/products/presentation/manager/add_to_cart_helper.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
+import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_add_to_cart_attributes.dart';
 
 class BuildAddToCartDialog extends StatefulWidget {
@@ -24,12 +27,27 @@ class BuildAddToCartDialog extends StatefulWidget {
 }
 
 class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
+  final GenericBloc<Product?> productCubit = GenericBloc(null);
+
+  @override
+  void initState() {
+    productCubit.onUpdateData(widget.product);
+    if (widget.product.choiceOptions!.isNotEmpty) {
+      widget.product.choiceOptions?.map((e) {
+        e.selectedAttribute = [];
+        e.selectedAttribute?.add(e.options!.first);
+        e.hasValue = true;
+      }).toList();
+      productCubit.onUpdateData(widget.product);
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final GenericBloc<Product?> productCubit = GenericBloc(null);
-    productCubit.onUpdateData(widget.product);
     return AlertDialog(
       backgroundColor: Colors.white,
+      contentPadding: Dimens.paddingAll20PX,
       content: BlocBuilder<GenericBloc<Product?>, GenericState<Product?>>(
         bloc: productCubit,
         builder: (context, state) {
@@ -39,125 +57,122 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
               CachedImage(
                 url: state.data!.images!.first,
                 height: 100.h,
-                borderRadius: BorderRadius.circular(25).r,
-                width: MediaQuery.of(context).size.width * .5,
+                borderRadius: Dimens.borderRadius5PX,
+                fit: BoxFit.fill,
+                width: MediaQuery.of(context).size.width,
               ),
               Gaps.vGap10,
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                padding: Dimens.paddingAll10PX,
                 child: Text(
                   state.data!.name!,
                   style: AppTextStyle.s16_w500(color: context.colors.black),
                 ),
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'price',
+                    'Price : ',
                     style: AppTextStyle.s16_w400(color: context.colors.black),
                   ),
+                  const Spacer(),
                   Text(
-                    state.data!.priceHighLow!,
-                    style: const AppTextStyle.s16_w400(color: Colors.red),
+                    "${state.data!.priceHighLowDiscount} ",
+                    style: AppTextStyle.s16_w500(
+                      color: context.colors.primary,
+                    ),
+                  ),
+                  Visibility(
+                    visible: state.data!.hasDiscount!,
+                    child: Text(
+                      "${state.data!.priceHighLow} ",
+                      style: AppTextStyle.s16_w500(
+                        color: context.colors.black,
+                      ).copyWith(
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                    ),
                   ),
                 ],
               ),
-              Divider(thickness: 1, color: context.colors.greyWhite),
-              BuildProductAttributes(
-                productOptions: widget.product.choiceOptions ?? [],
-                productCubit: productCubit,
-              ),
+              Gaps.line(context.colors.grey, 20.h),
+              BuildProductAttributes(productCubit: productCubit),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'quantity: ',
+                    'Quantity : ',
                     style: AppTextStyle.s16_w400(color: context.colors.black),
                   ),
                   BuildCustomBounce(
-                    onTap: () {
-                      if (state.data!.minQty != 1) {
-                        state.data!.minQty = state.data!.minQty! - 1;
-                        double price =
-                            double.parse(state.data!.variant!.calculablePrice!);
-                        String calculatedPrice =
-                            (state.data!.minQty! * price).toString();
-                        state.data!.priceHighLow = calculatedPrice;
-                        productCubit.onUpdateData(state.data);
-                      }
-                    },
+                    onTap: () =>
+                        getIt<CartHelper>().onDecreaseQty(productCubit),
                     iconData: Icons.remove,
                   ),
                   Text(
-                    state is GenericUpdateState
-                        ? '  ${state.data!.minQty} '
-                        : '${widget.product.minQty}',
+                    "${state.data!.minQty}",
                     style: AppTextStyle.s16_w400(
                       color: context.colors.black,
                     ),
                   ),
                   BuildCustomBounce(
-                    onTap: () {
-                      state.data!.minQty = state.data!.minQty! + 1;
-                      double price =
-                          double.parse(state.data!.variant!.calculablePrice!);
-                      String calculatedPrice =
-                          (state.data!.minQty! * price).toString();
-                      state.data!.priceHighLow = calculatedPrice;
-                      productCubit.onUpdateData(state.data);
-                    },
+                    onTap: () =>
+                        getIt<CartHelper>().onIncreaseQty(productCubit),
                     iconData: Icons.add,
                   )
                 ],
               ),
-              Divider(thickness: 1, color: context.colors.greyWhite),
+              Gaps.line(context.colors.grey, 20.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Total Price:',
+                    'Total Price : ',
                     style: AppTextStyle.s16_w400(
                       color: context.colors.black,
                     ),
                   ),
                   Text(
-                    state.data!.priceHighLow!,
-                    style: const AppTextStyle.s16_w400(color: Colors.red),
+                    "${state.data!.variant?.calculablePrice} ${state.data!.variant?.currencySymbol}",
+                    style: AppTextStyle.s16_w500(color: context.colors.primary),
                   ),
                 ],
               ),
-              GestureDetector(
-                onTap: () => getIt<AddToCartHelper>().addProductToCart(
-                  context,
-                  state.data!.minQty!,
-                  state.data!.variant?.id,
-                  onAddCartFunc: () => AutoRouter.of(context).pop(),
+              Gaps.vGap24,
+              Visibility(
+                visible: state.data!.variant!.currentStock! > 1,
+                replacement: Text(
+                  "OUT OF STOCK",
+                  style: AppTextStyle.s16_w800(
+                    color: context.colors.black,
+                  ),
                 ),
-                child: Container(
-                  margin: EdgeInsets.symmetric(
-                    horizontal: 50.w,
-                    vertical: 20.h,
+                child: GestureDetector(
+                  onTap: () => getIt<CartHelper>().addProductToCart(
+                    context,
+                    state.data!.minQty!,
+                    state.data!.variant?.id,
+                    onAddCartFunc: () => AutoRouter.of(context).pop(),
                   ),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 5,
-                    horizontal: 20,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10).r,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.shopping_cart,
-                        color: context.colors.white,
-                        size: 15,
-                      ),
-                      Gaps.hGap10,
-                      const Text('Add to cart'),
-                    ],
+                  child: Container(
+                    margin: Dimens.paddingHorizontal5PX,
+                    padding: Dimens.standardPadding,
+                    decoration: BoxDecoration(
+                      color: context.colors.primary,
+                      borderRadius: Dimens.borderRadius5PX,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.shopping_cart,
+                          color: context.colors.white,
+                          size: 15,
+                        ),
+                        Gaps.hGap10,
+                        const Text('Add to cart'),
+                      ],
+                    ),
                   ),
                 ),
               )

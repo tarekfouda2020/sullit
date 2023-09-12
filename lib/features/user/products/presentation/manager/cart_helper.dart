@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:auto_route/auto_route.dart';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
@@ -16,12 +16,48 @@ import 'package:flutter_tdd/features/user/products/presentation/widgets/build_ad
 import 'package:injectable/injectable.dart';
 
 @injectable
-class AddToCartHelper {
+class CartHelper {
   List<String> selectedVariants = [];
-  final GenericBloc<int> qtyCubit = GenericBloc(1);
 
-  void onSelectAttributes(BuildContext context, List<ProductOptions> model,
-      GenericBloc<Product?> productCubit, int position, int index) {
+  void onIncreaseQty(GenericBloc<Product?> productCubit) {
+    var variantPrice = productCubit.state.data?.variant;
+    var price = double.parse(variantPrice!.calculablePrice!);
+    price = price / productCubit.state.data!.minQty!;
+    print(">>>>${variantPrice.currentStock}");
+    if (variantPrice.currentStock! >= 1) {
+      if (variantPrice.currentStock! > productCubit.state.data!.minQty!) {
+        var newQty = productCubit.state.data!.minQty! + 1;
+        productCubit.state.data!.minQty = newQty;
+
+        var priceQty = newQty * price;
+        variantPrice.calculablePrice = priceQty.toString();
+        productCubit.onUpdateData(productCubit.state.data);
+      } else {
+        CustomToast.showSimpleToast(
+            msg: "Only ${variantPrice.currentStock} available in stock");
+        return;
+      }
+    } else {
+      CustomToast.showSimpleToast(msg: "Out Of Stock");
+      return;
+    }
+  }
+void onDecreaseQty(GenericBloc<Product?> productCubit){
+  var variantPrice = productCubit.state.data?.variant;
+  var price = double.parse(variantPrice!.calculablePrice!);
+  if (productCubit.state.data!.minQty! > 1) {
+    var priceQty = price - (price / productCubit.state.data!.minQty!);
+    productCubit.state.data!.minQty = productCubit.state.data!.minQty! - 1;
+    variantPrice.calculablePrice = priceQty.toString();
+    productCubit.onUpdateData(productCubit.state.data);
+  }
+}
+  void onSelectAttributes(
+      BuildContext context,
+      GenericBloc<Product?> productCubit,
+      List<ProductOptions> model,
+      int index,
+      int position) {
     List<String> selected = [];
     var optionItem = model[index];
     List<String> attributes = optionItem.selectedAttribute!;
@@ -37,7 +73,7 @@ class AddToCartHelper {
       selectedVariants = selected;
       return e;
     }).toList();
-    qtyCubit.onUpdateData(1);
+    productCubit.state.data?.minQty = 1;
     productCubit.onUpdateData(productCubit.state.data);
     getVariantPrice(context, productCubit);
   }
@@ -47,7 +83,8 @@ class AddToCartHelper {
     var params = _variantPriceParams(productCubit.state.data!.id!);
     var result = await GetVariantPrice().call(params);
     if (result != null) {
-      productCubit.onUpdateData(result);
+      productCubit.state.data?.variant = result.variant;
+      productCubit.onUpdateData(productCubit.state.data);
     }
   }
 
@@ -63,7 +100,7 @@ class AddToCartHelper {
   Future<void> addProductToCart(BuildContext context, int qty, int? variantId,
       {required Function() onAddCartFunc}) async {
     var params = await _addToCartParams(variantId, qty);
-    print(">>>>>${params.toJson()}");
+    log(">>>>>${params.toJson()}");
     if (params.variantId == null) {
       CustomToast.showSimpleToast(msg: 'Variant not found. !');
       return;

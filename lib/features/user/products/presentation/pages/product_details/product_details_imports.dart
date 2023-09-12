@@ -20,7 +20,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/product_options
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_product_details.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_variant_price.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/send_query.dart';
-import 'package:flutter_tdd/features/user/products/presentation/manager/add_to_cart_helper.dart';
+import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 
 import 'widgets/product_details_widgets_imports.dart';

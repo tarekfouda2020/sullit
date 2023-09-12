@@ -31,12 +31,14 @@ class BuildHomeNewProducts extends StatelessWidget {
                         padding: Dimens.paddingHorizontal5PX,
                         child: BuildProductItem(
                           productModel: newestProducts[index],
-                          onFavRefresh: () => controller.onChangeFav(
-                            newestProducts[index],
-                          ), onCompareRefresh: () {
-                            newestProducts[index].isAddedTCompare = !newestProducts[index].isAddedTCompare!;
-                            controller.homeCubit.onUpdateData(controller.homeCubit.state.data);
-                        },
+                          onFavRefresh: () =>
+                              controller.onChangeFav(newestProducts[index]),
+                          onCompareRefresh: () {
+                            newestProducts[index].isAddedTCompare =
+                                !newestProducts[index].isAddedTCompare!;
+                            controller.homeCubit
+                                .onUpdateData(controller.homeCubit.state.data);
+                          },
                         ),
                       );
                     },

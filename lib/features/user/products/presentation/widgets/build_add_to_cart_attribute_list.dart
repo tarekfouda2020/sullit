@@ -7,23 +7,24 @@ import 'package:flutter_tdd/features/user/products/presentation/widgets/build_ad
 
 class BuildAddToCartAttributeList extends StatelessWidget {
   final int index;
-  final List<ProductOptions> productOptions;
-  final GenericBloc<Product?> productCubit ;
+  final GenericBloc<Product?> productCubit;
 
-  const BuildAddToCartAttributeList(
-      {super.key,
-      required this.index,
-      required this.productOptions, required this.productCubit});
+  const BuildAddToCartAttributeList({
+    super.key,
+    required this.index,
+    required this.productCubit,
+  });
 
   @override
   Widget build(BuildContext context) {
+    List<String> attributes =
+        productCubit.state.data!.choiceOptions![index].options!;
     return Wrap(
       runSpacing: 5.r,
       spacing: 5.r,
       children: List.generate(
-        productOptions[index].options!.length,
+        attributes.length,
         (position) => BuildAddToCartAttributeItems(
-          optionModel: productOptions,
           index: index,
           position: position,
           productCubit: productCubit,

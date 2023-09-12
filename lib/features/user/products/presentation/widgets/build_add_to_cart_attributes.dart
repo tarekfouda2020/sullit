@@ -8,31 +8,32 @@ import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_add_to_cart_attribute_list.dart';
 
-
 class BuildProductAttributes extends StatelessWidget {
-  final List<ProductOptions> productOptions;
-  final GenericBloc<Product?> productCubit ;
+  final GenericBloc<Product?> productCubit;
 
-  const BuildProductAttributes(
-      {super.key, required this.productOptions, required this.productCubit});
+  const BuildProductAttributes({
+    super.key,
+    required this.productCubit,
+  });
 
   @override
   Widget build(BuildContext context) {
+    List<ProductOptions> options = productCubit.state.data!.choiceOptions!;
     return Visibility(
-      visible: productOptions.isNotEmpty,
+      visible: options.isNotEmpty,
       replacement: Gaps.vGap5,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Gaps.vGap10,
           ...List.generate(
-            productOptions.length,
-                (index) => Column(
+            options.length,
+            (index) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  productOptions[index].title!,
-                  style: AppTextStyle.s12_w500(
+                  options[index].title!,
+                  style: AppTextStyle.s16_w400(
                     color: context.colors.black,
                   ),
                   textAlign: TextAlign.center,
@@ -40,7 +41,6 @@ class BuildProductAttributes extends StatelessWidget {
                 Gaps.vGap10,
                 BuildAddToCartAttributeList(
                   index: index,
-                  productOptions: productOptions,
                   productCubit: productCubit,
                 ),
                 Gaps.vGap15,
