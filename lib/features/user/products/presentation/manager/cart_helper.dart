@@ -19,39 +19,6 @@ import 'package:injectable/injectable.dart';
 class CartHelper {
   List<String> selectedVariants = [];
 
-  void onIncreaseQty(GenericBloc<Product?> productCubit) {
-    var variantPrice = productCubit.state.data?.variant;
-    var price = double.parse(variantPrice!.calculablePrice!);
-    price = price / productCubit.state.data!.minQty!;
-    print(">>>>${variantPrice.currentStock}");
-    if (variantPrice.currentStock! >= 1) {
-      if (variantPrice.currentStock! > productCubit.state.data!.minQty!) {
-        var newQty = productCubit.state.data!.minQty! + 1;
-        productCubit.state.data!.minQty = newQty;
-
-        var priceQty = newQty * price;
-        variantPrice.calculablePrice = priceQty.toString();
-        productCubit.onUpdateData(productCubit.state.data);
-      } else {
-        CustomToast.showSimpleToast(
-            msg: "Only ${variantPrice.currentStock} available in stock");
-        return;
-      }
-    } else {
-      CustomToast.showSimpleToast(msg: "Out Of Stock");
-      return;
-    }
-  }
-void onDecreaseQty(GenericBloc<Product?> productCubit){
-  var variantPrice = productCubit.state.data?.variant;
-  var price = double.parse(variantPrice!.calculablePrice!);
-  if (productCubit.state.data!.minQty! > 1) {
-    var priceQty = price - (price / productCubit.state.data!.minQty!);
-    productCubit.state.data!.minQty = productCubit.state.data!.minQty! - 1;
-    variantPrice.calculablePrice = priceQty.toString();
-    productCubit.onUpdateData(productCubit.state.data);
-  }
-}
   void onSelectAttributes(
       BuildContext context,
       GenericBloc<Product?> productCubit,
@@ -88,13 +55,39 @@ void onDecreaseQty(GenericBloc<Product?> productCubit){
     }
   }
 
-  void addToCartDialog(BuildContext context, Product product) {
-    showDialog(
-      context: context,
-      builder: (context) => BuildAddToCartDialog(
-        product: product,
-      ),
-    );
+  void onIncreaseQty(GenericBloc<Product?> productCubit) {
+    var variantPrice = productCubit.state.data?.variant;
+    var price = double.parse(variantPrice!.calculablePrice!);
+    price = price / productCubit.state.data!.minQty!;
+    log(">>>>${variantPrice.currentStock}");
+    if (variantPrice.currentStock! >= 1) {
+      if (variantPrice.currentStock! > productCubit.state.data!.minQty!) {
+        var newQty = productCubit.state.data!.minQty! + 1;
+        productCubit.state.data!.minQty = newQty;
+
+        var priceQty = newQty * price;
+        variantPrice.calculablePrice = priceQty.toString();
+        productCubit.onUpdateData(productCubit.state.data);
+      } else {
+        CustomToast.showSimpleToast(
+            msg: "Only ${variantPrice.currentStock} available in stock");
+        return;
+      }
+    } else {
+      CustomToast.showSimpleToast(msg: "Out Of Stock");
+      return;
+    }
+  }
+
+  void onDecreaseQty(GenericBloc<Product?> productCubit) {
+    var variantPrice = productCubit.state.data?.variant;
+    var price = double.parse(variantPrice!.calculablePrice!);
+    if (productCubit.state.data!.minQty! > 1) {
+      var priceQty = price - (price / productCubit.state.data!.minQty!);
+      productCubit.state.data!.minQty = productCubit.state.data!.minQty! - 1;
+      variantPrice.calculablePrice = priceQty.toString();
+      productCubit.onUpdateData(productCubit.state.data);
+    }
   }
 
   Future<void> addProductToCart(BuildContext context, int qty, int? variantId,
@@ -111,6 +104,15 @@ void onDecreaseQty(GenericBloc<Product?> productCubit){
           msg: 'Product added to your cart.', type: ToastType.success);
     }
     onAddCartFunc();
+  }
+
+  void addToCartDialog(BuildContext context, Product product) {
+    showDialog(
+      context: context,
+      builder: (context) => BuildAddToCartDialog(
+        product: product,
+      ),
+    );
   }
 
   Future<AddProductToCartParams> _addToCartParams(
