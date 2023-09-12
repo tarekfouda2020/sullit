@@ -27,9 +27,9 @@ class BuildProducts extends StatelessWidget {
             itemBuilder: (_, item, index) => BuildProductItem(
               productModel: item,
               onFavRefresh: () => controller.onFavChanged(item),
-              onCompareRefresh: (){
-                item.isAddedTCompare = !item.isAddedTCompare! ;
-              }
+              onCompareRefresh: () {
+                item.isAddedTCompare = !item.isAddedTCompare!;
+              },
             ),
             noItemsFoundIndicatorBuilder: (cxt) => const BuildEmptyDataView(),
           ),

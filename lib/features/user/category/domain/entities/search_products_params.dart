@@ -31,7 +31,7 @@ class SearchProductsParams extends BaseDomainModel {
         "paginate": pageSize,
         "page": currentPage,
         "min_price": minPrice,
-        "maxPrice": maxPrice,
+        "max_price": maxPrice,
         "category_id": catId,
         "brand_id": brandId,
         "color": color,
