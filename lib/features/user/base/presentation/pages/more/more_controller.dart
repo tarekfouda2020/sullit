@@ -60,6 +60,9 @@ class MoreController {
       case MoreRoutes.classifiedProducts:
         AutoRouter.of(context).push(const ClassifiedProductsRoute());
         break;
+      case MoreRoutes.customersProducts:
+        AutoRouter.of(context).push(const CustomersProductsRoute());
+        break;
     }
   }
 }

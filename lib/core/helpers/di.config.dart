@@ -10,31 +10,31 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter_tdd/core/helpers/firebase_analytics_helper.dart'
-    as _i42;
-import 'package:flutter_tdd/core/helpers/get_device_id.dart' as _i45;
-import 'package:flutter_tdd/core/helpers/global_context.dart' as _i46;
-import 'package:flutter_tdd/core/helpers/global_notification.dart' as _i47;
-import 'package:flutter_tdd/core/helpers/loading_helper.dart' as _i51;
-import 'package:flutter_tdd/core/helpers/new_version_helper.dart' as _i53;
-import 'package:flutter_tdd/core/helpers/rate_app_helper.dart' as _i78;
-import 'package:flutter_tdd/core/helpers/utilities.dart' as _i91;
-import 'package:flutter_tdd/core/http/dio_helper/actions/delete.dart' as _i38;
-import 'package:flutter_tdd/core/http/dio_helper/actions/download.dart' as _i41;
-import 'package:flutter_tdd/core/http/dio_helper/actions/get.dart' as _i44;
-import 'package:flutter_tdd/core/http/dio_helper/actions/patch.dart' as _i58;
-import 'package:flutter_tdd/core/http/dio_helper/actions/post.dart' as _i63;
-import 'package:flutter_tdd/core/http/dio_helper/actions/put.dart' as _i77;
-import 'package:flutter_tdd/core/http/dio_helper/utils/dio_header.dart' as _i39;
-import 'package:flutter_tdd/core/http/dio_helper/utils/dio_options.dart'
-    as _i40;
-import 'package:flutter_tdd/core/http/dio_helper/utils/handle_errors.dart'
-    as _i48;
-import 'package:flutter_tdd/core/http/dio_helper/utils/handle_json_response.dart'
-    as _i49;
-import 'package:flutter_tdd/core/http/dio_helper/utils/handle_request_body.dart'
     as _i50;
-import 'package:flutter_tdd/core/http/generic_http/generic_http.dart' as _i43;
-import 'package:flutter_tdd/core/network/network_info.dart' as _i52;
+import 'package:flutter_tdd/core/helpers/get_device_id.dart' as _i53;
+import 'package:flutter_tdd/core/helpers/global_context.dart' as _i54;
+import 'package:flutter_tdd/core/helpers/global_notification.dart' as _i55;
+import 'package:flutter_tdd/core/helpers/loading_helper.dart' as _i59;
+import 'package:flutter_tdd/core/helpers/new_version_helper.dart' as _i61;
+import 'package:flutter_tdd/core/helpers/rate_app_helper.dart' as _i86;
+import 'package:flutter_tdd/core/helpers/utilities.dart' as _i99;
+import 'package:flutter_tdd/core/http/dio_helper/actions/delete.dart' as _i46;
+import 'package:flutter_tdd/core/http/dio_helper/actions/download.dart' as _i49;
+import 'package:flutter_tdd/core/http/dio_helper/actions/get.dart' as _i52;
+import 'package:flutter_tdd/core/http/dio_helper/actions/patch.dart' as _i66;
+import 'package:flutter_tdd/core/http/dio_helper/actions/post.dart' as _i71;
+import 'package:flutter_tdd/core/http/dio_helper/actions/put.dart' as _i85;
+import 'package:flutter_tdd/core/http/dio_helper/utils/dio_header.dart' as _i47;
+import 'package:flutter_tdd/core/http/dio_helper/utils/dio_options.dart'
+    as _i48;
+import 'package:flutter_tdd/core/http/dio_helper/utils/handle_errors.dart'
+    as _i56;
+import 'package:flutter_tdd/core/http/dio_helper/utils/handle_json_response.dart'
+    as _i57;
+import 'package:flutter_tdd/core/http/dio_helper/utils/handle_request_body.dart'
+    as _i58;
+import 'package:flutter_tdd/core/http/generic_http/generic_http.dart' as _i51;
+import 'package:flutter_tdd/core/network/network_info.dart' as _i60;
 import 'package:flutter_tdd/features/general/auth/data/data_source/auth_data_source.dart'
     as _i8;
 import 'package:flutter_tdd/features/general/auth/data/data_source/impl_auth_data_source.dart'
@@ -46,13 +46,13 @@ import 'package:flutter_tdd/features/general/auth/domain/repository/auth_reposit
 import 'package:flutter_tdd/features/general/auth/presentation/manager/helpers/auth_helper.dart'
     as _i10;
 import 'package:flutter_tdd/features/general/common/data/data_sources/common_data_sources.dart'
-    as _i30;
+    as _i34;
 import 'package:flutter_tdd/features/general/common/data/data_sources/impl_common_data_sources.dart'
-    as _i31;
+    as _i35;
 import 'package:flutter_tdd/features/general/common/data/repository/impl_common_repository.dart'
-    as _i33;
+    as _i37;
 import 'package:flutter_tdd/features/general/common/domain/repository/common_repository.dart'
-    as _i32;
+    as _i36;
 import 'package:flutter_tdd/features/user/addresses/data/data_sources/addresses_data_sources.dart'
     as _i4;
 import 'package:flutter_tdd/features/user/addresses/data/data_sources/impl_addresses_data_sources.dart'
@@ -93,100 +93,116 @@ import 'package:flutter_tdd/features/user/category/data/repository/impl_category
     as _i29;
 import 'package:flutter_tdd/features/user/category/domain/repository/category_repository.dart'
     as _i28;
-import 'package:flutter_tdd/features/user/customers_products/presentaion/manager/helpers/add_image_helper.dart'
+import 'package:flutter_tdd/features/user/classified_products/data/data_sources/classified_products_data_sources.dart'
+    as _i30;
+import 'package:flutter_tdd/features/user/classified_products/data/data_sources/impl_classified_products_data_sources.dart'
+    as _i31;
+import 'package:flutter_tdd/features/user/classified_products/data/repository/impl_classified_products_repository.dart'
+    as _i33;
+import 'package:flutter_tdd/features/user/classified_products/domain/repository/classified_products_repository.dart'
+    as _i32;
+import 'package:flutter_tdd/features/user/classified_products/presentaion/manager/helpers/add_image_helper.dart'
     as _i3;
+import 'package:flutter_tdd/features/user/customers_products/data/data_sources/cus_products_data_sources.dart'
+    as _i40;
+import 'package:flutter_tdd/features/user/customers_products/data/data_sources/impl_cus_products_data_sources.dart'
+    as _i41;
+import 'package:flutter_tdd/features/user/customers_products/data/repository/impl_cus_products_repository.dart'
+    as _i39;
+import 'package:flutter_tdd/features/user/customers_products/domain/repository/cus_products_repository.dart'
+    as _i38;
 import 'package:flutter_tdd/features/user/dashboard/data/data_sources/dashboard_data_sources.dart'
-    as _i34;
+    as _i42;
 import 'package:flutter_tdd/features/user/dashboard/data/data_sources/impl_dashboard_data_sources.dart'
-    as _i35;
+    as _i43;
 import 'package:flutter_tdd/features/user/dashboard/data/repository/impl_dashboard_repository.dart'
-    as _i37;
+    as _i45;
 import 'package:flutter_tdd/features/user/dashboard/domain/repository/dashboard_repository.dart'
-    as _i36;
+    as _i44;
 import 'package:flutter_tdd/features/user/notifications/data/data_sources/impl_notifications_data_sources.dart'
-    as _i55;
+    as _i63;
 import 'package:flutter_tdd/features/user/notifications/data/data_sources/notifications_data_sources.dart'
-    as _i54;
-import 'package:flutter_tdd/features/user/notifications/data/repository/impl_notifications_repository.dart'
-    as _i57;
-import 'package:flutter_tdd/features/user/notifications/domain/repository/notifications_repository.dart'
-    as _i56;
-import 'package:flutter_tdd/features/user/payment/data/data_sources/payment_data_source.dart'
-    as _i59;
-import 'package:flutter_tdd/features/user/payment/data/data_sources/payment_data_source_impl.dart'
-    as _i60;
-import 'package:flutter_tdd/features/user/payment/data/repository/payment_repository_impl.dart'
     as _i62;
-import 'package:flutter_tdd/features/user/payment/domain/repository/payment_repository.dart'
-    as _i61;
-import 'package:flutter_tdd/features/user/products/data/data_source/remote_data_sources/impl_products_data_source.dart'
+import 'package:flutter_tdd/features/user/notifications/data/repository/impl_notifications_repository.dart'
     as _i65;
-import 'package:flutter_tdd/features/user/products/data/data_source/remote_data_sources/products_data_source.dart'
+import 'package:flutter_tdd/features/user/notifications/domain/repository/notifications_repository.dart'
     as _i64;
-import 'package:flutter_tdd/features/user/products/data/repository/impl_products_repository.dart'
-    as _i68;
-import 'package:flutter_tdd/features/user/products/domain/repository/products_repository.dart'
+import 'package:flutter_tdd/features/user/payment/data/data_sources/payment_data_source.dart'
     as _i67;
+import 'package:flutter_tdd/features/user/payment/data/data_sources/payment_data_source_impl.dart'
+    as _i68;
+import 'package:flutter_tdd/features/user/payment/data/repository/payment_repository_impl.dart'
+    as _i70;
+import 'package:flutter_tdd/features/user/payment/domain/repository/payment_repository.dart'
+    as _i69;
+import 'package:flutter_tdd/features/user/products/data/data_source/remote_data_sources/impl_products_data_source.dart'
+    as _i73;
+import 'package:flutter_tdd/features/user/products/data/data_source/remote_data_sources/products_data_source.dart'
+    as _i72;
+import 'package:flutter_tdd/features/user/products/data/repository/impl_products_repository.dart'
+    as _i76;
+import 'package:flutter_tdd/features/user/products/domain/repository/products_repository.dart'
+    as _i75;
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart'
     as _i23;
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart'
-    as _i66;
-import 'package:flutter_tdd/features/user/profile/data/data_sources/impl_profile_data_sources.dart'
-    as _i70;
-import 'package:flutter_tdd/features/user/profile/data/data_sources/profile_data_sources.dart'
-    as _i69;
-import 'package:flutter_tdd/features/user/profile/data/repository/impl_profile_repository.dart'
-    as _i72;
-import 'package:flutter_tdd/features/user/profile/domain/repository/profile_repository.dart'
-    as _i71;
-import 'package:flutter_tdd/features/user/purchasing/data/data_sources/impl_purchasing_data_sources.dart'
     as _i74;
-import 'package:flutter_tdd/features/user/purchasing/data/data_sources/purchasing_data_sources.dart'
-    as _i73;
-import 'package:flutter_tdd/features/user/purchasing/data/repository/impl_purchasing_repository.dart'
-    as _i76;
-import 'package:flutter_tdd/features/user/purchasing/domain/repository/purchasing_repository.dart'
-    as _i75;
-import 'package:flutter_tdd/features/user/sale/data/data_sources/impl_sale_data_sources.dart'
+import 'package:flutter_tdd/features/user/profile/data/data_sources/impl_profile_data_sources.dart'
+    as _i78;
+import 'package:flutter_tdd/features/user/profile/data/data_sources/profile_data_sources.dart'
+    as _i77;
+import 'package:flutter_tdd/features/user/profile/data/repository/impl_profile_repository.dart'
     as _i80;
-import 'package:flutter_tdd/features/user/sale/data/data_sources/sale_data_sources.dart'
+import 'package:flutter_tdd/features/user/profile/domain/repository/profile_repository.dart'
     as _i79;
-import 'package:flutter_tdd/features/user/sale/data/repository/impl_sale_repository.dart'
+import 'package:flutter_tdd/features/user/purchasing/data/data_sources/impl_purchasing_data_sources.dart'
     as _i82;
-import 'package:flutter_tdd/features/user/sale/domain/repository/sale_repository.dart'
+import 'package:flutter_tdd/features/user/purchasing/data/data_sources/purchasing_data_sources.dart'
     as _i81;
-import 'package:flutter_tdd/features/user/search/data/data_sources/impl_search_data_sources.dart'
+import 'package:flutter_tdd/features/user/purchasing/data/repository/impl_purchasing_repository.dart'
     as _i84;
-import 'package:flutter_tdd/features/user/search/data/data_sources/search_data_sources.dart'
+import 'package:flutter_tdd/features/user/purchasing/domain/repository/purchasing_repository.dart'
     as _i83;
-import 'package:flutter_tdd/features/user/search/data/repository/impl_search_repository.dart'
-    as _i86;
-import 'package:flutter_tdd/features/user/search/domain/repository/search_repository.dart'
-    as _i85;
-import 'package:flutter_tdd/features/user/tickets/data/data_sources/impl_tickets_data_sources.dart'
+import 'package:flutter_tdd/features/user/sale/data/data_sources/impl_sale_data_sources.dart'
     as _i88;
-import 'package:flutter_tdd/features/user/tickets/data/data_sources/tickets_data_sources.dart'
+import 'package:flutter_tdd/features/user/sale/data/data_sources/sale_data_sources.dart'
     as _i87;
-import 'package:flutter_tdd/features/user/tickets/data/repository/impl_tickets_repository.dart'
+import 'package:flutter_tdd/features/user/sale/data/repository/impl_sale_repository.dart'
     as _i90;
-import 'package:flutter_tdd/features/user/tickets/domain/repository/tickets_repository.dart'
+import 'package:flutter_tdd/features/user/sale/domain/repository/sale_repository.dart'
     as _i89;
-import 'package:flutter_tdd/features/user/wallet/data/data_sources/impl_wallet_data_sources.dart'
-    as _i93;
-import 'package:flutter_tdd/features/user/wallet/data/data_sources/wallet_data_sources.dart'
+import 'package:flutter_tdd/features/user/search/data/data_sources/impl_search_data_sources.dart'
     as _i92;
-import 'package:flutter_tdd/features/user/wallet/data/repository/impl_wallet_repository.dart'
-    as _i95;
-import 'package:flutter_tdd/features/user/wallet/domain/repository/wallet_repository.dart'
+import 'package:flutter_tdd/features/user/search/data/data_sources/search_data_sources.dart'
+    as _i91;
+import 'package:flutter_tdd/features/user/search/data/repository/impl_search_repository.dart'
     as _i94;
-import 'package:flutter_tdd/features/user/wishlist/data/data_sources/impl_wishlist_data_sources.dart'
-    as _i97;
-import 'package:flutter_tdd/features/user/wishlist/data/data_sources/wishlist_data_sources.dart'
+import 'package:flutter_tdd/features/user/search/domain/repository/search_repository.dart'
+    as _i93;
+import 'package:flutter_tdd/features/user/tickets/data/data_sources/impl_tickets_data_sources.dart'
     as _i96;
-import 'package:flutter_tdd/features/user/wishlist/data/repository/impl_wishlist_repository.dart'
-    as _i99;
-import 'package:flutter_tdd/features/user/wishlist/domain/repository/wishlist_repository.dart'
+import 'package:flutter_tdd/features/user/tickets/data/data_sources/tickets_data_sources.dart'
+    as _i95;
+import 'package:flutter_tdd/features/user/tickets/data/repository/impl_tickets_repository.dart'
     as _i98;
+import 'package:flutter_tdd/features/user/tickets/domain/repository/tickets_repository.dart'
+    as _i97;
+import 'package:flutter_tdd/features/user/wallet/data/data_sources/impl_wallet_data_sources.dart'
+    as _i101;
+import 'package:flutter_tdd/features/user/wallet/data/data_sources/wallet_data_sources.dart'
+    as _i100;
+import 'package:flutter_tdd/features/user/wallet/data/repository/impl_wallet_repository.dart'
+    as _i103;
+import 'package:flutter_tdd/features/user/wallet/domain/repository/wallet_repository.dart'
+    as _i102;
+import 'package:flutter_tdd/features/user/wishlist/data/data_sources/impl_wishlist_data_sources.dart'
+    as _i105;
+import 'package:flutter_tdd/features/user/wishlist/data/data_sources/wishlist_data_sources.dart'
+    as _i104;
+import 'package:flutter_tdd/features/user/wishlist/data/repository/impl_wishlist_repository.dart'
+    as _i107;
+import 'package:flutter_tdd/features/user/wishlist/domain/repository/wishlist_repository.dart'
+    as _i106;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -216,60 +232,69 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i24.CartRepository>(() => _i25.ImplCartRepository());
     gh.factory<_i26.CategoryDataSources>(() => _i27.ImplCategoryDataSources());
     gh.factory<_i28.CategoryRepository>(() => _i29.ImplCategoryRepository());
-    gh.factory<_i30.CommonDataSources>(() => _i31.ImplCommonDataSources());
-    gh.factory<_i32.CommonRepository>(() => _i33.ImplCommonRepository());
-    gh.factory<_i34.DashboardDataSources>(
-        () => _i35.ImplDashboardDataSources());
-    gh.factory<_i36.DashboardRepository>(() => _i37.ImplDashboardRepository());
-    gh.lazySingleton<_i38.Delete>(() => _i38.Delete());
-    gh.lazySingleton<_i39.DioHeader>(() => _i39.DioHeader());
-    gh.lazySingleton<_i40.DioOptions>(() => _i40.DioOptions());
-    gh.lazySingleton<_i41.Download>(() => _i41.Download());
-    gh.lazySingleton<_i42.FirebaseAnalyticsHelper>(
-        () => _i42.FirebaseAnalyticsHelper());
-    gh.lazySingleton<_i43.GenericHttpImpl<dynamic>>(
-        () => _i43.GenericHttpImpl<dynamic>());
-    gh.lazySingleton<_i44.Get>(() => _i44.Get());
-    gh.factory<_i45.GetDeviceId>(() => _i45.GetDeviceId());
-    gh.lazySingleton<_i46.GlobalContext>(() => _i46.GlobalContext());
-    gh.lazySingleton<_i47.GlobalNotification>(() => _i47.GlobalNotification());
-    gh.lazySingleton<_i48.HandleErrors>(() => _i48.HandleErrors());
-    gh.lazySingleton<_i49.HandleJsonResponse<dynamic>>(
-        () => _i49.HandleJsonResponse<dynamic>());
-    gh.lazySingleton<_i50.HandleRequestBody>(() => _i50.HandleRequestBody());
-    gh.lazySingleton<_i51.LoadingHelper>(() => _i51.LoadingHelper());
-    gh.lazySingleton<_i52.NetworkInfoImpl>(() => _i52.NetworkInfoImpl());
-    gh.lazySingleton<_i53.NewVersionHelper>(() => _i53.NewVersionHelper());
-    gh.factory<_i54.NotificationsDataSources>(
-        () => _i55.ImplNotificationsDataSources());
-    gh.factory<_i56.NotificationsRepository>(
-        () => _i57.ImplNotificationsRepository());
-    gh.lazySingleton<_i58.Patch>(() => _i58.Patch());
-    gh.factory<_i59.PaymentDataSources>(() => _i60.PaymentDataSourcesImpl());
-    gh.factory<_i61.PaymentRepository>(() => _i62.PaymentRepositoryImpl());
-    gh.lazySingleton<_i63.Post>(() => _i63.Post());
-    gh.factory<_i64.ProductsDataSource>(() => _i65.ImplProductsDataSource());
-    gh.factory<_i66.ProductsHelper>(() => _i66.ProductsHelper());
-    gh.factory<_i67.ProductsRepository>(() => _i68.ImplProductsRepository());
-    gh.factory<_i69.ProfileDataSources>(() => _i70.ImplProfileDataSources());
-    gh.factory<_i71.ProfileRepository>(() => _i72.ImplProfileRepository());
-    gh.factory<_i73.PurchasingDataSources>(
-        () => _i74.ImplPurchasingDataSources());
-    gh.factory<_i75.PurchasingRepository>(
-        () => _i76.ImplPurchasingRepository());
-    gh.lazySingleton<_i77.Put>(() => _i77.Put());
-    gh.lazySingleton<_i78.RateAppHelper>(() => _i78.RateAppHelper());
-    gh.factory<_i79.SaleDataSources>(() => _i80.ImplSaleRepository());
-    gh.factory<_i81.SaleRepository>(() => _i82.ImplSaleRepository());
-    gh.factory<_i83.SearchDataSources>(() => _i84.ImplSearchDataSources());
-    gh.factory<_i85.SearchRepository>(() => _i86.ImplSearchRepository());
-    gh.factory<_i87.TicketsDataSources>(() => _i88.ImplTicketsDataSources());
-    gh.factory<_i89.TicketsRepository>(() => _i90.ImplTicketsRepository());
-    gh.lazySingleton<_i91.Utilities>(() => _i91.Utilities());
-    gh.factory<_i92.WalletDataSources>(() => _i93.ImplWalletDataSources());
-    gh.factory<_i94.WalletRepository>(() => _i95.ImplWalletRepository());
-    gh.factory<_i96.WishlistDataSources>(() => _i97.ImplWishlistDataSources());
-    gh.factory<_i98.WishlistRepository>(() => _i99.ImplWishlistRepository());
+    gh.factory<_i30.ClassifiedProductsDataSources>(
+        () => _i31.ImplClassifiedProductsDataSources());
+    gh.factory<_i32.ClassifiedProductsRepository>(
+        () => _i33.ImplClassifiedProductsRepository());
+    gh.factory<_i34.CommonDataSources>(() => _i35.ImplCommonDataSources());
+    gh.factory<_i36.CommonRepository>(() => _i37.ImplCommonRepository());
+    gh.factory<_i38.CusProductRepository>(
+        () => _i39.ImplCusProductsRepository());
+    gh.factory<_i40.CusProductsDataSources>(
+        () => _i41.ImplCusProductsDataSources());
+    gh.factory<_i42.DashboardDataSources>(
+        () => _i43.ImplDashboardDataSources());
+    gh.factory<_i44.DashboardRepository>(() => _i45.ImplDashboardRepository());
+    gh.lazySingleton<_i46.Delete>(() => _i46.Delete());
+    gh.lazySingleton<_i47.DioHeader>(() => _i47.DioHeader());
+    gh.lazySingleton<_i48.DioOptions>(() => _i48.DioOptions());
+    gh.lazySingleton<_i49.Download>(() => _i49.Download());
+    gh.lazySingleton<_i50.FirebaseAnalyticsHelper>(
+        () => _i50.FirebaseAnalyticsHelper());
+    gh.lazySingleton<_i51.GenericHttpImpl<dynamic>>(
+        () => _i51.GenericHttpImpl<dynamic>());
+    gh.lazySingleton<_i52.Get>(() => _i52.Get());
+    gh.factory<_i53.GetDeviceId>(() => _i53.GetDeviceId());
+    gh.lazySingleton<_i54.GlobalContext>(() => _i54.GlobalContext());
+    gh.lazySingleton<_i55.GlobalNotification>(() => _i55.GlobalNotification());
+    gh.lazySingleton<_i56.HandleErrors>(() => _i56.HandleErrors());
+    gh.lazySingleton<_i57.HandleJsonResponse<dynamic>>(
+        () => _i57.HandleJsonResponse<dynamic>());
+    gh.lazySingleton<_i58.HandleRequestBody>(() => _i58.HandleRequestBody());
+    gh.lazySingleton<_i59.LoadingHelper>(() => _i59.LoadingHelper());
+    gh.lazySingleton<_i60.NetworkInfoImpl>(() => _i60.NetworkInfoImpl());
+    gh.lazySingleton<_i61.NewVersionHelper>(() => _i61.NewVersionHelper());
+    gh.factory<_i62.NotificationsDataSources>(
+        () => _i63.ImplNotificationsDataSources());
+    gh.factory<_i64.NotificationsRepository>(
+        () => _i65.ImplNotificationsRepository());
+    gh.lazySingleton<_i66.Patch>(() => _i66.Patch());
+    gh.factory<_i67.PaymentDataSources>(() => _i68.PaymentDataSourcesImpl());
+    gh.factory<_i69.PaymentRepository>(() => _i70.PaymentRepositoryImpl());
+    gh.lazySingleton<_i71.Post>(() => _i71.Post());
+    gh.factory<_i72.ProductsDataSource>(() => _i73.ImplProductsDataSource());
+    gh.factory<_i74.ProductsHelper>(() => _i74.ProductsHelper());
+    gh.factory<_i75.ProductsRepository>(() => _i76.ImplProductsRepository());
+    gh.factory<_i77.ProfileDataSources>(() => _i78.ImplProfileDataSources());
+    gh.factory<_i79.ProfileRepository>(() => _i80.ImplProfileRepository());
+    gh.factory<_i81.PurchasingDataSources>(
+        () => _i82.ImplPurchasingDataSources());
+    gh.factory<_i83.PurchasingRepository>(
+        () => _i84.ImplPurchasingRepository());
+    gh.lazySingleton<_i85.Put>(() => _i85.Put());
+    gh.lazySingleton<_i86.RateAppHelper>(() => _i86.RateAppHelper());
+    gh.factory<_i87.SaleDataSources>(() => _i88.ImplSaleRepository());
+    gh.factory<_i89.SaleRepository>(() => _i90.ImplSaleRepository());
+    gh.factory<_i91.SearchDataSources>(() => _i92.ImplSearchDataSources());
+    gh.factory<_i93.SearchRepository>(() => _i94.ImplSearchRepository());
+    gh.factory<_i95.TicketsDataSources>(() => _i96.ImplTicketsDataSources());
+    gh.factory<_i97.TicketsRepository>(() => _i98.ImplTicketsRepository());
+    gh.lazySingleton<_i99.Utilities>(() => _i99.Utilities());
+    gh.factory<_i100.WalletDataSources>(() => _i101.ImplWalletDataSources());
+    gh.factory<_i102.WalletRepository>(() => _i103.ImplWalletRepository());
+    gh.factory<_i104.WishlistDataSources>(
+        () => _i105.ImplWishlistDataSources());
+    gh.factory<_i106.WishlistRepository>(() => _i107.ImplWishlistRepository());
     return this;
   }
 }
