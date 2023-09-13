@@ -19,20 +19,17 @@ class _MyWalletState extends State<MyWallet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(title: "My Wallet", showBack: true),
+      appBar: const DefaultAppBar(title: "My Wallet"),
+      backgroundColor: context.colors.customBackground,
+      floatingActionButton: BuildChargeWallet(controller: controller),
       body: BlocBuilder<GenericBloc<Wallet?>, GenericState<Wallet?>>(
         bloc: controller.walletBloc,
         builder: (context, state) {
           if (state is GenericUpdateState) {
             return ListView(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16).r,
+              padding: Dimens.paddingAll15PX,
               children: [
-                BuildWalletDetails(
-                  walletBalance: state.data!.walletBalance,
-                ),
-                Gaps.vGap20,
-                const BuildChargeWallet(),
-                Gaps.vGap32,
+                BuildWalletDetails(walletBalance: state.data!.walletBalance),
                 BuildWalletHistory(
                   walletRechargeHistory: state.data!.rechargeHistory,
                 )

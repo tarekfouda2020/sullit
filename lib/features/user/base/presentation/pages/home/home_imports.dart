@@ -1,9 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/manager/helpers/auth_helper.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/widgets/home_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/more/more_imports.dart';
 import 'package:flutter_tdd/features/user/base/presentation/widgets/build_drawer.dart';

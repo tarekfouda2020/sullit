@@ -27,7 +27,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         length: 4,
         child: Scaffold(
           key: controller.scaffoldKey,
-          drawer: const BuildDrawer(),
+          drawer: BuildDrawer(controller: controller),
           body: TabBarView(
             controller: controller.tabController,
             physics: const NeverScrollableScrollPhysics(),

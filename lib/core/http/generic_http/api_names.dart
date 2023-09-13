@@ -56,7 +56,6 @@ class ApiNames{
   static const String countries = "countries";
   static const String states = "states";
   static const String cities  = "cities";
-  static const String myWallet  = "my-wallet";
   static String setDefaultAddress (int id) => "user/addresses/$id/set-default?_method=put";
   static String deleteAddress (int id) => "user/addresses/$id/delete";
   static String editAddress (int id) => "user/addresses/$id/update?_method=put";
@@ -65,6 +64,11 @@ class ApiNames{
   static const String getAllFlashSale = "flash-deals";
   static const String getSaleDetails = "flash-deal-products/";
   static const String getCoupons = "exclusive-coupons";
+
+  //wallet urls
+  static const String getMyWallet  = "my-wallet";
+  static const String getWalletTypes  = "recharge-wallet-payment-types";
+  static const String rechargeWallet  = "recharge-wallet";
 
   // general
   static const String terms = "terms";

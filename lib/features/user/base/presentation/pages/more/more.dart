@@ -71,12 +71,12 @@ class _MoreState extends State<More> {
             icon: Icons.summarize_outlined,
             onTap: () => controller.checkAuth(context, MoreRoutes.trackOrder),
           ),
-          BuildMoreItem(
-            title: 'Conversation',
-            icon: Icons.chat,
-            onTap: () =>
-                controller.checkAuth(context, MoreRoutes.conversations),
-          ),
+          // BuildMoreItem(
+          //   title: 'Conversation',
+          //   icon: Icons.chat,
+          //   onTap: () =>
+          //       controller.checkAuth(context, MoreRoutes.conversations),
+          // ),
           BuildMoreItem(
             title: 'My Wallet',
             icon: Icons.monetization_on_outlined,

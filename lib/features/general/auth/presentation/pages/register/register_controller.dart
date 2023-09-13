@@ -35,7 +35,8 @@ class RegisterController {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString("user", json.encode(data.toJson()));
     context.read<UserCubit>().onUpdateUserData(data);
-    AutoRouter.of(context).push(const LoginRoute());
+    AutoRouter.of(context).popAndPush(VerifyRegisterRoute(email: emailController.text));
+    getIt<ComparedProductsDb>().deleteEverything();
     CustomToast.showSimpleToast(
       msg:
           "Register Done Successfully. Please verify and log in to your account",

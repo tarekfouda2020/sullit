@@ -9,6 +9,7 @@ class BuildSellerInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Gaps.vGap10,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -30,13 +31,13 @@ class BuildSellerInfo extends StatelessWidget {
                 ),
               ],
             ),
-            DefaultButton(
-              title: "Message Seller",
-              width: 120.w,
-              height: 25.h,
-              borderRadius: Dimens.borderRadius5PX,
-              onTap: () {},
-            ),
+            // DefaultButton(
+            //   title: "Message Seller",
+            //   width: 120.w,
+            //   height: 25.h,
+            //   borderRadius: Dimens.borderRadius5PX,
+            //   onTap: () {},
+            // ),
           ],
         ),
         Gaps.line(context.colors.greyWhite, 20.h),

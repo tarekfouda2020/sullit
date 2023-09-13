@@ -24,6 +24,7 @@ class ImplAuthDataSource extends AuthDataSource {
       responseKey: (data) => data["data"]["user"],
       requestBody: param.toJson(),
       showLoader: false,
+      errorFunc: (data) => data["key"],
       toJsonFunc: (json) => UserModel.fromJson(json),
     );
     return await GenericHttpImpl<UserModel>()(model);
@@ -56,7 +57,8 @@ class ImplAuthDataSource extends AuthDataSource {
   }
 
   @override
-  Future<Either<Failure, String>> resetPassword(ResetPasswordParams param) async {
+  Future<Either<Failure, String>> resetPassword(
+      ResetPasswordParams param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.resetPassword,
       requestMethod: RequestMethod.post,
@@ -69,7 +71,7 @@ class ImplAuthDataSource extends AuthDataSource {
   }
 
   @override
-  Future<Either<Failure, UserModel>> register(UserRegisterParams params) async{
+  Future<Either<Failure, UserModel>> register(UserRegisterParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.register,
       requestMethod: RequestMethod.post,
@@ -77,14 +79,14 @@ class ImplAuthDataSource extends AuthDataSource {
       requestBody: params.toJson(),
       showLoader: true,
       responseKey: (data) => data["data"]["user"],
-      toJsonFunc: (json)=> UserModel.fromJson(json),
-      errorFunc: (data)=> data["msg"],
+      toJsonFunc: (json) => UserModel.fromJson(json),
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<UserModel>().call(model);
   }
 
   @override
-  Future<Either<Failure, bool>> verifyPhone(VerifyPhoneParams params)async {
+  Future<Either<Failure, bool>> verifyPhone(VerifyPhoneParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.verifyPhone,
       requestMethod: RequestMethod.post,
@@ -92,13 +94,13 @@ class ImplAuthDataSource extends AuthDataSource {
       requestBody: params.toJson(),
       showLoader: true,
       responseKey: (data) => params.isSuccess(data),
-      errorFunc: (data)=> data['msg'],
+      errorFunc: (data) => data['msg'],
     );
     return await GenericHttpImpl<bool>().call(model);
   }
 
   @override
-  Future<Either<Failure, String>> resendRegisterCode(String param)async {
+  Future<Either<Failure, String>> resendRegisterCode(String param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.resendRegisterCode,
       requestMethod: RequestMethod.post,

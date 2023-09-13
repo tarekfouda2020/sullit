@@ -7,65 +7,41 @@ class BuildWalletHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Wallet Recharge History",
-          style: AppTextStyle.s16_w500(color: context.colors.black),
-        ),
-        Gaps.vGap20,
-        Visibility(
-          visible: walletRechargeHistory.wallets.isNotEmpty,
-          replacement: Container(
-            margin : EdgeInsets.only(top: 150.h),
-            child: Center(
-              child: Text(
-                'You had not recharge your wallet yet. !',
-                style: AppTextStyle.s14_w400(
-                  color: context.colors.grey,
+    return Visibility(
+      visible: walletRechargeHistory.wallets.isNotEmpty,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Gaps.vGap24,
+          Text(
+            "Wallet Recharge History",
+            style: AppTextStyle.s16_w500(color: context.colors.black),
+          ),
+          Gaps.vGap10,
+          ...List.generate(
+            walletRechargeHistory.wallets.length,
+                (index) => Container(
+              margin: Dimens.paddingVertical5PX,
+              decoration: CustomDecoration(),
+              child: ListTile(
+                title: Text(
+                  "${walletRechargeHistory.wallets[index].dmoun}",
+                  style: AppTextStyle.s14_w500(
+                    color: context.colors.black,
+                  ),
                 ),
+                trailing: Text(
+                  walletRechargeHistory.wallets[index].approval,
+                  style: AppTextStyle.s12_w400(
+                    color: context.colors.primary,
+                  ),
+                ),
+                minLeadingWidth: 10.w,
               ),
             ),
           ),
-          child: Column(
-            children: List.generate(
-              walletRechargeHistory.wallets.length,
-              (index) => Container(
-                margin: const EdgeInsets.symmetric(
-                  vertical: 5,
-                ).r,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5).r,
-                  color: context.colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: context.colors.greyWhite,
-                      blurRadius: 1,
-                      spreadRadius: 1,
-                    )
-                  ],
-                ),
-                child: ListTile(
-                  title: Text(
-                    "${walletRechargeHistory.wallets[index].dmoun} AED",
-                    style: AppTextStyle.s14_w500(
-                      color: context.colors.black,
-                    ),
-                  ),
-                  trailing: Text(
-                    "Pending",
-                    style: AppTextStyle.s12_w400(
-                      color: context.colors.primary,
-                    ),
-                  ),
-                  minLeadingWidth: 10.w,
-                ),
-              ),
-            ),
-          ),
-        )
-      ],
+        ],
+      ),
     );
   }
 }

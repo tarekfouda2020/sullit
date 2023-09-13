@@ -34,12 +34,7 @@ class _ReturnOrdersState extends State<ReturnOrders> {
               controller: controller,
             ),
             noItemsFoundIndicatorBuilder: (cxt) {
-              return Text(
-                "No items in the history. !",
-                style: AppTextStyle.s12_w400(
-                  color: context.colors.black,
-                ),
-              );
+              return const BuildEmptyDataView();
             },
           ),
         ),

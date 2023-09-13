@@ -13,61 +13,64 @@ class BuildReviewDialog extends StatelessWidget {
       backgroundColor: Colors.white,
       content: Visibility(
         visible: orderDetailsModel.review == null,
-        replacement: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Review Product",
-                  style: AppTextStyle.s16_w500(color: context.colors.black),
-                ),
-                IconButton(
-                  onPressed: () => AutoRouter.of(context).pop(),
-                  icon: Icon(
-                    Icons.close,
-                    color: context.colors.black,
-                  ),
-                ),
-              ],
-            ),
-            Gaps.vGap10,
-            RatingBar.builder(
-              initialRating: orderDetailsModel.review!.rate.toDouble(),
-              minRating: 0,
-              direction: Axis.horizontal,
-              allowHalfRating: false,
-              itemCount: 5,
-              itemSize: 25.sp,
-              ignoreGestures: true,
-              itemBuilder: (context, _) => Icon(
-                Icons.star_rounded,
-                color: context.colors.yellow,
-              ),
-              unratedColor: context.colors.grey,
-              onRatingUpdate: (rating) {},
-            ),
-            Padding(
-              padding: Dimens.paddingVertical15PX,
-              child: Row(
+        replacement: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Comment : ",
-                    style: AppTextStyle.s15_w700(
-                      color: context.colors.black,
-                    ),
+                    "Review Product",
+                    style: AppTextStyle.s16_w500(color: context.colors.black),
                   ),
-                  Text(
-                    orderDetailsModel.review!.comment,
-                    style: AppTextStyle.s15_w400(
+                  IconButton(
+                    onPressed: () => AutoRouter.of(context).pop(),
+                    icon: Icon(
+                      Icons.close,
                       color: context.colors.black,
                     ),
                   ),
                 ],
               ),
-            )
-          ],
+              Gaps.vGap10,
+              RatingBar.builder(
+                initialRating: orderDetailsModel.review!.rate.toDouble(),
+                minRating: 0,
+                direction: Axis.horizontal,
+                allowHalfRating: false,
+                itemCount: 5,
+                itemSize: 25.sp,
+                ignoreGestures: true,
+                itemBuilder: (context, _) => Icon(
+                  Icons.star_rounded,
+                  color: context.colors.yellow,
+                ),
+                unratedColor: context.colors.grey,
+                onRatingUpdate: (rating) {},
+              ),
+              Padding(
+                padding: Dimens.paddingVertical15PX,
+                child: Row(
+                  children: [
+                    Text(
+                      "Comment : ",
+                      style: AppTextStyle.s15_w700(
+                        color: context.colors.black,
+                      ),
+                    ),
+                    Text(
+                      orderDetailsModel.review!.comment,
+                      style: AppTextStyle.s15_w400(
+                        color: context.colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
         child: Form(
           key: orderDetailsModel.orderReview?.formKey,

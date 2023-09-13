@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 
 import 'package:flutter_tdd/core/constants/gaps.dart';
@@ -17,68 +18,66 @@ class BuildDrawerHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var user = context.watch<UserCubit>().state.model;
-    bool auth = context.read<DeviceCubit>().state.model.auth ;
-    return Column(
-      children: [
-        Gaps.vGap20,
-        Center(
-          child: Image.asset(
-            Res.suliitLogo,
-            width: 160.w,
-            height: 80.h,
+    bool auth = context.read<DeviceCubit>().state.model.auth;
+    return Padding(
+      padding: Dimens.paddingAll15PX,
+      child: Column(
+        children: [
+          Gaps.vGap20,
+          Center(
+            child: Image.asset(
+              Res.suliitLogo,
+              width: 160.w,
+              height: 80.h,
+            ),
           ),
-        ),
-        if(auth)Padding(
-          padding: const EdgeInsetsDirectional.only(start: 20, end: 15,top: 20),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: context.colors.gray,
-                ),
-                child: CachedImage(
-                  fit: BoxFit.cover,
-                  haveRadius: false,
-                  boxShape: BoxShape.circle,
-                  placeHolder: Image.asset(
-                    Res.profile,
-                    height: 60.r,
-                    width: 60.r,
+          Visibility(
+            visible: auth,
+            child: Padding(
+              padding: Dimens.paddingVertical5PX,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CachedImage(
+                    fit: BoxFit.cover,
+                    haveRadius: false,
+                    boxShape: BoxShape.circle,
+                    height: 55.r,
+                    width: 55.r,
+                    placeHolder: Image.asset(
+                      Res.profile,
+                      height: 55.r,
+                      width: 55.r,
+                    ),
+                    url: user?.avatarOriginal ?? "",
                   ),
-                  url: user?.avatarOriginal??"",
-                ),
+                  Gaps.hGap15,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          user?.name ?? "",
+                          style: AppTextStyle.s16_w500(
+                            color: context.colors.black,
+                          ),
+                        ),
+                        Gaps.vGap5,
+                        Text(
+                          user?.phone ?? "",
+                          style: AppTextStyle.s14_w400(
+                            color: context.colors.blackOpacity,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0).r,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        user?.name??"",
-                        style: AppTextStyle.s16_w500(
-                          color: context.colors.black,
-                        ),
-                      ),
-                      Gaps.vGap10,
-                      Text(
-                        user?.phone??"",
-                        style: AppTextStyle.s14_w400(
-                          color: context.colors.blackOpacity,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-        )
-      ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

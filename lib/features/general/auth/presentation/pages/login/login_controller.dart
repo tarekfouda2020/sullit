@@ -9,18 +9,19 @@ class LoginController {
   final TextEditingController password = TextEditingController();
   final GenericBloc<bool> passwordCubit = GenericBloc(false);
 
-
   void onSubmit(BuildContext context) async {
-    // AutoRouter.of(context).push(VerifyRegisterRoute(email: email.text));
     if (formKey.currentState!.validate()) {
       btnKey.currentState?.animateForward();
       var params = await _setLoginParams();
       var result = await SetLogin().call(params);
+      btnKey.currentState?.animateReverse();
+      if (result != null) {
+        _cashAndRoute(context, result);
+      } else {
+        AutoRouter.of(context).push(VerifyRegisterRoute(email: email.text));
+      }
       print(">>>>>${result?.toJson()}");
-      _cashAndRoute(
-        context,
-        result ?? UserDomainModel(),
-      );
+
     }
   }
 
@@ -30,20 +31,18 @@ class LoginController {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString("user", json.encode(data.toJson()));
     context.read<UserCubit>().onUpdateUserData(data);
-    btnKey.currentState?.animateReverse();
     AutoRouter.of(context).push(HomeRoute(index: 0));
     CustomToast.showSimpleToast(
-      msg: "Register Done Successfully. Please verify and log in to your account",
+      msg: "Successfully Logged In",
       type: ToastType.success,
     );
   }
 
-  Future<LoginParams> _setLoginParams()async{
+  Future<LoginParams> _setLoginParams() async {
     return LoginParams(
-      email: email.text,
-      password: password.text,
-      macAddress: await getIt<GetDeviceId>().deviceId
-    );
+        email: email.text,
+        password: password.text,
+        macAddress: await getIt<GetDeviceId>().deviceId);
   }
 
   Future<bool> onBackPressed() async {

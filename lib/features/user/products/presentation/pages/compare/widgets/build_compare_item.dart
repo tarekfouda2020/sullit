@@ -9,10 +9,9 @@ class BuildCompareItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("#######${productModel.toJson()}");
     return Container(
       decoration: CustomDecoration(),
-      padding: Dimens.paddingAll15PX,
+      padding: Dimens.paddingAll10PX,
       margin: Dimens.paddingVertical5PX,
       child: Row(
         children: [

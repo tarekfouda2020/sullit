@@ -8,46 +8,49 @@ class BuildCartSuccessDialog extends StatelessWidget {
     return AlertDialog(
       backgroundColor: context.colors.customBackground,
       contentPadding: Dimens.paddingAll15PX,
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            Icons.check_circle_rounded,
-            size: 70.sp,
-            color: context.colors.green,
-          ),
-          Padding(
-            padding: Dimens.paddingVertical20PX,
-            child: Text(
-              "Item Added To Your Cart",
-              style: AppTextStyle.s16_w500(color: context.colors.green),
+      content: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.check_circle_rounded,
+              size: 70.sp,
+              color: context.colors.green,
             ),
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: DefaultButton(
-                  title: "Back To Shopping",
-                  onTap: () => AutoRouter.of(context).pop(),
-                  borderColor: context.colors.primary,
-                  color: context.colors.white,
-                  textColor: context.colors.primary,
-                  margin: EdgeInsets.zero,
-                ),
+            Padding(
+              padding: Dimens.paddingVertical20PX,
+              child: Text(
+                "Item Added To Your Cart",
+                style: AppTextStyle.s16_w500(color: context.colors.green),
               ),
-              Gaps.hGap10,
-              Expanded(
-                child: DefaultButton(
-                  title: "Proceed To Checkout",
-                  onTap: () =>
-                      AutoRouter.of(context).popAndPush(const CartRoute()),
-                  margin: EdgeInsets.zero,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: DefaultButton(
+                    title: "Back To Shopping",
+                    onTap: () => AutoRouter.of(context).pop(),
+                    borderColor: context.colors.primary,
+                    color: context.colors.white,
+                    textColor: context.colors.primary,
+                    margin: EdgeInsets.zero,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Gaps.vGap15,
-        ],
+                Gaps.hGap10,
+                Expanded(
+                  child: DefaultButton(
+                    title: "Proceed To Checkout",
+                    onTap: () =>
+                        AutoRouter.of(context).popAndPush(const CartRoute()),
+                    margin: EdgeInsets.zero,
+                  ),
+                ),
+              ],
+            ),
+            Gaps.vGap15,
+          ],
+        ),
       ),
     );
   }

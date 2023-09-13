@@ -1,34 +1,24 @@
-part of'my_wallet_widgets_imports.dart';
+part of 'my_wallet_widgets_imports.dart';
+
 class BuildChargeWallet extends StatelessWidget {
-  const BuildChargeWallet({Key? key}) : super(key: key);
+  final MyWalletController controller;
+
+  const BuildChargeWallet({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: (){
-        showDialog(
-
-            context: context, builder: (context)=>BuildChargeWalletDialog());
-      },
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12).r,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: context.colors.blackOpacity,
-
-            ),
-            child: Icon(Icons.add,color: context.colors.white,size: 35.sp,),
-          ),
-          Gaps.vGap20,
-
-          Text(
-            "Recharge Wallet",
-            style: AppTextStyle.s16_w400(color: context.colors.primary),
-          ),
-          Divider(color: context.colors.greyWhite,height: 20.h,)
-        ],
+    return FloatingActionButton.extended(
+      elevation: 3,
+      backgroundColor: context.colors.primary,
+      onPressed: () => controller.showChargeDialog(context),
+      label: Text(
+        "Recharge Wallet",
+        style: AppTextStyle.s14_w500(color: context.colors.white),
+      ),
+      icon: Icon(
+        Icons.add,
+        color: context.colors.white,
+        size: 25.sp,
       ),
     );
   }

@@ -7,7 +7,7 @@ class HomeController {
   late Animation<double> animation;
   late CurvedAnimation curve;
   final GenericBloc<bool> visibleSearch = GenericBloc(false);
-  final TextEditingController searchController=TextEditingController();
+  final TextEditingController searchController = TextEditingController();
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   List<IconData> tabs = [
@@ -35,6 +35,15 @@ class HomeController {
     if (index != homeTabCubit.state.data) {
       homeTabCubit.onUpdateData(index);
       tabController.animateTo(index);
+    }
+  }
+
+  void checkAuth(BuildContext context) {
+    bool auth = context.read<DeviceCubit>().state.model.auth;
+    if (auth) {
+      getIt<AuthHelper>().onLogOut(context);
+    } else {
+      AutoRouter.of(context).push(const LoginRoute());
     }
   }
 
