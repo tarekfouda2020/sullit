@@ -23,6 +23,7 @@ class _NotificationsState extends State<Notifications> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BuildHomeAppBar(homeController: widget.homeController),
+      backgroundColor: context.colors.customBackground,
       body: BlocBuilder<GenericBloc<List<NotificationDomainModel>>,
           GenericState<List<NotificationDomainModel>>>(
         bloc: controller.notificationsBloc,
@@ -37,8 +38,7 @@ class _NotificationsState extends State<Notifications> {
                 ),
               ),
               child: ListView.builder(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 16).r,
+                padding: Dimens.paddingAll15PX,
                 itemCount: state.data.length,
                 itemBuilder: (context, index) => BuildNotificationsItem(
                   notification: state.data[index],

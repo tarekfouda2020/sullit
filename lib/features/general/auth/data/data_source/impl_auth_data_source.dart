@@ -6,6 +6,7 @@ import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
 import 'package:flutter_tdd/features/general/auth/data/data_source/auth_data_source.dart';
+import 'package:flutter_tdd/features/general/auth/data/models/user_login_model/user_login_model.dart';
 import 'package:flutter_tdd/features/general/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/login_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/reset_password_params.dart';
@@ -16,18 +17,18 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: AuthDataSource)
 class ImplAuthDataSource extends AuthDataSource {
   @override
-  Future<Either<Failure, UserModel>> login(LoginParams param) async {
+  Future<Either<Failure, UserLoginModel>> login(LoginParams param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.login,
       responseType: ResType.model,
       requestMethod: RequestMethod.post,
-      responseKey: (data) => data["data"]["user"],
+      responseKey: (data) => data,
       requestBody: param.toJson(),
       showLoader: false,
-      errorFunc: (data) => data["key"],
-      toJsonFunc: (json) => UserModel.fromJson(json),
+      errorFunc: (data) => data["msg"],
+      toJsonFunc: (json) => UserLoginModel.fromJson(json),
     );
-    return await GenericHttpImpl<UserModel>()(model);
+    return await GenericHttpImpl<UserLoginModel>()(model);
   }
 
   @override

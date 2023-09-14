@@ -64,7 +64,9 @@ class HandleErrors {
 
   Either<ServerFailure, Response> statusError(
       Response response, Function(dynamic) errorFunc) {
-    if (response.data["key"] != "success" && response.data['key'] != 'redirect') {
+    if (response.data["key"] != "success" &&
+        response.data['key'] != 'redirect' &&
+        response.data["key"] != "needActive") {
       CustomToast.showSnakeBar(
         response.data["msg"].toString(),
         toastGravity: ToastGravity.BOTTOM,

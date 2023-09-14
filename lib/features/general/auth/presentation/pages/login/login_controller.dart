@@ -15,27 +15,36 @@ class LoginController {
       var params = await _setLoginParams();
       var result = await SetLogin().call(params);
       btnKey.currentState?.animateReverse();
-      if (result != null) {
-        _cashAndRoute(context, result);
-      } else {
-        AutoRouter.of(context).push(VerifyRegisterRoute(email: email.text));
+      log(">>>>>${result?.toJson()}");
+      if (result?.key == "success") {
+        _cashAndRoute(context, result?.userData?.user);
       }
-      print(">>>>>${result?.toJson()}");
-
+      if (result?.key == "needActive") {
+        _onNeedActive(context);
+      }
     }
   }
 
-  void _cashAndRoute(BuildContext context, UserDomainModel data) async {
+  void _cashAndRoute(BuildContext context, UserDomainModel? data) async {
     context.read<DeviceCubit>().updateUserAuth(true);
-    GlobalState.instance.set("token", data.token);
+    GlobalState.instance.set("token", data?.token);
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setString("user", json.encode(data.toJson()));
-    context.read<UserCubit>().onUpdateUserData(data);
+    preferences.setString("user", json.encode(data?.toJson()));
+    context.read<UserCubit>().onUpdateUserData(data!);
     AutoRouter.of(context).push(HomeRoute(index: 0));
     CustomToast.showSimpleToast(
       msg: "Successfully Logged In",
       type: ToastType.success,
     );
+  }
+
+  void _onNeedActive(BuildContext context) {
+    CustomToast.showSimpleToast(
+      msg:
+          "Please verify your account,verification link has been sent to your email address.",
+      type: ToastType.info,
+    );
+    AutoRouter.of(context).push(VerifyRegisterRoute(email: email.text));
   }
 
   Future<LoginParams> _setLoginParams() async {
