@@ -26,22 +26,22 @@ class _MoreState extends State<More> {
             icon: Icons.home_outlined,
             onTap: () => controller.checkAuth(context, MoreRoutes.dashboard),
           ),
-          BuildMoreItem(
-            title: 'Classified products',
-            icon: Icons.diamond_outlined,
-            onTap: () => controller.checkAuth(
-              context,
-              MoreRoutes.classifiedProducts,
-            ),
-          ),
-          BuildMoreItem(
-            title: 'Customers products',
-            icon: Icons.star_border,
-            onTap: () => controller.checkAuth(
-              context,
-              MoreRoutes.customersProducts,
-            ),
-          ),
+          // BuildMoreItem(
+          //   title: 'Classified products',
+          //   icon: Icons.diamond_outlined,
+          //   onTap: () => controller.checkAuth(
+          //     context,
+          //     MoreRoutes.classifiedProducts,
+          //   ),
+          // ),
+          // BuildMoreItem(
+          //   title: 'Customers products',
+          //   icon: Icons.star_border,
+          //   onTap: () => controller.checkAuth(
+          //     context,
+          //     MoreRoutes.customersProducts,
+          //   ),
+          // ),
           BuildMoreItem(
             haveStatus: true,
             title: 'Purchased History',
