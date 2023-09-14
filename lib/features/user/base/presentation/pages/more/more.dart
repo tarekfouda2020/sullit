@@ -35,6 +35,14 @@ class _MoreState extends State<More> {
             ),
           ),
           BuildMoreItem(
+            title: 'Customers products',
+            icon: Icons.star_border,
+            onTap: () => controller.checkAuth(
+              context,
+              MoreRoutes.customersProducts,
+            ),
+          ),
+          BuildMoreItem(
             haveStatus: true,
             title: 'Purchased History',
             icon: Icons.file_copy_outlined,

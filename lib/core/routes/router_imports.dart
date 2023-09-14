@@ -15,6 +15,7 @@ import 'package:flutter_tdd/features/user/base/presentation/manager/routes/route
 import 'package:flutter_tdd/features/user/blog/presentation/manager/routes_imports.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/manager/routes/routes.dart';
 import 'package:flutter_tdd/features/user/category/presentation/manager/routes/routes.dart';
+import 'package:flutter_tdd/features/user/classified_products/presentaion/manager/routes/routes_imports.dart';
 import 'package:flutter_tdd/features/user/customers_products/presentaion/manager/routes/routes_imports.dart';
 import 'package:flutter_tdd/features/user/dashboard/presentation/manager/routes/routes.dart';
 import 'package:flutter_tdd/features/user/notifications/presentation/manager/routes/routes.dart';

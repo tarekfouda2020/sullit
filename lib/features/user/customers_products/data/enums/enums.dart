@@ -1,1 +1,0 @@
-enum ImageType {thumbnail, meta, generalImages}

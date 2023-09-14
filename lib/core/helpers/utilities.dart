@@ -112,6 +112,17 @@ class Utilities {
     return null;
   }
 
+  Future<List<File>> getPdf() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+        allowMultiple: true, type: FileType.custom, allowedExtensions: ['pdf']);
+    if (result != null) {
+      List<File> files = result.paths.map((path) => File("$path")).toList();
+      return files;
+    } else {
+      return [];
+    }
+  }
+
   /// used to get the current store path
   Future<String> getFilePath() async {
     String sdPath = "";

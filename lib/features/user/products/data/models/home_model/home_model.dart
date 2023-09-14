@@ -27,7 +27,6 @@ class HomeModel extends BaseApiModel<HomeDomainModel> with _$HomeModel {
     @JsonKey(name: 'banners_two') required List<BannerModel> bannersTwo,
     @JsonKey(name: 'categories') required List<CategoryModel> categories,
     @JsonKey(name: 'flash_deals') required List<FlashSaleModel> flashSales,
-
     @JsonKey(name: 'most_populars')
         required List<PopularProductModel> mostPopular,
     @JsonKey(name: 'best_selling_products')

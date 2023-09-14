@@ -113,4 +113,14 @@ class ApiNames{
   static String cancelOrder (int orderId) => "orders/$orderId/cancel-order";
   static String returnOrder (int orderId) => "orders/$orderId/store-return-order";
 
+  //Customers Products
+  static const String getUploadedFiles = "uploaded-files";
+  static const String uploadFile = "uploade-file";
+  static const String uploadFiles = "uploade-files";
+  static const String videoProviders = "video-providers";
+  static const String customersProducts = "user/customer-products";
+  static const String cusProductsBrands = "user/customer-products-brands";
+  static const String cusProductsCats = "user/customer-products-categories";
+  static const String classifiedProducts = "user/customer-products";
+
 }

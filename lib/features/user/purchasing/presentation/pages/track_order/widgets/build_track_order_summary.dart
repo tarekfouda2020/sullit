@@ -22,10 +22,13 @@ class BuildTrackOrderSummary extends StatelessWidget {
               ],
             );
           } else {
-            return Center(
-              child: Text(
-                "Check Your Code",
-                style: AppTextStyle.s16_w500(color: context.colors.primary),
+            return Padding(
+              padding: const EdgeInsets.only(top: 200).r,
+              child: Center(
+                child: Text(
+                  "Check Your Code. !",
+                  style: AppTextStyle.s16_w500(color: context.colors.primary),
+                ),
               ),
             );
           }

@@ -11,5 +11,6 @@ enum MoreRoutes {
   myWallet,
   supportTickets,
   profile,
-  classifiedProducts
+  classifiedProducts,
+  customersProducts
 }

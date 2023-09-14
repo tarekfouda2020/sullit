@@ -31,7 +31,6 @@ class HandleErrors {
         switch (response.statusCode) {
           case 503:
           case 404:
-            CustomToast.showSnakeBar(message);
             if (message == "Not Authorized") {
               _tokenExpired();
             }
