@@ -31,10 +31,19 @@ class OrderSummaryController {
       var result = await SendReview().call(params);
       if (result != null) {
         model.review = result;
-        model.isAvailableReview=false;
+        model.isAvailableReview = false;
         orderDetailsBloc.onUpdateData(orderDetailsBloc.state.data);
       }
       AutoRouter.of(context).pop();
+    }
+  }
+
+  void onPayOrder(BuildContext context) async {
+    var result = await PayOrder().call(orderDetailsBloc.state.data!.id);
+    if (result.isNotEmpty) {
+      AutoRouter.of(context).push(
+        PaymentRoute(transactionUrl: result),
+      );
     }
   }
 

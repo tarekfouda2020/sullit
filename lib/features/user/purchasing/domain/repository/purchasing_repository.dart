@@ -15,5 +15,6 @@ abstract class PurchasingRepository {
   Future<Either<Failure, Reviews>> sendReview (SendReviewParams param);
   Future<Either<Failure, String>> cancelOrder (int param);
   Future<Either<Failure, bool>> returnOrder(ReturnOrderParams param);
+  Future<Either<Failure, String>> payOrder(int param);
 
 }

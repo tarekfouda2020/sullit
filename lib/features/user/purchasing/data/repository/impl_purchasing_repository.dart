@@ -57,4 +57,9 @@ class ImplPurchasingRepository extends PurchasingRepository with ModelToDomain {
   Future<Either<Failure, bool>> returnOrder(ReturnOrderParams param) async {
     return await dataSource.returnOrder(param);
   }
+
+  @override
+  Future<Either<Failure, String>> payOrder(int param) async{
+    return await dataSource.payOrder(param);
+  }
 }

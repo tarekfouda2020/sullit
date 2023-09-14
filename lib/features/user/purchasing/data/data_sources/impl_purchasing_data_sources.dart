@@ -118,4 +118,16 @@ class ImplPurchasingDataSources extends PurchasingDataSources {
     );
     return await GenericHttpImpl<bool>().call(model);
   }
+
+  @override
+  Future<Either<Failure, String>> payOrder(int param) async{
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.payOrder(param),
+      requestMethod: RequestMethod.post,
+      responseType: ResType.type,
+      showLoader: true,
+      responseKey: (data) => data['data']['transaction_url'],
+    );
+    return await GenericHttpImpl<String>().call(model);
+  }
 }

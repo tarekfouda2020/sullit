@@ -112,6 +112,7 @@ class ApiNames{
   static String sendReview (int orderId) => "orders/$orderId/product-review";
   static String cancelOrder (int orderId) => "orders/$orderId/cancel-order";
   static String returnOrder (int orderId) => "orders/$orderId/store-return-order";
+  static String payOrder (int orderId) => "orders/$orderId/pay-order";
 
   //Customers Products
   static const String getUploadedFiles = "uploaded-files";

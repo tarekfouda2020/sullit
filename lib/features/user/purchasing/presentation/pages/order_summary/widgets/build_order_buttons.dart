@@ -2,8 +2,8 @@ part of 'order_summary_widgets_imports.dart';
 
 class BuildOrderButtons extends StatelessWidget {
   final Orders orderModel;
-
-  const BuildOrderButtons({super.key, required this.orderModel});
+final OrderSummaryController controller;
+  const BuildOrderButtons({super.key, required this.orderModel, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class BuildOrderButtons extends StatelessWidget {
           visible: orderModel.showButtonPay,
           child: DefaultButton(
             title: "Complete Payment",
-            onTap: () {},
+            onTap: () =>controller.onPayOrder(context),
           ),
         ),
         Visibility(
