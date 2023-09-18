@@ -23,6 +23,27 @@ class _CustomerProductDetailsState extends State<CustomerProductDetails> {
     return Scaffold(
       appBar: const DefaultAppBar(title: "Details"),
       backgroundColor: context.colors.customBackground,
+      body: BlocBuilder<GenericBloc<CustomersProductDetails?>,
+          GenericState<CustomersProductDetails?>>(
+        bloc: controller.productDetails,
+        builder: (context, state) {
+          if (state is GenericUpdateState) {
+            return ListView(
+              padding: Dimens.standardPadding,
+              children: [
+                BuildDetailsSwiper(detailsModel: state.data!.customerProduct),
+                BuildDetailsInfo(detailsModel: state.data!.customerProduct),
+                BuildDetailsDescription(
+                    detailsModel: state.data!.customerProduct),
+                BuildDetailsVideo(detailsModel: state.data!.customerProduct),
+                BuildOtherProducts(otherProducts: state.data!.relatedProducts),
+              ],
+            );
+          } else {
+            return Container();
+          }
+        },
+      ),
     );
   }
 }

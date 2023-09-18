@@ -79,6 +79,7 @@ dependencies:
   scrollable_list_tab_scroller: ^1.1.0
 #  mac_address: ^1.0.0
   open_file: ^3.3.2
+  video_player: ^2.7.1
 
 
 
