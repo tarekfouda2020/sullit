@@ -17,9 +17,8 @@ class ClassifiedProductsModel extends BaseApiModel<ClassifiedProductsDomainModel
   @JsonSerializable(explicitToJson: true)
   const factory ClassifiedProductsModel({
     @JsonKey(name: 'remaining_uploads') required int remainingUploads,
-    @JsonKey(name: 'current_package') required CurrentPackageModel currentPackage,
-    @JsonKey(name: 'sections_products')
-        required SectionProductsModel sectionsProducts,
+    @JsonKey(name: 'current_package')  CurrentPackageModel? currentPackage,
+    @JsonKey(name: 'section_products') required SectionProductsModel sectionsProducts,
   }) = _ClassifiedProductsModel;
 
   factory ClassifiedProductsModel.fromJson(Map<String, dynamic> json) =>
@@ -29,7 +28,7 @@ class ClassifiedProductsModel extends BaseApiModel<ClassifiedProductsDomainModel
   ClassifiedProductsDomainModel toDomainModel() {
     return ClassifiedProductsDomainModel(
       remainingUploads: remainingUploads,
-      currentPackage: currentPackage.toDomainModel(),
+      currentPackage: currentPackage?.toDomainModel(),
       sectionsProducts: sectionsProducts.toDomainModel(),
     );
   }

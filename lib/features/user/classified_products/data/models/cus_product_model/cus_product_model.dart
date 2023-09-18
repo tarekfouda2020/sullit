@@ -1,4 +1,8 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
+import 'package:flutter_tdd/core/models/api_models/brand_model/brand_model.dart';
+import 'package:flutter_tdd/features/user/category/data/models/category_model/category_model.dart';
+import 'package:flutter_tdd/features/user/classified_products/data/models/cus_products_brand_model/cus_products_brand_model.dart';
+import 'package:flutter_tdd/features/user/classified_products/data/models/cus_products_cat_model/cus_products_cat_model.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/models/cus_product.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -17,6 +21,8 @@ class CusProductModel extends BaseApiModel<CusProduct> with _$CusProductModel {
     required String unit,
     required String description,
     required String slug,
+    CusProductsCatModel? category,
+    CusProductsBrandModel? brand,
     @JsonKey(name: 'unit_price') required String unitPrice,
     @JsonKey(name: 'available_status') required bool availableStatus,
     @JsonKey(name: 'admin_status') required String adminStatus,
@@ -47,6 +53,8 @@ class CusProductModel extends BaseApiModel<CusProduct> with _$CusProductModel {
       name: name,
       unit: unit,
       description: description,
+      brand: brand?.toDomainModel(),
+      category: category?.toDomainModel(),
       slug: slug,
       unitPrice: unitPrice,
       availableStatus: availableStatus,

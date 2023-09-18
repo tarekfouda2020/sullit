@@ -12,5 +12,6 @@ enum MoreRoutes {
   supportTickets,
   profile,
   classifiedProducts,
-  customersProducts
+  customersProducts,
+  test
 }

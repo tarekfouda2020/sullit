@@ -24,8 +24,8 @@ mixin _$ClassifiedProductsModel {
   @JsonKey(name: 'remaining_uploads')
   int get remainingUploads => throw _privateConstructorUsedError;
   @JsonKey(name: 'current_package')
-  CurrentPackageModel get currentPackage => throw _privateConstructorUsedError;
-  @JsonKey(name: 'sections_products')
+  CurrentPackageModel? get currentPackage => throw _privateConstructorUsedError;
+  @JsonKey(name: 'section_products')
   SectionProductsModel get sectionsProducts =>
       throw _privateConstructorUsedError;
 
@@ -43,11 +43,11 @@ abstract class $ClassifiedProductsModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'remaining_uploads') int remainingUploads,
-      @JsonKey(name: 'current_package') CurrentPackageModel currentPackage,
-      @JsonKey(name: 'sections_products')
+      @JsonKey(name: 'current_package') CurrentPackageModel? currentPackage,
+      @JsonKey(name: 'section_products')
       SectionProductsModel sectionsProducts});
 
-  $CurrentPackageModelCopyWith<$Res> get currentPackage;
+  $CurrentPackageModelCopyWith<$Res>? get currentPackage;
   $SectionProductsModelCopyWith<$Res> get sectionsProducts;
 }
 
@@ -66,7 +66,7 @@ class _$ClassifiedProductsModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? remainingUploads = null,
-    Object? currentPackage = null,
+    Object? currentPackage = freezed,
     Object? sectionsProducts = null,
   }) {
     return _then(_value.copyWith(
@@ -74,10 +74,10 @@ class _$ClassifiedProductsModelCopyWithImpl<$Res,
           ? _value.remainingUploads
           : remainingUploads // ignore: cast_nullable_to_non_nullable
               as int,
-      currentPackage: null == currentPackage
+      currentPackage: freezed == currentPackage
           ? _value.currentPackage
           : currentPackage // ignore: cast_nullable_to_non_nullable
-              as CurrentPackageModel,
+              as CurrentPackageModel?,
       sectionsProducts: null == sectionsProducts
           ? _value.sectionsProducts
           : sectionsProducts // ignore: cast_nullable_to_non_nullable
@@ -87,8 +87,12 @@ class _$ClassifiedProductsModelCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $CurrentPackageModelCopyWith<$Res> get currentPackage {
-    return $CurrentPackageModelCopyWith<$Res>(_value.currentPackage, (value) {
+  $CurrentPackageModelCopyWith<$Res>? get currentPackage {
+    if (_value.currentPackage == null) {
+      return null;
+    }
+
+    return $CurrentPackageModelCopyWith<$Res>(_value.currentPackage!, (value) {
       return _then(_value.copyWith(currentPackage: value) as $Val);
     });
   }
@@ -113,12 +117,12 @@ abstract class _$$_ClassifiedProductsModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'remaining_uploads') int remainingUploads,
-      @JsonKey(name: 'current_package') CurrentPackageModel currentPackage,
-      @JsonKey(name: 'sections_products')
+      @JsonKey(name: 'current_package') CurrentPackageModel? currentPackage,
+      @JsonKey(name: 'section_products')
       SectionProductsModel sectionsProducts});
 
   @override
-  $CurrentPackageModelCopyWith<$Res> get currentPackage;
+  $CurrentPackageModelCopyWith<$Res>? get currentPackage;
   @override
   $SectionProductsModelCopyWith<$Res> get sectionsProducts;
 }
@@ -136,7 +140,7 @@ class __$$_ClassifiedProductsModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? remainingUploads = null,
-    Object? currentPackage = null,
+    Object? currentPackage = freezed,
     Object? sectionsProducts = null,
   }) {
     return _then(_$_ClassifiedProductsModel(
@@ -144,10 +148,10 @@ class __$$_ClassifiedProductsModelCopyWithImpl<$Res>
           ? _value.remainingUploads
           : remainingUploads // ignore: cast_nullable_to_non_nullable
               as int,
-      currentPackage: null == currentPackage
+      currentPackage: freezed == currentPackage
           ? _value.currentPackage
           : currentPackage // ignore: cast_nullable_to_non_nullable
-              as CurrentPackageModel,
+              as CurrentPackageModel?,
       sectionsProducts: null == sectionsProducts
           ? _value.sectionsProducts
           : sectionsProducts // ignore: cast_nullable_to_non_nullable
@@ -162,8 +166,8 @@ class __$$_ClassifiedProductsModelCopyWithImpl<$Res>
 class _$_ClassifiedProductsModel extends _ClassifiedProductsModel {
   const _$_ClassifiedProductsModel(
       {@JsonKey(name: 'remaining_uploads') required this.remainingUploads,
-      @JsonKey(name: 'current_package') required this.currentPackage,
-      @JsonKey(name: 'sections_products') required this.sectionsProducts})
+      @JsonKey(name: 'current_package') this.currentPackage,
+      @JsonKey(name: 'section_products') required this.sectionsProducts})
       : super._();
 
   factory _$_ClassifiedProductsModel.fromJson(Map<String, dynamic> json) =>
@@ -174,9 +178,9 @@ class _$_ClassifiedProductsModel extends _ClassifiedProductsModel {
   final int remainingUploads;
   @override
   @JsonKey(name: 'current_package')
-  final CurrentPackageModel currentPackage;
+  final CurrentPackageModel? currentPackage;
   @override
-  @JsonKey(name: 'sections_products')
+  @JsonKey(name: 'section_products')
   final SectionProductsModel sectionsProducts;
 
   @override
@@ -222,8 +226,8 @@ abstract class _ClassifiedProductsModel extends ClassifiedProductsModel {
   const factory _ClassifiedProductsModel(
       {@JsonKey(name: 'remaining_uploads') required final int remainingUploads,
       @JsonKey(name: 'current_package')
-      required final CurrentPackageModel currentPackage,
-      @JsonKey(name: 'sections_products')
+      final CurrentPackageModel? currentPackage,
+      @JsonKey(name: 'section_products')
       required final SectionProductsModel
           sectionsProducts}) = _$_ClassifiedProductsModel;
   const _ClassifiedProductsModel._() : super._();
@@ -236,9 +240,9 @@ abstract class _ClassifiedProductsModel extends ClassifiedProductsModel {
   int get remainingUploads;
   @override
   @JsonKey(name: 'current_package')
-  CurrentPackageModel get currentPackage;
+  CurrentPackageModel? get currentPackage;
   @override
-  @JsonKey(name: 'sections_products')
+  @JsonKey(name: 'section_products')
   SectionProductsModel get sectionsProducts;
   @override
   @JsonKey(ignore: true)

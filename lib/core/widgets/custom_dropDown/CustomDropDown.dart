@@ -506,9 +506,9 @@ class DropdownSearchState<T> extends State<DropdownSearch<T>> {
         context: context,
         builder: (ctx) {
           return Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white ,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.only(topRight: Radius.circular(25), topLeft: Radius.circular(25)),
             ),
             child: AnimatedPadding(
               duration: const Duration(milliseconds: 300),

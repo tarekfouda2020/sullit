@@ -1,14 +1,22 @@
 part of 'classified_products_w_imports.dart';
 
 class BuildAddNewProduct extends StatelessWidget {
-  const BuildAddNewProduct({Key? key}) : super(key: key);
+  final int uploads ;
+  const BuildAddNewProduct({Key? key, required this.uploads}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AutoRouter.of(context).push(
-         AddClassifiedProductRoute(),
-      ),
+      onTap: () {
+        if(uploads == 0){
+          CustomToast.showSimpleToast(msg: 'You must purchase package');
+          return ;
+        }else {
+          AutoRouter.of(context).push(
+            AddClassifiedProductRoute(),
+          );
+        }
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 20),
         margin: const EdgeInsets.symmetric(

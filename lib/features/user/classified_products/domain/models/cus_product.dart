@@ -1,4 +1,7 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+import 'package:flutter_tdd/features/user/classified_products/domain/models/cus_product_cat.dart';
+
+import 'cus_product_brand.dart';
 
 class CusProduct extends BaseDomainModel {
   int id;
@@ -7,6 +10,8 @@ class CusProduct extends BaseDomainModel {
   String description;
   String slug;
   String unitPrice;
+  CusProductsCat? category ;
+  CusProductBrand? brand ;
   bool availableStatus;
   String adminStatus;
   String conditon;
@@ -32,6 +37,8 @@ class CusProduct extends BaseDomainModel {
        required this.unit,
        required this.description,
        required this.slug,
+        this.category,
+        this.brand,
        required this.unitPrice,
        required this.availableStatus,
        required this.adminStatus,

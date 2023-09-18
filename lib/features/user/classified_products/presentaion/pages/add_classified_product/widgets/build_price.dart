@@ -25,7 +25,7 @@ class BuildPrice extends StatelessWidget {
           child: GenericTextField(
             margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             fieldTypes: FieldTypes.normal,
-            type: TextInputType.text,
+            type: TextInputType.number,
             action: TextInputAction.next,
             controller: controller.unitPrice,
             validate: (value) => value!.validateEmpty(),

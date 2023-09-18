@@ -12,4 +12,6 @@ class ClassifiesProductsController {
           (value) => classifiedProductsBloc.onUpdateData(value),
         );
   }
+
+
 }

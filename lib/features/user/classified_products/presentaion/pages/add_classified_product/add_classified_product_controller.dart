@@ -2,9 +2,17 @@
 
 part of 'add_classified_product_imports.dart';
 class AddClassifiedProductsController {
+  final GlobalKey<FormState> formKey = GlobalKey();
+  final GlobalKey<FormState> generalFormKey = GlobalKey();
+  final GlobalKey<FormState> videoFormKey = GlobalKey();
+  final GlobalKey<FormState> metaFormKey = GlobalKey();
+  final GlobalKey<FormState> priceFormKey = GlobalKey();
+  final GlobalKey<FormState> descriptionFormKey = GlobalKey();
+
   final GlobalKey<DropdownSearchState> videoProviderDropKey = GlobalKey();
   final GlobalKey<DropdownSearchState> catsDropKey = GlobalKey();
   final GlobalKey<DropdownSearchState> brandDropKey = GlobalKey();
+  final GlobalKey<DropdownSearchState> conditionDropKey = GlobalKey();
 
   TextEditingController productNameController = TextEditingController();
   TextEditingController productCategoryController = TextEditingController();
@@ -26,8 +34,8 @@ class AddClassifiedProductsController {
 
   VideoProvider? videoProvider;
   CusProductsCat? cusProductsCat;
-
   CusProductBrand? cusProductsBrand;
+  ConditionDomainModel? condition;
 
   void selectBrand(CusProductBrand model) {
     cusProductsBrand = model;
@@ -37,8 +45,12 @@ class AddClassifiedProductsController {
     cusProductsCat = model;
   }
 
-  void selectService(VideoProvider? model) {
+  void selectVideoProvider(VideoProvider? model) {
     videoProvider = model;
+  }
+
+  void selectCondition(ConditionDomainModel? model) {
+    condition = model;
   }
 
   Future<List<CusProductsCat>> getCats({bool param = false}) async {
@@ -50,6 +62,16 @@ class AddClassifiedProductsController {
     var data = await GetCusProductsBrands().call(param);
     return data;
   }
+
+  Future<List<VideoProvider>> getVideoProviders({bool param = false}) async {
+    var data = await GetVideoProviders().call(param);
+    return data;
+  }
+
+  List<ConditionDomainModel> conditions = [
+    ConditionDomainModel(name: 'new', type: 'new'),
+    ConditionDomainModel(name: 'Used', type: 'used'),
+  ];
 
   Future<void> removeImage(int index, ImageType type) async {
     if (type == ImageType.generalImages) {
@@ -72,11 +94,12 @@ class AddClassifiedProductsController {
     }
   }
 
-  void showImageDialog(
-      {String? extension,
-      required BuildContext context,
-      required FileImageType type,
-      required ImageType imageType}) {
+  void showImageDialog({
+    String? extension,
+    required BuildContext context,
+    required FileImageType type,
+    required ImageType imageType,
+  }) {
     showDialog(
       context: context,
       builder: (context) => BuildImagesDialog(
@@ -98,11 +121,6 @@ class AddClassifiedProductsController {
     );
   }
 
-  Future<List<VideoProvider>> getVideoProviders({bool param = false}) async {
-    var data = await GetVideoProviders().call(param);
-    return data;
-  }
-
   void updateBloc(ImageType type) {
     if (type == ImageType.meta) {
       metaImageBloc.onUpdateData(metaImageBloc.state.data);
@@ -112,14 +130,37 @@ class AddClassifiedProductsController {
   }
 
   Future<void> addClassifiedProducts(BuildContext context) async {
-    var params = _addClassifiedProductParams();
-    var data = await SetAddClassifiedProducts().call(params);
-    if (data) {
+    if (imagesBloc.state.data.isEmpty) {
+      CustomToast.showSimpleToast(msg: 'Please select at least one image');
+      return;
+    }
+    if (pdf.state.data == null) {
+      CustomToast.showSimpleToast(msg: 'Please select pdf');
+      return;
+    }
+    if (metaImageBloc.state.data == null) {
       CustomToast.showSimpleToast(
-        msg: 'Product added successfully',
-        type: ToastType.success,
+          msg: 'Please select meta image', type: ToastType.error);
+      return;
+    }
+    if (thumbnailImageBloc.state.data == null) {
+      CustomToast.showSimpleToast(
+        msg: 'Please select thumbnail image',
+        type: ToastType.error,
       );
-      AutoRouter.of(context).push(const ClassifiedProductsRoute());
+      return;
+    }
+    if (formKey.currentState!.validate() &&
+        generalFormKey.currentState!.validate()) {
+      var params = _addClassifiedProductParams();
+      var data = await SetAddClassifiedProducts().call(params);
+      if (data) {
+        CustomToast.showSimpleToast(
+          msg: 'Product added successfully',
+          type: ToastType.success,
+        );
+        AutoRouter.of(context).push(const ClassifiedProductsRoute());
+      }
     }
   }
 
@@ -128,7 +169,7 @@ class AddClassifiedProductsController {
       name: productNameController.text,
       brandId: cusProductsBrand!.id,
       categoryId: cusProductsCat!.id,
-      condition: conditionController.text,
+      condition: condition!.type,
       description: description.text,
       location: locationController.text,
       metaImg: metaImageBloc.state.data!.id,
@@ -147,9 +188,9 @@ class AddClassifiedProductsController {
 
   String getImageIds() {
     if(imagesBloc.state.data.length > 1){
-     return imagesBloc.state.data.map((e) => e.id).join(',');
+      return imagesBloc.state.data.map((e) => e.id).join(',');
     }else {
-     return imagesBloc.state.data.first.id.toString() ;
+      return imagesBloc.state.data.first.id.toString();
     }
   }
 }
