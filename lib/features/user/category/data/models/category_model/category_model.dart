@@ -22,6 +22,8 @@ class CategoryModel extends BaseApiModel<Category>
     @JsonKey(name: 'order_level') required int orderLevel,
     @JsonKey(name: 'digital') required int digital,
     @JsonKey(name: 'slug') required String slug,
+    @JsonKey(name: 'chileds')  List<CategoryModel>? subCats,
+
   }) = _CategoryModel;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>
@@ -37,6 +39,7 @@ class CategoryModel extends BaseApiModel<Category>
       orderLevel: orderLevel,
       slug: slug,
       banner: banner,
+      subCats: subCats?.map((e) => e.toDomainModel()).toList(),
     );
   }
 }

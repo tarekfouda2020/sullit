@@ -34,6 +34,8 @@ mixin _$CategoryModel {
   int get digital => throw _privateConstructorUsedError;
   @JsonKey(name: 'slug')
   String get slug => throw _privateConstructorUsedError;
+  @JsonKey(name: 'chileds')
+  List<CategoryModel>? get subCats => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +56,8 @@ abstract class $CategoryModelCopyWith<$Res> {
       @JsonKey(name: 'icon') String icon,
       @JsonKey(name: 'order_level') int orderLevel,
       @JsonKey(name: 'digital') int digital,
-      @JsonKey(name: 'slug') String slug});
+      @JsonKey(name: 'slug') String slug,
+      @JsonKey(name: 'chileds') List<CategoryModel>? subCats});
 }
 
 /// @nodoc
@@ -77,6 +80,7 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     Object? orderLevel = null,
     Object? digital = null,
     Object? slug = null,
+    Object? subCats = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -107,6 +111,10 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.slug
           : slug // ignore: cast_nullable_to_non_nullable
               as String,
+      subCats: freezed == subCats
+          ? _value.subCats
+          : subCats // ignore: cast_nullable_to_non_nullable
+              as List<CategoryModel>?,
     ) as $Val);
   }
 }
@@ -126,7 +134,8 @@ abstract class _$$_CategoryModelCopyWith<$Res>
       @JsonKey(name: 'icon') String icon,
       @JsonKey(name: 'order_level') int orderLevel,
       @JsonKey(name: 'digital') int digital,
-      @JsonKey(name: 'slug') String slug});
+      @JsonKey(name: 'slug') String slug,
+      @JsonKey(name: 'chileds') List<CategoryModel>? subCats});
 }
 
 /// @nodoc
@@ -147,6 +156,7 @@ class __$$_CategoryModelCopyWithImpl<$Res>
     Object? orderLevel = null,
     Object? digital = null,
     Object? slug = null,
+    Object? subCats = freezed,
   }) {
     return _then(_$_CategoryModel(
       id: null == id
@@ -177,6 +187,10 @@ class __$$_CategoryModelCopyWithImpl<$Res>
           ? _value.slug
           : slug // ignore: cast_nullable_to_non_nullable
               as String,
+      subCats: freezed == subCats
+          ? _value._subCats
+          : subCats // ignore: cast_nullable_to_non_nullable
+              as List<CategoryModel>?,
     ));
   }
 }
@@ -192,8 +206,10 @@ class _$_CategoryModel extends _CategoryModel {
       @JsonKey(name: 'icon') required this.icon,
       @JsonKey(name: 'order_level') required this.orderLevel,
       @JsonKey(name: 'digital') required this.digital,
-      @JsonKey(name: 'slug') required this.slug})
-      : super._();
+      @JsonKey(name: 'slug') required this.slug,
+      @JsonKey(name: 'chileds') final List<CategoryModel>? subCats})
+      : _subCats = subCats,
+        super._();
 
   factory _$_CategoryModel.fromJson(Map<String, dynamic> json) =>
       _$$_CategoryModelFromJson(json);
@@ -219,10 +235,20 @@ class _$_CategoryModel extends _CategoryModel {
   @override
   @JsonKey(name: 'slug')
   final String slug;
+  final List<CategoryModel>? _subCats;
+  @override
+  @JsonKey(name: 'chileds')
+  List<CategoryModel>? get subCats {
+    final value = _subCats;
+    if (value == null) return null;
+    if (_subCats is EqualUnmodifiableListView) return _subCats;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'CategoryModel(id: $id, name: $name, banner: $banner, icon: $icon, orderLevel: $orderLevel, digital: $digital, slug: $slug)';
+    return 'CategoryModel(id: $id, name: $name, banner: $banner, icon: $icon, orderLevel: $orderLevel, digital: $digital, slug: $slug, subCats: $subCats)';
   }
 
   @override
@@ -237,13 +263,14 @@ class _$_CategoryModel extends _CategoryModel {
             (identical(other.orderLevel, orderLevel) ||
                 other.orderLevel == orderLevel) &&
             (identical(other.digital, digital) || other.digital == digital) &&
-            (identical(other.slug, slug) || other.slug == slug));
+            (identical(other.slug, slug) || other.slug == slug) &&
+            const DeepCollectionEquality().equals(other._subCats, _subCats));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, banner, icon, orderLevel, digital, slug);
+  int get hashCode => Object.hash(runtimeType, id, name, banner, icon,
+      orderLevel, digital, slug, const DeepCollectionEquality().hash(_subCats));
 
   @JsonKey(ignore: true)
   @override
@@ -261,13 +288,15 @@ class _$_CategoryModel extends _CategoryModel {
 
 abstract class _CategoryModel extends CategoryModel {
   const factory _CategoryModel(
-      {@JsonKey(name: 'id') required final int id,
-      @JsonKey(name: 'name') required final String name,
-      @JsonKey(name: 'banner') final String? banner,
-      @JsonKey(name: 'icon') required final String icon,
-      @JsonKey(name: 'order_level') required final int orderLevel,
-      @JsonKey(name: 'digital') required final int digital,
-      @JsonKey(name: 'slug') required final String slug}) = _$_CategoryModel;
+          {@JsonKey(name: 'id') required final int id,
+          @JsonKey(name: 'name') required final String name,
+          @JsonKey(name: 'banner') final String? banner,
+          @JsonKey(name: 'icon') required final String icon,
+          @JsonKey(name: 'order_level') required final int orderLevel,
+          @JsonKey(name: 'digital') required final int digital,
+          @JsonKey(name: 'slug') required final String slug,
+          @JsonKey(name: 'chileds') final List<CategoryModel>? subCats}) =
+      _$_CategoryModel;
   const _CategoryModel._() : super._();
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
@@ -294,6 +323,9 @@ abstract class _CategoryModel extends CategoryModel {
   @override
   @JsonKey(name: 'slug')
   String get slug;
+  @override
+  @JsonKey(name: 'chileds')
+  List<CategoryModel>? get subCats;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryModelCopyWith<_$_CategoryModel> get copyWith =>

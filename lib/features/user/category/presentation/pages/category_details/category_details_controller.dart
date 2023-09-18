@@ -48,16 +48,8 @@ class CategoryDetailsController {
     var insertedItem = _insertedItem(id);
     if (data.subCats.isNotEmpty) {
       data.subCats.insert(0, insertedItem);
-      subCatsCubit.add(SubCategory(
-        subCats: data.subCats,
-        selectedId: data.subCats.first.id,
-        category: data.category,
-        priceRange: data.priceRange,
-        attributes: data.attributes,
-        colors: data.colors,
-        brands: data.brands,
-        categories: data.categories,
-      ));
+      var insertedSubCat = _insertedSubCat(data);
+      subCatsCubit.add(insertedSubCat);
       if (index == 0) {
         subCatsCubit[index].selectedId = 0;
       } else {
@@ -172,6 +164,19 @@ class CategoryDetailsController {
       refresh: refresh,
       pageSize: pageSize,
       currentPage: page,
+    );
+  }
+
+  SubCategory _insertedSubCat(SubCategory data) {
+    return SubCategory(
+      subCats: data.subCats,
+      selectedId: data.subCats.first.id,
+      category: data.category,
+      priceRange: data.priceRange,
+      attributes: data.attributes,
+      colors: data.colors,
+      brands: data.brands,
+      categories: data.categories,
     );
   }
 

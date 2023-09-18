@@ -15,6 +15,9 @@ _$_CategoryModel _$$_CategoryModelFromJson(Map<String, dynamic> json) =>
       orderLevel: json['order_level'] as int,
       digital: json['digital'] as int,
       slug: json['slug'] as String,
+      subCats: (json['chileds'] as List<dynamic>?)
+          ?.map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_CategoryModelToJson(_$_CategoryModel instance) =>
@@ -26,4 +29,5 @@ Map<String, dynamic> _$$_CategoryModelToJson(_$_CategoryModel instance) =>
       'order_level': instance.orderLevel,
       'digital': instance.digital,
       'slug': instance.slug,
+      'chileds': instance.subCats?.map((e) => e.toJson()).toList(),
     };

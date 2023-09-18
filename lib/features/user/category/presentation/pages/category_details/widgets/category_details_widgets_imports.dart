@@ -35,7 +35,6 @@ import 'package:flutter_tdd/features/user/products/presentation/widgets/build_pr
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item_shimmer.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 part 'build_filter_bar.dart';
-part 'build_sort_bar.dart';
 part 'build_loading_filter_bar.dart';
 part 'build_filter_drawer.dart';
 part 'build_products.dart';

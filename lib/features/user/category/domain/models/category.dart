@@ -8,7 +8,9 @@ class Category extends BaseDomainModel {
   final int orderLevel;
   final int digital;
   final String slug;
+  List<Category>?subCats;
   int? parentId;
+  bool?isSelected;
 
 
   Category({
@@ -19,6 +21,8 @@ class Category extends BaseDomainModel {
     required this.orderLevel,
     required this.digital,
     required this.slug,
+    this.subCats,
     this.parentId,
+    this.isSelected,
   });
 }

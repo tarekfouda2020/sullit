@@ -34,14 +34,14 @@ class _MoreState extends State<More> {
           //     MoreRoutes.classifiedProducts,
           //   ),
           // ),
-          // BuildMoreItem(
-          //   title: 'Customers products',
-          //   icon: Icons.star_border,
-          //   onTap: () => controller.checkAuth(
-          //     context,
-          //     MoreRoutes.customersProducts,
-          //   ),
-          // ),
+          BuildMoreItem(
+            title: 'Customers products',
+            icon: Icons.star_border,
+            onTap: () => controller.checkAuth(
+              context,
+              MoreRoutes.customersProducts,
+            ),
+          ),
           BuildMoreItem(
             haveStatus: true,
             title: 'Purchased History',

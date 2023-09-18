@@ -1,8 +1,8 @@
 // ignore_for_file: constant_identifier_names
 
-class ApiNames{
-
+class ApiNames {
   static const String baseUrl = "https://staging.suliit.com/api/v3/";
+
   // static const String baseUrl = "https://suliit.com/api/v3/";
 
   // auth routes
@@ -28,15 +28,18 @@ class ApiNames{
   static const String getHome = "home";
   static const String getProductDetails = "products";
   static const String getPopularProducts = "mostpopulars";
-  static String toggleWishlist (int id) => "products/$id/wishlist/toggle";
+
+  static String toggleWishlist(int id) => "products/$id/wishlist/toggle";
   static const String sendQuery = "product-queries";
-  static  String getVariantPrice(int id) => "products/$id/variant/price";
+
+  static String getVariantPrice(int id) => "products/$id/variant/price";
   static const String getDownloadProducts = "orders/digital-purchase-history";
-  static String downloadDigitalProduct (int id) => "orders/digital-purchase-history/$id/download-product";
+
+  static String downloadDigitalProduct(int id) =>
+      "orders/digital-purchase-history/$id/download-product";
 
   //dashboard urls
   static const String getDashboard = "dashboard";
-
 
   // categories urls
   static const String getCategories = "categories";
@@ -55,10 +58,14 @@ class ApiNames{
   static const String addUserAddress = "user/addresses/create";
   static const String countries = "countries";
   static const String states = "states";
-  static const String cities  = "cities";
-  static String setDefaultAddress (int id) => "user/addresses/$id/set-default?_method=put";
-  static String deleteAddress (int id) => "user/addresses/$id/delete";
-  static String editAddress (int id) => "user/addresses/$id/update?_method=put";
+  static const String cities = "cities";
+
+  static String setDefaultAddress(int id) =>
+      "user/addresses/$id/set-default?_method=put";
+
+  static String deleteAddress(int id) => "user/addresses/$id/delete";
+
+  static String editAddress(int id) => "user/addresses/$id/update?_method=put";
 
   // sale urls
   static const String getAllFlashSale = "flash-deals";
@@ -66,9 +73,9 @@ class ApiNames{
   static const String getCoupons = "exclusive-coupons";
 
   //wallet urls
-  static const String getMyWallet  = "my-wallet";
-  static const String getWalletTypes  = "recharge-wallet-payment-types";
-  static const String rechargeWallet  = "recharge-wallet";
+  static const String getMyWallet = "my-wallet";
+  static const String getWalletTypes = "recharge-wallet-payment-types";
+  static const String rechargeWallet = "recharge-wallet";
 
   // general
   static const String terms = "terms";
@@ -94,27 +101,38 @@ class ApiNames{
   static const String storeProductToCart = "cart/store";
   static const String cartShippingInfo = "cart/shipping-info";
   static const String getCombinedOrder = "combined-order/";
+
   // notifications
   static const String notifications = "notifications";
 
   //tickets
   static const String createTicket = "tickets/store";
   static const String tickets = "tickets";
-  static String ticketDetails (int id) =>  "tickets/$id/show";
-  static String addTicketReply (int id) =>  "tickets/$id/replies/store";
+
+  static String ticketDetails(int id) => "tickets/$id/show";
+
+  static String addTicketReply(int id) => "tickets/$id/replies/store";
 
   //PurchaseHistory
   static const String getPurchaseHistory = "orders/purchase-history";
   static const String getReturnOrders = "orders/return-orders";
-  static String getTrackOrder (String code) => "orders/$code/track-your-order";
-  static String downloadInvoice (int id) => "orders/$id/download-invoice";
-  static String getOrderDetails (int id) => "orders/$id/show";
-  static String sendReview (int orderId) => "orders/$orderId/product-review";
-  static String cancelOrder (int orderId) => "orders/$orderId/cancel-order";
-  static String returnOrder (int orderId) => "orders/$orderId/store-return-order";
-  static String payOrder (int orderId) => "orders/$orderId/pay-order";
 
-  //Customers Products
+  static String getTrackOrder(String code) => "orders/$code/track-your-order";
+
+  static String downloadInvoice(int id) => "orders/$id/download-invoice";
+
+  static String getOrderDetails(int id) => "orders/$id/show";
+
+  static String sendReview(int orderId) => "orders/$orderId/product-review";
+
+  static String cancelOrder(int orderId) => "orders/$orderId/cancel-order";
+
+  static String returnOrder(int orderId) =>
+      "orders/$orderId/store-return-order";
+
+  static String payOrder(int orderId) => "orders/$orderId/pay-order";
+
+  //Classified Products
   static const String getUploadedFiles = "uploaded-files";
   static const String uploadFile = "uploade-file";
   static const String uploadFiles = "uploade-files";
@@ -124,4 +142,7 @@ class ApiNames{
   static const String cusProductsCats = "user/customer-products-categories";
   static const String classifiedProducts = "user/customer-products";
 
+  //Customers Products
+  static const String getCustomersProducts = "customer-products";
+  static const String getCustomersProductsDetails = "customer-products";
 }

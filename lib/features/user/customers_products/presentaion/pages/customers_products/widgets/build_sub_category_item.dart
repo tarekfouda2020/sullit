@@ -1,30 +1,32 @@
-part of 'category_details_widgets_imports.dart';
+part of 'customers_products_w_imports.dart';
 
 class BuildSubCategoryItem extends StatelessWidget {
   final Category subCategoryModel;
-  final CategoryDetailsController categoryDetailsController;
+  final CustomerProductsController controller;
+
   final int selected;
   final int index;
 
-  const BuildSubCategoryItem(
-      {super.key,
-      required this.subCategoryModel,
-      required this.categoryDetailsController,
-      required this.selected,
-      required this.index});
+  const BuildSubCategoryItem({
+    super.key,
+    required this.subCategoryModel,
+    required this.controller,
+    required this.selected,
+    required this.index,
+  });
 
   @override
   Widget build(BuildContext context) {
     Color color = (subCategoryModel.id == selected ||
-            subCategoryModel.parentId == selected)
+        subCategoryModel.parentId == selected)
         ? context.colors.primary
         : context.colors.white;
     Color textColor = (subCategoryModel.id == selected ||
-            subCategoryModel.parentId == selected)
+        subCategoryModel.parentId == selected)
         ? context.colors.white
         : context.colors.primary;
     return InkWell(
-      onTap: () => categoryDetailsController.onSelectSubCategory(
+      onTap: () => controller.onSelectSubCategory(
           context, selected, subCategoryModel, index),
       child: Container(
         height: 30.h,
