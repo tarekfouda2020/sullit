@@ -10,37 +10,32 @@ class BuildEditThumbnailImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<File?>, GenericState<File?>>(
+    return BlocBuilder<GenericBloc<FileDomainModel?>,
+        GenericState<FileDomainModel?>>(
       bloc: controller.thumbnailImageBloc,
       builder: (context, state) {
         if (state is GenericUpdateState) {
-          return Container(
-            alignment: AlignmentDirectional.topStart,
-            height: 60,
-            width: 60,
-            margin: const EdgeInsetsDirectional.only(start: 5),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              border: Border.all(
-                color: Colors.transparent,
-              ),
-              image: DecorationImage(
-                image: FileImage(state.data!),
-                fit: BoxFit.fill,
-              ),
+          return GestureDetector(
+            onTap: () => controller.showImageDialog(
+              context: context,
+              type: FileImageType.singleImage,
+              imageType: ImageType.thumbnail,
             ),
-            child: InkWell(
-              // onTap: () => controller.removeImage(0,type),
-              child: Icon(
-                Icons.clear,
-                color: context.colors.primary,
-                size: 15.r,
-              ),
+            child: CachedImage(
+              imgMargin: const EdgeInsets.all(5),
+              url: state.data!.url,
+              height: 60,
+              borderRadius: BorderRadius.circular(5),
+              width: 60,
             ),
           );
         } else {
           return InkWell(
-            onTap: () => controller.setThumbnailImage(context),
+            onTap: () => controller.showImageDialog(
+              context: context,
+              type: FileImageType.singleImage,
+              imageType: ImageType.thumbnail,
+            ),
             child: Container(
               height: 60,
               width: 60,

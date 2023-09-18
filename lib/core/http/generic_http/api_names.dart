@@ -123,5 +123,10 @@ class ApiNames{
   static const String cusProductsBrands = "user/customer-products-brands";
   static const String cusProductsCats = "user/customer-products-categories";
   static const String classifiedProducts = "user/customer-products";
+  static  String getClassifiedProduct(int param) =>"user/customer-products/$param?lang=sa";
+  static  String editClassifiedProduct(int param) =>"user/customer-products/$param?_method=put";
+  static  String getPackages = 'customer-packages';
+  static  String paymentOptions = 'customer-packages/payment-options/list';
+  static  String purchasePackage(int param) => 'customer-packages/$param/purchase';
 
 }

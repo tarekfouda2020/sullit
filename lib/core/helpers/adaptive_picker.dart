@@ -200,7 +200,7 @@ class AdaptivePicker {
     );
   }
 
-  static bottomSheet({required BuildContext context, required Widget child}) {
+  static Future bottomSheet({required BuildContext context, required Widget child}) {
     return showModalBottomSheet(
       isScrollControlled: false,
       shape: const RoundedRectangleBorder(

@@ -12,7 +12,7 @@ _$_CurrentPackageModel _$$_CurrentPackageModelFromJson(
       id: json['id'] as int,
       name: json['name'] as String,
       logo: json['logo'] as String,
-      isFree: json['isFree'] as bool,
+      isFree: json['is_free'] as bool,
       amount: json['amount'] as String,
       productUpload: json['product_upload'] as int,
     );
@@ -23,7 +23,7 @@ Map<String, dynamic> _$$_CurrentPackageModelToJson(
       'id': instance.id,
       'name': instance.name,
       'logo': instance.logo,
-      'isFree': instance.isFree,
+      'is_free': instance.isFree,
       'amount': instance.amount,
       'product_upload': instance.productUpload,
     };

@@ -13,6 +13,14 @@ _$_CusProductModel _$$_CusProductModelFromJson(Map<String, dynamic> json) =>
       unit: json['unit'] as String,
       description: json['description'] as String,
       slug: json['slug'] as String,
+      category: json['category'] == null
+          ? null
+          : CusProductsCatModel.fromJson(
+              json['category'] as Map<String, dynamic>),
+      brand: json['brand'] == null
+          ? null
+          : CusProductsBrandModel.fromJson(
+              json['brand'] as Map<String, dynamic>),
       unitPrice: json['unit_price'] as String,
       availableStatus: json['available_status'] as bool,
       adminStatus: json['admin_status'] as String,
@@ -41,6 +49,8 @@ Map<String, dynamic> _$$_CusProductModelToJson(_$_CusProductModel instance) =>
       'unit': instance.unit,
       'description': instance.description,
       'slug': instance.slug,
+      'category': instance.category?.toJson(),
+      'brand': instance.brand?.toJson(),
       'unit_price': instance.unitPrice,
       'available_status': instance.availableStatus,
       'admin_status': instance.adminStatus,

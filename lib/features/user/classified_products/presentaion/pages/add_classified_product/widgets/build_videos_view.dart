@@ -38,7 +38,7 @@ class BuildVideosView extends StatelessWidget {
                 fontSize:16.sp,
                 selectedItem: controller.videoProvider,
                 radius: BorderRadius.circular(5.r),
-                onChange: (value) => controller.selectService(value),
+                onChange: (value) => controller.selectVideoProvider(value),
                 validate: (value) => validateDropDown(value),
               ),
               GenericTextField(

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 part of 'payment_imports.dart';
 class PaymentController {
   StreamSubscription<String>? urlState;
@@ -7,7 +9,7 @@ class PaymentController {
     BuildContext context,
   ) {
     urlState = flutterWebViewPlugin.onUrlChanged.listen(
-      (String url) {
+      (String url) async {
         if (url.contains("combined_order_id")) {
           Future.delayed(const Duration(seconds: 2), () {
             int id = int.parse(url.split('combined_order_id=').last);
@@ -22,6 +24,10 @@ class PaymentController {
               Navigator.pop(context);
             },
           );
+        }else if (url.contains('success')){
+          flutterWebViewPlugin.close();
+          CustomToast.showSimpleToast(msg: 'Payment done successfully', type: ToastType.success);
+          AutoRouter.of(context).pushAndPopUntil(const ClassifiedProductsRoute(), predicate: (route) => false,);
         }
       },
     );

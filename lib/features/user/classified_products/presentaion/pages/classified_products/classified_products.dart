@@ -8,6 +8,14 @@ class ClassifiedProducts extends StatefulWidget {
 }
 
 class _ClassifiedProductsState extends State<ClassifiedProducts> {
+  late ClassifiesProductsController controller;
+
+  @override
+  void initState() {
+    controller = ClassifiesProductsController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,29 +23,48 @@ class _ClassifiedProductsState extends State<ClassifiedProducts> {
       appBar: const DefaultAppBar(
         title: 'Classified Products',
       ),
-      body: ListView(
-        physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Text(
-              'Products',
-              style: AppTextStyle.s14_w800(color: context.colors.black),
-            ),
-          ),
-          const BuildRemainingUploads(),
-          const BuildAddNewProduct(),
-          const BuildPackageBtn(),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: Text(
-              'All products',
-              style: AppTextStyle.s14_w800(color: context.colors.black),
-            ),
-          ),
-          const BuildProductView()
-        ],
+      body: BlocBuilder<GenericBloc<ClassifiedProductsDomainModel?>,
+          GenericState<ClassifiedProductsDomainModel?>>(
+        bloc: controller.classifiedProductsBloc,
+        builder: (context, state) {
+          if (state is GenericUpdateState) {
+            return ListView(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    'Products',
+                    style: AppTextStyle.s14_w800(color: context.colors.black),
+                  ),
+                ),
+                BuildRemainingUploads(
+                  uploads: state.data!.remainingUploads,
+                ),
+                BuildAddNewProduct(
+                  uploads: state.data!.remainingUploads,
+                ),
+                BuildPackageBtn(
+                  package: state.data!.currentPackage?.name,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: Text(
+                    'All products',
+                    style: AppTextStyle.s14_w800(color: context.colors.black),
+                  ),
+                ),
+                BuildProductView(
+                  products: state.data!.sectionsProducts.products,
+                  controller: controller,
+                ),
+              ],
+            );
+          } else {
+            return const BuildClassifiedProductsLoading();
+          }
+        },
       ),
     );
   }

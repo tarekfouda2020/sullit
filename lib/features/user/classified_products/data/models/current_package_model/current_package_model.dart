@@ -17,7 +17,7 @@ class CurrentPackageModel extends BaseApiModel<CurrentPackage>
     required int id,
     required String name,
     required String logo,
-    required bool isFree,
+    @JsonKey(name:'is_free') required bool isFree,
     required String amount,
     @JsonKey(name: 'product_upload') required int productUpload,
   }) = _CurrentPackageModel;

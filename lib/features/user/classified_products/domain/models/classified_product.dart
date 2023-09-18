@@ -5,7 +5,7 @@ import 'package:flutter_tdd/features/user/classified_products/domain/models/sect
 class ClassifiedProductsDomainModel extends BaseDomainModel {
   int remainingUploads;
 
-  CurrentPackage currentPackage;
+  CurrentPackage? currentPackage;
 
   SectionsProducts sectionsProducts;
 

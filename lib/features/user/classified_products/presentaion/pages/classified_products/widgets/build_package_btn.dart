@@ -1,7 +1,8 @@
 part of 'classified_products_w_imports.dart';
 
 class BuildPackageBtn extends StatelessWidget {
-  const BuildPackageBtn({Key? key}) : super(key: key);
+  final String? package ;
+  const BuildPackageBtn({Key? key,  this.package}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class BuildPackageBtn extends StatelessWidget {
             ),
           ),
           Text(
-            'No package found',
+          package??'No package',
             style: AppTextStyle.s14_w400(color: context.colors.black),
           ),
         ],

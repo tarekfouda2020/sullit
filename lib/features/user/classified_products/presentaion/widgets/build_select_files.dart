@@ -5,12 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/validator.dart';
-import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/DropdownTextField.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
+import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/features/user/classified_products/data/enums/enums.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/models/file_domain_model.dart';
@@ -144,23 +144,9 @@ class _BuildSelectFileState extends State<BuildSelectFile> {
               ],
             ),
             Visibility(
-              visible: state.data.isNotEmpty,
-              replacement: Padding(
-                padding: EdgeInsets.only(top: 250.r),
-                child: Center(
-                  child: Text(
-                    'No Files Founded.  !',
-                    style: AppTextStyle.s14_w600(
-                      color: context.colors.grey,
-                    ),
-                  ),
-                ),
-              ),
-              child: SizedBox(
-                height: MediaQuery
-                    .of(context)
-                    .size
-                    .height * .65,
+              visible: state is GenericUpdateState,
+              replacement: SizedBox(
+                height: MediaQuery.of(context).size.height * .6,
                 child: GridView(
                   physics: const BouncingScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -170,47 +156,95 @@ class _BuildSelectFileState extends State<BuildSelectFile> {
                     childAspectRatio: .9,
                   ),
                   children: List.generate(
-                    state.data.length,
-                        (index) =>
-                        GestureDetector(
-                          onTap: () {
-                            if (widget.type == FileImageType.singleImage) {
-                              for (var e in state.data) {
-                                e.selected = false;
-                              }
-                            }
-                            state.data[index].selected =
-                            !state.data[index].selected;
-                            filesBloc.onUpdateData(state.data);
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: state.data[index].selected
-                                ? CustomDecoration().copyWith(
-                              border: Border.all(
-                                color: context.colors.primary,
-                              ),
-                            )
-                                : CustomDecoration(),
-                            child: Column(
-                              children: [
-                                CachedImage(
-                                  url: state.data[index].url,
-                                  height: 100.h,
-                                  imgMargin: EdgeInsets.only(bottom: 10.r),
-                                  width: 100.w,
-                                ),
-                                Text(
-                                  overflow: TextOverflow.ellipsis,
-                                  state.data[index].fileName,
-                                  style: AppTextStyle.s12_w400(
-                                    color: context.colors.black,
-                                  ),
-                                ),
-                              ],
+                    10,
+                    (index) => Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration:  CustomDecoration(),
+                      child: Column(
+                        children: [
+                          BuildShimmerItem(
+                            child: CachedImage(
+                              url: '',
+                              height: 100.h,
+                              imgMargin: EdgeInsets.only(bottom: 10.r),
+                              width: 100.w,
                             ),
                           ),
+                          const BuildShimmerItem(
+                            height: 7,
+                            width: 120,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              child: Visibility(
+                visible: state.data.isNotEmpty,
+                replacement: Padding(
+                  padding: EdgeInsets.only(top: 250.r),
+                  child: Center(
+                    child: Text(
+                      'No Files Founded.  !',
+                      style: AppTextStyle.s14_w600(
+                        color: context.colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * .6,
+                  child: GridView(
+                    physics: const BouncingScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisSpacing: 15.r,
+                      mainAxisSpacing: 15.r,
+                      crossAxisCount: 2,
+                      childAspectRatio: .9,
+                    ),
+                    children: List.generate(
+                      state.data.length,
+                      (index) => GestureDetector(
+                        onTap: () {
+                          if (widget.type == FileImageType.singleImage) {
+                            for (var e in state.data) {
+                              e.selected = false;
+                            }
+                          }
+                          state.data[index].selected =
+                              !state.data[index].selected;
+                          filesBloc.onUpdateData(state.data);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: state.data[index].selected
+                              ? CustomDecoration().copyWith(
+                                  border: Border.all(
+                                    color: context.colors.primary,
+                                  ),
+                                )
+                              : CustomDecoration(),
+                          child: Column(
+                            children: [
+                              CachedImage(
+                                url: state.data[index].url,
+                                height: 100.h,
+                                imgMargin: EdgeInsets.only(bottom: 10.r),
+                                width: 100.w,
+                              ),
+                              Text(
+                                overflow: TextOverflow.ellipsis,
+                                state.data[index].fileName,
+                                style: AppTextStyle.s12_w400(
+                                  color: context.colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -223,7 +257,9 @@ class _BuildSelectFileState extends State<BuildSelectFile> {
               child: GestureDetector(
                 onTap: () {
                   AutoRouter.of(context).pop();
-                  widget.onAddFiles(filesBloc.state.data.where((element) => element.selected).toList());
+                  widget.onAddFiles(filesBloc.state.data
+                      .where((element) => element.selected)
+                      .toList());
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,

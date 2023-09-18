@@ -16,6 +16,7 @@ import 'package:flutter_tdd/core/widgets/custom_dropDown/CustomDropDown.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/user/classified_products/data/enums/enums.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/entities/add_classified_product.dart';
+import 'package:flutter_tdd/features/user/classified_products/domain/models/condition.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/models/cus_product_brand.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/models/cus_product_cat.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/models/file_domain_model.dart';

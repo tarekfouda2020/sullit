@@ -1,7 +1,10 @@
 part of 'classified_products_w_imports.dart';
 
 class BuildRemainingUploads extends StatelessWidget {
-  const BuildRemainingUploads({Key? key}) : super(key: key);
+  final int uploads;
+
+  const BuildRemainingUploads({Key? key, required this.uploads})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,11 +12,14 @@ class BuildRemainingUploads extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
+        gradient: LinearGradient(
+          colors: [
             context.colors.purpleDark,
-            context.colors.purpleLight
-          ]),
-          borderRadius: BorderRadius.circular(10)),
+            context.colors.purpleLight,
+          ],
+        ),
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Column(
         children: [
           Icon(
@@ -23,7 +29,7 @@ class BuildRemainingUploads extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Text(
-              '0',
+              uploads.toString(),
               style: AppTextStyle.s16_w700(color: context.colors.white),
             ),
           ),

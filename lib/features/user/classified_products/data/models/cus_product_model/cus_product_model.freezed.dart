@@ -25,6 +25,8 @@ mixin _$CusProductModel {
   String get unit => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
+  CusProductsCatModel? get category => throw _privateConstructorUsedError;
+  CusProductsBrandModel? get brand => throw _privateConstructorUsedError;
   @JsonKey(name: 'unit_price')
   String get unitPrice => throw _privateConstructorUsedError;
   @JsonKey(name: 'available_status')
@@ -75,6 +77,8 @@ abstract class $CusProductModelCopyWith<$Res> {
       String unit,
       String description,
       String slug,
+      CusProductsCatModel? category,
+      CusProductsBrandModel? brand,
       @JsonKey(name: 'unit_price') String unitPrice,
       @JsonKey(name: 'available_status') bool availableStatus,
       @JsonKey(name: 'admin_status') String adminStatus,
@@ -93,6 +97,9 @@ abstract class $CusProductModelCopyWith<$Res> {
       @JsonKey(name: 'meta_description') String metaDescription,
       @JsonKey(name: 'meta_img') String metaImg,
       @JsonKey(name: 'meta_img_value') String metaImgValue});
+
+  $CusProductsCatModelCopyWith<$Res>? get category;
+  $CusProductsBrandModelCopyWith<$Res>? get brand;
 }
 
 /// @nodoc
@@ -113,6 +120,8 @@ class _$CusProductModelCopyWithImpl<$Res, $Val extends CusProductModel>
     Object? unit = null,
     Object? description = null,
     Object? slug = null,
+    Object? category = freezed,
+    Object? brand = freezed,
     Object? unitPrice = null,
     Object? availableStatus = null,
     Object? adminStatus = null,
@@ -153,6 +162,14 @@ class _$CusProductModelCopyWithImpl<$Res, $Val extends CusProductModel>
           ? _value.slug
           : slug // ignore: cast_nullable_to_non_nullable
               as String,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CusProductsCatModel?,
+      brand: freezed == brand
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
+              as CusProductsBrandModel?,
       unitPrice: null == unitPrice
           ? _value.unitPrice
           : unitPrice // ignore: cast_nullable_to_non_nullable
@@ -227,6 +244,30 @@ class _$CusProductModelCopyWithImpl<$Res, $Val extends CusProductModel>
               as String,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CusProductsCatModelCopyWith<$Res>? get category {
+    if (_value.category == null) {
+      return null;
+    }
+
+    return $CusProductsCatModelCopyWith<$Res>(_value.category!, (value) {
+      return _then(_value.copyWith(category: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CusProductsBrandModelCopyWith<$Res>? get brand {
+    if (_value.brand == null) {
+      return null;
+    }
+
+    return $CusProductsBrandModelCopyWith<$Res>(_value.brand!, (value) {
+      return _then(_value.copyWith(brand: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -243,6 +284,8 @@ abstract class _$$_CusProductModelCopyWith<$Res>
       String unit,
       String description,
       String slug,
+      CusProductsCatModel? category,
+      CusProductsBrandModel? brand,
       @JsonKey(name: 'unit_price') String unitPrice,
       @JsonKey(name: 'available_status') bool availableStatus,
       @JsonKey(name: 'admin_status') String adminStatus,
@@ -261,6 +304,11 @@ abstract class _$$_CusProductModelCopyWith<$Res>
       @JsonKey(name: 'meta_description') String metaDescription,
       @JsonKey(name: 'meta_img') String metaImg,
       @JsonKey(name: 'meta_img_value') String metaImgValue});
+
+  @override
+  $CusProductsCatModelCopyWith<$Res>? get category;
+  @override
+  $CusProductsBrandModelCopyWith<$Res>? get brand;
 }
 
 /// @nodoc
@@ -279,6 +327,8 @@ class __$$_CusProductModelCopyWithImpl<$Res>
     Object? unit = null,
     Object? description = null,
     Object? slug = null,
+    Object? category = freezed,
+    Object? brand = freezed,
     Object? unitPrice = null,
     Object? availableStatus = null,
     Object? adminStatus = null,
@@ -319,6 +369,14 @@ class __$$_CusProductModelCopyWithImpl<$Res>
           ? _value.slug
           : slug // ignore: cast_nullable_to_non_nullable
               as String,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CusProductsCatModel?,
+      brand: freezed == brand
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
+              as CusProductsBrandModel?,
       unitPrice: null == unitPrice
           ? _value.unitPrice
           : unitPrice // ignore: cast_nullable_to_non_nullable
@@ -405,6 +463,8 @@ class _$_CusProductModel extends _CusProductModel {
       required this.unit,
       required this.description,
       required this.slug,
+      this.category,
+      this.brand,
       @JsonKey(name: 'unit_price') required this.unitPrice,
       @JsonKey(name: 'available_status') required this.availableStatus,
       @JsonKey(name: 'admin_status') required this.adminStatus,
@@ -440,6 +500,10 @@ class _$_CusProductModel extends _CusProductModel {
   final String description;
   @override
   final String slug;
+  @override
+  final CusProductsCatModel? category;
+  @override
+  final CusProductsBrandModel? brand;
   @override
   @JsonKey(name: 'unit_price')
   final String unitPrice;
@@ -504,7 +568,7 @@ class _$_CusProductModel extends _CusProductModel {
 
   @override
   String toString() {
-    return 'CusProductModel(id: $id, name: $name, unit: $unit, description: $description, slug: $slug, unitPrice: $unitPrice, availableStatus: $availableStatus, adminStatus: $adminStatus, conditon: $conditon, location: $location, photosValue: $photosValue, photos: $photos, thumbnailImg: $thumbnailImg, thumbnailImgValue: $thumbnailImgValue, pdf: $pdf, pdfValue: $pdfValue, tags: $tags, videoProvider: $videoProvider, videoLink: $videoLink, metaTitle: $metaTitle, metaDescription: $metaDescription, metaImg: $metaImg, metaImgValue: $metaImgValue)';
+    return 'CusProductModel(id: $id, name: $name, unit: $unit, description: $description, slug: $slug, category: $category, brand: $brand, unitPrice: $unitPrice, availableStatus: $availableStatus, adminStatus: $adminStatus, conditon: $conditon, location: $location, photosValue: $photosValue, photos: $photos, thumbnailImg: $thumbnailImg, thumbnailImgValue: $thumbnailImgValue, pdf: $pdf, pdfValue: $pdfValue, tags: $tags, videoProvider: $videoProvider, videoLink: $videoLink, metaTitle: $metaTitle, metaDescription: $metaDescription, metaImg: $metaImg, metaImgValue: $metaImgValue)';
   }
 
   @override
@@ -518,6 +582,9 @@ class _$_CusProductModel extends _CusProductModel {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.slug, slug) || other.slug == slug) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.brand, brand) || other.brand == brand) &&
             (identical(other.unitPrice, unitPrice) ||
                 other.unitPrice == unitPrice) &&
             (identical(other.availableStatus, availableStatus) ||
@@ -561,6 +628,8 @@ class _$_CusProductModel extends _CusProductModel {
         unit,
         description,
         slug,
+        category,
+        brand,
         unitPrice,
         availableStatus,
         adminStatus,
@@ -602,6 +671,8 @@ abstract class _CusProductModel extends CusProductModel {
       required final String unit,
       required final String description,
       required final String slug,
+      final CusProductsCatModel? category,
+      final CusProductsBrandModel? brand,
       @JsonKey(name: 'unit_price') required final String unitPrice,
       @JsonKey(name: 'available_status') required final bool availableStatus,
       @JsonKey(name: 'admin_status') required final String adminStatus,
@@ -637,6 +708,10 @@ abstract class _CusProductModel extends CusProductModel {
   String get description;
   @override
   String get slug;
+  @override
+  CusProductsCatModel? get category;
+  @override
+  CusProductsBrandModel? get brand;
   @override
   @JsonKey(name: 'unit_price')
   String get unitPrice;

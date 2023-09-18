@@ -23,6 +23,7 @@ mixin _$CurrentPackageModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get logo => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_free')
   bool get isFree => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
   @JsonKey(name: 'product_upload')
@@ -44,7 +45,7 @@ abstract class $CurrentPackageModelCopyWith<$Res> {
       {int id,
       String name,
       String logo,
-      bool isFree,
+      @JsonKey(name: 'is_free') bool isFree,
       String amount,
       @JsonKey(name: 'product_upload') int productUpload});
 }
@@ -110,7 +111,7 @@ abstract class _$$_CurrentPackageModelCopyWith<$Res>
       {int id,
       String name,
       String logo,
-      bool isFree,
+      @JsonKey(name: 'is_free') bool isFree,
       String amount,
       @JsonKey(name: 'product_upload') int productUpload});
 }
@@ -170,7 +171,7 @@ class _$_CurrentPackageModel extends _CurrentPackageModel {
       {required this.id,
       required this.name,
       required this.logo,
-      required this.isFree,
+      @JsonKey(name: 'is_free') required this.isFree,
       required this.amount,
       @JsonKey(name: 'product_upload') required this.productUpload})
       : super._();
@@ -185,6 +186,7 @@ class _$_CurrentPackageModel extends _CurrentPackageModel {
   @override
   final String logo;
   @override
+  @JsonKey(name: 'is_free')
   final bool isFree;
   @override
   final String amount;
@@ -236,7 +238,7 @@ abstract class _CurrentPackageModel extends CurrentPackageModel {
           {required final int id,
           required final String name,
           required final String logo,
-          required final bool isFree,
+          @JsonKey(name: 'is_free') required final bool isFree,
           required final String amount,
           @JsonKey(name: 'product_upload') required final int productUpload}) =
       _$_CurrentPackageModel;
@@ -252,6 +254,7 @@ abstract class _CurrentPackageModel extends CurrentPackageModel {
   @override
   String get logo;
   @override
+  @JsonKey(name: 'is_free')
   bool get isFree;
   @override
   String get amount;

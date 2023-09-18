@@ -791,9 +791,13 @@ class AppRouter extends _i76.RootStackRouter {
       );
     },
     EditClassifiedProductRoute.name: (routeData) {
+      final args = routeData.argsAs<EditClassifiedProductRouteArgs>();
       return _i76.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i74.EditClassifiedProduct(),
+        child: _i74.EditClassifiedProduct(
+          key: args.key,
+          productId: args.productId,
+        ),
         opaque: true,
       );
     },
@@ -2523,14 +2527,37 @@ class AddClassifiedProductRouteArgs {
 
 /// generated route for
 /// [_i74.EditClassifiedProduct]
-class EditClassifiedProductRoute extends _i76.PageRouteInfo<void> {
-  const EditClassifiedProductRoute()
-      : super(
+class EditClassifiedProductRoute
+    extends _i76.PageRouteInfo<EditClassifiedProductRouteArgs> {
+  EditClassifiedProductRoute({
+    _i79.Key? key,
+    required int productId,
+  }) : super(
           EditClassifiedProductRoute.name,
           path: '/edit-classified-product',
+          args: EditClassifiedProductRouteArgs(
+            key: key,
+            productId: productId,
+          ),
         );
 
   static const String name = 'EditClassifiedProductRoute';
+}
+
+class EditClassifiedProductRouteArgs {
+  const EditClassifiedProductRouteArgs({
+    this.key,
+    required this.productId,
+  });
+
+  final _i79.Key? key;
+
+  final int productId;
+
+  @override
+  String toString() {
+    return 'EditClassifiedProductRouteArgs{key: $key, productId: $productId}';
+  }
 }
 
 /// generated route for
