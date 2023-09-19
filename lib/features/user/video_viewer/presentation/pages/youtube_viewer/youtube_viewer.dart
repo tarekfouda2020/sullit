@@ -1,0 +1,51 @@
+part of 'youtube_viewer_imports.dart';
+
+class YoutubeViewer extends StatefulWidget {
+  final String videoLink;
+
+  const YoutubeViewer({super.key, required this.videoLink});
+
+  @override
+  _YoutubeViewerState createState() => _YoutubeViewerState();
+}
+
+class _YoutubeViewerState extends State<YoutubeViewer> {
+  late YoutubeViewerController controller;
+
+  @override
+  void initState() {
+    controller = YoutubeViewerController(widget.videoLink);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: context.colors.customBackground,
+      appBar: const DefaultAppBar(title: "Video Viewer"),
+      body: Center(
+        child: BlocBuilder<GenericBloc<YoutubePlayerController?>,
+            GenericState<YoutubePlayerController?>>(
+          bloc: controller.youtubeCubit,
+          builder: (context, state) {
+            if (state is GenericUpdateState) {
+              return YoutubePlayer(
+                controller: state.data!,
+                showVideoProgressIndicator: true,
+              );
+            } else {
+              return getIt<LoadingHelper>().showLoadingView();
+            }
+          },
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.youtubeController.dispose();
+    controller.youtubeCubit.onUpdateData(null);
+  }
+}

@@ -2,8 +2,10 @@ part of 'customer_product_details_w_imports.dart';
 
 class BuildDetailsVideo extends StatelessWidget {
   final CustomerProduct detailsModel;
+  final CustomerProductDetailsController controller;
 
-  const BuildDetailsVideo({super.key, required this.detailsModel});
+  const BuildDetailsVideo(
+      {super.key, required this.detailsModel, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +24,7 @@ class BuildDetailsVideo extends StatelessWidget {
           ),
           Gaps.vGap10,
           InkWell(
-            onTap: () => AutoRouter.of(context)
-                .push(VideoViewRoute(videoLink: detailsModel.videoLink)),
+            onTap: () => controller.navigateToVideoViewer(context),
             child: Container(
               height: 150,
               width: MediaQuery.of(context).size.width,

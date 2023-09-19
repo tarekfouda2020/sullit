@@ -15,6 +15,30 @@ class CustomerProductDetailsController {
     productDetails.onUpdateData(result);
   }
 
+  void navigateToVideoViewer(BuildContext context) {
+    var productModel = productDetails.state.data?.customerProduct;
+    print(">>>>>>${productModel?.videoLink}");
+    print(">>>>>>${productModel?.videoProvider}");
+
+    switch (productModel?.videoProvider) {
+      case "youtube":
+        AutoRouter.of(context).push(YoutubeViewerRoute(
+          videoLink: productModel?.videoLink ?? "",
+        ));
+        break;
+      case "dailymotion":
+        AutoRouter.of(context).push(MotionViewerRoute(
+          videoLink: productModel?.videoLink ?? "",
+        ));
+        break;
+      default:
+        AutoRouter.of(context).push(VimeoViewerRoute(
+          videoLink: productModel?.videoLink ?? "",
+        ));
+        break;
+    }
+  }
+
   GenericParams _genericParams(int id, bool refresh) {
     return GenericParams(
       id: id,

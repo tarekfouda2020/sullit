@@ -12,7 +12,7 @@ class BuildDetailsInfo extends StatelessWidget {
       margin: Dimens.paddingVertical10PX,
       decoration: CustomDecoration(),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           ListTile(
             visualDensity: const VisualDensity(vertical: -4),
@@ -30,18 +30,15 @@ class BuildDetailsInfo extends StatelessWidget {
             iconData: Icons.person_outlined,
           ),
           BuildDetailsInfoItem(
-            title: "${detailsModel.userData?.address}",
+            title:
+                detailsModel.userData?.address?.address ?? "Not Determined Yet",
             iconData: Icons.location_on_outlined,
           ),
           BuildDetailsInfoItem(
-            title: "${detailsModel.userData?.phone}",
+            title: detailsModel.userData?.phone ?? "Not Determined Yet",
             iconData: Icons.phone,
           ),
-          DefaultButton(
-            title: "Download PDF",
-            onTap: () =>
-                HelperMethods.instance.launchURL(url: detailsModel.pdf),
-          ),
+
         ],
       ),
     );

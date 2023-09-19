@@ -34,13 +34,20 @@ class _CustomerProductDetailsState extends State<CustomerProductDetails> {
                 BuildDetailsSwiper(detailsModel: state.data!.customerProduct),
                 BuildDetailsInfo(detailsModel: state.data!.customerProduct),
                 BuildDetailsDescription(
-                    detailsModel: state.data!.customerProduct),
-                BuildDetailsVideo(detailsModel: state.data!.customerProduct),
+                  detailsModel: state.data!.customerProduct,
+                ),
+                BuildDetailsDownloads(
+                  detailsModel: state.data!.customerProduct,
+                ),
+                BuildDetailsVideo(
+                  detailsModel: state.data!.customerProduct,
+                  controller: controller,
+                ),
                 BuildOtherProducts(otherProducts: state.data!.relatedProducts),
               ],
             );
           } else {
-            return Container();
+            return const BuildLoadingCustomerDetails();
           }
         },
       ),

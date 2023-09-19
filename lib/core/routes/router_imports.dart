@@ -26,6 +26,7 @@ import 'package:flutter_tdd/features/user/purchasing/presentation/manager/routes
 import 'package:flutter_tdd/features/user/sale/presentation/manager/routes/routes.dart';
 import 'package:flutter_tdd/features/user/search/presentation/manager/routes/routes.dart';
 import 'package:flutter_tdd/features/user/tickets/presentation/manager/routes/routes.dart';
+import 'package:flutter_tdd/features/user/video_viewer/presentation/manager/routes.dart';
 import 'package:flutter_tdd/features/user/wallet/presentation/manager/routes/routes.dart';
 import 'package:flutter_tdd/features/user/wishlist/presentation/manager/routes/routes.dart';
 

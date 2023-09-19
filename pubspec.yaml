@@ -80,7 +80,11 @@ dependencies:
 #  mac_address: ^1.0.0
   open_file: ^3.3.2
   video_player: ^2.7.1
-
+  chewie:
+  youtube_player_flutter: ^8.1.2
+  vimeo_player_flutter: ^0.0.3+2
+#  vimeo_video_player:
+#  flick_video_player:
 
 
 
