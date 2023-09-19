@@ -15,7 +15,7 @@ class BuildDashboardView extends StatelessWidget {
             context.colors.darkPurple,
           ],
           title: "${dashboardModel.cartCount} Product",
-          subTitle: "in your cart",
+          subTitle: "In Your cart",
         ),
         BuildDashboardItem(
           colors: [
@@ -23,7 +23,7 @@ class BuildDashboardView extends StatelessWidget {
             context.colors.blueAccent,
           ],
           title: "${dashboardModel.wishlistCount} Products",
-          subTitle: "in your WishList",
+          subTitle: "In Your WishList",
         ),
         BuildDashboardItem(
           colors: [
@@ -31,7 +31,7 @@ class BuildDashboardView extends StatelessWidget {
             context.colors.secondary,
           ],
           title: "${dashboardModel.ordersCount} Product",
-          subTitle: "you Ordered",
+          subTitle: "You Ordered",
         )
       ],
     );

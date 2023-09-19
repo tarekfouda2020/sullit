@@ -18,7 +18,7 @@ class BuildDashboardItem extends StatelessWidget {
       alignment: AlignmentDirectional.centerStart,
       padding: Dimens.paddingAll15PX,
       margin: Dimens.paddingVertical5PX,
-      height: 140.h,
+      height: 150.spMin,
       decoration: BoxDecoration(
         gradient: LinearGradient(
             colors: colors, begin: AlignmentDirectional.topStart),
