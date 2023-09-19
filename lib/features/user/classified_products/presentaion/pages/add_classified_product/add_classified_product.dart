@@ -28,10 +28,8 @@ class _AddClassifiedProductState extends State<AddClassifiedProduct> {
       ),
       body: ListView(
         physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 10,
-        ),
-        children:[
+          padding: Dimens.standardPadding,
+          children:[
           Form(
             key: controller.formKey,
             child: Column(

@@ -30,7 +30,7 @@ class _ClassifiedProductsState extends State<ClassifiedProducts> {
           if (state is GenericUpdateState) {
             return ListView(
               physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 15),
+              padding: Dimens.standardPadding,
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),

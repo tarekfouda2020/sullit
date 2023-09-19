@@ -32,7 +32,7 @@ class _EditClassifiedProductState extends State<EditClassifiedProduct> {
           if (state is GenericUpdateState) {
             return ListView(
               physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding:Dimens.standardPadding,
               children: [
                 BuildEditGeneralFields(
                   controller: controller,
