@@ -26,7 +26,7 @@ class BuildDrawerHeader extends StatelessWidget {
           Gaps.vGap20,
           Center(
             child: Image.asset(
-              Res.suliitLogo,
+              Res.logo,
               width: 160.w,
               height: 80.h,
             ),

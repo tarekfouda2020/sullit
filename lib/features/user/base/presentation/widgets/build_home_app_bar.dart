@@ -24,7 +24,7 @@ class BuildHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           size: 25,
         ),
       ),
-      title: Image.asset(Res.suliitLogo, height: 30, width: 150),
+      title: Image.asset(Res.logo, height: 30, width: 150),
     );
   }
 

@@ -28,7 +28,7 @@ class _SplashState extends State<Splash> {
       body: Container(
         color: context.colors.white,
         child: Center(
-          child:  Image.asset(Res.suliitLogo, width: 200, height: 200),
+          child:  Image.asset(Res.logo, width: 200, height: 200),
         ),
       ),
     );

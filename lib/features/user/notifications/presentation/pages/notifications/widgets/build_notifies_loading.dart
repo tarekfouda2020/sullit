@@ -43,7 +43,7 @@ class BuildNotifiesLoading extends StatelessWidget {
             ),
             leading: BuildShimmerItem(
                 child: Image.asset(
-                  Res.suliitLogo,
+                  Res.logo,
                   height: 40.r,
                   width: 40.h,
                 )),

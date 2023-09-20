@@ -9,7 +9,7 @@ class BuildHeaderLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Image.asset(Res.suliitLogo, width: 150.r, height: 150.r),
+      child: Image.asset(Res.logo, width: 150.r, height: 150.r),
     );
   }
 }

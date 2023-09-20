@@ -24,7 +24,7 @@ class BuildSellerNotificationsItem extends StatelessWidget {
           style: AppTextStyle.s12_w400(color: context.colors.black),
         ),
         leading: Image.asset(
-          Res.suliitLogo,
+          Res.logo,
           height: 50.h,
           width: 50.w,
         ),

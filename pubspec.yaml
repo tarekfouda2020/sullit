@@ -82,9 +82,7 @@ dependencies:
   chewie:
   youtube_player_flutter: ^8.1.2
   vimeo_player_flutter: ^0.0.3+2
-#  vimeo_video_player:
-#  flick_video_player:
-
+#  flutter_facebook_auth:
 
 
 dev_dependencies:
@@ -117,7 +115,6 @@ flutter:
     - assets/images/blog.png
     - assets/images/emptyCart.png
     - assets/images/facebook.svg
-    - assets/images/icon.png
     - assets/images/logo.png
     - assets/images/logoSvg.svg
     - assets/images/marker.png
@@ -126,12 +123,10 @@ flutter:
     - assets/images/offline.png
     - assets/images/password.svg
     - assets/images/pdf.png
+    - assets/images/placeHolder.png
     - assets/images/profile.png
-    - assets/images/suliitLogo.png
     - assets/lang/ar.json
     - assets/lang/en.json
-    - assets/images/place_holder.png
-
   fonts:
     - family: NotoSans
       fonts:

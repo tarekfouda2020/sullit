@@ -31,7 +31,7 @@ class BuildDetailsVideo extends StatelessWidget {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 image: const DecorationImage(
-                  image: AssetImage(Res.suliitLogo),
+                  image: AssetImage(Res.logo),
                 ),
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: context.colors.greyWhite),

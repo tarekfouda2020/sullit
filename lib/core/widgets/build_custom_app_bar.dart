@@ -17,7 +17,7 @@ class BuildCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         icon: const Icon(Icons.arrow_back_ios),
         onPressed: onBack ?? () => Navigator.of(context).pop(),
       ),
-      title: Image.asset(Res.suliitLogo, height: 30, width: 150),
+      title: Image.asset(Res.logo, height: 30, width: 150),
     );
   }
 
