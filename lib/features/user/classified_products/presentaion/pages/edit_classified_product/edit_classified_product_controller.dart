@@ -20,7 +20,9 @@ class EditClassifiedProductController {
   final GlobalKey<DropdownSearchState> brandDropKey = GlobalKey();
   final GlobalKey<DropdownSearchState> conditionDropKey = GlobalKey();
 
-  final GenericBloc<EditGallaryImages> imagesBloc = GenericBloc(EditGallaryImages(images: ExitedImages(ids: '', images: []), addedImages: []));
+  final GenericBloc<EditGallaryImages> imagesBloc = GenericBloc(
+      EditGallaryImages(
+          images: ExitedImages(ids: '', images: []), addedImages: []));
   final GenericBloc<FileDomainModel?> thumbnailImageBloc = GenericBloc(null);
   final GenericBloc<FileDomainModel?> metaImageBloc = GenericBloc(null);
   final GenericBloc<FileDomainModel?> pdf = GenericBloc(null);
@@ -29,6 +31,8 @@ class EditClassifiedProductController {
   CusProductsCat? cusProductsCat;
   CusProductBrand? cusProductsBrand;
   ConditionDomainModel? productCondition;
+
+  var videoUrlValidator = VideoURLValidator();
 
   EditClassifiedProductController(int productId) {
     getClassifiedProduct(productId);
@@ -133,7 +137,7 @@ class EditClassifiedProductController {
     required BuildContext context,
     required FileImageType type,
     required ImageType imageType,
-  }) {
+  }) async {
     showDialog(
       context: context,
       builder: (context) => BuildImagesDialog(
@@ -188,15 +192,42 @@ class EditClassifiedProductController {
     );
   }
 
+  String? validateVideoUrl() {
+    if (videoProvider!.provider == 'youtube') {
+      bool validate = videoUrlValidator.validateYouTubeVideoURL(
+        url: videoLink.text,
+      );
+      if (!validate) {
+        return 'Make sure you entered the link correctly';
+      }
+    } else if (videoProvider!.provider == 'dailymotion') {
+      bool validate = videoUrlValidator.validateDailyMotionVideoURL(
+        url: videoLink.text,
+      );
+      if (!validate) {
+        return 'Make sure you entered the link correctly';
+      }
+    } else if (videoProvider!.provider == 'vimeo') {
+      bool validate = videoUrlValidator.validateVimeoVideoURL(
+        url: videoLink.text,
+      );
+      if (!validate) {
+        return 'Make sure you entered the link correctly';
+      }
+    } else {
+      return null;
+    }
+    return null;
+  }
+
   String? getAddedImageIds() {
     if (imagesBloc.state.data.addedImages.length > 1) {
-      return imagesBloc.state.data.addedImages.map((e) => e.id).join(',')+',${imagesBloc.state.data.images.ids}';
+      return imagesBloc.state.data.addedImages.map((e) => e.id).join(',') +
+          ',${imagesBloc.state.data.images.ids}';
     } else if (imagesBloc.state.data.addedImages.length == 1) {
       return '${imagesBloc.state.data.addedImages.first.id},${imagesBloc.state.data.images.ids}';
     } else {
       return imagesBloc.state.data.images.ids;
     }
   }
-
-
 }

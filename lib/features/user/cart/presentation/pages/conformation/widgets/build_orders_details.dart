@@ -23,7 +23,7 @@ class BuildOrdersDetails extends StatelessWidget {
                     style: AppTextStyle.s14_w400(color: context.colors.black),
                   ),
                   Text(
-                    summary!.sectionOrders![index].code,
+                    summary.sectionOrders![index].code,
                     style: const AppTextStyle.s16_w500(color: Colors.red),
                   ),
                 ],
@@ -38,7 +38,7 @@ class BuildOrdersDetails extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
+            ...List.generate(summary.sectionOrders![index].orderDetails.length, (productsIndex) => Container(
               padding: Dimens.paddingAll8PX,
               margin: Dimens.paddingHorizontal15PX,
               decoration: BoxDecoration(
@@ -53,99 +53,101 @@ class BuildOrdersDetails extends StatelessWidget {
                 ],
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Table(
-                    border: TableBorder.all(
-                      color: context.colors.blackOpacity,
-                      width: 0,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      summary.sectionOrders![index].orderDetails[productsIndex].deliveryType,
+                      style: AppTextStyle.s14_w600(color: context.colors.black),
                     ),
-                    children: [
-                      TableRow(
-                        decoration: BoxDecoration(
-                          color: context.colors.white,
-                          borderRadius: BorderRadius.circular(10).r,
+                  ),
+                  Container(
+                    padding: Dimens.paddingAll8PX,
+                    decoration: CustomDecoration(),
+                    child: Row(
+                      children: [
+                        CachedImage(
+                          url: summary.sectionOrders![index].orderDetails[productsIndex].product!.thumbnailImage,
+                          height: 50.h,
+                          width: 50.w,
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                        children: const [
-                          BuildProductPaddedText(
-                            text: "#",
-                          ),
-                          BuildProductPaddedText(
-                            text: "Product",
-                          ),
-                          BuildProductPaddedText(
-                            text: "Variation",
-                          ),
-                          BuildProductPaddedText(
-                            text: "Quantity",
-                          ),
-                          BuildProductPaddedText(
-                            text: "Delivery Type",
-                          ),
-                          BuildProductPaddedText(
-                            text: "Price",
-                          )
-                        ],
-                      ),
-                      ...List.generate(
-                        summary!.sectionOrders![index].orderDetails.length,
-                        (tableIndex) => TableRow(
-                          decoration: BoxDecoration(
-                              color: context.colors.white,
-                              borderRadius: BorderRadius.circular(10).r),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            BuildProductPaddedText(
-                              text: '${tableIndex + 1}',
+                            Row(
+                              children: [
+                                Gaps.hGap10,
+                                Text(
+                                  summary.sectionOrders![index].orderDetails[productsIndex].product!.name,
+                                  style: AppTextStyle.s14_w600(color: context.colors.black),
+                                ),
+                                SizedBox(width: 50.w,),
+                                Text(
+                                  "Variation : ",
+                                  style: AppTextStyle.s12_w400(color: context.colors.black),
+                                ),
+                                Text(
+                                  summary.sectionOrders![index].orderDetails[productsIndex].variation,
+                                  style: AppTextStyle.s14_w400(color: context.colors.black),
+                                ),
+                              ],
                             ),
-                            BuildProductPaddedText(
-                              text: summary!.sectionOrders![index]
-                                  .orderDetails[tableIndex].product!.name,
-                            ),
-                            BuildProductPaddedText(
-                              text: summary!.sectionOrders![index]
-                                  .orderDetails[tableIndex].variation,
-                            ),
-                            BuildProductPaddedText(
-                              text:
-                                  "${summary!.sectionOrders![index].orderDetails[tableIndex].quantity}",
-                            ),
-                            BuildProductPaddedText(
-                              text: summary!.sectionOrders![index]
-                                  .orderDetails[tableIndex].deliveryType,
-                            ),
-                            BuildProductPaddedText(
-                              text: summary!.sectionOrders![index]
-                                  .orderDetails[tableIndex].price,
+                            Gaps.vGap10,
+                            Row(
+                              children: [
+                                Gaps.hGap10,
+                                Text(
+                                  "Quantity : ",
+                                  style: AppTextStyle.s12_w400(color: context.colors.black),
+                                ),
+                                Text(
+                                  summary.sectionOrders![index].orderDetails[productsIndex].quantity.toString(),
+                                  style: AppTextStyle.s14_w400(color: context.colors.black),
+                                ),
+                                Gaps.hGap32,
+                                Text(
+                                  "Price : ",
+                                  style: AppTextStyle.s12_w400(color: context.colors.black),
+                                ),
+                                Text(
+                                  summary.sectionOrders![index].orderDetails[productsIndex].price,
+                                  style: AppTextStyle.s14_w400(color: context.colors.black),
+                                ),
+                              ],
                             ),
                           ],
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                   Gaps.vGap10,
                   BuildSummaryItem(
                     title: 'Subtotal:',
-                    value: summary!.sectionOrders![index].subtotal,
+                    value: summary.sectionOrders![index].subtotal,
                   ),
                   BuildSummaryItem(
                     title: 'Shipping:',
-                    value: summary!.sectionOrders![index].shipping,
+                    value: summary.sectionOrders![index].shipping,
                   ),
                   BuildSummaryItem(
                     title: 'Tax:',
-                    value: summary!.sectionOrders![index].tax,
+                    value: summary.sectionOrders![index].tax,
                   ),
                   BuildSummaryItem(
                     title: 'Coupon Discount:',
-                    value: summary!.sectionOrders![index].couponDiscount,
+                    value: summary.sectionOrders![index].couponDiscount,
                   ),
                   BuildSummaryItem(
                     title: 'Total:',
-                    value: summary!.sectionOrders![index].total,
+                    value: summary.sectionOrders![index].total,
                     showDivider: false,
                   ),
                 ],
               ),
-            ),
+            ),)
+
           ],
         ),
       ),

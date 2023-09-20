@@ -46,7 +46,7 @@ class BuildVideoView extends StatelessWidget {
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.next,
-                validate: (value) => value!.validateEmpty(),
+                validate: (value) => controller.validateVideoUrl(),
                 label: 'Video URL',
               ),
             ],

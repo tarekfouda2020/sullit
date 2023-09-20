@@ -17,7 +17,6 @@ class BuildGallaryImages extends StatelessWidget {
               context: context,
               type: FileImageType.multiImage,
               imageType:  ImageType.generalImages,
-              extension: 'image'
             ),
             child: Container(
               height: 60,
@@ -38,15 +37,17 @@ class BuildGallaryImages extends StatelessWidget {
                   Wrap(
                     children: List.generate(
                       state.data.length,
-                          (index) => CachedImage(
-                        imgMargin: const EdgeInsets.symmetric(
-                            horizontal: 5, vertical: 5),
-                        url: state.data[index].url,
-                        height: 60,
-                        borderRadius: BorderRadius.circular(5),
-                        width: 60,
-                      ),
+                  (index) => CachedImage(
+                    imgMargin: const EdgeInsets.symmetric(
+                      horizontal: 5,
+                      vertical: 5,
                     ),
+                    url: state.data[index].url,
+                    height: 60,
+                    borderRadius: BorderRadius.circular(5),
+                    width: 60,
+                  ),
+                ),
                   ),
                   InkWell(
                     onTap: () => controller.showImageDialog(

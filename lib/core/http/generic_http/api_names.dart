@@ -4,7 +4,6 @@ class ApiNames {
   static const String baseUrl = "https://staging.suliit.com/api/v3/";
 
   // static const String baseUrl = "https://suliit.com/api/v3/";
-
   // auth routes
   static const String login = "login";
   static const String savePublicKey = "users/";

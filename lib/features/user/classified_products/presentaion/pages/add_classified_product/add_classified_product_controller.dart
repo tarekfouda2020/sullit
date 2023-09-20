@@ -36,6 +36,7 @@ class AddClassifiedProductsController {
   CusProductsCat? cusProductsCat;
   CusProductBrand? cusProductsBrand;
   ConditionDomainModel? condition;
+  var videoUrlValidator = VideoURLValidator();
 
   void selectBrand(CusProductBrand model) {
     cusProductsBrand = model;
@@ -129,9 +130,38 @@ class AddClassifiedProductsController {
     }
   }
 
+  String? validateVideoUrl() {
+    if (videoProvider!.provider == 'youtube') {
+      bool validate = videoUrlValidator.validateYouTubeVideoURL(
+        url: videoUrlController.text,
+      );
+      if (validate == false) {
+        return 'Make sure you entered the link correctly';
+      }
+    } else if (videoProvider!.provider == 'dailymotion') {
+      bool validate = videoUrlValidator.validateDailyMotionVideoURL(
+        url: videoUrlController.text,
+      );
+      if (validate == false) {
+        return 'Make sure you entered the link correctly';
+      }
+    } else if (videoProvider!.provider == 'vimeo') {
+      bool validate = videoUrlValidator.validateVimeoVideoURL(
+        url: videoUrlController.text,
+      );
+      if (validate == false) {
+        return 'Make sure you entered the link correctly';
+      }
+    }else{
+      return null;
+    }
+    return null;
+  }
+
   Future<void> addClassifiedProducts(BuildContext context) async {
     if (imagesBloc.state.data.isEmpty) {
-      CustomToast.showSimpleToast(msg: 'Please select at least one image');
+      CustomToast.showSimpleToast(
+          msg: 'Please select at least one gallary image');
       return;
     }
     if (pdf.state.data == null) {

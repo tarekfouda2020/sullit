@@ -27,8 +27,7 @@ class _ReturnOrdersState extends State<ReturnOrders> {
           padding: Dimens.paddingAll15PX,
           pagingController: controller.pagingController,
           builderDelegate: PagedChildBuilderDelegate<Orders>(
-            firstPageProgressIndicatorBuilder: (_) =>
-                const BuildLoadingOrders(),
+            firstPageProgressIndicatorBuilder: (_) => const BuildLoadingOrders(),
             itemBuilder: (_, item, index) => BuildReturnOrderItem(
               order: item,
               controller: controller,

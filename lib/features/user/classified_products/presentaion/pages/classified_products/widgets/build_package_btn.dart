@@ -1,8 +1,12 @@
 part of 'classified_products_w_imports.dart';
 
 class BuildPackageBtn extends StatelessWidget {
-  final String? package ;
-  const BuildPackageBtn({Key? key,  this.package}) : super(key: key);
+  final String? package;
+
+  final ClassifiesProductsController controller;
+
+  const BuildPackageBtn({Key? key, this.package, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +17,10 @@ class BuildPackageBtn extends StatelessWidget {
       child: Column(
         children: [
           GestureDetector(
-            onTap: () => AutoRouter.of(context).push(const CustomersPackagesRoute()),
+            onTap: () async {
+              await AutoRouter.of(context).push(const CustomersPackagesRoute());
+              controller.getClassifiedProducts();
+            },
             child: Container(
               margin: const EdgeInsets.only(bottom: 10),
               padding: const EdgeInsets.all(10),

@@ -44,9 +44,14 @@ class CustomerPackagesController {
       {required BuildContext context, required int id, String? method}) async {
     var params = _purchasePackageParams(id, method);
     var result = await SetPurchasePackage().call(params);
-    if (result!.data!.transactionUrl != null) {
-      AutoRouter.of(context)
-          .push(PaymentRoute(transactionUrl: result.data!.transactionUrl!));
+    if(result?.data != null){
+      AutoRouter.of(context).push(PaymentRoute(transactionUrl: result!.data!.transactionUrl!));
+    } else {
+      AutoRouter.of(context).pop(true);
+      CustomToast.showSimpleToast(
+        msg: 'Package purchased successfully',
+        type: ToastType.success,
+      );
     }
   }
 

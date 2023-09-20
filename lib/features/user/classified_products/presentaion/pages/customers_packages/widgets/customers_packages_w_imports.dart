@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/core/helpers/validator.dart';
+import 'package:flutter_tdd/core/helpers/validator.dart' ;
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/DropdownTextField.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/features/user/classified_products/domain/models/cus_package.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/models/payment_domain_model.dart';
 import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/customers_packages/customers_packages_imports.dart';
 
 part 'build_packages_loading.dart';
 part 'build_payment_dialog.dart';
+part 'build_package_card.dart';
+part 'build_packages_text.dart';
+part 'build_packages_view.dart';

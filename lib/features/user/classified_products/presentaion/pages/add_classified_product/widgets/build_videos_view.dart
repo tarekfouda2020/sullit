@@ -6,6 +6,7 @@ class BuildVideosView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -48,7 +49,7 @@ class BuildVideosView extends StatelessWidget {
                 type: TextInputType.text,
                 action: TextInputAction.next,
                 controller: controller.videoUrlController,
-                validate: (value) => value!.validateEmpty(),
+                validate: (value) => controller.validateVideoUrl(),
                 label: 'Video URL',
               ),
             ],

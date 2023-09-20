@@ -12,11 +12,10 @@ class BuildProductView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Visibility(
       visible: products.isNotEmpty,
-      replacement: Padding(
-        padding:  EdgeInsets.only(top:200.r),
-        child: Center(
-          child: Text('No products.', style: AppTextStyle.s12_w400(color: context.colors.black)),
-        ),
+      replacement:  Container(
+        margin: Dimens.marginTop70,
+        alignment: Alignment.center,
+        child: Image.asset(Res.emptyCart, scale: 3),
       ),
       child: Column(
         children: List.generate(

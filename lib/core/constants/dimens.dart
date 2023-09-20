@@ -83,4 +83,8 @@ class Dimens {
   static EdgeInsets paddingAll15PX = const EdgeInsets.all(15).r;
   static EdgeInsets paddingAll20PX = const EdgeInsets.all(20).r;
 
+  static EdgeInsets marginTop70 = const EdgeInsets.only(top: 70).r;
+
+
+
 }

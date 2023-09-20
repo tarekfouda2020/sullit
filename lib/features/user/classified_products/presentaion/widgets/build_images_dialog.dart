@@ -33,6 +33,7 @@ class BuildImagesDialog extends StatelessWidget {
       child: AlertDialog(
         backgroundColor: context.colors.customBackground,
         content: SizedBox(
+          height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: BlocBuilder<GenericBloc<int>, GenericState<int>>(
             bloc: pagesBloc,

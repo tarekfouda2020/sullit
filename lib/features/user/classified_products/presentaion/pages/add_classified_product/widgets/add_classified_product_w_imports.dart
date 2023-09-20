@@ -17,7 +17,7 @@ import 'package:flutter_tdd/features/user/classified_products/domain/models/file
 import 'package:flutter_tdd/features/user/classified_products/domain/models/video_provider.dart';
 import 'package:flutter_tdd/features/user/classified_products/presentaion/manager/helpers/add_image_helper.dart';
 import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/add_classified_product/add_classified_product_imports.dart';
-import 'package:rate_my_app/rate_my_app.dart';
+
 
 import '../../../../../../../core/helpers/di.dart';
 

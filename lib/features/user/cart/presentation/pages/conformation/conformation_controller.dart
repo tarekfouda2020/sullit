@@ -15,6 +15,10 @@ class ConfirmationController {
     orderSummaryBloc.onUpdateData(data);
   }
 
+  void navigateToHome (BuildContext context)=> AutoRouter.of(context).pushAndPopUntil(
+    HomeRoute(index: 0),
+    predicate: (route) => false,
+  );
 }
 
 

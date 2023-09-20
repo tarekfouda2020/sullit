@@ -12,7 +12,7 @@ class _CompareState extends State<Compare> {
 
   @override
   void initState() {
-    controller = CompareController();
+    controller = CompareController(context);
     super.initState();
   }
 
@@ -21,24 +21,44 @@ class _CompareState extends State<Compare> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: "Compare", showBack: true),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          BuildResetButton(controller: controller),
-          Flexible(
-            child: GenericListView(
-              type: ListViewType.api,
-              onRefresh: controller.getComparedProducts,
-              params: [context],
-              cubit: controller.productsBloc,
-              padding: Dimens.paddingHorizontal15PX,
-              itemBuilder: (_, index, item) => BuildCompareItem(
-                productModel: item,
-                controller: controller,
-              ),
+      body: BlocBuilder<GenericBloc<List<Product>>, GenericState<List<Product>>>(
+        bloc: controller.productsBloc,
+        builder: (context, state) {
+          return Visibility(
+            visible: state.data.isNotEmpty,
+            replacement:  Container(
+              alignment: Alignment.center,
+              child: Image.asset(Res.emptyCart, scale: 3),
             ),
-          ),
-        ],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                BuildResetButton(controller: controller),
+                Flexible(
+                  child: GridView.builder(
+                    itemCount: state.data.length,
+                    padding: Dimens.standardPadding,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisSpacing: 15.r,
+                      mainAxisSpacing: 15.r,
+                      crossAxisCount: 2,
+                      childAspectRatio: .9,
+                    ),
+                    itemBuilder: (context, index) => BuildProductItem(
+                      productModel: state.data[index],
+                      isForCompare: true,
+                      onFavRefresh: () => controller.onFavChanged(state.data[index]),
+                      onCompareRefresh: () {
+                        state.data[index].isAddedTCompare =
+                        !state.data[index].isAddedTCompare!;
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

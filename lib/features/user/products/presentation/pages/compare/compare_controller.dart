@@ -3,11 +3,14 @@ part of 'compare_imports.dart';
 class CompareController {
   final GenericBloc<List<Product>> productsBloc = GenericBloc([]);
 
-  Future<void> getComparedProducts(BuildContext context,
-      {bool refresh = true}) async {
+  CompareController(BuildContext context){
+    getComparedProducts(context);
+  }
+
+  Future<void> getComparedProducts(BuildContext context, {bool refresh = true}) async {
     var result = await getIt<ComparedProductsDb>().getItems();
-    var allProducts =
-        result.map((e) => Product.fromJson(json.decode(e.product!))).toList();
+    var allProducts = result.map((e) => Product.fromJson(json.decode(e.product!))).toList();
+    print(allProducts);
     productsBloc.onUpdateData(allProducts);
   }
 

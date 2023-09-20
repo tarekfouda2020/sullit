@@ -23,23 +23,16 @@ class _ConfirmationState extends State<Confirmation> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: ()async{
-        AutoRouter.of(context).pushAndPopUntil(
-          HomeRoute(index: 0),
-          predicate: (route) => false,
-        );
-        return true ;
+      onWillPop: () async {
+        controller.navigateToHome(context);
+        return true;
       },
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
-        appBar: BuildCustomAppBar(
-          onBack: () => AutoRouter.of(context).pushAndPopUntil(
-            HomeRoute(index: 0),
-            predicate: (route) => false,
-          ),
-        ),
-        body:
-            BlocBuilder<GenericBloc<OrderSummary?>, GenericState<OrderSummary?>>(
+        appBar:
+            BuildCustomAppBar(onBack: () => controller.navigateToHome(context)),
+        body: BlocBuilder<GenericBloc<OrderSummary?>,
+            GenericState<OrderSummary?>>(
           bloc: controller.orderSummaryBloc,
           builder: (context, state) {
             if (state is GenericUpdateState) {
@@ -60,12 +53,13 @@ class _ConfirmationState extends State<Confirmation> {
                   Gaps.vGap15
                 ],
               );
-            }else {
+            } else {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
-          })
+          },
+        ),
       ),
     );
   }

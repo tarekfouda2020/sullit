@@ -19,12 +19,14 @@ class BuildProductItem extends StatelessWidget {
   final Product productModel;
   final VoidCallback onFavRefresh;
   final VoidCallback onCompareRefresh;
+  final bool? isForCompare ;
 
   const BuildProductItem({
     super.key,
     required this.productModel,
     required this.onFavRefresh,
     required this.onCompareRefresh,
+    this.isForCompare = false,
   });
 
   @override
@@ -115,8 +117,8 @@ class BuildProductItem extends StatelessWidget {
                           ),
                           checkValue: productModel.isWishlist,
                         ),
-                        BuildIconItem(
-                          containerColor: productModel.isAddedTCompare!
+                        if(isForCompare == false) BuildIconItem(
+                          containerColor: productModel.isAddedTCompare == true
                               ? context.colors.primary
                               : context.colors.white,
                           iconData: Icons.compare_arrows,

@@ -165,7 +165,7 @@ class _BuildSelectFileState extends State<BuildSelectFile> {
                           BuildShimmerItem(
                             child: CachedImage(
                               url: '',
-                              height: 100.h,
+                              height: 95.h,
                               imgMargin: EdgeInsets.only(bottom: 10.r),
                               width: 100.w,
                             ),

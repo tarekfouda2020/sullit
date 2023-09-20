@@ -37,6 +37,7 @@ import 'package:flutter_tdd/features/user/classified_products/domain/use_cases/g
 import 'package:flutter_tdd/features/user/classified_products/domain/use_cases/get_video_providers.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/use_cases/set_edit_cus_product.dart';
 import 'package:flutter_tdd/features/user/classified_products/presentaion/manager/helpers/add_image_helper.dart';
+import 'package:flutter_tdd/features/user/classified_products/presentaion/manager/helpers/video_url_validator.dart';
 import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/edit_classified_product/widgets/edit_classified_product_w_imports.dart';
 import 'package:flutter_tdd/features/user/classified_products/presentaion/widgets/build_images_dialog.dart';
 
