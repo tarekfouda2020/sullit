@@ -47,6 +47,7 @@ class _ClassifiedProductsState extends State<ClassifiedProducts> {
                 ),
                 BuildPackageBtn(
                   package: state.data!.currentPackage?.name,
+                  controller: controller,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),

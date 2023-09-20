@@ -24,8 +24,7 @@ class _MotionViewerState extends State<MotionViewer> {
       backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: "Video Viewer"),
       body: Center(
-        child: BlocBuilder<GenericBloc<ChewieController?>,
-            GenericState<ChewieController?>>(
+        child: BlocBuilder<GenericBloc<ChewieController?>, GenericState<ChewieController?>>(
           bloc: controller.videoCubit,
           builder: (context, state) {
             if (state is GenericUpdateState) {
@@ -45,6 +44,5 @@ class _MotionViewerState extends State<MotionViewer> {
     controller.videoController.dispose();
     controller.chewieController.dispose();
     controller.videoCubit.onUpdateData(null);
-
   }
 }
