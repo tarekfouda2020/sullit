@@ -18,9 +18,15 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
    <application
-        android:label="flutter_tdd"
+        android:label="Suliit"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+       <meta-data
+           android:name="com.facebook.sdk.ApplicationId"
+           android:value="@string/facebook_app_id" />
+       <meta-data
+           android:name="com.facebook.sdk.ClientToken"
+           android:value="@string/facebook_client_token" />
        <meta-data
                android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyDV1H2CcIYVHXtndUp8w_tu79A5OgLoAFU" />
