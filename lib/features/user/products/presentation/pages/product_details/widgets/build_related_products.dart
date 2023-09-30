@@ -20,7 +20,7 @@ final ProductDetailsController controller;
             children: [
               Gaps.vGap10,
               Text(
-                "Related Products",
+                tr('relatedProducts'),
                 style: AppTextStyle.s15_w700(
                   color: context.colors.black,
                 ),

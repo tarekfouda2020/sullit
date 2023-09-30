@@ -7,7 +7,7 @@ class BuildAddressesEmptyView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        "You have no addresses !",
+        tr("noAddresses"),
         style: AppTextStyle.s14_w600(
           color: context.colors.black,
         ),

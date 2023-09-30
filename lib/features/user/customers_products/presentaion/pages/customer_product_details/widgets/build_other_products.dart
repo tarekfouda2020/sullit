@@ -19,7 +19,7 @@ class BuildOtherProducts extends StatelessWidget {
           children: [
             Gaps.vGap10,
             Text(
-              "Other Ads",
+             tr('otherAds') ,
               style: AppTextStyle.s15_w700(
                 color: context.colors.black,
               ),

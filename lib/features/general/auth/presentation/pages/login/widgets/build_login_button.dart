@@ -9,7 +9,7 @@ class BuildLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LoadingButton(
-      title: "Login",
+      title: tr('login'),
       onTap: () => controller.onSubmit(context),
       color: context.colors.primary,
       textColor: context.colors.white,

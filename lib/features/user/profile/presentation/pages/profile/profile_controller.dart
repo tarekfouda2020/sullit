@@ -67,7 +67,7 @@ class ProfileController {
     if (data != UserDomainModel()) {
       _cashAndRoute(data, context);
       CustomToast.showSimpleToast(
-        msg: "Profile information updated successfully",
+        msg: tr('informationUpdatedSuccessfully'),
         type: ToastType.success,
       );
     }

@@ -20,7 +20,7 @@ class _ActiveAccountState extends State<ActiveAccount> {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         children: [
-          const BuildHeaderTitle(title: "Enter Verify Code"),
+          BuildHeaderTitle(title: tr('enterVerifyCode')),
           BuildPinField(onComplete: controller.onComplete),
           BuildActiveButton(controller: controller, phone: widget.phone,),
         ],

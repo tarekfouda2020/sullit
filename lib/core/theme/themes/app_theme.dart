@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 abstract class AppTheme {
-  static var fontFamily = 'NotoSans';
+  static var fontFamily = GoogleFonts.elMessiri().fontFamily
+  ;
 
   ThemeData get theme;
 

@@ -16,7 +16,7 @@ class RegisterShopFields extends StatelessWidget {
             type: TextInputType.text,
             action: TextInputAction.next,
             validate: (value) => value?.validateName(),
-            label: "Your Name",
+            label: tr('yourName'),
             margin: const EdgeInsets.symmetric(vertical: 10).r,
           ),
           GenericTextField(
@@ -27,7 +27,7 @@ class RegisterShopFields extends StatelessWidget {
             type: TextInputType.emailAddress,
             action: TextInputAction.next,
             validate: (value) => value?.validateEmail(),
-            label: "Your E-mail",
+            label: tr('yourEmail'),
             margin: const EdgeInsets.symmetric(vertical: 10).r,
           ),
           BlocBuilder<GenericBloc<bool>,GenericState<bool>>(
@@ -40,7 +40,7 @@ class RegisterShopFields extends StatelessWidget {
                   type: TextInputType.text,
                   action: TextInputAction.done,
                   validate: (value) => value?.validatePassword(),
-                  label: "Your Password",
+                  label: tr('yourPassword'),
                   margin: const EdgeInsets.only(top: 10).r,
                   suffixIcon: IconButton(
                     onPressed: () =>
@@ -63,7 +63,7 @@ class RegisterShopFields extends StatelessWidget {
                   type: TextInputType.text,
                   action: TextInputAction.done,
                   validate: (value) => value?.validatePassword(),
-                  label: "Confirm Your Password",
+                  label: tr('confirmPassword'),
                   margin: const EdgeInsets.only(top: 10).r,
                   suffixIcon: IconButton(
                     onPressed: () =>
@@ -80,7 +80,7 @@ class RegisterShopFields extends StatelessWidget {
           Align(
             alignment: AlignmentDirectional.centerStart,
             child: Text(
-              "Basic Info",
+              tr('basicInfo'),
               style: AppTextStyle.s16_w500(color: context.colors.black),
               textAlign: TextAlign.start,
             ),
@@ -94,7 +94,7 @@ class RegisterShopFields extends StatelessWidget {
             type: TextInputType.text,
             action: TextInputAction.next,
             validate: (value) => value?.validateName(),
-            label: "Shop Name",
+            label: tr('shopName'),
             margin: const EdgeInsets.symmetric(vertical: 10).r,
           ),
           GenericTextField(
@@ -105,7 +105,7 @@ class RegisterShopFields extends StatelessWidget {
             type: TextInputType.emailAddress,
             action: TextInputAction.next,
             validate: (value) => value?.validateAddress(),
-            label: "Shop Address",
+            label: tr('shopAddress'),
             margin: const EdgeInsets.symmetric(vertical: 10).r,
           ),
           GenericTextField(
@@ -116,7 +116,7 @@ class RegisterShopFields extends StatelessWidget {
             type: TextInputType.emailAddress,
             action: TextInputAction.next,
             validate: (value) => value?.validateEmail(),
-            label: "Shop E-mail",
+            label: tr('shopEmail'),
             margin: const EdgeInsets.symmetric(vertical: 10).r,
           ),
 

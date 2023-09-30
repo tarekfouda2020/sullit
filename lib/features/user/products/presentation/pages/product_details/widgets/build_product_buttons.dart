@@ -54,7 +54,7 @@ class BuildProductButtons extends StatelessWidget {
                         ),
                         Gaps.hGap10,
                         Text(
-                          "Buy Now",
+                          tr('buyNow'),
                           style: AppTextStyle.s13_w500(
                             color: context.colors.white,
                           ),

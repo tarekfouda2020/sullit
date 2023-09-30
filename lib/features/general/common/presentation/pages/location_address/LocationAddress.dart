@@ -35,7 +35,7 @@ class _LocationAddress extends State<LocationAddress> {
         backgroundColor: context.colors.primary,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        flexibleSpace: Padding(
+        flexibleSpace: const Padding(
           padding: EdgeInsets.symmetric(horizontal: 5),
         ),
       ),

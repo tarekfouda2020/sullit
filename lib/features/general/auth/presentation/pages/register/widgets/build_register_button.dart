@@ -6,7 +6,7 @@ class BuildRegisterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LoadingButton(
-      title: "Create Account",
+      title: tr('createAccount'),
       onTap: () => controller.setUserRegister(context),
       color: context.colors.primary,
       textColor: context.colors.white,

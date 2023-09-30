@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_imports.dart';
@@ -28,45 +29,52 @@ class BuildDrawer extends StatelessWidget {
               padding: Dimens.paddingHorizontal15PX,
               children: [
                 BuildDrawerItem(
-                  title: 'Home',
+                  title: tr('home'),
                   icon: Icons.home_outlined,
                   onTap: () => AutoRouter.of(context).push(HomeRoute(index: 0)),
                 ),
                 BuildDrawerItem(
-                  title: 'All Brands',
+                  title: tr("allBrands"),
                   icon: Icons.branding_watermark_outlined,
                   onTap: () => AutoRouter.of(context).push(const BrandsRoute()),
                 ),
                 BuildDrawerItem(
-                  title: 'All Categories',
+                  title: tr("allCategories"),
                   icon: Icons.category_outlined,
                   onTap: () => AutoRouter.of(context).push(HomeRoute(index: 1)),
                 ),
                 BuildDrawerItem(
-                  title: 'Contact Us',
+                  title: tr("contactUs"),
                   icon: Icons.contact_support_outlined,
                   onTap: () =>
                       AutoRouter.of(context).push(const ContactUsRoute()),
                 ),
                 BuildDrawerItem(
-                  title: 'Terms and Conditions',
+                  title: tr('termsAndConditions'),
                   icon: Icons.list_alt,
                   onTap: () => AutoRouter.of(context).push(const TermsRoute()),
                 ),
                 BuildDrawerItem(
-                  title: 'Privacy Policy',
+                  title: tr("privacyPolicy"),
                   icon: Icons.privacy_tip_outlined,
                   onTap: () =>
                       AutoRouter.of(context).push(const PrivacyRoute()),
                 ),
                 BuildDrawerItem(
-                  title: 'Support Policy',
+                  title: tr("langauge"),
+                  icon: Icons.language,
+                  onTap: () {
+                    controller.showLangBottomSheet(context, controller);
+                  }
+                ),
+                BuildDrawerItem(
+                  title: tr('supportPolicy'),
                   icon: Icons.support_agent,
                   onTap: () =>
                       AutoRouter.of(context).push(const SupportPolicyRoute()),
                 ),
                 BuildDrawerItem(
-                  title: 'Return Policy',
+                  title: tr('returnPolicy'),
                   icon: Icons.keyboard_return,
                   onTap: () =>
                       AutoRouter.of(context).push(const ReturnPolicyRoute()),

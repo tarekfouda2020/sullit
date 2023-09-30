@@ -14,7 +14,7 @@ class BuildWalletBalance extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "Your wallet balance : ",
+            tr('walletBalance'),
             style: AppTextStyle.s16_w800(color: context.colors.black),
           ),
           Text(

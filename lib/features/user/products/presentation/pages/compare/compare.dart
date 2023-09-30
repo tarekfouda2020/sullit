@@ -20,7 +20,7 @@ class _CompareState extends State<Compare> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Compare", showBack: true),
+      appBar:  DefaultAppBar(title: tr('compare'), showBack: true),
       body: BlocBuilder<GenericBloc<List<Product>>, GenericState<List<Product>>>(
         bloc: controller.productsBloc,
         builder: (context, state) {

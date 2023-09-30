@@ -10,7 +10,6 @@ import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/features/user/blog/domain/models/blog.dart';
-import 'package:flutter_tdd/features/user/blog/presentation/pages/blog_details/blog_details_imports.dart';
 
 part 'build_blog_item.dart';
 part 'build_loading_view.dart';

@@ -15,7 +15,6 @@ class LoginController {
       var params = await _setLoginParams();
       var result = await SetLogin().call(params);
       btnKey.currentState?.animateReverse();
-      log(">>>>>${result?.toJson()}");
       if (result?.key == "success") {
         _cashAndRoute(context, result?.userData?.user);
       }
@@ -33,15 +32,14 @@ class LoginController {
     context.read<UserCubit>().onUpdateUserData(data!);
     AutoRouter.of(context).push(HomeRoute(index: 0));
     CustomToast.showSimpleToast(
-      msg: "Successfully Logged In",
+      msg: tr('successLoggedIn'),
       type: ToastType.success,
     );
   }
 
   void _onNeedActive(BuildContext context) {
     CustomToast.showSimpleToast(
-      msg:
-          "Please verify your account,verification link has been sent to your email address.",
+      msg: tr('verifyLinkSent'),
       type: ToastType.info,
     );
     AutoRouter.of(context).push(VerifyRegisterRoute(email: email.text));

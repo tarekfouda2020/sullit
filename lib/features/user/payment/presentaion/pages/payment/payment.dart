@@ -29,8 +29,8 @@ class _PaymentState extends State<Payment> {
       child: WebviewScaffold(
         withZoom: true,
         url: widget.transactionUrl,
-        appBar: const DefaultAppBar(
-          title: 'Payment',
+        appBar:  DefaultAppBar(
+          title: tr('payment'),
         ),
       ),
     );

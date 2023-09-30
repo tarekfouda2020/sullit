@@ -70,8 +70,8 @@ class AddClassifiedProductsController {
   }
 
   List<ConditionDomainModel> conditions = [
-    ConditionDomainModel(name: 'new', type: 'new'),
-    ConditionDomainModel(name: 'Used', type: 'used'),
+    ConditionDomainModel(name: tr('new'), type: 'new'),
+    ConditionDomainModel(name: tr('used'), type: 'used'),
   ];
 
   Future<void> removeImage(int index, ImageType type) async {
@@ -136,21 +136,21 @@ class AddClassifiedProductsController {
         url: videoUrlController.text,
       );
       if (validate == false) {
-        return 'Make sure you entered the link correctly';
+        return tr('linkValidation');
       }
     } else if (videoProvider!.provider == 'dailymotion') {
       bool validate = videoUrlValidator.validateDailyMotionVideoURL(
         url: videoUrlController.text,
       );
       if (validate == false) {
-        return 'Make sure you entered the link correctly';
+        return tr('linkValidation');
       }
     } else if (videoProvider!.provider == 'vimeo') {
       bool validate = videoUrlValidator.validateVimeoVideoURL(
         url: videoUrlController.text,
       );
       if (validate == false) {
-        return 'Make sure you entered the link correctly';
+        return tr('linkValidation');
       }
     }else{
       return null;
@@ -161,21 +161,21 @@ class AddClassifiedProductsController {
   Future<void> addClassifiedProducts(BuildContext context) async {
     if (imagesBloc.state.data.isEmpty) {
       CustomToast.showSimpleToast(
-          msg: 'Please select at least one gallary image');
+          msg: tr('gallaryImageValidation'));
       return;
     }
     if (pdf.state.data == null) {
-      CustomToast.showSimpleToast(msg: 'Please select pdf');
+      CustomToast.showSimpleToast(msg: tr('pdfValidation'));
       return;
     }
     if (metaImageBloc.state.data == null) {
       CustomToast.showSimpleToast(
-          msg: 'Please select meta image', type: ToastType.error);
+          msg: tr('selMetaImage'), type: ToastType.error);
       return;
     }
     if (thumbnailImageBloc.state.data == null) {
       CustomToast.showSimpleToast(
-        msg: 'Please select thumbnail image',
+        msg: tr('thumbnailImageValidation'),
         type: ToastType.error,
       );
       return;
@@ -186,7 +186,7 @@ class AddClassifiedProductsController {
       var data = await SetAddClassifiedProducts().call(params);
       if (data) {
         CustomToast.showSimpleToast(
-          msg: 'Product added successfully',
+          msg: tr('productAddedSuccess'),
           type: ToastType.success,
         );
         AutoRouter.of(context).push(const ClassifiedProductsRoute());

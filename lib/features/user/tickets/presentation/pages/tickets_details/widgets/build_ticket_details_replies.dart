@@ -12,7 +12,7 @@ class BuildTicketDetailsReplies extends StatelessWidget {
       replacement: Expanded(
         child: Center(
           child: Text(
-            "No replies found yet. ! ",
+            tr('noRepliesFoundYet'),
             style: AppTextStyle.s12_w400(color: context.colors.grey),
           ),
         ),

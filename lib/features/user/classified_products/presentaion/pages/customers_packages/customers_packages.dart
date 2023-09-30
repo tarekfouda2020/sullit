@@ -20,8 +20,8 @@ class _CustomersPackagesState extends State<CustomersPackages> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(
-        title: 'Customers Packages',
+      appBar:  DefaultAppBar(
+        title: tr('customersPackages'),
       ),
       body: BlocBuilder<GenericBloc<List<CusPackage>>,
           GenericState<List<CusPackage>>>(

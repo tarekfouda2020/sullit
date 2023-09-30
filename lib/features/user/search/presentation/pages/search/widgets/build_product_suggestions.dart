@@ -10,14 +10,14 @@ class BuildProductSuggestions extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const BuildSuggestHeader(title: "Product Suggestions"),
+        BuildSuggestHeader(title: tr('productSuggestions')),
         Visibility(
           visible: products.isEmpty,
           child: Container(
             padding: Dimens.paddingVertical20PX,
             alignment: Alignment.center,
             child: Text(
-              "No Product Found...",
+              tr('noProductFound'),
               style: AppTextStyle.s15_w700(color: context.colors.black),
             ),
           ),

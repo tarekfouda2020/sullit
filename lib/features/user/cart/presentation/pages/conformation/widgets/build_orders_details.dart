@@ -19,7 +19,7 @@ class BuildOrdersDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Order Code: ",
+                    "${tr('orderCode')}: ",
                     style: AppTextStyle.s14_w400(color: context.colors.black),
                   ),
                   Text(
@@ -31,9 +31,9 @@ class BuildOrdersDetails extends StatelessWidget {
             ),
             Padding(
               padding: Dimens.paddingAll15PX,
-              child: const Text(
-                'Order Details',
-                style: AppTextStyle.s16_w500(
+              child: Text(
+                tr('orderDetails'),
+                style: const AppTextStyle.s16_w500(
                   color: Colors.black,
                 ),
               ),
@@ -85,7 +85,7 @@ class BuildOrdersDetails extends StatelessWidget {
                                 ),
                                 SizedBox(width: 50.w,),
                                 Text(
-                                  "Variation : ",
+                                  "${tr('variation')} : ",
                                   style: AppTextStyle.s12_w400(color: context.colors.black),
                                 ),
                                 Text(
@@ -99,7 +99,7 @@ class BuildOrdersDetails extends StatelessWidget {
                               children: [
                                 Gaps.hGap10,
                                 Text(
-                                  "Quantity : ",
+                                  "${tr('quantity')} : ",
                                   style: AppTextStyle.s12_w400(color: context.colors.black),
                                 ),
                                 Text(
@@ -108,7 +108,7 @@ class BuildOrdersDetails extends StatelessWidget {
                                 ),
                                 Gaps.hGap32,
                                 Text(
-                                  "Price : ",
+                                  "${tr('price')} : ",
                                   style: AppTextStyle.s12_w400(color: context.colors.black),
                                 ),
                                 Text(
@@ -124,23 +124,23 @@ class BuildOrdersDetails extends StatelessWidget {
                   ),
                   Gaps.vGap10,
                   BuildSummaryItem(
-                    title: 'Subtotal:',
+                    title: '${tr('subTotal')}:',
                     value: summary.sectionOrders![index].subtotal,
                   ),
                   BuildSummaryItem(
-                    title: 'Shipping:',
+                    title: '${tr('shipping')}:',
                     value: summary.sectionOrders![index].shipping,
                   ),
                   BuildSummaryItem(
-                    title: 'Tax:',
+                    title: '${tr('tax')}:',
                     value: summary.sectionOrders![index].tax,
                   ),
                   BuildSummaryItem(
-                    title: 'Coupon Discount:',
+                    title: '${tr('couponDiscount')}:',
                     value: summary.sectionOrders![index].couponDiscount,
                   ),
                   BuildSummaryItem(
-                    title: 'Total:',
+                    title: '${tr('total')}:',
                     value: summary.sectionOrders![index].total,
                     showDivider: false,
                   ),

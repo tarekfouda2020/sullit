@@ -8,7 +8,10 @@ class BuildEmptyDataView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      child: Image.asset(Res.emptyCart, scale: 3),
+      child: Image.asset(
+        Res.emptyCart,
+        scale: 3,
+      ),
     );
   }
 }

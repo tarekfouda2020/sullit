@@ -15,7 +15,7 @@ class BuildRegisterSocial extends StatelessWidget {
               Expanded(child: Gaps.line(context.colors.blackOpacity, 20)),
               Gaps.hGap10,
               Text(
-                "Or join with",
+                tr('orJoinWith'),
                 style: AppTextStyle.s16_w400(color: context.colors.black),
               ),
               Gaps.hGap10,

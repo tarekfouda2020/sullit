@@ -21,7 +21,7 @@ class BuildNewShipping extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Add New Address",
+              tr('addNewAddress'),
               style: AppTextStyle.s15_w700(color: context.colors.primary),
             ),
             Icon(Icons.add_circle, color: context.colors.primary),

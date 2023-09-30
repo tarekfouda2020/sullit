@@ -20,7 +20,7 @@ class _BrandsState extends State<Brands> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "All Brands", showBack: true),
+      appBar:  DefaultAppBar(title: tr('allBrands'), showBack: true),
       body: PagedGridView<int, BrandDomainModel>(
         padding: Dimens.paddingAll15PX,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -42,7 +42,7 @@ class _BrandsState extends State<Brands> {
           noItemsFoundIndicatorBuilder: (cxt) {
             return Center(
               child: Text(
-                "No Brands Here",
+                tr('noBrandsHere'),
                 style: AppTextStyle.s12_w400(
                   color: context.colors.black,
                 ),

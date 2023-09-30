@@ -30,13 +30,13 @@ class BuildPackageBtn extends StatelessWidget {
                 border: Border.all(color: context.colors.greyWhite),
               ),
               child: Text(
-                'Upgrade package',
+                tr('upgradePackage'),
                 style: AppTextStyle.s14_w400(color: context.colors.primary),
               ),
             ),
           ),
           Text(
-          package??'No package',
+          package?? tr('noPackage'),
             style: AppTextStyle.s14_w400(color: context.colors.black),
           ),
         ],

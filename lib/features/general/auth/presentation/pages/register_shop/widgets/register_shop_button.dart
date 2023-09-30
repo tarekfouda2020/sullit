@@ -9,7 +9,7 @@ class RegisterShopButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LoadingButton(
-      title: "Register Your Shop",
+      title: tr('registerYourShop'),
       onTap: () {},
       color: context.colors.primary,
       textColor: context.colors.white,

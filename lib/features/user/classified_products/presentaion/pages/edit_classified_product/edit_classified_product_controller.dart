@@ -128,8 +128,8 @@ class EditClassifiedProductController {
   }
 
   List<ConditionDomainModel> conditions = [
-    ConditionDomainModel(name: 'new', type: 'new'),
-    ConditionDomainModel(name: 'Used', type: 'used'),
+    ConditionDomainModel(name: tr('new'), type: 'new'),
+    ConditionDomainModel(name: tr('used'), type: 'used'),
   ];
 
   void showImageDialog({
@@ -164,7 +164,7 @@ class EditClassifiedProductController {
     var params = _editProductParams(id);
     var result = await SetEditCusProduct().call(params);
     if (result) {
-      CustomToast.showSimpleToast(msg: 'Product has been updated successfully');
+      CustomToast.showSimpleToast(msg: tr('productUpdatedSuccess'));
       AutoRouter.of(context).pop(true);
     }
   }
@@ -198,21 +198,21 @@ class EditClassifiedProductController {
         url: videoLink.text,
       );
       if (!validate) {
-        return 'Make sure you entered the link correctly';
+        return tr('linkValidation');
       }
     } else if (videoProvider!.provider == 'dailymotion') {
       bool validate = videoUrlValidator.validateDailyMotionVideoURL(
         url: videoLink.text,
       );
       if (!validate) {
-        return 'Make sure you entered the link correctly';
+        return tr('linkValidation');
       }
     } else if (videoProvider!.provider == 'vimeo') {
       bool validate = videoUrlValidator.validateVimeoVideoURL(
         url: videoLink.text,
       );
       if (!validate) {
-        return 'Make sure you entered the link correctly';
+        return tr('linkValidation');
       }
     } else {
       return null;

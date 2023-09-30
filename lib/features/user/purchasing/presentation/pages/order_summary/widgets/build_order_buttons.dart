@@ -12,14 +12,14 @@ final OrderSummaryController controller;
         Visibility(
           visible: orderModel.showButtonPay,
           child: DefaultButton(
-            title: "Complete Payment",
+            title: tr('completePayment'),
             onTap: () =>controller.onPayOrder(context),
           ),
         ),
         Visibility(
           visible: orderModel.availableReturnOrder,
           child: DefaultButton(
-            title: "Return Order",
+            title:  tr('returnOrder'),
             onTap: () => AutoRouter.of(context)
                 .push(RetrieveOrderRoute(orderModel: orderModel)),
           ),

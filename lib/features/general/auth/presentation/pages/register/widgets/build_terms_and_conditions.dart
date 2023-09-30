@@ -24,14 +24,14 @@ class BuildTermsAndConditions extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "By signing up you agree to our ",
+                    tr('bySellAgree'),
                     style: AppTextStyle.s16_w400(
                         color: context.colors.blackOpacity),
                   ),
                   GestureDetector(
                     onTap: ()=>AutoRouter.of(context).push(const TermsRoute()),
                     child: Text(
-                      "terms and conditions",
+                      tr('termsAndConditions'),
                       style:
                           AppTextStyle.s16_w400(color: context.colors.primary),
                     ),

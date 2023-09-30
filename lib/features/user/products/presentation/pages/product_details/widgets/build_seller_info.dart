@@ -24,7 +24,7 @@ class BuildSellerInfo extends StatelessWidget {
                 ),
                 Gaps.vGap5,
                 Text(
-                  shopModel?.name ?? "not found",
+                  shopModel?.name ?? tr('notFound'),
                   style: AppTextStyle.s14_w400(
                     color: context.colors.black,
                   ),

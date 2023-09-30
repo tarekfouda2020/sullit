@@ -14,7 +14,7 @@ class BuildWalletHistory extends StatelessWidget {
         children: [
           Gaps.vGap24,
           Text(
-            "Wallet Recharge History",
+            tr('walRechargeHistory'),
             style: AppTextStyle.s16_w500(color: context.colors.black),
           ),
           Gaps.vGap10,

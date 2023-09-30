@@ -28,7 +28,7 @@ class ContactUsController{
       var data = await SetContactUs().call(params);
       if (data) {
         CustomToast.showSimpleToast(
-          msg: "Your Message has been Sent successfully",
+          msg: tr('msgSent'),
           type: ToastType.success,
         );
       }

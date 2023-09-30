@@ -16,7 +16,7 @@ class BuildAddTicketsImages extends StatelessWidget {
         children: [
           Padding(
             padding: Dimens.paddingVertical8PX,
-            child: const Text("Images", style: AppTextStyle.s13_w400(color: Colors.black),),
+            child:  Text(tr('images'), style: const AppTextStyle.s13_w400(color: Colors.black),),
           ),
           BlocBuilder<GenericBloc<List<File>>, GenericState<List<File>>>(
             bloc: controller.imagesCubit,

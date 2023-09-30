@@ -22,12 +22,12 @@ class _MoreState extends State<More> {
         padding: Dimens.paddingAll15PX,
         children: [
           BuildMoreItem(
-            title: 'DashBoard',
+            title: tr('dashBoard'),
             icon: Icons.home_outlined,
             onTap: () => controller.checkAuth(context, MoreRoutes.dashboard),
           ),
           BuildMoreItem(
-            title: 'Classified products',
+            title: tr('classifiedProducts'),
             icon: Icons.diamond_outlined,
             onTap: () => controller.checkAuth(
               context,
@@ -35,7 +35,7 @@ class _MoreState extends State<More> {
             ),
           ),
           BuildMoreItem(
-            title: 'Customers products',
+            title: tr("customersProducts"),
             icon: Icons.star_border,
             onTap: () => controller.checkAuth(
               context,
@@ -44,38 +44,38 @@ class _MoreState extends State<More> {
           ),
           BuildMoreItem(
             haveStatus: true,
-            title: 'Purchased History',
+            title: tr("purchasedHistory"),
             icon: Icons.file_copy_outlined,
             onTap: () =>
                 controller.checkAuth(context, MoreRoutes.purchasedHistory),
           ),
           BuildMoreItem(
-            title: 'Return Orders',
+            title: tr('returnedOrders'),
             icon: Icons.file_copy_outlined,
             onTap: () => controller.checkAuth(context, MoreRoutes.returnOrders),
           ),
           BuildMoreItem(
-            title: 'Downloads',
+            title: tr('downloads'),
             icon: Icons.download,
             onTap: () => controller.checkAuth(context, MoreRoutes.downloads),
           ),
           BuildMoreItem(
-            title: 'Blogs',
+            title: tr('blogs'),
             icon: Icons.list_alt,
             onTap: () => controller.checkAuth(context, MoreRoutes.blogs),
           ),
           BuildMoreItem(
-            title: 'WishList',
+            title: tr('wishlists'),
             icon: Icons.favorite_border,
             onTap: () => controller.checkAuth(context, MoreRoutes.wishlist),
           ),
           BuildMoreItem(
-            title: 'Compare',
+            title: tr("compare"),
             icon: Icons.compare_arrows,
             onTap: () => controller.checkAuth(context, MoreRoutes.compare),
           ),
           BuildMoreItem(
-            title: 'Track Order',
+            title: tr('trackOrder'),
             icon: Icons.summarize_outlined,
             onTap: () => controller.checkAuth(context, MoreRoutes.trackOrder),
           ),
@@ -86,18 +86,18 @@ class _MoreState extends State<More> {
           //       controller.checkAuth(context, MoreRoutes.conversations),
           // ),
           BuildMoreItem(
-            title: 'My Wallet',
+            title: tr('myWallet'),
             icon: Icons.monetization_on_outlined,
             onTap: () => controller.checkAuth(context, MoreRoutes.myWallet),
           ),
           BuildMoreItem(
-            title: 'Support Tickets',
+            title: tr("supportTickets"),
             icon: Icons.airplane_ticket_outlined,
             onTap: () =>
                 controller.checkAuth(context, MoreRoutes.supportTickets),
           ),
           BuildMoreItem(
-            title: 'Manage Profile',
+            title: tr('manageProfile'),
             icon: Icons.person_2_outlined,
             onTap: () => controller.checkAuth(context, MoreRoutes.profile),
           ),

@@ -12,7 +12,7 @@ class BuildPaymentButtons extends StatelessWidget {
         children: [
           Expanded(
             child: DefaultButton(
-              title: "Return to shop",
+              title: tr('returnToShop'),
               borderColor: context.colors.primary,
               textColor: context.colors.primary,
               color: context.colors.white,
@@ -21,7 +21,7 @@ class BuildPaymentButtons extends StatelessWidget {
           ),
           Expanded(
             child: DefaultButton(
-              title: "Complete Order",
+              title: tr("completeOrder"),
               color: context.colors.primary,
               onTap: () => controller.createOrder(context),
             ),

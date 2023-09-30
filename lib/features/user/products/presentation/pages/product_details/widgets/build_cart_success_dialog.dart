@@ -21,7 +21,7 @@ class BuildCartSuccessDialog extends StatelessWidget {
             Padding(
               padding: Dimens.paddingVertical20PX,
               child: Text(
-                "Item Added To Your Cart",
+                tr('itemAddedToCart'),
                 style: AppTextStyle.s16_w500(color: context.colors.green),
               ),
             ),
@@ -29,7 +29,7 @@ class BuildCartSuccessDialog extends StatelessWidget {
               children: [
                 Expanded(
                   child: DefaultButton(
-                    title: "Back To Shopping",
+                    title: tr('backToShop'),
                     onTap: () => AutoRouter.of(context).pop(),
                     borderColor: context.colors.primary,
                     color: context.colors.white,
@@ -40,7 +40,7 @@ class BuildCartSuccessDialog extends StatelessWidget {
                 Gaps.hGap10,
                 Expanded(
                   child: DefaultButton(
-                    title: "Proceed To Checkout",
+                    title: tr('proceedToCheckOut'),
                     onTap: () =>
                         AutoRouter.of(context).popAndPush(const CartRoute()),
                     margin: EdgeInsets.zero,

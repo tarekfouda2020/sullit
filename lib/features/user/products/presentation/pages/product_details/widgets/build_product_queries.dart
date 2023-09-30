@@ -23,7 +23,7 @@ class BuildProductQueries extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "Product Queries : ",
+                    "${tr('productQueries')} : ",
                     style: AppTextStyle.s15_w700(
                       color: context.colors.black,
                     ),
@@ -38,11 +38,11 @@ class BuildProductQueries extends StatelessWidget {
                 action: TextInputAction.done,
                 fillColor: context.colors.background,
                 validate: (value) => value?.validateEmpty(),
-                hint: "Write your question here...",
+                hint: "${tr('writeQuestionHere')}...",
                 margin: Dimens.paddingVertical10PX,
               ),
               DefaultButton(
-                title: "Submit",
+                title: tr('submit'),
                 width: 120.w,
                 height: 30.h,
                 margin: Dimens.paddingHorizontal10PX,

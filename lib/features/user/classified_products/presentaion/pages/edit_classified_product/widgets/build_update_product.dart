@@ -18,7 +18,7 @@ class BuildUpdateProduct extends StatelessWidget {
         ),
         child: Text(
           textAlign: TextAlign.center,
-          'Save Changes'.toUpperCase(),
+          tr('saveChanges'),
           style: AppTextStyle.s16_w700(color: context.colors.white),
         ),
       ),

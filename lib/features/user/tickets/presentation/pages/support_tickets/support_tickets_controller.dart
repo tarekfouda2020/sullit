@@ -21,7 +21,7 @@ class SupportTicketsController {
       var params = _createTicketParams();
       var data = await SetCreateTicket().call(params);
       if (data != null) {
-        CustomToast.showSimpleToast(msg: "Ticket has been sent successfully");
+        CustomToast.showSimpleToast(msg: tr('ticketSent'));
         AutoRouter.of(context).pop();
         subjectController.clear();
         detailsController.clear();

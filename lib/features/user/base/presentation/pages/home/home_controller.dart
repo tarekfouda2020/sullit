@@ -18,11 +18,27 @@ class HomeController {
   ];
 
   List<String> tabsText = [
-    "Home",
-    "Categories",
-    "Notifications",
-    "Account",
+    tr('home'),
+    tr('categories'),
+    tr('notifications'),
+    tr("account"),
   ];
+
+  void setUserLang(BuildContext context,String lang)async{
+    getIt<Utilities>().changeLanguage(lang, context);
+    Phoenix.rebirth(context);
+  }
+
+  void showLangBottomSheet(BuildContext context, HomeController controller) {
+    showModalBottomSheet(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15))
+      ),
+      backgroundColor: context.colors.white,
+      context: context,
+      builder: (context) =>  BuildLangBottomSheet(controller: controller,),
+    );
+  }
 
   void initBottomNavigation(TickerProvider ticker, int index) {
     tabController =

@@ -1,4 +1,5 @@
-part of'conversations_imports.dart';
+part of 'conversations_imports.dart';
+
 class Conversations extends StatefulWidget {
   const Conversations({Key? key}) : super(key: key);
 
@@ -10,11 +11,12 @@ class _ConversationsState extends State<Conversations> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(title: "Conversations"),
+      appBar: DefaultAppBar(title: tr('conversations')),
       body: ListView.builder(
-        padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 16).r,
-          itemCount: 3,
-          itemBuilder: (context,index)=>BuildConversationItem()),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16).r,
+        itemCount: 3,
+        itemBuilder: (context, index) => const BuildConversationItem(),
+      ),
     );
   }
 }

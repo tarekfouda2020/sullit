@@ -21,7 +21,7 @@ class BuildContactUsFields extends StatelessWidget {
               action: TextInputAction.next,
               fillColor: context.colors.white,
               validate: (value) => value?.validateName(),
-              label: "Name",
+              label: tr('userName'),
               margin: Dimens.paddingVertical10PX,
             ),
             GenericTextField(
@@ -31,7 +31,7 @@ class BuildContactUsFields extends StatelessWidget {
               type: TextInputType.emailAddress,
               action: TextInputAction.next,
               validate: (value) => value?.validateEmail(),
-              label: "E-mail",
+              label: tr('mail'),
               margin: Dimens.paddingVertical10PX,
             ),
             GenericTextField(
@@ -41,7 +41,7 @@ class BuildContactUsFields extends StatelessWidget {
               type: TextInputType.phone,
               action: TextInputAction.next,
               validate: (value) => value?.validatePhone(),
-              label: "Phone",
+              label: tr('phone'),
               margin: Dimens.paddingVertical10PX,
             ),
             GenericTextField(
@@ -51,7 +51,7 @@ class BuildContactUsFields extends StatelessWidget {
               type: TextInputType.text,
               action: TextInputAction.next,
               validate: (value) => value?.validateEmpty(),
-              label: "Title",
+              label: tr('title'),
               margin: Dimens.paddingVertical10PX,
             ),
             GenericTextField(
@@ -62,7 +62,7 @@ class BuildContactUsFields extends StatelessWidget {
               action: TextInputAction.done,
               max: 4,
               validate: (value) => value?.validateEmpty(),
-              label: "Your Message",
+              label: tr('yourMsg'),
               margin: Dimens.paddingVertical10PX,
             ),
           ],

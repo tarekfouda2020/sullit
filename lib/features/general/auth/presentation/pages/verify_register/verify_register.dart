@@ -27,13 +27,13 @@ class _VerifyRegisterState extends State<VerifyRegister> {
         padding: Dimens.paddingHorizontal15PX,
         children: [
           const BuildHeaderLogo(),
-          const BuildHeaderTitle(
-              title: "Verify Your Email Address",
-              subTitle:
-                  "Before proceeding , Please check your email for a verification link. If you didn't receive the email"),
+          BuildHeaderTitle(
+            title: tr('verifyYourEmailAddress'),
+            subTitle: tr('verifyRegister'),
+          ),
           DefaultButton(
-            title: "Request Another Link",
-            onTap: () =>controller.resendCode(),
+            title: tr('requestAnotherLink'),
+            onTap: () => controller.resendCode(),
             height: 40.h,
           )
         ],

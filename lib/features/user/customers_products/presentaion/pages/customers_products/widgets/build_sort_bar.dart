@@ -17,8 +17,8 @@ class BuildSortBar extends StatelessWidget {
             child: Column(
               children: [
                 DropdownTextField<BrandDomainModel>(
-                  title: "All Brand",
-                  hint: "All Brand",
+                  title: tr('allBrands'),
+                  hint: tr('allBrands'),
                   fillColor: context.colors.white,
                   itemAsString: (u) => u.name,
                   margin: EdgeInsets.zero,
@@ -31,8 +31,8 @@ class BuildSortBar extends StatelessWidget {
                   children: [
                     Expanded(
                       child: DropdownTextField<SortTypes>(
-                        title: "Sort By",
-                        hint: "Sort By",
+                        title: tr('sortBy'),
+                        hint: tr('sortBy'),
                         fillColor: context.colors.white,
                         itemAsString: (u) => u.name,
                         margin: EdgeInsets.zero,
@@ -46,8 +46,8 @@ class BuildSortBar extends StatelessWidget {
                     Gaps.hGap5,
                     Expanded(
                       child: DropdownTextField<SortTypes>(
-                        title: "Condition",
-                        hint: "Condition",
+                        title: tr('selectCondition'),
+                        hint: tr('selectCondition'),
                         fillColor: context.colors.white,
                         itemAsString: (u) => u.name,
                         margin: EdgeInsets.zero,

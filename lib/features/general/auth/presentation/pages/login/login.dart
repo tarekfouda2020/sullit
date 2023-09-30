@@ -23,7 +23,7 @@ class _LoginState extends State<Login> {
             padding: Dimens.paddingHorizontal15PX,
             children: [
               const BuildHeaderLogo(),
-              const BuildHeaderTitle(title: "Login to your account"),
+              BuildHeaderTitle(title: tr('loginToYourAcc')),
               Gaps.vGap15,
               BuildLoginForm(controller: loginController),
               const BuildForgetPasswordView(),

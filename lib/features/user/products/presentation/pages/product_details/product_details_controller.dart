@@ -103,7 +103,7 @@ class ProductDetailsController {
         detailsCubit.onUpdateData(detailsCubit.state.data);
       } else {
         CustomToast.showSimpleToast(
-            msg: "Only ${variantPrice.currentStock} available in stock");
+            msg: "${tr('only')} ${variantPrice.currentStock} available in stock");
         return;
       }
     }

@@ -25,7 +25,7 @@ class _RegisterShopState extends State<RegisterShop> {
               Align(
                 alignment: AlignmentDirectional.centerStart,
                 child: Text(
-                  "Personal Info",
+                  tr('personalInfo'),
                   style: AppTextStyle.s16_w500(color: context.colors.black),
                   textAlign: TextAlign.start,
                 ),

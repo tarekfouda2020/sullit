@@ -20,7 +20,7 @@ class BuildOwnQuestions extends StatelessWidget {
             children: [
               Gaps.vGap10,
               Text(
-                "Own Questions : ",
+                "${tr('ownQuestions')} : ",
                 style: AppTextStyle.s15_w700(
                   color: context.colors.black,
                 ),

@@ -22,7 +22,7 @@ class BuildReviewDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Review Product",
+                    tr('reviewProduct'),
                     style: AppTextStyle.s16_w500(color: context.colors.black),
                   ),
                   IconButton(
@@ -55,7 +55,7 @@ class BuildReviewDialog extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      "Comment : ",
+                      "${tr('comment')} : ",
                       style: AppTextStyle.s15_w700(
                         color: context.colors.black,
                       ),
@@ -81,7 +81,7 @@ class BuildReviewDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Review Product",
+                    tr('reviewProduct'),
                     style: AppTextStyle.s16_w500(color: context.colors.black),
                   ),
                   IconButton(
@@ -116,7 +116,7 @@ class BuildReviewDialog extends StatelessWidget {
                 },
               ),
               GenericTextField(
-                label: "Comment",
+                label: tr('comment'),
                 controller: orderDetailsModel.orderReview?.rateComment,
                 fieldTypes: FieldTypes.rich,
                 type: TextInputType.multiline,
@@ -126,7 +126,7 @@ class BuildReviewDialog extends StatelessWidget {
                 validate: (value) => value?.validateEmpty(),
               ),
               DefaultButton(
-                title: "Submit Review",
+                title: tr('submitReview'),
                 onTap: () => controller.sendReview(context, orderDetailsModel),
               )
             ],

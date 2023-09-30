@@ -14,39 +14,39 @@ class BuildOrderInfo extends StatelessWidget {
       child: Column(
         children: [
           BuildOrderInfoItem(
-            title: "Order Code :",
+            title: "${tr('orderCode')} :",
             subTitle: orderModel.code,
           ),
           BuildOrderInfoItem(
-            title: "Customer :",
+            title: "${tr('customer')} :",
             subTitle: orderModel.customerName,
           ),
           BuildOrderInfoItem(
-            title: "E-mail :",
+            title: "${tr('mail')} :",
             subTitle: orderModel.customerEmail,
           ),
           BuildOrderInfoItem(
-            title: "Shipping address :",
+            title: "${tr('shippingAddress')} :",
             subTitle: orderModel.shippingAddress,
           ),
           BuildOrderInfoItem(
-            title: "Order Date :",
+            title: "${tr('orderDate')} :",
             subTitle: orderModel.orderDate,
           ),
           BuildOrderInfoItem(
-            title: "Order Status :",
+            title: "${tr('orderStatus')} :",
             subTitle: orderModel.orderStatus,
           ),
           BuildOrderInfoItem(
-            title: "Total Order Amount :",
+            title: "${tr('totalOrderAmount')} :",
             subTitle: orderModel.orderDate,
           ),
           BuildOrderInfoItem(
-            title: "Shipping Method :",
+            title: "${tr('shippingMethod')} :",
             subTitle: orderModel.shippingMethod,
           ),
           BuildOrderInfoItem(
-            title: "Payment Method :",
+            title: "${tr('paymentMethod')} :",
             subTitle: orderModel.paymentMethod,
           ),
         ],

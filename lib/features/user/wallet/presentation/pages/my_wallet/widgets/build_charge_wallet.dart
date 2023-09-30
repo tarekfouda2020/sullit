@@ -12,7 +12,7 @@ class BuildChargeWallet extends StatelessWidget {
       backgroundColor: context.colors.primary,
       onPressed: () => controller.showChargeDialog(context),
       label: Text(
-        "Recharge Wallet",
+        tr("rechargeWallet"),
         style: AppTextStyle.s14_w500(color: context.colors.white),
       ),
       icon: Icon(

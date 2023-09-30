@@ -45,7 +45,7 @@ class CartPaymentController {
 
   void _confirmOrder(BuildContext context, OrderSummary data) {
     CustomToast.showSimpleToast(
-      msg: "Thank You for Your Order!",
+      msg: tr('thanksForYourOrder'),
       type: ToastType.success,
     );
     AutoRouter.of(context).push(
@@ -73,7 +73,7 @@ class CartPaymentController {
   void _checkConditionAccept() {
     if (!conditionsCubit.state.data) {
       CustomToast.showSimpleToast(
-        msg: "You must accept terms and conditions",
+        msg: tr('acceptTerms'),
         type: ToastType.error,
       );
       return;
@@ -85,7 +85,7 @@ class CartPaymentController {
         .where((element) => element.selected)
         .isEmpty) {
       CustomToast.showSimpleToast(
-        msg: 'You must choose payment method',
+        msg: tr('choosePayment'),
         type: ToastType.success,
       );
       return;

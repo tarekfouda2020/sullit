@@ -20,11 +20,11 @@ class _BlogsState extends State<Blogs> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Blogs"),
+      appBar:  DefaultAppBar(title: tr('blogs')),
       body: GenericListView(
         padding: Dimens.paddingAll15PX,
         type: ListViewType.api,
-        emptyStr: "No Blogs Yet",
+        emptyStr: tr("noBlogs"),
         loadingWidget: const BuildLoadingView(),
         itemBuilder: (_, index, item) => BuildBlogItem(blog: item),
         cubit: controller.blogsBloc,

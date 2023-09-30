@@ -17,7 +17,7 @@ class BuildLoginForm extends StatelessWidget {
             type: TextInputType.emailAddress,
             action: TextInputAction.next,
             validate: (value) => value?.validateEmpty(),
-            label: "E-mail",
+            label: tr('mail'),
             margin: Dimens.inputFieldMargin,
           ),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
@@ -30,7 +30,7 @@ class BuildLoginForm extends StatelessWidget {
                 type: TextInputType.visiblePassword,
                 action: TextInputAction.done,
                 validate: (value) => value?.validateEmpty(),
-                label: "Password",
+                label: tr('password'),
                 suffixIcon: IconButton(
                   onPressed: () =>
                       controller.passwordCubit.onUpdateData(!state.data),

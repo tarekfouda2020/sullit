@@ -13,7 +13,7 @@ class BuildActiveButton extends StatelessWidget {
         return AbsorbPointer(
           absorbing: !state.data,
           child: LoadingButton(
-              title: "Verify".toUpperCase(),
+              title: tr('verify'),
               onTap: () => controller.setVerifyPhone(phone,context),
               color: !state.data? context.colors.grey :context.colors.primary,
               textColor: context.colors.white,

@@ -30,27 +30,27 @@ class BuildShippingAddressItem extends StatelessWidget {
             child: Column(
               children: [
                 BuildAddressTitleItem(
-                  title: "Address",
+                  title: tr('address'),
                   desc: address.address!,
                 ),
                 BuildAddressTitleItem(
-                  title: "Postal code",
+                  title: tr('postalCode'),
                   desc: address.postalCode!,
                 ),
                 BuildAddressTitleItem(
-                  title: "City",
+                  title: tr('city'),
                   desc: address.city?.name ?? "",
                 ),
                 BuildAddressTitleItem(
-                  title: "State",
+                  title: tr('state'),
                   desc: address.state?.name ?? "",
                 ),
                 BuildAddressTitleItem(
-                  title: "Country",
+                  title: tr('country'),
                   desc: address.country?.name ?? "",
                 ),
                 BuildAddressTitleItem(
-                  title: "Phone",
+                  title: tr('phone'),
                   desc: address.phone ?? "",
                 )
               ],
@@ -67,7 +67,7 @@ class BuildShippingAddressItem extends StatelessWidget {
                   color: context.colors.primary,
                 ),
                 child: Text(
-                  'Verify Phone',
+                  tr('verifyPhone'),
                   style: AppTextStyle.s12_w300(
                     color: context.colors.white,
                   ),

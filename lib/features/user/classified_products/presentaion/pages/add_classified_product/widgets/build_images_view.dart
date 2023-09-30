@@ -13,7 +13,7 @@ class BuildImagesView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            "Images",
+            tr('images'),
             style: AppTextStyle.s16_w700(
               color: context.colors.black,
             ),
@@ -29,7 +29,7 @@ class BuildImagesView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10).r,
                 child: Text(
-                  'Gallery Images',
+                  tr('gallaryImages'),
                   style: AppTextStyle.s14_w800(color: context.colors.black),
                 ),
               ),
@@ -39,7 +39,7 @@ class BuildImagesView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10).r,
                 child: Text(
-                  'Thumbnail Image',
+                   tr('thumbnailImage'),
                   style: AppTextStyle.s14_w800(color: context.colors.black),
                 ),
               ),

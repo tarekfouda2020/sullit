@@ -15,7 +15,7 @@ class BuildHomeNewProducts extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Gaps.vGap10,
-          const BuildHeaderTitle(title: "New Products"),
+          BuildHeaderTitle(title: tr('newProducts')),
           Flexible(
             child: SingleChildScrollView(
               padding: Dimens.paddingVertical10PX,

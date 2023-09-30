@@ -14,7 +14,7 @@ class _TrackOrderState extends State<TrackOrder> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Track Order"),
+      appBar:  DefaultAppBar(title: tr('trackOrder')),
       body: ListView(
         padding: Dimens.paddingAll15PX,
         children: [

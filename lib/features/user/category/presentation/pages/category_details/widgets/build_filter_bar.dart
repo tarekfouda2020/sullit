@@ -19,8 +19,8 @@ class BuildFilterBar extends StatelessWidget {
               children: [
                 Expanded(
                   child: DropdownTextField<BrandDomainModel>(
-                    title: "All Brand",
-                    hint: "All Brand",
+                    title:  tr('allBrands'),
+                    hint: tr('allBrands'),
                     fillColor: context.colors.white,
                     itemAsString: (u) => u.name,
                     margin: EdgeInsets.zero,

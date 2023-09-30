@@ -49,7 +49,7 @@ class CustomerPackagesController {
     } else {
       AutoRouter.of(context).pop(true);
       CustomToast.showSimpleToast(
-        msg: 'Package purchased successfully',
+        msg: tr('packagePurchasedSuccess'),
         type: ToastType.success,
       );
     }

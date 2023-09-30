@@ -20,7 +20,7 @@ class _ReturnPolicyState extends State<ReturnPolicy> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Return Policy"),
+      appBar:  DefaultAppBar(title: tr('returnPolicy')),
       body: BlocBuilder<GenericBloc<String?>, GenericState<String?>>(
         bloc: controller.privacyBloc,
         builder: (context, state) {

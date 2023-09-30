@@ -22,7 +22,7 @@ class _SaleDetailsState extends State<SaleDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Flash Sale"),
+      appBar: DefaultAppBar(title: tr('flashSale')),
       body: BlocBuilder<GenericBloc<SaleDetailsDomainModel?>,
           GenericState<SaleDetailsDomainModel?>>(
         bloc: controller.saleDetailsBloc,

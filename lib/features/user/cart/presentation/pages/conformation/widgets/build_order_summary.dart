@@ -10,9 +10,9 @@ class BuildOrderSummary extends StatelessWidget {
       children: [
         Padding(
           padding: Dimens.paddingAll15PX,
-          child: const Text(
-            'Order Summary',
-            style: AppTextStyle.s16_w500(
+          child:  Text(
+            tr('orderSummary'),
+            style: const AppTextStyle.s16_w500(
               color: Colors.black,
             ),
           ),
@@ -34,36 +34,36 @@ class BuildOrderSummary extends StatelessWidget {
           child: Column(
             children: [
               BuildSummaryItem(
-                title: 'Order date:',
+                title: '${tr('orderDate')}:',
                 value: summary.summary!.orderDate,
               ),
               BuildSummaryItem(
-                title: 'Order status:',
+                title: '${tr('orderStatus')}:',
                 value: summary.summary!.orderStatus,
               ),
               BuildSummaryItem(
-                title: 'Name:',
+                title: '${tr('theName')}:',
                 value: summary.summary!.name,
               ),
               BuildSummaryItem(
-                title: 'Total order amount:',
+                title: '${tr('totalOrderAmount')}:',
                 value: summary.summary!.totalOrderAmount,
               ),
               BuildSummaryItem(
-                title: 'Email:',
+                title: '${tr('email')}:',
                 value: summary.summary!.email,
               ),
               BuildSummaryItem(
-                title: 'Shipping:',
+                title: '${tr('shipping')}):',
                 value: summary.summary!.shipping,
               ),
               BuildSummaryItem(
-                title: 'Shipping address:',
+                title: '${tr('shippingAddress')}:',
                 value: summary.summary!.shippingAddress,
               ),
               BuildSummaryItem(
                 title: summary.summary!.paymentMethod,
-                value: 'Wallet',
+                value: tr('wallet'),
                 showDivider: false,
               ),
             ],

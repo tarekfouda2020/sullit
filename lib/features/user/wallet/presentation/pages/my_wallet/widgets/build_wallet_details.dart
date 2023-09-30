@@ -34,7 +34,7 @@ class BuildWalletDetails extends StatelessWidget {
           ),
           Gaps.vGap10,
           Text(
-            "Wallet Balance",
+          tr('walBalance'),
             style: AppTextStyle.s14_w500(color: context.colors.white),
           ),
         ],

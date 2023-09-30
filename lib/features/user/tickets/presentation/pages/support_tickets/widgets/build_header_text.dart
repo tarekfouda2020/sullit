@@ -10,7 +10,7 @@ class BuildHeaderText extends StatelessWidget {
         Padding(
           padding: Dimens.paddingHorizontal15PX,
           child: Text(
-            "Tickets",
+            tr('tickets'),
             style: AppTextStyle.s16_w500(color: context.colors.black),
           ),
         ),

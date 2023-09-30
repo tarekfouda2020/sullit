@@ -18,7 +18,7 @@ class BuildLoginSocialMedia extends StatelessWidget {
               Expanded(child: Gaps.line(context.colors.blackOpacity, 20)),
               Gaps.hGap10,
               Text(
-                "Or Login With",
+                tr('orLoginWith'),
                 style: AppTextStyle.s16_w400(color: context.colors.black),
               ),
               Gaps.hGap10,

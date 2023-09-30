@@ -14,7 +14,7 @@ class BuildDeliveryButtons extends StatelessWidget {
         children: [
           Expanded(
             child: DefaultButton(
-              title: "Return to shop",
+              title: tr("returnToShop"),
               borderColor: context.colors.primary,
               textColor: context.colors.primary,
               color: context.colors.white,
@@ -23,7 +23,7 @@ class BuildDeliveryButtons extends StatelessWidget {
           ),
           Expanded(
             child: DefaultButton(
-              title: "Continue to Payment",
+              title: tr('conToPay'),
               color: context.colors.primary,
               onTap: ()=> controller.setCartStoreShipping(context),
             ),

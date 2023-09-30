@@ -12,8 +12,8 @@ class BuildTopBrands extends StatelessWidget {
       children: [
         Gaps.vGap5,
         BuildCustomHeaderTitle(
-          title: "Top 10 Brands",
-          btnText: "View All Brands",
+          title: tr('top10Products'),
+          btnText: tr('viewAllBrands'),
           onTap: () => AutoRouter.of(context).push(const BrandsRoute()),
         ),
         Gaps.vGap5,

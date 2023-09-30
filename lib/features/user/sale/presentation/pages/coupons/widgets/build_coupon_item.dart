@@ -25,7 +25,7 @@ class BuildCouponItem extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "${couponModel.couponUsagesCount} Sold",
+                  "${couponModel.couponUsagesCount} ${tr('sold')}",
                   style: AppTextStyle.s15_w500(color: context.colors.black),
                 ),
               ],

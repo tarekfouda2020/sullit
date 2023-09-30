@@ -23,8 +23,8 @@ class _EditClassifiedProductState extends State<EditClassifiedProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(
-        title: 'Edit product',
+      appBar:  DefaultAppBar(
+        title: tr('editProduct'),
       ),
       body: BlocBuilder<GenericBloc<CusProduct?>, GenericState<CusProduct?>>(
         bloc: controller.cusProductBloc,

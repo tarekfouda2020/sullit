@@ -25,7 +25,7 @@ class _RegisterState extends State<Register> {
           padding: Dimens.paddingHorizontal15PX,
           children: [
             const BuildHeaderLogo(),
-            const BuildHeaderTitle(title: "Create an account"),
+            BuildHeaderTitle(title: tr('createAccount')),
             Gaps.vGap15,
             BuildRegisterFormFields(registerController: controller),
             Gaps.vGap10,

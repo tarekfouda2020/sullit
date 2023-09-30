@@ -48,15 +48,15 @@ class BuildRetrieveOrderItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       BuildRetrieveOrderDetailsItem(
-                        title: "Product : ",
+                        title: "${tr('product')} : ",
                         details: "${orderDetails.product?.name}",
                       ),
                       BuildRetrieveOrderDetailsItem(
-                        title: "Price : ",
+                        title: "${tr('price')} : ",
                         details: orderDetails.price,
                       ),
                       BuildRetrieveOrderDetailsItem(
-                        title: "Tax : ",
+                        title: "${tr('tax')} : ",
                         details: "${orderDetails.tax}",
                       ),
                     ],

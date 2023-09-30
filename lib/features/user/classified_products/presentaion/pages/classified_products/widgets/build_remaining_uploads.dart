@@ -34,7 +34,7 @@ class BuildRemainingUploads extends StatelessWidget {
             ),
           ),
           Text(
-            'Remaining Uploads',
+            tr('remainingUploads'),
             style: AppTextStyle.s14_w400(color: context.colors.white),
           ),
         ],

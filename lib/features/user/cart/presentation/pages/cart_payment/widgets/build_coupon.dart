@@ -10,7 +10,7 @@ class BuildCoupon extends StatelessWidget {
     return Form(
       key: controller.couponFormKey,
       child: GenericTextField(
-        hint: "Have Coupon? Enter here",
+        hint: tr('haveCoupon'),
         fieldTypes: FieldTypes.normal,
         controller: controller.coupon,
         action: TextInputAction.done,
@@ -29,7 +29,7 @@ class BuildCoupon extends StatelessWidget {
               ),
             ),
             child: Text(
-              "Apply",
+              tr('apply'),
               style: AppTextStyle.s14_w600(color: context.colors.white),
             ),
           ),

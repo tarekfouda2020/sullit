@@ -35,7 +35,7 @@ class CartController {
       cartItemsBloc.state.data.calculableTotal = newSubTotal;
       cartItemsBloc.state.data.items!.remove(cartItem);
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
-      CustomToast.showSimpleToast(msg: 'Success delete item');
+      CustomToast.showSimpleToast(msg: tr('itemDeleted'));
       // getCartItems();
     }
   }
@@ -60,7 +60,7 @@ class CartController {
         const ShippingRoute(),
       );
     } else {
-      CustomToast.showSimpleToast(msg: "Your cart is empty");
+      CustomToast.showSimpleToast(msg: tr('cartIsEmpty'));
       return;
     }
   }

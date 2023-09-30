@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
@@ -76,7 +77,7 @@ class BuildProductItem extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              "OFF",
+                              tr('off'),
                               style: AppTextStyle.s10_w400(
                                 color: context.colors.primary,
                               ),
@@ -187,6 +188,7 @@ class BuildProductItem extends StatelessWidget {
                       color: context.colors.black,
                     ).copyWith(
                       overflow: TextOverflow.ellipsis,
+                      height: 1.2
                     ),
                   ),
                 ],

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
@@ -394,7 +395,7 @@ class _GridView extends StatelessWidget {
 Widget _genericListViewEmptyList(String? emptyStr) {
   return Center(
     child: Text(
-      emptyStr ?? "No Data",
+      emptyStr ?? tr('noDate'),
       style: const AppTextStyle.s14_w500(color: Colors.black),
     ),
   );

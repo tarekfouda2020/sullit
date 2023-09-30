@@ -16,7 +16,7 @@ class BuildResetButton extends StatelessWidget {
         return Visibility(
           visible: state.data.isNotEmpty,
           child: DefaultButton(
-            title: "Reset Compare List",
+            title: tr('resetCompareList'),
             width: 150.w,
             height: 30.h,
             borderRadius: Dimens.borderRadius5PX,

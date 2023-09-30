@@ -3,12 +3,16 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:geocode/geocode.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'custom_toast.dart';
 
@@ -22,7 +26,6 @@ class Utilities {
       },
     );
   }
-
 
   Future<PermissionStatus> getContactsPermission() async {
     await Permission.contacts.request();
@@ -83,6 +86,13 @@ class Utilities {
       return imagesFiles;
     }
     return [];
+  }
+
+  Future<void> changeLanguage(String lang, BuildContext context) async {
+    context.read<DeviceCubit>().updateLanguage(Locale(lang));
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString("lang", lang);
+    GlobalState.instance.set("lang", lang);
   }
 
   Future<File?> getAttachmentFile(FileType fileType) async {

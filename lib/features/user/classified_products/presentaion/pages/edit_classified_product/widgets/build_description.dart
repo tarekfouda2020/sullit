@@ -11,7 +11,7 @@ class BuildDescription extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            'Description',
+            tr('description'),
             style: AppTextStyle.s14_w800(color: context.colors.black),
           ),
         ),
@@ -27,7 +27,7 @@ class BuildDescription extends StatelessWidget {
             max: 10,
             controller: controller.productDescription,
             validate: (value) => value!.validateEmpty(),
-            label: 'Description',
+            label: tr('description'),
           ),
         ),
       ],

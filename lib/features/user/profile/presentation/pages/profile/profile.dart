@@ -21,7 +21,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Manage Profile"),
+      appBar:  DefaultAppBar(title: tr('manageProfile')),
       body: Column(
         children: [
           Flexible(

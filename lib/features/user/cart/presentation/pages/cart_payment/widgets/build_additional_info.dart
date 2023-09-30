@@ -15,12 +15,12 @@ class BuildAdditionalInfo extends StatelessWidget {
           Container(
             margin: Dimens.paddingVertical10PX,
             child: Text(
-              "Any Additional Info ?",
+              tr("anyAdditionalInfo"),
               style: AppTextStyle.s16_w700(color: context.colors.primary),
             ),
           ),
           GenericTextField(
-            hint: "Enter Your Text",
+            hint: tr("enterText"),
             fieldTypes: FieldTypes.rich,
             action: TextInputAction.newline,
             type: TextInputType.multiline,

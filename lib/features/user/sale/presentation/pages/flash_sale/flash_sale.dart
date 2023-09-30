@@ -13,7 +13,7 @@ class _FlashSaleState extends State<FlashSale> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(title: "Flash Sale", showBack: true),
+      appBar:  DefaultAppBar(title: tr('flashSale'), showBack: true),
       body: GridView(
         padding: const EdgeInsets.symmetric(
           vertical: 20,

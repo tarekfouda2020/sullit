@@ -19,9 +19,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         padding: Dimens.paddingHorizontal15PX,
         children: [
           const BuildHeaderLogo(),
-          const BuildHeaderTitle(
-            title: "Forgot Password ?",
-            subTitle: "Enter your email address to recover your password.",
+          BuildHeaderTitle(
+            title: "${tr('forgetPassword')} ?",
+            subTitle: tr('enterMailToRecover'),
           ),
           BuildForgetForm(forgetPasswordController: forgetPasswordController),
           BuildForgetPasswordButton(

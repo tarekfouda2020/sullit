@@ -11,13 +11,13 @@ class BuildResendCode extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Didn't receive code ? ",
+      tr('didntReceiveCode'),
           style: AppTextStyle.s16_w400(color: context.colors.blackOpacity),
         ),
         InkWell(
           onTap: ()=>controller.resendCode(),
           child: Text(
-            "Resend Code",
+            tr('resendCode'),
             style: AppTextStyle.s16_w400(color: context.colors.primary).copyWith(
               decoration: TextDecoration.underline,
             ),

@@ -18,7 +18,7 @@ class BuildRegisterFormFields extends StatelessWidget {
             type: TextInputType.text,
             action: TextInputAction.next,
             validate: (value) => value?.validateName(),
-            label: "Full Name",
+            label: tr('fullName'),
             margin: Dimens.inputFieldMargin,
           ),
           GenericTextField(
@@ -27,7 +27,7 @@ class BuildRegisterFormFields extends StatelessWidget {
             type: TextInputType.emailAddress,
             action: TextInputAction.next,
             validate: (value) => value?.validateEmail(),
-            label: "E-mail",
+            label: tr('mail'),
           ),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: registerController.passwordCubit,
@@ -39,7 +39,7 @@ class BuildRegisterFormFields extends StatelessWidget {
                 type: TextInputType.text,
                 action: TextInputAction.done,
                 validate: (value) => value?.validatePassword(),
-                label: "Password",
+                label: tr('password'),
                 margin: Dimens.inputFieldMargin,
                 suffixIcon: IconButton(
                   onPressed: () => registerController.passwordCubit
@@ -64,7 +64,7 @@ class BuildRegisterFormFields extends StatelessWidget {
                 type: TextInputType.text,
                 action: TextInputAction.done,
                 validate: (value) => value!.validatePasswordConfirm(pass: registerController.passwordController.text),
-                label: "Confirm Password",
+                label: tr('confirmPassword'),
                 suffixIcon: IconButton(
                   onPressed: () => registerController.confirmPasswordCubit
                       .onUpdateData(!state.data),

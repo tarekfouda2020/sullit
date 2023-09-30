@@ -12,7 +12,7 @@ class BuildDiscription extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            'Description',
+            tr('description'),
             style: AppTextStyle.s14_w800(
               color: context.colors.black,
             ),
@@ -29,7 +29,7 @@ class BuildDiscription extends StatelessWidget {
             controller: controller.description,
             max: 10,
             validate: (value) => value!.validateEmpty(),
-            label: 'Description',
+            label: tr('description'),
           ),
         ),
       ],

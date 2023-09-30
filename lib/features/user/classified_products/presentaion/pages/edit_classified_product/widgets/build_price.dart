@@ -12,7 +12,7 @@ class BuildEditPrice extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            'Price',
+            tr('price'),
             style: AppTextStyle.s16_w700(color: context.colors.black),
           ),
         ),
@@ -27,7 +27,7 @@ class BuildEditPrice extends StatelessWidget {
             action: TextInputAction.next,
             controller: controller.unitPrice,
             validate: (value) => value!.validateEmpty(),
-            label: 'Unit price',
+            label: tr('unitPrice'),
           ),
         ),
       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import '../util/multi_select_item.dart';
 import '../util/multi_select_actions.dart';
@@ -219,7 +220,7 @@ class _MultiSelectBottomSheetState<V> extends State<MultiSelectBottomSheet<V>> {
                                 style: widget.searchTextStyle,
                                 decoration: InputDecoration(
                                   hintStyle: widget.searchHintStyle,
-                                  hintText: widget.searchHint ?? "Search",
+                                  hintText: widget.searchHint ?? tr('search'),
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                         color: widget.selectedColor ??

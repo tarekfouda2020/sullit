@@ -9,7 +9,7 @@ class ResetPasswordButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LoadingButton(
-      title: "Set Password",
+      title:  tr('setPassword'),
       onTap: () =>controller.resetPassword(context),
       color: context.colors.primary,
       textColor: context.colors.white,

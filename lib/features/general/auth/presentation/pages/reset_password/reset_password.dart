@@ -26,8 +26,8 @@ class _ResetPasswordState extends State<ResetPassword> {
         padding: Dimens.paddingHorizontal15PX,
         children: [
           const BuildHeaderLogo(),
-          const BuildHeaderTitle(
-            title: "Set new password",
+           BuildHeaderTitle(
+            title: tr('setNewPass'),
             subTitle:
                 "Enter your email address , new password and confirm password",
           ),

@@ -13,13 +13,13 @@ class BuildAuthDialog extends StatelessWidget {
     return Theme(
       data: ThemeData(cardColor: context.colors.white),
       child: CupertinoAlertDialog(
-        title: Text("Login for continue",
+        title: Text(tr('loginForContinue'),
             style: TextStyle(color: context.colors.black)),
         actions: [
           CupertinoDialogAction(
-            child: const Text(
-              "Come back",
-              style:  TextStyle(
+            child:  Text(
+              tr('comeBack'),
+              style: const TextStyle(
                 fontSize: 12,
                 color: Colors.black,
               ),
@@ -27,9 +27,9 @@ class BuildAuthDialog extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
           ),
           CupertinoDialogAction(
-            child:  const Text(
-              "Login",
-              style:  TextStyle(
+            child: Text(
+              tr('login'),
+              style: const TextStyle(
                 fontSize: 12,
                 color: Colors.black,
               ),

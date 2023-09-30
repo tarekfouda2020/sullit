@@ -12,7 +12,7 @@ class BuildProductShare extends StatelessWidget {
           children: [
             Gaps.line(context.colors.greyWhite, 20.h),
             Text(
-              "Share : ",
+              "${tr('share')} : ",
               style: AppTextStyle.s15_w700(
                 color: context.colors.black,
               ),

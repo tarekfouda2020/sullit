@@ -18,7 +18,7 @@ class BuildSummaryItem extends StatelessWidget {
         style: AppTextStyle.s15_w500(color: context.colors.black),
       ),
       trailing: Text(
-        "$details",
+        details,
         style: AppTextStyle.s15_w500(color: context.colors.black),
       ),
     );

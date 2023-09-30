@@ -22,7 +22,7 @@ class BuildChargeWalletDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Recharge wallet",
+                    tr('rechargeWallet'),
                     style: AppTextStyle.s15_w700(color: context.colors.black),
                   ),
                   IconButton(
@@ -39,7 +39,7 @@ class BuildChargeWalletDialog extends StatelessWidget {
                 type: TextInputType.number,
                 action: TextInputAction.done,
                 validate: (value) => value?.validateEmpty(),
-                label: "Amount",
+                label: tr('amount'),
                 controller: controller.amountController,
                 margin: Dimens.paddingVertical5PX,
               ),
@@ -47,9 +47,9 @@ class BuildChargeWalletDialog extends StatelessWidget {
                 itemAsString: (item) => (item).name,
                 fillColor: context.colors.white,
                 textSize: 16.sp,
-                title: "Payment Method",
+                title: tr('paymentMethod'),
                 margin: Dimens.paddingVertical10PX,
-                label: "Payment Method",
+                label: tr('paymentMethod'),
                 dropKey: controller.walletController,
                 useName: true,
                 onFind: (data) => controller.getWalletTypes(),
@@ -58,7 +58,7 @@ class BuildChargeWalletDialog extends StatelessWidget {
                 validate: (value) => validateDropDown(value),
               ),
               DefaultButton(
-                title: "Confirm",
+                title: tr('confirm'),
                 height: 35.h,
                 margin: Dimens.paddingAll10PX,
                 onTap: () =>controller.rechargeWallet(context),

@@ -18,7 +18,7 @@ class BuildBestSellingProducts extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Gaps.vGap5,
-          const BuildHeaderTitle(title: "Just for you"),
+           BuildHeaderTitle(title: tr('justForYou')),
           Flexible(
             child: SingleChildScrollView(
               padding: Dimens.paddingVertical10PX,

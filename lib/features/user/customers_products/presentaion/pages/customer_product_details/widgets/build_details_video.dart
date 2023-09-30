@@ -17,7 +17,7 @@ class BuildDetailsVideo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Video : ",
+            "${tr('video')} : ",
             style: AppTextStyle.s15_w700(
               color: context.colors.black,
             ),

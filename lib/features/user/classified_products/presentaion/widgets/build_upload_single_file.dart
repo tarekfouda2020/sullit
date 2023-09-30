@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/features/user/classified_products/presentaion/manager/helpers/add_image_helper.dart';
@@ -60,7 +61,7 @@ class BuildUploadSingleFile extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Text(
-                        'Add File',
+                        tr('addFile'),
                         style: AppTextStyle.s12_w400(color: context.colors.white),
                       ),
                     ),
@@ -74,16 +75,10 @@ class BuildUploadSingleFile extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  'Drop files here, paste or ',
-                  style: AppTextStyle.s12_w400(
-                    color: context.colors.black,
-                  ),
-                ),
                 GestureDetector(
                   onTap: () => getIt<AddImageHelper>().getImage(context, imageBloc),
                   child: Text(
-                    'Browse',
+                    tr('browseFile'),
                     style: AppTextStyle.s12_w400(
                       color: context.colors.blue,
                     ),

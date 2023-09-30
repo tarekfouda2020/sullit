@@ -22,7 +22,7 @@ class BuildTopSellingProducts extends StatelessWidget {
             children: [
               Gaps.vGap10,
               Text(
-                "Top Selling Products",
+                tr('topSelling'),
                 style: AppTextStyle.s15_w700(
                   color: context.colors.black,
                 ),

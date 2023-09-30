@@ -12,7 +12,7 @@ class CustomInputTextStyle extends TextStyle{
 
 
   @override
-  String get fontFamily => AppTheme.fontFamily;
+  String? get fontFamily => AppTheme.fontFamily;
 
   @override
   double get fontSize => 16;

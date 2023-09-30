@@ -10,14 +10,14 @@ class BuildCategorySuggestItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const BuildSuggestHeader(title: "Category Suggestions"),
+        BuildSuggestHeader(title: tr('catSuggestions')),
         Visibility(
           visible: categories.isEmpty,
           child: Container(
             padding: Dimens.paddingVertical20PX,
             alignment: Alignment.center,
             child: Text(
-              "No Categories Found...",
+              tr('noCats'),
               style: AppTextStyle.s15_w700(color: context.colors.black),
             ),
           ),

@@ -23,7 +23,7 @@ class DeliveryController {
     var data = await SetCartStoreShipping().call(params);
     if (data != null) {
       CustomToast.showSimpleToast(
-          msg: "The Shipping info has been added successfully");
+          msg: tr('shippingAdded'));
       AutoRouter.of(context).push(CartPaymentRoute(shipping: data));
     }
   }

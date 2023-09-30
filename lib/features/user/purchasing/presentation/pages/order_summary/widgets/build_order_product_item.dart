@@ -16,24 +16,24 @@ class BuildOrderProductItem extends StatelessWidget {
     return Column(
       children: [
         BuildOrderInfoItem(
-          title: "Product :",
+          title: "${tr('product')} :",
           subTitle: orderDetails.product?.name ?? "",
           subTitleColor: context.colors.primary,
         ),
         BuildOrderInfoItem(
-          title: "Variation :",
+          title: "${tr('variation')} :",
           subTitle: orderDetails.variation,
         ),
         BuildOrderInfoItem(
-          title: "Quantity :",
+          title: "${tr('quantity')} :",
           subTitle: "${orderDetails.quantity}",
         ),
         BuildOrderInfoItem(
-          title: "Delivery Type :",
+          title: "${tr('chooseDeliveryType')} :",
           subTitle: orderDetails.deliveryType,
         ),
         BuildOrderInfoItem(
-          title: "Price :",
+          title: "${tr('price')} :",
           subTitle: orderDetails.price,
         ),
         Visibility(

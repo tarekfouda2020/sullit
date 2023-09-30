@@ -33,16 +33,16 @@ class BuildCompareItem extends StatelessWidget {
                 ),
                 Gaps.vGap5,
                 BuildHeaderText(
-                  text: "Price : ",
+                  text: "${tr('price')} : ",
                   details: "${productModel.priceHighLow}",
                   detailsColor: context.colors.primary,
                 ),
                 BuildHeaderText(
-                  text: "Brand : ",
+                  text: "${tr('brand')} : ",
                   details: "${productModel.brandName}",
                 ),
                 BuildHeaderText(
-                  text: "Category : ",
+                  text: "${tr('category')} : ",
                   details: "${productModel.categoryName}",
                 ),
               ],

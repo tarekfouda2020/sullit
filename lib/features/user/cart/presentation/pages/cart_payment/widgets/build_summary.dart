@@ -18,7 +18,7 @@ class BuildSummary extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Summary",
+                tr('summary'),
                 style: AppTextStyle.s16_w800(color: context.colors.black),
               ),
               Container(
@@ -27,14 +27,14 @@ class BuildSummary extends StatelessWidget {
                     color: context.colors.primary,
                     borderRadius: Dimens.borderRadius5PX),
                 child: Text(
-                  "${shipping.summary.items.length} items",
+                  "${shipping.summary.items.length} ${shipping.summary.items.isNotEmpty ?tr('items') : ''}",
                   style: AppTextStyle.s14_w400(color: context.colors.white),
                 ),
               )
             ],
           ),
           Gaps.line(context.colors.primary, 20.h),
-          const BuildSummaryHeader(title: "Products", details: "Total"),
+          BuildSummaryHeader(title: tr('products'), details: tr('total')),
           ...List.generate(
             shipping.summary.items.length,
             (index) => BuildSummaryItem(
@@ -43,20 +43,20 @@ class BuildSummary extends StatelessWidget {
             ),
           ),
           BuildSummaryHeader(
-            title: "Subtotal",
+            title: tr('subTotal'),
             details: shipping.summary.subTotal,
           ),
           BuildSummaryHeader(
-            title: "Tax",
+            title: tr('tax'),
             details: shipping.summary.tax,
           ),
           BuildSummaryHeader(
-            title: "Total Shipping",
+            title: tr('totalShipping'),
             details: shipping.summary.shipping,
           ),
           Gaps.line(context.colors.primary, 15.h),
           BuildSummaryHeader(
-            title: "Total",
+            title: tr("total"),
             details: shipping.summary.total,
             // isTotal: true,
           ),

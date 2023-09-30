@@ -22,7 +22,7 @@ class BuildRetrieveAddress extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Add New Address",
+                      tr('addNewAddress'),
                       style:
                           AppTextStyle.s15_w700(color: context.colors.primary),
                     ),
@@ -40,27 +40,27 @@ class BuildRetrieveAddress extends StatelessWidget {
                   child: Column(
                     children: [
                       BuildAddressTitleItem(
-                        title: "Address",
+                        title: tr('address'),
                         desc: state.data?.address ?? "",
                       ),
                       BuildAddressTitleItem(
-                        title: "Postal code",
+                        title: tr('postalCode'),
                         desc: state.data?.postalCode ?? "",
                       ),
                       BuildAddressTitleItem(
-                        title: "City",
+                        title: tr('city'),
                         desc: state.data?.city?.name ?? "",
                       ),
                       BuildAddressTitleItem(
-                        title: "State",
+                        title: tr('state'),
                         desc: state.data?.state?.name ?? "",
                       ),
                       BuildAddressTitleItem(
-                        title: "Country",
+                        title: tr('country'),
                         desc: state.data?.country?.name ?? "",
                       ),
                       BuildAddressTitleItem(
-                        title: "Phone",
+                        title: tr('phone'),
                         desc: state.data?.phone ?? "",
                       )
                     ],

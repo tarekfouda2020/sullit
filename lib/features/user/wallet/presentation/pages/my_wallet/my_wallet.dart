@@ -19,7 +19,7 @@ class _MyWalletState extends State<MyWallet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(title: "My Wallet"),
+      appBar:  DefaultAppBar(title: tr('myWallet')),
       backgroundColor: context.colors.customBackground,
       floatingActionButton: BuildChargeWallet(controller: controller),
       body: BlocBuilder<GenericBloc<Wallet?>, GenericState<Wallet?>>(

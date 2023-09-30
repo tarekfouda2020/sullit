@@ -15,7 +15,7 @@ class BuildTrackOrderSummary extends StatelessWidget {
             return Column(
               children: [
                 Text(
-                  "Order Summary",
+                  tr('orderSummary'),
                   style: AppTextStyle.s18_w500(color: context.colors.black),
                 ),
                 BuildTrackOrderDetails(orderModel: state.data!),
@@ -26,7 +26,7 @@ class BuildTrackOrderSummary extends StatelessWidget {
               padding: const EdgeInsets.only(top: 200).r,
               child: Center(
                 child: Text(
-                  "Check Your Code. !",
+                  tr('checkYourCode'),
                   style: AppTextStyle.s16_w500(color: context.colors.primary),
                 ),
               ),

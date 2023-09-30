@@ -22,7 +22,7 @@ class _MotionViewerState extends State<MotionViewer> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Video Viewer"),
+      appBar:  DefaultAppBar(title: tr('videoViewer')),
       body: Center(
         child: BlocBuilder<GenericBloc<ChewieController?>, GenericState<ChewieController?>>(
           bloc: controller.videoCubit,

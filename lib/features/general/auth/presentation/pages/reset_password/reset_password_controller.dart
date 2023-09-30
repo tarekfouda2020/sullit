@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 part of 'reset_password_imports.dart';
 
 class ResetPasswordController {
@@ -23,7 +25,7 @@ class ResetPasswordController {
       var result = await SetResetPassword().call(params);
       if (result != "") {
         CustomToast.showSimpleToast(msg: result, type: ToastType.success);
-        AutoRouter.of(context).push(LoginRoute());
+        AutoRouter.of(context).push(const LoginRoute());
       }
     }
     btnKey.currentState!.animateReverse();

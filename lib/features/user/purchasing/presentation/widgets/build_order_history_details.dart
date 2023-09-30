@@ -18,7 +18,7 @@ class BuildOrderHistoryDetails extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Date",
+                  tr('date'),
                   style: AppTextStyle.s14_w500(color: context.colors.black),
                 ),
                 Text(
@@ -32,7 +32,7 @@ class BuildOrderHistoryDetails extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Delivery Status",
+                  tr('deliveryStatus'),
                   style: AppTextStyle.s14_w500(color: context.colors.black),
                 ),
                 Text(
@@ -46,7 +46,7 @@ class BuildOrderHistoryDetails extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Payment Status",
+                  tr('paymentStatus'),
                   style: AppTextStyle.s14_w500(color: context.colors.black),
                 ),
                 Container(

@@ -23,8 +23,8 @@ class _AddClassifiedProductState extends State<AddClassifiedProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(
-        title: 'Add New Product',
+      appBar:  DefaultAppBar(
+        title: tr('addNewProduct'),
       ),
       body: ListView(
         physics: const BouncingScrollPhysics(),

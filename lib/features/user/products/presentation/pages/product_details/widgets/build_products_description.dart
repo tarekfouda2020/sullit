@@ -11,7 +11,7 @@ class BuildProductDescription extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Description : ",
+          "${tr('description')} : ",
           style: AppTextStyle.s15_w700(
             color: context.colors.black,
           ),

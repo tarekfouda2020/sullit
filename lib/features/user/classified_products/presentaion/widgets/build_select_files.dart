@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/validator.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
@@ -68,7 +69,7 @@ class _BuildSelectFileState extends State<BuildSelectFile> {
               controller: searchController,
               action: TextInputAction.search,
               validate: (value) => value!.validateEmpty(),
-              hint: 'Search your files',
+              hint: tr('searchFiles'),
               onSubmit: () =>
                   getIt<AddImageHelper>().getUploadedFiles(
                     filesBloc: filesBloc,
@@ -84,8 +85,8 @@ class _BuildSelectFileState extends State<BuildSelectFile> {
                     textSize: 12.sp,
                     itemAsString: (model) => (model).title,
                     showClearButton: false,
-                    title: "Sort by",
-                    hint: 'Sort by',
+                    title: tr('sortBy'),
+                    hint: tr('sortBy'),
                     contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                     margin: const EdgeInsets.symmetric(vertical: 10),
                     dropKey: getIt<AddImageHelper>().serviceDropDownKey,
@@ -129,7 +130,7 @@ class _BuildSelectFileState extends State<BuildSelectFile> {
                             child: Padding(
                               padding: EdgeInsets.symmetric(vertical: 8.0.r),
                               child: Text(
-                                'Selected only',
+                                tr('selectedOnly'),
                                 style: AppTextStyle.s12_w400(
                                   color: context.colors.black,
                                 ),
@@ -186,7 +187,7 @@ class _BuildSelectFileState extends State<BuildSelectFile> {
                   padding: EdgeInsets.only(top: 250.r),
                   child: Center(
                     child: Text(
-                      'No Files Founded.  !',
+                      tr('noFilesFounded'),
                       style: AppTextStyle.s14_w600(
                         color: context.colors.grey,
                       ),
@@ -272,7 +273,7 @@ class _BuildSelectFileState extends State<BuildSelectFile> {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Text(
-                        'Add Files',
+                        tr('addFiles'),
                         style:
                         AppTextStyle.s12_w400(color: context.colors.white),
                       ),

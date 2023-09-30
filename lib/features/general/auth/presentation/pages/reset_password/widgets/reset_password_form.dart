@@ -18,7 +18,7 @@ class ResetPasswordForm extends StatelessWidget {
             type: TextInputType.text,
             action: TextInputAction.next,
             validate: (value) => value?.noValidate(),
-            label: "Email",
+            label: tr('email'),
           ),
           GenericTextField(
             controller: controller.code,
@@ -27,7 +27,7 @@ class ResetPasswordForm extends StatelessWidget {
             action: TextInputAction.next,
             margin: Dimens.inputFieldMargin,
             validate: (value) => value?.validateEmpty(),
-            label: "Code",
+            label: tr('code'),
           ),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.passwordCubit,
@@ -38,7 +38,7 @@ class ResetPasswordForm extends StatelessWidget {
                 type: TextInputType.text,
                 action: TextInputAction.done,
                 validate: (value) => value?.validatePassword(),
-                label: "Password",
+                label: tr('password'),
                 suffixIcon: IconButton(
                   onPressed: () => controller.passwordCubit
                       .onUpdateData(!state.data),
@@ -62,7 +62,7 @@ class ResetPasswordForm extends StatelessWidget {
                 type: TextInputType.text,
                 action: TextInputAction.done,
                 validate: (value) => value?.validatePassword(),
-                label: "Confirm Password",
+                label: tr('confirmPassword'),
                 margin: Dimens.inputFieldMargin,
                 suffixIcon: IconButton(
                   onPressed: () => controller.confirmPasswordCubit

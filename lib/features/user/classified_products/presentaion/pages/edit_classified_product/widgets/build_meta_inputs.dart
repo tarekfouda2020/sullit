@@ -13,7 +13,7 @@ class BuildMetaInputs extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            'Meta Tags',
+            tr('metaTags'),
             style: AppTextStyle.s16_w700(color: context.colors.black),
           ),
         ),
@@ -31,7 +31,7 @@ class BuildMetaInputs extends StatelessWidget {
                 action: TextInputAction.next,
                 validate: (value) => value!.validateEmpty(),
                 controller: controller.metaTitle,
-                label: 'Meta Title',
+                label: tr('metaTitle'),
               ),
               GenericTextField(
                 margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -41,12 +41,12 @@ class BuildMetaInputs extends StatelessWidget {
                 type: TextInputType.text,
                 action: TextInputAction.next,
                 validate: (value) => value!.validateEmpty(),
-                label: 'Description',
+                label: tr('description'),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Text(
-                  'Meta Image',
+                  tr('metaImage'),
                   style: AppTextStyle.s14_w800(color: context.colors.black),
                 ),
               ),

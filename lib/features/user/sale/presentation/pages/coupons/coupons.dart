@@ -20,7 +20,7 @@ class _CouponsState extends State<Coupons> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Coupons"),
+      appBar:  DefaultAppBar(title: tr('coupons')),
       body: RefreshIndicator(
         onRefresh: () => controller.getCoupons(1),
         child: PagedGridView<int, Coupon>(

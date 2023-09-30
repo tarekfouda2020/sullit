@@ -20,7 +20,7 @@ class _TermsState extends State<Terms> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Terms and Conditions"),
+      appBar:  DefaultAppBar(title: tr('termsAndConditions')),
       body: BlocBuilder<GenericBloc<String?>, GenericState<String?>>(
         bloc: controller.termsCubit,
         builder: (context, state) {

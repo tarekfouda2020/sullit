@@ -36,7 +36,7 @@ class BuildMoreItem extends StatelessWidget {
                 borderRadius: Dimens.borderRadius5PX,
               ),
               child: Text(
-                "new",
+                tr('new'),
                 style: AppTextStyle.s10_w400(color: context.colors.white),
               ),
             ),

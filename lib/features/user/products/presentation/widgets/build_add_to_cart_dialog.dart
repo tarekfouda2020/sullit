@@ -7,6 +7,7 @@ import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
@@ -72,7 +73,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
               Row(
                 children: [
                   Text(
-                    'Price : ',
+                    '${tr('price')} : ',
                     style: AppTextStyle.s16_w400(color: context.colors.black),
                   ),
                   const Spacer(),
@@ -101,7 +102,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Quantity : ',
+                    '${tr('quantity')} : ',
                     style: AppTextStyle.s16_w400(color: context.colors.black),
                   ),
                   BuildCustomBounce(
@@ -127,7 +128,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Total Price : ',
+                    '${tr('totalPrice')} : ',
                     style: AppTextStyle.s16_w400(
                       color: context.colors.black,
                     ),
@@ -142,7 +143,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
               Visibility(
                 visible: state.data!.variant!.currentStock! > 1,
                 replacement: Text(
-                  "OUT OF STOCK",
+                  tr('outOfStock'),
                   style: AppTextStyle.s16_w800(
                     color: context.colors.black,
                   ),
@@ -170,7 +171,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                           size: 15,
                         ),
                         Gaps.hGap10,
-                        const Text('Add to cart'),
+                        Text(tr('addToCart')),
                       ],
                     ),
                   ),

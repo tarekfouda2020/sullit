@@ -21,7 +21,7 @@ class BuildProductReviews extends StatelessWidget {
             children: [
               Gaps.vGap10,
               Text(
-                "Reviews",
+                tr('reviews'),
                 style: AppTextStyle.s15_w700(
                   color: context.colors.black,
                 ),

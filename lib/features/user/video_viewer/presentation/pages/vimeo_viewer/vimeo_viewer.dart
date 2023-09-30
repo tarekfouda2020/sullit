@@ -22,7 +22,7 @@ class _VimeoViewerState extends State<VimeoViewer> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Video Viewer"),
+      appBar:  DefaultAppBar(title: tr('videoViewer')),
       body: Center(
         child: SizedBox(
           height: 250.spMin,

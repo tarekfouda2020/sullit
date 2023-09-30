@@ -17,7 +17,7 @@ class BuildTicketInfo extends StatelessWidget {
           children: [
             ListTile(
               title: Text(
-                "TicketId",
+                "Ticket id",
                 style: AppTextStyle.s14_w500(
                   color: context.colors.black,
                 ),
@@ -31,7 +31,7 @@ class BuildTicketInfo extends StatelessWidget {
             Gaps.line(context.colors.blackOpacity, 5.h),
             ListTile(
               title: Text(
-                "Sending date",
+                tr('sendingDate'),
                 style: AppTextStyle.s14_w500(color: context.colors.black),
               ),
               trailing: Text(
@@ -45,14 +45,14 @@ class BuildTicketInfo extends StatelessWidget {
             Gaps.line(context.colors.blackOpacity, 5.h),
             ListTile(
               title: Text(
-                "Options",
+                tr("options"),
                 style: AppTextStyle.s14_w500(color: context.colors.black),
               ),
               trailing: InkWell(
                 onTap: () => AutoRouter.of(context)
                     .push(TicketsDetailsRoute(id: ticketModel.id)),
                 child: Text(
-                  "View Details >",
+                  "${tr('viewDetails')} >",
                   style: AppTextStyle.s14_w400(color: context.colors.primary),
                 ),
               ),

@@ -20,7 +20,10 @@ class _WishlistState extends State<Wishlist> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "WishList", showBack: true),
+      appBar: DefaultAppBar(
+        title: tr('wishlist'),
+        showBack: true,
+      ),
       body: GenericListView(
         type: ListViewType.gridApi,
         onRefresh: controller.getWishlist,
@@ -34,8 +37,10 @@ class _WishlistState extends State<Wishlist> {
           productModel: item,
           onFavRefresh: () => controller.onChangeFav(item),
           onCompareRefresh: () {
-            controller.wishlistBloc.state.data[index].isAddedTCompare= !controller.wishlistBloc.state.data[index].isAddedTCompare!;
-            controller.wishlistBloc.onUpdateData(controller.wishlistBloc.state.data);
+            controller.wishlistBloc.state.data[index].isAddedTCompare =
+                !controller.wishlistBloc.state.data[index].isAddedTCompare!;
+            controller.wishlistBloc
+                .onUpdateData(controller.wishlistBloc.state.data);
           },
         ),
         loadingWidget: const BuildLoadingProductsGridView(),

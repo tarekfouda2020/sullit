@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/res.dart';
@@ -28,7 +29,7 @@ class NetworkBuilderView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20),
                     child: Text(
-                       "No Internet Connected",
+                       tr('noInternet'),
                       style: AppTextStyle.s20_w500(color: context.colors.primary),
                     ),
                   ),
@@ -42,7 +43,7 @@ class NetworkBuilderView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20)),
                       alignment: Alignment.center,
                       child: Text(
-                        "Try Again",
+                       tr('tryAgain'),
                         style: AppTextStyle.s16_w500(color: context.colors.primary),
                       ),
                     ),

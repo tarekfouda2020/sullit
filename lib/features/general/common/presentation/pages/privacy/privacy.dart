@@ -20,7 +20,7 @@ class _PrivacyState extends State<Privacy> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Privacy Policy"),
+      appBar: DefaultAppBar(title: tr('privacyPolicy')),
       body: BlocBuilder<GenericBloc<String?>, GenericState<String?>>(
         bloc: controller.privacyBloc,
         builder: (context, state) {

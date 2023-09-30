@@ -13,7 +13,7 @@ class BuildPriceRange extends StatelessWidget {
         Container(
           margin: const EdgeInsets.symmetric(vertical: 10),
           child: Text(
-            "Price Range",
+            tr('priceRange'),
             style: AppTextStyle.s14_w800(color: context.colors.black),
           ),
         ),

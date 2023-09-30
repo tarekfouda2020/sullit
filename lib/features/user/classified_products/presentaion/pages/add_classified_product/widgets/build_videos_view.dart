@@ -6,14 +6,13 @@ class BuildVideosView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            'Videos',
+            tr('videos'),
             style: AppTextStyle.s16_w700(
               color: context.colors.black,
             ),
@@ -29,10 +28,10 @@ class BuildVideosView extends StatelessWidget {
                 textSize: 16.sp,
                 itemAsString: (model) => (model).name,
                 showClearButton: false,
-                title: "Select Service",
+                title: tr('selectService'),
                 contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                 margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                label: "Select Service Type",
+                label:  tr('selectServiceType'),
                 dropKey: controller.videoProviderDropKey,
                 useName: true,
                 onFind: (data) => controller.getVideoProviders(),
@@ -43,14 +42,13 @@ class BuildVideosView extends StatelessWidget {
                 validate: (value) => validateDropDown(value),
               ),
               GenericTextField(
-                margin:
-                const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.next,
                 controller: controller.videoUrlController,
                 validate: (value) => controller.validateVideoUrl(),
-                label: 'Video URL',
+                label: tr('videoUrl'),
               ),
             ],
           ),

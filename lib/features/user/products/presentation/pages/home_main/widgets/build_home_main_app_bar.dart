@@ -31,8 +31,7 @@ class BuildHomeMainAppBar extends StatelessWidget
               title: Image.asset(Res.logo, height: 30, width: 150),
               actions: [
                 IconButton(
-                  onPressed: () =>
-                      controller.visibleSearch.onUpdateData(!state.data),
+                  onPressed: () => controller.visibleSearch.onUpdateData(!state.data),
                   icon: Icon(
                     state.data ? Icons.clear : Icons.search,
                     color: context.colors.black,
@@ -52,7 +51,7 @@ class BuildHomeMainAppBar extends StatelessWidget
                 autoFocus: false,
                 fillColor: context.colors.white,
                 margin: Dimens.standardPadding,
-                hint: "Search...",
+                hint: tr('searchCats'),
                 suffixIcon: InkWell(
                   onTap: () => AutoRouter.of(context).push(
                     SearchRoute(
@@ -73,6 +72,5 @@ class BuildHomeMainAppBar extends StatelessWidget
   }
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => const Size.fromHeight(kToolbarHeight + 10);
 }

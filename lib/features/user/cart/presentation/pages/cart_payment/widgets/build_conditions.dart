@@ -27,13 +27,13 @@ class BuildConditions extends StatelessWidget {
             child: Wrap(
               children: [
                 Text(
-                  "I agree to the ",
+                  tr("iAgree"),
                   style: AppTextStyle.s16_w400(color: context.colors.black),
                 ),
                 GestureDetector(
                   onTap: () => AutoRouter.of(context).push(const TermsRoute()),
                   child: Text(
-                    "terms and conditions ,",
+                    tr('termsAndConditions'),
                     style: AppTextStyle.s16_w400(color: context.colors.primary),
                   ),
                 ),
@@ -41,7 +41,7 @@ class BuildConditions extends StatelessWidget {
                   onTap: () =>
                       AutoRouter.of(context).push(const ReturnPolicyRoute()),
                   child: Text(
-                    "return policy & ",
+                    "${tr('returnPolicy')} & ",
                     style: AppTextStyle.s16_w400(color: context.colors.primary),
                   ),
                 ),
@@ -49,7 +49,7 @@ class BuildConditions extends StatelessWidget {
                   onTap: () =>
                       AutoRouter.of(context).push(const PrivacyRoute()),
                   child: Text(
-                    "privacy policy",
+                    tr('privacyPolicy'),
                     style: AppTextStyle.s16_w400(color: context.colors.primary),
                   ),
                 ),

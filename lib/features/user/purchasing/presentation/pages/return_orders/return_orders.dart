@@ -20,7 +20,7 @@ class _ReturnOrdersState extends State<ReturnOrders> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Return Orders", showBack: true),
+      appBar: DefaultAppBar(title: tr('returnedOrders'), showBack: true),
       body: RefreshIndicator(
         onRefresh: () => controller.getReturnOrders(1),
         child: PagedListView<int, Orders>(

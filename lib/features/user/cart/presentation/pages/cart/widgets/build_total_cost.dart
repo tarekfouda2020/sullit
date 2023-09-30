@@ -13,7 +13,7 @@ class BuildTotalCost extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "Sub Total",
+            tr("subTotal"),
             style: AppTextStyle.s16_w800(color: context.colors.black),
           ),
           Text(

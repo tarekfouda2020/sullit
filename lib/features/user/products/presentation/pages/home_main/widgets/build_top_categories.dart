@@ -12,8 +12,8 @@ class BuildTopCategories extends StatelessWidget {
       children: [
         Gaps.vGap5,
         BuildCustomHeaderTitle(
-          title: "Top 10 Categories",
-          btnText: "View All Categories",
+          title: tr('top10Categories'),
+          btnText: tr('viewAllCats'),
           onTap: () => AutoRouter.of(context).push(HomeRoute(index: 1)),
         ),
         Gaps.vGap5,

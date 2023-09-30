@@ -23,12 +23,12 @@ class _AddNewAddressState extends State<AddNewAddress> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
-        appBar: const DefaultAppBar(title: "Add New Address"),
+        appBar:  DefaultAppBar(title: tr('addNewAddress')),
         body: Column(
           children: [
             BuildAddAddressForm(controller: controller),
             DefaultButton(
-              title: "Save",
+              title: tr('save'),
               onTap: () => controller.addNewAddress(context),
               height: 35.h,
               borderRadius: Dimens.borderRadius10PX,

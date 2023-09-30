@@ -24,7 +24,7 @@ class _TicketsDetailsState extends State<TicketsDetails> {
       backgroundColor: context.colors.customBackground,
       floatingActionButton:
           BuildAddReplayButton(controller: controller, id: widget.id),
-      appBar: const DefaultAppBar(title: "Ticket Details", showBack: true),
+      appBar: DefaultAppBar(title: tr('ticketDetails'), showBack: true),
       body: BlocBuilder<GenericBloc<Ticket?>, GenericState<Ticket?>>(
         bloc: controller.ticketCubit,
         builder: (context, state) {

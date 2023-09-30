@@ -10,13 +10,13 @@ class BuildHaveAccount extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          "Already have an account ? ",
+          tr('alreadyHaveAccount'),
           style: AppTextStyle.s16_w400(color: context.colors.blackOpacity),
         ),
         InkWell(
           onTap: () => AutoRouter.of(context).pop(),
           child: Text(
-            "Log In",
+            tr('login'),
             style: AppTextStyle.s16_w700(color: context.colors.primary),
           ),
         ),

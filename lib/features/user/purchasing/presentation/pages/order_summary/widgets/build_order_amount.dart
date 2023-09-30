@@ -14,23 +14,23 @@ class BuildOrderAmount extends StatelessWidget {
       child: Column(
         children: [
           BuildOrderInfoItem(
-            title: "Subtotal :",
+            title: "${tr('subTotal')} :",
             subTitle: orderModel.subtotal,
           ),
           BuildOrderInfoItem(
-            title: "Shipping :",
+            title: "${tr('shipping')} :",
             subTitle: orderModel.shipping,
           ),
           BuildOrderInfoItem(
-            title: "Tax :",
+            title: "${tr('tax')} :",
             subTitle: orderModel.tax,
           ),
           BuildOrderInfoItem(
-            title: "Coupon :",
+            title: "${tr('coupon')} :",
             subTitle: orderModel.couponDiscount,
           ),
           BuildOrderInfoItem(
-            title: "Total :",
+            title: "${tr('total')} :",
             subTitle: orderModel.total,
           ),
 

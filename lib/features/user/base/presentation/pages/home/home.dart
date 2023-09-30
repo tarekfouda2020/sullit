@@ -43,8 +43,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             onPressed: () => AutoRouter.of(context).push(const CartRoute()),
             child: const Icon(Icons.shopping_cart),
           ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: BuildBottomNavBar(controller: controller),
         ),
       ),

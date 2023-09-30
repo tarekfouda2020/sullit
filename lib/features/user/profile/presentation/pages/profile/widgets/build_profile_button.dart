@@ -9,7 +9,7 @@ class BuildProfileButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultButton(
-      title: "Confirm",
+      title: tr('confirm'),
       height: 35.h,
       borderRadius: Dimens.borderRadius10PX,
       margin: Dimens.paddingAll20PX,

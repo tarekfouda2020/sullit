@@ -16,7 +16,7 @@ class BuildSaveProductBtn extends StatelessWidget {
             color: context.colors.primary),
         child: Text(
           textAlign: TextAlign.center,
-          'Save Product',
+          tr('saveProduct'),
           style: AppTextStyle.s16_w700(color: context.colors.white),
         ),
       ),

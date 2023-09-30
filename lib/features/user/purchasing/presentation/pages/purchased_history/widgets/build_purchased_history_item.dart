@@ -23,7 +23,7 @@ class BuildPurchasedHistoryItem extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Code : ",
+                    "${tr('orderCode')} : ",
                     style: AppTextStyle.s14_w500(color: context.colors.black),
                   ),
                   Text(
@@ -47,7 +47,7 @@ class BuildPurchasedHistoryItem extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Amount : ",
+                    "${tr('amount')} : ",
                     style: AppTextStyle.s14_w500(color: context.colors.black),
                   ),
                   Text(

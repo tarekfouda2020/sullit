@@ -23,7 +23,7 @@ class BuildTicketDetailsDialog extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Add Reply",
+                  tr('addReply'),
                   style: AppTextStyle.s14_w500(color: context.colors.black),
                 ),
                 IconButton(
@@ -44,14 +44,14 @@ class BuildTicketDetailsDialog extends StatelessWidget {
                     type: TextInputType.text,
                     action: TextInputAction.done,
                     validate: (value) => value?.validateEmpty(),
-                    label: "Description",
+                    label: tr('description'),
                     max: 4,
                     controller: controller.description,
                     margin: Dimens.paddingVertical8PX,
                   ),
                   BuildAddTicketReplyImage(controller: controller),
                   DefaultButton(
-                    title: "Send Replay",
+                    title: tr('sendReply'),
                     width: 120.w,
                     height: 30.h,
                     margin: Dimens.paddingVertical10PX,

@@ -24,7 +24,7 @@ class BuildColorFilter extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: Dimens.dp10),
                   child: Text(
-                    "Filter By Color",
+                    tr('filterByColor'),
                     style: AppTextStyle.s14_w800(color: context.colors.black),
                   ),
                 ),

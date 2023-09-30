@@ -13,7 +13,7 @@ class BuildRetrieveReason extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Return Reason ? ",
+            "${tr('returnReason')} ? ",
             style: AppTextStyle.s15_w700(color: context.colors.black),
           ),
           GenericTextField(
@@ -24,7 +24,7 @@ class BuildRetrieveReason extends StatelessWidget {
             action: TextInputAction.done,
             fillColor: context.colors.background,
             validate: (value) => value?.validateEmpty(),
-            hint: "Type your reason ...",
+            hint: tr('typeYourReason'),
             margin: Dimens.paddingVertical10PX,
           ),
         ],

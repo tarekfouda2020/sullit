@@ -54,18 +54,17 @@ class RetrieveOrderController {
       var params = _returnParams();
       if (selectedProducts.isEmpty) {
         CustomToast.showSimpleToast(
-            msg: "At least one product must be selected");
+            msg: tr('productsSelectionValidation'));
         return;
       }
       if (addressCubit.state.data == null) {
-        CustomToast.showSimpleToast(msg: "Please choose an address");
+        CustomToast.showSimpleToast(msg: tr('pleaseChooseAddress'));
         return;
       }
-      print(">>>>${params.toJson()}");
       var data = await ReturnOrder().call(params);
       if (data) {
         CustomToast.showSimpleToast(
-            msg: "Order has been returned successfully");
+            msg: tr('orderReturnedSuccessfully'));
         AutoRouter.of(context).push(HomeRoute(index: 0));
       }
     }

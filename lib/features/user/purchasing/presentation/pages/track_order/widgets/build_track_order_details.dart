@@ -12,44 +12,44 @@ final Orders orderModel;
       child: Column(
         children: [
           BuildTrackOrderSummaryItem(
-            title: "Order Code :",
+            title: "${tr('orderCode')} :",
             subTitle: orderModel.code,
           ),
           BuildTrackOrderSummaryItem(
-            title: "Customer :",
+            title: "${tr('customer')} :",
             subTitle: orderModel.customerName,
           ),
           BuildTrackOrderSummaryItem(
-            title: "E-mail :",
+            title: "${tr('mail')} :",
             subTitle: orderModel.customerEmail,
           ),
           BuildTrackOrderSummaryItem(
-            title: "Shipping address :",
+            title: "${tr('shippingAddress')} :",
             subTitle: orderModel.shippingAddress,
           ),
           BuildTrackOrderSummaryItem(
-            title: "Order Date :",
+            title: "${tr('orderDate')} :",
             subTitle: orderModel.orderDate,
           ),
           BuildTrackOrderSummaryItem(
-            title: "Total Order Amount :",
+            title: "${tr('totalOrderAmount')} :",
             subTitle: orderModel.orderDate,
           ),
           BuildTrackOrderSummaryItem(
-            title: "Shipping Method :",
+            title: "${tr('shippingMethod')} :",
             subTitle: orderModel.shippingMethod,
           ),
           BuildTrackOrderSummaryItem(
-            title: "Payment Method :",
+            title: "${tr('paymentMethod')} :",
             subTitle: orderModel.paymentMethod,
           ),
           BuildTrackOrderSummaryItem(
-            title: "Delivery Status :",
+            title: "${tr('deliveryStatus')} :",
             subTitle: orderModel.deliveryStatus,
           ),
-          const BuildTrackOrderSummaryItem(
-            title: "Shipped By :",
-            subTitle: "admin",
+          BuildTrackOrderSummaryItem(
+            title: "${tr('shippedBy')} :",
+            subTitle: tr('admin'),
           ),
         ],
       ),

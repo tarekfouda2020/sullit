@@ -17,8 +17,6 @@ class CustomerProductDetailsController {
 
   void navigateToVideoViewer(BuildContext context) {
     var productModel = productDetails.state.data?.customerProduct;
-    print(">>>>>>${productModel?.videoLink}");
-    print(">>>>>>${productModel?.videoProvider}");
 
     switch (productModel?.videoProvider) {
       case "youtube":

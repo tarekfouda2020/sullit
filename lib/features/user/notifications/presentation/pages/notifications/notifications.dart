@@ -33,7 +33,7 @@ class _NotificationsState extends State<Notifications> {
               visible: state.data.isNotEmpty,
               replacement: Center(
                 child: Text(
-                  'No Notifies items.',
+                  tr('noNotifies'),
                   style: AppTextStyle.s14_w400(color: context.colors.black),
                 ),
               ),

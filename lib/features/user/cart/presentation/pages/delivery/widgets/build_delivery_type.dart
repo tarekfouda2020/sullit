@@ -22,7 +22,7 @@ class BuildDeliveryType extends StatelessWidget {
             borderRadius: Dimens.borderRadius10PX,
           ),
           child: Text(
-            "Choose Delivery Type",
+            tr('chooseDeliveryType'),
             style: AppTextStyle.s15_w700(color: context.colors.black),
           ),
         ),
@@ -33,14 +33,14 @@ class BuildDeliveryType extends StatelessWidget {
               Row(
                 children: [
                   BuildDeliveryTypeItem(
-                    title: "Home Delivery",
+                    title: tr('Home Delivery'),
                     value: 0,
                     groupValue: shipping.deliveryType,
                     onChanged: (val) => controller.onChangeType(shipping, val!),
                   ),
                   Gaps.hGap10,
                   BuildDeliveryTypeItem(
-                    title: "Local Pickup",
+                    title: tr('localPick'),
                     value: 1,
                     groupValue: shipping.deliveryType,
                     onChanged: (val) => controller.onChangeType(shipping, val!),
@@ -75,8 +75,8 @@ class BuildDeliveryType extends StatelessWidget {
                   ),
                 ),
                 child: DropdownTextField<Pickup>(
-                  title: "Select nearest pickup point",
-                  hint: "Select nearest pickup point",
+                  title: tr('selectNearestPoint'),
+                  hint: tr('selectNearestPoint'),
                   fillColor: context.colors.white,
                   itemAsString: (u) => u.address,
                   margin: const EdgeInsets.symmetric(vertical: Dimens.dp15),

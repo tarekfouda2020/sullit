@@ -12,7 +12,7 @@ class BuildVideoView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            'Videos',
+            tr('videos'),
             style: AppTextStyle.s16_w700(color: context.colors.black),
           ),
         ),
@@ -26,10 +26,10 @@ class BuildVideoView extends StatelessWidget {
                 textSize: 16.sp,
                 itemAsString: (model) => (model).name,
                 showClearButton: false,
-                title: "Select Video Form",
+                title: tr('selVideoForm'),
                 contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                 margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                label: "Select Video Form",
+                label: tr('selVideoForm'),
                 dropKey: controller.videoProviderDropKey,
                 useName: true,
                 onFind: (data) => controller.getVideoProviders(),
@@ -47,7 +47,7 @@ class BuildVideoView extends StatelessWidget {
                 type: TextInputType.text,
                 action: TextInputAction.next,
                 validate: (value) => controller.validateVideoUrl(),
-                label: 'Video URL',
+                label: tr('videoUrl')
               ),
             ],
           ),

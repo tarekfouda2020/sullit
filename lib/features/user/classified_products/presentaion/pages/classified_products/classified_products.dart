@@ -20,8 +20,8 @@ class _ClassifiedProductsState extends State<ClassifiedProducts> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(
-        title: 'Classified Products',
+      appBar:  DefaultAppBar(
+        title: tr('classifiedProducts'),
       ),
       body: BlocBuilder<GenericBloc<ClassifiedProductsDomainModel?>,
           GenericState<ClassifiedProductsDomainModel?>>(
@@ -35,7 +35,7 @@ class _ClassifiedProductsState extends State<ClassifiedProducts> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Text(
-                    'Products',
+                    tr('products'),
                     style: AppTextStyle.s14_w800(color: context.colors.black),
                   ),
                 ),
@@ -52,7 +52,7 @@ class _ClassifiedProductsState extends State<ClassifiedProducts> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: Text(
-                    'All products',
+                    tr('allProducts'),
                     style: AppTextStyle.s14_w800(color: context.colors.black),
                   ),
                 ),

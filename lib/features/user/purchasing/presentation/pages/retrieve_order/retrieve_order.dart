@@ -22,7 +22,7 @@ class _RetrieveOrderState extends State<RetrieveOrder> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Return Order"),
+      appBar:  DefaultAppBar(title: tr('returnOrder')),
       body: Column(
         children: [
           Flexible(
@@ -37,7 +37,7 @@ class _RetrieveOrderState extends State<RetrieveOrder> {
           ),
           DefaultButton(
             margin: Dimens.paddingAll20PX,
-            title: "Return Order",
+            title: tr('returnOrder'),
             onTap: () =>controller.returnOrder(context),
           ),
         ],

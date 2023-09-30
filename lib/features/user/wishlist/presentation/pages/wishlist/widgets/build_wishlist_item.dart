@@ -91,7 +91,7 @@ class BuildWishlistItem extends StatelessWidget {
 
                   Icon(Icons.shopping_cart,color: context.colors.white,size: 10.sp,),
                   Text(
-                    "Add to cart",
+                    tr('addToCart'),
                     style: AppTextStyle.s12_w400(
                       color: context.colors.white,
                     ),

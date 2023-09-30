@@ -20,7 +20,7 @@ class BuildReturnOrderItem extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Code : ",
+                    "${tr('productCode')} : ",
                     style: AppTextStyle.s14_w500(color: context.colors.black),
                   ),
                   Text(
@@ -44,7 +44,7 @@ class BuildReturnOrderItem extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Amount : ",
+                    "${tr('amount')} : ",
                     style: AppTextStyle.s14_w500(color: context.colors.black),
                   ),
                   Text(

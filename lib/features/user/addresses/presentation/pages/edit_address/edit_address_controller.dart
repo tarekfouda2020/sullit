@@ -65,7 +65,7 @@ class EditAddressController {
       var result = await SetEditAddress().call(params);
       if (result != null) {
         CustomToast.showSimpleToast(
-          msg: "Address info edited successfully",
+          msg: tr("addressInfoEditedSuccessfully"),
           type: ToastType.success,
         );
         AutoRouter.of(context).pop(result);

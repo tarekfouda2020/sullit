@@ -15,7 +15,7 @@ class BuildFeaturedProducts extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Gaps.vGap10,
-          const BuildHeaderTitle(title: "Featured Products"),
+          BuildHeaderTitle(title: tr('featuredProducts')),
           Flexible(
             child: SingleChildScrollView(
               padding: Dimens.paddingVertical10PX,

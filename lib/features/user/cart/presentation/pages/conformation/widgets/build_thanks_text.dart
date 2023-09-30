@@ -6,10 +6,10 @@ class BuildThanksText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
+      children:  [
         Text(
-          'Thank You for Your Order!',
-          style: AppTextStyle.s16_w500(
+          tr('thanksForYourOrder'),
+          style: const AppTextStyle.s16_w500(
             color: Colors.black,
           ),
         ),

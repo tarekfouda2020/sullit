@@ -1,4 +1,4 @@
-part of 'brand_details_imports.dart';
+ part of 'brand_details_imports.dart';
 
 class BrandDetails extends StatefulWidget {
   final int brandId;
@@ -21,7 +21,7 @@ class _BrandDetailsState extends State<BrandDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(title: "Brand Products", showBack: true),
+      appBar:  DefaultAppBar(title: tr('brandProducts'), showBack: true),
       backgroundColor: context.colors.customBackground,
       body: GenericListView(
         type: ListViewType.gridApi,

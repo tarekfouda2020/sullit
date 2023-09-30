@@ -38,8 +38,7 @@ class RegisterController {
     AutoRouter.of(context).popAndPush(VerifyRegisterRoute(email: emailController.text));
     getIt<ComparedProductsDb>().deleteEverything();
     CustomToast.showSimpleToast(
-      msg:
-          "Register Done Successfully. Please verify and log in to your account",
+      msg:tr('registerVerify'),
       type: ToastType.success,
     );
   }
@@ -47,7 +46,7 @@ class RegisterController {
   void _termsValidation() {
     if (!termCubit.state.data) {
       CustomToast.showSimpleToast(
-        msg: "Please accept terms",
+        msg: tr('acceptTerms'),
         type: ToastType.error,
       );
       return;

@@ -20,7 +20,7 @@ class _ContactUsState extends State<ContactUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: 'Contact Us'),
+      appBar:  DefaultAppBar(title: tr('contactUs')),
       body: Column(
         children: [
           BuildContactUsFields(contactUsData: controller),

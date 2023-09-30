@@ -17,7 +17,7 @@ class ActiveAccountController {
     var result = await SetVerifyPhone().call(params);
     if (result) {
       CustomToast.showSimpleToast(
-        msg: "Phone Verified Successfully",
+        msg: tr('phoneVerifiedSuccess'),
         type: ToastType.success
       );
       AutoRouter.of(context).pop(true);

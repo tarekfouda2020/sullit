@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
@@ -83,16 +84,10 @@ class BuildMultiImages extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'Drop files here, paste or ',
-                          style: AppTextStyle.s12_w400(
-                            color: context.colors.black,
-                          ),
-                        ),
                         GestureDetector(
                           onTap: () => getIt<AddImageHelper>().getImages(context, imagesBloc),
                           child: Text(
-                            'Browse',
+                            tr('browseFile'),
                             style: AppTextStyle.s12_w400(
                               color: context.colors.blue,
                             ),
@@ -117,7 +112,7 @@ class BuildMultiImages extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: Text(
-                    'Add Files',
+                    tr('addFiles'),
                     style: AppTextStyle.s12_w400(color: context.colors.white),
                   ),
                 ),

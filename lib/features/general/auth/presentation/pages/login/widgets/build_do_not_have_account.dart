@@ -15,14 +15,14 @@ class BuildDoNotHaveAccount extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Don't have an account ? ",
+                "${tr('dontHaveAccount')} ",
                 style:
                     AppTextStyle.s16_w400(color: context.colors.blackOpacity),
               ),
               InkWell(
                 onTap: () => AutoRouter.of(context).push(const RegisterRoute()),
                 child: Text(
-                  "Register Now",
+                  tr('registerNow'),
                   style: AppTextStyle.s16_w700(color: context.colors.primary),
                 ),
               ),
@@ -32,7 +32,7 @@ class BuildDoNotHaveAccount extends StatelessWidget {
           GestureDetector(
             onTap: () => AutoRouter.of(context).push(HomeRoute(index: 0)),
             child: Text(
-              "Skip",
+              tr('skip'),
               style:
                   AppTextStyle.s16_w500(color: context.colors.primary).copyWith(
                 decoration: TextDecoration.underline,

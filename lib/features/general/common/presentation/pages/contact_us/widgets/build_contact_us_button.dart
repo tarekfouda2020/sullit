@@ -13,7 +13,7 @@ class BuildContactUsButton extends StatelessWidget {
     return Column(
       children: [
         LoadingButton(
-          title: "Submit",
+          title: tr('submit'),
           onTap: () => controller.contactUs(),
           color: context.colors.primary,
           textColor: context.colors.white,

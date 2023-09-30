@@ -38,7 +38,7 @@ class _SupportTicketsState extends State<SupportTickets> {
               ),
               emptyWidget: Center(
                 child: Text(
-                  "You have no tickets. !",
+                  tr("noTickets"),
                   style: AppTextStyle.s12_w400(
                     color: context.colors.grey,
                   ),

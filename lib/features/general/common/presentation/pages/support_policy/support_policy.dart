@@ -20,7 +20,7 @@ class _SupportPolicyState extends State<SupportPolicy> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Support Policy"),
+      appBar:  DefaultAppBar(title: tr('supportPolicy')),
       body: BlocBuilder<GenericBloc<String?>, GenericState<String?>>(
         bloc: controller.supportPrivacyBloc,
         builder: (context, state) {

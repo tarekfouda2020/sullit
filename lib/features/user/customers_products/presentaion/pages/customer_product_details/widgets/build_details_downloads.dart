@@ -15,7 +15,7 @@ class BuildDetailsDownloads extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Downloads : ",
+            "${tr('downloads')} : ",
             style: AppTextStyle.s15_w700(
               color: context.colors.black,
             ),
@@ -23,7 +23,7 @@ class BuildDetailsDownloads extends StatelessWidget {
           Gaps.vGap10,
           Center(
             child: DefaultButton(
-              title: "PDF",
+              title: tr('pdf'),
               width: 150.w,
               onTap: () =>
                   HelperMethods.instance.launchURL(url: detailsModel.pdf),

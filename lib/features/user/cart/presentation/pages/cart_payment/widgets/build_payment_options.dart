@@ -16,7 +16,7 @@ class BuildPaymentOptions extends StatelessWidget {
         Container(
           margin: Dimens.paddingVertical15PX,
           child: Text(
-            "Select a payment option ",
+            tr('selPayOption'),
             style: AppTextStyle.s16_w800(color: context.colors.black),
           ),
         ),

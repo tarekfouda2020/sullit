@@ -12,12 +12,12 @@ class BuildSellerButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Become a Seller",
+          tr('becomeASeller'),
           style: AppTextStyle.s16_w400(color: context.colors.blackOpacity),
         ),
         Gaps.vGap8,
         LoadingButton(
-          title: "Apply Now",
+          title: tr('applyNow'),
           onTap: () => AutoRouter.of(context).push(const RegisterShopRoute()),
           color: context.colors.primary,
           textColor: context.colors.white,

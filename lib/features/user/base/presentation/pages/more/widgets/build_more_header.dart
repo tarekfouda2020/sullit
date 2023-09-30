@@ -89,7 +89,7 @@ class BuildMoreHeader extends StatelessWidget {
           style: AppTextStyle.s16_w400(color: context.colors.black),
         ),
         DefaultButton(
-          title: "Be A Seller",
+          title: tr('beASeller'),
           borderRadius: BorderRadius.circular(5).r,
           width: 80.w,
           height: 20.h,

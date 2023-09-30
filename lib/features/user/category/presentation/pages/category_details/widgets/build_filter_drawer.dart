@@ -24,7 +24,7 @@ class BuildFilterDrawer extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Filter",
+                      tr('filter'),
                       style: AppTextStyle.s15_w700(color: context.colors.black),
                     ),
                     IconButton(
@@ -64,7 +64,7 @@ class BuildFilterDrawer extends StatelessWidget {
                 DefaultButton(
                   width: 100.w,
                   height: 35.h,
-                  title: "Confirm",
+                  title: tr('confirm'),
                   margin: EdgeInsets.zero,
                   onTap: () {
                     Navigator.of(context).pop();

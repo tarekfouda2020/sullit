@@ -15,7 +15,7 @@ class BuildCategorySearchView extends StatelessWidget {
       type: TextInputType.text,
       action: TextInputAction.search,
       validate: (value) => value?.noValidate(),
-      hint: "Search...",
+      hint: tr('searchCats'),
       margin: Dimens.paddingHorizontal15PX,
       onChange: (val) => categoriesController.onSearchByName(val),
     );

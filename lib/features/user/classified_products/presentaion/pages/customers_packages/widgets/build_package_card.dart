@@ -36,7 +36,7 @@ class BuildPackageCard extends StatelessWidget {
                 ),
                 Gaps.hGap10,
                 Text(
-                  ' ${package.productUpload} Product Upload',
+                  ' ${package.productUpload} ${tr('productUpload')}',
                   style: AppTextStyle.s12_w400(
                       color: context.colors.black),
                 ),
@@ -64,7 +64,7 @@ class BuildPackageCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(7),
               ),
               child: Text(
-                'Purchase package',
+                tr('purchasePackage'),
                 style: AppTextStyle.s12_w300(
                   color: context.colors.white,
                 ),

@@ -19,6 +19,7 @@ import 'core/localization/set_localization.dart';
 import 'core/routes/router_imports.gr.dart';
 
 class MyApp extends StatefulWidget {
+
   const MyApp({Key? key}) : super(key: key);
 
   @override

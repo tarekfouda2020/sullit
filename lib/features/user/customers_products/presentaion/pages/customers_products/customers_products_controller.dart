@@ -68,7 +68,6 @@ class CustomerProductsController {
   Future<void> getCustomerProducts(int currentPage,
       {bool refresh = true}) async {
     var params = _productsParams(currentPage, refresh);
-    print(">>>>>>>${params.toJson()}");
     var data = await GetCustomerProducts().call(params);
     final isLastPage = data.length < pageSize;
     if (currentPage == 1) {

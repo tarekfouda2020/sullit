@@ -20,7 +20,7 @@ class _DownloadsState extends State<Downloads> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Downloads", showBack: true),
+      appBar: DefaultAppBar(title: tr('downloads'), showBack: true),
       body: GenericListView(
         padding: Dimens.paddingAll15PX,
         type: ListViewType.api,

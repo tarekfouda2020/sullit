@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/input_field_style/custom_input_decoration.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 
@@ -107,7 +108,7 @@ class DropdownTextField<T> extends StatelessWidget {
         itemStyle: AppTextStyle.s13_w400(color: context.colors.black),
         searchBoxStyle: AppTextStyle.s12_w400(color: context.colors.blackOpacity),
         searchBoxDecoration: CustomInputDecoration(
-            hint: searchHint ?? 'Search',
+            hint: searchHint ?? tr('search'),
             enableColor: Colors.black,
             lang: lang,
             padding:

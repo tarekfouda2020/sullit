@@ -33,10 +33,17 @@ class BuildShippingItem extends StatelessWidget {
             child: Column(
               children: const [
                 BuildAddressTitleItem(
-                    title: "Address",
-                    desc: "Egypt Egypt Egypt Egypt Egypt Egypt"),
-                BuildAddressTitleItem(title: "Postal code", desc: "1323242342323"),
-                BuildAddressTitleItem(title: "City", desc: "Egypt"),
+                  title: "Address",
+                  desc: "Egypt Egypt Egypt Egypt Egypt Egypt",
+                ),
+                BuildAddressTitleItem(
+                  title: "Postal code",
+                  desc: "1323242342323",
+                ),
+                BuildAddressTitleItem(
+                  title: "City",
+                  desc: "Egypt",
+                ),
                 BuildAddressTitleItem(title: "State", desc: "Egypt"),
                 BuildAddressTitleItem(title: "Country", desc: "Egypt"),
                 BuildAddressTitleItem(title: "Phone", desc: "01234567890")

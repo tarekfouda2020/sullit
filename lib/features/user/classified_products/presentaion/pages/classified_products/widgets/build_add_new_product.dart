@@ -9,7 +9,7 @@ class BuildAddNewProduct extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if(uploads == 0){
-          CustomToast.showSimpleToast(msg: 'You must purchase package');
+          CustomToast.showSimpleToast(msg: tr('purchasePackageValidation'));
           return ;
         }else {
           AutoRouter.of(context).push(
@@ -39,7 +39,7 @@ class BuildAddNewProduct extends StatelessWidget {
               ),
             ),
             Text(
-              'Add New Product',
+              tr('addNewProduct'),
               style: AppTextStyle.s14_w400(color: context.colors.black),
             ),
           ],

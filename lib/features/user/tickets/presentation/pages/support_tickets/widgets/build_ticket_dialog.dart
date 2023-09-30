@@ -21,7 +21,7 @@ class BuildTicketDialog extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Create Ticket",
+                  tr('createTicket'),
                   style: AppTextStyle.s14_w500(color: context.colors.black),
                 ),
                 IconButton(
@@ -43,7 +43,7 @@ class BuildTicketDialog extends StatelessWidget {
                     action: TextInputAction.done,
                     controller: supportTicketsController.subjectController,
                     validate: (value) => value?.validateEmpty(),
-                    label: "Subject",
+                    label: tr('subject'),
                     margin: Dimens.paddingVertical5PX,
                   ),
                   GenericTextField(
@@ -52,7 +52,7 @@ class BuildTicketDialog extends StatelessWidget {
                     controller: supportTicketsController.detailsController,
                     action: TextInputAction.done,
                     validate: (value) => value?.validateEmpty(),
-                    label: "Description",
+                    label: tr('description'),
                     max: 4,
                     margin: Dimens.paddingVertical5PX,
                   ),
@@ -60,7 +60,7 @@ class BuildTicketDialog extends StatelessWidget {
                     controller: supportTicketsController,
                   ),
                   DefaultButton(
-                      title: "confirm",
+                      title: tr('confirm'),
                       width: 120.w,
                       height: 30.h,
                       margin: Dimens.paddingVertical10PX,

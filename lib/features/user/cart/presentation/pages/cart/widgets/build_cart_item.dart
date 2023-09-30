@@ -38,17 +38,17 @@ class BuildCartItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 BuildPriceItem(
-                  title: "Price",
+                  title: tr("price"),
                   price: cartItem.price,
                   currency: cartItem.currencySymbol,
                 ),
                 BuildPriceItem(
-                  title: "Tax",
+                  title: tr("tax"),
                   price: cartItem.tax,
                   currency: cartItem.currencySymbol,
                 ),
                 BuildPriceItem(
-                  title: "Total",
+                  title: tr("total"),
                   price: cartItem.total,
                   currency: cartItem.currencySymbol,
                 ),

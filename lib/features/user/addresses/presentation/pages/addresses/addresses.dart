@@ -20,7 +20,7 @@ class _AddressesState extends State<Addresses> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Addresses"),
+      appBar: DefaultAppBar(title: tr('addresses')),
       floatingActionButton: BuildAddAddressBtn(controller: controller),
       body: GenericListView(
         type: ListViewType.api,
