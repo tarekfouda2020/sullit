@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
@@ -13,7 +12,6 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart/widgets/cart_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_add_to_cart_attributes.dart';
 
@@ -79,7 +77,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                   const Spacer(),
                   Text(
                     "${state.data!.priceHighLowDiscount} ",
-                    style: AppTextStyle.s16_w500(
+                    style: AppTextStyle.s14_w600(
                       color: context.colors.primary,
                     ),
                   ),
@@ -87,7 +85,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                     visible: state.data!.hasDiscount!,
                     child: Text(
                       "${state.data!.priceHighLow} ",
-                      style: AppTextStyle.s16_w500(
+                      style: AppTextStyle.s14_w600(
                         color: context.colors.black,
                       ).copyWith(
                         decoration: TextDecoration.lineThrough,

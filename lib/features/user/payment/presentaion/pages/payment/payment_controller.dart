@@ -21,7 +21,6 @@ class PaymentController {
             const Duration(seconds: 3),
             () {
               flutterWebViewPlugin.close();
-              Navigator.pop(context);
             },
           );
         }else if (url.contains('success')){

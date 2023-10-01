@@ -4,12 +4,12 @@ import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_mode
 import 'package:flutter_tdd/features/user/profile/domain/entities/profile_params.dart';
 import 'package:flutter_tdd/features/user/profile/domain/repository/profile_repository.dart';
 
-class SetEditProfile implements UseCase<UserDomainModel, ProfileParams> {
+class SetEditProfile implements UseCase<UserDomainModel?, ProfileParams> {
   @override
-  Future<UserDomainModel> call(ProfileParams params) async {
+  Future<UserDomainModel?> call(ProfileParams params) async {
     var result = await getIt<ProfileRepository>().updateProfile(params);
     return result.fold(
-      (l) => UserDomainModel(),
+      (l) => null,
       (r) => r,
     );
   }

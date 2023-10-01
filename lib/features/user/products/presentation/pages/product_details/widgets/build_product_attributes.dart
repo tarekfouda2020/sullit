@@ -18,24 +18,27 @@ class BuildProductAttributes extends StatelessWidget {
           Gaps.vGap10,
           ...List.generate(
             productOptions.length,
-            (index) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  productOptions[index].title!,
-                  style: AppTextStyle.s12_w500(
-                    color: context.colors.black,
+            (index) => Visibility(
+              visible: productOptions[index].options!.isNotEmpty,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    productOptions[index].title!,
+                    style: AppTextStyle.s12_w500(
+                      color: context.colors.black,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                Gaps.vGap10,
-                BuildAttributeList(
-                  controller: controller,
-                  index: index,
-                  productOptions: productOptions,
-                ),
-                Gaps.vGap15,
-              ],
+                  Gaps.vGap10,
+                  BuildAttributeList(
+                    controller: controller,
+                    index: index,
+                    productOptions: productOptions,
+                  ),
+                  Gaps.vGap15,
+                ],
+              ),
             ),
           ),
           Gaps.line(context.colors.greyWhite, 20.h),

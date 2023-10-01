@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_generic_function_type_aliases
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -373,8 +375,7 @@ class DropdownSearchState<T> extends State<DropdownSearch<T>> {
                     baseStyle: widget.dropdownSearchBaseStyle,
                     textAlign: widget.dropdownSearchTextAlign,
                     textAlignVertical: widget.dropdownSearchTextAlignVertical,
-                    isEmpty: value == null &&
-                        (widget.dropdownBuilder == null || widget.dropdownBuilderSupportsNullItem),
+                    isEmpty: value == null && (widget.dropdownBuilder == null || widget.dropdownBuilderSupportsNullItem),
                     isFocused: isFocused,
                     decoration: widget.dropdownSearchDecoration!,
                     child: _defaultSelectItemWidget(value),

@@ -5,6 +5,7 @@ class BuildIconItem extends StatelessWidget {
   final EdgeInsets? padding;
   final Function() onTap;
   final bool? checkValue;
+  final bool? isFormCompare ;
   final Color? containerColor;
 
   const BuildIconItem(
@@ -13,11 +14,11 @@ class BuildIconItem extends StatelessWidget {
       required this.onTap,
       this.padding,
       this.checkValue,
-      this.containerColor});
+      this.containerColor, this.isFormCompare});
 
   @override
   Widget build(BuildContext context) {
-    var iconColor = checkValue == true
+    var iconColor = checkValue == true || isFormCompare == true
         ? context.colors.white
         : context.colors.blackOpacity;
     return GestureDetector(

@@ -26,9 +26,16 @@ class BuildPurchasedHistoryItem extends StatelessWidget {
                     "${tr('orderCode')} : ",
                     style: AppTextStyle.s14_w500(color: context.colors.black),
                   ),
-                  Text(
-                    order.code,
-                    style: AppTextStyle.s14_w500(color: context.colors.primary),
+                  GestureDetector(
+                    onLongPress: (){
+                      Clipboard.setData( ClipboardData(text: order.code)).then((value){
+                        CustomToast.showSimpleToast(msg: "Copied to clipboard");
+                      });
+                    },
+                      child : Text(
+                        order.code,
+                        style: AppTextStyle.s14_w500(color: context.colors.primary),
+                      )
                   ),
                   const Spacer(),
                   InkWell(

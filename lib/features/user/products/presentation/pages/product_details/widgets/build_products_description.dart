@@ -17,10 +17,19 @@ class BuildProductDescription extends StatelessWidget {
           ),
         ),
         Gaps.vGap8,
-        Text(
-          description,
-          style: AppTextStyle.s13_w400(color: context.colors.black),
-        ),
+        Html(
+          data: description,
+          style: {
+            "body": Style(
+              color: Colors.black,
+              margin: Margins.zero,
+              fontSize: FontSize(
+                Dimens.font_sp12.sp,
+              ),
+              fontWeight: FontWeight.w400,
+            ),
+          },
+        )
       ],
     );
   }

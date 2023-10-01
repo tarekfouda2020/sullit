@@ -22,6 +22,7 @@ class BuildProductQty extends StatelessWidget {
         BlocBuilder<GenericBloc<int>, GenericState<int>>(
           bloc: controller.qtyCubit,
           builder: (context, state) {
+            bool hasVariant = productModel.variant != null;
             return Row(
               children: [
                 BuildCustomBounce(
@@ -40,7 +41,7 @@ class BuildProductQty extends StatelessWidget {
                 ),
                 Gaps.hGap10,
                 Visibility(
-                  visible: productModel.variant!.currentStock! > 0,
+                  visible: hasVariant ? productModel.variant!.currentStock! > 0 : false,
                   replacement: Text(
                     "Out Of Stock",
                     style: AppTextStyle.s15_w700(

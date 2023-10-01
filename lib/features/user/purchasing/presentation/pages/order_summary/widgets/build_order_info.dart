@@ -39,7 +39,7 @@ class BuildOrderInfo extends StatelessWidget {
           ),
           BuildOrderInfoItem(
             title: "${tr('totalOrderAmount')} :",
-            subTitle: orderModel.orderDate,
+            subTitle: orderModel.total,
           ),
           BuildOrderInfoItem(
             title: "${tr('shippingMethod')} :",
@@ -49,6 +49,12 @@ class BuildOrderInfo extends StatelessWidget {
             title: "${tr('paymentMethod')} :",
             subTitle: orderModel.paymentMethod,
           ),
+          Visibility(
+            visible: orderModel.additionalInfo != '',
+              child: BuildOrderInfoItem(
+            title: "${tr('additionalInfo')} :",
+            subTitle: orderModel.additionalInfo,
+          )),
         ],
       ),
     );

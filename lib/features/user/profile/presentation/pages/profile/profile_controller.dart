@@ -18,7 +18,7 @@ class ProfileController {
   final TextEditingController addressController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
-      TextEditingController();
+  TextEditingController();
 
   Address? addressModel;
 
@@ -27,12 +27,17 @@ class ProfileController {
   }
 
   void getInitialData(BuildContext context) {
-    var user = context.read<UserCubit>().state.model;
+    var user = context
+        .read<UserCubit>()
+        .state
+        .model;
     if (user != UserDomainModel()) {
       nameController.text = user?.name ?? "";
       emailController.text = user?.email ?? "";
       phoneController.text = user?.phone ?? "";
-      addressController.text = user?.address?.address??"";
+      print('=======> ${user?.address?.address ?? ""}');
+      addressModel = user?.address;
+      addressController.text = user?.address?.address ?? "";
     }
   }
 
@@ -53,22 +58,70 @@ class ProfileController {
 
   Future<void> removeImage() => imageCubit.onUpdateToInitState(null);
 
+  bool isDataChanged(BuildContext context) {
+    var user = context
+        .read<UserCubit>()
+        .state
+        .model;
+    if (nameController.text != user!.name ||
+        emailController.text != user.email ||
+        phoneController.text != user.phone ||
+        isAddressChanged(context) || isImageChanged()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool isImageChanged (){
+    if(imageCubit.state is GenericUpdateState){
+      return true ;
+    }else {
+      return false;
+    }
+  }
+  bool isAddressChanged(BuildContext context) {
+    var user = context
+        .read<UserCubit>()
+        .state
+        .model;
+    if (addressModel!.id != user!.address?.id) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   Future<void> setEditProfile(BuildContext context) async {
-    print(">>>>>>${addressModel?.toJson()}");
-    var user = context.read<UserCubit>().state.model;
-    var params = _profileParams();
-    if (emailController.text != user!.email) {
-      setEditProfileEmail();
-    }
-    if (addressModel != null) {
-      await SetDefaultAddress().call(addressModel!.id!);
-    }
-    var data = await SetEditProfile().call(params);
-    if (data != UserDomainModel()) {
-      _cashAndRoute(data, context);
+    if (isDataChanged(context)) {
+      var user = context
+          .read<UserCubit>()
+          .state
+          .model;
+      var params = _profileParams();
+      if (emailController.text != user!.email) {
+        setEditProfileEmail();
+      }
+      if (isAddressChanged(context)) {
+        if(addressModel!.isActive == true ){
+          await SetDefaultAddress().call(addressModel!.id!);
+        }else {
+          CustomToast.showSimpleToast(msg: 'Please Verify address phone number', type: ToastType.error);
+          return ;
+        }
+      }
+      var data = await SetEditProfile().call(params);
+      if (data != null) {
+        _cashAndRoute(data, context);
+        CustomToast.showSimpleToast(
+          msg: tr('informationUpdatedSuccessfully'),
+          type: ToastType.success,
+        );
+      }
+    } else {
       CustomToast.showSimpleToast(
-        msg: tr('informationUpdatedSuccessfully'),
-        type: ToastType.success,
+        msg: tr('noDataChanged'),
+        type: ToastType.error,
       );
     }
   }
@@ -84,6 +137,7 @@ class ProfileController {
       "user",
       json.encode(model.toJson()),
     );
+    print(preferences.get('user'));
     if (model.isPhoneActive == false) {
       AutoRouter.of(context).push(
         ActiveAccountRoute(
@@ -92,6 +146,7 @@ class ProfileController {
       );
     }
     context.read<UserCubit>().onUpdateUserData(model);
+
   }
 
   ProfileParams _profileParams() {

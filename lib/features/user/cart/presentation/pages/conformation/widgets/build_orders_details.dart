@@ -83,12 +83,13 @@ class BuildOrdersDetails extends StatelessWidget {
                                   summary.sectionOrders![index].orderDetails[productsIndex].product!.name,
                                   style: AppTextStyle.s14_w600(color: context.colors.black),
                                 ),
-                                SizedBox(width: 50.w,),
+                                Gaps.hGap10,
                                 Text(
                                   "${tr('variation')} : ",
                                   style: AppTextStyle.s12_w400(color: context.colors.black),
                                 ),
                                 Text(
+                                  overflow: TextOverflow.ellipsis,
                                   summary.sectionOrders![index].orderDetails[productsIndex].variation,
                                   style: AppTextStyle.s14_w400(color: context.colors.black),
                                 ),

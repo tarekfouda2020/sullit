@@ -6,9 +6,13 @@ class TrackOrderController {
   final TextEditingController orderCodeController = TextEditingController();
 
   Future<void> getTrackOrder() async {
+    getIt<LoadingHelper>().showLoadingDialog();
     var param = orderCodeController.text;
-    return GetTrackOrder().call(param).then(
-          (value) => orderBloc.onUpdateData(value),
+     GetTrackOrder().call(param).then(
+          (value) {
+            orderBloc.onUpdateData(value);
+            getIt<LoadingHelper>().dismissDialog();
+          }
         );
   }
 }

@@ -9,8 +9,9 @@ class BuildProductButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool hasVariant = detailsModel.product.variant != null;
     return Visibility(
-      visible: detailsModel.product.variant!.currentStock! > 0,
+      visible: hasVariant ?  detailsModel.product.variant!.currentStock! > 0 : false ,
       child: Padding(
         padding: Dimens.standardPadding,
         child: SizedBox(

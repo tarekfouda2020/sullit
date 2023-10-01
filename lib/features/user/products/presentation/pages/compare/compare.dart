@@ -45,13 +45,10 @@ class _CompareState extends State<Compare> {
                       childAspectRatio: .9,
                     ),
                     itemBuilder: (context, index) => BuildProductItem(
-                      productModel: state.data[index],
                       isForCompare: true,
+                      productModel: state.data[index],
                       onFavRefresh: () => controller.onFavChanged(state.data[index]),
-                      onCompareRefresh: () {
-                        state.data[index].isAddedTCompare =
-                        !state.data[index].isAddedTCompare!;
-                      },
+                      onCompareRefresh: ()=> controller.onCompareChanged(state.data[index])
                     ),
                   ),
                 ),

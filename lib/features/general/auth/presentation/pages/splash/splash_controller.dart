@@ -9,8 +9,10 @@ class SplashController {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var strUser = prefs.get("user");
     if (strUser != null) {
+      print(strUser);
       context.read<DeviceCubit>().updateUserAuth(true);
       UserDomainModel user = UserDomainModel.fromJson(json.decode("$strUser"));
+      print("===========${user.toJson()}");
       GlobalState.instance.set("token", user.token);
       context.read<UserCubit>().onUpdateUserData(user);
       AutoRouter.of(context).push(HomeRoute(index: 0));

@@ -27,22 +27,42 @@ class CartPaymentController {
   }
 
   Future<void> createOrder(BuildContext context) async {
-    _checkPayMethodSel();
-    _checkConditionAccept();
-    var params = _orderParams();
-    var data = await CreateOrder().call(params);
-    if (data != null) {
-      if (data.transactionUrl != null) {
-        _goToPay(
-          data.transactionUrl,
-          context,
-        );
-      } else {
-        _confirmOrder(context, data);
+    if (conditionsCubit.state.data){
+      _checkPayMethodSel();
+      if(isBalanceEnough()){
+        var params = _orderParams();
+        var data = await CreateOrder().call(params);
+        if (data != null) {
+          if (data.transactionUrl != null) {
+            _goToPay(
+              data.transactionUrl,
+              context,
+            );
+          } else {
+            _confirmOrder(context, data);
+          }
+        }
       }
+    }else {
+      CustomToast.showSimpleToast(
+        msg: tr('acceptTerms'),
+        type: ToastType.error,
+      );
     }
+
   }
 
+  bool isBalanceEnough (){
+    if(shippingBloc.state.data!.summary.walletBalance.contains('0.00')){
+      CustomToast.showSimpleToast(
+        msg: tr('walletBalanceEmpty'),
+        type: ToastType.error,
+      );
+      return false ;
+    }else {
+      return true ;
+    }
+  }
   void _confirmOrder(BuildContext context, OrderSummary data) {
     CustomToast.showSimpleToast(
       msg: tr('thanksForYourOrder'),
@@ -69,21 +89,9 @@ class CartPaymentController {
     );
     return;
   }
-
-  void _checkConditionAccept() {
-    if (!conditionsCubit.state.data) {
-      CustomToast.showSimpleToast(
-        msg: tr('acceptTerms'),
-        type: ToastType.error,
-      );
-      return;
-    }
-  }
-
   void _checkPayMethodSel() {
-    if (shippingBloc.state.data!.paymentOption!
-        .where((element) => element.selected)
-        .isEmpty) {
+    var shipping = shippingBloc.state.data ;
+    if (shipping!.paymentOption!.where((element) => element.selected).isEmpty  ) {
       CustomToast.showSimpleToast(
         msg: tr('choosePayment'),
         type: ToastType.success,

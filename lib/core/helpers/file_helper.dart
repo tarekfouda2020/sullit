@@ -27,8 +27,7 @@ class FileHelper {
   }
 
   Future<File?> downloadFile({required String url}) async {
-    String localFilePath =
-        "${await getDownloadPath()}/${DateTime.now().toIso8601String()}.pdf";
+    String localFilePath = "${await getDownloadPath()}/${DateTime.now().toIso8601String()}.pdf";
     var params = DownloadRequestModel(
       url: url,
       localPath: localFilePath,
@@ -38,7 +37,6 @@ class FileHelper {
     if (response.isRight()) {
       File file = File(localFilePath);
       OpenFile.open(localFilePath);
-
       return file;
     }
     return null;

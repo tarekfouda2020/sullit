@@ -98,6 +98,14 @@ class CategoryDetailsController {
     pagingController.itemList = data;
   }
 
+  void onCompareChanged(Product model){
+    model.isAddedTCompare = !model.isAddedTCompare! ;
+    int index = pagingController.itemList!.indexWhere((element) => element.id == model.id);
+    pagingController.itemList![index] = model;
+    var data = pagingController.itemList;
+    pagingController.itemList = [];
+    pagingController.itemList = data;
+  }
   void changePriceValue(RangeValues values, BuildContext context) {
     rangeCubit.state.data!.value = values;
     rangeCubit.onUpdateData(rangeCubit.state.data!);

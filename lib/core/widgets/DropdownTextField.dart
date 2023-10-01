@@ -41,34 +41,34 @@ class DropdownTextField<T> extends StatelessWidget {
 
   const DropdownTextField(
       {Key? key,
-        this.label,
-        this.hint,
-        this.margin,
-        required this.validate,
-        required this.title,
-        this.contentPadding,
-        this.prefixIcon,
-        this.clearBtnPadding,
-        this.arrowBtnPadding,
-        this.useName = true,
-        this.showClearButton = true,
-        this.searchHint,
-        required this.itemAsString,
-        this.onChange,
-        this.fontSize,
-        this.textSize,
-        this.labelSize,
-        this.hintColor,
-        this.fillColor,
-        this.buttonsColor,
-        this.itemBuilder,
-        this.onFind,
-        this.dropKey,
-        this.data,
-        this.enableColor,
-        this.selectedItem,
-        this.radius,
-        this.showSelectedItem = false})
+      this.label,
+      this.hint,
+      this.margin,
+      required this.validate,
+      required this.title,
+      this.contentPadding,
+      this.prefixIcon,
+      this.clearBtnPadding,
+      this.arrowBtnPadding,
+      this.useName = true,
+      this.showClearButton = true,
+      this.searchHint,
+      required this.itemAsString,
+      this.onChange,
+      this.fontSize,
+      this.textSize,
+      this.labelSize,
+      this.hintColor,
+      this.fillColor,
+      this.buttonsColor,
+      this.itemBuilder,
+      this.onFind,
+      this.dropKey,
+      this.data,
+      this.enableColor,
+      this.selectedItem,
+      this.radius,
+      this.showSelectedItem = false})
       : super(key: key);
 
   @override
@@ -96,8 +96,7 @@ class DropdownTextField<T> extends StatelessWidget {
               size: 20, color: buttonsColor ?? Colors.black),
         ),
         dropDownButton: Padding(
-          padding: arrowBtnPadding ??
-              const EdgeInsets.symmetric(horizontal: 5),
+          padding: arrowBtnPadding ?? const EdgeInsets.symmetric(horizontal: 5),
           child: Icon(Icons.arrow_drop_down,
               size: 24, color: buttonsColor ?? Colors.black),
         ),
@@ -108,11 +107,12 @@ class DropdownTextField<T> extends StatelessWidget {
         itemStyle: AppTextStyle.s13_w400(color: context.colors.black),
         searchBoxStyle: AppTextStyle.s12_w400(color: context.colors.blackOpacity),
         searchBoxDecoration: CustomInputDecoration(
-            hint: searchHint ?? tr('search'),
-            enableColor: Colors.black,
-            lang: lang,
-            padding:
-            const EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+          hintColor: context.colors.black,
+          hint: searchHint ?? tr('search'),
+          enableColor: Colors.black,
+          lang: lang,
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        ),
         popupTitle: Container(
           height: 50,
           decoration: BoxDecoration(
@@ -120,25 +120,25 @@ class DropdownTextField<T> extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              label != null ? label! : hint??"",
+              label != null ? label! : hint ?? "",
               style: const AppTextStyle.s16_w500(color: Colors.white),
             ),
           ),
         ),
+        dropdownSearchBaseStyle : const AppTextStyle.s16_w500(color: Colors.black),
         dropdownSearchDecoration: CustomInputDecoration(
-            hintColor: hintColor,
-            labelTxt: label,
-            hint: hint,
+          hintColor: hintColor,
+
+          labelTxt: label,
+          hint: hint,
+          lang: lang,
           customFillColor: fillColor,
-            enableColor: enableColor,
-            borderRadius: radius,
-            lang: lang,
-            prefIcon: prefixIcon,
-            padding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
+          enableColor: enableColor,
+          borderRadius: radius,
+          prefIcon: prefixIcon,
+          padding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
         ),
       ),
     );
   }
 }
-
-

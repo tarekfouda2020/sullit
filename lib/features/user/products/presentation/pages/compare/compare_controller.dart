@@ -10,8 +10,13 @@ class CompareController {
   Future<void> getComparedProducts(BuildContext context, {bool refresh = true}) async {
     var result = await getIt<ComparedProductsDb>().getItems();
     var allProducts = result.map((e) => Product.fromJson(json.decode(e.product!))).toList();
-    print(allProducts);
     productsBloc.onUpdateData(allProducts);
+  }
+
+  void onCompareChanged(Product model){
+    int index = productsBloc.state.data.indexWhere((element) => element.id == model.id);
+    productsBloc.state.data.removeAt(index);
+    productsBloc.onUpdateData(productsBloc.state.data);
   }
 
   void onFavChanged(Product model) {

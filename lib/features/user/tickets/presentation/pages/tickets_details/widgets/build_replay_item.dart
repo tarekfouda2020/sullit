@@ -21,13 +21,25 @@ class BuildReplayItem extends StatelessWidget {
         ],
       ),
       child: ListTile(
-        title: Text(
-          replyModel.user.name!,
-          style: AppTextStyle.s14_w500(color: context.colors.black),
+        title: Container(
+          margin: Dimens.marginTop10,
+          child: Text(
+            replyModel.user.name!,
+            style: AppTextStyle.s14_w500(color: context.colors.black),
+          ),
         ),
-        subtitle: Text(
-          replyModel.reply,
-          style: AppTextStyle.s12_w400(color: context.colors.blackOpacity),
+        subtitle: Html(
+          data: replyModel.reply,
+          style: {
+            "body": Style(
+              color: Colors.black,
+              margin: Margins.zero,
+              fontSize: FontSize(
+                12,
+              ),
+              fontWeight: FontWeight.w400,
+            ),
+          },
         ),
         leading: CachedImage(
           height: 40.r,

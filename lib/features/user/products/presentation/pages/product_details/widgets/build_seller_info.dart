@@ -24,20 +24,13 @@ class BuildSellerInfo extends StatelessWidget {
                 ),
                 Gaps.vGap5,
                 Text(
-                  shopModel?.name ?? tr('notFound'),
+                  shopModel?.name ?? tr('inHouseProduct'),
                   style: AppTextStyle.s14_w400(
                     color: context.colors.black,
                   ),
                 ),
               ],
             ),
-            // DefaultButton(
-            //   title: "Message Seller",
-            //   width: 120.w,
-            //   height: 25.h,
-            //   borderRadius: Dimens.borderRadius5PX,
-            //   onTap: () {},
-            // ),
           ],
         ),
         Gaps.line(context.colors.greyWhite, 20.h),

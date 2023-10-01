@@ -29,21 +29,24 @@ class _NotificationsState extends State<Notifications> {
         bloc: controller.notificationsBloc,
         builder: (context, state) {
           if (state is GenericUpdateState) {
-            return Visibility(
-              visible: state.data.isNotEmpty,
-              replacement: Center(
-                child: Text(
-                  tr('noNotifies'),
-                  style: AppTextStyle.s14_w400(color: context.colors.black),
+            return RefreshIndicator(
+              child: Visibility(
+                visible: state.data.isNotEmpty,
+                replacement: Center(
+                  child: Text(
+                    tr('noNotifies'),
+                    style: AppTextStyle.s14_w400(color: context.colors.black),
+                  ),
+                ),
+                child: ListView.builder(
+                  padding: Dimens.paddingAll15PX,
+                  itemCount: state.data.length,
+                  itemBuilder: (context, index) => BuildNotificationsItem(
+                    notification: state.data[index],
+                  ),
                 ),
               ),
-              child: ListView.builder(
-                padding: Dimens.paddingAll15PX,
-                itemCount: state.data.length,
-                itemBuilder: (context, index) => BuildNotificationsItem(
-                  notification: state.data[index],
-                ),
-              ),
+              onRefresh: () => controller.getNotifications(),
             );
           } else {
             return const BuildNotifiesLoading();

@@ -118,8 +118,9 @@ class BuildProductItem extends StatelessWidget {
                           ),
                           checkValue: productModel.isWishlist,
                         ),
-                        if(isForCompare == false) BuildIconItem(
-                          containerColor: productModel.isAddedTCompare == true
+                         BuildIconItem(
+                           isFormCompare: isForCompare,
+                          containerColor:  productModel.isAddedTCompare == true || isForCompare == true
                               ? context.colors.primary
                               : context.colors.white,
                           iconData: Icons.compare_arrows,

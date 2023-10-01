@@ -60,10 +60,10 @@ class Dimens {
   static EdgeInsets inputFieldMargin = const EdgeInsets.symmetric(vertical: 15).r;
   static EdgeInsets headerTitlePadding = const EdgeInsets.only(top: 8, bottom: 30).r;
   static EdgeInsets standardPadding = const EdgeInsets.symmetric(
-      horizontal: Dimens.dp15, vertical: Dimens.dp10).r;
+      horizontal: dp15, vertical:dp10).r;
   static EdgeInsets cardMargin = const EdgeInsets.symmetric(
-      horizontal: Dimens.dp15, vertical: Dimens.dp5).r;
-
+      horizontal: dp15, vertical: dp5).r;
+  static EdgeInsets paddingH10V20= const EdgeInsets.symmetric(horizontal: dp10, vertical: dp20).r;
   static EdgeInsets paddingVertical5PX = const EdgeInsets.symmetric(vertical: 5).r;
   static EdgeInsets paddingVertical8PX = const EdgeInsets.symmetric(vertical: 8).r;
   static EdgeInsets paddingVertical10PX = const EdgeInsets.symmetric(vertical: 10).r;
@@ -84,6 +84,7 @@ class Dimens {
   static EdgeInsets paddingAll20PX = const EdgeInsets.all(20).r;
 
   static EdgeInsets marginTop70 = const EdgeInsets.only(top: 70).r;
+  static EdgeInsets marginTop10 = const EdgeInsets.only(top: 10).r;
 
 
 

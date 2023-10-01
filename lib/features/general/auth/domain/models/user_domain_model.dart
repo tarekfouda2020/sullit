@@ -36,7 +36,9 @@ class UserDomainModel extends BaseDomainModel {
     token = json['token'];
     tokenType = json['token_type'];
     isPhoneActive=json['phone_is_active'];
-    address = address != null ? Address.fromJson(json) : null ;
+    if(address != null){
+      address = Address.fromJson(json['address']) ;
+    }
   }
 
   Map<String, dynamic> toJson() {

@@ -2,6 +2,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
@@ -18,6 +19,7 @@ import 'package:flutter_tdd/features/user/products/domain/use_cases/get_product_
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_variant_price.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/send_query.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
+import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 
 import 'widgets/product_details_widgets_imports.dart';
 

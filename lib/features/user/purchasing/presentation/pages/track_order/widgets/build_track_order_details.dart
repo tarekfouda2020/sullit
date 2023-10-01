@@ -33,7 +33,7 @@ final Orders orderModel;
           ),
           BuildTrackOrderSummaryItem(
             title: "${tr('totalOrderAmount')} :",
-            subTitle: orderModel.orderDate,
+            subTitle: orderModel.total,
           ),
           BuildTrackOrderSummaryItem(
             title: "${tr('shippingMethod')} :",
@@ -51,6 +51,12 @@ final Orders orderModel;
             title: "${tr('shippedBy')} :",
             subTitle: tr('admin'),
           ),
+          Visibility(
+            visible: orderModel.additionalInfo != '',
+            child: BuildTrackOrderSummaryItem(
+            title: "${tr('additionalInfo')} :",
+            subTitle: orderModel.additionalInfo,
+          ),)
         ],
       ),
     );

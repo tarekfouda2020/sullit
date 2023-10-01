@@ -31,8 +31,12 @@ class ProductDetailsController {
 
   void _initVariants(BuildContext context) {
     detailsCubit.state.data?.product.choiceOptions?.map((e) {
-      e.selectedAttribute!.add(e.options!.first);
-      e.hasValue = true;
+      if(e.options != null){
+        e.selectedAttribute!.add(e.options!.first);
+        e.hasValue = true;
+      }else {
+       e.hasValue = false ;
+      }
     }).toList();
     var selectedList = detailsCubit.state.data!.product.choiceOptions!
         .map((e) => e.selectedAttribute)
@@ -175,5 +179,15 @@ class ProductDetailsController {
       resellerId: isResale ? resellerId : 0,
       variants: selectedVariants.join(','),
     );
+  }
+
+  void addToCompare (BuildContext context, Product product){
+    bool auth = context.read<DeviceCubit>().state.model.auth ;
+    if (auth){
+      getIt<ProductsHelper>()
+          .addProductToCompare(product, context);
+    }else {
+      CustomToast.showAuthDialog(context);
+    }
   }
 }
