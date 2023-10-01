@@ -25,7 +25,7 @@ class BuildTabItem extends StatelessWidget {
         ),
         Gaps.vGap4,
         Text(
-          controller.tabsText[index],
+          controller.tabsText(context)[index],
           style: AppTextStyle.s10_bold(
             color: isActive ? context.colors.primary : context.colors.gray,
           ),

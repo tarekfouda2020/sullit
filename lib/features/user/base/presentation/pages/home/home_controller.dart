@@ -17,11 +17,11 @@ class HomeController {
     Icons.account_circle
   ];
 
-  List<String> tabsText = [
-    tr('home'),
-    tr('categories'),
-    tr('notifications'),
-    tr("account"),
+  List<String> tabsText (BuildContext context) => [
+    tr('home', context : context),
+    tr('categories', context: context),
+    tr('notifications', context: context),
+    tr("account", context: context),
   ];
 
   void setUserLang(BuildContext context,String lang)async{
