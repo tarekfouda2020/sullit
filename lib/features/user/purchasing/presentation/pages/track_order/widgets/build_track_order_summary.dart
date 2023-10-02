@@ -19,6 +19,12 @@ class BuildTrackOrderSummary extends StatelessWidget {
                   style: AppTextStyle.s18_w500(color: context.colors.black),
                 ),
                 BuildTrackOrderDetails(orderModel: state.data!),
+                ...List.generate(
+                  state.data!.orderDetails.length,
+                  (index) => BuildShippingDetailsItem(
+                    orderModel: state.data!.orderDetails[index],
+                  ),
+                )
               ],
             );
           } else {

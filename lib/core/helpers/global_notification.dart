@@ -10,18 +10,22 @@ import 'helper_methods.dart';
 
 @lazySingleton
 class GlobalNotification {
-  static final StreamController<Map<String, dynamic>> _onMessageStreamController =
-  StreamController.broadcast();
+  static final StreamController<Map<String, dynamic>>
+      _onMessageStreamController = StreamController.broadcast();
 
   late FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin;
-
+  static GlobalNotification instance = GlobalNotification._();
   static FirebaseMessaging messaging = FirebaseMessaging.instance;
 
- Future<void> setupNotification()async{
-    _flutterLocalNotificationsPlugin =FlutterLocalNotificationsPlugin();
+  GlobalNotification._();
+
+  GlobalNotification();
+
+  Future<void> setupNotification() async {
+    _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     const android = AndroidInitializationSettings("@mipmap/launcher_icon");
-    const ios =DarwinInitializationSettings();
-    const initSettings =InitializationSettings(android: android, iOS: ios);
+    const ios = DarwinInitializationSettings();
+    const initSettings = InitializationSettings(android: android, iOS: ios);
     _flutterLocalNotificationsPlugin.initialize(
       initSettings,
       // onDidReceiveBackgroundNotificationResponse:(details)=> flutterNotificationClick( details.payload),
@@ -29,31 +33,35 @@ class GlobalNotification {
     );
     await Firebase.initializeApp();
     final settings = await messaging.requestPermission(provisional: true);
-    if(settings.authorizationStatus==AuthorizationStatus.authorized){
+    print('User granted permission: ${settings.authorizationStatus}');
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       messaging.getToken().then((token) {
-        log("$token");
+        print(token);
       });
       messaging.setForegroundNotificationPresentationOptions();
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-        log("_____________________Message data:${message.data}");
-        log("_____________________notification:${message.notification?.title}");
+        print("_____________________Message data:${message.data}");
+        print(
+            "_____________________notification:${message.notification?.title}");
         _showLocalNotification(message);
         _onMessageStreamController.add(message.data);
-        if (int.parse(message.data["type"]??"0") == -1) {
+        if (int.parse(message.data["type"] ?? "0") == -1) {
           HelperMethods.instance.clearSavedData();
           // AutoRouter.of(context).push(const LoginRoute());
         }
       });
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-        log('AonMessageOpenedApp event was published!');
+        print('AonMessageOpenedApp event was published!');
         flutterNotificationClick(json.encode(message.data));
       });
-      FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+      FirebaseMessaging.onBackgroundMessage(
+          _firebaseMessagingBackgroundHandler);
     }
-
   }
 
-  static Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  static Future<void> _firebaseMessagingBackgroundHandler(
+      RemoteMessage message) async {
     log("Handling a background message: ${message.messageId}");
     await Firebase.initializeApp();
     // flutterNotificationClick(json.encode(message.data));
@@ -75,16 +83,14 @@ class GlobalNotification {
     const ios = DarwinNotificationDetails();
     final platform = NotificationDetails(android: android, iOS: ios);
     _flutterLocalNotificationsPlugin.show(
-        DateTime.now().microsecond, "${message.notification?.title}", "${message.notification?.body}", platform,
+        DateTime.now().microsecond,
+        "${message.notification?.title}",
+        "${message.notification?.body}",
+        platform,
         payload: json.encode(message.data));
   }
 
-
-
   static Future flutterNotificationClick(String? details) async {
-
     // final _data = json.decode("$payload");
-
   }
-
 }

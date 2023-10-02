@@ -18,6 +18,7 @@ class OrderDetails extends BaseDomainModel {
   String msgCantReview;
   Reviews? review;
   OrderReview? orderReview;
+  String? shippedBy;
   bool? isSelected;
   GenericBloc<int>?qtyCubit;
 
@@ -34,6 +35,7 @@ class OrderDetails extends BaseDomainModel {
     required this.msgCantReview,
     this.review,
     this.orderReview,
+    this.shippedBy,
     this.isSelected = false,
     this.qtyCubit,
   });

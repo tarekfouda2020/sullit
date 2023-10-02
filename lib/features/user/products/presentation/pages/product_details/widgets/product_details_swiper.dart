@@ -53,7 +53,11 @@ class BuildProductDetailsSwiper extends StatelessWidget {
         ),
         BuildIconItem(
           iconData: Icons.compare_arrows,
-          onTap: ()=> controller.addToCompare(context, productModel),
+          checkValue: productModel.isAddedTCompare,
+          containerColor: productModel.isAddedTCompare == true
+              ? context.colors.primary
+              : context.colors.white,
+          onTap: () => controller.addToCompare(context,productModel),
           padding: Dimens.paddingAll8PX,
         ),
       ],

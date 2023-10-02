@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 
@@ -18,31 +17,32 @@ class CustomInputDecoration extends InputDecoration {
 
   const CustomInputDecoration(
       {required this.lang,
-      this.hint,
-      this.labelTxt,
-      this.prefIcon,
-      this.sufIcon,
-      this.hintColor,
-      this.customFillColor,
-      this.enableColor,
-      this.focsColor,
-      this.borderRadius,
-      this.padding})
+        this.hint,
+        this.labelTxt,
+        this.prefIcon,
+        this.sufIcon,
+        this.hintColor,
+        this.customFillColor,
+        this.enableColor,
+        this.focsColor,
+        this.borderRadius,
+        this.padding})
       : super();
 
   @override
   InputBorder get enabledBorder => OutlineInputBorder(
-        borderSide: BorderSide(
-            color: enableColor ?? AppColors.noContextInstance.greyWhite,
-            width: .7),
-        borderRadius: borderRadius ?? BorderRadius.circular(10),
-      );
+    borderSide: BorderSide(
+        color: enableColor ?? AppColors.noContextInstance.greyWhite,
+        width: .7),
+    borderRadius: borderRadius ?? BorderRadius.circular(10),
+  );
 
   @override
   InputBorder get focusedBorder => OutlineInputBorder(
       borderRadius: borderRadius ?? BorderRadius.circular(10),
       borderSide: BorderSide(
-          color: focusColor ?? AppColors.noContextInstance.primary, width: 1));
+          color: focusColor ?? AppColors.noContextInstance.greyWhite,
+          width: 1));
 
   @override
   InputBorder get errorBorder => OutlineInputBorder(
@@ -51,9 +51,8 @@ class CustomInputDecoration extends InputDecoration {
 
   @override
   InputBorder get focusedErrorBorder => OutlineInputBorder(
-        borderRadius: borderRadius ?? BorderRadius.circular(10),
-        borderSide: const BorderSide(color: Colors.red, width: 2),
-      );
+      borderRadius: borderRadius ?? BorderRadius.circular(10),
+      borderSide: const BorderSide(color: Colors.red, width: 2));
 
   @override
   TextStyle get errorStyle =>
@@ -66,21 +65,21 @@ class CustomInputDecoration extends InputDecoration {
   Widget? get label => labelTxt == null
       ? super.label
       : Text(
-          labelTxt ?? "",
-          style: labelStyle,
-        );
+    labelTxt ?? "",
+    style: labelStyle,
+  );
 
   @override
   TextStyle get labelStyle =>
-      AppTextStyle.s14_w400(color: AppColors.noContextInstance.blackOpacity);
+      AppTextStyle.s12_w400(color: AppColors.noContextInstance.blackOpacity);
 
   @override
   TextStyle? get hintStyle =>
-      AppTextStyle.s14_w400(color: AppColors.noContextInstance.blackOpacity);
+      AppTextStyle.s12_w400(color: AppColors.noContextInstance.blackOpacity);
 
   @override
   EdgeInsetsGeometry get contentPadding =>
-      padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r;
+      padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 10);
 
   @override
   bool get filled => true;

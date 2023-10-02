@@ -13,7 +13,7 @@ class RetrieveOrderController {
   RetrieveOrderController(Orders model) {
     orderModel = model;
     orderModel.orderDetails.forEach((element) {
-      element.qtyCubit = GenericBloc(element.quantity);
+      element.qtyCubit = GenericBloc(element.availableReturnQty);
     });
     orderCubit.onUpdateData(orderModel.orderDetails);
   }
@@ -25,14 +25,14 @@ class RetrieveOrderController {
 
   void increaseQty(OrderDetails model) {
     var qty = model.qtyCubit!.state.data;
-    if (qty < model.quantity) {
+    if (qty < model.availableReturnQty) {
       var newQty = qty + 1;
       model.qtyCubit?.onUpdateData(newQty);
     }
   }
 
   void decreaseQty(OrderDetails model) {
-    if (model.quantity > 1) {
+    if (model.availableReturnQty > 1) {
       var qty = model.qtyCubit!.state.data;
       if (qty > 1) {
         var newQty = qty - 1;
@@ -46,6 +46,7 @@ class RetrieveOrderController {
     if (result != null) {
       Address addressModel = result as Address;
       addressCubit.onUpdateData(addressModel);
+      print(">>>>>${addressCubit.state.data?.toJson()}");
     }
   }
 
@@ -53,18 +54,21 @@ class RetrieveOrderController {
     if (formKey.currentState!.validate()) {
       var params = _returnParams();
       if (selectedProducts.isEmpty) {
-        CustomToast.showSimpleToast(
-            msg: tr('productsSelectionValidation'));
+        CustomToast.showSimpleToast(msg: tr('productsSelectionValidation'));
         return;
       }
       if (addressCubit.state.data == null) {
         CustomToast.showSimpleToast(msg: tr('pleaseChooseAddress'));
         return;
+      } else {
+        if (addressCubit.state.data?.isActive == false) {
+          CustomToast.showSimpleToast(msg: tr("verifyAddress"));
+          return;
+        }
       }
       var data = await ReturnOrder().call(params);
       if (data) {
-        CustomToast.showSimpleToast(
-            msg: tr('orderReturnedSuccessfully'));
+        CustomToast.showSimpleToast(msg: tr('orderReturnedSuccessfully'));
         AutoRouter.of(context).push(HomeRoute(index: 0));
       }
     }

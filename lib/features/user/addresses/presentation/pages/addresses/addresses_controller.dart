@@ -19,6 +19,14 @@ class AddressesController {
       addressesBloc.onUpdateData(addressesBloc.state.data);
     }
   }
+  void onActiveAddress(BuildContext context, Address address) async {
+    var result = await AutoRouter.of(context)
+        .push(ActiveAccountRoute(phone: address.phone!));
+    if (result == true) {
+      address.isActive = true;
+      addressesBloc.onUpdateData(addressesBloc.state.data);
+    }
+  }
 
   void checkAddAddress(BuildContext context) async {
     bool auth = context.read<DeviceCubit>().state.model.auth;

@@ -28,6 +28,7 @@ class OrderDetailsModel extends BaseApiModel<OrderDetails>
     String? tax,
     @JsonKey(name: 'review_is_available') required bool isAvailableReview,
     @JsonKey(name: 'msg_cant_review') required String msgCantReview,
+    @JsonKey(name: 'shipped_by')  String? shippedBy,
     ReviewsModel? review,
   }) = _OrderDetailsModel;
 
@@ -47,6 +48,7 @@ class OrderDetailsModel extends BaseApiModel<OrderDetails>
       msgCantReview: msgCantReview,
       product: product?.toDomainModel(),
       review: review?.toDomainModel(),
+      shippedBy:shippedBy,
       tax: tax,
     );
   }

@@ -19,7 +19,7 @@ class BuildProfileFormFields extends StatelessWidget {
             fieldTypes: FieldTypes.normal,
             type: TextInputType.text,
             action: TextInputAction.next,
-            validate: (value) => value?.validateName(),
+            validate: (value) => value?.validateEmpty(),
             label: tr('yourName'),
           ),
           GenericTextField(

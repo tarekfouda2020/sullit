@@ -18,7 +18,7 @@ class Shop extends BaseDomainModel {
    String? twitter;
    String? instagram;
    String? youtube;
-   int? rating;
+   num? rating;
 
   Shop({
     required this.id,

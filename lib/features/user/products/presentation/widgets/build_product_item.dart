@@ -127,7 +127,8 @@ class BuildProductItem extends StatelessWidget {
                           checkValue: productModel.isAddedTCompare,
                           onTap: () {
                             getIt<ProductsHelper>().addProductToCompare(
-                                productModel, context);
+                                context:context,product:
+                                productModel,);
                             onCompareRefresh.call();
                           },
                         ),

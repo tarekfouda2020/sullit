@@ -25,6 +25,7 @@ mixin _$TicketReplyModel {
   DateTime get createdAt => throw _privateConstructorUsedError;
   String get reply => throw _privateConstructorUsedError;
   UserModel get user => throw _privateConstructorUsedError;
+  List<ImageModel> get images => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +43,8 @@ abstract class $TicketReplyModelCopyWith<$Res> {
       {int id,
       @JsonKey(name: "created_at") DateTime createdAt,
       String reply,
-      UserModel user});
+      UserModel user,
+      List<ImageModel> images});
 
   $UserModelCopyWith<$Res> get user;
 }
@@ -64,6 +66,7 @@ class _$TicketReplyModelCopyWithImpl<$Res, $Val extends TicketReplyModel>
     Object? createdAt = null,
     Object? reply = null,
     Object? user = null,
+    Object? images = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -82,6 +85,10 @@ class _$TicketReplyModelCopyWithImpl<$Res, $Val extends TicketReplyModel>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserModel,
+      images: null == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<ImageModel>,
     ) as $Val);
   }
 
@@ -106,7 +113,8 @@ abstract class _$$_TicketReplyModelCopyWith<$Res>
       {int id,
       @JsonKey(name: "created_at") DateTime createdAt,
       String reply,
-      UserModel user});
+      UserModel user,
+      List<ImageModel> images});
 
   @override
   $UserModelCopyWith<$Res> get user;
@@ -127,6 +135,7 @@ class __$$_TicketReplyModelCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? reply = null,
     Object? user = null,
+    Object? images = null,
   }) {
     return _then(_$_TicketReplyModel(
       id: null == id
@@ -145,6 +154,10 @@ class __$$_TicketReplyModelCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserModel,
+      images: null == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<ImageModel>,
     ));
   }
 }
@@ -157,8 +170,10 @@ class _$_TicketReplyModel extends _TicketReplyModel {
       {required this.id,
       @JsonKey(name: "created_at") required this.createdAt,
       required this.reply,
-      required this.user})
-      : super._();
+      required this.user,
+      required final List<ImageModel> images})
+      : _images = images,
+        super._();
 
   factory _$_TicketReplyModel.fromJson(Map<String, dynamic> json) =>
       _$$_TicketReplyModelFromJson(json);
@@ -172,10 +187,17 @@ class _$_TicketReplyModel extends _TicketReplyModel {
   final String reply;
   @override
   final UserModel user;
+  final List<ImageModel> _images;
+  @override
+  List<ImageModel> get images {
+    if (_images is EqualUnmodifiableListView) return _images;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_images);
+  }
 
   @override
   String toString() {
-    return 'TicketReplyModel(id: $id, createdAt: $createdAt, reply: $reply, user: $user)';
+    return 'TicketReplyModel(id: $id, createdAt: $createdAt, reply: $reply, user: $user, images: $images)';
   }
 
   @override
@@ -187,12 +209,14 @@ class _$_TicketReplyModel extends _TicketReplyModel {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.reply, reply) || other.reply == reply) &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, createdAt, reply, user);
+  int get hashCode => Object.hash(runtimeType, id, createdAt, reply, user,
+      const DeepCollectionEquality().hash(_images));
 
   @JsonKey(ignore: true)
   @override
@@ -213,7 +237,8 @@ abstract class _TicketReplyModel extends TicketReplyModel {
       {required final int id,
       @JsonKey(name: "created_at") required final DateTime createdAt,
       required final String reply,
-      required final UserModel user}) = _$_TicketReplyModel;
+      required final UserModel user,
+      required final List<ImageModel> images}) = _$_TicketReplyModel;
   const _TicketReplyModel._() : super._();
 
   factory _TicketReplyModel.fromJson(Map<String, dynamic> json) =
@@ -228,6 +253,8 @@ abstract class _TicketReplyModel extends TicketReplyModel {
   String get reply;
   @override
   UserModel get user;
+  @override
+  List<ImageModel> get images;
   @override
   @JsonKey(ignore: true)
   _$$_TicketReplyModelCopyWith<_$_TicketReplyModel> get copyWith =>

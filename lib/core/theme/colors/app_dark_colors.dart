@@ -9,13 +9,13 @@ class AppDarkColors extends AppColors {
   Color get secondary => const Color(0xff30e3a0);
 
   @override
-  Color get white => Colors.black;
+  Color get white => Colors.white;
 
   @override
   Color get appBarColor => const Color(0xFFF9656B);
 
   @override
-  Color get black => Colors.white;
+  Color get black => Colors.black;
 
   @override
   Color get background => Colors.white;

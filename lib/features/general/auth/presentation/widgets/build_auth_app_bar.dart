@@ -29,11 +29,7 @@ class BuildAuthAppBar extends StatelessWidget implements PreferredSizeWidget {
         offstage: !showBack,
         child: InkWell(
           onTap: onBack ?? AutoRouter.of(context).pop,
-          child: Icon(
-            Icons.arrow_back,
-            size: 23.sp,
-            color: context.colors.black,
-          ),
+          child: Icon(Icons.arrow_back_ios, size: 15.sp),
         ),
       ),
     );

@@ -7,30 +7,34 @@ class BuildProductDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "${tr('description')} : ",
-          style: AppTextStyle.s15_w700(
-            color: context.colors.black,
-          ),
-        ),
-        Gaps.vGap8,
-        Html(
-          data: description,
-          style: {
-            "body": Style(
-              color: Colors.black,
-              margin: Margins.zero,
-              fontSize: FontSize(
-                Dimens.font_sp12.sp,
-              ),
-              fontWeight: FontWeight.w400,
+    return Visibility(
+      visible: description.isNotEmpty,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "${tr('description')} : ",
+            style: AppTextStyle.s15_w700(
+              color: context.colors.black,
             ),
-          },
-        )
-      ],
+          ),
+          Gaps.vGap8,
+          Html(
+            data: description,
+            style: {
+              "body": Style(
+                color: Colors.black,
+                margin: Margins.zero,
+                fontSize: FontSize(
+                  Dimens.font_sp12.sp,
+                ),
+                fontWeight: FontWeight.w400,
+              ),
+            },
+          ),
+          Gaps.vGap10,
+        ],
+      ),
     );
   }
 }

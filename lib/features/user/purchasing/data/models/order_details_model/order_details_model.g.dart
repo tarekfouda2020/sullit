@@ -20,6 +20,7 @@ _$_OrderDetailsModel _$$_OrderDetailsModelFromJson(Map<String, dynamic> json) =>
       tax: json['tax'] as String?,
       isAvailableReview: json['review_is_available'] as bool,
       msgCantReview: json['msg_cant_review'] as String,
+      shippedBy: json['shipped_by'] as String?,
       review: json['review'] == null
           ? null
           : ReviewsModel.fromJson(json['review'] as Map<String, dynamic>),
@@ -38,5 +39,6 @@ Map<String, dynamic> _$$_OrderDetailsModelToJson(
       'tax': instance.tax,
       'review_is_available': instance.isAvailableReview,
       'msg_cant_review': instance.msgCantReview,
+      'shipped_by': instance.shippedBy,
       'review': instance.review?.toJson(),
     };

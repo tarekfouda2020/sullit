@@ -6,7 +6,6 @@ import 'package:flutter_tdd/core/constants/input_field_style/custom_input_decora
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
-
 import 'custom_dropDown/CustomDropDown.dart';
 
 class DropdownTextField<T> extends StatelessWidget {
@@ -90,10 +89,9 @@ class DropdownTextField<T> extends StatelessWidget {
         showClearButton: showClearButton,
         popupItemBuilder: itemBuilder,
         clearButton: Padding(
-          padding: clearBtnPadding ??
-              const EdgeInsets.symmetric(horizontal: 5),
-          child: Icon(Icons.clear,
-              size: 20, color: buttonsColor ?? Colors.black),
+          padding: clearBtnPadding ?? const EdgeInsets.symmetric(horizontal: 5),
+          child:
+              Icon(Icons.clear, size: 20, color: buttonsColor ?? Colors.black),
         ),
         dropDownButton: Padding(
           padding: arrowBtnPadding ?? const EdgeInsets.symmetric(horizontal: 5),
@@ -103,9 +101,15 @@ class DropdownTextField<T> extends StatelessWidget {
         selectedItem: selectedItem,
         itemAsString: itemAsString,
         showSelectedItem: showSelectedItem,
+        dropdownSearchBaseStyle:
+            AppTextStyle.s13_w400(color: context.colors.black),
         style: AppTextStyle.s13_w400(color: context.colors.black),
         itemStyle: AppTextStyle.s13_w400(color: context.colors.black),
-        searchBoxStyle: AppTextStyle.s12_w400(color: context.colors.blackOpacity),
+        searchBoxStyle:
+            AppTextStyle.s12_w400(color: context.colors.blackOpacity),
+        searchFieldProps: TextFieldProps(
+          style: AppTextStyle.s12_w400(color: context.colors.blackOpacity),
+        ),
         searchBoxDecoration: CustomInputDecoration(
           hintColor: context.colors.black,
           hint: searchHint ?? tr('search'),
@@ -121,22 +125,27 @@ class DropdownTextField<T> extends StatelessWidget {
           child: Center(
             child: Text(
               label != null ? label! : hint ?? "",
-              style: const AppTextStyle.s16_w500(color: Colors.white),
+              style: const AppTextStyle.s16_w500(color: Colors.black),
             ),
           ),
         ),
-        dropdownSearchBaseStyle : const AppTextStyle.s16_w500(color: Colors.black),
         dropdownSearchDecoration: CustomInputDecoration(
           hintColor: hintColor,
-
           labelTxt: label,
           hint: hint,
-          lang: lang,
           customFillColor: fillColor,
           enableColor: enableColor,
           borderRadius: radius,
+          lang: lang,
           prefIcon: prefixIcon,
-          padding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
+          padding: contentPadding ??
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
+        ),
+        emptyBuilder: (context, action) => const Center(
+          child: Text(
+            "No Data Found !",
+            style: AppTextStyle.s16_w500(color: Colors.black),
+          ),
         ),
       ),
     );

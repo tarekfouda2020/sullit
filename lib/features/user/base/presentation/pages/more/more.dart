@@ -65,7 +65,7 @@ class _MoreState extends State<More> {
             onTap: () => controller.checkAuth(context, MoreRoutes.blogs),
           ),
           BuildMoreItem(
-            title: tr('wishlists'),
+            title: tr('wishlist'),
             icon: Icons.favorite_border,
             onTap: () => controller.checkAuth(context, MoreRoutes.wishlist),
           ),

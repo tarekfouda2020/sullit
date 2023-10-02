@@ -36,7 +36,7 @@ class BuildReviewDialog extends StatelessWidget {
               ),
               Gaps.vGap10,
               RatingBar.builder(
-                initialRating: orderDetailsModel.review!.rate.toDouble(),
+                initialRating: orderDetailsModel.review?.rate.toDouble()??0.0,
                 minRating: 0,
                 direction: Axis.horizontal,
                 allowHalfRating: false,
@@ -61,7 +61,7 @@ class BuildReviewDialog extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      orderDetailsModel.review!.comment,
+                      orderDetailsModel.review?.comment??"",
                       style: AppTextStyle.s15_w400(
                         color: context.colors.black,
                       ),

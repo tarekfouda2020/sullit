@@ -1,8 +1,10 @@
 part of 'track_order_widgets_imports.dart';
+
 class BuildTrackOrderDetails extends StatelessWidget {
-final Orders orderModel;
+  final Orders orderModel;
 
   const BuildTrackOrderDetails({super.key, required this.orderModel});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +35,7 @@ final Orders orderModel;
           ),
           BuildTrackOrderSummaryItem(
             title: "${tr('totalOrderAmount')} :",
-            subTitle: orderModel.total,
+            subTitle: orderModel.subtotal,
           ),
           BuildTrackOrderSummaryItem(
             title: "${tr('shippingMethod')} :",
@@ -47,16 +49,14 @@ final Orders orderModel;
             title: "${tr('deliveryStatus')} :",
             subTitle: orderModel.deliveryStatus,
           ),
-          BuildTrackOrderSummaryItem(
-            title: "${tr('shippedBy')} :",
-            subTitle: tr('admin'),
-          ),
+
           Visibility(
             visible: orderModel.additionalInfo != '',
             child: BuildTrackOrderSummaryItem(
-            title: "${tr('additionalInfo')} :",
-            subTitle: orderModel.additionalInfo,
-          ),)
+              title: "${tr('additionalInfo')} :",
+              subTitle: orderModel.additionalInfo,
+            ),
+          )
         ],
       ),
     );

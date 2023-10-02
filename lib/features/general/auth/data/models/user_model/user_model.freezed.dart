@@ -38,6 +38,7 @@ mixin _$UserModel {
   String get tokenType => throw _privateConstructorUsedError;
   @JsonKey(name: "phone_is_active")
   bool get isPhoneActive => throw _privateConstructorUsedError;
+  @JsonKey(name: "address")
   AddressModel? get address => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -61,7 +62,7 @@ abstract class $UserModelCopyWith<$Res> {
       @JsonKey(name: "token") String token,
       @JsonKey(name: "token_type") String tokenType,
       @JsonKey(name: "phone_is_active") bool isPhoneActive,
-      AddressModel? address});
+      @JsonKey(name: "address") AddressModel? address});
 
   $AddressModelCopyWith<$Res>? get address;
 }
@@ -164,7 +165,7 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       @JsonKey(name: "token") String token,
       @JsonKey(name: "token_type") String tokenType,
       @JsonKey(name: "phone_is_active") bool isPhoneActive,
-      AddressModel? address});
+      @JsonKey(name: "address") AddressModel? address});
 
   @override
   $AddressModelCopyWith<$Res>? get address;
@@ -251,7 +252,7 @@ class _$_UserModel extends _UserModel {
       @JsonKey(name: "token") required this.token,
       @JsonKey(name: "token_type") required this.tokenType,
       @JsonKey(name: "phone_is_active") required this.isPhoneActive,
-      this.address})
+      @JsonKey(name: "address") this.address})
       : super._();
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
@@ -285,6 +286,7 @@ class _$_UserModel extends _UserModel {
   @JsonKey(name: "phone_is_active")
   final bool isPhoneActive;
   @override
+  @JsonKey(name: "address")
   final AddressModel? address;
 
   @override
@@ -342,7 +344,7 @@ abstract class _UserModel extends UserModel {
       @JsonKey(name: "token") required final String token,
       @JsonKey(name: "token_type") required final String tokenType,
       @JsonKey(name: "phone_is_active") required final bool isPhoneActive,
-      final AddressModel? address}) = _$_UserModel;
+      @JsonKey(name: "address") final AddressModel? address}) = _$_UserModel;
   const _UserModel._() : super._();
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -376,6 +378,7 @@ abstract class _UserModel extends UserModel {
   @JsonKey(name: "phone_is_active")
   bool get isPhoneActive;
   @override
+  @JsonKey(name: "address")
   AddressModel? get address;
   @override
   @JsonKey(ignore: true)

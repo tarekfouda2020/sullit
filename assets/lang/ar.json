@@ -398,9 +398,9 @@
   "customer": "عميل",
   "shippingMethod": "طريقة الشحن",
   "paymentMethod": "طريقة الدفع",
-  "reviewProduct": "مراحعة المنتج",
+  "reviewProduct": "مراجعة المنتج",
   "comment": "تعليق",
-  "submitReview":"إرسال المراجعة",
+  "submitReview": "إرسال المراجعة",
   "amount": "الكميه",
   "returnReason": "سبب الإسترجاع",
   "typeYourReason": "أكتب سبب الإسترجاع",
@@ -414,7 +414,7 @@
   "checkYourCode": "تأكد من صحة الكود",
   "date": "التاريخ",
   "noDataChanged": "لم يتم تغيير اي بيانات",
-  "walletBalanceEmpty" : "لا يوجد رصيد في المحفظة",
+  "walletBalanceEmpty": "لا يوجد رصيد في المحفظة",
   "additionalInfo": "بيانات إضافيه",
   "inHouseProduct": "منتج داخلي",
   "paymentStatus": "حالة الدفع",
@@ -485,7 +485,10 @@
   "langauge": "اللغه",
   "ar": "العربيه",
   "en": "English",
-  "loginToYourAcc": "قم بتسجيل الدخول الي حسابك"
+  "loginToYourAcc": "قم بتسجيل الدخول الي حسابك",
+  "seller": "التاجر",
+  "verifyAddress": "يجب تفعيل عنوانك اولا",
+  "reviewSuccess": "تم ارسال تقييمك بنجاح"
 }
 
 

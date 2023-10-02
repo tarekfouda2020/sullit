@@ -34,6 +34,8 @@ mixin _$OrderDetailsModel {
   bool get isAvailableReview => throw _privateConstructorUsedError;
   @JsonKey(name: 'msg_cant_review')
   String get msgCantReview => throw _privateConstructorUsedError;
+  @JsonKey(name: 'shipped_by')
+  String? get shippedBy => throw _privateConstructorUsedError;
   ReviewsModel? get review => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -59,6 +61,7 @@ abstract class $OrderDetailsModelCopyWith<$Res> {
       String? tax,
       @JsonKey(name: 'review_is_available') bool isAvailableReview,
       @JsonKey(name: 'msg_cant_review') String msgCantReview,
+      @JsonKey(name: 'shipped_by') String? shippedBy,
       ReviewsModel? review});
 
   $ProductModelCopyWith<$Res>? get product;
@@ -88,6 +91,7 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
     Object? tax = freezed,
     Object? isAvailableReview = null,
     Object? msgCantReview = null,
+    Object? shippedBy = freezed,
     Object? review = freezed,
   }) {
     return _then(_value.copyWith(
@@ -131,6 +135,10 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
           ? _value.msgCantReview
           : msgCantReview // ignore: cast_nullable_to_non_nullable
               as String,
+      shippedBy: freezed == shippedBy
+          ? _value.shippedBy
+          : shippedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
       review: freezed == review
           ? _value.review
           : review // ignore: cast_nullable_to_non_nullable
@@ -182,6 +190,7 @@ abstract class _$$_OrderDetailsModelCopyWith<$Res>
       String? tax,
       @JsonKey(name: 'review_is_available') bool isAvailableReview,
       @JsonKey(name: 'msg_cant_review') String msgCantReview,
+      @JsonKey(name: 'shipped_by') String? shippedBy,
       ReviewsModel? review});
 
   @override
@@ -211,6 +220,7 @@ class __$$_OrderDetailsModelCopyWithImpl<$Res>
     Object? tax = freezed,
     Object? isAvailableReview = null,
     Object? msgCantReview = null,
+    Object? shippedBy = freezed,
     Object? review = freezed,
   }) {
     return _then(_$_OrderDetailsModel(
@@ -254,6 +264,10 @@ class __$$_OrderDetailsModelCopyWithImpl<$Res>
           ? _value.msgCantReview
           : msgCantReview // ignore: cast_nullable_to_non_nullable
               as String,
+      shippedBy: freezed == shippedBy
+          ? _value.shippedBy
+          : shippedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
       review: freezed == review
           ? _value.review
           : review // ignore: cast_nullable_to_non_nullable
@@ -277,6 +291,7 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
       this.tax,
       @JsonKey(name: 'review_is_available') required this.isAvailableReview,
       @JsonKey(name: 'msg_cant_review') required this.msgCantReview,
+      @JsonKey(name: 'shipped_by') this.shippedBy,
       this.review})
       : super._();
 
@@ -308,11 +323,14 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
   @JsonKey(name: 'msg_cant_review')
   final String msgCantReview;
   @override
+  @JsonKey(name: 'shipped_by')
+  final String? shippedBy;
+  @override
   final ReviewsModel? review;
 
   @override
   String toString() {
-    return 'OrderDetailsModel(id: $id, product: $product, variation: $variation, quantity: $quantity, availableReturnQty: $availableReturnQty, deliveryType: $deliveryType, price: $price, tax: $tax, isAvailableReview: $isAvailableReview, msgCantReview: $msgCantReview, review: $review)';
+    return 'OrderDetailsModel(id: $id, product: $product, variation: $variation, quantity: $quantity, availableReturnQty: $availableReturnQty, deliveryType: $deliveryType, price: $price, tax: $tax, isAvailableReview: $isAvailableReview, msgCantReview: $msgCantReview, shippedBy: $shippedBy, review: $review)';
   }
 
   @override
@@ -336,6 +354,8 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
                 other.isAvailableReview == isAvailableReview) &&
             (identical(other.msgCantReview, msgCantReview) ||
                 other.msgCantReview == msgCantReview) &&
+            (identical(other.shippedBy, shippedBy) ||
+                other.shippedBy == shippedBy) &&
             (identical(other.review, review) || other.review == review));
   }
 
@@ -353,6 +373,7 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
       tax,
       isAvailableReview,
       msgCantReview,
+      shippedBy,
       review);
 
   @JsonKey(ignore: true)
@@ -384,6 +405,7 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
       @JsonKey(name: 'review_is_available')
       required final bool isAvailableReview,
       @JsonKey(name: 'msg_cant_review') required final String msgCantReview,
+      @JsonKey(name: 'shipped_by') final String? shippedBy,
       final ReviewsModel? review}) = _$_OrderDetailsModel;
   const _OrderDetailsModel._() : super._();
 
@@ -414,6 +436,9 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
   @override
   @JsonKey(name: 'msg_cant_review')
   String get msgCantReview;
+  @override
+  @JsonKey(name: 'shipped_by')
+  String? get shippedBy;
   @override
   ReviewsModel? get review;
   @override

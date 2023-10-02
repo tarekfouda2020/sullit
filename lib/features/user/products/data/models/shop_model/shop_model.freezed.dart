@@ -39,7 +39,7 @@ mixin _$ShopModel {
   String? get twitter => throw _privateConstructorUsedError;
   String? get instagram => throw _privateConstructorUsedError;
   String? get youtube => throw _privateConstructorUsedError;
-  int get rating => throw _privateConstructorUsedError;
+  double get rating => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -70,7 +70,7 @@ abstract class $ShopModelCopyWith<$Res> {
       String? twitter,
       String? instagram,
       String? youtube,
-      int rating});
+      double rating});
 }
 
 /// @nodoc
@@ -177,7 +177,7 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ) as $Val);
   }
 }
@@ -207,7 +207,7 @@ abstract class _$$_ShopModelCopyWith<$Res> implements $ShopModelCopyWith<$Res> {
       String? twitter,
       String? instagram,
       String? youtube,
-      int rating});
+      double rating});
 }
 
 /// @nodoc
@@ -312,7 +312,7 @@ class __$$_ShopModelCopyWithImpl<$Res>
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ));
   }
 }
@@ -382,7 +382,7 @@ class _$_ShopModel extends _ShopModel {
   @override
   final String? youtube;
   @override
-  final int rating;
+  final double rating;
 
   @override
   String toString() {
@@ -476,7 +476,7 @@ abstract class _ShopModel extends ShopModel {
       required final String? twitter,
       required final String? instagram,
       required final String? youtube,
-      required final int rating}) = _$_ShopModel;
+      required final double rating}) = _$_ShopModel;
   const _ShopModel._() : super._();
 
   factory _ShopModel.fromJson(Map<String, dynamic> json) =
@@ -519,7 +519,7 @@ abstract class _ShopModel extends ShopModel {
   @override
   String? get youtube;
   @override
-  int get rating;
+  double get rating;
   @override
   @JsonKey(ignore: true)
   _$$_ShopModelCopyWith<_$_ShopModel> get copyWith =>

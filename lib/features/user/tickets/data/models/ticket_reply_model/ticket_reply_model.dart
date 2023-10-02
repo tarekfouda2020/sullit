@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
+import 'package:flutter_tdd/core/models/api_models/image_model/image_model.dart';
 import 'package:flutter_tdd/features/general/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/user/tickets/domain/models/ticket_reply.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,7 +19,8 @@ class TicketReplyModel extends BaseApiModel<TicketReply>
     required int id,
     @JsonKey(name: "created_at") required DateTime createdAt,
     required String reply,
-    required UserModel user,
+    required UserModel user,    required List<ImageModel> images,
+
   }) = _TicketReplyModel;
 
   factory TicketReplyModel.fromJson(Map<String, dynamic> json) =>
@@ -31,6 +33,7 @@ class TicketReplyModel extends BaseApiModel<TicketReply>
       createdAt: createdAt,
       user: user.toDomainModel(),
       reply: reply,
+      images: images.map((e) => e.toDomainModel()).toList(),
     );
   }
 }

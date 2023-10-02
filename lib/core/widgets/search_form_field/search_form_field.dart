@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 
 class SearchFormField extends StatefulWidget {
   final Function(String)? onSubmit;
@@ -38,7 +41,7 @@ class _SearchFormFieldState extends State<SearchFormField> {
       if (mounted) {
         setState(() {
           _isSearchFieldExpand = _focusNode.hasFocus;
-          if (widget.onFocus!=null) {
+          if (widget.onFocus != null) {
             widget.onFocus!(!_isSearchFieldExpand);
           }
         });
@@ -50,7 +53,7 @@ class _SearchFormFieldState extends State<SearchFormField> {
     _keyboardVisibilityController.onChange.listen((visible) {
       if (mounted) {
         if (!visible) {
-          if (widget.onFocus!=null) {
+          if (widget.onFocus != null) {
             widget.onFocus!(false);
           }
           FocusScope.of(context).requestFocus(FocusNode());
@@ -70,13 +73,14 @@ class _SearchFormFieldState extends State<SearchFormField> {
       child: TextField(
         focusNode: _focusNode,
         controller: _searchController,
-        style: Theme.of(context).textTheme.bodyMedium,
+        style: AppTextStyle.s14_w400(color: context.colors.black),
+        // style: Theme.of(context).textTheme.bodyMedium,
         maxLines: 1,
         onChanged: widget.onChange,
         textInputAction: TextInputAction.search,
         onSubmitted: widget.onSubmit,
         decoration: InputDecoration(
-            hintText: widget.searchHint??"Search",
+            hintText: widget.searchHint ?? tr("search"),
             contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
             fillColor: Color(0xFFF7F7F7),
             filled: true,
@@ -90,7 +94,8 @@ class _SearchFormFieldState extends State<SearchFormField> {
                   widget.onSubmit!(_searchController.text);
                 }
               },
-              child: Icon(Icons.search_rounded, color: Color(0xFF6E6E6E), size: 20),
+              child: const Icon(Icons.search_rounded,
+                  color: Color(0xFF6E6E6E), size: 20),
             ),
             border: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(99)), borderSide: BorderSide.none)),

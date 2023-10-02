@@ -1,7 +1,11 @@
 part of 'track_order_widgets_imports.dart';
+
 class BuildTrackOrderSummaryItem extends StatelessWidget {
-  final String title,subTitle;
-  const BuildTrackOrderSummaryItem({Key? key, required this.title, required this.subTitle}) : super(key: key);
+  final String title, subTitle;
+
+  const BuildTrackOrderSummaryItem(
+      {Key? key, required this.title, required this.subTitle})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +20,12 @@ class BuildTrackOrderSummaryItem extends StatelessWidget {
               style: AppTextStyle.s14_w500(color: context.colors.black),
             ),
           ),
-          Expanded(child:  Text(
-            subTitle,
-            style: AppTextStyle.s14_w400(color: context.colors.black),
-            overflow: TextOverflow.ellipsis,
-          ),)
+          Expanded(
+            child: Text(
+              subTitle,
+              style: AppTextStyle.s14_w400(color: context.colors.black),
+            ),
+          )
         ],
       ),
     );

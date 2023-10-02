@@ -31,11 +31,11 @@ class ProductDetailsController {
 
   void _initVariants(BuildContext context) {
     detailsCubit.state.data?.product.choiceOptions?.map((e) {
-      if(e.options != null){
+      if (e.options != null) {
         e.selectedAttribute!.add(e.options!.first);
         e.hasValue = true;
-      }else {
-       e.hasValue = false ;
+      } else {
+        e.hasValue = false;
       }
     }).toList();
     var selectedList = detailsCubit.state.data!.product.choiceOptions!
@@ -107,7 +107,8 @@ class ProductDetailsController {
         detailsCubit.onUpdateData(detailsCubit.state.data);
       } else {
         CustomToast.showSimpleToast(
-            msg: "${tr('only')} ${variantPrice.currentStock} available in stock");
+            msg:
+                "${tr('only')} ${variantPrice.currentStock} available in stock");
         return;
       }
     }
@@ -132,7 +133,16 @@ class ProductDetailsController {
 
   void onChangeCompare(Product item) {
     item.isAddedTCompare = !item.isAddedTCompare!;
+    print("###${item.isAddedTCompare}");
     detailsCubit.onUpdateData(detailsCubit.state.data);
+  }
+
+  void addToCompare(BuildContext context, Product product) {
+    getIt<ProductsHelper>().addProductToCompare(
+      context: context,
+      product: product,
+    );
+    onChangeCompare(product);
   }
 
   void onBuyProduct(BuildContext context) {
@@ -146,7 +156,7 @@ class ProductDetailsController {
     );
   }
 
-  void onAddToCart(BuildContext context){
+  void onAddToCart(BuildContext context) {
     getIt<CartHelper>().addProductToCart(
       context,
       qtyCubit.state.data,
@@ -154,6 +164,7 @@ class ProductDetailsController {
       onAddCartFunc: () => showCartSuccessDialog(context),
     );
   }
+
   void showCartSuccessDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -179,15 +190,5 @@ class ProductDetailsController {
       resellerId: isResale ? resellerId : 0,
       variants: selectedVariants.join(','),
     );
-  }
-
-  void addToCompare (BuildContext context, Product product){
-    bool auth = context.read<DeviceCubit>().state.model.auth ;
-    if (auth){
-      getIt<ProductsHelper>()
-          .addProductToCompare(product, context);
-    }else {
-      CustomToast.showAuthDialog(context);
-    }
   }
 }

@@ -23,7 +23,7 @@ class UserModel extends BaseApiModel<UserDomainModel> with _$UserModel {
     @JsonKey(name: "token") required String token,
     @JsonKey(name: "token_type") required String tokenType,
     @JsonKey(name: "phone_is_active") required bool isPhoneActive,
-    AddressModel? address
+    @JsonKey(name: "address") AddressModel? address,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
@@ -32,16 +32,15 @@ class UserModel extends BaseApiModel<UserDomainModel> with _$UserModel {
   @override
   UserDomainModel toDomainModel() {
     return UserDomainModel(
-      id: id,
-      email: email,
-      phone: phone,
-      name: name,
-      avatar: avatar,
-      token: token,
-      avatarOriginal: avatarOriginal,
-      tokenType: tokenType,
-      isPhoneActive: isPhoneActive,
-      address: address?.toDomainModel()
-    );
+        id: id,
+        email: email,
+        phone: phone,
+        name: name,
+        avatar: avatar,
+        token: token,
+        avatarOriginal: avatarOriginal,
+        tokenType: tokenType,
+        isPhoneActive: isPhoneActive,
+        address: address?.toDomainModel());
   }
 }

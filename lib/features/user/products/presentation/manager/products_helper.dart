@@ -21,18 +21,20 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class ProductsHelper {
-
-  Future<void> toggleFavourite({required BuildContext context ,required int id, required Function() onRefresh, }) async {
+  Future<void> toggleFavourite({
+    required BuildContext context,
+    required int id,
+    required Function() onRefresh,
+  }) async {
     bool auth = context.read<DeviceCubit>().state.model.auth;
-    if(!auth){
+    if (!auth) {
       CustomToast.showAuthDialog(context);
-      return  ;
+      return;
     }
     var data = await SetToggleFavourite().call(id);
     if (data) {
       CustomToast.showSimpleToast(
         msg: "Item has been added to wishlist",
-
         type: ToastType.success,
       );
     } else {
@@ -44,18 +46,25 @@ class ProductsHelper {
     onRefresh();
   }
 
-  Future<int> addProductToCompare(Product product, BuildContext context) async {
-    var isAdded = await isAddedToCompared(product);
-    if (isAdded == true) {
-      var data = getIt<ComparedProductsDb>().deleteItem(product.id!);
-      CustomToast.showSimpleToast(
-        msg: "Item Deleted From Compare Successfully",
-        type: ToastType.success,
-      );
-      product.isAddedTCompare = false;
-      return data;
+  Future<int> addProductToCompare(
+      {required BuildContext context, required Product product}) async {
+    bool auth = context.read<DeviceCubit>().state.model.auth;
+    if (!auth) {
+      CustomToast.showAuthDialog(context);
+      return 0;
     } else {
-      return _addItemToCompare(product, context);
+      var isAdded = await isAddedToCompared(product);
+      if (isAdded == true) {
+        var data = getIt<ComparedProductsDb>().deleteItem(product.id!);
+        CustomToast.showSimpleToast(
+          msg: "Item Deleted From Compare Successfully",
+          type: ToastType.success,
+        );
+        product.isAddedTCompare = false;
+        return data;
+      } else {
+        return _addItemToCompare(product, context);
+      }
     }
   }
 
@@ -92,14 +101,6 @@ class ProductsHelper {
 
   ProductsTableData _comparedParams(Product product, BuildContext context) {
     return ProductsTableData(
-      product: json.encode(product.toJson()),
-      productId: product.id
-    );
+        product: json.encode(product.toJson()), productId: product.id);
   }
-
-
-
-
-
-
 }

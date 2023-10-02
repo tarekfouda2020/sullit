@@ -24,7 +24,8 @@ class HomeController {
     tr("account", context: context),
   ];
 
-  void setUserLang(BuildContext context,String lang)async{
+  void setUserLang(BuildContext context, String lang) async {
+    print(">>>>>$lang");
     getIt<Utilities>().changeLanguage(lang, context);
     Phoenix.rebirth(context);
   }
@@ -32,11 +33,13 @@ class HomeController {
   void showLangBottomSheet(BuildContext context, HomeController controller) {
     showModalBottomSheet(
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15))
-      ),
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15), topRight: Radius.circular(15))),
       backgroundColor: context.colors.white,
       context: context,
-      builder: (context) =>  BuildLangBottomSheet(controller: controller,),
+      builder: (context) => BuildLangBottomSheet(
+        controller: controller,
+      ),
     );
   }
 

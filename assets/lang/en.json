@@ -67,7 +67,7 @@
   "wishlist": "WishLists",
   "compare": "Compare",
   "trackOrder": "Track Order",
-  "myWallet": "MY Wallet",
+  "myWallet": "My Wallet",
   "supportTickets": "Support Tickets",
   "manageProfile": "Manage Profile",
   "allBrands": "All Brands",
@@ -316,7 +316,12 @@
   "langauge": "Language",
   "ar": "العربيه",
   "en": "English",
-  "loginToYourAcc": "Login to your account"
+  "loginToYourAcc": "Login to your account",
+  "seller": "Seller",
+  "verifyAddress": "Please verify address phone first",
+  "reviewProduct": "Review Product",
+  "reviewSuccess": "Review has been submitted successfully"
+
 }
 
 

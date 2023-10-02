@@ -29,7 +29,7 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
     required String? twitter,
     required String? instagram,
     required String? youtube,
-    required int rating,
+    required double rating,
   }) = _ShopModel;
 
   factory ShopModel.fromJson(Map<String, dynamic> json) =>
