@@ -46,10 +46,13 @@ class LoginController {
   }
 
   Future<LoginParams> _setLoginParams() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
     return LoginParams(
-        email: email.text,
-        password: password.text,
-        macAddress: await getIt<GetDeviceId>().deviceId);
+      email: email.text,
+      password: password.text,
+      macAddress: await getIt<GetDeviceId>().deviceId,
+      deviceToken: await messaging.getToken(),
+    );
   }
 
   Future<bool> onBackPressed() async {

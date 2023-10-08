@@ -9,7 +9,8 @@ class BuildNotificationsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      // onTap: ()=>AutoRouter.of(context).push( OrderSummaryRoute()),
+      onTap: () => AutoRouter.of(context)
+          .push(OrderSummaryRoute(orderId: notification.orderId)),
       child: Container(
         margin: Dimens.paddingVertical5PX,
         padding: Dimens.paddingH10V20,

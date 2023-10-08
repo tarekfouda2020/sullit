@@ -1,9 +1,10 @@
-part of'notifications_imports.dart';
+part of 'notifications_imports.dart';
+
 class NotificationsController {
   final GenericBloc<List<NotificationDomainModel>> notificationsBloc =
       GenericBloc([]);
 
-  NotificationsController(){
+  NotificationsController() {
     getNotifications(refresh: false);
     getNotifications();
   }

@@ -74,7 +74,7 @@ class BuildCartLoading extends StatelessWidget {
                       ),
                        BuildShimmerItem(
                         height: 10,
-                        width: 190.w,
+                        width: 30.w,
                       ),
                       BuildShimmerItem(
                         child: BuildCustomBounce(

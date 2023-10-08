@@ -17,12 +17,12 @@ class HomeController {
     Icons.account_circle
   ];
 
-  List<String> tabsText (BuildContext context) => [
-    tr('home', context : context),
-    tr('categories', context: context),
-    tr('notifications', context: context),
-    tr("account", context: context),
-  ];
+  List<String> tabsText(BuildContext context) => [
+        tr('home', context: context),
+        tr('categories', context: context),
+        tr('notifications', context: context),
+        tr("account", context: context),
+      ];
 
   void setUserLang(BuildContext context, String lang) async {
     print(">>>>>$lang");
@@ -51,6 +51,11 @@ class HomeController {
   }
 
   void animateTabsPages(int index, BuildContext context) {
+    bool auth = context.read<DeviceCubit>().state.model.auth;
+    if (index == 2 && !auth) {
+      CustomToast.showAuthDialog(context);
+      return;
+    }
     if (index != homeTabCubit.state.data) {
       homeTabCubit.onUpdateData(index);
       tabController.animateTo(index);

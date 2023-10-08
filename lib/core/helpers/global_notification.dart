@@ -1,9 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
+import 'package:auto_route/auto_route.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/global_context.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:injectable/injectable.dart';
 
 import 'helper_methods.dart';
@@ -64,7 +68,7 @@ class GlobalNotification {
       RemoteMessage message) async {
     log("Handling a background message: ${message.messageId}");
     await Firebase.initializeApp();
-    // flutterNotificationClick(json.encode(message.data));
+    flutterNotificationClick(json.encode(message.data));
   }
 
   StreamController<Map<String, dynamic>> get notificationSubject {
@@ -91,6 +95,10 @@ class GlobalNotification {
   }
 
   static Future flutterNotificationClick(String? details) async {
-    // final _data = json.decode("$payload");
+    print("fcm>>>>>>$details");
+    var data = json.decode("$details");
+    int id = data["item_type_id"];
+    var context = getIt<GlobalContext>().context();
+    AutoRouter.of(context).push(OrderSummaryRoute(orderId: id));
   }
 }
