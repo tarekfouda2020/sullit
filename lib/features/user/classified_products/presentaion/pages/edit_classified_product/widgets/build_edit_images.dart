@@ -14,7 +14,8 @@ class BuildEditImages extends StatelessWidget {
       bloc: controller.imagesBloc,
       builder: (context, state) {
         return Visibility(
-          visible: state.data.addedImages.isNotEmpty || state.data.images.images.isNotEmpty,
+          visible: state.data.addedImages.isNotEmpty ||
+              state.data.images.images.isNotEmpty,
           replacement: InkWell(
             onTap: () => controller.showImageDialog(
               context: context,
@@ -22,18 +23,20 @@ class BuildEditImages extends StatelessWidget {
               imageType: ImageType.generalImages,
             ),
             child: Container(
-              height: 60,
-              width: 60,
-              decoration: CustomDecoration(),
+              height: Dimens.dp70.r,
+              width: Dimens.dp70.r,
+              decoration: CustomDecoration().copyWith(
+                border: Border.all(color: context.colors.greyWhite),
+              ),
               child: Icon(
                 Icons.add,
-                size: 15,
+                size: Dimens.dp20.sp,
                 color: context.colors.primary,
               ),
             ),
           ),
           child: SizedBox(
-            height: 60.h,
+            height: Dimens.dp70.h,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
@@ -41,50 +44,51 @@ class BuildEditImages extends StatelessWidget {
                   children: [
                     ...List.generate(
                       state.data.images.images.length,
-                          (exitedIndex) => CachedImage(
-                        imgMargin: const EdgeInsets.symmetric(
-                          horizontal: 5,
-                          vertical: 5,
-                        ),
+                      (exitedIndex) => CachedImage(
+                        imgMargin: Dimens.paddingAll5PX,
                         url: state.data.images.images[exitedIndex],
-                        height: 60,
-                        borderRadius: BorderRadius.circular(5),
-                        width: 60,
+                        borderRadius: Dimens.borderRadius5PX,
+                        height: Dimens.dp80.r,
+                        width: Dimens.dp80.r,
                       ),
                     ),
                     ...List.generate(
                       state.data.addedImages.length,
-                          (index) => CachedImage(
-                            imgMargin: const EdgeInsets.symmetric(
-                              horizontal: 5,
-                              vertical: 5,
-                            ),
-                            url: state.data.addedImages[index].url,
-                            height: 60,
-                            borderRadius: BorderRadius.circular(5),
-                            width: 60,
+                      (index) => CachedImage(
+                        imgMargin: Dimens.paddingAll5PX,
+                        url: state.data.addedImages[index].url,
+                        height: Dimens.dp80.r,
+                        width: Dimens.dp80.r,
+                        borderRadius: Dimens.borderRadius5PX,
+                        alignment: Alignment.topLeft,
+                        child: InkWell(
+                          onTap: () =>
+                              controller.removeExistedImages(index),
+                          child: Icon(
+                            Icons.clear,
+                            color: context.colors.primary,
+                            size: Dimens.dp20.r,
                           ),
+                        ),
+                      ),
                     ),
-                  ]
+                  ],
                 ),
                 InkWell(
                   onTap: () => controller.showImageDialog(
                     context: context,
                     type: FileImageType.multiImage,
                     imageType: ImageType.generalImages,
-                    extension: 'image'
                   ),
                   child: Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 5,
-                      vertical: 5,
+                    height: Dimens.dp70.r,
+                    width: Dimens.dp70.r,
+                    decoration: CustomDecoration().copyWith(
+                      border: Border.all(color: context.colors.greyWhite),
                     ),
-                    height: 60,
-                    width: 60,
-                    decoration: CustomDecoration(),
                     child: Icon(
                       Icons.add,
-                      size: 15,
+                      size: Dimens.dp20.sp,
                       color: context.colors.primary,
                     ),
                   ),

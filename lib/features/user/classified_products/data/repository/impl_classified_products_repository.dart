@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/models/model_to_domain/model_to_domain.dart';
+import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/classified_products/data/data_sources/classified_products_data_sources.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/entities/add_classified_product.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/entities/edit_classified_product_params.dart';
@@ -40,29 +41,33 @@ class ImplClassifiedProductsRepository extends ClassifiedProductsRepository
   }
 
   @override
-  Future<Either<Failure, bool>> setUploadFiles(List<File> param)async {
+  Future<Either<Failure, bool>> setUploadFiles(List<File> param) async {
     return await dataSources.setAddFiles(param);
   }
 
   @override
-  Future<Either<Failure, List<VideoProvider>>> getVideoProviders(bool param)async {
+  Future<Either<Failure, List<VideoProvider>>> getVideoProviders(
+      bool param) async {
     var result = await dataSources.getVideoProviders(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, bool>> setAddClassifiedProducts(AddClassifiedProductParams params)async {
+  Future<Either<Failure, bool>> setAddClassifiedProducts(
+      AddClassifiedProductParams params) async {
     return await dataSources.setAddClassifiedProduct(params);
   }
 
   @override
-  Future<Either<Failure, List<CusProductBrand>>> getCusProductBrands(bool param) async {
+  Future<Either<Failure, List<CusProductBrand>>> getCusProductBrands(
+      bool param) async {
     var result = await dataSources.getCusProductsBrands(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, List<CusProductsCat>>> getCusProductsCats(bool param) async {
+  Future<Either<Failure, List<CusProductsCat>>> getCusProductsCats(
+      bool param) async {
     var result = await dataSources.getCusProductsCats(param);
     return toDomainResultList(result);
   }
@@ -75,7 +80,7 @@ class ImplClassifiedProductsRepository extends ClassifiedProductsRepository
   }
 
   @override
-  Future<Either<Failure, CusProduct>> getClassifiedProduct(int param) async {
+  Future<Either<Failure, CusProduct>> getClassifiedProduct(GenericParams param) async {
     var result = await dataSources.getClassifiedProduct(param);
     return toDomainResult(result);
   }
@@ -93,15 +98,25 @@ class ImplClassifiedProductsRepository extends ClassifiedProductsRepository
   }
 
   @override
-  Future<Either<Failure, List<PaymentMethodDomainModel>>> getPaymentMethods(bool param) async {
+  Future<Either<Failure, List<PaymentMethodDomainModel>>> getPaymentMethods(
+      bool param) async {
     var result = await dataSources.getPaymentMethods(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, PurchasePackageResponse>> purchasePackage(PurchasePackageParams params) async {
+  Future<Either<Failure, PurchasePackageResponse>> purchasePackage(
+      PurchasePackageParams params) async {
     var result = await dataSources.purchasePackage(params);
     return toDomainResult(result);
   }
 
+  @override
+  Future<Either<Failure, String>> deleteProduct(int param) async {
+    return await dataSources.deleteProduct(param);
+  }
+  @override
+  Future<Either<Failure, bool>> changeStatus(int param) async {
+    return await dataSources.changeStatus(param);
+  }
 }

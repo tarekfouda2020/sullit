@@ -11,24 +11,16 @@ class BuildPackageBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      width: MediaQuery.of(context).size.width,
+      padding: Dimens.paddingVertical20PX,
       decoration: CustomDecoration(),
       child: Column(
         children: [
           GestureDetector(
-            onTap: () async {
-              await AutoRouter.of(context).push(const CustomersPackagesRoute());
-              controller.getClassifiedProducts();
-            },
+            onTap: () =>controller.onUpgradePackage(context),
             child: Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.white,
-                border: Border.all(color: context.colors.greyWhite),
-              ),
+              margin: Dimens.paddingVertical10PX,
+              padding: Dimens.paddingH20V10,
+              decoration: CustomDecoration(),
               child: Text(
                 tr('upgradePackage'),
                 style: AppTextStyle.s14_w400(color: context.colors.primary),

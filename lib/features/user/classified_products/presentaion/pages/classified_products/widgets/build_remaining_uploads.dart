@@ -9,16 +9,15 @@ class BuildRemainingUploads extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      width: MediaQuery.of(context).size.width,
+      padding: Dimens.paddingVertical20PX,
       decoration: BoxDecoration(
+        borderRadius: Dimens.borderRadius10PX,
         gradient: LinearGradient(
           colors: [
             context.colors.purpleDark,
             context.colors.purpleLight,
           ],
         ),
-        borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
         children: [
@@ -27,7 +26,7 @@ class BuildRemainingUploads extends StatelessWidget {
             color: context.colors.white,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
+            padding: Dimens.paddingVertical10PX,
             child: Text(
               uploads.toString(),
               style: AppTextStyle.s16_w700(color: context.colors.white),

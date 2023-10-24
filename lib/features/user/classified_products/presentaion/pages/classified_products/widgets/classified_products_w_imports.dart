@@ -19,3 +19,4 @@ part 'build_add_new_product.dart';
 part 'build_package_btn.dart';
 part 'build_products_view.dart';
 part 'build_classified_products_loading.dart';
+part 'build_product_view_item.dart';

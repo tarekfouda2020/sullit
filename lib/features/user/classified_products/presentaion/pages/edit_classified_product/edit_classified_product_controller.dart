@@ -1,8 +1,8 @@
 // ignore_for_file: use_build_context_synchronously, prefer_interpolation_to_compose_strings
-
 part of 'edit_classified_product_imports.dart';
 
 class EditClassifiedProductController {
+  final GlobalKey<FormState> formKey = GlobalKey();
   final GenericBloc<CusProduct?> cusProductBloc = GenericBloc(null);
   final TextEditingController productName = TextEditingController();
   final TextEditingController location = TextEditingController();
@@ -21,11 +21,15 @@ class EditClassifiedProductController {
   final GlobalKey<DropdownSearchState> conditionDropKey = GlobalKey();
 
   final GenericBloc<EditGallaryImages> imagesBloc = GenericBloc(
-      EditGallaryImages(
-          images: ExitedImages(ids: '', images: []), addedImages: []));
+    EditGallaryImages(
+      images: ExitedImages(ids: '', images: []),
+      addedImages: [],
+    ),
+  );
   final GenericBloc<FileDomainModel?> thumbnailImageBloc = GenericBloc(null);
   final GenericBloc<FileDomainModel?> metaImageBloc = GenericBloc(null);
-  final GenericBloc<FileDomainModel?> pdf = GenericBloc(null);
+  final GenericBloc<FileDomainModel?> pdfBloc = GenericBloc(null);
+  late CusProduct productModel;
 
   VideoProvider? videoProvider;
   CusProductsCat? cusProductsCat;
@@ -34,82 +38,23 @@ class EditClassifiedProductController {
 
   var videoUrlValidator = VideoURLValidator();
 
-  EditClassifiedProductController(int productId) {
-    getClassifiedProduct(productId);
+  List<ConditionDomainModel> conditions = [
+    ConditionDomainModel(name: tr('new'), type: 'new'),
+    ConditionDomainModel(name: tr('used'), type: 'used'),
+  ];
+
+  EditClassifiedProductController(CusProduct product) {
+    productModel = product;
+    getClassifiedProduct(product.id, refresh: false);
+    getClassifiedProduct(product.id);
   }
 
-  void _setDefaultData(CusProduct product) {
-    productName.text = product.name;
-    location.text = product.location;
-    productTag.text = product.tags.first;
-    videoLink.text = product.videoLink;
-    metaTitle.text = product.metaTitle;
-    unit.text = product.unit;
-    selectBrand(product.brand!);
-    selectCat(product.category!);
-    selectVideoForm(VideoProvider(name: product.videoProvider, provider: product.videoProvider));
-    selectCondition(ConditionDomainModel(name: product.conditon, type: product.conditon));
-    metaDescription.text = product.metaDescription;
-    unitPrice.text = product.unitPrice;
-    productDescription.text = product.description;
-    imagesBloc.state.data.images = ExitedImages(images: product.photos, ids: product.photosValue);
-    imagesBloc.onUpdateData(imagesBloc.state.data);
-    thumbnailImageBloc.onUpdateData(
-      FileDomainModel(
-        id: int.parse(product.thumbnailImgValue),
-        fileOriginalName: '',
-        fileName: '',
-        url: product.thumbnailImg,
-        fileSize: 0,
-        extension: '',
-        type: '',
-      ),
-    );
-    metaImageBloc.onUpdateData(
-      FileDomainModel(
-        id: int.parse(product.metaImgValue),
-        fileOriginalName: '',
-        fileName: '',
-        url: product.metaImg,
-        fileSize: 0,
-        extension: '',
-        type: '',
-      ),
-    );
-    pdf.onUpdateData(
-      FileDomainModel(
-        id: int.parse(product.pdfValue),
-        fileOriginalName: '',
-        fileName: '',
-        url: product.pdf,
-        fileSize: 0,
-        extension: '',
-        type: '',
-      ),
-    );
-  }
-
-  Future<void> getClassifiedProduct(int param) async {
-    return await GetClassifiedProduct().call(param).then((value) {
+  Future<void> getClassifiedProduct(int id, {bool refresh = true}) async {
+    var params = _genericParams(id, refresh);
+    return await GetClassifiedProduct().call(params).then((value) {
       cusProductBloc.onUpdateData(value);
       _setDefaultData(value!);
     });
-  }
-
-  void selectCondition(ConditionDomainModel? model) {
-    productCondition = model;
-  }
-
-  void selectBrand(CusProductBrand model) {
-    cusProductsBrand = model;
-  }
-
-  void selectCat(CusProductsCat model) {
-    cusProductsCat = model;
-  }
-
-  void selectVideoForm(VideoProvider? model) {
-    videoProvider = model;
   }
 
   Future<List<CusProductsCat>> getCats({bool param = false}) async {
@@ -127,10 +72,67 @@ class EditClassifiedProductController {
     return data;
   }
 
-  List<ConditionDomainModel> conditions = [
-    ConditionDomainModel(name: tr('new'), type: 'new'),
-    ConditionDomainModel(name: tr('used'), type: 'used'),
-  ];
+  Future<void> setUpdateProduct(BuildContext context) async {
+    if (formKey.currentState!.validate()) {
+      var params = _editProductParams();
+      var result = await SetEditCusProduct().call(params);
+      if (result) {
+        CustomToast.showSimpleToast(msg: tr('productUpdatedSuccess'));
+        AutoRouter.of(context).pop(true);
+      }
+    }
+  }
+
+  void _setDefaultData(CusProduct product) {
+    productName.text = product.name;
+    location.text = product.location;
+    productTag.text = product.tags.first;
+    videoLink.text = product.videoLink;
+    metaTitle.text = product.metaTitle;
+    unit.text = product.unit;
+    cusProductsBrand = product.brand;
+    cusProductsCat = product.category;
+    videoProvider = videoItem(product);
+    productCondition = conditionItem(product);
+    metaDescription.text = product.metaDescription;
+    unitPrice.text = product.unitPrice;
+    productDescription.text = product.description;
+    imagesBloc.state.data.images = exitedImagesList(product);
+    imagesBloc.onUpdateData(imagesBloc.state.data);
+    thumbnailImageBloc.onUpdateData(thumbnailImageItem(product));
+    metaImageBloc.onUpdateData(metaItem(product));
+    pdfBloc.onUpdateData(pdfItem(product));
+  }
+
+  void selectCondition(ConditionDomainModel? model) {
+    if (model != null) {
+      productCondition = model;
+    }
+  }
+
+  void selectBrand(CusProductBrand? model) {
+    if (model != null) {
+      cusProductsBrand = model;
+    }
+  }
+
+  void selectCat(CusProductsCat? model) {
+    if (model != null) {
+      cusProductsCat = model;
+    }
+  }
+
+  void selectVideoForm(VideoProvider? model) {
+    videoLink.clear();
+    if (model != null) {
+      videoProvider = model;
+    }
+  }
+
+  void removeExistedImages(int index) {
+    imagesBloc.state.data.addedImages.removeAt(index);
+    imagesBloc.onUpdateData(imagesBloc.state.data);
+  }
 
   void showImageDialog({
     String? extension,
@@ -144,32 +146,43 @@ class EditClassifiedProductController {
         extension: extension,
         type: type,
         imgType: imageType,
-        onAddFiles: (List<FileDomainModel> files) {
-          if (imageType == ImageType.generalImages) {
-            imagesBloc.state.data.addedImages.addAll(files);
-            imagesBloc.onUpdateData(imagesBloc.state.data);
-          } else if (imageType == ImageType.meta) {
-            metaImageBloc.onUpdateData(files.first);
-          } else if (imageType == ImageType.thumbnail) {
-            thumbnailImageBloc.onUpdateData(files.first);
-          } else if (imageType == ImageType.pdf) {
-            pdf.onUpdateData(files.first);
-          }
-        },
+        onAddFiles: (files) => onAddFiles(context, files, imageType),
       ),
     );
   }
 
-  Future<void> setUpdateProduct(BuildContext context, int id) async {
-    var params = _editProductParams(id);
-    var result = await SetEditCusProduct().call(params);
-    if (result) {
-      CustomToast.showSimpleToast(msg: tr('productUpdatedSuccess'));
-      AutoRouter.of(context).pop(true);
+  void onAddFiles(
+      BuildContext context, List<FileDomainModel> files, ImageType imageType) {
+    if (imageType == ImageType.generalImages) {
+      imagesBloc.state.data.addedImages.addAll(files);
+      imagesBloc.onUpdateData(imagesBloc.state.data);
+    } else if (imageType == ImageType.meta) {
+      metaImageBloc.onUpdateData(files.first);
+    } else if (imageType == ImageType.thumbnail) {
+      thumbnailImageBloc.onUpdateData(files.first);
+    } else if (imageType == ImageType.pdf) {
+      pdfBloc.onUpdateData(files.first);
+    }
+    AutoRouter.of(context).pop();
+  }
+
+  String? getAddedImageIds() {
+    var addedImages = imagesBloc.state.data.addedImages;
+    var addedImagesIds = addedImages.map((e) => e.id).toList().join(',');
+    var existedImages = imagesBloc.state.data.images;
+    var allImages = [];
+    if (addedImages.length > 1) {
+      allImages = [addedImagesIds, existedImages.ids];
+      return allImages.join(',');
+    } else if (addedImages.length == 1) {
+      allImages = [addedImages.first.id, existedImages.ids];
+      return allImages.join(',');
+    } else {
+      return existedImages.ids;
     }
   }
 
-  EditClassifiedProductParams _editProductParams(int id) {
+  EditClassifiedProductParams _editProductParams() {
     return EditClassifiedProductParams(
       name: productName.text,
       brandId: cusProductsBrand!.id,
@@ -177,57 +190,84 @@ class EditClassifiedProductController {
       condition: productCondition!.name,
       description: productDescription.text,
       location: location.text,
-      metaImg: metaImageBloc.state.data!.id,
+      metaImg: metaImageBloc.state.data?.id,
       metaTitle: metaTitle.text,
       metaDescription: metaDescription.text,
       unit: unit.text,
-      photos:  getAddedImageIds(),
-      thumbnailImg: thumbnailImageBloc.state.data!.id,
+      photos: getAddedImageIds(),
+      thumbnailImg: thumbnailImageBloc.state.data?.id,
       videoLink: videoLink.text,
-      videoProvider: videoProvider!.provider,
-      unitPrice: int.parse(unitPrice.text.split('د.إ')[1].split('.').first),
+      videoProvider: videoProvider?.provider,
+      unitPrice: unitPrice.text.replaceAll("د.إ", ""),
       tags: productTag.text,
-      pdf: pdf.state.data!.id,
-      id: id,
+      pdf: pdfBloc.state.data?.id,
+      id: productModel.id,
     );
   }
 
-  String? validateVideoUrl() {
-    if (videoProvider!.provider == 'youtube') {
-      bool validate = videoUrlValidator.validateYouTubeVideoURL(
-        url: videoLink.text,
-      );
-      if (!validate) {
-        return tr('linkValidation');
-      }
-    } else if (videoProvider!.provider == 'dailymotion') {
-      bool validate = videoUrlValidator.validateDailyMotionVideoURL(
-        url: videoLink.text,
-      );
-      if (!validate) {
-        return tr('linkValidation');
-      }
-    } else if (videoProvider!.provider == 'vimeo') {
-      bool validate = videoUrlValidator.validateVimeoVideoURL(
-        url: videoLink.text,
-      );
-      if (!validate) {
-        return tr('linkValidation');
-      }
-    } else {
-      return null;
-    }
-    return null;
+  GenericParams _genericParams(int id, bool refresh) {
+    return GenericParams(
+      id: id,
+      refresh: refresh,
+    );
   }
 
-  String? getAddedImageIds() {
-    if (imagesBloc.state.data.addedImages.length > 1) {
-      return imagesBloc.state.data.addedImages.map((e) => e.id).join(',') +
-          ',${imagesBloc.state.data.images.ids}';
-    } else if (imagesBloc.state.data.addedImages.length == 1) {
-      return '${imagesBloc.state.data.addedImages.first.id},${imagesBloc.state.data.images.ids}';
-    } else {
-      return imagesBloc.state.data.images.ids;
-    }
+  VideoProvider videoItem(CusProduct model) {
+    return VideoProvider(
+      name: model.videoProvider,
+      provider: model.videoProvider,
+    );
+  }
+
+  ConditionDomainModel conditionItem(CusProduct model) {
+    return ConditionDomainModel(
+      name: model.conditon,
+      type: model.conditon,
+    );
+  }
+
+  ExitedImages exitedImagesList(CusProduct model) {
+    return ExitedImages(
+      images: model.photos,
+      ids: model.photosValue,
+    );
+  }
+
+  FileDomainModel thumbnailImageItem(CusProduct model) {
+    return FileDomainModel(
+      id: model.thumbnailImgValue != ""
+          ? int.parse(model.thumbnailImgValue)
+          : 0,
+      fileOriginalName: '',
+      fileName: '',
+      url: model.thumbnailImg ?? "",
+      fileSize: 0,
+      extension: '',
+      type: '',
+    );
+  }
+
+  FileDomainModel metaItem(CusProduct model) {
+    return FileDomainModel(
+      id: model.metaImgValue != "" ? int.parse(model.metaImgValue) : 0,
+      fileOriginalName: '',
+      fileName: '',
+      url: model.metaImg,
+      fileSize: 0,
+      extension: '',
+      type: '',
+    );
+  }
+
+  FileDomainModel pdfItem(CusProduct model) {
+    return FileDomainModel(
+      id: model.pdfValue != "" ? int.parse(model.pdfValue) : 0,
+      fileOriginalName: '',
+      fileName: '',
+      url: model.pdf,
+      fileSize: 0,
+      extension: '',
+      type: '',
+    );
   }
 }

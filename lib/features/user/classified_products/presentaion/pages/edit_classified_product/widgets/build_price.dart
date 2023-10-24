@@ -1,7 +1,8 @@
 part of 'edit_classified_product_w_imports.dart';
 
 class BuildEditPrice extends StatelessWidget {
-  final EditClassifiedProductController controller ;
+  final EditClassifiedProductController controller;
+
   const BuildEditPrice({Key? key, required this.controller}) : super(key: key);
 
   @override
@@ -10,7 +11,7 @@ class BuildEditPrice extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
+          padding: Dimens.paddingT20B10,
           child: Text(
             tr('price'),
             style: AppTextStyle.s16_w700(color: context.colors.black),
@@ -18,10 +19,9 @@ class BuildEditPrice extends StatelessWidget {
         ),
         Container(
           decoration: CustomDecoration(),
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          padding: Dimens.paddingAll10PX,
           child: GenericTextField(
-            margin:
-            const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            margin: Dimens.paddingVertical10PX,
             fieldTypes: FieldTypes.normal,
             type: TextInputType.text,
             action: TextInputAction.next,

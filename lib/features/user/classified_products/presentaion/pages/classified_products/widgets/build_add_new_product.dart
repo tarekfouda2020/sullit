@@ -1,34 +1,24 @@
 part of 'classified_products_w_imports.dart';
 
 class BuildAddNewProduct extends StatelessWidget {
-  final int uploads ;
-  const BuildAddNewProduct({Key? key, required this.uploads}) : super(key: key);
+  final ClassifiesProductsController controller;
+
+  const BuildAddNewProduct({Key? key, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        if(uploads == 0){
-          CustomToast.showSimpleToast(msg: tr('purchasePackageValidation'));
-          return ;
-        }else {
-          AutoRouter.of(context).push(
-            AddClassifiedProductRoute(),
-          );
-        }
-      },
+      onTap: () => controller.onAddProduct(context),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        margin: const EdgeInsets.symmetric(
-          vertical: 10,
-        ),
-        width: MediaQuery.of(context).size.width,
+        padding: Dimens.paddingAll20PX,
+        margin: Dimens.paddingVertical10PX,
         decoration: CustomDecoration(),
         child: Column(
           children: [
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              padding: const EdgeInsets.all(10),
+              margin:Dimens.paddingVertical10PX,
+              padding: Dimens.paddingAll10PX,
               decoration: BoxDecoration(
                 color: context.colors.greyWhite,
                 shape: BoxShape.circle,

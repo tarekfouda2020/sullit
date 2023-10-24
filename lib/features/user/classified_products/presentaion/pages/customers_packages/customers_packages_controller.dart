@@ -7,54 +7,6 @@ class CustomerPackagesController {
   final GlobalKey<DropdownSearchState> paymentMethodsDropKey = GlobalKey();
   PaymentMethodDomainModel? paymentMethod;
 
-  CustomerPackagesController() {
-    getCusPackage(refresh: false);
-    getCusPackage();
-  }
-
-  void selectMethod(
-      BuildContext context, PaymentMethodDomainModel model, int id) {
-    paymentMethod = model;
-    if (model.paymentTypeKey == 'wallet') {
-      setPurchasePackageWithWallet(
-        context: context,
-        id: id,
-        method: model.paymentTypeKey,
-      );
-    } else {
-      setPurchasePackage(
-        context: context,
-        id: id,
-        method: model.paymentTypeKey,
-      );
-    }
-  }
-
-  Future<void> setPurchasePackageWithWallet(
-      {required BuildContext context, required int id, String? method}) async {
-    var params = _purchasePackageParams(id, method);
-    var result = await SetPurchasePackage().call(params);
-    if (result!.key == 'success') {
-      Navigator.pop(context);
-      CustomToast.showSimpleToast(msg: result.msg);
-    }
-  }
-
-  Future<void> setPurchasePackage(
-      {required BuildContext context, required int id, String? method}) async {
-    var params = _purchasePackageParams(id, method);
-    var result = await SetPurchasePackage().call(params);
-    if(result?.data != null){
-      AutoRouter.of(context).push(PaymentRoute(transactionUrl: result!.data!.transactionUrl!));
-    } else {
-      AutoRouter.of(context).pop(true);
-      CustomToast.showSimpleToast(
-        msg: tr('packagePurchasedSuccess'),
-        type: ToastType.success,
-      );
-    }
-  }
-
   Future<void> getCusPackage({bool refresh = true}) async {
     return await GetCusPackages().call(refresh).then(
           (value) => cusProducts.onUpdateData(value),
@@ -62,30 +14,76 @@ class CustomerPackagesController {
   }
 
   Future<List<PaymentMethodDomainModel>> getMethods(
-      {bool param = false}) async {
-    var data = await GetPaymentMethods().call(param);
+      {bool refresh = false}) async {
+    var data = await GetPaymentMethods().call(refresh);
     return data;
   }
 
-  PurchasePackageParams _purchasePackageParams(int id, String? method) {
-    return PurchasePackageParams(id: id, payMethod: method);
+  void selectMethod(
+      BuildContext context, PaymentMethodDomainModel? model, int id) {
+    if (model != null) {
+      paymentMethod = model;
+      if (model.paymentTypeKey == 'wallet') {
+        setPurchasePackageWithWallet(
+          context: context,
+          id: id,
+          method: model.paymentTypeKey,
+        );
+      } else {
+        setPurchasePackage(
+          context: context,
+          id: id,
+          method: model.paymentTypeKey,
+        );
+      }
+    }
   }
 
-  Future<void> showPaymentDialog(
-      BuildContext context, int id, bool isFree) async {
-    if (isFree) {
-      setPurchasePackage(
-        context: context,
-        id: id,
+  Future<void> setPurchasePackageWithWallet(
+      {required BuildContext context, required int id, String? method}) async {
+    var params = _packageParams(id, method);
+    var result = await SetPurchasePackage().call(params);
+    if (result!.key == 'success') {
+      Navigator.pop(context);
+      paymentMethod = null;
+      CustomToast.showSimpleToast(msg: result.msg);
+    }
+  }
+
+  Future<void> setPurchasePackage(
+      {required BuildContext context, required int id, String? method}) async {
+    var params = _packageParams(id, method);
+    var result = await SetPurchasePackage().call(params);
+    if (result!.data != null) {
+      AutoRouter.of(context)
+          .push(PaymentRoute(transactionUrl: result.data!.transactionUrl!));
+    } else {
+      AutoRouter.of(context).pop(true);
+      CustomToast.showSimpleToast(
+        msg: result.msg,
+        type: ToastType.success,
       );
+    }
+  }
+
+  Future<void> showPaymentDialog(BuildContext context, CusPackage model) async {
+    if (model.isFree) {
+      setPurchasePackage(context: context, id: model.id);
       return;
     }
     showDialog(
       context: context,
       builder: (context) => BuildPaymentDialog(
         controller: this,
-        id: id,
+        id: model.id,
       ),
+    );
+  }
+
+  PurchasePackageParams _packageParams(int id, String? method) {
+    return PurchasePackageParams(
+      id: id,
+      payMethod: method,
     );
   }
 }

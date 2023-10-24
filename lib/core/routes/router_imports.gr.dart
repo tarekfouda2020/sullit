@@ -119,6 +119,8 @@ import 'package:flutter_tdd/features/user/category/presentation/pages/categories
     as _i46;
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/category_details_imports.dart'
     as _i47;
+import 'package:flutter_tdd/features/user/classified_products/domain/models/cus_product.dart'
+    as _i91;
 import 'package:flutter_tdd/features/user/classified_products/domain/models/file_domain_model.dart'
     as _i90;
 import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/add_classified_product/add_classified_product_imports.dart'
@@ -804,7 +806,7 @@ class AppRouter extends _i80.RootStackRouter {
         routeData: routeData,
         child: _i74.EditClassifiedProduct(
           key: args.key,
-          productId: args.productId,
+          productModel: args.productModel,
         ),
         opaque: true,
       );
@@ -2599,13 +2601,13 @@ class EditClassifiedProductRoute
     extends _i80.PageRouteInfo<EditClassifiedProductRouteArgs> {
   EditClassifiedProductRoute({
     _i83.Key? key,
-    required int productId,
+    required _i91.CusProduct productModel,
   }) : super(
           EditClassifiedProductRoute.name,
           path: '/edit-classified-product',
           args: EditClassifiedProductRouteArgs(
             key: key,
-            productId: productId,
+            productModel: productModel,
           ),
         );
 
@@ -2615,16 +2617,16 @@ class EditClassifiedProductRoute
 class EditClassifiedProductRouteArgs {
   const EditClassifiedProductRouteArgs({
     this.key,
-    required this.productId,
+    required this.productModel,
   });
 
   final _i83.Key? key;
 
-  final int productId;
+  final _i91.CusProduct productModel;
 
   @override
   String toString() {
-    return 'EditClassifiedProductRouteArgs{key: $key, productId: $productId}';
+    return 'EditClassifiedProductRouteArgs{key: $key, productModel: $productModel}';
   }
 }
 

@@ -23,45 +23,28 @@ class _AddClassifiedProductState extends State<AddClassifiedProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(
-        title: tr('addNewProduct'),
-      ),
+      appBar: DefaultAppBar(title: tr('addNewProduct')),
       body: ListView(
-        physics: const BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           padding: Dimens.standardPadding,
-          children:[
-          Form(
-            key: controller.formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                BuildGeneralFields(
-                  controller: controller,
-                ),
-                BuildImagesView(
-                  controller: controller,
-                ),
-                BuildVideosView(
-                  controller: controller,
-                ),
-                BuildMetaTags(controller: controller),
-                BuildPrice(
-                  controller: controller,
-                ),
-                BuildDiscription(
-                  controller: controller,
-                ),
-                BuildPdf(
-                  controller: controller,
-                ),
-                BuildSaveProductBtn(
-                  controller: controller,
-                )
-              ],
+          children: [
+            Form(
+              key: controller.formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BuildGeneralFields(controller: controller),
+                  BuildImagesView(controller: controller),
+                  BuildVideosView(controller: controller),
+                  BuildMetaTags(controller: controller),
+                  BuildPrice(controller: controller),
+                  BuildDiscription(controller: controller),
+                  BuildPdf(controller: controller),
+                  BuildSaveProductBtn(controller: controller)
+                ],
+              ),
             ),
-          ),
-        ]
-      ),
+          ]),
     );
   }
 }

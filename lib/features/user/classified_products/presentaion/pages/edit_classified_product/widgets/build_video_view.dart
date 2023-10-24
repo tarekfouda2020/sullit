@@ -1,7 +1,8 @@
 part of 'edit_classified_product_w_imports.dart';
 
 class BuildVideoView extends StatelessWidget {
-  final EditClassifiedProductController controller ;
+  final EditClassifiedProductController controller;
+
   const BuildVideoView({Key? key, required this.controller}) : super(key: key);
 
   @override
@@ -10,50 +11,46 @@ class BuildVideoView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
+          padding: Dimens.paddingT20B10,
           child: Text(
             tr('videos'),
             style: AppTextStyle.s16_w700(color: context.colors.black),
           ),
         ),
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          padding: Dimens.paddingAll10PX,
           decoration: CustomDecoration(),
           child: Column(
             children: [
               DropdownTextField<VideoProvider>(
-                fillColor: context.colors.white,
-                textSize: 16.sp,
                 itemAsString: (model) => (model).name,
-                showClearButton: false,
                 title: tr('selVideoForm'),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 label: tr('selVideoForm'),
+                margin: Dimens.paddingVertical10PX,
                 dropKey: controller.videoProviderDropKey,
                 useName: true,
                 onFind: (data) => controller.getVideoProviders(),
-                fontSize:16.sp,
                 selectedItem: controller.videoProvider,
-                radius: BorderRadius.circular(5.r),
                 onChange: (value) => controller.selectVideoForm(value),
-                validate: (value) => validateDropDown(value),
+                validate: (value) =>noValidateDropDown(),
               ),
               GenericTextField(
                 controller: controller.videoLink,
-                margin: const EdgeInsets.symmetric(
-                    vertical: 10, horizontal: 10),
+                margin: Dimens.paddingVertical10PX,
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.next,
-                validate: (value) => controller.validateVideoUrl(),
-                label: tr('videoUrl')
+                validate: (value) => value!.validateVideoUrl(
+                  controller.videoUrlValidator,
+                  controller.videoProvider,
+                  value,
+                ),
+                label: tr('videoUrl'),
               ),
             ],
           ),
         ),
       ],
     );
-
   }
 }

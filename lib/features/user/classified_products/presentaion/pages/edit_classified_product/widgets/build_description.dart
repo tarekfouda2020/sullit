@@ -9,7 +9,7 @@ class BuildDescription extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
+          padding: Dimens.paddingT20B10,
           child: Text(
             tr('description'),
             style: AppTextStyle.s14_w800(color: context.colors.black),
@@ -17,14 +17,13 @@ class BuildDescription extends StatelessWidget {
         ),
         Container(
           decoration: CustomDecoration(),
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          padding: Dimens.paddingAll10PX,
           child: GenericTextField(
-            margin:
-            const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            margin:Dimens.paddingVertical10PX,
             fieldTypes: FieldTypes.rich,
             type: TextInputType.text,
             action: TextInputAction.next,
-            max: 10,
+            max: 8,
             controller: controller.productDescription,
             validate: (value) => value!.validateEmpty(),
             label: tr('description'),

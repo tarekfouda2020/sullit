@@ -1,0 +1,37 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
+import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/features/user/classified_products/data/enums/enums.dart';
+import 'package:flutter_tdd/features/user/classified_products/domain/models/file_domain_model.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_tdd/core/widgets/CachedImage.dart';
+import 'package:flutter_tdd/core/widgets/GenericListView.dart';
+import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
+import 'dart:io';
+
+import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/features/user/classified_products/presentaion/manager/helpers/add_image_helper.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter_tdd/core/helpers/validator.dart';
+import 'package:flutter_tdd/core/widgets/DropdownTextField.dart';
+import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
+import 'package:flutter_tdd/features/user/classified_products/domain/models/sort.dart';
+
+import 'package:flutter_tdd/core/constants/gaps.dart';
+part 'build_images_dialog.dart';
+part 'build_images_tabs.dart';
+part 'build_loading_images.dart';
+part 'build_multi_images.dart';
+part 'build_pdf_view.dart';
+part 'build_select_files.dart';
+part 'build_upload_files.dart';
+part 'build_upload_single_file.dart';
+part 'build_image_item.dart';
+part 'build_images_filter.dart';
+part 'build_add_files_btn.dart';

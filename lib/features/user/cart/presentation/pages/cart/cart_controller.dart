@@ -5,7 +5,7 @@ class CartController {
       GenericBloc(CartDomainModel());
 
   CartController() {
-    // getCartItems(refresh: false);
+    getCartItems(refresh: false);
     getCartItems();
   }
 
@@ -55,13 +55,18 @@ class CartController {
   }
 
   void navigateToShipping(BuildContext context) {
-    if (cartItemsBloc.state.data.items!.isNotEmpty) {
-      AutoRouter.of(context).push(
-        const ShippingRoute(),
-      );
+    bool auth = context.read<DeviceCubit>().state.model.auth;
+    if (auth) {
+      if (cartItemsBloc.state.data.items!.isNotEmpty) {
+        AutoRouter.of(context).push(
+          const ShippingRoute(),
+        );
+      } else {
+        CustomToast.showSimpleToast(msg: tr('cartIsEmpty'));
+        return;
+      }
     } else {
-      CustomToast.showSimpleToast(msg: tr('cartIsEmpty'));
-      return;
+      CustomToast.showAuthDialog(context);
     }
   }
 

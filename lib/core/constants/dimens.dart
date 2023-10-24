@@ -42,8 +42,17 @@ class Dimens {
   static const double dp50 = 50;
   static const double dp55 = 55;
   static const double dp64 = 64;
+  static const double dp70 = 70;
+  static const double dp80 = 80;
+
   static const double dp96 = 96;
   static const double dp128 = 128;
+  static const double dp150 = 150;
+  static const double dp160 = 160;
+
+  static const double dp200 = 200;
+  static const double dp210 = 210;
+
   static const double dp256 = 256;
 
   static const double appBarHeight = 62;
@@ -51,6 +60,7 @@ class Dimens {
 
   static const BorderRadius sheetBorderRadius = BorderRadius.vertical(top: Radius.circular(20));
 
+  static  BorderRadius borderRadius3PX = const BorderRadius.all(Radius.circular(3)).r;
   static  BorderRadius borderRadius5PX = const BorderRadius.all(Radius.circular(5)).r;
   static  BorderRadius borderRadius10PX = const BorderRadius.all(Radius.circular(10)).r;
   static  BorderRadius borderRadius20PX = const BorderRadius.all(Radius.circular(20)).r;
@@ -64,6 +74,9 @@ class Dimens {
   static EdgeInsets cardMargin = const EdgeInsets.symmetric(
       horizontal: dp15, vertical: dp5).r;
   static EdgeInsets paddingH10V20= const EdgeInsets.symmetric(horizontal: dp10, vertical: dp20).r;
+  static EdgeInsets paddingH20V10= const EdgeInsets.symmetric(horizontal: dp20, vertical: dp10).r;
+  static EdgeInsets paddingT20B10= const  EdgeInsets.only(top: dp20, bottom: dp10).r;
+
   static EdgeInsets paddingVertical5PX = const EdgeInsets.symmetric(vertical: 5).r;
   static EdgeInsets paddingVertical8PX = const EdgeInsets.symmetric(vertical: 8).r;
   static EdgeInsets paddingVertical10PX = const EdgeInsets.symmetric(vertical: 10).r;

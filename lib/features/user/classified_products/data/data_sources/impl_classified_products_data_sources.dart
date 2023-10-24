@@ -7,6 +7,7 @@ import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
+import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/classified_products/data/data_sources/classified_products_data_sources.dart';
 import 'package:flutter_tdd/features/user/classified_products/data/models/classified_products_model/classified_products_model.dart';
 import 'package:flutter_tdd/features/user/classified_products/data/models/cus_package_model/cus_package_model.dart';
@@ -156,12 +157,13 @@ class ImplClassifiedProductsDataSources extends ClassifiedProductsDataSources {
 
   @override
   Future<Either<Failure, CusProductModel>> getClassifiedProduct(
-      int param) async {
+      GenericParams param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.getClassifiedProduct(param),
+      url: ApiNames.getClassifiedProduct(param.id),
       requestMethod: RequestMethod.get,
       responseType: ResType.model,
-      showLoader: true,
+      // showLoader: true,
+      refresh: param.refresh,
       toJsonFunc: (json) => CusProductModel.fromJson(json),
       responseKey: (data) => data["data"],
       errorFunc: (data) => data["msg"],
@@ -235,5 +237,31 @@ class ImplClassifiedProductsDataSources extends ClassifiedProductsDataSources {
       errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<PurchasePackageResponseModel>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, String>> deleteProduct(int param)async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.deleteProduct(param),
+      requestMethod: RequestMethod.delete,
+      responseType: ResType.type,
+      showLoader: true,
+      responseKey: (data) => data["msg"],
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<String>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, bool>> changeStatus(int param)async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.changeStatus(param),
+      requestMethod: RequestMethod.put,
+      responseType: ResType.type,
+      showLoader: true,
+      responseKey: (data) => data["data"]["available_status"],
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<bool>().call(model);
   }
 }

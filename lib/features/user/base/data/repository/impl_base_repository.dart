@@ -7,15 +7,12 @@ import 'package:flutter_tdd/features/user/base/domain/repository/base_repository
 import 'package:injectable/injectable.dart';
 import 'package:flutter_tdd/core/models/model_to_domain/model_to_domain.dart';
 
-
 @Injectable(as: BaseRepository)
-class ImplBaseRepository extends BaseRepository with ModelToDomain{
+class ImplBaseRepository extends BaseRepository with ModelToDomain {
   var dataSources = getIt<BaseDataSources>();
+
   @override
   Future<Either<Failure, bool>> logOut() async {
     return await dataSources.logOut();
   }
-
-
-
 }

@@ -3,10 +3,8 @@ part of 'edit_classified_product_w_imports.dart';
 class BuildEditThumbnailImage extends StatelessWidget {
   final EditClassifiedProductController controller;
 
-  const BuildEditThumbnailImage({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
+  const BuildEditThumbnailImage({Key? key, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +20,22 @@ class BuildEditThumbnailImage extends StatelessWidget {
               imageType: ImageType.thumbnail,
             ),
             child: CachedImage(
-              imgMargin: const EdgeInsets.all(5),
+              imgMargin: Dimens.paddingAll5PX,
               url: state.data!.url,
-              height: 60,
-              borderRadius: BorderRadius.circular(5),
-              width: 60,
+              height: Dimens.dp80.r,
+              width: Dimens.dp80.r,
+              borderRadius: Dimens.borderRadius5PX,
+              alignment: Alignment.topLeft,
+              borderColor: context.colors.greyWhite,
+              child: InkWell(
+                onTap: () =>
+                    controller.thumbnailImageBloc.onUpdateToInitState(null),
+                child: Icon(
+                  Icons.clear,
+                  color: context.colors.primary,
+                  size: Dimens.dp20.r,
+                ),
+              ),
             ),
           );
         } else {
@@ -37,12 +46,12 @@ class BuildEditThumbnailImage extends StatelessWidget {
               imageType: ImageType.thumbnail,
             ),
             child: Container(
-              height: 60,
-              width: 60,
+              height: Dimens.dp70.r,
+              width: Dimens.dp70.r,
               decoration: CustomDecoration(),
               child: Icon(
                 Icons.add,
-                size: 15,
+                size: Dimens.dp20.sp,
                 color: context.colors.primary,
               ),
             ),

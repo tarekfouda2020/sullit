@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
+import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/classified_products/data/models/classified_products_model/classified_products_model.dart';
 import 'package:flutter_tdd/features/user/classified_products/data/models/cus_package_model/cus_package_model.dart';
 import 'package:flutter_tdd/features/user/classified_products/data/models/cus_product_model/cus_product_model.dart';
@@ -16,17 +17,42 @@ import 'package:flutter_tdd/features/user/classified_products/domain/entities/pu
 import 'package:flutter_tdd/features/user/classified_products/domain/entities/uploaded_files_params.dart';
 
 abstract class ClassifiedProductsDataSources {
-  Future<Either<Failure,List<FileModel>>> getCusProducts(UploadedFilesParams params);
-  Future<Either<Failure,List<CusProductsCatModel>>> getCusProductsCats(bool param);
-  Future<Either<Failure,List<CusProductsBrandModel>>> getCusProductsBrands(bool param);
-  Future<Either<Failure,List<VideoProviderModel>>> getVideoProviders(bool param);
-  Future<Either<Failure,bool>> setAddFile(File param);
-  Future<Either<Failure,bool>> setAddFiles(List<File> param);
-  Future<Either<Failure,bool>> setAddClassifiedProduct(AddClassifiedProductParams params);
-  Future<Either<Failure,ClassifiedProductsModel>> getClassifiedProducts(bool param);
-  Future<Either<Failure,CusProductModel>> getClassifiedProduct (int param);
-  Future<Either<Failure,bool>> editClassifiedProduct (EditClassifiedProductParams params);
-  Future<Either<Failure,List<CusPackageModel>>> getPackages (bool param);
-  Future<Either<Failure,List<PaymentMethodModel>>> getPaymentMethods (bool param);
-  Future<Either<Failure,PurchasePackageResponseModel>> purchasePackage(PurchasePackageParams params);
+  Future<Either<Failure, List<FileModel>>> getCusProducts(
+      UploadedFilesParams params);
+
+  Future<Either<Failure, List<CusProductsCatModel>>> getCusProductsCats(
+      bool param);
+
+  Future<Either<Failure, List<CusProductsBrandModel>>> getCusProductsBrands(
+      bool param);
+
+  Future<Either<Failure, List<VideoProviderModel>>> getVideoProviders(
+      bool param);
+
+  Future<Either<Failure, bool>> setAddFile(File param);
+
+  Future<Either<Failure, bool>> setAddFiles(List<File> param);
+
+  Future<Either<Failure, bool>> setAddClassifiedProduct(
+      AddClassifiedProductParams params);
+
+  Future<Either<Failure, ClassifiedProductsModel>> getClassifiedProducts(
+      bool param);
+
+  Future<Either<Failure, CusProductModel>> getClassifiedProduct(GenericParams param);
+
+  Future<Either<Failure, bool>> editClassifiedProduct(
+      EditClassifiedProductParams params);
+
+  Future<Either<Failure, List<CusPackageModel>>> getPackages(bool param);
+
+  Future<Either<Failure, List<PaymentMethodModel>>> getPaymentMethods(
+      bool param);
+
+  Future<Either<Failure, PurchasePackageResponseModel>> purchasePackage(
+      PurchasePackageParams params);
+
+  Future<Either<Failure, bool>> changeStatus(int param);
+  Future<Either<Failure, String>> deleteProduct(int param);
+
 }

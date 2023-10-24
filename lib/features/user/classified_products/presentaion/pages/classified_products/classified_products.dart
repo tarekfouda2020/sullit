@@ -20,9 +20,7 @@ class _ClassifiedProductsState extends State<ClassifiedProducts> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(
-        title: tr('classifiedProducts'),
-      ),
+      appBar: DefaultAppBar(title: tr('classifiedProducts')),
       body: BlocBuilder<GenericBloc<ClassifiedProductsDomainModel?>,
           GenericState<ClassifiedProductsDomainModel?>>(
         bloc: controller.classifiedProductsBloc,
@@ -30,31 +28,13 @@ class _ClassifiedProductsState extends State<ClassifiedProducts> {
           if (state is GenericUpdateState) {
             return ListView(
               physics: const BouncingScrollPhysics(),
-              padding: Dimens.standardPadding,
+              padding: Dimens.paddingAll15PX,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    tr('products'),
-                    style: AppTextStyle.s14_w800(color: context.colors.black),
-                  ),
-                ),
-                BuildRemainingUploads(
-                  uploads: state.data!.remainingUploads,
-                ),
-                BuildAddNewProduct(
-                  uploads: state.data!.remainingUploads,
-                ),
+                BuildRemainingUploads(uploads: state.data!.remainingUploads),
+                BuildAddNewProduct(controller: controller),
                 BuildPackageBtn(
                   package: state.data!.currentPackage?.name,
                   controller: controller,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: Text(
-                    tr('allProducts'),
-                    style: AppTextStyle.s14_w800(color: context.colors.black),
-                  ),
                 ),
                 BuildProductView(
                   products: state.data!.sectionsProducts.products,

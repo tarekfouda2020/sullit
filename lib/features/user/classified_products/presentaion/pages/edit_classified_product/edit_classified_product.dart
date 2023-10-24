@@ -1,9 +1,9 @@
 part of 'edit_classified_product_imports.dart';
 
 class EditClassifiedProduct extends StatefulWidget {
-  final int productId;
+  final CusProduct productModel;
 
-  const EditClassifiedProduct({Key? key, required this.productId})
+  const EditClassifiedProduct({Key? key, required this.productModel})
       : super(key: key);
 
   @override
@@ -15,7 +15,7 @@ class _EditClassifiedProductState extends State<EditClassifiedProduct> {
 
   @override
   void initState() {
-    controller = EditClassifiedProductController(widget.productId);
+    controller = EditClassifiedProductController(widget.productModel);
     super.initState();
   }
 
@@ -23,38 +23,15 @@ class _EditClassifiedProductState extends State<EditClassifiedProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(
-        title: tr('editProduct'),
-      ),
+      appBar: DefaultAppBar(title: tr('editProduct')),
       body: BlocBuilder<GenericBloc<CusProduct?>, GenericState<CusProduct?>>(
         bloc: controller.cusProductBloc,
         builder: (context, state) {
           if (state is GenericUpdateState) {
-            return ListView(
-              physics: const BouncingScrollPhysics(),
-              padding: Dimens.standardPadding,
+            return Column(
               children: [
-                BuildEditGeneralFields(
-                  controller: controller,
-                ),
-                BuildPhotosView(
-                  controller: controller,
-                ),
-                BuildVideoView(
-                  controller: controller,
-                ),
-                BuildMetaInputs(
-                  controller: controller,
-                ),
-                BuildEditPrice(
-                  controller: controller,
-                ),
-                BuildDescription(
-                  controller: controller,
-                ),
-                BuildPdf(
-                  controller: controller,
-                ),
+                BuildEditForm(controller: controller),
+                BuildUpdateProduct(controller: controller),
               ],
             );
           } else {

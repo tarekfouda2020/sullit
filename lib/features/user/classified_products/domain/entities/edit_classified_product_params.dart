@@ -14,7 +14,7 @@ class EditClassifiedProductParams {
   String? metaTitle;
   String? metaDescription;
   int? metaImg;
-  int? unitPrice;
+  String? unitPrice;
   String? description;
   int? pdf;
   EditClassifiedProductParams({

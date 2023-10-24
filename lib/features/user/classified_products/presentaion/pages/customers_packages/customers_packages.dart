@@ -20,27 +20,27 @@ class _CustomersPackagesState extends State<CustomersPackages> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(
-        title: tr('customersPackages'),
-      ),
-      body: BlocBuilder<GenericBloc<List<CusPackage>>,
-          GenericState<List<CusPackage>>>(
-        bloc: controller.cusProducts,
-        builder: (context, state) {
-          if (state is GenericUpdateState) {
-            return Column(
-              children: [
-                const BuildPackagesText(),
-                BuildPackagesView(
-                  packages: state.data,
-                  controller: controller,
-                )
-              ],
-            );
-          } else {
-            return const BuildPackagesLoading();
-          }
-        },
+      appBar: DefaultAppBar(title: tr('customersPackages')),
+      body: Column(
+        children: [
+          const BuildPackagesText(),
+          Expanded(
+            child: GenericListView(
+              spacing: Dimens.dp15.r,
+              runSpacing: Dimens.dp15.r,
+              padding: Dimens.paddingAll15PX,
+              type: ListViewType.gridApi,
+              gridItemHeight: Dimens.dp200.spMin,
+              cubit: controller.cusProducts,
+              onRefresh: controller.getCusPackage,
+              loadingWidget: const BuildPackagesLoading(),
+              itemBuilder: (_, index, item) => BuildPackageCard(
+                package: item,
+                controller: controller,
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

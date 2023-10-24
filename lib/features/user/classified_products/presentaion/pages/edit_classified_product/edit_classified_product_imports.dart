@@ -9,6 +9,7 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/custom_dropDown/CustomDropDown.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
+import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/classified_products/data/enums/enums.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/entities/edit_classified_product_params.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/models/condition.dart';
@@ -26,7 +27,7 @@ import 'package:flutter_tdd/features/user/classified_products/domain/use_cases/g
 import 'package:flutter_tdd/features/user/classified_products/domain/use_cases/set_edit_cus_product.dart';
 import 'package:flutter_tdd/features/user/classified_products/presentaion/manager/helpers/video_url_validator.dart';
 import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/edit_classified_product/widgets/edit_classified_product_w_imports.dart';
-import 'package:flutter_tdd/features/user/classified_products/presentaion/widgets/build_images_dialog.dart';
+import 'package:flutter_tdd/features/user/classified_products/presentaion/widgets/classified_products_w_imports.dart';
 
 part 'edit_classified_product.dart';
 part 'edit_classified_product_controller.dart';
