@@ -32,6 +32,7 @@ class CartPaymentController {
       _checkPayMethodSel();
       if (isBalanceEnough()) {
         var params = _orderParams();
+        print(">>>>>${params.toJson()}");
         var data = await CreateOrder().call(params);
         if (data != null) {
           if (data.transactionUrl != null) {

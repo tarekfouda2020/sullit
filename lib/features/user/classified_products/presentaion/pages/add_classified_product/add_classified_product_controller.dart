@@ -49,6 +49,7 @@ class AddClassifiedProductsController {
     if (formKey.currentState!.validate()) {
       _onCheckData();
       var params = _addProductParams();
+      print(">>>>>${params.toJson()}");
       var data = await SetAddClassifiedProducts().call(params);
       if (data) {
         CustomToast.showSimpleToast(
@@ -167,7 +168,7 @@ class AddClassifiedProductsController {
       unit: productUnitController.text,
       photos: getImageIds(),
       thumbnailImg: thumbnailImageBloc.state.data!.id,
-      videoLink: videoUrlController.text,
+      videoLink: videoUrlController.text.isEmpty?null:videoUrlController.text,
       videoProvider: videoProvider?.provider,
       unitPrice: unitPrice.text,
       tags: productTagController.text,

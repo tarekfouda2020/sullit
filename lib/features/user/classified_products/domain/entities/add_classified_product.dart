@@ -9,7 +9,7 @@ class AddClassifiedProductParams {
   String photos;
   int? thumbnailImg;
   String? videoProvider;
-  String videoLink;
+  String? videoLink;
   String metaTitle;
   String metaDescription;
   int? metaImg;
@@ -26,7 +26,7 @@ class AddClassifiedProductParams {
     required this.location,
      this.thumbnailImg,
      this.videoProvider,
-    required this.videoLink,
+     this.videoLink,
     required this.metaTitle,
     required this.metaDescription,
     required this.description,

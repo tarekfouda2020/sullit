@@ -28,7 +28,7 @@ class BuildPrice extends StatelessWidget {
             type: TextInputType.number,
             action: TextInputAction.next,
             controller: controller.unitPrice,
-            validate: (value) => value!.validateEmpty(),
+            validate: (value) => value!.validateNumber(),
             label: tr('unitPrice'),
           ),
         ),

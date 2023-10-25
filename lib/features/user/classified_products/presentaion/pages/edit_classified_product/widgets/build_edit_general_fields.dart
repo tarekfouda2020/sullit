@@ -41,7 +41,7 @@ class BuildEditGeneralFields extends StatelessWidget {
                 useName: true,
                 onFind: (data) => controller.getCats(),
                 selectedItem: controller.cusProductsCat,
-                onChange: (value) => controller.selectCat(value!),
+                onChange: (value) => controller.selectCat(value),
                 validate: (value) => validateDropDown(value),
               ),
               DropdownTextField<CusProductBrand>(
@@ -54,7 +54,7 @@ class BuildEditGeneralFields extends StatelessWidget {
                 useName: true,
                 onFind: (data) => controller.getBrands(),
                 selectedItem: controller.cusProductsBrand,
-                onChange: (value) => controller.selectBrand(value!),
+                onChange: (value) => controller.selectBrand(value),
                 validate: (value) => validateDropDown(value),
               ),
               GenericTextField(
@@ -76,7 +76,7 @@ class BuildEditGeneralFields extends StatelessWidget {
                 useName: true,
                 data: controller.conditions,
                 selectedItem: controller.productCondition,
-                onChange: (value) => controller.selectCondition(value!),
+                onChange: (value) => controller.selectCondition(value),
                 validate: (value) => validateDropDown(value),
               ),
               GenericTextField(

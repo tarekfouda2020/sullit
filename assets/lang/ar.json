@@ -488,7 +488,8 @@
   "loginToYourAcc": "قم بتسجيل الدخول الي حسابك",
   "seller": "التاجر",
   "verifyAddress": "يجب تفعيل عنوانك اولا",
-  "reviewSuccess": "تم ارسال تقييمك بنجاح"
+  "reviewSuccess": "تم ارسال تقييمك بنجاح",
+  "validateNumber": "من فضلك ادخل ارقام فقط"
 }
 
 

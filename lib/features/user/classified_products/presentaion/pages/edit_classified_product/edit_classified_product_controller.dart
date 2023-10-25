@@ -117,6 +117,7 @@ class EditClassifiedProductController {
   }
 
   void selectVideoForm(VideoProvider? model) {
+    videoProvider=null;
     videoLink.clear();
     if (model != null) videoProvider = model;
   }
@@ -204,11 +205,15 @@ class EditClassifiedProductController {
     );
   }
 
-  VideoProvider videoItem(CusProduct model) {
-    return VideoProvider(
-      name: model.videoProvider,
-      provider: model.videoProvider,
-    );
+  VideoProvider? videoItem(CusProduct model) {
+    if (model.videoProvider.isNotEmpty) {
+      return VideoProvider(
+        name: model.videoProvider,
+        provider: model.videoProvider,
+      );
+    } else {
+      return null;
+    }
   }
 
   ConditionDomainModel conditionItem(CusProduct model) {

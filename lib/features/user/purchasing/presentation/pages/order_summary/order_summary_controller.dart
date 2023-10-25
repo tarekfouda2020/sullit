@@ -48,6 +48,14 @@ class OrderSummaryController {
     }
   }
 
+  void _confirmOrder(BuildContext context, OrderSummary data) {
+    CustomToast.showSimpleToast(
+      msg: tr('thanksForYourOrder'),
+      type: ToastType.success,
+    );
+    AutoRouter.of(context).push(HomeRoute(index: 0));
+  }
+
   void showReviewDialog(BuildContext context, OrderDetails model) {
     showDialog(
       context: context,

@@ -14,6 +14,15 @@ extension Validator on String {
     return null;
   }
 
+  String? validateNumber({String? message}) {
+    if (trim().isEmpty) {
+      return message ?? tr("fillField");
+    } else if (!RegExp(r'^[0-9]+$').hasMatch(this)) {
+      return message ?? tr("validateNumber");
+    }
+    return null;
+  }
+
   String? validateName({String? message}) {
     if (trim().isEmpty) {
       return message ?? tr("fillField");
@@ -100,29 +109,29 @@ extension Validator on String {
 
   String? validateVideoUrl(
       VideoURLValidator urlValidator, VideoProvider? model, String url) {
-   if(model!=null){
-     if (model.provider == 'youtube') {
-       bool validate = urlValidator.validateYouTubeVideoURL(url: url);
-       if (!validate) {
-         return tr('linkValidation');
-       }
-     } else if (model.provider == 'dailymotion') {
-       bool validate = urlValidator.validateDailyMotionVideoURL(url: url);
-       if (!validate) {
-         return tr('linkValidation');
-       }
-     } else if (model.provider == 'vimeo') {
-       bool validate = urlValidator.validateVimeoVideoURL(url: url);
-       if (!validate) {
-         return tr('linkValidation');
-       }
-     } else {
-       return null;
-     }
-     return null;
-   }else{
-     return null;
-   }
+    if (model != null) {
+      if (model.provider == 'youtube') {
+        bool validate = urlValidator.validateYouTubeVideoURL(url: url);
+        if (!validate) {
+          return tr('linkValidation');
+        }
+      } else if (model.provider == 'dailymotion') {
+        bool validate = urlValidator.validateDailyMotionVideoURL(url: url);
+        if (!validate) {
+          return tr('linkValidation');
+        }
+      } else if (model.provider == 'vimeo') {
+        bool validate = urlValidator.validateVimeoVideoURL(url: url);
+        if (!validate) {
+          return tr('linkValidation');
+        }
+      } else {
+        return null;
+      }
+      return null;
+    } else {
+      return null;
+    }
   }
 }
 
