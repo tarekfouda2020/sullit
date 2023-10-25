@@ -14,7 +14,7 @@ class BuildMetaInputs extends StatelessWidget {
           padding: Dimens.paddingT20B10,
           child: Text(
             tr('metaTags'),
-            style: AppTextStyle.s16_w700(color: context.colors.black),
+            style: AppTextStyle.s15_w700(color: context.colors.black),
           ),
         ),
         Container(
@@ -46,7 +46,7 @@ class BuildMetaInputs extends StatelessWidget {
                 padding: Dimens.paddingVertical5PX,
                 child: Text(
                   tr('metaImage'),
-                  style: AppTextStyle.s14_w800(color: context.colors.black),
+                  style: AppTextStyle.s15_w700(color: context.colors.black),
                 ),
               ),
               BuildEditMetaImage(controller: controller)

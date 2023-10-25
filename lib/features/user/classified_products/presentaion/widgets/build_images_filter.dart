@@ -59,6 +59,7 @@ class BuildImagesFilter extends StatelessWidget {
                   extension: extension,
                   model: value,
                   search: searchController.text,
+                  selectedOnlyBloc: selectedOnlyBloc,
                 ),
                 validate: (value) => validateDropDown(value),
               ),
@@ -85,14 +86,10 @@ class BuildImagesFilter extends StatelessWidget {
                           );
                         },
                       ),
-                      GestureDetector(
-                        onTap: () =>
-                            selectedOnlyBloc.onUpdateData(!checkBoxState.data),
-                        child: Text(
-                          tr('selectedOnly'),
-                          style: AppTextStyle.s12_w400(
-                            color: context.colors.black,
-                          ),
+                      Text(
+                        tr('selectedOnly'),
+                        style: AppTextStyle.s12_w400(
+                          color: context.colors.black,
                         ),
                       ),
                     ],

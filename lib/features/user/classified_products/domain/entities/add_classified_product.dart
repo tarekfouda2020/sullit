@@ -7,15 +7,15 @@ class AddClassifiedProductParams {
   String location;
   String tags;
   String photos;
-  int thumbnailImg;
-  String videoProvider;
+  int? thumbnailImg;
+  String? videoProvider;
   String videoLink;
   String metaTitle;
   String metaDescription;
-  int metaImg;
-  int unitPrice;
+  int? metaImg;
+  String unitPrice;
   String description;
-  int pdf;
+  int? pdf;
 
   AddClassifiedProductParams({
     required this.name,
@@ -24,14 +24,14 @@ class AddClassifiedProductParams {
     required this.unit,
     required this.condition,
     required this.location,
-    required this.thumbnailImg,
-    required this.videoProvider,
+     this.thumbnailImg,
+     this.videoProvider,
     required this.videoLink,
     required this.metaTitle,
     required this.metaDescription,
     required this.description,
-    required this.pdf,
-    required this.metaImg,
+     this.pdf,
+     this.metaImg,
     required this.photos,
     required this.tags,
     required this.unitPrice,

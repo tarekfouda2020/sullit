@@ -1,18 +1,15 @@
-part of 'edit_classified_product_w_imports.dart';
+part of 'add_classified_product_w_imports.dart';
+class BuildAddMetaImage extends StatelessWidget {
+final AddClassifiedProductsController controller;
 
-class BuildEditMetaImage extends StatelessWidget {
-  final EditClassifiedProductController controller;
-
-  const BuildEditMetaImage({Key? key, required this.controller})
-      : super(key: key);
-
+  const BuildAddMetaImage({super.key, required this.controller});
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<FileDomainModel?>,
+    return  BlocBuilder<GenericBloc<FileDomainModel?>,
         GenericState<FileDomainModel?>>(
       bloc: controller.metaImageBloc,
       builder: (context, state) {
-        if (state is GenericUpdateState && state.data?.url!="") {
+        if (state is GenericUpdateState) {
           return GestureDetector(
             onTap: () => controller.showImageDialog(
               context: context,

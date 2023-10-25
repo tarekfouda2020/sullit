@@ -20,7 +20,7 @@ class BuildAddNewProduct extends StatelessWidget {
               margin:Dimens.paddingVertical10PX,
               padding: Dimens.paddingAll10PX,
               decoration: BoxDecoration(
-                color: context.colors.greyWhite,
+                color: context.colors.grey,
                 shape: BoxShape.circle,
               ),
               child: Icon(

@@ -13,7 +13,7 @@ class BuildEditGeneralFields extends StatelessWidget {
       children: [
         Text(
           tr('general'),
-          style: AppTextStyle.s16_w700(color: context.colors.black),
+          style: AppTextStyle.s15_w700(color: context.colors.black),
         ),
         Container(
           margin: Dimens.paddingVertical10PX,
@@ -81,7 +81,6 @@ class BuildEditGeneralFields extends StatelessWidget {
               ),
               GenericTextField(
                 margin: Dimens.paddingVertical10PX,
-
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.text,
                 controller: controller.productTag,
@@ -91,7 +90,6 @@ class BuildEditGeneralFields extends StatelessWidget {
               ),
               GenericTextField(
                 margin: Dimens.paddingVertical10PX,
-
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.text,
                 controller: controller.unit,

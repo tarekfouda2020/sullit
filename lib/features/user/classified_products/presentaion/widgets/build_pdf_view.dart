@@ -31,6 +31,8 @@ class BuildPdfFile extends StatelessWidget {
                             ),
                           ),
                           InkWell(
+                            onTap: () =>
+                                getIt<AddImageHelper>().removeImage(fileBloc),
                             child: Icon(
                               Icons.clear,
                               color: context.colors.primary,

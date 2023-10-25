@@ -1,7 +1,8 @@
 part of 'add_classified_product_w_imports.dart';
 
 class BuildVideosView extends StatelessWidget {
-  final AddClassifiedProductsController controller ;
+  final AddClassifiedProductsController controller;
+
   const BuildVideosView({Key? key, required this.controller}) : super(key: key);
 
   @override
@@ -10,44 +11,42 @@ class BuildVideosView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
+          padding: Dimens.paddingT20B10,
           child: Text(
             tr('videos'),
-            style: AppTextStyle.s16_w700(
+            style: AppTextStyle.s15_w700(
               color: context.colors.black,
             ),
           ),
         ),
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          padding: Dimens.paddingAll10PX,
           decoration: CustomDecoration(),
           child: Column(
             children: [
               DropdownTextField<VideoProvider>(
-                fillColor: context.colors.white,
-                textSize: 16.sp,
                 itemAsString: (model) => (model).name,
-                showClearButton: false,
-                title: tr('selectService'),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                label:  tr('selectServiceType'),
+                title: tr('selVideoForm'),
+                margin: Dimens.paddingVertical10PX,
+                label: tr('selVideoForm'),
                 dropKey: controller.videoProviderDropKey,
                 useName: true,
                 onFind: (data) => controller.getVideoProviders(),
-                fontSize:16.sp,
                 selectedItem: controller.videoProvider,
-                radius: BorderRadius.circular(5.r),
                 onChange: (value) => controller.selectVideoProvider(value),
-                validate: (value) => validateDropDown(value),
+                validate: (value) => noValidateDropDown(),
               ),
               GenericTextField(
-                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                margin: Dimens.paddingVertical10PX,
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.next,
                 controller: controller.videoUrlController,
-                validate: (value) => controller.validateVideoUrl(),
+                validate: (value) => value!.validateVideoUrl(
+                  controller.videoUrlValidator,
+                  controller.videoProvider,
+                  value,
+                ),
                 label: tr('videoUrl'),
               ),
             ],

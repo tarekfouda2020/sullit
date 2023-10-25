@@ -12,7 +12,7 @@ class BuildDescription extends StatelessWidget {
           padding: Dimens.paddingT20B10,
           child: Text(
             tr('description'),
-            style: AppTextStyle.s14_w800(color: context.colors.black),
+            style: AppTextStyle.s15_w700(color: context.colors.black),
           ),
         ),
         Container(

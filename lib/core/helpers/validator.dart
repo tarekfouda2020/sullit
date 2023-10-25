@@ -100,25 +100,29 @@ extension Validator on String {
 
   String? validateVideoUrl(
       VideoURLValidator urlValidator, VideoProvider? model, String url) {
-    if (model?.provider == 'youtube') {
-      bool validate = urlValidator.validateYouTubeVideoURL(url: url);
-      if (!validate) {
-        return tr('linkValidation');
-      }
-    } else if (model?.provider == 'dailymotion') {
-      bool validate = urlValidator.validateDailyMotionVideoURL(url: url);
-      if (!validate) {
-        return tr('linkValidation');
-      }
-    } else if (model?.provider == 'vimeo') {
-      bool validate = urlValidator.validateVimeoVideoURL(url: url);
-      if (!validate) {
-        return tr('linkValidation');
-      }
-    } else {
-      return null;
-    }
-    return null;
+   if(model!=null){
+     if (model.provider == 'youtube') {
+       bool validate = urlValidator.validateYouTubeVideoURL(url: url);
+       if (!validate) {
+         return tr('linkValidation');
+       }
+     } else if (model.provider == 'dailymotion') {
+       bool validate = urlValidator.validateDailyMotionVideoURL(url: url);
+       if (!validate) {
+         return tr('linkValidation');
+       }
+     } else if (model.provider == 'vimeo') {
+       bool validate = urlValidator.validateVimeoVideoURL(url: url);
+       if (!validate) {
+         return tr('linkValidation');
+       }
+     } else {
+       return null;
+     }
+     return null;
+   }else{
+     return null;
+   }
   }
 }
 
@@ -128,6 +132,7 @@ String? validateDropDown(dynamic model, {String? message}) {
   }
   return null;
 }
+
 String? noValidateDropDown() {
   return null;
 }

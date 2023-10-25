@@ -14,7 +14,7 @@ class BuildPhotosView extends StatelessWidget {
           padding: Dimens.paddingVertical10PX,
           child: Text(
             tr('images'),
-            style: AppTextStyle.s16_w700(color: context.colors.black),
+            style: AppTextStyle.s15_w700(color: context.colors.black),
           ),
         ),
         Container(
@@ -28,7 +28,7 @@ class BuildPhotosView extends StatelessWidget {
                 padding: Dimens.paddingVertical5PX,
                 child: Text(
                   tr('gallaryImages'),
-                  style: AppTextStyle.s14_w800(
+                  style: AppTextStyle.s15_w700(
                     color: context.colors.black,
                   ),
                 ),
@@ -39,7 +39,7 @@ class BuildPhotosView extends StatelessWidget {
                 padding: Dimens.paddingVertical5PX,
                 child: Text(
                   tr('thumbnailImage'),
-                  style: AppTextStyle.s14_w800(color: context.colors.black),
+                  style: AppTextStyle.s15_w700(color: context.colors.black),
                 ),
               ),
               BuildEditThumbnailImage(controller: controller),

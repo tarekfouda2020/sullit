@@ -21,30 +21,38 @@ class _AddClassifiedProductState extends State<AddClassifiedProduct> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colors.customBackground,
-      appBar: DefaultAppBar(title: tr('addNewProduct')),
-      body: ListView(
-          physics: const BouncingScrollPhysics(),
-          padding: Dimens.standardPadding,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        backgroundColor: context.colors.customBackground,
+        appBar: DefaultAppBar(title: tr('addNewProduct')),
+        body: Column(
           children: [
-            Form(
-              key: controller.formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  BuildGeneralFields(controller: controller),
-                  BuildImagesView(controller: controller),
-                  BuildVideosView(controller: controller),
-                  BuildMetaTags(controller: controller),
-                  BuildPrice(controller: controller),
-                  BuildDiscription(controller: controller),
-                  BuildPdf(controller: controller),
-                  BuildSaveProductBtn(controller: controller)
-                ],
+            Flexible(
+              child: Form(
+                autovalidateMode: AutovalidateMode.disabled,
+                key: controller.formKey,
+                child: SingleChildScrollView(
+                  padding: Dimens.paddingAll15PX,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BuildGeneralFields(controller: controller),
+                      BuildImagesView(controller: controller),
+                      BuildVideosView(controller: controller),
+                      BuildMetaTags(controller: controller),
+                      BuildPrice(controller: controller),
+                      BuildDescription(controller: controller),
+                      BuildPdf(controller: controller),
+                    ],
+                  ),
+                ),
               ),
             ),
-          ]),
+            BuildSaveProductBtn(controller: controller)
+          ],
+        ),
+      ),
     );
   }
 }

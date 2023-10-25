@@ -11,11 +11,21 @@ class BuildThumbnailImage extends StatelessWidget {
       builder: (context, state) {
         if (state is GenericUpdateState) {
           return CachedImage(
-            imgMargin: const EdgeInsets.all(5),
+            imgMargin: Dimens.paddingAll5PX,
             url: state.data!.url,
-            height: 60,
-            borderRadius: BorderRadius.circular(5),
-            width: 60,
+            borderRadius: Dimens.borderRadius5PX,
+            height: Dimens.dp80.r,
+            width: Dimens.dp80.r,
+            alignment: Alignment.topLeft,
+            child: InkWell(
+              onTap: () =>
+                  controller.thumbnailImageBloc.onUpdateToInitState(null),
+              child: Icon(
+                Icons.clear,
+                color: context.colors.primary,
+                size: Dimens.dp20.r,
+              ),
+            ),
           );
         } else {
           return InkWell(
@@ -25,12 +35,12 @@ class BuildThumbnailImage extends StatelessWidget {
               imageType: ImageType.thumbnail,
             ),
             child: Container(
-              height: 60,
-              width: 60,
+              height: Dimens.dp70.r,
+              width: Dimens.dp70.r,
               decoration: CustomDecoration(),
               child: Icon(
                 Icons.add,
-                size: 15,
+                size: Dimens.dp20.sp,
                 color: context.colors.primary,
               ),
             ),

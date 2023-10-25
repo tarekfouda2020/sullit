@@ -28,12 +28,15 @@ class AddImageHelper {
   ];
   Sort? selectedSort;
 
-  void selectService(
-      {required GenericBloc<List<FileDomainModel>> filesBloc,
-      String? extension,
-      String? search,
-      Sort? model}) {
+  void selectService({
+    required GenericBloc<List<FileDomainModel>> filesBloc,
+    required GenericBloc<bool> selectedOnlyBloc,
+    String? extension,
+    String? search,
+    Sort? model,
+  }) {
     selectedSort = model;
+    selectedOnlyBloc.onUpdateToInitState(false);
     getUploadedFiles(filesBloc, search ?? "", extension);
   }
 
@@ -52,15 +55,7 @@ class AddImageHelper {
     fileBloc.onUpdateData(data.first);
   }
 
-  Future<void> removePdf(GenericBloc<FileDomainModel?> fileBloc) async {
-    fileBloc.onUpdateData(null);
-  }
-
-  Future<void> removeExitedPdf(GenericBloc<FileDomainModel?> fileBloc) async {
-    fileBloc.onUpdateData(null);
-  }
-
-  Future<void> setUploadFile(BuildContext context,File file) async {
+  Future<void> setUploadFile(BuildContext context, File file) async {
     var data = await SetUploadFile().call(file);
     if (data) {
       CustomToast.showSimpleToast(msg: 'successfully sent.');
@@ -110,7 +105,7 @@ class AddImageHelper {
       {bool refresh = true}) async {
     var params = _setUploadedFilesParams(extension, search);
     var data = await GetUploadedFiles().call(params);
-    filesBloc.onUpdateData(data.reversed.toList());
+    filesBloc.onUpdateData(data.toList());
   }
 
   void onItemSelected({

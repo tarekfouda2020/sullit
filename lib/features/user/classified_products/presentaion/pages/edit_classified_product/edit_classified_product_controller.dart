@@ -105,28 +105,20 @@ class EditClassifiedProductController {
   }
 
   void selectCondition(ConditionDomainModel? model) {
-    if (model != null) {
-      productCondition = model;
-    }
+    if (model != null) productCondition = model;
   }
 
   void selectBrand(CusProductBrand? model) {
-    if (model != null) {
-      cusProductsBrand = model;
-    }
+    if (model != null) cusProductsBrand = model;
   }
 
   void selectCat(CusProductsCat? model) {
-    if (model != null) {
-      cusProductsCat = model;
-    }
+    if (model != null) cusProductsCat = model;
   }
 
   void selectVideoForm(VideoProvider? model) {
     videoLink.clear();
-    if (model != null) {
-      videoProvider = model;
-    }
+    if (model != null) videoProvider = model;
   }
 
   void removeExistedImages(int index) {

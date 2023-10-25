@@ -11,83 +11,49 @@ class BuildMetaTags extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
+          padding: Dimens.paddingT20B10,
           child: Text(
             tr('metaTags'),
-            style: AppTextStyle.s16_w700(
+            style: AppTextStyle.s15_w700(
               color: context.colors.black,
             ),
           ),
         ),
         Container(
           decoration: CustomDecoration(),
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          padding: Dimens.paddingAll10PX,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GenericTextField(
-                margin:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                margin: Dimens.paddingVertical10PX,
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.next,
                 controller: controller.metaTitleController,
-                validate: (value) => value!.validateEmpty(),
+                validate: (value) => value!.noValidate(),
                 label: tr('metaTitle'),
               ),
               GenericTextField(
-                margin:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                margin: Dimens.paddingVertical10PX,
                 controller: controller.metaDescController,
                 fieldTypes: FieldTypes.rich,
                 max: 5,
                 type: TextInputType.text,
                 action: TextInputAction.next,
-                validate: (value) => value!.validateEmpty(),
+                validate: (value) => value!.noValidate(),
                 label: tr('description'),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
+                padding: Dimens.paddingVertical5PX,
                 child: Text(
                   tr('metaImage'),
-                  style: AppTextStyle.s14_w800(
+                  style: AppTextStyle.s15_w700(
                     color: context.colors.black,
                   ),
                 ),
               ),
-              BlocBuilder<GenericBloc<FileDomainModel?>,
-                  GenericState<FileDomainModel?>>(
-                bloc: controller.metaImageBloc,
-                builder: (context, state) {
-                  if (state is GenericUpdateState) {
-                    return CachedImage(
-                      imgMargin: const EdgeInsets.all(5),
-                      url: state.data!.url,
-                      height: 60,
-                      borderRadius: BorderRadius.circular(5),
-                      width: 60,
-                    );
-                  } else {
-                    return InkWell(
-                      onTap: () => controller.showImageDialog(
-                        context: context,
-                        type: FileImageType.singleImage,
-                        imageType: ImageType.meta,
-                      ),
-                      child: Container(
-                        height: 60,
-                        width: 60,
-                        decoration: CustomDecoration(),
-                        child: Icon(
-                          Icons.add,
-                          size: 15,
-                          color: context.colors.primary,
-                        ),
-                      ),
-                    );
-                  }
-                },
-              ),
+              BuildAddMetaImage(controller: controller),
             ],
           ),
         ),

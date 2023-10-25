@@ -22,9 +22,8 @@ class BuildImageItem extends StatelessWidget {
       child: Container(
         padding: Dimens.paddingAll10PX,
         decoration: model.selected
-            ? CustomDecoration().copyWith(
-                border: Border.all(color: context.colors.primary),
-              )
+            ? CustomDecoration()
+                .copyWith(border: Border.all(color: context.colors.primary))
             : CustomDecoration(),
         child: Column(
           children: [

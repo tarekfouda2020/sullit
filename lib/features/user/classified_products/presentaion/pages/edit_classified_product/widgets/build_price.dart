@@ -14,7 +14,7 @@ class BuildEditPrice extends StatelessWidget {
           padding: Dimens.paddingT20B10,
           child: Text(
             tr('price'),
-            style: AppTextStyle.s16_w700(color: context.colors.black),
+            style: AppTextStyle.s15_w700(color: context.colors.black),
           ),
         ),
         Container(
