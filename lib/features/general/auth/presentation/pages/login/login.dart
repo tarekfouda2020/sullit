@@ -28,7 +28,7 @@ class _LoginState extends State<Login> {
               BuildLoginForm(controller: loginController),
               const BuildForgetPasswordView(),
               BuildLoginButton(controller: loginController),
-              BuildLoginSocialMedia(controller: loginController),
+              // BuildLoginSocialMedia(controller: loginController),
               const BuildDoNotHaveAccount()
             ],
           ),

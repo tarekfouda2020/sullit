@@ -32,7 +32,7 @@ class _RegisterState extends State<Register> {
             BuildTermsAndConditions(registerController: controller),
             BuildRegisterButton(controller: controller),
             // BuildSellerButton(registerController: controller),
-            const BuildRegisterSocial(),
+            // const BuildRegisterSocial(),
             const BuildHaveAccount(),
           ],
         ),
