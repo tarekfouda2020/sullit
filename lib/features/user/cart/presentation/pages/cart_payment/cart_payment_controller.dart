@@ -32,7 +32,7 @@ class CartPaymentController {
       _checkPayMethodSel();
       if (isBalanceEnough()) {
         var params = _orderParams();
-        print(">>>>>${params.toJson()}");
+        print("######${params.toJson()}");
         var data = await CreateOrder().call(params);
         if (data != null) {
           if (data.transactionUrl != null) {
@@ -51,8 +51,12 @@ class CartPaymentController {
   }
 
   bool isBalanceEnough() {
-    var balance = shippingBloc.state.data!.summary.walletBalance;
-    if (selectedPayment == "wallet" && balance == "د.إ0.00") {
+    var summary = shippingBloc.state.data!.summary;
+    var balance = summary.walletBalance.replaceAll("د.إ", "");
+    var totalPrice = summary.total.replaceAll("د.إ", "");
+    var numBalance = num.parse(balance);
+    var numPrice = num.parse(totalPrice);
+    if (selectedPayment == "wallet" && numPrice > numBalance) {
       CustomToast.showSimpleToast(
           msg: tr('walletBalanceEmpty'), type: ToastType.error);
       return false;
