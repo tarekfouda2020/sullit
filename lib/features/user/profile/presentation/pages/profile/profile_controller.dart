@@ -89,6 +89,7 @@ class ProfileController {
     if (isDataChanged(context)) {
       var user = context.read<UserCubit>().state.model;
       var params = _profileParams();
+      print(">>>>>>${params.toJson()}");
       if (emailController.text != user!.email) {
         setEditProfileEmail();
       }
@@ -131,7 +132,7 @@ class ProfileController {
     if (model.isPhoneActive == false) {
       AutoRouter.of(context).push(
         ActiveAccountRoute(
-          phone: phoneController.text,
+          phone:model.phone??"",
         ),
       );
     }

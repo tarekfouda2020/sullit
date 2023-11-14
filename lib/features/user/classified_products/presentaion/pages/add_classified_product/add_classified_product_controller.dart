@@ -85,7 +85,7 @@ class AddClassifiedProductsController {
   }
 
   void selectVideoProvider(VideoProvider? model) {
-    videoProvider=null;
+    videoProvider = null;
     videoUrlController.clear();
     if (model != null) videoProvider = model;
   }
@@ -120,7 +120,6 @@ class AddClassifiedProductsController {
     //   CustomToast.showSimpleToast(msg: tr('pdfValidation'));
     //   return;
     // }
-
   }
 
   void showImageDialog({
@@ -143,7 +142,8 @@ class AddClassifiedProductsController {
   void onAddFile(
       BuildContext context, ImageType imageType, List<FileDomainModel> files) {
     if (imageType == ImageType.generalImages) {
-      imagesBloc.onUpdateData(files);
+      imagesBloc.state.data.addAll(files);
+      imagesBloc.onUpdateData(imagesBloc.state.data);
     } else if (imageType == ImageType.meta) {
       metaImageBloc.onUpdateData(files.first);
     } else if (imageType == ImageType.thumbnail) {
@@ -155,6 +155,7 @@ class AddClassifiedProductsController {
   }
 
   AddClassifiedProductParams _addProductParams() {
+    String? url = videoUrlLink();
     return AddClassifiedProductParams(
       name: productNameController.text,
       brandId: cusProductsBrand!.id,
@@ -168,12 +169,21 @@ class AddClassifiedProductsController {
       unit: productUnitController.text,
       photos: getImageIds(),
       thumbnailImg: thumbnailImageBloc.state.data!.id,
-      videoLink: videoUrlController.text.isEmpty?null:videoUrlController.text,
+      videoLink: url,
       videoProvider: videoProvider?.provider,
       unitPrice: unitPrice.text,
       tags: productTagController.text,
       pdf: pdfBloc.state.data?.id,
     );
+  }
+
+  String? videoUrlLink() {
+    if (videoUrlController.text.isEmpty) {
+      return null;
+    } else if (!videoUrlController.text.toString().startsWith("https")) {
+      videoUrlController.text = "https://${videoUrlController.text}";
+    }
+    return videoUrlController.text;
   }
 
   String getImageIds() {

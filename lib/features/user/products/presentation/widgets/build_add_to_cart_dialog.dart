@@ -52,6 +52,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
         builder: (context, state) {
           return Column(
             mainAxisSize: MainAxisSize.min,
+
             children: [
               CachedImage(
                 url: state.data!.images!.first,
@@ -81,9 +82,16 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                       color: context.colors.primary,
                     ),
                   ),
-                  Visibility(
-                    visible: state.data!.hasDiscount!,
-                    child: Text(
+
+                ],
+              ),
+              Visibility(
+                visible: state.data!.hasDiscount!,
+                child: Column(
+
+                  children: [
+                    Gaps.vGap10,
+                    Text(
                       "${state.data!.priceHighLow} ",
                       style: AppTextStyle.s14_w600(
                         color: context.colors.black,
@@ -91,8 +99,8 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                         decoration: TextDecoration.lineThrough,
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Gaps.line(context.colors.grey, 20.h),
               BuildProductAttributes(productCubit: productCubit),

@@ -38,7 +38,7 @@ class BuildContactUsFields extends StatelessWidget {
               fillColor: context.colors.white,
               controller: contactUsData.phone,
               fieldTypes: FieldTypes.normal,
-              type: TextInputType.phone,
+              type: TextInputType.text,
               action: TextInputAction.next,
               validate: (value) => value?.validatePhone(),
               label: tr('phone'),

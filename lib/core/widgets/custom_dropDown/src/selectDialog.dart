@@ -161,103 +161,100 @@ class _SelectDialogState<T> extends State<SelectDialog<T>> {
     double maxHeight = deviceSize.height * (isTablet ? .8 : .6);
     double maxWidth = deviceSize.width * (isTablet ? .7 : .9);
 
-    return Padding(
-      padding: MediaQuery.of(context).viewInsets,
-      child: Container(
-        width: widget.dialogMaxWidth ?? maxWidth,
-        constraints: BoxConstraints(maxHeight: widget.maxHeight ?? maxHeight),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            // _searchField(),
-            const SizedBox(height: 24),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-                    bloc: titleCubit,
-                    builder: (context, state) {
-                      if (!state.data) {
-                        return const SizedBox.shrink();
-                      }
-                      return Text(
-                        widget.title,
-                        style: widget.style,
-                      );
-                    },
+    return Container(
+      width: widget.dialogMaxWidth ?? maxWidth,
+      constraints: BoxConstraints(maxHeight: widget.maxHeight ?? maxHeight),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          // _searchField(),
+          const SizedBox(height: 24),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+                  bloc: titleCubit,
+                  builder: (context, state) {
+                    if (!state.data) {
+                      return const SizedBox.shrink();
+                    }
+                    return Text(
+                      widget.title,
+                      style: widget.style,
+                    );
+                  },
+                ),
+                Flexible(
+                  child: SearchFormField(
+                    onChange: (f) => _debouncer(() {
+                      _onTextChanged(f);
+                    }),
+                    onSubmit: (f) => _debouncer(() {
+                      _onTextChanged(f);
+                    }),
+                    onFocus: (val) => titleCubit.onUpdateData(val),
+                    searchHint: widget.searchBoxDecoration?.hintText,
                   ),
-                  Flexible(
-                    child: SearchFormField(
-                      onChange: (f) => _debouncer(() {
-                        _onTextChanged(f);
-                      }),
-                      onSubmit: (f) => _debouncer(() {
-                        _onTextChanged(f);
-                      }),
-                      onFocus: (val) => titleCubit.onUpdateData(val),
-                      searchHint: widget.searchBoxDecoration?.hintText,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-            SizedBox(height: 24),
-            if (widget.showFavoriteItems == true) _favoriteItemsWidget(),
-            Expanded(
-              child: Stack(
-                children: <Widget>[
-                  StreamBuilder<List<T>>(
-                    stream: _itemsStream.stream,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasError) {
-                        return _errorWidget(snapshot.error);
-                      } else if (!snapshot.hasData) {
-                        return _loadingWidget();
-                      } else if (snapshot.data!.isEmpty) {
-                        if (widget.emptyBuilder != null) {
-                          return widget.emptyBuilder!(
-                            context,
-                            widget.searchFieldProps?.controller?.text ??
-                                widget.searchBoxController?.text,
-                          );
-                        } else {
-                          return const Center(
-                            child: Text("No data found"),
-                          );
-                        }
+          ),
+          SizedBox(height: 24),
+          if (widget.showFavoriteItems == true) _favoriteItemsWidget(),
+          Expanded(
+            child: Stack(
+              children: <Widget>[
+                StreamBuilder<List<T>>(
+                  stream: _itemsStream.stream,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return _errorWidget(snapshot.error);
+                    } else if (!snapshot.hasData) {
+                      return _loadingWidget();
+                    } else if (snapshot.data!.isEmpty) {
+                      if (widget.emptyBuilder != null) {
+                        return widget.emptyBuilder!(
+                          context,
+                          widget.searchFieldProps?.controller?.text ??
+                              widget.searchBoxController?.text,
+                        );
+                      } else {
+                        return const Center(
+                          child: Text("No data found"),
+                        );
                       }
-                      return Scrollbar(
-                        controller: widget.scrollbarProps?.controller,
-                        isAlwaysShown: widget.scrollbarProps?.isAlwaysShown,
-                        showTrackOnHover:
-                        widget.scrollbarProps?.showTrackOnHover,
-                        hoverThickness: widget.scrollbarProps?.hoverThickness,
-                        thickness: widget.scrollbarProps?.thickness,
-                        radius: widget.scrollbarProps?.radius,
-                        notificationPredicate:
-                        widget.scrollbarProps?.notificationPredicate,
-                        interactive: widget.scrollbarProps?.interactive,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          padding: EdgeInsets.zero,
-                          itemCount: snapshot.data!.length,
-                          itemBuilder: (context, index) {
-                            var item = snapshot.data![index];
-                            return _itemWidget(item);
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                  _loadingWidget()
-                ],
-              ),
+                    }
+                    return Scrollbar(
+                      controller: widget.scrollbarProps?.controller,
+                      isAlwaysShown: widget.scrollbarProps?.isAlwaysShown,
+                      showTrackOnHover:
+                      widget.scrollbarProps?.showTrackOnHover,
+                      hoverThickness: widget.scrollbarProps?.hoverThickness,
+                      thickness: widget.scrollbarProps?.thickness,
+                      radius: widget.scrollbarProps?.radius,
+                      notificationPredicate:
+                      widget.scrollbarProps?.notificationPredicate,
+                      interactive: widget.scrollbarProps?.interactive,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.zero,
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          var item = snapshot.data![index];
+                          return _itemWidget(item);
+                        },
+                      ),
+                    );
+                  },
+                ),
+                _loadingWidget()
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

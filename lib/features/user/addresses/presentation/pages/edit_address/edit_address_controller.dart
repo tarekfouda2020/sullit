@@ -11,6 +11,9 @@ class EditAddressController {
   final GlobalKey<DropdownSearchState> stateController = GlobalKey();
   final GlobalKey<DropdownSearchState> cityController = GlobalKey();
   final LocationCubit locationCubit = LocationCubit();
+  final GenericBloc<Country?> countryCubit = GenericBloc(null);
+  final GenericBloc<StateDomainModel?> stateCubit = GenericBloc(null);
+  final GenericBloc<City?> cityCubit = GenericBloc(null);
 
   EditAddressController(Address address) {
     addressController.text = address.address ?? "";
@@ -23,24 +26,30 @@ class EditAddressController {
   City? cityModel;
 
   void onChangeCountry(Country? model) {
-    if (model != null) {
-      countryModel = model;
-    }
+    countryCubit.onUpdateToInitState(null);
     stateController.currentState?.changeSelectedItem(null);
     cityController.currentState?.changeSelectedItem(null);
-  }
-
-  void onChangeCity(City? model) {
     if (model != null) {
-      cityModel = model;
+      countryModel = model;
+      countryCubit.onUpdateData(model);
     }
   }
 
   void onChangeState(StateDomainModel? model) {
+    stateCubit.onUpdateToInitState(null);
+    cityController.currentState?.changeSelectedItem(null);
     if (model != null) {
       stateModel = model;
+      stateCubit.onUpdateData(model);
     }
-    cityController.currentState?.changeSelectedItem(null);
+  }
+
+  void onChangeCity(City? model) {
+    cityCubit.onUpdateToInitState(null);
+    if (model != null) {
+      cityModel = model;
+      cityCubit.onUpdateData(model);
+    }
   }
 
   Future<List<Country>> getCountries({bool refresh = true}) async {

@@ -78,7 +78,7 @@ extension Validator on String {
     if (trim().isEmpty) {
       return message ?? tr("fillField");
     } else if (!RegExp(
-                r'(^\+[0-9]{2}|^\+[0-9]{2}\(0\)|^\(\+[0-9]{2}\)\(0\)|^00[0-9]{2}|^0)([0-9]{9}$|[0-9\-\s]{10}$)')
+                r'(^(?:[+0])?\+[0-9]{2}|^\+[0-9]{2}\(0\)|^\(\+[0-9]{2}\)\(0\)|^00[0-9]{2}|^0)([0-9]{9}$|[0-9\-\s]{10}$)')
             .hasMatch(this) ||
         length < 10) {
       return message ?? tr("phoneValidation");

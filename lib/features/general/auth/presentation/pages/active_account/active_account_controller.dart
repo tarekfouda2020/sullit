@@ -14,6 +14,7 @@ class ActiveAccountController {
 
   Future<void> setVerifyPhone(String phone, BuildContext context) async {
     var params = _verifyPhoneParams(phone);
+    print(">>>>>${params.toJson()}");
     var result = await SetVerifyPhone().call(params);
     if (result) {
       CustomToast.showSimpleToast(

@@ -105,7 +105,7 @@ class AddImageHelper {
       {bool refresh = true}) async {
     var params = _setUploadedFilesParams(extension, search);
     var data = await GetUploadedFiles().call(params);
-    filesBloc.onUpdateData(data.toList());
+    filesBloc.onUpdateData(data);
   }
 
   void onItemSelected({

@@ -36,7 +36,7 @@ class BuildProfileFormFields extends StatelessWidget {
             fillColor: context.colors.white,
             controller: controller.phoneController,
             fieldTypes: FieldTypes.normal,
-            type: TextInputType.number,
+            type: TextInputType.text,
             action: TextInputAction.next,
             validate:(value) => value?.validatePhone(),
             label: tr('phone'),
