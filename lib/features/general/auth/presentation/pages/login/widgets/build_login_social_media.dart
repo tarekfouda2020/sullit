@@ -12,24 +12,24 @@ class BuildLoginSocialMedia extends StatelessWidget {
       padding: Dimens.paddingVertical20PX,
       child: Column(
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(child: Gaps.line(context.colors.blackOpacity, 20)),
-              Gaps.hGap10,
-              Text(
-                tr('orLoginWith'),
-                style: AppTextStyle.s16_w400(color: context.colors.black),
-              ),
-              Gaps.hGap10,
-              Expanded(child: Gaps.line(context.colors.blackOpacity, 20)),
-            ],
+          Text(
+            tr('or'),
+            style: AppTextStyle.s16_w400(color: context.colors.black),
           ),
           Gaps.vGap20,
-          SvgPicture.asset(
-            Res.facebook,
-            width: 50,
-            height: 50,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(Res.faceLogo, width: 48.r, height: 48.r),
+              Gaps.hGap16,
+              Container(
+                padding: Dimens.paddingAll13PX,
+                decoration: BoxDecoration(
+                  color: context.colors.authField,
+                  borderRadius: Dimens.borderRadius25PX,
+                ),
+                  child: Image.asset(Res.google, width: 23.r, height: 23.r)),
+            ],
           ),
         ],
       ),

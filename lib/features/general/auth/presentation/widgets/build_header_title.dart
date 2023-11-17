@@ -12,7 +12,7 @@ class BuildHeaderTitle extends StatelessWidget {
   const BuildHeaderTitle({
     Key? key,
     required this.title,
-    this.subTitle = "",
+    this.subTitle = "Hello,you are welcome with us",
   }) : super(key: key);
 
   @override

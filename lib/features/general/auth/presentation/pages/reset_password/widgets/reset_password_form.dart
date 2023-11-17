@@ -11,68 +11,65 @@ class ResetPasswordForm extends StatelessWidget {
     return Form(
       key: controller.formKey,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          GenericTextField(
-            controller: controller.email,
-            fieldTypes: FieldTypes.readonly,
-            type: TextInputType.text,
-            action: TextInputAction.next,
-            validate: (value) => value?.noValidate(),
-            label: tr('email'),
-          ),
-          GenericTextField(
-            controller: controller.code,
-            fieldTypes: FieldTypes.normal,
-            type: TextInputType.emailAddress,
-            action: TextInputAction.next,
-            margin: Dimens.inputFieldMargin,
-            validate: (value) => value?.validateEmpty(),
-            label: tr('code'),
+          Text(
+            'New password',
+            style: AppTextStyle.s14_w400(color: context.colors.blackOpacity),
           ),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.passwordCubit,
             builder: (context, state) {
               return GenericTextField(
+                fillColor: context.colors.authField,
+                enableBorderColor: context.colors.white,
+                focusBorderColor: context.colors.white,
+                margin: Dimens.headerTitlePadding,
                 controller: controller.password,
-                fieldTypes: !state.data ? FieldTypes.password : FieldTypes.normal,
+                radius: Dimens.borderRadius20PX,
+                fieldTypes:
+                    !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
                 validate: (value) => value?.validatePassword(),
-                label: tr('password'),
                 suffixIcon: IconButton(
-                  onPressed: () => controller.passwordCubit
-                      .onUpdateData(!state.data),
+                  onPressed: () =>
+                      controller.passwordCubit.onUpdateData(!state.data),
                   icon: Icon(
-                    !state.data
-                        ? Icons.visibility_outlined
-                        : Icons.visibility_off_outlined,
+                    !state.data ? Icons.visibility : Icons.visibility_off,
                     size: 17.sp,
-                    color: context.colors.primary,
+                    color: context.colors.black,
                   ),
                 ),
               );
             },
           ),
+          Text(
+            'confirm password',
+            style: AppTextStyle.s14_w400(color: context.colors.blackOpacity),
+          ),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.confirmPasswordCubit,
             builder: (context, state) {
               return GenericTextField(
+                fillColor: context.colors.authField,
+                enableBorderColor: context.colors.white,
+                focusBorderColor: context.colors.white,
+                margin: Dimens.headerTitlePadding,
                 controller: controller.confirmPassword,
-                fieldTypes: !state.data ? FieldTypes.password : FieldTypes.normal,
+                radius: Dimens.borderRadius20PX,
+                fieldTypes:
+                    !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
                 validate: (value) => value?.validatePassword(),
-                label: tr('confirmPassword'),
-                margin: Dimens.inputFieldMargin,
                 suffixIcon: IconButton(
-                  onPressed: () => controller.confirmPasswordCubit
-                      .onUpdateData(!state.data),
+                  onPressed: () =>
+                      controller.confirmPasswordCubit.onUpdateData(!state.data),
                   icon: Icon(
-                    !state.data
-                        ? Icons.visibility_outlined
-                        : Icons.visibility_off_outlined,
+                    !state.data ? Icons.visibility : Icons.visibility_off,
                     size: 17.sp,
-                    color: context.colors.primary,
+                    color: context.colors.black,
                   ),
                 ),
               );

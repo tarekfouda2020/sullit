@@ -40,6 +40,7 @@ class Dimens {
   static const double dp30 = 30;
   static const double dp32 = 32;
   static const double dp50 = 50;
+  static const double dp40 = 40;
   static const double dp55 = 55;
   static const double dp64 = 64;
   static const double dp70 = 70;
@@ -58,47 +59,89 @@ class Dimens {
   static const double appBarHeight = 62;
   static const double searchBarHeight = 56;
 
-  static const BorderRadius sheetBorderRadius = BorderRadius.vertical(top: Radius.circular(20));
+  static const BorderRadius sheetBorderRadius =
+      BorderRadius.vertical(top: Radius.circular(20));
 
-  static  BorderRadius borderRadius3PX = const BorderRadius.all(Radius.circular(3)).r;
-  static  BorderRadius borderRadius5PX = const BorderRadius.all(Radius.circular(5)).r;
-  static  BorderRadius borderRadius10PX = const BorderRadius.all(Radius.circular(10)).r;
-  static  BorderRadius borderRadius20PX = const BorderRadius.all(Radius.circular(20)).r;
-  static  BorderRadius borderRadius40PX = const BorderRadius.all(Radius.circular(40)).r;
+  static BorderRadius borderRadius3PX =
+      const BorderRadius.all(Radius.circular(3)).r;
+  static BorderRadius borderRadius5PX =
+      const BorderRadius.all(Radius.circular(5)).r;
+  static BorderRadius borderRadius10PX =
+      const BorderRadius.all(Radius.circular(10)).r;
+  static BorderRadius borderRadius13PX =
+      const BorderRadius.all(Radius.circular(13)).r;
+  static BorderRadius borderRadius20PX =
+      const BorderRadius.all(Radius.circular(20)).r;
+  static BorderRadius borderRadius25PX =
+      const BorderRadius.all(Radius.circular(25)).r;
+  static BorderRadius borderRadius40PX =
+      const BorderRadius.all(Radius.circular(40)).r;
 
-  static EdgeInsets authLogoPadding = const   EdgeInsets.only(top: 50,bottom: 20).r;
-  static EdgeInsets inputFieldMargin = const EdgeInsets.symmetric(vertical: 15).r;
-  static EdgeInsets headerTitlePadding = const EdgeInsets.only(top: 8, bottom: 30).r;
-  static EdgeInsets standardPadding = const EdgeInsets.symmetric(
-      horizontal: dp15, vertical:dp10).r;
-  static EdgeInsets cardMargin = const EdgeInsets.symmetric(
-      horizontal: dp15, vertical: dp5).r;
-  static EdgeInsets paddingH10V20= const EdgeInsets.symmetric(horizontal: dp10, vertical: dp20).r;
-  static EdgeInsets paddingH20V10= const EdgeInsets.symmetric(horizontal: dp20, vertical: dp10).r;
-  static EdgeInsets paddingT20B10= const  EdgeInsets.only(top: dp20, bottom: dp10).r;
+  static EdgeInsets authLogoPadding =
+      const EdgeInsets.only(top: 50, bottom: 20).r;
+  static EdgeInsets inputFieldMargin =
+      const EdgeInsets.symmetric(vertical: 15).r;
+  static EdgeInsets headerTitlePadding =
+      const EdgeInsets.only(top: 8, bottom: 30).r;
+  static EdgeInsets standardPadding =
+      const EdgeInsets.symmetric(horizontal: dp15, vertical: dp10).r;
+  static EdgeInsets cardMargin =
+      const EdgeInsets.symmetric(horizontal: dp15, vertical: dp5).r;
+  static EdgeInsets paddingH10V20 =
+      const EdgeInsets.symmetric(horizontal: dp10, vertical: dp20).r;
+  static EdgeInsets paddingH20V10 =
+      const EdgeInsets.symmetric(horizontal: dp20, vertical: dp10).r;
+  static EdgeInsets paddingH50V10 =
+      const EdgeInsets.symmetric(horizontal: dp50, vertical: dp10).r;
+  static EdgeInsets paddingH80V10 =
+      const EdgeInsets.symmetric(horizontal: dp80, vertical: dp10).r;
+  static EdgeInsets paddingH50V40 =
+      const EdgeInsets.symmetric(horizontal: dp50, vertical: dp40).r;
+  static EdgeInsets paddingH24V40 =
+      const EdgeInsets.symmetric(horizontal: dp24, vertical: dp40).r;
+  static EdgeInsets paddingT20B10 =
+      const EdgeInsets.only(top: dp20, bottom: dp10).r;
 
-  static EdgeInsets paddingVertical5PX = const EdgeInsets.symmetric(vertical: 5).r;
-  static EdgeInsets paddingVertical8PX = const EdgeInsets.symmetric(vertical: 8).r;
-  static EdgeInsets paddingVertical10PX = const EdgeInsets.symmetric(vertical: 10).r;
-  static EdgeInsets paddingVertical15PX = const EdgeInsets.symmetric(vertical: 15).r;
-  static EdgeInsets paddingVertical20PX = const EdgeInsets.symmetric(vertical: 20).r;
-  static EdgeInsets paddingVertical30PX = const EdgeInsets.symmetric(vertical: 30).r;
+  static EdgeInsets paddingVertical5PX =
+      const EdgeInsets.symmetric(vertical: 5).r;
+  static EdgeInsets paddingVertical8PX =
+      const EdgeInsets.symmetric(vertical: 8).r;
+  static EdgeInsets paddingVertical10PX =
+      const EdgeInsets.symmetric(vertical: 10).r;
+  static EdgeInsets paddingVertical15PX =
+      const EdgeInsets.symmetric(vertical: 15).r;
+  static EdgeInsets paddingVertical20PX =
+      const EdgeInsets.symmetric(vertical: 20).r;
+  static EdgeInsets paddingVertical30PX =
+      const EdgeInsets.symmetric(vertical: 30).r;
+  static EdgeInsets paddingVertical40PX =
+      const EdgeInsets.symmetric(vertical: 40).r;
+  static EdgeInsets paddingVertical60PX =
+      const EdgeInsets.symmetric(vertical: 60).r;
 
-  static EdgeInsets paddingHorizontal5PX = const EdgeInsets.symmetric(horizontal: 5).r;
-  static EdgeInsets paddingHorizontal10PX = const EdgeInsets.symmetric(horizontal: 10).r;
-  static EdgeInsets paddingHorizontal15PX = const EdgeInsets.symmetric(horizontal: 15).r;
-  static EdgeInsets paddingHorizontal20PX = const EdgeInsets.symmetric(horizontal: 20).r;
+  static EdgeInsets paddingHorizontal5PX =
+      const EdgeInsets.symmetric(horizontal: 5).r;
+  static EdgeInsets paddingHorizontal10PX =
+      const EdgeInsets.symmetric(horizontal: 10).r;
+  static EdgeInsets paddingHorizontal15PX =
+      const EdgeInsets.symmetric(horizontal: 15).r;
+  static EdgeInsets paddingHorizontal20PX =
+      const EdgeInsets.symmetric(horizontal: 20).r;
+  static EdgeInsets paddingHorizontal40PX =
+      const EdgeInsets.symmetric(horizontal: 40).r;
 
   static EdgeInsets paddingAll3PX = const EdgeInsets.all(3).r;
   static EdgeInsets paddingAll5PX = const EdgeInsets.all(5).r;
   static EdgeInsets paddingAll8PX = const EdgeInsets.all(8).r;
   static EdgeInsets paddingAll10PX = const EdgeInsets.all(10).r;
   static EdgeInsets paddingAll15PX = const EdgeInsets.all(15).r;
+  static EdgeInsets paddingAll13PX = const EdgeInsets.all(13).r;
   static EdgeInsets paddingAll20PX = const EdgeInsets.all(20).r;
 
   static EdgeInsets marginTop70 = const EdgeInsets.only(top: 70).r;
   static EdgeInsets marginTop10 = const EdgeInsets.only(top: 10).r;
-
-
-
+  static EdgeInsets marginTop23 = const EdgeInsets.only(top: 23).r;
+  static EdgeInsets marginTop23B40 =
+      const EdgeInsets.only(top: 23, bottom: 40).r;
+  static EdgeInsets marginLeft10 = const EdgeInsets.only(left: 10).r;
 }

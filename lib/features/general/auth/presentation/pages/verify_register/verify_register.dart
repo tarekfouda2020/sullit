@@ -21,11 +21,12 @@ class _VerifyRegisterState extends State<VerifyRegister> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BuildAuthAppBar(),
+      //appBar: const BuildAuthAppBar(),
       backgroundColor: context.colors.background,
       body: ListView(
         padding: Dimens.paddingHorizontal15PX,
         children: [
+          BuildAuthAppBar(),
           const BuildHeaderLogo(),
           BuildHeaderTitle(
             title: tr('verifyYourEmailAddress'),

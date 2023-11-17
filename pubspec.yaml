@@ -116,6 +116,7 @@ flutter:
     - assets/images/emptyCart.png
     - assets/images/facebook.svg
     - assets/images/logo.png
+    - assets/images/logo_png.png
     - assets/images/logoSvg.svg
     - assets/images/marker.png
     - assets/images/mobile.svg
@@ -129,6 +130,10 @@ flutter:
     - assets/lang/en.json
     - assets/images/
     - assets/fonts/quicksand/
+    - assets/images/face_logo.png
+    - assets/images/google.png
+    - assets/images/arrow_back.png
+    - assets/images/forget_logo.png
   fonts:
     - family: Quicksand
       fonts:

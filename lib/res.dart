@@ -14,26 +14,10 @@ class Res {
   static const String marker = "assets/images/marker.png";
   static const String mobile = "assets/images/mobile.svg";
   static const String myProfile = "assets/images/myProfile.png";
+  static const String NotoSans = "assets/fonts/NotoSans.ttf";
   static const String offline = "assets/images/offline.png";
   static const String password = "assets/images/password.svg";
   static const String pdf = "assets/images/pdf.png";
   static const String placeHolder = "assets/images/placeHolder.png";
   static const String profile = "assets/images/profile.png";
-  static const String home = "assets/images/home.svg";
-  static const String offers = "assets/images/offers.svg";
-  static const String account = "assets/images/account.svg";
-  static const String category = "assets/images/category.svg";
-  static const String bgTabs = "assets/images/bgTabs.svg";
-  static const String arrowMore = "assets/images/arrow_more.svg";
-  static const String notification = "assets/images/notification.svg";
-  static const String cart = "assets/images/cart.svg";
-  static const String search = "assets/images/search.svg";
-  static const String scaffBg1 = "assets/images/scaffBg1.svg";
-  static const String scaffBg2 = "assets/images/scaffBg2.svg";
-
-
-  // ---------------------------Fonts-------------------------------------
-  static const String notoSans = "assets/fonts/NotoSans.ttf";
-  static const String quicksand = "assets/fonts/Quicksand.ttf";
-
 }

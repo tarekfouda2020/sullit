@@ -10,36 +10,52 @@ class BuildLoginForm extends StatelessWidget {
     return Form(
       key: controller.formKey,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(
+            'Email',
+            style: AppTextStyle.s14_w400(color: context.colors.blackOpacity),
+          ),
           GenericTextField(
+            fillColor: context.colors.authField,
+            enableBorderColor: context.colors.white,
+            focusBorderColor: context.colors.white,
             controller: controller.email,
             fieldTypes: FieldTypes.normal,
             type: TextInputType.emailAddress,
             action: TextInputAction.next,
             validate: (value) => value?.validateEmpty(),
-            label: tr('mail'),
-            margin: Dimens.inputFieldMargin,
+            margin: Dimens.headerTitlePadding,
+            radius: Dimens.borderRadius20PX,
+          ),
+          Text(
+            'Password',
+            style: AppTextStyle.s14_w400(color: context.colors.blackOpacity),
           ),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.passwordCubit,
             builder: (context, state) {
               return GenericTextField(
+                fillColor: context.colors.authField,
+                enableBorderColor: context.colors.white,
+                focusBorderColor: context.colors.white,
+                margin: Dimens.headerTitlePadding,
                 controller: controller.password,
+                radius: Dimens.borderRadius20PX,
                 fieldTypes:
                     !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.visiblePassword,
                 action: TextInputAction.done,
                 validate: (value) => value?.validateEmpty(),
-                label: tr('password'),
                 suffixIcon: IconButton(
                   onPressed: () =>
                       controller.passwordCubit.onUpdateData(!state.data),
                   icon: Icon(
                     !state.data
-                        ? Icons.visibility_outlined
+                        ? Icons.visibility
                         : Icons.visibility_off_outlined,
                     size: 17.sp,
-                    color: context.colors.primary,
+                    color: context.colors.black,
                   ),
                 ),
               );

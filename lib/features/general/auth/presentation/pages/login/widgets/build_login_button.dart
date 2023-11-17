@@ -14,8 +14,9 @@ class BuildLoginButton extends StatelessWidget {
       color: context.colors.primary,
       textColor: context.colors.white,
       btnKey: controller.btnKey,
-      margin: Dimens.paddingVertical10PX,
+      margin: Dimens.paddingH50V10,
       height: 40.h,
+      borderRadius: 40,
     );
   }
 }

@@ -18,12 +18,13 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BuildAuthAppBar(),
+      //appBar: const BuildAuthAppBar(),
       body: GestureDetector(
         onTap: FocusScope.of(context).unfocus,
         child: ListView(
           padding: Dimens.paddingHorizontal15PX,
           children: [
+            BuildAuthAppBar(),
             const BuildHeaderLogo(),
             BuildHeaderTitle(title: tr('createAccount')),
             Gaps.vGap15,

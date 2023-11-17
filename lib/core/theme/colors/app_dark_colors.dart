@@ -71,4 +71,7 @@ class AppDarkColors extends AppColors {
   @override
   Color get purpleLight => const Color(0xffCF4E97);
 
+  @override
+  Color get authField => const Color(0xffF8F7FB);
+
 }

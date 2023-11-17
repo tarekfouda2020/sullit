@@ -14,13 +14,14 @@ class _RegisterShopState extends State<RegisterShop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BuildAuthAppBar(),
+      //appBar: const BuildAuthAppBar(),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16).r,
           child: Column(
             children: [
+              BuildAuthAppBar(),
               const BuildHeaderLogo(),
               Align(
                 alignment: AlignmentDirectional.centerStart,

@@ -6,6 +6,7 @@ import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 import 'package:flutter_tdd/core/widgets/LoadingButton.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/pages/reset_password/reset_password_imports.dart';
