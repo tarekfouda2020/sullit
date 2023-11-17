@@ -28,17 +28,17 @@ class BuildDoNotHaveAccount extends StatelessWidget {
               ),
             ],
           ),
-          Gaps.vGap10,
-          GestureDetector(
-            onTap: () => AutoRouter.of(context).push(HomeRoute(index: 0)),
-            child: Text(
-              tr('skip'),
-              style:
-                  AppTextStyle.s16_w500(color: context.colors.primary).copyWith(
-                decoration: TextDecoration.underline,
-              ),
-            ),
-          ),
+          //Gaps.vGap10,
+          // GestureDetector(
+          //   onTap: () => AutoRouter.of(context).push(HomeRoute(index: 0)),
+          //   child: Text(
+          //     tr('skip'),
+          //     style:
+          //         AppTextStyle.s16_w500(color: context.colors.primary).copyWith(
+          //       decoration: TextDecoration.underline,
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

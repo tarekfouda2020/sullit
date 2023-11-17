@@ -9,14 +9,15 @@ class BuildForgetPasswordButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoadingButton(
-      title: tr('sendPasswordResetLink'),
+    return DefaultButton(
+      title: 'Send',
       onTap: () =>forgetPasswordController.forgetPassword(context),
       color: context.colors.primary,
       textColor: context.colors.white,
-      btnKey: forgetPasswordController.btnKey,
-      margin: Dimens.paddingVertical30PX,
+      //btnKey: forgetPasswordController.btnKey,
+      margin: Dimens.paddingH80V10,
       height: 40.h,
+      borderRadius: Dimens.borderRadius25PX,
     );
   }
 }

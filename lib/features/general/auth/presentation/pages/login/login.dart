@@ -15,21 +15,19 @@ class _LoginState extends State<Login> {
     return WillPopScope(
       onWillPop: loginController.onBackPressed,
       child: Scaffold(
-        appBar: const BuildAuthAppBar(showBack: false),
         backgroundColor: context.colors.background,
         body: GestureDetector(
           onTap: FocusScope.of(context).unfocus,
           child: ListView(
-            padding: Dimens.paddingHorizontal15PX,
+            padding: Dimens.paddingHorizontal40PX,
             children: [
               const BuildHeaderLogo(),
-              BuildHeaderTitle(title: tr('loginToYourAcc')),
+              BuildHeaderTitle(title: tr('login')),
               Gaps.vGap15,
               BuildLoginForm(controller: loginController),
-              const BuildForgetPasswordView(),
               BuildLoginButton(controller: loginController),
-              // BuildLoginSocialMedia(controller: loginController),
-              const BuildDoNotHaveAccount()
+              BuildLoginSocialMedia(controller: loginController),
+              const BuildForgetPasswordView(),
             ],
           ),
         ),

@@ -10,6 +10,7 @@ class Res {
   static const String en = "assets/lang/en.json";
   static const String facebook = "assets/images/facebook.svg";
   static const String logo = "assets/images/logo.png";
+  static const String logoPng = "assets/images/logo_png.png";
   static const String logoSvg = "assets/images/logoSvg.svg";
   static const String marker = "assets/images/marker.png";
   static const String mobile = "assets/images/mobile.svg";
@@ -20,4 +21,8 @@ class Res {
   static const String pdf = "assets/images/pdf.png";
   static const String placeHolder = "assets/images/placeHolder.png";
   static const String profile = "assets/images/profile.png";
+  static const String faceLogo = "assets/images/face_logo.png";
+  static const String google = "assets/images/google.png";
+  static const String arrowBack = "assets/images/arrow_back.png";
+  static const String forgetLogo = "assets/images/forget_logo.png";
 }

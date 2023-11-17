@@ -16,10 +16,10 @@ class _ActiveAccountState extends State<ActiveAccount> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const BuildAuthAppBar(),
       body: ListView(
         padding: Dimens.paddingHorizontal15PX,
         children: [
+          BuildAuthAppBar(),
           const BuildHeaderLogo(),
           BuildHeaderTitle(title: tr('enterVerifyCode')),
           BuildPinField(onComplete: controller.onComplete),

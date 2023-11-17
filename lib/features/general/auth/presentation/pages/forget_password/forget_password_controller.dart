@@ -9,7 +9,7 @@ class ForgetPasswordController {
 
   void forgetPassword(BuildContext context) async {
     if (formKey.currentState!.validate()) {
-      btnKey.currentState!.animateForward();
+      //btnKey.currentState!.animateForward();
       var result = await SetForgetPassword().call(email.text);
       if (result != "") {
         CustomToast.showSimpleToast(msg: result, type: ToastType.success);
