@@ -18,6 +18,7 @@ import 'package:flutter_tdd/features/user/base/presentation/widgets/build_drawer
 import 'package:flutter_tdd/features/user/category/presentation/pages/categories/categories_imports.dart';
 import 'package:flutter_tdd/features/user/notifications/presentation/pages/notifications/notifications_imports.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/home_main/home_main_imports.dart';
+import 'package:flutter_tdd/res.dart';
 
 part 'home.dart';
 

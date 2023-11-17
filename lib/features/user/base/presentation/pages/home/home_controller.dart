@@ -10,11 +10,11 @@ class HomeController {
   final TextEditingController searchController = TextEditingController();
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  List<IconData> tabs = [
-    Icons.home,
-    Icons.list,
-    Icons.notifications,
-    Icons.account_circle
+  List<String> tabs = [
+    Res.home,
+    Res.category,
+    Res.offers,
+    Res.account
   ];
 
   List<String> tabsText(BuildContext context) => [

@@ -1,0 +1,9 @@
+<svg id="vuesax_linear_shopping-cart" data-name="vuesax/linear/shopping-cart" xmlns="http://www.w3.org/2000/svg" width="19.536" height="19.536" viewBox="0 0 19.536 19.536">
+  <g id="shopping-cart">
+    <path id="Vector" d="M0,0H1.416a1.506,1.506,0,0,1,1.5,1.628L2.238,9.735A2.276,2.276,0,0,0,4.51,12.2h8.669a2.342,2.342,0,0,0,2.287-2.125l.44-6.1a2.257,2.257,0,0,0-2.287-2.45H3.109" transform="translate(1.628 1.628)" fill="none" stroke="#292d32" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <path id="Vector-2" data-name="Vector" d="M2.035,1.017A1.017,1.017,0,1,1,1.017,0,1.017,1.017,0,0,1,2.035,1.017Z" transform="translate(12.21 15.873)" fill="none" stroke="#292d32" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <path id="Vector-3" data-name="Vector" d="M2.035,1.017A1.017,1.017,0,1,1,1.017,0,1.017,1.017,0,0,1,2.035,1.017Z" transform="translate(5.698 15.873)" fill="none" stroke="#292d32" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <path id="Vector-4" data-name="Vector" d="M0,0H9.768" transform="translate(7.326 6.512)" fill="none" stroke="#292d32" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <path id="Vector-5" data-name="Vector" d="M0,0H19.536V19.536H0Z" fill="none" opacity="0"/>
+  </g>
+</svg>

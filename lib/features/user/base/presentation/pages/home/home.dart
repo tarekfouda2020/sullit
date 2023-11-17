@@ -27,6 +27,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         length: 4,
         child: Scaffold(
           key: controller.scaffoldKey,
+          extendBody: true,
           drawer: BuildDrawer(controller: controller),
           body: TabBarView(
             controller: controller.tabController,
@@ -38,12 +39,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               More(homeController: controller),
             ],
           ),
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: context.colors.primary,
-            onPressed: () => AutoRouter.of(context).push(const CartRoute()),
-            child: const Icon(Icons.shopping_cart),
-          ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          // floatingActionButton: FloatingActionButton(
+          //   backgroundColor: context.colors.primary,
+          //   onPressed: () => AutoRouter.of(context).push(const CartRoute()),
+          //   child: const Icon(Icons.shopping_cart),
+          // ),
+          // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: BuildBottomNavBar(controller: controller),
         ),
       ),

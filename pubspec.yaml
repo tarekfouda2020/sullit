@@ -127,8 +127,15 @@ flutter:
     - assets/images/profile.png
     - assets/lang/ar.json
     - assets/lang/en.json
+    - assets/images/
+    - assets/fonts/quicksand/
   fonts:
-    - family: NotoSans
+    - family: Quicksand
       fonts:
-       - asset: assets/fonts/NotoSans.ttf
+       - asset: assets/fonts/quicksand/Quicksand-Regular.ttf
+         weight: 400
+       - asset: assets/fonts/quicksand/Quicksand-Bold.ttf
+         weight: 700
+       - asset: assets/fonts/quicksand/Quicksand-Medium.ttf
+         weight: 500
 
