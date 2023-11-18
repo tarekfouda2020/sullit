@@ -140,7 +140,7 @@ class AddImageHelper {
     return UploadedFilesParams(
       search: search,
       sort: selectedSort?.key,
-      extension: extension,
+      type: extension,
     );
   }
 }

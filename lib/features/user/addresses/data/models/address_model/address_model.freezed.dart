@@ -30,6 +30,10 @@ mixin _$AddressModel {
   @JsonKey(name: "postal_code")
   String get postalCode => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+  @JsonKey(name: "full_phone")
+  String get fullPhone => throw _privateConstructorUsedError;
+  @JsonKey(name: "country_code")
+  String get countryCode => throw _privateConstructorUsedError;
   @JsonKey(name: "set_default")
   bool get setDefault => throw _privateConstructorUsedError;
   String get lat => throw _privateConstructorUsedError;
@@ -58,6 +62,8 @@ abstract class $AddressModelCopyWith<$Res> {
       CityModel? city,
       @JsonKey(name: "postal_code") String postalCode,
       String phone,
+      @JsonKey(name: "full_phone") String fullPhone,
+      @JsonKey(name: "country_code") String countryCode,
       @JsonKey(name: "set_default") bool setDefault,
       String lat,
       String lang,
@@ -89,6 +95,8 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
     Object? city = freezed,
     Object? postalCode = null,
     Object? phone = null,
+    Object? fullPhone = null,
+    Object? countryCode = null,
     Object? setDefault = null,
     Object? lat = null,
     Object? lang = null,
@@ -126,6 +134,14 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      fullPhone: null == fullPhone
+          ? _value.fullPhone
+          : fullPhone // ignore: cast_nullable_to_non_nullable
+              as String,
+      countryCode: null == countryCode
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
               as String,
       setDefault: null == setDefault
           ? _value.setDefault
@@ -200,6 +216,8 @@ abstract class _$$_AddressModelCopyWith<$Res>
       CityModel? city,
       @JsonKey(name: "postal_code") String postalCode,
       String phone,
+      @JsonKey(name: "full_phone") String fullPhone,
+      @JsonKey(name: "country_code") String countryCode,
       @JsonKey(name: "set_default") bool setDefault,
       String lat,
       String lang,
@@ -232,6 +250,8 @@ class __$$_AddressModelCopyWithImpl<$Res>
     Object? city = freezed,
     Object? postalCode = null,
     Object? phone = null,
+    Object? fullPhone = null,
+    Object? countryCode = null,
     Object? setDefault = null,
     Object? lat = null,
     Object? lang = null,
@@ -270,6 +290,14 @@ class __$$_AddressModelCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      fullPhone: null == fullPhone
+          ? _value.fullPhone
+          : fullPhone // ignore: cast_nullable_to_non_nullable
+              as String,
+      countryCode: null == countryCode
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
+              as String,
       setDefault: null == setDefault
           ? _value.setDefault
           : setDefault // ignore: cast_nullable_to_non_nullable
@@ -303,6 +331,8 @@ class _$_AddressModel extends _AddressModel {
       this.city,
       @JsonKey(name: "postal_code") required this.postalCode,
       required this.phone,
+      @JsonKey(name: "full_phone") required this.fullPhone,
+      @JsonKey(name: "country_code") required this.countryCode,
       @JsonKey(name: "set_default") required this.setDefault,
       required this.lat,
       required this.lang,
@@ -331,6 +361,12 @@ class _$_AddressModel extends _AddressModel {
   @override
   final String phone;
   @override
+  @JsonKey(name: "full_phone")
+  final String fullPhone;
+  @override
+  @JsonKey(name: "country_code")
+  final String countryCode;
+  @override
   @JsonKey(name: "set_default")
   final bool setDefault;
   @override
@@ -343,7 +379,7 @@ class _$_AddressModel extends _AddressModel {
 
   @override
   String toString() {
-    return 'AddressModel(id: $id, userId: $userId, address: $address, country: $country, state: $state, city: $city, postalCode: $postalCode, phone: $phone, setDefault: $setDefault, lat: $lat, lang: $lang, isActive: $isActive)';
+    return 'AddressModel(id: $id, userId: $userId, address: $address, country: $country, state: $state, city: $city, postalCode: $postalCode, phone: $phone, fullPhone: $fullPhone, countryCode: $countryCode, setDefault: $setDefault, lat: $lat, lang: $lang, isActive: $isActive)';
   }
 
   @override
@@ -360,6 +396,10 @@ class _$_AddressModel extends _AddressModel {
             (identical(other.postalCode, postalCode) ||
                 other.postalCode == postalCode) &&
             (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.fullPhone, fullPhone) ||
+                other.fullPhone == fullPhone) &&
+            (identical(other.countryCode, countryCode) ||
+                other.countryCode == countryCode) &&
             (identical(other.setDefault, setDefault) ||
                 other.setDefault == setDefault) &&
             (identical(other.lat, lat) || other.lat == lat) &&
@@ -370,8 +410,22 @@ class _$_AddressModel extends _AddressModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, address, country,
-      state, city, postalCode, phone, setDefault, lat, lang, isActive);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      userId,
+      address,
+      country,
+      state,
+      city,
+      postalCode,
+      phone,
+      fullPhone,
+      countryCode,
+      setDefault,
+      lat,
+      lang,
+      isActive);
 
   @JsonKey(ignore: true)
   @override
@@ -397,6 +451,8 @@ abstract class _AddressModel extends AddressModel {
           final CityModel? city,
           @JsonKey(name: "postal_code") required final String postalCode,
           required final String phone,
+          @JsonKey(name: "full_phone") required final String fullPhone,
+          @JsonKey(name: "country_code") required final String countryCode,
           @JsonKey(name: "set_default") required final bool setDefault,
           required final String lat,
           required final String lang,
@@ -425,6 +481,12 @@ abstract class _AddressModel extends AddressModel {
   String get postalCode;
   @override
   String get phone;
+  @override
+  @JsonKey(name: "full_phone")
+  String get fullPhone;
+  @override
+  @JsonKey(name: "country_code")
+  String get countryCode;
   @override
   @JsonKey(name: "set_default")
   bool get setDefault;

@@ -8,6 +8,7 @@ class UserDomainModel extends BaseDomainModel {
   String? avatarOriginal;
   String? email;
   String? phone;
+  String?countryCode;
   String? token;
   String? tokenType;
   bool? isPhoneActive;
@@ -20,6 +21,7 @@ class UserDomainModel extends BaseDomainModel {
       this.avatarOriginal,
       this.email,
       this.phone,
+        this.countryCode,
       this.token,
       this.tokenType,
       this.isPhoneActive,
@@ -32,6 +34,7 @@ class UserDomainModel extends BaseDomainModel {
     avatar = json['avatar'];
     avatarOriginal = json['avatar_original'];
     phone = json['phone'];
+    countryCode=json['country_code'];
     token = json['token'];
     tokenType = json['token_type'];
     isPhoneActive = json['phone_is_active'];
@@ -47,6 +50,7 @@ class UserDomainModel extends BaseDomainModel {
     data['avatar'] = avatar;
     data['avatar_original'] = avatarOriginal;
     data['phone'] = phone;
+    data['country_code']=countryCode;
     data['token'] = token;
     data['token_type'] = tokenType;
     data['phone_is_active'] = isPhoneActive;

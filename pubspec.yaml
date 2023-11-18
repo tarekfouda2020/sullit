@@ -45,7 +45,6 @@ dependencies:
   file_picker: ^5.2.5
   flutter_svg: ^2.0.0+1
   smooth_page_indicator: ^1.0.0+2
-  country_calling_code_picker: ^2.0.1
   flutter_slidable: ^2.0.0
   get_it: ^7.5.0
   injectable: ^2.1.0
@@ -82,8 +81,8 @@ dependencies:
   chewie:
   youtube_player_flutter: ^8.1.2
   vimeo_player_flutter: ^0.0.3+2
-#  flutter_facebook_auth:
-
+  country_calling_code_picker:
+    path: ./lib/core/package/country_calling_code_picker-2.0.1
 
 dev_dependencies:
   flutter_test:

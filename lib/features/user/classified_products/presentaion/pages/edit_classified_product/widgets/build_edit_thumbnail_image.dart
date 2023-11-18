@@ -18,6 +18,7 @@ class BuildEditThumbnailImage extends StatelessWidget {
               context: context,
               type: FileImageType.singleImage,
               imageType: ImageType.thumbnail,
+              extension: TypeExtension.image.name,
             ),
             child: CachedImage(
               imgMargin: Dimens.paddingAll5PX,
@@ -44,6 +45,7 @@ class BuildEditThumbnailImage extends StatelessWidget {
               context: context,
               type: FileImageType.singleImage,
               imageType: ImageType.thumbnail,
+              extension: TypeExtension.image.name,
             ),
             child: Container(
               height: Dimens.dp70.r,

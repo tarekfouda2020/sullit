@@ -100,15 +100,43 @@ class BuildEditAddressForm extends StatelessWidget {
               validate: (value) => value?.validateEmpty(),
               label: tr("postalCode"),
             ),
-            GenericTextField(
-              controller: controller.phoneController,
-              fieldTypes: FieldTypes.normal,
-              type: TextInputType.text,
-              action: TextInputAction.next,
-              validate: (value) => value?.validatePhone(),
-              label: tr("phone"),
-              fillColor: context.colors.white,
-              margin: Dimens.paddingVertical10PX,
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: BlocBuilder<GenericBloc<package.Country?>,
+                      GenericState<package.Country?>>(
+                    bloc: controller.countryCodeCubit,
+                    builder: (context, state) {
+                      return GenericTextField(
+                        fillColor: context.colors.white,
+                        controller: TextEditingController(
+                            text: state.data?.callingCode ?? ""),
+                        fieldTypes: FieldTypes.clickable,
+                        type: TextInputType.text,
+                        action: TextInputAction.done,
+                        label: "Country Code",
+                        validate: (value) => state.data?.name.validateEmpty(),
+                        onTab: () => controller.showCountryCode(context),
+                      );
+                    },
+                  ),
+                ),
+                Gaps.hGap5,
+                Expanded(
+                  flex: 2,
+                  child: GenericTextField(
+                    controller: controller.phoneController,
+                    fieldTypes: FieldTypes.normal,
+                    type: TextInputType.text,
+                    action: TextInputAction.next,
+                    validate: (value) => value?.validatePhone(),
+                    label: tr("phone"),
+                    fillColor: context.colors.white,
+                    margin: Dimens.paddingVertical10PX,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

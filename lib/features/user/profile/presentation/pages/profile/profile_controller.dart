@@ -19,6 +19,7 @@ class ProfileController {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
+  final GenericBloc<Country?> countryCubit = GenericBloc(null);
 
   Address? addressModel;
 
@@ -33,8 +34,21 @@ class ProfileController {
       emailController.text = user?.email ?? "";
       phoneController.text = user?.phone ?? "";
       print('=======> ${user?.address?.address ?? ""}');
+      print('=======> ${user?.countryCode ?? ""}');
+
+      countryCubit.onUpdateData(Country("", "", "", user?.countryCode ?? ""));
       addressModel = user?.address;
       addressController.text = user?.address?.address ?? "";
+    }
+  }
+
+  void showCountryCode(BuildContext context) async {
+    Country? data = await showCountryPickerDialog(
+      context,
+      cornerRadius: 3,
+    );
+    if (data != null) {
+      countryCubit.onUpdateData(data);
     }
   }
 
@@ -132,7 +146,7 @@ class ProfileController {
     if (model.isPhoneActive == false) {
       AutoRouter.of(context).push(
         ActiveAccountRoute(
-          phone:model.phone??"",
+          phone:"${countryCubit.state.data?.callingCode}${model.phone}",
         ),
       );
     }
@@ -142,6 +156,7 @@ class ProfileController {
   ProfileParams _profileParams() {
     return ProfileParams(
       name: nameController.text,
+      countryCode: countryCubit.state.data?.callingCode ?? "",
       phone: phoneController.text,
       image: imageCubit.state.data,
     );

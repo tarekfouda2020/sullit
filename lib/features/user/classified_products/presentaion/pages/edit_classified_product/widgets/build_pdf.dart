@@ -37,7 +37,7 @@ class BuildPdf extends StatelessWidget {
                         context: context,
                         type: FileImageType.pdf,
                         imageType: ImageType.pdf,
-                        extension: "pdf",
+                        extension: TypeExtension.document.name,
                       ),
                       child: Container(
                         height: Dimens.dp80.r,
