@@ -28,15 +28,16 @@ class _LoginState extends State<Login> {
                     const BuildHeaderLogo(),
                     BuildHeaderTitle(
                       title: state.data == 0 ? tr('login') : tr('register'),
+                      subTitle: state.data == 1
+                          ? "Register now and win a lot of points"
+                          : "Hello, You are welcome with us",
                     ),
                     BuildLoginTabsView(
                       controller: loginController,
                     ),
                     AnimatedSwitcher(
                       duration: const Duration(milliseconds: 300),
-                      child: state.data == 0
-                          ? BuildLoginView(controller: loginController)
-                          : const Register(),
+                      child: _body(state),
                     ),
                   ],
                 ),
@@ -46,5 +47,11 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+
+  Widget _body(GenericState<int> state) {
+    return state.data == 0
+        ? BuildLoginView(controller: loginController)
+        : const Register();
   }
 }
