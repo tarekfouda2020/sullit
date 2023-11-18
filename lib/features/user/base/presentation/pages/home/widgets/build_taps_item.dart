@@ -18,7 +18,7 @@ class BuildTabItem extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Gaps.vGap3,
+        Gaps.vGap5,
         SizedBox(
           height: 34,
           width: 34,
@@ -35,7 +35,7 @@ class BuildTabItem extends StatelessWidget {
             ],
           ),
         ),
-        Gaps.vGap3,
+        Gaps.vGap5,
         Text(
           controller.tabsText(context)[index],
           style: AppTextStyle.s12_w500(

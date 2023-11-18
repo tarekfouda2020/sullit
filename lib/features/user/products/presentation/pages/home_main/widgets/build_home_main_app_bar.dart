@@ -1,7 +1,6 @@
 part of 'home_main_widgets_imports.dart';
 
-class BuildHomeMainAppBar extends StatelessWidget
-    implements PreferredSizeWidget {
+class BuildHomeMainAppBar extends StatelessWidget {
   final HomeController controller;
 
   const BuildHomeMainAppBar({Key? key, required this.controller})
@@ -12,37 +11,36 @@ class BuildHomeMainAppBar extends StatelessWidget
     return BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
       bloc: controller.visibleSearch,
       builder: (context, state) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            AppBar(
-              elevation: 0.2,
-              backgroundColor: context.colors.white,
-              toolbarHeight: 70,
-              leading: IconButton(
-                onPressed: () =>
-                    controller.scaffoldKey.currentState!.openDrawer(),
-                icon: Icon(
-                  Icons.menu,
-                  color: context.colors.black,
-                  size: 25,
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 23),
+                child: Row(
+                  children: [
+                    Image.asset(Res.logo, height: 30, width: 120),
+                    const Spacer(),
+                    buildIcon(
+                      context,
+                      Res.cart,
+                      onTap: () => AutoRouter.of(context).push(
+                        const CartRoute(),
+                      ),
+                    ),
+                    Gaps.hGap8,
+                    buildIcon(
+                      context,
+                      Res.notification,
+                      onTap: () => controller.visibleSearch.onUpdateData(
+                        !state.data,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              title: Image.asset(Res.logo, height: 30, width: 150),
-              actions: [
-                IconButton(
-                  onPressed: () => controller.visibleSearch.onUpdateData(!state.data),
-                  icon: Icon(
-                    state.data ? Icons.clear : Icons.search,
-                    color: context.colors.black,
-                    size: 25,
-                  ),
-                ),
-              ],
-            ),
-            Visibility(
-              visible: state.data,
-              child: GenericTextField(
+              GenericTextField(
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.text,
                 controller: controller.searchController,
@@ -50,7 +48,7 @@ class BuildHomeMainAppBar extends StatelessWidget
                 validate: (value) {},
                 autoFocus: false,
                 fillColor: context.colors.white,
-                margin: Dimens.standardPadding,
+                margin: const EdgeInsets.only(bottom: 8),
                 hint: tr('searchCats'),
                 suffixIcon: InkWell(
                   onTap: () => AutoRouter.of(context).push(
@@ -58,19 +56,33 @@ class BuildHomeMainAppBar extends StatelessWidget
                       searchText: controller.searchController.text,
                     ),
                   ),
-                  child: Icon(
-                    Icons.search,
-                    color: context.colors.black,
+                  child: Transform.scale(
+                    scale: 0.4,
+                    child: SvgPicture.asset(Res.search),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       },
     );
   }
 
-  @override
-  Size get preferredSize => const Size.fromHeight(130);
+  InkWell buildIcon(BuildContext context, String icon,
+      {void Function()? onTap}) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 30,
+        width: 30,
+        padding: const EdgeInsets.all(6),
+        decoration: BoxDecoration(
+          color: context.colors.bgIcon,
+          shape: BoxShape.circle,
+        ),
+        child: SvgPicture.asset(icon),
+      ),
+    );
+  }
 }

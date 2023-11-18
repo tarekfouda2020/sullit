@@ -23,8 +23,7 @@ class _HomeMainState extends State<HomeMain> {
     return SafeArea(
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: Scaffold(
-          backgroundColor: context.colors.customBackground,
+        child: MyScaffold(
           body: Column(
             children: [
               BuildHomeMainAppBar(controller: widget.homeController),
@@ -32,7 +31,7 @@ class _HomeMainState extends State<HomeMain> {
                   GenericState<HomeDomainModel?>>(
                 bloc: controller.homeCubit,
                 builder: (context, state) {
-                  if (state is GenericUpdateState) {
+                  if (state is GenericUpdateState && state.data != null) {
                     return BuildHomeView(
                       homeDomainModel: state.data!,
                       controller: controller,

@@ -31,7 +31,7 @@ class BuildHeaderTitle extends StatelessWidget {
             padding: Dimens.headerTitlePadding,
             child: Text(
               subTitle,
-              style: AppTextStyle.s16_w400(color: context.colors.blackOpacity),
+              style: AppTextStyle.s14_w400(color: context.colors.textColor),
             ),
           ),
         ),

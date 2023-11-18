@@ -74,4 +74,12 @@ class AppDarkColors extends AppColors {
   @override
   Color get authField => const Color(0xffF8F7FB);
 
+  @override
+  Color get textColor => const Color(0xff59595B);
+
+  @override
+  Color get bgIcon => const Color(0xfff8f8f8);
+
+  @override
+  Color get scaffoldBg => const Color(0xffFCFCFC);
 }

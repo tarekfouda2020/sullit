@@ -14,7 +14,7 @@ class BuildLoginForm extends StatelessWidget {
         children: [
           Text(
             'Email',
-            style: AppTextStyle.s14_w400(color: context.colors.blackOpacity),
+            style: AppTextStyle.s14_w400(color: context.colors.textColor),
           ),
           GenericTextField(
             fillColor: context.colors.authField,
@@ -25,12 +25,12 @@ class BuildLoginForm extends StatelessWidget {
             type: TextInputType.emailAddress,
             action: TextInputAction.next,
             validate: (value) => value?.validateEmpty(),
-            margin: Dimens.headerTitlePadding,
-            radius: Dimens.borderRadius20PX,
+            margin: const EdgeInsets.only(top: 15, left: 20, right: 20),
+            radius: Dimens.borderRadius40PX,
           ),
           Text(
             'Password',
-            style: AppTextStyle.s14_w400(color: context.colors.blackOpacity),
+            style: AppTextStyle.s14_w400(color: context.colors.textColor),
           ),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.passwordCubit,
@@ -39,9 +39,9 @@ class BuildLoginForm extends StatelessWidget {
                 fillColor: context.colors.authField,
                 enableBorderColor: context.colors.white,
                 focusBorderColor: context.colors.white,
-                margin: Dimens.headerTitlePadding,
+                margin: const EdgeInsets.only(top: 15, left: 20, right: 20),
                 controller: controller.password,
-                radius: Dimens.borderRadius20PX,
+                radius: Dimens.borderRadius40PX,
                 fieldTypes:
                     !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.visiblePassword,

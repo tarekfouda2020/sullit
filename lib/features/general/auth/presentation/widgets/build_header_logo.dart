@@ -9,7 +9,7 @@ class BuildHeaderLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Dimens.paddingVertical60PX,
+      padding: const EdgeInsets.only(top: 20+kToolbarHeight,bottom: 45),
       child: Center(
         child: Image.asset(Res.logoPng, width: 163.r, height: 56.r),
       ),

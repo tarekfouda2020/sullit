@@ -23,11 +23,11 @@ class BuildLoginSocialMedia extends StatelessWidget {
               Image.asset(Res.faceLogo, width: 48.r, height: 48.r),
               Gaps.hGap16,
               Container(
-                padding: Dimens.paddingAll13PX,
-                decoration: BoxDecoration(
-                  color: context.colors.authField,
-                  borderRadius: Dimens.borderRadius25PX,
-                ),
+                  padding: Dimens.paddingAll13PX,
+                  decoration: BoxDecoration(
+                    color: context.colors.authField,
+                    borderRadius: Dimens.borderRadius25PX,
+                  ),
                   child: Image.asset(Res.google, width: 23.r, height: 23.r)),
             ],
           ),

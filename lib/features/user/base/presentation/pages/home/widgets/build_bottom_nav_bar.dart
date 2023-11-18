@@ -23,11 +23,15 @@ class BuildBottomNavBar extends StatelessWidget {
           backgroundColor: Colors.white,
           splashColor: context.colors.primary,
           activeIndex: state.data,
+          shadow: BoxShadow(
+            color: Colors.black.withOpacity(.2),
+            blurRadius: 5,
+          ),
           gapLocation: GapLocation.none,
           splashSpeedInMilliseconds: 200,
           leftCornerRadius: 18,
           rightCornerRadius: 18,
-          height: Platform.isIOS ? 45.h : 55.h,
+          height: Platform.isIOS ? 75 : 80,
           onTap: (index) => controller.animateTabsPages(index, context),
         );
       },

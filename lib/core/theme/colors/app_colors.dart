@@ -35,6 +35,7 @@ abstract class AppColors {
   Color get primary;
 
   Color get secondary;
+
   Color get grey;
 
   Color get greyWhite;
@@ -50,7 +51,10 @@ abstract class AppColors {
   Color get darkPurple;
 
   Color get background;
+
   Color get customBackground;
+
+  Color get scaffoldBg;
 
   Color get disableGray;
 
@@ -67,10 +71,18 @@ abstract class AppColors {
   Color get shadowColor;
 
   Color get transparent;
+
   Color get drawerColor;
+
   Color get offWhite;
+
   Color get purpleDark;
+
   Color get purpleLight;
+
   Color get authField;
 
+  Color get textColor;
+
+  Color get bgIcon;
 }

@@ -12,6 +12,8 @@ import 'package:flutter_tdd/features/user/products/domain/use_cases/get_home.dar
 import 'package:flutter_tdd/features/user/products/presentation/pages/home_main/widgets/home_main_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/sale/domain/models/flash_sale.dart';
 
+import '../../../../../../core/widgets/my_scaffold.dart';
+
 
 part 'home_main.dart';
 
