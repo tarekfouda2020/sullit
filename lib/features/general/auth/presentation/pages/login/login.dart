@@ -15,7 +15,7 @@ class _LoginState extends State<Login> {
     return WillPopScope(
       onWillPop: loginController.onBackPressed,
       child: Scaffold(
-        backgroundColor: context.colors.background,
+        backgroundColor: context.colors.white,
         body: GestureDetector(
           onTap: FocusScope.of(context).unfocus,
           child: BlocBuilder<GenericBloc<int>, GenericState<int>>(
@@ -26,13 +26,18 @@ class _LoginState extends State<Login> {
                 child: Column(
                   children: [
                     const BuildHeaderLogo(),
-                    BuildHeaderTitle(title: tr('login')),
+                    BuildHeaderTitle(
+                      title: state.data == 0 ? tr('login') : tr('register'),
+                    ),
                     BuildLoginTabsView(
                       controller: loginController,
                     ),
-                    state.data == 0
-                        ? BuildLoginView(controller: loginController)
-                        : const Register(),
+                    AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 300),
+                      child: state.data == 0
+                          ? BuildLoginView(controller: loginController)
+                          : const Register(),
+                    ),
                   ],
                 ),
               );

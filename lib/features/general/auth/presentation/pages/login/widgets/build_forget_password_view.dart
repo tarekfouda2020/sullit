@@ -9,12 +9,15 @@ class BuildForgetPasswordView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(tr('forgetPassword'),
-            style: AppTextStyle.s16_w700(color: context.colors.blackOpacity)),
+            style: AppTextStyle.s14_w400(color: context.colors.textColor)),
+        Gaps.hGap4,
         InkWell(
-          onTap: () =>
-              AutoRouter.of(context).push(const ForgetPasswordRoute()),
-          child: Text('  Restore',
-              style: AppTextStyle.s16_w700(color: context.colors.primary)),
+          onTap: () => AutoRouter.of(context).push(const ForgetPasswordRoute()),
+          child: Text(
+            tr("restore"),
+            style: AppTextStyle.s14_w400(color: context.colors.primary)
+                .copyWith(decoration: TextDecoration.underline),
+          ),
         ),
       ],
     );

@@ -14,7 +14,9 @@ class BuildLoginForm extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const BuildInputLabel(label: 'Email',),
+            const BuildInputLabel(
+              label: 'Email',
+            ),
             GenericTextField(
               fillColor: context.colors.authField,
               enableBorderColor: context.colors.white,
@@ -25,9 +27,11 @@ class BuildLoginForm extends StatelessWidget {
               action: TextInputAction.next,
               validate: (value) => value?.validateEmpty(),
               margin: Dimens.headerTitlePadding,
-              radius: Dimens.borderRadius20PX,
+              radius: Dimens.borderRadius40PX,
             ),
-            const BuildInputLabel(label: 'Password',),
+            const BuildInputLabel(
+              label: 'Password',
+            ),
             BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
               bloc: controller.passwordCubit,
               builder: (context, state) {
@@ -37,7 +41,7 @@ class BuildLoginForm extends StatelessWidget {
                   focusBorderColor: context.colors.white,
                   margin: Dimens.headerTitlePadding,
                   controller: controller.password,
-                  radius: Dimens.borderRadius20PX,
+                  radius: Dimens.borderRadius40PX,
                   fieldTypes:
                       !state.data ? FieldTypes.password : FieldTypes.normal,
                   type: TextInputType.visiblePassword,
@@ -47,9 +51,7 @@ class BuildLoginForm extends StatelessWidget {
                     onPressed: () =>
                         controller.passwordCubit.onUpdateData(!state.data),
                     icon: Icon(
-                      !state.data
-                          ? Icons.visibility
-                          : Icons.visibility_off,
+                      !state.data ? Icons.visibility : Icons.visibility_off,
                       size: 17.sp,
                       color: context.colors.black,
                     ),

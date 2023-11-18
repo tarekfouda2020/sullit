@@ -83,7 +83,6 @@ abstract class AppColors {
   Color get authField;
   Color get textColor;
 
-  Color get textColor;
 
   Color get bgIcon;
 }

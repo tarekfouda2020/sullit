@@ -18,19 +18,14 @@ class _RegisterState extends State<Register> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GestureDetector(
-        onTap: FocusScope.of(context).unfocus,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            BuildRegisterFormFields(registerController: controller),
-            Gaps.vGap10,
-            BuildRegisterButton(controller: controller),
-            const BuildRegisterSocial(),
-          ],
-        ),
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        BuildRegisterFormFields(registerController: controller),
+        Gaps.vGap10,
+        BuildRegisterButton(controller: controller),
+        const BuildRegisterSocial(),
+      ],
     );
   }
 }

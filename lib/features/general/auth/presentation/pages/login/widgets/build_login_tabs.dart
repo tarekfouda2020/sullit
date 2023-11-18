@@ -17,7 +17,9 @@ class BuildLoginTabs extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 41, vertical: 10),
+        height: 32,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 41),
         decoration: BoxDecoration(
             color: selected ? context.colors.white : context.colors.authField,
             borderRadius: BorderRadius.circular(40),

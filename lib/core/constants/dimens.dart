@@ -82,7 +82,7 @@ class Dimens {
   static EdgeInsets inputFieldMargin =
       const EdgeInsets.symmetric(vertical: 15).r;
   static EdgeInsets headerTitlePadding =
-      const EdgeInsets.only(top: 8, bottom: 30).r;
+      const EdgeInsets.only(top: 8, bottom: 24);
   static EdgeInsets standardPadding =
       const EdgeInsets.symmetric(horizontal: dp15, vertical: dp10).r;
   static EdgeInsets cardMargin =

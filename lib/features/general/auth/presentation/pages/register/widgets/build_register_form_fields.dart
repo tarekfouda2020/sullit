@@ -11,6 +11,7 @@ class BuildRegisterFormFields extends StatelessWidget {
     return Form(
       key: registerController.formKey,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BuildInputLabel(label: tr('userName')),
           GenericTextField(
