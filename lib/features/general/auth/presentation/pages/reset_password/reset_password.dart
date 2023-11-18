@@ -21,19 +21,22 @@ class _ResetPasswordState extends State<ResetPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        padding: Dimens.paddingH24V40,
-        children: [
-          const BuildAuthAppBar(),
-           BuildHeaderTitle(
-            title: tr('forgetPassword'),
-            subTitle:
-                "Enter the New password",
-          ),
-          ResetPasswordForm(controller: controller),
-          ResetPasswordButton(controller: controller),
-          BuildResendCode(controller: controller),
-        ],
+      body: GestureDetector(
+        onTap: FocusScope.of(context).unfocus,
+        child: ListView(
+          padding: Dimens.paddingH24V40,
+          children: [
+            const BuildAuthAppBar(),
+             BuildHeaderTitle(
+              title: tr('forgetPassword'),
+              subTitle:
+                  "Enter the New password",
+            ),
+            ResetPasswordForm(controller: controller),
+            ResetPasswordButton(controller: controller),
+            BuildResendCode(controller: controller),
+          ],
+        ),
       ),
     );
   }

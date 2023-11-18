@@ -75,5 +75,8 @@ class AppLightColors extends AppColors {
   @override
   Color get authField => const Color(0xffF8F7FB);
 
+  @override
+  Color get textColor => const Color(0xff59595B);
+
 
 }

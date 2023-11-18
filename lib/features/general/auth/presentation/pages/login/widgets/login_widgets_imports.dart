@@ -14,13 +14,17 @@ import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 import 'package:flutter_tdd/core/widgets/LoadingButton.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_input_label.dart';
 import 'package:flutter_tdd/res.dart';
 import '../login_imports.dart';
 
 
 part 'build_login_form.dart';
+part 'build_login_tabs.dart';
 part 'build_login_button.dart';
 part 'build_forget_password_view.dart';
 part 'build_login_social_media.dart';
 part 'build_social_item.dart';
+part 'build_login_tabs_view.dart';
 part'build_do_not_have_account.dart';
+part 'build_login_view.dart';

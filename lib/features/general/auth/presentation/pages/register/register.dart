@@ -1,6 +1,7 @@
 part of 'register_imports.dart';
 
 class Register extends StatefulWidget {
+
   const Register({Key? key}) : super(key: key);
 
   @override
@@ -18,23 +19,15 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //appBar: const BuildAuthAppBar(),
       body: GestureDetector(
         onTap: FocusScope.of(context).unfocus,
-        child: ListView(
-          padding: Dimens.paddingHorizontal15PX,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            BuildAuthAppBar(),
-            const BuildHeaderLogo(),
-            BuildHeaderTitle(title: tr('createAccount')),
-            Gaps.vGap15,
             BuildRegisterFormFields(registerController: controller),
             Gaps.vGap10,
-            BuildTermsAndConditions(registerController: controller),
             BuildRegisterButton(controller: controller),
-            // BuildSellerButton(registerController: controller),
-            // const BuildRegisterSocial(),
-            const BuildHaveAccount(),
+            const BuildRegisterSocial(),
           ],
         ),
       ),

@@ -17,6 +17,7 @@ import 'package:flutter_tdd/features/general/auth/domain/entities/user_register_
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
 import 'package:flutter_tdd/features/general/auth/domain/use_cases/set_user_register.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/pages/login/widgets/login_widgets_imports.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_auth_app_bar.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_header_logo.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_header_title.dart';

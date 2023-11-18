@@ -216,7 +216,8 @@ class AppRouter extends _i80.RootStackRouter {
         routeData: routeData,
         child: _i3.ActiveAccount(
           key: args.key,
-          phone: args.phone,
+          phoneOrEmail: args.phoneOrEmail,
+          fromForget: args.fromForget,
         ),
         opaque: true,
       );
@@ -1214,13 +1215,15 @@ class LoginRoute extends _i80.PageRouteInfo<void> {
 class ActiveAccountRoute extends _i80.PageRouteInfo<ActiveAccountRouteArgs> {
   ActiveAccountRoute({
     _i83.Key? key,
-    required String phone,
+    required String phoneOrEmail,
+    bool fromForget = false,
   }) : super(
           ActiveAccountRoute.name,
           path: '/active-account',
           args: ActiveAccountRouteArgs(
             key: key,
-            phone: phone,
+            phoneOrEmail: phoneOrEmail,
+            fromForget: fromForget,
           ),
         );
 
@@ -1230,16 +1233,19 @@ class ActiveAccountRoute extends _i80.PageRouteInfo<ActiveAccountRouteArgs> {
 class ActiveAccountRouteArgs {
   const ActiveAccountRouteArgs({
     this.key,
-    required this.phone,
+    required this.phoneOrEmail,
+    this.fromForget = false,
   });
 
   final _i83.Key? key;
 
-  final String phone;
+  final String phoneOrEmail;
+
+  final bool fromForget;
 
   @override
   String toString() {
-    return 'ActiveAccountRouteArgs{key: $key, phone: $phone}';
+    return 'ActiveAccountRouteArgs{key: $key, phoneOrEmail: $phoneOrEmail, fromForget: $fromForget}';
   }
 }
 

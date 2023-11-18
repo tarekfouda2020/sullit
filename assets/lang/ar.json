@@ -11,6 +11,7 @@
   "enterPhone": "ادخل رقم الهاتف",
   "name": " اسم المستخدم ",
   "password": " كلمة المرور",
+  "enterVerifyCode": "أدخل رمز التحقق",
   "msg": "رسالتك",
   "insertNewPss": "قم بادخال كلمة المرور الجديدة ",
   "confirmPassword": " تأكيد كلمة المرور",

@@ -10,6 +10,7 @@ import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 import 'package:flutter_tdd/core/widgets/LoadingButton.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/pages/forget_password/forget_password_imports.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_input_label.dart';
 import 'package:flutter_tdd/res.dart';
 
 part 'build_forget_form.dart';

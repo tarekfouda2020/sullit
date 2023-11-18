@@ -10,18 +10,22 @@ class ActiveAccountController {
   void onComplete(String value) {
     codeCubit.onUpdateData(value.length == 6);
     code = value;
+    codeCubit.onUpdateData(true);
   }
 
-  Future<void> setVerifyPhone(String phone, BuildContext context) async {
-    var params = _verifyPhoneParams(phone);
-    print(">>>>>${params.toJson()}");
-    var result = await SetVerifyPhone().call(params);
-    if (result) {
-      CustomToast.showSimpleToast(
-        msg: tr('phoneVerifiedSuccess'),
-        type: ToastType.success
-      );
-      AutoRouter.of(context).pop(true);
+  Future<void> setVerifyPhone(
+      String phoneOrEmail, BuildContext context, bool isFprget) async {
+    if (isFprget) {
+      AutoRouter.of(context).push(ResetPasswordRoute(email: phoneOrEmail));
+    } else {
+      var params = _verifyPhoneParams(phoneOrEmail);
+      print(">>>>>${params.toJson()}");
+      var result = await SetVerifyPhone().call(params);
+      if (result) {
+        CustomToast.showSimpleToast(
+            msg: tr('phoneVerifiedSuccess'), type: ToastType.success);
+        AutoRouter.of(context).pop(true);
+      }
     }
   }
 

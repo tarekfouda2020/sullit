@@ -132,7 +132,7 @@ class ProfileController {
     if (model.isPhoneActive == false) {
       AutoRouter.of(context).push(
         ActiveAccountRoute(
-          phone:model.phone??"",
+          phoneOrEmail:model.phone??"",
         ),
       );
     }

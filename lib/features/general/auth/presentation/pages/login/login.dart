@@ -18,17 +18,25 @@ class _LoginState extends State<Login> {
         backgroundColor: context.colors.background,
         body: GestureDetector(
           onTap: FocusScope.of(context).unfocus,
-          child: ListView(
-            padding: Dimens.paddingHorizontal40PX,
-            children: [
-              const BuildHeaderLogo(),
-              BuildHeaderTitle(title: tr('login')),
-              Gaps.vGap15,
-              BuildLoginForm(controller: loginController),
-              BuildLoginButton(controller: loginController),
-              BuildLoginSocialMedia(controller: loginController),
-              const BuildForgetPasswordView(),
-            ],
+          child: BlocBuilder<GenericBloc<int>, GenericState<int>>(
+            bloc: loginController.tabsCubit,
+            builder: (context, state) {
+              return SingleChildScrollView(
+                padding: Dimens.paddingHorizontal23PX,
+                child: Column(
+                  children: [
+                    const BuildHeaderLogo(),
+                    BuildHeaderTitle(title: tr('login')),
+                    BuildLoginTabsView(
+                      controller: loginController,
+                    ),
+                    state.data == 0
+                        ? BuildLoginView(controller: loginController)
+                        : const Register(),
+                  ],
+                ),
+              );
+            },
           ),
         ),
       ),

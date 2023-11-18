@@ -12,6 +12,7 @@ import 'package:flutter_tdd/core/widgets/LoadingButton.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/pages/reset_password/reset_password_imports.dart';
 
 import 'package:flutter_tdd/core/helpers/validator.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_input_label.dart';
 
 
 part 'reset_password_form.dart';
