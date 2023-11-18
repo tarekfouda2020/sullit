@@ -12,16 +12,18 @@ class BuildBestSellingProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 250.spMin,
+    return Container(
+      margin: const EdgeInsets.only(top: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Gaps.vGap5,
-           BuildHeaderTitle(title: tr('justForYou')),
-          Flexible(
+          BuildHeaderTitle(
+            title: tr('justForYou'),
+            onTap: () {},
+          ),
+          SizedBox(
+            height: 245.spMin,
             child: SingleChildScrollView(
-              padding: Dimens.paddingVertical10PX,
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -38,8 +40,10 @@ class BuildBestSellingProducts extends StatelessWidget {
                             bestSellingProducts[index],
                           ),
                           onCompareRefresh: () {
-                            bestSellingProducts[index].isAddedTCompare = !bestSellingProducts[index].isAddedTCompare!;
-                            controller.homeCubit.onUpdateData(controller.homeCubit.state.data);
+                            bestSellingProducts[index].isAddedTCompare =
+                                !bestSellingProducts[index].isAddedTCompare!;
+                            controller.homeCubit
+                                .onUpdateData(controller.homeCubit.state.data);
                           },
                         ),
                       );

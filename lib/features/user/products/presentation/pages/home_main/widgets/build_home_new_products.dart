@@ -9,46 +9,42 @@ class BuildHomeNewProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 250.spMin,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Gaps.vGap10,
-          BuildHeaderTitle(title: tr('newProducts')),
-          Flexible(
-            child: SingleChildScrollView(
-              padding: Dimens.paddingVertical10PX,
-              physics: const BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  Gaps.hGap10,
-                  ...List.generate(
-                    newestProducts.length,
-                    (index) {
-                      return Padding(
-                        padding: Dimens.paddingHorizontal5PX,
-                        child: BuildProductItem(
-                          productModel: newestProducts[index],
-                          onFavRefresh: () =>
-                              controller.onChangeFav(newestProducts[index]),
-                          onCompareRefresh: () {
-                            newestProducts[index].isAddedTCompare =
-                                !newestProducts[index].isAddedTCompare!;
-                            controller.homeCubit
-                                .onUpdateData(controller.homeCubit.state.data);
-                          },
-                        ),
-                      );
-                    },
-                  )
-                ],
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        BuildHeaderTitle(title: tr('newProducts')),
+        SizedBox(
+          height: 250.spMin,
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                Gaps.hGap10,
+                ...List.generate(
+                  newestProducts.length,
+                  (index) {
+                    return Padding(
+                      padding: Dimens.paddingHorizontal5PX,
+                      child: BuildProductItem(
+                        productModel: newestProducts[index],
+                        onFavRefresh: () =>
+                            controller.onChangeFav(newestProducts[index]),
+                        onCompareRefresh: () {
+                          newestProducts[index].isAddedTCompare =
+                              !newestProducts[index].isAddedTCompare!;
+                          controller.homeCubit
+                              .onUpdateData(controller.homeCubit.state.data);
+                        },
+                      ),
+                    );
+                  },
+                )
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

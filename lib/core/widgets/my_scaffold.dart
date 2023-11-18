@@ -15,14 +15,17 @@ class MyScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colors.scaffoldBg,
-      extendBody: true,
-      appBar: appBar,
-      body: Stack(children: [
-        body,
-      ]),
-      bottomNavigationBar: bottomNavigationBar,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        backgroundColor: context.colors.customBackground,
+        extendBody: true,
+        appBar: appBar,
+        body: Stack(children: [
+          body,
+        ]),
+        bottomNavigationBar: bottomNavigationBar,
+      ),
     );
   }
 }

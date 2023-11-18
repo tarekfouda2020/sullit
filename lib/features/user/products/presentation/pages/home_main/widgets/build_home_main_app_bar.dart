@@ -20,7 +20,9 @@ class BuildHomeMainAppBar extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 23),
                 child: Row(
                   children: [
-                    Image.asset(Res.logo, height: 30, width: 120),
+                    InkWell(
+                        onTap: ()=> controller.scaffoldKey.currentState?.openDrawer(),
+                        child: Image.asset(Res.logo, height: 30, width: 120)),
                     const Spacer(),
                     buildIcon(
                       context,
@@ -50,6 +52,9 @@ class BuildHomeMainAppBar extends StatelessWidget {
                 fillColor: context.colors.white,
                 margin: const EdgeInsets.only(bottom: 8),
                 hint: tr('searchCats'),
+                onSubmit: () => controller.visibleSearch.onUpdateData(
+                  !state.data,
+                ),
                 suffixIcon: InkWell(
                   onTap: () => AutoRouter.of(context).push(
                     SearchRoute(

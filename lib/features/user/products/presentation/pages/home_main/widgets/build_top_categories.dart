@@ -10,16 +10,25 @@ class BuildTopCategories extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Gaps.vGap5,
+        Gaps.vGap15,
         BuildCustomHeaderTitle(
-          title: tr('top10Categories'),
-          btnText: tr('viewAllCats'),
+          title: "categories",
           onTap: () => AutoRouter.of(context).push(HomeRoute(index: 1)),
         ),
-        Gaps.vGap5,
-        ...List.generate(
-          topCategories.length,
-          (index) => BuildTopCategoriesItem(categoryModel: topCategories[index]),
+        GridView.builder(
+          padding: Dimens.paddingHorizontal15PX,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: topCategories.length,
+          itemBuilder: (_, index) => BuildTopCategoriesItem(
+            categoryModel: topCategories[index],
+          ),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 5,
+            childAspectRatio: 0.8,
+            crossAxisSpacing: 5,
+            mainAxisSpacing: 15,
+          ),
         )
       ],
     );

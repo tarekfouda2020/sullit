@@ -4,8 +4,11 @@ class BuildHomeView extends StatelessWidget {
   final HomeDomainModel homeDomainModel;
   final HomeMainController controller;
 
-  const BuildHomeView(
-      {super.key, required this.homeDomainModel, required this.controller});
+  const BuildHomeView({
+    super.key,
+    required this.homeDomainModel,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,29 +17,31 @@ class BuildHomeView extends StatelessWidget {
         padding: Dimens.paddingVertical10PX,
         children: [
           BuildHomeSwiper(slider: homeDomainModel.sliders),
-          BuildBanners(banners: homeDomainModel.bannersOne),
-          BuildDeals(
-            flashSales: homeDomainModel.flashSales,
-            controller: controller,
-          ),
-          BuildBanners(banners: homeDomainModel.bannersTwo),
-          BuildPopularProducts(
-            mostPopularProducts: homeDomainModel.mostPopular,
-          ),
+          BuildTopCategories(topCategories: homeDomainModel.topCategories),
+          // BuildDeals(
+          //   flashSales: homeDomainModel.flashSales,
+          //   controller: controller,
+          // ),
+          // BuildPopularProducts(
+          //   mostPopularProducts: homeDomainModel.mostPopular,
+          // ),
           BuildBestSellingProducts(
             bestSellingProducts: homeDomainModel.bestSellingProducts,
             controller: controller,
           ),
+          Gaps.vGap10,
+          BuildBanners(banners: homeDomainModel.bannersTwo),
           BuildHomeNewProducts(
             newestProducts: homeDomainModel.newestProducts,
             controller: controller,
           ),
+          Gaps.vGap10,
+          BuildBanners(banners: homeDomainModel.bannersOne),
           BuildFeaturedProducts(
             featuredProducts: homeDomainModel.featuredProducts,
             controller: controller,
           ),
-          BuildTopCategories(topCategories: homeDomainModel.topCategories),
-          BuildTopBrands(brandList: homeDomainModel.topBrands)
+          // BuildTopBrands(brandList: homeDomainModel.topBrands)
         ],
       ),
     );

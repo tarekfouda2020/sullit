@@ -21,7 +21,7 @@ class BuildHomeSwiper extends StatelessWidget {
           );
         },
         itemCount: slider.length,
-        pagination: const SwiperPagination(),
+        // pagination: const SwiperPagination(),
         viewportFraction: 0.9,
         autoplay: false,
       ),

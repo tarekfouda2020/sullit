@@ -1,43 +1,43 @@
 part of 'home_main_widgets_imports.dart';
 
 class BuildCustomHeaderTitle extends StatelessWidget {
-  final String title, btnText;
+  final String title;
+  final String? btnText;
   final Function()? onTap;
 
   const BuildCustomHeaderTitle(
-      {Key? key, required this.title, this.btnText = "Top 20", this.onTap})
+      {Key? key, required this.title, this.btnText, this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Dimens.paddingHorizontal15PX,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      child: Row(children: [
+        Expanded(
+          child: Text(
             title,
-            style: AppTextStyle.s15_w700(
+            style: AppTextStyle.s17_w600(
               color: context.colors.black,
-            ),
+            ).copyWith(height: 0),
           ),
-          InkWell(
-            onTap: onTap ?? () {},
-            child: Container(
-              padding: Dimens.paddingAll8PX,
-              decoration: BoxDecoration(
-                  color: context.colors.primary,
-                  borderRadius: Dimens.borderRadius5PX),
-              child: Text(
-                btnText,
-                style: AppTextStyle.s12_w400(
-                  color: context.colors.white,
+        ),
+        InkWell(
+          onTap: onTap ?? () {},
+          child: Row(
+            children: [
+              Text(
+                btnText ?? tr("viewAll"),
+                style: AppTextStyle.s10_w500(
+                  color: context.colors.black,
                 ),
               ),
-            ),
-          )
-        ],
-      ),
+              Gaps.hGap4,
+              SvgPicture.asset(Res.arrowMore),
+            ],
+          ),
+        ),
+      ]),
     );
   }
 }

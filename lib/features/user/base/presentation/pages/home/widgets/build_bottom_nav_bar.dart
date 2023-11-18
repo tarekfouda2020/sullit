@@ -24,8 +24,8 @@ class BuildBottomNavBar extends StatelessWidget {
           splashColor: context.colors.primary,
           activeIndex: state.data,
           shadow: BoxShadow(
-            color: Colors.black.withOpacity(.2),
-            blurRadius: 5,
+            color: Colors.black.withOpacity(.095),
+            blurRadius: 8,
           ),
           gapLocation: GapLocation.none,
           splashSpeedInMilliseconds: 200,
