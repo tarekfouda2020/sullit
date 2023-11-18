@@ -22,7 +22,7 @@ class BuildBestSellingProducts extends StatelessWidget {
             onTap: () {},
           ),
           SizedBox(
-            height: 245.spMin,
+            height: 220,
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,

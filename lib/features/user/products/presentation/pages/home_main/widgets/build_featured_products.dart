@@ -14,7 +14,7 @@ class BuildFeaturedProducts extends StatelessWidget {
       children: [
         BuildHeaderTitle(title: tr('featuredProducts')),
         SizedBox(
-          height: 250.spMin,
+          height: 220,
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
