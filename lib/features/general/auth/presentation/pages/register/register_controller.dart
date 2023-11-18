@@ -18,7 +18,6 @@ class RegisterController {
       TextEditingController();
 
   Future<void> setUserRegister(BuildContext context) async {
-    _termsValidation();
     if (formKey.currentState!.validate()) {
       var params = _registerParams();
       var data = await SetUserRegister().call(params);
@@ -42,15 +41,7 @@ class RegisterController {
     );
   }
 
-  void _termsValidation() {
-    if (!termCubit.state.data) {
-      CustomToast.showSimpleToast(
-        msg: tr('acceptTerms'),
-        type: ToastType.error,
-      );
-      return;
-    }
-  }
+
 
   UserRegisterParams _registerParams() {
     return UserRegisterParams(

@@ -29,8 +29,8 @@ class _LoginState extends State<Login> {
                     BuildHeaderTitle(
                       title: state.data == 0 ? tr('login') : tr('register'),
                       subTitle: state.data == 1
-                          ? "Register now and win a lot of points"
-                          : "Hello, You are welcome with us",
+                          ? tr("registerHint")
+                          : tr("loginHint"),
                     ),
                     BuildLoginTabsView(
                       controller: loginController,
