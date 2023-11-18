@@ -18,19 +18,18 @@ class BuildPinField extends StatelessWidget {
     return Container(
        margin:margin?? const EdgeInsets.symmetric(vertical: 20),
       child: PinCodeTextField(
-        length: 6,
+        length: 4,
         appContext: context,
         onChanged: (String value) {},
         backgroundColor: Colors.transparent,
         textStyle: AppTextStyle.s16_w500(color: context.colors.black),
         animationType: AnimationType.fade,
         pinTheme: PinTheme(
-            shape: PinCodeFieldShape.box,
-            borderRadius: BorderRadius.circular(5),
+            shape: PinCodeFieldShape.circle,
             fieldHeight: 60,
             fieldWidth: 55,
             inactiveColor: context.colors.greyWhite,
-            activeColor: context.colors.primary,
+            activeColor: context.colors.greyWhite,
             selectedColor: context.colors.primary,
             selectedFillColor: context.colors.white,
             inactiveFillColor: context.colors.white,

@@ -16,6 +16,7 @@ class BuildLoginButton extends StatelessWidget {
       btnKey: controller.btnKey,
       margin: Dimens.paddingH50V10,
       height: 40.h,
+      width: 200,
       borderRadius: 40,
     );
   }

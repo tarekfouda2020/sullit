@@ -8,6 +8,12 @@ class LoginController {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
   final GenericBloc<bool> passwordCubit = GenericBloc(false);
+  final GenericBloc<int> tabsCubit = GenericBloc(0);
+
+  List<String> tabs = [
+    'Login',
+    'Register',
+  ];
 
   void onSubmit(BuildContext context) async {
     if (formKey.currentState!.validate()) {

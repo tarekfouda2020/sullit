@@ -13,21 +13,26 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView(
-        padding: Dimens.paddingH24V40,
-        children: [
-          const BuildAuthAppBar(),
-          BuildHeaderTitle(
-            title: tr('forgetPassword'),
-            subTitle: tr('Enter the email to recover the password'),
+    return GestureDetector(
+      onTap: FocusScope.of(context).unfocus,
+      child: Scaffold(
+        body: SingleChildScrollView(
+          padding: Dimens.paddingH24V40,
+          child: Column(
+            children: [
+              const BuildAuthAppBar(),
+              BuildHeaderTitle(
+                title: tr('forgetPassword'),
+                subTitle: tr('Enter the email to recover the password'),
+              ),
+              const BuildForgetLogo(),
+              BuildForgetForm(forgetPasswordController: forgetPasswordController),
+              BuildForgetPasswordButton(
+                  forgetPasswordController: forgetPasswordController),
+              const BuildBackToLogin(),
+            ],
           ),
-          const BuildForgetLogo(),
-          BuildForgetForm(forgetPasswordController: forgetPasswordController),
-          BuildForgetPasswordButton(
-              forgetPasswordController: forgetPasswordController),
-          const BuildBackToLogin(),
-        ],
+        ),
       ),
     );
   }

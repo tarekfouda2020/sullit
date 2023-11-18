@@ -13,10 +13,7 @@ class ResetPasswordForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'New password',
-            style: AppTextStyle.s14_w400(color: context.colors.blackOpacity),
-          ),
+          const BuildInputLabel(label: 'New password',),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.passwordCubit,
             builder: (context, state) {
@@ -44,10 +41,7 @@ class ResetPasswordForm extends StatelessWidget {
               );
             },
           ),
-          Text(
-            'confirm password',
-            style: AppTextStyle.s14_w400(color: context.colors.blackOpacity),
-          ),
+          const BuildInputLabel(label: 'Confirm password',),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.confirmPasswordCubit,
             builder: (context, state) {

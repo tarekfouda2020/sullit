@@ -37,7 +37,7 @@ class ShippingController {
 
   void onActiveAddress(BuildContext context, Address address) async {
     var result = await AutoRouter.of(context)
-        .push(ActiveAccountRoute(phone: address.phone!));
+        .push(ActiveAccountRoute(phoneOrEmail: address.phone!));
     if (result == true) {
       address.isActive = true;
       addressesBloc.onUpdateData(addressesBloc.state.data);

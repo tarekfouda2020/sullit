@@ -13,10 +13,7 @@ class BuildForgetForm extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Email',
-              style: AppTextStyle.s14_w400(color: context.colors.blackOpacity),
-            ),
+            const BuildInputLabel(label: 'Email',),
             GenericTextField(
               fillColor: context.colors.authField,
               enableBorderColor: context.colors.white,

@@ -1,9 +1,14 @@
 part of 'active_account_imports.dart';
 
 class ActiveAccount extends StatefulWidget {
-  final String phone;
+  final String phoneOrEmail;
+  final bool fromForget;
 
-  const ActiveAccount({Key? key, required this.phone}) : super(key: key);
+  const ActiveAccount({
+    Key? key,
+    required this.phoneOrEmail,
+    this.fromForget = false,
+  }) : super(key: key);
 
   @override
   _ActiveAccountState createState() => _ActiveAccountState();
@@ -14,20 +19,25 @@ class _ActiveAccountState extends State<ActiveAccount> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colors.customBackground,
-      body: ListView(
-        padding: Dimens.paddingHorizontal15PX,
-        children: [
-          BuildAuthAppBar(),
-          const BuildHeaderLogo(),
-          BuildHeaderTitle(title: tr('enterVerifyCode')),
-          BuildPinField(onComplete: controller.onComplete),
-          BuildActiveButton(
-            controller: controller,
-            phone: widget.phone,
+    return GestureDetector(
+      onTap: FocusScope.of(context).unfocus,
+      child: Scaffold(
+        body: SingleChildScrollView(
+          padding: Dimens.paddingH24V40,
+          child: Column(
+            children: [
+              const BuildAuthAppBar(),
+              BuildHeaderTitle(title: tr('enterVerifyCode')),
+              BuildPinField(onComplete: controller.onComplete),
+              const BuildResendCode(),
+              BuildActiveButton(
+                controller: controller,
+                phone: widget.phoneOrEmail,
+                isForget: widget.fromForget,
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
