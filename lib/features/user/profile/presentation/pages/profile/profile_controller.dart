@@ -33,9 +33,6 @@ class ProfileController {
       nameController.text = user?.name ?? "";
       emailController.text = user?.email ?? "";
       phoneController.text = user?.phone ?? "";
-      print('=======> ${user?.address?.address ?? ""}');
-      print('=======> ${user?.countryCode ?? ""}');
-
       countryCubit.onUpdateData(Country("", "", "", user?.countryCode ?? ""));
       addressModel = user?.address;
       addressController.text = user?.address?.address ?? "";
@@ -103,7 +100,6 @@ class ProfileController {
     if (isDataChanged(context)) {
       var user = context.read<UserCubit>().state.model;
       var params = _profileParams();
-      print(">>>>>>${params.toJson()}");
       if (emailController.text != user!.email) {
         setEditProfileEmail();
       }
@@ -146,7 +142,7 @@ class ProfileController {
     if (model.isPhoneActive == false) {
       AutoRouter.of(context).push(
         ActiveAccountRoute(
-          phone:"${countryCubit.state.data?.callingCode}${model.phone}",
+          phoneOrEmail:"${countryCubit.state.data?.callingCode}${model.phone}",
         ),
       );
     }
