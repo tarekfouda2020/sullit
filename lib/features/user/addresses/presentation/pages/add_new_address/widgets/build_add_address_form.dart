@@ -125,7 +125,7 @@ class BuildAddAddressForm extends StatelessWidget {
                     controller: controller.phoneController,
                     fieldTypes: FieldTypes.normal,
                     fillColor: context.colors.white,
-                    type: TextInputType.text,
+                    type: TextInputType.number,
                     action: TextInputAction.done,
                     validate: (value) => value?.validatePhone(),
                     label: "Phone",
