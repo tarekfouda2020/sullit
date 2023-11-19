@@ -589,13 +589,9 @@ class AppRouter extends _i81.RootStackRouter {
       );
     },
     NotificationsRoute.name: (routeData) {
-      final args = routeData.argsAs<NotificationsRouteArgs>();
       return _i81.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i50.Notifications(
-          key: args.key,
-          homeController: args.homeController,
-        ),
+        child: const _i50.Notifications(),
         opaque: true,
       );
     },
@@ -756,9 +752,13 @@ class AppRouter extends _i81.RootStackRouter {
       );
     },
     CouponsRoute.name: (routeData) {
+      final args = routeData.argsAs<CouponsRouteArgs>();
       return _i81.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i68.Coupons(),
+        child: _i68.Coupons(
+          key: args.key,
+          homeController: args.homeController,
+        ),
         opaque: true,
       );
     },
@@ -2070,36 +2070,14 @@ class DashBoardRoute extends _i81.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i50.Notifications]
-class NotificationsRoute extends _i81.PageRouteInfo<NotificationsRouteArgs> {
-  NotificationsRoute({
-    _i84.Key? key,
-    required _i38.HomeController homeController,
-  }) : super(
+class NotificationsRoute extends _i81.PageRouteInfo<void> {
+  const NotificationsRoute()
+      : super(
           NotificationsRoute.name,
           path: '/Notifications',
-          args: NotificationsRouteArgs(
-            key: key,
-            homeController: homeController,
-          ),
         );
 
   static const String name = 'NotificationsRoute';
-}
-
-class NotificationsRouteArgs {
-  const NotificationsRouteArgs({
-    this.key,
-    required this.homeController,
-  });
-
-  final _i84.Key? key;
-
-  final _i38.HomeController homeController;
-
-  @override
-  String toString() {
-    return 'NotificationsRouteArgs{key: $key, homeController: $homeController}';
-  }
 }
 
 /// generated route for
@@ -2512,14 +2490,36 @@ class SaleDetailsRouteArgs {
 
 /// generated route for
 /// [_i68.Coupons]
-class CouponsRoute extends _i81.PageRouteInfo<void> {
-  const CouponsRoute()
-      : super(
+class CouponsRoute extends _i81.PageRouteInfo<CouponsRouteArgs> {
+  CouponsRoute({
+    _i84.Key? key,
+    required _i38.HomeController homeController,
+  }) : super(
           CouponsRoute.name,
           path: '/Coupons',
+          args: CouponsRouteArgs(
+            key: key,
+            homeController: homeController,
+          ),
         );
 
   static const String name = 'CouponsRoute';
+}
+
+class CouponsRouteArgs {
+  const CouponsRouteArgs({
+    this.key,
+    required this.homeController,
+  });
+
+  final _i84.Key? key;
+
+  final _i38.HomeController homeController;
+
+  @override
+  String toString() {
+    return 'CouponsRouteArgs{key: $key, homeController: $homeController}';
+  }
 }
 
 /// generated route for

@@ -35,6 +35,7 @@ class Res {
   static const String arrowMore = "assets/images/arrow_more.svg";
   static const String notification = "assets/images/notification.svg";
   static const String cart = "assets/images/cart.svg";
+  static const String sortLogo = "assets/images/sort_logo.png";
   static const String search = "assets/images/search.svg";
   static const String scaffBg1 = "assets/images/scaffBg1.svg";
   static const String scaffBg2 = "assets/images/scaffBg2.svg";
