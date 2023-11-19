@@ -13,5 +13,6 @@ import 'package:flutter_tdd/core/widgets/build_custom_app_bar.dart';
 import 'package:intl/intl.dart';
 
 import 'widgets/seller_add_product_specifications_widgets_imports.dart';
+
 part 'seller_add_product_specifications.dart';
 part 'seller_add_product_specifications_controller.dart';

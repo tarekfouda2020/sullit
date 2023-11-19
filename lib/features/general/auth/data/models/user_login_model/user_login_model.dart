@@ -4,7 +4,6 @@ import 'package:flutter_tdd/features/general/auth/domain/models/user_login.dart'
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_login_model.freezed.dart';
-
 part 'user_login_model.g.dart';
 
 @freezed

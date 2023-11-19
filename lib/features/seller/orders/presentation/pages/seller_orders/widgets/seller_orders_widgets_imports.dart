@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,9 +13,10 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/DropdownTextField.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 import 'package:flutter_tdd/features/seller/orders/presentation/pages/seller_orders/seller_orders_imports.dart';
+
+part 'build_info_item.dart';
+part 'build_option_item.dart';
 part 'build_order_filter.dart';
+part 'build_order_info.dart';
 part 'build_order_item.dart';
 part 'build_order_list.dart';
-part 'build_option_item.dart';
-part 'build_order_info.dart';
-part 'build_info_item.dart';

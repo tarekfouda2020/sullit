@@ -21,13 +21,14 @@ import 'package:flutter_tdd/features/user/customers_products/presentaion/pages/c
 import 'package:flutter_tdd/features/user/customers_products/presentaion/widgets/build_customer_product_item.dart';
 import 'package:flutter_tdd/features/user/customers_products/presentaion/widgets/build_loading_product_item.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-part 'build_sort_bar.dart';
-part 'build_sub_category_item.dart';
+
 part 'build_categories_view.dart';
-part 'build_sub_categories_view.dart';
-part 'build_main_categories.dart';
-part 'build_main_category_item.dart';
 part 'build_customer_products.dart';
+part 'build_loading_customer_products.dart';
 part 'build_loading_main_categories.dart';
 part 'build_loading_sort_bar.dart';
-part 'build_loading_customer_products.dart';
+part 'build_main_categories.dart';
+part 'build_main_category_item.dart';
+part 'build_sort_bar.dart';
+part 'build_sub_categories_view.dart';
+part 'build_sub_category_item.dart';

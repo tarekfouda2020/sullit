@@ -6,6 +6,4 @@ import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/res.dart';
 
-
-
 part 'build_conversation_item.dart';

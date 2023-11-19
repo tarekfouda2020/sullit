@@ -3,7 +3,6 @@ import 'package:flutter_tdd/features/user/wallet/domain/models/wallet_types.dart
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'wallet_types_model.freezed.dart';
-
 part 'wallet_types_model.g.dart';
 
 @freezed

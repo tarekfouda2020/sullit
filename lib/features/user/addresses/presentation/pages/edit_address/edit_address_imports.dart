@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:country_calling_code_picker/picker.dart'as package;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
@@ -10,7 +11,6 @@ import 'package:flutter_tdd/core/models/domain_models/country.dart';
 import 'package:flutter_tdd/core/models/domain_models/state.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
-import 'package:country_calling_code_picker/picker.dart'as package;
 import 'package:flutter_tdd/core/widgets/custom_dropDown/CustomDropDown.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/general/common/presentation/pages/location_address/location_cubit/location_cubit.dart';

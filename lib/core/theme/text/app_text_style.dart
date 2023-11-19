@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
 
 class AppTextStyle extends TextStyle {
   const AppTextStyle() : super();

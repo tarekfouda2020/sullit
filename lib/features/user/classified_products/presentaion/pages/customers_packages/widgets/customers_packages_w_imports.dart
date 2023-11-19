@@ -16,8 +16,8 @@ import 'package:flutter_tdd/features/user/classified_products/domain/models/cus_
 import 'package:flutter_tdd/features/user/classified_products/domain/models/payment_domain_model.dart';
 import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/customers_packages/customers_packages_imports.dart';
 
-part 'build_packages_loading.dart';
-part 'build_payment_dialog.dart';
 part 'build_package_card.dart';
+part 'build_packages_loading.dart';
 part 'build_packages_text.dart';
 part 'build_packages_view.dart';
+part 'build_payment_dialog.dart';

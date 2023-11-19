@@ -3,7 +3,6 @@ import 'package:flutter_tdd/features/user/cart/domain/models/payment_option.dart
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'payment_option_model.freezed.dart';
-
 part 'payment_option_model.g.dart';
 
 @freezed

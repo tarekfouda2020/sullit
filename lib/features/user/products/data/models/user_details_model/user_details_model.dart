@@ -3,7 +3,6 @@ import 'package:flutter_tdd/features/user/products/domain/models/user_details.da
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_details_model.freezed.dart';
-
 part 'user_details_model.g.dart';
 
 @freezed

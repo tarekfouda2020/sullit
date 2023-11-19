@@ -5,7 +5,6 @@ import 'package:flutter_tdd/features/user/classified_products/domain/models/clas
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'classified_products_model.freezed.dart';
-
 part 'classified_products_model.g.dart';
 
 @freezed

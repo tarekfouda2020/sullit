@@ -1,7 +1,7 @@
+import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/shipping_model/shipping_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/coupon_response_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 
 part 'coupon_response_model.freezed.dart';
 part 'coupon_response_model.g.dart';

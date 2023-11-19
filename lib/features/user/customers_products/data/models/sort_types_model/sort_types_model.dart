@@ -3,7 +3,6 @@ import 'package:flutter_tdd/features/user/customers_products/domain/models/sort_
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'sort_types_model.freezed.dart';
-
 part 'sort_types_model.g.dart';
 
 @freezed

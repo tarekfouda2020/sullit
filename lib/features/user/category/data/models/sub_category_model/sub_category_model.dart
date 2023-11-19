@@ -4,12 +4,10 @@ import 'package:flutter_tdd/features/user/category/data/models/attributes_model/
 import 'package:flutter_tdd/features/user/category/data/models/category_model/category_model.dart';
 import 'package:flutter_tdd/features/user/category/data/models/color_model/color_model.dart';
 import 'package:flutter_tdd/features/user/category/data/models/price_range_model/price_range_model.dart';
-import 'package:flutter_tdd/features/user/category/data/models/section_pagination_model/section_pagination_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/sub_category.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'sub_category_model.freezed.dart';
-
 part 'sub_category_model.g.dart';
 
 @freezed

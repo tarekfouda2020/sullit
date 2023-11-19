@@ -4,7 +4,6 @@ import 'package:flutter_tdd/features/user/sale/domain/models/sale_details.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'sale_details_model.freezed.dart';
-
 part 'sale_details_model.g.dart';
 
 @freezed

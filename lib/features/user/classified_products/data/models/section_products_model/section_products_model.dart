@@ -1,7 +1,8 @@
+import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/user/classified_products/data/models/cus_product_model/cus_product_model.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/models/sections_products.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
+
 part 'section_products_model.freezed.dart';
 part 'section_products_model.g.dart';
 

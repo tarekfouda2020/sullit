@@ -3,7 +3,6 @@ import 'package:flutter_tdd/features/user/category/domain/models/pagination_doma
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'pagination_model.freezed.dart';
-
 part 'pagination_model.g.dart';
 
 @freezed

@@ -6,7 +6,6 @@ import 'package:flutter_tdd/features/user/cart/domain/models/seller_shipping.dar
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'seller_shipping_model.freezed.dart';
-
 part 'seller_shipping_model.g.dart';
 
 @freezed

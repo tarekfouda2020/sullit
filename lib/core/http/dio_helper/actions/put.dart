@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -8,7 +9,6 @@ import '../../../helpers/di.dart';
 import '../../../helpers/loading_helper.dart';
 import '../../models/request_body_model.dart';
 import '../source/dio_helper.dart';
-import '../utils/dio_header.dart';
 import '../utils/handle_errors.dart';
 import '../utils/handle_request_body.dart';
 

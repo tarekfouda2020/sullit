@@ -3,7 +3,6 @@ import 'package:flutter_tdd/features/user/category/domain/models/price_range.dar
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'price_range_model.freezed.dart';
-
 part 'price_range_model.g.dart';
 
 @freezed

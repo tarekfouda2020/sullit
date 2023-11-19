@@ -11,5 +11,6 @@ import 'package:flutter_tdd/features/user/products/domain/use_cases/get_popular_
 import 'package:flutter_tdd/features/user/products/presentation/pages/popular_products/widgets/popular_products_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+
 part 'popular_products.dart';
 part 'popular_products_controller.dart';

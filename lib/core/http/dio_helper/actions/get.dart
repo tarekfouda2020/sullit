@@ -6,7 +6,6 @@ import '../../../errors/failures.dart';
 import '../../../helpers/di.dart';
 import '../../models/request_body_model.dart';
 import '../source/dio_helper.dart';
-import '../utils/dio_header.dart';
 import '../utils/dio_options.dart';
 import '../utils/handle_errors.dart';
 

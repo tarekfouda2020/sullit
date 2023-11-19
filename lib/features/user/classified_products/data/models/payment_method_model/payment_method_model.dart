@@ -3,7 +3,6 @@ import 'package:flutter_tdd/features/user/classified_products/domain/models/paym
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'payment_method_model.freezed.dart';
-
 part 'payment_method_model.g.dart';
 
 @freezed

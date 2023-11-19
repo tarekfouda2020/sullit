@@ -5,7 +5,6 @@ import 'package:flutter_tdd/features/user/tickets/domain/models/ticket_reply.dar
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'ticket_reply_model.freezed.dart';
-
 part 'ticket_reply_model.g.dart';
 
 @freezed

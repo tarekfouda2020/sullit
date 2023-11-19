@@ -5,7 +5,6 @@ import 'package:flutter_tdd/features/user/dashboard/domain/models/dashboards.dar
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'dashboards_model.freezed.dart';
-
 part 'dashboards_model.g.dart';
 
 @freezed

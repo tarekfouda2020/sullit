@@ -1,10 +1,8 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/attribute_value.dart';
-import 'package:flutter_tdd/features/user/category/domain/models/attributes.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'attribute_value_model.freezed.dart';
-
 part 'attribute_value_model.g.dart';
 
 @freezed

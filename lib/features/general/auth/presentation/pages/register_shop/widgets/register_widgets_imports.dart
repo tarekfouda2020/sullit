@@ -10,7 +10,6 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 import 'package:flutter_tdd/core/widgets/LoadingButton.dart';
 
-
 import '../register_shop_imports.dart';
 
 part 'register_shop_button.dart';

@@ -3,7 +3,6 @@ import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'cart_item_model.freezed.dart';
-
 part 'cart_item_model.g.dart';
 
 @freezed

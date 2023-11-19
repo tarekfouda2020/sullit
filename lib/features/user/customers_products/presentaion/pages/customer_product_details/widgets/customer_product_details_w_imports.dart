@@ -1,10 +1,8 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/helper_methods.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
@@ -17,11 +15,12 @@ import 'package:flutter_tdd/features/user/customers_products/domain/models/custo
 import 'package:flutter_tdd/features/user/customers_products/presentaion/pages/customer_product_details/customer_product_details_imports.dart';
 import 'package:flutter_tdd/features/user/customers_products/presentaion/widgets/build_customer_product_item.dart';
 import 'package:flutter_tdd/res.dart';
-part 'build_details_info.dart';
-part 'build_details_swiper.dart';
-part 'build_details_video.dart';
-part 'build_other_products.dart';
-part 'build_details_info_item.dart';
+
 part 'build_details_description.dart';
 part 'build_details_downloads.dart';
+part 'build_details_info.dart';
+part 'build_details_info_item.dart';
+part 'build_details_swiper.dart';
+part 'build_details_video.dart';
 part 'build_loading_customer_details.dart';
+part 'build_other_products.dart';

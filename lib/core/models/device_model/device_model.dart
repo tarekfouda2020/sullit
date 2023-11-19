@@ -1,6 +1,6 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:adaptive_theme/adaptive_theme.dart';
 
 part 'device_model.freezed.dart';
 

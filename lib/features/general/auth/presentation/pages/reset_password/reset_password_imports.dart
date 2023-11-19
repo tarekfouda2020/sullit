@@ -10,7 +10,6 @@ import 'package:flutter_tdd/features/general/auth/domain/entities/reset_password
 import 'package:flutter_tdd/features/general/auth/domain/use_cases/set_resend_password_code.dart';
 import 'package:flutter_tdd/features/general/auth/domain/use_cases/set_reset_password.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_auth_app_bar.dart';
-import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_header_logo.dart';
 
 import '../../widgets/build_header_title.dart';
 import 'widgets/reset_password_widgets_imports.dart';
