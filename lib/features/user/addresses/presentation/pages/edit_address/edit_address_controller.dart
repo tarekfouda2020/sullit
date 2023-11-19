@@ -14,11 +14,15 @@ class EditAddressController {
   final GenericBloc<Country?> countryCubit = GenericBloc(null);
   final GenericBloc<StateDomainModel?> stateCubit = GenericBloc(null);
   final GenericBloc<City?> cityCubit = GenericBloc(null);
+  final GenericBloc<package.Country?> countryCodeCubit = GenericBloc(null);
 
   EditAddressController(Address address) {
     addressController.text = address.address ?? "";
     postalCodeController.text = address.postalCode ?? "";
     phoneController.text = address.phone ?? "";
+    countryCodeCubit.onUpdateData(
+      package.Country("", "", "", address.countryCode ?? ""),
+    );
   }
 
   Country? countryModel;
@@ -68,6 +72,16 @@ class EditAddressController {
     return data;
   }
 
+  void showCountryCode(BuildContext context) async {
+    package.Country? data = await package.showCountryPickerDialog(
+      context,
+      cornerRadius: 3,
+    );
+    if (data != null) {
+      countryCodeCubit.onUpdateData(data);
+    }
+  }
+
   Future<void> editAddress(BuildContext context, Address address) async {
     if (formKey.currentState!.validate()) {
       var params = _addressParams(address);
@@ -91,6 +105,7 @@ class EditAddressController {
       stateId: stateModel?.id ?? address.state!.id,
       cityId: cityModel?.id ?? address.city!.id,
       phone: phoneController.text,
+      countryCode: countryCodeCubit.state.data?.callingCode ?? "",
       lat: locationCubit.state.model!.lat,
       long: locationCubit.state.model!.lng,
     );

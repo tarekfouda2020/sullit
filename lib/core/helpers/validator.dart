@@ -74,12 +74,22 @@ extension Validator on String {
     return null;
   }
 
+  // String? validatePhone({String? message}) {
+  //   if (trim().isEmpty) {
+  //     return message ?? tr("fillField");
+  //
+  //   } else if (!RegExp(
+  //               r'(^\+[0-9]{2}|^\+[0-9]{2}\(0\)|^\(\+[0-9]{2}\)\(0\)|^00[0-9]{2}|^0)([0-9]{9}$|[0-9\-\s]{10}$)')
+  //           .hasMatch(this) ||
+  //       length < 10) {
+  //     return message ?? tr("phoneValidation");
+  //   }
+  //   return null;
+  // }
   String? validatePhone({String? message}) {
     if (trim().isEmpty) {
       return message ?? tr("fillField");
-    } else if (!RegExp(
-                r'(^(?:[+0])?\+[0-9]{2}|^\+[0-9]{2}\(0\)|^\(\+[0-9]{2}\)\(0\)|^00[0-9]{2}|^0)([0-9]{9}$|[0-9\-\s]{10}$)')
-            .hasMatch(this) ||
+    } else if (!RegExp(r'(^[0-9]{9}$|[0-9\-\s]{10}$)').hasMatch(this) ||
         length < 10) {
       return message ?? tr("phoneValidation");
     }

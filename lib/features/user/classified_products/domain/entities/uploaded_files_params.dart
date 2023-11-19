@@ -2,12 +2,12 @@ class UploadedFilesParams {
   String? search;
 
   String? sort;
-  String? extension;
+  String? type;
 
   UploadedFilesParams({
      this.search,
      this.sort,
-     this.extension,
+     this.type,
   });
   String _getSearch(){
     if(search != null){
@@ -24,8 +24,8 @@ class UploadedFilesParams {
     }
   }
   String _getExtension(){
-    if(extension != null){
-      return '&extension=$extension';
+    if(type != null){
+      return '&type=$type';
     }else {
       return '';
     }

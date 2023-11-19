@@ -19,6 +19,7 @@ class BuildGalleryImages extends StatelessWidget {
               context: context,
               type: FileImageType.multiImage,
               imageType: ImageType.generalImages,
+              extension: TypeExtension.image.name,
             ),
             child: Container(
               height: Dimens.dp70.r,
@@ -62,6 +63,7 @@ class BuildGalleryImages extends StatelessWidget {
                     context: context,
                     type: FileImageType.multiImage,
                     imageType: ImageType.generalImages,
+                    extension: TypeExtension.image.name,
                   ),
                   child: Container(
                     height: Dimens.dp70.r,

@@ -32,6 +32,8 @@ mixin _$UserModel {
   String get email => throw _privateConstructorUsedError;
   @JsonKey(name: "phone")
   String get phone => throw _privateConstructorUsedError;
+  @JsonKey(name: "country_code")
+  String get countryCode => throw _privateConstructorUsedError;
   @JsonKey(name: "token")
   String get token => throw _privateConstructorUsedError;
   @JsonKey(name: "token_type")
@@ -59,6 +61,7 @@ abstract class $UserModelCopyWith<$Res> {
       @JsonKey(name: "avatar_original") String avatarOriginal,
       @JsonKey(name: "email") String email,
       @JsonKey(name: "phone") String phone,
+      @JsonKey(name: "country_code") String countryCode,
       @JsonKey(name: "token") String token,
       @JsonKey(name: "token_type") String tokenType,
       @JsonKey(name: "phone_is_active") bool isPhoneActive,
@@ -86,6 +89,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? avatarOriginal = null,
     Object? email = null,
     Object? phone = null,
+    Object? countryCode = null,
     Object? token = null,
     Object? tokenType = null,
     Object? isPhoneActive = null,
@@ -115,6 +119,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      countryCode: null == countryCode
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
               as String,
       token: null == token
           ? _value.token
@@ -162,6 +170,7 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       @JsonKey(name: "avatar_original") String avatarOriginal,
       @JsonKey(name: "email") String email,
       @JsonKey(name: "phone") String phone,
+      @JsonKey(name: "country_code") String countryCode,
       @JsonKey(name: "token") String token,
       @JsonKey(name: "token_type") String tokenType,
       @JsonKey(name: "phone_is_active") bool isPhoneActive,
@@ -188,6 +197,7 @@ class __$$_UserModelCopyWithImpl<$Res>
     Object? avatarOriginal = null,
     Object? email = null,
     Object? phone = null,
+    Object? countryCode = null,
     Object? token = null,
     Object? tokenType = null,
     Object? isPhoneActive = null,
@@ -217,6 +227,10 @@ class __$$_UserModelCopyWithImpl<$Res>
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      countryCode: null == countryCode
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
               as String,
       token: null == token
           ? _value.token
@@ -249,6 +263,7 @@ class _$_UserModel extends _UserModel {
       @JsonKey(name: "avatar_original") required this.avatarOriginal,
       @JsonKey(name: "email") required this.email,
       @JsonKey(name: "phone") required this.phone,
+      @JsonKey(name: "country_code") required this.countryCode,
       @JsonKey(name: "token") required this.token,
       @JsonKey(name: "token_type") required this.tokenType,
       @JsonKey(name: "phone_is_active") required this.isPhoneActive,
@@ -277,6 +292,9 @@ class _$_UserModel extends _UserModel {
   @JsonKey(name: "phone")
   final String phone;
   @override
+  @JsonKey(name: "country_code")
+  final String countryCode;
+  @override
   @JsonKey(name: "token")
   final String token;
   @override
@@ -291,7 +309,7 @@ class _$_UserModel extends _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, avatar: $avatar, avatarOriginal: $avatarOriginal, email: $email, phone: $phone, token: $token, tokenType: $tokenType, isPhoneActive: $isPhoneActive, address: $address)';
+    return 'UserModel(id: $id, name: $name, avatar: $avatar, avatarOriginal: $avatarOriginal, email: $email, phone: $phone, countryCode: $countryCode, token: $token, tokenType: $tokenType, isPhoneActive: $isPhoneActive, address: $address)';
   }
 
   @override
@@ -306,6 +324,8 @@ class _$_UserModel extends _UserModel {
                 other.avatarOriginal == avatarOriginal) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.countryCode, countryCode) ||
+                other.countryCode == countryCode) &&
             (identical(other.token, token) || other.token == token) &&
             (identical(other.tokenType, tokenType) ||
                 other.tokenType == tokenType) &&
@@ -317,7 +337,7 @@ class _$_UserModel extends _UserModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, avatar, avatarOriginal,
-      email, phone, token, tokenType, isPhoneActive, address);
+      email, phone, countryCode, token, tokenType, isPhoneActive, address);
 
   @JsonKey(ignore: true)
   @override
@@ -341,6 +361,7 @@ abstract class _UserModel extends UserModel {
       @JsonKey(name: "avatar_original") required final String avatarOriginal,
       @JsonKey(name: "email") required final String email,
       @JsonKey(name: "phone") required final String phone,
+      @JsonKey(name: "country_code") required final String countryCode,
       @JsonKey(name: "token") required final String token,
       @JsonKey(name: "token_type") required final String tokenType,
       @JsonKey(name: "phone_is_active") required final bool isPhoneActive,
@@ -368,6 +389,9 @@ abstract class _UserModel extends UserModel {
   @override
   @JsonKey(name: "phone")
   String get phone;
+  @override
+  @JsonKey(name: "country_code")
+  String get countryCode;
   @override
   @JsonKey(name: "token")
   String get token;
