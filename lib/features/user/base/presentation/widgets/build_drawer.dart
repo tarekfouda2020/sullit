@@ -44,6 +44,11 @@ class BuildDrawer extends StatelessWidget {
                   onTap: () => AutoRouter.of(context).push(HomeRoute(index: 1)),
                 ),
                 BuildDrawerItem(
+                  title: tr("allCategories"),
+                  icon: Icons.monetization_on_outlined,
+                  onTap: () => AutoRouter.of(context).push(HomeRoute(index: 1)),
+                ),
+                BuildDrawerItem(
                   title: tr("contactUs"),
                   icon: Icons.contact_support_outlined,
                   onTap: () =>

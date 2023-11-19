@@ -18,10 +18,10 @@ class BuildHomeView extends StatelessWidget {
         children: [
           BuildHomeSwiper(slider: homeDomainModel.sliders),
           BuildTopCategories(topCategories: homeDomainModel.topCategories),
-          // BuildDeals(
-          //   flashSales: homeDomainModel.flashSales,
-          //   controller: controller,
-          // ),
+          BuildDeals(
+            flashSales: homeDomainModel.flashSales,
+            controller: controller,
+          ),
           // BuildPopularProducts(
           //   mostPopularProducts: homeDomainModel.mostPopular,
           // ),
