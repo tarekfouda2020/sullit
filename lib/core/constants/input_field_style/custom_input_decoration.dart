@@ -62,6 +62,9 @@ class CustomInputDecoration extends InputDecoration {
   String? get hintText => hint;
 
   @override
+  int? get errorMaxLines => 2;
+
+  @override
   Widget? get label => labelTxt == null
       ? super.label
       : Text(

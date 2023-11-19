@@ -1,7 +1,10 @@
 part of 'add_classified_product_w_imports.dart';
+
 class BuildThumbnailImage extends StatelessWidget {
-  final AddClassifiedProductsController controller ;
-  const BuildThumbnailImage({Key? key, required this.controller}) : super(key: key);
+  final AddClassifiedProductsController controller;
+
+  const BuildThumbnailImage({Key? key, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +36,7 @@ class BuildThumbnailImage extends StatelessWidget {
               context: context,
               type: FileImageType.singleImage,
               imageType: ImageType.thumbnail,
+              extension: TypeExtension.image.name,
             ),
             child: Container(
               height: Dimens.dp70.r,

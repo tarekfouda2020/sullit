@@ -32,14 +32,45 @@ class BuildProfileFormFields extends StatelessWidget {
             label: tr('yourEmail'),
             margin: Dimens.paddingVertical15PX,
           ),
-          GenericTextField(
-            fillColor: context.colors.white,
-            controller: controller.phoneController,
-            fieldTypes: FieldTypes.normal,
-            type: TextInputType.text,
-            action: TextInputAction.next,
-            validate:(value) => value?.validatePhone(),
-            label: tr('phone'),
+          BlocBuilder<GenericBloc<Country?>,
+              GenericState<Country?>>(
+            bloc: controller.countryCubit,
+            builder: (context, state) {
+              return Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: GenericTextField(
+                      fillColor: context.colors.white,
+                      controller: TextEditingController(
+                          text: state.data?.callingCode ?? ""),
+                      fieldTypes: FieldTypes.clickable,
+                      type: TextInputType.text,
+                      action: TextInputAction.done,
+                      label: "Country Code",
+                      validate: (value) => value!.validateEmpty(),
+                      onTab: () => controller.showCountryCode(context),
+                    ),
+                  ),
+                  Gaps.hGap5,
+                  Expanded(
+                    flex: 2,
+                    child: GenericTextField(
+                      controller: controller.phoneController,
+                      fieldTypes: FieldTypes.normal,
+                      fillColor: context.colors.white,
+                      type: TextInputType.number,
+                      action: TextInputAction.done,
+                      validate: (value) =>
+                          ((state.data?.callingCode ?? "") + (value ?? ""))
+                              .validatePhone(),
+                      label: "Phone",
+                      margin: Dimens.paddingVertical10PX,
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
           GenericTextField(
             fillColor: context.colors.white,

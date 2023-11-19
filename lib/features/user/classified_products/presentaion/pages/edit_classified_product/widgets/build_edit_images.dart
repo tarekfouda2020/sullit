@@ -21,6 +21,7 @@ class BuildEditImages extends StatelessWidget {
               context: context,
               type: FileImageType.multiImage,
               imageType: ImageType.generalImages,
+              extension: TypeExtension.image.name,
             ),
             child: Container(
               height: Dimens.dp70.r,
@@ -62,8 +63,7 @@ class BuildEditImages extends StatelessWidget {
                         borderRadius: Dimens.borderRadius5PX,
                         alignment: Alignment.topLeft,
                         child: InkWell(
-                          onTap: () =>
-                              controller.removeExistedImages(index),
+                          onTap: () => controller.removeExistedImages(index),
                           child: Icon(
                             Icons.clear,
                             color: context.colors.primary,
@@ -79,6 +79,7 @@ class BuildEditImages extends StatelessWidget {
                     context: context,
                     type: FileImageType.multiImage,
                     imageType: ImageType.generalImages,
+                    extension: TypeExtension.image.name,
                   ),
                   child: Container(
                     height: Dimens.dp70.r,

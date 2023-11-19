@@ -61,10 +61,10 @@ class BuildPdf extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () => controller.showImageDialog(
-                        extension: 'pdf',
                         context: context,
                         type: FileImageType.singleImage,
                         imageType: ImageType.pdf,
+                        extension: TypeExtension.document.name,
                       ),
                       child: Container(
                         height: Dimens.dp80.r,

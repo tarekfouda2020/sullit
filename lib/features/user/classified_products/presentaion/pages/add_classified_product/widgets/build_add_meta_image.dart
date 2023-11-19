@@ -1,21 +1,23 @@
 part of 'add_classified_product_w_imports.dart';
+
 class BuildAddMetaImage extends StatelessWidget {
-final AddClassifiedProductsController controller;
+  final AddClassifiedProductsController controller;
 
   const BuildAddMetaImage({super.key, required this.controller});
+
   @override
   Widget build(BuildContext context) {
-    return  BlocBuilder<GenericBloc<FileDomainModel?>,
+    return BlocBuilder<GenericBloc<FileDomainModel?>,
         GenericState<FileDomainModel?>>(
       bloc: controller.metaImageBloc,
       builder: (context, state) {
         if (state is GenericUpdateState) {
           return GestureDetector(
             onTap: () => controller.showImageDialog(
-              context: context,
-              type: FileImageType.singleImage,
-              imageType: ImageType.meta,
-            ),
+                context: context,
+                type: FileImageType.singleImage,
+                imageType: ImageType.meta,
+                extension: TypeExtension.image.name),
             child: CachedImage(
               imgMargin: Dimens.paddingAll5PX,
               url: state.data!.url,
@@ -25,8 +27,7 @@ final AddClassifiedProductsController controller;
               alignment: Alignment.topLeft,
               borderColor: context.colors.greyWhite,
               child: InkWell(
-                onTap: () =>
-                    controller.metaImageBloc.onUpdateToInitState(null),
+                onTap: () => controller.metaImageBloc.onUpdateToInitState(null),
                 child: Icon(
                   Icons.clear,
                   color: context.colors.primary,
@@ -41,6 +42,7 @@ final AddClassifiedProductsController controller;
               context: context,
               type: FileImageType.singleImage,
               imageType: ImageType.meta,
+              extension: TypeExtension.image.name,
             ),
             child: Container(
               height: Dimens.dp70.r,

@@ -8,6 +8,7 @@ class EditAddressParams {
   int stateId;
   int cityId;
   String phone;
+  String countryCode;
   double lat;
   double long;
 
@@ -19,6 +20,7 @@ class EditAddressParams {
     required this.stateId,
     required this.cityId,
     required this.phone,
+    required this.countryCode,
     required this.lat,
     required this.long,
   });
@@ -30,6 +32,7 @@ class EditAddressParams {
     "state_id": stateId,
     "city_id": cityId,
     "phone": phone,
+    "country_code":countryCode,
     "latitude": lat,
     "longitude": long
   };

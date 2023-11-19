@@ -12,6 +12,7 @@ class AddNewAddressController {
   final GlobalKey<DropdownSearchState> cityController = GlobalKey();
   final LocationCubit locationCubit = LocationCubit();
 
+  final GenericBloc<package.Country?> countryCodeCubit = GenericBloc(null);
   final GenericBloc<Country?> countryCubit = GenericBloc(null);
   final GenericBloc<StateDomainModel?> stateCubit = GenericBloc(null);
   final GenericBloc<City?> cityCubit = GenericBloc(null);
@@ -63,6 +64,17 @@ class AddNewAddressController {
     return data;
   }
 
+
+  void showCountryCode(BuildContext context) async {
+    package.Country? data = await package.showCountryPickerDialog(
+      context,
+      cornerRadius: 3,
+    );
+    if (data != null) {
+      countryCodeCubit.onUpdateData(data);
+    }
+  }
+
   Future<void> addNewAddress(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       var params = _addressParams();
@@ -74,6 +86,7 @@ class AddNewAddressController {
     }
   }
 
+
   AddAddressParams _addressParams() {
     return AddAddressParams(
       address: addressController.text,
@@ -82,6 +95,7 @@ class AddNewAddressController {
       stateId: stateModel!.id,
       cityId: cityModel!.id,
       phone: phoneController.text,
+      countryCode: countryCodeCubit.state.data?.callingCode ?? "",
       lat: locationCubit.state.model!.lat,
       long: locationCubit.state.model!.lng,
     );

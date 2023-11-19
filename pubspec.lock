@@ -284,10 +284,9 @@ packages:
   country_calling_code_picker:
     dependency: "direct main"
     description:
-      name: country_calling_code_picker
-      sha256: b9afd68e79f38953c463e8ea104533c1b9fc7b37e0948b501f9a7ad6a9a830a5
-      url: "https://pub.dev"
-    source: hosted
+      path: "lib/core/package/country_calling_code_picker-2.0.1"
+      relative: true
+    source: path
     version: "2.0.1"
   cross_file:
     dependency: transitive

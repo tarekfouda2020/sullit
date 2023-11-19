@@ -39,8 +39,7 @@ class BuildAddAddressForm extends StatelessWidget {
               onChange: (value) => controller.onChangeCountry(value),
               validate: (value) => validateDropDown(value),
             ),
-            BlocBuilder<GenericBloc<Country?>,
-                GenericState<Country?>>(
+            BlocBuilder<GenericBloc<Country?>, GenericState<Country?>>(
               bloc: controller.countryCubit,
               builder: (context, state) {
                 return AbsorbPointer(
@@ -69,13 +68,12 @@ class BuildAddAddressForm extends StatelessWidget {
               builder: (context, state) {
                 return AbsorbPointer(
                   absorbing: state.data == null,
-                  child:  DropdownTextField<City>(
+                  child: DropdownTextField<City>(
                     itemAsString: (item) => (item).name,
                     fillColor: context.colors.white,
                     textSize: 16.sp,
                     title: "Select City",
                     margin: Dimens.paddingVertical10PX,
-
                     label: "Select City",
                     dropKey: controller.cityController,
                     useName: true,
@@ -98,15 +96,45 @@ class BuildAddAddressForm extends StatelessWidget {
               label: "Postal Code",
               margin: Dimens.paddingVertical10PX,
             ),
-            GenericTextField(
-              controller: controller.phoneController,
-              fieldTypes: FieldTypes.normal,
-              fillColor: context.colors.white,
-              type: TextInputType.text,
-              action: TextInputAction.done,
-              validate: (value) => value?.validatePhone(),
-              label: "Phone",
-              margin: Dimens.paddingVertical10PX,
+            BlocBuilder<GenericBloc<package.Country?>,
+                GenericState<package.Country?>>(
+              bloc: controller.countryCodeCubit,
+              builder: (context, state) {
+                return Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: GenericTextField(
+                        fillColor: context.colors.white,
+                        controller: TextEditingController(
+                            text: state.data?.callingCode ?? ""),
+                        fieldTypes: FieldTypes.clickable,
+                        type: TextInputType.text,
+                        action: TextInputAction.done,
+                        label: "Country Code",
+                        validate: (value) => value!.validateEmpty(),
+                        onTab: () => controller.showCountryCode(context),
+                      ),
+                    ),
+                    Gaps.hGap5,
+                    Expanded(
+                      flex: 2,
+                      child: GenericTextField(
+                        controller: controller.phoneController,
+                        fieldTypes: FieldTypes.normal,
+                        fillColor: context.colors.white,
+                        type: TextInputType.number,
+                        action: TextInputAction.done,
+                        validate: (value) =>
+                            ((state.data?.callingCode ?? "") + (value ?? ""))
+                                .validatePhone(),
+                        label: "Phone",
+                        margin: Dimens.paddingVertical10PX,
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ],
         ),

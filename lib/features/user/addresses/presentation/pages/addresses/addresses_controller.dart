@@ -21,7 +21,7 @@ class AddressesController {
   }
   void onActiveAddress(BuildContext context, Address address) async {
     var result = await AutoRouter.of(context)
-        .push(ActiveAccountRoute(phoneOrEmail: address.phone!));
+        .push(ActiveAccountRoute(phoneOrEmail: address.fullPhone!));
     if (result == true) {
       address.isActive = true;
       addressesBloc.onUpdateData(addressesBloc.state.data);
