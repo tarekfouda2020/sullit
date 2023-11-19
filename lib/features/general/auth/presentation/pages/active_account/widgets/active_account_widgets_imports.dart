@@ -5,11 +5,9 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
-import 'package:flutter_tdd/core/widgets/LoadingButton.dart';
-
 
 import '../active_account_imports.dart';
 
-part 'build_active_button.dart';
 part 'build_active_account_form.dart';
+part 'build_active_button.dart';
 part 'build_resend_code.dart';

@@ -7,5 +7,6 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
 part 'youtube_viewer.dart';
 part 'youtube_viewer_controller.dart';

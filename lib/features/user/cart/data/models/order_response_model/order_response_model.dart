@@ -1,7 +1,7 @@
+import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/order_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 
 part 'order_response_model.freezed.dart';
 part 'order_response_model.g.dart';

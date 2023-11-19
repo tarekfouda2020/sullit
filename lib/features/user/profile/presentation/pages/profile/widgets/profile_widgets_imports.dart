@@ -1,7 +1,6 @@
 
 import 'dart:io';
 
-
 import 'package:country_calling_code_picker/picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,8 +16,9 @@ import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
+
 import '../profile_imports.dart';
 
-part 'build_profile_form_fields.dart';
 part 'build_profile_button.dart';
+part 'build_profile_form_fields.dart';
 part 'build_profile_image.dart';

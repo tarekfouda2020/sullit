@@ -10,6 +10,6 @@ import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item_shimmer.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/timer_entity.dart';
 
-part 'build_timer.dart';
-part 'build_time_item.dart';
 part 'build_flash_sale_loading_view.dart';
+part 'build_time_item.dart';
+part 'build_timer.dart';

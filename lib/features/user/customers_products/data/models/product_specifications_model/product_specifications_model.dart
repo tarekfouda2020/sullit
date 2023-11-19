@@ -5,9 +5,7 @@ import 'package:flutter_tdd/features/user/customers_products/data/models/sort_ty
 import 'package:flutter_tdd/features/user/customers_products/domain/models/product_specifications.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-
 part 'product_specifications_model.freezed.dart';
-
 part 'product_specifications_model.g.dart';
 
 @freezed

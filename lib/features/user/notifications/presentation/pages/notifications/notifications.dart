@@ -1,10 +1,7 @@
 part of 'notifications_imports.dart';
 
 class Notifications extends StatefulWidget {
-  final HomeController homeController;
-
-  const Notifications({Key? key, required this.homeController})
-      : super(key: key);
+  const Notifications({Key? key}) : super(key: key);
 
   @override
   State<Notifications> createState() => _NotificationsState();
@@ -22,7 +19,7 @@ class _NotificationsState extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BuildHomeAppBar(homeController: widget.homeController),
+      appBar: DefaultAppBar(title: tr('notifications')),
       backgroundColor: context.colors.customBackground,
       body: BlocBuilder<GenericBloc<List<NotificationDomainModel>>,
           GenericState<List<NotificationDomainModel>>>(

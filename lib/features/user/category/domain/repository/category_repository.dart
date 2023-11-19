@@ -4,7 +4,6 @@ import 'package:flutter_tdd/core/models/domain_models/brand_domain_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/brand_details_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/brands_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/search_products_params.dart';
-import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/sub_category.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';

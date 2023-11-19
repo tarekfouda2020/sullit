@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
-import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/customers_products/domain/models/customer_product_details.dart';
 import 'package:flutter_tdd/features/user/customers_products/domain/use_cases/get_customer_product_details.dart';
 import 'package:flutter_tdd/features/user/customers_products/presentaion/pages/customer_product_details/widgets/customer_product_details_w_imports.dart';
+
 part 'customer_product_details.dart';
 part 'customer_product_details_controller.dart';

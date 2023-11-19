@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/http/dio_helper/actions/download.dart';
 import 'package:flutter_tdd/core/http/models/download_request_model.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 
 class FileHelper {
   Future<String> getDownloadPath() async {

@@ -1,8 +1,8 @@
 import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
-import 'package:flutter_tdd/features/user/classified_products/data/models/purchase_package_response_model/purchase_package_response_model.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/entities/add_classified_product.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/entities/edit_classified_product_params.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/entities/purchase_package_params.dart';

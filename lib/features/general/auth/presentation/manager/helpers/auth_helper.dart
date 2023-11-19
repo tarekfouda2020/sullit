@@ -8,7 +8,6 @@ import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
-import 'package:flutter_tdd/features/general/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/features/user/base/domain/use_cases/log_out.dart';
 import 'package:injectable/injectable.dart';

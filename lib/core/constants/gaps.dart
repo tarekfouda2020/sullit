@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
-import 'package:flutter_tdd/core/theme/colors/app_light_colors.dart';
 
 import 'dimens.dart';
 

@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/http/models/download_request_model.dart';
 import 'package:injectable/injectable.dart';
@@ -11,9 +9,6 @@ import '../../../helpers/di.dart';
 import '../../../helpers/loading_helper.dart';
 import '../../models/request_body_model.dart';
 import '../source/dio_helper.dart';
-import '../utils/dio_header.dart';
-import '../utils/handle_errors.dart';
-import '../utils/handle_request_body.dart';
 
 @lazySingleton
 class Download extends DioHelper {

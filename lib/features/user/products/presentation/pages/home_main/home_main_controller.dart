@@ -29,7 +29,7 @@ class HomeMainController {
 
   void navigateToDeals(BuildContext context, FlashSale model) {
     if (model.id == 0) {
-      AutoRouter.of(context).push(const CouponsRoute());
+      // AutoRouter.of(context).push(const CouponsRoute());
     } else {
       AutoRouter.of(context).push(SaleDetailsRoute(dealId: model.id));
     }

@@ -16,10 +16,10 @@ import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/pick_up.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/seller_shipping.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/delivery/delivery_imports.dart';
+
 part 'build_delivery_buttons.dart';
+part 'build_delivery_item.dart';
+part 'build_delivery_product_item.dart';
 part 'build_delivery_products.dart';
 part 'build_delivery_type.dart';
 part 'build_delivery_type_item.dart';
-part 'build_delivery_product_item.dart';
-
-part 'build_delivery_item.dart';

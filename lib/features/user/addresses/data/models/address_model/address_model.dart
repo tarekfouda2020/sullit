@@ -6,7 +6,6 @@ import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'address_model.freezed.dart';
-
 part 'address_model.g.dart';
 
 @freezed

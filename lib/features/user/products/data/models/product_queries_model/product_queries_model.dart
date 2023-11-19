@@ -4,7 +4,6 @@ import 'package:flutter_tdd/features/user/products/domain/models/product_queries
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'product_queries_model.freezed.dart';
-
 part 'product_queries_model.g.dart';
 
 @freezed

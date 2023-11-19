@@ -8,5 +8,6 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:video_player/video_player.dart';
+
 part 'motion_viewer.dart';
 part 'motion_viewer_controller.dart';

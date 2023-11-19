@@ -1,11 +1,10 @@
+import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/product_queries_model/product_queries_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_details_domain_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 
 part 'product_details_model.freezed.dart';
-
 part 'product_details_model.g.dart';
 
 @freezed

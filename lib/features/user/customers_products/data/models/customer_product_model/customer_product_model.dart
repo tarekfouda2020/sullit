@@ -6,7 +6,6 @@ import 'package:flutter_tdd/features/user/customers_products/domain/models/custo
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'customer_product_model.freezed.dart';
-
 part 'customer_product_model.g.dart';
 
 @freezed

@@ -8,5 +8,6 @@ import 'package:flutter_tdd/features/user/search/domain/models/search_results.da
 import 'package:flutter_tdd/features/user/search/domain/use_cases/get_search_results.dart';
 
 import 'widgets/search_widgets_imports.dart';
+
 part 'search.dart';
 part 'search_controller.dart';

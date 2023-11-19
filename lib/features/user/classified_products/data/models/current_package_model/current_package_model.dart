@@ -3,7 +3,6 @@ import 'package:flutter_tdd/features/user/classified_products/domain/models/curr
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'current_package_model.freezed.dart';
-
 part 'current_package_model.g.dart';
 
 @freezed

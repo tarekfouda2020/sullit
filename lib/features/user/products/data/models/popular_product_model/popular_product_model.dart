@@ -3,7 +3,6 @@ import 'package:flutter_tdd/features/user/products/domain/models/popular_product
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'popular_product_model.freezed.dart';
-
 part 'popular_product_model.g.dart';
 
 @freezed

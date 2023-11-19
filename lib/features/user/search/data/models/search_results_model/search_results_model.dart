@@ -6,7 +6,6 @@ import 'package:flutter_tdd/features/user/search/domain/models/search_results.da
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'search_results_model.freezed.dart';
-
 part 'search_results_model.g.dart';
 
 @freezed

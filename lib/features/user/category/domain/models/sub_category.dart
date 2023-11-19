@@ -4,7 +4,6 @@ import 'package:flutter_tdd/features/user/category/domain/models/attributes.dart
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/color_domain_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/price_range.dart';
-import 'package:flutter_tdd/features/user/category/domain/models/section_pagination.dart';
 
 class SubCategory extends BaseDomainModel {
   final Category category;

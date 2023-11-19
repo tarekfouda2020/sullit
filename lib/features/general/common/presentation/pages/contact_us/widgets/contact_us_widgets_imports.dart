@@ -9,6 +9,5 @@ import 'package:flutter_tdd/core/widgets/LoadingButton.dart';
 
 import '../contact_us_imports.dart';
 
-
 part 'build_contact_us_button.dart';
 part 'build_contact_us_fields.dart';

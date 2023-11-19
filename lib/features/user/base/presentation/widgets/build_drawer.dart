@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
@@ -41,6 +40,11 @@ class BuildDrawer extends StatelessWidget {
                 BuildDrawerItem(
                   title: tr("allCategories"),
                   icon: Icons.category_outlined,
+                  onTap: () => AutoRouter.of(context).push(HomeRoute(index: 1)),
+                ),
+                BuildDrawerItem(
+                  title: tr("allCategories"),
+                  icon: Icons.monetization_on_outlined,
                   onTap: () => AutoRouter.of(context).push(HomeRoute(index: 1)),
                 ),
                 BuildDrawerItem(

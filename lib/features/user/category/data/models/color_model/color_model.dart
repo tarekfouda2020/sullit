@@ -3,7 +3,6 @@ import 'package:flutter_tdd/features/user/category/domain/models/color_domain_mo
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'color_model.freezed.dart';
-
 part 'color_model.g.dart';
 
 @freezed

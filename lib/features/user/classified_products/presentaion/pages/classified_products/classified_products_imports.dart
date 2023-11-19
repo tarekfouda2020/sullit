@@ -7,7 +7,6 @@ import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/models/classified_product.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/models/cus_product.dart';
@@ -15,5 +14,6 @@ import 'package:flutter_tdd/features/user/classified_products/domain/use_cases/g
 import 'package:flutter_tdd/features/user/classified_products/domain/use_cases/set_change_status.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/use_cases/set_delete_product.dart';
 import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/classified_products/widgets/classified_products_w_imports.dart';
+
 part 'classified_products.dart';
 part 'classified_products_controller.dart';

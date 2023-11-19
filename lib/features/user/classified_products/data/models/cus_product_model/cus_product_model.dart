@@ -1,6 +1,4 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
-import 'package:flutter_tdd/core/models/api_models/brand_model/brand_model.dart';
-import 'package:flutter_tdd/features/user/category/data/models/category_model/category_model.dart';
 import 'package:flutter_tdd/features/user/classified_products/data/models/cus_products_brand_model/cus_products_brand_model.dart';
 import 'package:flutter_tdd/features/user/classified_products/data/models/cus_products_cat_model/cus_products_cat_model.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/models/cus_product.dart';

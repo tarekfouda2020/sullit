@@ -9,5 +9,6 @@ import 'package:flutter_tdd/features/general/auth/domain/use_cases/set_resend_re
 import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_auth_app_bar.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_header_logo.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_header_title.dart';
+
 part 'verify_register.dart';
 part 'verify_register_controller.dart';

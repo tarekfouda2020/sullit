@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
@@ -21,8 +20,7 @@ import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_cart_items.d
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/update_cart_item.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/widgets/build_cart_stepper.dart';
 
-
-
 import 'widgets/cart_widgets_imports.dart';
+
 part 'cart.dart';
 part 'cart_controller.dart';

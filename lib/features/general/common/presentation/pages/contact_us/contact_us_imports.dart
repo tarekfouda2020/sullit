@@ -12,6 +12,5 @@ import 'package:flutter_tdd/features/general/common/domain/use_cases/contact_us.
 
 import 'widgets/contact_us_widgets_imports.dart';
 
-
 part 'contact_us.dart';
 part 'contact_us_controller.dart';

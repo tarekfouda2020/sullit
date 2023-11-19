@@ -3,7 +3,6 @@ import 'package:flutter_tdd/features/user/classified_products/data/models/transa
 import 'package:flutter_tdd/features/user/classified_products/domain/models/purchase_package_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-
 part 'purchase_package_response_model.freezed.dart';
 part 'purchase_package_response_model.g.dart';
 

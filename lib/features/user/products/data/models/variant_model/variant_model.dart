@@ -3,7 +3,6 @@ import 'package:flutter_tdd/features/user/products/domain/models/variant.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'variant_model.freezed.dart';
-
 part 'variant_model.g.dart';
 
 @freezed

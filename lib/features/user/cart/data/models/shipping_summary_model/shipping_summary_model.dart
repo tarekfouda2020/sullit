@@ -4,7 +4,6 @@ import 'package:flutter_tdd/features/user/cart/domain/models/shipping_summary.da
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'shipping_summary_model.freezed.dart';
-
 part 'shipping_summary_model.g.dart';
 
 @freezed

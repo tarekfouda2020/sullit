@@ -2,21 +2,14 @@
 
 import 'dart:convert';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/helpers/get_device_id.dart';
-import 'package:flutter_tdd/core/helpers/global_context.dart';
-import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
-import 'package:flutter_tdd/features/user/cart/domain/use_cases/add_product_to_cart.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
-import 'package:flutter_tdd/features/user/products/domain/entities/add_product_to_cart_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/set_toggle_favourite.dart';
-import 'package:flutter_tdd/features/user/products/presentation/widgets/build_add_to_cart_dialog.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

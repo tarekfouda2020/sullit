@@ -6,5 +6,6 @@ import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 
 import 'widgets/seller_payment_setting_widgets_imports.dart';
+
 part 'seller_payment_setting.dart';
 part 'seller_payment_setting_controller.dart';

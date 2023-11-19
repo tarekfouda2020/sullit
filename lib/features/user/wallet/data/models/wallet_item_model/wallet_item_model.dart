@@ -1,6 +1,6 @@
+import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/user/wallet/domain/models/wallet_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 
 part 'wallet_item_model.freezed.dart';
 part 'wallet_item_model.g.dart';

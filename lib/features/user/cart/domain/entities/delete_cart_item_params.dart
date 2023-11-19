@@ -1,5 +1,4 @@
-import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/helpers/get_device_id.dart';
+
 
 class DeleteCartItemParams {
   int id;

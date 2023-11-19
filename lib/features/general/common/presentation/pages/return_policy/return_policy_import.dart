@@ -11,7 +11,5 @@ import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/general/common/domain/use_cases/get_return_policy.dart';
 import 'package:flutter_tdd/features/general/common/presentation/pages/privacy/privacy_controller.dart';
 
-
-
 part 'return_policy.dart';
 part 'return_policy_controller.dart';

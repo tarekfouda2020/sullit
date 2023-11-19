@@ -7,17 +7,17 @@ class BuildLoadingCatsProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height,
-      child: GenericListView(
-        type: ListViewType.grid,
-        runSpacing: 15.r,
-        spacing: 15.r,
-        gridCrossCount: 2,
-        gridItemHeight: 200.spMin,
-        // padding: Dimens.paddingHorizontal15PX,
-        children: List.generate(
-          5,
-          (index) => const BuildProductItemShimmer(),
+      child: GridView.builder(
+        itemCount: 12,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisSpacing: 15.r,
+          mainAxisSpacing: 15.r,
+          crossAxisCount: 2,
+          childAspectRatio: .71,
         ),
+        itemBuilder: (BuildContext context, int index) {
+          return const BuildProductItemShimmer();
+        },
       ),
     );
   }

@@ -10,7 +10,6 @@ import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'product_model.freezed.dart';
-
 part 'product_model.g.dart';
 
 @freezed

@@ -10,5 +10,4 @@ import 'package:flutter_tdd/features/user/dashboard/domain/use_cases/get_dashboa
 import 'package:flutter_tdd/features/user/dashboard/presentation/pages/dashboard/widgets/dashboard_widgets_imports.dart';
 
 part 'dashboard.dart';
-
 part 'dashboard_controller.dart';
