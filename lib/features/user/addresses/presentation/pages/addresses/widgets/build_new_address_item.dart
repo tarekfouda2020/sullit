@@ -52,7 +52,7 @@ class BuildNewAddressItem extends StatelessWidget {
                   ),
                   BuildAddressTitleItem(
                     title: tr('phone'),
-                    desc: address.phone ?? "",
+                    desc: address.fullPhone ?? "",
                   )
                 ],
               ),
