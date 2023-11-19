@@ -37,7 +37,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               children: [
                 HomeMain(homeController: controller),
                 Categories(homeController: controller),
-                Notifications(homeController: controller),
+                Coupons(homeController: controller),
                 More(homeController: controller),
               ],
             ),

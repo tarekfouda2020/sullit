@@ -21,7 +21,8 @@ class BuildHomeMainAppBar extends StatelessWidget {
                 child: Row(
                   children: [
                     InkWell(
-                        onTap: ()=> controller.scaffoldKey.currentState?.openDrawer(),
+                        onTap: () =>
+                            controller.scaffoldKey.currentState?.openDrawer(),
                         child: Image.asset(Res.logo, height: 30, width: 120)),
                     const Spacer(),
                     buildIcon(
@@ -35,9 +36,7 @@ class BuildHomeMainAppBar extends StatelessWidget {
                     buildIcon(
                       context,
                       Res.notification,
-                      onTap: () => controller.visibleSearch.onUpdateData(
-                        !state.data,
-                      ),
+                      onTap: () => controller.goNotification(context),
                     ),
                   ],
                 ),

@@ -17,7 +17,7 @@ class BuildProducts extends StatelessWidget {
             crossAxisSpacing: 15.r,
             mainAxisSpacing: 15.r,
             crossAxisCount: 2,
-            childAspectRatio: .9,
+            childAspectRatio: .71,
           ),
           showNewPageProgressIndicatorAsGridChild: false,
           showNewPageErrorIndicatorAsGridChild: true,

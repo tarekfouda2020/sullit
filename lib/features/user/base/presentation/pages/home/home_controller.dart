@@ -10,17 +10,12 @@ class HomeController {
   final TextEditingController searchController = TextEditingController();
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  List<String> tabs = [
-    Res.home,
-    Res.category,
-    Res.offers,
-    Res.account
-  ];
+  List<String> tabs = [Res.home, Res.category, Res.offers, Res.account];
 
   List<String> tabsText(BuildContext context) => [
         tr('home', context: context),
         tr('categories', context: context),
-        tr('notifications', context: context),
+        tr('offers', context: context),
         tr("account", context: context),
       ];
 
@@ -51,15 +46,24 @@ class HomeController {
   }
 
   void animateTabsPages(int index, BuildContext context) {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
-    if (index == 2 && !auth) {
-      CustomToast.showAuthDialog(context);
-      return;
-    }
+    // bool auth = context.read<DeviceCubit>().state.model.auth;
+    // if (index == 2 && !auth) {
+    //   CustomToast.showAuthDialog(context);
+    //   return;
+    // }
     if (index != homeTabCubit.state.data) {
       homeTabCubit.onUpdateData(index);
       tabController.animateTo(index);
     }
+  }
+
+  void goNotification(BuildContext context) {
+    bool auth = context.read<DeviceCubit>().state.model.auth;
+    if (!auth) {
+      CustomToast.showAuthDialog(context);
+      return;
+    }
+    AutoRouter.of(context).push(const NotificationsRoute());
   }
 
   void checkAuth(BuildContext context) {

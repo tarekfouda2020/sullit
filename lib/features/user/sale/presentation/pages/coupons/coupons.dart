@@ -1,7 +1,9 @@
 part of 'coupons_imports.dart';
 
 class Coupons extends StatefulWidget {
-  const Coupons({Key? key}) : super(key: key);
+  final HomeController homeController;
+
+  const Coupons({Key? key, required this.homeController}) : super(key: key);
 
   @override
   _CouponsState createState() => _CouponsState();
@@ -20,7 +22,7 @@ class _CouponsState extends State<Coupons> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(title: tr('coupons')),
+      appBar: BuildHomeAppBar(homeController: widget.homeController),
       body: RefreshIndicator(
         onRefresh: () => controller.getCoupons(1),
         child: PagedGridView<int, Coupon>(
@@ -30,7 +32,7 @@ class _CouponsState extends State<Coupons> {
             crossAxisSpacing: 15.r,
             mainAxisSpacing: 15.r,
             crossAxisCount: 2,
-            childAspectRatio: 1,
+            childAspectRatio: .71,
           ),
           builderDelegate: PagedChildBuilderDelegate<Coupon>(
             firstPageProgressIndicatorBuilder: (_) =>
