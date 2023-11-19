@@ -13,10 +13,10 @@ class BuildTopSellingProducts extends StatelessWidget {
       child: Visibility(
         visible: topProducts.isNotEmpty,
         child: Container(
-          height: 270.spMin,
-          padding: Dimens.paddingAll8PX,
+          height: 275.spMin,
+          padding: const EdgeInsets.only(left: 8,top: 8),
           margin: Dimens.paddingHorizontal15PX,
-          decoration: CustomDecoration(),
+          decoration: const CustomDecoration(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

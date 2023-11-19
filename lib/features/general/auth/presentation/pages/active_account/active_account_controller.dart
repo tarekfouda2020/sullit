@@ -19,7 +19,6 @@ class ActiveAccountController {
       AutoRouter.of(context).push(ResetPasswordRoute(email: phoneOrEmail));
     } else {
       var params = _verifyPhoneParams(phoneOrEmail);
-      print(">>>>>${params.toJson()}");
       var result = await SetVerifyPhone().call(params);
       if (result) {
         CustomToast.showSimpleToast(

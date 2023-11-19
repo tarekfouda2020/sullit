@@ -11,10 +11,10 @@ final ProductDetailsController controller;
       child: Visibility(
         visible: relatedProducts.isNotEmpty,
         child: Container(
-          height: 270.spMin,
-          padding: Dimens.paddingAll8PX,
+          height: 275,
+          padding: const EdgeInsets.only(left: 8,top: 8),
           margin: Dimens.standardPadding,
-          decoration: CustomDecoration(),
+          decoration: const CustomDecoration(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
