@@ -3,7 +3,7 @@ part of 'category_details_widgets_imports.dart';
 class BuildFilterDrawer extends StatelessWidget {
   final CategoryDetailsController categoryDetailsController;
 
-  const BuildFilterDrawer({super.key, required this.categoryDetailsController});
+  const   BuildFilterDrawer({super.key, required this.categoryDetailsController});
 
   @override
   Widget build(BuildContext context) {

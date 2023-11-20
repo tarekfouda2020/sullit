@@ -19,9 +19,9 @@ class BuildBestSellingProducts extends StatelessWidget {
         children: [
           BuildHeaderTitle(
             title: tr('justForYou'),
-            onTap: () => AutoRouter.of(context).push(AllProductPageRoute(
-              bestSellingProducts: bestSellingProducts,
-            )),
+            // onTap: () => AutoRouter.of(context).push(AllProductPageRoute(
+            //   bestSellingProducts: bestSellingProducts,
+            // )),
           ),
           SizedBox(
             height: 220,

@@ -38,7 +38,7 @@ class _SaleDetailsState extends State<SaleDetails> {
                       crossAxisCount: 2,
                       crossAxisSpacing: 5.r,
                       mainAxisSpacing: 15.r,
-                      childAspectRatio: 8 / 9,
+                      childAspectRatio: 8 / 10,
                     ),
                     itemCount: state.data!.products.length,
                     itemBuilder: (context, index) => BuildProductItem(

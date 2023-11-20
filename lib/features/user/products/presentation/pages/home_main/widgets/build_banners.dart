@@ -12,17 +12,20 @@ class BuildBanners extends StatelessWidget {
         vertical: Dimens.dp10,
         horizontal: Dimens.dp16,
       ),
-      child: Row(
-        children: List.generate(
-          banners.length,
-          (index) => Expanded(
-            child: CachedImage(
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: 90.spMin,
+        child: Swiper(
+          itemBuilder: (context, index) {
+            return CachedImage(
               url: banners[index].photo,
+              fit: BoxFit.cover,
               borderRadius: Dimens.borderRadius5PX,
               height: 90.spMin,
               imgMargin: Dimens.paddingHorizontal5PX,
-            ),
-          ),
+            );
+          },
+          itemCount: banners.length,
         ),
       ),
     );

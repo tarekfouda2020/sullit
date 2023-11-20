@@ -9,14 +9,25 @@ class BuildDeals extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: List.generate(
-        flashSales.length,
-        (index) => Expanded(
-          child: BuildDealsItem(
-            flashSaleModel: flashSales[index],
-            controller: controller,
-          ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Row(
+        children: List.generate(
+          flashSales.length,
+          (index) {
+            if(index==0){
+              return Expanded(
+                child: BuildDealsItem(
+                  flashSaleModel: flashSales[index],
+                  controller: controller,
+                ),
+              );
+            }
+            else
+              {
+                return Gaps.empty;
+              }
+          }
         ),
       ),
     );
