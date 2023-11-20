@@ -27,11 +27,12 @@ class HomeMainController {
     homeCubit.onUpdateData(homeCubit.state.data);
   }
 
-  void navigateToDeals(BuildContext context, FlashSale model) {
-    if (model.id == 0) {
+  void navigateToDeals(BuildContext context) {
+    // if (model.id == 0) {
       // AutoRouter.of(context).push(const CouponsRoute());
-    } else {
-      AutoRouter.of(context).push(SaleDetailsRoute(dealId: model.id));
-    }
+    // } else {
+    final item= homeCubit.state.data!.flashSales.firstWhere((element) => element.id!=0);
+      AutoRouter.of(context).push(SaleDetailsRoute(dealId: item.id));
+    // }
   }
 }

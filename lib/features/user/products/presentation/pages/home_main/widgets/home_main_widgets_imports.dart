@@ -28,6 +28,7 @@ import 'package:flutter_tdd/features/user/sale/domain/models/flash_sale.dart';
 import 'package:flutter_tdd/res.dart';
 
 part 'build_banners.dart';
+part 'build_custom_timer.dart';
 part 'build_best_selling_products.dart';
 part 'build_custom_header_title.dart';
 part 'build_deals.dart';

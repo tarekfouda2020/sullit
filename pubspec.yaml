@@ -139,6 +139,7 @@ flutter:
     - assets/images/arrow_back.png
     - assets/images/forget_logo.png
     - assets/images/sort_logo.png
+    - assets/images/flash_sale_logo.png
 
   fonts:
     - family: Quicksand

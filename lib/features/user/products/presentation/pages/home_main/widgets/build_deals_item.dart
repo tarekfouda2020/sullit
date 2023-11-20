@@ -9,7 +9,7 @@ class BuildDealsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()=>controller.navigateToDeals(context, flashSaleModel),
+      onTap: ()=>controller.navigateToDeals(context),
       child: Container(
         margin: Dimens.paddingAll3PX,
         padding: Dimens.paddingVertical8PX,
