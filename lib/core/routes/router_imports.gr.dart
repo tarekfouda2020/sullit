@@ -233,6 +233,7 @@ class AppRouter extends _i81.RootStackRouter {
         child: _i4.ResetPassword(
           key: args.key,
           email: args.email,
+          code: args.code,
         ),
         opaque: true,
       );
@@ -1274,12 +1275,14 @@ class ResetPasswordRoute extends _i81.PageRouteInfo<ResetPasswordRouteArgs> {
   ResetPasswordRoute({
     _i84.Key? key,
     required String email,
+    required String code,
   }) : super(
           ResetPasswordRoute.name,
           path: '/reset-password',
           args: ResetPasswordRouteArgs(
             key: key,
             email: email,
+            code: code,
           ),
         );
 
@@ -1290,15 +1293,18 @@ class ResetPasswordRouteArgs {
   const ResetPasswordRouteArgs({
     this.key,
     required this.email,
+    required this.code,
   });
 
   final _i84.Key? key;
 
   final String email;
 
+  final String code;
+
   @override
   String toString() {
-    return 'ResetPasswordRouteArgs{key: $key, email: $email}';
+    return 'ResetPasswordRouteArgs{key: $key, email: $email, code: $code}';
   }
 }
 

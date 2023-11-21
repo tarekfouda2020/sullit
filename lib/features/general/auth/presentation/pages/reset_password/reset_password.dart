@@ -2,8 +2,13 @@ part of 'reset_password_imports.dart';
 
 class ResetPassword extends StatefulWidget {
   final String email;
+  final String code;
 
-  const ResetPassword({super.key, required this.email});
+  const ResetPassword({
+    super.key,
+    required this.email,
+    required this.code,
+  });
 
   @override
   _ResetPasswordState createState() => _ResetPasswordState();
@@ -15,6 +20,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   @override
   void initState() {
     controller = ResetPasswordController(widget.email);
+    controller.code.text =widget.code;
     super.initState();
   }
 

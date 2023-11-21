@@ -11,32 +11,28 @@ class BuildHeaderTitle extends StatelessWidget {
   const BuildHeaderTitle({
     Key? key,
     required this.title,
-    this.subTitle = "Hello, You are welcome with us",
+    this.subTitle = "",
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: AppTextStyle.s18_w500(color: context.colors.black),
+        Text(
+          title,
+          style: AppTextStyle.s18_w500(color: context.colors.black),
+        ),
+        Visibility(
+          visible: subTitle.isNotEmpty,
+          replacement: Gaps.empty,
+          child: Padding(
+            padding: Dimens.headerTitlePadding,
+            child: Text(
+              subTitle,
+              style: AppTextStyle.s14_w400(color: context.colors.textColor),
             ),
-            Visibility(
-              visible: subTitle.isNotEmpty,
-              replacement: Gaps.empty,
-              child: Padding(
-                padding: Dimens.headerTitlePadding,
-                child: Text(
-                  subTitle,
-                  style: AppTextStyle.s14_w400(color: context.colors.textColor),
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
       ],
     );

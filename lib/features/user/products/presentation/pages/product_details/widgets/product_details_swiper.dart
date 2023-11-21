@@ -38,6 +38,8 @@ class BuildProductDetailsSwiper extends StatelessWidget {
       ),
       actions: [
         BuildIconItem(
+          width: 43,
+          margin: EdgeInsets.symmetric(vertical: 15,),
           iconData:
               productModel.isWishlist! ? Icons.favorite : Icons.favorite_border,
           containerColor: productModel.isWishlist!
@@ -52,16 +54,20 @@ class BuildProductDetailsSwiper extends StatelessWidget {
           padding: Dimens.paddingAll8PX,
         ),
         BuildIconItem(
+          width: 43,
+          margin: EdgeInsets.symmetric(vertical: 15,horizontal: 10),
           iconData: Icons.compare_arrows,
           checkValue: productModel.isAddedTCompare,
           containerColor: productModel.isAddedTCompare == true
               ? context.colors.primary
               : context.colors.white,
-          onTap: () => controller.addToCompare(context,productModel),
+          onTap: () => controller.addToCompare(context, productModel),
           padding: Dimens.paddingAll8PX,
         ),
       ],
       leading: BuildIconItem(
+        width: 40,
+        margin: EdgeInsets.only(left: 10,top: 15,bottom: 15),
         iconData: Icons.west,
         onTap: () => AutoRouter.of(context).pop(),
         padding: Dimens.paddingAll8PX,

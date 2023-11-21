@@ -12,7 +12,7 @@ class ResetPasswordController {
 
   final GenericBloc<bool> passwordCubit = GenericBloc(false);
   final GenericBloc<bool> confirmPasswordCubit = GenericBloc(false);
-  final GlobalKey<CustomButtonState> btnKey = GlobalKey();
+
 
   ResetPasswordController(String resetEmail) {
     email.text = resetEmail;
@@ -20,7 +20,6 @@ class ResetPasswordController {
 
   void resetPassword(BuildContext context) async {
     if (formKey.currentState!.validate()) {
-      btnKey.currentState!.animateForward();
       var params = _resetPasswordParams();
       var result = await SetResetPassword().call(params);
       if (result != "") {
@@ -28,7 +27,7 @@ class ResetPasswordController {
         AutoRouter.of(context).push(const LoginRoute());
       }
     }
-    btnKey.currentState!.animateReverse();
+
   }
 
   void resendCode() async {

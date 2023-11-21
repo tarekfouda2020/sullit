@@ -52,6 +52,7 @@ class Dimens {
   static const double dp160 = 160;
 
   static const double dp200 = 200;
+  static const double dp205 = 205;
   static const double dp210 = 210;
 
   static const double dp256 = 256;

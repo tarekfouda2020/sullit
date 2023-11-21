@@ -23,21 +23,25 @@ class _VerifyRegisterState extends State<VerifyRegister> {
     return Scaffold(
       //appBar: const BuildAuthAppBar(),
       backgroundColor: context.colors.background,
-      body: ListView(
-        padding: Dimens.paddingHorizontal15PX,
-        children: [
-          BuildAuthAppBar(),
-          const BuildHeaderLogo(),
-          BuildHeaderTitle(
-            title: tr('verifyYourEmailAddress'),
-            subTitle: tr('verifyRegister'),
-          ),
-          DefaultButton(
-            title: tr('requestAnotherLink'),
-            onTap: () => controller.resendCode(),
-            height: 40.h,
-          )
-        ],
+      body: SingleChildScrollView(
+        padding: Dimens.paddingH20V10,
+        child: Column(
+          children: [
+            const BuildAuthAppBar(),
+            const BuildHeaderLogo(),
+            BuildHeaderTitle(
+              title: tr('verifyYourEmailAddress'),
+              subTitle: tr('verifyRegister'),
+            ),
+            DefaultButton(
+              title: tr('requestAnotherLink'),
+              onTap: () => controller.resendCode(),
+              height: 40.h,
+              width: 200,
+              borderRadius: BorderRadius.circular(24),
+            )
+          ],
+        ),
       ),
     );
   }

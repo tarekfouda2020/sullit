@@ -8,19 +8,21 @@ class BuildIconItem extends StatelessWidget {
   final bool? checkValue;
   final bool? isFormCompare;
   final EdgeInsetsGeometry? margin;
-
+  final double? width;
   final Color? containerColor;
 
-  const BuildIconItem(
-      {super.key,
-      this.icon,
-      required this.onTap,
-      this.padding,
-      this.checkValue,
-      this.containerColor,
-      this.isFormCompare,
-      this.margin,
-      this.iconData});
+  const BuildIconItem({
+    super.key,
+    this.icon,
+    required this.onTap,
+    this.padding,
+    this.checkValue,
+    this.containerColor,
+    this.isFormCompare,
+    this.margin,
+    this.iconData,
+    this.width,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +32,11 @@ class BuildIconItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        alignment: Alignment.center,
         margin: margin ?? Dimens.paddingAll5PX,
         height: 25,
-        width: 25,
-        padding: padding ?? Dimens.paddingAll5PX,
+        width: width??25,
+        padding: padding,
         decoration: BoxDecoration(
           color: context.colors.bgIcon,
           borderRadius: BorderRadius.circular(Dimens.dp4),

@@ -16,7 +16,7 @@ class ActiveAccountController {
   Future<void> setVerifyPhone(
       String phoneOrEmail, BuildContext context, bool isFprget) async {
     if (isFprget) {
-      AutoRouter.of(context).push(ResetPasswordRoute(email: phoneOrEmail));
+      AutoRouter.of(context).push(ResetPasswordRoute(email: phoneOrEmail, code: code!));
     } else {
       var params = _verifyPhoneParams(phoneOrEmail);
       var result = await SetVerifyPhone().call(params);

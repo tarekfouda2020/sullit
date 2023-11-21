@@ -63,6 +63,6 @@ class LoginController {
 
   Future<bool> onBackPressed() async {
     SystemNavigator.pop();
-    return true;
+    return false;
   }
 }
