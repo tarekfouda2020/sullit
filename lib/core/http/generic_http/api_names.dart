@@ -18,6 +18,7 @@ class ApiNames {
   static const String resendRegisterCode = "email/resend-code";
   static const String logout = "logout";
   static const String verifyPhone = "verification-phone/verify-phone";
+  static const String codeVerify = "check-activation-code";
 
   // profile urls
   static const String updateProfile = "profile/update?_method=put";

@@ -3,6 +3,7 @@ import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/models/model_to_domain/model_to_domain.dart';
 import 'package:flutter_tdd/features/general/auth/data/data_source/auth_data_source.dart';
+import 'package:flutter_tdd/features/general/auth/domain/entities/code_verify_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/login_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/reset_password_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/user_register_params.dart';
@@ -53,5 +54,10 @@ class ImplAuthRepository extends AuthRepository with ModelToDomain {
   @override
   Future<Either<Failure, String>> resendRegisterCode(String param) async {
     return await dataSources.resendRegisterCode(param);
+  }
+
+  @override
+  Future<Either<Failure, String>> codeVerify(CodeVerifyParams params)async {
+    return await dataSources.codeVerify(params);
   }
 }

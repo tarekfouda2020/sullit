@@ -14,9 +14,15 @@ class ActiveAccountController {
   }
 
   Future<void> setVerifyPhone(
-      String phoneOrEmail, BuildContext context, bool isFprget) async {
-    if (isFprget) {
-      AutoRouter.of(context).push(ResetPasswordRoute(email: phoneOrEmail, code: code!));
+      String phoneOrEmail, BuildContext context, bool isFromForget) async {
+    var params = codeVerifyParams(phoneOrEmail);
+    if (isFromForget) {
+      SetCodeVerify().call(params).then((value) {
+        if (value == "success") {
+          AutoRouter.of(context)
+              .push(ResetPasswordRoute(email: phoneOrEmail, code: code!));
+        }
+      });
     } else {
       var params = _verifyPhoneParams(phoneOrEmail);
       var result = await SetVerifyPhone().call(params);
@@ -30,5 +36,9 @@ class ActiveAccountController {
 
   VerifyPhoneParams _verifyPhoneParams(String phone) {
     return VerifyPhoneParams(phone: phone, code: code!);
+  }
+
+  CodeVerifyParams codeVerifyParams(String email) {
+    return CodeVerifyParams(code: code!, email: email);
   }
 }

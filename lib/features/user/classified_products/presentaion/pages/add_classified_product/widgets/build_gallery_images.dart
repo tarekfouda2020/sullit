@@ -24,7 +24,7 @@ class BuildGalleryImages extends StatelessWidget {
             child: Container(
               height: Dimens.dp70.r,
               width: Dimens.dp70.r,
-              decoration: CustomDecoration(),
+              decoration: const CustomDecoration(),
               child: Icon(
                 Icons.add,
                 size: Dimens.dp20.sp,
