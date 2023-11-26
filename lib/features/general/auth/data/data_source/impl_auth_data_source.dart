@@ -67,7 +67,7 @@ class ImplAuthDataSource extends AuthDataSource {
       responseType: ResType.type,
       requestBody: param.toJson(),
       responseKey: (data) => data["msg"],
-      showLoader: false,
+      showLoader: true,
     );
     return await GenericHttpImpl<String>()(model);
   }

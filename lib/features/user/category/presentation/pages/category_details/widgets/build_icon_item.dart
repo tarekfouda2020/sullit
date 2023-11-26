@@ -9,7 +9,7 @@ class BuildIconItem extends StatelessWidget {
   final bool? isFormCompare;
   final EdgeInsetsGeometry? margin;
   final double? width;
-  final Color? containerColor;
+  // final Color? containerColor;
 
   const BuildIconItem({
     super.key,
@@ -17,7 +17,7 @@ class BuildIconItem extends StatelessWidget {
     required this.onTap,
     this.padding,
     this.checkValue,
-    this.containerColor,
+    // this.containerColor,
     this.isFormCompare,
     this.margin,
     this.iconData,
@@ -38,7 +38,9 @@ class BuildIconItem extends StatelessWidget {
         width: width??25,
         padding: padding,
         decoration: BoxDecoration(
-          color: context.colors.bgIcon,
+          color: checkValue == true
+              ? context.colors.primary
+              : context.colors.white,
           borderRadius: BorderRadius.circular(Dimens.dp4),
         ),
         child: iconData != null

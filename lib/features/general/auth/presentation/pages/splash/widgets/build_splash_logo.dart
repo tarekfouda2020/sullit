@@ -11,8 +11,8 @@ class BuildSplashLogo extends StatelessWidget {
           tag: Res.logo,
           child: Image.asset(
             Res.logo,
-            height: 250,
-            width: 250,
+            height: 200,
+            width: 200,
           ),
         ),
       ),

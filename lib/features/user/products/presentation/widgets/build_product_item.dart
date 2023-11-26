@@ -112,9 +112,6 @@ class BuildProductItem extends StatelessWidget {
                         iconData: productModel.isWishlist!
                             ? Icons.favorite
                             : Icons.favorite_border,
-                        containerColor: productModel.isWishlist!
-                            ? context.colors.primary
-                            : context.colors.white,
                         onTap: () => ProductsHelper().toggleFavourite(
                           id: productModel.id!,
                           context: context,
@@ -124,10 +121,6 @@ class BuildProductItem extends StatelessWidget {
                       ),
                       BuildIconItem(
                         isFormCompare: isForCompare,
-                        containerColor: productModel.isAddedTCompare == true ||
-                                isForCompare == true
-                            ? context.colors.primary
-                            : context.colors.white,
                         iconData: Icons.compare_arrows,
                         checkValue: productModel.isAddedTCompare,
                         onTap: () {

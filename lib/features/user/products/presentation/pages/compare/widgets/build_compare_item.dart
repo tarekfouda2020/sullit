@@ -54,9 +54,6 @@ class BuildCompareItem extends StatelessWidget {
                 iconData: productModel.isWishlist!
                     ? Icons.favorite
                     : Icons.favorite_border,
-                containerColor: productModel.isWishlist!
-                    ? context.colors.primary
-                    : context.colors.white,
                 onTap: () => ProductsHelper().toggleFavourite(
                   id: productModel.id!,
                   context: context,

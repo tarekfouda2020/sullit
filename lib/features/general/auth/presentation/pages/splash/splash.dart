@@ -25,11 +25,18 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: context.colors.white,
-        child: Center(
-          child:  Image.asset(Res.logo, width: 200, height: 200),
-        ),
+      backgroundColor: context.colors.splashColor,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Image.asset(Res.splashLogo, width: 200, height: 200),
+          ),
+          Text(
+            'Your Outlet Mall 🙂',
+            style: AppTextStyle.s18_w600(color: context.colors.white),
+          ),
+        ],
       ),
     );
   }

@@ -85,4 +85,7 @@ class AppLightColors extends AppColors {
   @override
   Color get scaffoldBg => const Color(0xffFCFCFC);
 
+  @override
+  Color get splashColor => const Color(0xffDE4141);
+
 }

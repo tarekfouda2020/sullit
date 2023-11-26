@@ -31,7 +31,7 @@ class _WishlistState extends State<Wishlist> {
         runSpacing: 15.r,
         spacing: 15.r,
         gridCrossCount: 2,
-        gridItemHeight: 200.spMin,
+        gridItemHeight: 220,
         padding: Dimens.paddingAll15PX,
         itemBuilder: (_, index, item) => BuildProductItem(
           productModel: item,
