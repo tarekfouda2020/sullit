@@ -30,11 +30,20 @@ class _SplashState extends State<Splash> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Image.asset(Res.splashLogo, width: 200, height: 200),
-          ),
-          Text(
-            'Your Outlet Mall 🙂',
-            style: AppTextStyle.s18_w600(color: context.colors.white),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(
+                  Res.splashLogo,
+                  width: MediaQuery.of(context).size.width * .65,
+                ),
+                Gaps.vGap4,
+                Text(
+                  'Your Outlet Mall 🙂',
+                  style: AppTextStyle.s20_w400(color: context.colors.white),
+                ),
+              ],
+            ),
           ),
         ],
       ),
