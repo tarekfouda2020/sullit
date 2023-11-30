@@ -10,7 +10,6 @@ class BuildLoginView extends StatelessWidget {
       children: [
         BuildLoginForm(controller: controller),
         BuildLoginButton(controller: controller),
-        BuildLoginSocialMedia(controller: controller),
         const BuildForgetPasswordView(),
       ],
     );

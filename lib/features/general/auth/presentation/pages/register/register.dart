@@ -24,7 +24,6 @@ class _RegisterState extends State<Register> {
         BuildRegisterFormFields(registerController: controller),
         Gaps.vGap10,
         BuildRegisterButton(controller: controller),
-        const BuildRegisterSocial(),
       ],
     );
   }
