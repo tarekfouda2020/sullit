@@ -17,89 +17,78 @@ class _MoreState extends State<More> {
     bool auth = context.read<DeviceCubit>().state.model.auth;
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: BuildHomeAppBar(homeController: widget.homeController),
-      body: ListView(
-        padding: Dimens.paddingAll15PX,
+      body: Column(
         children: [
-          BuildMoreItem(
-            title: tr('dashBoard'),
-            icon: Icons.home_outlined,
-            onTap: () => controller.checkAuth(context, MoreRoutes.dashboard),
-          ),
-          BuildMoreItem(
-            title: tr('classifiedProducts'),
-            icon: Icons.diamond_outlined,
-            onTap: () => controller.checkAuth(
-              context,
-              MoreRoutes.classifiedProducts,
+          Padding(
+            padding: const EdgeInsets.only(top: 50),
+            child: Image.asset(
+              Res.logo,
+              width: 190,
+              height: 40,
             ),
           ),
-          BuildMoreItem(
-            title: tr("customersProducts"),
-            icon: Icons.star_border,
-            onTap: () => controller.checkAuth(
-              context,
-              MoreRoutes.customersProducts,
+          Flexible(
+            child: GridView(
+              padding: Dimens.paddingAll15PX,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisExtent: 107,
+                crossAxisSpacing: 15,
+                mainAxisSpacing: 15,
+              ),
+              children: [
+                BuildMoreItem(
+                  title: tr('downloads'),
+                  onTap: () =>
+                      controller.checkAuth(context, MoreRoutes.downloads),
+                  image: Res.downloadLogo,
+                ),
+                BuildMoreItem(
+                  title: tr("returnedOrders"),
+                  onTap: () => controller.checkAuth(
+                    context,
+                    MoreRoutes.returnOrders,
+                  ),
+                  image: Res.returnOrdersLogo,
+                ),
+                BuildMoreItem(
+                  image: Res.blogLogo,
+                  haveStatus: true,
+                  title: tr("blogs"),
+                  onTap: () => controller.checkAuth(context, MoreRoutes.blogs),
+                ),
+                BuildMoreItem(
+                  image: Res.wishListLogo,
+                  title: tr('wishlist'),
+                  onTap: () =>
+                      controller.checkAuth(context, MoreRoutes.wishlist),
+                ),
+                BuildMoreItem(
+                  image: Res.compareLogo,
+                  title: tr('compare'),
+                  onTap: () =>
+                      controller.checkAuth(context, MoreRoutes.compare),
+                ),
+                BuildMoreItem(
+                  image: Res.trackOrderLogo,
+                  title: tr('trackOrder'),
+                  onTap: () =>
+                      controller.checkAuth(context, MoreRoutes.trackOrder),
+                ),
+                BuildMoreItem(
+                  image: Res.walletLogo,
+                  title: tr('myWallet'),
+                  onTap: () =>
+                      controller.checkAuth(context, MoreRoutes.myWallet),
+                ),
+                BuildMoreItem(
+                  image: Res.ticketLogo,
+                  title: tr('supportTickets'),
+                  onTap: () =>
+                      controller.checkAuth(context, MoreRoutes.supportTickets),
+                ),
+              ],
             ),
-          ),
-          BuildMoreItem(
-            haveStatus: true,
-            title: tr("purchasedHistory"),
-            icon: Icons.file_copy_outlined,
-            onTap: () =>
-                controller.checkAuth(context, MoreRoutes.purchasedHistory),
-          ),
-          BuildMoreItem(
-            title: tr('returnedOrders'),
-            icon: Icons.file_copy_outlined,
-            onTap: () => controller.checkAuth(context, MoreRoutes.returnOrders),
-          ),
-          BuildMoreItem(
-            title: tr('downloads'),
-            icon: Icons.download,
-            onTap: () => controller.checkAuth(context, MoreRoutes.downloads),
-          ),
-          BuildMoreItem(
-            title: tr('blogs'),
-            icon: Icons.list_alt,
-            onTap: () => controller.checkAuth(context, MoreRoutes.blogs),
-          ),
-          BuildMoreItem(
-            title: tr('wishlist'),
-            icon: Icons.favorite_border,
-            onTap: () => controller.checkAuth(context, MoreRoutes.wishlist),
-          ),
-          BuildMoreItem(
-            title: tr("compare"),
-            icon: Icons.compare_arrows,
-            onTap: () => controller.checkAuth(context, MoreRoutes.compare),
-          ),
-          BuildMoreItem(
-            title: tr('trackOrder'),
-            icon: Icons.summarize_outlined,
-            onTap: () => controller.checkAuth(context, MoreRoutes.trackOrder),
-          ),
-          // BuildMoreItem(
-          //   title: 'Conversation',
-          //   icon: Icons.chat,
-          //   onTap: () =>
-          //       controller.checkAuth(context, MoreRoutes.conversations),
-          // ),
-          BuildMoreItem(
-            title: tr('myWallet'),
-            icon: Icons.monetization_on_outlined,
-            onTap: () => controller.checkAuth(context, MoreRoutes.myWallet),
-          ),
-          BuildMoreItem(
-            title: tr("supportTickets"),
-            icon: Icons.airplane_ticket_outlined,
-            onTap: () =>
-                controller.checkAuth(context, MoreRoutes.supportTickets),
-          ),
-          BuildMoreItem(
-            title: tr('manageProfile'),
-            icon: Icons.person_2_outlined,
-            onTap: () => controller.checkAuth(context, MoreRoutes.profile),
           ),
         ],
       ),

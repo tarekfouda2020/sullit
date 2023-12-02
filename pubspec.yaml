@@ -145,6 +145,14 @@ flutter:
     - assets/images/flash_sale_logo.png
     - assets/images/icon.png
     - assets/images/splash_logo.png
+    - assets/images/download_logo.png
+    - assets/images/return_orders_logo.png
+    - assets/images/blog_logo.png
+    - assets/images/wish_list_logo.png
+    - assets/images/compare_logo.png
+    - assets/images/track_order_logo.png
+    - assets/images/wallet_logo.png
+    - assets/images/support_ticket_logo.png
 
   fonts:
     - family: Quicksand

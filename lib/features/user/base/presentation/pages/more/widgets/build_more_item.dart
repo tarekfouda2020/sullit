@@ -2,14 +2,14 @@ part of 'more_widgets_imports.dart';
 
 class BuildMoreItem extends StatelessWidget {
   final String title;
-  final IconData icon;
+  final String image;
   final Function() onTap;
   final bool haveStatus;
 
   const BuildMoreItem(
       {Key? key,
       required this.title,
-      required this.icon,
+        required this.image,
       required this.onTap,
       this.haveStatus = false})
       : super(key: key);
@@ -19,28 +19,32 @@ class BuildMoreItem extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        margin: Dimens.paddingVertical5PX,
-        decoration: CustomDecoration(),
-        child: ListTile(
-          leading: Icon(icon, color: context.colors.blackOpacity, size: 20.sp),
-          title: Text(
-            title,
-            style: AppTextStyle.s14_w400(color: context.colors.black),
-          ),
-          trailing: Visibility(
-            visible: haveStatus,
-            child: Container(
-              padding: Dimens.paddingAll5PX,
-              decoration: BoxDecoration(
-                color: context.colors.green,
-                borderRadius: Dimens.borderRadius5PX,
-              ),
-              child: Text(
-                tr('new'),
-                style: AppTextStyle.s10_w400(color: context.colors.white),
-              ),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: context.colors.greyWhite,
+              //offset: const Offset(10,10),
+              blurRadius: 10,
+              spreadRadius: 0.6,
             ),
-          ),
+          ],
+          color: context.colors.white,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              image,
+              width: 35,
+              height: 35,
+            ),
+            Gaps.vGap10,
+            Text(
+              title,
+              style: AppTextStyle.s14_w500(color: context.colors.black),
+            ),
+          ],
         ),
       ),
     );

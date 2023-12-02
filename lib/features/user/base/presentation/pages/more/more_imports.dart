@@ -16,6 +16,7 @@ import 'package:flutter_tdd/features/user/base/data/enums/enums.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_imports.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/more/widgets/more_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/base/presentation/widgets/build_home_app_bar.dart';
+import 'package:flutter_tdd/res.dart';
 
 part 'more.dart';
 part 'more_controller.dart';

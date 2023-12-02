@@ -27,6 +27,14 @@ class Res {
   static const String arrowBack = "assets/images/arrow_back.png";
   static const String forgetLogo = "assets/images/forget_logo.png";
   static const String splashLogo = "assets/images/splash_logo.png";
+  static const String downloadLogo = "assets/images/download_logo.png";
+  static const String returnOrdersLogo = "assets/images/return_orders_logo.png";
+  static const String blogLogo = "assets/images/blog_logo.png";
+  static const String wishListLogo = "assets/images/wish_list_logo.png";
+  static const String compareLogo = "assets/images/compare_logo.png";
+  static const String trackOrderLogo = "assets/images/track_order_logo.png";
+  static const String walletLogo = "assets/images/wallet_logo.png";
+  static const String ticketLogo = "assets/images/support_ticket_logo.png";
 
   static const String home = "assets/images/home.svg";
   static const String offers = "assets/images/offers.svg";
