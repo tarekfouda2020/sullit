@@ -153,6 +153,11 @@ flutter:
     - assets/images/track_order_logo.png
     - assets/images/wallet_logo.png
     - assets/images/support_ticket_logo.png
+    - assets/images/manage_profile.png
+    - assets/images/dashboard.png
+    - assets/images/classified_products.png
+    - assets/images/customer_products.png
+    - assets/images/purchased_history.png
 
   fonts:
     - family: Quicksand

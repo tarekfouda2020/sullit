@@ -29,7 +29,8 @@ class _MoreState extends State<More> {
           ),
           Flexible(
             child: GridView(
-              padding: Dimens.paddingAll15PX,
+              padding: const EdgeInsets.only(
+                  left: 15, right: 15, bottom: 100, top: 20),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisExtent: 107,
@@ -37,6 +38,42 @@ class _MoreState extends State<More> {
                 mainAxisSpacing: 15,
               ),
               children: [
+                BuildMoreItem(
+                  title: tr('manageProfile'),
+                  onTap: () =>
+                      controller.checkAuth(context, MoreRoutes.profile),
+                  image: Res.manageProfile,
+                ),
+                BuildMoreItem(
+                  image: Res.walletLogo,
+                  title: tr('myWallet'),
+                  onTap: () =>
+                      controller.checkAuth(context, MoreRoutes.myWallet),
+                ),
+                BuildMoreItem(
+                  title: tr('dashboard'),
+                  onTap: () =>
+                      controller.checkAuth(context, MoreRoutes.dashboard),
+                  image: Res.dashboardLogo,
+                ),
+                BuildMoreItem(
+                  title: tr('classifiedProducts'),
+                  onTap: () => controller.checkAuth(
+                      context, MoreRoutes.classifiedProducts),
+                  image: Res.classifiedProduct,
+                ),
+                BuildMoreItem(
+                  title: tr('customersProducts'),
+                  onTap: () => controller.checkAuth(
+                      context, MoreRoutes.customersProducts),
+                  image: Res.customerProducts,
+                ),
+                BuildMoreItem(
+                  title: tr('purchasedHistory'),
+                  onTap: () => controller.checkAuth(
+                      context, MoreRoutes.purchasedHistory),
+                  image: Res.purchasedHistory,
+                ),
                 BuildMoreItem(
                   title: tr('downloads'),
                   onTap: () =>
@@ -74,12 +111,6 @@ class _MoreState extends State<More> {
                   title: tr('trackOrder'),
                   onTap: () =>
                       controller.checkAuth(context, MoreRoutes.trackOrder),
-                ),
-                BuildMoreItem(
-                  image: Res.walletLogo,
-                  title: tr('myWallet'),
-                  onTap: () =>
-                      controller.checkAuth(context, MoreRoutes.myWallet),
                 ),
                 BuildMoreItem(
                   image: Res.ticketLogo,

@@ -8,7 +8,6 @@ class BuildLoginTabsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
         return Container(
-          //width: MediaQuery.of(context).size.width,
           height: 48,
           padding: const EdgeInsets.symmetric(horizontal: 8),
           margin: const EdgeInsets.only(bottom: 24,top: 40).r,

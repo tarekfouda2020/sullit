@@ -35,6 +35,11 @@ class Res {
   static const String trackOrderLogo = "assets/images/track_order_logo.png";
   static const String walletLogo = "assets/images/wallet_logo.png";
   static const String ticketLogo = "assets/images/support_ticket_logo.png";
+  static const String manageProfile = "assets/images/manage_profile.png";
+  static const String dashboardLogo = "assets/images/dashboard.png";
+  static const String classifiedProduct = "assets/images/classified_products.png";
+  static const String customerProducts = "assets/images/customer_products.png";
+  static const String purchasedHistory = "assets/images/purchased_history.png";
 
   static const String home = "assets/images/home.svg";
   static const String offers = "assets/images/offers.svg";
