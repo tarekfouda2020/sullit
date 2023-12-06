@@ -57,6 +57,15 @@ class ProfileController {
     }
   }
 
+   void showDeleteAccountDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const BuildDeleteDialog();
+      },
+    );
+  }
+
   Future<void> getImage(BuildContext context) async {
     var image = await getIt<Utilities>().getImageFile(context);
     if (image != null) {

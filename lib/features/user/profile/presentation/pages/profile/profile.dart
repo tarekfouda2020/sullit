@@ -33,7 +33,8 @@ class _ProfileState extends State<Profile> {
               ],
             ),
           ),
-          BuildProfileButton(controller: controller)
+          BuildProfileButton(controller: controller),
+          BuildDeleteAccountButton(controller: controller),
         ],
       ),
     );

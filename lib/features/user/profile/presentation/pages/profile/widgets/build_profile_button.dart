@@ -12,7 +12,7 @@ class BuildProfileButton extends StatelessWidget {
       title: tr('confirm'),
       height: 35.h,
       borderRadius: Dimens.borderRadius10PX,
-      margin: Dimens.paddingAll20PX,
+      margin: const EdgeInsets.only(left: 22,right: 22,top: 10),
       onTap: () => controller.setEditProfile(context),
     );
   }

@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/models/model_to_domain/model_to_domain.dart';
+import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/general/auth/data/data_source/auth_data_source.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/code_verify_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/login_params.dart';
@@ -57,7 +58,12 @@ class ImplAuthRepository extends AuthRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, String>> codeVerify(CodeVerifyParams params)async {
+  Future<Either<Failure, String>> codeVerify(CodeVerifyParams params) async {
     return await dataSources.codeVerify(params);
+  }
+
+  @override
+  Future<Either<Failure, bool>> deleteAccount(NoParams params) async {
+    return await dataSources.deleteAccount(params);
   }
 }

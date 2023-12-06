@@ -19,6 +19,7 @@ class ApiNames {
   static const String logout = "logout";
   static const String verifyPhone = "verification-phone/verify-phone";
   static const String codeVerify = "check-activation-code";
+  static const String deleteAccount = "delete-account";
 
   // profile urls
   static const String updateProfile = "profile/update?_method=put";

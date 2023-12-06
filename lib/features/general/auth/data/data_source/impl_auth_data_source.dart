@@ -5,6 +5,7 @@ import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
+import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/general/auth/data/data_source/auth_data_source.dart';
 import 'package:flutter_tdd/features/general/auth/data/models/user_login_model/user_login_model.dart';
 import 'package:flutter_tdd/features/general/auth/data/models/user_model/user_model.dart';
@@ -125,5 +126,17 @@ class ImplAuthDataSource extends AuthDataSource {
       showLoader: true,
     );
     return await GenericHttpImpl<String>()(model);
+  }
+
+  @override
+  Future<Either<Failure, bool>> deleteAccount(NoParams params)async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.deleteAccount,
+      requestMethod: RequestMethod.delete,
+      responseType: ResType.type,
+      responseKey: (data) => data["key"]=="success",
+      showLoader: true,
+    );
+    return await GenericHttpImpl<bool>()(model);
   }
 }

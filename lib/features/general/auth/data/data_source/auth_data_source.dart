@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
+import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/general/auth/data/models/user_login_model/user_login_model.dart';
 import 'package:flutter_tdd/features/general/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/code_verify_params.dart';
@@ -17,4 +18,5 @@ abstract class AuthDataSource{
   Future<Either<Failure, UserModel>> register (UserRegisterParams params);
   Future<Either<Failure, bool>> verifyPhone (VerifyPhoneParams params);
   Future<Either<Failure, String>> codeVerify (CodeVerifyParams params);
+  Future<Either<Failure, bool>> deleteAccount (NoParams params);
 }

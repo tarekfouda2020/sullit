@@ -8,6 +8,7 @@ import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
+import 'package:flutter_tdd/features/general/auth/domain/use_cases/set_delete_account.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/features/user/base/domain/use_cases/log_out.dart';
 import 'package:injectable/injectable.dart';
@@ -30,6 +31,25 @@ class AuthHelper {
         );
         AutoRouter.of(context).push(
            HomeRoute(index: 0),
+        );
+      },
+    );
+  }
+  Future<void> deleteAccount(BuildContext context) async {
+    return await SetDeleteAccount().call(NoParams()).then(
+          (value) async {
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        pref.clear();
+        pref.remove("user");
+        context.read<DeviceCubit>().updateUserAuth(false);
+        context.read<UserCubit>().onUpdateUserData(UserDomainModel());
+        GlobalState.instance.set("token", null);
+        CustomToast.showSimpleToast(
+          msg: "Successfully Delete Account",
+          type: ToastType.success,
+        );
+        AutoRouter.of(context).push(
+          HomeRoute(index: 0),
         );
       },
     );
