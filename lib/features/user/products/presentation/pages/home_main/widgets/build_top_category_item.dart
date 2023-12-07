@@ -23,6 +23,7 @@ class BuildTopCategoriesItem extends StatelessWidget {
           Gaps.vGap3,
           Text(
             categoryModel.name,
+            textAlign: TextAlign.center,
             style: AppTextStyle.s10_w500(color: context.colors.black),
           ),
         ],
