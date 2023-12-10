@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/res.dart';
 
 
@@ -48,8 +47,8 @@ class _AppLoaderWidgetState extends State<AppLoaderWidget> with SingleTickerProv
           children: [
             Align(
               alignment: Alignment.center,
-              child: SvgPicture.asset(
-                Res.logoSvg,
+              child: Image.asset(
+                Res.icon,
                 height: size / 1.7,
                 width: size / 1.7,
               ),
