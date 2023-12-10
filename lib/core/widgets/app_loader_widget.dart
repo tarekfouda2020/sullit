@@ -48,7 +48,7 @@ class _AppLoaderWidgetState extends State<AppLoaderWidget> with SingleTickerProv
             Align(
               alignment: Alignment.center,
               child: Image.asset(
-                Res.icon,
+                Res.loadingLogo,
                 height: size / 1.7,
                 width: size / 1.7,
               ),

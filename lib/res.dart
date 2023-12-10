@@ -5,6 +5,7 @@ class Res {
   static const String apple = "assets/images/apple.svg";
   static const String appLoaderBg = "assets/images/appLoaderBg.png";
   static const String icon = "assets/images/icon.png";
+  static const String loadingLogo = "assets/images/loading_logo.png";
   static const String ar = "assets/lang/ar.json";
   static const String arrow = "assets/images/arrow.svg";
   static const String blog = "assets/images/blog.png";
