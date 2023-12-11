@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 part of 'payment_imports.dart';
+
 class PaymentController {
   StreamSubscription<String>? urlState;
   FlutterWebviewPlugin flutterWebViewPlugin = FlutterWebviewPlugin();
@@ -11,7 +12,7 @@ class PaymentController {
     urlState = flutterWebViewPlugin.onUrlChanged.listen(
       (String url) async {
         if (url.contains("combined_order_id")) {
-          Future.delayed(const Duration(seconds: 2), () {
+          Future.delayed(const Duration(seconds: 1), () {
             int id = int.parse(url.split('combined_order_id=').last);
             AutoRouter.of(context).push(ConfirmationRoute(combinedId: id));
             flutterWebViewPlugin.close();
@@ -23,14 +24,13 @@ class PaymentController {
               flutterWebViewPlugin.close();
             },
           );
-        }else if (url.contains('success')){
+        } else if (url.contains('success')) {
           flutterWebViewPlugin.close();
-          CustomToast.showSimpleToast(msg: 'Payment done successfully', type: ToastType.success);
-          AutoRouter.of(context).pushAndPopUntil(const ClassifiedProductsRoute(), predicate: (route) => false,);
+          CustomToast.showSimpleToast(
+              msg: 'Payment done successfully', type: ToastType.success);
+          AutoRouter.of(context).pop();
         }
       },
     );
   }
-
-
 }

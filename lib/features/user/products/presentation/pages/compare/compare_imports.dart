@@ -8,6 +8,7 @@ import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/widgets/build_empty_data_view.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/compare/widgets/compare_widgets_imports.dart';

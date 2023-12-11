@@ -48,7 +48,8 @@ class BuildUploadSingleFile extends StatelessWidget {
                 width: Dimens.dp128.w,
                 margin: EdgeInsets.zero,
                 title: tr('addFiles'),
-                onTap: () => getIt<AddImageHelper>().setUploadFile(context,state.data!),
+                onTap: () =>
+                    getIt<AddImageHelper>().setUploadFile(context, state.data!),
               )
             ],
           );

@@ -24,4 +24,10 @@ class ImplProfileRepository extends ProfileRepository with ModelToDomain{
   Future<Either<Failure, bool>> updateProfileEmail(String param) async {
     return await dataSources.updateProfileEmail(param);
   }
+
+  @override
+  Future<Either<Failure, UserDomainModel>> getProfile(bool params) async{
+    var result = await dataSources.getProfile(params);
+    return toDomainResult<UserDomainModel, UserModel>(result);
+  }
 }

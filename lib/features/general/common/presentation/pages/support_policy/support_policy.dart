@@ -29,6 +29,11 @@ class _SupportPolicyState extends State<SupportPolicy> {
               padding: Dimens.paddingAll15PX,
               child: Html(
                 data: state.data,
+                onLinkTap: (url, _, __) {
+                  HelperMethods.instance.launchURL(
+                    url: url!,
+                  );
+                },
                 style: {
                   "body": Style(
                     color: Colors.black,

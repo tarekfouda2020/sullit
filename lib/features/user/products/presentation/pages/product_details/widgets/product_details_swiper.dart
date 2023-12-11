@@ -39,7 +39,7 @@ class BuildProductDetailsSwiper extends StatelessWidget {
       actions: [
         BuildIconItem(
           width: 43,
-          margin: EdgeInsets.symmetric(vertical: 15,),
+          margin: const EdgeInsets.symmetric(vertical: 15),
           iconData:
               productModel.isWishlist! ? Icons.favorite : Icons.favorite_border,
           checkValue: productModel.isWishlist,
@@ -50,19 +50,25 @@ class BuildProductDetailsSwiper extends StatelessWidget {
           ),
           padding: Dimens.paddingAll8PX,
         ),
-        BuildIconItem(
+        BuildCompareItem(
           width: 43,
-          margin: EdgeInsets.symmetric(vertical: 15,horizontal: 10),
-          iconData: Icons.compare_arrows,
-          checkValue: productModel.isAddedTCompare,
-          onTap: () => controller.addToCompare(context, productModel),
-          padding: Dimens.paddingAll8PX,
+          margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+          productModel: productModel,
+          onTap: () {},
         ),
+        // BuildIconItem(
+        //   width: 43,
+        //   margin: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+        //   iconData: Icons.compare_arrows,
+        //   checkValue: productModel.isAddedTCompare,
+        //   onTap: () => controller.addToCompare(context, productModel),
+        //   padding: Dimens.paddingAll8PX,
+        // ),
       ],
       leading: BuildIconItem(
         width: 40,
         checkValue: false,
-        margin: const EdgeInsets.only(left: 10,top: 15,bottom: 15),
+        margin: const EdgeInsets.only(left: 10, top: 15, bottom: 15),
         iconData: Icons.west,
         onTap: () => AutoRouter.of(context).pop(),
         padding: Dimens.paddingAll8PX,
@@ -73,13 +79,17 @@ class BuildProductDetailsSwiper extends StatelessWidget {
           itemCount: productModel.images!.length,
           pagination: const SwiperPagination(),
           itemBuilder: (BuildContext context, int index) {
-            return CachedImage(
-              fit: BoxFit.fill,
-              url: productModel.images![index],
-              placeHolder: Center(
-                child: Image.asset(
-                  Res.emptyCart,
-                  fit: BoxFit.fill,
+            return InkWell(
+              onTap: () => AutoRouter.of(context)
+                  .push(ImageZoomRoute(image: productModel.images![index])),
+              child: CachedImage(
+                fit: BoxFit.fill,
+                url: productModel.images![index],
+                placeHolder: Center(
+                  child: Image.asset(
+                    Res.emptyCart,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             );

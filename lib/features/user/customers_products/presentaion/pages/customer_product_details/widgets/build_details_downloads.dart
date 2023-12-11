@@ -7,29 +7,32 @@ class BuildDetailsDownloads extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: Dimens.paddingAll10PX,
-      margin: Dimens.paddingVertical5PX,
-      decoration: CustomDecoration(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "${tr('downloads')} : ",
-            style: AppTextStyle.s15_w700(
-              color: context.colors.black,
+    return Visibility(
+      visible: detailsModel.pdf.isNotEmpty,
+      child: Container(
+        padding: Dimens.paddingAll10PX,
+        margin: Dimens.paddingVertical5PX,
+        decoration: const CustomDecoration(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "${tr('downloads')} : ",
+              style: AppTextStyle.s15_w700(
+                color: context.colors.black,
+              ),
             ),
-          ),
-          Gaps.vGap10,
-          Center(
-            child: DefaultButton(
-              title: tr('pdf'),
-              width: 150.w,
-              onTap: () =>
-                  HelperMethods.instance.launchURL(url: detailsModel.pdf),
+            Gaps.vGap10,
+            Center(
+              child: DefaultButton(
+                title: tr('pdf'),
+                width: 150.w,
+                onTap: () =>
+                    HelperMethods.instance.launchURL(url: detailsModel.pdf),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

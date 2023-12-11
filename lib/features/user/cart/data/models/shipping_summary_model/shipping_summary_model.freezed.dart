@@ -42,6 +42,8 @@ mixin _$ShippingSummaryModel {
   bool get walletSystemActive => throw _privateConstructorUsedError;
   @JsonKey(name: "wallet_balance")
   String get walletBalance => throw _privateConstructorUsedError;
+  @JsonKey(name: "wallet_balance_value")
+  double get walletBalanceValue => throw _privateConstructorUsedError;
   @JsonKey(name: "avilable_pay_with_wallet")
   bool get avilablePayWithWallet => throw _privateConstructorUsedError;
   @JsonKey(name: "avilable_cash_on_delivery")
@@ -75,6 +77,7 @@ abstract class $ShippingSummaryModelCopyWith<$Res> {
       @JsonKey(name: "minimum_order_amount_msg") String minimumOrderAmountMsg,
       @JsonKey(name: "wallet_system_active") bool walletSystemActive,
       @JsonKey(name: "wallet_balance") String walletBalance,
+      @JsonKey(name: "wallet_balance_value") double walletBalanceValue,
       @JsonKey(name: "avilable_pay_with_wallet") bool avilablePayWithWallet,
       @JsonKey(name: "avilable_cash_on_delivery") bool avilableCashOnDelivery,
       List<ShippingItemModel> items});
@@ -107,6 +110,7 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
     Object? minimumOrderAmountMsg = null,
     Object? walletSystemActive = null,
     Object? walletBalance = null,
+    Object? walletBalanceValue = null,
     Object? avilablePayWithWallet = null,
     Object? avilableCashOnDelivery = null,
     Object? items = null,
@@ -164,6 +168,10 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
           ? _value.walletBalance
           : walletBalance // ignore: cast_nullable_to_non_nullable
               as String,
+      walletBalanceValue: null == walletBalanceValue
+          ? _value.walletBalanceValue
+          : walletBalanceValue // ignore: cast_nullable_to_non_nullable
+              as double,
       avilablePayWithWallet: null == avilablePayWithWallet
           ? _value.avilablePayWithWallet
           : avilablePayWithWallet // ignore: cast_nullable_to_non_nullable
@@ -203,6 +211,7 @@ abstract class _$$_ShippingSummaryModelCopyWith<$Res>
       @JsonKey(name: "minimum_order_amount_msg") String minimumOrderAmountMsg,
       @JsonKey(name: "wallet_system_active") bool walletSystemActive,
       @JsonKey(name: "wallet_balance") String walletBalance,
+      @JsonKey(name: "wallet_balance_value") double walletBalanceValue,
       @JsonKey(name: "avilable_pay_with_wallet") bool avilablePayWithWallet,
       @JsonKey(name: "avilable_cash_on_delivery") bool avilableCashOnDelivery,
       List<ShippingItemModel> items});
@@ -232,6 +241,7 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
     Object? minimumOrderAmountMsg = null,
     Object? walletSystemActive = null,
     Object? walletBalance = null,
+    Object? walletBalanceValue = null,
     Object? avilablePayWithWallet = null,
     Object? avilableCashOnDelivery = null,
     Object? items = null,
@@ -289,6 +299,10 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
           ? _value.walletBalance
           : walletBalance // ignore: cast_nullable_to_non_nullable
               as String,
+      walletBalanceValue: null == walletBalanceValue
+          ? _value.walletBalanceValue
+          : walletBalanceValue // ignore: cast_nullable_to_non_nullable
+              as double,
       avilablePayWithWallet: null == avilablePayWithWallet
           ? _value.avilablePayWithWallet
           : avilablePayWithWallet // ignore: cast_nullable_to_non_nullable
@@ -325,6 +339,7 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
       required this.minimumOrderAmountMsg,
       @JsonKey(name: "wallet_system_active") required this.walletSystemActive,
       @JsonKey(name: "wallet_balance") required this.walletBalance,
+      @JsonKey(name: "wallet_balance_value") required this.walletBalanceValue,
       @JsonKey(name: "avilable_pay_with_wallet")
       required this.avilablePayWithWallet,
       @JsonKey(name: "avilable_cash_on_delivery")
@@ -372,6 +387,9 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
   @JsonKey(name: "wallet_balance")
   final String walletBalance;
   @override
+  @JsonKey(name: "wallet_balance_value")
+  final double walletBalanceValue;
+  @override
   @JsonKey(name: "avilable_pay_with_wallet")
   final bool avilablePayWithWallet;
   @override
@@ -387,7 +405,7 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
 
   @override
   String toString() {
-    return 'ShippingSummaryModel(subtotal: $subtotal, tax: $tax, shipping: $shipping, couponDiscount: $couponDiscount, calTotal: $calTotal, total: $total, couponCode: $couponCode, couponApplied: $couponApplied, totalItems: $totalItems, minimumOrderAmountStatus: $minimumOrderAmountStatus, minimumOrderAmountMsg: $minimumOrderAmountMsg, walletSystemActive: $walletSystemActive, walletBalance: $walletBalance, avilablePayWithWallet: $avilablePayWithWallet, avilableCashOnDelivery: $avilableCashOnDelivery, items: $items)';
+    return 'ShippingSummaryModel(subtotal: $subtotal, tax: $tax, shipping: $shipping, couponDiscount: $couponDiscount, calTotal: $calTotal, total: $total, couponCode: $couponCode, couponApplied: $couponApplied, totalItems: $totalItems, minimumOrderAmountStatus: $minimumOrderAmountStatus, minimumOrderAmountMsg: $minimumOrderAmountMsg, walletSystemActive: $walletSystemActive, walletBalance: $walletBalance, walletBalanceValue: $walletBalanceValue, avilablePayWithWallet: $avilablePayWithWallet, avilableCashOnDelivery: $avilableCashOnDelivery, items: $items)';
   }
 
   @override
@@ -420,6 +438,8 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
                 other.walletSystemActive == walletSystemActive) &&
             (identical(other.walletBalance, walletBalance) ||
                 other.walletBalance == walletBalance) &&
+            (identical(other.walletBalanceValue, walletBalanceValue) ||
+                other.walletBalanceValue == walletBalanceValue) &&
             (identical(other.avilablePayWithWallet, avilablePayWithWallet) ||
                 other.avilablePayWithWallet == avilablePayWithWallet) &&
             (identical(other.avilableCashOnDelivery, avilableCashOnDelivery) ||
@@ -444,6 +464,7 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
       minimumOrderAmountMsg,
       walletSystemActive,
       walletBalance,
+      walletBalanceValue,
       avilablePayWithWallet,
       avilableCashOnDelivery,
       const DeepCollectionEquality().hash(_items));
@@ -481,6 +502,8 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
       @JsonKey(name: "wallet_system_active")
       required final bool walletSystemActive,
       @JsonKey(name: "wallet_balance") required final String walletBalance,
+      @JsonKey(name: "wallet_balance_value")
+      required final double walletBalanceValue,
       @JsonKey(name: "avilable_pay_with_wallet")
       required final bool avilablePayWithWallet,
       @JsonKey(name: "avilable_cash_on_delivery")
@@ -526,6 +549,9 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
   @override
   @JsonKey(name: "wallet_balance")
   String get walletBalance;
+  @override
+  @JsonKey(name: "wallet_balance_value")
+  double get walletBalanceValue;
   @override
   @JsonKey(name: "avilable_pay_with_wallet")
   bool get avilablePayWithWallet;

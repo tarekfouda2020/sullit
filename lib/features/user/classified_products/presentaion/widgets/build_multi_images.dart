@@ -9,7 +9,7 @@ class BuildMultiImages extends StatelessWidget {
     return BlocBuilder<GenericBloc<List<File>>, GenericState<List<File>>>(
       bloc: imagesBloc,
       builder: (context, state) {
-        if (state is GenericUpdateState) {
+        if (state is GenericUpdateState && state.data.isNotEmpty) {
           return Column(
             children: [
               Gaps.vGap20,
@@ -51,7 +51,7 @@ class BuildMultiImages extends StatelessWidget {
                       child: Container(
                         height: Dimens.dp70.r,
                         width: Dimens.dp70.r,
-                        decoration: CustomDecoration(),
+                        decoration: const CustomDecoration(),
                         child: Icon(
                           Icons.add,
                           color: context.colors.primary,

@@ -13,7 +13,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: loginController.onBackPressed,
+      onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: context.colors.white,
         body: GestureDetector(

@@ -31,6 +31,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/queries.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/reviews.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
+import 'package:flutter_tdd/features/user/products/presentation/widgets/build_compare_item.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
 import 'package:flutter_tdd/res.dart';
 

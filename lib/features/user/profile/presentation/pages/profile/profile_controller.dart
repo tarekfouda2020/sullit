@@ -20,6 +20,8 @@ class ProfileController {
   final TextEditingController confirmPasswordController =
       TextEditingController();
   final GenericBloc<Country?> countryCubit = GenericBloc(null);
+  final GenericBloc<bool> verifyPhoneCubit = GenericBloc(false);
+  final GenericBloc<bool> verifyEmailCubit = GenericBloc(false);
 
   Address? addressModel;
 
@@ -36,7 +38,10 @@ class ProfileController {
       countryCubit.onUpdateData(Country("", "", "", user?.countryCode ?? ""));
       addressModel = user?.address;
       addressController.text = user?.address?.address ?? "";
+      verifyPhoneCubit.onUpdateData(user?.isPhoneActive ?? false);
+      verifyEmailCubit.onUpdateData(user?.isEmailActive??false);
     }
+    print("=======>${user?.toJson()}");
   }
 
   void showCountryCode(BuildContext context) async {
@@ -46,6 +51,7 @@ class ProfileController {
     );
     if (data != null) {
       countryCubit.onUpdateData(data);
+      phoneController.clear();
     }
   }
 
@@ -57,7 +63,7 @@ class ProfileController {
     }
   }
 
-   void showDeleteAccountDialog(BuildContext context) {
+  void showDeleteAccountDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) {
@@ -96,6 +102,15 @@ class ProfileController {
     }
   }
 
+  bool isEmailChanged(BuildContext context) {
+    var user = context.read<UserCubit>().state.model;
+    if (emailController.text != user!.email) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   bool isAddressChanged(BuildContext context) {
     var user = context.read<UserCubit>().state.model;
     if (addressModel?.id != user!.address?.id) {
@@ -107,27 +122,26 @@ class ProfileController {
 
   Future<void> setEditProfile(BuildContext context) async {
     if (isDataChanged(context)) {
-      var user = context.read<UserCubit>().state.model;
-      var params = _profileParams();
-      if (emailController.text != user!.email) {
-        setEditProfileEmail();
-      }
-      if (isAddressChanged(context)) {
-        if (addressModel!.isActive == true) {
-          await SetDefaultAddress().call(addressModel!.id!);
-        } else {
-          CustomToast.showSimpleToast(
-              msg: 'Please Verify address phone number', type: ToastType.error);
-          return;
+      if (formKey.currentState!.validate()) {
+        var params = _profileParams();
+        if (isEmailChanged(context)) {
+          setEditProfileEmail(context);
         }
-      }
-      var data = await SetEditProfile().call(params);
-      if (data != null) {
-        _cashAndRoute(data, context);
-        CustomToast.showSimpleToast(
-          msg: tr('informationUpdatedSuccessfully'),
-          type: ToastType.success,
-        );
+        if (isAddressChanged(context)) {
+          if (addressModel!.isActive == true) {
+            await SetDefaultAddress().call(addressModel!.id!);
+          } else {
+            CustomToast.showSimpleToast(
+              msg: tr("verifyAddress"),
+              type: ToastType.error,
+            );
+            return;
+          }
+        }
+        var data = await SetEditProfile().call(params);
+        if (data != null) {
+          _cashAndRoute(data, context);
+        }
       }
     } else {
       CustomToast.showSimpleToast(
@@ -137,8 +151,19 @@ class ProfileController {
     }
   }
 
-  Future<void> setEditProfileEmail() async {
-    await SetEditProfileEmail().call(emailController.text);
+  void setEditProfileEmail(BuildContext context) async {
+    print("@@@${emailController.text}");
+    var result = await SetEditProfileEmail().call(emailController.text);
+    if (result) {
+      var result = await  AutoRouter.of(context)
+          .push(VerifyRegisterRoute(email: emailController.text));
+      if(result==true){
+       var data= await GetProfile().call(true);
+       context.read<UserCubit>().onUpdateUserData(data!);
+
+
+      }
+    }
   }
 
   void _cashAndRoute(UserDomainModel data, BuildContext context) async {
@@ -148,14 +173,23 @@ class ProfileController {
       "user",
       json.encode(model.toJson()),
     );
-    if (model.isPhoneActive == false) {
-      AutoRouter.of(context).push(
-        ActiveAccountRoute(
-          phoneOrEmail:"${countryCubit.state.data?.callingCode}${model.phone}",
-        ),
-      );
-    }
     context.read<UserCubit>().onUpdateUserData(model);
+    verifyPhoneCubit.onUpdateData(model.isPhoneActive!);
+    CustomToast.showSimpleToast(
+      msg: tr('informationUpdatedSuccessfully'),
+      type: ToastType.success,
+    );
+  }
+
+  void onActivePhone(BuildContext context) async {
+    var user = context.read<UserCubit>().state.model;
+    var result = await AutoRouter.of(context)
+        .push(ActiveAccountRoute(phoneOrEmail: user?.fullPhone ?? ""));
+    if (result == true) {
+      user?.isPhoneActive = true;
+      verifyPhoneCubit.onUpdateData(true);
+      context.read<UserCubit>().onUpdateUserData(user!);
+    }
   }
 
   ProfileParams _profileParams() {

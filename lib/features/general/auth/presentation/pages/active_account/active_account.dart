@@ -15,7 +15,13 @@ class ActiveAccount extends StatefulWidget {
 }
 
 class _ActiveAccountState extends State<ActiveAccount> {
-  final ActiveAccountController controller = ActiveAccountController();
+  late ActiveAccountController controller;
+
+  @override
+  void initState() {
+    controller = ActiveAccountController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +35,10 @@ class _ActiveAccountState extends State<ActiveAccount> {
               const BuildAuthAppBar(),
               BuildHeaderTitle(title: tr('enterVerifyCode')),
               BuildPinField(onComplete: controller.onComplete),
-              const BuildResendCode(),
+              BuildActiveTimer(
+                controller: controller,
+                phone: widget.phoneOrEmail,
+              ),
               BuildActiveButton(
                 controller: controller,
                 phone: widget.phoneOrEmail,

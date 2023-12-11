@@ -66,4 +66,10 @@ class ImplAuthRepository extends AuthRepository with ModelToDomain {
   Future<Either<Failure, bool>> deleteAccount(NoParams params) async {
     return await dataSources.deleteAccount(params);
   }
+
+  @override
+  Future<Either<Failure, String>> resendVerifyCode(String param)async {
+    return await dataSources.resendVerifyCode(param);
+
+  }
 }

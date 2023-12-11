@@ -21,35 +21,32 @@ class _NotificationsState extends State<Notifications> {
     return Scaffold(
       appBar: DefaultAppBar(title: tr('notifications')),
       backgroundColor: context.colors.customBackground,
-      body: BlocBuilder<GenericBloc<List<NotificationDomainModel>>,
-          GenericState<List<NotificationDomainModel>>>(
-        bloc: controller.notificationsBloc,
-        builder: (context, state) {
-          if (state is GenericUpdateState) {
-            return RefreshIndicator(
-              child: Visibility(
-                visible: state.data.isNotEmpty,
-                replacement: Center(
-                  child: Text(
-                    tr('noNotifies'),
-                    style: AppTextStyle.s14_w400(color: context.colors.black),
-                  ),
+
+      body: RefreshIndicator(
+        onRefresh: () => controller.getNotifications(1),
+        child: PagedListView<int, NotificationDomainModel>(
+          padding: Dimens.paddingAll15PX,
+          pagingController: controller.pagingController,
+          builderDelegate: PagedChildBuilderDelegate<NotificationDomainModel>(
+            firstPageProgressIndicatorBuilder: (_) =>
+            const  BuildNotifiesLoading(),
+            itemBuilder: (_, item, index) =>
+                BuildNotificationsItem(
+                  notification: item,
                 ),
-                child: ListView.builder(
-                  padding: Dimens.paddingAll15PX,
-                  itemCount: state.data.length,
-                  itemBuilder: (context, index) => BuildNotificationsItem(
-                    notification: state.data[index],
-                  ),
+            noItemsFoundIndicatorBuilder: (cxt) {
+              return  Center(
+                child: Text(
+                  tr('noNotifies'),
+                  style: AppTextStyle.s14_w400(color: context.colors.black),
                 ),
-              ),
-              onRefresh: () => controller.getNotifications(),
-            );
-          } else {
-            return const BuildNotifiesLoading();
-          }
-        },
+              );
+            },
+          ),
+        ),
       ),
+
+
     );
   }
 }

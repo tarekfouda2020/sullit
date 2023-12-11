@@ -26,10 +26,7 @@ class _CompareState extends State<Compare> {
         builder: (context, state) {
           return Visibility(
             visible: state.data.isNotEmpty,
-            replacement:  Container(
-              alignment: Alignment.center,
-              child: Image.asset(Res.emptyCart, scale: 3),
-            ),
+            replacement:  const BuildEmptyDataView(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -42,10 +39,9 @@ class _CompareState extends State<Compare> {
                       crossAxisSpacing: 15.r,
                       mainAxisSpacing: 15.r,
                       crossAxisCount: 2,
-                      childAspectRatio: .9,
+                      childAspectRatio: .75,
                     ),
                     itemBuilder: (context, index) => BuildProductItem(
-                      isForCompare: true,
                       productModel: state.data[index],
                       onFavRefresh: () => controller.onFavChanged(state.data[index]),
                       onCompareRefresh: ()=> controller.onCompareChanged(state.data[index])

@@ -15,6 +15,7 @@
   "walletBalanceEmpty": "Wallet balance is not enough",
   "additionalInfo": "Additional information",
   "noDate": "No Data",
+  "orderStatus": "Order Status",
   "inHouseProduct": "Inhouse product",
   "register": "Register",
   "visitor": "Log in as a visitor ",
@@ -328,7 +329,6 @@
   "verifyAddress": "Please verify address phone first",
   "reviewProduct": "Review Product",
   "reviewSuccess": "Review has been submitted successfully"
-
 }
 
 

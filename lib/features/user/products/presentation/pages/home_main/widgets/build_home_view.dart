@@ -25,7 +25,7 @@ class BuildHomeView extends StatelessWidget {
             bestSellingProducts: homeDomainModel.bestSellingProducts,
             controller: controller,
           ),
-          Gaps.vGap10,
+          // Gaps.vGap10,
           BuildBanners(banners: homeDomainModel.bannersTwo),
           BuildHomeNewProducts(
             newestProducts: homeDomainModel.newestProducts,

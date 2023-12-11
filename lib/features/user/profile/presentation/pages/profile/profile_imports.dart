@@ -20,6 +20,7 @@ import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubi
 import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/use_cases/set_default_address.dart';
 import 'package:flutter_tdd/features/user/profile/domain/entities/profile_params.dart';
+import 'package:flutter_tdd/features/user/profile/domain/use_cases/get_profile.dart';
 import 'package:flutter_tdd/features/user/profile/domain/use_cases/set_edit_profile.dart';
 import 'package:flutter_tdd/features/user/profile/domain/use_cases/set_edit_profile_email.dart';
 import 'package:shared_preferences/shared_preferences.dart';

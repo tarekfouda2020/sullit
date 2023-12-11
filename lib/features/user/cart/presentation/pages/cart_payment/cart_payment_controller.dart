@@ -52,11 +52,9 @@ class CartPaymentController {
 
   bool isBalanceEnough() {
     var summary = shippingBloc.state.data!.summary;
-    var balance = summary.walletBalance.replaceAll("د.إ", "");
-    var totalPrice = summary.total.replaceAll("د.إ", "");
-    var numBalance = num.parse(balance);
-    var numPrice = num.parse(totalPrice);
-    if (selectedPayment == "wallet" && numPrice > numBalance) {
+    var balance = summary.walletBalanceValue;
+    var totalPrice = summary.calTotal;
+    if (selectedPayment == "wallet" && totalPrice > balance) {
       CustomToast.showSimpleToast(
           msg: tr('walletBalanceEmpty'), type: ToastType.error);
       return false;

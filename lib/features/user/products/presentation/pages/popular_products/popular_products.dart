@@ -46,10 +46,10 @@ class _PopularProductsState extends State<PopularProducts> {
               productModel: item,
               onFavRefresh: () => controller.getPopularProducts(
                   widget.popularProductsModel.id, 1),
-              onCompareRefresh: () {
-                item.isAddedTCompare = !item.isAddedTCompare! ;
-                controller.getPopularProducts(widget.popularProductsModel.id, 1);
-              },
+              // onCompareRefresh: () {
+              //   item.isAddedTCompare = !item.isAddedTCompare! ;
+              //   controller.getPopularProducts(widget.popularProductsModel.id, 1);
+              // },
             ),
             noItemsFoundIndicatorBuilder: (cxt) => const BuildEmptyDataView(),
           ),

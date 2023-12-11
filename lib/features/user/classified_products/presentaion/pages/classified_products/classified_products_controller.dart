@@ -15,13 +15,20 @@ class ClassifiesProductsController {
         );
   }
 
-  void onAddProduct(BuildContext context) {
+  void onAddProduct(BuildContext context) async {
     var uploads = classifiedProductsBloc.state.data?.remainingUploads;
     if (uploads == 0) {
       CustomToast.showSimpleToast(msg: tr('purchasePackageValidation'));
       return;
     } else {
-      AutoRouter.of(context).push(AddClassifiedProductRoute());
+      CusProduct? result = await Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const AddClassifiedProduct()),
+      );
+      if (result != null) {
+        classifiedProductsBloc.state.data?.sectionsProducts.products
+            .insert(0, result);
+        classifiedProductsBloc.onUpdateData(classifiedProductsBloc.state.data);
+      }
     }
   }
 
@@ -43,11 +50,16 @@ class ClassifiesProductsController {
   }
 
   void onEditProduct(BuildContext context, CusProduct model) async {
-    var result = await AutoRouter.of(context).push(
-      EditClassifiedProductRoute(productModel: model),
+    var index = classifiedProductsBloc.state.data?.sectionsProducts.products
+        .indexOf(model);
+    CusProduct? result = await Navigator.of(context).push(
+      MaterialPageRoute(
+          builder: (context) => EditClassifiedProduct(productModel: model)),
     );
-    if (result == true) {
-      getClassifiedProducts();
+    if (result != null) {
+      classifiedProductsBloc.state.data?.sectionsProducts.products[index!] =
+          result;
+      classifiedProductsBloc.onUpdateData(classifiedProductsBloc.state.data);
     }
   }
 

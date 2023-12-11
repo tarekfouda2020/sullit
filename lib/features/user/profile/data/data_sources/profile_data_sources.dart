@@ -6,4 +6,6 @@ import 'package:flutter_tdd/features/user/profile/domain/entities/profile_params
 abstract class ProfileDataSources {
   Future<Either<Failure, UserModel>> updateProfile (ProfileParams params);
   Future<Either<Failure, bool>> updateProfileEmail (String param);
- }
+  Future<Either<Failure, UserModel>> getProfile (bool params);
+
+}

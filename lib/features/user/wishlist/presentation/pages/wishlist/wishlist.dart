@@ -36,12 +36,6 @@ class _WishlistState extends State<Wishlist> {
         itemBuilder: (_, index, item) => BuildProductItem(
           productModel: item,
           onFavRefresh: () => controller.onChangeFav(item),
-          onCompareRefresh: () {
-            controller.wishlistBloc.state.data[index].isAddedTCompare =
-                !controller.wishlistBloc.state.data[index].isAddedTCompare!;
-            controller.wishlistBloc
-                .onUpdateData(controller.wishlistBloc.state.data);
-          },
         ),
         loadingWidget: const BuildLoadingProductsGridView(),
         emptyWidget: const BuildEmptyDataView(),

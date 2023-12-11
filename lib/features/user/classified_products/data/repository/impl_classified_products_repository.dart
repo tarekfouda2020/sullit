@@ -53,9 +53,10 @@ class ImplClassifiedProductsRepository extends ClassifiedProductsRepository
   }
 
   @override
-  Future<Either<Failure, bool>> setAddClassifiedProducts(
-      AddClassifiedProductParams params) async {
-    return await dataSources.setAddClassifiedProduct(params);
+  Future<Either<Failure, CusProduct>>
+      setAddClassifiedProducts(AddClassifiedProductParams params) async {
+    var result = await dataSources.setAddClassifiedProduct(params);
+    return toDomainResult(result);
   }
 
   @override
@@ -80,15 +81,17 @@ class ImplClassifiedProductsRepository extends ClassifiedProductsRepository
   }
 
   @override
-  Future<Either<Failure, CusProduct>> getClassifiedProduct(GenericParams param) async {
+  Future<Either<Failure, CusProduct>> getClassifiedProduct(
+      GenericParams param) async {
     var result = await dataSources.getClassifiedProduct(param);
     return toDomainResult(result);
   }
 
   @override
-  Future<Either<Failure, bool>> updateClassifiedProduct(
+  Future<Either<Failure, CusProduct>> updateClassifiedProduct(
       EditClassifiedProductParams params) async {
-    return await dataSources.editClassifiedProduct(params);
+    var result= await dataSources.editClassifiedProduct(params);
+    return toDomainResult(result);
   }
 
   @override
@@ -115,6 +118,7 @@ class ImplClassifiedProductsRepository extends ClassifiedProductsRepository
   Future<Either<Failure, String>> deleteProduct(int param) async {
     return await dataSources.deleteProduct(param);
   }
+
   @override
   Future<Either<Failure, bool>> changeStatus(int param) async {
     return await dataSources.changeStatus(param);

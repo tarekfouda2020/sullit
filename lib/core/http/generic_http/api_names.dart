@@ -18,12 +18,15 @@ class ApiNames {
   static const String resendRegisterCode = "email/resend-code";
   static const String logout = "logout";
   static const String verifyPhone = "verification-phone/verify-phone";
+  static const String resendVerifyCode = "verification-phone/resend-code";
+
   static const String codeVerify = "check-activation-code";
   static const String deleteAccount = "delete-account";
 
   // profile urls
   static const String updateProfile = "profile/update?_method=put";
   static const String updateProfileEmail = "new-email";
+  static const String getProfile = "profile";
 
   //products urls
   static const String getHome = "home";

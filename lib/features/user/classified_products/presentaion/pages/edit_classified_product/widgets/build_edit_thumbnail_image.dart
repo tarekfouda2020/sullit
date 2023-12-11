@@ -28,15 +28,15 @@ class BuildEditThumbnailImage extends StatelessWidget {
               borderRadius: Dimens.borderRadius5PX,
               alignment: Alignment.topLeft,
               borderColor: context.colors.greyWhite,
-              child: InkWell(
-                onTap: () =>
-                    controller.thumbnailImageBloc.onUpdateToInitState(null),
-                child: Icon(
-                  Icons.clear,
-                  color: context.colors.primary,
-                  size: Dimens.dp20.r,
-                ),
-              ),
+              // child: InkWell(
+              //   onTap: () =>
+              //       controller.thumbnailImageBloc.onUpdateToInitState(null),
+              //   child: Icon(
+              //     Icons.clear,
+              //     color: context.colors.primary,
+              //     size: Dimens.dp20.r,
+              //   ),
+              // ),
             ),
           );
         } else {

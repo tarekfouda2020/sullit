@@ -62,7 +62,7 @@ class BuildDrawerHeader extends StatelessWidget {
                         ),
                         Gaps.vGap5,
                         Text(
-                          user?.phone ?? "",
+                          user?.fullPhone ?? "",
                           style: AppTextStyle.s14_w400(
                             color: context.colors.blackOpacity,
                           ),

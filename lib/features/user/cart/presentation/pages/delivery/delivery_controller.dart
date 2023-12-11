@@ -6,6 +6,7 @@ class DeliveryController {
   final GenericBloc<int> deliveryTypeCubit = GenericBloc(0);
   final GenericBloc<List<SellerShipping>> sellerShippingBloc = GenericBloc([]);
   Pickup? nearestPointModel;
+  SellerShipping? selectedItem;
 
   Future<void> getShippingInfo({bool refresh = true}) async {
     return await GetShippingInfo().call(refresh).then(
@@ -15,20 +16,25 @@ class DeliveryController {
 
   void onChangeType(SellerShipping model, int value) {
     model.deliveryType = value;
+    selectedItem = model;
     sellerShippingBloc.onUpdateData(sellerShippingBloc.state.data);
   }
 
   Future<void> setCartStoreShipping(BuildContext context) async {
+    if (selectedItem?.deliveryType == 1 && nearestPointModel == null) {
+      CustomToast.showSimpleToast(msg: "Please choose nearest pickup point");
+      return;
+    }
     var params = _setCartStoreParams();
     var data = await SetCartStoreShipping().call(params);
     if (data != null) {
-      CustomToast.showSimpleToast(
-          msg: tr('shippingAdded'));
+      CustomToast.showSimpleToast(msg: tr('shippingAdded'));
       AutoRouter.of(context).push(CartPaymentRoute(shipping: data));
     }
   }
 
   void onSelectPoint(Pickup? model) {
+    nearestPointModel = null;
     if (model != null) {
       nearestPointModel = model;
     }
@@ -39,12 +45,11 @@ class DeliveryController {
     var arrangedItems = shipping
         .map(
           (e) => {
-            'owner_id': e.deliveryType == 0 ? e.ownerId : nearestPointModel!.id,
+            'owner_id':  e.ownerId,
             'shipiing_type': e.deliveryType == 0 ? 'DELIVERY' : 'LOCAL_PICKUP'
           },
         )
         .toList();
-    log(arrangedItems.toString());
     return arrangedItems;
   }
 

@@ -21,7 +21,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: controller.onBackPressed,
+      onWillPop: () async => false,
       child: DefaultTabController(
         initialIndex: widget.index,
         length: 4,

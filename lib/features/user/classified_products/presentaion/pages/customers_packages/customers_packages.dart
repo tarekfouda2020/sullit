@@ -30,7 +30,7 @@ class _CustomersPackagesState extends State<CustomersPackages> {
               runSpacing: Dimens.dp15.r,
               padding: Dimens.paddingAll15PX,
               type: ListViewType.gridApi,
-              gridItemHeight: Dimens.dp205,
+              gridItemHeight: Dimens.dp220,
               cubit: controller.cusProducts,
               onRefresh: controller.getCusPackage,
               loadingWidget: const BuildPackagesLoading(),

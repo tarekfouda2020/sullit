@@ -7,25 +7,28 @@ class BuildBanners extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: Dimens.dp10,
-        horizontal: Dimens.dp16,
-      ),
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: 90.spMin,
-        child: Swiper(
-          itemBuilder: (context, index) {
-            return CachedImage(
-              url: banners[index].photo,
-              fit: BoxFit.cover,
-              borderRadius: Dimens.borderRadius5PX,
-              height: 90.spMin,
-              imgMargin: Dimens.paddingHorizontal5PX,
-            );
-          },
-          itemCount: banners.length,
+    return Visibility(
+      visible: banners.isNotEmpty,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: Dimens.dp10,
+          horizontal: Dimens.dp16,
+        ),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: 90.spMin,
+          child: Swiper(
+            itemBuilder: (context, index) {
+              return CachedImage(
+                url: banners[index].photo,
+                fit: BoxFit.fill,
+                borderRadius: Dimens.borderRadius5PX,
+                height: 90.spMin,
+                imgMargin: Dimens.paddingHorizontal5PX,
+              );
+            },
+            itemCount: banners.length,
+          ),
         ),
       ),
     );

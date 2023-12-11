@@ -25,6 +25,7 @@ class BuildOrderInfoItem extends StatelessWidget {
                 style: AppTextStyle.s14_w500(color: context.colors.black),
               ),
             ),
+            Gaps.hGap15,
             Expanded(
               child: Text(
                 subTitle,
