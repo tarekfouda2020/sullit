@@ -15,20 +15,19 @@ import 'package:flutter_tdd/features/user/category/presentation/pages/category_d
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
+import 'package:flutter_tdd/features/user/products/presentation/widgets/build_compare_item.dart';
 import 'package:flutter_tdd/res.dart';
 
 class BuildProductItem extends StatelessWidget {
   final Product productModel;
   final VoidCallback onFavRefresh;
-  final VoidCallback onCompareRefresh;
-  final bool? isForCompare;
+  final VoidCallback? onCompareRefresh;
 
   const BuildProductItem({
     super.key,
     required this.productModel,
     required this.onFavRefresh,
-    required this.onCompareRefresh,
-    this.isForCompare = false,
+     this.onCompareRefresh,
   });
 
   @override
@@ -119,18 +118,13 @@ class BuildProductItem extends StatelessWidget {
                         ),
                         checkValue: productModel.isWishlist,
                       ),
-                      BuildIconItem(
-                        isFormCompare: isForCompare,
-                        iconData: Icons.compare_arrows,
-                        checkValue: productModel.isAddedTCompare,
+                      BuildCompareItem(
+                        productModel: productModel,
                         onTap: () {
-                          getIt<ProductsHelper>().addProductToCompare(
-                            context: context,
-                            product: productModel,
-                          );
-                          onCompareRefresh.call();
+                          onCompareRefresh?.call();
                         },
-                      ),
+                      )
+
                     ],
                   ),
                 )

@@ -40,7 +40,7 @@ class ImplClassifiedProductsDataSources extends ClassifiedProductsDataSources {
         ),
       ),
       responseKey: (data) => data["data"]["files"],
-      errorFunc: (data)=> data["msg"],
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<List<FileModel>>().call(model);
   }
@@ -54,13 +54,13 @@ class ImplClassifiedProductsDataSources extends ClassifiedProductsDataSources {
       showLoader: true,
       requestBody: {'file': param},
       responseKey: (data) => data["key"] == 'success',
-      errorFunc: (data)=> data["msg"],
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<bool>().call(model);
   }
 
   @override
-  Future<Either<Failure, bool>> setAddFiles(List<File> param)async {
+  Future<Either<Failure, bool>> setAddFiles(List<File> param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.uploadFiles,
       requestMethod: RequestMethod.post,
@@ -68,81 +68,87 @@ class ImplClassifiedProductsDataSources extends ClassifiedProductsDataSources {
       showLoader: true,
       requestBody: {'files[]': param},
       responseKey: (data) => data["key"] == 'success',
-      errorFunc: (data)=> data["msg"],
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<bool>().call(model);
   }
 
   @override
-  Future<Either<Failure, List<VideoProviderModel>>> getVideoProviders(bool param)async {
+  Future<Either<Failure, List<VideoProviderModel>>> getVideoProviders(
+      bool param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.videoProviders,
       requestMethod: RequestMethod.get,
       responseType: ResType.list,
       showLoader: true,
-      toJsonFunc:  (json) => List<VideoProviderModel>.from(
+      toJsonFunc: (json) => List<VideoProviderModel>.from(
         json.map(
-              (e) => VideoProviderModel.fromJson(e),
+          (e) => VideoProviderModel.fromJson(e),
         ),
       ),
       responseKey: (data) => data["data"],
-      errorFunc: (data)=> data["msg"],
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<List<VideoProviderModel>>().call(model);
   }
 
   @override
-  Future<Either<Failure, bool>> setAddClassifiedProduct(AddClassifiedProductParams params)async {
+  Future<Either<Failure, CusProductModel>> setAddClassifiedProduct(
+      AddClassifiedProductParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.customersProducts,
       requestMethod: RequestMethod.post,
-      responseType: ResType.type,
+      responseType: ResType.model,
       showLoader: true,
-      requestBody:  params.toJson(),
-      responseKey: (data) => data["key"] == 'success',
-      errorFunc: (data)=> data["msg"],
+      requestBody: params.toJson(),
+      toJsonFunc: (json) => CusProductModel.fromJson(json),
+      responseKey: (data) => data["data"],
+      errorFunc: (data) => data["msg"],
     );
-    return await GenericHttpImpl<bool>().call(model);
+    return await GenericHttpImpl<CusProductModel>().call(model);
   }
 
   @override
-  Future<Either<Failure, List<CusProductsBrandModel>>> getCusProductsBrands(bool param) async{
+  Future<Either<Failure, List<CusProductsBrandModel>>> getCusProductsBrands(
+      bool param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.cusProductsBrands,
       requestMethod: RequestMethod.get,
       responseType: ResType.list,
       showLoader: true,
-      toJsonFunc:  (json) => List<CusProductsBrandModel>.from(
+      toJsonFunc: (json) => List<CusProductsBrandModel>.from(
         json.map(
-              (e) => CusProductsBrandModel.fromJson(e),
+          (e) => CusProductsBrandModel.fromJson(e),
         ),
       ),
       responseKey: (data) => data["data"],
-      errorFunc: (data)=> data["msg"],
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<List<CusProductsBrandModel>>().call(model);
   }
 
   @override
-  Future<Either<Failure, List<CusProductsCatModel>>> getCusProductsCats(bool param) async {
+  Future<Either<Failure, List<CusProductsCatModel>>> getCusProductsCats(
+      bool param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.cusProductsCats,
       requestMethod: RequestMethod.get,
       responseType: ResType.list,
       showLoader: true,
-      toJsonFunc:  (json) => List<CusProductsCatModel>.from(
+      toJsonFunc: (json) => List<CusProductsCatModel>.from(
         json.map(
-              (e) => CusProductsCatModel.fromJson(e),
+          (e) => CusProductsCatModel.fromJson(e),
         ),
       ),
       responseKey: (data) => data["data"],
-      errorFunc: (data)=> data["msg"],
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<List<CusProductsCatModel>>().call(model);
   }
 
   @override
-  Future<Either<Failure, ClassifiedProductsModel>> getClassifiedProducts(bool param)async {
+  Future<Either<Failure, ClassifiedProductsModel>> getClassifiedProducts(
+      bool param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.classifiedProducts,
       requestMethod: RequestMethod.get,
@@ -172,18 +178,19 @@ class ImplClassifiedProductsDataSources extends ClassifiedProductsDataSources {
   }
 
   @override
-  Future<Either<Failure, bool>> editClassifiedProduct(
+  Future<Either<Failure, CusProductModel>> editClassifiedProduct(
       EditClassifiedProductParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.editClassifiedProduct(params.id),
       requestMethod: RequestMethod.post,
-      responseType: ResType.type,
+      responseType: ResType.model,
       showLoader: true,
       requestBody: params.toJson(),
-      responseKey: (data) => data["key"] == 'success',
+      toJsonFunc: (json) => CusProductModel.fromJson(json),
+      responseKey: (data) => data["data"],
       errorFunc: (data) => data["msg"],
     );
-    return await GenericHttpImpl<bool>().call(model);
+    return await GenericHttpImpl<CusProductModel>().call(model);
   }
 
   @override
@@ -206,7 +213,8 @@ class ImplClassifiedProductsDataSources extends ClassifiedProductsDataSources {
   }
 
   @override
-  Future<Either<Failure, List<PaymentMethodModel>>> getPaymentMethods(bool param)async  {
+  Future<Either<Failure, List<PaymentMethodModel>>> getPaymentMethods(
+      bool param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.paymentOptions,
       requestMethod: RequestMethod.get,
@@ -215,7 +223,7 @@ class ImplClassifiedProductsDataSources extends ClassifiedProductsDataSources {
       showLoader: true,
       toJsonFunc: (data) => List<PaymentMethodModel>.from(
         data.map(
-              (e) => PaymentMethodModel.fromJson(e),
+          (e) => PaymentMethodModel.fromJson(e),
         ),
       ),
       responseKey: (data) => data["data"],
@@ -225,7 +233,8 @@ class ImplClassifiedProductsDataSources extends ClassifiedProductsDataSources {
   }
 
   @override
-  Future<Either<Failure, PurchasePackageResponseModel >> purchasePackage(PurchasePackageParams params) async {
+  Future<Either<Failure, PurchasePackageResponseModel>> purchasePackage(
+      PurchasePackageParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.purchasePackage(params.id),
       requestMethod: RequestMethod.post,
@@ -240,7 +249,7 @@ class ImplClassifiedProductsDataSources extends ClassifiedProductsDataSources {
   }
 
   @override
-  Future<Either<Failure, String>> deleteProduct(int param)async {
+  Future<Either<Failure, String>> deleteProduct(int param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.deleteProduct(param),
       requestMethod: RequestMethod.delete,
@@ -253,7 +262,7 @@ class ImplClassifiedProductsDataSources extends ClassifiedProductsDataSources {
   }
 
   @override
-  Future<Either<Failure, bool>> changeStatus(int param)async {
+  Future<Either<Failure, bool>> changeStatus(int param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.changeStatus(param),
       requestMethod: RequestMethod.put,

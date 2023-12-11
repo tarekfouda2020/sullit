@@ -8,10 +8,12 @@ class UserDomainModel extends BaseDomainModel {
   String? avatarOriginal;
   String? email;
   String? phone;
-  String?countryCode;
+  String?fullPhone;
+  String? countryCode;
   String? token;
   String? tokenType;
   bool? isPhoneActive;
+  bool? isEmailActive;
   Address? address;
 
   UserDomainModel(
@@ -21,10 +23,12 @@ class UserDomainModel extends BaseDomainModel {
       this.avatarOriginal,
       this.email,
       this.phone,
-        this.countryCode,
+        this.fullPhone,
+      this.countryCode,
       this.token,
       this.tokenType,
       this.isPhoneActive,
+      this.isEmailActive,
       this.address});
 
   UserDomainModel.fromJson(Map<String, dynamic> json) {
@@ -34,10 +38,12 @@ class UserDomainModel extends BaseDomainModel {
     avatar = json['avatar'];
     avatarOriginal = json['avatar_original'];
     phone = json['phone'];
-    countryCode=json['country_code'];
+    fullPhone=json['full_phone'];
+    countryCode = json['country_code'];
     token = json['token'];
     tokenType = json['token_type'];
     isPhoneActive = json['phone_is_active'];
+    isEmailActive=json['email_is_active'];
     address =
         json['address'] != null ? Address.fromJson(json['address']) : null;
   }
@@ -50,10 +56,12 @@ class UserDomainModel extends BaseDomainModel {
     data['avatar'] = avatar;
     data['avatar_original'] = avatarOriginal;
     data['phone'] = phone;
-    data['country_code']=countryCode;
+    data['full_phone']=fullPhone;
+    data['country_code'] = countryCode;
     data['token'] = token;
     data['token_type'] = tokenType;
     data['phone_is_active'] = isPhoneActive;
+    data['email_is_active']=isEmailActive;
     if (address != null) {
       data['address'] = address!.toJson();
     }

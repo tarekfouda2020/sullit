@@ -27,7 +27,9 @@ class _VerifyRegisterState extends State<VerifyRegister> {
         padding: Dimens.paddingH20V10,
         child: Column(
           children: [
-            const BuildAuthAppBar(),
+            BuildAuthAppBar(
+              onBack: () => AutoRouter.of(context).pop(true),
+            ),
             const BuildHeaderLogo(),
             BuildHeaderTitle(
               title: tr('verifyYourEmailAddress'),

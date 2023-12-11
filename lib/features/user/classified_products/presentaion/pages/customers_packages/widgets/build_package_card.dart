@@ -48,7 +48,7 @@ class BuildPackageCard extends StatelessWidget {
           ),
           DefaultButton(
             title: tr('purchasePackage'),
-            height: Dimens.dp24.h,
+            // height: Dimens.dp24.h,
             borderRadius: Dimens.borderRadius5PX,
             fontSize: 12,
             onTap: () => controller.showPaymentDialog(context, package),

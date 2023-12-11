@@ -75,10 +75,11 @@ class EditClassifiedProductController {
   Future<void> setUpdateProduct(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       var params = _editProductParams();
+      print("=====>${params.toJson()}");
       var result = await SetEditCusProduct().call(params);
-      if (result) {
+      if (result!=null) {
         CustomToast.showSimpleToast(msg: tr('productUpdatedSuccess'));
-        AutoRouter.of(context).pop(true);
+        AutoRouter.of(context).pop(result);
       }
     }
   }
@@ -117,7 +118,7 @@ class EditClassifiedProductController {
   }
 
   void selectVideoForm(VideoProvider? model) {
-    videoProvider=null;
+    videoProvider = null;
     videoLink.clear();
     if (model != null) videoProvider = model;
   }
@@ -237,7 +238,7 @@ class EditClassifiedProductController {
           : 0,
       fileOriginalName: '',
       fileName: '',
-      url: model.thumbnailImg ?? "",
+      url: model.thumbnailImg,
       fileSize: 0,
       extension: '',
       type: '',
@@ -246,7 +247,7 @@ class EditClassifiedProductController {
 
   FileDomainModel metaItem(CusProduct model) {
     return FileDomainModel(
-      id: model.metaImgValue != "" ? int.parse(model.metaImgValue) : 0,
+      id: model.metaImgValue != "" ? int.parse(model.metaImgValue) : null,
       fileOriginalName: '',
       fileName: '',
       url: model.metaImg,
@@ -258,7 +259,7 @@ class EditClassifiedProductController {
 
   FileDomainModel pdfItem(CusProduct model) {
     return FileDomainModel(
-      id: model.pdfValue != "" ? int.parse(model.pdfValue) : 0,
+      id: model.pdfValue != "" ? int.parse(model.pdfValue) : null,
       fileOriginalName: '',
       fileName: '',
       url: model.pdf,

@@ -12,7 +12,7 @@ class BuildPackageBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: Dimens.paddingVertical20PX,
-      decoration: CustomDecoration(),
+      decoration: const CustomDecoration(),
       child: Column(
         children: [
           GestureDetector(
@@ -20,7 +20,7 @@ class BuildPackageBtn extends StatelessWidget {
             child: Container(
               margin: Dimens.paddingVertical10PX,
               padding: Dimens.paddingH20V10,
-              decoration: CustomDecoration(),
+              decoration: const CustomDecoration(),
               child: Text(
                 tr('upgradePackage'),
                 style: AppTextStyle.s14_w400(color: context.colors.primary),

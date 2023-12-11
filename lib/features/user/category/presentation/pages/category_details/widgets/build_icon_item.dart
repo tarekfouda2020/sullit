@@ -9,6 +9,7 @@ class BuildIconItem extends StatelessWidget {
   final bool? isFormCompare;
   final EdgeInsetsGeometry? margin;
   final double? width;
+
   // final Color? containerColor;
 
   const BuildIconItem({
@@ -35,9 +36,10 @@ class BuildIconItem extends StatelessWidget {
         alignment: Alignment.center,
         margin: margin ?? Dimens.paddingAll5PX,
         height: 25,
-        width: width??25,
+        width: width ?? 25,
         padding: padding,
         decoration: BoxDecoration(
+          border: Border.all(color: context.colors.greyWhite,width: .5),
           color: checkValue == true
               ? context.colors.primary
               : context.colors.white,

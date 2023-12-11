@@ -10,7 +10,7 @@ class BuildOrderInfo extends StatelessWidget {
     return Container(
       padding: Dimens.paddingAll15PX,
       margin: Dimens.paddingVertical5PX,
-      decoration: CustomDecoration(),
+      decoration: const CustomDecoration(),
       child: Column(
         children: [
           BuildOrderInfoItem(
@@ -51,10 +51,11 @@ class BuildOrderInfo extends StatelessWidget {
           ),
           Visibility(
             visible: orderModel.additionalInfo != '',
-              child: BuildOrderInfoItem(
-            title: "${tr('additionalInfo')} :",
-            subTitle: orderModel.additionalInfo,
-          )),
+            child: BuildOrderInfoItem(
+              title: "${tr('additionalInfo')} :",
+              subTitle: orderModel.additionalInfo,
+            ),
+          ),
         ],
       ),
     );

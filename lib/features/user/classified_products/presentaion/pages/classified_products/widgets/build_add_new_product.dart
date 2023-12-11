@@ -13,7 +13,7 @@ class BuildAddNewProduct extends StatelessWidget {
       child: Container(
         padding: Dimens.paddingAll20PX,
         margin: Dimens.paddingVertical10PX,
-        decoration: CustomDecoration(),
+        decoration: const CustomDecoration(),
         child: Column(
           children: [
             Container(

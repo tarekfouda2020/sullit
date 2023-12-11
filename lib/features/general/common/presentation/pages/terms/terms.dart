@@ -29,6 +29,11 @@ class _TermsState extends State<Terms> {
               padding: Dimens.paddingAll15PX,
               child: Html(
                 data: state.data,
+                onLinkTap: (url, _, __) {
+                  HelperMethods.instance.launchURL(
+                    url: url!,
+                  );
+                },
                 style: {
                   "body": Style(
                     color: Colors.black,

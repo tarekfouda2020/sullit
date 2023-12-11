@@ -6,11 +6,40 @@ class ActiveAccountController {
   final GlobalKey<CustomButtonState> btnKey = GlobalKey();
   String? code;
   final GenericBloc<bool> codeCubit = GenericBloc(false);
+  final GenericBloc<int> counterCubit = GenericBloc(0);
+
+  Timer? timer;
+
+  ActiveAccountController() {
+    _onStartTimer();
+  }
+
+  void _onStartTimer() {
+    counterCubit.onUpdateData(120);
+    timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (timer) => _onEndTimer(timer),
+    );
+  }
+
+  void _onEndTimer(Timer timer) {
+    var newCount = counterCubit.state.data - 1;
+    counterCubit.onUpdateData(newCount);
+    if (counterCubit.state.data <= 0) {
+      timer.cancel();
+    }
+  }
 
   void onComplete(String value) {
     codeCubit.onUpdateData(value.length == 6);
     code = value;
     codeCubit.onUpdateData(true);
+  }
+
+  void onResendCode(String phone) async {
+    var result = await SetResendVerifyCode().call(phone);
+    _onStartTimer();
+    CustomToast.showSimpleToast(msg: result, type: ToastType.success);
   }
 
   Future<void> setVerifyPhone(

@@ -13,7 +13,9 @@ import 'package:flutter_tdd/features/user/classified_products/domain/models/cus_
 import 'package:flutter_tdd/features/user/classified_products/domain/use_cases/get_classified_products.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/use_cases/set_change_status.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/use_cases/set_delete_product.dart';
+import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/add_classified_product/add_classified_product_imports.dart';
 import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/classified_products/widgets/classified_products_w_imports.dart';
+import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/edit_classified_product/edit_classified_product_imports.dart';
 
 part 'classified_products.dart';
 part 'classified_products_controller.dart';

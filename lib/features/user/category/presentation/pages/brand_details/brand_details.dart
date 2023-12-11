@@ -1,4 +1,4 @@
- part of 'brand_details_imports.dart';
+part of 'brand_details_imports.dart';
 
 class BrandDetails extends StatefulWidget {
   final int brandId;
@@ -21,7 +21,7 @@ class _BrandDetailsState extends State<BrandDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  DefaultAppBar(title: tr('brandProducts'), showBack: true),
+      appBar: DefaultAppBar(title: tr('brandProducts'), showBack: true),
       backgroundColor: context.colors.customBackground,
       body: GenericListView(
         type: ListViewType.gridApi,
@@ -31,16 +31,11 @@ class _BrandDetailsState extends State<BrandDetails> {
         runSpacing: 15.r,
         spacing: 15.r,
         gridCrossCount: 2,
-        gridItemHeight: 200.spMin,
+        gridItemHeight: 220.spMin,
         padding: Dimens.paddingAll15PX,
         itemBuilder: (_, index, item) => BuildProductItem(
           productModel: item,
           onFavRefresh: () => controller.onChangeFav(item),
-          onCompareRefresh: () {
-            controller.productsBloc.state.data[index].isAddedTCompare = !controller.productsBloc.state.data[index].isAddedTCompare!;
-            controller.productsBloc
-                .onUpdateData(controller.productsBloc.state.data);
-          },
         ),
         loadingWidget: const BuildLoadingProductsGridView(),
         emptyWidget: const BuildEmptyDataView(),

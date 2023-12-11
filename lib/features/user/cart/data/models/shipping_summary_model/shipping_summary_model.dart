@@ -29,6 +29,7 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary>
         required String minimumOrderAmountMsg,
     @JsonKey(name: "wallet_system_active") required bool walletSystemActive,
     @JsonKey(name: "wallet_balance") required String walletBalance,
+    @JsonKey(name:"wallet_balance_value")required double walletBalanceValue,
     @JsonKey(name: "avilable_pay_with_wallet")
         required bool avilablePayWithWallet,
     @JsonKey(name: "avilable_cash_on_delivery")
@@ -55,6 +56,7 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary>
         minimumOrderAmountMsg: minimumOrderAmountMsg,
         walletSystemActive: walletSystemActive,
         walletBalance: walletBalance,
+        walletBalanceValue:walletBalanceValue,
         avilablePayWithWallet: avilablePayWithWallet,
         avilableCashOnDelivery: avilableCashOnDelivery,
         items: items.map((e) => e.toDomainModel()).toList());

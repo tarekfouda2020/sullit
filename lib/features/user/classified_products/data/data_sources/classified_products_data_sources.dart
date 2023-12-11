@@ -34,7 +34,7 @@ abstract class ClassifiedProductsDataSources {
 
   Future<Either<Failure, bool>> setAddFiles(List<File> param);
 
-  Future<Either<Failure, bool>> setAddClassifiedProduct(
+  Future<Either<Failure, CusProductModel>> setAddClassifiedProduct(
       AddClassifiedProductParams params);
 
   Future<Either<Failure, ClassifiedProductsModel>> getClassifiedProducts(
@@ -42,7 +42,7 @@ abstract class ClassifiedProductsDataSources {
 
   Future<Either<Failure, CusProductModel>> getClassifiedProduct(GenericParams param);
 
-  Future<Either<Failure, bool>> editClassifiedProduct(
+  Future<Either<Failure, CusProductModel>> editClassifiedProduct(
       EditClassifiedProductParams params);
 
   Future<Either<Failure, List<CusPackageModel>>> getPackages(bool param);

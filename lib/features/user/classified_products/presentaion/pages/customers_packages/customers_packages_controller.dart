@@ -55,8 +55,10 @@ class CustomerPackagesController {
     var params = _packageParams(id, method);
     var result = await SetPurchasePackage().call(params);
     if (result!.data != null) {
-      AutoRouter.of(context)
-          .push(PaymentRoute(transactionUrl: result.data!.transactionUrl!));
+      AutoRouter.of(context).pop().then((value) {
+        AutoRouter.of(context)
+            .push(PaymentRoute(transactionUrl: result.data!.transactionUrl!));
+      });
     } else {
       AutoRouter.of(context).pop(true);
       CustomToast.showSimpleToast(
@@ -70,14 +72,15 @@ class CustomerPackagesController {
     if (model.isFree) {
       setPurchasePackage(context: context, id: model.id);
       return;
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => BuildPaymentDialog(
+          controller: this,
+          id: model.id,
+        ),
+      );
     }
-    showDialog(
-      context: context,
-      builder: (context) => BuildPaymentDialog(
-        controller: this,
-        id: model.id,
-      ),
-    );
   }
 
   PurchasePackageParams _packageParams(int id, String? method) {

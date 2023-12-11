@@ -116,7 +116,7 @@ class ImplAuthDataSource extends AuthDataSource {
   }
 
   @override
-  Future<Either<Failure, String>> codeVerify(CodeVerifyParams params)async {
+  Future<Either<Failure, String>> codeVerify(CodeVerifyParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.codeVerify,
       requestMethod: RequestMethod.post,
@@ -129,14 +129,27 @@ class ImplAuthDataSource extends AuthDataSource {
   }
 
   @override
-  Future<Either<Failure, bool>> deleteAccount(NoParams params)async {
+  Future<Either<Failure, bool>> deleteAccount(NoParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.deleteAccount,
       requestMethod: RequestMethod.delete,
       responseType: ResType.type,
-      responseKey: (data) => data["key"]=="success",
+      responseKey: (data) => data["key"] == "success",
       showLoader: true,
     );
     return await GenericHttpImpl<bool>()(model);
+  }
+
+  @override
+  Future<Either<Failure, String>> resendVerifyCode(String param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.resendVerifyCode,
+      requestMethod: RequestMethod.post,
+      responseType: ResType.type,
+      requestBody: {"phone": param},
+      responseKey: (data) => data["msg"],
+      showLoader: true,
+    );
+    return await GenericHttpImpl<String>()(model);
   }
 }

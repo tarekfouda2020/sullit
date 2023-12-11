@@ -15,6 +15,7 @@ class ShippingSummary extends BaseDomainModel{
   String minimumOrderAmountMsg ;
   bool walletSystemActive ;
   String walletBalance ;
+  double walletBalanceValue;
   bool avilablePayWithWallet;
   bool avilableCashOnDelivery ;
   List<ShippingItem> items ;
@@ -33,6 +34,7 @@ class ShippingSummary extends BaseDomainModel{
     required this.minimumOrderAmountMsg,
     required this.walletSystemActive,
     required this.walletBalance,
+    required this.walletBalanceValue,
     required this.avilablePayWithWallet,
     required this.avilableCashOnDelivery,
     required this.items

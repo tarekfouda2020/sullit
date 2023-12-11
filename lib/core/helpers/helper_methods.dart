@@ -11,15 +11,17 @@ class HelperMethods{
   static HelperMethods get instance => HelperMethods._();
 
   void launchURL({required String url}) async {
-    if (!url.toString().startsWith("https")) {
-      url = "https://$url";
-    }
     var uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      CustomToast.showSimpleToast(msg: "من فضلك تآكد من الرابط");
-    }
+    await launchUrl(uri);
+    // if (!url.toString().startsWith("https")) {
+    //   url = "https://$url";
+    // }
+    // var uri = Uri.parse(url);
+    // if (await canLaunchUrl(uri)) {
+    //   await launchUrl(uri);
+    // } else {
+    //   CustomToast.showSimpleToast(msg: "من فضلك تآكد من الرابط");
+    // }
   }
 
   void launchWhatsApp(phone) async {

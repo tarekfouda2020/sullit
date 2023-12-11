@@ -22,6 +22,7 @@ _$_ShippingSummaryModel _$$_ShippingSummaryModelFromJson(
       minimumOrderAmountMsg: json['minimum_order_amount_msg'] as String,
       walletSystemActive: json['wallet_system_active'] as bool,
       walletBalance: json['wallet_balance'] as String,
+      walletBalanceValue: (json['wallet_balance_value'] as num).toDouble(),
       avilablePayWithWallet: json['avilable_pay_with_wallet'] as bool,
       avilableCashOnDelivery: json['avilable_cash_on_delivery'] as bool,
       items: (json['items'] as List<dynamic>)
@@ -45,6 +46,7 @@ Map<String, dynamic> _$$_ShippingSummaryModelToJson(
       'minimum_order_amount_msg': instance.minimumOrderAmountMsg,
       'wallet_system_active': instance.walletSystemActive,
       'wallet_balance': instance.walletBalance,
+      'wallet_balance_value': instance.walletBalanceValue,
       'avilable_pay_with_wallet': instance.avilablePayWithWallet,
       'avilable_cash_on_delivery': instance.avilableCashOnDelivery,
       'items': instance.items.map((e) => e.toJson()).toList(),

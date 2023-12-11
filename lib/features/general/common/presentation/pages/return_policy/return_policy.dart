@@ -20,7 +20,7 @@ class _ReturnPolicyState extends State<ReturnPolicy> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(title: tr('returnPolicy')),
+      appBar: DefaultAppBar(title: tr('returnPolicy')),
       body: BlocBuilder<GenericBloc<String?>, GenericState<String?>>(
         bloc: controller.privacyBloc,
         builder: (context, state) {
@@ -29,6 +29,11 @@ class _ReturnPolicyState extends State<ReturnPolicy> {
               padding: Dimens.paddingAll15PX,
               child: Html(
                 data: state.data,
+                onLinkTap: (url, _, __) {
+                  HelperMethods.instance.launchURL(
+                    url: url!,
+                  );
+                },
                 style: {
                   "body": Style(
                     color: Colors.black,

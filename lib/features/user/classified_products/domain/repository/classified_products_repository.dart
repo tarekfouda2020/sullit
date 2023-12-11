@@ -32,7 +32,7 @@ abstract class ClassifiedProductsRepository {
 
   Future<Either<Failure, bool>> setUploadFiles(List<File> param);
 
-  Future<Either<Failure, bool>> setAddClassifiedProducts(
+  Future<Either<Failure, CusProduct>> setAddClassifiedProducts(
       AddClassifiedProductParams param);
 
   Future<Either<Failure, ClassifiedProductsDomainModel>> getClassifiedProducts(
@@ -40,7 +40,7 @@ abstract class ClassifiedProductsRepository {
 
   Future<Either<Failure, CusProduct>> getClassifiedProduct(GenericParams param);
 
-  Future<Either<Failure, bool>> updateClassifiedProduct(
+  Future<Either<Failure, CusProduct>> updateClassifiedProduct(
       EditClassifiedProductParams params);
 
   Future<Either<Failure, List<CusPackage>>> getPackages(bool param);

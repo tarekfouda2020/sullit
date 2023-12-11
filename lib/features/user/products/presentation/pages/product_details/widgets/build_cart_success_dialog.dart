@@ -30,7 +30,8 @@ class BuildCartSuccessDialog extends StatelessWidget {
                 Expanded(
                   child: DefaultButton(
                     title: tr('backToShop'),
-                    onTap: () => AutoRouter.of(context).pop(),
+                    onTap: () =>
+                        AutoRouter.of(context).push(HomeRoute(index: 0)),
                     borderColor: context.colors.primary,
                     color: context.colors.white,
                     textColor: context.colors.primary,

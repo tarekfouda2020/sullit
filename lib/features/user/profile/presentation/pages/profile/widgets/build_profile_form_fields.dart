@@ -8,6 +8,8 @@ class BuildProfileFormFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var user = context.watch<UserCubit>().state.model;
+
     return Form(
       key: controller.formKey,
       child: Column(
@@ -22,24 +24,56 @@ class BuildProfileFormFields extends StatelessWidget {
             validate: (value) => value?.validateEmpty(),
             label: tr('yourName'),
           ),
-          GenericTextField(
-            fillColor: context.colors.white,
-            controller: controller.emailController,
-            fieldTypes: FieldTypes.normal,
-            type: TextInputType.emailAddress,
-            action: TextInputAction.next,
-            validate: (value) => value?.validateEmail(),
-            label: tr('yourEmail'),
-            margin: Dimens.paddingVertical15PX,
+          Row(
+            children: [
+              Expanded(
+                flex: 3,
+                child: GenericTextField(
+                  fillColor: context.colors.white,
+                  controller: controller.emailController,
+                  fieldTypes: FieldTypes.normal,
+                  type: TextInputType.emailAddress,
+                  action: TextInputAction.next,
+                  validate: (value) => value?.validateEmail(),
+                  label: tr('yourEmail'),
+                  margin: Dimens.paddingVertical15PX,
+                ),
+              ),
+              BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+                bloc: controller.verifyEmailCubit,
+                builder: (context, state) {
+                  return Visibility(
+                    visible: !state.data,
+                    child: Expanded(
+                      child: InkWell(
+                        onTap: () => controller.onActivePhone(context),
+                        child: Container(
+                          padding: Dimens.paddingVertical15PX,
+                          decoration: BoxDecoration(
+                            borderRadius: Dimens.borderRadius5PX,
+                            color: context.colors.primary,
+                          ),
+                          child: Text(
+                            tr('verifyPhone'),
+                            textAlign: TextAlign.center,
+                            style: AppTextStyle.s11_w400(
+                              color: context.colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
-          BlocBuilder<GenericBloc<Country?>,
-              GenericState<Country?>>(
+          BlocBuilder<GenericBloc<Country?>, GenericState<Country?>>(
             bloc: controller.countryCubit,
             builder: (context, state) {
               return Row(
                 children: [
                   Expanded(
-                    flex: 1,
                     child: GenericTextField(
                       fillColor: context.colors.white,
                       controller: TextEditingController(
@@ -48,7 +82,8 @@ class BuildProfileFormFields extends StatelessWidget {
                       type: TextInputType.text,
                       action: TextInputAction.done,
                       label: "Country Code",
-                      validate: (value) => value!.validateEmpty(),
+                      validate: (value) => value!
+                          .validateCountryCode(controller.phoneController.text),
                       onTab: () => controller.showCountryCode(context),
                     ),
                   ),
@@ -63,10 +98,41 @@ class BuildProfileFormFields extends StatelessWidget {
                       action: TextInputAction.done,
                       validate: (value) =>
                           ((state.data?.callingCode ?? "") + (value ?? ""))
-                              .validatePhone(),
+                              .validatePhoneOrNull(),
                       label: "Phone",
                       margin: Dimens.paddingVertical10PX,
                     ),
+                  ),
+                  Gaps.hGap5,
+                  BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+                    bloc: controller.verifyPhoneCubit,
+                    builder: (context, state) {
+                      return Visibility(
+                        visible: user?.fullPhone!="",
+                        child: Visibility(
+                          visible: !state.data,
+                          child: Expanded(
+                            child: InkWell(
+                              onTap: () => controller.onActivePhone(context),
+                              child: Container(
+                                padding: Dimens.paddingVertical15PX,
+                                decoration: BoxDecoration(
+                                  borderRadius: Dimens.borderRadius5PX,
+                                  color: context.colors.primary,
+                                ),
+                                child: Text(
+                                  tr('verifyPhone'),
+                                  textAlign: TextAlign.center,
+                                  style: AppTextStyle.s11_w400(
+                                    color: context.colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ],
               );
@@ -81,7 +147,7 @@ class BuildProfileFormFields extends StatelessWidget {
             type: TextInputType.text,
             margin: Dimens.paddingVertical15PX,
             onTab: () => controller.navigateToAddresses(context),
-            validate: (value) => value!.validateEmpty(),
+            validate: (value) => value!.noValidate(),
           ),
         ],
       ),

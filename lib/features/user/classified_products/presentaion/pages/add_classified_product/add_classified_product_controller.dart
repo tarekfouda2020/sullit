@@ -49,14 +49,13 @@ class AddClassifiedProductsController {
     if (formKey.currentState!.validate()) {
       _onCheckData();
       var params = _addProductParams();
-      print(">>>>>${params.toJson()}");
-      var data = await SetAddClassifiedProducts().call(params);
-      if (data) {
+      var result = await SetAddClassifiedProducts().call(params);
+      if (result != null) {
         CustomToast.showSimpleToast(
           msg: tr('productAddedSuccess'),
           type: ToastType.success,
         );
-        AutoRouter.of(context).push(const ClassifiedProductsRoute());
+        AutoRouter.of(context).pop(result);
       }
     }
   }

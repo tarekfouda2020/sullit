@@ -47,6 +47,7 @@ class ProductsHelper {
       return 0;
     } else {
       var isAdded = await isAddedToCompared(product);
+      print("======>$isAdded");
       if (isAdded == true) {
         var data = getIt<ComparedProductsDb>().deleteItem(product.id!);
         CustomToast.showSimpleToast(

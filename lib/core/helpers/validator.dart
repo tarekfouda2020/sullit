@@ -14,6 +14,13 @@ extension Validator on String {
     return null;
   }
 
+  String? validateCountryCode(String value, {String? message}) {
+    if (trim().isEmpty && value.isNotEmpty) {
+      return message ?? tr("fillField");
+    }
+    return null;
+  }
+
   String? validateNumber({String? message}) {
     if (trim().isEmpty) {
       return message ?? tr("fillField");

@@ -17,6 +17,7 @@ class BuildRegisterFormFields extends StatelessWidget {
           children: [
             BuildInputLabel(label: tr('userName')),
             GenericTextField(
+              hint: tr('userName'),
               fillColor: context.colors.authField,
               enableBorderColor: context.colors.white,
               focusBorderColor: context.colors.white,
@@ -25,9 +26,11 @@ class BuildRegisterFormFields extends StatelessWidget {
               type: TextInputType.text,
               action: TextInputAction.next,
               validate: (value) => value?.validateName(),
-              margin: const EdgeInsets.only(bottom: Dimens.dp12,top: Dimens.dp8),
+              margin:
+                  const EdgeInsets.only(bottom: Dimens.dp12, top: Dimens.dp8),
               radius: Dimens.borderRadius40PX,
             ),
+            BuildInputLabel(label: tr('email')),
             GenericTextField(
               fillColor: context.colors.authField,
               enableBorderColor: context.colors.white,
@@ -36,12 +39,12 @@ class BuildRegisterFormFields extends StatelessWidget {
               fieldTypes: FieldTypes.normal,
               margin: const EdgeInsets.symmetric(vertical: Dimens.dp12),
               type: TextInputType.emailAddress,
-              label: tr('email'),
+              hint: tr('email'),
               action: TextInputAction.next,
               validate: (value) => value?.validateEmail(),
               radius: Dimens.borderRadius40PX,
-
             ),
+            BuildInputLabel(label: tr('password')),
             BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
               bloc: registerController.passwordCubit,
               builder: (context, state) {
@@ -55,20 +58,18 @@ class BuildRegisterFormFields extends StatelessWidget {
                   type: TextInputType.text,
                   action: TextInputAction.done,
                   validate: (value) => value?.validatePassword(),
-                  label: tr('password'),
+                  hint: tr('password'),
                   margin: const EdgeInsets.symmetric(vertical: Dimens.dp12),
                   radius: Dimens.borderRadius40PX,
-                  // suffixIcon: IconButton(
-                  //   onPressed: () => registerController.passwordCubit
-                  //       .onUpdateData(!state.data),
-                  //   icon: Icon(
-                  //     !state.data
-                  //         ? Icons.visibility
-                  //         : Icons.visibility_off,
-                  //     size: 17.sp,
-                  //     color: context.colors.primary,
-                  //   ),
-                  // ),
+                  suffixIcon: IconButton(
+                    onPressed: () => registerController.passwordCubit
+                        .onUpdateData(!state.data),
+                    icon: Icon(
+                      !state.data ? Icons.visibility : Icons.visibility_off,
+                      size: 17.sp,
+                      color: context.colors.black,
+                    ),
+                  ),
                 );
               },
             ),
