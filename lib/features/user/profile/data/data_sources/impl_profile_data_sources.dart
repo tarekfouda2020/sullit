@@ -43,7 +43,7 @@ class ImplProfileDataSources extends ProfileDataSources   {
   @override
   Future<Either<Failure, UserModel>> getProfile(bool params)async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.updateProfile,
+      url: ApiNames.getProfile,
       responseType: ResType.model,
       requestMethod: RequestMethod.get,
       responseKey: (data) => data["data"]["user"],
