@@ -39,9 +39,8 @@ class ProfileController {
       addressModel = user?.address;
       addressController.text = user?.address?.address ?? "";
       verifyPhoneCubit.onUpdateData(user?.isPhoneActive ?? false);
-      verifyEmailCubit.onUpdateData(user?.isEmailActive??false);
+      verifyEmailCubit.onUpdateData(user?.isEmailActive ?? false);
     }
-    print("=======>${user?.toJson()}");
   }
 
   void showCountryCode(BuildContext context) async {
@@ -125,7 +124,10 @@ class ProfileController {
       if (formKey.currentState!.validate()) {
         var params = _profileParams();
         if (isEmailChanged(context)) {
-          setEditProfileEmail(context);
+          var data = await SetEditProfileEmail().call(emailController.text);
+          if (data) {
+            verifyEmailCubit.onUpdateData(false);
+          }
         }
         if (isAddressChanged(context)) {
           if (addressModel!.isActive == true) {
@@ -151,18 +153,19 @@ class ProfileController {
     }
   }
 
-  void setEditProfileEmail(BuildContext context) async {
-    print("@@@${emailController.text}");
-    var result = await SetEditProfileEmail().call(emailController.text);
-    if (result) {
-      var result = await  AutoRouter.of(context)
-          .push(VerifyRegisterRoute(email: emailController.text));
-      if(result==true){
-       var data= await GetProfile().call(true);
-       context.read<UserCubit>().onUpdateUserData(data!);
-
-
-      }
+  void onActiveEmail(BuildContext context) async {
+    var result = await AutoRouter.of(context)
+        .push(VerifyRegisterRoute(email: emailController.text));
+    if (result == true) {
+      var data = await GetProfile().call(true);
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      UserDomainModel model = data!;
+      await preferences.setString(
+        "user",
+        json.encode(model.toJson()),
+      );
+      context.read<UserCubit>().onUpdateUserData(data);
+      getInitialData(context);
     }
   }
 

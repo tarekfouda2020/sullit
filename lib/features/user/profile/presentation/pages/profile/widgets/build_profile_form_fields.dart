@@ -39,6 +39,7 @@ class BuildProfileFormFields extends StatelessWidget {
                   margin: Dimens.paddingVertical15PX,
                 ),
               ),
+              Gaps.hGap5,
               BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
                 bloc: controller.verifyEmailCubit,
                 builder: (context, state) {
@@ -46,7 +47,7 @@ class BuildProfileFormFields extends StatelessWidget {
                     visible: !state.data,
                     child: Expanded(
                       child: InkWell(
-                        onTap: () => controller.onActivePhone(context),
+                        onTap: () => controller.onActiveEmail(context),
                         child: Container(
                           padding: Dimens.paddingVertical15PX,
                           decoration: BoxDecoration(
@@ -54,7 +55,7 @@ class BuildProfileFormFields extends StatelessWidget {
                             color: context.colors.primary,
                           ),
                           child: Text(
-                            tr('verifyPhone'),
+                            tr('verifyEmail'),
                             textAlign: TextAlign.center,
                             style: AppTextStyle.s11_w400(
                               color: context.colors.white,

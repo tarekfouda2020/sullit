@@ -328,7 +328,8 @@
   "seller": "Seller",
   "verifyAddress": "Please verify address phone first",
   "reviewProduct": "Review Product",
-  "reviewSuccess": "Review has been submitted successfully"
+  "reviewSuccess": "Review has been submitted successfully",
+  "verifyEmail": "Verify Email"
 }
 
 
