@@ -30,7 +30,8 @@ class TicketsDetailsController {
       var data = await SetAddTicketReply().call(params);
       if (data != null) {
         AutoRouter.of(context).pop();
-        CustomToast.showSimpleToast(msg: 'Reply has been sent successfully');
+        CustomToast.showSimpleToast(
+            msg: 'Reply has been sent successfully', type: ToastType.success);
         description.clear();
         imagesCubit.onUpdateData([]);
         ticketCubit.state.data?.replies?.insert(0, data);
