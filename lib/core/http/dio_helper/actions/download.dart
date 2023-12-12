@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/http/models/download_request_model.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../errors/failures.dart';
@@ -24,7 +25,7 @@ class Download extends DioHelper {
       return Right(response);
     } on DioError catch (e) {
       getIt<LoadingHelper>().dismissDialog();
-      CustomToast.showSimpleToast(msg: "Check Server");
+      CustomToast.showSimpleToast(msg: tr("checkServer"));
       return Left(ServerFailure());
     }
   }

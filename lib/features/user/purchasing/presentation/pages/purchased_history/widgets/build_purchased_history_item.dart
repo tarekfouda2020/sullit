@@ -29,7 +29,7 @@ class BuildPurchasedHistoryItem extends StatelessWidget {
                   GestureDetector(
                     onLongPress: (){
                       Clipboard.setData( ClipboardData(text: order.code)).then((value){
-                        CustomToast.showSimpleToast(msg: "Copied to clipboard");
+                        CustomToast.showSimpleToast(msg: "Copied to clipboard",type: ToastType.success);
                       });
                     },
                       child : Text(

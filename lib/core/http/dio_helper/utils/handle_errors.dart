@@ -5,6 +5,7 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,7 +18,7 @@ class HandleErrors {
   void catchError({Response? response, required Function(dynamic) errorFunc}) {
     if (response == null) {
       log("failed response Check Server");
-      CustomToast.showSimpleToast(msg: "Check Server");
+      CustomToast.showSimpleToast(msg: tr("checkServer"));
     } else {
       log("failed response ${response.statusCode}");
       log("failed response ${response.data}");
@@ -39,7 +40,7 @@ class HandleErrors {
             CustomToast.showSnakeBar(message.toString());
             break;
           case 502:
-            CustomToast.showSnakeBar("check your request");
+            CustomToast.showSnakeBar(tr('checkYourRequest'));
             break;
           case 422:
           case 400:
@@ -78,7 +79,7 @@ class HandleErrors {
   void _tokenExpired() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove("user");
-    CustomToast.showSnakeBar("You don't have permission");
+    CustomToast.showSnakeBar(tr('noPermission'));
     // Phoenix.rebirth(getIt<BuildContext>());
   }
 }

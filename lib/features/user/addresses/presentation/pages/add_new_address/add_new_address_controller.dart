@@ -80,7 +80,7 @@ class AddNewAddressController {
       var params = _addressParams();
       var result = await SetAddNewAddress().call(params);
       if (result != null) {
-        CustomToast.showSimpleToast(msg: tr("msgInfoAddedSuccess"));
+        CustomToast.showSimpleToast(msg: tr("msgInfoAddedSuccess"),type: ToastType.success);
         AutoRouter.of(context).pop(result);
       }
     }

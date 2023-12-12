@@ -27,7 +27,7 @@ class PaymentController {
         } else if (url.contains('success')) {
           flutterWebViewPlugin.close();
           CustomToast.showSimpleToast(
-              msg: 'Payment done successfully', type: ToastType.success);
+              msg: tr('paymentDone'), type: ToastType.success);
           AutoRouter.of(context).pop();
         }
       },

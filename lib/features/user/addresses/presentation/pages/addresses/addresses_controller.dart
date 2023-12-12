@@ -14,7 +14,8 @@ class AddressesController {
   Future<void> deleteAddress(Address model) async {
     var data = await SetDeleteAddress().call(model.id!);
     if (data) {
-      CustomToast.showSimpleToast(msg: "Address deleted successfully");
+      CustomToast.showSimpleToast(
+          msg: tr('addressDeleted'), type: ToastType.success);
       addressesBloc.state.data.remove(model);
       addressesBloc.onUpdateData(addressesBloc.state.data);
     }

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
@@ -26,7 +27,7 @@ class AuthHelper {
         context.read<UserCubit>().onUpdateUserData(UserDomainModel());
         GlobalState.instance.set("token", null);
         CustomToast.showSimpleToast(
-          msg: "Successfully Logged Out",
+          msg: tr('successLoggedOut'),
           type: ToastType.success,
         );
         AutoRouter.of(context).push(
@@ -45,7 +46,7 @@ class AuthHelper {
         context.read<UserCubit>().onUpdateUserData(UserDomainModel());
         GlobalState.instance.set("token", null);
         CustomToast.showSimpleToast(
-          msg: "Successfully Delete Account",
+          msg: tr('successDeletedAccount'),
           type: ToastType.success,
         );
         AutoRouter.of(context).push(

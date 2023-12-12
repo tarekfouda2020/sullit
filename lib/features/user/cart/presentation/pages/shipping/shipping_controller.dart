@@ -58,7 +58,7 @@ class ShippingController {
       var data = await AddCartAddress().call(selectedList.first.id!);
       if (data) {
         CustomToast.showSimpleToast(
-            msg: tr('addressAdded'));
+            msg: tr('addressAdded'),type: ToastType.success);
         AutoRouter.of(context).push(const DeliveryRoute());
       }
     } else {
