@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:geocode/geocode.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -21,7 +22,7 @@ class Utilities {
   void copyToClipBoard(String text) {
     Clipboard.setData(ClipboardData(text: text)).then(
       (value) {
-        CustomToast.showSnakeBar("Copied successfully",
+        CustomToast.showSnakeBar(tr("copiedSuccessfully"),
             type: ToastType.success);
       },
     );

@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/set_toggle_favourite.dart';
@@ -27,12 +28,12 @@ class ProductsHelper {
     var data = await SetToggleFavourite().call(id);
     if (data) {
       CustomToast.showSimpleToast(
-        msg: "Item has been added to wishlist",
+        msg: tr('itemAddedToWishlist'),
         type: ToastType.success,
       );
     } else {
       CustomToast.showSimpleToast(
-        msg: "Item has been removed from wishlist",
+        msg: tr('itemRemovedFromWishlist'),
         type: ToastType.success,
       );
     }
@@ -51,7 +52,7 @@ class ProductsHelper {
       if (isAdded == true) {
         var data = getIt<ComparedProductsDb>().deleteItem(product.id!);
         CustomToast.showSimpleToast(
-          msg: "Item Deleted From Compare Successfully",
+          msg: tr('itemDeletedFromCompare'),
           type: ToastType.success,
         );
         product.isAddedTCompare = false;
@@ -66,7 +67,7 @@ class ProductsHelper {
     var params = _comparedParams(product, context);
     var data = getIt<ComparedProductsDb>().insertItem(params);
     CustomToast.showSimpleToast(
-      msg: "Item Added To Compare Successfully",
+      msg: tr('itemAddedToCompare'),
       type: ToastType.success,
     );
     product.isAddedTCompare = true;

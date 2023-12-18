@@ -7,6 +7,7 @@ import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/get_device_id.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/add_product_to_cart.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/add_product_to_cart_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/variant_price_params.dart';
@@ -75,7 +76,7 @@ class CartHelper {
         return;
       }
     } else {
-      CustomToast.showSimpleToast(msg: "Out Of Stock");
+      CustomToast.showSimpleToast(msg: tr('outOfStock'));
       return;
     }
   }
@@ -96,13 +97,13 @@ class CartHelper {
     var params = await _addToCartParams(variantId, qty);
     log(">>>>>${params.toJson()}");
     if (params.variantId == null) {
-      CustomToast.showSimpleToast(msg: 'Variant not found. !');
+      CustomToast.showSimpleToast(msg: tr('variantNotFound'));
       return;
     }
     var data = await AddProductToCart().call(params);
     if (data != '') {
       CustomToast.showSimpleToast(
-          msg: 'Product added to your cart.', type: ToastType.success);
+          msg: tr('productAddedToYourCart'), type: ToastType.success);
     }
     onAddCartFunc();
   }

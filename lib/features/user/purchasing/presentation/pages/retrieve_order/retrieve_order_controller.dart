@@ -68,7 +68,7 @@ class RetrieveOrderController {
       }
       var data = await ReturnOrder().call(params);
       if (data) {
-        CustomToast.showSimpleToast(msg: tr('orderReturnedSuccessfully'));
+        CustomToast.showSimpleToast(msg: tr('orderReturnedSuccessfully'),type: ToastType.success);
         AutoRouter.of(context).push(HomeRoute(index: 0));
       }
     }

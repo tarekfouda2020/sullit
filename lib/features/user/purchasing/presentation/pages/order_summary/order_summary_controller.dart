@@ -33,7 +33,7 @@ class OrderSummaryController {
         model.review = result;
         model.isAvailableReview = false;
         orderDetailsBloc.onUpdateData(orderDetailsBloc.state.data);
-        CustomToast.showSimpleToast(msg: tr("reviewSuccess"));
+        CustomToast.showSimpleToast(msg: tr("reviewSuccess"),type: ToastType.success);
       }
       AutoRouter.of(context).pop();
     }

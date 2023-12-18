@@ -22,13 +22,13 @@ class DeliveryController {
 
   Future<void> setCartStoreShipping(BuildContext context) async {
     if (selectedItem?.deliveryType == 1 && nearestPointModel == null) {
-      CustomToast.showSimpleToast(msg: "Please choose nearest pickup point");
+      CustomToast.showSimpleToast(msg: tr("chooseNearestPickupPoint"));
       return;
     }
     var params = _setCartStoreParams();
     var data = await SetCartStoreShipping().call(params);
     if (data != null) {
-      CustomToast.showSimpleToast(msg: tr('shippingAdded'));
+      CustomToast.showSimpleToast(msg: tr('shippingAdded'),type: ToastType.success);
       AutoRouter.of(context).push(CartPaymentRoute(shipping: data));
     }
   }

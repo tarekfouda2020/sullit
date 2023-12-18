@@ -35,15 +35,21 @@ class CartController {
       cartItemsBloc.state.data.calculableTotal = newSubTotal;
       cartItemsBloc.state.data.items!.remove(cartItem);
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
-      CustomToast.showSimpleToast(msg: tr('itemDeleted'));
+      CustomToast.showSimpleToast(
+          msg: tr('itemDeleted'), type: ToastType.success);
       // getCartItems();
     }
   }
 
   void onIncreaseCart(CartItem cartItem) {
-    cartItem.quantity++;
-    cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
-    updateCartItem(cartItem.quantity, cartItem.id);
+    if (cartItem.quantity < cartItem.stockQty) {
+      cartItem.quantity++;
+      cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+      updateCartItem(cartItem.quantity, cartItem.id);
+    } else {
+      CustomToast.showSimpleToast(
+          msg: 'only ${cartItem.stockQty} item(s) are available');
+    }
   }
 
   void onDecreaseCart(CartItem cartItem) {

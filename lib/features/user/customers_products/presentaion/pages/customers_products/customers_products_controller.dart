@@ -6,8 +6,7 @@ class CustomerProductsController {
   final GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
   final GenericBloc<List<ProductSpecifications>> subCategoriesCubit =
       GenericBloc([]);
-  final GenericBloc<ProductSpecifications?> specificationsCubit =
-      GenericBloc(null);
+  final GenericBloc<ProductSpecifications?> specificationsCubit = GenericBloc(null);
   final PagingController<int, CustomerProduct> pagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 12;

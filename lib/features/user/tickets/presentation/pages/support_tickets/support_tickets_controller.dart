@@ -21,12 +21,13 @@ class SupportTicketsController {
       var params = _createTicketParams();
       var data = await SetCreateTicket().call(params);
       if (data != null) {
-        CustomToast.showSimpleToast(msg: tr('ticketSent'));
+        CustomToast.showSimpleToast(
+            msg: tr('ticketSent'), type: ToastType.success);
         AutoRouter.of(context).pop();
         subjectController.clear();
         detailsController.clear();
         imagesCubit.onUpdateData([]);
-        ticketsBloc.state.data.insert(0,data);
+        ticketsBloc.state.data.insert(0, data);
         ticketsBloc.onUpdateData(ticketsBloc.state.data);
       }
     }

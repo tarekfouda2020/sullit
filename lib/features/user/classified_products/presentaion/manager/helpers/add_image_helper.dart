@@ -6,6 +6,7 @@ import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/widgets/custom_dropDown/CustomDropDown.dart';
 import 'package:flutter_tdd/features/user/classified_products/data/enums/enums.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/entities/uploaded_files_params.dart';
@@ -58,7 +59,7 @@ class AddImageHelper {
   Future<void> setUploadFile(BuildContext context, File file) async {
     var data = await SetUploadFile().call(file);
     if (data) {
-      CustomToast.showSimpleToast(msg: 'successfully sent.');
+      CustomToast.showSimpleToast(msg: tr('successfullySent'),type: ToastType.success);
       AutoRouter.of(context).pop();
       return;
     }
@@ -67,7 +68,7 @@ class AddImageHelper {
   Future<void> setUploadFiles(BuildContext context, List<File> files) async {
     var data = await SetUploadFiles().call(files);
     if (data) {
-      CustomToast.showSimpleToast(msg: 'Successfully Uploaded.');
+      CustomToast.showSimpleToast(msg: tr('successfullyUploaded'),type: ToastType.success);
       AutoRouter.of(context).pop();
       return;
     }
