@@ -8,15 +8,22 @@ class Profile extends StatefulWidget {
   _ProfileState createState() => _ProfileState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ProfileState extends State<Profile>with WidgetsBindingObserver  {
   late ProfileController controller;
 
   @override
   void initState() {
     controller = ProfileController(context);
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
 
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      controller.onSaveUserData(context);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

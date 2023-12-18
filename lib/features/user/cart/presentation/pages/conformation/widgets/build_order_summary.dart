@@ -62,8 +62,8 @@ class BuildOrderSummary extends StatelessWidget {
                 value: summary.summary!.shippingAddress,
               ),
               BuildSummaryItem(
-                title: summary.summary!.paymentMethod,
-                value: tr('wallet'),
+                title: "${tr('paymentMethod')} :",
+                value:summary.summary!.paymentMethod,
                 showDivider: false,
               ),
             ],

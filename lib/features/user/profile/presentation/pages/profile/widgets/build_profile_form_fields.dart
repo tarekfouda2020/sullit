@@ -24,50 +24,15 @@ class BuildProfileFormFields extends StatelessWidget {
             validate: (value) => value?.validateEmpty(),
             label: tr('yourName'),
           ),
-          Row(
-            children: [
-              Expanded(
-                flex: 3,
-                child: GenericTextField(
-                  fillColor: context.colors.white,
-                  controller: controller.emailController,
-                  fieldTypes: FieldTypes.normal,
-                  type: TextInputType.emailAddress,
-                  action: TextInputAction.next,
-                  validate: (value) => value?.validateEmail(),
-                  label: tr('yourEmail'),
-                  margin: Dimens.paddingVertical15PX,
-                ),
-              ),
-              Gaps.hGap5,
-              BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-                bloc: controller.verifyEmailCubit,
-                builder: (context, state) {
-                  return Visibility(
-                    visible: !state.data,
-                    child: Expanded(
-                      child: InkWell(
-                        onTap: () => controller.onActiveEmail(context),
-                        child: Container(
-                          padding: Dimens.paddingVertical15PX,
-                          decoration: BoxDecoration(
-                            borderRadius: Dimens.borderRadius5PX,
-                            color: context.colors.primary,
-                          ),
-                          child: Text(
-                            tr('verifyEmail'),
-                            textAlign: TextAlign.center,
-                            style: AppTextStyle.s11_w400(
-                              color: context.colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ],
+          GenericTextField(
+            fillColor: context.colors.white,
+            controller: controller.emailController,
+            fieldTypes: FieldTypes.normal,
+            type: TextInputType.emailAddress,
+            action: TextInputAction.next,
+            validate: (value) => value?.validateEmail(),
+            label: tr('yourEmail'),
+            margin: Dimens.paddingVertical15PX,
           ),
           BlocBuilder<GenericBloc<Country?>, GenericState<Country?>>(
             bloc: controller.countryCubit,

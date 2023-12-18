@@ -5,11 +5,16 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
+import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
+import 'package:flutter_tdd/features/user/profile/domain/use_cases/get_profile.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'helper_methods.dart';
 
@@ -47,13 +52,11 @@ class GlobalNotification {
       messaging.setForegroundNotificationPresentationOptions();
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
         print("_____________________Message data:${message.data}");
-        print(
-            "_____________________notification:${message.notification?.title}");
+        print("___________________notification:${message.notification?.title}");
         _showLocalNotification(message);
         _onMessageStreamController.add(message.data);
-        if (int.parse(message.data["type"] ?? "0") == -1) {
-          HelperMethods.instance.clearSavedData();
-          // AutoRouter.of(context).push(const LoginRoute());
+        if (message.data['type'] == "email_changed") {
+          onSaveUserData();
         }
       });
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
@@ -101,5 +104,14 @@ class GlobalNotification {
     int id = data["item_type_id"];
     var context = getIt<GlobalContext>().context();
     AutoRouter.of(context).push(OrderSummaryRoute(orderId: id));
+  }
+
+  static void onSaveUserData() async {
+    var context = getIt<GlobalContext>().context();
+    var data = await GetProfile().call(true);
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    UserDomainModel model = data!;
+    await pref.setString("user", json.encode(model.toJson()));
+    context.read<UserCubit>().onUpdateUserData(data);
   }
 }

@@ -21,7 +21,7 @@ class ProfileController {
       TextEditingController();
   final GenericBloc<Country?> countryCubit = GenericBloc(null);
   final GenericBloc<bool> verifyPhoneCubit = GenericBloc(false);
-  final GenericBloc<bool> verifyEmailCubit = GenericBloc(false);
+  // final GenericBloc<bool> verifyEmailCubit = GenericBloc(false);
 
   Address? addressModel;
 
@@ -39,7 +39,6 @@ class ProfileController {
       addressModel = user?.address;
       addressController.text = user?.address?.address ?? "";
       verifyPhoneCubit.onUpdateData(user?.isPhoneActive ?? false);
-      verifyEmailCubit.onUpdateData(user?.isEmailActive ?? false);
     }
   }
 
@@ -124,10 +123,11 @@ class ProfileController {
       if (formKey.currentState!.validate()) {
         var params = _profileParams();
         if (isEmailChanged(context)) {
-          var data = await SetEditProfileEmail().call(emailController.text);
-          if (data) {
-            verifyEmailCubit.onUpdateData(false);
-          }
+          await SetEditProfileEmail().call(emailController.text);
+          CustomToast.showSimpleToast(
+            msg: tr("verifyEmailMsg"),
+            type: ToastType.success,
+          );
         }
         if (isAddressChanged(context)) {
           if (addressModel!.isActive == true) {
@@ -153,29 +153,23 @@ class ProfileController {
     }
   }
 
-  void onActiveEmail(BuildContext context) async {
-    var result = await AutoRouter.of(context)
-        .push(VerifyRegisterRoute(email: emailController.text));
-    if (result == true) {
-      var data = await GetProfile().call(true);
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      UserDomainModel model = data!;
-      await preferences.setString(
-        "user",
-        json.encode(model.toJson()),
-      );
-      context.read<UserCubit>().onUpdateUserData(data);
-      getInitialData(context);
-    }
+  void onSaveUserData(BuildContext context) async {
+    var data = await GetProfile().call(true);
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    UserDomainModel model = data!;
+    await pref.setString("user", json.encode(model.toJson()));
+    context.read<UserCubit>().onUpdateUserData(data);
   }
+
+  // void onActiveEmail(BuildContext context) async {
+  //   await AutoRouter.of(context)
+  //       .push(VerifyRegisterRoute(email: emailController.text));
+  // }
 
   void _cashAndRoute(UserDomainModel data, BuildContext context) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     UserDomainModel model = data;
-    await preferences.setString(
-      "user",
-      json.encode(model.toJson()),
-    );
+    await preferences.setString("user", json.encode(model.toJson()));
     context.read<UserCubit>().onUpdateUserData(model);
     verifyPhoneCubit.onUpdateData(model.isPhoneActive!);
     CustomToast.showSimpleToast(

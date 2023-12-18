@@ -329,7 +329,8 @@
   "verifyAddress": "Please verify address phone first",
   "reviewProduct": "Review Product",
   "reviewSuccess": "Review has been submitted successfully",
-  "verifyEmail": "Verify Email"
+  "verifyEmail": "Verify Email",
+  "verifyEmailMsg": "A verification mail has been sent to the mail you provided us with"
 }
 
 
