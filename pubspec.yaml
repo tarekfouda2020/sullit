@@ -7,7 +7,7 @@ publish_to: 'none'
 #version: 1.0.7+8
 
 #ios live
-version: 1.0.2+1
+version: 1.0.3+1
 
 
 environment:
