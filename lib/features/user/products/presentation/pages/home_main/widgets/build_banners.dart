@@ -16,18 +16,40 @@ class BuildBanners extends StatelessWidget {
         ),
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
-          height: 90.spMin,
-          child: Swiper(
-            itemBuilder: (context, index) {
-              return CachedImage(
-                url: banners[index].photo,
+          height: 130.spMin,
+          child: Visibility(
+            visible: banners.length > 1,
+            replacement: InkWell(
+              onTap: () => HelperMethods.instance.launchURL(
+                url: banners.first.url ?? "",
+              ),
+              child: CachedImage(
+                url: banners.first.photo,
                 fit: BoxFit.fill,
                 borderRadius: Dimens.borderRadius5PX,
-                height: 90.spMin,
+                height: 130.spMin,
                 imgMargin: Dimens.paddingHorizontal5PX,
-              );
-            },
-            itemCount: banners.length,
+              ),
+            ),
+            child: Swiper(
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () => HelperMethods.instance.launchURL(
+                    url: banners[index].url ?? "",
+                  ),
+                  child: CachedImage(
+                    url: banners[index].photo,
+                    fit: BoxFit.fill,
+                    borderRadius: Dimens.borderRadius5PX,
+                    height: 130.spMin,
+                    imgMargin: Dimens.paddingHorizontal5PX,
+                  ),
+                );
+              },
+              viewportFraction: 0.9,
+              autoplay: false,
+              itemCount: banners.length,
+            ),
           ),
         ),
       ),

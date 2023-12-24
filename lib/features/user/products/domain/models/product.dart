@@ -12,23 +12,23 @@ import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/variant.dart';
 
 class Product extends BaseDomainModel {
-   int? id;
-   String? name;
-   String? thumbnailImage;
+  int? id;
+  String? name;
+  String? thumbnailImage;
   List<String>? images;
-   bool? isMultiple;
-   String? priceHighLowDiscount;
-   String? priceHighLow;
-   bool? hasDiscount;
-   String? discount;
-   String? strokedPrice;
-   String? mainPrice;
-   List<ProductOptions>? choiceOptions;
-   List<ColorDomainModel>? colors;
+  bool? isMultiple;
+  String? priceHighLowDiscount;
+  String? priceHighLow;
+  bool? hasDiscount;
+  String? discount;
+  String? strokedPrice;
+  String? mainPrice;
+  List<ProductOptions>? choiceOptions;
+  List<ColorDomainModel>? colors;
   int? minQty;
-   String? currencySymbol;
+  String? currencySymbol;
   Variant? variant;
-   List<String>? tags;
+  List<String>? tags;
   num? rating;
   int? sales;
   bool? isDigital;
@@ -48,52 +48,51 @@ class Product extends BaseDomainModel {
   String? videoLink;
   String? categoryName;
   String? brandName;
-  bool? isAddedTCompare  ;
+  bool? isAddedTCompare;
 
-  Product({
-    this.id,
-    this.name,
-    this.images,
-    this.thumbnailImage,
-    this.isMultiple,
-    this.priceHighLowDiscount,
-    this.priceHighLow,
-    this.hasDiscount,
-    this.discount,
-    this.strokedPrice,
-    this.variant,
-    this.mainPrice,
-    this.choiceOptions,
-    this.colors,
-    this.minQty,
-    this.currencySymbol,
-    this.tags,
-    this.rating,
-    this.sales,
-    this.isDigital,
-    this.isWishlist,
-    this.sellerId,
-    this.countReviews,
-    this.soldByType,
-    this.soldByName,
-    this.shop,
-    this.reviews,
-    this.isResale,
-    this.resellerId,
-    this.category,
-    this.brand,
-    this.description,
-    this.videoProvider,
-    this.videoLink,
-    this.categoryName,
-    this.brandName,
-    this.isAddedTCompare = false
-  });
+  Product(
+      {this.id,
+      this.name,
+      this.images,
+      this.thumbnailImage,
+      this.isMultiple,
+      this.priceHighLowDiscount,
+      this.priceHighLow,
+      this.hasDiscount,
+      this.discount,
+      this.strokedPrice,
+      this.variant,
+      this.mainPrice,
+      this.choiceOptions,
+      this.colors,
+      this.minQty,
+      this.currencySymbol,
+      this.tags,
+      this.rating,
+      this.sales,
+      this.isDigital,
+      this.isWishlist,
+      this.sellerId,
+      this.countReviews,
+      this.soldByType,
+      this.soldByName,
+      this.shop,
+      this.reviews,
+      this.isResale,
+      this.resellerId,
+      this.category,
+      this.brand,
+      this.description,
+      this.videoProvider,
+      this.videoLink,
+      this.categoryName,
+      this.brandName,
+      this.isAddedTCompare = false});
 
   Future<void> isAddedToCompare() async {
     var items = await getIt<ComparedProductsDb>().getItems();
-    if(items.where((e) => e.productId == id).toList().isNotEmpty){
-      isAddedTCompare = true ;
+    if (items.where((e) => e.productId == id).toList().isNotEmpty) {
+      isAddedTCompare = true;
     }
   }
 
@@ -122,7 +121,7 @@ class Product extends BaseDomainModel {
     minQty = json['min_qty'];
     currencySymbol = json['currency_symbol'];
     variant =
-    json['variant'] != null ? Variant.fromJson(json['variant']) : null;
+        json['variant'] != null ? Variant.fromJson(json['variant']) : null;
     tags = json['tags'].cast<String>();
     rating = json['rating'];
     sales = json['sales'];
@@ -185,6 +184,4 @@ class Product extends BaseDomainModel {
     data['brand_name'] = brandName;
     return data;
   }
-
-
 }

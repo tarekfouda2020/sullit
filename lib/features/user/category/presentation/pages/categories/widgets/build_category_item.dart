@@ -31,7 +31,7 @@ class BuildCategoryItem extends StatelessWidget {
               fit: BoxFit.cover,
               boxShape: BoxShape.circle,
               haveRadius: false,
-              url: categoryModel.banner ?? "",
+              url: categoryModel.icon ?? "",
             ),
             Gaps.vGap15,
             Flexible(

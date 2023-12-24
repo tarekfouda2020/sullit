@@ -20,27 +20,44 @@ class _CouponsState extends State<Coupons> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colors.customBackground,
-      appBar: BuildHomeAppBar(homeController: widget.homeController),
-      body: RefreshIndicator(
-        onRefresh: () => controller.getCoupons(1),
-        child: PagedGridView<int, Coupon>(
-          padding: Dimens.paddingAll15PX,
-          pagingController: controller.pagingController,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisSpacing: 15.r,
-            mainAxisSpacing: 15.r,
-            crossAxisCount: 2,
-            childAspectRatio: .71,
-          ),
-          builderDelegate: PagedChildBuilderDelegate<Coupon>(
-            firstPageProgressIndicatorBuilder: (_) =>
-                const BuildLoadingCoupons(),
-            itemBuilder: (_, item, index) => BuildCouponItem(couponModel: item),
-            noItemsFoundIndicatorBuilder: (cxt) => const BuildEmptyDataView(),
-          ),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        backgroundColor: context.colors.customBackground,
+        appBar: BuildHomeAppBar(homeController: widget.homeController),
+        body: Column(
+          children: const [
+            BuildTabsView(),
+            Flexible(
+              child: TabBarView(
+                children: [
+                  NewArrival(),
+                  OnSale(),
+                  BestRated(),
+                ],
+              ),
+            )
+          ],
         ),
+        // body: RefreshIndicator(
+        //   onRefresh: () => controller.getCoupons(1),
+        //   child: PagedGridView<int, Coupon>(
+        //     padding: Dimens.paddingAll15PX,
+        //     pagingController: controller.pagingController,
+        //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        //       crossAxisSpacing: 15.r,
+        //       mainAxisSpacing: 15.r,
+        //       crossAxisCount: 2,
+        //       childAspectRatio: .71,
+        //     ),
+        //     builderDelegate: PagedChildBuilderDelegate<Coupon>(
+        //       firstPageProgressIndicatorBuilder: (_) =>
+        //           const BuildLoadingCoupons(),
+        //       itemBuilder: (_, item, index) => BuildCouponItem(couponModel: item),
+        //       noItemsFoundIndicatorBuilder: (cxt) => const BuildEmptyDataView(),
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }

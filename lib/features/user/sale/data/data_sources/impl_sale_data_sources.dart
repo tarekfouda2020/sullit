@@ -5,6 +5,7 @@ import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
+import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 import 'package:flutter_tdd/features/user/sale/data/data_sources/sale_data_sources.dart';
 import 'package:flutter_tdd/features/user/sale/data/models/coupon_model/coupon_model.dart';
@@ -65,5 +66,53 @@ class ImplSaleRepository extends SaleDataSources {
       responseKey: (data) => data["data"]["coupons"],
     );
     return await GenericHttpImpl<List<CouponModel>>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, List<ProductModel>>> getBestRated(bool param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.getBestRated ,
+      requestMethod: RequestMethod.get,
+      refresh: param,
+      responseType: ResType.list,
+      showLoader: true,
+      toJsonFunc: (json) => List<ProductModel>.from(
+        json.map((e) => ProductModel.fromJson(e)),
+      ),
+      responseKey: (data) => data["data"],
+    );
+    return await GenericHttpImpl<List<ProductModel>>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, List<ProductModel>>> getNewArrival(bool param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.getNewArrival ,
+      requestMethod: RequestMethod.get,
+      refresh: param,
+      responseType: ResType.list,
+      showLoader: true,
+      toJsonFunc: (json) => List<ProductModel>.from(
+        json.map((e) => ProductModel.fromJson(e)),
+      ),
+      responseKey: (data) => data["data"],
+    );
+    return await GenericHttpImpl<List<ProductModel>>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, List<ProductModel>>> getOnSale(bool param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.getOnSale,
+      requestMethod: RequestMethod.get,
+      refresh: param,
+      responseType: ResType.list,
+      showLoader: true,
+      toJsonFunc: (json) => List<ProductModel>.from(
+        json.map((e) => ProductModel.fromJson(e)),
+      ),
+      responseKey: (data) => data["data"],
+    );
+    return await GenericHttpImpl<List<ProductModel>>().call(model);
   }
 }

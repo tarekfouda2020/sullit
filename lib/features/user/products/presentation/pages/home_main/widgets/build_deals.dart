@@ -1,7 +1,7 @@
 part of 'home_main_widgets_imports.dart';
 
 class BuildDeals extends StatelessWidget {
-  final List<FlashSale> flashSales;
+  final FlashSale flashSales;
   final HomeMainController controller;
 
   const BuildDeals(
@@ -10,20 +10,17 @@ class BuildDeals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 29,horizontal: 16),
+      padding: Dimens.paddingAll15PX,
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Container(
-            height: 146,
+          SizedBox(
+            height: Dimens.dp150,
             width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              image: const DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(
-                    Res.flashSaleLogo,
-                  )),
+            child: CachedImage(
+              url: flashSales.banner,
+              fit: BoxFit.fill,
+              borderRadius: Dimens.borderRadius10PX,
             ),
           ),
           Container(
@@ -67,9 +64,7 @@ class BuildDeals extends StatelessWidget {
                   ],
                 ),
                 InkWell(
-                  onTap: () {
-                    controller.navigateToDeals(context);
-                  },
+                  onTap: () => controller.navigateToDeals(context),
                   child: Container(
                     alignment: Alignment.center,
                     margin: const EdgeInsets.only(top: 15),

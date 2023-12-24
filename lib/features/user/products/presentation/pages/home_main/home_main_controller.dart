@@ -13,7 +13,7 @@ class HomeMainController {
 
   void getHome(BuildContext context, {bool refresh = true}) async {
     var result = await GetHome().call(refresh);
-    result?.flashSales.add(FlashSale(id: 0, title: tr('coupons'), date: DateTime.now(), banner: ""));
+    // result?.flashSales.add(FlashSale(id: 0, title: tr('coupons'), date: DateTime.now(), banner: ""));
     homeCubit.onUpdateData(result);
   }
 
@@ -28,11 +28,7 @@ class HomeMainController {
   }
 
   void navigateToDeals(BuildContext context) {
-    // if (model.id == 0) {
-      // AutoRouter.of(context).push(const CouponsRoute());
-    // } else {
-    final item= homeCubit.state.data!.flashSales.firstWhere((element) => element.id!=0);
-      AutoRouter.of(context).push(SaleDetailsRoute(dealId: item.id));
-    // }
+    var deal = homeCubit.state.data?.flashSales;
+    AutoRouter.of(context).push(SaleDetailsRoute(dealId: deal!.id));
   }
 }

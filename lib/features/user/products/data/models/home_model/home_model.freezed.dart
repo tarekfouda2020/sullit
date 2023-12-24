@@ -28,8 +28,8 @@ mixin _$HomeModel {
   List<BannerModel> get bannersTwo => throw _privateConstructorUsedError;
   @JsonKey(name: 'categories')
   List<CategoryModel> get categories => throw _privateConstructorUsedError;
-  @JsonKey(name: 'flash_deals')
-  List<FlashSaleModel> get flashSales => throw _privateConstructorUsedError;
+  @JsonKey(name: 'flash_deal')
+  FlashSaleModel get flashSales => throw _privateConstructorUsedError;
   @JsonKey(name: 'most_populars')
   List<PopularProductModel> get mostPopular =>
       throw _privateConstructorUsedError;
@@ -61,7 +61,7 @@ abstract class $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'banners_one') List<BannerModel> bannersOne,
       @JsonKey(name: 'banners_two') List<BannerModel> bannersTwo,
       @JsonKey(name: 'categories') List<CategoryModel> categories,
-      @JsonKey(name: 'flash_deals') List<FlashSaleModel> flashSales,
+      @JsonKey(name: 'flash_deal') FlashSaleModel flashSales,
       @JsonKey(name: 'most_populars') List<PopularProductModel> mostPopular,
       @JsonKey(name: 'best_selling_products')
       List<ProductModel> bestSellingProducts,
@@ -69,6 +69,8 @@ abstract class $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'featured_products') List<ProductModel> featuredProducts,
       @JsonKey(name: 'top_categories') List<CategoryModel> topCategories,
       @JsonKey(name: 'top_brands') List<BrandModel> topBrands});
+
+  $FlashSaleModelCopyWith<$Res> get flashSales;
 }
 
 /// @nodoc
@@ -116,7 +118,7 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
       flashSales: null == flashSales
           ? _value.flashSales
           : flashSales // ignore: cast_nullable_to_non_nullable
-              as List<FlashSaleModel>,
+              as FlashSaleModel,
       mostPopular: null == mostPopular
           ? _value.mostPopular
           : mostPopular // ignore: cast_nullable_to_non_nullable
@@ -143,6 +145,14 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
               as List<BrandModel>,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FlashSaleModelCopyWith<$Res> get flashSales {
+    return $FlashSaleModelCopyWith<$Res>(_value.flashSales, (value) {
+      return _then(_value.copyWith(flashSales: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -157,7 +167,7 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'banners_one') List<BannerModel> bannersOne,
       @JsonKey(name: 'banners_two') List<BannerModel> bannersTwo,
       @JsonKey(name: 'categories') List<CategoryModel> categories,
-      @JsonKey(name: 'flash_deals') List<FlashSaleModel> flashSales,
+      @JsonKey(name: 'flash_deal') FlashSaleModel flashSales,
       @JsonKey(name: 'most_populars') List<PopularProductModel> mostPopular,
       @JsonKey(name: 'best_selling_products')
       List<ProductModel> bestSellingProducts,
@@ -165,6 +175,9 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'featured_products') List<ProductModel> featuredProducts,
       @JsonKey(name: 'top_categories') List<CategoryModel> topCategories,
       @JsonKey(name: 'top_brands') List<BrandModel> topBrands});
+
+  @override
+  $FlashSaleModelCopyWith<$Res> get flashSales;
 }
 
 /// @nodoc
@@ -208,9 +221,9 @@ class __$$_HomeModelCopyWithImpl<$Res>
           : categories // ignore: cast_nullable_to_non_nullable
               as List<CategoryModel>,
       flashSales: null == flashSales
-          ? _value._flashSales
+          ? _value.flashSales
           : flashSales // ignore: cast_nullable_to_non_nullable
-              as List<FlashSaleModel>,
+              as FlashSaleModel,
       mostPopular: null == mostPopular
           ? _value._mostPopular
           : mostPopular // ignore: cast_nullable_to_non_nullable
@@ -249,8 +262,7 @@ class _$_HomeModel extends _HomeModel {
       @JsonKey(name: 'banners_two') required final List<BannerModel> bannersTwo,
       @JsonKey(name: 'categories')
       required final List<CategoryModel> categories,
-      @JsonKey(name: 'flash_deals')
-      required final List<FlashSaleModel> flashSales,
+      @JsonKey(name: 'flash_deal') required this.flashSales,
       @JsonKey(name: 'most_populars')
       required final List<PopularProductModel> mostPopular,
       @JsonKey(name: 'best_selling_products')
@@ -266,7 +278,6 @@ class _$_HomeModel extends _HomeModel {
         _bannersOne = bannersOne,
         _bannersTwo = bannersTwo,
         _categories = categories,
-        _flashSales = flashSales,
         _mostPopular = mostPopular,
         _bestSellingProducts = bestSellingProducts,
         _newestProducts = newestProducts,
@@ -314,15 +325,9 @@ class _$_HomeModel extends _HomeModel {
     return EqualUnmodifiableListView(_categories);
   }
 
-  final List<FlashSaleModel> _flashSales;
   @override
-  @JsonKey(name: 'flash_deals')
-  List<FlashSaleModel> get flashSales {
-    if (_flashSales is EqualUnmodifiableListView) return _flashSales;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_flashSales);
-  }
-
+  @JsonKey(name: 'flash_deal')
+  final FlashSaleModel flashSales;
   final List<PopularProductModel> _mostPopular;
   @override
   @JsonKey(name: 'most_populars')
@@ -396,8 +401,8 @@ class _$_HomeModel extends _HomeModel {
                 .equals(other._bannersTwo, _bannersTwo) &&
             const DeepCollectionEquality()
                 .equals(other._categories, _categories) &&
-            const DeepCollectionEquality()
-                .equals(other._flashSales, _flashSales) &&
+            (identical(other.flashSales, flashSales) ||
+                other.flashSales == flashSales) &&
             const DeepCollectionEquality()
                 .equals(other._mostPopular, _mostPopular) &&
             const DeepCollectionEquality()
@@ -420,7 +425,7 @@ class _$_HomeModel extends _HomeModel {
       const DeepCollectionEquality().hash(_bannersOne),
       const DeepCollectionEquality().hash(_bannersTwo),
       const DeepCollectionEquality().hash(_categories),
-      const DeepCollectionEquality().hash(_flashSales),
+      flashSales,
       const DeepCollectionEquality().hash(_mostPopular),
       const DeepCollectionEquality().hash(_bestSellingProducts),
       const DeepCollectionEquality().hash(_newestProducts),
@@ -449,8 +454,7 @@ abstract class _HomeModel extends HomeModel {
       @JsonKey(name: 'banners_two') required final List<BannerModel> bannersTwo,
       @JsonKey(name: 'categories')
       required final List<CategoryModel> categories,
-      @JsonKey(name: 'flash_deals')
-      required final List<FlashSaleModel> flashSales,
+      @JsonKey(name: 'flash_deal') required final FlashSaleModel flashSales,
       @JsonKey(name: 'most_populars')
       required final List<PopularProductModel> mostPopular,
       @JsonKey(name: 'best_selling_products')
@@ -481,8 +485,8 @@ abstract class _HomeModel extends HomeModel {
   @JsonKey(name: 'categories')
   List<CategoryModel> get categories;
   @override
-  @JsonKey(name: 'flash_deals')
-  List<FlashSaleModel> get flashSales;
+  @JsonKey(name: 'flash_deal')
+  FlashSaleModel get flashSales;
   @override
   @JsonKey(name: 'most_populars')
   List<PopularProductModel> get mostPopular;

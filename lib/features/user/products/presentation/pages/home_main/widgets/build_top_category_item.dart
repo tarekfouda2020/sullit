@@ -18,7 +18,7 @@ class BuildTopCategoriesItem extends StatelessWidget {
             width: 45,
             fit: BoxFit.cover,
             haveRadius: false,
-            url: categoryModel.banner ?? "",
+            url: categoryModel.icon,
           ),
           Gaps.vGap3,
           Text(

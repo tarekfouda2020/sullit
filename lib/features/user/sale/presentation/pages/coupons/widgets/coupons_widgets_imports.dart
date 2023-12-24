@@ -11,3 +11,4 @@ import 'package:flutter_tdd/features/user/sale/domain/models/coupon.dart';
 
 part 'build_coupon_item.dart';
 part 'build_loading_coupons.dart';
+part 'build_tabs_view.dart';

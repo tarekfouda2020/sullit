@@ -1,0 +1,40 @@
+part of 'best_rated_imports.dart';
+
+class BestRated extends StatefulWidget {
+  const BestRated({Key? key}) : super(key: key);
+
+  @override
+  State<BestRated> createState() => _BestRatedState();
+}
+
+class _BestRatedState extends State<BestRated> {
+  late BestRatedController controller;
+
+  @override
+  void initState() {
+    controller = BestRatedController();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GenericListView(
+        type: ListViewType.gridApi,
+        onRefresh: controller.getBestRated,
+        cubit: controller.bestRatedCubit,
+        runSpacing: 15.r,
+        spacing: 15.r,
+        gridCrossCount: 2,
+        gridItemHeight: 220.spMin,
+        padding: Dimens.paddingAll15PX,
+        itemBuilder: (_, index, item) => BuildProductItem(
+          productModel: item,
+          onFavRefresh: () => controller.onChangeFav(item),
+        ),
+        loadingWidget: const BuildLoadingProductsGridView(),
+        emptyWidget: const BuildEmptyDataView(),
+      ),
+    );
+  }
+}

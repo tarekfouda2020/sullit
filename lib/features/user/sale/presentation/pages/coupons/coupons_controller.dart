@@ -5,12 +5,12 @@ class CouponsController {
       PagingController(firstPageKey: 1);
   int pageSize = 12;
 
-  CouponsController() {
-    pagingController.addPageRequestListener((pageKey) {
-      getCoupons(pageKey, refresh: false);
-      getCoupons(pageKey);
-    });
-  }
+  // CouponsController() {
+  //   pagingController.addPageRequestListener((pageKey) {
+  //     getCoupons(pageKey, refresh: false);
+  //     getCoupons(pageKey);
+  //   });
+  // }
 
   Future<void> getCoupons(int page, {bool refresh = true}) async {
     var params = _paginateParams(page, refresh);

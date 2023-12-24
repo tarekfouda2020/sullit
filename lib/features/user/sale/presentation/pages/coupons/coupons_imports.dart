@@ -8,7 +8,10 @@ import 'package:flutter_tdd/features/user/base/presentation/widgets/build_home_a
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 import 'package:flutter_tdd/features/user/sale/domain/models/coupon.dart';
 import 'package:flutter_tdd/features/user/sale/domain/use_cases/get_coupons.dart';
+import 'package:flutter_tdd/features/user/sale/presentation/pages/best_rated/best_rated_imports.dart';
 import 'package:flutter_tdd/features/user/sale/presentation/pages/coupons/widgets/coupons_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/sale/presentation/pages/new_arrival/new_arrival_imports.dart';
+import 'package:flutter_tdd/features/user/sale/presentation/pages/on_sale/on_sale_imports.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 part 'coupons.dart';

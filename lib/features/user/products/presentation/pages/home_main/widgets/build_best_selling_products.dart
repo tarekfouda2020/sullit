@@ -12,51 +12,48 @@ class BuildBestSellingProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          BuildHeaderTitle(
-            title: tr('justForYou'),
-            // onTap: () => AutoRouter.of(context).push(AllProductPageRoute(
-            //   bestSellingProducts: bestSellingProducts,
-            // )),
-          ),
-          SizedBox(
-            height: 220,
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  Gaps.hGap10,
-                  ...List.generate(
-                    bestSellingProducts.length,
-                    (index) {
-                      return Padding(
-                        padding: Dimens.paddingHorizontal5PX,
-                        child: BuildProductItem(
-                          productModel: bestSellingProducts[index],
-                          onFavRefresh: () => controller.onChangeFav(
-                            bestSellingProducts[index],
-                          ),
-                          onCompareRefresh: () {
-                            bestSellingProducts[index].isAddedTCompare =
-                                !bestSellingProducts[index].isAddedTCompare!;
-                            controller.homeCubit
-                                .onUpdateData(controller.homeCubit.state.data);
-                          },
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        BuildHeaderTitle(
+          title: tr('justForYou'),
+          // onTap: () => AutoRouter.of(context).push(AllProductPageRoute(
+          //   bestSellingProducts: bestSellingProducts,
+          // )),
+        ),
+        SizedBox(
+          height: 220,
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                Gaps.hGap10,
+                ...List.generate(
+                  bestSellingProducts.length,
+                  (index) {
+                    return Padding(
+                      padding: Dimens.paddingHorizontal5PX,
+                      child: BuildProductItem(
+                        productModel: bestSellingProducts[index],
+                        onFavRefresh: () => controller.onChangeFav(
+                          bestSellingProducts[index],
                         ),
-                      );
-                    },
-                  )
-                ],
-              ),
+                        onCompareRefresh: () {
+                          bestSellingProducts[index].isAddedTCompare =
+                              !bestSellingProducts[index].isAddedTCompare!;
+                          controller.homeCubit
+                              .onUpdateData(controller.homeCubit.state.data);
+                        },
+                      ),
+                    );
+                  },
+                )
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

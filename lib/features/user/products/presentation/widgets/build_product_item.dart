@@ -143,6 +143,7 @@ class BuildProductItem extends StatelessWidget {
                   ),
                   Text(
                     productModel.name!,
+                    maxLines: 1,
                     style: AppTextStyle.s13_w500(
                       color: context.colors.black,
                     ).copyWith(overflow: TextOverflow.ellipsis, height: 0),
