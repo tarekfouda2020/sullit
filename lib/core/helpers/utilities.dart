@@ -148,7 +148,7 @@ class Utilities {
   }
 
   Future<String> getAddress(LatLng latLng, BuildContext context) async {
-    GeoCode geoCode = GeoCode();
+    GeoCode geoCode = GeoCode(apiKey: "554640628686038400400x13810");
     try {
       var address = await geoCode.reverseGeocoding(
           latitude: latLng.latitude, longitude: latLng.longitude);
