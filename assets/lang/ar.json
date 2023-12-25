@@ -473,6 +473,7 @@
   "successfullySent": "أرسلت بنجاح",
   "successfullyUploaded": "تم الرفع بنجاح.",
   "paymentDone": "تم الدفع بنجاح",
+  "paymentFailed": "فشلت عملية الدفع , اختر بطاقة اخري",
   "successDeletedAccount": "تم حذف الحساب بنجاح",
   "chooseNearestPickupPoint": "الرجاء اختيار أقرب نقطة الالتقاط",
   "verifyLinkSent": "من فضلك قم بتفعيل حسابك . لقد تم إرسال رابط التفعيل الي البريد الإلكتروني الخاص بك",

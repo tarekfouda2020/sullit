@@ -301,6 +301,7 @@
   "itemDeletedFromCompare": "Item Deleted From Compare Successfully",
   "itemAddedToCompare": "Item Added To Compare Successfully",
   "paymentDone": "Payment done successfully",
+  "paymentFailed": "Payment failed , Use different card",
   "successfullySent": "successfully sent.",
   "successfullyUploaded": "Successfully Uploaded.",
   "successLoggedIn": "Successfully Logged In",

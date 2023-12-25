@@ -54,7 +54,7 @@ class BuildOrderSummary extends StatelessWidget {
                 value: summary.summary!.email,
               ),
               BuildSummaryItem(
-                title: '${tr('shipping')}):',
+                title: '${tr('shipping')}:',
                 value: summary.summary!.shipping,
               ),
               BuildSummaryItem(

@@ -18,8 +18,7 @@ class HomeDomainModel extends BaseDomainModel {
   final List<Product> bestSellingProducts;
   final List<Product> newestProducts;
   final List<Product> featuredProducts;
-  final List<Category> topCategories;
-  final List<BrandDomainModel> topBrands;
+
 
   HomeDomainModel({
     required this.sliders,
@@ -31,7 +30,6 @@ class HomeDomainModel extends BaseDomainModel {
     required this.bestSellingProducts,
     required this.newestProducts,
     required this.featuredProducts,
-    required this.topCategories,
-    required this.topBrands,
+
   });
 }
