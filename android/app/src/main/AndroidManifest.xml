@@ -22,7 +22,7 @@
         android:icon="@mipmap/launcher_icon">
        <meta-data
                android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyDV1H2CcIYVHXtndUp8w_tu79A5OgLoAFU" />
+               android:value="AIzaSyBndNTAgAxPYhF2QxY4rxC9x7v1GKNp1W0" />
        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
            <intent-filter>
                <action android:name="android.intent.action.BOOT_COMPLETED" />
