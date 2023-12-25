@@ -13,6 +13,8 @@ class CartPaymentController {
   String? selectedPayment;
 
   CartPaymentController(Shipping shipping) {
+    shipping.paymentOption?.first.selected = true;
+    selectedPayment = shipping.paymentOption?.first.paymentTypeKey;
     shippingBloc.onUpdateData(shipping);
   }
 
@@ -29,7 +31,7 @@ class CartPaymentController {
 
   Future<void> createOrder(BuildContext context) async {
     if (conditionsCubit.state.data) {
-      _checkPayMethodSel();
+      // _checkPayMethodSel();
       if (isBalanceEnough()) {
         var params = _orderParams();
         print("######${params.toJson()}");
@@ -104,9 +106,7 @@ class CartPaymentController {
 
   CreateOrderParams _orderParams() {
     return CreateOrderParams(
-      paymentOption: shippingBloc.state.data!.paymentOption!
-          .firstWhere((element) => element.selected)
-          .paymentTypeKey,
+      paymentOption: selectedPayment ?? "",
       additionalInfo: additionalInfo.text,
     );
   }
