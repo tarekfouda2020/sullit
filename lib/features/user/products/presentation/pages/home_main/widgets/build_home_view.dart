@@ -38,8 +38,9 @@ class BuildHomeView extends StatelessWidget {
             controller: controller,
           ),
           // BuildTopBrands(brandList: homeDomainModel.topBrands),
+          if(homeDomainModel.flashSales != null)
           BuildDeals(
-            flashSales: homeDomainModel.flashSales,
+            flashSales: homeDomainModel.flashSales!,
             controller: controller,
           ),
         ],

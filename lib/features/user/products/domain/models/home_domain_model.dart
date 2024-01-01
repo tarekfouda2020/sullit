@@ -13,7 +13,7 @@ class HomeDomainModel extends BaseDomainModel {
   final List<BannerDomainModel> bannersOne;
   final List<BannerDomainModel> bannersTwo;
   final List<Category> categories;
-  final FlashSale flashSales;
+  final FlashSale? flashSales;
   final List<PopularProductsDomainModel> mostPopular;
   final List<Product> bestSellingProducts;
   final List<Product> newestProducts;

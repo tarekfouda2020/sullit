@@ -19,8 +19,9 @@ _$_HomeModel _$$_HomeModelFromJson(Map<String, dynamic> json) => _$_HomeModel(
       categories: (json['categories'] as List<dynamic>)
           .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      flashSales:
-          FlashSaleModel.fromJson(json['flash_deal'] as Map<String, dynamic>),
+      flashSales: json['flash_deal'] == null
+          ? null
+          : FlashSaleModel.fromJson(json['flash_deal'] as Map<String, dynamic>),
       mostPopular: (json['most_populars'] as List<dynamic>)
           .map((e) => PopularProductModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -41,7 +42,7 @@ Map<String, dynamic> _$$_HomeModelToJson(_$_HomeModel instance) =>
       'banners_one': instance.bannersOne.map((e) => e.toJson()).toList(),
       'banners_two': instance.bannersTwo.map((e) => e.toJson()).toList(),
       'categories': instance.categories.map((e) => e.toJson()).toList(),
-      'flash_deal': instance.flashSales.toJson(),
+      'flash_deal': instance.flashSales?.toJson(),
       'most_populars': instance.mostPopular.map((e) => e.toJson()).toList(),
       'best_selling_products':
           instance.bestSellingProducts.map((e) => e.toJson()).toList(),
