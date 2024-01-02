@@ -13,7 +13,7 @@ class BuildProductQty extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Quantity : ",
+          "${tr("quantity")} : ",
           style: AppTextStyle.s15_w700(
             color: context.colors.black,
           ),
@@ -43,13 +43,13 @@ class BuildProductQty extends StatelessWidget {
                 Visibility(
                   visible: hasVariant ? productModel.variant!.currentStock! > 0 : false,
                   replacement: Text(
-                    "Out Of Stock",
+                    tr("outOfStock"),
                     style: AppTextStyle.s15_w700(
                       color: context.colors.primary,
                     ),
                   ),
                   child: Text(
-                    "(${productModel.variant?.currentStock} Available)",
+                    "(${productModel.variant?.currentStock} ${tr("available")})",
                     style: AppTextStyle.s14_w400(
                       color: context.colors.black,
                     ),
@@ -61,7 +61,7 @@ class BuildProductQty extends StatelessWidget {
         ),
         Gaps.line(context.colors.greyWhite, 20.h),
         Text(
-          "Total Price : ",
+          "${tr("totalPrice")} : ",
           style: AppTextStyle.s15_w700(
             color: context.colors.black,
           ),

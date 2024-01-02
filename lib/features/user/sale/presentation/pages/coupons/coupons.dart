@@ -26,13 +26,13 @@ class _CouponsState extends State<Coupons> {
         backgroundColor: context.colors.customBackground,
         appBar: BuildHomeAppBar(homeController: widget.homeController),
         body: Column(
-          children: const [
-            BuildTabsView(),
+          children:  [
+            const BuildTabsView(),
             Flexible(
               child: TabBarView(
                 children: [
                   NewArrival(),
-                  OnSale(),
+                  OnSale(homeController: widget.homeController),
                   BestRated(),
                 ],
               ),

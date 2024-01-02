@@ -1,11 +1,18 @@
 part of 'on_sale_imports.dart';
-class OnSaleController{
+
+class OnSaleController {
   final GenericBloc<List<Product>> onSaleCubit = GenericBloc([]);
+
+  OnSaleController() {
+    getOnSale();
+  }
 
   void getOnSale({bool refresh = true}) async {
     var result = await GetOnSale().call(refresh);
     onSaleCubit.onUpdateData(result);
+    print("====>${result.length}");
   }
+
   void onChangeFav(Product item) {
     item.isWishlist = !item.isWishlist!;
     onSaleCubit.onUpdateData(onSaleCubit.state.data);

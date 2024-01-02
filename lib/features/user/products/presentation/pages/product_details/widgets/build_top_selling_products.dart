@@ -13,7 +13,7 @@ class BuildTopSellingProducts extends StatelessWidget {
       child: Visibility(
         visible: topProducts.isNotEmpty,
         child: Container(
-          height: 275.spMin,
+          height: 280.spMin,
           padding: const EdgeInsets.only(left: 8,top: 8),
           margin: Dimens.paddingHorizontal15PX,
           decoration: const CustomDecoration(),

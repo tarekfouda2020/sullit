@@ -32,7 +32,7 @@
   "validateName": "Should be more than 8 and less than 30",
   "validateNumber": "Should be numbers only",
   "createAccount": "Create an account",
-  "registerHint": "Register now and win a lot of points",
+  "registerHint": "Register now and get 10% off your first order",
   "alreadyHaveAccount": "Already have an account?",
   "welcome": "Welcome",
   "loginHint": "Hello, You are welcome with us",
@@ -351,7 +351,11 @@
   "reviewProduct": "Review Product",
   "reviewSuccess": "Review has been submitted successfully",
   "verifyEmail": "Verify Email",
-  "verifyEmailMsg": "A verification mail has been sent to the mail you provided us with"
+  "verifyEmailMsg": "A verification mail has been sent to the mail you provided us with",
+  "newArrival": "New Arrival",
+  "onSale": "On Sale",
+  "bestRated": "Best Rated",
+  "available": "Available"
 }
 
 

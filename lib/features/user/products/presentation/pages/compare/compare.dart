@@ -26,7 +26,7 @@ class _CompareState extends State<Compare> {
         builder: (context, state) {
           return Visibility(
             visible: state.data.isNotEmpty,
-            replacement:  const BuildEmptyDataView(),
+            replacement:  const BuildEmptyDataImage(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [

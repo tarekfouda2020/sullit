@@ -38,7 +38,7 @@ class _NotificationsState extends State<Notifications> {
               return  Center(
                 child: Text(
                   tr('noNotifies'),
-                  style: AppTextStyle.s14_w400(color: context.colors.black),
+                  style: AppTextStyle.s16_w700(color: context.colors.black),
                 ),
               );
             },

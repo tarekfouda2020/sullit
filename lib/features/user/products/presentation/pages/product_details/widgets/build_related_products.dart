@@ -11,7 +11,7 @@ final ProductDetailsController controller;
       child: Visibility(
         visible: relatedProducts.isNotEmpty,
         child: Container(
-          height: 275,
+          height: 280.spMin,
           padding: const EdgeInsets.only(left: 8,top: 8),
           margin: Dimens.standardPadding,
           decoration: const CustomDecoration(),

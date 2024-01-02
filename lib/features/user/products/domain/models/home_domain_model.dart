@@ -25,7 +25,7 @@ class HomeDomainModel extends BaseDomainModel {
     required this.bannersOne,
     required this.bannersTwo,
     required this.categories,
-    required this.flashSales,
+     this.flashSales,
     required this.mostPopular,
     required this.bestSellingProducts,
     required this.newestProducts,

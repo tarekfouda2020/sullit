@@ -31,7 +31,7 @@ class _DownloadsState extends State<Downloads> {
           controller: controller,
         ),
         loadingWidget: const BuildLoadingDownloads(),
-        emptyWidget: const BuildEmptyDataView(),
+        emptyWidget: const BuildEmptyDataImage(),
       ),
     );
   }

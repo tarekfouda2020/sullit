@@ -13,19 +13,19 @@ class BuildTabsView extends StatelessWidget {
         indicatorSize: TabBarIndicatorSize.label,
         tabs: [
           Text(
-            "New Arrival",
+            tr("newArrival"),
             style: AppTextStyle.s15_w600(
               color: context.colors.black,
             ),
           ),
           Text(
-            "On Sale",
+            tr("onSale"),
             style: AppTextStyle.s15_w600(
               color: context.colors.black,
             ),
           ),
           Text(
-            "Best Rated",
+            tr("bestRated"),
             style: AppTextStyle.s15_w600(
               color: context.colors.black,
             ),

@@ -31,7 +31,7 @@ class BuildCustomTimer extends StatelessWidget {
         Gaps.vGap3,
         Text(
           text,
-          style: AppTextStyle.s5_w400(color: context.colors.white),
+          style: AppTextStyle.s5_w600(color: context.colors.white),
         )
       ],
     );

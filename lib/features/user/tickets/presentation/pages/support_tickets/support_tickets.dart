@@ -19,7 +19,7 @@ class _SupportTicketsState extends State<SupportTickets> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(title: "Support Tickets", showBack: true),
+      appBar:  DefaultAppBar(title: tr("supportTickets"), showBack: true),
       backgroundColor: context.colors.customBackground,
       floatingActionButton: BuildAddTicketBtn(controller: controller),
       body: Column(
@@ -39,8 +39,8 @@ class _SupportTicketsState extends State<SupportTickets> {
               emptyWidget: Center(
                 child: Text(
                   tr("noTickets"),
-                  style: AppTextStyle.s12_w400(
-                    color: context.colors.grey,
+                  style: AppTextStyle.s16_w700(
+                    color: context.colors.black,
                   ),
                 ),
               ),

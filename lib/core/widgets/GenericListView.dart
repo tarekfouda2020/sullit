@@ -396,7 +396,7 @@ Widget _genericListViewEmptyList(String? emptyStr) {
   return Center(
     child: Text(
       emptyStr ?? tr('noDate'),
-      style: const AppTextStyle.s14_w500(color: Colors.black),
+      style: const AppTextStyle.s16_w700(color: Colors.black),
     ),
   );
 }

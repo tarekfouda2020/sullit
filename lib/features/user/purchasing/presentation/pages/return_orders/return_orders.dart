@@ -33,7 +33,7 @@ class _ReturnOrdersState extends State<ReturnOrders> {
               controller: controller,
             ),
             noItemsFoundIndicatorBuilder: (cxt) {
-              return const BuildEmptyDataView();
+              return const BuildEmptyDataImage();
             },
           ),
         ),

@@ -39,7 +39,7 @@ class _SplashState extends State<Splash> {
                 ),
                 Gaps.vGap4,
                 Text(
-                  'Your Outlet Mall 🙂',
+                  'Your Outlet Mall',
                   style: AppTextStyle.s20_w400(color: context.colors.white),
                 ),
               ],

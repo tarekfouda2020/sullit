@@ -20,11 +20,17 @@ class BuildHomeMainAppBar extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 23),
                 child: Row(
                   children: [
-                    InkWell(
-                        onTap: () =>
-                            controller.scaffoldKey.currentState?.openDrawer(),
-                        child: Image.asset(Res.logo, height: 30, width: 120)),
-                    const Spacer(),
+                    IconButton(
+                      onPressed: () => controller.scaffoldKey.currentState!.openDrawer(),
+                      icon: Icon(
+                        Icons.menu,
+                        color: context.colors.black,
+                        size: 25,
+                      ),
+                    ),
+                    Expanded(
+                      child: Image.asset(Res.logo, height: 30, width: 120),
+                    ),
                     buildIcon(
                       context,
                       Res.cart,

@@ -24,8 +24,8 @@ class BuildDeals extends StatelessWidget {
             ),
           ),
           Container(
-            padding: const EdgeInsets.only(top: 14, right: 18, left: 18),
-            height: 117,
+            padding: Dimens.paddingAll15PX,
+            // height: 117,
             width: 183,
             decoration: BoxDecoration(
               color: context.colors.black.withOpacity(0.25),
@@ -34,31 +34,31 @@ class BuildDeals extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'Flash Sale',
+                  flashSales.title,
                   style: AppTextStyle.s14_w500(color: context.colors.white),
                 ),
                 Gaps.vGap8,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children:  [
                     BuildCustomTimer(
-                      time: '52',
+                      time: "${flashSales.date.day}",
                       text: 'Days',
                     ),
                     Text(':'),
                     BuildCustomTimer(
-                      time: '04',
+                      time: "${flashSales.date.hour}",
                       text: 'Hours',
                     ),
                     Text(':'),
                     BuildCustomTimer(
-                      time: '25',
+                      time: "${flashSales.date.minute}",
                       text: 'Minutes',
                     ),
                     Text(':'),
                     BuildCustomTimer(
-                      time: '17',
+                      time:"${flashSales.date.second}",
                       text: 'Seconds',
                     ),
                   ],
@@ -67,11 +67,12 @@ class BuildDeals extends StatelessWidget {
                   onTap: () => controller.navigateToDeals(context),
                   child: Container(
                     alignment: Alignment.center,
-                    margin: const EdgeInsets.only(top: 15),
-                    height: 25,
+                    margin: Dimens.marginTop10,
+                    // height: 25,
                     width: 78,
+                    padding: Dimens.paddingVertical5PX,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(13),
+                      borderRadius:Dimens.borderRadius10PX,
                       color: context.colors.white,
                     ),
                     child: Text(
