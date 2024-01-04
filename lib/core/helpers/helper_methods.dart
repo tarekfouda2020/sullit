@@ -13,26 +13,23 @@ class HelperMethods {
   void launchURL({required String url}) async {
     var uri = Uri.parse(url);
     await launchUrl(uri);
-    // if (!url.toString().startsWith("https")) {
-    //   url = "https://$url";
-    // }
-    // var uri = Uri.parse(url);
-    // if (await canLaunchUrl(uri)) {
-    //   await launchUrl(uri);
-    // } else {
-    //   CustomToast.showSimpleToast(msg: "من فضلك تآكد من الرابط");
-    // }
   }
 
   void launchWhatsApp(phone) async {
     String message = 'مرحبا بك';
-    var whatsUrl = "https://api.whatsapp.com/send?phone=$phone&text=$message";
-    var uri = Uri.parse(whatsUrl);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
+    String whatsUrl = "";
+    if (Platform.isAndroid) {
+      whatsUrl = "https://wa.me/$phone/?text=$message";
     } else {
-      CustomToast.showSimpleToast(msg: 'حدث خطأ ما');
+      whatsUrl = "https://api.whatsapp.com/send?phone=$phone&text=$message";
     }
+    var uri = Uri.parse(whatsUrl);
+    await launchUrl(uri);
+
+    // final Uri url =
+    // Uri(scheme: 'https', host: 'wa.me', path: phone);
+    //
+    // launchUrl(url);
   }
 
   void clearSavedData() async {

@@ -38,6 +38,7 @@ class _CategoriesState extends State<Categories> {
                 loadingWidget: const BuildLoadingCategoriesView(),
               ),
             ),
+            Gaps.vGap10,
           ],
         ),
       ),

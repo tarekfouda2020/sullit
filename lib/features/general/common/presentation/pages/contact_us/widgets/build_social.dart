@@ -14,7 +14,7 @@ class BuildSocial extends StatelessWidget {
           padding: Dimens.paddingVertical15PX,
           child: Center(
             child: InkWell(
-              onTap: () => HelperMethods.instance.launchWhatsApp( state.data),
+              onTap: () => HelperMethods.instance.launchWhatsApp(state.data),
               child: Image.asset(Res.whats, width: 45, height: 45),
             ),
           ),

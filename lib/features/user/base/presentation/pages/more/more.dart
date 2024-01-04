@@ -30,7 +30,7 @@ class _MoreState extends State<More> {
           Flexible(
             child: GridView(
               padding: const EdgeInsets.only(
-                  left: 15, right: 15, bottom: 100, top: 20),
+                  left: 15, right: 15, bottom: 120, top: 20),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisExtent: 107,
@@ -88,12 +88,12 @@ class _MoreState extends State<More> {
                   ),
                   image: Res.returnOrdersLogo,
                 ),
-                BuildMoreItem(
-                  image: Res.blogLogo,
-                  haveStatus: true,
-                  title: tr("blogs"),
-                  onTap: () => controller.checkAuth(context, MoreRoutes.blogs),
-                ),
+                // BuildMoreItem(
+                //   image: Res.blogLogo,
+                //   haveStatus: true,
+                //   title: tr("blogs"),
+                //   onTap: () => controller.checkAuth(context, MoreRoutes.blogs),
+                // ),
                 BuildMoreItem(
                   image: Res.wishListLogo,
                   title: tr('wishlist'),

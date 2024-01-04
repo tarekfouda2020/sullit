@@ -10,6 +10,7 @@ import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 import 'package:flutter_tdd/core/widgets/LoadingButton.dart';
 import 'package:flutter_tdd/res.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../contact_us_imports.dart';
 
