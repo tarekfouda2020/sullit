@@ -34,6 +34,12 @@ _$_HomeModel _$$_HomeModelFromJson(Map<String, dynamic> json) => _$_HomeModel(
       featuredProducts: (json['featured_products'] as List<dynamic>)
           .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      newArrivals: (json['new_arrivals'] as List<dynamic>)
+          .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      bestRated: (json['best_rated'] as List<dynamic>)
+          .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_HomeModelToJson(_$_HomeModel instance) =>
@@ -50,4 +56,6 @@ Map<String, dynamic> _$$_HomeModelToJson(_$_HomeModel instance) =>
           instance.newestProducts.map((e) => e.toJson()).toList(),
       'featured_products':
           instance.featuredProducts.map((e) => e.toJson()).toList(),
+      'new_arrivals': instance.newArrivals.map((e) => e.toJson()).toList(),
+      'best_rated': instance.bestRated.map((e) => e.toJson()).toList(),
     };

@@ -77,4 +77,17 @@ class ImplCommonDataSources extends CommonDataSources{
     return await GenericHttpImpl<String>().call(model);
   }
 
+  @override
+  Future<Either<Failure, String>> getContactUs() async{
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.getContactUs,
+      requestMethod: RequestMethod.get,
+      responseType: ResType.type,
+      showLoader: true,
+      responseKey: (data) => data["data"]["contact_phone"],
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<String>().call(model);
+  }
+
 }

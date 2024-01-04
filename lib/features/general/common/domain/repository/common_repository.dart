@@ -8,4 +8,6 @@ abstract class CommonRepository {
   Future<Either<Failure, bool>> contactUs (ContactUsParams params);
   Future<Either<Failure, String>> supportPolicy ();
   Future<Either<Failure, String>> returnPolicy ();
+  Future<Either<Failure, String>> getContactUs ();
+
 }

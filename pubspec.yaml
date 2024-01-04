@@ -115,51 +115,11 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/anims/animation_lkb5jn5s.json
-    - assets/fonts/NotoSans.ttf
-    - assets/images/apple.svg
-    - assets/images/appLoaderBg.png
-    - assets/images/arrow.svg
-    - assets/images/blog.png
-    - assets/images/emptyCart.png
-    - assets/images/facebook.svg
-    - assets/images/logo.png
-    - assets/images/logo_png.png
-    - assets/images/logoSvg.svg
-    - assets/images/marker.png
-    - assets/images/mobile.svg
-    - assets/images/myProfile.png
-    - assets/images/offline.png
-    - assets/images/password.svg
-    - assets/images/pdf.png
-    - assets/images/placeHolder.png
-    - assets/images/profile.png
-    - assets/lang/ar.json
-    - assets/lang/en.json
-    - assets/images/
+    - assets/anims/
+    - assets/fonts/
     - assets/fonts/quicksand/
-    - assets/images/face_logo.png
-    - assets/images/google.png
-    - assets/images/arrow_back.png
-    - assets/images/forget_logo.png
-    - assets/images/sort_logo.png
-    - assets/images/flash_sale_logo.png
-    - assets/images/icon.png
-    - assets/images/splash_logo.png
-    - assets/images/download_logo.png
-    - assets/images/return_orders_logo.png
-    - assets/images/blog_logo.png
-    - assets/images/wish_list_logo.png
-    - assets/images/compare_logo.png
-    - assets/images/track_order_logo.png
-    - assets/images/wallet_logo.png
-    - assets/images/support_ticket_logo.png
-    - assets/images/manage_profile.png
-    - assets/images/dashboard.png
-    - assets/images/classified_products.png
-    - assets/images/customer_products.png
-    - assets/images/purchased_history.png
-
+    - assets/images/
+    - assets/lang/
   fonts:
     - family: Quicksand
       fonts:

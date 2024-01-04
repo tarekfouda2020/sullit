@@ -1,8 +1,9 @@
-part of'contact_us_imports.dart';
-class ContactUsController{
+part of 'contact_us_imports.dart';
+
+class ContactUsController {
   final GlobalKey<CustomButtonState> btnKey = GlobalKey();
   final GlobalKey<FormState> formKey = GlobalKey();
-
+  final GenericBloc<String> contactUsCubit = GenericBloc("");
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController phone = TextEditingController();
@@ -10,7 +11,13 @@ class ContactUsController{
   TextEditingController subject = TextEditingController();
 
   ContactUsController(BuildContext context) {
+    getContactUs();
     getInitialData(context);
+  }
+
+  void getContactUs() async {
+    var result = await GetContactUs().call(NoParams());
+    contactUsCubit.onUpdateData(result);
   }
 
   void getInitialData(BuildContext context) {

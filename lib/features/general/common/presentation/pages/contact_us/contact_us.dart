@@ -23,7 +23,7 @@ class _ContactUsState extends State<ContactUs> {
       appBar:  DefaultAppBar(title: tr('contactUs')),
       body: Column(
         children: [
-          BuildContactUsFields(contactUsData: controller),
+          BuildContactUsFields(controller: controller),
           BuildContactUsButton(controller: controller)
         ],
       ),

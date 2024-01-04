@@ -7,5 +7,7 @@ abstract class CommonDataSources {
   Future<Either<Failure, String>> getPrivacyPolicy ();
   Future<Either<Failure, String>> supportPolicy ();
   Future<Either<Failure, String>> returnPolicy ();
+  Future<Either<Failure, String>> getContactUs ();
+
   Future<Either<Failure, bool>> contactUs (ContactUsParams params);
 }

@@ -30,6 +30,8 @@ import 'package:flutter_tdd/features/user/products/presentation/widgets/build_pr
 import 'package:flutter_tdd/features/user/sale/domain/models/flash_sale.dart';
 import 'package:flutter_tdd/res.dart';
 
+part 'build_best_rated.dart';
+part 'build_new_arrivals.dart';
 part 'build_banners.dart';
 part 'build_custom_timer.dart';
 part 'build_best_selling_products.dart';

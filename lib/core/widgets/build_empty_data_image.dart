@@ -9,15 +9,27 @@ class BuildEmptyDataImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => AutoRouter.of(context).pop(),
-      child: Container(
-        alignment: Alignment.center,
-        child: Image.asset(
-          Res.emptyCart,
-          scale: 3,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        InkWell(
+          onTap: () => AutoRouter.of(context).pop(),
+          child: Container(
+            alignment: Alignment.center,
+            child: Image.asset(
+              Res.emptyCart,
+              scale: 3,
+            ),
+          ),
         ),
-      ),
+        Text(
+          "Nothing to tell you.",
+          style: AppTextStyle.s16_w700(
+            color: context.colors.black,
+          ),
+        ),
+      ],
     );
   }
 }

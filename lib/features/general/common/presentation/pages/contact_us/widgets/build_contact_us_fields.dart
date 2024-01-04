@@ -1,21 +1,21 @@
 part of 'contact_us_widgets_imports.dart';
 
 class BuildContactUsFields extends StatelessWidget {
-  final ContactUsController contactUsData;
+  final ContactUsController controller;
 
-  const BuildContactUsFields({Key? key, required this.contactUsData})
+  const BuildContactUsFields({Key? key, required this.controller})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: contactUsData.formKey,
+      key: controller.formKey,
       child: Flexible(
         child: ListView(
           padding: Dimens.paddingAll15PX,
           children: [
             GenericTextField(
-              controller: contactUsData.name,
+              controller: controller.name,
               fieldTypes: FieldTypes.normal,
               type: TextInputType.text,
               action: TextInputAction.next,
@@ -26,7 +26,7 @@ class BuildContactUsFields extends StatelessWidget {
             ),
             GenericTextField(
               fillColor: context.colors.white,
-              controller: contactUsData.email,
+              controller: controller.email,
               fieldTypes: FieldTypes.normal,
               type: TextInputType.emailAddress,
               action: TextInputAction.next,
@@ -36,7 +36,7 @@ class BuildContactUsFields extends StatelessWidget {
             ),
             GenericTextField(
               fillColor: context.colors.white,
-              controller: contactUsData.phone,
+              controller: controller.phone,
               fieldTypes: FieldTypes.normal,
               type: TextInputType.text,
               action: TextInputAction.next,
@@ -46,7 +46,7 @@ class BuildContactUsFields extends StatelessWidget {
             ),
             GenericTextField(
               fillColor: context.colors.white,
-              controller: contactUsData.subject,
+              controller: controller.subject,
               fieldTypes: FieldTypes.normal,
               type: TextInputType.text,
               action: TextInputAction.next,
@@ -56,7 +56,7 @@ class BuildContactUsFields extends StatelessWidget {
             ),
             GenericTextField(
               fillColor: context.colors.white,
-              controller: contactUsData.message,
+              controller: controller.message,
               fieldTypes: FieldTypes.rich,
               type: TextInputType.text,
               action: TextInputAction.done,
@@ -65,6 +65,9 @@ class BuildContactUsFields extends StatelessWidget {
               label: tr('yourMsg'),
               margin: Dimens.paddingVertical10PX,
             ),
+
+            BuildSocial(controller: controller),
+
           ],
         ),
       ),

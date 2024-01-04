@@ -33,4 +33,10 @@ class ImplCommonRepository extends CommonRepository{
     return await dataSources.supportPolicy();
   }
 
+  @override
+  Future<Either<Failure, String>> getContactUs()async {
+    return await dataSources.getContactUs();
+
+  }
+
 }

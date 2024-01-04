@@ -1,11 +1,11 @@
+import 'dart:io';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'custom_toast.dart';
 
-
-class HelperMethods{
-
+class HelperMethods {
   HelperMethods._();
 
   static HelperMethods get instance => HelperMethods._();
@@ -26,7 +26,7 @@ class HelperMethods{
 
   void launchWhatsApp(phone) async {
     String message = 'مرحبا بك';
-    var whatsUrl = "https://api.whatsapp.com/send?phone=+$phone&text=$message";
+    var whatsUrl = "https://api.whatsapp.com/send?phone=$phone&text=$message";
     var uri = Uri.parse(whatsUrl);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
@@ -35,7 +35,7 @@ class HelperMethods{
     }
   }
 
-  void clearSavedData()async{
+  void clearSavedData() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.clear();
   }
@@ -44,7 +44,7 @@ class HelperMethods{
     var sb = StringBuffer();
     for (int i = 0; i < text.length; i++) {
       switch (text[i]) {
-      //Arabic digits
+        //Arabic digits
         case '\u0660':
           sb.write('0');
           break;
@@ -82,5 +82,4 @@ class HelperMethods{
     }
     return sb.toString();
   }
-
 }

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
 import 'package:flutter_tdd/features/user/category/data/models/category_model/category_model.dart';
@@ -12,6 +10,7 @@ import '../../../../sale/data/models/flash_sale_model/flash_sale_model.dart';
 import '../popular_product_model/popular_product_model.dart';
 
 part 'home_model.freezed.dart';
+
 part 'home_model.g.dart';
 
 @freezed
@@ -34,7 +33,10 @@ class HomeModel extends BaseApiModel<HomeDomainModel> with _$HomeModel {
         required List<ProductModel> newestProducts,
     @JsonKey(name: 'featured_products')
         required List<ProductModel> featuredProducts,
-
+    @JsonKey(name: 'new_arrivals')
+        required List<ProductModel> newArrivals,
+    @JsonKey(name: 'best_rated')
+        required List<ProductModel> bestRated,
   }) = _HomeModel;
 
   factory HomeModel.fromJson(Map<String, dynamic> json) =>
@@ -46,12 +48,15 @@ class HomeModel extends BaseApiModel<HomeDomainModel> with _$HomeModel {
       sliders: sliders.map((e) => e.toDomainModel()).toList(),
       bannersOne: bannersOne.map((e) => e.toDomainModel()).toList(),
       bannersTwo: bannersTwo.map((e) => e.toDomainModel()).toList(),
-      bestSellingProducts: bestSellingProducts.map((e) => e.toDomainModel()).toList(),
+      bestSellingProducts:
+          bestSellingProducts.map((e) => e.toDomainModel()).toList(),
       categories: categories.map((e) => e.toDomainModel()).toList(),
       flashSales: flashSales?.toDomainModel(),
       featuredProducts: featuredProducts.map((e) => e.toDomainModel()).toList(),
-      mostPopular: mostPopular.map((e) =>e.toDomainModel()).toList(),
+      mostPopular: mostPopular.map((e) => e.toDomainModel()).toList(),
       newestProducts: newestProducts.map((e) => e.toDomainModel()).toList(),
+      bestRated:bestRated .map((e) => e.toDomainModel()).toList(),
+      newArrivals: newArrivals .map((e) => e.toDomainModel()).toList(),
     );
   }
 }

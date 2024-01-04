@@ -40,6 +40,10 @@ mixin _$HomeModel {
   List<ProductModel> get newestProducts => throw _privateConstructorUsedError;
   @JsonKey(name: 'featured_products')
   List<ProductModel> get featuredProducts => throw _privateConstructorUsedError;
+  @JsonKey(name: 'new_arrivals')
+  List<ProductModel> get newArrivals => throw _privateConstructorUsedError;
+  @JsonKey(name: 'best_rated')
+  List<ProductModel> get bestRated => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,7 +66,9 @@ abstract class $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'best_selling_products')
       List<ProductModel> bestSellingProducts,
       @JsonKey(name: 'newest_products') List<ProductModel> newestProducts,
-      @JsonKey(name: 'featured_products') List<ProductModel> featuredProducts});
+      @JsonKey(name: 'featured_products') List<ProductModel> featuredProducts,
+      @JsonKey(name: 'new_arrivals') List<ProductModel> newArrivals,
+      @JsonKey(name: 'best_rated') List<ProductModel> bestRated});
 
   $FlashSaleModelCopyWith<$Res>? get flashSales;
 }
@@ -89,6 +95,8 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
     Object? bestSellingProducts = null,
     Object? newestProducts = null,
     Object? featuredProducts = null,
+    Object? newArrivals = null,
+    Object? bestRated = null,
   }) {
     return _then(_value.copyWith(
       sliders: null == sliders
@@ -127,6 +135,14 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
           ? _value.featuredProducts
           : featuredProducts // ignore: cast_nullable_to_non_nullable
               as List<ProductModel>,
+      newArrivals: null == newArrivals
+          ? _value.newArrivals
+          : newArrivals // ignore: cast_nullable_to_non_nullable
+              as List<ProductModel>,
+      bestRated: null == bestRated
+          ? _value.bestRated
+          : bestRated // ignore: cast_nullable_to_non_nullable
+              as List<ProductModel>,
     ) as $Val);
   }
 
@@ -160,7 +176,9 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'best_selling_products')
       List<ProductModel> bestSellingProducts,
       @JsonKey(name: 'newest_products') List<ProductModel> newestProducts,
-      @JsonKey(name: 'featured_products') List<ProductModel> featuredProducts});
+      @JsonKey(name: 'featured_products') List<ProductModel> featuredProducts,
+      @JsonKey(name: 'new_arrivals') List<ProductModel> newArrivals,
+      @JsonKey(name: 'best_rated') List<ProductModel> bestRated});
 
   @override
   $FlashSaleModelCopyWith<$Res>? get flashSales;
@@ -186,6 +204,8 @@ class __$$_HomeModelCopyWithImpl<$Res>
     Object? bestSellingProducts = null,
     Object? newestProducts = null,
     Object? featuredProducts = null,
+    Object? newArrivals = null,
+    Object? bestRated = null,
   }) {
     return _then(_$_HomeModel(
       sliders: null == sliders
@@ -224,6 +244,14 @@ class __$$_HomeModelCopyWithImpl<$Res>
           ? _value._featuredProducts
           : featuredProducts // ignore: cast_nullable_to_non_nullable
               as List<ProductModel>,
+      newArrivals: null == newArrivals
+          ? _value._newArrivals
+          : newArrivals // ignore: cast_nullable_to_non_nullable
+              as List<ProductModel>,
+      bestRated: null == bestRated
+          ? _value._bestRated
+          : bestRated // ignore: cast_nullable_to_non_nullable
+              as List<ProductModel>,
     ));
   }
 }
@@ -246,7 +274,10 @@ class _$_HomeModel extends _HomeModel {
       @JsonKey(name: 'newest_products')
       required final List<ProductModel> newestProducts,
       @JsonKey(name: 'featured_products')
-      required final List<ProductModel> featuredProducts})
+      required final List<ProductModel> featuredProducts,
+      @JsonKey(name: 'new_arrivals')
+      required final List<ProductModel> newArrivals,
+      @JsonKey(name: 'best_rated') required final List<ProductModel> bestRated})
       : _sliders = sliders,
         _bannersOne = bannersOne,
         _bannersTwo = bannersTwo,
@@ -255,6 +286,8 @@ class _$_HomeModel extends _HomeModel {
         _bestSellingProducts = bestSellingProducts,
         _newestProducts = newestProducts,
         _featuredProducts = featuredProducts,
+        _newArrivals = newArrivals,
+        _bestRated = bestRated,
         super._();
 
   factory _$_HomeModel.fromJson(Map<String, dynamic> json) =>
@@ -337,9 +370,27 @@ class _$_HomeModel extends _HomeModel {
     return EqualUnmodifiableListView(_featuredProducts);
   }
 
+  final List<ProductModel> _newArrivals;
+  @override
+  @JsonKey(name: 'new_arrivals')
+  List<ProductModel> get newArrivals {
+    if (_newArrivals is EqualUnmodifiableListView) return _newArrivals;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_newArrivals);
+  }
+
+  final List<ProductModel> _bestRated;
+  @override
+  @JsonKey(name: 'best_rated')
+  List<ProductModel> get bestRated {
+    if (_bestRated is EqualUnmodifiableListView) return _bestRated;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bestRated);
+  }
+
   @override
   String toString() {
-    return 'HomeModel(sliders: $sliders, bannersOne: $bannersOne, bannersTwo: $bannersTwo, categories: $categories, flashSales: $flashSales, mostPopular: $mostPopular, bestSellingProducts: $bestSellingProducts, newestProducts: $newestProducts, featuredProducts: $featuredProducts)';
+    return 'HomeModel(sliders: $sliders, bannersOne: $bannersOne, bannersTwo: $bannersTwo, categories: $categories, flashSales: $flashSales, mostPopular: $mostPopular, bestSellingProducts: $bestSellingProducts, newestProducts: $newestProducts, featuredProducts: $featuredProducts, newArrivals: $newArrivals, bestRated: $bestRated)';
   }
 
   @override
@@ -363,7 +414,11 @@ class _$_HomeModel extends _HomeModel {
             const DeepCollectionEquality()
                 .equals(other._newestProducts, _newestProducts) &&
             const DeepCollectionEquality()
-                .equals(other._featuredProducts, _featuredProducts));
+                .equals(other._featuredProducts, _featuredProducts) &&
+            const DeepCollectionEquality()
+                .equals(other._newArrivals, _newArrivals) &&
+            const DeepCollectionEquality()
+                .equals(other._bestRated, _bestRated));
   }
 
   @JsonKey(ignore: true)
@@ -378,7 +433,9 @@ class _$_HomeModel extends _HomeModel {
       const DeepCollectionEquality().hash(_mostPopular),
       const DeepCollectionEquality().hash(_bestSellingProducts),
       const DeepCollectionEquality().hash(_newestProducts),
-      const DeepCollectionEquality().hash(_featuredProducts));
+      const DeepCollectionEquality().hash(_featuredProducts),
+      const DeepCollectionEquality().hash(_newArrivals),
+      const DeepCollectionEquality().hash(_bestRated));
 
   @JsonKey(ignore: true)
   @override
@@ -409,7 +466,11 @@ abstract class _HomeModel extends HomeModel {
       @JsonKey(name: 'newest_products')
       required final List<ProductModel> newestProducts,
       @JsonKey(name: 'featured_products')
-      required final List<ProductModel> featuredProducts}) = _$_HomeModel;
+      required final List<ProductModel> featuredProducts,
+      @JsonKey(name: 'new_arrivals')
+      required final List<ProductModel> newArrivals,
+      @JsonKey(name: 'best_rated')
+      required final List<ProductModel> bestRated}) = _$_HomeModel;
   const _HomeModel._() : super._();
 
   factory _HomeModel.fromJson(Map<String, dynamic> json) =
@@ -442,6 +503,12 @@ abstract class _HomeModel extends HomeModel {
   @override
   @JsonKey(name: 'featured_products')
   List<ProductModel> get featuredProducts;
+  @override
+  @JsonKey(name: 'new_arrivals')
+  List<ProductModel> get newArrivals;
+  @override
+  @JsonKey(name: 'best_rated')
+  List<ProductModel> get bestRated;
   @override
   @JsonKey(ignore: true)
   _$$_HomeModelCopyWith<_$_HomeModel> get copyWith =>
