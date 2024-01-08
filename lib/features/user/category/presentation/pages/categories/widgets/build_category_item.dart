@@ -25,13 +25,13 @@ class BuildCategoryItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CachedImage(
-              height: 60.r,
-              width: 60.r,
-              fit: BoxFit.cover,
-              boxShape: BoxShape.circle,
-              haveRadius: false,
-              url: categoryModel.icon ?? "",
+            Expanded(
+              child: CachedImage(
+                // height: 60.r,
+                // width: 60.r,
+                fit: BoxFit.contain,
+                url: categoryModel.icon ,
+              ),
             ),
             Gaps.vGap15,
             Flexible(
