@@ -3,7 +3,7 @@ part of 'category_details_widgets_imports.dart';
 class BuildFilterDrawer extends StatelessWidget {
   final CategoryDetailsController categoryDetailsController;
 
-  const   BuildFilterDrawer({super.key, required this.categoryDetailsController});
+  const BuildFilterDrawer({super.key, required this.categoryDetailsController});
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +12,8 @@ class BuildFilterDrawer extends StatelessWidget {
       backgroundColor: context.colors.white,
       child: Padding(
         padding: const EdgeInsets.all(Dimens.dp20),
-        child: BlocBuilder<GenericBloc<SubCategory?>,
-            GenericState<SubCategory?>>(
+        child:
+            BlocBuilder<GenericBloc<SubCategory?>, GenericState<SubCategory?>>(
           bloc: categoryDetailsController.specificationsCubit,
           builder: (context, state) {
             return Column(
@@ -42,8 +42,8 @@ class BuildFilterDrawer extends StatelessWidget {
                     child: Column(
                       children: [
                         BuildPriceRange(
-                            categoryDetailsController:
-                                categoryDetailsController),
+                          categoryDetailsController: categoryDetailsController,
+                        ),
                         ...List.generate(
                           state.data!.attributes.length,
                           (index) => BuildFilterItem(
@@ -53,10 +53,10 @@ class BuildFilterDrawer extends StatelessWidget {
                             index: index,
                           ),
                         ),
-                        BuildColorFilter(
-                            subCategoryModel: state.data!,
-                            categoryDetailsController:
-                                categoryDetailsController),
+                        // BuildColorFilter(
+                        //     subCategoryModel: state.data!,
+                        //     categoryDetailsController:
+                        //         categoryDetailsController),
                       ],
                     ),
                   ),

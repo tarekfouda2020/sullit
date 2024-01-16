@@ -37,16 +37,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               children: [
                 HomeMain(homeController: controller),
                 Categories(homeController: controller),
-                OnSale(homeController: controller),
+                Coupons(homeController: controller),
                 More(homeController: controller),
               ],
             ),
-            // floatingActionButton: FloatingActionButton(
-            //   backgroundColor: context.colors.primary,
-            //   onPressed: () => AutoRouter.of(context).push(const CartRoute()),
-            //   child: const Icon(Icons.shopping_cart),
-            // ),
-            // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
             bottomNavigationBar: BuildBottomNavBar(controller: controller),
           ),
         ),

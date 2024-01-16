@@ -51,3 +51,4 @@ part 'build_top_brand_item.dart';
 part 'build_top_brands.dart';
 part 'build_top_categories.dart';
 part 'build_top_category_item.dart';
+part 'build_header_icon.dart';

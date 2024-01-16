@@ -24,7 +24,7 @@ class BuildFilterItem extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.symmetric(vertical: Dimens.dp10),
                 child: Text(
-                  "${tr('filterBy')} ${attributesModel.name}",
+                  attributesModel.name,
                   style: AppTextStyle.s14_w800(color: context.colors.black),
                 ),
               ),

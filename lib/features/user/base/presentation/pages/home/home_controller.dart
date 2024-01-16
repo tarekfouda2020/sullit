@@ -15,7 +15,7 @@ class HomeController {
   List<String> tabsText(BuildContext context) => [
         tr('home', context: context),
         tr('categories', context: context),
-        tr('products', context: context),
+        tr('offers', context: context),
         tr("account", context: context),
       ];
 

@@ -21,7 +21,8 @@ class BuildHomeMainAppBar extends StatelessWidget {
                 child: Row(
                   children: [
                     IconButton(
-                      onPressed: () => controller.scaffoldKey.currentState!.openDrawer(),
+                      onPressed: () =>
+                          controller.scaffoldKey.currentState!.openDrawer(),
                       icon: Icon(
                         Icons.menu,
                         color: context.colors.black,
@@ -31,17 +32,15 @@ class BuildHomeMainAppBar extends StatelessWidget {
                     Expanded(
                       child: Image.asset(Res.logo, height: 30, width: 120),
                     ),
-                    buildIcon(
-                      context,
-                      Res.cart,
+                    BuildHeaderIcon(
+                      image: Res.cart,
                       onTap: () => AutoRouter.of(context).push(
                         const CartRoute(),
                       ),
                     ),
                     Gaps.hGap8,
-                    buildIcon(
-                      context,
-                      Res.notification,
+                    BuildHeaderIcon(
+                      image: Res.notification,
                       onTap: () => controller.goNotification(context),
                     ),
                   ],
@@ -57,9 +56,6 @@ class BuildHomeMainAppBar extends StatelessWidget {
                 fillColor: context.colors.white,
                 margin: const EdgeInsets.only(bottom: 8),
                 hint: tr('searchCats'),
-                onSubmit: () => controller.visibleSearch.onUpdateData(
-                  !state.data,
-                ),
                 suffixIcon: InkWell(
                   onTap: () => AutoRouter.of(context).push(
                     SearchRoute(
@@ -76,23 +72,6 @@ class BuildHomeMainAppBar extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-
-  InkWell buildIcon(BuildContext context, String icon,
-      {void Function()? onTap}) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        height: 30,
-        width: 30,
-        padding: const EdgeInsets.all(6),
-        decoration: BoxDecoration(
-          color: context.colors.bgIcon,
-          shape: BoxShape.circle,
-        ),
-        child: SvgPicture.asset(icon),
-      ),
     );
   }
 }
