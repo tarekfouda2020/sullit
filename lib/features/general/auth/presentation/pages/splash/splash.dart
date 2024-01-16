@@ -37,9 +37,9 @@ class _SplashState extends State<Splash> {
                   Res.splashLogo,
                   width: MediaQuery.of(context).size.width * .65,
                 ),
-                Gaps.vGap4,
+                Gaps.vGap8,
                 Text(
-                  'Your Outlet Mall',
+                  'your outlet mall 🟡',
                   style: AppTextStyle.s20_w400(color: context.colors.white),
                 ),
               ],
