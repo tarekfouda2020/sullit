@@ -33,10 +33,10 @@ class HomeModel extends BaseApiModel<HomeDomainModel> with _$HomeModel {
         required List<ProductModel> newestProducts,
     @JsonKey(name: 'featured_products')
         required List<ProductModel> featuredProducts,
-    @JsonKey(name: 'new_arrivals')
-        required List<ProductModel> newArrivals,
-    @JsonKey(name: 'best_rated')
-        required List<ProductModel> bestRated,
+    @JsonKey(name: 'new_arrivals') required List<ProductModel> newArrivals,
+    @JsonKey(name: 'best_rated') required List<ProductModel> bestRated,
+    @JsonKey(name: 'cart_count') required int cartCount,
+    @JsonKey(name: 'wishlist_count') required int favCount,
   }) = _HomeModel;
 
   factory HomeModel.fromJson(Map<String, dynamic> json) =>
@@ -55,8 +55,10 @@ class HomeModel extends BaseApiModel<HomeDomainModel> with _$HomeModel {
       featuredProducts: featuredProducts.map((e) => e.toDomainModel()).toList(),
       mostPopular: mostPopular.map((e) => e.toDomainModel()).toList(),
       newestProducts: newestProducts.map((e) => e.toDomainModel()).toList(),
-      bestRated:bestRated .map((e) => e.toDomainModel()).toList(),
-      newArrivals: newArrivals .map((e) => e.toDomainModel()).toList(),
+      bestRated: bestRated.map((e) => e.toDomainModel()).toList(),
+      newArrivals: newArrivals.map((e) => e.toDomainModel()).toList(),
+      cartCount: cartCount,
+      favCount: favCount,
     );
   }
 }

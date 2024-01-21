@@ -8,6 +8,7 @@ class BuildHomeMainAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var countCubit = context.watch<CountCubit>().state;
     return BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
       bloc: controller.visibleSearch,
       builder: (context, state) {
@@ -34,12 +35,14 @@ class BuildHomeMainAppBar extends StatelessWidget {
                     ),
                     BuildHeaderIcon(
                       image: Res.cart,
+                      count: countCubit.cartCount,
                       onTap: () => AutoRouter.of(context).push(
                         const CartRoute(),
                       ),
                     ),
                     Gaps.hGap8,
                     BuildHeaderIcon(
+                      count: countCubit.favCount,
                       image: Res.notification,
                       onTap: () => controller.goNotification(context),
                     ),

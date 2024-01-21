@@ -44,6 +44,10 @@ mixin _$HomeModel {
   List<ProductModel> get newArrivals => throw _privateConstructorUsedError;
   @JsonKey(name: 'best_rated')
   List<ProductModel> get bestRated => throw _privateConstructorUsedError;
+  @JsonKey(name: 'cart_count')
+  int get cartCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'wishlist_count')
+  int get favCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -68,7 +72,9 @@ abstract class $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'newest_products') List<ProductModel> newestProducts,
       @JsonKey(name: 'featured_products') List<ProductModel> featuredProducts,
       @JsonKey(name: 'new_arrivals') List<ProductModel> newArrivals,
-      @JsonKey(name: 'best_rated') List<ProductModel> bestRated});
+      @JsonKey(name: 'best_rated') List<ProductModel> bestRated,
+      @JsonKey(name: 'cart_count') int cartCount,
+      @JsonKey(name: 'wishlist_count') int favCount});
 
   $FlashSaleModelCopyWith<$Res>? get flashSales;
 }
@@ -97,6 +103,8 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
     Object? featuredProducts = null,
     Object? newArrivals = null,
     Object? bestRated = null,
+    Object? cartCount = null,
+    Object? favCount = null,
   }) {
     return _then(_value.copyWith(
       sliders: null == sliders
@@ -143,6 +151,14 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
           ? _value.bestRated
           : bestRated // ignore: cast_nullable_to_non_nullable
               as List<ProductModel>,
+      cartCount: null == cartCount
+          ? _value.cartCount
+          : cartCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      favCount: null == favCount
+          ? _value.favCount
+          : favCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
@@ -178,7 +194,9 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'newest_products') List<ProductModel> newestProducts,
       @JsonKey(name: 'featured_products') List<ProductModel> featuredProducts,
       @JsonKey(name: 'new_arrivals') List<ProductModel> newArrivals,
-      @JsonKey(name: 'best_rated') List<ProductModel> bestRated});
+      @JsonKey(name: 'best_rated') List<ProductModel> bestRated,
+      @JsonKey(name: 'cart_count') int cartCount,
+      @JsonKey(name: 'wishlist_count') int favCount});
 
   @override
   $FlashSaleModelCopyWith<$Res>? get flashSales;
@@ -206,6 +224,8 @@ class __$$_HomeModelCopyWithImpl<$Res>
     Object? featuredProducts = null,
     Object? newArrivals = null,
     Object? bestRated = null,
+    Object? cartCount = null,
+    Object? favCount = null,
   }) {
     return _then(_$_HomeModel(
       sliders: null == sliders
@@ -252,6 +272,14 @@ class __$$_HomeModelCopyWithImpl<$Res>
           ? _value._bestRated
           : bestRated // ignore: cast_nullable_to_non_nullable
               as List<ProductModel>,
+      cartCount: null == cartCount
+          ? _value.cartCount
+          : cartCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      favCount: null == favCount
+          ? _value.favCount
+          : favCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -277,7 +305,9 @@ class _$_HomeModel extends _HomeModel {
       required final List<ProductModel> featuredProducts,
       @JsonKey(name: 'new_arrivals')
       required final List<ProductModel> newArrivals,
-      @JsonKey(name: 'best_rated') required final List<ProductModel> bestRated})
+      @JsonKey(name: 'best_rated') required final List<ProductModel> bestRated,
+      @JsonKey(name: 'cart_count') required this.cartCount,
+      @JsonKey(name: 'wishlist_count') required this.favCount})
       : _sliders = sliders,
         _bannersOne = bannersOne,
         _bannersTwo = bannersTwo,
@@ -389,8 +419,15 @@ class _$_HomeModel extends _HomeModel {
   }
 
   @override
+  @JsonKey(name: 'cart_count')
+  final int cartCount;
+  @override
+  @JsonKey(name: 'wishlist_count')
+  final int favCount;
+
+  @override
   String toString() {
-    return 'HomeModel(sliders: $sliders, bannersOne: $bannersOne, bannersTwo: $bannersTwo, categories: $categories, flashSales: $flashSales, mostPopular: $mostPopular, bestSellingProducts: $bestSellingProducts, newestProducts: $newestProducts, featuredProducts: $featuredProducts, newArrivals: $newArrivals, bestRated: $bestRated)';
+    return 'HomeModel(sliders: $sliders, bannersOne: $bannersOne, bannersTwo: $bannersTwo, categories: $categories, flashSales: $flashSales, mostPopular: $mostPopular, bestSellingProducts: $bestSellingProducts, newestProducts: $newestProducts, featuredProducts: $featuredProducts, newArrivals: $newArrivals, bestRated: $bestRated, cartCount: $cartCount, favCount: $favCount)';
   }
 
   @override
@@ -418,7 +455,11 @@ class _$_HomeModel extends _HomeModel {
             const DeepCollectionEquality()
                 .equals(other._newArrivals, _newArrivals) &&
             const DeepCollectionEquality()
-                .equals(other._bestRated, _bestRated));
+                .equals(other._bestRated, _bestRated) &&
+            (identical(other.cartCount, cartCount) ||
+                other.cartCount == cartCount) &&
+            (identical(other.favCount, favCount) ||
+                other.favCount == favCount));
   }
 
   @JsonKey(ignore: true)
@@ -435,7 +476,9 @@ class _$_HomeModel extends _HomeModel {
       const DeepCollectionEquality().hash(_newestProducts),
       const DeepCollectionEquality().hash(_featuredProducts),
       const DeepCollectionEquality().hash(_newArrivals),
-      const DeepCollectionEquality().hash(_bestRated));
+      const DeepCollectionEquality().hash(_bestRated),
+      cartCount,
+      favCount);
 
   @JsonKey(ignore: true)
   @override
@@ -469,8 +512,10 @@ abstract class _HomeModel extends HomeModel {
       required final List<ProductModel> featuredProducts,
       @JsonKey(name: 'new_arrivals')
       required final List<ProductModel> newArrivals,
-      @JsonKey(name: 'best_rated')
-      required final List<ProductModel> bestRated}) = _$_HomeModel;
+      @JsonKey(name: 'best_rated') required final List<ProductModel> bestRated,
+      @JsonKey(name: 'cart_count') required final int cartCount,
+      @JsonKey(name: 'wishlist_count')
+      required final int favCount}) = _$_HomeModel;
   const _HomeModel._() : super._();
 
   factory _HomeModel.fromJson(Map<String, dynamic> json) =
@@ -509,6 +554,12 @@ abstract class _HomeModel extends HomeModel {
   @override
   @JsonKey(name: 'best_rated')
   List<ProductModel> get bestRated;
+  @override
+  @JsonKey(name: 'cart_count')
+  int get cartCount;
+  @override
+  @JsonKey(name: 'wishlist_count')
+  int get favCount;
   @override
   @JsonKey(ignore: true)
   _$$_HomeModelCopyWith<_$_HomeModel> get copyWith =>

@@ -18,6 +18,7 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
+import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_imports.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/banner_domain_model.dart';

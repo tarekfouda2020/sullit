@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 part of 'home_main_imports.dart';
 
 class HomeMainController {
@@ -13,6 +15,7 @@ class HomeMainController {
 
   void getHome(BuildContext context, {bool refresh = true}) async {
     var result = await GetHome().call(refresh);
+    context.read<CountCubit>().onUpdateCount(result!.cartCount, result.favCount);
     // result?.flashSales.add(FlashSale(id: 0, title: tr('coupons'), date: DateTime.now(), banner: ""));
     homeCubit.onUpdateData(result);
   }

@@ -1,4 +1,3 @@
-
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/core/models/domain_models/brand_domain_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
@@ -20,19 +19,22 @@ class HomeDomainModel extends BaseDomainModel {
   final List<Product> featuredProducts;
   final List<Product> newArrivals;
   final List<Product> bestRated;
+  final int cartCount;
+  final int favCount;
 
   HomeDomainModel({
     required this.sliders,
     required this.bannersOne,
     required this.bannersTwo,
     required this.categories,
-     this.flashSales,
+    this.flashSales,
     required this.mostPopular,
     required this.bestSellingProducts,
     required this.newestProducts,
     required this.featuredProducts,
     required this.newArrivals,
     required this.bestRated,
-
+    required this.cartCount,
+    required this.favCount,
   });
 }

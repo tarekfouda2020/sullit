@@ -40,6 +40,8 @@ _$_HomeModel _$$_HomeModelFromJson(Map<String, dynamic> json) => _$_HomeModel(
       bestRated: (json['best_rated'] as List<dynamic>)
           .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      cartCount: json['cart_count'] as int,
+      favCount: json['wishlist_count'] as int,
     );
 
 Map<String, dynamic> _$$_HomeModelToJson(_$_HomeModel instance) =>
@@ -58,4 +60,6 @@ Map<String, dynamic> _$$_HomeModelToJson(_$_HomeModel instance) =>
           instance.featuredProducts.map((e) => e.toJson()).toList(),
       'new_arrivals': instance.newArrivals.map((e) => e.toJson()).toList(),
       'best_rated': instance.bestRated.map((e) => e.toJson()).toList(),
+      'cart_count': instance.cartCount,
+      'wishlist_count': instance.favCount,
     };
