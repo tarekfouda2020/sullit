@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/global_notification.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
@@ -14,5 +16,6 @@ import 'package:flutter_tdd/features/general/common/domain/models/support_msg.da
 import 'package:flutter_tdd/features/general/common/domain/use_cases/get_support_messages.dart';
 import 'package:flutter_tdd/features/general/common/domain/use_cases/send_support_messages.dart';
 import 'package:flutter_tdd/features/general/common/presentation/pages/support/widgets/support_w_imports.dart';
+import 'package:flutter_tdd/features/user/notifications/domain/entities/notify_enum.dart';
 part 'support.dart';
 part 'support_controller.dart';

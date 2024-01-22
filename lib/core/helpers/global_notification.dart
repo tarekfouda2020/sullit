@@ -12,6 +12,7 @@ import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
+import 'package:flutter_tdd/features/user/notifications/domain/entities/notify_enum.dart';
 import 'package:flutter_tdd/features/user/profile/domain/use_cases/get_profile.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -53,14 +54,14 @@ class GlobalNotification {
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
         print("_____________________Message data:${message.data}");
         print("___________________notification:${message.notification?.title}");
-        _showLocalNotification(message);
         _onMessageStreamController.add(message.data);
-        if (message.data['type'] == "email_changed") {
+        _showLocalNotification(message);
+        if (message.data['type'] == NotifyEnum.emailChanged.getValue()) {
           onSaveUserData();
         }
       });
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-        print('AonMessageOpenedApp event was published!');
+        log('AonMessageOpenedApp event was published!');
         flutterNotificationClick(json.encode(message.data));
       });
       FirebaseMessaging.onBackgroundMessage(
@@ -75,7 +76,7 @@ class GlobalNotification {
     flutterNotificationClick(json.encode(message.data));
   }
 
-  StreamController<Map<String, dynamic>> get notificationSubject {
+  static StreamController<Map<String, dynamic>> get notificationSubject {
     return _onMessageStreamController;
   }
 
@@ -99,11 +100,20 @@ class GlobalNotification {
   }
 
   static Future flutterNotificationClick(String? details) async {
-    print("fcm>>>>>>$details");
     var data = json.decode("$details");
     int id = data["item_type_id"];
-    var context = getIt<GlobalContext>().context();
-    AutoRouter.of(context).push(OrderSummaryRoute(orderId: id));
+    String type = data["item_type"];
+    onNotifyClick(type, id);
+  }
+
+  static void onNotifyClick(String type, int id) {
+    if (type == NotifyEnum.message.getValue()) {
+      var context = getIt<GlobalContext>().context();
+      AutoRouter.of(context).push(const SupportRoute());
+    } else if (type == NotifyEnum.order.getValue()) {
+      var context = getIt<GlobalContext>().context();
+      AutoRouter.of(context).push(OrderSummaryRoute(orderId: id));
+    }
   }
 
   static void onSaveUserData() async {

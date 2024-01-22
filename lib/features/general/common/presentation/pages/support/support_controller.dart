@@ -7,11 +7,24 @@ class SupportController {
 
   SupportController() {
     getSupportMessages();
+    notifyListen();
+  }
+
+  void notifyListen() {
+    GlobalNotification.notificationSubject.stream.listen(
+      (event) {
+        if (event["item_type"] == NotifyEnum.message.getValue()) {
+          getSupportMessages();
+        }
+      },
+    );
   }
 
   void getSupportMessages() async {
     var result = await GetSupportMessages()(NoParams());
     msgCubit.onUpdateData(result);
+    var reversed = msgCubit.state.data.reversed.toList();
+    msgCubit.onUpdateData(reversed);
   }
 
   void sendMessage() async {
@@ -19,10 +32,11 @@ class SupportController {
       var params = _msgParams();
       var result = await SendSupportMessages().call(params);
       msgCubit.onUpdateData(result);
+      var reversed = msgCubit.state.data.reversed.toList();
+      msgCubit.onUpdateData(reversed);
       msgController.clear();
     }
   }
-
 
   Future<void> getImage(BuildContext context) async {
     var image = await getIt<Utilities>().getImageFile(context);
@@ -31,6 +45,8 @@ class SupportController {
       var params = _msgParams();
       var result = await SendSupportMessages().call(params);
       msgCubit.onUpdateData(result);
+      var reversed = msgCubit.state.data.reversed.toList();
+      msgCubit.onUpdateData(reversed);
       imageCubit.onUpdateToInitState(null);
     }
   }

@@ -7,13 +7,21 @@ class Support extends StatefulWidget {
   State<Support> createState() => _SupportState();
 }
 
-class _SupportState extends State<Support> {
+class _SupportState extends State<Support> with WidgetsBindingObserver {
   late SupportController controller;
 
   @override
   void initState() {
     controller = SupportController();
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      controller.getSupportMessages();
+    }
   }
 
   @override
@@ -32,6 +40,7 @@ class _SupportState extends State<Support> {
                 builder: (context, state) {
                   if (state is GenericUpdateState) {
                     return ListView.builder(
+                      padding: Dimens.paddingVertical10PX,
                       itemCount: state.data.length,
                       itemBuilder: (_, index) => BuildSupportMsgItem(
                         model: state.data[index],
