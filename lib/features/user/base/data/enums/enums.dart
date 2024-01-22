@@ -10,6 +10,8 @@ enum MoreRoutes {
   conversations,
   myWallet,
   supportTickets,
+  support,
+
   profile,
   classifiedProducts,
   customersProducts,

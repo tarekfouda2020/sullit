@@ -63,6 +63,12 @@ class MoreController {
       case MoreRoutes.customersProducts:
         AutoRouter.of(context).push(const CustomersProductsRoute());
         break;
+      case MoreRoutes.support:
+        AutoRouter.of(context).push(const SupportRoute());
+        break;
+      case MoreRoutes.test:
+        // TODO: Handle this case.
+        break;
     }
   }
 }

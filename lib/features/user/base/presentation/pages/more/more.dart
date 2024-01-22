@@ -45,6 +45,12 @@ class _MoreState extends State<More> {
                   image: Res.manageProfile,
                 ),
                 BuildMoreItem(
+                  image: Res.ticketLogo,
+                  title: tr('support'),
+                  onTap: () =>
+                      controller.checkAuth(context, MoreRoutes.support),
+                ),
+                BuildMoreItem(
                   image: Res.walletLogo,
                   title: tr('myWallet'),
                   onTap: () =>

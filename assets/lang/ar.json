@@ -253,6 +253,8 @@
   "termsAndConditions": "الشروط و الأحكام",
   "privacyPolicy": "سياسة الخصوصيه",
   "supportPolicy": "سياسة الدعم",
+  "support": "الدعم",
+
   "returnPolicy": "سياسة الإسترجاع",
   "logout": " تسجيل خروج ",
   "blogDetails": "تفاصبل المدونة",
@@ -501,6 +503,7 @@
   "title": "العنوان",
   "conversations": "المحادثات",
   "yourMsg": "رسالتك",
+  "enterYourMsg": "اكتب رسالتك هنا",
   "msgSent": "تم إرسال الرسالة بنجاح",
   "loginForContinue": "تسجيل الدخول للإستمرار",
   "comeBack": "الرجوع",

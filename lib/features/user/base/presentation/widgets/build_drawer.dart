@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
@@ -17,6 +19,8 @@ class BuildDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool auth = context.read<DeviceCubit>().state.model.auth;
+
     return Container(
       color: context.colors.white,
       width: MediaQuery.of(context).size.width * .8,
@@ -47,6 +51,15 @@ class BuildDrawer extends StatelessWidget {
                 //   icon: Icons.monetization_on_outlined,
                 //   onTap: () => AutoRouter.of(context).push(HomeRoute(index: 1)),
                 // ),
+                Visibility(
+                  visible: auth,
+                  child: BuildDrawerItem(
+                    title: tr("support"),
+                    icon: Icons.support_agent_outlined,
+                    onTap: () =>
+                        AutoRouter.of(context).push(const SupportRoute()),
+                  ),
+                ),
                 BuildDrawerItem(
                   title: tr("contactUs"),
                   icon: Icons.contact_support_outlined,

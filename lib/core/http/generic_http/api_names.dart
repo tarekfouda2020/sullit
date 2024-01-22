@@ -93,6 +93,8 @@ class ApiNames {
   static const String supportPolicy = "support-policy";
   static const String returnPolicy = "return-policy";
   static const String getContactUs = "settings/contact-data";
+  static const String getSupportMsg = "room";
+  static const String sendSupportMsg = "room/send-message";
 
   // items routes
   static const String ITEMS = "Items";
