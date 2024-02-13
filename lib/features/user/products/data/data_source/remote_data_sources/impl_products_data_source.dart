@@ -10,6 +10,7 @@ import 'package:flutter_tdd/features/user/category/domain/entities/generic_param
 import 'package:flutter_tdd/features/user/products/data/data_source/remote_data_sources/products_data_source.dart';
 import 'package:flutter_tdd/features/user/products/data/models/home_model/home_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/product_details_model/product_details_model.dart';
+import 'package:flutter_tdd/features/user/products/data/models/product_sections_model/product_sections_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/queries_model/queries_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/popular_products_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/send_query_params.dart';
@@ -122,5 +123,21 @@ class ImplProductsDataSource extends ProductsDataSource {
       responseKey: (data) => data["data"]["products"],
     );
     return await GenericHttpImpl<List<ProductModel>>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, List<ProductSectionsModel>>> getProductSections(
+      int param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.getProductSections(param),
+      requestMethod: RequestMethod.get,
+      responseType: ResType.list,
+      showLoader: true,
+      toJsonFunc: (json) => List<ProductSectionsModel>.from(
+        json.map((e) => ProductSectionsModel.fromJson(e)),
+      ),
+      responseKey: (data) => data["data"]["sections"],
+    );
+    return await GenericHttpImpl<List<ProductSectionsModel>>().call(model);
   }
 }

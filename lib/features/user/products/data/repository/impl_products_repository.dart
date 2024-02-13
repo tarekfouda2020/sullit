@@ -13,6 +13,7 @@ import 'package:flutter_tdd/features/user/products/domain/entities/variant_price
 import 'package:flutter_tdd/features/user/products/domain/models/home_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_details_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_sections.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/queries.dart';
 import 'package:flutter_tdd/features/user/products/domain/repository/products_repository.dart';
 import 'package:injectable/injectable.dart';
@@ -68,6 +69,12 @@ class ImplProductsRepository extends ProductsRepository with ModelToDomain {
   @override
   Future<Either<Failure, List<Product>>> getDigitalProducts(bool param) async {
     var result = await dataSources.getDigitalProducts(param);
+    return toDomainResultList(result);
+  }
+
+  @override
+  Future<Either<Failure, List<ProductSections>>> getProductSections(int param) async{
+    var result = await dataSources.getProductSections(param);
     return toDomainResultList(result);
   }
 }

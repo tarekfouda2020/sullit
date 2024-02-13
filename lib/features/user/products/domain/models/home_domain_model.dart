@@ -13,12 +13,12 @@ class HomeDomainModel extends BaseDomainModel {
   final List<BannerDomainModel> bannersTwo;
   final List<Category> categories;
   final FlashSale? flashSales;
-  final List<PopularProductsDomainModel> mostPopular;
-  final List<Product> bestSellingProducts;
-  final List<Product> newestProducts;
-  final List<Product> featuredProducts;
-  final List<Product> newArrivals;
-  final List<Product> bestRated;
+  // final List<PopularProductsDomainModel> mostPopular;
+  // final List<Product> bestSellingProducts;
+  // final List<Product> newestProducts;
+  // final List<Product> featuredProducts;
+  // final List<Product> newArrivals;
+  // final List<Product> bestRated;
   final int cartCount;
   final int favCount;
 
@@ -28,12 +28,12 @@ class HomeDomainModel extends BaseDomainModel {
     required this.bannersTwo,
     required this.categories,
     this.flashSales,
-    required this.mostPopular,
-    required this.bestSellingProducts,
-    required this.newestProducts,
-    required this.featuredProducts,
-    required this.newArrivals,
-    required this.bestRated,
+    // required this.mostPopular,
+    // required this.bestSellingProducts,
+    // required this.newestProducts,
+    // required this.featuredProducts,
+    // required this.newArrivals,
+    // required this.bestRated,
     required this.cartCount,
     required this.favCount,
   });

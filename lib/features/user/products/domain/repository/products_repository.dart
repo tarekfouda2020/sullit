@@ -8,16 +8,27 @@ import 'package:flutter_tdd/features/user/products/domain/entities/variant_price
 import 'package:flutter_tdd/features/user/products/domain/models/home_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_details_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_sections.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/queries.dart';
 
 abstract class ProductsRepository {
   Future<Either<Failure, HomeDomainModel>> getHome(bool param);
-  Future<Either<Failure, ProductDetailsDomainModel>> getProductDetails(GenericParams param);
-  Future<Either<Failure, List<Product>>> getPopularProducts(PopularProductsParams param);
+
+  Future<Either<Failure, ProductDetailsDomainModel>> getProductDetails(
+      GenericParams param);
+
+  Future<Either<Failure, List<Product>>> getPopularProducts(
+      PopularProductsParams param);
+
   Future<List<ProductsTableData>> getItems();
+
   Future<Either<Failure, bool>> toggleFavourite(int param);
-  Future<Either<Failure,Queries>>sendQuery(SendQueryParams params);
+
+  Future<Either<Failure, Queries>> sendQuery(SendQueryParams params);
+
   Future<Either<Failure, Product>> getVariantPrice(VariantPriceParams param);
+
   Future<Either<Failure, List<Product>>> getDigitalProducts(bool param);
 
+  Future<Either<Failure, List<ProductSections>>> getProductSections(int param);
 }

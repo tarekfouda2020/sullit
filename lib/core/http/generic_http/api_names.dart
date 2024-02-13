@@ -40,6 +40,7 @@ class ApiNames {
 
   static String getVariantPrice(int id) => "products/$id/variant/price";
   static const String getDownloadProducts = "orders/digital-purchase-history";
+  static  String getProductSections(int page) => "sections?page=$page";
 
   static String downloadDigitalProduct(int id) =>
       "orders/digital-purchase-history/$id/download-product";

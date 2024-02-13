@@ -29,21 +29,17 @@ mixin _$HomeModel {
   @JsonKey(name: 'categories')
   List<CategoryModel> get categories => throw _privateConstructorUsedError;
   @JsonKey(name: 'flash_deal')
-  FlashSaleModel? get flashSales => throw _privateConstructorUsedError;
-  @JsonKey(name: 'most_populars')
-  List<PopularProductModel> get mostPopular =>
-      throw _privateConstructorUsedError;
-  @JsonKey(name: 'best_selling_products')
-  List<ProductModel> get bestSellingProducts =>
-      throw _privateConstructorUsedError;
-  @JsonKey(name: 'newest_products')
-  List<ProductModel> get newestProducts => throw _privateConstructorUsedError;
-  @JsonKey(name: 'featured_products')
-  List<ProductModel> get featuredProducts => throw _privateConstructorUsedError;
-  @JsonKey(name: 'new_arrivals')
-  List<ProductModel> get newArrivals => throw _privateConstructorUsedError;
-  @JsonKey(name: 'best_rated')
-  List<ProductModel> get bestRated => throw _privateConstructorUsedError;
+  FlashSaleModel? get flashSales =>
+      throw _privateConstructorUsedError; // @JsonKey(name: 'most_populars')
+//     required List<PopularProductModel> mostPopular,
+// @JsonKey(name: 'best_selling_products')
+//     required List<ProductModel> bestSellingProducts,
+// @JsonKey(name: 'newest_products')
+//     required List<ProductModel> newestProducts,
+// @JsonKey(name: 'featured_products')
+//     required List<ProductModel> featuredProducts,
+// @JsonKey(name: 'new_arrivals') required List<ProductModel> newArrivals,
+// @JsonKey(name: 'best_rated') required List<ProductModel> bestRated,
   @JsonKey(name: 'cart_count')
   int get cartCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'wishlist_count')
@@ -66,13 +62,6 @@ abstract class $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'banners_two') List<BannerModel> bannersTwo,
       @JsonKey(name: 'categories') List<CategoryModel> categories,
       @JsonKey(name: 'flash_deal') FlashSaleModel? flashSales,
-      @JsonKey(name: 'most_populars') List<PopularProductModel> mostPopular,
-      @JsonKey(name: 'best_selling_products')
-      List<ProductModel> bestSellingProducts,
-      @JsonKey(name: 'newest_products') List<ProductModel> newestProducts,
-      @JsonKey(name: 'featured_products') List<ProductModel> featuredProducts,
-      @JsonKey(name: 'new_arrivals') List<ProductModel> newArrivals,
-      @JsonKey(name: 'best_rated') List<ProductModel> bestRated,
       @JsonKey(name: 'cart_count') int cartCount,
       @JsonKey(name: 'wishlist_count') int favCount});
 
@@ -97,12 +86,6 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
     Object? bannersTwo = null,
     Object? categories = null,
     Object? flashSales = freezed,
-    Object? mostPopular = null,
-    Object? bestSellingProducts = null,
-    Object? newestProducts = null,
-    Object? featuredProducts = null,
-    Object? newArrivals = null,
-    Object? bestRated = null,
     Object? cartCount = null,
     Object? favCount = null,
   }) {
@@ -127,30 +110,6 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
           ? _value.flashSales
           : flashSales // ignore: cast_nullable_to_non_nullable
               as FlashSaleModel?,
-      mostPopular: null == mostPopular
-          ? _value.mostPopular
-          : mostPopular // ignore: cast_nullable_to_non_nullable
-              as List<PopularProductModel>,
-      bestSellingProducts: null == bestSellingProducts
-          ? _value.bestSellingProducts
-          : bestSellingProducts // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
-      newestProducts: null == newestProducts
-          ? _value.newestProducts
-          : newestProducts // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
-      featuredProducts: null == featuredProducts
-          ? _value.featuredProducts
-          : featuredProducts // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
-      newArrivals: null == newArrivals
-          ? _value.newArrivals
-          : newArrivals // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
-      bestRated: null == bestRated
-          ? _value.bestRated
-          : bestRated // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
       cartCount: null == cartCount
           ? _value.cartCount
           : cartCount // ignore: cast_nullable_to_non_nullable
@@ -188,13 +147,6 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'banners_two') List<BannerModel> bannersTwo,
       @JsonKey(name: 'categories') List<CategoryModel> categories,
       @JsonKey(name: 'flash_deal') FlashSaleModel? flashSales,
-      @JsonKey(name: 'most_populars') List<PopularProductModel> mostPopular,
-      @JsonKey(name: 'best_selling_products')
-      List<ProductModel> bestSellingProducts,
-      @JsonKey(name: 'newest_products') List<ProductModel> newestProducts,
-      @JsonKey(name: 'featured_products') List<ProductModel> featuredProducts,
-      @JsonKey(name: 'new_arrivals') List<ProductModel> newArrivals,
-      @JsonKey(name: 'best_rated') List<ProductModel> bestRated,
       @JsonKey(name: 'cart_count') int cartCount,
       @JsonKey(name: 'wishlist_count') int favCount});
 
@@ -218,12 +170,6 @@ class __$$_HomeModelCopyWithImpl<$Res>
     Object? bannersTwo = null,
     Object? categories = null,
     Object? flashSales = freezed,
-    Object? mostPopular = null,
-    Object? bestSellingProducts = null,
-    Object? newestProducts = null,
-    Object? featuredProducts = null,
-    Object? newArrivals = null,
-    Object? bestRated = null,
     Object? cartCount = null,
     Object? favCount = null,
   }) {
@@ -248,30 +194,6 @@ class __$$_HomeModelCopyWithImpl<$Res>
           ? _value.flashSales
           : flashSales // ignore: cast_nullable_to_non_nullable
               as FlashSaleModel?,
-      mostPopular: null == mostPopular
-          ? _value._mostPopular
-          : mostPopular // ignore: cast_nullable_to_non_nullable
-              as List<PopularProductModel>,
-      bestSellingProducts: null == bestSellingProducts
-          ? _value._bestSellingProducts
-          : bestSellingProducts // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
-      newestProducts: null == newestProducts
-          ? _value._newestProducts
-          : newestProducts // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
-      featuredProducts: null == featuredProducts
-          ? _value._featuredProducts
-          : featuredProducts // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
-      newArrivals: null == newArrivals
-          ? _value._newArrivals
-          : newArrivals // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
-      bestRated: null == bestRated
-          ? _value._bestRated
-          : bestRated // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
       cartCount: null == cartCount
           ? _value.cartCount
           : cartCount // ignore: cast_nullable_to_non_nullable
@@ -295,29 +217,12 @@ class _$_HomeModel extends _HomeModel {
       @JsonKey(name: 'categories')
       required final List<CategoryModel> categories,
       @JsonKey(name: 'flash_deal') required this.flashSales,
-      @JsonKey(name: 'most_populars')
-      required final List<PopularProductModel> mostPopular,
-      @JsonKey(name: 'best_selling_products')
-      required final List<ProductModel> bestSellingProducts,
-      @JsonKey(name: 'newest_products')
-      required final List<ProductModel> newestProducts,
-      @JsonKey(name: 'featured_products')
-      required final List<ProductModel> featuredProducts,
-      @JsonKey(name: 'new_arrivals')
-      required final List<ProductModel> newArrivals,
-      @JsonKey(name: 'best_rated') required final List<ProductModel> bestRated,
       @JsonKey(name: 'cart_count') required this.cartCount,
       @JsonKey(name: 'wishlist_count') required this.favCount})
       : _sliders = sliders,
         _bannersOne = bannersOne,
         _bannersTwo = bannersTwo,
         _categories = categories,
-        _mostPopular = mostPopular,
-        _bestSellingProducts = bestSellingProducts,
-        _newestProducts = newestProducts,
-        _featuredProducts = featuredProducts,
-        _newArrivals = newArrivals,
-        _bestRated = bestRated,
         super._();
 
   factory _$_HomeModel.fromJson(Map<String, dynamic> json) =>
@@ -362,62 +267,16 @@ class _$_HomeModel extends _HomeModel {
   @override
   @JsonKey(name: 'flash_deal')
   final FlashSaleModel? flashSales;
-  final List<PopularProductModel> _mostPopular;
-  @override
-  @JsonKey(name: 'most_populars')
-  List<PopularProductModel> get mostPopular {
-    if (_mostPopular is EqualUnmodifiableListView) return _mostPopular;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_mostPopular);
-  }
-
-  final List<ProductModel> _bestSellingProducts;
-  @override
-  @JsonKey(name: 'best_selling_products')
-  List<ProductModel> get bestSellingProducts {
-    if (_bestSellingProducts is EqualUnmodifiableListView)
-      return _bestSellingProducts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_bestSellingProducts);
-  }
-
-  final List<ProductModel> _newestProducts;
-  @override
-  @JsonKey(name: 'newest_products')
-  List<ProductModel> get newestProducts {
-    if (_newestProducts is EqualUnmodifiableListView) return _newestProducts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_newestProducts);
-  }
-
-  final List<ProductModel> _featuredProducts;
-  @override
-  @JsonKey(name: 'featured_products')
-  List<ProductModel> get featuredProducts {
-    if (_featuredProducts is EqualUnmodifiableListView)
-      return _featuredProducts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_featuredProducts);
-  }
-
-  final List<ProductModel> _newArrivals;
-  @override
-  @JsonKey(name: 'new_arrivals')
-  List<ProductModel> get newArrivals {
-    if (_newArrivals is EqualUnmodifiableListView) return _newArrivals;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_newArrivals);
-  }
-
-  final List<ProductModel> _bestRated;
-  @override
-  @JsonKey(name: 'best_rated')
-  List<ProductModel> get bestRated {
-    if (_bestRated is EqualUnmodifiableListView) return _bestRated;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_bestRated);
-  }
-
+// @JsonKey(name: 'most_populars')
+//     required List<PopularProductModel> mostPopular,
+// @JsonKey(name: 'best_selling_products')
+//     required List<ProductModel> bestSellingProducts,
+// @JsonKey(name: 'newest_products')
+//     required List<ProductModel> newestProducts,
+// @JsonKey(name: 'featured_products')
+//     required List<ProductModel> featuredProducts,
+// @JsonKey(name: 'new_arrivals') required List<ProductModel> newArrivals,
+// @JsonKey(name: 'best_rated') required List<ProductModel> bestRated,
   @override
   @JsonKey(name: 'cart_count')
   final int cartCount;
@@ -427,7 +286,7 @@ class _$_HomeModel extends _HomeModel {
 
   @override
   String toString() {
-    return 'HomeModel(sliders: $sliders, bannersOne: $bannersOne, bannersTwo: $bannersTwo, categories: $categories, flashSales: $flashSales, mostPopular: $mostPopular, bestSellingProducts: $bestSellingProducts, newestProducts: $newestProducts, featuredProducts: $featuredProducts, newArrivals: $newArrivals, bestRated: $bestRated, cartCount: $cartCount, favCount: $favCount)';
+    return 'HomeModel(sliders: $sliders, bannersOne: $bannersOne, bannersTwo: $bannersTwo, categories: $categories, flashSales: $flashSales, cartCount: $cartCount, favCount: $favCount)';
   }
 
   @override
@@ -444,18 +303,6 @@ class _$_HomeModel extends _HomeModel {
                 .equals(other._categories, _categories) &&
             (identical(other.flashSales, flashSales) ||
                 other.flashSales == flashSales) &&
-            const DeepCollectionEquality()
-                .equals(other._mostPopular, _mostPopular) &&
-            const DeepCollectionEquality()
-                .equals(other._bestSellingProducts, _bestSellingProducts) &&
-            const DeepCollectionEquality()
-                .equals(other._newestProducts, _newestProducts) &&
-            const DeepCollectionEquality()
-                .equals(other._featuredProducts, _featuredProducts) &&
-            const DeepCollectionEquality()
-                .equals(other._newArrivals, _newArrivals) &&
-            const DeepCollectionEquality()
-                .equals(other._bestRated, _bestRated) &&
             (identical(other.cartCount, cartCount) ||
                 other.cartCount == cartCount) &&
             (identical(other.favCount, favCount) ||
@@ -471,12 +318,6 @@ class _$_HomeModel extends _HomeModel {
       const DeepCollectionEquality().hash(_bannersTwo),
       const DeepCollectionEquality().hash(_categories),
       flashSales,
-      const DeepCollectionEquality().hash(_mostPopular),
-      const DeepCollectionEquality().hash(_bestSellingProducts),
-      const DeepCollectionEquality().hash(_newestProducts),
-      const DeepCollectionEquality().hash(_featuredProducts),
-      const DeepCollectionEquality().hash(_newArrivals),
-      const DeepCollectionEquality().hash(_bestRated),
       cartCount,
       favCount);
 
@@ -502,17 +343,6 @@ abstract class _HomeModel extends HomeModel {
       @JsonKey(name: 'categories')
       required final List<CategoryModel> categories,
       @JsonKey(name: 'flash_deal') required final FlashSaleModel? flashSales,
-      @JsonKey(name: 'most_populars')
-      required final List<PopularProductModel> mostPopular,
-      @JsonKey(name: 'best_selling_products')
-      required final List<ProductModel> bestSellingProducts,
-      @JsonKey(name: 'newest_products')
-      required final List<ProductModel> newestProducts,
-      @JsonKey(name: 'featured_products')
-      required final List<ProductModel> featuredProducts,
-      @JsonKey(name: 'new_arrivals')
-      required final List<ProductModel> newArrivals,
-      @JsonKey(name: 'best_rated') required final List<ProductModel> bestRated,
       @JsonKey(name: 'cart_count') required final int cartCount,
       @JsonKey(name: 'wishlist_count')
       required final int favCount}) = _$_HomeModel;
@@ -536,25 +366,16 @@ abstract class _HomeModel extends HomeModel {
   @override
   @JsonKey(name: 'flash_deal')
   FlashSaleModel? get flashSales;
-  @override
-  @JsonKey(name: 'most_populars')
-  List<PopularProductModel> get mostPopular;
-  @override
-  @JsonKey(name: 'best_selling_products')
-  List<ProductModel> get bestSellingProducts;
-  @override
-  @JsonKey(name: 'newest_products')
-  List<ProductModel> get newestProducts;
-  @override
-  @JsonKey(name: 'featured_products')
-  List<ProductModel> get featuredProducts;
-  @override
-  @JsonKey(name: 'new_arrivals')
-  List<ProductModel> get newArrivals;
-  @override
-  @JsonKey(name: 'best_rated')
-  List<ProductModel> get bestRated;
-  @override
+  @override // @JsonKey(name: 'most_populars')
+//     required List<PopularProductModel> mostPopular,
+// @JsonKey(name: 'best_selling_products')
+//     required List<ProductModel> bestSellingProducts,
+// @JsonKey(name: 'newest_products')
+//     required List<ProductModel> newestProducts,
+// @JsonKey(name: 'featured_products')
+//     required List<ProductModel> featuredProducts,
+// @JsonKey(name: 'new_arrivals') required List<ProductModel> newArrivals,
+// @JsonKey(name: 'best_rated') required List<ProductModel> bestRated,
   @JsonKey(name: 'cart_count')
   int get cartCount;
   @override

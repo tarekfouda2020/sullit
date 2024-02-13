@@ -41,11 +41,24 @@ class BuildHomeMainAppBar extends StatelessWidget {
                       ),
                     ),
                     Gaps.hGap8,
-                    BuildHeaderIcon(
-                      count: countCubit.favCount,
-                      image: Res.notification,
+                    InkWell(
                       onTap: () => controller.goNotification(context),
+                      child: Container(
+                        height: 35,
+                        width: 35,
+                        padding: Dimens.paddingAll5PX,
+                        decoration: BoxDecoration(
+                          color: context.colors.bgIcon,
+                          shape: BoxShape.circle,
+                        ),
+                        child: SvgPicture.asset(Res.notification),
+                      ),
                     ),
+                    // BuildHeaderIcon(
+                    //   count: countCubit.favCount,
+                    //   image: Res.notification,
+                    //   onTap: () => controller.goNotification(context),
+                    // ),
                   ],
                 ),
               ),
