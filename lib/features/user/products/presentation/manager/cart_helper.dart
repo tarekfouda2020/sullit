@@ -61,9 +61,8 @@ class CartHelper {
 
   void onIncreaseQty(GenericBloc<Product?> productCubit) {
     var variantPrice = productCubit.state.data?.variant;
-    var price = double.parse(variantPrice!.calculablePrice!);
+    var price = double.parse(variantPrice!.calculablePrice!.replaceAll(",", ""));
     price = price / productCubit.state.data!.minQty!;
-    log(">>>>${variantPrice.currentStock}");
     if (variantPrice.currentStock! >= 1) {
       if (variantPrice.currentStock! > productCubit.state.data!.minQty!) {
         var newQty = productCubit.state.data!.minQty! + 1;
@@ -85,7 +84,7 @@ class CartHelper {
 
   void onDecreaseQty(GenericBloc<Product?> productCubit) {
     var variantPrice = productCubit.state.data?.variant;
-    var price = double.parse(variantPrice!.calculablePrice!);
+    var price = double.parse(variantPrice!.calculablePrice!.replaceAll(",", ""));
     if (productCubit.state.data!.minQty! > 1) {
       var priceQty = price - (price / productCubit.state.data!.minQty!);
       productCubit.state.data!.minQty = productCubit.state.data!.minQty! - 1;

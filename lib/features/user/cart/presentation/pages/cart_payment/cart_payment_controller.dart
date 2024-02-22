@@ -16,6 +16,31 @@ class CartPaymentController {
     shipping.paymentOption?.first.selected = true;
     selectedPayment = shipping.paymentOption?.first.paymentTypeKey;
     shippingBloc.onUpdateData(shipping);
+    if (shipping.isAdminDiscount == true) {
+      calculateDiscount();
+    }
+  }
+
+  void calculateDiscount() {
+    String subTotal =
+        shippingBloc.state.data!.summary.subTotal.replaceAll("د.إ", "");
+    String newSubTotal = subTotal.replaceAll(",", "");
+    double subTotalVal = double.parse(newSubTotal);
+    double discount =
+        subTotalVal * (shippingBloc.state.data!.discountRate! / 100);
+    shippingBloc.state.data?.discountVal = discount;
+    double totalVal = shippingBloc.state.data!.summary.calTotal - discount;
+    shippingBloc.state.data!.summary.total = "${totalVal.toString()}د.إ";
+    shippingBloc.onUpdateData(shippingBloc.state.data);
+  }
+
+  void calcTotalAfterCoupon() {
+    String total = shippingBloc.state.data!.summary.total.replaceAll("د.إ", "");
+    String newTotal = total.replaceAll(",", "");
+    double totalVal = double.parse(newTotal);
+    double calTotal = totalVal - shippingBloc.state.data!.discountVal!;
+    shippingBloc.state.data!.summary.total = "${calTotal.toString()}د.إ";
+    shippingBloc.onUpdateData(shippingBloc.state.data);
   }
 
   Future<void> applyCoupon() async {
@@ -25,6 +50,9 @@ class CartPaymentController {
         CustomToast.showSimpleToast(msg: data.msg);
         shippingBloc.state.data!.summary = data.shipping.summary;
         shippingBloc.onUpdateData(shippingBloc.state.data);
+        if (shippingBloc.state.data!.isAdminDiscount == true) {
+          calcTotalAfterCoupon();
+        }
       }
     }
   }

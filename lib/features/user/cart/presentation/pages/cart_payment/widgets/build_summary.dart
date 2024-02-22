@@ -27,7 +27,7 @@ class BuildSummary extends StatelessWidget {
                     color: context.colors.primary,
                     borderRadius: Dimens.borderRadius5PX),
                 child: Text(
-                  "${shipping.summary.items.length} ${shipping.summary.items.isNotEmpty ?tr('items') : ''}",
+                  "${shipping.summary.items.length} ${shipping.summary.items.isNotEmpty ? tr('items') : ''}",
                   style: AppTextStyle.s14_w400(color: context.colors.white),
                 ),
               )
@@ -55,10 +55,10 @@ class BuildSummary extends StatelessWidget {
             details: shipping.summary.shipping,
           ),
           Visibility(
-            visible: shipping.isAdminDiscount,
+            visible: shipping.isAdminDiscount == true,
             child: BuildSummaryHeader(
               title: tr("discount"),
-              details: "${shipping.discountRate} د.إ ",
+              details: "${shipping.discountVal}د.إ ",
             ),
           ),
           Gaps.line(context.colors.primary, 15.h),

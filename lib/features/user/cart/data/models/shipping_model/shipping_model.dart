@@ -17,8 +17,8 @@ class ShippingModel extends BaseApiModel<Shipping> with _$ShippingModel {
   const factory ShippingModel({
     required ShippingSummaryModel summary,
     @JsonKey(name: "payment_option") List<PaymentOptionModel>? paymentOption,
-    @JsonKey(name: "is_admin_discount")required bool isAdminDiscount,
-    @JsonKey(name: "discount_rate")required int  discountRate
+    @JsonKey(name: "is_admin_discount") bool? isAdminDiscount,
+    @JsonKey(name: "discount_rate") int?  discountRate
   }) = _ShippingModel;
 
   factory ShippingModel.fromJson(Map<String, dynamic> json) =>
