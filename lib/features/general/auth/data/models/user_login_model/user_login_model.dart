@@ -4,6 +4,7 @@ import 'package:flutter_tdd/features/general/auth/domain/models/user_login.dart'
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_login_model.freezed.dart';
+
 part 'user_login_model.g.dart';
 
 @freezed
@@ -16,6 +17,7 @@ class UserLoginModel extends BaseApiModel<UserLogin> with _$UserLoginModel {
     @JsonKey(name: "key") required String key,
     @JsonKey(name: "msg") required String msg,
     @JsonKey(name: "data") UserDataModel? data,
+
   }) = _UserLoginModel;
 
   factory UserLoginModel.fromJson(Map<String, dynamic> json) =>
@@ -27,6 +29,7 @@ class UserLoginModel extends BaseApiModel<UserLogin> with _$UserLoginModel {
       msg: msg,
       userData: data?.toDomainModel(),
       key: key,
+
     );
   }
 }

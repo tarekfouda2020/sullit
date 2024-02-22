@@ -15,7 +15,7 @@ class HomeMainController {
   HomeMainController(BuildContext context, HomeController controller) {
     controller.searchController.clear();
     controller.visibleSearch.onUpdateData(false);
-    getHome(context, refresh: false);
+    // getHome(context, refresh: false);
     getHome(context);
     getProductSections();
     scrollController.addListener(scrollListener);
@@ -32,7 +32,7 @@ class HomeMainController {
     var result = await GetHome().call(refresh);
     context
         .read<CountCubit>()
-        .onUpdateCount(result!.cartCount, result.favCount);
+        .onUpdateCount(result!.cartCount, result.discountRate);
     // result?.flashSales.add(FlashSale(id: 0, title: tr('coupons'), date: DateTime.now(), banner: ""));
     homeCubit.onUpdateData(result);
   }

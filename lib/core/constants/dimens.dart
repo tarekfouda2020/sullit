@@ -89,6 +89,8 @@ class Dimens {
       const EdgeInsets.symmetric(horizontal: dp15, vertical: dp10).r;
   static EdgeInsets cardMargin =
       const EdgeInsets.symmetric(horizontal: dp15, vertical: dp5).r;
+  static EdgeInsets paddingH10V5 =
+      const EdgeInsets.symmetric(horizontal: dp10, vertical: dp5).r;
   static EdgeInsets paddingH10V20 =
       const EdgeInsets.symmetric(horizontal: dp10, vertical: dp20).r;
   static EdgeInsets paddingH20V10 =
@@ -141,9 +143,11 @@ class Dimens {
   static EdgeInsets paddingAll15PX = const EdgeInsets.all(15).r;
   static EdgeInsets paddingAll13PX = const EdgeInsets.all(13).r;
   static EdgeInsets paddingAll20PX = const EdgeInsets.all(20).r;
+  static EdgeInsets marginBottom5 = const EdgeInsets.only(bottom: 5).r;
 
   static EdgeInsets marginTop70 = const EdgeInsets.only(top: 70).r;
   static EdgeInsets marginTop10 = const EdgeInsets.only(top: 10).r;
+
   static EdgeInsets marginTop23 = const EdgeInsets.only(top: 23).r;
   static EdgeInsets marginTop23B40 =
       const EdgeInsets.only(top: 23, bottom: 40).r;

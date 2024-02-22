@@ -50,6 +50,8 @@ class ApiNames {
 
   // categories urls
   static const String getCategories = "categories";
+  static  String getSideSubCats(int id) => "categories/$id";
+
   static const String getBrands = "brands";
   static const String brandDetails = "brands/";
   static const String getCategoryProducts = "search";

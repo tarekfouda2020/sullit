@@ -24,8 +24,8 @@ class BuildSubCategoryItem extends StatelessWidget {
         ? context.colors.white
         : context.colors.primary;
     return InkWell(
-      onTap: () => categoryDetailsController.onSelectSubCategory(
-          context, selected, subCategoryModel, index),
+      // onTap: () => categoryDetailsController.onSelectSubCategory(
+      //     context, selected, subCategoryModel, index),
       child: Container(
         height: 30.h,
         padding: Dimens.paddingHorizontal15PX,

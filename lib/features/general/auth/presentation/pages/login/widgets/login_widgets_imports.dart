@@ -26,3 +26,4 @@ part 'build_login_tabs.dart';
 part 'build_login_tabs_view.dart';
 part 'build_login_view.dart';
 part 'build_social_item.dart';
+part 'build_discount_dialog.dart';

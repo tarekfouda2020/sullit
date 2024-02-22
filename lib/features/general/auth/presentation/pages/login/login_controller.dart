@@ -22,7 +22,7 @@ class LoginController {
       var result = await SetLogin().call(params);
       btnKey.currentState?.animateReverse();
       if (result?.key == "success") {
-        _cashAndRoute(context, result?.userData?.user);
+        _cashAndRoute(context, result?.userData, result?.userData?.user);
       }
       if (result?.key == "needActive") {
         _onNeedActive(context);
@@ -30,7 +30,8 @@ class LoginController {
     }
   }
 
-  void _cashAndRoute(BuildContext context, UserDomainModel? data) async {
+  void _cashAndRoute(
+      BuildContext context, UserData? model, UserDomainModel? data) async {
     context.read<DeviceCubit>().updateUserAuth(true);
     GlobalState.instance.set("token", data?.token);
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -40,6 +41,21 @@ class LoginController {
     CustomToast.showSimpleToast(
       msg: tr('successLoggedIn'),
       type: ToastType.success,
+    );
+    if (model?.isAdminDiscount == true) {
+      showDiscountDialog(context, model!.msgAdminDiscount!);
+    }
+  }
+
+  void showDiscountDialog(BuildContext context, String discountMsg) {
+    Future.delayed(
+      const Duration(milliseconds: 100),
+      () {
+        showDialog(
+          context: context,
+          builder: (_) => BuildDiscountDialog(msg: discountMsg),
+        );
+      },
     );
   }
 
@@ -61,8 +77,11 @@ class LoginController {
     );
   }
 
-  Future<bool> onBackPressed() async {
-    SystemNavigator.pop();
-    return false;
+  Future<bool> onBackPressed(BuildContext context) async {
+    AutoRouter.of(context).pushAndPopUntil(
+      HomeRoute(index: 0),
+      predicate: (route) => false,
+    );
+    return true;
   }
 }

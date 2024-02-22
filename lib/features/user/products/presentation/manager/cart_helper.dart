@@ -3,11 +3,13 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/get_device_id.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/add_product_to_cart.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/add_product_to_cart_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/variant_price_params.dart';
@@ -95,13 +97,15 @@ class CartHelper {
   Future<void> addProductToCart(BuildContext context, int qty, int? variantId,
       {required Function() onAddCartFunc}) async {
     var params = await _addToCartParams(variantId, qty);
-    log(">>>>>${params.toJson()}");
     if (params.variantId == null) {
       CustomToast.showSimpleToast(msg: tr('variantNotFound'));
       return;
     }
     var data = await AddProductToCart().call(params);
     if (data != '') {
+      var countCubit = context.read<CountCubit>().state;
+      var cartCount = countCubit.cartCount + 1;
+      context.read<CountCubit>().onUpdateCount(cartCount, countCubit.discount);
       CustomToast.showSimpleToast(
           msg: tr('productAddedToYourCart'), type: ToastType.success);
     }

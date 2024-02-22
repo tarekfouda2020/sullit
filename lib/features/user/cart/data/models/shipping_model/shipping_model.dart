@@ -5,6 +5,7 @@ import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'shipping_model.freezed.dart';
+
 part 'shipping_model.g.dart';
 
 @freezed
@@ -15,8 +16,9 @@ class ShippingModel extends BaseApiModel<Shipping> with _$ShippingModel {
   @JsonSerializable(explicitToJson: true)
   const factory ShippingModel({
     required ShippingSummaryModel summary,
-    @JsonKey(name: "payment_option")
-    List<PaymentOptionModel>? paymentOption,
+    @JsonKey(name: "payment_option") List<PaymentOptionModel>? paymentOption,
+    @JsonKey(name: "is_admin_discount")required bool isAdminDiscount,
+    @JsonKey(name: "discount_rate")required int  discountRate
   }) = _ShippingModel;
 
   factory ShippingModel.fromJson(Map<String, dynamic> json) =>
@@ -27,6 +29,8 @@ class ShippingModel extends BaseApiModel<Shipping> with _$ShippingModel {
     return Shipping(
       summary: summary.toDomainModel(),
       paymentOption: paymentOption?.map((e) => e.toDomainModel()).toList(),
+      discountRate: discountRate,
+      isAdminDiscount: isAdminDiscount,
     );
   }
 }

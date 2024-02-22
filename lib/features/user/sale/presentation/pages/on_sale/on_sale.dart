@@ -22,7 +22,7 @@ class _OnSaleState extends State<OnSale> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: BuildHomeAppBar(homeController: widget.homeController),
+      // appBar: BuildHomeAppBar(homeController: widget.homeController),
       body:
           BlocBuilder<GenericBloc<List<Product>>, GenericState<List<Product>>>(
         bloc: controller.onSaleCubit,

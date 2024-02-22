@@ -22,6 +22,10 @@ UserDataModel _$UserDataModelFromJson(Map<String, dynamic> json) {
 mixin _$UserDataModel {
   @JsonKey(name: "user")
   UserModel? get user => throw _privateConstructorUsedError;
+  @JsonKey(name: "is_admin_discount")
+  bool? get isAdminDiscount => throw _privateConstructorUsedError;
+  @JsonKey(name: "msg_admin_discount")
+  String? get msgAdminDiscount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +39,10 @@ abstract class $UserDataModelCopyWith<$Res> {
           UserDataModel value, $Res Function(UserDataModel) then) =
       _$UserDataModelCopyWithImpl<$Res, UserDataModel>;
   @useResult
-  $Res call({@JsonKey(name: "user") UserModel? user});
+  $Res call(
+      {@JsonKey(name: "user") UserModel? user,
+      @JsonKey(name: "is_admin_discount") bool? isAdminDiscount,
+      @JsonKey(name: "msg_admin_discount") String? msgAdminDiscount});
 
   $UserModelCopyWith<$Res>? get user;
 }
@@ -54,12 +61,22 @@ class _$UserDataModelCopyWithImpl<$Res, $Val extends UserDataModel>
   @override
   $Res call({
     Object? user = freezed,
+    Object? isAdminDiscount = freezed,
+    Object? msgAdminDiscount = freezed,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserModel?,
+      isAdminDiscount: freezed == isAdminDiscount
+          ? _value.isAdminDiscount
+          : isAdminDiscount // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      msgAdminDiscount: freezed == msgAdminDiscount
+          ? _value.msgAdminDiscount
+          : msgAdminDiscount // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -84,7 +101,10 @@ abstract class _$$_UserDataModelCopyWith<$Res>
       __$$_UserDataModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: "user") UserModel? user});
+  $Res call(
+      {@JsonKey(name: "user") UserModel? user,
+      @JsonKey(name: "is_admin_discount") bool? isAdminDiscount,
+      @JsonKey(name: "msg_admin_discount") String? msgAdminDiscount});
 
   @override
   $UserModelCopyWith<$Res>? get user;
@@ -102,12 +122,22 @@ class __$$_UserDataModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = freezed,
+    Object? isAdminDiscount = freezed,
+    Object? msgAdminDiscount = freezed,
   }) {
     return _then(_$_UserDataModel(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserModel?,
+      isAdminDiscount: freezed == isAdminDiscount
+          ? _value.isAdminDiscount
+          : isAdminDiscount // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      msgAdminDiscount: freezed == msgAdminDiscount
+          ? _value.msgAdminDiscount
+          : msgAdminDiscount // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -116,7 +146,11 @@ class __$$_UserDataModelCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$_UserDataModel extends _UserDataModel {
-  const _$_UserDataModel({@JsonKey(name: "user") this.user}) : super._();
+  const _$_UserDataModel(
+      {@JsonKey(name: "user") this.user,
+      @JsonKey(name: "is_admin_discount") this.isAdminDiscount,
+      @JsonKey(name: "msg_admin_discount") this.msgAdminDiscount})
+      : super._();
 
   factory _$_UserDataModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserDataModelFromJson(json);
@@ -124,10 +158,16 @@ class _$_UserDataModel extends _UserDataModel {
   @override
   @JsonKey(name: "user")
   final UserModel? user;
+  @override
+  @JsonKey(name: "is_admin_discount")
+  final bool? isAdminDiscount;
+  @override
+  @JsonKey(name: "msg_admin_discount")
+  final String? msgAdminDiscount;
 
   @override
   String toString() {
-    return 'UserDataModel(user: $user)';
+    return 'UserDataModel(user: $user, isAdminDiscount: $isAdminDiscount, msgAdminDiscount: $msgAdminDiscount)';
   }
 
   @override
@@ -135,12 +175,17 @@ class _$_UserDataModel extends _UserDataModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserDataModel &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.isAdminDiscount, isAdminDiscount) ||
+                other.isAdminDiscount == isAdminDiscount) &&
+            (identical(other.msgAdminDiscount, msgAdminDiscount) ||
+                other.msgAdminDiscount == msgAdminDiscount));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode =>
+      Object.hash(runtimeType, user, isAdminDiscount, msgAdminDiscount);
 
   @JsonKey(ignore: true)
   @override
@@ -157,8 +202,11 @@ class _$_UserDataModel extends _UserDataModel {
 }
 
 abstract class _UserDataModel extends UserDataModel {
-  const factory _UserDataModel({@JsonKey(name: "user") final UserModel? user}) =
-      _$_UserDataModel;
+  const factory _UserDataModel(
+      {@JsonKey(name: "user") final UserModel? user,
+      @JsonKey(name: "is_admin_discount") final bool? isAdminDiscount,
+      @JsonKey(name: "msg_admin_discount")
+      final String? msgAdminDiscount}) = _$_UserDataModel;
   const _UserDataModel._() : super._();
 
   factory _UserDataModel.fromJson(Map<String, dynamic> json) =
@@ -167,6 +215,12 @@ abstract class _UserDataModel extends UserDataModel {
   @override
   @JsonKey(name: "user")
   UserModel? get user;
+  @override
+  @JsonKey(name: "is_admin_discount")
+  bool? get isAdminDiscount;
+  @override
+  @JsonKey(name: "msg_admin_discount")
+  String? get msgAdminDiscount;
   @override
   @JsonKey(ignore: true)
   _$$_UserDataModelCopyWith<_$_UserDataModel> get copyWith =>

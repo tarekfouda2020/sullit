@@ -5,9 +5,13 @@ import 'package:flutter_tdd/features/user/cart/domain/models/shipping_summary.da
 class Shipping implements BaseDomainModel {
   ShippingSummary summary;
   List<PaymentOption>? paymentOption;
+  bool isAdminDiscount;
+  int discountRate;
 
   Shipping({
     required this.summary,
     required this.paymentOption,
+    required this.discountRate,
+    required this.isAdminDiscount,
   });
 }

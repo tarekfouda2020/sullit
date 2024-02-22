@@ -13,7 +13,8 @@ class BuildFilterBar extends StatelessWidget {
       builder: (context, state) {
         if (state is GenericUpdateState) {
           return Container(
-            margin: Dimens.paddingHorizontal15PX,
+            margin: Dimens.paddingAll15PX,
+            // margin: Dimens.paddingHorizontal15PX,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

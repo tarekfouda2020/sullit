@@ -21,6 +21,7 @@ class ProfileController {
       TextEditingController();
   final GenericBloc<Country?> countryCubit = GenericBloc(null);
   final GenericBloc<bool> verifyPhoneCubit = GenericBloc(false);
+
   // final GenericBloc<bool> verifyEmailCubit = GenericBloc(false);
 
   Address? addressModel;
@@ -154,11 +155,13 @@ class ProfileController {
   }
 
   void onSaveUserData(BuildContext context) async {
-    var data = await GetProfile().call(true);
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    UserDomainModel model = data!;
-    await pref.setString("user", json.encode(model.toJson()));
-    context.read<UserCubit>().onUpdateUserData(data);
+    if (context.mounted) {
+      var data = await GetProfile().call(true);
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      UserDomainModel model = data!;
+      await pref.setString("user", json.encode(model.toJson()));
+      context.read<UserCubit>().onUpdateUserData(data);
+    }
   }
 
   // void onActiveEmail(BuildContext context) async {

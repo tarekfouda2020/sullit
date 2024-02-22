@@ -32,7 +32,19 @@ class ImplCategoryDataSources extends CategoryDataSources {
     );
     return await GenericHttpImpl<List<CategoryModel>>()(model);
   }
-
+  @override
+  Future<Either<Failure, List<CategoryModel>>> getSideSubCats(int param) async{
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.getSideSubCats(param),
+      requestMethod: RequestMethod.get,
+      responseType: ResType.list,
+      responseKey: (data) => data['data']["children_categories"],
+      toJsonFunc: (json) => List<CategoryModel>.from(
+        json.map((e) => CategoryModel.fromJson(e)),
+      ),
+    );
+    return await GenericHttpImpl<List<CategoryModel>>()(model);
+  }
   @override
   Future<Either<Failure, List<BrandModel>>> getBrands(
       BrandsParams params) async {
@@ -104,4 +116,6 @@ class ImplCategoryDataSources extends CategoryDataSources {
     );
     return await GenericHttpImpl<List<ProductModel>>().call(model);
   }
+
+
 }

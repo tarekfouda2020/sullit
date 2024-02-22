@@ -24,6 +24,8 @@ _$_HomeModel _$$_HomeModelFromJson(Map<String, dynamic> json) => _$_HomeModel(
           : FlashSaleModel.fromJson(json['flash_deal'] as Map<String, dynamic>),
       cartCount: json['cart_count'] as int,
       favCount: json['wishlist_count'] as int,
+      isAdminDiscount: json['is_admin_discount'] as bool,
+      discountRate: json['discount_rate'] as int,
     );
 
 Map<String, dynamic> _$$_HomeModelToJson(_$_HomeModel instance) =>
@@ -35,4 +37,6 @@ Map<String, dynamic> _$$_HomeModelToJson(_$_HomeModel instance) =>
       'flash_deal': instance.flashSales?.toJson(),
       'cart_count': instance.cartCount,
       'wishlist_count': instance.favCount,
+      'is_admin_discount': instance.isAdminDiscount,
+      'discount_rate': instance.discountRate,
     };

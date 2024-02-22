@@ -14,6 +14,8 @@ class UserDataModel extends BaseApiModel<UserData> with _$UserDataModel {
   @JsonSerializable(explicitToJson: true)
   const factory UserDataModel({
     @JsonKey(name: "user") UserModel? user,
+    @JsonKey(name: "is_admin_discount") bool? isAdminDiscount,
+  @JsonKey(name: "msg_admin_discount") String? msgAdminDiscount,
   }) = _UserDataModel;
 
   factory UserDataModel.fromJson(Map<String, dynamic> json) =>
@@ -23,6 +25,8 @@ class UserDataModel extends BaseApiModel<UserData> with _$UserDataModel {
   UserData toDomainModel() {
     return UserData(
       user: user?.toDomainModel(),
+        isAdminDiscount:isAdminDiscount,
+        msgAdminDiscount:msgAdminDiscount,
     );
   }
 }

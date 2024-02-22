@@ -10,6 +10,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 
 abstract class CategoryRepository {
   Future<Either<Failure, List<Category>>> getAllCategories(bool param);
+  Future<Either<Failure, List<Category>>> getSideSubCats(int param);
   Future<Either<Failure, SubCategory>> getSubCategories(SearchProductsParams params);
   Future<Either<Failure, List<BrandDomainModel>>> getBrands(BrandsParams params);
   Future<Either<Failure, List<Product>>> getBrandProducts (BrandDetailsParams params);

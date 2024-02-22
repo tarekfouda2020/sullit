@@ -24,6 +24,10 @@ mixin _$ShippingModel {
   @JsonKey(name: "payment_option")
   List<PaymentOptionModel>? get paymentOption =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: "is_admin_discount")
+  bool get isAdminDiscount => throw _privateConstructorUsedError;
+  @JsonKey(name: "discount_rate")
+  int get discountRate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,8 +43,9 @@ abstract class $ShippingModelCopyWith<$Res> {
   @useResult
   $Res call(
       {ShippingSummaryModel summary,
-      @JsonKey(name: "payment_option")
-      List<PaymentOptionModel>? paymentOption});
+      @JsonKey(name: "payment_option") List<PaymentOptionModel>? paymentOption,
+      @JsonKey(name: "is_admin_discount") bool isAdminDiscount,
+      @JsonKey(name: "discount_rate") int discountRate});
 
   $ShippingSummaryModelCopyWith<$Res> get summary;
 }
@@ -60,6 +65,8 @@ class _$ShippingModelCopyWithImpl<$Res, $Val extends ShippingModel>
   $Res call({
     Object? summary = null,
     Object? paymentOption = freezed,
+    Object? isAdminDiscount = null,
+    Object? discountRate = null,
   }) {
     return _then(_value.copyWith(
       summary: null == summary
@@ -70,6 +77,14 @@ class _$ShippingModelCopyWithImpl<$Res, $Val extends ShippingModel>
           ? _value.paymentOption
           : paymentOption // ignore: cast_nullable_to_non_nullable
               as List<PaymentOptionModel>?,
+      isAdminDiscount: null == isAdminDiscount
+          ? _value.isAdminDiscount
+          : isAdminDiscount // ignore: cast_nullable_to_non_nullable
+              as bool,
+      discountRate: null == discountRate
+          ? _value.discountRate
+          : discountRate // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
@@ -92,8 +107,9 @@ abstract class _$$_ShippingModelCopyWith<$Res>
   @useResult
   $Res call(
       {ShippingSummaryModel summary,
-      @JsonKey(name: "payment_option")
-      List<PaymentOptionModel>? paymentOption});
+      @JsonKey(name: "payment_option") List<PaymentOptionModel>? paymentOption,
+      @JsonKey(name: "is_admin_discount") bool isAdminDiscount,
+      @JsonKey(name: "discount_rate") int discountRate});
 
   @override
   $ShippingSummaryModelCopyWith<$Res> get summary;
@@ -112,6 +128,8 @@ class __$$_ShippingModelCopyWithImpl<$Res>
   $Res call({
     Object? summary = null,
     Object? paymentOption = freezed,
+    Object? isAdminDiscount = null,
+    Object? discountRate = null,
   }) {
     return _then(_$_ShippingModel(
       summary: null == summary
@@ -122,6 +140,14 @@ class __$$_ShippingModelCopyWithImpl<$Res>
           ? _value._paymentOption
           : paymentOption // ignore: cast_nullable_to_non_nullable
               as List<PaymentOptionModel>?,
+      isAdminDiscount: null == isAdminDiscount
+          ? _value.isAdminDiscount
+          : isAdminDiscount // ignore: cast_nullable_to_non_nullable
+              as bool,
+      discountRate: null == discountRate
+          ? _value.discountRate
+          : discountRate // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -133,7 +159,9 @@ class _$_ShippingModel extends _ShippingModel {
   const _$_ShippingModel(
       {required this.summary,
       @JsonKey(name: "payment_option")
-      final List<PaymentOptionModel>? paymentOption})
+      final List<PaymentOptionModel>? paymentOption,
+      @JsonKey(name: "is_admin_discount") required this.isAdminDiscount,
+      @JsonKey(name: "discount_rate") required this.discountRate})
       : _paymentOption = paymentOption,
         super._();
 
@@ -154,8 +182,15 @@ class _$_ShippingModel extends _ShippingModel {
   }
 
   @override
+  @JsonKey(name: "is_admin_discount")
+  final bool isAdminDiscount;
+  @override
+  @JsonKey(name: "discount_rate")
+  final int discountRate;
+
+  @override
   String toString() {
-    return 'ShippingModel(summary: $summary, paymentOption: $paymentOption)';
+    return 'ShippingModel(summary: $summary, paymentOption: $paymentOption, isAdminDiscount: $isAdminDiscount, discountRate: $discountRate)';
   }
 
   @override
@@ -165,13 +200,21 @@ class _$_ShippingModel extends _ShippingModel {
             other is _$_ShippingModel &&
             (identical(other.summary, summary) || other.summary == summary) &&
             const DeepCollectionEquality()
-                .equals(other._paymentOption, _paymentOption));
+                .equals(other._paymentOption, _paymentOption) &&
+            (identical(other.isAdminDiscount, isAdminDiscount) ||
+                other.isAdminDiscount == isAdminDiscount) &&
+            (identical(other.discountRate, discountRate) ||
+                other.discountRate == discountRate));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, summary,
-      const DeepCollectionEquality().hash(_paymentOption));
+  int get hashCode => Object.hash(
+      runtimeType,
+      summary,
+      const DeepCollectionEquality().hash(_paymentOption),
+      isAdminDiscount,
+      discountRate);
 
   @JsonKey(ignore: true)
   @override
@@ -191,7 +234,10 @@ abstract class _ShippingModel extends ShippingModel {
   const factory _ShippingModel(
       {required final ShippingSummaryModel summary,
       @JsonKey(name: "payment_option")
-      final List<PaymentOptionModel>? paymentOption}) = _$_ShippingModel;
+      final List<PaymentOptionModel>? paymentOption,
+      @JsonKey(name: "is_admin_discount") required final bool isAdminDiscount,
+      @JsonKey(name: "discount_rate")
+      required final int discountRate}) = _$_ShippingModel;
   const _ShippingModel._() : super._();
 
   factory _ShippingModel.fromJson(Map<String, dynamic> json) =
@@ -202,6 +248,12 @@ abstract class _ShippingModel extends ShippingModel {
   @override
   @JsonKey(name: "payment_option")
   List<PaymentOptionModel>? get paymentOption;
+  @override
+  @JsonKey(name: "is_admin_discount")
+  bool get isAdminDiscount;
+  @override
+  @JsonKey(name: "discount_rate")
+  int get discountRate;
   @override
   @JsonKey(ignore: true)
   _$$_ShippingModelCopyWith<_$_ShippingModel> get copyWith =>

@@ -14,10 +14,11 @@ class BuildLoginForm extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const BuildInputLabel(
-              label: 'Email',
+            BuildInputLabel(
+              label: tr("email"),
             ),
             GenericTextField(
+              hint: tr("email"),
               fillColor: context.colors.authField,
               enableBorderColor: context.colors.white,
               focusBorderColor: context.colors.white,
@@ -29,13 +30,14 @@ class BuildLoginForm extends StatelessWidget {
               margin: Dimens.headerTitlePadding,
               radius: Dimens.borderRadius40PX,
             ),
-            const BuildInputLabel(
-              label: 'Password',
+            BuildInputLabel(
+              label: tr("password"),
             ),
             BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
               bloc: controller.passwordCubit,
               builder: (context, state) {
                 return GenericTextField(
+                  hint: tr("password"),
                   fillColor: context.colors.authField,
                   enableBorderColor: context.colors.white,
                   focusBorderColor: context.colors.white,

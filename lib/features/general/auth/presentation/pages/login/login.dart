@@ -13,7 +13,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: () => loginController.onBackPressed(context),
       child: Scaffold(
         backgroundColor: context.colors.white,
         body: GestureDetector(
@@ -22,7 +22,7 @@ class _LoginState extends State<Login> {
             bloc: loginController.tabsCubit,
             builder: (context, state) {
               return SingleChildScrollView(
-                padding: Dimens.paddingHorizontal23PX,
+                padding: Dimens.paddingHorizontal10PX,
                 child: Column(
                   children: [
                     const BuildHeaderLogo(),

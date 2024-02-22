@@ -11,7 +11,8 @@ class BuildProducts extends StatelessWidget {
       child: RefreshIndicator(
         onRefresh: () => controller.getPopularProducts(1),
         child: PagedGridView<int, Product>(
-          padding: Dimens.standardPadding,
+          // padding: Dimens.standardPadding,
+          padding: Dimens.paddingHorizontal15PX,
           pagingController: controller.pagingController,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisSpacing: 15.r,

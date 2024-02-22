@@ -44,6 +44,10 @@ mixin _$HomeModel {
   int get cartCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'wishlist_count')
   int get favCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_admin_discount')
+  bool get isAdminDiscount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'discount_rate')
+  int get discountRate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -63,7 +67,9 @@ abstract class $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'categories') List<CategoryModel> categories,
       @JsonKey(name: 'flash_deal') FlashSaleModel? flashSales,
       @JsonKey(name: 'cart_count') int cartCount,
-      @JsonKey(name: 'wishlist_count') int favCount});
+      @JsonKey(name: 'wishlist_count') int favCount,
+      @JsonKey(name: 'is_admin_discount') bool isAdminDiscount,
+      @JsonKey(name: 'discount_rate') int discountRate});
 
   $FlashSaleModelCopyWith<$Res>? get flashSales;
 }
@@ -88,6 +94,8 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
     Object? flashSales = freezed,
     Object? cartCount = null,
     Object? favCount = null,
+    Object? isAdminDiscount = null,
+    Object? discountRate = null,
   }) {
     return _then(_value.copyWith(
       sliders: null == sliders
@@ -117,6 +125,14 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
       favCount: null == favCount
           ? _value.favCount
           : favCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      isAdminDiscount: null == isAdminDiscount
+          ? _value.isAdminDiscount
+          : isAdminDiscount // ignore: cast_nullable_to_non_nullable
+              as bool,
+      discountRate: null == discountRate
+          ? _value.discountRate
+          : discountRate // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -148,7 +164,9 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'categories') List<CategoryModel> categories,
       @JsonKey(name: 'flash_deal') FlashSaleModel? flashSales,
       @JsonKey(name: 'cart_count') int cartCount,
-      @JsonKey(name: 'wishlist_count') int favCount});
+      @JsonKey(name: 'wishlist_count') int favCount,
+      @JsonKey(name: 'is_admin_discount') bool isAdminDiscount,
+      @JsonKey(name: 'discount_rate') int discountRate});
 
   @override
   $FlashSaleModelCopyWith<$Res>? get flashSales;
@@ -172,6 +190,8 @@ class __$$_HomeModelCopyWithImpl<$Res>
     Object? flashSales = freezed,
     Object? cartCount = null,
     Object? favCount = null,
+    Object? isAdminDiscount = null,
+    Object? discountRate = null,
   }) {
     return _then(_$_HomeModel(
       sliders: null == sliders
@@ -202,6 +222,14 @@ class __$$_HomeModelCopyWithImpl<$Res>
           ? _value.favCount
           : favCount // ignore: cast_nullable_to_non_nullable
               as int,
+      isAdminDiscount: null == isAdminDiscount
+          ? _value.isAdminDiscount
+          : isAdminDiscount // ignore: cast_nullable_to_non_nullable
+              as bool,
+      discountRate: null == discountRate
+          ? _value.discountRate
+          : discountRate // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -218,7 +246,9 @@ class _$_HomeModel extends _HomeModel {
       required final List<CategoryModel> categories,
       @JsonKey(name: 'flash_deal') required this.flashSales,
       @JsonKey(name: 'cart_count') required this.cartCount,
-      @JsonKey(name: 'wishlist_count') required this.favCount})
+      @JsonKey(name: 'wishlist_count') required this.favCount,
+      @JsonKey(name: 'is_admin_discount') required this.isAdminDiscount,
+      @JsonKey(name: 'discount_rate') required this.discountRate})
       : _sliders = sliders,
         _bannersOne = bannersOne,
         _bannersTwo = bannersTwo,
@@ -283,10 +313,16 @@ class _$_HomeModel extends _HomeModel {
   @override
   @JsonKey(name: 'wishlist_count')
   final int favCount;
+  @override
+  @JsonKey(name: 'is_admin_discount')
+  final bool isAdminDiscount;
+  @override
+  @JsonKey(name: 'discount_rate')
+  final int discountRate;
 
   @override
   String toString() {
-    return 'HomeModel(sliders: $sliders, bannersOne: $bannersOne, bannersTwo: $bannersTwo, categories: $categories, flashSales: $flashSales, cartCount: $cartCount, favCount: $favCount)';
+    return 'HomeModel(sliders: $sliders, bannersOne: $bannersOne, bannersTwo: $bannersTwo, categories: $categories, flashSales: $flashSales, cartCount: $cartCount, favCount: $favCount, isAdminDiscount: $isAdminDiscount, discountRate: $discountRate)';
   }
 
   @override
@@ -306,7 +342,11 @@ class _$_HomeModel extends _HomeModel {
             (identical(other.cartCount, cartCount) ||
                 other.cartCount == cartCount) &&
             (identical(other.favCount, favCount) ||
-                other.favCount == favCount));
+                other.favCount == favCount) &&
+            (identical(other.isAdminDiscount, isAdminDiscount) ||
+                other.isAdminDiscount == isAdminDiscount) &&
+            (identical(other.discountRate, discountRate) ||
+                other.discountRate == discountRate));
   }
 
   @JsonKey(ignore: true)
@@ -319,7 +359,9 @@ class _$_HomeModel extends _HomeModel {
       const DeepCollectionEquality().hash(_categories),
       flashSales,
       cartCount,
-      favCount);
+      favCount,
+      isAdminDiscount,
+      discountRate);
 
   @JsonKey(ignore: true)
   @override
@@ -344,8 +386,10 @@ abstract class _HomeModel extends HomeModel {
       required final List<CategoryModel> categories,
       @JsonKey(name: 'flash_deal') required final FlashSaleModel? flashSales,
       @JsonKey(name: 'cart_count') required final int cartCount,
-      @JsonKey(name: 'wishlist_count')
-      required final int favCount}) = _$_HomeModel;
+      @JsonKey(name: 'wishlist_count') required final int favCount,
+      @JsonKey(name: 'is_admin_discount') required final bool isAdminDiscount,
+      @JsonKey(name: 'discount_rate')
+      required final int discountRate}) = _$_HomeModel;
   const _HomeModel._() : super._();
 
   factory _HomeModel.fromJson(Map<String, dynamic> json) =
@@ -381,6 +425,12 @@ abstract class _HomeModel extends HomeModel {
   @override
   @JsonKey(name: 'wishlist_count')
   int get favCount;
+  @override
+  @JsonKey(name: 'is_admin_discount')
+  bool get isAdminDiscount;
+  @override
+  @JsonKey(name: 'discount_rate')
+  int get discountRate;
   @override
   @JsonKey(ignore: true)
   _$$_HomeModelCopyWith<_$_HomeModel> get copyWith =>

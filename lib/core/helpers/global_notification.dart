@@ -59,6 +59,10 @@ class GlobalNotification {
         if (message.data['type'] == NotifyEnum.emailChanged.getValue()) {
           onSaveUserData();
         }
+        if (message.data['type'] == NotifyEnum.emailVerified.getValue()) {
+          var context = getIt<GlobalContext>().context();
+          AutoRouter.of(context).push(const LoginRoute());
+        }
       });
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
         log('AonMessageOpenedApp event was published!');
@@ -113,6 +117,9 @@ class GlobalNotification {
     } else if (type == NotifyEnum.order.getValue()) {
       var context = getIt<GlobalContext>().context();
       AutoRouter.of(context).push(OrderSummaryRoute(orderId: id));
+    } else if (type == NotifyEnum.emailVerified.getValue()) {
+      var context = getIt<GlobalContext>().context();
+      AutoRouter.of(context).push(const LoginRoute());
     }
   }
 

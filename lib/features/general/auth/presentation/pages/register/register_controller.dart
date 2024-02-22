@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 part of 'register_imports.dart';
 
 class RegisterController {
@@ -19,7 +21,7 @@ class RegisterController {
 
   Future<void> setUserRegister(BuildContext context) async {
     if (formKey.currentState!.validate()) {
-      var params = _registerParams();
+      var params = await _registerParams();
       var data = await SetUserRegister().call(params);
       if (data != null) {
         _cashAndRoute(context, data);
@@ -33,22 +35,24 @@ class RegisterController {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString("user", json.encode(data.toJson()));
     context.read<UserCubit>().onUpdateUserData(data);
-    AutoRouter.of(context).push(VerifyRegisterRoute(email: emailController.text));
+    AutoRouter.of(context)
+        .push(VerifyRegisterRoute(email: emailController.text));
     getIt<ComparedProductsDb>().deleteEverything();
     CustomToast.showSimpleToast(
-      msg:tr('registerVerify'),
+      msg: tr('registerVerify'),
       type: ToastType.success,
     );
   }
 
-
-
-  UserRegisterParams _registerParams() {
+  Future<UserRegisterParams> _registerParams() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
     return UserRegisterParams(
       name: nameController.text,
       email: emailController.text,
       password: passwordController.text,
       passwordConfirmation: confirmPasswordController.text,
+      macAddress: await getIt<GetDeviceId>().deviceId,
+      deviceToken: await messaging.getToken(),
     );
   }
 }

@@ -12,11 +12,11 @@ class SplashController {
       UserDomainModel user = UserDomainModel.fromJson(json.decode("$strUser"));
       GlobalState.instance.set("token", user.token);
       context.read<UserCubit>().onUpdateUserData(user);
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 1));
       AutoRouter.of(context).push(HomeRoute(index: 0));
     } else {
       context.read<DeviceCubit>().updateUserAuth(false);
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 1));
       AutoRouter.of(context).push(HomeRoute(index: 0));
     }
   }

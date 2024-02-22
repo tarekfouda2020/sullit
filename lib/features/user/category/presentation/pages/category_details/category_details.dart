@@ -27,7 +27,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
       drawer: BuildFilterDrawer(categoryDetailsController: controller),
       body: Column(
         children: [
-          BuildAllCategoriesView(categoryDetailsController: controller),
+          // BuildAllCategoriesView(categoryDetailsController: controller),
           BuildFilterBar(categoryDetailsController: controller),
           BuildProducts(controller: controller),
         ],

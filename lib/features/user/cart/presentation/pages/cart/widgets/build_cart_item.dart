@@ -73,7 +73,7 @@ class BuildCartItem extends StatelessWidget {
               ),
               const Spacer(),
               BuildCustomBounce(
-                onTap: () => controller.deleteItemFromCart(cartItem),
+                onTap: () => controller.deleteItemFromCart(context,cartItem),
                 iconData: CupertinoIcons.delete,
                 deleteIcon: true,
               ),

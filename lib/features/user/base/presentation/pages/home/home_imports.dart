@@ -12,6 +12,7 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/helpers/auth_helper.dart';
+import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/widgets/home_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/more/more_imports.dart';
 import 'package:flutter_tdd/features/user/base/presentation/widgets/build_drawer.dart';

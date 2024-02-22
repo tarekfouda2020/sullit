@@ -19,6 +19,7 @@ class _BestRatedState extends State<BestRated> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.colors.customBackground,
       body: GenericListView(
         type: ListViewType.gridApi,
         onRefresh: controller.getBestRated,

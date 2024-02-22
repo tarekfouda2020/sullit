@@ -10,7 +10,8 @@ class Category extends BaseDomainModel {
   final String slug;
   List<Category>?subCats;
   int? parentId;
-  bool?isSelected;
+  bool isSelected;
+  bool isSideCatSelected;
 
 
   Category({
@@ -23,6 +24,7 @@ class Category extends BaseDomainModel {
     required this.slug,
     this.subCats,
     this.parentId,
-    this.isSelected,
+    this.isSelected=false,
+    this.isSideCatSelected=false,
   });
 }

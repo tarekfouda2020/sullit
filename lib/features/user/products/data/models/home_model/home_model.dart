@@ -37,6 +37,8 @@ class HomeModel extends BaseApiModel<HomeDomainModel> with _$HomeModel {
     // @JsonKey(name: 'best_rated') required List<ProductModel> bestRated,
     @JsonKey(name: 'cart_count') required int cartCount,
     @JsonKey(name: 'wishlist_count') required int favCount,
+    @JsonKey(name: 'is_admin_discount') required bool isAdminDiscount,
+    @JsonKey(name: 'discount_rate') required int discountRate,
   }) = _HomeModel;
 
   factory HomeModel.fromJson(Map<String, dynamic> json) =>
@@ -59,6 +61,8 @@ class HomeModel extends BaseApiModel<HomeDomainModel> with _$HomeModel {
       // newArrivals: newArrivals.map((e) => e.toDomainModel()).toList(),
       cartCount: cartCount,
       favCount: favCount,
+      discountRate: discountRate,
+      isAdminDiscount: isAdminDiscount,
     );
   }
 }

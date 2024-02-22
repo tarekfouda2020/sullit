@@ -20,29 +20,31 @@ class _VerifyRegisterState extends State<VerifyRegister> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      //appBar: const BuildAuthAppBar(),
-      backgroundColor: context.colors.background,
-      body: SingleChildScrollView(
-        padding: Dimens.paddingH20V10,
-        child: Column(
-          children: [
-            BuildAuthAppBar(
-              onBack: () => AutoRouter.of(context).pop(true),
-            ),
-            const BuildHeaderLogo(),
-            BuildHeaderTitle(
-              title: tr('verifyYourEmailAddress'),
-              subTitle: tr('verifyRegister'),
-            ),
-            DefaultButton(
-              title: tr('requestAnotherLink'),
-              onTap: () => controller.resendCode(),
-              height: 40.h,
-              width: 200,
-              borderRadius: BorderRadius.circular(24),
-            )
-          ],
+    return WillPopScope(
+      onWillPop: () => controller.onBackPressed(context),
+      child: Scaffold(
+        backgroundColor: context.colors.background,
+        body: SingleChildScrollView(
+          padding: Dimens.paddingH20V10,
+          child: Column(
+            children: [
+              BuildAuthAppBar(
+                onBack: () => controller.onBackPressed(context),
+              ),
+              const BuildHeaderLogo(),
+              BuildHeaderTitle(
+                title: tr('verifyYourEmailAddress'),
+                subTitle: tr('verifyRegister'),
+              ),
+              DefaultButton(
+                title: tr('requestAnotherLink'),
+                onTap: () => controller.resendCode(),
+                height: 40.h,
+                width: 200,
+                borderRadius: BorderRadius.circular(24),
+              )
+            ],
+          ),
         ),
       ),
     );

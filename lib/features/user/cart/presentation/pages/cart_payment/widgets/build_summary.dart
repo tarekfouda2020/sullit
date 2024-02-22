@@ -54,6 +54,13 @@ class BuildSummary extends StatelessWidget {
             title: tr('totalShipping'),
             details: shipping.summary.shipping,
           ),
+          Visibility(
+            visible: shipping.isAdminDiscount,
+            child: BuildSummaryHeader(
+              title: tr("discount"),
+              details: "${shipping.discountRate} د.إ ",
+            ),
+          ),
           Gaps.line(context.colors.primary, 15.h),
           BuildSummaryHeader(
             title: tr("total"),

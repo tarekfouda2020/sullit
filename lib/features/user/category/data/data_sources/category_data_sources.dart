@@ -8,11 +8,19 @@ import 'package:flutter_tdd/features/user/category/domain/entities/brand_details
 import 'package:flutter_tdd/features/user/category/domain/entities/brands_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/search_products_params.dart';
 
-abstract class CategoryDataSources{
+abstract class CategoryDataSources {
   Future<Either<Failure, List<CategoryModel>>> getAllCategories(bool param);
-  Future<Either<Failure, SubCategoryModel>> getSubCategories(SearchProductsParams params);
-  Future<Either<Failure, List<BrandModel>>> getBrands (BrandsParams params);
-  Future<Either<Failure, List<ProductModel>>> getBrandProducts (BrandDetailsParams params);
-  Future<Either<Failure, List<ProductModel>>> getCategoryProducts (SearchProductsParams params);
 
+  Future<Either<Failure, List<CategoryModel>>> getSideSubCats(int param);
+
+  Future<Either<Failure, SubCategoryModel>> getSubCategories(
+      SearchProductsParams params);
+
+  Future<Either<Failure, List<BrandModel>>> getBrands(BrandsParams params);
+
+  Future<Either<Failure, List<ProductModel>>> getBrandProducts(
+      BrandDetailsParams params);
+
+  Future<Either<Failure, List<ProductModel>>> getCategoryProducts(
+      SearchProductsParams params);
 }

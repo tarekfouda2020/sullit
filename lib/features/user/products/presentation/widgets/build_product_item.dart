@@ -124,7 +124,6 @@ class BuildProductItem extends StatelessWidget {
                           onCompareRefresh?.call();
                         },
                       )
-
                     ],
                   ),
                 )

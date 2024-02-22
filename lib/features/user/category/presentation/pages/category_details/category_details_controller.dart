@@ -18,8 +18,17 @@ class CategoryDetailsController {
   List<String> selectedColors = [];
   int currentCatId = 0;
 
+  // CategoryDetailsController(BuildContext context, int catId) {
+  //   getSubCategories(context, catId, 0).then((value) {
+  //     getPopularProducts(1, refresh: false);
+  //     pagingController.addPageRequestListener((pageKey) {
+  //       getPopularProducts(pageKey, refresh: true);
+  //     });
+  //   });
+  // }
+
   CategoryDetailsController(BuildContext context, int catId) {
-    getSubCategories(context, catId, 0).then((value) {
+    getSubCategories(context, catId).then((value) {
       getPopularProducts(1, refresh: false);
       pagingController.addPageRequestListener((pageKey) {
         getPopularProducts(pageKey, refresh: true);
@@ -27,40 +36,52 @@ class CategoryDetailsController {
     });
   }
 
-  Future<void> getSubCategories(BuildContext context, int id, int index,
+  Future<void> getSubCategories(BuildContext context, int id,
       {bool refresh = true}) async {
     currentCatId = id;
     var params = _productsParams(1, refresh);
-    print(">>>>>${params.toJson()}");
     var result = await GetSubCategories().call(params);
-    _checkSubCategoriesList(result!, id, index);
-    RangeValues rangeValues = RangeValues(double.parse(result.priceRange.min),
+    RangeValues rangeValues = RangeValues(double.parse(result!.priceRange.min),
         double.parse(result.priceRange.max));
     rangeCubit.onUpdateData(
         PriceRangeParams(initial: rangeValues, value: rangeValues));
     specificationsCubit.onUpdateData(result);
-    pagingController.refresh();
   }
 
-  void _checkSubCategoriesList(SubCategory data, int id, int index) {
-    final subCatsCubit = subCategoriesCubit.state.data;
-    subCatsCubit.removeRange(index, subCatsCubit.length);
-    var insertedItem = _insertedItem(id);
-    if (data.subCats.isNotEmpty) {
-      data.subCats.insert(0, insertedItem);
-      var insertedSubCat = _insertedSubCat(data);
-      subCatsCubit.add(insertedSubCat);
-      if (index == 0) {
-        subCatsCubit[index].selectedId = 0;
-      } else {
-        subCatsCubit[index - 1].selectedId = id;
-      }
-    } else if (subCatsCubit.isNotEmpty) {
-      subCatsCubit[index - 1].selectedId = id;
-    }
-    subCategoriesCubit.onUpdateData(subCatsCubit);
-    currentCatId = id;
-  }
+  // Future<void> getSubCategories(BuildContext context, int id, int index,
+  //     {bool refresh = true}) async {
+  //   currentCatId = id;
+  //   var params = _productsParams(1, refresh);
+  //   print(">>>>>${params.toJson()}");
+  //   var result = await GetSubCategories().call(params);
+  //   _checkSubCategoriesList(result!, id, index);
+  //   RangeValues rangeValues = RangeValues(double.parse(result.priceRange.min),
+  //       double.parse(result.priceRange.max));
+  //   rangeCubit.onUpdateData(
+  //       PriceRangeParams(initial: rangeValues, value: rangeValues));
+  //   specificationsCubit.onUpdateData(result);
+  //   pagingController.refresh();
+  // }
+
+  // void _checkSubCategoriesList(SubCategory data, int id, int index) {
+  //   final subCatsCubit = subCategoriesCubit.state.data;
+  //   subCatsCubit.removeRange(index, subCatsCubit.length);
+  //   var insertedItem = _insertedItem(id);
+  //   if (data.subCats.isNotEmpty) {
+  //     data.subCats.insert(0, insertedItem);
+  //     var insertedSubCat = _insertedSubCat(data);
+  //     subCatsCubit.add(insertedSubCat);
+  //     if (index == 0) {
+  //       subCatsCubit[index].selectedId = 0;
+  //     } else {
+  //       subCatsCubit[index - 1].selectedId = id;
+  //     }
+  //   } else if (subCatsCubit.isNotEmpty) {
+  //     subCatsCubit[index - 1].selectedId = id;
+  //   }
+  //   subCategoriesCubit.onUpdateData(subCatsCubit);
+  //   currentCatId = id;
+  // }
 
   Future<void> getPopularProducts(int currentPage,
       {bool refresh = true}) async {
@@ -78,16 +99,16 @@ class CategoryDetailsController {
     }
   }
 
-  void onSelectSubCategory(
-      BuildContext context, int selectedId, Category categoryModel, int index) {
-    if (selectedId != categoryModel.id) {
-      getSubCategories(
-        context,
-        categoryModel.id == 0 ? categoryModel.parentId ?? 0 : categoryModel.id,
-        categoryModel.id == 0 ? index : index + 1,
-      );
-    }
-  }
+  // void onSelectSubCategory(
+  //     BuildContext context, int selectedId, Category categoryModel, int index) {
+  //   if (selectedId != categoryModel.id) {
+  //     getSubCategories(
+  //       context,
+  //       categoryModel.id == 0 ? categoryModel.parentId ?? 0 : categoryModel.id,
+  //       categoryModel.id == 0 ? index : index + 1,
+  //     );
+  //   }
+  // }
 
   void onFavChanged(Product model) {
     model.isWishlist = !model.isWishlist!;
@@ -98,14 +119,16 @@ class CategoryDetailsController {
     pagingController.itemList = data;
   }
 
-  void onCompareChanged(Product model){
-    model.isAddedTCompare = !model.isAddedTCompare! ;
-    int index = pagingController.itemList!.indexWhere((element) => element.id == model.id);
+  void onCompareChanged(Product model) {
+    model.isAddedTCompare = !model.isAddedTCompare!;
+    int index = pagingController.itemList!
+        .indexWhere((element) => element.id == model.id);
     pagingController.itemList![index] = model;
     var data = pagingController.itemList;
     pagingController.itemList = [];
     pagingController.itemList = data;
   }
+
   void changePriceValue(RangeValues values, BuildContext context) {
     rangeCubit.state.data!.value = values;
     rangeCubit.onUpdateData(rangeCubit.state.data!);

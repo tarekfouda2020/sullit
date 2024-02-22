@@ -20,7 +20,6 @@ class HomeController {
       ];
 
   void setUserLang(BuildContext context, String lang) async {
-    print(">>>>>$lang");
     getIt<Utilities>().changeLanguage(lang, context);
     Phoenix.rebirth(context);
   }
@@ -69,6 +68,7 @@ class HomeController {
   void checkAuth(BuildContext context) {
     bool auth = context.read<DeviceCubit>().state.model.auth;
     if (auth) {
+      context.read<CountCubit>().onUpdateCount(0, 0);
       getIt<AuthHelper>().onLogOut(context);
     } else {
       AutoRouter.of(context).push(const LoginRoute());

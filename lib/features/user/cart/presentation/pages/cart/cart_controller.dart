@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 part of 'cart_imports.dart';
 
 class CartController {
@@ -26,7 +28,7 @@ class CartController {
     );
   }
 
-  Future<void> deleteItemFromCart(CartItem cartItem) async {
+  Future<void> deleteItemFromCart(BuildContext context,CartItem cartItem) async {
     var params = await _deleteItemFormCart(cartItem.id);
     var data = await DeleteItemFormCart().call(params);
     if (data) {
@@ -35,6 +37,9 @@ class CartController {
       cartItemsBloc.state.data.calculableTotal = newSubTotal;
       cartItemsBloc.state.data.items!.remove(cartItem);
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+      var countCubit = context.read<CountCubit>().state;
+      var cartCount = countCubit.cartCount - 1;
+      context.read<CountCubit>().onUpdateCount(cartCount, countCubit.discount);
       CustomToast.showSimpleToast(
           msg: tr('itemDeleted'), type: ToastType.success);
       // getCartItems();

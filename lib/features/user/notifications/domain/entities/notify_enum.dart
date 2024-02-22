@@ -1,5 +1,6 @@
 enum NotifyEnum {
   emailChanged,
+  emailVerified,
   order,
 
   message,
@@ -9,6 +10,8 @@ enum NotifyEnum {
     switch (this) {
       case NotifyEnum.emailChanged:
         return "email_changed";
+      case NotifyEnum.emailVerified:
+        return "email_verified";
       case NotifyEnum.message:
         return "message";
       case NotifyEnum.order:
