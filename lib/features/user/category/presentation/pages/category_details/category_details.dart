@@ -2,8 +2,10 @@ part of 'category_details_imports.dart';
 
 class CategoryDetails extends StatefulWidget {
   final Category categoryModel;
+  final bool fromHome;
 
-  const CategoryDetails({super.key, required this.categoryModel});
+  const CategoryDetails(
+      {super.key, required this.categoryModel, this.fromHome = false});
 
   @override
   _CategoryDetailsState createState() => _CategoryDetailsState();
@@ -14,7 +16,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
 
   @override
   void initState() {
-    controller = CategoryDetailsController(context, widget.categoryModel.id);
+    controller = CategoryDetailsController(context, widget.categoryModel);
     super.initState();
   }
 
@@ -23,13 +25,28 @@ class _CategoryDetailsState extends State<CategoryDetails> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       key: controller.scaffold,
-      appBar: DefaultAppBar(title: widget.categoryModel.name),
+      appBar: DefaultAppBar(
+        titleWidget: BlocBuilder<GenericBloc<String>, GenericState<String>>(
+          bloc: controller.titleCubit,
+          builder: (context, state) {
+            return Text(
+              state.data,
+              style: AppTextStyle.s16_w800(color: context.colors.black),
+            );
+          },
+        ),
+        title: "",
+      ),
       drawer: BuildFilterDrawer(categoryDetailsController: controller),
       body: Column(
         children: [
-          // BuildAllCategoriesView(categoryDetailsController: controller),
-          BuildFilterBar(categoryDetailsController: controller),
-          BuildProducts(controller: controller),
+          Visibility(
+            visible: widget.fromHome,
+            replacement: Gaps.vGap15,
+            child: BuildAllCategoriesView(detailsController: controller),
+          ),
+          BuildFilterBar(detailsController: controller),
+          BuildProducts(detailsController: controller),
         ],
       ),
     );

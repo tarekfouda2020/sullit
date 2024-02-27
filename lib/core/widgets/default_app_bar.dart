@@ -6,6 +6,7 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final Widget? titleWidget;
   final Widget? leading;
   final List<Widget> actions;
   final double? size;
@@ -15,6 +16,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   const DefaultAppBar({
     Key? key,
     required this.title,
+    this.titleWidget,
     this.actions = const [],
     this.leading,
     this.size,
@@ -25,7 +27,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(
+      title:titleWidget?? Text(
         title,
         style: AppTextStyle.s16_w800(color: context.colors.black),
       ),

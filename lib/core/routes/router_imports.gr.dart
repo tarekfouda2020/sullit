@@ -589,6 +589,7 @@ class AppRouter extends _i84.RootStackRouter {
         child: _i49.CategoryDetails(
           key: args.key,
           categoryModel: args.categoryModel,
+          fromHome: args.fromHome,
         ),
         opaque: true,
       );
@@ -2091,12 +2092,14 @@ class CategoryDetailsRoute
   CategoryDetailsRoute({
     _i87.Key? key,
     required _i91.Category categoryModel,
+    bool fromHome = false,
   }) : super(
           CategoryDetailsRoute.name,
           path: '/category-details',
           args: CategoryDetailsRouteArgs(
             key: key,
             categoryModel: categoryModel,
+            fromHome: fromHome,
           ),
         );
 
@@ -2107,15 +2110,18 @@ class CategoryDetailsRouteArgs {
   const CategoryDetailsRouteArgs({
     this.key,
     required this.categoryModel,
+    this.fromHome = false,
   });
 
   final _i87.Key? key;
 
   final _i91.Category categoryModel;
 
+  final bool fromHome;
+
   @override
   String toString() {
-    return 'CategoryDetailsRouteArgs{key: $key, categoryModel: $categoryModel}';
+    return 'CategoryDetailsRouteArgs{key: $key, categoryModel: $categoryModel, fromHome: $fromHome}';
   }
 }
 

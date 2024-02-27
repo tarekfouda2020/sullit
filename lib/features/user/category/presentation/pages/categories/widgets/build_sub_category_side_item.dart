@@ -3,91 +3,144 @@ part of 'categories_widgets_imports.dart';
 class BuildSubCategorySideItem extends StatelessWidget {
   final Category subCategoryModel;
   final CategoriesController categoriesController;
-
+final int length;
   const BuildSubCategorySideItem({
     super.key,
     required this.subCategoryModel,
     required this.categoriesController,
+  required this.length,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Dimens.paddingH10V5,
-      child: Column(
-        children: [
-          InkWell(
-            onTap: () => categoriesController.onSelectSubCat(subCategoryModel),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      padding: Dimens.paddingAll10PX,
+      child: Visibility(
+        visible: length>1,
+        replacement:  Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: Dimens.dp96,
+              child: InkWell(
+                onTap: () => AutoRouter.of(context).push(CategoryDetailsRoute(
+                    categoryModel: subCategoryModel)),
+                child: Column(
+                  children: [
+                    CachedImage(
+                      url: "",
+                      width: Dimens.dp80,
+                      height: Dimens.dp80,
+                      fit: BoxFit.fill,
+                      boxShape: BoxShape.circle,
+                      haveRadius: false,
+                      placeHolder: Icon(
+                        Icons.category_outlined,
+                        color: context.colors.black,
+                        size: Dimens.dp30,
+                      ),
+                    ),
+                    Gaps.vGap10,
+                    Text(
+                      "View All",
+                      textAlign: TextAlign.center,
+                      style: AppTextStyle.s12_w500(
+                        color: context.colors.black,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              subCategoryModel.name,
+              style: AppTextStyle.s13_w500(
+                color: context.colors.black,
+              ),
+            ),
+            Gaps.line(context.colors.grey, Dimens.dp22),
+            Wrap(
+              direction: Axis.horizontal,
+              runSpacing: Dimens.dp15,
+              spacing: Dimens.dp15,
               children: [
-                Flexible(
-                  child: Text(
-                    subCategoryModel.name,
-                    style: AppTextStyle.s13_w500(
-                      color: context.colors.black,
+                SizedBox(
+                  width: Dimens.dp96,
+                  child: InkWell(
+                    onTap: () => AutoRouter.of(context).push(CategoryDetailsRoute(
+                        categoryModel: subCategoryModel)),
+                    child: Column(
+                      children: [
+                        CachedImage(
+                          url: "",
+                          width: Dimens.dp80,
+                          height: Dimens.dp80,
+                          fit: BoxFit.fill,
+                          boxShape: BoxShape.circle,
+                          haveRadius: false,
+                          placeHolder: Icon(
+                            Icons.category_outlined,
+                            color: context.colors.black,
+                            size: Dimens.dp30,
+                          ),
+                        ),
+                        Gaps.vGap10,
+                        Text(
+                         "View All",
+                          textAlign: TextAlign.center,
+                          style: AppTextStyle.s12_w500(
+                            color: context.colors.black,
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),
-                Gaps.hGap5,
-                Icon(
-                  subCategoryModel.isSideCatSelected == false
-                      ? Icons.keyboard_arrow_down
-                      : Icons.keyboard_arrow_up,
-                  color: context.colors.black,
-                  size: Dimens.dp20,
-                )
-              ],
+                ...List.generate(
+                  subCategoryModel.subCats!.length,
+                      (index) => SizedBox(
+                        width: Dimens.dp96,
+                    child: InkWell(
+                      onTap: () => AutoRouter.of(context).push(CategoryDetailsRoute(
+                          categoryModel: subCategoryModel.subCats![index])),
+                      child: Column(
+                        children: [
+                          CachedImage(
+                            url: subCategoryModel.subCats![index].icon,
+                            width: Dimens.dp80,
+                            height: Dimens.dp80,
+                            fit: BoxFit.fill,
+                            boxShape: BoxShape.circle,
+                            haveRadius: false,
+                            placeHolder: Icon(
+                              Icons.category_outlined,
+                              color: context.colors.black,
+                              size: Dimens.dp30,
+                            ),
+                          ),
+                          Gaps.vGap10,
+                          Text(
+                            subCategoryModel.subCats![index].name,
+                            textAlign: TextAlign.center,
+                            style: AppTextStyle.s12_w500(
+                              color: context.colors.black,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ]
             ),
-          ),
-          Gaps.line(context.colors.grey, Dimens.dp22),
-          Visibility(
-            visible: subCategoryModel.isSideCatSelected,
-            child: BlocBuilder<GenericBloc<List<Category>>,
-                GenericState<List<Category>>>(
-              bloc: categoriesController.subCatsCubit,
-              builder: (context, state) {
-               if(state is GenericUpdateState){
-                 return Wrap(
-                   direction: Axis.horizontal,
-                   runSpacing: Dimens.dp15,
-                   spacing: Dimens.dp15,
-                   children: List.generate(
-                     state.data.length,
-                         (index) => SizedBox(
-                       width: Dimens.dp96,
-                       child: InkWell(
-                         onTap: () => AutoRouter.of(context)
-                             .push(CategoryDetailsRoute(categoryModel: state.data[index])),
-                         child: Column(
-                           children: [
-                             CachedImage(
-                               url: state.data[index].icon,
-                               width: Dimens.dp96,
-                               height: Dimens.dp96,
-                               fit: BoxFit.fill,
-                             ),
-                             Gaps.vGap10,
-                             Text(
-                               state.data[index].name,
-                               textAlign: TextAlign.center,
-                               style: AppTextStyle.s12_w500(
-                                 color: context.colors.black,
-                               ),
-                             )
-                           ],
-                         ),
-                       ),
-                     ),
-                   ),
-                 );
-               }else{
-                 return const BuildLoadingSubCategories();
-               }
-              },
-            ),
-          )
-        ],
+
+          ],
+        ),
       ),
     );
   }

@@ -91,7 +91,7 @@ class CachedImage extends StatelessWidget{
 
             // placeHolder??child??Container(),
             // child??Container(),
-            Image.asset(
+           placeHolder?? Image.asset(
               Res.placeHolder,
               scale: 10,
             )

@@ -1,19 +1,19 @@
 part of 'category_details_widgets_imports.dart';
 
 class BuildProducts extends StatelessWidget {
-  final CategoryDetailsController controller;
+  final CategoryDetailsController detailsController;
 
-  const BuildProducts({super.key, required this.controller});
+  const BuildProducts({super.key, required this.detailsController});
 
   @override
   Widget build(BuildContext context) {
     return Flexible(
       child: RefreshIndicator(
-        onRefresh: () => controller.getPopularProducts(1),
+        onRefresh: () => detailsController.getPopularProducts(1),
         child: PagedGridView<int, Product>(
-          // padding: Dimens.standardPadding,
-          padding: Dimens.paddingHorizontal15PX,
-          pagingController: controller.pagingController,
+          padding: Dimens.standardPadding,
+          // padding: Dimens.paddingHorizontal15PX,
+          pagingController: detailsController.pagingController,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisSpacing: 15.r,
             mainAxisSpacing: 15.r,
@@ -27,7 +27,7 @@ class BuildProducts extends StatelessWidget {
                 const BuildLoadingCatsProducts(),
             itemBuilder: (_, item, index) => BuildProductItem(
               productModel: item,
-              onFavRefresh: () => controller.onFavChanged(item),
+              onFavRefresh: () => detailsController.onFavChanged(item),
             ),
             noItemsFoundIndicatorBuilder: (cxt) => const BuildEmptyDataView(),
           ),

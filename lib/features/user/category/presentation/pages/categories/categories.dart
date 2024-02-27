@@ -64,6 +64,7 @@ class _CategoriesState extends State<Categories> {
                                   BuildSubCategorySideItem(
                                 categoriesController: categoriesController,
                                 subCategoryModel: state.data[index],
+                                length: state.data.length,
                               ),
                               itemCount: state.data.length,
                             );
@@ -76,24 +77,7 @@ class _CategoriesState extends State<Categories> {
                   ],
                 ),
               ),
-            )
-            // Flexible(
-            //   child: GenericListView(
-            //     type: ListViewType.gridApi,
-            //     onRefresh: categoriesController.getCategories,
-            //     params: [context],
-            //     cubit: categoriesController.categoriesCubit,
-            //     runSpacing: 15.r,
-            //     spacing: 15.r,
-            //     gridCrossCount: 2,
-            //     gridItemHeight: 150.spMin,
-            //     padding: Dimens.standardPadding,
-            //     itemBuilder: (_, index, item) =>
-            //         BuildCategoryItem(categoryModel: item),
-            //     loadingWidget: const BuildLoadingCategoriesView(),
-            //   ),
-            // ),
-            // Gaps.vGap10,
+            ),
           ],
         ),
       ),

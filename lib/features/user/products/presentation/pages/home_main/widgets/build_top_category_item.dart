@@ -9,7 +9,7 @@ class BuildTopCategoriesItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => AutoRouter.of(context)
-          .push(CategoryDetailsRoute(categoryModel: categoryModel)),
+          .push(CategoryDetailsRoute(categoryModel: categoryModel,fromHome: true)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

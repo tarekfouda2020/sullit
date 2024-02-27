@@ -1,40 +1,39 @@
 part of 'category_details_widgets_imports.dart';
 
 class BuildFilterBar extends StatelessWidget {
-  final CategoryDetailsController categoryDetailsController;
+  final CategoryDetailsController detailsController;
 
-  const BuildFilterBar({super.key, required this.categoryDetailsController});
+  const BuildFilterBar({super.key, required this.detailsController});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<SubCategory?>,
-        GenericState<SubCategory?>>(
-      bloc: categoryDetailsController.specificationsCubit,
+    return BlocBuilder<GenericBloc<SubCategory?>, GenericState<SubCategory?>>(
+      bloc: detailsController.specificationsCubit,
       builder: (context, state) {
         if (state is GenericUpdateState) {
           return Container(
-            margin: Dimens.paddingAll15PX,
-            // margin: Dimens.paddingHorizontal15PX,
+            // margin: Dimens.paddingAll15PX,
+            margin: Dimens.paddingHorizontal15PX,
+            padding: Dimens.marginBottom5,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: DropdownTextField<BrandDomainModel>(
-                    title:  tr('allBrands'),
+                    title: tr('allBrands'),
                     hint: tr('allBrands'),
                     fillColor: context.colors.white,
                     itemAsString: (u) => u.name,
                     margin: EdgeInsets.zero,
                     validate: (value) => validateDropDown(context),
                     data: state.data?.brands,
-                    onChange: (model) =>
-                        categoryDetailsController.onChangeBrand(model),
+                    onChange: (model) => detailsController.onChangeBrand(model),
                   ),
                 ),
                 Gaps.hGap15,
                 InkWell(
-                  onTap: () => categoryDetailsController.scaffold.currentState
-                      ?.openDrawer(),
+                  onTap: () =>
+                      detailsController.scaffold.currentState?.openDrawer(),
                   child: Container(
                     padding: const EdgeInsets.all(Dimens.dp5),
                     decoration: BoxDecoration(

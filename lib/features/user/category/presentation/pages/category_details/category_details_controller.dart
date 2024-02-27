@@ -4,10 +4,12 @@ part of 'category_details_imports.dart';
 
 class CategoryDetailsController {
   final GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
-  final GenericBloc<List<SubCategory>> subCategoriesCubit = GenericBloc([]);
+  final GenericBloc<SubCategory?> subCategoriesCubit = GenericBloc(null);
+
+  // final GenericBloc<List<SubCategory>> subCategoriesCubit = GenericBloc([]);
   final GenericBloc<SubCategory?> specificationsCubit = GenericBloc(null);
   final GenericBloc<PriceRangeParams?> rangeCubit = GenericBloc(null);
-
+  final GenericBloc<String> titleCubit = GenericBloc("");
   final PagingController<int, Product> pagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 12;
@@ -27,8 +29,9 @@ class CategoryDetailsController {
   //   });
   // }
 
-  CategoryDetailsController(BuildContext context, int catId) {
-    getSubCategories(context, catId).then((value) {
+  CategoryDetailsController(BuildContext context, Category categoryModel) {
+    titleCubit.onUpdateData(categoryModel.name);
+    getSubCategories(context, categoryModel.id).then((value) {
       getPopularProducts(1, refresh: false);
       pagingController.addPageRequestListener((pageKey) {
         getPopularProducts(pageKey, refresh: true);
@@ -40,12 +43,22 @@ class CategoryDetailsController {
       {bool refresh = true}) async {
     currentCatId = id;
     var params = _productsParams(1, refresh);
+    print(">>>>>${params.toJson()}");
     var result = await GetSubCategories().call(params);
+    subCategoriesCubit.onUpdateData(result);
     RangeValues rangeValues = RangeValues(double.parse(result!.priceRange.min),
         double.parse(result.priceRange.max));
     rangeCubit.onUpdateData(
         PriceRangeParams(initial: rangeValues, value: rangeValues));
     specificationsCubit.onUpdateData(result);
+  }
+
+  void onSubCatSelect(BuildContext context, Category selectedCat) {
+    print("@@@@@@${selectedCat.id}");
+    subCategoriesCubit.onUpdateToInitState(null);
+    titleCubit.onUpdateData(selectedCat.name);
+    getSubCategories(context, selectedCat.id);
+    pagingController.refresh();
   }
 
   // Future<void> getSubCategories(BuildContext context, int id, int index,
@@ -87,6 +100,7 @@ class CategoryDetailsController {
       {bool refresh = true}) async {
     var params = _productsParams(currentPage, refresh);
     var data = await GetCategoryProducts().call(params);
+    print("--------${data.length}");
     final isLastPage = data.length < pageSize;
     if (currentPage == 1) {
       pagingController.itemList = [];
