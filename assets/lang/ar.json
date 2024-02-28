@@ -468,6 +468,8 @@
   "productAddedToYourCart": "المنتج تم إضافته إلى عربة التسوق الخاصة بك.",
   "itemAddedToWishlist": "تمت إضافة العنصر إلى قائمة الرغبات",
   "itemRemovedFromWishlist": "تمت إزالة العنصر من قائمة الرغبات",
+  "itemAddedToFollowing": "تمت إضافة العنصر إلى قائمة المتابعين",
+  "itemRemovedFromFollowing": "تمت إزالة العنصر من قائمة المتابعين",
   "itemDeletedFromCompare": "تم حذف العنصر من المقارنة بنجاح",
   "itemAddedToCompare": "تمت إضافة العنصر للمقارنة بنجاح",
   "successLoggedIn": "تم تسجيل الدخول بنجاح",
@@ -526,8 +528,12 @@
   "onSale": "تخفيضات",
   "bestRated": "الافضل تقييما",
   "available": "متاح",
-  "discount": "خصم"
+  "discount": "خصم",
+  "shopSummary": "ملخص",
+  "exploreNew": "اكتشف الجديد",
+  "explore": "اكتشف",
 
+  "following": "المتابعين"
 }
 
 

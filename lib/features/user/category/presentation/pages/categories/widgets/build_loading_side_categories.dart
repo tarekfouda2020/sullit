@@ -11,7 +11,7 @@ class BuildLoadingSideCategories extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: 7,
+              itemCount: 10,
               itemBuilder: (_, index) => Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(

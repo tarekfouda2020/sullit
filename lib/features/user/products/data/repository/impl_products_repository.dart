@@ -77,4 +77,10 @@ class ImplProductsRepository extends ProductsRepository with ModelToDomain {
     var result = await dataSources.getProductSections(param);
     return toDomainResultList(result);
   }
+
+  @override
+  Future<Either<Failure, bool>> toggleFollowing(int param) async{
+    return dataSources.toggleFollowing(param);
+
+  }
 }

@@ -301,6 +301,9 @@
   "productAddedToYourCart": "Product added to your cart.",
   "itemAddedToWishlist": "Item has been added to wishlist",
   "itemRemovedFromWishlist": "Item has been removed from wishlist",
+  "itemAddedToFollowing": "Item has been added to following list",
+  "itemRemovedFromFollowing": "Item has been removed from following list",
+
   "itemDeletedFromCompare": "Item Deleted From Compare Successfully",
   "itemAddedToCompare": "Item Added To Compare Successfully",
   "paymentDone": "Payment done successfully",
@@ -359,8 +362,12 @@
   "onSale": "On Sale",
   "bestRated": "Best Rated",
   "available": "Available",
-  "discount": "Discount"
+  "discount": "Discount",
+"shopSummary": "Summary",
+  "explore": "Explore",
+  "exploreNew": "Explore",
 
+  "following": "Following"
 }
 
 

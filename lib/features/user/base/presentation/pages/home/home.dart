@@ -24,7 +24,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       onWillPop: () async => false,
       child: DefaultTabController(
         initialIndex: widget.index,
-        length: 4,
+        length: 5,
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Scaffold(
@@ -37,6 +37,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               children: [
                 HomeMain(homeController: controller),
                 Categories(homeController: controller),
+                Summary(homeController: controller),
                 Coupons(homeController: controller),
                 More(homeController: controller),
               ],

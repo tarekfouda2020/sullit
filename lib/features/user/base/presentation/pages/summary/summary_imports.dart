@@ -1,0 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_imports.dart';
+import 'package:flutter_tdd/features/user/base/presentation/pages/summary/tabs/explore/explore_imports.dart';
+import 'package:flutter_tdd/features/user/base/presentation/pages/summary/tabs/following/following_imports.dart';
+import 'package:flutter_tdd/features/user/base/presentation/pages/summary/widgets/build_summary_tabs.dart';
+import 'package:flutter_tdd/features/user/base/presentation/widgets/build_home_app_bar.dart';
+part 'summary.dart';
+part 'summary_controller.dart';

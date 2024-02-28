@@ -39,7 +39,8 @@ mixin _$ShopModel {
   String? get twitter => throw _privateConstructorUsedError;
   String? get instagram => throw _privateConstructorUsedError;
   String? get youtube => throw _privateConstructorUsedError;
-  double get rating => throw _privateConstructorUsedError;
+  num get rating => throw _privateConstructorUsedError;
+  bool get follow => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -70,7 +71,8 @@ abstract class $ShopModelCopyWith<$Res> {
       String? twitter,
       String? instagram,
       String? youtube,
-      double rating});
+      num rating,
+      bool follow});
 }
 
 /// @nodoc
@@ -104,6 +106,7 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
     Object? instagram = freezed,
     Object? youtube = freezed,
     Object? rating = null,
+    Object? follow = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -177,7 +180,11 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double,
+              as num,
+      follow: null == follow
+          ? _value.follow
+          : follow // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -207,7 +214,8 @@ abstract class _$$_ShopModelCopyWith<$Res> implements $ShopModelCopyWith<$Res> {
       String? twitter,
       String? instagram,
       String? youtube,
-      double rating});
+      num rating,
+      bool follow});
 }
 
 /// @nodoc
@@ -239,6 +247,7 @@ class __$$_ShopModelCopyWithImpl<$Res>
     Object? instagram = freezed,
     Object? youtube = freezed,
     Object? rating = null,
+    Object? follow = null,
   }) {
     return _then(_$_ShopModel(
       id: null == id
@@ -312,7 +321,11 @@ class __$$_ShopModelCopyWithImpl<$Res>
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double,
+              as num,
+      follow: null == follow
+          ? _value.follow
+          : follow // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -339,7 +352,8 @@ class _$_ShopModel extends _ShopModel {
       required this.twitter,
       required this.instagram,
       required this.youtube,
-      required this.rating})
+      required this.rating,
+      required this.follow})
       : super._();
 
   factory _$_ShopModel.fromJson(Map<String, dynamic> json) =>
@@ -382,11 +396,13 @@ class _$_ShopModel extends _ShopModel {
   @override
   final String? youtube;
   @override
-  final double rating;
+  final num rating;
+  @override
+  final bool follow;
 
   @override
   String toString() {
-    return 'ShopModel(id: $id, userId: $userId, name: $name, title: $title, description: $description, logo: $logo, packageInvalidAt: $packageInvalidAt, products: $products, orders: $orders, address: $address, email: $email, phone: $phone, facebook: $facebook, google: $google, twitter: $twitter, instagram: $instagram, youtube: $youtube, rating: $rating)';
+    return 'ShopModel(id: $id, userId: $userId, name: $name, title: $title, description: $description, logo: $logo, packageInvalidAt: $packageInvalidAt, products: $products, orders: $orders, address: $address, email: $email, phone: $phone, facebook: $facebook, google: $google, twitter: $twitter, instagram: $instagram, youtube: $youtube, rating: $rating, follow: $follow)';
   }
 
   @override
@@ -416,31 +432,34 @@ class _$_ShopModel extends _ShopModel {
             (identical(other.instagram, instagram) ||
                 other.instagram == instagram) &&
             (identical(other.youtube, youtube) || other.youtube == youtube) &&
-            (identical(other.rating, rating) || other.rating == rating));
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.follow, follow) || other.follow == follow));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      userId,
-      name,
-      title,
-      description,
-      logo,
-      packageInvalidAt,
-      products,
-      orders,
-      address,
-      email,
-      phone,
-      facebook,
-      google,
-      twitter,
-      instagram,
-      youtube,
-      rating);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        userId,
+        name,
+        title,
+        description,
+        logo,
+        packageInvalidAt,
+        products,
+        orders,
+        address,
+        email,
+        phone,
+        facebook,
+        google,
+        twitter,
+        instagram,
+        youtube,
+        rating,
+        follow
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -476,7 +495,8 @@ abstract class _ShopModel extends ShopModel {
       required final String? twitter,
       required final String? instagram,
       required final String? youtube,
-      required final double rating}) = _$_ShopModel;
+      required final num rating,
+      required final bool follow}) = _$_ShopModel;
   const _ShopModel._() : super._();
 
   factory _ShopModel.fromJson(Map<String, dynamic> json) =
@@ -519,7 +539,9 @@ abstract class _ShopModel extends ShopModel {
   @override
   String? get youtube;
   @override
-  double get rating;
+  num get rating;
+  @override
+  bool get follow;
   @override
   @JsonKey(ignore: true)
   _$$_ShopModelCopyWith<_$_ShopModel> get copyWith =>

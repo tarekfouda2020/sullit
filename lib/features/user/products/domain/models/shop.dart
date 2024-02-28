@@ -19,6 +19,7 @@ class Shop extends BaseDomainModel {
    String? instagram;
    String? youtube;
    num? rating;
+   bool?follow;
 
   Shop({
     required this.id,
@@ -39,6 +40,7 @@ class Shop extends BaseDomainModel {
     this.instagram,
     this.youtube,
     required this.rating,
+    required this.follow,
   });
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -60,6 +62,7 @@ class Shop extends BaseDomainModel {
     data['instagram'] = instagram;
     data['youtube'] = youtube;
     data['rating'] = rating;
+    data['follow']=follow;
     return data;
   }
   Shop.fromJson(Map<String, dynamic> json) {
@@ -81,5 +84,6 @@ class Shop extends BaseDomainModel {
     instagram = json['instagram'];
     youtube = json['youtube'];
     rating = json['rating'];
+    follow=json['follow'];
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'shop_model.freezed.dart';
+
 part 'shop_model.g.dart';
 
 @freezed
@@ -29,7 +30,8 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
     required String? twitter,
     required String? instagram,
     required String? youtube,
-    required double rating,
+    required num rating,
+    required bool follow,
   }) = _ShopModel;
 
   factory ShopModel.fromJson(Map<String, dynamic> json) =>
@@ -56,6 +58,7 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
       instagram: instagram,
       twitter: twitter,
       youtube: youtube,
+      follow: follow,
     );
   }
 }

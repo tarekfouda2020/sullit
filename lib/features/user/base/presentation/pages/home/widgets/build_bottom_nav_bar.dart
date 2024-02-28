@@ -12,7 +12,7 @@ class BuildBottomNavBar extends StatelessWidget {
       bloc: controller.homeTabCubit,
       builder: (context, state) {
         return AnimatedBottomNavigationBar.builder(
-          itemCount: 4,
+          itemCount: 5,
           tabBuilder: (int index, bool isActive) {
             return BuildTabItem(
               controller: controller,

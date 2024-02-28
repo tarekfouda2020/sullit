@@ -140,4 +140,16 @@ class ImplProductsDataSource extends ProductsDataSource {
     );
     return await GenericHttpImpl<List<ProductSectionsModel>>().call(model);
   }
+
+  @override
+  Future<Either<Failure, bool>> toggleFollowing(int param) async{
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.toggleFollowing(param),
+      requestMethod: RequestMethod.get,
+      responseType: ResType.type,
+      showLoader: true,
+      responseKey: (data) => data["data"]["follow"],
+    );
+    return await GenericHttpImpl<bool>().call(model);
+  }
 }

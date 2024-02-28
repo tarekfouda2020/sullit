@@ -6,7 +6,7 @@ class ApiNames {
   ///Production
   static const String baseUrl = "https://suliit.com/api/v3/";
 
-  /// auth routes
+  // auth routes
   static const String login = "login";
   static const String savePublicKey = "users/";
   static const String updateUser = "users/";
@@ -30,17 +30,24 @@ class ApiNames {
   static const String updateProfileEmail = "new-email";
   static const String getProfile = "profile";
 
+//home urls
+  static const String getFollowing = "shops/followings";
+
   //products urls
   static const String getHome = "home";
   static const String getProductDetails = "products";
   static const String getPopularProducts = "mostpopulars";
 
   static String toggleWishlist(int id) => "products/$id/wishlist/toggle";
+
+  static String toggleFollowing(int id) => "shops/$id/follow";
+
   static const String sendQuery = "product-queries";
 
   static String getVariantPrice(int id) => "products/$id/variant/price";
   static const String getDownloadProducts = "orders/digital-purchase-history";
-  static  String getProductSections(int page) => "sections?page=$page";
+
+  static String getProductSections(int page) => "sections?page=$page";
 
   static String downloadDigitalProduct(int id) =>
       "orders/digital-purchase-history/$id/download-product";
@@ -50,7 +57,8 @@ class ApiNames {
 
   // categories urls
   static const String getCategories = "categories";
-  static  String getSideSubCats(int id) => "categories/$id";
+
+  static String getSideSubCats(int id) => "categories/$id";
 
   static const String getBrands = "brands";
   static const String brandDetails = "brands/";
@@ -156,14 +164,22 @@ class ApiNames {
   static const String cusProductsBrands = "user/customer-products-brands";
   static const String cusProductsCats = "user/customer-products-categories";
   static const String classifiedProducts = "user/customer-products";
-  static  String changeStatus(int id) => "user/customer-products/$id/switch-available-status";
-  static  String deleteProduct(int id) => "user/customer-products/$id";
 
-  static  String getClassifiedProduct(int param) =>"user/customer-products/$param?lang=sa";
-  static  String editClassifiedProduct(int param) =>"user/customer-products/$param?_method=put";
-  static  String getPackages = 'customer-packages';
-  static  String paymentOptions = 'customer-packages/payment-options/list';
-  static  String purchasePackage(int param) => 'customer-packages/$param/purchase';
+  static String changeStatus(int id) =>
+      "user/customer-products/$id/switch-available-status";
+
+  static String deleteProduct(int id) => "user/customer-products/$id";
+
+  static String getClassifiedProduct(int param) =>
+      "user/customer-products/$param?lang=sa";
+
+  static String editClassifiedProduct(int param) =>
+      "user/customer-products/$param?_method=put";
+  static String getPackages = 'customer-packages';
+  static String paymentOptions = 'customer-packages/payment-options/list';
+
+  static String purchasePackage(int param) =>
+      'customer-packages/$param/purchase';
 
   //Customers Products
   static const String getCustomersProducts = "customer-products";

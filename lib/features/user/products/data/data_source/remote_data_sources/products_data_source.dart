@@ -28,5 +28,8 @@ abstract class ProductsDataSource {
 
   Future<Either<Failure, List<ProductModel>>> getDigitalProducts(bool param);
 
-  Future<Either<Failure, List<ProductSectionsModel>>> getProductSections(int param);
+  Future<Either<Failure, List<ProductSectionsModel>>> getProductSections(
+      int param);
+
+  Future<Either<Failure, bool>> toggleFollowing(int param);
 }

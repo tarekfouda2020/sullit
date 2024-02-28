@@ -31,4 +31,6 @@ abstract class ProductsRepository {
   Future<Either<Failure, List<Product>>> getDigitalProducts(bool param);
 
   Future<Either<Failure, List<ProductSections>>> getProductSections(int param);
+  Future<Either<Failure, bool>> toggleFollowing(int param);
+
 }

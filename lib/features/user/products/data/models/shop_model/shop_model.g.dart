@@ -24,7 +24,8 @@ _$_ShopModel _$$_ShopModelFromJson(Map<String, dynamic> json) => _$_ShopModel(
       twitter: json['twitter'] as String?,
       instagram: json['instagram'] as String?,
       youtube: json['youtube'] as String?,
-      rating: (json['rating'] as num).toDouble(),
+      rating: json['rating'] as num,
+      follow: json['follow'] as bool,
     );
 
 Map<String, dynamic> _$$_ShopModelToJson(_$_ShopModel instance) =>
@@ -47,4 +48,5 @@ Map<String, dynamic> _$$_ShopModelToJson(_$_ShopModel instance) =>
       'instagram': instance.instagram,
       'youtube': instance.youtube,
       'rating': instance.rating,
+      'follow': instance.follow,
     };

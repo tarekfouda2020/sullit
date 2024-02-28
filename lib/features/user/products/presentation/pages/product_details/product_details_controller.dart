@@ -94,6 +94,31 @@ class ProductDetailsController {
     }
   }
 
+  void onChangeFollowing(BuildContext context, int shopId) async {
+    bool auth = context.read<DeviceCubit>().state.model.auth;
+    if (!auth) {
+      CustomToast.showAuthDialog(context);
+      return;
+    } else {
+      getIt<LoadingHelper>().showLoadingDialog();
+      var result = await SetToggleFollowing().call(shopId);
+      detailsCubit.state.data?.product.shop?.follow = result;
+      detailsCubit.onUpdateData(detailsCubit.state.data);
+      getIt<LoadingHelper>().dismissDialog();
+      if (result) {
+        CustomToast.showSimpleToast(
+          msg: tr('itemAddedToFollowing'),
+          type: ToastType.success,
+        );
+      } else {
+        CustomToast.showSimpleToast(
+          msg: tr('itemRemovedFromFollowing'),
+          type: ToastType.success,
+        );
+      }
+    }
+  }
+
   void increaseQty() {
     var variantPrice = detailsCubit.state.data?.product.variant;
     var price = double.parse(variantPrice!.calculablePrice!);
@@ -133,7 +158,6 @@ class ProductDetailsController {
 
   void onChangeCompare(Product item) {
     item.isAddedTCompare = !item.isAddedTCompare!;
-    print("###${item.isAddedTCompare}");
     detailsCubit.onUpdateData(detailsCubit.state.data);
   }
 

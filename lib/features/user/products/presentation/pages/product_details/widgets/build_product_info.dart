@@ -14,7 +14,7 @@ class BuildProductInfo extends StatelessWidget {
       child: Container(
         padding: Dimens.paddingAll8PX,
         margin: Dimens.standardPadding,
-        decoration: CustomDecoration(),
+        decoration: const CustomDecoration(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -76,7 +76,10 @@ class BuildProductInfo extends StatelessWidget {
               ],
             ),
             Gaps.line(context.colors.greyWhite, 10.h),
-            BuildSellerInfo(shopModel: productModel.shop),
+            BuildSellerInfo(
+              shopModel: productModel.shop,
+              controller: controller,
+            ),
             BuildProductDescription(
               description: productModel.description ?? "",
             ),
