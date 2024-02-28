@@ -10,7 +10,7 @@ class HomeController {
   final TextEditingController searchController = TextEditingController();
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  List<String> tabs = [Res.home, Res.category,"", Res.offers, Res.account];
+  List<String> tabs = [Res.home, Res.category,Res.compass, Res.offers, Res.account];
 
   List<String> tabsText(BuildContext context) => [
         tr('home', context: context),

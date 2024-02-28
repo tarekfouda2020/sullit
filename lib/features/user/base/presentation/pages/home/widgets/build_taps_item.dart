@@ -26,21 +26,12 @@ class BuildTabItem extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               if (isActive) SvgPicture.asset(Res.bgTabs, height: 34, width: 34),
-              Visibility(
-                visible: index != 2,
-                replacement: Icon(
-                  Icons.stars_rounded,
-                  size: 25,
-                  color:
-                      isActive ? context.colors.primary : context.colors.gray,
-                ),
-                child: SvgPicture.asset(
-                  controller.tabs[index],
-                  color:
-                      isActive ? context.colors.primary : context.colors.gray,
-                  height: 20,
-                  width: 20,
-                ),
+              SvgPicture.asset(
+                controller.tabs[index],
+                color:
+                isActive ? context.colors.primary : context.colors.gray,
+                // height: 20,
+                // width: 20,
               ),
             ],
           ),

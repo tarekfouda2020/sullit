@@ -53,6 +53,8 @@ class Res {
   static const String cart = "assets/images/cart.svg";
   static const String sortLogo = "assets/images/sort_logo.png";
   static const String search = "assets/images/search.svg";
+  static const String compass = "assets/images/compass.svg";
+
   static const String flashSaleLogo = "assets/images/flash_sale_logo.png";
   static const String scaffBg1 = "assets/images/scaffBg1.svg";
   static const String scaffBg2 = "assets/images/scaffBg2.svg";
