@@ -1,4 +1,14 @@
 {
+  "validateName": "يجب أن يكون أكبر من 8 وأقل من 30",
+  "createAccount": "إنشاء حساب",
+  "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
+  "welcome": "مرحبا",
+  "butNow": "اشتري الان",
+  "unfollow": "الغاء المتابعة",
+  "follow": "متابعة",
+  "availableStock": "متوفر في المخزن",
+  "noProductsFound": "لم يتم العثور على منتج",
+  "loginToContinue": "تسجيل الدخول للمتابعة",
   "selectLang": "قم باختيار لغة التطبيق ",
   "langEn": "English",
   "langAr": " العربية ",
@@ -11,7 +21,6 @@
   "enterPhone": "ادخل رقم الهاتف",
   "name": " اسم المستخدم ",
   "password": " كلمة المرور",
-  "enterVerifyCode": "أدخل رمز التحقق",
   "msg": "رسالتك",
   "insertNewPss": "قم بادخال كلمة المرور الجديدة ",
   "confirmPassword": " تأكيد كلمة المرور",
@@ -254,7 +263,6 @@
   "privacyPolicy": "سياسة الخصوصيه",
   "supportPolicy": "سياسة الدعم",
   "support": "الدعم",
-
   "returnPolicy": "سياسة الإسترجاع",
   "logout": " تسجيل خروج ",
   "blogDetails": "تفاصبل المدونة",
@@ -463,7 +471,6 @@
   "registerNow": "التسجيل الان",
   "skip": "تخطي",
   "orLoginWith": "أو تسجيل الدخول عن طريق",
-  "outOfStock": "إنتهى من المخزن",
   "variantNotFound": "لم يتم العثور على البديل. !",
   "productAddedToYourCart": "المنتج تم إضافته إلى عربة التسوق الخاصة بك.",
   "itemAddedToWishlist": "تمت إضافة العنصر إلى قائمة الرغبات",
@@ -532,7 +539,6 @@
   "shopSummary": "ملخص",
   "exploreNew": "اكتشف الجديد",
   "explore": "اكتشف",
-
   "following": "المتابعين"
 }
 

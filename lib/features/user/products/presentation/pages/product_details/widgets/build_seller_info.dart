@@ -21,7 +21,7 @@ class BuildSellerInfo extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Sold By :",
+                    "${tr("soldBy")} :",
                     style: AppTextStyle.s15_w700(
                       color: context.colors.black,
                     ),
@@ -40,7 +40,7 @@ class BuildSellerInfo extends StatelessWidget {
               flex: 2,
               child: DefaultButton(
                 margin: Dimens.paddingHorizontal10PX,
-                title: shopModel!.follow == true ? "UnFollow" : "Follow",
+                title: shopModel!.follow == true ? tr("unfollow") : tr("follow"),
                 onTap: () => controller.onChangeFollowing(context,shopModel!.userId!),
                 color: shopModel!.follow == true
                     ? context.colors.black

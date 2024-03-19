@@ -73,7 +73,7 @@ class CartHelper {
         productCubit.onUpdateData(productCubit.state.data);
       } else {
         CustomToast.showSimpleToast(
-            msg: "Only ${variantPrice.currentStock} available in stock");
+            msg: "${tr("only")} ${variantPrice.currentStock} ${tr("availableStock")}");
         return;
       }
     } else {

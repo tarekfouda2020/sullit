@@ -45,89 +45,91 @@ class BuildProductItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              children: [
-                CachedImage(
-                  height: 150,
-                  fit: BoxFit.fill,
-                  haveRadius: true,
-                  bgColor: const Color(0xffededed),
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(Dimens.dp5),
+            Expanded(
+              child: Stack(
+                children: [
+                  CachedImage(
+                    // height: 150,
+                    fit: BoxFit.fill,
+                    haveRadius: true,
+                    bgColor: const Color(0xffededed),
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(Dimens.dp5),
+                    ),
+                    url: productModel.thumbnailImage!,
                   ),
-                  url: productModel.thumbnailImage!,
-                ),
-                Visibility(
-                  visible: productModel.hasDiscount!,
-                  child: PositionedDirectional(
-                    top: 20.r,
-                    child: Container(
-                      padding: Dimens.paddingAll3PX,
-                      decoration: BoxDecoration(
-                        color: context.colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: context.colors.greyWhite,
-                            blurRadius: 1,
-                            spreadRadius: 1,
-                          )
-                        ],
-                        borderRadius: const BorderRadiusDirectional.only(
-                          topEnd: Radius.circular(40),
-                          bottomEnd: Radius.circular(40),
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          Text(
-                            tr('off'),
-                            style: AppTextStyle.s10_w400(
-                              color: context.colors.primary,
-                            ),
+                  Visibility(
+                    visible: productModel.hasDiscount!,
+                    child: PositionedDirectional(
+                      top: 20.r,
+                      child: Container(
+                        padding: Dimens.paddingAll3PX,
+                        decoration: BoxDecoration(
+                          color: context.colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: context.colors.greyWhite,
+                              blurRadius: 1,
+                              spreadRadius: 1,
+                            )
+                          ],
+                          borderRadius: const BorderRadiusDirectional.only(
+                            topEnd: Radius.circular(40),
+                            bottomEnd: Radius.circular(40),
                           ),
-                          Container(
-                            padding: Dimens.paddingAll5PX,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: context.colors.primary,
-                            ),
-                            child: Text(
-                              productModel.discount!,
+                        ),
+                        child: Row(
+                          children: [
+                            Text(
+                              tr('off'),
                               style: AppTextStyle.s10_w400(
-                                color: context.colors.white,
+                                color: context.colors.primary,
                               ),
                             ),
-                          ),
-                        ],
+                            Container(
+                              padding: Dimens.paddingAll5PX,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: context.colors.primary,
+                              ),
+                              child: Text(
+                                productModel.discount!,
+                                style: AppTextStyle.s10_w400(
+                                  color: context.colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                PositionedDirectional(
-                  end: 3,
-                  child: Column(
-                    children: [
-                      BuildIconItem(
-                        iconData: productModel.isWishlist!
-                            ? Icons.favorite
-                            : Icons.favorite_border,
-                        onTap: () => ProductsHelper().toggleFavourite(
-                          id: productModel.id!,
-                          context: context,
-                          onRefresh: onFavRefresh,
+                  PositionedDirectional(
+                    end: 3,
+                    child: Column(
+                      children: [
+                        BuildIconItem(
+                          iconData: productModel.isWishlist!
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          onTap: () => ProductsHelper().toggleFavourite(
+                            id: productModel.id!,
+                            context: context,
+                            onRefresh: onFavRefresh,
+                          ),
+                          checkValue: productModel.isWishlist,
                         ),
-                        checkValue: productModel.isWishlist,
-                      ),
-                      BuildCompareItem(
-                        productModel: productModel,
-                        onTap: () {
-                          onCompareRefresh?.call();
-                        },
-                      )
-                    ],
-                  ),
-                )
-              ],
+                        BuildCompareItem(
+                          productModel: productModel,
+                          onTap: () {
+                            onCompareRefresh?.call();
+                          },
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 5),
