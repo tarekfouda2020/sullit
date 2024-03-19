@@ -53,7 +53,7 @@ class CartController {
       updateCartItem(cartItem.quantity, cartItem.id);
     } else {
       CustomToast.showSimpleToast(
-          msg: 'only ${cartItem.stockQty} item(s) are available');
+          msg: '${tr("only")} ${cartItem.stockQty} ${tr("availableStock")}');
     }
   }
 

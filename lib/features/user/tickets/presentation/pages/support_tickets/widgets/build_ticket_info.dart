@@ -17,7 +17,7 @@ class BuildTicketInfo extends StatelessWidget {
           children: [
             ListTile(
               title: Text(
-                "Ticket id",
+                tr("ticketId"),
                 style: AppTextStyle.s14_w500(
                   color: context.colors.black,
                 ),
@@ -52,7 +52,7 @@ class BuildTicketInfo extends StatelessWidget {
                 onTap: () => AutoRouter.of(context)
                     .push(TicketsDetailsRoute(id: ticketModel.id)),
                 child: Text(
-                  "${tr('viewDetails')} >",
+                  tr('viewDetails'),
                   style: AppTextStyle.s14_w400(color: context.colors.primary),
                 ),
               ),

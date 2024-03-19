@@ -13,7 +13,7 @@ class BuildDeleteDialog extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'Do you want to delete Account...?',
+                tr("wantDeleteAccount"),
                 style: AppTextStyle.s14_w500(color: context.colors.black),
               ),
               Gaps.vGap16,

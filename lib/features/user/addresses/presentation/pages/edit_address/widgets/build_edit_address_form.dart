@@ -115,7 +115,7 @@ class BuildEditAddressForm extends StatelessWidget {
                         fieldTypes: FieldTypes.clickable,
                         type: TextInputType.text,
                         action: TextInputAction.done,
-                        label: "Country Code",
+                        label: tr("countryCode"),
                         validate: (value) => value!.validateEmpty(),
                         onTab: () => controller.showCountryCode(context),
                       ),
@@ -132,7 +132,7 @@ class BuildEditAddressForm extends StatelessWidget {
                         validate: (value) =>
                             ((state.data?.callingCode ?? "") + (value ?? ""))
                                 .validatePhone(),
-                        label: "Phone",
+                        label: tr("phone"),
                         margin: Dimens.paddingVertical10PX,
                       ),
                     ),

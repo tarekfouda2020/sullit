@@ -1,8 +1,10 @@
-part of'forget_password_widgets_imports.dart';
+part of 'forget_password_widgets_imports.dart';
 
 class BuildForgetForm extends StatelessWidget {
   final ForgetPasswordController forgetPasswordController;
-  const BuildForgetForm({Key? key,required this.forgetPasswordController}) : super(key: key);
+
+  const BuildForgetForm({Key? key, required this.forgetPasswordController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class BuildForgetForm extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const BuildInputLabel(label: 'Email',),
+            BuildInputLabel(label: tr("email")),
             GenericTextField(
               fillColor: context.colors.authField,
               enableBorderColor: context.colors.white,

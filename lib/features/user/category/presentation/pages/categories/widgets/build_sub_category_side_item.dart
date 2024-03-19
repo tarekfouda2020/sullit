@@ -42,7 +42,7 @@ final int length;
                     ),
                     Gaps.vGap10,
                     Text(
-                      "View All",
+                      tr("viewAll"),
                       textAlign: TextAlign.center,
                       style: AppTextStyle.s12_w500(
                         color: context.colors.black,
@@ -91,7 +91,7 @@ final int length;
                         ),
                         Gaps.vGap10,
                         Text(
-                         "View All",
+                         tr("viewAll"),
                           textAlign: TextAlign.center,
                           style: AppTextStyle.s12_w500(
                             color: context.colors.black,

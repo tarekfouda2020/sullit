@@ -16,7 +16,7 @@ class BuildLangBottomSheet extends StatelessWidget {
             onTap: () => controller.setUserLang(context, 'en'),
             child: Padding(
               padding: const EdgeInsets.all(10),
-              child: Text("English", style: AppTextStyle.s14_w600(color: context.colors.black),),
+              child: Text(tr("langEn"), style: AppTextStyle.s14_w600(color: context.colors.black),),
             ),
           ),
           Divider(thickness: 1, color: context.colors.greyWhite),
@@ -24,7 +24,7 @@ class BuildLangBottomSheet extends StatelessWidget {
             onTap: () => controller.setUserLang(context, 'ar'),
             child: Padding(
               padding: const EdgeInsets.all(10),
-              child: Text("Arabic", style: AppTextStyle.s14_w600(color: context.colors.black)),
+              child: Text(tr("langAr"), style: AppTextStyle.s14_w600(color: context.colors.black)),
             ),
           ),
         ],

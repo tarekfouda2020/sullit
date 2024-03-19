@@ -14,7 +14,7 @@ final DownloadsController controller;
         title: Row(
           children: [
             Text(
-              "${tr('product')}) : ",
+              "${tr('product')} : ",
               style: AppTextStyle.s13_w500(color: context.colors.black),
             ),
             Text(

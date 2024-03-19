@@ -20,7 +20,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   @override
   void initState() {
     controller = ResetPasswordController(widget.email);
-    controller.code.text =widget.code;
+    controller.code.text = widget.code;
     super.initState();
   }
 
@@ -33,10 +33,9 @@ class _ResetPasswordState extends State<ResetPassword> {
           padding: Dimens.paddingH24V40,
           children: [
             const BuildAuthAppBar(),
-             BuildHeaderTitle(
+            BuildHeaderTitle(
               title: tr('forgetPassword'),
-              subTitle:
-                  "Enter the New password",
+              subTitle: tr("enterNewPassword"),
             ),
             ResetPasswordForm(controller: controller),
             Gaps.vGap32,

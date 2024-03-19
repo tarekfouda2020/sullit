@@ -31,11 +31,11 @@ class BuildDetailsInfo extends StatelessWidget {
           ),
           BuildDetailsInfoItem(
             title:
-                detailsModel.userData?.address?.address ?? "Not Determined Yet",
+                detailsModel.userData?.address?.address ?? tr("notDetermined"),
             iconData: Icons.location_on_outlined,
           ),
           BuildDetailsInfoItem(
-            title: detailsModel.userData?.phone ?? "Not Determined Yet",
+            title: detailsModel.userData?.phone ?? tr("notDetermined"),
             iconData: Icons.phone,
           ),
 

@@ -14,24 +14,24 @@ class BuildDashboardView extends StatelessWidget {
             context.colors.blue,
             context.colors.darkPurple,
           ],
-          title: "${dashboardModel.cartCount} Product",
-          subTitle: "In Your cart",
+          title: "${dashboardModel.cartCount} ${tr("product")}",
+          subTitle: tr("inCart"),
         ),
         BuildDashboardItem(
           colors: [
             context.colors.appBarColor,
             context.colors.blueAccent,
           ],
-          title: "${dashboardModel.wishlistCount} Products",
-          subTitle: "In Your WishList",
+          title: "${dashboardModel.wishlistCount} ${tr("product")}",
+          subTitle: tr("inWishlist"),
         ),
         BuildDashboardItem(
           colors: [
             context.colors.appBarColor,
             context.colors.secondary,
           ],
-          title: "${dashboardModel.ordersCount} Product",
-          subTitle: "You Ordered",
+          title: "${dashboardModel.ordersCount} ${tr("product")}",
+          subTitle: tr("youOrdered"),
         )
       ],
     );
