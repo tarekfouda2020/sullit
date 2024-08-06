@@ -17,7 +17,7 @@ class BuildDiscountMsg extends StatelessWidget {
           borderRadius: Dimens.borderRadius3PX,
         ),
         child: Text(
-          "Register now and get $discount% off on your first order",
+          "${tr("registerNowGet")} $discount% ${tr("discountFirstOrder")}",
           style: AppTextStyle.s12_w500(color: context.colors.black),
         ),
       ),

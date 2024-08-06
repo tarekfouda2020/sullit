@@ -33,7 +33,7 @@ class BuildDeliveryType extends StatelessWidget {
               Row(
                 children: [
                   BuildDeliveryTypeItem(
-                    title: tr('Home Delivery'),
+                    title: tr("homeDelivery"),
                     value: 0,
                     groupValue: shipping.deliveryType,
                     onChanged: (val) => controller.onChangeType(shipping, val!),

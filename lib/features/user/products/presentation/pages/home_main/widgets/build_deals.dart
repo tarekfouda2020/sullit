@@ -44,22 +44,22 @@ class BuildDeals extends StatelessWidget {
                   children:  [
                     BuildCustomTimer(
                       time: "${flashSales.date.day}",
-                      text: 'Days',
+                      text: tr("days"),
                     ),
                     Text(':'),
                     BuildCustomTimer(
                       time: "${flashSales.date.hour}",
-                      text: 'Hours',
+                      text: tr("hours"),
                     ),
                     Text(':'),
                     BuildCustomTimer(
                       time: "${flashSales.date.minute}",
-                      text: 'Minutes',
+                      text: tr("minutes"),
                     ),
                     Text(':'),
                     BuildCustomTimer(
                       time:"${flashSales.date.second}",
-                      text: 'Seconds',
+                      text: tr("second"),
                     ),
                   ],
                 ),
@@ -76,7 +76,7 @@ class BuildDeals extends StatelessWidget {
                       color: context.colors.white,
                     ),
                     child: Text(
-                      "Buy Now",
+                      tr("buyNow"),
                       style: AppTextStyle.s10_w500(color: context.colors.black),
                     ),
                   ),

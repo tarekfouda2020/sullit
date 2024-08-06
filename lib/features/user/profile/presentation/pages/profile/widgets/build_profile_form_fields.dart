@@ -47,7 +47,7 @@ class BuildProfileFormFields extends StatelessWidget {
                       fieldTypes: FieldTypes.clickable,
                       type: TextInputType.text,
                       action: TextInputAction.done,
-                      label: "Country Code",
+                      label: tr("countryCode"),
                       validate: (value) => value!
                           .validateCountryCode(controller.phoneController.text),
                       onTab: () => controller.showCountryCode(context),
@@ -65,7 +65,7 @@ class BuildProfileFormFields extends StatelessWidget {
                       validate: (value) =>
                           ((state.data?.callingCode ?? "") + (value ?? ""))
                               .validatePhoneOrNull(),
-                      label: "Phone",
+                      label: tr("phone"),
                       margin: Dimens.paddingVertical10PX,
                     ),
                   ),

@@ -16,40 +16,40 @@ class BuildDefaultShippingAddress extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Default Shipping Address",
+            tr("defaultAddress"),
             style: AppTextStyle.s16_w500(color: context.colors.primary),
           ),
           Gaps.vGap10,
           Visibility(
             visible: dashboardModel.defaultAddress != null,
             replacement: Text(
-              "Not Determined Yet ! ",
+              tr("notDetermined") ,
               style: AppTextStyle.s15_w500(color: context.colors.black),
             ),
             child: Column(
               children: [
                 BuildAddressTitleItem(
-                  title: "Address",
+                  title: tr("address"),
                   desc: dashboardModel.defaultAddress?.address ?? "",
                 ),
                 BuildAddressTitleItem(
-                  title: "Postal code",
+                  title: tr("postalCode"),
                   desc: dashboardModel.defaultAddress?.postalCode ?? "",
                 ),
                 BuildAddressTitleItem(
-                  title: "City",
+                  title: tr("city"),
                   desc: dashboardModel.defaultAddress?.city?.name ?? "",
                 ),
                 BuildAddressTitleItem(
-                  title: "State",
+                  title: tr("state"),
                   desc: dashboardModel.defaultAddress?.state?.name ?? "",
                 ),
                 BuildAddressTitleItem(
-                  title: "Country",
+                  title: tr("country"),
                   desc: dashboardModel.defaultAddress?.country?.name ?? "",
                 ),
                 BuildAddressTitleItem(
-                  title: "Phone",
+                  title: tr("phone"),
                   desc: dashboardModel.defaultAddress?.phone ?? "",
                 )
               ],

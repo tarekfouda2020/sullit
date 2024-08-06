@@ -21,7 +21,7 @@ class BuildSellerInfo extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Sold By :",
+                    "${tr("soldBy")} :",
                     style: AppTextStyle.s15_w700(
                       color: context.colors.black,
                     ),
@@ -36,17 +36,22 @@ class BuildSellerInfo extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
-              flex: 2,
-              child: DefaultButton(
-                margin: Dimens.paddingHorizontal10PX,
-                title: shopModel!.follow == true ? "UnFollow" : "Follow",
-                onTap: () => controller.onChangeFollowing(context,shopModel!.userId!),
-                color: shopModel!.follow == true
-                    ? context.colors.black
-                    : context.colors.primary,
-                height: 35.h,
-                borderRadius: Dimens.borderRadius5PX,
+            Visibility(
+              visible: shopModel != null,
+              child: Expanded(
+                flex: 2,
+                child: DefaultButton(
+                  margin: Dimens.paddingHorizontal10PX,
+                  title:
+                      shopModel?.follow == true ? tr("unfollow") : tr("follow"),
+                  onTap: () =>
+                      controller.onChangeFollowing(context, shopModel!.userId!),
+                  color: shopModel?.follow == true
+                      ? context.colors.black
+                      : context.colors.primary,
+                  height: 35.h,
+                  borderRadius: Dimens.borderRadius5PX,
+                ),
               ),
             )
           ],

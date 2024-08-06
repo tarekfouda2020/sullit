@@ -18,4 +18,3 @@ part 'build_new_shipping.dart';
 part 'build_shipping_address_item.dart';
 part 'build_shipping_address_view.dart';
 part 'build_shipping_buttons.dart';
-part 'build_shipping_item.dart';

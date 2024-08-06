@@ -41,7 +41,8 @@ class BuildFollowingItem extends StatelessWidget {
                 flex: 1,
                 child: DefaultButton(
                   margin: EdgeInsets.zero,
-                  title: shopModel.follow == true ? "UnFollow" : "Follow",
+                  title:
+                      shopModel.follow == true ? tr("unfollow") : tr("follow"),
                   onTap: () => controller.onChangeFollowing(context, shopModel),
                   color: shopModel.follow == true
                       ? context.colors.black

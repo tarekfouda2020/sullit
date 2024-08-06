@@ -23,7 +23,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               const BuildAuthAppBar(),
               BuildHeaderTitle(
                 title: tr('forgetPassword'),
-                subTitle: tr('Enter the email to recover the password'),
+                subTitle: tr('recoverPassword'),
               ),
               const BuildForgetLogo(),
               BuildForgetForm(forgetPasswordController: forgetPasswordController),

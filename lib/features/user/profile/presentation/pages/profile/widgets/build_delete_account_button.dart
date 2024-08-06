@@ -8,7 +8,7 @@ class BuildDeleteAccountButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultButton(
-      title: "Delete Account",
+      title: tr("deleteAccount"),
       height: 35.h,
       borderRadius: Dimens.borderRadius10PX,
       margin: Dimens.paddingAll20PX,

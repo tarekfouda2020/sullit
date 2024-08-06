@@ -31,7 +31,7 @@ class BuildContactUsFields extends StatelessWidget {
               type: TextInputType.emailAddress,
               action: TextInputAction.next,
               validate: (value) => value?.validateEmail(),
-              label: tr('mail'),
+              label: tr('email'),
               margin: Dimens.paddingVertical10PX,
             ),
             GenericTextField(

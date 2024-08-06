@@ -11,8 +11,8 @@ class LoginController {
   final GenericBloc<int> tabsCubit = GenericBloc(0);
 
   List<String> tabs = [
-    'Login',
-    'Register',
+    tr("login"),
+    tr("register"),
   ];
 
   void onSubmit(BuildContext context) async {

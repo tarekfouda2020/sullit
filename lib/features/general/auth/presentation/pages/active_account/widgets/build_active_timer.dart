@@ -15,7 +15,7 @@ class BuildActiveTimer extends StatelessWidget {
         return Column(
           children: [
             Text(
-              "Resend code in ${formattedTime()}",
+              "${tr("resendCodeIn")} ${formattedTime()}",
               style: AppTextStyle.s14_w400(color: context.colors.textColor),
             ),
             Gaps.vGap20,

@@ -13,7 +13,7 @@ class BuildBackToLogin extends StatelessWidget {
           child: InkWell(
             onTap: () => AutoRouter.of(context).pop(),
             child: Text(
-              'Back To Login',
+              tr("backLogin"),
               style: AppTextStyle.s14_w400(color: context.colors.blackOpacity),
             ),
           ),
