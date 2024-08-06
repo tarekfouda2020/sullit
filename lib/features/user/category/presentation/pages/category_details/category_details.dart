@@ -16,6 +16,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
 
   @override
   void initState() {
+    print("=====${widget.categoryModel.id}");
     controller = CategoryDetailsController(context, widget.categoryModel);
     super.initState();
   }

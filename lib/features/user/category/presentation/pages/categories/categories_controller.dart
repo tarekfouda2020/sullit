@@ -14,6 +14,7 @@ class CategoriesController {
     var result = await GetCategories().call(refresh);
     result.first.isSelected = true;
     categoriesCubit.onUpdateData(result);
+    mainCategory=result.first;
     getSideSubCategories(result.first.id, result.first.name);
   }
 
@@ -26,11 +27,13 @@ class CategoriesController {
   }
 
   void onSelectMainCat(Category categoryModel) {
+    print("dsdfsfef===${categoryModel.id}");
     categoriesCubit.state.data.map((e) => e.isSelected = false).toList();
     categoryModel.isSelected = true;
     categoriesCubit.onUpdateData(categoriesCubit.state.data);
     sideSubCatsCubit.onUpdateToInitState([]);
     getSideSubCategories(categoryModel.id, categoryModel.name);
+    mainCategory=categoryModel;
   }
 
   Category _insertedItem(int catId, String catName) {
