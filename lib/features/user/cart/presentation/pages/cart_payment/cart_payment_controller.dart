@@ -69,6 +69,10 @@ class CartPaymentController {
           } else {
             _confirmOrder(context, data);
           }
+        } else {
+          var countCubit = context.read<CountCubit>().state;
+          context.read<CountCubit>().onUpdateCount(0, countCubit.discount);
+          AutoRouter.of(context).push(HomeRoute(index: 0));
         }
       }
     } else {
