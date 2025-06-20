@@ -17,23 +17,18 @@ class BuildLoginTabs extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: 139.5,
-        height: 32,
+        width: 109,
+        height: 34,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            color: selected ? context.colors.white : context.colors.authField,
-            borderRadius: BorderRadius.circular(40),
-            boxShadow: [
-              BoxShadow(
-                  color: context.colors.authField,
-                  spreadRadius: 1,
-                  blurRadius: 15)
-            ]),
+            color: selected ? context.colors.primary : Colors.transparent,
+            borderRadius: BorderRadius.circular(40)
+        ),
         child: Text(
           text,
-          style: AppTextStyle.s14_w500(
+          style: AppTextStyle.s14_w600(
               color:
-                  selected ? context.colors.black : context.colors.textColor),
+                  selected ? context.colors.white : context.colors.textColor),
         ),
       ),
     );

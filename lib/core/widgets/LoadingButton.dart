@@ -65,6 +65,7 @@ class LoadingButton extends StatelessWidget {
                   .copyWith(
                 fontFamily: fontFamily,
                 fontWeight: fontWeight,
+                fontSize: fontSize
               ),
             ),
           ),

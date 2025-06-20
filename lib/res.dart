@@ -42,6 +42,7 @@ class Res {
   static const String classifiedProduct = "assets/images/classified_products.png";
   static const String customerProducts = "assets/images/customer_products.png";
   static const String purchasedHistory = "assets/images/purchased_history.png";
+  static const String logoIcon = "assets/images/logo_icon.png";
 
   static const String home = "assets/images/home.svg";
   static const String offers = "assets/images/offers.svg";

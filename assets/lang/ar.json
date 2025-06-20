@@ -557,7 +557,12 @@
   "days": "أيام",
   "hours": "ساعات",
   "minutes": "دقائق",
-  "second": "ثانيه"
+  "second": "ثانيه",
+  "enterYourEmailHint": "أدخل بريدك الإلكتروني",
+  "enterYourPassword": "أدخل كلمة المرور",
+  "insertUserName": "أدخل اسم المستخدم"
+
+
 }
 
 

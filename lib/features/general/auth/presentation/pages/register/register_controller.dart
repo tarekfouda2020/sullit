@@ -5,6 +5,7 @@ part of 'register_imports.dart';
 class RegisterController {
   final GlobalKey<CustomButtonState> btnKey = GlobalKey();
   final GenericBloc<bool> passwordCubit = GenericBloc(false);
+  // final GenericBloc<bool> confirmPasswordCubit = GenericBloc(false);
   final GenericBloc<bool> confirmPasswordCubit = GenericBloc(false);
   final GenericBloc<bool> termCubit = GenericBloc(false);
 

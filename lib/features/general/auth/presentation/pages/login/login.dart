@@ -15,14 +15,14 @@ class _LoginState extends State<Login> {
     return WillPopScope(
       onWillPop: () => loginController.onBackPressed(context),
       child: Scaffold(
-        backgroundColor: context.colors.white,
+        backgroundColor: context.colors.customBackground,
         body: GestureDetector(
           onTap: FocusScope.of(context).unfocus,
           child: BlocBuilder<GenericBloc<int>, GenericState<int>>(
             bloc: loginController.tabsCubit,
             builder: (context, state) {
               return SingleChildScrollView(
-                padding: Dimens.paddingHorizontal10PX,
+                padding: Dimens.paddingHorizontal20PX,
                 child: Column(
                   children: [
                     const BuildHeaderLogo(),

@@ -10,26 +10,28 @@ class BuildForgetForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       key: forgetPasswordController.formKey,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BuildInputLabel(label: tr("email")),
-            GenericTextField(
-              fillColor: context.colors.authField,
-              enableBorderColor: context.colors.white,
-              focusBorderColor: context.colors.white,
-              controller: forgetPasswordController.email,
-              fieldTypes: FieldTypes.normal,
-              type: TextInputType.emailAddress,
-              action: TextInputAction.next,
-              validate: (value) => value?.validateEmpty(),
-              margin: Dimens.headerTitlePadding,
-              radius: Dimens.borderRadius20PX,
-            ),
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          BuildInputLabel(
+            label: tr("email"),
+          ),
+          GenericTextField(
+            hint: tr("enterYourEmailHint"),
+            hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
+            fillColor: context.colors.white,
+            contentPadding: Dimens.paddingH32V16,
+            enableBorderColor: context.colors.white,
+            focusBorderColor: context.colors.borderColor,
+            controller: forgetPasswordController.email,
+            fieldTypes: FieldTypes.normal,
+            type: TextInputType.emailAddress,
+            action: TextInputAction.next,
+            validate: (value) => value?.validateEmpty(),
+            margin: Dimens.headerTitlePadding,
+            radius: Dimens.borderRadius40PX,
+          ),
+        ],
       ),
     );
   }

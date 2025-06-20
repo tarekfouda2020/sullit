@@ -111,6 +111,10 @@ class AppTextStyle extends TextStyle {
       : super(color: color, fontSize: 16, fontWeight: weight500, height: fontHeight,);
 
   // ignore: non_constant_identifier_names
+  const AppTextStyle.s16_w600({required Color color})
+      : super(color: color, fontSize: 16, fontWeight: FontWeight.w600, height: fontHeight,);
+
+  // ignore: non_constant_identifier_names
   const AppTextStyle.s16_w700({required Color color})
       : super(color: color, fontSize: 16, fontWeight: FontWeight.w700, height: fontHeight,);
 
@@ -165,6 +169,10 @@ class AppTextStyle extends TextStyle {
   // ignore: non_constant_identifier_names
   const AppTextStyle.s20_w600({required Color color})
       : super(color: color, fontSize: 20, fontWeight: FontWeight.w600, height: fontHeight,);
+
+  // ignore: non_constant_identifier_names
+  const AppTextStyle.s22_w700({required Color color})
+      : super(color: color, fontSize: 22, fontWeight: FontWeight.w700, height: fontHeight,);
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s24_w700({required Color color})

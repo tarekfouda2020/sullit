@@ -24,7 +24,7 @@ class BuildAuthAppBar extends StatelessWidget {
             padding: Dimens.paddingAll10PX,
             decoration: BoxDecoration(
               borderRadius: Dimens.borderRadius40PX,
-              color: context.colors.authField,
+              color: Colors.transparent,
             ),
             child: Image.asset(Res.arrowBack, width: 24.r, height: 24.r),
           ),

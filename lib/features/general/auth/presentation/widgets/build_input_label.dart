@@ -11,7 +11,7 @@ class BuildInputLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: AppTextStyle.s14_w400(color: context.colors.textColor),
+      style: AppTextStyle.s16_w600(color: context.colors.black),
     );
   }
 }

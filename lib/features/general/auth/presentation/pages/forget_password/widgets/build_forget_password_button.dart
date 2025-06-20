@@ -15,10 +15,11 @@ class BuildForgetPasswordButton extends StatelessWidget {
       color: context.colors.primary,
       textColor: context.colors.white,
       //btnKey: forgetPasswordController.btnKey,
-      margin: Dimens.paddingVertical10PX,
-      width: 200,
+      margin: EdgeInsets.zero,
       height: 40.h,
       borderRadius: Dimens.borderRadius25PX,
+      fontSize: 18,
+      fontWeight: FontWeight.w700,
     );
   }
 }

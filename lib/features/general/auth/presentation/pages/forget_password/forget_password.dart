@@ -16,8 +16,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     return GestureDetector(
       onTap: FocusScope.of(context).unfocus,
       child: Scaffold(
+        backgroundColor: context.colors.customBackground,
         body: SingleChildScrollView(
-          padding: Dimens.paddingH24V40,
+          padding: Dimens.paddingH16V40,
           child: Column(
             children: [
               const BuildAuthAppBar(),
@@ -27,6 +28,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               ),
               const BuildForgetLogo(),
               BuildForgetForm(forgetPasswordController: forgetPasswordController),
+              Gaps.vGap8,
               BuildForgetPasswordButton(
                   forgetPasswordController: forgetPasswordController),
               const BuildBackToLogin(),

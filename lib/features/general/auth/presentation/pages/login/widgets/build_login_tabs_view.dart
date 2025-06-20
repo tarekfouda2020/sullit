@@ -10,10 +10,12 @@ class BuildLoginTabsView extends StatelessWidget {
         return Container(
           height: 48,
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          margin: const EdgeInsets.only(bottom: 24,top: 40).r,
+          margin: const EdgeInsets.only(bottom: 24,top: 24).r,
           decoration: BoxDecoration(
-              color: context.colors.authField,
-              borderRadius: BorderRadius.circular(40)),
+              color: context.colors.white,
+              border: Border.all(color: context.colors.borderColor),
+              borderRadius: BorderRadius.circular(40)
+          ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

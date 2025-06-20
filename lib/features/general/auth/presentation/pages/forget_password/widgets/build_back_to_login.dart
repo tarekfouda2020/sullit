@@ -9,12 +9,12 @@ class BuildBackToLogin extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
-          padding: Dimens.paddingVertical40PX,
+          padding: Dimens.paddingVertical36PX,
           child: InkWell(
             onTap: () => AutoRouter.of(context).pop(),
             child: Text(
               tr("backLogin"),
-              style: AppTextStyle.s14_w400(color: context.colors.blackOpacity),
+              style: AppTextStyle.s16_w700(color: context.colors.primary),
             ),
           ),
         ),

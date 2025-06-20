@@ -25,22 +25,25 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.colors.splashColor,
+      backgroundColor: context.colors.customBackground,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  Res.splashLogo,
-                  width: MediaQuery.of(context).size.width * .65,
+                  Res.logoIcon,
                 ),
-                Gaps.vGap8,
+                Image.asset(
+                  Res.logoPng,
+                  width: MediaQuery.of(context).size.width * .3,
+                ),
+                Gaps.vGap12,
                 Text(
-                  'your outlet mall 🟡',
-                  style: AppTextStyle.s20_w400(color: context.colors.white),
+                  'its worth it, thats it',
+                  style: AppTextStyle.s16_w700(color: context.colors.black),
                 ),
               ],
             ),

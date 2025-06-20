@@ -113,7 +113,7 @@
   "choosePayment": "You must choose payment method",
   "orderSummary": "Order summary",
   "totalOrderAmount": "Total order amount",
-  "email": "Email",
+  "email": "E-mail",
   "shipping": "Shipping",
   "shippingAddress": "Shipping address",
   "wallet": "Wallet",
@@ -384,7 +384,10 @@
 "days": "Days",
   "hours": "Hours",
   "minutes": "Minutes",
-  "second": "Seconds"
+  "second": "Seconds",
+  "enterYourEmailHint": "Enter Your E-mail",
+  "enterYourPassword": "Enter Your Password",
+  "insertUserName": "Enter User Name"
 }
 
 
