@@ -10,12 +10,18 @@ class HomeController {
   final TextEditingController searchController = TextEditingController();
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  List<String> tabs = [Res.home, Res.category,Res.compass, Res.offers, Res.account];
+  List<String> tabs = [
+    Res.home,
+    Res.category,
+    // Res.compass,
+    Res.offers,
+    Res.account
+  ];
 
   List<String> tabsText(BuildContext context) => [
         tr('home', context: context),
         tr('categories', context: context),
-        tr('explore', context: context),
+        // tr('explore', context: context),
         tr('offers', context: context),
         tr("account", context: context),
       ];
@@ -82,5 +88,9 @@ class HomeController {
   Future<bool> onBackPressed() async {
     SystemNavigator.pop();
     return true;
+  }
+
+  void routeToCart(BuildContext context){
+    AutoRouter.of(context).push(const CartRoute());
   }
 }

@@ -55,6 +55,15 @@ class Res {
   static const String sortLogo = "assets/images/sort_logo.png";
   static const String search = "assets/images/search.svg";
   static const String compass = "assets/images/compass.svg";
+  static const String shopCart = "assets/images/shop_cart_icon.svg";
+  static const String searchIcon = "assets/images/search_icon.svg";
+  static const String qrScanIcon = "assets/images/scan_qr_icon.svg";
+  static const String truckIcon = "assets/images/truck_icon.svg";
+  static const String feedBackIcon = "assets/images/feedback_icon.svg";
+  static const String recyleIcon = "assets/images/recyle_icon.svg";
+  static const String savePaymentIcon = "assets/images/save_payment_icon.svg";
+  static const String vipMark = "assets/images/vip_mark.svg";
+  static const String arrowForward = "assets/images/small_arrow_forward.svg";
 
   static const String flashSaleLogo = "assets/images/flash_sale_logo.png";
   static const String scaffBg1 = "assets/images/scaffBg1.svg";

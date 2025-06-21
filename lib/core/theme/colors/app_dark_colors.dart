@@ -91,4 +91,10 @@ class AppDarkColors extends AppColors {
 
   @override
   Color get borderColor => const Color(0xffF1F1F1);
+
+  @override
+  Color get lightPink => const Color(0xffFFE1E2);
+
+  @override
+  Color get darkRed => const Color(0xff822426);
 }

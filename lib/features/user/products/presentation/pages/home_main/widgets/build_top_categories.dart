@@ -7,30 +7,34 @@ class BuildTopCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Gaps.vGap15,
-        BuildCustomHeaderTitle(
-          title: tr("categories"),
-          onTap: () => AutoRouter.of(context).push(HomeRoute(index: 1)),
-        ),
-        GridView.builder(
-          padding: Dimens.paddingHorizontal15PX,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: categories.length,
-          itemBuilder: (_, index) => BuildTopCategoriesItem(
-            categoryModel: categories[index],
-          ),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 5,
-            childAspectRatio: 0.8,
-            crossAxisSpacing: 5,
-            mainAxisSpacing: 15,
-          ),
-        )
-      ],
+    return Padding(
+      padding: Dimens.paddingHorizontal15PX,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Gaps.vGap15,
+          // BuildCustomHeaderTitle(
+          //   title: tr("categories"),
+          //   onTap: () => AutoRouter.of(context).push(HomeRoute(index: 1)),
+          // ),
+          const CategoriesHeaderWidget(),
+          Gaps.vGap16,
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: categories.length,
+            itemBuilder: (_, index) => BuildTopCategoriesItem(
+              categoryModel: categories[index],
+            ),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 5,
+              childAspectRatio: 0.75,
+              crossAxisSpacing: 5,
+              mainAxisSpacing: 15,
+            ),
+          )
+        ],
+      ),
     );
   }
 }

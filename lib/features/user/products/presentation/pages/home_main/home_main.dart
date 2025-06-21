@@ -27,7 +27,7 @@ class _HomeMainState extends State<HomeMain> {
           body: Column(
             children: [
               BuildHomeMainAppBar(controller: widget.homeController),
-              const BuildDiscountMsg(),
+              // const BuildDiscountMsg(),
               BlocBuilder<GenericBloc<HomeDomainModel?>,
                   GenericState<HomeDomainModel?>>(
                 bloc: controller.homeCubit,

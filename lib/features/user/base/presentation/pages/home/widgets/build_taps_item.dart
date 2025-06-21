@@ -19,27 +19,29 @@ class BuildTabItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Gaps.vGap5,
-        SizedBox(
-          height: 34,
-          width: 34,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              if (isActive) SvgPicture.asset(Res.bgTabs, height: 34, width: 34),
-              SvgPicture.asset(
-                controller.tabs[index],
-                color:
+        Container(
+          width: 32, height: 32,
+          padding: const EdgeInsets.all(8),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: isActive
+                  ?context.colors.lightPink
+                  :Colors.transparent
+          ),
+          child: SvgPicture.asset(
+            controller.tabs[index],
+            colorFilter: ColorFilter.mode(
                 isActive ? context.colors.primary : context.colors.gray,
-                // height: 20,
-                // width: 20,
-              ),
-            ],
+                BlendMode.srcIn),
+            // height: 20,
+            // width: 20,
           ),
         ),
         Gaps.vGap5,
         Text(
           controller.tabsText(context)[index],
-          style: AppTextStyle.s12_w500(
+          style: AppTextStyle.s12_w700(
             color: isActive ? context.colors.primary : context.colors.black,
           ),
         )

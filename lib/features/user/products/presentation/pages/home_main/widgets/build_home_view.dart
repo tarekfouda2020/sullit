@@ -18,6 +18,11 @@ class BuildHomeView extends StatelessWidget {
         padding: Dimens.paddingVertical10PX,
         children: [
           BuildHomeSwiper(slider: homeDomainModel.sliders),
+          Gaps.vGap25,
+          const AdvantagesWidget(),
+          Gaps.vGap16,
+          const VipOffersWidget(),
+          Gaps.vGap12,
           BuildTopCategories(categories: homeDomainModel.categories),
           // BuildPopularProducts(
           //   mostPopularProducts: homeDomainModel.mostPopular,

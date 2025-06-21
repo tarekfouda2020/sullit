@@ -12,7 +12,7 @@ class BuildBottomNavBar extends StatelessWidget {
       bloc: controller.homeTabCubit,
       builder: (context, state) {
         return AnimatedBottomNavigationBar.builder(
-          itemCount: 5,
+          itemCount: 4,
           tabBuilder: (int index, bool isActive) {
             return BuildTabItem(
               controller: controller,
@@ -29,6 +29,9 @@ class BuildBottomNavBar extends StatelessWidget {
           ),
           gapLocation: GapLocation.none,
           splashSpeedInMilliseconds: 200,
+          gapWidth: 0,
+          notchMargin: 0,
+          notchSmoothness: null,
           leftCornerRadius: 18,
           rightCornerRadius: 18,
           height: Platform.isIOS ? 75 : 80,

@@ -36,6 +36,7 @@ class Dimens {
   static const double dp20 = 20;
   static const double dp22 = 22;
   static const double dp24 = 24;
+  static const double dp25 = 25;
   static const double dp28 = 28;
   static const double dp30 = 30;
   static const double dp32 = 32;

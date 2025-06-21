@@ -1,3 +1,4 @@
+
 import 'package:auto_route/auto_route.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
@@ -56,3 +57,6 @@ part 'build_top_categories.dart';
 part 'build_top_category_item.dart';
 part 'build_header_icon.dart';
 part 'build_discount_msg.dart';
+part 'advantages_widget.dart';
+part 'categories_header_widget.dart';
+part 'vip_offers_widget.dart';
