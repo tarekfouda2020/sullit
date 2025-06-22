@@ -10,13 +10,17 @@ class BuildCategorySearchView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GenericTextField(
       fieldTypes: FieldTypes.normal,
+      margin: Dimens.paddingHorizontal15PX,
+      hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
       type: TextInputType.text,
       controller: categoriesController.searchController,
       action: TextInputAction.search,
+      radius: const BorderRadius.all(Radius.circular(30)),
       validate: (value) {},
       autoFocus: false,
       fillColor: context.colors.white,
-      margin: Dimens.paddingHorizontal15PX,
+      enableBorderColor: context.colors.borderColor,
+      focusBorderColor: context.colors.borderColor,
       hint: tr('searchCats'),
       suffixIcon: InkWell(
         onTap: () => AutoRouter.of(context).push(
@@ -26,7 +30,7 @@ class BuildCategorySearchView extends StatelessWidget {
         ),
         child: Transform.scale(
           scale: 0.4,
-          child: SvgPicture.asset(Res.search),
+          child: SvgPicture.asset(Res.searchIcon),
         ),
       ),
     );

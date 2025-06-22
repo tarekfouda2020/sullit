@@ -100,4 +100,10 @@ class AppDarkColors extends AppColors {
 
   @override
   Color get gold => const Color(0xffFFD468);
+
+  @override
+  Color get gray2 => const Color(0xffEAEAEA);
+
+  @override
+  Color get lightPrimary => const Color(0xffFBC6C7);
 }

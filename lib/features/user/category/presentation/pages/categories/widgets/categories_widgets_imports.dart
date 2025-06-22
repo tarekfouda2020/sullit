@@ -28,3 +28,4 @@ part 'build_category_side_item.dart';
 part 'build_loading_side_categories.dart';
 part 'build_loading_side_sub_categories.dart';
 part 'build_loading_sub_categories.dart';
+part 'sub_category_side_item_replacement_widget.dart';
