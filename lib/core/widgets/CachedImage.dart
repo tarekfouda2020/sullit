@@ -19,6 +19,7 @@ class CachedImage extends StatelessWidget{
   final BoxShape? boxShape;
   final bool haveRadius;
   final EdgeInsets?imgMargin;
+  final BoxBorder?border;
   const CachedImage({super.key,
     required this.url,
     this.fit,
@@ -33,6 +34,7 @@ class CachedImage extends StatelessWidget{
     this.borderColor,
     this.borderWidth,
     this.bgColor,
+    this.border,
     this.haveRadius=true,
   this.imgMargin,
   });
@@ -56,7 +58,7 @@ class CachedImage extends StatelessWidget{
           ),
           borderRadius: haveRadius? borderRadius??BorderRadius.circular(0):null,
           shape: boxShape??BoxShape.rectangle,
-          border: Border.all(color: borderColor??Colors.transparent,width: borderWidth??1),
+          border: border ?? Border.all(color: borderColor??Colors.transparent,width: borderWidth??1),
         ),
         alignment: alignment??Alignment.center,
         child: child,
@@ -67,7 +69,7 @@ class CachedImage extends StatelessWidget{
           margin:imgMargin,
         decoration: BoxDecoration(
             borderRadius: haveRadius? borderRadius??BorderRadius.circular(0):null,
-            border: Border.all(color: borderColor??Colors.transparent,width: 1),
+            border: border ?? Border.all(color: borderColor??Colors.transparent,width: 1),
             shape: boxShape??BoxShape.rectangle,
             color: bgColor?? context.colors.primary.withOpacity(.5),
         ),
@@ -83,7 +85,7 @@ class CachedImage extends StatelessWidget{
         decoration: BoxDecoration(
             color: bgColor?? context.colors.white,
             borderRadius: haveRadius? borderRadius??BorderRadius.circular(0):null,
-            border: Border.all(color: borderColor??Colors.transparent,width: 1),
+            border: border ?? Border.all(color: borderColor??Colors.transparent,width: 1),
             shape: boxShape??BoxShape.rectangle,
         ),
         child: Stack(

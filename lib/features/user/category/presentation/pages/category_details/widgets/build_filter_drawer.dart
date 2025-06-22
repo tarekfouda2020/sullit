@@ -44,6 +44,8 @@ class BuildFilterDrawer extends StatelessWidget {
                         BuildPriceRange(
                           categoryDetailsController: categoryDetailsController,
                         ),
+                        Gaps.line(context.colors.gray, 15),
+                        const BrandsFilterItem(),
                         ...List.generate(
                           state.data!.attributes.length,
                           (index) => BuildFilterItem(
@@ -61,17 +63,53 @@ class BuildFilterDrawer extends StatelessWidget {
                     ),
                   ),
                 ),
-                DefaultButton(
-                  width: 100.w,
-                  height: 35.h,
-                  title: tr('confirm'),
-                  margin: EdgeInsets.zero,
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    categoryDetailsController.pagingController.refresh();
-                  },
-                  color: context.colors.primary,
-                  borderRadius: Dimens.borderRadius10PX,
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: DefaultButton(
+                        height: 35.h,
+                        title: tr('confirm'),
+                        margin: EdgeInsets.zero,
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          categoryDetailsController.pagingController.refresh();
+                        },
+                        color: context.colors.primary,
+                        borderRadius: Dimens.borderRadius30PX,
+                        textColor: context.colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+
+                      ),
+                    ),
+                    Gaps.hGap5,
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: ()=> categoryDetailsController.resetFilter(context),
+                        child: Text(tr('reset',
+                        ),
+                        textAlign: TextAlign.center,
+                        style: AppTextStyle.s18_w700(color: context.colors.primary),
+                        ),
+                      ),
+                      // child: DefaultButton(
+                      //   height: 35.h,
+                      //   title: tr('reset'),
+                      //   elevation: 0,
+                      //   textColor: context.colors.primary,
+                      //   fontSize: 18,
+                      //   fontWeight: FontWeight.w700,
+                      //   margin: EdgeInsets.zero,
+                      //   onTap: () {
+                      //     Navigator.of(context).pop();
+                      //     // categoryDetailsController.pagingController.refresh();
+                      //   },
+                      //   color: Colors.transparent,
+                      //   borderRadius: Dimens.borderRadius10PX,
+                      // ),
+                    ),
+                  ],
                 ),
               ],
             );

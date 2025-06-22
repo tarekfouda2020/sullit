@@ -10,7 +10,7 @@ class BuildCompareItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: CustomDecoration(),
+      decoration: const CustomDecoration(),
       padding: Dimens.paddingAll10PX,
       margin: Dimens.paddingVertical5PX,
       child: Row(

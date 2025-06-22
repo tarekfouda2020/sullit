@@ -12,7 +12,9 @@ class HomeMainController {
   int currentPage = 1;
   int pageSize = 5;
 
+  late final HomeController homeController;
   HomeMainController(BuildContext context, HomeController controller) {
+    homeController = controller;
     controller.searchController.clear();
     controller.visibleSearch.onUpdateData(false);
     // getHome(context, refresh: false);

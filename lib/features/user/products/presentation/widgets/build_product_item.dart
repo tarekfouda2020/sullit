@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
@@ -27,14 +28,19 @@ class BuildProductItem extends StatelessWidget {
     super.key,
     required this.productModel,
     required this.onFavRefresh,
-     this.onCompareRefresh,
+    this.onCompareRefresh,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 160,
-      decoration: const CustomDecoration(myBoxShadow: []),
+      decoration: CustomDecoration(
+          myBoxShadow: const [],
+          radius: Dimens.borderRadius12PX,
+          boxBorder: Border.all(
+            color: context.colors.greyWhite,
+          )),
       child: InkWell(
         onTap: () => AutoRouter.of(context).push(
           ProductDetailsRoute(
@@ -49,12 +55,12 @@ class BuildProductItem extends StatelessWidget {
               child: Stack(
                 children: [
                   CachedImage(
-                    // height: 150,
+                    /// border color from top will be changed later
                     fit: BoxFit.fill,
                     haveRadius: true,
                     bgColor: const Color(0xffededed),
                     borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(Dimens.dp5),
+                      top: Radius.circular(Dimens.dp12),
                     ),
                     url: productModel.thumbnailImage!,
                   ),
@@ -63,40 +69,23 @@ class BuildProductItem extends StatelessWidget {
                     child: PositionedDirectional(
                       top: 20.r,
                       child: Container(
-                        padding: Dimens.paddingAll3PX,
+                        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
                         decoration: BoxDecoration(
-                          color: context.colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: context.colors.greyWhite,
-                              blurRadius: 1,
-                              spreadRadius: 1,
-                            )
-                          ],
-                          borderRadius: const BorderRadiusDirectional.only(
-                            topEnd: Radius.circular(40),
-                            bottomEnd: Radius.circular(40),
-                          ),
+                          color: context.colors.primary,
                         ),
                         child: Row(
                           children: [
                             Text(
                               tr('off'),
-                              style: AppTextStyle.s10_w400(
-                                color: context.colors.primary,
+                              style: AppTextStyle.s12_w600(
+                                color: context.colors.white,
                               ),
                             ),
-                            Container(
-                              padding: Dimens.paddingAll5PX,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: context.colors.primary,
-                              ),
-                              child: Text(
-                                productModel.discount!,
-                                style: AppTextStyle.s10_w400(
-                                  color: context.colors.white,
-                                ),
+                            Gaps.hGap2,
+                            Text(
+                              productModel.discount!,
+                              style: AppTextStyle.s12_w600(
+                                color: context.colors.white,
                               ),
                             ),
                           ],
@@ -109,9 +98,8 @@ class BuildProductItem extends StatelessWidget {
                     child: Column(
                       children: [
                         BuildIconItem(
-                          iconData: productModel.isWishlist!
-                              ? Icons.favorite
-                              : Icons.favorite_border,
+                          icon: productModel.isWishlist! ? Res.favIcon : Res.emptyFavIcon,
+                          changeBgColor: false,
                           onTap: () => ProductsHelper().toggleFavourite(
                             id: productModel.id!,
                             context: context,
@@ -119,12 +107,12 @@ class BuildProductItem extends StatelessWidget {
                           ),
                           checkValue: productModel.isWishlist,
                         ),
-                        BuildCompareItem(
-                          productModel: productModel,
-                          onTap: () {
-                            onCompareRefresh?.call();
-                          },
-                        )
+                        // BuildCompareItem(
+                        //   productModel: productModel,
+                        //   onTap: () {
+                        //     onCompareRefresh?.call();
+                        //   },
+                        // ),
                       ],
                     ),
                   )
@@ -138,18 +126,37 @@ class BuildProductItem extends StatelessWidget {
                 children: [
                   Text(
                     productModel.categoryName!,
-                    style: AppTextStyle.s10_w400(
-                      color: context.colors.grey,
+                    style: AppTextStyle.s12_w300(
+                      color: context.colors.textColor,
                     ).copyWith(overflow: TextOverflow.ellipsis, height: 0),
                   ),
+                  Gaps.vGap3,
                   Text(
                     productModel.name!,
                     maxLines: 1,
-                    style: AppTextStyle.s13_w500(
+                    style: AppTextStyle.s14_w600(
                       color: context.colors.black,
                     ).copyWith(overflow: TextOverflow.ellipsis, height: 0),
                   ),
                   Gaps.vGap5,
+                  if((productModel.rating ?? 0.0) > 0)
+                  RatingBar.builder(
+                    initialRating: productModel.rating!.toDouble(),
+                    minRating: 0.5,
+                    direction: Axis.horizontal,
+                    allowHalfRating: true,
+                    glow: false,
+                    ignoreGestures: true,
+                    updateOnDrag: false,
+                    itemCount: 5,
+                    itemSize: 15,
+                    unratedColor: context.colors.deepGray,
+                    itemBuilder: (context, _) => const Icon(
+                      Icons.star_rounded,
+                      color: Colors.amber,
+                    ),
+                    onRatingUpdate: (rating) {},
+                  ),
                   Row(
                     children: [
                       Expanded(
@@ -158,7 +165,8 @@ class BuildProductItem extends StatelessWidget {
                           children: [
                             Text(
                               productModel.priceHighLowDiscount!,
-                              style: AppTextStyle.s11_bold(
+                              // style: AppTextStyle.s11_bold(
+                              style: AppTextStyle.s14_w600(
                                 color: context.colors.primary,
                               ),
                             ),
@@ -166,8 +174,8 @@ class BuildProductItem extends StatelessWidget {
                               visible: productModel.hasDiscount!,
                               child: Text(
                                 productModel.priceHighLow!,
-                                style: AppTextStyle.s10_w400(
-                                  color: context.colors.grey,
+                                style: AppTextStyle.s12_w400(
+                                  color: context.colors.textColor,
                                 ).copyWith(
                                   decoration: TextDecoration.lineThrough,
                                   overflow: TextOverflow.ellipsis,
@@ -191,8 +199,10 @@ class BuildProductItem extends StatelessWidget {
                             borderRadius: BorderRadius.circular(Dimens.dp4),
                           ),
                           child: SvgPicture.asset(
-                            Res.cart,
-                            color: context.colors.textColor,
+                            Res.shopCart,
+                            width: 14,
+                            height: 14,
+                            colorFilter: ColorFilter.mode(context.colors.black, BlendMode.srcIn),
                           ),
                         ),
                       ),

@@ -19,6 +19,7 @@ class CategoryDetailsController {
   int brandId = 0;
   List<String> selectedColors = [];
   int currentCatId = 0;
+  RangeValues? _initialRangeValues;
 
   // CategoryDetailsController(BuildContext context, int catId) {
   //   getSubCategories(context, catId, 0).then((value) {
@@ -237,4 +238,24 @@ class CategoryDetailsController {
       slug: "",
     );
   }
+
+  void openDrawerFilter() {
+    if(subCategoriesCubit.state is GenericUpdateState || pagingController.itemList!.isNotEmpty){
+      scaffold.currentState?.openDrawer();
+    }
+  }
+
+  void resetFilter(BuildContext context) {
+    /// reset the price range later
+    for(var item in subCategoriesCubit.state.data?.attributes ?? <Attributes>[]){
+      item.opened = false;
+      for(var attribute in item.attributeValues){
+        attribute.selected = false;
+      }
+    }
+    subCategoriesCubit.onUpdateData(subCategoriesCubit.state.data);
+    Navigator.pop(context);
+  }
+
+
 }

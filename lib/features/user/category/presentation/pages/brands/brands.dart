@@ -24,10 +24,10 @@ class _BrandsState extends State<Brands> {
       body: PagedGridView<int, BrandDomainModel>(
         padding: Dimens.paddingAll15PX,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+          crossAxisCount: 3,
           crossAxisSpacing: 15.r,
           mainAxisSpacing: 15.r,
-          childAspectRatio: 9 / 8,
+          childAspectRatio: 10 / 9,
         ),
         showNewPageProgressIndicatorAsGridChild: false,
         showNewPageErrorIndicatorAsGridChild: true,

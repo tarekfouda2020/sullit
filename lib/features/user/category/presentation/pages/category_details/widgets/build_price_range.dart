@@ -3,7 +3,7 @@ part of 'category_details_widgets_imports.dart';
 class BuildPriceRange extends StatelessWidget {
   final CategoryDetailsController categoryDetailsController;
 
-  const BuildPriceRange({required this.categoryDetailsController});
+  const BuildPriceRange({super.key, required this.categoryDetailsController});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,6 @@ class BuildPriceRange extends StatelessWidget {
             style: AppTextStyle.s14_w800(color: context.colors.black),
           ),
         ),
-        Gaps.line(context.colors.gray, 15),
         BlocBuilder<GenericBloc<PriceRangeParams?>,
             GenericState<PriceRangeParams?>>(
           bloc: categoryDetailsController.rangeCubit,
@@ -29,30 +28,38 @@ class BuildPriceRange extends StatelessWidget {
               margin: const EdgeInsets.symmetric(vertical: Dimens.dp5),
               child: Column(
                 children: [
-                  RangeSlider(
-                    values: state.data!.value,
-                    min: state.data!.initial.start,
-                    max: state.data!.initial.end,
-                    divisions: 10,
-                    activeColor: context.colors.primary,
-                    labels: RangeLabels(
-                      state.data!.value.start.round().toString(),
-                      state.data!.value.end.round().toString(),
+                  SliderTheme(
+                      data: SliderThemeData(
+                      trackHeight: 5,
+                      thumbColor: context.colors.primary,
+                     activeTrackColor: const Color(0xffD9D9D9),
+                     inactiveTrackColor:context.colors.primary,
+                     thumbShape: const RoundSliderOverlayShape(overlayRadius: 50),
+                       ),
+                    child: RangeSlider(
+                      values: state.data!.value,
+                      min: state.data!.initial.start,
+                      max: state.data!.initial.end,
+                      // divisions: 10,
+                      labels: RangeLabels(
+                        state.data!.value.start.round().toString(),
+                        state.data!.value.end.round().toString(),
+                      ),
+                      onChanged: (RangeValues values) => categoryDetailsController.changePriceValue(values, context),
                     ),
-                    onChanged: (RangeValues values) => categoryDetailsController
-                        .changePriceValue(values, context),
-                    inactiveColor: context.colors.greyWhite,
                   ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: Dimens.dp10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        // Gaps.hGap8,
                         Text(
                           "${state.data!.value.start.toInt()} ",
                           style:
                           AppTextStyle.s14_w800(color: context.colors.black),
                         ),
+                        // const Spacer(),
                         Text(
                           "${state.data!.value.end.toInt()} ",
                           style:

@@ -9,32 +9,29 @@ class Coupons extends StatefulWidget {
   _CouponsState createState() => _CouponsState();
 }
 
-class _CouponsState extends State<Coupons> {
+class _CouponsState extends State<Coupons>{
   late CouponsController controller;
 
   @override
   void initState() {
     controller = CouponsController();
+    controller.homeController = widget.homeController;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: controller.pages().length,
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
         appBar: BuildHomeAppBar(homeController: widget.homeController),
         body: Column(
           children:  [
-            const BuildTabsView(),
+             BuildTabsView(controller: controller),
             Flexible(
               child: TabBarView(
-                children: [
-                  NewArrival(),
-                  OnSale(homeController: widget.homeController),
-                  BestRated(),
-                ],
+                children: controller.pages(),
               ),
             )
           ],

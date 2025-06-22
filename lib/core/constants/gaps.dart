@@ -6,6 +6,7 @@ import 'dimens.dart';
 class Gaps {
   const Gaps._();
 
+  static Widget hGap2 = const SizedBox(width: Dimens.dp2);
   static Widget hGap3 = const SizedBox(width: Dimens.dp3);
   static Widget hGap4 = const SizedBox(width: Dimens.dp4);
   static Widget hGap5 = const SizedBox(width: Dimens.dp5);

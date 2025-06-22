@@ -243,7 +243,7 @@
   "availableStock": "available in stock",
   "coupons": "Coupons",
   "totalPrice": "Total Price",
-  "off": "OFF",
+  "off": "Off",
   "yourName": "Your Name",
   "informationUpdatedSuccessfully": "Profile information updated successfully",
   "completePayment": "Complete Payment",
@@ -390,7 +390,8 @@
   "insertUserName": "Enter User Name",
   "seeAll": "See all",
   "cart": "Cart",
-  "more": "More"
+  "more": "More",
+  "reset": "Reset"
 }
 
 

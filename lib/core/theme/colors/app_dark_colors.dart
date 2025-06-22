@@ -106,4 +106,7 @@ class AppDarkColors extends AppColors {
 
   @override
   Color get lightPrimary => const Color(0xffFBC6C7);
+
+  @override
+  Color get deepGray => const Color(0xffC3C3C3);
 }

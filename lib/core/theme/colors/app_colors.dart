@@ -89,6 +89,7 @@ abstract class AppColors {
   Color get gold;
   Color get gray2;
   Color get lightPrimary;
+  Color get deepGray;
 
 
   Color get bgIcon;

@@ -1,7 +1,9 @@
 part of 'home_main_widgets_imports.dart';
 
 class VipOffersWidget extends StatelessWidget {
-  const VipOffersWidget({super.key});
+  final void Function() onTap;
+  final String text;
+  const VipOffersWidget({super.key, required this.onTap, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -36,25 +38,28 @@ class VipOffersWidget extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                width: 24,
-                height: 42,
-                decoration: BoxDecoration(color: context.colors.white,
-                shape: BoxShape.circle
+          GestureDetector(
+            onTap: onTap,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  width: 24,
+                  height: 42,
+                  decoration: BoxDecoration(color: context.colors.white,
+                  shape: BoxShape.circle
+                  ),
+                  child: Transform.scale(
+                      scale: 0.4,
+                      child: SvgPicture.asset(Res.arrowForward)),
                 ),
-                child: Transform.scale(
-                    scale: 0.4,
-                    child: SvgPicture.asset(Res.arrowForward)),
-              ),
-              Text(
-                "See Offers",
-                style: AppTextStyle.s12_w600(color: context.colors.white),
-              ),
-              Gaps.vGap10,
-            ],
+                Text(
+                  text,
+                  style: AppTextStyle.s12_w600(color: context.colors.white),
+                ),
+                Gaps.vGap10,
+              ],
+            ),
           )
         ],
       ),

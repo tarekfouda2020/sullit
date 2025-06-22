@@ -16,31 +16,29 @@ class BuildFilterBar extends StatelessWidget {
             margin: Dimens.paddingHorizontal15PX,
             padding: Dimens.marginBottom5,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Expanded(
-                  child: DropdownTextField<BrandDomainModel>(
-                    title: tr('allBrands'),
-                    hint: tr('allBrands'),
-                    fillColor: context.colors.white,
-                    itemAsString: (u) => u.name,
-                    margin: EdgeInsets.zero,
-                    validate: (value) => validateDropDown(context),
-                    data: state.data?.brands,
-                    onChange: (model) => detailsController.onChangeBrand(model),
-                  ),
-                ),
-                Gaps.hGap15,
+                // Expanded(
+                //   child: DropdownTextField<BrandDomainModel>(
+                //     title: tr('allBrands'),
+                //     hint: tr('allBrands'),
+                //     fillColor: context.colors.white,
+                //     itemAsString: (u) => u.name,
+                //     margin: EdgeInsets.zero,
+                //     validate: (value) => validateDropDown(context),
+                //     data: state.data?.brands,
+                //     onChange: (model) => detailsController.onChangeBrand(model),
+                //   ),
+                // ),
+                // Gaps.hGap15,
                 InkWell(
                   onTap: () =>
                       detailsController.scaffold.currentState?.openDrawer(),
-                  child: Container(
+                  child: Padding(
                     padding: const EdgeInsets.all(Dimens.dp5),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: context.colors.primary,
+                    child: SvgPicture.asset(
+                      Res.filterIcon,
                     ),
-                    child: Icon(Icons.filter_alt_outlined, size: 20.sp),
                   ),
                 )
               ],

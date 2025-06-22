@@ -10,6 +10,7 @@ import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/validator.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/models/domain_models/brand_domain_model.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
@@ -27,6 +28,7 @@ import 'package:flutter_tdd/features/user/category/presentation/pages/category_d
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item_shimmer.dart';
+import 'package:flutter_tdd/res.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 part 'build_all_categories_view.dart';
@@ -44,3 +46,4 @@ part 'build_products.dart';
 part 'build_specification_item.dart';
 part 'build_sub_categories.dart';
 part 'build_sub_category_item.dart';
+part 'brands_filter_item_widget.dart';
