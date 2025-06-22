@@ -86,6 +86,7 @@ abstract class AppColors {
   Color get borderColor;
   Color get lightPink;
   Color get darkRed;
+  Color get gold;
 
 
   Color get bgIcon;

@@ -10,7 +10,7 @@ class CartButtonWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => controller.routeToCart(context),
       child: Container(
-        width: 62, height: 62,
+        width: 70, height: 70,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: context.colors.primary,

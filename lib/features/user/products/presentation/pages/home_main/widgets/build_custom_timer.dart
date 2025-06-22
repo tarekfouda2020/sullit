@@ -1,39 +1,51 @@
 part of 'home_main_widgets_imports.dart';
 
 class BuildCustomTimer extends StatelessWidget {
-  final String time;
+  final String firstTimeNumber;
+  final String secondTimeNumber;
   final String text;
 
   const BuildCustomTimer({
     super.key,
-    required this.time,
     required this.text,
+    required this.firstTimeNumber,
+    required this.secondTimeNumber,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 3),
-          alignment: Alignment.center,
-          height: 22,
-          width: 28,
-          decoration: BoxDecoration(
-            color: context.colors.white,
-            borderRadius: BorderRadius.circular(7),
-          ),
-          child: Text(
-            time,
-            style: AppTextStyle.s10_w500(color: context.colors.black),
-          ),
+        Row(
+          children: [
+            _buildContainer(context,firstTimeNumber),
+            _buildContainer(context,secondTimeNumber),
+          ],
         ),
         Gaps.vGap3,
         Text(
           text,
-          style: AppTextStyle.s5_w600(color: context.colors.white),
+          style: AppTextStyle.s10_w400(color: context.colors.gold),
         )
       ],
+    );
+  }
+
+  Container _buildContainer(BuildContext context, String time) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 6.5),
+      alignment: Alignment.center,
+      height: 26.5,
+      decoration: BoxDecoration(
+        color: context.colors.white,
+        borderRadius: BorderRadius.circular(3),
+      ),
+      child: Text(
+        time,
+        style: AppTextStyle.s12_w700(color: context.colors.black),
+      ),
     );
   }
 }

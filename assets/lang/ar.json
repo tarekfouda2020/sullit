@@ -561,7 +561,9 @@
   "enterYourEmailHint": "أدخل بريدك الإلكتروني",
   "enterYourPassword": "أدخل كلمة المرور",
   "insertUserName": "أدخل اسم المستخدم",
-  "seeAll": "رؤية الكل"
+  "seeAll": "رؤية الكل",
+  "cart": "السلة",
+  "more": "المزيد"
 
 
 }

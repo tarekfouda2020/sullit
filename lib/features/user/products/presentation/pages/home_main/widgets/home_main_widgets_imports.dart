@@ -60,3 +60,4 @@ part 'build_discount_msg.dart';
 part 'advantages_widget.dart';
 part 'categories_header_widget.dart';
 part 'vip_offers_widget.dart';
+part 'deals_count_down_widget.dart';

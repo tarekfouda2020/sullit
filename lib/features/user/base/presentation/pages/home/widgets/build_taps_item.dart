@@ -14,38 +14,50 @@ class BuildTabItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Gaps.vGap5,
-        Container(
-          width: 32, height: 32,
-          padding: const EdgeInsets.all(8),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: isActive
-                  ?context.colors.lightPink
-                  :Colors.transparent
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Visibility(
+            visible: index!=2,
+            replacement: Gaps.vGap(33),
+            child: Container(
+              width: 33, height: 33,
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: isActive
+                      ?context.colors.lightPink
+                      :Colors.transparent
+              ),
+              child: SvgPicture.asset(
+                controller.tabs[index],
+                colorFilter: ColorFilter.mode(
+                    isActive ? context.colors.primary : context.colors.black,
+                    BlendMode.srcIn),
+                // height: 20,
+                // width: 20,
+              ),
+            ),
           ),
-          child: SvgPicture.asset(
-            controller.tabs[index],
-            colorFilter: ColorFilter.mode(
-                isActive ? context.colors.primary : context.colors.gray,
-                BlendMode.srcIn),
-            // height: 20,
-            // width: 20,
+          Gaps.vGap5,
+          Text(
+            controller.tabsText(context)[index],
+            style: AppTextStyle.s12_w700(
+              color: textColor(context),
+            ),
           ),
-        ),
-        Gaps.vGap5,
-        Text(
-          controller.tabsText(context)[index],
-          style: AppTextStyle.s12_w700(
-            color: isActive ? context.colors.primary : context.colors.black,
-          ),
-        )
-      ],
+        ],
+      ),
     );
+  }
+
+  Color textColor(BuildContext context){
+    return isActive || index==2
+        ? context.colors.primary
+        : context.colors.black;
   }
 }

@@ -64,4 +64,10 @@ class HomeMainController {
     var deal = homeCubit.state.data?.flashSales;
     AutoRouter.of(context).push(SaleDetailsRoute(dealId: deal!.id));
   }
+
+
+  String getCountDownSingleNumber(int number,int index){
+    return number.toString().padLeft(2, '0')[index];
+  }
+
 }

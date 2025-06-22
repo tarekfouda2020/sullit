@@ -13,17 +13,28 @@ class HomeController {
   List<String> tabs = [
     Res.home,
     Res.category,
-    // Res.compass,
+    "",
     Res.offers,
-    Res.account
+    Res.menuIcon
+  ];
+
+
+  List<Widget> pages() => [
+    HomeMain(homeController: this),
+    Categories(homeController: this),
+    // Summary(homeController: controller),
+    Gaps.empty,
+    Coupons(homeController: this),
+    More(homeController: this),
   ];
 
   List<String> tabsText(BuildContext context) => [
         tr('home', context: context),
         tr('categories', context: context),
         // tr('explore', context: context),
+        tr('cart', context: context),
         tr('offers', context: context),
-        tr("account", context: context),
+        tr("more", context: context),
       ];
 
   void setUserLang(BuildContext context, String lang) async {
@@ -53,10 +64,14 @@ class HomeController {
 
   void animateTabsPages(int index, BuildContext context) {
     bool auth = context.read<DeviceCubit>().state.model.auth;
-    if (index == 2 && !auth) {
-      CustomToast.showAuthDialog(context);
+    // if (index == 2 && !auth) {
+    //   CustomToast.showAuthDialog(context);
+    //   return;
+    // }
+    if (index == 2) {
+      routeToCart(context);
       return;
-    }else{
+    } else{
       homeTabCubit.onUpdateData(index);
       tabController.animateTo(index);
     }

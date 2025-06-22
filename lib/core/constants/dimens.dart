@@ -77,6 +77,8 @@ class Dimens {
       const BorderRadius.all(Radius.circular(20)).r;
   static BorderRadius borderRadius25PX =
       const BorderRadius.all(Radius.circular(25)).r;
+  static BorderRadius borderRadius30PX =
+      const BorderRadius.all(Radius.circular(30)).r;
   static BorderRadius borderRadius40PX =
       const BorderRadius.all(Radius.circular(40)).r;
 
@@ -115,6 +117,8 @@ class Dimens {
       const EdgeInsets.symmetric(vertical: 5).r;
   static EdgeInsets paddingVertical8PX =
       const EdgeInsets.symmetric(vertical: 8).r;
+  static EdgeInsets paddingVertical9PX =
+      const EdgeInsets.symmetric(vertical: 9).r;
   static EdgeInsets paddingVertical10PX =
       const EdgeInsets.symmetric(vertical: 10).r;
   static EdgeInsets paddingVertical15PX =
