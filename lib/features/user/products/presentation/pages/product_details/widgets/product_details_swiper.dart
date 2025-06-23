@@ -22,7 +22,7 @@ class BuildProductDetailsSwiper extends StatelessWidget {
       stretch: true,
       expandedHeight: 350.spMin,
       automaticallyImplyLeading: false,
-      backgroundColor: context.colors.white,
+      backgroundColor: context.colors.customBackground,
       centerTitle: true,
       title: AnimatedOpacity(
         opacity: innerBoxIsScrolled ? 1 : 0,
@@ -38,24 +38,25 @@ class BuildProductDetailsSwiper extends StatelessWidget {
       ),
       actions: [
         BuildIconItem(
-          width: 43,
-          margin: const EdgeInsets.symmetric(vertical: 15),
-          iconData:
-              productModel.isWishlist! ? Icons.favorite : Icons.favorite_border,
+          width: 32,
+          height: 32,
+          margin: const EdgeInsets.all(25),
+          changeBgColor: false,
+          radius: Dimens.dp5,
+          icon: productModel.isWishlist! ? Res.favIcon : Res.emptyFavIcon,
           checkValue: productModel.isWishlist,
           onTap: () => getIt<ProductsHelper>().toggleFavourite(
             context: context,
             id: productModel.id!,
             onRefresh: () => controller.onChangeFav(productModel),
           ),
-          padding: Dimens.paddingAll8PX,
         ),
-        BuildCompareItem(
-          width: 43,
-          margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-          productModel: productModel,
-          onTap: () {},
-        ),
+        // BuildCompareItem(
+        //   width: 43,
+        //   margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+        //   productModel: productModel,
+        //   onTap: () {},
+        // ),
         // BuildIconItem(
         //   width: 43,
         //   margin: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
@@ -65,13 +66,17 @@ class BuildProductDetailsSwiper extends StatelessWidget {
         //   padding: Dimens.paddingAll8PX,
         // ),
       ],
-      leading: BuildIconItem(
-        width: 40,
-        checkValue: false,
-        margin: const EdgeInsets.only(left: 10, top: 15, bottom: 15),
-        iconData: Icons.west,
-        onTap: () => AutoRouter.of(context).pop(),
-        padding: Dimens.paddingAll8PX,
+      leading: GestureDetector(
+        onTap: ()=> AutoRouter.of(context).pop(),
+        child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            child: Transform.scale(
+              scale: 0.5,
+              child: SvgPicture.asset(
+                  Res.arrowBackIcon
+              ),
+            )
+        ),
       ),
       flexibleSpace: FlexibleSpaceBar(
         background: Swiper(

@@ -28,11 +28,13 @@ class Dimens {
   static const double dp7 = 7;
   static const double dp8 = 8;
   static const double dp10 = 10;
+  static const double dp11 = 11;
   static const double dp12 = 12;
   static const double dp13 = 13;
   static const double dp14 = 14;
   static const double dp15 = 15;
   static const double dp16 = 16;
+  static const double dp19 = 19;
   static const double dp20 = 20;
   static const double dp22 = 22;
   static const double dp24 = 24;
@@ -152,6 +154,7 @@ class Dimens {
 
   static EdgeInsets paddingAll3PX = const EdgeInsets.all(3).r;
   static EdgeInsets paddingAll5PX = const EdgeInsets.all(5).r;
+  static EdgeInsets paddingAll7PX = const EdgeInsets.all(7).r;
   static EdgeInsets paddingAll8PX = const EdgeInsets.all(8).r;
   static EdgeInsets paddingAll10PX = const EdgeInsets.all(10).r;
   static EdgeInsets paddingAll15PX = const EdgeInsets.all(15).r;

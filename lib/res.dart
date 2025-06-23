@@ -69,6 +69,7 @@ class Res {
   static const String filterIcon = "assets/images/filter_icon.svg";
   static const String emptyFavIcon = "assets/images/empty_fav_icon.svg";
   static const String favIcon = "assets/images/fav_icon.svg";
+  static const String arrowBackIcon = "assets/images/arrow_back.svg";
 
   static const String flashSaleLogo = "assets/images/flash_sale_logo.png";
   static const String scaffBg1 = "assets/images/scaffBg1.svg";

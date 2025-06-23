@@ -55,7 +55,7 @@ class BuildProductItem extends StatelessWidget {
               child: Stack(
                 children: [
                   CachedImage(
-                    /// border color from top will be changed later
+                    ///TODO border color from top will be changed later
                     fit: BoxFit.fill,
                     haveRadius: true,
                     bgColor: const Color(0xffededed),
@@ -138,7 +138,7 @@ class BuildProductItem extends StatelessWidget {
                       color: context.colors.black,
                     ).copyWith(overflow: TextOverflow.ellipsis, height: 0),
                   ),
-                  Gaps.vGap5,
+                  Gaps.vGap3,
                   if((productModel.rating ?? 0.0) > 0)
                   RatingBar.builder(
                     initialRating: productModel.rating!.toDouble(),
@@ -157,6 +157,8 @@ class BuildProductItem extends StatelessWidget {
                     ),
                     onRatingUpdate: (rating) {},
                   ),
+                  if((productModel.rating ?? 0.0) > 0)
+                  Gaps.vGap6,
                   Row(
                     children: [
                       Expanded(

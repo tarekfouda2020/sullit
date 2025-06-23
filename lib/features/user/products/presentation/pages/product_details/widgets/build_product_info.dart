@@ -12,21 +12,24 @@ class BuildProductInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Container(
-        padding: Dimens.paddingAll8PX,
         margin: Dimens.standardPadding,
-        decoration: const CustomDecoration(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: Dimens.paddingVertical8PX,
-              child: Text(
-                productModel.name!,
-                style: AppTextStyle.s19_w500(
-                  color: context.colors.black,
-                ),
+            Text(
+              productModel.categoryName!,
+              style: AppTextStyle.s14_w400(
+                color: context.colors.textColor,
               ),
             ),
+            Gaps.vGap8,
+            Text(
+              productModel.name!,
+              style: AppTextStyle.s19_w500(
+                color: context.colors.black,
+              ),
+            ),
+            Gaps.vGap10,
             Row(
               children: [
                 RatingBar.builder(
@@ -58,16 +61,17 @@ class BuildProductInfo extends StatelessWidget {
               children: [
                 Text(
                   "${productModel.priceHighLowDiscount} ",
-                  style: AppTextStyle.s16_w500(
+                  style: AppTextStyle.s22_w600(
                     color: context.colors.primary,
                   ),
                 ),
+                Gaps.hGap14,
                 Visibility(
                   visible: productModel.hasDiscount!,
                   child: Text(
                     "${productModel.priceHighLow} ",
-                    style: AppTextStyle.s16_w500(
-                      color: context.colors.black,
+                    style: AppTextStyle.s18_w400(
+                      color: context.colors.textColor,
                     ).copyWith(
                       decoration: TextDecoration.lineThrough,
                     ),
@@ -75,11 +79,12 @@ class BuildProductInfo extends StatelessWidget {
                 ),
               ],
             ),
-            Gaps.line(context.colors.greyWhite, 10.h),
+            Gaps.vGap7,
             BuildSellerInfo(
               shopModel: productModel.shop,
               controller: controller,
             ),
+            Gaps.vGap8,
             BuildProductDescription(
               description: productModel.description ?? "",
             ),

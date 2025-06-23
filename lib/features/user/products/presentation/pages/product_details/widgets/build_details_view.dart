@@ -25,10 +25,12 @@ class BuildDetailsView extends StatelessWidget {
               controller: controller,
               productModel: detailsModel.product,
             ),
-            BuildProductSpecifications(
-              controller: controller,
-              productModel: detailsModel.product,
-            ),
+            ///not in figma
+            // BuildProductSpecifications(
+            //   controller: controller,
+            //   productModel: detailsModel.product,
+            // ),
+            BuildProductQty(controller: controller,productModel: detailsModel.product),
             BuildProductReviews(
               allReviews: detailsModel.product.reviews ?? [],
             ),
@@ -42,7 +44,7 @@ class BuildDetailsView extends StatelessWidget {
             ),
             BuildOtherQuestions(productQueries: detailsModel.productQueries),
             BuildOwnQuestions(productQueries: detailsModel.productQueries),
-            BuildProductQueries(controller: controller),
+            // BuildProductQueries(controller: controller),
           ],
         ),
       ),

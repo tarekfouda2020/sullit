@@ -90,6 +90,7 @@ abstract class AppColors {
   Color get gray2;
   Color get lightPrimary;
   Color get deepGray;
+  Color get gray3;
 
 
   Color get bgIcon;

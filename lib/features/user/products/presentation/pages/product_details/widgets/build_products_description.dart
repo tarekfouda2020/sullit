@@ -7,33 +7,38 @@ class BuildProductDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      visible: description.isNotEmpty,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "${tr('description')} : ",
-            style: AppTextStyle.s15_w700(
-              color: context.colors.black,
-            ),
-          ),
-          Gaps.vGap8,
-          Html(
-            data: description,
-            style: {
-              "body": Style(
-                color: Colors.black,
-                margin: Margins.zero,
-                fontSize: FontSize(
-                  Dimens.font_sp12.sp,
-                ),
-                fontWeight: FontWeight.w400,
+    return Container(
+      decoration:  CustomDecoration(
+          radius: BorderRadius.circular(12)
+      ),
+      padding: const EdgeInsetsDirectional.only(start: 32,top: 10,bottom: 10),
+      child: Visibility(
+        visible: description.isNotEmpty,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "${tr('description')} : ",
+              style: AppTextStyle.s12_w400(
+                color: context.colors.black,
               ),
-            },
-          ),
-          Gaps.vGap10,
-        ],
+            ),
+            Gaps.vGap8,
+            Html(
+              data: description,
+              style: {
+                "body": Style(
+                  color: Colors.black,
+                  margin: Margins.zero,
+                  fontSize: FontSize(
+                    Dimens.font_sp14.sp,
+                  ),
+                  fontWeight: FontWeight.w600,
+                ),
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

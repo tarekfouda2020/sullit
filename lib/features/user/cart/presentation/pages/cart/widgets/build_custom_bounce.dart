@@ -4,11 +4,13 @@ class BuildCustomBounce extends StatelessWidget {
   final Function() onTap;
   final IconData iconData;
   final bool deleteIcon;
+  final EdgeInsetsGeometry? margin;
 
   const BuildCustomBounce(
       {super.key,
       required this.onTap,
       required this.iconData,
+       this.margin,
       this.deleteIcon = false});
 
   @override
@@ -17,7 +19,7 @@ class BuildCustomBounce extends StatelessWidget {
       onPressed: onTap,
       duration: const Duration(milliseconds: 200),
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: Dimens.dp10),
+        margin: margin ?? const EdgeInsets.symmetric(horizontal: Dimens.dp10),
         padding: const EdgeInsets.all(Dimens.dp8),
         decoration: BoxDecoration(
           boxShadow: [
@@ -26,13 +28,12 @@ class BuildCustomBounce extends StatelessWidget {
                 blurRadius: 1,
                 spreadRadius: 1)
           ],
-          color:
-              deleteIcon ? context.colors.primary : context.colors.greyWhite,
+          color: context.colors.primary ,
           shape: BoxShape.circle,
         ),
         child: Icon(
           iconData,
-          color: deleteIcon ? context.colors.white : context.colors.black,
+          color:  context.colors.white,
           size: 17,
         ),
       ),
