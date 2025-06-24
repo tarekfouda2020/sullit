@@ -4,7 +4,7 @@ part of 'product_details_imports.dart';
 class ProductDetailsController {
   final GlobalKey<FormState> formKey = GlobalKey();
   final TextEditingController queryController = TextEditingController();
-  final GenericBloc<int> qtyCubit = GenericBloc(1);
+  final GenericBloc<int> qtyCubit = GenericBloc(0);
   final GenericBloc<int> isSelected = GenericBloc(0);
   final GenericBloc<int> selectedColorCubit = GenericBloc(0);
   final GenericBloc<ProductDetailsDomainModel?> detailsCubit =
@@ -26,6 +26,9 @@ class ProductDetailsController {
     var result = await GetProductDetails().call(params);
     detailsCubit.onUpdateData(result);
     basicImage = detailsCubit.state.data!.product.images!;
+    if((result?.product.variant?.currentStock ?? 0) >0 ){
+      qtyCubit.onUpdateData(1);
+    }
     _initVariants(context);
   }
 
@@ -136,6 +139,8 @@ class ProductDetailsController {
                 "${tr('only')} ${variantPrice.currentStock} available in stock");
         return;
       }
+    }else{
+      CustomToast.showSimpleToast(msg: tr('outOfStock'));
     }
   }
 

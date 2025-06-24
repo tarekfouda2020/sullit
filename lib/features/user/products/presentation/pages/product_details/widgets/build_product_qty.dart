@@ -19,60 +19,69 @@ class BuildProductQty extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              "${tr("quantity")} : ",
-              style: AppTextStyle.s14_w400(
-                color: context.colors.textColor,
+            Visibility(
+              visible: (productModel.variant?.currentStock ?? 0) > 0,
+              child: Text(
+                "${tr("quantity")} : ",
+                style: AppTextStyle.s14_w400(
+                  color: context.colors.textColor,
+                ),
               ),
             ),
-            BlocBuilder<GenericBloc<int>, GenericState<int>>(
-              bloc: controller.qtyCubit,
-              builder: (context, state) {
-                // bool hasVariant = productModel.variant != null;
-                return Row(
-                  children: [
-                    // Visibility(
-                    //   visible: hasVariant ? productModel.variant!.currentStock! > 0 : false,
-                    //   replacement: Text(
-                    //     tr("outOfStock"),
-                    //     style: AppTextStyle.s15_w700(
-                    //       color: context.colors.primary,
-                    //     ),
-                    //   ),
-                    //   child: Text(
-                    //     "(${productModel.variant?.currentStock} ${tr("available")})",
-                    //     style: AppTextStyle.s14_w400(
-                    //       color: context.colors.black,
-                    //     ),
-                    //   ),
-                    // ),
-                    // Gaps.hGap10,
-                    // Text(
-                    //   "${productModel.variant?.calculablePrice} ${productModel.currencySymbol}",
-                    //   style: AppTextStyle.s18_w500(
-                    //     color: context.colors.primary,
-                    //   ),
-                    // ),
-                    // Gaps.hGap10,
-                    BuildCustomBounce(
-                      onTap: () => controller.decreaseQty(),
-                      iconData: CupertinoIcons.minus,
-                      margin: EdgeInsets.zero,
-                    ),
-                    Gaps.hGap19,
-                    Text(
-                      "${state.data}",
-                      style: AppTextStyle.s18_w600(color: context.colors.black),
-                    ),
-                    Gaps.hGap19,
-                    BuildCustomBounce(
-                      onTap: () => controller.increaseQty(),
-                      iconData: CupertinoIcons.add,
-                      margin: EdgeInsets.zero,
-                    ),
-                  ],
-                );
-              },
+            Visibility(
+              visible: (productModel.variant?.currentStock ?? 0) > 0,
+              replacement: Text(tr("outOfStock"),
+                style: AppTextStyle.s15_w700(color: context.colors.primary),
+              ),
+              child: BlocBuilder<GenericBloc<int>, GenericState<int>>(
+                bloc: controller.qtyCubit,
+                builder: (context, state) {
+                  // bool hasVariant = productModel.variant != null;
+                  return Row(
+                    children: [
+                      // Visibility(
+                      //   visible: hasVariant ? productModel.variant!.currentStock! > 0 : false,
+                      //   replacement: Text(
+                      //     tr("outOfStock"),
+                      //     style: AppTextStyle.s15_w700(
+                      //       color: context.colors.primary,
+                      //     ),
+                      //   ),
+                      //   child: Text(
+                      //     "(${productModel.variant?.currentStock} ${tr("available")})",
+                      //     style: AppTextStyle.s14_w400(
+                      //       color: context.colors.black,
+                      //     ),
+                      //   ),
+                      // ),
+                      // Gaps.hGap10,
+                      // Text(
+                      //   "${productModel.variant?.calculablePrice} ${productModel.currencySymbol}",
+                      //   style: AppTextStyle.s18_w500(
+                      //     color: context.colors.primary,
+                      //   ),
+                      // ),
+                      // Gaps.hGap10,
+                      BuildCustomBounce(
+                        onTap: () => controller.decreaseQty(),
+                        iconData: CupertinoIcons.minus,
+                        margin: EdgeInsets.zero,
+                      ),
+                      Gaps.hGap19,
+                      Text(
+                        "${state.data}",
+                        style: AppTextStyle.s18_w600(color: context.colors.black),
+                      ),
+                      Gaps.hGap19,
+                      BuildCustomBounce(
+                        onTap: () => controller.increaseQty(),
+                        iconData: CupertinoIcons.add,
+                        margin: EdgeInsets.zero,
+                      ),
+                    ],
+                  );
+                },
+              ),
             )
           ],
         ),

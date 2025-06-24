@@ -66,9 +66,19 @@ class MoreController {
       case MoreRoutes.support:
         AutoRouter.of(context).push(const SupportRoute());
         break;
+        case MoreRoutes.giftCards:
+        AutoRouter.of(context).push(const GiftCardsRoute());
+        break;
+        case MoreRoutes.vipSubscription:
+          AutoRouter.of(context).push(const VipMemberShipsRoute());
+        break;
+        case MoreRoutes.loyaltyPoints:
+          AutoRouter.of(context).push(const LoyaltyPointsRoute());
+        break;
       case MoreRoutes.test:
         // TODO: Handle this case.
         break;
+
     }
   }
 }

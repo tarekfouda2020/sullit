@@ -5,13 +5,15 @@ class BuildMoreItem extends StatelessWidget {
   final String image;
   final Function() onTap;
   final bool haveStatus;
-
+  final bool? isSvg;
   const BuildMoreItem(
       {Key? key,
       required this.title,
         required this.image,
       required this.onTap,
-      this.haveStatus = false})
+      this.haveStatus = false,
+        this.isSvg = false
+      })
       : super(key: key);
 
   @override
@@ -34,7 +36,9 @@ class BuildMoreItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
+            isSvg!
+                ?SvgPicture.asset(image)
+                :Image.asset(
               image,
               width: 35,
               height: 35,

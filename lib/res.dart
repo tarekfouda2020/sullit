@@ -70,6 +70,13 @@ class Res {
   static const String emptyFavIcon = "assets/images/empty_fav_icon.svg";
   static const String favIcon = "assets/images/fav_icon.svg";
   static const String arrowBackIcon = "assets/images/arrow_back.svg";
+  static const String redVipMark = "assets/images/red_vip_mark.svg";
+  static const String giftCardPlaceholder = "assets/images/gift_card_placeholder.png";
+  static const String giftCardsLogo = "assets/images/gift_card_logo.svg";
+  static const String giftCardBarcodePlaceholder = "assets/images/gift_card_barcode.png";
+  static const String copyIcon = "assets/images/copy_icon.svg";
+  static const String redVipIcon = "assets/images/vip_icon.svg";
+  static const String loyaltyIcon = "assets/images/loyalty_icon.svg";
 
   static const String flashSaleLogo = "assets/images/flash_sale_logo.png";
   static const String scaffBg1 = "assets/images/scaffBg1.svg";

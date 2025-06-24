@@ -57,6 +57,24 @@ class _MoreState extends State<More> {
                       controller.checkAuth(context, MoreRoutes.myWallet),
                 ),
                 BuildMoreItem(
+                  image: Res.giftCardsLogo,
+                  title: "Gift Cards",
+                  isSvg: true,
+                  onTap: () => controller.checkAuth(context, MoreRoutes.giftCards),
+                ),
+                BuildMoreItem(
+                  image: Res.redVipIcon,
+                  title: "VIP Subscription",
+                  isSvg: true,
+                  onTap: () => controller.checkAuth(context, MoreRoutes.vipSubscription),
+                ),
+                BuildMoreItem(
+                  image: Res.loyaltyIcon,
+                  title: "Loyalty Points",
+                  isSvg: true,
+                  onTap: () => controller.checkAuth(context, MoreRoutes.loyaltyPoints),
+                ),
+                BuildMoreItem(
                   title: tr('dashboard'),
                   onTap: () =>
                       controller.checkAuth(context, MoreRoutes.dashboard),

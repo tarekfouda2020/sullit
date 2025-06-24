@@ -11,6 +11,9 @@ enum MoreRoutes {
   myWallet,
   supportTickets,
   support,
+  giftCards,
+  vipSubscription,
+  loyaltyPoints,
 
   profile,
   classifiedProducts,

@@ -6,12 +6,14 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/res.dart';
 
 class BuildHeaderLogo extends StatelessWidget {
-  const BuildHeaderLogo({Key? key}) : super(key: key);
+  final double? marginTop;
+  final double? marginBottom;
+  const BuildHeaderLogo({Key? key, this.marginTop, this.marginBottom}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20+kToolbarHeight,bottom: 45),
+      padding:  EdgeInsets.only(top:marginTop ?? 20+kToolbarHeight,bottom:marginBottom ?? 45),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

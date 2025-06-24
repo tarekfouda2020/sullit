@@ -20,6 +20,7 @@ class _SplashState extends State<Splash> {
   void didChangeDependencies() {
     precacheImage(const AssetImage(Res.logo), context);
     precacheImage(const AssetImage(Res.dealOfDay), context);
+    precacheImage(const AssetImage(Res.giftCardBarcodePlaceholder), context);
     super.didChangeDependencies();
   }
 
