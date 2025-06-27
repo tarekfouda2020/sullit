@@ -13,6 +13,9 @@ import 'package:flutter_tdd/core/models/domain_models/state.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/DropdownTextField.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_input_label.dart';
 import 'package:flutter_tdd/features/user/addresses/presentation/pages/add_new_address/add_new_address_imports.dart';
 
 part 'build_add_address_form.dart';
+part 'location_fields_widget.dart';
+part 'unit_fields_widget.dart';

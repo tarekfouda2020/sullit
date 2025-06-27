@@ -107,7 +107,7 @@
   "summary": "Summary",
   "products": "Products",
   "totalShipping": "Total Shipping",
-  "walletBalance": "Your wallet balance : ",
+  "walletBalance": "Your Wallet Balance : ",
   "thanksForYourOrder": "Thank You for Your Order!",
   "acceptTerms": "You must accept terms and conditions",
   "choosePayment": "You must choose payment method",
@@ -316,7 +316,7 @@
   "verifyLinkSent": "Please verify your account,verification link has been sent to your email address",
   "fullName": "Full Name",
   "chooseNearestPickupPoint": "Please choose nearest pickup point",
-  "userName": "User name",
+  "userName": "User Name",
   "orJoinWith": "Or join with",
   "becomeASeller": "Become a Seller",
   "applyNow": "Apply Now",
@@ -392,7 +392,29 @@
   "cart": "Cart",
   "more": "More",
   "reset": "Reset",
-  "agree": "Agree"
+  "agree": "Agree",
+  "order": "Order",
+  "enterSubject": "Enter Subject",
+  "enterDescription": "Enter Description",
+  "status": "Status",
+  "phoneNumber": "Phone Number",
+  "detectLocation": "Detect Location",
+  "addressName": "Address Name",
+  "enterAddressName": "ِEnter Address Name",
+  "streetName": "Street Name",
+  "enterStreetName": "Enter Street Name",
+  "buildingName": "Building Name",
+  "enterBuildingName": "Enter Building Name",
+  "flatNo": "Flat No.",
+  "transactions": "Transactions",
+  "chargeWallet": "Charge Wallet Balance",
+  "enterAmount": "Enter Amount"
+
+
+
+
+
+
 }
 
 

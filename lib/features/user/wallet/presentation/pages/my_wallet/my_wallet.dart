@@ -21,7 +21,6 @@ class _MyWalletState extends State<MyWallet> {
     return Scaffold(
       appBar:  DefaultAppBar(title: tr('myWallet')),
       backgroundColor: context.colors.customBackground,
-      floatingActionButton: BuildChargeWallet(controller: controller),
       body: BlocBuilder<GenericBloc<Wallet?>, GenericState<Wallet?>>(
         bloc: controller.walletBloc,
         builder: (context, state) {
@@ -32,7 +31,8 @@ class _MyWalletState extends State<MyWallet> {
                 BuildWalletDetails(walletBalance: state.data!.walletBalance),
                 BuildWalletHistory(
                   walletRechargeHistory: state.data!.rechargeHistory,
-                )
+                ),
+                WalletItemWidget()
               ],
             );
           } else {
@@ -40,6 +40,7 @@ class _MyWalletState extends State<MyWallet> {
           }
         },
       ),
+      bottomNavigationBar: BuildChargeWallet(controller: controller),
     );
   }
 }

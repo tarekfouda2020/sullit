@@ -31,7 +31,6 @@ class _AddNewAddressState extends State<AddNewAddress> {
               title: tr('save'),
               onTap: () => controller.addNewAddress(context),
               height: 35.h,
-              borderRadius: Dimens.borderRadius10PX,
               margin: Dimens.paddingAll20PX,
             )
           ],

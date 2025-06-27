@@ -103,6 +103,7 @@ class BuildHomeView extends StatelessWidget {
               flashSales: homeDomainModel.flashSales!,
               controller: controller,
             ),
+          Gaps.vGap35,
         ],
       ),
     );

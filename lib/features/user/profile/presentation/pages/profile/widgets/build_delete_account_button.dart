@@ -10,8 +10,9 @@ class BuildDeleteAccountButton extends StatelessWidget {
     return DefaultButton(
       title: tr("deleteAccount"),
       height: 35.h,
-      borderRadius: Dimens.borderRadius10PX,
-      margin: Dimens.paddingAll20PX,
+     color: context.colors.white,
+      textColor: context.colors.primary,
+      borderColor: context.colors.primary,
       onTap: () => controller.showDeleteAccountDialog(context),
     );
   }

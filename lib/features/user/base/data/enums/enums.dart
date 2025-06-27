@@ -14,6 +14,7 @@ enum MoreRoutes {
   giftCards,
   vipSubscription,
   loyaltyPoints,
+  addresses,
 
   profile,
   classifiedProducts,

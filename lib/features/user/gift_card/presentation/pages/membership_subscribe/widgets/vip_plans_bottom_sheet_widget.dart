@@ -13,33 +13,35 @@ class VipPlansBottomSheetWidget extends StatelessWidget {
         color: context.colors.customBackground,
         borderRadius: Dimens.sheetBorderRadius,
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const BottomSheetHeaderWidget(title: 'VIP Membership',),
-          Gaps.vGap24,
-          Flexible(
-            child: SingleChildScrollView(
-              child: BlocBuilder<GenericBloc<List<MembershipModel>>, GenericState<List<MembershipModel>>>(
-                bloc: controller.membershipsCubit,
-                builder: (context, state) {
-                  return Column(
-                    children: List.generate(state.data.length,
-                            (index) {
-                      return MembershipItemWidget(
-                          model: state.data[index],
-                          isBottomSheet: true,
-                        onSelect: () => controller.updateSelectedMemberShip(state.data[index]),
-                      );
-                    }),
-                  );
-                },
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const BottomSheetHeaderWidget(title: 'VIP Membership',),
+            Gaps.vGap24,
+            Flexible(
+              child: SingleChildScrollView(
+                child: BlocBuilder<GenericBloc<List<MembershipModel>>, GenericState<List<MembershipModel>>>(
+                  bloc: controller.membershipsCubit,
+                  builder: (context, state) {
+                    return Column(
+                      children: List.generate(state.data.length,
+                              (index) {
+                        return MembershipItemWidget(
+                            model: state.data[index],
+                            isBottomSheet: true,
+                          onSelect: () => controller.updateSelectedMemberShip(state.data[index]),
+                        );
+                      }),
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-          AgreeTermsConditionsWidget(controller: controller),
-          PayGiftCardButtonWidget(controller: controller)
-        ],
+            AgreeTermsConditionsWidget(controller: controller),
+            PayGiftCardButtonWidget(controller: controller)
+          ],
+        ),
       ),
     );
   }

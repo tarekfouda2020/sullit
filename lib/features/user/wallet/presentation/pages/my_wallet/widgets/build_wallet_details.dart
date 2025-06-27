@@ -12,30 +12,25 @@ class BuildWalletDetails extends StatelessWidget {
       alignment: AlignmentDirectional.center,
       padding: Dimens.paddingAll20PX,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            context.colors.appBarColor,
-            context.colors.blueAccent,
-          ],
-        ),
-        borderRadius: Dimens.borderRadius5PX,
+         color: context.colors.white,
+        borderRadius: Dimens.borderRadius12PX,
       ),
       child: Column(
         children: [
-          Icon(
-            Icons.monetization_on_outlined,
-            color: context.colors.white,
-            size: 30.sp,
+          Image.asset(
+            Res.walletLogo,
+            width: 35,
+            height: 35,
           ),
-          Gaps.vGap20,
+          Gaps.vGap19,
           Text(
-            "$walletBalance ",
-            style: AppTextStyle.s20_w500(color: context.colors.white),
+            tr('walBalance'),
+            style: AppTextStyle.s16_w400(color: context.colors.black),
           ),
           Gaps.vGap10,
           Text(
-          tr('walBalance'),
-            style: AppTextStyle.s14_w500(color: context.colors.white),
+            "$walletBalance",
+            style: AppTextStyle.s24_w700(color: context.colors.primary),
           ),
         ],
       ),

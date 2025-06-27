@@ -29,10 +29,16 @@ class GiftCardInfoWidget extends StatelessWidget {
         Gaps.vGap13,
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("and get purchases with", style: AppTextStyle.s18_w400(color: context.colors.white)),
+            Text(
+                "and get purchases with",
+                style: AppTextStyle.s18_w400(color: context.colors.white)
+            ),
             Gaps.hGap2,
-            Text("100.00 AED", style: AppTextStyle.s18_w700(color: context.colors.gold)),
+            Text("100.00 AED",
+                style: AppTextStyle.s18_w700(color: context.colors.gold)
+            ),
           ],
         ),
         Gaps.vGap13,

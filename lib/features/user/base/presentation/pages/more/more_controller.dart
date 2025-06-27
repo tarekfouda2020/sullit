@@ -75,6 +75,9 @@ class MoreController {
         case MoreRoutes.loyaltyPoints:
           AutoRouter.of(context).push(const LoyaltyPointsRoute());
         break;
+        case MoreRoutes.addresses:
+          AutoRouter.of(context).push(const AddressesRoute());
+        break;
       case MoreRoutes.test:
         // TODO: Handle this case.
         break;

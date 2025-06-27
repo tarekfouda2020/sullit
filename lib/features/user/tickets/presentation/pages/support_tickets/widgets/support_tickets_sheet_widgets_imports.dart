@@ -17,6 +17,8 @@ import 'package:flutter_tdd/core/widgets/GenericListView.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_sheet_header_widget.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_input_label.dart';
 import 'package:flutter_tdd/features/user/tickets/domain/models/ticket.dart';
 import 'package:intl/intl.dart';
 
@@ -29,3 +31,4 @@ part 'build_support_tickets_loading.dart';
 part 'build_ticket_dialog.dart';
 part 'build_ticket_info.dart';
 part 'build_ticket_item.dart';
+part 'support_ticket_bottom_sheet_widget.dart';

@@ -15,7 +15,7 @@ class BuildNewAddressItem extends StatelessWidget {
       child: Container(
         margin: Dimens.paddingVertical5PX,
         padding: Dimens.paddingAll10PX,
-        decoration: CustomDecoration(),
+        decoration: const CustomDecoration(myBoxShadow: []),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -25,6 +25,13 @@ class BuildNewAddressItem extends StatelessWidget {
               onChanged: (val) =>
                   controller.onSelectAddress(context, address, val),
               activeColor: context.colors.primary,
+              fillColor: MaterialStateProperty.resolveWith<Color>(
+                    (states) => states.contains(MaterialState.selected)
+                    ? context.colors.primary
+                    : context.colors.grey,
+              ),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              visualDensity: const VisualDensity(horizontal: -4.0, vertical: -4.0),
             ),
             Gaps.hGap10,
             Flexible(
@@ -33,6 +40,22 @@ class BuildNewAddressItem extends StatelessWidget {
                   BuildAddressTitleItem(
                     title: tr('address'),
                     desc: address.address!,
+                  ),
+                  const BuildAddressTitleItem(
+                    title: 'Type',
+                    desc: "Business",
+                  ),
+                  const BuildAddressTitleItem(
+                    title: 'Street Name',
+                    desc: "Jumeirah",
+                  ),
+                  const BuildAddressTitleItem(
+                    title: 'Building Name',
+                    desc: "B 32",
+                  ),
+                  const BuildAddressTitleItem(
+                    title: 'Flat No.',
+                    desc: "402",
                   ),
                   BuildAddressTitleItem(
                     title: tr('postalCode'),
@@ -78,10 +101,9 @@ class BuildNewAddressItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                IconButton(
-                  icon:
-                      Icon(Icons.delete_outline, color: context.colors.primary),
-                  onPressed: () => controller.deleteAddress(address),
+                GestureDetector(
+                    onTap: () => controller.deleteAddress(address),
+                    child: SvgPicture.asset(Res.trashIcon)
                 ),
               ],
             )

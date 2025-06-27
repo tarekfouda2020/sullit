@@ -4,12 +4,17 @@ part of 'add_new_address_imports.dart';
 
 class AddNewAddressController {
   final GlobalKey<FormState> formKey = GlobalKey();
+  final TextEditingController locationController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
   final TextEditingController postalCodeController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+  final TextEditingController streetNameController = TextEditingController();
+  final TextEditingController buildingNameController = TextEditingController();
+  final TextEditingController flatNumberController = TextEditingController();
   final GlobalKey<DropdownSearchState> countryController = GlobalKey();
   final GlobalKey<DropdownSearchState> stateController = GlobalKey();
   final GlobalKey<DropdownSearchState> cityController = GlobalKey();
+  final GlobalKey<DropdownSearchState> addressTypeKey = GlobalKey();
   final LocationCubit locationCubit = LocationCubit();
 
   final GenericBloc<package.Country?> countryCodeCubit = GenericBloc(null);

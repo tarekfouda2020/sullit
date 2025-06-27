@@ -9,9 +9,8 @@ class DealsCountDownWidget extends StatelessWidget {
   Widget build(BuildContext context){
     return Container(
       padding: Dimens.paddingAll15PX,
-      // height: 117,
       decoration: BoxDecoration(
-        color: context.colors.black.withOpacity(0.25),
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(

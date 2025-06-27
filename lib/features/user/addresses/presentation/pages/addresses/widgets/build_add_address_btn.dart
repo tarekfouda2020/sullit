@@ -7,13 +7,18 @@ class BuildAddAddressBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: Dimens.paddingAll10PX,
-      child: FloatingActionButton(
-        backgroundColor: context.colors.primary,
-        elevation: 2,
-        onPressed: () => controller.checkAddAddress(context),
-        child: Icon(Icons.add, color: context.colors.white, size: 30.sp),
+    return DefaultButton(
+        title: "",
+      onTap: () => controller.checkAddAddress(context),
+      customLabel: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.add, color: context.colors.white, size: 15.sp),
+          Gaps.hGap4,
+          Text(tr("addNewAddress"),
+          style: AppTextStyle.s18_w700(color: context.colors.white),
+          )
+        ],
       ),
     );
   }

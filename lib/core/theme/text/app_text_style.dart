@@ -137,6 +137,10 @@ class AppTextStyle extends TextStyle {
       : super(color: color, fontSize: 17, fontWeight: FontWeight.w800, height: fontHeight,);
 
   // ignore: non_constant_identifier_names
+  const AppTextStyle.s18_w300({required Color color})
+      : super(color: color, fontSize: 18, fontWeight: FontWeight.w300, height: fontHeight,);
+
+  // ignore: non_constant_identifier_names
   const AppTextStyle.s18_w400({required Color color})
       : super(color: color, fontSize: 18, fontWeight: FontWeight.w400, height: fontHeight,);
 

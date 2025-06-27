@@ -18,7 +18,7 @@ class CustomDecoration extends BoxDecoration {
   BoxShape get shape => boxShape ?? super.shape;
 
   @override
-  BorderRadiusGeometry? get borderRadius => boxShape==BoxShape.circle ? null : radius ?? Dimens.borderRadius5PX;
+  BorderRadiusGeometry? get borderRadius => boxShape==BoxShape.circle ? null : radius ?? Dimens.borderRadius12PX;
 
   @override
   BoxBorder? get border => boxBorder ?? super.border;

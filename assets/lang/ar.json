@@ -565,7 +565,28 @@
   "cart": "السلة",
   "more": "المزيد",
   "reset": "إعادة تعيين",
-  "agree": "أوافق"
+  "agree": "أوافق",
+  "order": "الطلب",
+  "enterSubject": " ادخل الموضوع",
+  "enterDescription": "ادخل الوصف",
+  "status": "الحالة",
+  "phoneNumber": "رقم الهاتف",
+  "detectLocation": "تحديد الموقع",
+  "addressName": "العنوان",
+  "enterAddressName": "ِEnter Address Name",
+  "streetName": "اسم الشارع",
+  "enterStreetName": "ادخل اسم الشارع",
+  "buildingName": "اسم المبنى",
+  "enterBuildingName": "ادخل اسم المبنى",
+  "flatNo": "رقم الشقة",
+  "transactions": "المعاملات",
+  "chargeWallet":  "شحن المحفظة",
+  "enterAmount": "ادخل المبلغ"
+
+
+
+
+
 
 }
 

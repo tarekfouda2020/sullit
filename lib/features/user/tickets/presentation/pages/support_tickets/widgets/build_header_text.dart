@@ -1,4 +1,4 @@
-part of 'support_tickets_widgets_imports.dart';
+part of 'support_tickets_sheet_widgets_imports.dart';
 class BuildHeaderText extends StatelessWidget {
   const BuildHeaderText({Key? key}) : super(key: key);
 

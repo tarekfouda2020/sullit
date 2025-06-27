@@ -7,19 +7,39 @@ class BuildSocial extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<String>, GenericState<String>>(
-      bloc: controller.contactUsCubit,
-      builder: (context, state) {
-        return Padding(
-          padding: Dimens.paddingVertical15PX,
-          child: Center(
-            child: InkWell(
-              onTap: () => HelperMethods.instance.launchWhatsApp(state.data),
-              child: Image.asset(Res.whats, width: 45, height: 45),
-            ),
+    return Padding(
+      padding: Dimens.paddingVertical15PX,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          BlocBuilder<GenericBloc<String>, GenericState<String>>(
+            bloc: controller.contactUsCubit,
+            builder: (context, state) {
+              return ContactUsSocialItemWidget(
+                  imagePath: Res.whats,
+                isSvg: false,
+                onTap: () => HelperMethods.instance.launchWhatsApp(state.data),
+              );
+            },
           ),
-        );
-      },
+          Gaps.hGap16,
+          ContactUsSocialItemWidget(
+              imagePath: Res.twitterIcon,
+              onTap: (){}
+          ),
+          Gaps.hGap16,
+          ContactUsSocialItemWidget(
+              imagePath: Res.instagramIcon,
+              isSvg: false,
+              onTap: (){}
+          ),
+          Gaps.hGap16,
+          ContactUsSocialItemWidget(
+              imagePath: Res.tikTokIcon,
+              onTap: (){}
+          ),
+        ],
+      ),
     );
   }
 }

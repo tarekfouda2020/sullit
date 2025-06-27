@@ -21,7 +21,6 @@ class _AddressesState extends State<Addresses> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(title: tr('addresses')),
-      floatingActionButton: BuildAddAddressBtn(controller: controller),
       body: GenericListView(
         type: ListViewType.api,
         cubit: controller.addressesBloc,
@@ -34,6 +33,7 @@ class _AddressesState extends State<Addresses> {
         emptyWidget: const BuildAddressesEmptyView(),
         loadingWidget: const BuildAddressLoading(),
       ),
+      bottomNavigationBar: BuildAddAddressBtn(controller: controller),
     );
   }
 }

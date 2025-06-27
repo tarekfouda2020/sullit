@@ -22,6 +22,7 @@ class MembershipSubscribeController{
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       useRootNavigator: true,
+      enableDrag: false,
       builder: (context) =>   VipPlansBottomSheetWidget(controller: this),
     );
   }

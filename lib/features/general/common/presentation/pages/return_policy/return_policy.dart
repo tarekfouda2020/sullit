@@ -27,24 +27,29 @@ class _ReturnPolicyState extends State<ReturnPolicy> {
           if (state is GenericUpdateState) {
             return SingleChildScrollView(
               padding: Dimens.paddingAll15PX,
-              child: Html(
-                data: state.data,
-                onLinkTap: (url, _, __) {
-                  HelperMethods.instance.launchURL(
-                    url: url!,
-                  );
-                },
-                style: {
-                  "body": Style(
-                    color: Colors.black,
-                    margin: Margins.zero,
-                    fontSize: FontSize(
-                      12,
-                    ),
-                    lineHeight: const LineHeight(2),
-                    fontWeight: FontWeight.w400,
+              child: Column(
+                children: [
+                  const BuildHeaderLogo(marginBottom: 0,marginTop: 5),
+                  Html(
+                    data: state.data,
+                    onLinkTap: (url, _, __) {
+                      HelperMethods.instance.launchURL(
+                        url: url!,
+                      );
+                    },
+                    style: {
+                      "body": Style(
+                        color: Colors.black,
+                        margin: Margins.zero,
+                        fontSize: FontSize(
+                          12,
+                        ),
+                        lineHeight: const LineHeight(2),
+                        fontWeight: FontWeight.w400,
+                      ),
+                    },
                   ),
-                },
+                ],
               ),
             );
           } else {

@@ -38,7 +38,7 @@ class BuildProfileImage extends StatelessWidget {
                   ),
                 ),
                 PositionedDirectional(
-                  top: 5,
+                  bottom: 5,
                   end: 0,
                   child: InkWell(
                     onTap: () => controller.removeImage(),
@@ -65,7 +65,7 @@ class BuildProfileImage extends StatelessWidget {
                   padding: const EdgeInsets.all(1),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(color: Colors.grey)),
+                  ),
                   child: CachedImage(
                     url: user?.avatarOriginal ?? "",
                     height: 100,
@@ -77,7 +77,7 @@ class BuildProfileImage extends StatelessWidget {
                   ),
                 ),
                 PositionedDirectional(
-                  top: 5,
+                  bottom: 5,
                   end: 0,
                   child: InkWell(
                     onTap: () => controller.getImage(context),
@@ -85,13 +85,9 @@ class BuildProfileImage extends StatelessWidget {
                       padding: const EdgeInsets.all(4).r,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: context.colors.primary,
+                        color: context.colors.lightPrimary,
                       ),
-                      child: Icon(
-                        Icons.camera_alt_outlined,
-                        size: 14.sp,
-                        color: context.colors.white,
-                      ),
+                      child: SvgPicture.asset(Res.pencilIcon),
                     ),
                   ),
                 )

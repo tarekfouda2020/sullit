@@ -38,7 +38,8 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       systemOverlayStyle:
           const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
       backgroundColor: context.colors.customBackground,
-      elevation:elevation ?? 0.2,
+      // elevation:elevation ?? 0.2,
+      elevation:0,
       leadingWidth: showBack == true ? 55 : 10,
       leading: leading ??
           Visibility(

@@ -139,9 +139,9 @@ class BuildProductItem extends StatelessWidget {
                     ).copyWith(overflow: TextOverflow.ellipsis, height: 0),
                   ),
                   Gaps.vGap3,
-                  if((productModel.rating ?? 0.0) > 0)
+                  // if((productModel.rating ?? 0.0) > 0)
                   RatingBar.builder(
-                    initialRating: productModel.rating!.toDouble(),
+                    initialRating: 3,
                     minRating: 0.5,
                     direction: Axis.horizontal,
                     allowHalfRating: true,

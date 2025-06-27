@@ -49,13 +49,24 @@ class SupportTicketsController {
     }
   }
 
-  void showAddTicketDialog(
-      BuildContext context, SupportTicketsController controller) {
+  void showAddTicketDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => BuildTicketDialog(
-        supportTicketsController: controller,
+        supportTicketsController: this,
       ),
+    );
+  }
+
+
+  void showAddTicketsSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      useRootNavigator: true,
+      enableDrag: false,
+      builder: (context) =>   SupportTicketsSheetWidget(controller: this),
     );
   }
 

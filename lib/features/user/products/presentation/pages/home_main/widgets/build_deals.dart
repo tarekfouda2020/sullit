@@ -14,14 +14,13 @@ class BuildDeals extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          SizedBox(
-            height: Dimens.dp150,
+          CachedImage(
+            url: flashSales.banner,
             width: MediaQuery.of(context).size.width,
-            child: CachedImage(
-              url: flashSales.banner,
-              fit: BoxFit.fill,
-              borderRadius: Dimens.borderRadius10PX,
-            ),
+            fit: BoxFit.fill,
+            borderRadius: Dimens.borderRadius10PX,
+            bgColor: Colors.transparent,
+            placeHolder: Image.asset(Res.dealOfDayBackGround,),
           ),
           DealsCountDownWidget(flashSales: flashSales,controller: controller),
         ],

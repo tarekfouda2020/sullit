@@ -200,4 +200,11 @@ class ProfileController {
       image: imageCubit.state.data,
     );
   }
+
+
+  void logOut(BuildContext context) {
+    context.read<CountCubit>().onUpdateCount(0, 0);
+    getIt<AuthHelper>().onLogOut(context);
+  }
+
 }

@@ -16,7 +16,7 @@ import 'package:flutter_tdd/features/user/tickets/domain/entities/create_ticket_
 import 'package:flutter_tdd/features/user/tickets/domain/models/ticket.dart';
 import 'package:flutter_tdd/features/user/tickets/domain/use_cases/get_tickets.dart';
 import 'package:flutter_tdd/features/user/tickets/domain/use_cases/set_create_ticket.dart';
-import 'package:flutter_tdd/features/user/tickets/presentation/pages/support_tickets/widgets/support_tickets_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/tickets/presentation/pages/support_tickets/widgets/support_tickets_sheet_widgets_imports.dart';
 
 part 'support_tickets.dart';
 part 'support_tickets_controller.dart';

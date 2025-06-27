@@ -43,6 +43,7 @@ class Res {
   static const String customerProducts = "assets/images/customer_products.png";
   static const String purchasedHistory = "assets/images/purchased_history.png";
   static const String logoIcon = "assets/images/logo_icon.png";
+  static const String dealOfDayBackGround = "assets/images/deal_of_day_bg.png";
 
   static const String home = "assets/images/home.svg";
   static const String offers = "assets/images/offers.svg";
@@ -64,7 +65,6 @@ class Res {
   static const String savePaymentIcon = "assets/images/save_payment_icon.svg";
   static const String vipMark = "assets/images/vip_mark.svg";
   static const String arrowForward = "assets/images/small_arrow_forward.svg";
-  static const String dealOfDay = "assets/images/deal_of_day.png";
   static const String menuIcon = "assets/images/menu_icon.svg";
   static const String filterIcon = "assets/images/filter_icon.svg";
   static const String emptyFavIcon = "assets/images/empty_fav_icon.svg";
@@ -77,6 +77,16 @@ class Res {
   static const String copyIcon = "assets/images/copy_icon.svg";
   static const String redVipIcon = "assets/images/vip_icon.svg";
   static const String loyaltyIcon = "assets/images/loyalty_icon.svg";
+  static const String smallLogo = "assets/images/small_logo.png";
+  static const String returnedOrder = "assets/images/returned_order_icon.jpg";
+  static const String sendMessage = "assets/images/send_message_icon.svg";
+  static const String attachments = "assets/images/attachmets_icon.svg";
+  static const String instagramIcon = "assets/images/instagram_icon.png";
+  static const String twitterIcon = "assets/images/twitter_icon.svg";
+  static const String tikTokIcon = "assets/images/tik_tok_icon.svg";
+  static const String trashIcon = "assets/images/trash_icon.svg";
+  static const String pencilIcon = "assets/images/pencil_icon.svg";
+  static const String addAddresses = "assets/images/add_addresses_icon.svg";
 
   static const String flashSaleLogo = "assets/images/flash_sale_logo.png";
   static const String scaffBg1 = "assets/images/scaffBg1.svg";

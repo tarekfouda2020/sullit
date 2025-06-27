@@ -27,6 +27,7 @@ class _MoreState extends State<More> {
               height: 40,
             ),
           ),
+          // BuildMoreHeader(moreController: controller),
           Flexible(
             child: GridView(
               padding: const EdgeInsets.only(
@@ -61,6 +62,12 @@ class _MoreState extends State<More> {
                   title: "Gift Cards",
                   isSvg: true,
                   onTap: () => controller.checkAuth(context, MoreRoutes.giftCards),
+                ),
+                BuildMoreItem(
+                  image: Res.addAddresses,
+                  title: "My Addresses",
+                  isSvg: true,
+                  onTap: () => controller.checkAuth(context, MoreRoutes.addresses),
                 ),
                 BuildMoreItem(
                   image: Res.redVipIcon,
