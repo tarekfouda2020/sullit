@@ -6,8 +6,9 @@ class BuildTabsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: Dimens.paddingVertical10PX,
+    return Container(
+      padding:Dimens.paddingVertical10PX,
+      color: context.colors.white,
       child: TabBar(
         labelColor: context.colors.primary,
         unselectedLabelColor: context.colors.black,

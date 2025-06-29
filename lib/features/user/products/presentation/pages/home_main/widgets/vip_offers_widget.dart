@@ -8,7 +8,7 @@ class VipOffersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 18),
       padding:  const EdgeInsetsDirectional.only(start:31 ,end:24,top: 10,bottom: 8),
       decoration: BoxDecoration(
         gradient: LinearGradient(

@@ -13,6 +13,5 @@ import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_impo
 import 'package:flutter_tdd/res.dart';
 
 part 'build_bottom_nav_bar.dart';
-part 'build_lang_bottom_sheet.dart';
 part 'build_taps_item.dart';
 part 'cart_button_widget.dart';

@@ -87,6 +87,14 @@ class Res {
   static const String trashIcon = "assets/images/trash_icon.svg";
   static const String pencilIcon = "assets/images/pencil_icon.svg";
   static const String addAddresses = "assets/images/add_addresses_icon.svg";
+  static const String allBrandsIcon = "assets/images/all_brands_icon.svg";
+  static const String allCategoriesIcon = "assets/images/all_categories_icon.svg";
+  static const String contactUsIcon = "assets/images/contact_us_icon.svg";
+  static const String termsAndConditions = "assets/images/terms_conditions_icon.svg";
+  static const String privacyPolicyIcon = "assets/images/privacy_policy_icon.svg";
+  static const String globalIcon = "assets/images/global_icon.svg";
+  static const String supportPolicyIcon = "assets/images/support_policy_icons.svg";
+  static const String returnPolicyIcon = "assets/images/return_policy_icon.svg";
 
   static const String flashSaleLogo = "assets/images/flash_sale_logo.png";
   static const String scaffBg1 = "assets/images/scaffBg1.svg";

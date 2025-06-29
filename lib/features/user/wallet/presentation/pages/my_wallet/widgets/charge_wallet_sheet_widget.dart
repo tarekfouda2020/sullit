@@ -8,6 +8,7 @@ class ChargeWalletSheetWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.only(top: 29, left: 20, right: 20, bottom: 10),
+      margin: MediaQuery.of(context).viewInsets,
         decoration: BoxDecoration(
           color: context.colors.customBackground,
           borderRadius: Dimens.sheetBorderRadius,

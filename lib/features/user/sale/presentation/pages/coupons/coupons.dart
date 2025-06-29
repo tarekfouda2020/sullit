@@ -25,7 +25,8 @@ class _CouponsState extends State<Coupons>{
       length: controller.pages().length,
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
-        appBar: BuildHomeAppBar(homeController: widget.homeController),
+        // appBar: BuildHomeAppBar(homeController: widget.homeController),
+        appBar:  DefaultAppBar(title: "Offers",showBack: false,bgColor: context.colors.white,),
         body: Column(
           children:  [
              BuildTabsView(controller: controller),

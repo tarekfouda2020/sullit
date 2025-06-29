@@ -10,7 +10,7 @@ class BuildChargeWallet extends StatelessWidget {
     return DefaultButton(
       title: "",
     // onTap:()=> controller.showChargeDialog(context),
-    onTap:()=> controller.showAddTicketsSheet(context),
+    onTap:()=> controller.showChargeWalletSheet(context),
     customLabel: Row(
       mainAxisSize: MainAxisSize.min,
       children: [

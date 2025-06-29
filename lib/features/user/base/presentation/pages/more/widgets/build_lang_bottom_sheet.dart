@@ -1,7 +1,7 @@
-part of 'home_widgets_imports.dart';
+part of 'more_widgets_imports.dart';
 
 class BuildLangBottomSheet extends StatelessWidget {
-  final HomeController controller ;
+  final MoreController controller ;
   const BuildLangBottomSheet({super.key, required this.controller});
 
   @override

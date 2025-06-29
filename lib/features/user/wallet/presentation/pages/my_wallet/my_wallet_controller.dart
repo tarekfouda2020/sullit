@@ -57,7 +57,7 @@ class MyWalletController {
     );
   }
 
-  void showAddTicketsSheet(BuildContext context){
+  void showChargeWalletSheet(BuildContext context){
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,

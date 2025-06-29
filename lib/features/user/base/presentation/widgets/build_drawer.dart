@@ -81,7 +81,7 @@ class BuildDrawer extends StatelessWidget {
                   title: tr("langauge"),
                   icon: Icons.language,
                   onTap: () {
-                    controller.showLangBottomSheet(context, controller);
+                    // controller.showLangBottomSheet(context, controller);
                   }
                 ),
                 BuildDrawerItem(

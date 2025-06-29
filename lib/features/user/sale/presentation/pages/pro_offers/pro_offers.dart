@@ -21,6 +21,7 @@ class _ProOffersState extends State<ProOffers> {
             onTap: () => AutoRouter.of(context).push(const MembershipSubscribeRoute()),
             text: "Subscribe Now",
           ),
+          Gaps.vGap10,
           Expanded(
             child: GenericListView(
               type: ListViewType.gridApi,
