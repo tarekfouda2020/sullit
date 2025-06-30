@@ -10,29 +10,29 @@ class BuildPaymentButtons extends StatelessWidget {
       margin: Dimens.paddingAll15PX,
       onTap: () =>controller.createOrder(context),
     );
-    return Container(
-      decoration: CustomDecoration(),
-      padding:Dimens.paddingAll15PX,
-      child: Row(
-        children: [
-          Expanded(
-            child: DefaultButton(
-              title: tr('returnToShop'),
-              borderColor: context.colors.primary,
-              textColor: context.colors.primary,
-              color: context.colors.white,
-              onTap: () =>AutoRouter.of(context).push(HomeRoute(index: 0)),
-            ),
-          ),
-          Expanded(
-            child: DefaultButton(
-              title: tr("completeOrder"),
-              color: context.colors.primary,
-              onTap: () => controller.createOrder(context),
-            ),
-          ),
-        ],
-      ),
-    );
+    // return Container(
+    //   decoration: CustomDecoration(),
+    //   padding:Dimens.paddingAll15PX,
+    //   child: Row(
+    //     children: [
+    //       Expanded(
+    //         child: DefaultButton(
+    //           title: tr('returnToShop'),
+    //           borderColor: context.colors.primary,
+    //           textColor: context.colors.primary,
+    //           color: context.colors.white,
+    //           onTap: () =>AutoRouter.of(context).push(HomeRoute(index: 0)),
+    //         ),
+    //       ),
+    //       Expanded(
+    //         child: DefaultButton(
+    //           title: tr("completeOrder"),
+    //           color: context.colors.primary,
+    //           onTap: () => controller.createOrder(context),
+    //         ),
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 }
