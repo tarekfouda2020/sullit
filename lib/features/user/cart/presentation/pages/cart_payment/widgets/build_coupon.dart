@@ -9,33 +9,42 @@ class BuildCoupon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       key: controller.couponFormKey,
-      child: GenericTextField(
-        hint: tr('haveCoupon'),
-        fieldTypes: FieldTypes.normal,
-        controller: controller.coupon,
-        action: TextInputAction.done,
-        type: TextInputType.text,
-        fillColor: context.colors.customBackground,
-
-        suffixIcon: GestureDetector(
-          onTap: () => controller.applyCoupon(),
-          child: Container(
-            width: 70.w,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: context.colors.primary,
-              borderRadius: const BorderRadius.horizontal(
-                right: Radius.circular(5),
-              ),
-            ),
-            child: Text(
-              tr('apply'),
-              style: AppTextStyle.s14_w600(color: context.colors.white),
-            ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Or Voucher Code",
+            style: AppTextStyle.s14_w400(color: context.colors.primary),
           ),
+          GenericTextField(
+            hint: "Enter Voucher Code",
+            fieldTypes: FieldTypes.normal,
+            controller: controller.coupon,
+            action: TextInputAction.done,
+            type: TextInputType.text,
+            fillColor: context.colors.customBackground,
+            suffixIcon: _suffixIcon(context),
+            margin: Dimens.paddingVertical8PX,
+            validate: (value) => value!.validateEmpty(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _suffixIcon(BuildContext context) {
+    return GestureDetector(
+      onTap: () => controller.applyCoupon(),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 14),
+        decoration: BoxDecoration(
+          color: context.colors.primary,
+          borderRadius: Dimens.borderRadius30PX,
         ),
-        margin: Dimens.paddingVertical8PX,
-        validate: (value) => value!.validateEmpty(),
+        child: Text(
+          tr('apply'),
+          style: AppTextStyle.s16_w600(color: context.colors.white),
+        ),
       ),
     );
   }

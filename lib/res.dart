@@ -95,6 +95,9 @@ class Res {
   static const String globalIcon = "assets/images/global_icon.svg";
   static const String supportPolicyIcon = "assets/images/support_policy_icons.svg";
   static const String returnPolicyIcon = "assets/images/return_policy_icon.svg";
+  static const String applePay = "assets/images/apple_pay.svg";
+  static const String walletIcon = "assets/images/wallet_icon.svg";
+  static const String loyaltyDiscount = "assets/images/loyalty_discount_icon.svg";
 
   static const String flashSaleLogo = "assets/images/flash_sale_logo.png";
   static const String scaffBg1 = "assets/images/scaffBg1.svg";

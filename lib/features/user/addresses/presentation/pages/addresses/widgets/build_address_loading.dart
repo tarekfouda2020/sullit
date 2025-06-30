@@ -11,7 +11,7 @@ class BuildAddressLoading extends StatelessWidget {
       children: List.generate(
         3,
         (index) => Container(
-          margin: Dimens.paddingVertical5PX,
+          margin: Dimens.paddingVertical12PX,
           padding: Dimens.paddingAll10PX,
           decoration: CustomDecoration(),
           child: Row(
@@ -35,7 +35,7 @@ class BuildAddressLoading extends StatelessWidget {
                         children: [
                           BuildShimmerItem(
                             height: 5.h,
-                            width: index.isEven ? 100.w : 70.w,
+                            width: index.isEven ? 90.w : 70.w,
                           ),
                           BuildShimmerItem(
                             child: Text(

@@ -29,8 +29,7 @@ class _ConfirmationState extends State<Confirmation> {
       },
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
-        appBar:
-            BuildCustomAppBar(onBack: () => controller.navigateToHome(context)),
+        appBar: DefaultAppBar(title: tr("cart"),bgColor: context.colors.white),
         body: BlocBuilder<GenericBloc<OrderSummary?>,
             GenericState<OrderSummary?>>(
           bloc: controller.orderSummaryBloc,
@@ -39,7 +38,7 @@ class _ConfirmationState extends State<Confirmation> {
               return ListView(
                 physics: const BouncingScrollPhysics(),
                 children: [
-                  const BuildCartStepper(current: 5),
+                   const BuildCartStepper(current: 5, title: 'information'),
                   const BuildDone(),
                   Gaps.vGap15,
                   const BuildThanksText(),

@@ -408,7 +408,15 @@
   "flatNo": "Flat No.",
   "transactions": "Transactions",
   "chargeWallet": "Charge Wallet Balance",
-  "enterAmount": "Enter Amount"
+  "enterAmount": "Enter Amount",
+  "continue": "Continue",
+  "proceedToCheckout": "Proceed To Checkout",
+  "totalItems": "Total Items",
+  "shippingFees": "Shipping fees",
+  "voucherDiscount": "Voucher Discount",
+  "agreeTo": "Agree",
+  "rulesAndConditions": "Rules&Conditions",
+  "submitOrder": "Submit Order"
 
 
 

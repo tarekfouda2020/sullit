@@ -36,7 +36,7 @@ class Dimens {
   static const double dp15 = 15;
   static const double dp16 = 16;
   static const double dp17 = 17;
-  static const double dp18 = 17;
+  static const double dp18 = 18;
   static const double dp19 = 19;
   static const double dp20 = 20;
   static const double dp21 = 21;
@@ -138,6 +138,8 @@ class Dimens {
       const EdgeInsets.symmetric(vertical: 9).r;
   static EdgeInsets paddingVertical10PX =
       const EdgeInsets.symmetric(vertical: 10).r;
+  static EdgeInsets paddingVertical12PX =
+      const EdgeInsets.symmetric(vertical: 12).r;
   static EdgeInsets paddingVertical15PX =
       const EdgeInsets.symmetric(vertical: 15).r;
   static EdgeInsets paddingVertical20PX =
@@ -165,8 +167,12 @@ class Dimens {
   static EdgeInsets paddingHorizontal40PX =
       const EdgeInsets.symmetric(horizontal: 40).r;
 
+
+  static EdgeInsetsDirectional paddingStart20 = EdgeInsetsDirectional.only(start: 20.r);
+
   static EdgeInsets paddingAll3PX = const EdgeInsets.all(3).r;
   static EdgeInsets paddingAll5PX = const EdgeInsets.all(5).r;
+  static EdgeInsets paddingAll6PX = const EdgeInsets.all(6).r;
   static EdgeInsets paddingAll7PX = const EdgeInsets.all(7).r;
   static EdgeInsets paddingAll8PX = const EdgeInsets.all(8).r;
   static EdgeInsets paddingAll10PX = const EdgeInsets.all(10).r;
@@ -175,6 +181,7 @@ class Dimens {
   static EdgeInsets paddingAll20PX = const EdgeInsets.all(20).r;
   static EdgeInsets marginBottom5 = const EdgeInsets.only(bottom: 5).r;
   static EdgeInsets marginBottom8 = const EdgeInsets.only(bottom: 8).r;
+  static EdgeInsets marginBottom12 = const EdgeInsets.only(bottom: 12).r;
   static EdgeInsets marginBottom18 = const EdgeInsets.only(bottom: 18).r;
   static EdgeInsets marginBottom20 = const EdgeInsets.only(bottom: 20).r;
   static EdgeInsets marginBottom24 = const EdgeInsets.only(bottom: 24).r;

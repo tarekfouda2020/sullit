@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
@@ -17,6 +21,8 @@ import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/payment_option.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_payment/cart_payment_imports.dart';
+import 'package:flutter_tdd/res.dart';
+import 'dart:math';
 
 part 'build_additional_info.dart';
 part 'build_conditions.dart';
@@ -28,3 +34,14 @@ part 'build_summary.dart';
 part 'build_summary_header.dart';
 part 'build_summary_item.dart';
 part 'build_wallet_balance.dart';
+part 'payment_method_widget.dart';
+part 'cart_payment_section_title_widget.dart';
+part 'payment_options_widget.dart';
+part 'pay_option_widget.dart';
+part 'apple_pay_option_widget.dart';
+part 'wallet_payment_widget.dart';
+part 'apply_gift_card_widget.dart';
+part 'cart_discount_widget.dart';
+part 'switch_button_widget.dart';
+part 'loyalty_discount_widget.dart';
+part 'invoice_summary_widget.dart';

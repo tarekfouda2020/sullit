@@ -5,6 +5,8 @@ part of 'delivery_imports.dart';
 class DeliveryController {
   final GenericBloc<int> deliveryTypeCubit = GenericBloc(0);
   final GenericBloc<List<SellerShipping>> sellerShippingBloc = GenericBloc([]);
+  final GenericBloc<Shipping?> shippingCubit = GenericBloc<Shipping?>(null);
+  final GlobalKey<DropdownSearchState> sellerBranchKey = GlobalKey();
   Pickup? nearestPointModel;
   SellerShipping? selectedItem;
 
@@ -29,6 +31,7 @@ class DeliveryController {
     var data = await SetCartStoreShipping().call(params);
     if (data != null) {
       CustomToast.showSimpleToast(msg: tr('shippingAdded'),type: ToastType.success);
+      shippingCubit.onUpdateData(data);
       AutoRouter.of(context).push(CartPaymentRoute(shipping: data));
     }
   }

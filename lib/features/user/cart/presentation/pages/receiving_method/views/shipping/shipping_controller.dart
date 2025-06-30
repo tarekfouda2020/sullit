@@ -13,7 +13,7 @@ class ShippingController {
     );
   }
 
-  void onSelectAddress(BuildContext context, Address address, bool? val) {
+  void onSelectAddress(BuildContext context, Address address) {
     var auth = context.read<DeviceCubit>().state.model.auth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
@@ -22,7 +22,7 @@ class ShippingController {
     for (var e in addressesBloc.state.data) {
       e.selected = false;
     }
-    address.selected = !val!;
+    address.selected = true;
     addressesBloc.onUpdateData(addressesBloc.state.data);
   }
 
@@ -59,7 +59,7 @@ class ShippingController {
       if (data) {
         CustomToast.showSimpleToast(
             msg: tr('addressAdded'),type: ToastType.success);
-        AutoRouter.of(context).push(const DeliveryRoute());
+        // AutoRouter.of(context).push(const DeliveryRoute());
       }
     } else {
       CustomToast.showSimpleToast(msg: tr('pleaseSelAddress'));

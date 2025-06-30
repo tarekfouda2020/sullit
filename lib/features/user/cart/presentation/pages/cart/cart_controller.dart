@@ -70,7 +70,7 @@ class CartController {
     if (auth) {
       if (cartItemsBloc.state.data.items!.isNotEmpty) {
         AutoRouter.of(context).push(
-          const ShippingRoute(),
+          const ReceivingMethodRoute(),
         );
       } else {
         CustomToast.showSimpleToast(msg: tr('cartIsEmpty'));

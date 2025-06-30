@@ -13,7 +13,7 @@ class BuildDeliveryItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        BuildDeliveryProducts(shippingModel: shippingModel),
+        // BuildDeliveryProducts(shippingModel: shippingModel),
         BuildDeliveryType(
           controller: controller,
           shipping: shippingModel,

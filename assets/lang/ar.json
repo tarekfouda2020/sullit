@@ -186,7 +186,6 @@
   "map": "الخريطة",
   "readAndAccept": "قرأت ووافقت علي",
   "terms": "الشروط والاحكام",
-  "continue": "استمرار",
   "hello": "مرحبا بك",
   "registerAndJoin": "سجل حسابك وانضم الينا",
   "loginAndJoin": "باشر بالدخول لحسابك لدينا",
@@ -581,10 +580,15 @@
   "flatNo": "رقم الشقة",
   "transactions": "المعاملات",
   "chargeWallet":  "شحن المحفظة",
-  "enterAmount": "ادخل المبلغ"
-
-
-
+  "enterAmount": "ادخل المبلغ",
+  "continue": "استمرار",
+  "proceedToCheckout": "المتابعة للدفع",
+  "totalItems": "إجمالي عدد المنتجات",
+  "shippingFees": "ضريبة التوصيل",
+  "voucherDiscount": "خصم",
+  "agreeTo": "أوافق على",
+  "rulesAndConditions": "الشروط والأحكام",
+  "submitOrder": "تأكيد الطلب"
 
 
 

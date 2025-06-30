@@ -1,0 +1,6 @@
+enum PayMethodEnum{
+  cash,
+  applePay;
+
+
+}

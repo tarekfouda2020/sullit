@@ -10,6 +10,8 @@ class CartPaymentController {
   final GlobalKey<FormState> additionalFormKey = GlobalKey();
   final GenericBloc<int> paymentCubit = GenericBloc(0);
   final GenericBloc<bool> conditionsCubit = GenericBloc(false);
+  final GenericBloc<bool> isWalletSelected = GenericBloc(false);
+  final GenericBloc<bool> applyLoyaltyPoints = GenericBloc(false);
   String? selectedPayment;
 
   CartPaymentController(Shipping shipping) {

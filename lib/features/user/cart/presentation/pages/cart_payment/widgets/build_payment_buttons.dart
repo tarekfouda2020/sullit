@@ -5,6 +5,11 @@ class BuildPaymentButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return DefaultButton(
+      title: tr("submitOrder"),
+      margin: Dimens.paddingAll15PX,
+      onTap: () =>controller.createOrder(context),
+    );
     return Container(
       decoration: CustomDecoration(),
       padding:Dimens.paddingAll15PX,

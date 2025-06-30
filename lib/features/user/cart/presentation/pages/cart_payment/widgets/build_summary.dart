@@ -67,7 +67,7 @@ class BuildSummary extends StatelessWidget {
             details: shipping.summary.total,
             // isTotal: true,
           ),
-          BuildCoupon(controller: controller),
+          // BuildCoupon(controller: controller),
         ],
       ),
     );
