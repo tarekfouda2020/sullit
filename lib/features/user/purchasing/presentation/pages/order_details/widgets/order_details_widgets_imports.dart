@@ -12,7 +12,6 @@ import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 
 part 'order_info_widget.dart';
 part 'order_details_sections_title_widget.dart';
-part 'order_details_products_widget.dart';
 part 'order_details_product_item_widget.dart';
 part'order_details_summary_widget.dart';
 part 'order_summary_item_widget.dart';

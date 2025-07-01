@@ -21,7 +21,7 @@ class _ReceivingMethodState extends State<ReceivingMethod> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const BuildCartStepper(current: 2, title: 'Receiveing method',),
+          const BuildCartStepper(current: 2),
           Gaps.vGap12,
           Padding(
             padding: Dimens.paddingStart20,

@@ -38,7 +38,7 @@ class _ConfirmationState extends State<Confirmation> {
               return ListView(
                 physics: const BouncingScrollPhysics(),
                 children: [
-                   const BuildCartStepper(current: 5, title: 'information'),
+                   const BuildCartStepper(current: 5),
                   const BuildDone(),
                   Gaps.vGap15,
                   const BuildThanksText(),

@@ -10,6 +10,7 @@ class ReceivingMethodController{
 
   void onPressProceed(BuildContext context){
     if(changeTabCubit.state.data == 0){
+      shippingController.cartAddAddress(context);
       changeTabCubit.onUpdateData(1);
     }else{
       deliveryController.setCartStoreShipping(context);

@@ -9,13 +9,13 @@ import 'package:flutter_tdd/res.dart';
 
 class BuildCartStepper extends StatelessWidget {
   final int current;
- final String title;
-  const BuildCartStepper({super.key, required this.current, required this.title});
+  final EdgeInsetsGeometry? padding;
+  const BuildCartStepper({super.key, required this.current, this.padding});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(right: 20,left: 20),
+      padding: padding ?? const EdgeInsets.only(right: 20,left: 20),
       color: context.colors.white,
       child:  Row(
     children: List.generate(stepIcons.length * 2 - 1, (i) {

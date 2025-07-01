@@ -101,6 +101,7 @@ class Res {
   static const String receivingMethod = "assets/images/receiiving_method_icon.svg";
   static const String payCheckout = "assets/images/pay_checkout_icon.svg";
   static const String successIcon = "assets/images/sucess_icon.svg";
+  static const String orderConfirmImage = "assets/images/order_confirm_image.svg";
 
   static const String flashSaleLogo = "assets/images/flash_sale_logo.png";
   static const String scaffBg1 = "assets/images/scaffBg1.svg";

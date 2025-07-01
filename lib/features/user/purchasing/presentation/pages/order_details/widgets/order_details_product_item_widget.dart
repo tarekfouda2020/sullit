@@ -1,8 +1,8 @@
 part of 'order_details_widgets_imports.dart';
 
 class OrderDetailsProductItemWidget extends StatelessWidget {
-  final bool isReturned;
-  const OrderDetailsProductItemWidget({super.key, required this.isReturned});
+  final bool hasReview;
+  const OrderDetailsProductItemWidget({super.key, required this.hasReview});
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
               )
             ],
           ),
-          if (!isReturned)
+          if (!hasReview)
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

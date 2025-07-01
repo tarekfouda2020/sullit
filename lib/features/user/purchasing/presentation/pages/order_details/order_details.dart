@@ -24,7 +24,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
           Gaps.vGap12,
           const OrderDetailsSectionsTitleWidget(title: "Products"),
           Gaps.vGap8,
-           OrderDetailsProductsWidget(isReturned: widget.isReturnedOrder),
+           OrderDetailsProductsWidget(isReturned: widget.isReturnedOrder,hasReview: false,),
           Gaps.vGap12,
           const OrderDetailsSectionsTitleWidget(title: "Invoice Summary"),
           Gaps.vGap8,

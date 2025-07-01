@@ -33,7 +33,7 @@ class _CartPaymentState extends State<CartPayment> {
             if (state is GenericUpdateState) {
               return Column(
                 children: [
-                   const BuildCartStepper(current: 3,title: "payment"),
+                   const BuildCartStepper(current: 3),
                   Flexible(
                     child: ListView(
                       padding: Dimens.paddingHorizontal15PX,

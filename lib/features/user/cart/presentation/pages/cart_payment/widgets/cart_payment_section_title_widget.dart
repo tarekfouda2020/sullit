@@ -2,12 +2,16 @@ part of 'cart_payment_widgets_imports.dart';
 
 class CartPaymentSectionTitleWidget extends StatelessWidget {
   final String title;
-  const CartPaymentSectionTitleWidget({super.key, required this.title});
+  final EdgeInsetsGeometry? padding;
+  const CartPaymentSectionTitleWidget({super.key, required this.title, this.padding});
 
   @override
   Widget build(BuildContext context) {
-    return Text(title,
-    style: AppTextStyle.s16_w700(color: context.colors.black),
+    return Padding(
+      padding: padding ?? EdgeInsets.zero,
+      child: Text(title,
+      style: AppTextStyle.s16_w700(color: context.colors.black),
+      ),
     );
   }
 }

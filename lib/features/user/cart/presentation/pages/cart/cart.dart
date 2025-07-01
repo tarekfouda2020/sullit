@@ -31,8 +31,9 @@ class _CartState extends State<Cart> {
           if (state is GenericUpdateState) {
             return Column(
               children: [
-                 BuildCartStepper(current: 1,title: tr("cart")),
+                 const BuildCartStepper(current: 1),
                 Gaps.vGap11,
+                if((state.data.items ?? []).isNotEmpty)
                 const CleaAllWidget(),
                 Gaps.vGap12,
                 BuildCartItems(
