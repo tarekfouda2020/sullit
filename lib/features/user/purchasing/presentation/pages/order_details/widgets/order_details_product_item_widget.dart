@@ -2,7 +2,8 @@ part of 'order_details_widgets_imports.dart';
 
 class OrderDetailsProductItemWidget extends StatelessWidget {
   final bool hasReview;
-  const OrderDetailsProductItemWidget({super.key, required this.hasReview});
+  final  void Function()? onPressReview;
+  const OrderDetailsProductItemWidget({super.key, required this.hasReview, this.onPressReview});
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +76,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                 Gaps.line(context.colors.softGray, 0),
                 Gaps.vGap12,
                 GestureDetector(
-                  onTap: () {},
+                  onTap: onPressReview,
                   child: Row(
                     children: [
                       Text(

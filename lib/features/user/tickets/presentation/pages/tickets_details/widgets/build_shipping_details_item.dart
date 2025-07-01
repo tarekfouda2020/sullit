@@ -1,11 +1,11 @@
 part of 'tickets_details_widgets_imports.dart';
 
 class BuildShippingDetailsItem extends StatelessWidget {
-  final OrderDetails orderModel;
+  final OrderDetails? orderModel;
 
   const BuildShippingDetailsItem({
     super.key,
-    required this.orderModel,
+     this.orderModel,
   });
 
   @override
@@ -17,7 +17,7 @@ class BuildShippingDetailsItem extends StatelessWidget {
       child: Row(
         children: [
           CachedImage(
-            url: "${orderModel.product!.thumbnailImage}",
+            url: "${orderModel?.product!.thumbnailImage}",
             height: 50.r,
             width: 50.r,
             borderRadius: Dimens.borderRadius5PX,
@@ -28,11 +28,11 @@ class BuildShippingDetailsItem extends StatelessWidget {
               children: [
                 BuildTrackOrderSummaryItem(
                   title: "${tr('productName')} :",
-                  subTitle: "${orderModel.product!.name}",
+                  subTitle: orderModel?.product!.name??"subTitle1",
                 ),
                 BuildTrackOrderSummaryItem(
                   title: "${tr('shippedBy')} :",
-                  subTitle: orderModel.shippedBy ?? "",
+                  subTitle: orderModel?.shippedBy ?? "subTitle2",
                 ),
               ],
             ),

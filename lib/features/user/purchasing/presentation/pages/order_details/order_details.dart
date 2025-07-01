@@ -2,6 +2,7 @@ part of 'order_details_imports.dart';
 
 class OrderDetailsPage extends StatefulWidget {
   final bool isReturnedOrder;
+
   const OrderDetailsPage({super.key, required this.isReturnedOrder});
 
   @override
@@ -9,26 +10,31 @@ class OrderDetailsPage extends StatefulWidget {
 }
 
 class _OrderDetailsPageState extends State<OrderDetailsPage> {
-
   final OrderDetailsPageController controller = OrderDetailsPageController();
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: "Order Details"),
       body: GenericListView(
         padding: Dimens.paddingHorizontal20PX,
         children: [
-           OrderInfoWidget(isReturned: widget.isReturnedOrder,),
+          OrderInfoWidget(
+            isReturned: widget.isReturnedOrder,
+          ),
           Gaps.vGap12,
           const OrderDetailsSectionsTitleWidget(title: "Products"),
           Gaps.vGap8,
-           OrderDetailsProductsWidget(isReturned: widget.isReturnedOrder,hasReview: false,),
+          OrderDetailsProductsWidget(
+            isReturned: widget.isReturnedOrder,
+            hasReview: false,
+            onPressReview: () => controller.reviewSheet(context),
+          ),
           Gaps.vGap12,
           const OrderDetailsSectionsTitleWidget(title: "Invoice Summary"),
           Gaps.vGap8,
-           OrderDetailsSummaryWidget(isReturned: widget.isReturnedOrder),
+          OrderDetailsSummaryWidget(isReturned: widget.isReturnedOrder),
           Gaps.vGap50
         ],
       ),

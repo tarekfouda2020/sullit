@@ -15,4 +15,15 @@ class TrackOrderController {
           }
         );
   }
+
+
+  final List<TrackOrderEnum> trackOrderStatus = [
+    TrackOrderEnum.placed,
+    TrackOrderEnum.packaging,
+    TrackOrderEnum.shipped,
+    TrackOrderEnum.delivered
+  ];
+
+
+
 }

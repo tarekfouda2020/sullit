@@ -16,10 +16,28 @@ class _TrackOrderState extends State<TrackOrder> {
       backgroundColor: context.colors.customBackground,
       appBar:  DefaultAppBar(title: tr('trackOrder')),
       body: ListView(
-        padding: Dimens.paddingAll15PX,
+        padding: Dimens.paddingHorizontal15PX,
         children: [
-          BuildTrackOrderField(controller: controller),
-          BuildTrackOrderSummary(controller: controller),
+        const TrackOrderNumberWidget(),
+       Gaps.vGap17,
+          const TrackOrderItemWidget(
+            isLast:  false,
+            trackStatus: TrackOrderEnum.placed,
+          ),
+          const TrackOrderItemWidget(
+            isLast:  false,
+            trackStatus: TrackOrderEnum.packaging,
+          ),
+          const TrackOrderItemWidget(
+            isLast:  false,
+            trackStatus: TrackOrderEnum.shipped,
+          ),
+          const TrackOrderItemWidget(
+            isLast:  true,
+            trackStatus: TrackOrderEnum.delivered,
+          ),
+          // BuildTrackOrderField(controller: controller),
+          // BuildTrackOrderSummary(controller: controller),
 
         ],
       ),

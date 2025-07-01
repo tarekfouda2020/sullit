@@ -63,7 +63,7 @@ class ShortCutSectionWidget extends StatelessWidget {
               context,
               MoreRoutes.returnOrders,
             ),
-            image: Res.returnOrdersLogo,
+            image: Res.returnedOrder,
           ),
         ]
     );

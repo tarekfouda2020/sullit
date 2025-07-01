@@ -104,9 +104,11 @@ class CartPaymentController {
       msg: tr('thanksForYourOrder'),
       type: ToastType.success,
     );
-    AutoRouter.of(context).push(
-      ConfirmationRoute(summary: data),
-    );
+    // AutoRouter.of(context).push(
+    //   ConfirmationRoute(summary: data),
+    // );
+    AutoRouter.of(context).push( CartConfirmBuyingRoute(summary: data));
+
   }
 
   void onChangePayment(Shipping model, int index) {

@@ -1,15 +1,19 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/order_details_imports.dart';
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/widgets/order_details_widgets_imports.dart';
 
 class OrderDetailsProductsWidget extends StatelessWidget {
   final bool isReturned;
   final bool hasReview;
   final void Function()? onPressTrackShipment;
+  final void Function()? onPressReview;
   final EdgeInsetsGeometry? margin;
 
   const OrderDetailsProductsWidget({
@@ -18,6 +22,7 @@ class OrderDetailsProductsWidget extends StatelessWidget {
     required this.hasReview,
     this.onPressTrackShipment,
     this.margin,
+    required this.onPressReview,
   });
 
   @override
@@ -43,15 +48,16 @@ class OrderDetailsProductsWidget extends StatelessWidget {
           ),
           Gaps.vGap12,
           ...List.generate(2, (index) {
-            return const OrderDetailsProductItemWidget(
-              hasReview: false,
+            return  OrderDetailsProductItemWidget(
+              hasReview: hasReview,
+              onPressReview: onPressReview,
             );
           }),
           if (!isReturned)
             Padding(
               padding: const EdgeInsets.only(top: 18),
               child: GestureDetector(
-                onTap: onPressTrackShipment,
+                onTap: onPressTrackShipment ?? ()=>AutoRouter.of(context).push(const TrackOrderRoute()),
                 child: Row(
                   children: [
                     Text(
