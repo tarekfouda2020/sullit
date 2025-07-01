@@ -588,7 +588,11 @@
   "voucherDiscount": "خصم",
   "agreeTo": "أوافق على",
   "rulesAndConditions": "الشروط والأحكام",
-  "submitOrder": "تأكيد الطلب"
+  "submitOrder": "تأكيد الطلب",
+  "paymentMethods": "طرق الدفع",
+  "applyGiftCard": "استخدم بطاقة الهدية",
+  "enterGiftCardCode": "أدخل رمز بطاقة الهدية"
+
 
 
 

@@ -23,28 +23,11 @@ class BuildCoupon extends StatelessWidget {
             action: TextInputAction.done,
             type: TextInputType.text,
             fillColor: context.colors.customBackground,
-            suffixIcon: _suffixIcon(context),
+            suffixIcon: ApplyButtonWidget(onPressApply: () => controller.applyCoupon()),
             margin: Dimens.paddingVertical8PX,
             validate: (value) => value!.validateEmpty(),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _suffixIcon(BuildContext context) {
-    return GestureDetector(
-      onTap: () => controller.applyCoupon(),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 14),
-        decoration: BoxDecoration(
-          color: context.colors.primary,
-          borderRadius: Dimens.borderRadius30PX,
-        ),
-        child: Text(
-          tr('apply'),
-          style: AppTextStyle.s16_w600(color: context.colors.white),
-        ),
       ),
     );
   }

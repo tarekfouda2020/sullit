@@ -20,21 +20,7 @@ class BuildShippingAddressItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 20,
-              height: 20,
-              padding: const EdgeInsets.all(2),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                    color: address.selected! ? context.colors.primary : context.colors.textColor, width: 1.5),
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: address.selected! ? context.colors.primary : Colors.transparent,
-                    shape: BoxShape.circle),
-              ),
-            ),
+            CustomRadioWidget(selected: address.selected!),
             Gaps.hGap10,
             Flexible(
               child: Column(

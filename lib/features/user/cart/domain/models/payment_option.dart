@@ -15,6 +15,8 @@ class PaymentOption extends BaseDomainModel {
 
   bool selected = false ;
 
+  bool fakeSelected = false ;
+
   PaymentOption({
     required this.paymentType,
     required this.paymentTypeKey,

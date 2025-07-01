@@ -5,6 +5,7 @@ part of 'cart_payment_imports.dart';
 class CartPaymentController {
   final TextEditingController coupon = TextEditingController();
   final TextEditingController additionalInfo = TextEditingController();
+  final TextEditingController giftCardCode = TextEditingController();
   final GenericBloc<Shipping?> shippingBloc = GenericBloc(null);
   final GlobalKey<FormState> couponFormKey = GlobalKey();
   final GlobalKey<FormState> additionalFormKey = GlobalKey();
@@ -110,9 +111,9 @@ class CartPaymentController {
 
   void onChangePayment(Shipping model, int index) {
     for (var e in model.paymentOption!) {
-      e.selected = false;
+      e.fakeSelected = false;
     }
-    model.paymentOption![index].selected = true;
+    model.paymentOption![index].fakeSelected = true;
     selectedPayment = model.paymentOption![index].paymentTypeKey;
     shippingBloc.onUpdateData(shippingBloc.state.data);
   }
@@ -143,4 +144,37 @@ class CartPaymentController {
       additionalInfo: additionalInfo.text,
     );
   }
+
+
+  void paymentMethodSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      useRootNavigator: true,
+      enableDrag: false,
+      builder: (context) => PaymentMethodBottomSheetWidget(controller: this),
+    );
+  }
+
+  void confirmSelectPayMethod(BuildContext context){
+   for(var item in shippingBloc.state.data!.paymentOption!){
+     item.selected = item.fakeSelected;
+   }
+   shippingBloc.onUpdateData(shippingBloc.state.data);
+   Navigator.pop(context);
+  }
+
+
+  void giftCardSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      useRootNavigator: true,
+      enableDrag: false,
+      builder: (context) => ApplyGiftCardSheet(controller: this),
+    );
+  }
+
 }

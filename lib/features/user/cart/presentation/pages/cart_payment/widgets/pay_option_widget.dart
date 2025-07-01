@@ -26,11 +26,18 @@ class PayOptionWidget extends StatelessWidget {
             style: AppTextStyle.s14_w700(color: context.colors.black)
             ),
           ),
-          Text("Change",
-              style: AppTextStyle.s14_w400(color: context.colors.primary)
+          GestureDetector(
+            onTap: () => controller.paymentMethodSheet(context),
+            child: Row(
+              children: [
+                Text("Change",
+                    style: AppTextStyle.s14_w400(color: context.colors.primary)
+                ),
+                Gaps.hGap7,
+                Icon(Icons.arrow_forward,color: context.colors.primary)
+              ],
+            ),
           ),
-          Gaps.hGap7,
-          Icon(Icons.arrow_forward,color: context.colors.primary)
           // Transform.rotate(
           //     angle: pi,
           //   child: SvgPicture.asset(

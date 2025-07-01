@@ -33,6 +33,7 @@ class BuildConditions extends StatelessWidget {
               );
             },
           ),
+          Gaps.hGap4,
           Expanded(
             child: Row(
               children: [

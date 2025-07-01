@@ -98,6 +98,9 @@ class Res {
   static const String applePay = "assets/images/apple_pay.svg";
   static const String walletIcon = "assets/images/wallet_icon.svg";
   static const String loyaltyDiscount = "assets/images/loyalty_discount_icon.svg";
+  static const String receivingMethod = "assets/images/receiiving_method_icon.svg";
+  static const String payCheckout = "assets/images/pay_checkout_icon.svg";
+  static const String successIcon = "assets/images/sucess_icon.svg";
 
   static const String flashSaleLogo = "assets/images/flash_sale_logo.png";
   static const String scaffBg1 = "assets/images/scaffBg1.svg";

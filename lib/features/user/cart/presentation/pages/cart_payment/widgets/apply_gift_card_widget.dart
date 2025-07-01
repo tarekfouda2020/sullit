@@ -7,7 +7,7 @@ class ApplyGiftCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){},
+      onTap: () => controller.giftCardSheet(context),
       child: Row(
         children: [
           Text("Or Apply Gift Card",

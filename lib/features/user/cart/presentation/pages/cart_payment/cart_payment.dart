@@ -12,7 +12,7 @@ class CartPayment extends StatefulWidget {
 }
 
 class _CartPaymentState extends State<CartPayment> {
-  late CartPaymentController controller;
+  late final CartPaymentController controller;
 
   @override
   void initState() {
@@ -33,7 +33,7 @@ class _CartPaymentState extends State<CartPayment> {
             if (state is GenericUpdateState) {
               return Column(
                 children: [
-                  const BuildCartStepper(current: 4,title: "payment"),
+                   const BuildCartStepper(current: 3,title: "payment"),
                   Flexible(
                     child: ListView(
                       padding: Dimens.paddingHorizontal15PX,
