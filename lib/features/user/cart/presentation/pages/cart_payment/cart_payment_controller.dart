@@ -114,7 +114,6 @@ class CartPaymentController {
       e.fakeSelected = false;
     }
     model.paymentOption![index].fakeSelected = true;
-    selectedPayment = model.paymentOption![index].paymentTypeKey;
     shippingBloc.onUpdateData(shippingBloc.state.data);
   }
 
@@ -158,9 +157,11 @@ class CartPaymentController {
   }
 
   void confirmSelectPayMethod(BuildContext context){
-   for(var item in shippingBloc.state.data!.paymentOption!){
+    List<PaymentOption> paymentOptions =  shippingBloc.state.data!.paymentOption!;
+   for(var item in paymentOptions){
      item.selected = item.fakeSelected;
    }
+   selectedPayment = paymentOptions.firstWhere((element) => element.selected).paymentTypeKey;
    shippingBloc.onUpdateData(shippingBloc.state.data);
    Navigator.pop(context);
   }
