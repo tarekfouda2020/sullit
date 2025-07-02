@@ -591,7 +591,9 @@
   "submitOrder": "تأكيد الطلب",
   "paymentMethods": "طرق الدفع",
   "applyGiftCard": "استخدم بطاقة الهدية",
-  "enterGiftCardCode": "أدخل رمز بطاقة الهدية"
+  "enterGiftCardCode": "أدخل رمز بطاقة الهدية",
+  "checkout": "ادفع"
+
 
 
 

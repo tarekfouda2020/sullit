@@ -190,7 +190,8 @@ class ProductDetailsController {
       context,
       qtyCubit.state.data,
       detailsCubit.state.data?.product.variant?.id,
-      onAddCartFunc: () => showCartSuccessDialog(context),
+      // onAddCartFunc: () => showCartSuccessDialog(context),
+      onAddCartFunc: () => showCartSuccessSheet(context),
     );
   }
 
@@ -199,6 +200,16 @@ class ProductDetailsController {
       context: context,
       builder: (context) => const BuildCartSuccessDialog(),
     );
+  }
+  void showCartSuccessSheet(BuildContext context) {
+  showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      useRootNavigator: true,
+      enableDrag: false,
+      builder: (context) => const CartSuccessSheetWidget(),
+  );
   }
 
   GenericParams _detailsParams(bool refresh, int productId) {

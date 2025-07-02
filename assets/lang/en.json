@@ -419,13 +419,8 @@
   "submitOrder": "Submit Order",
   "paymentMethods": "Payment Methods",
   "applyGiftCard": "Apply Gift Card",
-  "enterGiftCardCode": "Enter Gift Card Code"
-
-
-
-
-
-
+  "enterGiftCardCode": "Enter Gift Card Code",
+  "checkout": "checkout"
 }
 
 
