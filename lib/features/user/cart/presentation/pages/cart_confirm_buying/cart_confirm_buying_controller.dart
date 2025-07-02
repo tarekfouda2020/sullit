@@ -8,8 +8,8 @@ class ConfirmBuyingController{
   ConfirmBuyingController (OrderSummary? summary, int? id) {
     if(summary != null){
       orderSummaryBloc.onUpdateData(summary);
-    }else {
-      getCombinedOrder(id!);
+    }else if(id != null){
+      getCombinedOrder(id);
     }
   }
 

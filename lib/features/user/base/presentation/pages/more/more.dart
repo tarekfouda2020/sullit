@@ -32,6 +32,7 @@ class _MoreState extends State<More> {
           Gaps.vGap16,
           ShortCutSectionWidget(controller: controller),
           ShopByWidget(controller: controller),
+          SupportSectionWidget(controller: controller),
           OtherSectionWidget(controller: controller),
           Gaps.vGap128
           // BuildMoreHeader(moreController: controller),

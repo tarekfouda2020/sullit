@@ -9,7 +9,8 @@ class BuildPaymentButtons extends StatelessWidget {
     return DefaultButton(
       title: tr("submitOrder"),
       margin:margin ?? Dimens.paddingAll15PX,
-      onTap: () => controller.createOrder(context),
+      // onTap: () => controller.createOrder(context),
+      onTap: () =>  AutoRouter.of(context).push( CartConfirmBuyingRoute()),
     );
   }
 }
