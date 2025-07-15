@@ -17,11 +17,12 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       onTap: FocusScope.of(context).unfocus,
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
+        appBar: const DefaultAppBar(title: "",bgColor: Colors.transparent,),
         body: SingleChildScrollView(
           padding: Dimens.paddingH16V40,
           child: Column(
             children: [
-              const BuildAuthAppBar(),
+              // const BuildAuthAppBar(),
               BuildHeaderTitle(
                 title: tr('forgetPassword'),
                 subTitle: tr('recoverPassword'),

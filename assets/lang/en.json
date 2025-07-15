@@ -198,6 +198,18 @@
   "searchFiles": "Search your files",
   "sortBy": "Sort by",
   "selectedOnly": "Selected only",
+  "scanCancelled": "Scan cancelled",
+  "invalidBarcode": "Invalid barcode format",
+  "productFound": "Product found",
+  "usingGeneratedSku": "Using generated SKU",
+  "scanError": "Error scanning barcode",
+  "productNotFound": "Product not found in database",
+  "apiError": "Error connecting to product database",
+  "searchError": "Error searching for products",
+  "productDetailsError": "Error getting product details",
+  "addToCartError": "Error adding product to cart",
+  "foundProducts": "Found products",
+  "skuFound": "SKU found",
   "noFilesFounded": "No Files Founded",
   "addFile": "Add File",
   "pdf": "PDF",
@@ -420,7 +432,11 @@
   "paymentMethods": "Payment Methods",
   "applyGiftCard": "Apply Gift Card",
   "enterGiftCardCode": "Enter Gift Card Code",
-  "checkout": "checkout"
+  "checkout": "checkout",
+  "access_denied": "Access denied",
+  "productScanned": "Product scanned",
+  "message": "Message"
+
 }
 
 

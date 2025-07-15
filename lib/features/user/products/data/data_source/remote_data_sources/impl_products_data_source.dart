@@ -152,4 +152,17 @@ class ImplProductsDataSource extends ProductsDataSource {
     );
     return await GenericHttpImpl<bool>().call(model);
   }
+
+  @override
+  Future<Either<Failure, ProductDetailsModel>> scanProduct(String param) async{
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.skuSearch(param),
+      requestMethod: RequestMethod.get,
+      responseType: ResType.type,
+      showLoader: true,
+      responseKey: (data) => data["data"],
+      toJsonFunc: (data) => ProductDetailsModel.fromJson(data),
+    );
+    return await GenericHttpImpl<ProductDetailsModel>().call(model);
+  }
 }

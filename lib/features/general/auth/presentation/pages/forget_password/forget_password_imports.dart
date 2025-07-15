@@ -6,7 +6,9 @@ import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/general/auth/domain/use_cases/set_forget_password.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/pages/resest_passsword_verify/reset_password_verify_imports.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_auth_app_bar.dart';
 
 import '../../widgets/build_header_title.dart';

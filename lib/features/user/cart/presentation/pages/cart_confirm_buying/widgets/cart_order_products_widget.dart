@@ -1,35 +1,14 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
-import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
-import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/order_details_imports.dart';
-import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/widgets/order_details_widgets_imports.dart';
+part of 'cart_confirm_buying_widgets_imports.dart';
 
-class OrderDetailsProductsWidget extends StatelessWidget {
-  final bool isReturned;
-  final bool hasReview;
-  final void Function()? onPressTrackShipment;
-  final void Function()? onPressReview;
-  final EdgeInsetsGeometry? margin;
-
-  const OrderDetailsProductsWidget({
-    super.key,
-    required this.isReturned,
-    required this.hasReview,
-    this.onPressTrackShipment,
-    this.margin,
-    required this.onPressReview,
-  });
+class CartOrderProductsWidget extends StatelessWidget {
+  final ConfirmBuyingController controller;
+  const CartOrderProductsWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 19, right: 19, top: 17, bottom: 20).r,
-      margin: margin,
+      margin: Dimens.paddingHorizontal20PX,
       decoration: const CustomDecoration(),
       child: Column(
         children: [
@@ -49,15 +28,14 @@ class OrderDetailsProductsWidget extends StatelessWidget {
           Gaps.vGap12,
           ...List.generate(2, (index) {
             return  OrderDetailsProductItemWidget(
-              hasReview: hasReview,
-              onPressReview: onPressReview,
+              hasReview: false,
+              onPressReview: (){},
             );
           }),
-          if (!isReturned)
             Padding(
               padding: const EdgeInsets.only(top: 18),
               child: GestureDetector(
-                onTap: onPressTrackShipment ?? ()=>AutoRouter.of(context).push(const TrackOrderRoute()),
+                onTap: ()=> controller.reviewSheet(context),
                 child: Row(
                   children: [
                     Text(
@@ -82,4 +60,6 @@ class OrderDetailsProductsWidget extends StatelessWidget {
       ),
     );
   }
+
+
 }

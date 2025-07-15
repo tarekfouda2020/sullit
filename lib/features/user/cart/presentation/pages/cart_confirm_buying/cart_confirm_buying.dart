@@ -34,12 +34,7 @@ class _CartConfirmBuyingState extends State<CartConfirmBuying> {
             padding: Dimens.paddingHorizontal20PX,
           ),
           Gaps.vGap8,
-          OrderDetailsProductsWidget(
-            isReturned: false,
-            hasReview: false,
-            margin: Dimens.paddingHorizontal20PX,
-            onPressReview: () => controller.reviewSheet(context),
-          ),
+          CartOrderProductsWidget(controller: controller),
           Gaps.vGap12,
           CartPaymentSectionTitleWidget(
             title: "Invoice Summary",

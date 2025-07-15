@@ -140,7 +140,7 @@ class DropdownTextField<T> extends StatelessWidget {
           lang: lang,
           prefIcon: prefixIcon,
           padding: contentPadding ??
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
+              const EdgeInsets.symmetric(horizontal: 30, vertical: 10).r,
         ),
         emptyBuilder: (context, action) => const Center(
           child: Text(

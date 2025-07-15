@@ -45,6 +45,8 @@ class ApiNames {
   static const String sendQuery = "product-queries";
 
   static String getVariantPrice(int id) => "products/$id/variant/price";
+
+  static String skuSearch(String sku) => "products/search-by-barcode?sku=$sku";
   static const String getDownloadProducts = "orders/digital-purchase-history";
 
   static String getProductSections(int page) => "sections?page=$page";
@@ -76,6 +78,7 @@ class ApiNames {
   static const String countries = "countries";
   static const String states = "states";
   static const String cities = "cities";
+  static const String addressTypes = "address-types";
 
   static String setDefaultAddress(int id) =>
       "user/addresses/$id/set-default?_method=put";

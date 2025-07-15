@@ -141,7 +141,7 @@ class BuildProductItem extends StatelessWidget {
                   Gaps.vGap3,
                   // if((productModel.rating ?? 0.0) > 0)
                   RatingBar.builder(
-                    initialRating: 3,
+                    initialRating: (productModel.rating ?? 0).toDouble() ,
                     minRating: 0.5,
                     direction: Axis.horizontal,
                     allowHalfRating: true,
@@ -157,7 +157,7 @@ class BuildProductItem extends StatelessWidget {
                     ),
                     onRatingUpdate: (rating) {},
                   ),
-                  if((productModel.rating ?? 0.0) > 0)
+                  // if((productModel.rating ?? 0.0) > 0)
                   Gaps.vGap6,
                   Row(
                     children: [
@@ -172,6 +172,7 @@ class BuildProductItem extends StatelessWidget {
                                 color: context.colors.primary,
                               ),
                             ),
+                            Gaps.vGap3,
                             Visibility(
                               visible: productModel.hasDiscount!,
                               child: Text(

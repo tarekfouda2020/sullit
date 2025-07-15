@@ -23,7 +23,6 @@ class ContactUsFormWidget extends StatelessWidget {
             validate: (value) => value?.validateName(),
             hint: tr('userName'),
             margin: Dimens.marginTop5Bottom12,
-            radius: Dimens.borderRadius40PX,
           ),
           BuildInputLabel(
             label: tr("email"),
@@ -40,20 +39,26 @@ class ContactUsFormWidget extends StatelessWidget {
             radius: Dimens.borderRadius40PX,
           ),
           BuildInputLabel(
-            label: tr("phone"),
+            label: tr("phoneNumber"),
           ),
-          GenericTextField(
-            fillColor: context.colors.white,
-            contentPadding: Dimens.paddingH32V16,
-            enableBorderColor: context.colors.white,
-            focusBorderColor: context.colors.borderColor,
-            controller: controller.phone,
-            fieldTypes: FieldTypes.normal,
-            type: TextInputType.text,
-            action: TextInputAction.next,
-            validate: (value) => value?.validatePhone(),
-            hint: tr('phone'),
-            margin: Dimens.marginTop5Bottom12,
+          BlocBuilder<GenericBloc<Country?>, GenericState<Country?>>(
+            bloc: controller.countryCubit,
+            builder: (context, state) {
+              return GenericTextField(
+                fillColor: context.colors.white,
+                contentPadding: Dimens.paddingH32V16,
+                enableBorderColor: context.colors.white,
+                focusBorderColor: context.colors.borderColor,
+                controller: controller.phone,
+                fieldTypes: FieldTypes.normal,
+                type: TextInputType.text,
+                action: TextInputAction.next,
+                hint: "53534332",
+                margin: Dimens.marginTop5Bottom12,
+                validate: (value) => ((state.data?.callingCode ?? "") + (value ?? "")).validatePhoneOrNull(),
+                prefixIcon: PhoneFieldPrefixWidget(countryCubit: controller.countryCubit,),
+              );
+            },
           ),
           BuildInputLabel(
             label: tr("title"),
@@ -70,7 +75,7 @@ class ContactUsFormWidget extends StatelessWidget {
             margin: Dimens.marginTop5Bottom12,
           ),
           BuildInputLabel(
-            label: tr("yourMsg"),
+            label: tr("message"),
           ),
           GenericTextField(
             fillColor: context.colors.white,
@@ -80,7 +85,7 @@ class ContactUsFormWidget extends StatelessWidget {
             type: TextInputType.text,
             action: TextInputAction.done,
             validate: (value) => value?.validateEmpty(),
-            hint: tr('yourMsg'),
+            hint: tr('enterYourMsg'),
             margin: Dimens.marginTop5Bottom12,
           ),
         ],

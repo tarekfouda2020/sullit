@@ -1,7 +1,8 @@
 part of 'order_details_widgets_imports.dart';
 
 class OrderDetailsWidget extends StatelessWidget {
-  const OrderDetailsWidget({super.key});
+  final Orders? order;
+  const OrderDetailsWidget({super.key, this.order});
 
   @override
   Widget build(BuildContext context) {
@@ -10,31 +11,31 @@ class OrderDetailsWidget extends StatelessWidget {
       children: [
         OrderINfoItemWidget(
           title: 'Date',
-          describe: '10 feb 2025 - 09:55 PM',
+          describe: DateTimeHelper.formatDate(date: order?.getOrderDate?? DateTime.now(), formatType: "d MMM yyyy - hh:mm a"),
           gaps: Gaps.hGap16,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
           title: 'Status',
-          describe: 'Delivered',
+          describe: order?.orderStatus ?? 'Delivered',
           gaps: Gaps.hGap7,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
           title: 'Total Items',
-          describe: '5',
+          describe: order?.totalItemsCount().toString() ?? '5',
           gaps: Gaps.hGap9,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
           title: 'Receipt Status',
-          describe: 'Delivery',
+          describe: order?.deliveryStatus ?? 'Delivery',
           gaps: Gaps.hGap9,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
           title: 'Address',
-          describe: 'Home , Dubai',
+          describe: order?.shippingAddress ?? 'Home , Dubai',
           gaps: Gaps.hGap7,
         ),
         Gaps.vGap8,
@@ -46,7 +47,7 @@ class OrderDetailsWidget extends StatelessWidget {
         Gaps.vGap8,
         OrderINfoItemWidget(
           title: 'Payment Method',
-          describe: 'Apple Pay',
+          describe: order?.paymentMethod ?? 'Apple Pay',
           gaps: Gaps.hGap9,
         ),
       ],

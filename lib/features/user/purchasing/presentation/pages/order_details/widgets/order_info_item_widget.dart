@@ -9,15 +9,20 @@ class OrderINfoItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           "$title:",
           style: AppTextStyle.s14_w400(color: context.colors.black),
         ),
         gaps,
-        Text(
-          describe,
-          style: AppTextStyle.s14_w600(color: context.colors.black),
+        Expanded(
+          child: Text(
+            describe,
+            style: AppTextStyle.s14_w600(color: context.colors.black).copyWith(
+              height: 1.1
+            ),
+          ),
         ),
       ],
     );

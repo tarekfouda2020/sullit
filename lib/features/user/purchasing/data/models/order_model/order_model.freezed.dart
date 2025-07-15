@@ -67,6 +67,10 @@ mixin _$OrderModel {
   String get customerEmail => throw _privateConstructorUsedError;
   @JsonKey(name: 'return_reason')
   String get returnReason => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sold_by_type')
+  String get soldByType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sold_by_name')
+  String get soldBy => throw _privateConstructorUsedError;
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel> get orderDetails =>
       throw _privateConstructorUsedError;
@@ -111,6 +115,8 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'customer_name') String customerName,
       @JsonKey(name: 'customer_email') String customerEmail,
       @JsonKey(name: 'return_reason') String returnReason,
+      @JsonKey(name: 'sold_by_type') String soldByType,
+      @JsonKey(name: 'sold_by_name') String soldBy,
       @JsonKey(name: 'order_details') List<OrderDetailsModel> orderDetails});
 }
 
@@ -154,6 +160,8 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? customerName = null,
     Object? customerEmail = null,
     Object? returnReason = null,
+    Object? soldByType = null,
+    Object? soldBy = null,
     Object? orderDetails = null,
   }) {
     return _then(_value.copyWith(
@@ -265,6 +273,14 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.returnReason
           : returnReason // ignore: cast_nullable_to_non_nullable
               as String,
+      soldByType: null == soldByType
+          ? _value.soldByType
+          : soldByType // ignore: cast_nullable_to_non_nullable
+              as String,
+      soldBy: null == soldBy
+          ? _value.soldBy
+          : soldBy // ignore: cast_nullable_to_non_nullable
+              as String,
       orderDetails: null == orderDetails
           ? _value.orderDetails
           : orderDetails // ignore: cast_nullable_to_non_nullable
@@ -309,6 +325,8 @@ abstract class _$$_OrderModelCopyWith<$Res>
       @JsonKey(name: 'customer_name') String customerName,
       @JsonKey(name: 'customer_email') String customerEmail,
       @JsonKey(name: 'return_reason') String returnReason,
+      @JsonKey(name: 'sold_by_type') String soldByType,
+      @JsonKey(name: 'sold_by_name') String soldBy,
       @JsonKey(name: 'order_details') List<OrderDetailsModel> orderDetails});
 }
 
@@ -350,6 +368,8 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? customerName = null,
     Object? customerEmail = null,
     Object? returnReason = null,
+    Object? soldByType = null,
+    Object? soldBy = null,
     Object? orderDetails = null,
   }) {
     return _then(_$_OrderModel(
@@ -461,6 +481,14 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.returnReason
           : returnReason // ignore: cast_nullable_to_non_nullable
               as String,
+      soldByType: null == soldByType
+          ? _value.soldByType
+          : soldByType // ignore: cast_nullable_to_non_nullable
+              as String,
+      soldBy: null == soldBy
+          ? _value.soldBy
+          : soldBy // ignore: cast_nullable_to_non_nullable
+              as String,
       orderDetails: null == orderDetails
           ? _value._orderDetails
           : orderDetails // ignore: cast_nullable_to_non_nullable
@@ -503,6 +531,8 @@ class _$_OrderModel extends _OrderModel {
       @JsonKey(name: 'customer_name') required this.customerName,
       @JsonKey(name: 'customer_email') required this.customerEmail,
       @JsonKey(name: 'return_reason') required this.returnReason,
+      @JsonKey(name: 'sold_by_type') required this.soldByType,
+      @JsonKey(name: 'sold_by_name') required this.soldBy,
       @JsonKey(name: 'order_details')
       required final List<OrderDetailsModel> orderDetails})
       : _orderDetails = orderDetails,
@@ -585,6 +615,12 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'return_reason')
   final String returnReason;
+  @override
+  @JsonKey(name: 'sold_by_type')
+  final String soldByType;
+  @override
+  @JsonKey(name: 'sold_by_name')
+  final String soldBy;
   final List<OrderDetailsModel> _orderDetails;
   @override
   @JsonKey(name: 'order_details')
@@ -596,7 +632,7 @@ class _$_OrderModel extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, returnReason: $returnReason, orderDetails: $orderDetails)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, orderDetails: $orderDetails)';
   }
 
   @override
@@ -653,6 +689,9 @@ class _$_OrderModel extends _OrderModel {
                 other.customerEmail == customerEmail) &&
             (identical(other.returnReason, returnReason) ||
                 other.returnReason == returnReason) &&
+            (identical(other.soldByType, soldByType) ||
+                other.soldByType == soldByType) &&
+            (identical(other.soldBy, soldBy) || other.soldBy == soldBy) &&
             const DeepCollectionEquality()
                 .equals(other._orderDetails, _orderDetails));
   }
@@ -688,6 +727,8 @@ class _$_OrderModel extends _OrderModel {
         customerName,
         customerEmail,
         returnReason,
+        soldByType,
+        soldBy,
         const DeepCollectionEquality().hash(_orderDetails)
       ]);
 
@@ -739,6 +780,8 @@ abstract class _OrderModel extends OrderModel {
       @JsonKey(name: 'customer_name') required final String customerName,
       @JsonKey(name: 'customer_email') required final String customerEmail,
       @JsonKey(name: 'return_reason') required final String returnReason,
+      @JsonKey(name: 'sold_by_type') required final String soldByType,
+      @JsonKey(name: 'sold_by_name') required final String soldBy,
       @JsonKey(name: 'order_details')
       required final List<OrderDetailsModel> orderDetails}) = _$_OrderModel;
   const _OrderModel._() : super._();
@@ -820,6 +863,12 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'return_reason')
   String get returnReason;
+  @override
+  @JsonKey(name: 'sold_by_type')
+  String get soldByType;
+  @override
+  @JsonKey(name: 'sold_by_name')
+  String get soldBy;
   @override
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel> get orderDetails;

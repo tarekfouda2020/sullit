@@ -2,7 +2,8 @@ part of 'order_details_widgets_imports.dart';
 
 class OrderInfoWidget extends StatelessWidget {
   final bool isReturned;
-  const OrderInfoWidget({super.key, required this.isReturned});
+  final Orders? order;
+  const OrderInfoWidget({super.key, required this.isReturned, this.order});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class OrderInfoWidget extends StatelessWidget {
                 style: AppTextStyle.s18_w300(color: context.colors.black),
               ),
               Text(
-                "3253646",
+               "${order?.id ?? 3253646}",
                 style: AppTextStyle.s18_w300(color: context.colors.primary),
               ),
             ],
@@ -31,8 +32,8 @@ class OrderInfoWidget extends StatelessWidget {
           Gaps.vGap14,
           Visibility(
             visible: isReturned,
-            replacement:const OrderDetailsWidget() ,
-            child: const ReturnedOrderDetailsWidget(),
+            replacement:  OrderDetailsWidget(order: order) ,
+            child:  ReturnedOrderDetailsWidget(order: order),
           ),
         ],
       )

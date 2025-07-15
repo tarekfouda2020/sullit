@@ -15,6 +15,7 @@ class _EditAddressState extends State<EditAddress> {
   @override
   void initState() {
     controller = EditAddressController(widget.address);
+    controller.updateLocationFiled(context);
     super.initState();
   }
 
@@ -34,8 +35,7 @@ class _EditAddressState extends State<EditAddress> {
           DefaultButton(
             title: tr('update'),
             onTap: () => controller.editAddress(context, widget.address),
-            height: 35.h,
-            borderRadius: Dimens.borderRadius10PX,
+            height: 40.h,
             margin: Dimens.paddingAll20PX,
           )
         ],

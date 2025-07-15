@@ -55,6 +55,7 @@ class ShippingController {
         .where((element) => element.selected == true)
         .toList();
     if (selectedList.isNotEmpty) {
+      print("===-=-=-=-=-=-=-=-=-=>>>>>>>. address id${selectedList.first.id!}");
       var data = await AddCartAddress().call(selectedList.first.id!);
       if (data) {
         CustomToast.showSimpleToast(

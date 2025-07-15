@@ -1,12 +1,14 @@
 part of 'purchased_orders_widgets_imports.dart';
 
 class PurchasedOrderItemWidget extends StatelessWidget {
-  const PurchasedOrderItemWidget({super.key});
+  final Orders order;
+  final PurchasedOrdersController controller;
+  const PurchasedOrderItemWidget({super.key, required this.order, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=> AutoRouter.of(context).push(OrderDetailsPageRoute(isReturnedOrder: false)),
+      onTap: () => AutoRouter.of(context).push(OrderDetailsPageRoute(isReturnedOrder: false,order: order)),
       child: Container(
         padding: const EdgeInsets.all(20),
          margin: const EdgeInsets.only(bottom: 10),
@@ -25,12 +27,12 @@ class PurchasedOrderItemWidget extends StatelessWidget {
              crossAxisAlignment: CrossAxisAlignment.start,
              children: [
                Text(
-                 "Order #5465746",
+                 "Order #${order.code}",
                  style: AppTextStyle.s14_w600(color: context.colors.black),
                ),
                Gaps.vGap6,
                Text(
-                 "10 feb 2025 - 09:55 PM",
+                 DateTimeHelper.formatDate(date: _getDate, formatType: "d MMM yyyy - hh:mm a"),
                  style: AppTextStyle.s12_w400(color: context.colors.textColor),
                ),
              ],
@@ -40,4 +42,9 @@ class PurchasedOrderItemWidget extends StatelessWidget {
       ),
     );
   }
+
+
+  DateTime  get _getDate => DateTimeHelper.convertToDateTime(strDate: order.orderDate);
+
+
 }

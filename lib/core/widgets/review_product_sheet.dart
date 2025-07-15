@@ -20,7 +20,7 @@ class ReviewProductSheetWidget extends StatefulWidget {
 class _ReviewProductSheetWidgetState extends State<ReviewProductSheetWidget> {
 
 
-  final GenericBloc<double> ratCubit = GenericBloc<double>(0.0);
+  final GenericBloc<double> ratCubit = GenericBloc<double>(1.0);
 
 
   @override
@@ -44,7 +44,7 @@ class _ReviewProductSheetWidgetState extends State<ReviewProductSheetWidget> {
                   initialRating: state.data,
                   minRating: 1,
                   direction: Axis.horizontal,
-                  allowHalfRating: true,
+                  allowHalfRating: false,
                   glow: false,
                   itemCount: 5,
                   itemSize: 40.sp,

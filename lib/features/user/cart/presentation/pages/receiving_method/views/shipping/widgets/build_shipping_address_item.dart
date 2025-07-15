@@ -45,10 +45,10 @@ class BuildShippingAddressItem extends StatelessWidget {
                     title: 'Flat No.',
                     desc: "402",
                   ),
-                  BuildAddressTitleItem(
-                    title: tr('postalCode'),
-                    desc: address.postalCode!,
-                  ),
+                  // BuildAddressTitleItem(
+                  //   title: tr('postalCode'),
+                  //   desc: address.postalCode!,
+                  // ),
                   BuildAddressTitleItem(
                     title: tr('city'),
                     desc: address.city?.name ?? "",

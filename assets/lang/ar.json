@@ -368,6 +368,18 @@
   "searchFiles": "إبحث في الملفات",
   "sortBy": "ترتيب حسب",
   "selectedOnly": "المحدد فقط",
+  "scanCancelled": "تم إلغاء المسح",
+  "invalidBarcode": "تنسيق الباركود غير صحيح",
+  "productFound": "تم العثور على المنتج",
+  "usingGeneratedSku": "استخدام رمز SKU المُنشأ",
+  "scanError": "خطأ في مسح الباركود",
+  "productNotFound": "المنتج غير موجود في قاعدة البيانات",
+  "apiError": "خطأ في الاتصال بقاعدة بيانات المنتجات",
+  "searchError": "خطأ في البحث عن المنتجات",
+  "productDetailsError": "خطأ في الحصول على تفاصيل المنتج",
+  "addToCartError": "خطأ في إضافة المنتج إلى السلة",
+  "foundProducts": "المنتجات الموجودة",
+  "skuFound": "تم العثور على رمز SKU",
   "noFilesFounded": "لا توجد ملفات محدده",
   "addFile": "إضافة ملف",
   "pdf": "ملف PDF",
@@ -592,11 +604,10 @@
   "paymentMethods": "طرق الدفع",
   "applyGiftCard": "استخدم بطاقة الهدية",
   "enterGiftCardCode": "أدخل رمز بطاقة الهدية",
-  "checkout": "ادفع"
-
-
-
-
+  "checkout": "ادفع",
+  "access_denied": "تم رفض الوصول",
+  "productScanned": "تم مسح المنتج",
+  "message": "الرسالة"
 
 }
 

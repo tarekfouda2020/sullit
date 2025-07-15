@@ -14,16 +14,19 @@ class ContactUsSocialItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isSvg
-        ? SvgPicture.asset(
-            imagePath,
-            width: 37,
-            height: 37,
-          )
-        : Image.asset(
-            imagePath,
-            width: 40,
-            height: 40,
-          );
+    return GestureDetector(
+      onTap: onTap,
+      child: isSvg
+          ? SvgPicture.asset(
+        imagePath,
+        width: 37,
+        height: 37,
+      )
+          : Image.asset(
+        imagePath,
+        width: 40,
+        height: 40,
+      ) ,
+    );
   }
 }

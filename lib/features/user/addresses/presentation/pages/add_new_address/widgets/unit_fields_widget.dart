@@ -36,19 +36,6 @@ class UnitFieldsWidget extends StatelessWidget {
           margin: Dimens.paddingVertical10PX,
         ),
         BuildInputLabel(
-          label: tr("buildingName"),
-        ),
-        GenericTextField(
-          controller: controller.buildingNameController,
-          fieldTypes: FieldTypes.normal,
-          type: TextInputType.streetAddress,
-          fillColor: context.colors.white,
-          action: TextInputAction.next,
-          validate: (value) => value?.validateEmpty(),
-          hint: tr("enterBuildingName"),
-          margin: Dimens.paddingVertical10PX,
-        ),
-        BuildInputLabel(
           label: tr("flatNo"),
         ),
         GenericTextField(

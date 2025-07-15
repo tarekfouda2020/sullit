@@ -2,7 +2,9 @@ part of 'return_orders_widgets_imports.dart';
 
 
 class ReturnOrdersItemWidget extends StatelessWidget {
-  const ReturnOrdersItemWidget({super.key});
+  final Orders order;
+  final ReturnOrdersController controller;
+  const ReturnOrdersItemWidget({super.key, required this.order, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class ReturnOrdersItemWidget extends StatelessWidget {
                         ),
                         Gaps.hGap6,
                         Text(
-                          tr('#5465746'),
+                         "#${order.code}",
                           style: AppTextStyle.s14_w400(color: context.colors.black),
                         ),
                       ],
@@ -48,7 +50,7 @@ class ReturnOrdersItemWidget extends StatelessWidget {
                         ),
                         Gaps.hGap6,
                         Text(
-                          "Munch Corner" ,
+                          order.soldBy,
                           style: AppTextStyle.s14_w400(color: context.colors.black),
                         ),
                       ],
@@ -62,7 +64,10 @@ class ReturnOrdersItemWidget extends StatelessWidget {
                         ),
                         Gaps.hGap6,
                         Text(
-                          ":10 feb 2025 - 09:55 PM",
+                          DateTimeHelper.formatDate(
+                              date: DateTime.parse(order.orderDate),
+                              formatType: "d MMM yyyy - hh:mm a"
+                          ),
                           style: AppTextStyle.s14_w400(color: context.colors.textColor),
                         ),
                       ],

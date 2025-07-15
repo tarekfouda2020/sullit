@@ -19,20 +19,20 @@ class BuildNewAddressItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Radio<bool>(
-              value: false,
-              groupValue: !address.selected!,
-              onChanged: (val) =>
-                  controller.onSelectAddress(context, address, val),
-              activeColor: context.colors.primary,
-              fillColor: MaterialStateProperty.resolveWith<Color>(
-                    (states) => states.contains(MaterialState.selected)
-                    ? context.colors.primary
-                    : context.colors.grey,
-              ),
-              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              visualDensity: const VisualDensity(horizontal: -4.0, vertical: -4.0),
-            ),
+            // Radio<bool>(
+            //   value: false,
+            //   groupValue: !address.selected!,
+            //   onChanged: (val) =>
+            //       controller.onSelectAddress(context, address, val),
+            //   activeColor: context.colors.primary,
+            //   fillColor: MaterialStateProperty.resolveWith<Color>(
+            //         (states) => states.contains(MaterialState.selected)
+            //         ? context.colors.primary
+            //         : context.colors.grey,
+            //   ),
+            //   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            //   visualDensity: const VisualDensity(horizontal: -4.0, vertical: -4.0),
+            // ),
             Gaps.hGap10,
             Flexible(
               child: Column(
@@ -41,25 +41,9 @@ class BuildNewAddressItem extends StatelessWidget {
                     title: tr('address'),
                     desc: address.address!,
                   ),
-                  const BuildAddressTitleItem(
+                   BuildAddressTitleItem(
                     title: 'Type',
-                    desc: "Business",
-                  ),
-                  const BuildAddressTitleItem(
-                    title: 'Street Name',
-                    desc: "Jumeirah",
-                  ),
-                  const BuildAddressTitleItem(
-                    title: 'Building Name',
-                    desc: "B 32",
-                  ),
-                  const BuildAddressTitleItem(
-                    title: 'Flat No.',
-                    desc: "402",
-                  ),
-                  BuildAddressTitleItem(
-                    title: tr('postalCode'),
-                    desc: address.postalCode!,
+                    desc: address.addressType!,
                   ),
                   BuildAddressTitleItem(
                     title: tr('city'),
@@ -73,6 +57,23 @@ class BuildNewAddressItem extends StatelessWidget {
                     title: tr('country'),
                     desc: address.country?.name ?? "",
                   ),
+                   BuildAddressTitleItem(
+                    title: 'Street Name',
+                    desc: address.streetName!,
+                  ),
+                   BuildAddressTitleItem(
+                    title: 'Building Name',
+                    desc: address.buildingName!,
+                  ),
+                   BuildAddressTitleItem(
+                    title: 'Flat No.',
+                    desc: address.flatNumber!,
+                  ),
+                  // BuildAddressTitleItem(
+                  //   title: tr('postalCode'),
+                  //   desc: address.postalCode!,
+                  // ),
+
                   BuildAddressTitleItem(
                     title: tr('phone'),
                     desc: address.fullPhone ?? "",
@@ -88,6 +89,7 @@ class BuildNewAddressItem extends StatelessWidget {
                     onTap: () => controller.onActiveAddress(context, address),
                     child: Container(
                       padding: Dimens.paddingAll8PX,
+                      margin: const EdgeInsets.only(bottom: 10),
                       decoration: BoxDecoration(
                         borderRadius: Dimens.borderRadius5PX,
                         color: context.colors.primary,

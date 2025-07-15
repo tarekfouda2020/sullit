@@ -31,6 +31,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/product_section
 import 'package:flutter_tdd/features/user/products/domain/models/slider_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/home_main/home_main_imports.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
+import 'package:flutter_tdd/features/user/sale/domain/entities/timer_entity.dart';
 import 'package:flutter_tdd/features/user/sale/domain/models/flash_sale.dart';
 import 'package:flutter_tdd/res.dart';
 

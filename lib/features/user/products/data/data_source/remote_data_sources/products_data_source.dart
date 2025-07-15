@@ -32,4 +32,6 @@ abstract class ProductsDataSource {
       int param);
 
   Future<Either<Failure, bool>> toggleFollowing(int param);
+
+  Future<Either<Failure, ProductDetailsModel>> scanProduct(String param);
 }

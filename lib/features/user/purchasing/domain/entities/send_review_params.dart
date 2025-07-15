@@ -14,6 +14,6 @@ class SendReviewParams {
   Map<String, dynamic> toJson() => {
         "product_id": productId,
         "rating": rating,
-        "comment": comment,
+        if(comment!=null)"comment": comment,
       };
 }

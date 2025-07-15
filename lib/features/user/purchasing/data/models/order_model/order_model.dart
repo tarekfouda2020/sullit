@@ -40,6 +40,8 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'customer_name') required String customerName,
     @JsonKey(name: 'customer_email') required String customerEmail,
     @JsonKey(name: 'return_reason') required String returnReason,
+    @JsonKey(name: 'sold_by_type') required String soldByType,
+    @JsonKey(name: 'sold_by_name') required String soldBy,
     @JsonKey(name: 'order_details')
         required List<OrderDetailsModel> orderDetails,
   }) = _OrderModel;
@@ -78,6 +80,8 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       customerEmail: customerEmail,
       returnReason: returnReason,
       orderDetails: orderDetails.map((e) => e.toDomainModel()).toList(),
+      soldBy: soldBy,
+      soldByType: soldByType,
     );
   }
 }

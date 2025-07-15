@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
+import 'package:flutter_tdd/features/user/products/data/models/product_details_model/product_details_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/popular_products_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/send_query_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/variant_price_params.dart';
@@ -31,6 +32,9 @@ abstract class ProductsRepository {
   Future<Either<Failure, List<Product>>> getDigitalProducts(bool param);
 
   Future<Either<Failure, List<ProductSections>>> getProductSections(int param);
+
   Future<Either<Failure, bool>> toggleFollowing(int param);
+
+  Future<Either<Failure, ProductDetailsModel>> scanProduct(String param);
 
 }

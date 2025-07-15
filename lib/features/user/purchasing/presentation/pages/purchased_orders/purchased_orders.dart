@@ -9,17 +9,34 @@ class PurchasedOrders extends StatefulWidget {
 }
 
 class _PurchasedOrdersState extends State<PurchasedOrders> {
+
+
+  final PurchasedOrdersController controller = PurchasedOrdersController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: "Purchased Orders",),
-      body: ListView.builder(
-        padding: Dimens.paddingHorizontal20PX,
-        itemCount: 4,
-        itemBuilder: (context, index) {
-        return const PurchasedOrderItemWidget();
-      },) ,
+      body: RefreshIndicator(
+        onRefresh: () => controller.getPurchasingHistory(1),
+        child: PagedListView<int, Orders>(
+          padding: Dimens.paddingAll15PX,
+          pagingController: controller.pagingController,
+          builderDelegate: PagedChildBuilderDelegate<Orders>(
+            firstPageProgressIndicatorBuilder: (_) =>
+            const BuildLoadingOrders(),
+            itemBuilder: (_, item, index) => PurchasedOrderItemWidget(
+              order: item,
+              controller: controller,
+            ),
+            noItemsFoundIndicatorBuilder: (cxt) {
+              return const BuildEmptyDataImage();
+            },
+          ),
+        ),
+      ) ,
     );
   }
 }

@@ -28,7 +28,8 @@ class PhoneInputAndVerify extends StatelessWidget {
                     validate: (value) => ((state.data?.callingCode ?? "") + (value ?? "")).validatePhoneOrNull(),
                     hint: tr("phone"),
                     margin: Dimens.marginTop5,
-                    prefixIcon: _buildPrefixIcon(context, state),
+                    // prefixIcon: _buildPrefixIcon(context, state),
+                    prefixIcon: PhoneFieldPrefixWidget(countryCubit: controller.countryCubit),
                   ),
                 );
               },
@@ -70,44 +71,44 @@ class PhoneInputAndVerify extends StatelessWidget {
     );
   }
 
-  Widget _buildPrefixIcon(BuildContext context, GenericState<Country?> state) {
-    return GestureDetector(
-      onTap: () => controller.showCountryCode(context),
-      child: Visibility(
-        visible: state.data?.name != "",
-        replacement: Padding(
-          padding: const EdgeInsetsDirectional.only(start: 23,top: 16,end: 17),
-          child: Text(
-            "Select Country",
-            style: AppTextStyle.s14_w400(color: context.colors.black),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsetsDirectional.only(start: 23),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.asset(
-                state.data!.flag,
-                width: 25,
-                height: 25,
-                package: "country_calling_code_picker",
-              ),
-              Gaps.hGap5,
-              Text(
-                state.data?.callingCode ?? "",
-                style: AppTextStyle.s14_w400(color: context.colors.black),
-              ),
-              Gaps.hGap5,
-              Icon(
-                Icons.keyboard_arrow_down_rounded,
-                color: context.colors.black,
-              ),
-              Gaps.hGap17,
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget _buildPrefixIcon(BuildContext context, GenericState<Country?> state) {
+  //   return GestureDetector(
+  //     onTap: () => controller.showCountryCode(context),
+  //     child: Visibility(
+  //       visible: state.data?.name != "",
+  //       replacement: Padding(
+  //         padding: const EdgeInsetsDirectional.only(start: 23,top: 16,end: 17),
+  //         child: Text(
+  //           "Select Country",
+  //           style: AppTextStyle.s14_w400(color: context.colors.black),
+  //         ),
+  //       ),
+  //       child: Padding(
+  //         padding: const EdgeInsetsDirectional.only(start: 23),
+  //         child: Row(
+  //           mainAxisSize: MainAxisSize.min,
+  //           children: [
+  //             Image.asset(
+  //               state.data!.flag,
+  //               width: 25,
+  //               height: 25,
+  //               package: "country_calling_code_picker",
+  //             ),
+  //             Gaps.hGap5,
+  //             Text(
+  //               state.data?.callingCode ?? "",
+  //               style: AppTextStyle.s14_w400(color: context.colors.black),
+  //             ),
+  //             Gaps.hGap5,
+  //             Icon(
+  //               Icons.keyboard_arrow_down_rounded,
+  //               color: context.colors.black,
+  //             ),
+  //             Gaps.hGap17,
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 }

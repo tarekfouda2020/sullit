@@ -4,6 +4,9 @@ class ContactUsController {
   final GlobalKey<CustomButtonState> btnKey = GlobalKey();
   final GlobalKey<FormState> formKey = GlobalKey();
   final GenericBloc<String> contactUsCubit = GenericBloc("");
+  final GenericBloc<Country?> countryCubit = GenericBloc(const Country(
+    "United Arab Emirates","flags/are.png","AE","+971"
+  ));
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController phone = TextEditingController();

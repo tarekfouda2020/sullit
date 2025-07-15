@@ -21,29 +21,20 @@ class _ReturnOrdersState extends State<ReturnOrders> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(title: tr('returnedOrders'), showBack: true),
-      body: ListView.builder(
-        itemCount: 5,
-        padding: Dimens.paddingAll15PX,
-        itemBuilder: (context, index) {
-        return const ReturnOrdersItemWidget() ;
-      },) ,
-      // body: RefreshIndicator(
-      //   onRefresh: () => controller.getReturnOrders(1),
-      //   child: PagedListView<int, Orders>(
-      //     padding: Dimens.paddingAll15PX,
-      //     pagingController: controller.pagingController,
-      //     builderDelegate: PagedChildBuilderDelegate<Orders>(
-      //       firstPageProgressIndicatorBuilder: (_) => const BuildLoadingOrders(),
-      //       itemBuilder: (_, item, index) => BuildReturnOrderItem(
-      //         order: item,
-      //         controller: controller,
-      //       ),
-      //       noItemsFoundIndicatorBuilder: (cxt) {
-      //         return const BuildEmptyDataImage();
-      //       },
-      //     ),
-      //   ),
-      // ),
+      body: RefreshIndicator(
+        onRefresh: () => controller.getReturnOrders(1),
+        child: PagedListView<int, Orders>(
+          padding: Dimens.paddingAll15PX,
+          pagingController: controller.pagingController,
+          builderDelegate: PagedChildBuilderDelegate<Orders>(
+            firstPageProgressIndicatorBuilder: (_) => const BuildLoadingOrders(),
+            itemBuilder: (_, item, index) => ReturnOrdersItemWidget(order: item,controller: controller),
+            noItemsFoundIndicatorBuilder: (cxt) {
+              return const BuildEmptyDataImage();
+            },
+          ),
+        ),
+      ),
     );
   }
 }

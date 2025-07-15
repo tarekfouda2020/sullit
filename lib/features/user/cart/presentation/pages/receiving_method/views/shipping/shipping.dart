@@ -25,7 +25,7 @@ class _ShippingState extends State<Shipping> {
         BuildNewShipping(controller: controller),
         Gaps.vGap10,
         SizedBox(
-          height: MediaQuery.of(context).size.height*0.52,
+          height: MediaQuery.of(context).size.height*0.5,
           child: GenericListView(
             type: ListViewType.api,
             cubit: controller.addressesBloc,

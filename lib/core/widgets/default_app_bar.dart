@@ -47,7 +47,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
           Visibility(
             visible: showBack ?? true,
             child: IconButton(
-              icon: Icon(Icons.arrow_back_outlined, size: 15.sp),
+              icon: Icon(Icons.arrow_back_outlined, size: 20.sp),
               onPressed: () => Navigator.of(context).pop(),
             ),
           ),

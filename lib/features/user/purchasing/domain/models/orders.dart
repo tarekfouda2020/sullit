@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 
@@ -29,6 +30,8 @@ class Orders extends BaseDomainModel{
   String customerName;
   String customerEmail;
   String returnReason;
+  String soldByType;
+  String soldBy;
   List<OrderDetails> orderDetails;
   bool selected = false ;
 
@@ -61,5 +64,21 @@ class Orders extends BaseDomainModel{
     required this.customerEmail,
     required this.returnReason,
     required this.orderDetails,
+    required this.soldByType,
+    required this.soldBy,
   });
+
+
+  int  totalItemsCount() => orderDetails.fold(0, (previousValue, element) => previousValue + element.quantity);
+
+  DateTime get getOrderDate => DateTimeHelper.convertToDateTime(strDate: orderDate);
+
+  double getDiscountNumber() {
+  String number =  couponDiscount.replaceAll("د.إ", "");
+    double discount = double.parse(number);
+    return discount;
+}
+
+bool get isCouponApply => getDiscountNumber() > 0;
+
 }

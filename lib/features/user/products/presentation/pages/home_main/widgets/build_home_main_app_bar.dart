@@ -2,8 +2,8 @@ part of 'home_main_widgets_imports.dart';
 
 class BuildHomeMainAppBar extends StatelessWidget {
   final HomeController controller;
-
-  const BuildHomeMainAppBar({Key? key, required this.controller})
+  final HomeMainController homeMainController;
+  const BuildHomeMainAppBar({Key? key, required this.controller, required this.homeMainController})
       : super(key: key);
 
   @override
@@ -32,7 +32,7 @@ class BuildHomeMainAppBar extends StatelessWidget {
                   focusBorderColor: context.colors.borderColor,
                   hint: tr('searchCats'),
                   suffixIcon: InkWell(
-                    onTap: () {},
+                    onTap: () => homeMainController.scanProduct(context),
                     child: Transform.scale(
                       scale: 0.4,
                       child: SvgPicture.asset(Res.qrScanIcon),

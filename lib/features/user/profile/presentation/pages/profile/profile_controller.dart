@@ -43,16 +43,16 @@ class ProfileController {
     }
   }
 
-  void showCountryCode(BuildContext context) async {
-    Country? data = await showCountryPickerDialog(
-      context,
-      cornerRadius: 3,
-    );
-    if (data != null) {
-      countryCubit.onUpdateData(data);
-      phoneController.clear();
-    }
-  }
+  // void showCountryCode(BuildContext context) async {
+  //   Country? data = await showCountryPickerDialog(
+  //     context,
+  //     cornerRadius: 3,
+  //   );
+  //   if (data != null) {
+  //     countryCubit.onUpdateData(data);
+  //     phoneController.clear();
+  //   }
+  // }
 
   void navigateToAddresses(BuildContext context) async {
     var result = await AutoRouter.of(context).push(const AddressesRoute());

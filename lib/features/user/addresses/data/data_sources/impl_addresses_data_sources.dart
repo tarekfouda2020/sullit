@@ -10,6 +10,7 @@ import 'package:flutter_tdd/core/models/api_models/country_model/country_model.d
 import 'package:flutter_tdd/core/models/api_models/state_model/state_model.dart';
 import 'package:flutter_tdd/features/user/addresses/data/data_sources/addresses_data_sources.dart';
 import 'package:flutter_tdd/features/user/addresses/data/models/address_model/address_model.dart';
+import 'package:flutter_tdd/features/user/addresses/data/models/address_type/address_type.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/entities/add_address_params.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/entities/edit_address_params.dart';
 import 'package:injectable/injectable.dart';
@@ -151,4 +152,28 @@ class ImplAddressesDataSources extends AddressesDataSources {
     );
     return await GenericHttpImpl<AddressModel>().call(model);
   }
+
+
+  @override
+  Future<Either<Failure, List<AddressType>>> addressTypes (bool param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.addressTypes,
+      requestMethod: RequestMethod.get,
+      refresh: false,
+      responseType: ResType.list,
+      showLoader: true,
+      toJsonFunc: (json) => List<AddressType>.from(
+        json.map(
+              (e) => AddressType.fromJson(e),
+        ),
+      ),
+      responseKey: (data) => data["data"],
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<List<AddressType>>().call(model);
+  }
+
+
+
+
 }

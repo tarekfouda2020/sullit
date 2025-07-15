@@ -2,7 +2,8 @@ part of 'order_details_widgets_imports.dart';
 
 class OrderDetailsSummaryWidget extends StatelessWidget {
   final bool isReturned;
-  const OrderDetailsSummaryWidget({super.key, required this.isReturned});
+  final Orders? order;
+  const OrderDetailsSummaryWidget({super.key, required this.isReturned, this.order});
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +15,29 @@ class OrderDetailsSummaryWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const OrderSummaryItemWidget(priceType: 'Total Items', price: '63.00 AED',),
+           OrderSummaryItemWidget(
+            priceType: 'Total Items',
+            price: order?.subtotal ?? '63.00 AED',
+          ),
           Gaps.vGap10,
-          const OrderSummaryItemWidget(priceType: 'Tax', price: '7.00 AED',),
+           OrderSummaryItemWidget(
+            priceType: 'Tax',
+            price: order?.tax ?? '7.00 AED',
+          ),
           Gaps.vGap10,
           if(!isReturned)
-          const OrderSummaryItemWidget(priceType: 'Shipping fees', price: '7.00 AED',),
+           OrderSummaryItemWidget(
+            priceType: 'Shipping fees',
+            price: order?.shipping ?? '7.00 AED',
+          ),
           if(!isReturned)
             Gaps.vGap10,
-          OrderSummaryItemWidget(priceType: 'Voucher Discount', price: '-2.00 AED',priceColor: context.colors.primary),
+         if(order?.isCouponApply ?? true)
+          OrderSummaryItemWidget(
+              priceType: 'Voucher Discount',
+              price: order?.getDiscountNumber().toString() ?? '-2.00 AED',
+              priceColor: context.colors.primary
+          ),
           Gaps.vGap10,
           Gaps.line(context.colors.softGray, 0),
           Gaps.vGap13,
@@ -35,7 +50,7 @@ class OrderDetailsSummaryWidget extends StatelessWidget {
                 ),
               ),
               Text(
-                "17.00 AED",
+                order?.total ?? "17.00 AED",
                 style: AppTextStyle.s16_w700(color: context.colors.black),
               )
             ],

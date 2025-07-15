@@ -79,8 +79,13 @@ class ImplProductsRepository extends ProductsRepository with ModelToDomain {
   }
 
   @override
+  Future<Either<Failure, ProductDetailsModel>> scanProduct(String param) async{
+    var result = await dataSources.scanProduct(param);
+    return toDomainResult(result);
+  }
+
+  @override
   Future<Either<Failure, bool>> toggleFollowing(int param) async{
     return dataSources.toggleFollowing(param);
-
   }
 }

@@ -9,6 +9,7 @@ import 'package:flutter_tdd/features/general/auth/domain/entities/login_params.d
 import 'package:flutter_tdd/features/general/auth/domain/entities/reset_password_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/user_register_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/verify_phone_params.dart';
+import 'package:flutter_tdd/features/general/auth/domain/entities/verify_reset_password_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_login.dart';
 import 'package:flutter_tdd/features/general/auth/domain/repository/auth_repository.dart';
@@ -70,6 +71,12 @@ class ImplAuthRepository extends AuthRepository with ModelToDomain {
   @override
   Future<Either<Failure, String>> resendVerifyCode(String param)async {
     return await dataSources.resendVerifyCode(param);
+
+  }
+
+  @override
+  Future<Either<Failure, String>> verifyResetPassword (VerifyResetPasswordParams params)async {
+    return await dataSources.verifyResetPassword(params);
 
   }
 }

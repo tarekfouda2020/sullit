@@ -2,15 +2,21 @@ part of 'order_details_imports.dart';
 
 class OrderDetailsPage extends StatefulWidget {
   final bool isReturnedOrder;
-
-  const OrderDetailsPage({super.key, required this.isReturnedOrder});
+ final Orders? order;
+  const OrderDetailsPage({super.key, required this.isReturnedOrder, this.order});
 
   @override
   State<OrderDetailsPage> createState() => _OrderDetailsPageState();
 }
 
 class _OrderDetailsPageState extends State<OrderDetailsPage> {
-  final OrderDetailsPageController controller = OrderDetailsPageController();
+  late final OrderDetailsPageController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = OrderDetailsPageController(widget.order);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +28,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
         children: [
           OrderInfoWidget(
             isReturned: widget.isReturnedOrder,
+            order: widget.order,
           ),
           Gaps.vGap12,
           const OrderDetailsSectionsTitleWidget(title: "Products"),
@@ -29,12 +36,13 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
           OrderDetailsProductsWidget(
             isReturned: widget.isReturnedOrder,
             hasReview: false,
-            onPressReview: () => controller.reviewSheet(context),
+            controller: controller,
+            order: widget.order,
           ),
           Gaps.vGap12,
           const OrderDetailsSectionsTitleWidget(title: "Invoice Summary"),
           Gaps.vGap8,
-          OrderDetailsSummaryWidget(isReturned: widget.isReturnedOrder),
+          OrderDetailsSummaryWidget(isReturned: widget.isReturnedOrder,order: widget.order),
           Gaps.vGap50
         ],
       ),

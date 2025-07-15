@@ -59,14 +59,17 @@ class BuildCartStepper extends StatelessWidget {
           Gaps.vGap8,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: List.generate(stepIcons.length, (index) {
               var textColor = current > index ? context.colors.primary : context.colors.textColor;
-              return Padding(
-                padding:  EdgeInsetsDirectional.only(start: index== 1 ? 30 : 10),
-                child: Text(
-                  getTitle(index),
-                  style: AppTextStyle.s12_w700(color: textColor),
-                  textAlign: TextAlign.center,
+              return Flexible(
+                child: Padding(
+                  padding:  EdgeInsetsDirectional.only(start: index== 1 ? 30 : 10),
+                  child: Text(
+                    getTitle(index),
+                    style: AppTextStyle.s12_w700(color: textColor),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               );
             }),
