@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/enum/track_order_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 
 class Orders extends BaseDomainModel{
@@ -32,6 +33,7 @@ class Orders extends BaseDomainModel{
   String returnReason;
   String soldByType;
   String soldBy;
+  String customerPhone;
   List<OrderDetails> orderDetails;
   bool selected = false ;
 
@@ -66,6 +68,7 @@ class Orders extends BaseDomainModel{
     required this.orderDetails,
     required this.soldByType,
     required this.soldBy,
+    required this.customerPhone,
   });
 
 
@@ -80,5 +83,20 @@ class Orders extends BaseDomainModel{
 }
 
 bool get isCouponApply => getDiscountNumber() > 0;
+
+  TrackOrderEnum get getTrackOrderStatus{
+
+    /// at first its pending
+    ///  confirmed
+    /// picked_up
+    /// on_the_way in this step you can cancel it
+    /// delivered
+
+
+    switch(deliveryStatusConst){
+      case "pending": return TrackOrderEnum.placed;
+      default: return TrackOrderEnum.placed;
+    }
+  }
 
 }

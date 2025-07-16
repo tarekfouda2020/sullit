@@ -1,6 +1,6 @@
 part of 'product_details_widgets_imports.dart';
 
-class BuildProductDetailsSwiper extends StatelessWidget {
+class BuildProductDetailsSwiper extends StatefulWidget {
   final bool innerBoxIsScrolled;
   final Product productModel;
   final ProductDetailsController controller;
@@ -12,9 +12,16 @@ class BuildProductDetailsSwiper extends StatelessWidget {
       required this.controller});
 
   @override
+  State<BuildProductDetailsSwiper> createState() => _BuildProductDetailsSwiperState();
+}
+
+class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
+  final GenericBloc<bool> showLoading = GenericBloc<bool>(false);
+
+  @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      elevation: innerBoxIsScrolled ? 0.5 : 0,
+      elevation: widget.innerBoxIsScrolled ? 0.5 : 0,
       forceElevated: true,
       pinned: true,
       floating: false,
@@ -25,11 +32,11 @@ class BuildProductDetailsSwiper extends StatelessWidget {
       backgroundColor: context.colors.customBackground,
       centerTitle: true,
       title: AnimatedOpacity(
-        opacity: innerBoxIsScrolled ? 1 : 0,
+        opacity: widget.innerBoxIsScrolled ? 1 : 0,
         curve: Curves.bounceIn,
         duration: const Duration(milliseconds: 100),
         child: Text(
-          productModel.name!,
+          widget.productModel.name!,
           overflow: TextOverflow.ellipsis,
           style: AppTextStyle.s14_w500(
             color: context.colors.black,
@@ -37,19 +44,29 @@ class BuildProductDetailsSwiper extends StatelessWidget {
         ),
       ),
       actions: [
-        BuildIconItem(
-          width: 32,
-          height: 32,
-          margin: const EdgeInsets.all(25),
-          changeBgColor: false,
-          radius: Dimens.dp5,
-          icon: productModel.isWishlist! ? Res.favIcon : Res.emptyFavIcon,
-          checkValue: productModel.isWishlist,
-          onTap: () => getIt<ProductsHelper>().toggleFavourite(
-            context: context,
-            id: productModel.id!,
-            onRefresh: () => controller.onChangeFav(productModel),
-          ),
+        BlocBuilder<GenericBloc, GenericState>(
+          bloc: showLoading,
+          builder: (context, state) {
+            return Visibility(
+              visible: state.data,
+              replacement: BuildIconItem(
+                width: 32,
+                height: 32,
+                margin: const EdgeInsets.all(25),
+                changeBgColor: false,
+                radius: Dimens.dp5,
+                icon: widget.productModel.isWishlist! ? Res.favIcon : Res.emptyFavIcon,
+                checkValue: widget.productModel.isWishlist,
+                onTap: () => getIt<ProductsHelper>().toggleFavourite(
+                  context: context,
+                  id: widget.productModel.id!,
+                  loadingBloc: showLoading,
+                  onRefresh: () => widget.controller.onChangeFav(widget.productModel),
+                ),
+              ),
+              child: const LoadingIconWidget(),
+            );
+          },
         ),
         // BuildCompareItem(
         //   width: 43,
@@ -81,15 +98,15 @@ class BuildProductDetailsSwiper extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         background: Swiper(
           autoplay: false,
-          itemCount: productModel.images!.length,
+          itemCount: widget.productModel.images!.length,
           pagination: const SwiperPagination(),
           itemBuilder: (BuildContext context, int index) {
             return InkWell(
               onTap: () => AutoRouter.of(context)
-                  .push(ImageZoomRoute(image: productModel.images![index])),
+                  .push(ImageZoomRoute(image: widget.productModel.images![index])),
               child: CachedImage(
                 fit: BoxFit.fill,
-                url: productModel.images![index],
+                url: widget.productModel.images![index],
                 placeHolder: Center(
                   child: Image.asset(
                     Res.emptyCart,

@@ -2,7 +2,8 @@ part of 'order_details_imports.dart';
 
 class OrderDetailsPage extends StatefulWidget {
   final bool isReturnedOrder;
- final Orders? order;
+  final Orders? order;
+
   const OrderDetailsPage({super.key, required this.isReturnedOrder, this.order});
 
   @override
@@ -23,28 +24,33 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: "Order Details"),
-      body: GenericListView(
-        padding: Dimens.paddingHorizontal20PX,
-        children: [
-          OrderInfoWidget(
-            isReturned: widget.isReturnedOrder,
-            order: widget.order,
-          ),
-          Gaps.vGap12,
-          const OrderDetailsSectionsTitleWidget(title: "Products"),
-          Gaps.vGap8,
-          OrderDetailsProductsWidget(
-            isReturned: widget.isReturnedOrder,
-            hasReview: false,
-            controller: controller,
-            order: widget.order,
-          ),
-          Gaps.vGap12,
-          const OrderDetailsSectionsTitleWidget(title: "Invoice Summary"),
-          Gaps.vGap8,
-          OrderDetailsSummaryWidget(isReturned: widget.isReturnedOrder,order: widget.order),
-          Gaps.vGap50
-        ],
+      body: BlocBuilder<GenericBloc<Orders?>, GenericState<Orders?>>(
+        bloc: controller.orderDetailsBloc,
+        builder: (context, state) {
+          return GenericListView(
+            padding: Dimens.paddingHorizontal20PX,
+            children: [
+              OrderInfoWidget(
+                isReturned: widget.isReturnedOrder,
+                order: state.data,
+              ),
+              Gaps.vGap12,
+              const OrderDetailsSectionsTitleWidget(title: "Products"),
+              Gaps.vGap8,
+              OrderDetailsProductsWidget(
+                isReturned: widget.isReturnedOrder,
+                hasReview: false,
+                controller: controller,
+                order: state.data,
+              ),
+              Gaps.vGap12,
+              const OrderDetailsSectionsTitleWidget(title: "Invoice Summary"),
+              Gaps.vGap8,
+              OrderDetailsSummaryWidget(isReturned: widget.isReturnedOrder, order: state.data),
+              Gaps.vGap50
+            ],
+          );
+        },
       ),
     );
   }

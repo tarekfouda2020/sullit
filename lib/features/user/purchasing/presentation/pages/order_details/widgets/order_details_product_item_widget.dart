@@ -35,7 +35,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                     ),
                     Gaps.vGap5,
                     RatingBar.builder(
-                      initialRating: (orderDetails?.product?.rating??0.0).toDouble(),
+                      initialRating: (orderDetails?.review?.rate ?? 0.0).toDouble(),
                       minRating: 0,
                       direction: Axis.horizontal,
                       allowHalfRating: false,

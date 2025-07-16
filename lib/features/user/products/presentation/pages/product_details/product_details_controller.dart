@@ -7,14 +7,12 @@ class ProductDetailsController {
   final GenericBloc<int> qtyCubit = GenericBloc(0);
   final GenericBloc<int> isSelected = GenericBloc(0);
   final GenericBloc<int> selectedColorCubit = GenericBloc(0);
-  final GenericBloc<ProductDetailsDomainModel?> detailsCubit =
-      GenericBloc(null);
+  final GenericBloc<ProductDetailsDomainModel?> detailsCubit = GenericBloc(null);
   late bool isResale;
   List<String> selectedVariants = [];
   List<String> basicImage = [];
 
-  ProductDetailsController(
-      BuildContext context, int productId, bool productResale) {
+  ProductDetailsController(BuildContext context, int productId, bool productResale) {
     getProductDetails(context, productId, refresh: false);
     getProductDetails(context, productId);
     isResale = productResale;
@@ -34,7 +32,7 @@ class ProductDetailsController {
 
   void _initVariants(BuildContext context) {
     detailsCubit.state.data?.product.choiceOptions?.map((e) {
-      if (e.options != null) {
+      if (e.options != null && e.options!.isNotEmpty) {
         e.selectedAttribute!.add(e.options!.first);
         e.hasValue = true;
       } else {

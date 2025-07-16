@@ -28,7 +28,7 @@ mixin _$SellerShippingModel {
   PickUpModel get pickup => throw _privateConstructorUsedError;
   @JsonKey(name: 'active_delivery')
   bool get activeDelivery => throw _privateConstructorUsedError;
-  DeliveryModel get delivery => throw _privateConstructorUsedError;
+  DeliveryModel? get delivery => throw _privateConstructorUsedError;
   @JsonKey(name: "owner_id")
   int get ownerId => throw _privateConstructorUsedError;
 
@@ -51,11 +51,11 @@ abstract class $SellerShippingModelCopyWith<$Res> {
       @JsonKey(name: "active_pickup") bool activePickUp,
       PickUpModel pickup,
       @JsonKey(name: 'active_delivery') bool activeDelivery,
-      DeliveryModel delivery,
+      DeliveryModel? delivery,
       @JsonKey(name: "owner_id") int ownerId});
 
   $PickUpModelCopyWith<$Res> get pickup;
-  $DeliveryModelCopyWith<$Res> get delivery;
+  $DeliveryModelCopyWith<$Res>? get delivery;
 }
 
 /// @nodoc
@@ -77,7 +77,7 @@ class _$SellerShippingModelCopyWithImpl<$Res, $Val extends SellerShippingModel>
     Object? activePickUp = null,
     Object? pickup = null,
     Object? activeDelivery = null,
-    Object? delivery = null,
+    Object? delivery = freezed,
     Object? ownerId = null,
   }) {
     return _then(_value.copyWith(
@@ -105,10 +105,10 @@ class _$SellerShippingModelCopyWithImpl<$Res, $Val extends SellerShippingModel>
           ? _value.activeDelivery
           : activeDelivery // ignore: cast_nullable_to_non_nullable
               as bool,
-      delivery: null == delivery
+      delivery: freezed == delivery
           ? _value.delivery
           : delivery // ignore: cast_nullable_to_non_nullable
-              as DeliveryModel,
+              as DeliveryModel?,
       ownerId: null == ownerId
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
@@ -126,8 +126,12 @@ class _$SellerShippingModelCopyWithImpl<$Res, $Val extends SellerShippingModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $DeliveryModelCopyWith<$Res> get delivery {
-    return $DeliveryModelCopyWith<$Res>(_value.delivery, (value) {
+  $DeliveryModelCopyWith<$Res>? get delivery {
+    if (_value.delivery == null) {
+      return null;
+    }
+
+    return $DeliveryModelCopyWith<$Res>(_value.delivery!, (value) {
       return _then(_value.copyWith(delivery: value) as $Val);
     });
   }
@@ -148,13 +152,13 @@ abstract class _$$_SellerShippingModelCopyWith<$Res>
       @JsonKey(name: "active_pickup") bool activePickUp,
       PickUpModel pickup,
       @JsonKey(name: 'active_delivery') bool activeDelivery,
-      DeliveryModel delivery,
+      DeliveryModel? delivery,
       @JsonKey(name: "owner_id") int ownerId});
 
   @override
   $PickUpModelCopyWith<$Res> get pickup;
   @override
-  $DeliveryModelCopyWith<$Res> get delivery;
+  $DeliveryModelCopyWith<$Res>? get delivery;
 }
 
 /// @nodoc
@@ -174,7 +178,7 @@ class __$$_SellerShippingModelCopyWithImpl<$Res>
     Object? activePickUp = null,
     Object? pickup = null,
     Object? activeDelivery = null,
-    Object? delivery = null,
+    Object? delivery = freezed,
     Object? ownerId = null,
   }) {
     return _then(_$_SellerShippingModel(
@@ -202,10 +206,10 @@ class __$$_SellerShippingModelCopyWithImpl<$Res>
           ? _value.activeDelivery
           : activeDelivery // ignore: cast_nullable_to_non_nullable
               as bool,
-      delivery: null == delivery
+      delivery: freezed == delivery
           ? _value.delivery
           : delivery // ignore: cast_nullable_to_non_nullable
-              as DeliveryModel,
+              as DeliveryModel?,
       ownerId: null == ownerId
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
@@ -254,7 +258,7 @@ class _$_SellerShippingModel extends _SellerShippingModel {
   @JsonKey(name: 'active_delivery')
   final bool activeDelivery;
   @override
-  final DeliveryModel delivery;
+  final DeliveryModel? delivery;
   @override
   @JsonKey(name: "owner_id")
   final int ownerId;
@@ -319,7 +323,7 @@ abstract class _SellerShippingModel extends SellerShippingModel {
           @JsonKey(name: "active_pickup") required final bool activePickUp,
           required final PickUpModel pickup,
           @JsonKey(name: 'active_delivery') required final bool activeDelivery,
-          required final DeliveryModel delivery,
+          required final DeliveryModel? delivery,
           @JsonKey(name: "owner_id") required final int ownerId}) =
       _$_SellerShippingModel;
   const _SellerShippingModel._() : super._();
@@ -342,7 +346,7 @@ abstract class _SellerShippingModel extends SellerShippingModel {
   @JsonKey(name: 'active_delivery')
   bool get activeDelivery;
   @override
-  DeliveryModel get delivery;
+  DeliveryModel? get delivery;
   @override
   @JsonKey(name: "owner_id")
   int get ownerId;

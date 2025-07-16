@@ -435,7 +435,9 @@
   "checkout": "checkout",
   "access_denied": "Access denied",
   "productScanned": "Product scanned",
-  "message": "Message"
+  "message": "Message",
+  "userNotFound": "User Not Found"
+
 
 }
 

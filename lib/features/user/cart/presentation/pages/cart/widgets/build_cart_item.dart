@@ -38,20 +38,12 @@ class BuildCartItem extends StatelessWidget {
                             .copyWith(height: 1.5),
                       ),
                     ),
-                    Container(
-                      padding: Dimens.paddingAll6PX,
-                      decoration: CustomDecoration(
-                          myBoxShadow: const [],
-                          radius: Dimens.borderRadius5PX
-                      ),
-                      /// svgPicture.asset(Res.favIcon)
-                      child: SvgPicture.asset(Res.emptyFavIcon),
-                    ),
+                    CartFavIconWidget(cartItem: cartItem,controller: controller),
                   ],
                 ),
                 Gaps.vGap5,
                 RatingBar.builder(
-                  initialRating : 3,
+                  initialRating : cartItem.rating.toDouble(),
                   minRating: 0,
                   direction: Axis.horizontal,
                   allowHalfRating: false,
@@ -77,37 +69,13 @@ class BuildCartItem extends StatelessWidget {
                       style: AppTextStyle.s14_w600(color: context.colors.textColor),
                     ),
                     Gaps.hGap5,
-                    Text("Munch Corner",
+                    Text(cartItem.soldBy,
                       style: AppTextStyle.s12_w600(color: context.colors.black),
                     ),
                   ],
                 ),
                 Gaps.vGap11,
-                Row(
-                  children: [
-                    BuildCustomBounce(
-                      onTap: () => controller.onDecreaseCart(cartItem),
-                      iconData: CupertinoIcons.minus,
-                      margin: const EdgeInsetsDirectional.only(end: 19) ,
-                    ),
-                    Text(
-                      cartItem.quantity.toString(),
-                      style: AppTextStyle.s16_w400(
-                        color: context.colors.black,
-                      ),
-                    ),
-                    BuildCustomBounce(
-                      onTap: () => controller.onIncreaseCart(cartItem),
-                      iconData: CupertinoIcons.add,
-                      margin: const EdgeInsetsDirectional.only(start: 19) ,
-                    ),
-                    const Spacer(),
-                    GestureDetector(
-                        onTap: () => controller.deleteItemFromCart(context,cartItem),
-                        child: SvgPicture.asset(Res.trashIcon)
-                    ),
-                  ],
-                ),
+                ChangeCartQtyWidget(cartItem: cartItem, controller: controller),
               ],
             ),
           ),

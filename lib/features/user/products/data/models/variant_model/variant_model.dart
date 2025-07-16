@@ -14,6 +14,7 @@ class VariantModel extends BaseApiModel<Variant> with _$VariantModel {
   const factory VariantModel({
     required int id,
     required String name,
+    required String sku,
     @JsonKey(name: "stroked_price") required String strokedPrice,
     @JsonKey(name: "calculable_price") required String calculablePrice,
     @JsonKey(name: "main_price") required String mainPrice,
@@ -38,6 +39,7 @@ class VariantModel extends BaseApiModel<Variant> with _$VariantModel {
       currencySymbol: currencySymbol,
       image: image,
       options: options,
+      sku: sku
     );
   }
 }

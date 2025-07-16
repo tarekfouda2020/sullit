@@ -41,7 +41,7 @@ class OrderDetailsWidget extends StatelessWidget {
         Gaps.vGap8,
         OrderINfoItemWidget(
           title: 'Phone',
-          describe: '+99753583245',
+          describe: order?.customerPhone ?? '+99753583245',
           gaps: Gaps.hGap17,
         ),
         Gaps.vGap8,

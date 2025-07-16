@@ -60,13 +60,13 @@ class BuildDeliveryType extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        shipping.delivery.transitIn!,
+                        shipping.delivery?.transitIn ?? "",
                         style: AppTextStyle.s14_w400(
                           color: context.colors.black,
                         ),
                       ),
                       Text(
-                        shipping.delivery.shippingCost!,
+                        shipping.delivery?.shippingCost ?? "",
                         style: AppTextStyle.s14_w400(
                           color: context.colors.black,
                         ),

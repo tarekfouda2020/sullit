@@ -71,7 +71,7 @@ class ImplProductsDataSource extends ProductsDataSource {
       url: ApiNames.toggleWishlist(param),
       requestMethod: RequestMethod.post,
       responseType: ResType.type,
-      showLoader: true,
+      showLoader: false,
       responseKey: (data) => data["data"]["status"],
     );
     return await GenericHttpImpl<bool>().call(model);

@@ -607,7 +607,8 @@
   "checkout": "ادفع",
   "access_denied": "تم رفض الوصول",
   "productScanned": "تم مسح المنتج",
-  "message": "الرسالة"
+  "message": "الرسالة",
+  "userNotFound": "المستخدم غير موجود"
 
 }
 

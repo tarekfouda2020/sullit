@@ -11,7 +11,7 @@ class BuildProductSpecifications extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Visibility(
-        visible: (productModel.choiceOptions ?? <ProductOptions>[]).isNotEmpty,
+        visible: (productModel.choiceOptions ?? <ProductOptions>[]).every((element) => element.options!.isNotEmpty),
         child: Container(
           padding: Dimens.paddingAll8PX,
           margin: Dimens.paddingHorizontal15PX,

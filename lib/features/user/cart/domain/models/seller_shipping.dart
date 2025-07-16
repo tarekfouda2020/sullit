@@ -10,7 +10,7 @@ class SellerShipping extends BaseDomainModel {
   bool activePickup;
   Pickup pickup;
   bool activeDelivery;
-  Delivery delivery;
+  Delivery? delivery;
   int ownerId;
   int deliveryType = 0;
 

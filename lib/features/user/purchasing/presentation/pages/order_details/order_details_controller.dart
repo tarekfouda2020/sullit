@@ -19,12 +19,13 @@ class OrderDetailsPageController {
       enableDrag: false,
       builder: (context) => ReviewProductSheetWidget(
         onRateProduct: (value ) => sendReview(context, model,value.toInt()),
+        initRate: model?.review?.rate.toDouble(),
       ),
     );
   }
 
 
-  void sendReview(BuildContext context, OrderDetails? model,int rate) async {
+  Future<void> sendReview(BuildContext context, OrderDetails? model,int rate) async {
     if(model==null){
       Navigator.of(context).pop();
       return ;
@@ -39,7 +40,6 @@ class OrderDetailsPageController {
       }
       Navigator.of(context).pop();
     }
-
   }
 
   SendReviewParams _sendReviewParams(OrderDetails model, int rate) {

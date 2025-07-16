@@ -7,13 +7,13 @@ class BuildProductDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration:  CustomDecoration(
-          radius: BorderRadius.circular(12)
-      ),
-      padding: const EdgeInsetsDirectional.only(start: 32,top: 10,bottom: 10),
-      child: Visibility(
-        visible: description.isNotEmpty,
+    return Visibility(
+      visible:description.isNotEmpty,
+      child: Container(
+        decoration:  CustomDecoration(
+            radius: BorderRadius.circular(12)
+        ),
+        padding: const EdgeInsetsDirectional.only(start: 32,top: 10,bottom: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

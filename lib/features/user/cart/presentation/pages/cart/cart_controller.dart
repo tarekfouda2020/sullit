@@ -19,13 +19,10 @@ class CartController {
         );
   }
 
-  Future<void> updateCartItem(int qty, int id) async {
-    var params = await _updateCartItemParams(qty, id);
-    await UpdateCartItem().call(params).then(
-      (value) {
-        cartItemsBloc.onUpdateData(value!);
-      },
-    );
+  Future<bool> updateCartItem(int qty, int id) async {
+    final params = await _updateCartItemParams(qty, id);
+    final result = await UpdateCartItem().call(params); // your API call
+    return result != null;
   }
 
   Future<void> deleteItemFromCart(BuildContext context,CartItem cartItem) async {
@@ -46,22 +43,36 @@ class CartController {
     }
   }
 
-  void onIncreaseCart(CartItem cartItem) {
+  Future<void> onIncreaseCart(CartItem cartItem, GenericBloc<bool> loadingCubit) async {
     if (cartItem.quantity < cartItem.stockQty) {
-      cartItem.quantity++;
-      cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
-      updateCartItem(cartItem.quantity, cartItem.id);
+      loadingCubit.onUpdateData(true);
+      final newQty = cartItem.quantity + 1;
+      final success = await updateCartItem(newQty, cartItem.id);
+      loadingCubit.onUpdateData(false);
+      if (success) {
+        cartItem.quantity = newQty;
+        cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+      }
     } else {
       CustomToast.showSimpleToast(
-          msg: '${tr("only")} ${cartItem.stockQty} ${tr("availableStock")}');
+        msg: '${tr("only")} ${cartItem.stockQty} ${tr("availableStock")}',
+      );
     }
   }
 
-  void onDecreaseCart(CartItem cartItem) {
+  Future<void> onDecreaseCart(CartItem cartItem, GenericBloc<bool> loadingCubit) async {
     if (cartItem.quantity > 1) {
-      cartItem.quantity--;
-      cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
-      updateCartItem(cartItem.quantity, cartItem.id);
+      loadingCubit.onUpdateData(true);
+
+      final newQty = cartItem.quantity - 1;
+      final success = await updateCartItem(newQty, cartItem.id);
+
+      loadingCubit.onUpdateData(false);
+
+      if (success) {
+        cartItem.quantity = newQty;
+        cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+      }
     }
   }
 

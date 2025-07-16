@@ -15,6 +15,8 @@ class ForgetPasswordController {
            ResetPasswordVerifyRoute(email: email.text),
           // ActiveAccountRoute(phoneOrEmail: email.text,fromForget:true),
         );
+      }else{
+        CustomToast.showSimpleToast(msg: "User Not Found", type: ToastType.error);
       }
     }
   }

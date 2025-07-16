@@ -131,7 +131,7 @@ class ImplCartDataSources extends CartDataSources {
       requestBody: params.toJson(),
       requestMethod: RequestMethod.post,
       responseType: ResType.model,
-      showLoader: true,
+      showLoader: false,
       toJsonFunc: (data) => CartModel.fromJson(data),
       responseKey: (data)=> data['data'],
       errorFunc: (data)=> data["msg"],

@@ -42,8 +42,8 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'return_reason') required String returnReason,
     @JsonKey(name: 'sold_by_type') required String soldByType,
     @JsonKey(name: 'sold_by_name') required String soldBy,
-    @JsonKey(name: 'order_details')
-        required List<OrderDetailsModel> orderDetails,
+    @JsonKey(name: 'customer_phone') required String customerPhone,
+    @JsonKey(name: 'order_details') required List<OrderDetailsModel> orderDetails,
   }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) =>
@@ -82,6 +82,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       orderDetails: orderDetails.map((e) => e.toDomainModel()).toList(),
       soldBy: soldBy,
       soldByType: soldByType,
+      customerPhone: customerPhone,
     );
   }
 }

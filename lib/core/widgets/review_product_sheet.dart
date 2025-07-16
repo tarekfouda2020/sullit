@@ -11,7 +11,8 @@ import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_she
 
 class ReviewProductSheetWidget extends StatefulWidget {
   final void Function(double) onRateProduct;
-  const ReviewProductSheetWidget({super.key, required this.onRateProduct,});
+  final double? initRate;
+  const ReviewProductSheetWidget({super.key, required this.onRateProduct, this.initRate,});
 
   @override
   State<ReviewProductSheetWidget> createState() => _ReviewProductSheetWidgetState();
@@ -41,7 +42,7 @@ class _ReviewProductSheetWidgetState extends State<ReviewProductSheetWidget> {
               bloc: ratCubit,
               builder: (context, state) {
                 return RatingBar.builder(
-                  initialRating: state.data,
+                  initialRating: widget.initRate ?? state.data,
                   minRating: 1,
                   direction: Axis.horizontal,
                   allowHalfRating: false,

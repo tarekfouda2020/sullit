@@ -38,7 +38,7 @@ class OrderDetailsProductsWidget extends StatelessWidget {
             return  OrderDetailsProductItemWidget(
               hasReview: hasReview,
               onPressReview: () => controller.reviewSheet(context,order?.orderDetails[index]),
-              orderDetails: order?.orderDetails[index],
+              orderDetails: controller.orderDetailsBloc.state.data?.orderDetails[index],
             );
           }),
           if (!isReturned)
