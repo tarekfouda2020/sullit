@@ -13,4 +13,11 @@ class CountryPickerHelper {
     return data;
   }
 
+
+  static Country defaultCountry(){
+    return const Country(
+        "United Arab Emirates","flags/are.png","AE","+971"
+    );
+  }
+
 }

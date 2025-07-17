@@ -19,7 +19,7 @@ class ProfileController {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
-  final GenericBloc<Country?> countryCubit = GenericBloc(null);
+  final GenericBloc<Country?> countryCubit = GenericBloc(null );
   final GenericBloc<bool> verifyPhoneCubit = GenericBloc(false);
 
   // final GenericBloc<bool> verifyEmailCubit = GenericBloc(false);
@@ -28,6 +28,7 @@ class ProfileController {
 
   ProfileController(BuildContext context) {
     getInitialData(context);
+    countryCubit.onUpdateData(CountryPickerHelper.defaultCountry());
   }
 
   void getInitialData(BuildContext context) {

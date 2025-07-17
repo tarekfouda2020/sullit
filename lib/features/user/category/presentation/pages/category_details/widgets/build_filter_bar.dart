@@ -18,18 +18,18 @@ class BuildFilterBar extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                // Expanded(
-                //   child: DropdownTextField<BrandDomainModel>(
-                //     title: tr('allBrands'),
-                //     hint: tr('allBrands'),
-                //     fillColor: context.colors.white,
-                //     itemAsString: (u) => u.name,
-                //     margin: EdgeInsets.zero,
-                //     validate: (value) => validateDropDown(context),
-                //     data: state.data?.brands,
-                //     onChange: (model) => detailsController.onChangeBrand(model),
-                //   ),
-                // ),
+                Expanded(
+                  child: DropdownTextField<BrandDomainModel>(
+                    title: tr('allBrands'),
+                    hint: tr('allBrands'),
+                    fillColor: context.colors.white,
+                    itemAsString: (u) => u.name,
+                    margin: EdgeInsets.zero,
+                    validate: (value) => validateDropDown(context),
+                    data: state.data?.brands,
+                    onChange: (model) => detailsController.onChangeBrand(model),
+                  ),
+                ),
                 // Gaps.hGap15,
                 InkWell(
                   onTap: () =>

@@ -47,3 +47,4 @@ part 'build_specification_item.dart';
 part 'build_sub_categories.dart';
 part 'build_sub_category_item.dart';
 part 'brands_filter_item_widget.dart';
+part 'sub_filter_item_widget.dart';

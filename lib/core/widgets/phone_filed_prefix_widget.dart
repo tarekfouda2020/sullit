@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
@@ -14,6 +16,7 @@ class PhoneFieldPrefixWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("========>>>>>> name ${countryCubit.state.data?.name}");
     return GestureDetector(
       onTap: () async{
         var country = await CountryPickerHelper.pickCountry(context);

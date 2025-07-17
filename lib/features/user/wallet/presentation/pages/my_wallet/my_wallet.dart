@@ -32,7 +32,7 @@ class _MyWalletState extends State<MyWallet> {
                 BuildWalletHistory(
                   walletRechargeHistory: state.data!.rechargeHistory,
                 ),
-                WalletItemWidget()
+                // WalletItemWidget()
               ],
             );
           } else {

@@ -10,6 +10,7 @@ class CategoryDetailsController {
   final GenericBloc<SubCategory?> specificationsCubit = GenericBloc(null);
   final GenericBloc<PriceRangeParams?> rangeCubit = GenericBloc(null);
   final GenericBloc<String> titleCubit = GenericBloc("");
+  final GenericBloc<bool> showBrandsCubit = GenericBloc<bool>(false);
   final PagingController<int, Product> pagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 12;
@@ -20,6 +21,8 @@ class CategoryDetailsController {
   List<String> selectedColors = [];
   int currentCatId = 0;
   RangeValues? _initialRangeValues;
+
+  bool isFilterAppliedBefore = false;
 
   // CategoryDetailsController(BuildContext context, int catId) {
   //   getSubCategories(context, catId, 0).then((value) {
@@ -150,13 +153,15 @@ class CategoryDetailsController {
   }
 
   void onChangeBrand(BrandDomainModel? model) {
-    if (model != null) {
+    if(model == brandModel){
+      brandModel = null;
+      brandId = 0;
+    } else if (model != null) {
       brandModel = model;
       brandId = brandModel!.id;
-    } else {
-      brandId = 0;
     }
-    pagingController.refresh();
+    specificationsCubit.onUpdateData(specificationsCubit.state.data);
+    // pagingController.refresh();
   }
 
   void onOpenAttribute(int index) {
@@ -245,16 +250,69 @@ class CategoryDetailsController {
     }
   }
 
+  /// Checks if any filters have been applied
+  bool hasFiltersApplied() {
+    if (brandId != 0 || brandModel != null) {
+      return true;
+    }
+
+    var currentRange = rangeCubit.state.data;
+    if (currentRange != null) {
+      var initialRange = currentRange.initial;
+      var currentValue = currentRange.value;
+      if (currentValue.start != initialRange.start || currentValue.end != initialRange.end) {
+        return true;
+      }
+    }
+
+    var specifications = specificationsCubit.state.data;
+    if (specifications != null) {
+      for (var attribute in specifications.attributes) {
+        if (attribute.attributeValues.any((element) => element.selected)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+
   void resetFilter(BuildContext context) {
-    /// reset the price range later
+    if (hasFiltersApplied() == false) {
+      Navigator.pop(context);
+      return;
+    }
+
+    SubCategory data = subCategoriesCubit.state.data!;
+    final double minPrice = double.parse(data.priceRange.min);
+    final double maxPrice = double.parse(data.priceRange.max);
+    RangeValues rangeValues = RangeValues(minPrice, maxPrice);
+    
+    showBrandsCubit.onUpdateData(false);
+    brandModel = null;
+    brandId = 0;
+    
     for(var item in subCategoriesCubit.state.data?.attributes ?? <Attributes>[]){
       item.opened = false;
       for(var attribute in item.attributeValues){
         attribute.selected = false;
       }
     }
+
     subCategoriesCubit.onUpdateData(subCategoriesCubit.state.data);
+    rangeCubit.onUpdateData(PriceRangeParams(initial: rangeValues, value: rangeValues));
+    if(isFilterAppliedBefore){
+      pagingController.refresh();
+      isFilterAppliedBefore = false;
+    }
     Navigator.pop(context);
+  }
+
+
+  void confirmFilter(BuildContext context) {
+    isFilterAppliedBefore = true;
+    Navigator.of(context).pop();
+    pagingController.refresh();
   }
 
 

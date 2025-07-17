@@ -16,7 +16,7 @@ class WalletItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            item?.approval ?? "Income",
+            item?.approval ?? "",
             style: AppTextStyle.s14_w600(
               /// if deduct color darkRed
               color: context.colors.green,
@@ -24,7 +24,7 @@ class WalletItemWidget extends StatelessWidget {
           ),
           Gaps.vGap6,
           Text(
-            item?.dmoun ?? "+ 10.00 AED",
+            item?.dmoun ?? "",
             style: AppTextStyle.s22_w600(
               color: context.colors.primary,
             ),

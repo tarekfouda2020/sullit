@@ -45,7 +45,7 @@ class BuildFilterDrawer extends StatelessWidget {
                           categoryDetailsController: categoryDetailsController,
                         ),
                         Gaps.line(context.colors.gray, 15),
-                        const BrandsFilterItem(),
+                         BrandsFilterItem(controller: categoryDetailsController),
                         ...List.generate(
                           state.data!.attributes.length,
                           (index) => BuildFilterItem(
@@ -63,6 +63,7 @@ class BuildFilterDrawer extends StatelessWidget {
                     ),
                   ),
                 ),
+                Gaps.vGap12,
                 Row(
                   children: [
                     Expanded(
@@ -71,10 +72,7 @@ class BuildFilterDrawer extends StatelessWidget {
                         height: 35.h,
                         title: tr('confirm'),
                         margin: EdgeInsets.zero,
-                        onTap: () {
-                          Navigator.of(context).pop();
-                          categoryDetailsController.pagingController.refresh();
-                        },
+                        onTap: () => categoryDetailsController.confirmFilter(context),
                         color: context.colors.primary,
                         borderRadius: Dimens.borderRadius30PX,
                         textColor: context.colors.white,

@@ -6,6 +6,7 @@ import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
 import 'package:flutter_tdd/features/general/common/data/data_sources/common_data_sources.dart';
+import 'package:flutter_tdd/features/general/common/data/models/contact_us_social/contact_us_social_model.dart';
 import 'package:flutter_tdd/features/general/common/data/models/support_msg_model/support_msg_model.dart';
 import 'package:flutter_tdd/features/general/common/domain/entities/contact_us_params.dart';
 import 'package:flutter_tdd/features/general/common/domain/entities/support_msg_params.dart';
@@ -109,8 +110,7 @@ class ImplCommonDataSources extends CommonDataSources {
   }
 
   @override
-  Future<Either<Failure, List<SupportMsgModel>>> sendSupportMsg(
-      SupportMsgParams params) async {
+  Future<Either<Failure, List<SupportMsgModel>>> sendSupportMsg(SupportMsgParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.sendSupportMsg,
       requestMethod: RequestMethod.post,
@@ -124,5 +124,21 @@ class ImplCommonDataSources extends CommonDataSources {
       errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<List<SupportMsgModel>>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, List<ContactUsSocial>>> contactUsSocials() async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.contactUsSocials,
+      requestMethod: RequestMethod.get,
+      responseType: ResType.list,
+      showLoader: false,
+      toJsonFunc: (json) => List<ContactUsSocial>.from(
+        json.map((e) => ContactUsSocial.fromJson(e)),
+      ),
+      responseKey: (data) => data["data"],
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<List<ContactUsSocial>>().call(model);
   }
 }

@@ -104,6 +104,7 @@ class ApiNames {
   static const String terms = "terms";
   static const String privacyPolicy = "privacy-policy";
   static const String contactUs = "contact-us";
+  static const String contactUsSocials = "socials";
   static const String supportPolicy = "support-policy";
   static const String returnPolicy = "return-policy";
   static const String getContactUs = "settings/contact-data";

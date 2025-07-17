@@ -26,6 +26,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       key: controller.scaffold,
+      drawerEnableOpenDragGesture: false,
+      drawer: BuildFilterDrawer(categoryDetailsController: controller),
       appBar: DefaultAppBar(
         titleWidget: BlocBuilder<GenericBloc<String>, GenericState<String>>(
           bloc: controller.titleCubit,
@@ -50,7 +52,6 @@ class _CategoryDetailsState extends State<CategoryDetails> {
           Gaps.hGap20,
         ],
       ),
-      drawer: BuildFilterDrawer(categoryDetailsController: controller),
       body: Column(
         children: [
           Visibility(

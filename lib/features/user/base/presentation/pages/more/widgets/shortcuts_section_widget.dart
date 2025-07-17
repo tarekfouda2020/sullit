@@ -15,6 +15,12 @@ class ShortCutSectionWidget extends StatelessWidget {
                 controller.checkAuth(context, MoreRoutes.profile),
             image: Res.manageProfile,
           ),
+          // BuildMoreItem(
+          //   title: tr('manageProfile'),
+          //   onTap: () =>
+          //       controller.checkAuth(context, MoreRoutes.purchasedProducts),
+          //   image: Res.manageProfile,
+          // ),
           BuildMoreItem(
             image: Res.walletLogo,
             title: tr('myWallet'),
@@ -40,9 +46,9 @@ class ShortCutSectionWidget extends StatelessWidget {
             onTap: () => controller.checkAuth(context, MoreRoutes.loyaltyPoints),
           ),
           BuildMoreItem(
-            title: tr('purchasedHistory'),
+            title: "Purchased Orders",
             onTap: () => controller.checkAuth(
-                context, MoreRoutes.purchasedHistory),
+                context, MoreRoutes.purchasedProducts),
             image: Res.purchasedHistory,
           ),
           BuildMoreItem(

@@ -39,7 +39,7 @@ class _CartFavIconWidgetState extends State<CartFavIconWidget> {
                   },
                 ),
           ),
-          child: const LoadingIconWidget(),
+          child: const LoadingIconWidget(margin: EdgeInsets.zero),
         );
       },
     );
