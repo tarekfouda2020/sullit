@@ -6,6 +6,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/reviews.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/return_order_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/send_review_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/track_order_model.dart';
 
 abstract class PurchasingRepository {
   Future<Either<Failure, List<Orders>>> getPurchaseHistory(GenericPaginateParams param);
@@ -16,5 +17,6 @@ abstract class PurchasingRepository {
   Future<Either<Failure, String>> cancelOrder (int param);
   Future<Either<Failure, bool>> returnOrder(ReturnOrderParams param);
   Future<Either<Failure, String>> payOrder(int param);
+  Future<Either<Failure, TrackOrderModel>> trackingHistory(int param);
 
 }

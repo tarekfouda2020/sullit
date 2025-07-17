@@ -1,7 +1,8 @@
 part of 'track_order_widgets_imports.dart';
 
 class TrackOrderNumberWidget extends StatelessWidget {
-  const TrackOrderNumberWidget({super.key});
+  final TrackOrderModel model;
+  const TrackOrderNumberWidget({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class TrackOrderNumberWidget extends StatelessWidget {
           Text("Order No. :",
           style: AppTextStyle.s18_w300(color: context.colors.textColor),
           ),
-          Text(" 3253646",
+          Text(" ${model.id}",
             style: AppTextStyle.s18_w300(color: context.colors.primary),
           ),
         ],

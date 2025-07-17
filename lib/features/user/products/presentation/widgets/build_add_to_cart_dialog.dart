@@ -33,9 +33,11 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
     productCubit.onUpdateData(widget.product);
     if (widget.product.choiceOptions!.isNotEmpty) {
       widget.product.choiceOptions?.map((e) {
-        e.selectedAttribute = [];
-        e.selectedAttribute?.add(e.options!.first);
-        e.hasValue = true;
+        if(e.options!.isNotEmpty&&e.options!=null){
+          e.selectedAttribute = [];
+          e.selectedAttribute?.add(e.options!.first);
+          e.hasValue = true;
+        }
       }).toList();
       productCubit.onUpdateData(widget.product);
     }

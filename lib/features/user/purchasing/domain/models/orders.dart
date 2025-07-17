@@ -86,15 +86,20 @@ bool get isCouponApply => getDiscountNumber() > 0;
 
   TrackOrderEnum get getTrackOrderStatus{
 
-    /// at first its pending
-    ///  confirmed
-    /// picked_up
-    /// on_the_way in this step you can cancel it
-    /// delivered
+    /// at first its Placed
+    ///  Confirmed
+    /// Picked Up
+    /// On The Way in this step you can cancel it
+    /// Delivered
+    /// Cancelled
 
 
     switch(deliveryStatusConst){
-      case "pending": return TrackOrderEnum.placed;
+      case "Placed": return TrackOrderEnum.placed;
+      case "Confirmed": return TrackOrderEnum.placed;
+      case "Picked Up": return TrackOrderEnum.placed;
+      case "Delivered": return TrackOrderEnum.delivered;
+      case "Cancelled": return TrackOrderEnum.delivered;
       default: return TrackOrderEnum.placed;
     }
   }

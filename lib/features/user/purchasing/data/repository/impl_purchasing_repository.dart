@@ -9,6 +9,7 @@ import 'package:flutter_tdd/features/user/purchasing/data/data_sources/purchasin
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/return_order_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/send_review_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/track_order_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/repository/purchasing_repository.dart';
 import 'package:injectable/injectable.dart';
 
@@ -62,4 +63,12 @@ class ImplPurchasingRepository extends PurchasingRepository with ModelToDomain {
   Future<Either<Failure, String>> payOrder(int param) async{
     return await dataSource.payOrder(param);
   }
+
+  @override
+  Future<Either<Failure, TrackOrderModel>> trackingHistory(int param) async{
+    var result = await dataSource.trackingHistory(param);
+    return toDomainResult(result);
+  }
+
+
 }

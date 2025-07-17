@@ -1,15 +1,20 @@
 part of 'track_order_widgets_imports.dart';
 
 class TrackOrderItemWidget extends StatelessWidget {
-  final int currentStep;
+  // final int currentStep;
   final bool isLast;
-  final TrackOrderEnum trackStatus;
+  // final TrackOrderEnum trackStatus;
+
+  final OrderStatusModel statusModel;
+  final TrackOrderModel trackModel;
 
   const TrackOrderItemWidget({
     super.key,
-     this.currentStep = 3,
+    required this.statusModel,
+    required this.trackModel,
+    //  this.currentStep = 3,
     required this.isLast,
-    required this.trackStatus,
+    // required this.trackStatus,
   });
 
   @override
@@ -25,11 +30,11 @@ class TrackOrderItemWidget extends StatelessWidget {
               decoration: CustomDecoration(
                 myBoxShadow: const [],
                 boxShape: BoxShape.circle,
-                thisColor:_getStepColor(context)
+                thisColor:context.colors.primary
               ),
               // child: _getCurrentIcon,
               child: Visibility(
-                visible: trackStatus.getStepNumber() <= currentStep,
+                // visible: trackStatus.getStepNumber() <= currentStep,
                   child: SvgPicture.asset(Res.successIcon,
                   colorFilter: ColorFilter.mode(context.colors.white, BlendMode.srcIn),
                   )
@@ -39,7 +44,7 @@ class TrackOrderItemWidget extends StatelessWidget {
               Container(
                 width: 3,
                 height: 80,
-                color: _getLineColor(context),
+                color: context.colors.primary,
               ),
           ],
         ),
@@ -48,16 +53,16 @@ class TrackOrderItemWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Gaps.vGap8,
-            if(currentStep>=trackStatus.getStepNumber())
+            // if(currentStep>=trackStatus.getStepNumber())
             Text(
-              trackStatus.getTitle(),
+              statusModel.status,
               style: AppTextStyle.s20_w700(
                   color: context.colors.black),
             ),
             Gaps.vGap5,
-            if(currentStep>=trackStatus.getStepNumber())
+            // if(currentStep>=trackStatus.getStepNumber())
             Text(
-              "10 feb 2025 - 02:00 PM",
+              statusModel.createdAt,
               style: AppTextStyle.s16_w400(
                   color: context.colors.textColor)
                   .copyWith(
@@ -72,19 +77,19 @@ class TrackOrderItemWidget extends StatelessWidget {
   }
 
 
-  Color _getLineColor(BuildContext context) {
-    return currentStep >= trackStatus.getStepNumber()
-        ? context.colors.primary
-        : context.colors.deepGray;
-  }
+  // Color _getLineColor(BuildContext context) {
+  //   return currentStep >= trackStatus.getStepNumber()
+  //       ? context.colors.primary
+  //       : context.colors.deepGray;
+  // }
 
-  Color  _getStepColor(BuildContext context) {
-    if(currentStep >= trackStatus.getStepNumber()){
-      return context.colors.primary;
-    }else{
-      return context.colors.deepGray;
-    }
-  }
+  // Color  _getStepColor(BuildContext context) {
+  //   if(currentStep >= trackStatus.getStepNumber()){
+  //     return context.colors.primary;
+  //   }else{
+  //     return context.colors.deepGray;
+  //   }
+  // }
 
 
 }

@@ -787,9 +787,13 @@ class AppRouter extends _i94.RootStackRouter {
       );
     },
     TrackOrderRoute.name: (routeData) {
+      final args = routeData.argsAs<TrackOrderRouteArgs>();
       return _i94.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i68.TrackOrder(),
+        child: _i68.TrackOrder(
+          key: args.key,
+          orderId: args.orderId,
+        ),
         opaque: true,
       );
     },
@@ -2751,14 +2755,36 @@ class ReturnOrdersRoute extends _i94.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i68.TrackOrder]
-class TrackOrderRoute extends _i94.PageRouteInfo<void> {
-  const TrackOrderRoute()
-      : super(
+class TrackOrderRoute extends _i94.PageRouteInfo<TrackOrderRouteArgs> {
+  TrackOrderRoute({
+    _i97.Key? key,
+    required int orderId,
+  }) : super(
           TrackOrderRoute.name,
           path: '/track-order',
+          args: TrackOrderRouteArgs(
+            key: key,
+            orderId: orderId,
+          ),
         );
 
   static const String name = 'TrackOrderRoute';
+}
+
+class TrackOrderRouteArgs {
+  const TrackOrderRouteArgs({
+    this.key,
+    required this.orderId,
+  });
+
+  final _i97.Key? key;
+
+  final int orderId;
+
+  @override
+  String toString() {
+    return 'TrackOrderRouteArgs{key: $key, orderId: $orderId}';
+  }
 }
 
 /// generated route for

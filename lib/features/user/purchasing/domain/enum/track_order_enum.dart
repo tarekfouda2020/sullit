@@ -1,26 +1,32 @@
 enum TrackOrderEnum{
- placed,
-  packaging,
-  shipped,
+
+
+  /// at first its Placed
+  ///  Confirmed
+  /// Picked Up
+  /// On The Way in this step you can cancel it
+  /// Delivered
+  /// Cancelled
+
+
+  placed,
+  confirmed,
+  pickedUp,
+  onTheWay,
+  cancelled,
   delivered;
 
 
- String getTitle(){
-   switch(this){
-     case placed: return "Placed";
-     case packaging: return "Packaging";
-     case shipped: return "Shipped";
-     case delivered: return "Delivered";
-   }
- }
 
 
  int getStepNumber(){
    switch(this){
      case placed: return 1;
-     case packaging: return 2;
-     case shipped: return 3;
-     case delivered: return 4;
+     case confirmed: return 2;
+     case pickedUp: return 3;
+     case onTheWay: return 4;
+     case delivered: return 5;
+     case cancelled: return 5;
    }
  }
 

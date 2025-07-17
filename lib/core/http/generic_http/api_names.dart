@@ -153,6 +153,8 @@ class ApiNames {
 
   static String cancelOrder(int orderId) => "orders/$orderId/cancel-order";
 
+  static String trackingHistory(int orderId) => "orders/$orderId/tracking-history";
+
   static String returnOrder(int orderId) =>
       "orders/$orderId/store-return-order";
 

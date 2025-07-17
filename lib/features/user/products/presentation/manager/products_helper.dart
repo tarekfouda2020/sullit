@@ -27,19 +27,13 @@ class ProductsHelper {
       CustomToast.showAuthDialog(context);
       return;
     }
-    
-    /// update the loading cubit with true here
     if (loadingBloc != null) {
       loadingBloc.onUpdateData(true);
     }
-    
     var data = await SetToggleFavourite().call(id);
-    
-    /// update the loading cubit with false here
     if (loadingBloc != null) {
       loadingBloc.onUpdateData(false);
     }
-    
     if (data) {
       CustomToast.showSimpleToast(
         msg: tr('itemAddedToWishlist'),

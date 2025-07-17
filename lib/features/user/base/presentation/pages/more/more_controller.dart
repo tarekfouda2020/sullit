@@ -55,7 +55,7 @@ class MoreController {
         AutoRouter.of(context).push( const ProfileRoute());
         break;
       case MoreRoutes.trackOrder:
-        AutoRouter.of(context).push(const TrackOrderRoute());
+        return ;
         break;
       case MoreRoutes.classifiedProducts:
         AutoRouter.of(context).push(const ClassifiedProductsRoute());

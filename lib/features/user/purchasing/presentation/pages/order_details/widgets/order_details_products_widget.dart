@@ -45,7 +45,11 @@ class OrderDetailsProductsWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 18),
               child: GestureDetector(
-                onTap:  ()=> AutoRouter.of(context).push(const TrackOrderRoute()),
+                onTap:  () {
+                  if(order?.id != null){
+                    AutoRouter.of(context).push( TrackOrderRoute(orderId: order!.id));
+                  }
+                },
                 child: Row(
                   children: [
                     Text(
