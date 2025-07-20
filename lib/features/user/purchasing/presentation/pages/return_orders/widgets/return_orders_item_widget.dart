@@ -9,7 +9,7 @@ class ReturnOrdersItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AutoRouter.of(context).push(OrderDetailsPageRoute(isReturnedOrder: true)),
+      onTap: () => AutoRouter.of(context).push(OrderDetailsPageRoute(isReturnedOrder: true,order: order)),
       child: Column(
         children: [
           Container(
@@ -65,7 +65,7 @@ class ReturnOrdersItemWidget extends StatelessWidget {
                         Gaps.hGap6,
                         Text(
                           DateTimeHelper.formatDate(
-                              date: DateTime.parse(order.orderDate),
+                              date: _getDate,
                               formatType: "d MMM yyyy - hh:mm a"
                           ),
                           style: AppTextStyle.s14_w400(color: context.colors.textColor),
@@ -81,4 +81,8 @@ class ReturnOrdersItemWidget extends StatelessWidget {
       ),
     );
   }
+
+  DateTime get _getDate => DateTimeHelper.convertToDateTime(strDate: order.orderDate);
+
+
 }

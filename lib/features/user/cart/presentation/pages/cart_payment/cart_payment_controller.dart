@@ -67,6 +67,7 @@ class CartPaymentController {
         var params = _orderParams();
         var data = await CreateOrder().call(params);
         if (data != null) {
+          log("======================transactionUrl ${data.transactionUrl} =====================");
           if (data.transactionUrl != null) {
             _goToPay(data.transactionUrl, context);
           } else {

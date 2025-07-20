@@ -37,23 +37,23 @@ class BuildSellerInfo extends StatelessWidget {
             ),
           ),
           /// not shown in figma
-          Visibility(
-            visible: shopModel != null,
-            child: Flexible(
-              child: DefaultButton(
-                margin: Dimens.paddingHorizontal10PX,
-                title:
-                shopModel?.follow == true ? tr("unfollow") : tr("follow"),
-                onTap: () => controller.onChangeFollowing(context, shopModel!.userId!),
-                color: shopModel?.follow == true
-                    ? context.colors.black
-                    : context.colors.primary,
-                height: 25.h,
-                borderRadius: Dimens.borderRadius5PX,
-                //width: 100,
-              ),
-            ),
-          )
+          // Visibility(
+          //   visible: shopModel != null,
+          //   child: Flexible(
+          //     child: DefaultButton(
+          //       margin: Dimens.paddingHorizontal10PX,
+          //       title:
+          //       shopModel?.follow == true ? tr("unfollow") : tr("follow"),
+          //       onTap: () => controller.onChangeFollowing(context, shopModel!.userId!),
+          //       color: shopModel?.follow == true
+          //           ? context.colors.black
+          //           : context.colors.primary,
+          //       height: 25.h,
+          //       borderRadius: Dimens.borderRadius5PX,
+          //       //width: 100,
+          //     ),
+          //   ),
+          // )
         ],
       ),
     );

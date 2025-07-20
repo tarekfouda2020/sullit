@@ -19,7 +19,10 @@ class ContactUsSocialItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap ?? () => HelperMethods.instance.launchURL(url: model.url),
-      child: _buildImage() ,
+      child: Padding(
+        padding: const EdgeInsetsDirectional.only(end: 10),
+        child: _buildImage(),
+      ) ,
     );
   }
 
