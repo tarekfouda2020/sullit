@@ -20,7 +20,7 @@ class LoyaltyPointsInfo extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text("Your Loyalty Points Balance is",
+                          Text(tr("yourLoyaltyPointsBalance"),
           style: AppTextStyle.s16_w400(color: context.colors.white),
           ),
           Gaps.vGap12,
@@ -32,7 +32,7 @@ class LoyaltyPointsInfo extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 7),
-                child: Text("Point",
+                child: Text(tr("point"),
                   style: AppTextStyle.s20_w400(color: context.colors.gold),
                 ),
               ),

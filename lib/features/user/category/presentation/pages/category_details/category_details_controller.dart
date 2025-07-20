@@ -250,38 +250,37 @@ class CategoryDetailsController {
     }
   }
 
-  /// Checks if any filters have been applied
-  bool hasFiltersApplied() {
-    if (brandId != 0 || brandModel != null) {
-      return true;
-    }
-
-    var currentRange = rangeCubit.state.data;
-    if (currentRange != null) {
-      var initialRange = currentRange.initial;
-      var currentValue = currentRange.value;
-      if (currentValue.start != initialRange.start || currentValue.end != initialRange.end) {
-        return true;
-      }
-    }
-
-    var specifications = specificationsCubit.state.data;
-    if (specifications != null) {
-      for (var attribute in specifications.attributes) {
-        if (attribute.attributeValues.any((element) => element.selected)) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
+  // bool hasFiltersApplied() {
+  //   if (brandId != 0 || brandModel != null) {
+  //     return true;
+  //   }
+  //
+  //   var currentRange = rangeCubit.state.data;
+  //   if (currentRange != null) {
+  //     var initialRange = currentRange.initial;
+  //     var currentValue = currentRange.value;
+  //     if (currentValue.start != initialRange.start || currentValue.end != initialRange.end) {
+  //       return true;
+  //     }
+  //   }
+  //
+  //   var specifications = specificationsCubit.state.data;
+  //   if (specifications != null) {
+  //     for (var attribute in specifications.attributes) {
+  //       if (attribute.attributeValues.any((element) => element.selected)) {
+  //         return true;
+  //       }
+  //     }
+  //   }
+  //   return false;
+  // }
 
 
   void resetFilter(BuildContext context) {
-    if (hasFiltersApplied() == false) {
-      Navigator.pop(context);
-      return;
-    }
+    // if (hasFiltersApplied() == false) {
+    //   Navigator.pop(context);
+    //   return;
+    // }
 
     SubCategory data = subCategoriesCubit.state.data!;
     final double minPrice = double.parse(data.priceRange.min);

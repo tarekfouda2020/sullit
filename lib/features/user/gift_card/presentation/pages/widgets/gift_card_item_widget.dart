@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
@@ -46,7 +47,7 @@ class GiftCardItemWidget extends StatelessWidget {
                     Row(
                       children: [
                         if(!isMyGiftCard)
-                        Text("Pay only", style: AppTextStyle.s16_w400(color: context.colors.black)),
+                        Text(tr("payOnly"), style: AppTextStyle.s16_w400(color: context.colors.black)),
                         if(!isMyGiftCard)
                         Gaps.hGap8,
                         Text("50.00 AED", style: AppTextStyle.s22_w600(color: context.colors.primary)),
@@ -55,7 +56,7 @@ class GiftCardItemWidget extends StatelessWidget {
                     Gaps.vGap8,
                     Row(
                       children: [
-                        Text("and get purchases with", style: AppTextStyle.s12_w400(color: context.colors.textColor)),
+                        Text(tr("andGetPurchasesWith"), style: AppTextStyle.s12_w400(color: context.colors.textColor)),
                         Gaps.hGap2,
                         Text("100.00 AED", style: AppTextStyle.s12_w700(color: context.colors.black)),
                       ],
@@ -73,7 +74,7 @@ class GiftCardItemWidget extends StatelessWidget {
                     Gaps.vGap17,
                     Gaps.line(context.colors.textColor, 0),
                     Gaps.vGap17,
-                    Text("Valid for 30 Days", style: AppTextStyle.s12_w400(color: context.colors.textColor)),
+                    Text(tr("validFor30Days"), style: AppTextStyle.s12_w400(color: context.colors.textColor)),
                   ],
                 ))
           ],
