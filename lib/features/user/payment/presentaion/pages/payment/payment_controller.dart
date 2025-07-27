@@ -26,7 +26,7 @@ class PaymentController {
             msg: tr('paymentDone'),
             type: ToastType.success,
           );
-          AutoRouter.of(context).pop();
+          AutoRouter.of(context).pop(true);
         }
       },
     );

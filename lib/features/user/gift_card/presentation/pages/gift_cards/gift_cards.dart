@@ -22,20 +22,15 @@ class _GiftCardsState extends State<GiftCards> {
       body: Padding(
        padding: Dimens.paddingHorizontal20PX,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ShowMyGiftCardsButtonWidget(controller: controller),
+            Text("New Offers",
+              style: AppTextStyle.s18_w700(color: context.colors.black),
+            ),
+            Gaps.vGap9,
             Expanded(
-              child: ListView(
-                children: [
-                  Text("New Offers",
-                  style: AppTextStyle.s18_w700(color: context.colors.black),
-                  ),
-                  Gaps.vGap9,
-                  ...List.generate(10, (index) {
-                    return  const GiftCardItemWidget(isMyGiftCard: false);
-                  })
-                ],
-              ),
+              child: GiftCardsListWidget(controller: controller),
             ),
 
           ],

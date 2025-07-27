@@ -9,7 +9,7 @@ class GiftCardFooterSectionWidget extends StatelessWidget {
     return Visibility(
       visible: controller.isMyGiftCard,
       replacement: DefaultButton(
-        onTap: () => controller.byGiftCard(context),
+        onTap: () => controller.showPayMethodsSheet(context),
         title: "Buy Now",
         color: context.colors.primary,
         textColor: context.colors.white,
@@ -19,7 +19,8 @@ class GiftCardFooterSectionWidget extends StatelessWidget {
         borderRadius: Dimens.borderRadius30PX,
         margin: Dimens.marginTop22,
       ),
-      child: const CardAvailablePrice(),
+      // child:  CardAvailablePrice(controller: controller),
+      child:  Gaps.empty,
     );
   }
 }

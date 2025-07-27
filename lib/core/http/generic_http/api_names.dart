@@ -190,4 +190,18 @@ class ApiNames {
   //Customers Products
   static const String getCustomersProducts = "customer-products";
   static const String getCustomersProductsDetails = "customer-products";
+
+  /// giftCards
+  static const String paymentMethods = "gift-cards/payment-methods";
+
+  static const String giftCardSubscriptions = "gift-card-subscriptions";
+
+  static const String giftCards = "gift-cards";
+
+  static  String giftCardSubscriptionDetails(int params) => "gift-card-subscriptions/$params";
+
+  static  String giftCardDetails(int params) => "gift-cards/$params";
+
+  static String payGiftCardSubscribe(int params) => "gift-cards/$params/subscribe";
+
 }

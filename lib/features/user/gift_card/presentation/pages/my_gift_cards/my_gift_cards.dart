@@ -8,17 +8,15 @@ class MyGiftCards extends StatefulWidget {
 }
 
 class _MyGiftCardsState extends State<MyGiftCards> {
+
+  final MyGiftCardsController controller = MyGiftCardsController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: "My Gift Cards",elevation: 0,),
-      body: ListView.builder(
-        padding: Dimens.paddingHorizontal20PX,
-        itemCount: 10,
-        itemBuilder: (context, index) {
-        return const GiftCardItemWidget(isMyGiftCard: true);
-      },),
+      body: MyGiftCardsListWidget(controller: controller),
     );
   }
 }

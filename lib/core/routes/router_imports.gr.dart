@@ -1011,6 +1011,7 @@ class AppRouter extends _i94.RootStackRouter {
         child: _i91.GiftCardDetails(
           key: args.key,
           isMyGiftCard: args.isMyGiftCard,
+          giftCardId: args.giftCardId,
         ),
         opaque: true,
       );
@@ -3346,12 +3347,14 @@ class GiftCardDetailsRoute
   GiftCardDetailsRoute({
     _i97.Key? key,
     required bool isMyGiftCard,
+    required int giftCardId,
   }) : super(
           GiftCardDetailsRoute.name,
           path: '/gift-card-details',
           args: GiftCardDetailsRouteArgs(
             key: key,
             isMyGiftCard: isMyGiftCard,
+            giftCardId: giftCardId,
           ),
         );
 
@@ -3362,15 +3365,18 @@ class GiftCardDetailsRouteArgs {
   const GiftCardDetailsRouteArgs({
     this.key,
     required this.isMyGiftCard,
+    required this.giftCardId,
   });
 
   final _i97.Key? key;
 
   final bool isMyGiftCard;
 
+  final int giftCardId;
+
   @override
   String toString() {
-    return 'GiftCardDetailsRouteArgs{key: $key, isMyGiftCard: $isMyGiftCard}';
+    return 'GiftCardDetailsRouteArgs{key: $key, isMyGiftCard: $isMyGiftCard, giftCardId: $giftCardId}';
   }
 }
 

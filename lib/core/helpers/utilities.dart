@@ -186,6 +186,24 @@ class Utilities {
     }
   }
 
+  double? extractFormattedNumberToDouble(String text) {
+    final RegExp numberRegex = RegExp(r'\d{1,3}(?:,\d{3})*(?:\.\d+)?');
+    final match = numberRegex.firstMatch(text);
+    if (match != null) {
+      String number = match.group(0)!;
+
+      number = number.replaceAll(',', '');
+      try {
+        return double.parse(number);
+      } catch (e) {
+        return null;
+      }
+    }
+    return null;
+  }
+
+
+
   String convertDigitsToLatin(String s) {
     var sb = StringBuffer();
     for (int i = 0; i < s.length; i++) {
