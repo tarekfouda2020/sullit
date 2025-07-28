@@ -13,7 +13,11 @@ class MyGiftCardsListWidget extends StatelessWidget {
         padding: Dimens.paddingHorizontal20PX,
         builderDelegate: PagedChildBuilderDelegate<GiftCardDomainModel>(
           itemBuilder: (_, item, index) {
-            return GiftCardItemWidget(isMyGiftCard: true,model: item);
+            return GiftCardItemWidget(
+                isMyGiftCard: true,
+                model: item,
+              onTap: ()=> controller.routeToCardDetails(context, item.id),
+            );
           },
           noItemsFoundIndicatorBuilder: (cxt) {
             return  Center(

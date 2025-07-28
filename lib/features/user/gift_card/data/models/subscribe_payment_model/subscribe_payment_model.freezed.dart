@@ -21,15 +21,6 @@ SubscribePaymentModel _$SubscribePaymentModelFromJson(
 
 /// @nodoc
 mixin _$SubscribePaymentModel {
-// int? id,
-// String? title,
-// String? code,
-// String? price,
-// String? value,
-// @JsonKey(name: "validity_days") int? validateDays,
-// @JsonKey(name: "expired_at") String? expiredAt,
-// @JsonKey(name: "expired_in_days") int? expiredInDays,
-// @JsonKey(name: "is_expired") bool? isExpired,
   @JsonKey(name: "transaction_url")
   String? get transactionUrl => throw _privateConstructorUsedError;
 
@@ -117,15 +108,6 @@ class _$_SubscribePaymentModel extends _SubscribePaymentModel {
   factory _$_SubscribePaymentModel.fromJson(Map<String, dynamic> json) =>
       _$$_SubscribePaymentModelFromJson(json);
 
-// int? id,
-// String? title,
-// String? code,
-// String? price,
-// String? value,
-// @JsonKey(name: "validity_days") int? validateDays,
-// @JsonKey(name: "expired_at") String? expiredAt,
-// @JsonKey(name: "expired_in_days") int? expiredInDays,
-// @JsonKey(name: "is_expired") bool? isExpired,
   @override
   @JsonKey(name: "transaction_url")
   final String? transactionUrl;
@@ -172,15 +154,7 @@ abstract class _SubscribePaymentModel extends SubscribePaymentModel {
   factory _SubscribePaymentModel.fromJson(Map<String, dynamic> json) =
       _$_SubscribePaymentModel.fromJson;
 
-  @override // int? id,
-// String? title,
-// String? code,
-// String? price,
-// String? value,
-// @JsonKey(name: "validity_days") int? validateDays,
-// @JsonKey(name: "expired_at") String? expiredAt,
-// @JsonKey(name: "expired_in_days") int? expiredInDays,
-// @JsonKey(name: "is_expired") bool? isExpired,
+  @override
   @JsonKey(name: "transaction_url")
   String? get transactionUrl;
   @override

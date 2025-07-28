@@ -2,13 +2,13 @@ part of 'gift_card_details_widgets_imports.dart';
 
 class PayMethodItemWidget extends StatelessWidget {
   final PayMethodDomainModel model;
- final GiftCardDetailsController controller;
-  const PayMethodItemWidget({super.key, required this.model, required this.controller});
+  final void Function() onTap;
+  const PayMethodItemWidget({super.key, required this.model, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => controller.selectPaymentMethod(model),
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(15),
         margin: const EdgeInsets.only(bottom: 15),

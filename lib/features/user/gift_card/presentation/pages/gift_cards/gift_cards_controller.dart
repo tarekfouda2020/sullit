@@ -32,6 +32,13 @@ class GiftCardsController{
     }
   }
 
+  Future<void> routeToCardDetails(BuildContext context,int id)async{
+    var result =  await AutoRouter.of(context).push<bool>(GiftCardDetailsRoute(isMyGiftCard: false,giftCardId: id));
+     if(result == true){
+       getGiftCards(1,refresh: true);
+     }
+  }
+
   GenericPaginateParams _paginateParams(int page, bool refresh) {
     return GenericPaginateParams(
       currentPage: page,

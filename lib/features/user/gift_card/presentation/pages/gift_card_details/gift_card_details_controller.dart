@@ -13,12 +13,17 @@ class GiftCardDetailsController {
   GiftCardDetailsController(bool myCard, int cardId) {
     isMyGiftCard = myCard;
     id = cardId;
-    getPayMethods();
-   if(myCard == false){
-     getWalletData(false);
-     getWalletData(true);
-   }
+    getWalletAndPayMethods();
     getGiftCardDetails();
+  }
+
+
+  void getWalletAndPayMethods(){
+    if(isMyGiftCard == false){
+      getPayMethods();
+      getWalletData(false);
+      getWalletData(true);
+    }
   }
 
   void getGiftCardDetails() async {
@@ -70,7 +75,11 @@ class GiftCardDetailsController {
       useRootNavigator: true,
       enableDrag: false,
       builder: (context) {
-        return PayMethodBottomSheetWidget(controller: this);
+        return PayMethodBottomSheetWidget(
+          onPressProcess: ()=> byGiftCard(context),
+          onSelectItem: (payMethod) => selectPaymentMethod(payMethod),
+          payMethodsCubit: payMethodsCubit,
+        );
       },
     );
   }
@@ -113,6 +122,11 @@ class GiftCardDetailsController {
   }
 
 
+  bool onPop(BuildContext context) {
+    AutoRouter.of(context).pop(true);
+    return true;
+  }
+
   bool isWalletBalanceEnough() {
     var cardPrice = giftCardDetailsCubit.state.data!.price;
     double? pureNumPrice = getIt<Utilities>().extractFormattedNumberToDouble(cardPrice);
@@ -125,7 +139,7 @@ class GiftCardDetailsController {
   }
 
 
-  PayGiftCardSubscribeParams _subscribeParams(String paymentMethod) {
-    return PayGiftCardSubscribeParams(paymentMethod: paymentMethod, id: id);
+  PaySubscribeParams _subscribeParams(String paymentMethod) {
+    return PaySubscribeParams(paymentMethod: paymentMethod, id: id);
   }
 }

@@ -13,15 +13,6 @@ class SubscribePaymentModel extends BaseApiModel<SubscribePaymentDomainModel> wi
 
   @JsonSerializable(explicitToJson: true)
   factory SubscribePaymentModel({
-    // int? id,
-    // String? title,
-    // String? code,
-    // String? price,
-    // String? value,
-    // @JsonKey(name: "validity_days") int? validateDays,
-    // @JsonKey(name: "expired_at") String? expiredAt,
-    // @JsonKey(name: "expired_in_days") int? expiredInDays,
-    // @JsonKey(name: "is_expired") bool? isExpired,
     @JsonKey(name: "transaction_url") String? transactionUrl,
   }) = _SubscribePaymentModel;
 
@@ -30,15 +21,6 @@ class SubscribePaymentModel extends BaseApiModel<SubscribePaymentDomainModel> wi
   @override
   SubscribePaymentDomainModel toDomainModel() {
    return SubscribePaymentDomainModel(
-      // id: id,
-      // title: title,
-      // code: code,
-      // price: price,
-      // value: value,
-      // validateDays: validateDays,
-      // expiredAt: expiredAt,
-      // expiredInDays: expiredInDays,
-      // isExpired: isExpired,
      transactionUrl: transactionUrl
     );
   }

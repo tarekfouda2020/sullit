@@ -31,6 +31,7 @@ class _GiftCardDetailsState extends State<GiftCardDetails> {
           appBar: DefaultAppBar(
             title: (controller.isMyGiftCard) ? "My Gift Card Details" : "Gift Card Details",
             elevation: 0,
+            onBack: () => controller.onPop(context),
           ),
           body: ListView(
             padding: Dimens.paddingHorizontal20PX,

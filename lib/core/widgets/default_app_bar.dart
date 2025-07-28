@@ -14,6 +14,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool? showBack;
   final bool? centerTitle;
   final Color? bgColor;
+  final void Function()? onBack;
 
   const DefaultAppBar({
     Key? key,
@@ -26,6 +27,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.centerTitle,
     this.elevation,
     this.bgColor,
+    this.onBack,
   }) : super(key: key);
 
   @override
@@ -48,7 +50,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
             visible: showBack ?? true,
             child: IconButton(
               icon: Icon(Icons.arrow_back_outlined, size: 20.sp),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: onBack ?? () => Navigator.of(context).pop(),
             ),
           ),
       actions: actions,

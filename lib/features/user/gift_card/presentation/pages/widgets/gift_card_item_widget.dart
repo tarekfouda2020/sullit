@@ -14,12 +14,13 @@ import 'package:flutter_tdd/res.dart';
 class GiftCardItemWidget extends StatelessWidget {
   final bool isMyGiftCard;
   final GiftCardDomainModel model;
-  const GiftCardItemWidget({super.key, required this.isMyGiftCard, required this.model});
+  final void Function() onTap;
+  const GiftCardItemWidget({super.key, required this.isMyGiftCard, required this.model, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AutoRouter.of(context).push(GiftCardDetailsRoute(isMyGiftCard: isMyGiftCard,giftCardId: model.id)),
+      onTap: onTap,
       child: Container(
         margin: const EdgeInsets.only(bottom: 10),
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 18),
@@ -69,7 +70,7 @@ class GiftCardItemWidget extends StatelessWidget {
                     Gaps.vGap17,
                     Gaps.line(context.colors.textColor, 0),
                     Gaps.vGap17,
-                    Text(tr("validFor30Days"), style: AppTextStyle.s12_w400(color: context.colors.textColor)),
+                    Text("Valid for ${model.expiredInDays} Days", style: AppTextStyle.s12_w400(color: context.colors.textColor)),
                   ],
                 ))
           ],

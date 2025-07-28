@@ -123,3 +123,4 @@ class GiftCardShimmerWidget extends StatelessWidget {
     );
   }
 }
+

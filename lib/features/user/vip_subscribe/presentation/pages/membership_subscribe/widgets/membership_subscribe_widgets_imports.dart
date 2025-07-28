@@ -1,0 +1,35 @@
+
+
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/core/widgets/CachedImage.dart';
+import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
+import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
+import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_sheet_header_widget.dart';
+import 'package:flutter_tdd/features/user/vip_subscribe/domain/models/subscribe_content_domain_model.dart';
+import 'package:flutter_tdd/features/user/vip_subscribe/presentation/pages/membership_subscribe/membership_subscribe_imports.dart';
+import 'package:flutter_tdd/features/user/vip_subscribe/domain/models/vip_subscribe_domain_model.dart';
+import 'package:flutter_tdd/features/user/vip_subscribe/presentation/widgets/membership_item_shimmer_widget.dart';
+import 'package:flutter_tdd/features/user/vip_subscribe/presentation/widgets/membership_item_widget.dart';
+import 'package:flutter_tdd/res.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+
+part 'get_plans_widget.dart';
+part 'get_plans_button_widget.dart';
+part 'about_gift_card_widget.dart';
+part 'vip_plans_bottom_sheet_widget.dart';
+part 'pay_membership_button_widget.dart';
+part 'agree_terms_conditions_widget.dart';
+part 'membership_content_shimmer_widget.dart';

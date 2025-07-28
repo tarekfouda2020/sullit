@@ -29,6 +29,10 @@ class MyGiftCardsController {
     }
   }
 
+  void routeToCardDetails(BuildContext context,int id){
+    AutoRouter.of(context).push(GiftCardDetailsRoute(isMyGiftCard: true,giftCardId: id));
+  }
+
   GenericPaginateParams _paginateParams(int page, bool refresh) {
     return GenericPaginateParams(
       currentPage: page,

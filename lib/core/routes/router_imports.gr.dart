@@ -146,17 +146,13 @@ import 'package:flutter_tdd/features/user/customers_products/presentaion/pages/c
 import 'package:flutter_tdd/features/user/dashboard/presentation/pages/dashboard/dashboard_imports.dart'
     as _i53;
 import 'package:flutter_tdd/features/user/gift_card/presentation/pages/gift_card_details/gift_card_details_imports.dart'
-    as _i91;
-import 'package:flutter_tdd/features/user/gift_card/presentation/pages/gift_cards/gift_cards_imports.dart'
-    as _i89;
-import 'package:flutter_tdd/features/user/gift_card/presentation/pages/loyalyt_points/loyalty_points_imports.dart'
-    as _i93;
-import 'package:flutter_tdd/features/user/gift_card/presentation/pages/membership_subscribe/membership_subscribe_imports.dart'
-    as _i88;
-import 'package:flutter_tdd/features/user/gift_card/presentation/pages/my_gift_cards/my_gift_cards_imports.dart'
     as _i90;
-import 'package:flutter_tdd/features/user/gift_card/presentation/pages/vip_memberships/vip_memberships_imports.dart'
-    as _i92;
+import 'package:flutter_tdd/features/user/gift_card/presentation/pages/gift_cards/gift_cards_imports.dart'
+    as _i88;
+import 'package:flutter_tdd/features/user/gift_card/presentation/pages/loyalyt_points/loyalty_points_imports.dart'
+    as _i91;
+import 'package:flutter_tdd/features/user/gift_card/presentation/pages/my_gift_cards/my_gift_cards_imports.dart'
+    as _i89;
 import 'package:flutter_tdd/features/user/notifications/presentation/pages/notifications/notifications_imports.dart'
     as _i54;
 import 'package:flutter_tdd/features/user/payment/presentaion/pages/payment/payment_imports.dart'
@@ -215,6 +211,10 @@ import 'package:flutter_tdd/features/user/video_viewer/presentation/pages/vimeo_
     as _i87;
 import 'package:flutter_tdd/features/user/video_viewer/presentation/pages/youtube_viewer/youtube_viewer_imports.dart'
     as _i85;
+import 'package:flutter_tdd/features/user/vip_subscribe/presentation/pages/membership_subscribe/membership_subscribe_imports.dart'
+    as _i92;
+import 'package:flutter_tdd/features/user/vip_subscribe/presentation/pages/vip_memberships/vip_memberships_imports.dart'
+    as _i93;
 import 'package:flutter_tdd/features/user/wallet/presentation/pages/my_wallet/my_wallet_imports.dart'
     as _i78;
 import 'package:flutter_tdd/features/user/wishlist/presentation/pages/wishlist/wishlist_imports.dart'
@@ -983,32 +983,25 @@ class AppRouter extends _i94.RootStackRouter {
         opaque: true,
       );
     },
-    MembershipSubscribeRoute.name: (routeData) {
-      return _i94.AdaptivePage<dynamic>(
-        routeData: routeData,
-        child: const _i88.MembershipSubscribe(),
-        opaque: true,
-      );
-    },
     GiftCardsRoute.name: (routeData) {
       return _i94.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i89.GiftCards(),
+        child: const _i88.GiftCards(),
         opaque: true,
       );
     },
     MyGiftCardsRoute.name: (routeData) {
       return _i94.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i90.MyGiftCards(),
+        child: const _i89.MyGiftCards(),
         opaque: true,
       );
     },
     GiftCardDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<GiftCardDetailsRouteArgs>();
-      return _i94.AdaptivePage<dynamic>(
+      return _i94.AdaptivePage<bool>(
         routeData: routeData,
-        child: _i91.GiftCardDetails(
+        child: _i90.GiftCardDetails(
           key: args.key,
           isMyGiftCard: args.isMyGiftCard,
           giftCardId: args.giftCardId,
@@ -1016,17 +1009,24 @@ class AppRouter extends _i94.RootStackRouter {
         opaque: true,
       );
     },
-    VipMemberShipsRoute.name: (routeData) {
-      return _i94.AdaptivePage<dynamic>(
-        routeData: routeData,
-        child: const _i92.VipMemberShips(),
-        opaque: true,
-      );
-    },
     LoyaltyPointsRoute.name: (routeData) {
       return _i94.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i93.LoyaltyPoints(),
+        child: const _i91.LoyaltyPoints(),
+        opaque: true,
+      );
+    },
+    MembershipSubscribeRoute.name: (routeData) {
+      return _i94.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i92.MembershipSubscribe(),
+        opaque: true,
+      );
+    },
+    VipMemberShipsRoute.name: (routeData) {
+      return _i94.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i93.VipMemberShips(),
         opaque: true,
       );
     },
@@ -1383,10 +1383,6 @@ class AppRouter extends _i94.RootStackRouter {
           path: '/vimeo-viewer',
         ),
         _i94.RouteConfig(
-          MembershipSubscribeRoute.name,
-          path: '/membership-subscribe',
-        ),
-        _i94.RouteConfig(
           GiftCardsRoute.name,
           path: '/gift-cards',
         ),
@@ -1399,12 +1395,16 @@ class AppRouter extends _i94.RootStackRouter {
           path: '/gift-card-details',
         ),
         _i94.RouteConfig(
-          VipMemberShipsRoute.name,
-          path: '/vip-member-ships',
-        ),
-        _i94.RouteConfig(
           LoyaltyPointsRoute.name,
           path: '/loyalty-points',
+        ),
+        _i94.RouteConfig(
+          MembershipSubscribeRoute.name,
+          path: '/membership-subscribe',
+        ),
+        _i94.RouteConfig(
+          VipMemberShipsRoute.name,
+          path: '/vip-member-ships',
         ),
       ];
 }
@@ -3305,19 +3305,7 @@ class VimeoViewerRouteArgs {
 }
 
 /// generated route for
-/// [_i88.MembershipSubscribe]
-class MembershipSubscribeRoute extends _i94.PageRouteInfo<void> {
-  const MembershipSubscribeRoute()
-      : super(
-          MembershipSubscribeRoute.name,
-          path: '/membership-subscribe',
-        );
-
-  static const String name = 'MembershipSubscribeRoute';
-}
-
-/// generated route for
-/// [_i89.GiftCards]
+/// [_i88.GiftCards]
 class GiftCardsRoute extends _i94.PageRouteInfo<void> {
   const GiftCardsRoute()
       : super(
@@ -3329,7 +3317,7 @@ class GiftCardsRoute extends _i94.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i90.MyGiftCards]
+/// [_i89.MyGiftCards]
 class MyGiftCardsRoute extends _i94.PageRouteInfo<void> {
   const MyGiftCardsRoute()
       : super(
@@ -3341,7 +3329,7 @@ class MyGiftCardsRoute extends _i94.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i91.GiftCardDetails]
+/// [_i90.GiftCardDetails]
 class GiftCardDetailsRoute
     extends _i94.PageRouteInfo<GiftCardDetailsRouteArgs> {
   GiftCardDetailsRoute({
@@ -3381,19 +3369,7 @@ class GiftCardDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i92.VipMemberShips]
-class VipMemberShipsRoute extends _i94.PageRouteInfo<void> {
-  const VipMemberShipsRoute()
-      : super(
-          VipMemberShipsRoute.name,
-          path: '/vip-member-ships',
-        );
-
-  static const String name = 'VipMemberShipsRoute';
-}
-
-/// generated route for
-/// [_i93.LoyaltyPoints]
+/// [_i91.LoyaltyPoints]
 class LoyaltyPointsRoute extends _i94.PageRouteInfo<void> {
   const LoyaltyPointsRoute()
       : super(
@@ -3402,4 +3378,28 @@ class LoyaltyPointsRoute extends _i94.PageRouteInfo<void> {
         );
 
   static const String name = 'LoyaltyPointsRoute';
+}
+
+/// generated route for
+/// [_i92.MembershipSubscribe]
+class MembershipSubscribeRoute extends _i94.PageRouteInfo<void> {
+  const MembershipSubscribeRoute()
+      : super(
+          MembershipSubscribeRoute.name,
+          path: '/membership-subscribe',
+        );
+
+  static const String name = 'MembershipSubscribeRoute';
+}
+
+/// generated route for
+/// [_i93.VipMemberShips]
+class VipMemberShipsRoute extends _i94.PageRouteInfo<void> {
+  const VipMemberShipsRoute()
+      : super(
+          VipMemberShipsRoute.name,
+          path: '/vip-member-ships',
+        );
+
+  static const String name = 'VipMemberShipsRoute';
 }

@@ -12,7 +12,7 @@ import 'package:flutter_tdd/features/user/gift_card/domain/models/git_card_domai
 import 'package:flutter_tdd/features/user/gift_card/domain/models/pay_method_domain_model.dart';
 import 'package:flutter_tdd/features/user/gift_card/domain/models/subscribe_payment_domain_model.dart';
 import 'package:flutter_tdd/features/user/gift_card/domain/repositories/gift_cards_repositories.dart';
-import 'package:flutter_tdd/features/user/gift_card/domain/entity/pay_gift_card_subscribe_params.dart';
+import 'package:flutter_tdd/features/user/gift_card/domain/entity/pay_subscribe_params.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: GiftCardsRepositories)
@@ -50,7 +50,7 @@ class ImplGiftCardRepositories extends GiftCardsRepositories  with ModelToDomain
   }
 
   @override
-  Future<Either<Failure, SubscribePaymentDomainModel>> payGiftCardSubscribe(PayGiftCardSubscribeParams params) async{
+  Future<Either<Failure, SubscribePaymentDomainModel>> payGiftCardSubscribe(PaySubscribeParams params) async{
     var result = await dataSource.payGiftCardSubscribe(params);
    return toDomainResult<SubscribePaymentDomainModel,SubscribePaymentModel>(result);
   }
