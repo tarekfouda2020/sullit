@@ -145,13 +145,12 @@ class MembershipSubscribeController{
         BuildContext ctx = getIt<GlobalContext>().context();
         if (value.transactionUrl != null) {
           getIt<LoadingHelper>().dismissDialog();
-          var result = await AutoRouter.of(ctx).push(PaymentRoute(transactionUrl: value.transactionUrl!));
+           await AutoRouter.of(ctx).push(PaymentRoute(transactionUrl: value.transactionUrl!));
           AutoRouter.of(ctx).pop();
         }else{
           AutoRouter.of(ctx).pop();
         }
         CustomToast.showSimpleToast(msg: "You have successfully subscribed", type: ToastType.success);
-
       }
       getIt<LoadingHelper>().dismissDialog();
     });
