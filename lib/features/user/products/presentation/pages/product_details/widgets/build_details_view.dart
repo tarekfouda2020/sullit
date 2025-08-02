@@ -4,8 +4,7 @@ class BuildDetailsView extends StatelessWidget {
   final ProductDetailsController controller;
   final ProductDetailsDomainModel detailsModel;
 
-  const BuildDetailsView(
-      {super.key, required this.controller, required this.detailsModel});
+  const BuildDetailsView({super.key, required this.controller, required this.detailsModel});
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +24,13 @@ class BuildDetailsView extends StatelessWidget {
               controller: controller,
               productModel: detailsModel.product,
             ),
+
             ///not in figma
             BuildProductSpecifications(
               controller: controller,
               productModel: detailsModel.product,
             ),
-            BuildProductQty(controller: controller,productModel: detailsModel.product),
+            BuildProductQty(controller: controller, productModel: detailsModel.product),
             BuildProductReviews(
               allReviews: detailsModel.product.reviews ?? [],
             ),
