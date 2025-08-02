@@ -187,7 +187,7 @@ class Utilities {
   }
 
   double? extractFormattedNumberToDouble(String text) {
-    final RegExp numberRegex = RegExp(r'\d{1,3}(?:,\d{3})*(?:\.\d+)?');
+    final RegExp numberRegex = RegExp(r'\d[\d,]*\.?\d*');
     final match = numberRegex.firstMatch(text);
     if (match != null) {
       String number = match.group(0)!;

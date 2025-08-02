@@ -31,7 +31,8 @@ class VipMembershipsController {
     if(isOtherItemSelected){
       return _selectedSubscription();
     }else{
-      return _currentSubscription()!;
+      /// use (subscription!) object id for renew the current one
+      return _currentSubscription()!.subscription!;
     }
   }
 
@@ -46,8 +47,7 @@ class VipMembershipsController {
   Future<void> getWalletData(bool param) async {
     await GetMyWallet().call(param).then((value) {
       if (value != null) {
-        double? balance = getIt<Utilities>().extractFormattedNumberToDouble(value.walletBalance);
-        walletBalance = balance;
+        walletBalance = getIt<Utilities>().extractFormattedNumberToDouble(value.walletBalance);
       }
     });
   }
@@ -60,6 +60,16 @@ class VipMembershipsController {
   }
 
 
+
+
+void onPressRenew(BuildContext context){
+    List<VipSubscribeDomainModel> otherPlans = currentSubscriptionBloc.state.data?.otherSubscriptions ?? <VipSubscribeDomainModel>[];
+   for(var item in otherPlans){
+     item.isSelected = false;
+   }
+   currentSubscriptionBloc.onUpdateData(currentSubscriptionBloc.state.data);
+   showPayMethodsSheet(context);
+}
 
 
   void showPayMethodsSheet(BuildContext context) {

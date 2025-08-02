@@ -11,7 +11,7 @@ class RenewPlanButtonWidget extends StatelessWidget {
     return DefaultButton(
         onTap: _isDisabled()
             ?() {}
-            :()=> controller.showPayMethodsSheet(context),
+            :()=> controller.onPressRenew(context),
         title: "Renew",
         disabled: _isDisabled(),
         elevation: 0,

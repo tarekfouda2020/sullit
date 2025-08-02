@@ -38,7 +38,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             ),
             bottomNavigationBar: BuildBottomNavBar(controller: controller),
             floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-            floatingActionButton: CartButtonWidget(controller: controller),
           ),
         ),
       ),
