@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
+import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
+import 'package:flutter_tdd/features/user/products/domain/entities/seller_products_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/popular_products_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/seller_product_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/products/domain/use_cases/get_seller_products.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/seller_products/widgets/seller_products_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/products/presentation/widgets/build_loading_products_grid_view.dart';
+import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
+import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item_shimmer.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 part 'seller_products.dart';
 part 'seller_products_controller.dart';

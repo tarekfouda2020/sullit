@@ -1,6 +1,7 @@
 part of 'product_details_widgets_imports.dart';
 
 class BuildSellerInfo extends StatelessWidget {
+  /// shopModel return in product details
   final Shop? shopModel;
   final ProductDetailsController controller;
 
@@ -10,7 +11,7 @@ class BuildSellerInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AutoRouter.of(context).push(const SellerProductsPageRoute()),
+      onTap: () => AutoRouter.of(context).push( SellerProductsPageRoute(shopModel: shopModel!)),
       child: Container(
         decoration: CustomDecoration(
           radius: BorderRadius.circular(12),

@@ -506,7 +506,8 @@
   "enterVoucherCode": "Enter Voucher Code",
   "dateRange": "Date Range",
   "typeOrderCode": "Type Order Code",
-  "itsWorthIt": "its worth it, thats it"
+  "itsWorthIt": "its worth it, thats it",
+  "noProductsHere": "No products here"
 
 
 }

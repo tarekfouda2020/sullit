@@ -64,7 +64,9 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
                   onRefresh: () => widget.controller.onChangeFav(widget.productModel),
                 ),
               ),
-              child: const LoadingIconWidget(),
+              child: const Center(child: LoadingIconWidget(
+                margin: EdgeInsets.all(30),
+              )),
             );
           },
         ),

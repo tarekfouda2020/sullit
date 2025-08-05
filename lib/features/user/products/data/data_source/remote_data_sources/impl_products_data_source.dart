@@ -12,7 +12,9 @@ import 'package:flutter_tdd/features/user/products/data/models/home_model/home_m
 import 'package:flutter_tdd/features/user/products/data/models/product_details_model/product_details_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/product_sections_model/product_sections_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/queries_model/queries_model.dart';
+import 'package:flutter_tdd/features/user/products/data/models/seller_products_model/seller_products_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/popular_products_params.dart';
+import 'package:flutter_tdd/features/user/products/domain/entities/seller_products_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/send_query_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/variant_price_params.dart';
 import 'package:injectable/injectable.dart';
@@ -164,5 +166,18 @@ class ImplProductsDataSource extends ProductsDataSource {
       toJsonFunc: (data) => ProductDetailsModel.fromJson(data),
     );
     return await GenericHttpImpl<ProductDetailsModel>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, SellerProductsModel>> sellerProducts(SellerProductsParams param) async{
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.shopProducts(param.sellerId),
+      requestMethod: RequestMethod.get,
+      responseType: ResType.model,
+      responseKey: (data) => data['data'],
+      toJsonFunc: (data) => SellerProductsModel.fromJson(data),
+      refresh: param.paginateParams.refresh
+    );
+    return await GenericHttpImpl<SellerProductsModel>().call(model);
   }
 }

@@ -128,9 +128,9 @@ import 'package:flutter_tdd/features/user/category/presentation/pages/categories
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/category_details_imports.dart'
     as _i51;
 import 'package:flutter_tdd/features/user/classified_products/domain/models/cus_product.dart'
-    as _i107;
+    as _i108;
 import 'package:flutter_tdd/features/user/classified_products/domain/models/file_domain_model.dart'
-    as _i106;
+    as _i107;
 import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/add_classified_product/add_classified_product_imports.dart'
     as _i82;
 import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/classified_products/classified_products_imports.dart'
@@ -161,6 +161,8 @@ import 'package:flutter_tdd/features/user/products/domain/models/popular_product
     as _i103;
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart'
     as _i104;
+import 'package:flutter_tdd/features/user/products/domain/models/shop.dart'
+    as _i105;
 import 'package:flutter_tdd/features/user/products/presentation/pages/all_products_page/all_product_page_imports.dart'
     as _i60;
 import 'package:flutter_tdd/features/user/products/presentation/pages/compare/compare_imports.dart'
@@ -178,7 +180,7 @@ import 'package:flutter_tdd/features/user/products/presentation/pages/seller_pro
 import 'package:flutter_tdd/features/user/profile/presentation/pages/profile/profile_imports.dart'
     as _i65;
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart'
-    as _i105;
+    as _i106;
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/order_details_imports.dart'
     as _i71;
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_summary/order_summary_imports.dart'
@@ -728,9 +730,13 @@ class AppRouter extends _i95.RootStackRouter {
       );
     },
     SellerProductsPageRoute.name: (routeData) {
+      final args = routeData.argsAs<SellerProductsPageRouteArgs>();
       return _i95.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i61.SellerProductsPage(),
+        child: _i61.SellerProductsPage(
+          key: args.key,
+          shopModel: args.shopModel,
+        ),
         opaque: true,
       );
     },
@@ -2619,14 +2625,37 @@ class AllProductPageRouteArgs {
 
 /// generated route for
 /// [_i61.SellerProductsPage]
-class SellerProductsPageRoute extends _i95.PageRouteInfo<void> {
-  const SellerProductsPageRoute()
-      : super(
+class SellerProductsPageRoute
+    extends _i95.PageRouteInfo<SellerProductsPageRouteArgs> {
+  SellerProductsPageRoute({
+    _i98.Key? key,
+    required _i105.Shop shopModel,
+  }) : super(
           SellerProductsPageRoute.name,
           path: '/seller-products-page',
+          args: SellerProductsPageRouteArgs(
+            key: key,
+            shopModel: shopModel,
+          ),
         );
 
   static const String name = 'SellerProductsPageRoute';
+}
+
+class SellerProductsPageRouteArgs {
+  const SellerProductsPageRouteArgs({
+    this.key,
+    required this.shopModel,
+  });
+
+  final _i98.Key? key;
+
+  final _i105.Shop shopModel;
+
+  @override
+  String toString() {
+    return 'SellerProductsPageRouteArgs{key: $key, shopModel: $shopModel}';
+  }
 }
 
 /// generated route for
@@ -2818,7 +2847,7 @@ class TrackOrderRouteArgs {
 class RetrieveOrderRoute extends _i95.PageRouteInfo<RetrieveOrderRouteArgs> {
   RetrieveOrderRoute({
     _i98.Key? key,
-    required _i105.Orders orderModel,
+    required _i106.Orders orderModel,
   }) : super(
           RetrieveOrderRoute.name,
           path: '/retrieve-order',
@@ -2839,7 +2868,7 @@ class RetrieveOrderRouteArgs {
 
   final _i98.Key? key;
 
-  final _i105.Orders orderModel;
+  final _i106.Orders orderModel;
 
   @override
   String toString() {
@@ -2854,7 +2883,7 @@ class OrderDetailsPageRoute
   OrderDetailsPageRoute({
     _i98.Key? key,
     required bool isReturnedOrder,
-    _i105.Orders? order,
+    _i106.Orders? order,
   }) : super(
           OrderDetailsPageRoute.name,
           path: '/order-details-page',
@@ -2879,7 +2908,7 @@ class OrderDetailsPageRouteArgs {
 
   final bool isReturnedOrder;
 
-  final _i105.Orders? order;
+  final _i106.Orders? order;
 
   @override
   String toString() {
@@ -3101,10 +3130,10 @@ class AddClassifiedProductRoute
     extends _i95.PageRouteInfo<AddClassifiedProductRouteArgs> {
   AddClassifiedProductRoute({
     _i98.Key? key,
-    List<_i106.FileDomainModel>? images,
-    _i106.FileDomainModel? thumbnailImage,
-    _i106.FileDomainModel? metaImage,
-    _i106.FileDomainModel? pdf,
+    List<_i107.FileDomainModel>? images,
+    _i107.FileDomainModel? thumbnailImage,
+    _i107.FileDomainModel? metaImage,
+    _i107.FileDomainModel? pdf,
   }) : super(
           AddClassifiedProductRoute.name,
           path: '/add-classified-product',
@@ -3131,13 +3160,13 @@ class AddClassifiedProductRouteArgs {
 
   final _i98.Key? key;
 
-  final List<_i106.FileDomainModel>? images;
+  final List<_i107.FileDomainModel>? images;
 
-  final _i106.FileDomainModel? thumbnailImage;
+  final _i107.FileDomainModel? thumbnailImage;
 
-  final _i106.FileDomainModel? metaImage;
+  final _i107.FileDomainModel? metaImage;
 
-  final _i106.FileDomainModel? pdf;
+  final _i107.FileDomainModel? pdf;
 
   @override
   String toString() {
@@ -3151,7 +3180,7 @@ class EditClassifiedProductRoute
     extends _i95.PageRouteInfo<EditClassifiedProductRouteArgs> {
   EditClassifiedProductRoute({
     _i98.Key? key,
-    required _i107.CusProduct productModel,
+    required _i108.CusProduct productModel,
   }) : super(
           EditClassifiedProductRoute.name,
           path: '/edit-classified-product',
@@ -3172,7 +3201,7 @@ class EditClassifiedProductRouteArgs {
 
   final _i98.Key? key;
 
-  final _i107.CusProduct productModel;
+  final _i108.CusProduct productModel;
 
   @override
   String toString() {

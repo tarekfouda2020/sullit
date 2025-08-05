@@ -689,7 +689,9 @@
   "enterVoucherCode": "أدخل رمز القسيمة",
   "dateRange": "نطاق التاريخ",
   "typeOrderCode": "اكتب رمز الطلب",
-  "itsWorthIt": "يستحق ذلك، هذا كل شيء"
+  "itsWorthIt": "يستحق ذلك، هذا كل شيء",
+  "noProductsHere": "لا يوجد منتجات هنا"
+
 
 
 }

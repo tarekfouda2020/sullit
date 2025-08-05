@@ -1,58 +1,64 @@
 part of 'seller_products_imports.dart';
 
 class PopularProductsController {
-  // Static data for seller products
-  final List<SellerProductItemModel> staticProducts = [
-    SellerProductItemModel(
-      id: '1',
-      name: 'Premium Wireless Headphones',
-      categoryName: 'Electronics',
-      thumbnailImage: 'https://thumbs.wbm.im/pw/small/512e083573eee682f1a843c76f98cdb8.jpg',
-      price: '199.99AED',
-      originalPrice: '299.99AED',
-      rating: 4.5,
-      hasDiscount: true,
-      discount: '33%',
-      isWishlist: false,
-    ),
-    SellerProductItemModel(
-      id: '2',
-      name: 'Smart Fitness Watch',
-      categoryName: 'Wearables',
-      thumbnailImage: 'https://thumbs.wbm.im/pw/small/512e083573eee682f1a843c76f98cdb8.jpg',
-      price: '149.99AED',
-      originalPrice: '199.99AED',
-      rating: 4.2,
-      hasDiscount: true,
-      discount: '25%',
-      isWishlist: true,
-    ),
-    SellerProductItemModel(
-      id: '3',
-      name: 'Organic Coffee Beans',
-      categoryName: 'Food & Beverages',
-      thumbnailImage: 'https://thumbs.wbm.im/pw/small/512e083573eee682f1a843c76f98cdb8.jpg',
-      price: '24.99AED',
-      originalPrice: '24.99AED',
-      rating: 4.8,
-      hasDiscount: false,
-      discount: '',
-      isWishlist: false,
-    ),
-    SellerProductItemModel(
-      id: '4',
-      name: 'Designer Leather Bag',
-      categoryName: 'Food',
-      thumbnailImage: 'https://thumbs.wbm.im/pw/small/512e083573eee682f1a843c76f98cdb8.jpg',
-      price: '89.99AED',
-      originalPrice: '129.99AED',
-      rating: 4.0,
-      hasDiscount: true,
-      discount: '31%',
-      isWishlist: true,
-    ),
-  ];
 
-  // For static data, we don't need paging controller
-  // This is a simplified version for demonstration
+
+  final PagingController<int, Product> pagingController = PagingController(firstPageKey: 1);
+  int pageSize = 12;
+
+   SellerProductDomainModel? allSellerData;
+   late final int shopId;
+
+  PopularProductsController(int id){
+    shopId = id;
+    pagingController.addPageRequestListener((pageKey) {
+      getProducts(pageKey, refresh: false);
+      getProducts(pageKey);
+    });
+  }
+
+
+  Future<void> getProducts(int page, {bool refresh = true}) async {
+    var params = _params(page, refresh);
+    var result = await GetSellerProducts().call(params);
+    allSellerData = result;
+    final List<Product> data = result?.sectionProductModel.products ?? <Product>[];
+    final isLastPage = (data.length) < pageSize;
+    if (page == 1) {
+      pagingController.itemList = [];
+    }
+    if (isLastPage) {
+      pagingController.appendLastPage(data);
+    } else {
+      final nextPageKey = page + 1;
+      pagingController.appendPage(data, nextPageKey);
+    }
+  }
+
+
+  void onFavChanged(Product model) {
+    model.isWishlist = !model.isWishlist!;
+    int index = pagingController.itemList!.indexWhere((e) => e.id == model.id);
+    pagingController.itemList![index] = model;
+    var data = pagingController.itemList;
+    pagingController.itemList = [];
+    pagingController.itemList = data;
+  }
+
+  SellerProductsParams _params(int page, bool refresh){
+    return SellerProductsParams(
+        sellerId: shopId,
+        paginateParams: _paginateParams(page, refresh)
+    );
+  }
+
+
+   GenericPaginateParams _paginateParams(int page, bool refresh) {
+    return GenericPaginateParams(
+      currentPage: page,
+      refresh: refresh,
+      pageSize: pageSize,
+    );
+  }
+
 }
