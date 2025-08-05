@@ -35,18 +35,18 @@ class BuildProductItemShimmer extends StatelessWidget {
                           onTap: () {},
                         ),
                       ),
-                      BuildShimmerItem(
-                        child: BuildIconItem(
-                          iconData: Icons.compare_arrows,
-                          onTap: () {},
-                        ),
-                      ),
-                      BuildShimmerItem(
-                        child: BuildIconItem(
-                          iconData: Icons.shopping_cart,
-                          onTap: () {},
-                        ),
-                      ),
+                      // BuildShimmerItem(
+                      //   child: BuildIconItem(
+                      //     iconData: Icons.compare_arrows,
+                      //     onTap: () {},
+                      //   ),
+                      // ),
+                      // BuildShimmerItem(
+                      //   child: BuildIconItem(
+                      //     iconData: Icons.shopping_cart,
+                      //     onTap: () {},
+                      //   ),
+                      // ),
                     ],
                   ),
                 )

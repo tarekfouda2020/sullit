@@ -50,6 +50,8 @@ mixin _$ProductModel {
   String get soldByType => throw _privateConstructorUsedError;
   @JsonKey(name: 'sold_by_name')
   String get soldByName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'has_vip_offer')
+  bool get hasVipOffer => throw _privateConstructorUsedError;
   ShopModel? get shop => throw _privateConstructorUsedError;
   List<ReviewsModel>? get reviews => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_resale')
@@ -111,6 +113,7 @@ abstract class $ProductModelCopyWith<$Res> {
       @JsonKey(name: 'count_reviews') int countReviews,
       @JsonKey(name: 'sold_by_type') String soldByType,
       @JsonKey(name: 'sold_by_name') String soldByName,
+      @JsonKey(name: 'has_vip_offer') bool hasVipOffer,
       ShopModel? shop,
       List<ReviewsModel>? reviews,
       @JsonKey(name: 'is_resale') bool isResale,
@@ -167,6 +170,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? countReviews = null,
     Object? soldByType = null,
     Object? soldByName = null,
+    Object? hasVipOffer = null,
     Object? shop = freezed,
     Object? reviews = freezed,
     Object? isResale = null,
@@ -259,6 +263,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.soldByName
           : soldByName // ignore: cast_nullable_to_non_nullable
               as String,
+      hasVipOffer: null == hasVipOffer
+          ? _value.hasVipOffer
+          : hasVipOffer // ignore: cast_nullable_to_non_nullable
+              as bool,
       shop: freezed == shop
           ? _value.shop
           : shop // ignore: cast_nullable_to_non_nullable
@@ -410,6 +418,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
       @JsonKey(name: 'count_reviews') int countReviews,
       @JsonKey(name: 'sold_by_type') String soldByType,
       @JsonKey(name: 'sold_by_name') String soldByName,
+      @JsonKey(name: 'has_vip_offer') bool hasVipOffer,
       ShopModel? shop,
       List<ReviewsModel>? reviews,
       @JsonKey(name: 'is_resale') bool isResale,
@@ -468,6 +477,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? countReviews = null,
     Object? soldByType = null,
     Object? soldByName = null,
+    Object? hasVipOffer = null,
     Object? shop = freezed,
     Object? reviews = freezed,
     Object? isResale = null,
@@ -560,6 +570,10 @@ class __$$_ProductModelCopyWithImpl<$Res>
           ? _value.soldByName
           : soldByName // ignore: cast_nullable_to_non_nullable
               as String,
+      hasVipOffer: null == hasVipOffer
+          ? _value.hasVipOffer
+          : hasVipOffer // ignore: cast_nullable_to_non_nullable
+              as bool,
       shop: freezed == shop
           ? _value.shop
           : shop // ignore: cast_nullable_to_non_nullable
@@ -661,6 +675,7 @@ class _$_ProductModel extends _ProductModel {
       @JsonKey(name: 'count_reviews') required this.countReviews,
       @JsonKey(name: 'sold_by_type') required this.soldByType,
       @JsonKey(name: 'sold_by_name') required this.soldByName,
+      @JsonKey(name: 'has_vip_offer') required this.hasVipOffer,
       this.shop,
       final List<ReviewsModel>? reviews,
       @JsonKey(name: 'is_resale') required this.isResale,
@@ -763,6 +778,9 @@ class _$_ProductModel extends _ProductModel {
   @JsonKey(name: 'sold_by_name')
   final String soldByName;
   @override
+  @JsonKey(name: 'has_vip_offer')
+  final bool hasVipOffer;
+  @override
   final ShopModel? shop;
   final List<ReviewsModel>? _reviews;
   @override
@@ -820,7 +838,7 @@ class _$_ProductModel extends _ProductModel {
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, name: $name, thumbnailImage: $thumbnailImage, images: $images, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, choiceOptions: $choiceOptions, colors: $colors, minQty: $minQty, currencySymbol: $currencySymbol, variant: $variant, tags: $tags, countReviews: $countReviews, soldByType: $soldByType, soldByName: $soldByName, shop: $shop, reviews: $reviews, isResale: $isResale, resellerId: $resellerId, category: $category, strokedPrice: $strokedPrice, isDigital: $isDigital, isWishlist: $isWishlist, mainPrice: $mainPrice, rating: $rating, sales: $sales, sellerId: $sellerId, brand: $brand, description: $description, videoProvider: $videoProvider, videoLink: $videoLink, categoryName: $categoryName, brandName: $brandName)';
+    return 'ProductModel(id: $id, name: $name, thumbnailImage: $thumbnailImage, images: $images, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, choiceOptions: $choiceOptions, colors: $colors, minQty: $minQty, currencySymbol: $currencySymbol, variant: $variant, tags: $tags, countReviews: $countReviews, soldByType: $soldByType, soldByName: $soldByName, hasVipOffer: $hasVipOffer, shop: $shop, reviews: $reviews, isResale: $isResale, resellerId: $resellerId, category: $category, strokedPrice: $strokedPrice, isDigital: $isDigital, isWishlist: $isWishlist, mainPrice: $mainPrice, rating: $rating, sales: $sales, sellerId: $sellerId, brand: $brand, description: $description, videoProvider: $videoProvider, videoLink: $videoLink, categoryName: $categoryName, brandName: $brandName)';
   }
 
   @override
@@ -857,6 +875,8 @@ class _$_ProductModel extends _ProductModel {
                 other.soldByType == soldByType) &&
             (identical(other.soldByName, soldByName) ||
                 other.soldByName == soldByName) &&
+            (identical(other.hasVipOffer, hasVipOffer) ||
+                other.hasVipOffer == hasVipOffer) &&
             (identical(other.shop, shop) || other.shop == shop) &&
             const DeepCollectionEquality().equals(other._reviews, _reviews) &&
             (identical(other.isResale, isResale) ||
@@ -912,6 +932,7 @@ class _$_ProductModel extends _ProductModel {
         countReviews,
         soldByType,
         soldByName,
+        hasVipOffer,
         shop,
         const DeepCollectionEquality().hash(_reviews),
         isResale,
@@ -968,6 +989,7 @@ abstract class _ProductModel extends ProductModel {
       @JsonKey(name: 'count_reviews') required final int countReviews,
       @JsonKey(name: 'sold_by_type') required final String soldByType,
       @JsonKey(name: 'sold_by_name') required final String soldByName,
+      @JsonKey(name: 'has_vip_offer') required final bool hasVipOffer,
       final ShopModel? shop,
       final List<ReviewsModel>? reviews,
       @JsonKey(name: 'is_resale') required final bool isResale,
@@ -1039,6 +1061,9 @@ abstract class _ProductModel extends ProductModel {
   @override
   @JsonKey(name: 'sold_by_name')
   String get soldByName;
+  @override
+  @JsonKey(name: 'has_vip_offer')
+  bool get hasVipOffer;
   @override
   ShopModel? get shop;
   @override

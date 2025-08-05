@@ -1,9 +1,18 @@
-part of 'category_details_widgets_imports.dart';
 
-class BuildPriceRange extends StatelessWidget {
-  final CategoryDetailsController categoryDetailsController;
 
-  const BuildPriceRange({super.key, required this.categoryDetailsController});
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/features/user/category/domain/entities/price_range_params.dart';
+
+class CustomPriceRangeWidget extends StatelessWidget {
+  final GenericBloc<PriceRangeParams?> rangeCubit;
+  final void Function()? duringSlide;
+  const CustomPriceRangeWidget({super.key, required this.rangeCubit, this.duringSlide});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +28,7 @@ class BuildPriceRange extends StatelessWidget {
         ),
         BlocBuilder<GenericBloc<PriceRangeParams?>,
             GenericState<PriceRangeParams?>>(
-          bloc: categoryDetailsController.rangeCubit,
+          bloc: rangeCubit,
           builder: (_, state) {
             if (state.data == null) {
               return Container();
@@ -29,13 +38,13 @@ class BuildPriceRange extends StatelessWidget {
               child: Column(
                 children: [
                   SliderTheme(
-                      data: SliderThemeData(
+                    data: SliderThemeData(
                       trackHeight: 5,
                       thumbColor: context.colors.primary,
-                     activeTrackColor: const Color(0xffD9D9D9),
-                     inactiveTrackColor:context.colors.primary,
-                     thumbShape: const RoundSliderOverlayShape(overlayRadius: 50),
-                       ),
+                      activeTrackColor: const Color(0xffD9D9D9),
+                      inactiveTrackColor:context.colors.primary,
+                      thumbShape: const RoundSliderOverlayShape(overlayRadius: 50),
+                    ),
                     child: RangeSlider(
                       values: state.data!.value,
                       min: state.data!.initial.start,
@@ -45,7 +54,10 @@ class BuildPriceRange extends StatelessWidget {
                         state.data!.value.start.round().toString(),
                         state.data!.value.end.round().toString(),
                       ),
-                      onChanged: (RangeValues values) => categoryDetailsController.changePriceValue(values, context),
+                      onChanged: (rangeValue) {
+                        rangeCubit.state.data!.value = rangeValue;
+                        rangeCubit.onUpdateData(rangeCubit.state.data!);
+                      },
                     ),
                   ),
                   Container(

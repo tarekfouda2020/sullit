@@ -49,6 +49,7 @@ class Product extends BaseDomainModel {
   String? categoryName;
   String? brandName;
   bool? isAddedTCompare;
+  bool? hasVipOffer;
 
   Product(
       {this.id,
@@ -87,6 +88,7 @@ class Product extends BaseDomainModel {
       this.videoLink,
       this.categoryName,
       this.brandName,
+      this.hasVipOffer,
       this.isAddedTCompare = false});
 
   Future<void> isAddedToCompare() async {
@@ -139,6 +141,7 @@ class Product extends BaseDomainModel {
     videoLink = json['video_link'];
     categoryName = json['category_name'];
     brandName = json['brand_name'];
+    hasVipOffer = json['has_vip_offer'];
   }
 
   Map<String, dynamic> toJson() {
@@ -182,6 +185,7 @@ class Product extends BaseDomainModel {
     data['video_link'] = videoLink;
     data['category_name'] = categoryName;
     data['brand_name'] = brandName;
+    data['has_vip_offer'] = hasVipOffer;
     return data;
   }
 }

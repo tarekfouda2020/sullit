@@ -33,6 +33,7 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       countReviews: json['count_reviews'] as int,
       soldByType: json['sold_by_type'] as String,
       soldByName: json['sold_by_name'] as String,
+      hasVipOffer: json['has_vip_offer'] as bool,
       shop: json['shop'] == null
           ? null
           : ShopModel.fromJson(json['shop'] as Map<String, dynamic>),
@@ -81,6 +82,7 @@ Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) =>
       'count_reviews': instance.countReviews,
       'sold_by_type': instance.soldByType,
       'sold_by_name': instance.soldByName,
+      'has_vip_offer': instance.hasVipOffer,
       'shop': instance.shop?.toJson(),
       'reviews': instance.reviews?.map((e) => e.toJson()).toList(),
       'is_resale': instance.isResale,

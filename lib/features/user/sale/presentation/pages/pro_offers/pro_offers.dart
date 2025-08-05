@@ -23,19 +23,23 @@ class _ProOffersState extends State<ProOffers> {
           ),
           Gaps.vGap10,
           Expanded(
-            child: GenericListView(
+            child: GenericListView<Product>(
               type: ListViewType.gridApi,
               onRefresh: controller.getArrival,
-              cubit: controller.arrivalCubit,
+              cubit: controller.vipOffersCubit,
               runSpacing: 15.r,
               spacing: 15.r,
               gridCrossCount: 2,
               gridItemHeight: 220.spMin,
               padding: Dimens.paddingAll15PX,
-              itemBuilder: (_, index, item) => BuildProductItem(
-                productModel: item,
-                onFavRefresh: () => controller.onChangeFav(item),
-              ),
+              itemBuilder: (_, index, item) {
+                item as Product;
+                return BuildProductItem(
+                  productModel: item,
+                  showVipDiscount: item.hasVipOffer,
+                  onFavRefresh: () => controller.onChangeFav(item),
+                );
+              },
               loadingWidget: const BuildLoadingProductsGridView(),
               emptyWidget: const BuildEmptyDataView(),
             ),

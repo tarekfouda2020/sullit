@@ -24,6 +24,8 @@ mixin _$SellerProductsModel {
   @JsonKey(name: "section_products")
   SectionProductsModel get sectionProducts =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'price_range')
+  PriceRangeModel get priceRange => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,10 +41,12 @@ abstract class $SellerProductsModelCopyWith<$Res> {
   @useResult
   $Res call(
       {ShopModel shop,
-      @JsonKey(name: "section_products") SectionProductsModel sectionProducts});
+      @JsonKey(name: "section_products") SectionProductsModel sectionProducts,
+      @JsonKey(name: 'price_range') PriceRangeModel priceRange});
 
   $ShopModelCopyWith<$Res> get shop;
   $SectionProductsModelCopyWith<$Res> get sectionProducts;
+  $PriceRangeModelCopyWith<$Res> get priceRange;
 }
 
 /// @nodoc
@@ -60,6 +64,7 @@ class _$SellerProductsModelCopyWithImpl<$Res, $Val extends SellerProductsModel>
   $Res call({
     Object? shop = null,
     Object? sectionProducts = null,
+    Object? priceRange = null,
   }) {
     return _then(_value.copyWith(
       shop: null == shop
@@ -70,6 +75,10 @@ class _$SellerProductsModelCopyWithImpl<$Res, $Val extends SellerProductsModel>
           ? _value.sectionProducts
           : sectionProducts // ignore: cast_nullable_to_non_nullable
               as SectionProductsModel,
+      priceRange: null == priceRange
+          ? _value.priceRange
+          : priceRange // ignore: cast_nullable_to_non_nullable
+              as PriceRangeModel,
     ) as $Val);
   }
 
@@ -88,6 +97,14 @@ class _$SellerProductsModelCopyWithImpl<$Res, $Val extends SellerProductsModel>
       return _then(_value.copyWith(sectionProducts: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PriceRangeModelCopyWith<$Res> get priceRange {
+    return $PriceRangeModelCopyWith<$Res>(_value.priceRange, (value) {
+      return _then(_value.copyWith(priceRange: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -100,12 +117,15 @@ abstract class _$$_SellerProductsModelCopyWith<$Res>
   @useResult
   $Res call(
       {ShopModel shop,
-      @JsonKey(name: "section_products") SectionProductsModel sectionProducts});
+      @JsonKey(name: "section_products") SectionProductsModel sectionProducts,
+      @JsonKey(name: 'price_range') PriceRangeModel priceRange});
 
   @override
   $ShopModelCopyWith<$Res> get shop;
   @override
   $SectionProductsModelCopyWith<$Res> get sectionProducts;
+  @override
+  $PriceRangeModelCopyWith<$Res> get priceRange;
 }
 
 /// @nodoc
@@ -121,6 +141,7 @@ class __$$_SellerProductsModelCopyWithImpl<$Res>
   $Res call({
     Object? shop = null,
     Object? sectionProducts = null,
+    Object? priceRange = null,
   }) {
     return _then(_$_SellerProductsModel(
       shop: null == shop
@@ -131,6 +152,10 @@ class __$$_SellerProductsModelCopyWithImpl<$Res>
           ? _value.sectionProducts
           : sectionProducts // ignore: cast_nullable_to_non_nullable
               as SectionProductsModel,
+      priceRange: null == priceRange
+          ? _value.priceRange
+          : priceRange // ignore: cast_nullable_to_non_nullable
+              as PriceRangeModel,
     ));
   }
 }
@@ -141,7 +166,8 @@ class __$$_SellerProductsModelCopyWithImpl<$Res>
 class _$_SellerProductsModel extends _SellerProductsModel {
   _$_SellerProductsModel(
       {required this.shop,
-      @JsonKey(name: "section_products") required this.sectionProducts})
+      @JsonKey(name: "section_products") required this.sectionProducts,
+      @JsonKey(name: 'price_range') required this.priceRange})
       : super._();
 
   factory _$_SellerProductsModel.fromJson(Map<String, dynamic> json) =>
@@ -152,10 +178,13 @@ class _$_SellerProductsModel extends _SellerProductsModel {
   @override
   @JsonKey(name: "section_products")
   final SectionProductsModel sectionProducts;
+  @override
+  @JsonKey(name: 'price_range')
+  final PriceRangeModel priceRange;
 
   @override
   String toString() {
-    return 'SellerProductsModel(shop: $shop, sectionProducts: $sectionProducts)';
+    return 'SellerProductsModel(shop: $shop, sectionProducts: $sectionProducts, priceRange: $priceRange)';
   }
 
   @override
@@ -165,12 +194,15 @@ class _$_SellerProductsModel extends _SellerProductsModel {
             other is _$_SellerProductsModel &&
             (identical(other.shop, shop) || other.shop == shop) &&
             (identical(other.sectionProducts, sectionProducts) ||
-                other.sectionProducts == sectionProducts));
+                other.sectionProducts == sectionProducts) &&
+            (identical(other.priceRange, priceRange) ||
+                other.priceRange == priceRange));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, shop, sectionProducts);
+  int get hashCode =>
+      Object.hash(runtimeType, shop, sectionProducts, priceRange);
 
   @JsonKey(ignore: true)
   @override
@@ -189,10 +221,11 @@ class _$_SellerProductsModel extends _SellerProductsModel {
 
 abstract class _SellerProductsModel extends SellerProductsModel {
   factory _SellerProductsModel(
-          {required final ShopModel shop,
-          @JsonKey(name: "section_products")
-          required final SectionProductsModel sectionProducts}) =
-      _$_SellerProductsModel;
+      {required final ShopModel shop,
+      @JsonKey(name: "section_products")
+      required final SectionProductsModel sectionProducts,
+      @JsonKey(name: 'price_range')
+      required final PriceRangeModel priceRange}) = _$_SellerProductsModel;
   _SellerProductsModel._() : super._();
 
   factory _SellerProductsModel.fromJson(Map<String, dynamic> json) =
@@ -203,6 +236,9 @@ abstract class _SellerProductsModel extends SellerProductsModel {
   @override
   @JsonKey(name: "section_products")
   SectionProductsModel get sectionProducts;
+  @override
+  @JsonKey(name: 'price_range')
+  PriceRangeModel get priceRange;
   @override
   @JsonKey(ignore: true)
   _$$_SellerProductsModelCopyWith<_$_SellerProductsModel> get copyWith =>
@@ -215,7 +251,7 @@ SectionProductsModel _$SectionProductsModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SectionProductsModel {
-  PaginationModel get pagination => throw _privateConstructorUsedError;
+  SellerPaginationData get pagination => throw _privateConstructorUsedError;
   List<ProductModel> get products => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -230,9 +266,9 @@ abstract class $SectionProductsModelCopyWith<$Res> {
           $Res Function(SectionProductsModel) then) =
       _$SectionProductsModelCopyWithImpl<$Res, SectionProductsModel>;
   @useResult
-  $Res call({PaginationModel pagination, List<ProductModel> products});
+  $Res call({SellerPaginationData pagination, List<ProductModel> products});
 
-  $PaginationModelCopyWith<$Res> get pagination;
+  $SellerPaginationDataCopyWith<$Res> get pagination;
 }
 
 /// @nodoc
@@ -256,7 +292,7 @@ class _$SectionProductsModelCopyWithImpl<$Res,
       pagination: null == pagination
           ? _value.pagination
           : pagination // ignore: cast_nullable_to_non_nullable
-              as PaginationModel,
+              as SellerPaginationData,
       products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
@@ -266,8 +302,8 @@ class _$SectionProductsModelCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $PaginationModelCopyWith<$Res> get pagination {
-    return $PaginationModelCopyWith<$Res>(_value.pagination, (value) {
+  $SellerPaginationDataCopyWith<$Res> get pagination {
+    return $SellerPaginationDataCopyWith<$Res>(_value.pagination, (value) {
       return _then(_value.copyWith(pagination: value) as $Val);
     });
   }
@@ -281,10 +317,10 @@ abstract class _$$_SectionProductsModelCopyWith<$Res>
       __$$_SectionProductsModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PaginationModel pagination, List<ProductModel> products});
+  $Res call({SellerPaginationData pagination, List<ProductModel> products});
 
   @override
-  $PaginationModelCopyWith<$Res> get pagination;
+  $SellerPaginationDataCopyWith<$Res> get pagination;
 }
 
 /// @nodoc
@@ -305,7 +341,7 @@ class __$$_SectionProductsModelCopyWithImpl<$Res>
       pagination: null == pagination
           ? _value.pagination
           : pagination // ignore: cast_nullable_to_non_nullable
-              as PaginationModel,
+              as SellerPaginationData,
       products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
@@ -327,7 +363,7 @@ class _$_SectionProductsModel extends _SectionProductsModel {
       _$$_SectionProductsModelFromJson(json);
 
   @override
-  final PaginationModel pagination;
+  final SellerPaginationData pagination;
   final List<ProductModel> _products;
   @override
   List<ProductModel> get products {
@@ -373,7 +409,7 @@ class _$_SectionProductsModel extends _SectionProductsModel {
 
 abstract class _SectionProductsModel extends SectionProductsModel {
   factory _SectionProductsModel(
-      {required final PaginationModel pagination,
+      {required final SellerPaginationData pagination,
       required final List<ProductModel> products}) = _$_SectionProductsModel;
   _SectionProductsModel._() : super._();
 
@@ -381,11 +417,305 @@ abstract class _SectionProductsModel extends SectionProductsModel {
       _$_SectionProductsModel.fromJson;
 
   @override
-  PaginationModel get pagination;
+  SellerPaginationData get pagination;
   @override
   List<ProductModel> get products;
   @override
   @JsonKey(ignore: true)
   _$$_SectionProductsModelCopyWith<_$_SectionProductsModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+SellerPaginationData _$SellerPaginationDataFromJson(Map<String, dynamic> json) {
+  return _SellerPaginationData.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SellerPaginationData {
+  @JsonKey(name: "total_items")
+  int get totalItems => throw _privateConstructorUsedError;
+  @JsonKey(name: "count_items")
+  int get countItems => throw _privateConstructorUsedError;
+  @JsonKey(name: "per_page")
+  String get perPage => throw _privateConstructorUsedError;
+  @JsonKey(name: "total_pages")
+  int get totalPages => throw _privateConstructorUsedError;
+  @JsonKey(name: "current_page")
+  int get currentPage => throw _privateConstructorUsedError;
+  @JsonKey(name: "next_page_url")
+  String get nextPageUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: "perv_page_url")
+  String get pervPageUrl => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SellerPaginationDataCopyWith<SellerPaginationData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SellerPaginationDataCopyWith<$Res> {
+  factory $SellerPaginationDataCopyWith(SellerPaginationData value,
+          $Res Function(SellerPaginationData) then) =
+      _$SellerPaginationDataCopyWithImpl<$Res, SellerPaginationData>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: "total_items") int totalItems,
+      @JsonKey(name: "count_items") int countItems,
+      @JsonKey(name: "per_page") String perPage,
+      @JsonKey(name: "total_pages") int totalPages,
+      @JsonKey(name: "current_page") int currentPage,
+      @JsonKey(name: "next_page_url") String nextPageUrl,
+      @JsonKey(name: "perv_page_url") String pervPageUrl});
+}
+
+/// @nodoc
+class _$SellerPaginationDataCopyWithImpl<$Res,
+        $Val extends SellerPaginationData>
+    implements $SellerPaginationDataCopyWith<$Res> {
+  _$SellerPaginationDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? totalItems = null,
+    Object? countItems = null,
+    Object? perPage = null,
+    Object? totalPages = null,
+    Object? currentPage = null,
+    Object? nextPageUrl = null,
+    Object? pervPageUrl = null,
+  }) {
+    return _then(_value.copyWith(
+      totalItems: null == totalItems
+          ? _value.totalItems
+          : totalItems // ignore: cast_nullable_to_non_nullable
+              as int,
+      countItems: null == countItems
+          ? _value.countItems
+          : countItems // ignore: cast_nullable_to_non_nullable
+              as int,
+      perPage: null == perPage
+          ? _value.perPage
+          : perPage // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalPages: null == totalPages
+          ? _value.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      nextPageUrl: null == nextPageUrl
+          ? _value.nextPageUrl
+          : nextPageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      pervPageUrl: null == pervPageUrl
+          ? _value.pervPageUrl
+          : pervPageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_SellerPaginationDataCopyWith<$Res>
+    implements $SellerPaginationDataCopyWith<$Res> {
+  factory _$$_SellerPaginationDataCopyWith(_$_SellerPaginationData value,
+          $Res Function(_$_SellerPaginationData) then) =
+      __$$_SellerPaginationDataCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: "total_items") int totalItems,
+      @JsonKey(name: "count_items") int countItems,
+      @JsonKey(name: "per_page") String perPage,
+      @JsonKey(name: "total_pages") int totalPages,
+      @JsonKey(name: "current_page") int currentPage,
+      @JsonKey(name: "next_page_url") String nextPageUrl,
+      @JsonKey(name: "perv_page_url") String pervPageUrl});
+}
+
+/// @nodoc
+class __$$_SellerPaginationDataCopyWithImpl<$Res>
+    extends _$SellerPaginationDataCopyWithImpl<$Res, _$_SellerPaginationData>
+    implements _$$_SellerPaginationDataCopyWith<$Res> {
+  __$$_SellerPaginationDataCopyWithImpl(_$_SellerPaginationData _value,
+      $Res Function(_$_SellerPaginationData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? totalItems = null,
+    Object? countItems = null,
+    Object? perPage = null,
+    Object? totalPages = null,
+    Object? currentPage = null,
+    Object? nextPageUrl = null,
+    Object? pervPageUrl = null,
+  }) {
+    return _then(_$_SellerPaginationData(
+      totalItems: null == totalItems
+          ? _value.totalItems
+          : totalItems // ignore: cast_nullable_to_non_nullable
+              as int,
+      countItems: null == countItems
+          ? _value.countItems
+          : countItems // ignore: cast_nullable_to_non_nullable
+              as int,
+      perPage: null == perPage
+          ? _value.perPage
+          : perPage // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalPages: null == totalPages
+          ? _value.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      nextPageUrl: null == nextPageUrl
+          ? _value.nextPageUrl
+          : nextPageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      pervPageUrl: null == pervPageUrl
+          ? _value.pervPageUrl
+          : pervPageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_SellerPaginationData extends _SellerPaginationData {
+  _$_SellerPaginationData(
+      {@JsonKey(name: "total_items") required this.totalItems,
+      @JsonKey(name: "count_items") required this.countItems,
+      @JsonKey(name: "per_page") required this.perPage,
+      @JsonKey(name: "total_pages") required this.totalPages,
+      @JsonKey(name: "current_page") required this.currentPage,
+      @JsonKey(name: "next_page_url") required this.nextPageUrl,
+      @JsonKey(name: "perv_page_url") required this.pervPageUrl})
+      : super._();
+
+  factory _$_SellerPaginationData.fromJson(Map<String, dynamic> json) =>
+      _$$_SellerPaginationDataFromJson(json);
+
+  @override
+  @JsonKey(name: "total_items")
+  final int totalItems;
+  @override
+  @JsonKey(name: "count_items")
+  final int countItems;
+  @override
+  @JsonKey(name: "per_page")
+  final String perPage;
+  @override
+  @JsonKey(name: "total_pages")
+  final int totalPages;
+  @override
+  @JsonKey(name: "current_page")
+  final int currentPage;
+  @override
+  @JsonKey(name: "next_page_url")
+  final String nextPageUrl;
+  @override
+  @JsonKey(name: "perv_page_url")
+  final String pervPageUrl;
+
+  @override
+  String toString() {
+    return 'SellerPaginationData(totalItems: $totalItems, countItems: $countItems, perPage: $perPage, totalPages: $totalPages, currentPage: $currentPage, nextPageUrl: $nextPageUrl, pervPageUrl: $pervPageUrl)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SellerPaginationData &&
+            (identical(other.totalItems, totalItems) ||
+                other.totalItems == totalItems) &&
+            (identical(other.countItems, countItems) ||
+                other.countItems == countItems) &&
+            (identical(other.perPage, perPage) || other.perPage == perPage) &&
+            (identical(other.totalPages, totalPages) ||
+                other.totalPages == totalPages) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
+            (identical(other.nextPageUrl, nextPageUrl) ||
+                other.nextPageUrl == nextPageUrl) &&
+            (identical(other.pervPageUrl, pervPageUrl) ||
+                other.pervPageUrl == pervPageUrl));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, totalItems, countItems, perPage,
+      totalPages, currentPage, nextPageUrl, pervPageUrl);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SellerPaginationDataCopyWith<_$_SellerPaginationData> get copyWith =>
+      __$$_SellerPaginationDataCopyWithImpl<_$_SellerPaginationData>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_SellerPaginationDataToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SellerPaginationData extends SellerPaginationData {
+  factory _SellerPaginationData(
+          {@JsonKey(name: "total_items") required final int totalItems,
+          @JsonKey(name: "count_items") required final int countItems,
+          @JsonKey(name: "per_page") required final String perPage,
+          @JsonKey(name: "total_pages") required final int totalPages,
+          @JsonKey(name: "current_page") required final int currentPage,
+          @JsonKey(name: "next_page_url") required final String nextPageUrl,
+          @JsonKey(name: "perv_page_url") required final String pervPageUrl}) =
+      _$_SellerPaginationData;
+  _SellerPaginationData._() : super._();
+
+  factory _SellerPaginationData.fromJson(Map<String, dynamic> json) =
+      _$_SellerPaginationData.fromJson;
+
+  @override
+  @JsonKey(name: "total_items")
+  int get totalItems;
+  @override
+  @JsonKey(name: "count_items")
+  int get countItems;
+  @override
+  @JsonKey(name: "per_page")
+  String get perPage;
+  @override
+  @JsonKey(name: "total_pages")
+  int get totalPages;
+  @override
+  @JsonKey(name: "current_page")
+  int get currentPage;
+  @override
+  @JsonKey(name: "next_page_url")
+  String get nextPageUrl;
+  @override
+  @JsonKey(name: "perv_page_url")
+  String get pervPageUrl;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SellerPaginationDataCopyWith<_$_SellerPaginationData> get copyWith =>
       throw _privateConstructorUsedError;
 }

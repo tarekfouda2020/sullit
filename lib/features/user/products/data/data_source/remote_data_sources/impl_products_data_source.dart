@@ -171,7 +171,7 @@ class ImplProductsDataSource extends ProductsDataSource {
   @override
   Future<Either<Failure, SellerProductsModel>> sellerProducts(SellerProductsParams param) async{
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.shopProducts(param.sellerId),
+      url: ApiNames.shopProducts(param.sellerId)+param.paramsToQuery(),
       requestMethod: RequestMethod.get,
       responseType: ResType.model,
       responseKey: (data) => data['data'],

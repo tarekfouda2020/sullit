@@ -39,6 +39,7 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
     @JsonKey(name: 'count_reviews') required int countReviews,
     @JsonKey(name: 'sold_by_type') required String soldByType,
     @JsonKey(name: 'sold_by_name') required String soldByName,
+    @JsonKey(name: 'has_vip_offer')  required bool hasVipOffer,
     ShopModel? shop,
     List<ReviewsModel>? reviews,
     @JsonKey(name: 'is_resale') required bool isResale,
@@ -101,6 +102,7 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
       videoLink: videoLink,
       videoProvider: videoProvider,
       variant: variant?.toDomainModel(),
+      hasVipOffer: hasVipOffer,
     );
   }
 }

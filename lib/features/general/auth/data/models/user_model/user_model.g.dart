@@ -19,6 +19,7 @@ _$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
       tokenType: json['token_type'] as String,
       isPhoneActive: json['phone_is_active'] as bool,
       isEmailActive: json['email_is_active'] as bool,
+      hasValidSubscription: json['has_valid_subscription'] as bool,
       address: json['address'] == null
           ? null
           : AddressModel.fromJson(json['address'] as Map<String, dynamic>),
@@ -38,5 +39,6 @@ Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
       'token_type': instance.tokenType,
       'phone_is_active': instance.isPhoneActive,
       'email_is_active': instance.isEmailActive,
+      'has_valid_subscription': instance.hasValidSubscription,
       'address': instance.address?.toJson(),
     };

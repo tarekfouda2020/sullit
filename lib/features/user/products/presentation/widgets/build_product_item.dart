@@ -26,12 +26,13 @@ class BuildProductItem extends StatefulWidget {
   final Product productModel;
   final VoidCallback onFavRefresh;
   final VoidCallback? onCompareRefresh;
-
+  final bool? showVipDiscount;
   const BuildProductItem({
     super.key,
     required this.productModel,
     required this.onFavRefresh,
     this.onCompareRefresh,
+    this.showVipDiscount,
   });
 
   @override
@@ -75,7 +76,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                     url: widget.productModel.thumbnailImage!,
                   ),
                   Visibility(
-                    visible: widget.productModel.hasDiscount!,
+                    visible: widget.showVipDiscount ?? widget.productModel.hasDiscount!,
                     child: PositionedDirectional(
                       top: 20.r,
                       child: Container(

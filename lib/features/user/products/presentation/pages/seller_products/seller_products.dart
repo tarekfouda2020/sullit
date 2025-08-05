@@ -12,11 +12,11 @@ class SellerProductsPage extends StatefulWidget {
 }
 
 class SellerProductsPageState extends State<SellerProductsPage> {
-  late PopularProductsController controller;
+  late SellerProductsController controller;
 
   @override
   void initState() {
-    controller = PopularProductsController(widget.shopModel.id ?? 0);
+    controller = SellerProductsController(widget.shopModel.id ?? 0);
     super.initState();
   }
 
@@ -24,9 +24,23 @@ class SellerProductsPageState extends State<SellerProductsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
+      key: controller.scaffoldKey,
+      drawer: SellerProductsDrawerWidget(controller: controller),
       appBar: DefaultAppBar(
         title: widget.shopModel.name ?? "",
         showBack: true,
+        actions: [
+          InkWell(
+            onTap: () => controller.openDrawerFilter(),
+            child: Padding(
+              padding: Dimens.paddingAll5PX,
+              child: SvgPicture.asset(
+                Res.filterIcon,
+              ),
+            ),
+          ),
+          Gaps.hGap20,
+        ],
       ),
       body: RefreshIndicator(
         onRefresh: () => controller.getProducts(1),
@@ -42,15 +56,17 @@ class SellerProductsPageState extends State<SellerProductsPage> {
               );
             },
             firstPageProgressIndicatorBuilder: (context) {
-              return GridView.builder(
-                gridDelegate: _buildGridDelegate(),
-                padding: Dimens.paddingAll20PX,
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return const BuildProductItemShimmer();
-                },
+              return SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: GridView.builder(
+                  gridDelegate: _buildGridDelegate(),
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: 6,
+                  itemBuilder: (context, index) {
+                    return const BuildProductItemShimmer();
+                  },
+                ),
               );
             },
             noItemsFoundIndicatorBuilder: (cxt) {

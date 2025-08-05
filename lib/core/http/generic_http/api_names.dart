@@ -94,9 +94,10 @@ class ApiNames {
   static const String getAllFlashSale = "flash-deals";
   static const String getSaleDetails = "flash-deal-products/";
   static const String getCoupons = "exclusive-coupons";
-  static const String getNewArrival = "new-arrival";
-  static const String getOnSale = "on-sale";
-  static const String getBestRated = "best-rated";
+  static const String getNewArrival = "offers/new-arrival";
+  static const String getOnSale = "offers/on-sale";
+  static const String vipProducts = "offers/vip-products";
+  static const String getBestRated = "offers/best-rated";
 
   //wallet urls
   static const String getMyWallet = "my-wallet";

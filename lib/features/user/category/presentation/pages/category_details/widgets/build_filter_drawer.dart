@@ -41,9 +41,7 @@ class BuildFilterDrawer extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        BuildPriceRange(
-                          categoryDetailsController: categoryDetailsController,
-                        ),
+                        CustomPriceRangeWidget(rangeCubit: categoryDetailsController.rangeCubit,),
                         Gaps.line(context.colors.gray, 15),
                          BrandsFilterItem(controller: categoryDetailsController),
                         ...List.generate(

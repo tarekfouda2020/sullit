@@ -52,4 +52,10 @@ class ImplSaleRepository extends SaleRepository with ModelToDomain {
     var result = await dataSources.getOnSale(param);
     return toDomainResultList(result);
   }
+
+  @override
+  Future<Either<Failure, List<Product>>> getVipOffers(bool param) async{
+    var result = await dataSources.getVipOffers(param);
+    return toDomainResultList(result);
+  }
 }

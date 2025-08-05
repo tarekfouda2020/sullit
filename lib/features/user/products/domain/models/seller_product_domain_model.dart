@@ -1,21 +1,44 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/pagination_domain_model.dart';
+import 'package:flutter_tdd/features/user/category/domain/models/price_range.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 
 class SellerProductDomainModel extends BaseDomainModel {
-
   final Shop shop;
   final SellerSectionProductModel sectionProductModel;
 
-  SellerProductDomainModel({required this.sectionProductModel, required this.shop});
+  final PriceRange priceRange;
+
+  SellerProductDomainModel({
+    required this.sectionProductModel,
+    required this.shop,
+    required this.priceRange,
+  });
 }
 
-
 class SellerSectionProductModel extends BaseDomainModel {
-  final PaginationDomainModel pagination;
+  final SellerPaginationModel pagination;
   final List<Product> products;
 
   SellerSectionProductModel({required this.products, required this.pagination});
+}
 
+class SellerPaginationModel extends BaseDomainModel {
+  final int totalItems;
+  final int countItems;
+  final String perPage;
+  final int totalPages;
+  final int currentPage;
+  final String nextPageUrl;
+  final String pervPageUrl;
+
+  SellerPaginationModel(
+      {required this.totalItems,
+      required this.countItems,
+      required this.perPage,
+      required this.totalPages,
+      required this.currentPage,
+      required this.nextPageUrl,
+      required this.pervPageUrl});
 }
