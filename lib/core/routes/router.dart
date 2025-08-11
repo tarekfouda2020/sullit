@@ -36,7 +36,8 @@ part of 'router_imports.dart';
     ...customersProductsRoutes,
     ...videoRoutes,
     ...giftCardRoute,
-    ...vipMembershipRoute
+    ...vipMembershipRoute,
+    ...loyaltyPointsRoute,
   ],
 )
 class $AppRouter {}

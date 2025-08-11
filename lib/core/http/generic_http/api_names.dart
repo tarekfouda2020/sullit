@@ -174,6 +174,7 @@ class ApiNames {
   static const String cusProductsBrands = "user/customer-products-brands";
   static const String cusProductsCats = "user/customer-products-categories";
   static const String classifiedProducts = "user/customer-products";
+  static const String loyaltyPointsBalance = "loyalty-points/balance";
 
   static String changeStatus(int id) =>
       "user/customer-products/$id/switch-available-status";
@@ -201,6 +202,7 @@ class ApiNames {
   static const String giftCardSubscriptions = "gift-card-subscriptions";
 
   static const String giftCards = "gift-cards";
+  static const String loyaltyPointsTransactions = "loyalty-points/transactions";
 
   static  String giftCardSubscriptionDetails(int params) => "gift-card-subscriptions/$params";
 

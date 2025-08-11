@@ -32,5 +32,7 @@ import 'package:flutter_tdd/features/user/vip_subscribe/presentation/manager/rou
 import 'package:flutter_tdd/features/user/wallet/presentation/manager/routes/routes.dart';
 import 'package:flutter_tdd/features/user/wishlist/presentation/manager/routes/routes.dart';
 
+import '../../features/user/loyalty_points/presentation/manager/routes/loyalty_points_route.dart';
+
 
 part 'router.dart';
