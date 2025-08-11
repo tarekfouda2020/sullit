@@ -10,7 +10,15 @@ import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/get_device_id.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
+import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
+import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
+import 'package:flutter_tdd/features/user/cart/domain/entities/update_cart_params.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/add_product_to_cart.dart';
+import 'package:flutter_tdd/features/user/cart/domain/use_cases/delete_item_from_cart.dart';
+import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_cart_items.dart';
+import 'package:flutter_tdd/features/user/cart/domain/use_cases/update_cart_item.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/add_product_to_cart_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/variant_price_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
@@ -111,12 +119,50 @@ class CartHelper {
     onAddCartFunc();
   }
 
+
   void addToCartDialog(BuildContext context, Product product) {
     showDialog(
       context: context,
       builder: (context) => BuildAddToCartDialog(
         product: product,
       ),
+    );
+  }
+
+
+
+  Future<CartDomainModel> getCartItems({bool refresh = true}) async {
+    String? token = await getIt<GetDeviceId>().deviceId;
+    var params = _cartParams(refresh, token!);
+    return await GetCart().call(params);
+  }
+
+
+
+
+  Future<bool> updateCartItem(int qty, int id) async {
+    final params = await _updateCartItemParams(qty, id);
+    final result = await UpdateCartItem().call(params); // your API call
+    return result != null;
+  }
+
+
+  Future<bool> deleteItemFromCart(BuildContext context,CartItem cartItem) async {
+    var params = await _deleteItemFromCart(cartItem.id);
+    return  await DeleteItemFormCart().call(params);
+  }
+
+  Future<DeleteCartItemParams> _deleteItemFromCart(int id) async {
+    return DeleteCartItemParams(
+      id: id,
+      deviceId: await getIt<GetDeviceId>().deviceId,
+    );
+  }
+
+  GetCartItemsParams _cartParams(bool refresh, String token) {
+    return GetCartItemsParams(
+      macAddress: token,
+      refresh: refresh,
     );
   }
 
@@ -135,4 +181,14 @@ class CartHelper {
       variants: selectedVariants.join(','),
     );
   }
+
+
+  Future<UpdateCartItemParams> _updateCartItemParams(int qty, int id) async {
+    return UpdateCartItemParams(
+      macAddress: await getIt<GetDeviceId>().deviceId,
+      qty: qty,
+      id: id,
+    );
+  }
+
 }

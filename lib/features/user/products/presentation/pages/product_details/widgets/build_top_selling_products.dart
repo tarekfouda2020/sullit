@@ -38,6 +38,7 @@ class BuildTopSellingProducts extends StatelessWidget {
                         child: BuildProductItem(
                           productModel: topProducts[index],
                           onFavRefresh: () => controller.onChangeFav(
+                            context,
                             topProducts[index],
                           ),
                           onCompareRefresh: () => controller.onChangeCompare(

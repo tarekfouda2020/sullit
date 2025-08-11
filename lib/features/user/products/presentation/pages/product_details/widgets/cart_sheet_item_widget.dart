@@ -1,7 +1,9 @@
 part of 'product_details_widgets_imports.dart';
 
 class CartSheetItemWidget extends StatelessWidget {
-  const CartSheetItemWidget({super.key});
+  final CartItem item;
+  final ProductDetailsController controller;
+  const CartSheetItemWidget({super.key, required this.item, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +18,10 @@ class CartSheetItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 10),
+           Padding(
+            padding: const EdgeInsets.only(top: 10),
             child: CachedImage(
-              url: "https://media.istockphoto.com/id/1490797933/photo/tasty-colorful-jelly-candies-as-background-above-view.jpg?s=612x612&w=0&k=20&c=SARD1gFY86d3jSVQ97g7k0Ecr5GEISuLQ8MNwBOaIvM=",
+              url: item.thumbnailImage,
              width: 46, height: 46,
               fit: BoxFit.cover,
             ),
@@ -34,25 +36,18 @@ class CartSheetItemWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        "Dubai Chocolate Konafa Pistachio",
+                        item.name,
                         style: AppTextStyle.s14_w600(color: context.colors.black)
                             .copyWith(height: 1.5),
                       ),
                     ),
-                    Container(
-                      padding: Dimens.paddingAll6PX,
-                      decoration: CustomDecoration(
-                          myBoxShadow: const [],
-                          radius: Dimens.borderRadius5PX
-                      ),
-                      /// svgPicture.asset(Res.favIcon)
-                      child: SvgPicture.asset(Res.emptyFavIcon),
-                    ),
+                    Gaps.hGap5,
+                     CartSheetItemFavoriteWidget(cartItem: item,controller: controller),
                   ],
                 ),
                 Gaps.vGap5,
                 RatingBar.builder(
-                  initialRating : 3,
+                  initialRating : item.rating.toDouble(),
                   minRating: 0,
                   direction: Axis.horizontal,
                   allowHalfRating: false,
@@ -67,7 +62,7 @@ class CartSheetItemWidget extends StatelessWidget {
                   onRatingUpdate: (rating) {},
                 ),
                 Gaps.vGap5,
-                Text("20.00 AED",
+                Text(item.price,
                   style: AppTextStyle.s14_w600(color: context.colors.primary),
                 ),
                 Gaps.vGap6,
@@ -78,37 +73,13 @@ class CartSheetItemWidget extends StatelessWidget {
                       style: AppTextStyle.s12_w400(color: context.colors.textColor),
                     ),
                     Gaps.hGap5,
-                    Text("Munch Corner",
+                    Text(item.soldBy,
                       style: AppTextStyle.s12_w600(color: context.colors.black),
                     ),
                   ],
                 ),
                 Gaps.vGap11,
-                Row(
-                  children: [
-                    BuildCustomBounce(
-                      onTap: () {},
-                      iconData: CupertinoIcons.minus,
-                      margin: const EdgeInsetsDirectional.only(end: 19) ,
-                    ),
-                    Text(
-                      "2",
-                      style: AppTextStyle.s16_w400(
-                        color: context.colors.black,
-                      ),
-                    ),
-                    BuildCustomBounce(
-                      onTap: () {},
-                      iconData: CupertinoIcons.add,
-                      margin: const EdgeInsetsDirectional.only(start: 19) ,
-                    ),
-                    const Spacer(),
-                    GestureDetector(
-                        onTap: () {},
-                        child: SvgPicture.asset(Res.trashIcon)
-                    ),
-                  ],
-                ),
+                ChangeQtyCartSheetItemWidget(cartItem: item, controller: controller)
               ],
             ),
           )

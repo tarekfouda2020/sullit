@@ -8,26 +8,39 @@ class ProductDetailsController {
   final GenericBloc<int> isSelected = GenericBloc(0);
   final GenericBloc<int> selectedColorCubit = GenericBloc(0);
   final GenericBloc<ProductDetailsDomainModel?> detailsCubit = GenericBloc(null);
+  final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
   late bool isResale;
+  late int productId;
   List<String> selectedVariants = [];
   List<String> basicImage = [];
 
-  ProductDetailsController(BuildContext context, int productId, bool productResale) {
-    getProductDetails(context, productId, refresh: false);
-    getProductDetails(context, productId);
+
+  ProductDetailsController(BuildContext context, int id, bool productResale) {
+    getProductDetails(context, id, refresh: false);
+    getProductDetails(context, id);
     isResale = productResale;
+    productId = id;
+    getCartItems(refresh: false);
+    getCartItems();
   }
 
-  void getProductDetails(BuildContext context, int productId,
-      {bool refresh = true}) async {
+
+  /// resetQty set false when change favorite and item already have qty more than 1
+  Future<void> getProductDetails(BuildContext context, int productId,
+      {bool refresh = true, bool resetQty = true}) async {
     var params = _detailsParams(refresh, productId);
     var result = await GetProductDetails().call(params);
     detailsCubit.onUpdateData(result);
     basicImage = detailsCubit.state.data!.product.images!;
-    if((result?.product.variant?.currentStock ?? 0) >0 ){
-      qtyCubit.onUpdateData(1);
+    if(resetQty){
+      if((result?.product.variant?.currentStock ?? 0) >0 ){
+        qtyCubit.onUpdateData(1);
+      }
     }
+  if(resetQty){
     _initVariants(context);
+  }
+
   }
 
   void _initVariants(BuildContext context) {
@@ -128,7 +141,7 @@ class ProductDetailsController {
       if (variantPrice.currentStock! > qtyCubit.state.data) {
         var newQty = qtyCubit.state.data + 1;
         var priceQty = newQty * price;
-        variantPrice.calculablePrice = priceQty.toString();
+        variantPrice.calculablePrice = priceQty.toStringAsFixed(2);
         qtyCubit.onUpdateData(newQty);
         detailsCubit.onUpdateData(detailsCubit.state.data);
       } else {
@@ -148,15 +161,16 @@ class ProductDetailsController {
     if (qtyCubit.state.data > 1) {
       var priceQty = price - (price / qtyCubit.state.data);
       var newQty = qtyCubit.state.data - 1;
-      variantPrice.calculablePrice = priceQty.toString();
+      variantPrice.calculablePrice = priceQty.toStringAsFixed(2);
       qtyCubit.onUpdateData(newQty);
       detailsCubit.onUpdateData(detailsCubit.state.data);
     }
   }
 
-  void onChangeFav(Product item) {
+  void onChangeFav(BuildContext context,Product item) {
     item.isWishlist = !item.isWishlist!;
-    detailsCubit.onUpdateData(detailsCubit.state.data);
+    getProductDetails(context, productId,resetQty: false);
+    // detailsCubit.onUpdateData(detailsCubit.state.data);
   }
 
   void onChangeCompare(Product item) {
@@ -193,12 +207,81 @@ class ProductDetailsController {
     );
   }
 
+
+  Future<void> getCartItems({bool refresh = true}) async {
+    CartDomainModel result = await getIt<CartHelper>().getCartItems(refresh: refresh);
+    cartItemsBloc.onUpdateData(result);
+  }
+
+
   void showCartSuccessDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => const BuildCartSuccessDialog(),
     );
   }
+
+
+
+  Future<void> onIncreaseCart(BuildContext context,CartItem cartItem, GenericBloc<bool> loadingCubit) async {
+    if (cartItem.quantity < cartItem.stockQty) {
+      loadingCubit.onUpdateData(true);
+      final newQty = cartItem.quantity + 1;
+      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+      if (success) {
+        loadingCubit.onUpdateData(false);
+        cartItem.quantity = newQty;
+        cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+        if(cartItem.productId == detailsCubit.state.data?.product.id){
+          // detailsCubit.state.data.product.variant.
+          // await getProductDetails(context, productId);
+          // increaseQty();
+        }
+      }
+       getCartItems();
+    } else {
+      CustomToast.showSimpleToast(
+        msg: '${tr("only")} ${cartItem.stockQty} ${tr("availableStock")}',
+      );
+    }
+  }
+
+  Future<void> onDecreaseCart(BuildContext context,CartItem cartItem, GenericBloc<bool> loadingCubit) async {
+    if (cartItem.quantity > 1) {
+      loadingCubit.onUpdateData(true);
+      final newQty = cartItem.quantity - 1;
+      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+      if (success) {
+        loadingCubit.onUpdateData(false);
+        cartItem.quantity = newQty;
+        cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+        if(cartItem.productId == detailsCubit.state.data?.product.id){
+          // decreaseQty();
+        }
+        getCartItems(refresh: true);
+      }
+    }
+  }
+
+
+  Future<void> deleteItemFromCart(BuildContext context,CartItem cartItem) async {
+    var data = await getIt<CartHelper>().deleteItemFromCart(context,cartItem);
+    if (data) {
+      var newSubTotal =
+          cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
+      cartItemsBloc.state.data.calculableTotal = newSubTotal;
+      cartItemsBloc.state.data.items!.remove(cartItem);
+      cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+      var countCubit = context.read<CountCubit>().state;
+      var cartCount = countCubit.cartCount - 1;
+      context.read<CountCubit>().onUpdateCount(cartCount, countCubit.discount);
+      CustomToast.showSimpleToast(
+          msg: tr('itemDeleted'), type: ToastType.success);
+      getCartItems();
+    }
+  }
+
+
   void showCartSuccessSheet(BuildContext context) {
   showModalBottomSheet(
       context: context,
@@ -206,8 +289,16 @@ class ProductDetailsController {
       isScrollControlled: true,
       useRootNavigator: true,
       enableDrag: false,
-      builder: (context) => const CartSuccessSheetWidget(),
+      builder: (context) =>  CartSuccessSheetWidget(controller: this),
   );
+  }
+
+  void updateFavFromSheet(CartItem cartItem){
+    if(cartItem.productId == detailsCubit.state.data?.product.id){
+      print("==================inside if===================");
+      detailsCubit.state.data!.product.isWishlist = cartItem.isWishlist;
+      detailsCubit.onUpdateData(detailsCubit.state.data);
+    }
   }
 
   GenericParams _detailsParams(bool refresh, int productId) {
