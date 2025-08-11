@@ -1,16 +1,16 @@
-part of 'cart_widgets_imports.dart';
+part of 'product_details_widgets_imports.dart';
 
-class ChangeCartQtyWidget extends StatefulWidget {
+class ChangeQtyCartSheetItemWidget extends StatefulWidget {
   final CartItem cartItem;
-  final CartController controller;
-
-  const ChangeCartQtyWidget({super.key, required this.cartItem, required this.controller});
+  final ProductDetailsController controller;
+  const ChangeQtyCartSheetItemWidget({super.key, required this.cartItem, required this.controller});
 
   @override
-  State<ChangeCartQtyWidget> createState() => _ChangeCartQtyWidgetState();
+  State<ChangeQtyCartSheetItemWidget> createState() => _ChangeQtyCartSheetItemWidgetState();
 }
 
-class _ChangeCartQtyWidgetState extends State<ChangeCartQtyWidget> {
+class _ChangeQtyCartSheetItemWidgetState extends State<ChangeQtyCartSheetItemWidget> {
+
 
   final GenericBloc<bool> loadingCubit = GenericBloc(false);
 
@@ -24,7 +24,7 @@ class _ChangeCartQtyWidgetState extends State<ChangeCartQtyWidget> {
           child: Row(
             children: [
               BuildCustomBounce(
-                onTap: state.data ? (){} : () => widget.controller.onDecreaseCart(widget.cartItem,loadingCubit),
+                onTap: state.data ? (){} : () => widget.controller.onDecreaseCart(context,widget.cartItem,loadingCubit),
                 iconData: CupertinoIcons.minus,
                 margin: const EdgeInsetsDirectional.only(end: 19),
               ),
@@ -35,7 +35,7 @@ class _ChangeCartQtyWidgetState extends State<ChangeCartQtyWidget> {
                 ),
               ),
               BuildCustomBounce(
-                onTap: state.data ? (){} : () => widget.controller.onIncreaseCart(widget.cartItem,loadingCubit),
+                onTap: state.data ? (){} :() => widget.controller.onIncreaseCart(context,widget.cartItem,loadingCubit),
                 iconData: CupertinoIcons.add,
                 margin: const EdgeInsetsDirectional.only(start: 19),
               ),

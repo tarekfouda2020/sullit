@@ -37,6 +37,7 @@ final ProductDetailsController controller;
                         child: BuildProductItem(
                           productModel: relatedProducts[index],
                           onFavRefresh: () => controller.onChangeFav(
+                            context,
                             relatedProducts[index],
                           ),
                           onCompareRefresh: () => controller.onChangeCompare(

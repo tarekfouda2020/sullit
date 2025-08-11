@@ -12,11 +12,8 @@ class CartController {
   }
 
   Future<void> getCartItems({bool refresh = true}) async {
-    String? token = await getIt<GetDeviceId>().deviceId;
-    var params = _cartParams(refresh, token!);
-    return await GetCart().call(params).then(
-          (value) => cartItemsBloc.onUpdateData(value),
-        );
+    CartDomainModel result = await getIt<CartHelper>().getCartItems(refresh: refresh);
+    cartItemsBloc.onUpdateData(result);
   }
 
   Future<bool> updateCartItem(int qty, int id) async {
@@ -26,8 +23,7 @@ class CartController {
   }
 
   Future<void> deleteItemFromCart(BuildContext context,CartItem cartItem) async {
-    var params = await _deleteItemFormCart(cartItem.id);
-    var data = await DeleteItemFormCart().call(params);
+    var data = await getIt<CartHelper>().deleteItemFromCart(context,cartItem);
     if (data) {
       var newSubTotal =
           cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
@@ -92,19 +88,7 @@ class CartController {
     }
   }
 
-  GetCartItemsParams _cartParams(bool refresh, String token) {
-    return GetCartItemsParams(
-      macAddress: token,
-      refresh: refresh,
-    );
-  }
 
-  Future<DeleteCartItemParams> _deleteItemFormCart(int id) async {
-    return DeleteCartItemParams(
-      id: id,
-      deviceId: await getIt<GetDeviceId>().deviceId,
-    );
-  }
 
   Future<UpdateCartItemParams> _updateCartItemParams(int qty, int id) async {
     return UpdateCartItemParams(
