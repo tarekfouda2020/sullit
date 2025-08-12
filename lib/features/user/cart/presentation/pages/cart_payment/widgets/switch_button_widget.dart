@@ -2,7 +2,8 @@ part of 'cart_payment_widgets_imports.dart';
 
 class SwitchButtonWidget extends StatelessWidget {
   final GenericBloc<bool> switchBloc;
-  const SwitchButtonWidget({super.key, required this.switchBloc});
+  final CartPaymentController controller;
+  const SwitchButtonWidget({super.key, required this.switchBloc, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class SwitchButtonWidget extends StatelessWidget {
       builder: (context, state) {
         return FlutterSwitch(
           value: state.data,
-          onToggle: (value) => switchBloc.onUpdateData(value),
+          onToggle: (value) => controller.switchApplyPoints(),
           width: 32,
           height: 18,
           toggleSize: 18,

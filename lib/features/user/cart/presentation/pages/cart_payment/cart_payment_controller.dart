@@ -12,7 +12,9 @@ class CartPaymentController {
   final GenericBloc<int> paymentCubit = GenericBloc(0);
   final GenericBloc<bool> conditionsCubit = GenericBloc(false);
   final GenericBloc<bool> isWalletSelected = GenericBloc(false);
-  final GenericBloc<bool> applyLoyaltyPoints = GenericBloc(false);
+  final GenericBloc<bool> applyPointsSwitchCubit = GenericBloc(false);
+  final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc =
+  GenericBloc(null);
   String? selectedPayment;
 
   CartPaymentController(Shipping shipping) {
@@ -22,6 +24,8 @@ class CartPaymentController {
     if (shipping.isAdminDiscount == true) {
       calculateDiscount();
     }
+    getLoyaltyPointsBalance(refresh: false);
+    getLoyaltyPointsBalance();
   }
 
   void calculateDiscount() {
@@ -180,5 +184,43 @@ class CartPaymentController {
       builder: (context) => ApplyGiftCardSheet(controller: this),
     );
   }
+
+  Future<void> applyLoyaltyPoint()async{
+     await ApplyLoyaltyPoints().call(NoParams()).then((value) {
+       if (value != null) {
+         applyPointsSwitchCubit.onUpdateData(true);
+         shippingBloc.state.data!.summary=value;
+         shippingBloc.onUpdateData(shippingBloc.state.data);
+       }
+     });
+  }
+
+  Future<void> removeLoyaltyPoint()async{
+    await RemoveLoyaltyPoints().call(NoParams()).then((value) {
+      if (value != null) {
+        applyPointsSwitchCubit.onUpdateData(false);
+        shippingBloc.state.data!.summary=value;
+        shippingBloc.onUpdateData(shippingBloc.state.data);
+      }
+    });
+  }
+
+  void switchApplyPoints(){
+    if((loyaltyPointsBalanceBloc.state.data?.points ?? 0) > 0 ) {
+      if (applyPointsSwitchCubit.state.data) {
+        removeLoyaltyPoint();
+      } else {
+        applyLoyaltyPoint();
+      }
+    }
+    }
+
+  Future<void> getLoyaltyPointsBalance({bool refresh = true}) async {
+    return await GetLoyaltyPointsBalance().call(refresh).then(
+          (value) => loyaltyPointsBalanceBloc.onUpdateData(value),
+    );
+  }
+
+
 
 }

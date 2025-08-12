@@ -7,12 +7,14 @@ import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
+import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/user/cart/data/data_sources/cart_data_sources.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/cart_model/cart_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/coupon_response_model/coupon_response_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/seller_shipping_model/seller_shipping_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/shipping_model/shipping_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/shipping_summary_model/shipping_summary_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
@@ -170,5 +172,33 @@ class ImplCartDataSources extends CartDataSources {
       errorFunc: (data)=> data["msg"],
     );
     return await GenericHttpImpl<OrderSummaryModel>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, ShippingSummaryModel>> applyLoyaltyPoints(NoParams params)async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.applyLoyaltyPoints,
+      requestMethod: RequestMethod.post,
+      responseType: ResType.model,
+      showLoader: true,
+      responseKey: (data) => data["data"]["summary"],
+      toJsonFunc: (json) => ShippingSummaryModel.fromJson(json),
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<ShippingSummaryModel>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, ShippingSummaryModel>> removeLoyaltyPoints(NoParams params)async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.removeLoyaltyPoints,
+      responseType: ResType.model,
+      requestMethod: RequestMethod.post,
+      responseKey: (data) => data['data']['summary'],
+      showLoader: true,
+      errorFunc: (data) => data["msg"],
+      toJsonFunc: (json) => ShippingSummaryModel.fromJson(json),
+    );
+    return await GenericHttpImpl<ShippingSummaryModel>()(model);
   }
 }

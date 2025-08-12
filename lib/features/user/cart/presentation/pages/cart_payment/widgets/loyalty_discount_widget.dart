@@ -22,14 +22,19 @@ class LoyaltyDiscountWidget extends StatelessWidget {
                     style: AppTextStyle.s14_w400(color: context.colors.black),
                   ),
                   Gaps.vGap6,
-                  Text("1245 Point = 31.00 AED",
-                    style: AppTextStyle.s12_w700(color: context.colors.primary),
-                  ),
+                  BlocBuilder<GenericBloc<LoyaltyPointsBalanceDomainModel?>, GenericState<LoyaltyPointsBalanceDomainModel?>>(
+                    bloc: controller.loyaltyPointsBalanceBloc,
+                    builder: (context, state) {
+                      return Text("${state.data == null ? '0' : state.data!.points.toString()} Point = ${state.data == null ? '0:00' : state.data!.amount}",
+                        style: AppTextStyle.s12_w700(color: context.colors.primary),
+                      );
+                    },
+                  )
 
                 ],
               ),
               const Spacer(),
-              SwitchButtonWidget(switchBloc: controller.applyLoyaltyPoints),
+              SwitchButtonWidget(switchBloc: controller.applyPointsSwitchCubit, controller: controller,),
             ],
           ),
         ),

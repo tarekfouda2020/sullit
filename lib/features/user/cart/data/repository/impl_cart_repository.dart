@@ -2,8 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/models/model_to_domain/model_to_domain.dart';
+import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/user/cart/data/data_sources/cart_data_sources.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/seller_shipping_model/seller_shipping_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/shipping_summary_model/shipping_summary_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
@@ -13,6 +15,7 @@ import 'package:flutter_tdd/features/user/cart/domain/models/coupon_response_mod
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/seller_shipping.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/shipping_summary.dart';
 import 'package:flutter_tdd/features/user/cart/domain/repository/cart_repository.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/add_product_to_cart_params.dart';
 import 'package:injectable/injectable.dart';
@@ -73,6 +76,18 @@ class ImplCartRepository extends CartRepository with ModelToDomain{
   @override
   Future<Either<Failure, OrderSummary>> getCombinedOrder(int param)async {
     var result = await dataSource.getCombinedOrder(param);
+    return toDomainResult(result);
+  }
+
+  @override
+  Future<Either<Failure, ShippingSummary>> applyLoyaltyPoints(NoParams params)async {
+    var result = await dataSource.applyLoyaltyPoints(params);
+    return toDomainResult(result);
+  }
+
+  @override
+  Future<Either<Failure, ShippingSummary>> removeLoyaltyPoints(NoParams params)async {
+    var result = await dataSource.removeLoyaltyPoints(params);
     return toDomainResult(result);
   }
 }

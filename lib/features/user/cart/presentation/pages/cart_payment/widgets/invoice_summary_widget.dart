@@ -35,22 +35,26 @@ class InvoiceSummaryWidget extends StatelessWidget {
             title: tr('shippingFees'),
             details: shipping.summary.shipping,
           ),
-          Visibility(
-            visible: shipping.isAdminDiscount == true,
-            replacement: Visibility(
-              visible: applyGiftCard,
-              child: BuildSummaryHeader(
-                title: "Applied Gift Card",
-                details: "-$giftCardTotal",
-                detailsColor: context.colors.primary,
+              Visibility(
+                visible: applyGiftCard,
+                replacement: Visibility(
+                  visible: shipping.summary.couponApplied == true || shipping.summary.loyaltyPointsApplied==true,
+                    child: BuildSummaryHeader(
+                      title: shipping.summary.loyaltyPointsApplied == true
+                          ? "Points Discount"
+                          :tr("voucherDiscount"),
+                      details: shipping.summary.loyaltyPointsApplied == true
+                          ? "${shipping.summary.loyaltyPointsValue} "
+                          :shipping.summary.couponDiscount,
+                      detailsColor: context.colors.primary,
+                    ),
+                ),
+                child: BuildSummaryHeader(
+                  title: "Applied Gift Card",
+                  details: "-$giftCardTotal",
+                  detailsColor: context.colors.primary,
+                ),
               ),
-            ),
-            child: BuildSummaryHeader(
-              title: tr("voucherDiscount"),
-              details: "${shipping.discountVal} ${tr("currencyCode")} ",
-              detailsColor: context.colors.primary,
-            ),
-          ),
           Gaps.line(context.colors.softGray, 15.h),
           BuildSummaryHeader(
             title: tr("total"),

@@ -34,7 +34,7 @@ class WalletPaymentWidget extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                SwitchButtonWidget(switchBloc: controller.isWalletSelected),
+                SwitchButtonWidget(switchBloc: controller.isWalletSelected, controller: controller,),
               ],
             ),
           ),

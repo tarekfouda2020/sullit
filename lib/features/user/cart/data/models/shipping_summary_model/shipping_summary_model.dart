@@ -4,12 +4,12 @@ import 'package:flutter_tdd/features/user/cart/domain/models/shipping_summary.da
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'shipping_summary_model.freezed.dart';
+
 part 'shipping_summary_model.g.dart';
 
 @freezed
 @immutable
-class ShippingSummaryModel extends BaseApiModel<ShippingSummary>
-    with _$ShippingSummaryModel {
+class ShippingSummaryModel extends BaseApiModel<ShippingSummary> with _$ShippingSummaryModel {
   const ShippingSummaryModel._();
 
   @JsonSerializable(explicitToJson: true)
@@ -23,42 +23,44 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary>
     @JsonKey(name: "coupon_code") String? couponCode,
     @JsonKey(name: "coupon_applied") bool? couponApplied,
     @JsonKey(name: "total_items") required int totalItems,
-    @JsonKey(name: "minimum_order_amount_status")
-        required bool minimumOrderAmountStatus,
-    @JsonKey(name: "minimum_order_amount_msg")
-        required String minimumOrderAmountMsg,
+    @JsonKey(name: "minimum_order_amount_status") required bool minimumOrderAmountStatus,
+    @JsonKey(name: "minimum_order_amount_msg") required String minimumOrderAmountMsg,
     @JsonKey(name: "wallet_system_active") required bool walletSystemActive,
     @JsonKey(name: "wallet_balance") required String walletBalance,
-    @JsonKey(name:"wallet_balance_value")required double walletBalanceValue,
-    @JsonKey(name: "avilable_pay_with_wallet")
-        required bool avilablePayWithWallet,
-    @JsonKey(name: "avilable_cash_on_delivery")
-        required bool avilableCashOnDelivery,
+    @JsonKey(name: "wallet_balance_value") required double walletBalanceValue,
+    @JsonKey(name: "avilable_pay_with_wallet") required bool avilablePayWithWallet,
+    @JsonKey(name: "avilable_cash_on_delivery") required bool avilableCashOnDelivery,
     required List<ShippingItemModel> items,
+    @JsonKey(name: "loyalty_points_value") String? loyaltyPointsValue,
+    @JsonKey(name: "loyalty_points_applied") bool? loyaltyPointsApplied,
+    @JsonKey(name: "loyalty_points") int? loyaltyPoints,
   }) = _ShippingSummaryModel;
 
-  factory ShippingSummaryModel.fromJson(Map<String, dynamic> json) =>
-      _$ShippingSummaryModelFromJson(json);
+  factory ShippingSummaryModel.fromJson(Map<String, dynamic> json) => _$ShippingSummaryModelFromJson(json);
 
   @override
   ShippingSummary toDomainModel() {
     return ShippingSummary(
-        subTotal: subtotal,
-        tax: tax,
-        shipping: shipping,
-        couponDiscount: couponDiscount,
-        calTotal: calTotal,
-        total: total,
-        couponCode: couponCode,
-        couponApplied: couponApplied,
-        totalItems: totalItems,
-        minimumOrderAmountStatus: minimumOrderAmountStatus,
-        minimumOrderAmountMsg: minimumOrderAmountMsg,
-        walletSystemActive: walletSystemActive,
-        walletBalance: walletBalance,
-        walletBalanceValue:walletBalanceValue,
-        avilablePayWithWallet: avilablePayWithWallet,
-        avilableCashOnDelivery: avilableCashOnDelivery,
-        items: items.map((e) => e.toDomainModel()).toList());
+      subTotal: subtotal,
+      tax: tax,
+      shipping: shipping,
+      couponDiscount: couponDiscount,
+      calTotal: calTotal,
+      total: total,
+      couponCode: couponCode,
+      couponApplied: couponApplied,
+      totalItems: totalItems,
+      minimumOrderAmountStatus: minimumOrderAmountStatus,
+      minimumOrderAmountMsg: minimumOrderAmountMsg,
+      walletSystemActive: walletSystemActive,
+      walletBalance: walletBalance,
+      walletBalanceValue: walletBalanceValue,
+      avilablePayWithWallet: avilablePayWithWallet,
+      avilableCashOnDelivery: avilableCashOnDelivery,
+      items: items.map((e) => e.toDomainModel()).toList(),
+      loyaltyPointsValue: loyaltyPointsValue,
+      loyaltyPointsApplied: loyaltyPointsApplied,
+      loyaltyPoints: loyaltyPoints,
+    );
   }
 }
