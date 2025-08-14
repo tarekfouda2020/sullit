@@ -73,6 +73,14 @@ mixin _$OrderModel {
   String get soldBy => throw _privateConstructorUsedError;
   @JsonKey(name: 'customer_phone')
   String get customerPhone => throw _privateConstructorUsedError;
+  @JsonKey(name: 'loyalty_points_value')
+  String get loyaltyPointsValue => throw _privateConstructorUsedError;
+  @JsonKey(name: 'loyalty_points_applied')
+  bool get loyaltyPointsApplied => throw _privateConstructorUsedError;
+  @JsonKey(name: 'loyalty_points')
+  int get loyaltyPoints => throw _privateConstructorUsedError;
+  @JsonKey(name: 'total_items')
+  int get totalItems => throw _privateConstructorUsedError;
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel> get orderDetails =>
       throw _privateConstructorUsedError;
@@ -120,6 +128,10 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'sold_by_type') String soldByType,
       @JsonKey(name: 'sold_by_name') String soldBy,
       @JsonKey(name: 'customer_phone') String customerPhone,
+      @JsonKey(name: 'loyalty_points_value') String loyaltyPointsValue,
+      @JsonKey(name: 'loyalty_points_applied') bool loyaltyPointsApplied,
+      @JsonKey(name: 'loyalty_points') int loyaltyPoints,
+      @JsonKey(name: 'total_items') int totalItems,
       @JsonKey(name: 'order_details') List<OrderDetailsModel> orderDetails});
 }
 
@@ -166,6 +178,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? soldByType = null,
     Object? soldBy = null,
     Object? customerPhone = null,
+    Object? loyaltyPointsValue = null,
+    Object? loyaltyPointsApplied = null,
+    Object? loyaltyPoints = null,
+    Object? totalItems = null,
     Object? orderDetails = null,
   }) {
     return _then(_value.copyWith(
@@ -289,6 +305,22 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.customerPhone
           : customerPhone // ignore: cast_nullable_to_non_nullable
               as String,
+      loyaltyPointsValue: null == loyaltyPointsValue
+          ? _value.loyaltyPointsValue
+          : loyaltyPointsValue // ignore: cast_nullable_to_non_nullable
+              as String,
+      loyaltyPointsApplied: null == loyaltyPointsApplied
+          ? _value.loyaltyPointsApplied
+          : loyaltyPointsApplied // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loyaltyPoints: null == loyaltyPoints
+          ? _value.loyaltyPoints
+          : loyaltyPoints // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalItems: null == totalItems
+          ? _value.totalItems
+          : totalItems // ignore: cast_nullable_to_non_nullable
+              as int,
       orderDetails: null == orderDetails
           ? _value.orderDetails
           : orderDetails // ignore: cast_nullable_to_non_nullable
@@ -336,6 +368,10 @@ abstract class _$$_OrderModelCopyWith<$Res>
       @JsonKey(name: 'sold_by_type') String soldByType,
       @JsonKey(name: 'sold_by_name') String soldBy,
       @JsonKey(name: 'customer_phone') String customerPhone,
+      @JsonKey(name: 'loyalty_points_value') String loyaltyPointsValue,
+      @JsonKey(name: 'loyalty_points_applied') bool loyaltyPointsApplied,
+      @JsonKey(name: 'loyalty_points') int loyaltyPoints,
+      @JsonKey(name: 'total_items') int totalItems,
       @JsonKey(name: 'order_details') List<OrderDetailsModel> orderDetails});
 }
 
@@ -380,6 +416,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? soldByType = null,
     Object? soldBy = null,
     Object? customerPhone = null,
+    Object? loyaltyPointsValue = null,
+    Object? loyaltyPointsApplied = null,
+    Object? loyaltyPoints = null,
+    Object? totalItems = null,
     Object? orderDetails = null,
   }) {
     return _then(_$_OrderModel(
@@ -503,6 +543,22 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.customerPhone
           : customerPhone // ignore: cast_nullable_to_non_nullable
               as String,
+      loyaltyPointsValue: null == loyaltyPointsValue
+          ? _value.loyaltyPointsValue
+          : loyaltyPointsValue // ignore: cast_nullable_to_non_nullable
+              as String,
+      loyaltyPointsApplied: null == loyaltyPointsApplied
+          ? _value.loyaltyPointsApplied
+          : loyaltyPointsApplied // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loyaltyPoints: null == loyaltyPoints
+          ? _value.loyaltyPoints
+          : loyaltyPoints // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalItems: null == totalItems
+          ? _value.totalItems
+          : totalItems // ignore: cast_nullable_to_non_nullable
+              as int,
       orderDetails: null == orderDetails
           ? _value._orderDetails
           : orderDetails // ignore: cast_nullable_to_non_nullable
@@ -548,6 +604,11 @@ class _$_OrderModel extends _OrderModel {
       @JsonKey(name: 'sold_by_type') required this.soldByType,
       @JsonKey(name: 'sold_by_name') required this.soldBy,
       @JsonKey(name: 'customer_phone') required this.customerPhone,
+      @JsonKey(name: 'loyalty_points_value') required this.loyaltyPointsValue,
+      @JsonKey(name: 'loyalty_points_applied')
+      required this.loyaltyPointsApplied,
+      @JsonKey(name: 'loyalty_points') required this.loyaltyPoints,
+      @JsonKey(name: 'total_items') required this.totalItems,
       @JsonKey(name: 'order_details')
       required final List<OrderDetailsModel> orderDetails})
       : _orderDetails = orderDetails,
@@ -639,6 +700,18 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'customer_phone')
   final String customerPhone;
+  @override
+  @JsonKey(name: 'loyalty_points_value')
+  final String loyaltyPointsValue;
+  @override
+  @JsonKey(name: 'loyalty_points_applied')
+  final bool loyaltyPointsApplied;
+  @override
+  @JsonKey(name: 'loyalty_points')
+  final int loyaltyPoints;
+  @override
+  @JsonKey(name: 'total_items')
+  final int totalItems;
   final List<OrderDetailsModel> _orderDetails;
   @override
   @JsonKey(name: 'order_details')
@@ -650,7 +723,7 @@ class _$_OrderModel extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, customerPhone: $customerPhone, orderDetails: $orderDetails)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, customerPhone: $customerPhone, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, orderDetails: $orderDetails)';
   }
 
   @override
@@ -712,6 +785,14 @@ class _$_OrderModel extends _OrderModel {
             (identical(other.soldBy, soldBy) || other.soldBy == soldBy) &&
             (identical(other.customerPhone, customerPhone) ||
                 other.customerPhone == customerPhone) &&
+            (identical(other.loyaltyPointsValue, loyaltyPointsValue) ||
+                other.loyaltyPointsValue == loyaltyPointsValue) &&
+            (identical(other.loyaltyPointsApplied, loyaltyPointsApplied) ||
+                other.loyaltyPointsApplied == loyaltyPointsApplied) &&
+            (identical(other.loyaltyPoints, loyaltyPoints) ||
+                other.loyaltyPoints == loyaltyPoints) &&
+            (identical(other.totalItems, totalItems) ||
+                other.totalItems == totalItems) &&
             const DeepCollectionEquality()
                 .equals(other._orderDetails, _orderDetails));
   }
@@ -750,6 +831,10 @@ class _$_OrderModel extends _OrderModel {
         soldByType,
         soldBy,
         customerPhone,
+        loyaltyPointsValue,
+        loyaltyPointsApplied,
+        loyaltyPoints,
+        totalItems,
         const DeepCollectionEquality().hash(_orderDetails)
       ]);
 
@@ -804,6 +889,12 @@ abstract class _OrderModel extends OrderModel {
       @JsonKey(name: 'sold_by_type') required final String soldByType,
       @JsonKey(name: 'sold_by_name') required final String soldBy,
       @JsonKey(name: 'customer_phone') required final String customerPhone,
+      @JsonKey(name: 'loyalty_points_value')
+      required final String loyaltyPointsValue,
+      @JsonKey(name: 'loyalty_points_applied')
+      required final bool loyaltyPointsApplied,
+      @JsonKey(name: 'loyalty_points') required final int loyaltyPoints,
+      @JsonKey(name: 'total_items') required final int totalItems,
       @JsonKey(name: 'order_details')
       required final List<OrderDetailsModel> orderDetails}) = _$_OrderModel;
   const _OrderModel._() : super._();
@@ -894,6 +985,18 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'customer_phone')
   String get customerPhone;
+  @override
+  @JsonKey(name: 'loyalty_points_value')
+  String get loyaltyPointsValue;
+  @override
+  @JsonKey(name: 'loyalty_points_applied')
+  bool get loyaltyPointsApplied;
+  @override
+  @JsonKey(name: 'loyalty_points')
+  int get loyaltyPoints;
+  @override
+  @JsonKey(name: 'total_items')
+  int get totalItems;
   @override
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel> get orderDetails;

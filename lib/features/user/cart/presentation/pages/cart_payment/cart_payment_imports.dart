@@ -25,6 +25,7 @@ import 'package:flutter_tdd/features/user/cart/domain/use_cases/apply_coupon.dar
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/apply_gift_card.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/apply_loyalty_points.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/create_order.dart';
+import 'package:flutter_tdd/features/user/cart/domain/use_cases/remove_coupon.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/remove_loyalty_points.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/widgets/build_cart_stepper.dart';
 import 'package:flutter_tdd/features/user/loyalty_points/domain/models/loyalty_points_balance_domain_model.dart';

@@ -2,9 +2,9 @@ part of 'order_details_imports.dart';
 
 class OrderDetailsPage extends StatefulWidget {
   final bool isReturnedOrder;
-  final Orders? order;
+  final Orders order;
 
-  const OrderDetailsPage({super.key, required this.isReturnedOrder, this.order});
+  const OrderDetailsPage({super.key, required this.isReturnedOrder, required this.order});
 
   @override
   State<OrderDetailsPage> createState() => _OrderDetailsPageState();
@@ -41,7 +41,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 isReturned: widget.isReturnedOrder,
                 hasReview: false,
                 controller: controller,
-                order: state.data,
+                order: state.data!,
               ),
               Gaps.vGap12,
               const OrderDetailsSectionsTitleWidget(title: "Invoice Summary"),

@@ -2,7 +2,8 @@ part of 'cart_confirm_buying_widgets_imports.dart';
 
 class CartOrderProductsWidget extends StatelessWidget {
   final ConfirmBuyingController controller;
-  const CartOrderProductsWidget({super.key, required this.controller});
+  final Orders order;
+  const CartOrderProductsWidget({super.key, required this.controller, required this.order});
 
   @override
   Widget build(BuildContext context) {
@@ -20,22 +21,24 @@ class CartOrderProductsWidget extends StatelessWidget {
               ),
               Gaps.hGap7,
               Text(
-                "Munch Corner",
+                order.soldBy,
                 style: AppTextStyle.s14_w600(color: context.colors.black),
               ),
             ],
           ),
           Gaps.vGap12,
-          ...List.generate(2, (index) {
+          ...List.generate(order.orderDetails.length, (index) {
+            var item = order.orderDetails[index];
             return  OrderDetailsProductItemWidget(
               hasReview: false,
-              onPressReview: (){},
+              onPressReview: () => controller.reviewSheet(context,item),
+              orderDetails: item,
             );
           }),
             Padding(
               padding: const EdgeInsets.only(top: 18),
               child: GestureDetector(
-                onTap: ()=> controller.reviewSheet(context),
+                onTap: ()=> AutoRouter.of(context).push( TrackOrderRoute(orderId: order.id) ),
                 child: Row(
                   children: [
                     Text(

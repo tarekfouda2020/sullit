@@ -1,4 +1,4 @@
-part of 'conformation_imports.dart';
+part of 'confirmation_imports.dart';
 
 class Confirmation extends StatefulWidget {
   final OrderSummary? summary;

@@ -1,4 +1,4 @@
-part of 'conformation_w_imports.dart';
+part of 'confirmation_w_imports.dart';
 
 class BuildOrderSummary extends StatelessWidget {
   final OrderSummary summary;

@@ -1,4 +1,4 @@
-part of 'conformation_w_imports.dart';
+part of 'confirmation_w_imports.dart';
 
 class BuildOrdersDetails extends StatelessWidget {
   final OrderSummary summary;
@@ -92,7 +92,7 @@ class BuildOrdersDetails extends StatelessWidget {
                                         .sectionOrders![index]
                                         .orderDetails[productsIndex]
                                         .product!
-                                        .name,
+                                        .name ?? "",
                                     style: AppTextStyle.s14_w600(
                                         color: context.colors.black),
                                   ),

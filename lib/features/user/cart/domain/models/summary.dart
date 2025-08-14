@@ -9,6 +9,8 @@ class Summary extends BaseDomainModel {
   String totalOrderAmount;
   String shipping;
   String paymentMethod;
+  int totalItems;
+  String phone;
 
   Summary({
     required this.orderDate,
@@ -19,5 +21,7 @@ class Summary extends BaseDomainModel {
     required this.totalOrderAmount,
     required this.shipping,
     required this.paymentMethod,
+    required this.totalItems,
+    required this.phone,
   });
 }

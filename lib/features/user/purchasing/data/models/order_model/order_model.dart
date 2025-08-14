@@ -43,6 +43,10 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'sold_by_type') required String soldByType,
     @JsonKey(name: 'sold_by_name') required String soldBy,
     @JsonKey(name: 'customer_phone') required String customerPhone,
+    @JsonKey(name: 'loyalty_points_value') required String loyaltyPointsValue,
+    @JsonKey(name: 'loyalty_points_applied') required bool loyaltyPointsApplied,
+    @JsonKey(name: 'loyalty_points') required int loyaltyPoints,
+    @JsonKey(name: 'total_items') required int totalItems,
     @JsonKey(name: 'order_details') required List<OrderDetailsModel> orderDetails,
   }) = _OrderModel;
 
@@ -83,6 +87,9 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       soldBy: soldBy,
       soldByType: soldByType,
       customerPhone: customerPhone,
+      loyaltyPointsValue: loyaltyPointsValue,
+      loyaltyPointsApplied: loyaltyPointsApplied,
+      loyaltyPoints: loyaltyPoints,
     );
   }
 }

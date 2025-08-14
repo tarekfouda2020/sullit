@@ -3,14 +3,14 @@ part of 'order_details_widgets_imports.dart';
 class OrderDetailsProductsWidget extends StatelessWidget {
   final bool isReturned;
   final bool hasReview;
-  final Orders? order;
+  final Orders order;
    final OrderDetailsPageController controller;
   const OrderDetailsProductsWidget({
     super.key,
     required this.isReturned,
     required this.hasReview,
     required this.controller,
-    this.order,
+    required this.order,
   });
 
   @override
@@ -34,11 +34,11 @@ class OrderDetailsProductsWidget extends StatelessWidget {
             ],
           ),
           Gaps.vGap12,
-          ...List.generate(order?.orderDetails.length ?? 2, (index) {
+          ...List.generate(order?.orderDetails.length ?? 0, (index) {
             return  OrderDetailsProductItemWidget(
               hasReview: hasReview,
               onPressReview: () => controller.reviewSheet(context,order?.orderDetails[index]),
-              orderDetails: controller.orderDetailsBloc.state.data?.orderDetails[index],
+              orderDetails: controller.orderDetailsBloc.state.data!.orderDetails[index],
             );
           }),
           if (!isReturned)

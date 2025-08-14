@@ -1,4 +1,4 @@
-part of 'conformation_imports.dart';
+part of 'confirmation_imports.dart';
 class ConfirmationController {
   final GenericBloc<OrderSummary?> orderSummaryBloc = GenericBloc(null);
 

@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/summary_model/summary_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
+import 'package:flutter_tdd/features/user/purchasing/data/models/order_details_model/order_details_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_model/order_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -27,7 +28,7 @@ class OrderSummaryModel extends BaseApiModel<OrderSummary>  with _$OrderSummaryM
     return OrderSummary(
       transactionUrl: transactionUrl,
       summary: orderSummary?.toDomainModel(),
-      sectionOrders: sectionOrders,
+      sectionOrders: (sectionOrders ?? <OrderModel>[]).map((e) => e.toDomainModel()).toList(),
     );
   }
 }

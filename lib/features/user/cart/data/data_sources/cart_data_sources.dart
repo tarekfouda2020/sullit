@@ -16,7 +16,7 @@ import 'package:flutter_tdd/features/user/cart/domain/entities/update_cart_param
 import 'package:flutter_tdd/features/user/products/domain/entities/add_product_to_cart_params.dart';
 
 abstract class CartDataSources {
- Future<Either<Failure, CartModel>> getCartItems (GetCartItemsParams params);
+ Future<Either<Failure, CartModel>> getCartItems (CartParams params);
  Future<Either<Failure, bool>> addCartAddress (int param);
  Future<Either<Failure, ShippingModel>> cartStoreShipping (List<Map> params);
  Future<Either<Failure, CouponResponseModel>> applyCoupon (String param);
@@ -29,4 +29,6 @@ abstract class CartDataSources {
  Future<Either<Failure, ShippingSummaryModel>> applyLoyaltyPoints (NoParams params);
  Future<Either<Failure, ShippingSummaryModel>> removeLoyaltyPoints (NoParams params);
  Future<Either<Failure, GiftCardModel>> applyGiftCard (ApplyGiftCardParams params);
+ Future<Either<Failure, String>> clearCart (CartParams params);
+ Future<Either<Failure, ShippingSummaryModel>> removeCoupon (NoParams params);
 }

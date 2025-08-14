@@ -49,7 +49,7 @@ class DeliveryController {
         .map(
           (e) => {
             'owner_id':  e.ownerId,
-            'shipiing_type': e.deliveryType == 0 ? 'DELIVERY' : 'LOCAL_PICKUP'
+            'shipiing_type': 'LOCAL_PICKUP'
           },
         )
         .toList();

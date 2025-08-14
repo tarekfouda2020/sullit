@@ -207,11 +207,14 @@ class CartPaymentController {
     });
   }
 
-  void switchApplyPoints(){
+  Future <void> switchApplyPoints()async{
     if((loyaltyPointsBalanceBloc.state.data?.points ?? 0) > 0 ) {
       if (applyPointsSwitchCubit.state.data) {
         removeLoyaltyPoint();
       } else {
+        if(shippingBloc.state.data!.summary.couponApplied==true) {
+          await removeCoupon();
+        }
         applyLoyaltyPoint();
       }
     }
@@ -229,6 +232,15 @@ class CartPaymentController {
       shippingBloc.state.data!.summary = value.summary;
       shippingBloc.state.data!.summary.appliedGiftCard = value.appliedGiftCard;
       shippingBloc.onUpdateData(shippingBloc.state.data);
+      }
+    });
+  }
+
+  Future<void> removeCoupon()async{
+    await RemoveCoupon().call(NoParams()).then((value) {
+      if (value != null) {
+        shippingBloc.state.data!.summary=value;
+        shippingBloc.onUpdateData(shippingBloc.state.data);
       }
     });
   }

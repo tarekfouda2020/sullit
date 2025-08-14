@@ -18,7 +18,7 @@ import 'package:flutter_tdd/features/user/products/domain/entities/add_product_t
 
 
 abstract class CartRepository {
-  Future <Either<Failure, CartDomainModel>> getCartItems (GetCartItemsParams params);
+  Future <Either<Failure, CartDomainModel>> getCartItems (CartParams params);
   Future<Either<Failure, bool>> addCartAddress (int param);
   Future<Either<Failure, Shipping>> cartStoreShipping (List<Map> params);
   Future<Either<Failure, CouponResponse>> applyCoupon (String param);
@@ -31,4 +31,6 @@ abstract class CartRepository {
   Future<Either<Failure, ShippingSummary>> applyLoyaltyPoints (NoParams params);
   Future<Either<Failure, ShippingSummary>> removeLoyaltyPoints (NoParams params);
   Future<Either<Failure, GiftCardDomainModel>> applyGiftCard (ApplyGiftCardParams params);
+  Future<Either<Failure, String>> clearCart (CartParams params);
+  Future<Either<Failure, ShippingSummary>> removeCoupon (NoParams params);
 }

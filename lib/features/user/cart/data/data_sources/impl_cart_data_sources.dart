@@ -27,7 +27,7 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: CartDataSources)
 class ImplCartDataSources extends CartDataSources {
   @override
-  Future<Either<Failure, CartModel>> getCartItems(GetCartItemsParams params) async {
+  Future<Either<Failure, CartModel>> getCartItems(CartParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: params.toQuery(),
       requestMethod: RequestMethod.get,
@@ -217,5 +217,33 @@ class ImplCartDataSources extends CartDataSources {
       errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<GiftCardModel>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, String>> clearCart(CartParams params)async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.clearCart,
+      requestBody: params.toJson(),
+      requestMethod: RequestMethod.post,
+      responseType: ResType.type,
+      showLoader: true,
+      responseKey: (data)=> data["msg"],
+      errorFunc: (data)=> data["msg"],
+    );
+    return await GenericHttpImpl<String>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, ShippingSummaryModel>> removeCoupon(NoParams params)async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.removeCoupon,
+      responseType: ResType.model,
+      requestMethod: RequestMethod.post,
+      responseKey: (data) => data['data']['summary'],
+      showLoader: true,
+      errorFunc: (data) => data["msg"],
+      toJsonFunc: (json) => ShippingSummaryModel.fromJson(json),
+    );
+    return await GenericHttpImpl<ShippingSummaryModel>()(model);
   }
 }

@@ -38,6 +38,10 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       soldByType: json['sold_by_type'] as String,
       soldBy: json['sold_by_name'] as String,
       customerPhone: json['customer_phone'] as String,
+      loyaltyPointsValue: json['loyalty_points_value'] as String,
+      loyaltyPointsApplied: json['loyalty_points_applied'] as bool,
+      loyaltyPoints: json['loyalty_points'] as int,
+      totalItems: json['total_items'] as int,
       orderDetails: (json['order_details'] as List<dynamic>)
           .map((e) => OrderDetailsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -75,5 +79,9 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'sold_by_type': instance.soldByType,
       'sold_by_name': instance.soldBy,
       'customer_phone': instance.customerPhone,
+      'loyalty_points_value': instance.loyaltyPointsValue,
+      'loyalty_points_applied': instance.loyaltyPointsApplied,
+      'loyalty_points': instance.loyaltyPoints,
+      'total_items': instance.totalItems,
       'order_details': instance.orderDetails.map((e) => e.toJson()).toList(),
     };

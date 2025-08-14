@@ -26,7 +26,7 @@ import 'package:injectable/injectable.dart';
 class ImplCartRepository extends CartRepository with ModelToDomain{
   var dataSource = getIt<CartDataSources>();
   @override
-  Future<Either<Failure, CartDomainModel>> getCartItems(GetCartItemsParams params)async {
+  Future<Either<Failure, CartDomainModel>> getCartItems(CartParams params)async {
     var result = await dataSource.getCartItems(params);
     return toDomainResult(result);
   }
@@ -96,6 +96,17 @@ class ImplCartRepository extends CartRepository with ModelToDomain{
   @override
   Future<Either<Failure, GiftCardDomainModel>> applyGiftCard(ApplyGiftCardParams params)async {
     var result = await dataSource.applyGiftCard(params);
+    return toDomainResult(result);
+  }
+
+  @override
+  Future<Either<Failure, String>> clearCart(CartParams params)async {
+    return await dataSource.clearCart(params);
+  }
+
+  @override
+  Future<Either<Failure, ShippingSummary>> removeCoupon(NoParams params)async {
+    var result = await dataSource.removeCoupon(params);
     return toDomainResult(result);
   }
 }

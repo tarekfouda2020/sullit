@@ -2,7 +2,8 @@ part of 'cart_confirm_buying_widgets_imports.dart';
 
 
 class CartOrderDetailsWidget extends StatelessWidget {
-  const CartOrderDetailsWidget({super.key});
+  final OrderSummary summary;
+  const CartOrderDetailsWidget({super.key, required this.summary});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class CartOrderDetailsWidget extends StatelessWidget {
                 Gaps.vGap8,
                 Gaps.line(context.colors.softGray, 0),
                 Gaps.vGap14,
-                const CartOrderInfoWidget(),
+                CartOrderInfoWidget(summary: summary,),
               ],
             )
         ),

@@ -3,6 +3,7 @@ import 'package:flutter_tdd/features/user/cart/domain/models/summary.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'summary_model.freezed.dart';
+
 part 'summary_model.g.dart';
 
 @freezed
@@ -12,18 +13,18 @@ class SummaryModel extends BaseApiModel<Summary> with _$SummaryModel {
 
   @JsonSerializable(explicitToJson: true)
   const factory SummaryModel(
-          {@JsonKey(name: 'order_date') required String orderDate,
-          required String name,
-          required String email,
-          @JsonKey(name: 'shipping_address') required String shippingAddress,
-          @JsonKey(name: 'order_status') required String orderStatus,
-          @JsonKey(name: 'total_order_amount') required String totalOrderAmount,
-          required String shipping,
-          @JsonKey(name: "payment_method") required String paymentMethod}) =
-      _SummaryModel;
+      {@JsonKey(name: 'order_date') required String orderDate,
+      required String name,
+      required String email,
+      @JsonKey(name: 'shipping_address') required String shippingAddress,
+      @JsonKey(name: 'order_status') required String orderStatus,
+      @JsonKey(name: 'total_order_amount') required String totalOrderAmount,
+      @JsonKey(name: 'total_items') int? totalItems,
+      required String shipping,
+      required String phone,
+      @JsonKey(name: "payment_method") required String paymentMethod}) = _SummaryModel;
 
-  factory SummaryModel.fromJson(Map<String, dynamic> json) =>
-      _$SummaryModelFromJson(json);
+  factory SummaryModel.fromJson(Map<String, dynamic> json) => _$SummaryModelFromJson(json);
 
   @override
   Summary toDomainModel() {
@@ -36,6 +37,8 @@ class SummaryModel extends BaseApiModel<Summary> with _$SummaryModel {
       totalOrderAmount: totalOrderAmount,
       shipping: shipping,
       paymentMethod: paymentMethod,
+      totalItems: totalItems!,
+      phone: phone,
     );
   }
 }
