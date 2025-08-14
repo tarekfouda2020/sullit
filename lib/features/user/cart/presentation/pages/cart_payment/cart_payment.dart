@@ -26,14 +26,14 @@ class _CartPaymentState extends State<CartPayment> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
-        appBar: DefaultAppBar(title: tr("cart"),bgColor: context.colors.white),
+        appBar: DefaultAppBar(title: tr("cart"), bgColor: context.colors.white),
         body: BlocBuilder<GenericBloc<Shipping?>, GenericState<Shipping?>>(
           bloc: controller.shippingBloc,
           builder: (context, state) {
             if (state is GenericUpdateState) {
               return Column(
                 children: [
-                   const BuildCartStepper(current: 3),
+                  const BuildCartStepper(current: 3),
                   Flexible(
                     child: ListView(
                       padding: Dimens.paddingHorizontal15PX,
@@ -43,7 +43,12 @@ class _CartPaymentState extends State<CartPayment> {
                         Gaps.vGap12,
                         CartDiscountWidget(controller: controller),
                         Gaps.vGap20,
-                        InvoiceSummaryWidget(controller: controller, shipping: state.data!),
+                        InvoiceSummaryWidget(
+                          controller: controller,
+                          shippingSummary: state.data!.summary,
+                          giftCardTotal: state.data!.summary.appliedGiftCard != null? state.data!.summary.appliedGiftCard! : '',
+                          applyGiftCard: state.data!.summary.appliedGiftCard != null,
+                        ),
                         BuildConditions(controller: controller),
                         // BuildSummary(
                         //   controller: controller,
@@ -65,7 +70,10 @@ class _CartPaymentState extends State<CartPayment> {
             }
           },
         ),
-        bottomNavigationBar: BuildPaymentButtons(controller: controller),
+        bottomNavigationBar: BuildPaymentButtons(
+          controller: controller,
+          onTap: () => controller.createOrder(context),
+        ),
       ),
     );
   }

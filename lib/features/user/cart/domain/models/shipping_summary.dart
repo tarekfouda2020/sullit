@@ -22,6 +22,7 @@ class ShippingSummary extends BaseDomainModel{
   String? loyaltyPointsValue;
   int? loyaltyPoints;
   bool? loyaltyPointsApplied;
+  String? appliedGiftCard;
 
   ShippingSummary({
     required this.subTotal,
@@ -43,6 +44,7 @@ class ShippingSummary extends BaseDomainModel{
     required this.items,
     this.loyaltyPointsValue,
     this.loyaltyPoints,
-    this.loyaltyPointsApplied
+    this.loyaltyPointsApplied,
+    this.appliedGiftCard,
 });
 }

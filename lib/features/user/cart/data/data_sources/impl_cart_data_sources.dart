@@ -11,10 +11,12 @@ import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/user/cart/data/data_sources/cart_data_sources.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/cart_model/cart_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/coupon_response_model/coupon_response_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/gift_card_model/gift_card_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/seller_shipping_model/seller_shipping_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/shipping_model/shipping_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/shipping_summary_model/shipping_summary_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/entities/apply_gift_card_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
@@ -200,5 +202,20 @@ class ImplCartDataSources extends CartDataSources {
       toJsonFunc: (json) => ShippingSummaryModel.fromJson(json),
     );
     return await GenericHttpImpl<ShippingSummaryModel>()(model);
+  }
+
+  @override
+  Future<Either<Failure, GiftCardModel>> applyGiftCard(ApplyGiftCardParams params)async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.applyGiftCard,
+      requestMethod: RequestMethod.post,
+      responseType: ResType.model,
+      showLoader: true,
+      requestBody: params.toJson(),
+      responseKey: (data) => data["data"],
+      toJsonFunc: (json) => GiftCardModel.fromJson(json),
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<GiftCardModel>().call(model);
   }
 }

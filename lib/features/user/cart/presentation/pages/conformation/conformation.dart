@@ -49,7 +49,7 @@ class _ConfirmationState extends State<Confirmation> {
                   BuildOrdersDetails(
                     summary: state.data!,
                   ),
-                  Gaps.vGap15
+                  Gaps.vGap15,
                 ],
               );
             } else {

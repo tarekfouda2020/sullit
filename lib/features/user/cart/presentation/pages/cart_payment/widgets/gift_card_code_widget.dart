@@ -10,12 +10,12 @@ class GiftCardCodeWidget extends StatelessWidget {
       hint: tr("enterGiftCardCode"),
       controller: controller.giftCardCode ,
       fieldTypes: FieldTypes.normal,
-      type: TextInputType.number,
+      type: TextInputType.text,
       action: TextInputAction.done,
       margin: const EdgeInsets.only(top: 5),
       fillColor: context.colors.white,
       validate: (value) => value?.noValidate(),
-      suffixIcon: ApplyButtonWidget(onPressApply: () { }),
+      suffixIcon: ApplyButtonWidget(onPressApply: ()=> controller.applyGiftCard()),
     );
   }
 
