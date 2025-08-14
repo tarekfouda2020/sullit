@@ -113,7 +113,7 @@ import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_confirm_b
     as _i48;
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_payment/cart_payment_imports.dart'
     as _i45;
-import 'package:flutter_tdd/features/user/cart/presentation/pages/conformation/conformation_imports.dart'
+import 'package:flutter_tdd/features/user/cart/presentation/pages/confirmation/confirmation_imports.dart'
     as _i46;
 import 'package:flutter_tdd/features/user/cart/presentation/pages/receiving_method/receiving_method_imports.dart'
     as _i47;
@@ -2883,7 +2883,7 @@ class OrderDetailsPageRoute
   OrderDetailsPageRoute({
     _i98.Key? key,
     required bool isReturnedOrder,
-    _i106.Orders? order,
+    required _i106.Orders order,
   }) : super(
           OrderDetailsPageRoute.name,
           path: '/order-details-page',
@@ -2901,14 +2901,14 @@ class OrderDetailsPageRouteArgs {
   const OrderDetailsPageRouteArgs({
     this.key,
     required this.isReturnedOrder,
-    this.order,
+    required this.order,
   });
 
   final _i98.Key? key;
 
   final bool isReturnedOrder;
 
-  final _i106.Orders? order;
+  final _i106.Orders order;
 
   @override
   String toString() {

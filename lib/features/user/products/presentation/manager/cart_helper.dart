@@ -160,8 +160,8 @@ class CartHelper {
     );
   }
 
-  GetCartItemsParams _cartParams(bool refresh, String token) {
-    return GetCartItemsParams(
+  CartParams _cartParams(bool refresh, String token) {
+    return CartParams(
       macAddress: token,
       refresh: refresh,
     );

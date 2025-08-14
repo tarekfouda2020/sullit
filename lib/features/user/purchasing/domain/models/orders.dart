@@ -36,6 +36,9 @@ class Orders extends BaseDomainModel{
   String customerPhone;
   List<OrderDetails> orderDetails;
   bool selected = false ;
+  bool loyaltyPointsApplied;
+  int loyaltyPoints;
+  String loyaltyPointsValue;
 
   Orders({
     required this.id,
@@ -69,6 +72,9 @@ class Orders extends BaseDomainModel{
     required this.soldByType,
     required this.soldBy,
     required this.customerPhone,
+    required this.loyaltyPointsValue,
+    required this.loyaltyPointsApplied,
+    required this.loyaltyPoints,
   });
 
 

@@ -187,11 +187,10 @@ class Utilities {
   }
 
   double? extractFormattedNumberToDouble(String text) {
-    final RegExp numberRegex = RegExp(r'\d[\d,]*\.?\d*');
+    final RegExp numberRegex = RegExp(r'[\d,]+(\.\d+)?');
     final match = numberRegex.firstMatch(text);
     if (match != null) {
       String number = match.group(0)!;
-
       number = number.replaceAll(',', '');
       try {
         return double.parse(number);
@@ -201,6 +200,9 @@ class Utilities {
     }
     return null;
   }
+
+
+
 
 
   String convertDigitsToLatin(String s) {

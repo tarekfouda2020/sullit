@@ -11,11 +11,13 @@ import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/user/cart/data/data_sources/cart_data_sources.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/cart_model/cart_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/coupon_response_model/coupon_response_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/gift_card_model/gift_card_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/seller_shipping_model/seller_shipping_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/shipping_model/shipping_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/shipping_summary_model/shipping_summary_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/add_cart_address_params.dart';
+import 'package:flutter_tdd/features/user/cart/domain/entities/apply_gift_card_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
@@ -26,7 +28,7 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: CartDataSources)
 class ImplCartDataSources extends CartDataSources {
   @override
-  Future<Either<Failure, CartModel>> getCartItems(GetCartItemsParams params) async {
+  Future<Either<Failure, CartModel>> getCartItems(CartParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: params.toQuery(),
       requestMethod: RequestMethod.get,
@@ -193,6 +195,49 @@ class ImplCartDataSources extends CartDataSources {
   Future<Either<Failure, ShippingSummaryModel>> removeLoyaltyPoints(NoParams params)async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.removeLoyaltyPoints,
+      responseType: ResType.model,
+      requestMethod: RequestMethod.post,
+      responseKey: (data) => data['data']['summary'],
+      showLoader: true,
+      errorFunc: (data) => data["msg"],
+      toJsonFunc: (json) => ShippingSummaryModel.fromJson(json),
+    );
+    return await GenericHttpImpl<ShippingSummaryModel>()(model);
+  }
+
+  @override
+  Future<Either<Failure, GiftCardAppliedCartModel>> applyGiftCard(ApplyGiftCardParams params)async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.applyGiftCard,
+      requestMethod: RequestMethod.post,
+      responseType: ResType.model,
+      showLoader: true,
+      requestBody: params.toJson(),
+      responseKey: (data) => data["data"],
+      toJsonFunc: (json) => GiftCardAppliedCartModel.fromJson(json),
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<GiftCardAppliedCartModel>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, String>> clearCart(CartParams params)async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.clearCart,
+      requestBody: params.toJson(),
+      requestMethod: RequestMethod.post,
+      responseType: ResType.type,
+      showLoader: true,
+      responseKey: (data)=> data["msg"],
+      errorFunc: (data)=> data["msg"],
+    );
+    return await GenericHttpImpl<String>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, ShippingSummaryModel>> removeCoupon(NoParams params)async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.removeCoupon,
       responseType: ResType.model,
       requestMethod: RequestMethod.post,
       responseKey: (data) => data['data']['summary'],

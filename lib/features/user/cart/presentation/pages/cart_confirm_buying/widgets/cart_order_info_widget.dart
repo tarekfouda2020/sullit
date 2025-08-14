@@ -1,52 +1,54 @@
 part of 'cart_confirm_buying_widgets_imports.dart';
 
 class CartOrderInfoWidget extends StatelessWidget {
-  const CartOrderInfoWidget({super.key});
+  final OrderSummary summary;
+  const CartOrderInfoWidget({super.key, required this.summary});
 
   @override
   Widget build(BuildContext context) {
+    print('${summary.summary!.totalItems.toString()}>>>>>>>');
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         OrderINfoItemWidget(
           title: 'Date',
-          describe: '10 feb 2025 - 09:55 PM',
+          describe: summary.summary!.orderDate,
           gaps: Gaps.hGap16,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
           title: 'Status',
-          describe: 'Delivered',
+          describe: summary.summary!.orderStatus,
           gaps: Gaps.hGap7,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
           title: 'Total Items',
-          describe: '5',
+          describe: summary.summary!.totalItems.toString(),
           gaps: Gaps.hGap9,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
           title: 'Receipt Status',
-          describe: 'Delivery',
+          describe: summary.summary!.orderStatus,
           gaps: Gaps.hGap9,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
           title: 'Address',
-          describe: 'Home , Dubai',
+          describe: summary.summary!.shippingAddress,
           gaps: Gaps.hGap7,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
-          title: 'Phone',
-          describe: '+99753583245',
+          title: 'email',
+          describe: summary.summary!.email,
           gaps: Gaps.hGap17,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
           title: 'Payment Method',
-          describe: 'Apple Pay',
+          describe: summary.summary!.paymentMethod,
           gaps: Gaps.hGap9,
         ),
       ],

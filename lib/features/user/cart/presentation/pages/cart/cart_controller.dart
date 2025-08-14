@@ -91,6 +91,25 @@ class CartController {
     }
   }
 
+  Future<void> clearCart(BuildContext context) async {
+    String? token = await getIt<GetDeviceId>().deviceId;
+    var params = await _cartParams(token!);
+    await ClearCart().call(params).then((value){
+      CustomToast.showSimpleToast(msg: value, type: ToastType.success);
+      cartItemsBloc.state.data.items!.clear();
+      cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+      var countCubit = context.read<CountCubit>().state;
+      var cartCount = countCubit.cartCount - 1;
+      context.read<CountCubit>().onUpdateCount(cartCount, countCubit.discount);
+    });
+  }
+
+  Future<CartParams> _cartParams(String token) async {
+    return CartParams(
+      macAddress: token, refresh: false,
+    );
+  }
+
 
   Future<UpdateCartItemParams> _updateCartItemParams(int qty, int id) async {
     return UpdateCartItemParams(

@@ -23,51 +23,75 @@ class _CartConfirmBuyingState extends State<CartConfirmBuying> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(title: tr("cart"), bgColor: context.colors.white),
-      body: ListView(
-        children: [
-          const BuildCartStepper(current: 4),
-          Gaps.vGap13,
-          const CartOrderDetailsWidget(),
-          Gaps.vGap12,
-          CartPaymentSectionTitleWidget(
-            title: "Products",
-            padding: Dimens.paddingHorizontal20PX,
-          ),
-          Gaps.vGap8,
-          CartOrderProductsWidget(controller: controller),
-          Gaps.vGap12,
-          CartPaymentSectionTitleWidget(
-            title: "Invoice Summary",
-            padding: Dimens.paddingHorizontal20PX,
-          ),
-          Gaps.vGap8,
-          InvoiceSummaryCard(margin: Dimens.paddingHorizontal20PX, children: [
-            BuildSummaryHeader(
-              title: tr('totalItems'),
-              details: "4.00${tr("currencyCode")}",
-            ),
-            BuildSummaryHeader(
-              title: tr('tax'),
-              details: "4.00${tr("currencyCode")}",
-            ),
-            BuildSummaryHeader(
-              title: tr('shippingFees'),
-              details: "4.00${tr("currencyCode")}",
-            ),
-            BuildSummaryHeader(
-              title: tr("voucherDiscount"),
-              details: "-2.00 ${tr("currencyCode")} ",
-              detailsColor: context.colors.primary,
-            ),
-            Gaps.line(context.colors.softGray, 15.h),
-            BuildSummaryHeader(
-              title: tr("total"),
-              details: "17.00",
-              // isTotal: true,
-            ),
-          ]),
-          Gaps.vGap30,
-        ],
+      body: BlocBuilder<GenericBloc<OrderSummary?>,
+          GenericState<OrderSummary?>>(
+        bloc: controller.orderSummaryBloc,
+        builder: (context, state) {
+          if (state is GenericUpdateState) {
+            return ListView(
+              children: [
+                const BuildCartStepper(current: 4),
+                Gaps.vGap13,
+                CartOrderDetailsWidget(summary: state.data!,),
+                Gaps.vGap12,
+                CartPaymentSectionTitleWidget(
+                  title: "Products",
+                  padding: Dimens.paddingHorizontal20PX,
+                ),
+                Gaps.vGap8,
+                ...List.generate(state.data!.sectionOrders!.length, (index) {
+                  return CartOrderProductsWidget(
+                      controller: controller,
+                      order: state.data!.sectionOrders![index]
+                  );
+                }),
+                Gaps.vGap12,
+                CartPaymentSectionTitleWidget(
+                  title: "Invoice Summary",
+                  padding: Dimens.paddingHorizontal20PX,
+                ),
+                Gaps.vGap8,
+                InvoiceSummaryCard(margin: Dimens.paddingHorizontal20PX, children: [
+                  BuildSummaryHeader(
+                    title: tr('totalItems'),
+                    details: "${state.data!.subTotal.toString()}${tr("currencyCode")}",
+                  ),
+                  BuildSummaryHeader(
+                    title: tr('tax'),
+                    details: "${state.data!.tax.toString()}${tr("currencyCode")}",
+                  ),
+                  BuildSummaryHeader(
+                    title: tr('shippingFees'),
+                    details: "${state.data!.shippingTotal.toString()}${tr("currencyCode")}",
+                  ),
+                  Visibility(
+                    visible: state.data!.loyaltyPointsDiscount>0 || state.data!.discounts>0,
+                    child: BuildSummaryHeader(
+                      title: state.data!.loyaltyPointsDiscount >0
+                          ? "Points Discount"
+                          :tr("voucherDiscount"),
+                      details: state.data!.loyaltyPointsDiscount>0
+                          ? "${state.data!.loyaltyPointsDiscount}${tr("currencyCode")}"
+                          :"${state.data!.discounts}${tr("currencyCode")}",
+                      detailsColor: context.colors.primary,
+                    ),
+                  ),
+                  Gaps.line(context.colors.softGray, 15.h),
+                  BuildSummaryHeader(
+                    title: tr("total"),
+                    details: state.data!.total.toString(),
+                    // isTotal: true,
+                  ),
+                ]),
+                Gaps.vGap30,
+              ],
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
     );
   }

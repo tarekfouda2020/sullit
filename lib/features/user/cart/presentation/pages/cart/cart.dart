@@ -34,7 +34,7 @@ class _CartState extends State<Cart> {
                  const BuildCartStepper(current: 1),
                 Gaps.vGap11,
                 if((state.data.items ?? []).isNotEmpty)
-                const CleaAllWidget(),
+                  CleaAllWidget(controller: controller,),
                 Gaps.vGap12,
                 BuildCartItems(
                   controller: controller,

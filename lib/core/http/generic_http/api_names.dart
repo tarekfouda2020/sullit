@@ -134,6 +134,9 @@ class ApiNames {
   static const String getCombinedOrder = "combined-order/";
   static const String applyLoyaltyPoints = "cart/apply-loyalty-points";
   static const String removeLoyaltyPoints = "cart/remove-loyalty-points";
+  static const String applyGiftCard = "cart/apply-gift-card";
+  static const String clearCart = "cart/clear";
+  static const String removeCoupon = "cart/remove-coupon";
 
   // notifications
   static const String notifications = "notifications";

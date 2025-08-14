@@ -7,6 +7,7 @@ class CartPaymentController {
   final TextEditingController additionalInfo = TextEditingController();
   final TextEditingController giftCardCode = TextEditingController();
   final GenericBloc<Shipping?> shippingBloc = GenericBloc(null);
+  final GenericBloc<GiftCardApllieCartDomainModel?> giftCardBlocBloc = GenericBloc(null);
   final GlobalKey<FormState> couponFormKey = GlobalKey();
   final GlobalKey<FormState> additionalFormKey = GlobalKey();
   final GenericBloc<int> paymentCubit = GenericBloc(0);
@@ -193,6 +194,7 @@ class CartPaymentController {
     return CreateOrderParams(
       paymentOption: selectedPayment ?? "",
       additionalInfo: additionalInfo.text,
+      giftCardCode: giftCardCode.text.trim(),
     );
   }
 
@@ -256,11 +258,14 @@ class CartPaymentController {
     });
   }
 
-  void switchApplyPoints(){
+  Future <void> switchApplyPoints()async{
     if((loyaltyPointsBalanceBloc.state.data?.points ?? 0) > 0 ) {
       if (applyPointsSwitchCubit.state.data) {
         removeLoyaltyPoint();
       } else {
+        if(shippingBloc.state.data!.summary.couponApplied==true) {
+          await removeCoupon();
+        }
         applyLoyaltyPoint();
       }
     }
@@ -270,6 +275,25 @@ class CartPaymentController {
     return await GetLoyaltyPointsBalance().call(refresh).then(
           (value) => loyaltyPointsBalanceBloc.onUpdateData(value),
     );
+  }
+
+  Future<void> applyGiftCard()async{
+    await ApplyGiftCard().call(ApplyGiftCardParams(giftCardCode: giftCardCode.text)).then((value) {
+      if (value != null) {
+      shippingBloc.state.data!.summary = value.summary;
+      shippingBloc.state.data!.summary.appliedGiftCard = value.appliedGiftCard;
+      shippingBloc.onUpdateData(shippingBloc.state.data);
+      }
+    });
+  }
+
+  Future<void> removeCoupon()async{
+    await RemoveCoupon().call(NoParams()).then((value) {
+      if (value != null) {
+        shippingBloc.state.data!.summary=value;
+        shippingBloc.onUpdateData(shippingBloc.state.data);
+      }
+    });
   }
 
 

@@ -6,15 +6,18 @@ class CreateOrderParams {
   String paymentOption;
 
   String additionalInfo;
+  String? giftCardCode;
 
   CreateOrderParams({
     required this.paymentOption,
     required this.additionalInfo,
+    this.giftCardCode,
   });
 
   Map<String, dynamic> toJson ()=> {
     "payment_option": paymentOption,
-    "additional_info": additionalInfo,
+    if(giftCardCode == "")"additional_info": additionalInfo,
+    if(giftCardCode!=null && giftCardCode != "")"gift_card_code": giftCardCode,
   };
 
   bool isSuccess (dynamic json)=> json["key"] == "success" ;

@@ -1,4 +1,4 @@
-part of 'conformation_imports.dart';
+part of 'confirmation_imports.dart';
 
 class Confirmation extends StatefulWidget {
   final OrderSummary? summary;
@@ -49,7 +49,7 @@ class _ConfirmationState extends State<Confirmation> {
                   BuildOrdersDetails(
                     summary: state.data!,
                   ),
-                  Gaps.vGap15
+                  Gaps.vGap15,
                 ],
               );
             } else {

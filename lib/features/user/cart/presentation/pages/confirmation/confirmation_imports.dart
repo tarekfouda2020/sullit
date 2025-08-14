@@ -10,8 +10,8 @@ import 'package:flutter_tdd/core/widgets/build_custom_app_bar.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_combinedOrder.dart';
-import 'package:flutter_tdd/features/user/cart/presentation/pages/conformation/widgets/conformation_w_imports.dart';
+import 'package:flutter_tdd/features/user/cart/presentation/pages/confirmation/widgets/confirmation_w_imports.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/widgets/build_cart_stepper.dart';
 
-part 'conformation.dart';
-part 'conformation_controller.dart';
+part 'confirmation.dart';
+part 'confirmation_controller.dart';
