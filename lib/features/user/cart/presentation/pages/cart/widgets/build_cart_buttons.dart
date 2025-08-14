@@ -31,7 +31,7 @@ class BuildCartButtons extends StatelessWidget {
                     style: AppTextStyle.s12_w400(color: context.colors.textColor)
                 ),
                 Gaps.vGap6,
-                Text(tr("${cartModel.calculableTotal}${cartModel.currencySymbol}"),
+                Text(tr("${cartModel.getProductsTotalWithoutTax()}${cartModel.currencySymbol}"),
                     style: AppTextStyle.s14_w600(color: context.colors.primary)
                 ),
               ],

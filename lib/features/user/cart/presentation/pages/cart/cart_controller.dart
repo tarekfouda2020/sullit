@@ -16,11 +16,6 @@ class CartController {
     cartItemsBloc.onUpdateData(result);
   }
 
-  Future<bool> updateCartItem(int qty, int id) async {
-    final params = await _updateCartItemParams(qty, id);
-    final result = await UpdateCartItem().call(params); // your API call
-    return result != null;
-  }
 
   Future<void> deleteItemFromCart(BuildContext context,CartItem cartItem) async {
     var data = await getIt<CartHelper>().deleteItemFromCart(context,cartItem);
@@ -43,12 +38,17 @@ class CartController {
     if (cartItem.quantity < cartItem.stockQty) {
       loadingCubit.onUpdateData(true);
       final newQty = cartItem.quantity + 1;
-      final success = await updateCartItem(newQty, cartItem.id);
+      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
       loadingCubit.onUpdateData(false);
-      if (success) {
+      if (success!=null) {
         cartItem.quantity = newQty;
-        cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+        cartItemsBloc.onUpdateData(success);
       }
+      // else{
+      //   CustomToast.showSimpleToast(
+      //     msg: "can't add product",
+      //   );
+      // }
     } else {
       CustomToast.showSimpleToast(
         msg: '${tr("only")} ${cartItem.stockQty} ${tr("availableStock")}',
@@ -61,14 +61,17 @@ class CartController {
       loadingCubit.onUpdateData(true);
 
       final newQty = cartItem.quantity - 1;
-      final success = await updateCartItem(newQty, cartItem.id);
-
+      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
       loadingCubit.onUpdateData(false);
-
-      if (success) {
+      if (success!=null) {
         cartItem.quantity = newQty;
-        cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+        cartItemsBloc.onUpdateData(success);
       }
+      // else{
+      //   CustomToast.showSimpleToast(
+      //     msg: "can't remove product",
+      //   );
+      // }
     }
   }
 
@@ -87,7 +90,6 @@ class CartController {
       CustomToast.showAuthDialog(context);
     }
   }
-
 
 
   Future<UpdateCartItemParams> _updateCartItemParams(int qty, int id) async {

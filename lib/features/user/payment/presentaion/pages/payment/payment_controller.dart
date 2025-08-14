@@ -12,7 +12,8 @@ class PaymentController {
         if (url.contains("combined_order_id")) {
           int id = int.parse(url.split('combined_order_id=').last);
           flutterWebViewPlugin.close();
-          AutoRouter.of(context).push(ConfirmationRoute(combinedId: id));
+          // AutoRouter.of(context).push(ConfirmationRoute(combinedId: id));
+          AutoRouter.of(context).push(CartConfirmBuyingRoute(combinedId: id));
         } else if (url.contains('Fail')) {
           flutterWebViewPlugin.close();
           CustomToast.showSimpleToast(

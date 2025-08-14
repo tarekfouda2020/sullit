@@ -25,11 +25,11 @@ class _ShippingState extends State<Shipping> {
         BuildNewShipping(controller: controller),
         Gaps.vGap10,
         SizedBox(
-          height: MediaQuery.of(context).size.height*0.5,
-          child: GenericListView(
+          height: 410.r,
+          child: GenericListView<Address>(
             type: ListViewType.api,
             cubit: controller.addressesBloc,
-            onRefresh: controller.getAddress,
+            onRefresh: ({bool refresh = false}) => controller.getAddress(context),
             itemBuilder: (_, index, item) => BuildShippingAddressItem(
               address: item,
               controller: controller,

@@ -30,7 +30,7 @@ class LocationAddressData {
       LatLng? loc;
       if(model == null || model.lat == 0.0 || model.lng == 0.0){
         print("currentLocation ====>>> ${currentLocation!.latitude} ${currentLocation.longitude}");
-        locationModel = LocationEntity(lat: currentLocation!.latitude, lng: currentLocation.longitude);
+        locationModel = LocationEntity(lat: currentLocation.latitude, lng: currentLocation.longitude);
         loc = LatLng(locationModel.lat, locationModel.lng);
       }else{
         locationModel = LocationEntity(lat: model.lat, lng: model.lng,address: model.address);

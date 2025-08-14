@@ -26,10 +26,10 @@ class BuildDetailsView extends StatelessWidget {
             ),
 
             ///not in figma
-            BuildProductSpecifications(
-              controller: controller,
-              productModel: detailsModel.product,
-            ),
+            // BuildProductSpecifications(
+            //   controller: controller,
+            //   productModel: detailsModel.product,
+            // ),
             BuildProductQty(controller: controller, productModel: detailsModel.product),
             BuildProductReviews(
               allReviews: detailsModel.product.reviews ?? [],

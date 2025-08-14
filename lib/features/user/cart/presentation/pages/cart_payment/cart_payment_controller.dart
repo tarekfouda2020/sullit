@@ -20,6 +20,8 @@ class CartPaymentController {
   CartPaymentController(Shipping shipping) {
     shipping.paymentOption?.first.selected = true;
     selectedPayment = shipping.paymentOption?.first.paymentTypeKey;
+   shipping.paymentOption?.first.fakeSelected = true;
+   shipping.paymentOption?.first.selected = true;
     shippingBloc.onUpdateData(shipping);
     if (shipping.isAdminDiscount == true) {
       calculateDiscount();
@@ -95,7 +97,7 @@ class CartPaymentController {
     var summary = shippingBloc.state.data!.summary;
     var balance = summary.walletBalanceValue;
     var totalPrice = summary.calTotal;
-    if (selectedPayment == "wallet" && totalPrice > balance) {
+    if (selectedPayment == PayTypeEnum.wallet.name && totalPrice > balance) {
       CustomToast.showSimpleToast(
           msg: tr('walletBalanceEmpty'), type: ToastType.error);
       return false;
@@ -122,6 +124,49 @@ class CartPaymentController {
     }
     model.paymentOption![index].fakeSelected = true;
     shippingBloc.onUpdateData(shippingBloc.state.data);
+  }
+
+  void switchApplyWalletBalance(){
+
+    /// switch apply wallet method in the bottom sheet and in switch toggle
+
+    if(isWalletSelected.state.data){
+      unSelectWalletPayMethod();
+    }else if(isBalanceEnough()){
+      selectWalletPayMethod();
+    }
+    shippingBloc.onUpdateData(shippingBloc.state.data);
+  }
+
+
+
+  void unSelectWalletPayMethod(){
+    isWalletSelected.onUpdateData(false);
+    List<PaymentOption> paymentOptions = shippingBloc.state.data!.paymentOption!;
+    for(PaymentOption item in paymentOptions){
+      if(item.paymentTypeKey == PayTypeEnum.wallet.name){
+        item.selected = false;
+        item.fakeSelected = false;
+      }
+    }
+    PaymentOption firstPayment = paymentOptions.first;
+    firstPayment.fakeSelected = true;
+    firstPayment.selected = true;
+    selectedPayment = firstPayment.paymentTypeKey;
+  }
+
+  void selectWalletPayMethod(){
+    for(PaymentOption item in shippingBloc.state.data!.paymentOption!){
+      if(item.paymentTypeKey == PayTypeEnum.wallet.name){
+        item.selected = true;
+        item.fakeSelected = true;
+      }else{
+        item.selected = false;
+        item.fakeSelected = false;
+      }
+    }
+    isWalletSelected.onUpdateData(true);
+    selectedPayment = PayTypeEnum.wallet.name;
   }
 
   void _goToPay(String? transactionUrl, BuildContext context) {
@@ -168,7 +213,13 @@ class CartPaymentController {
    for(var item in paymentOptions){
      item.selected = item.fakeSelected;
    }
-   selectedPayment = paymentOptions.firstWhere((element) => element.selected).paymentTypeKey;
+    PaymentOption selectedMethod = paymentOptions.firstWhere((element) => element.selected);
+   if(selectedMethod.getPaymentType() == PayTypeEnum.wallet){
+     isWalletSelected.onUpdateData(true);
+   }else{
+     isWalletSelected.onUpdateData(false);
+   }
+   selectedPayment = selectedMethod.paymentTypeKey;
    shippingBloc.onUpdateData(shippingBloc.state.data);
    Navigator.pop(context);
   }

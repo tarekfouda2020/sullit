@@ -5,12 +5,28 @@ part of 'shipping_imports.dart';
 class ShippingController {
   final GenericBloc<List<Address>> addressesBloc = GenericBloc([]);
 
-  Future<void> getAddress({bool refresh = true}) async {
+
+  List<Address>? availableAddresses;
+
+  Future getAddress(BuildContext context,{bool refresh = true}) async {
     return await GetAddresses().call(refresh).then(
       (value) {
+      if(value.isNotEmpty){
+        availableAddresses = value;
+         availableAddresses?.first.selected = true;
+         cartAddAddress(context, availableAddresses!.first,showLoader: false);
+        // addressesBloc.onUpdateData(value);
+      }else{
         addressesBloc.onUpdateData(value);
+      }
       },
     );
+  }
+
+
+  void setDefaultAddressToCart(BuildContext context) {
+    addressesBloc.state.data.first.selected = true;
+    addressesBloc.onUpdateData(addressesBloc.state.data);
   }
 
   void onSelectAddress(BuildContext context, Address address) {
@@ -19,11 +35,14 @@ class ShippingController {
       CustomToast.showAuthDialog(context);
       return;
     }
+    if(address.selected==true){
+      return ;
+    }
     for (var e in addressesBloc.state.data) {
       e.selected = false;
     }
     address.selected = true;
-    addressesBloc.onUpdateData(addressesBloc.state.data);
+    cartAddAddress(context, address);
   }
 
   void onAddNewAddress(BuildContext context) async {
@@ -45,21 +64,21 @@ class ShippingController {
     }
   }
 
-  Future<void> cartAddAddress(BuildContext context) async {
+  Future<void> cartAddAddress(BuildContext context, Address address,{bool showLoader = true}) async {
     bool auth = context.read<DeviceCubit>().state.model.auth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
       return;
     }
-    var selectedList = addressesBloc.state.data
-        .where((element) => element.selected == true)
-        .toList();
-    if (selectedList.isNotEmpty) {
-      print("===-=-=-=-=-=-=-=-=-=>>>>>>> address id ${selectedList.first.id!}====================");
-      var data = await AddCartAddress().call(selectedList.first.id!);
-      if (data) {
+    var selectedAddress = availableAddresses!
+        .where((element) => element.selected == true);
+    if (selectedAddress.isNotEmpty) {
+      var params = _addCartAddressParams(showLoader);
+      var data = await AddCartAddress().call(params);
+      if (data && showLoader) {
         CustomToast.showSimpleToast(
             msg: tr('addressAdded'),type: ToastType.success);
+        addressesBloc.onUpdateData(availableAddresses!);
         // AutoRouter.of(context).push(const DeliveryRoute());
       }
     } else {
@@ -67,4 +86,16 @@ class ShippingController {
       return;
     }
   }
+
+
+  AddCartAddressParams _addCartAddressParams(bool showLoader) {
+    var selectedAddress = availableAddresses!
+        .firstWhere((element) => element.selected == true);
+    return AddCartAddressParams(
+      addressId: selectedAddress.id!,
+     showLoader: showLoader
+    );
+  }
+
+
 }

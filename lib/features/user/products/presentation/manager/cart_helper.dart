@@ -120,11 +120,12 @@ class CartHelper {
   }
 
 
-  void addToCartDialog(BuildContext context, Product product) {
+  void addToCartDialog(BuildContext context, Product product,{void Function()? afterAddToCart}) {
     showDialog(
       context: context,
       builder: (context) => BuildAddToCartDialog(
         product: product,
+        afterAddToCart: afterAddToCart,
       ),
     );
   }
@@ -140,10 +141,10 @@ class CartHelper {
 
 
 
-  Future<bool> updateCartItem(int qty, int id) async {
+  Future<CartDomainModel?> updateCartItem(int qty, int id) async {
     final params = await _updateCartItemParams(qty, id);
     final result = await UpdateCartItem().call(params); // your API call
-    return result != null;
+    return result;
   }
 
 

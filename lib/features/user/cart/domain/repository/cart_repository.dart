@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/shipping_summary_model/shipping_summary_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/entities/add_cart_address_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
@@ -17,7 +18,7 @@ import 'package:flutter_tdd/features/user/products/domain/entities/add_product_t
 
 abstract class CartRepository {
   Future <Either<Failure, CartDomainModel>> getCartItems (GetCartItemsParams params);
-  Future<Either<Failure, bool>> addCartAddress (int param);
+  Future<Either<Failure, bool>> addCartAddress (AddCartAddressParams param);
   Future<Either<Failure, Shipping>> cartStoreShipping (List<Map> params);
   Future<Either<Failure, CouponResponse>> applyCoupon (String param);
   Future<Either<Failure, OrderSummary>> createOrder (CreateOrderParams params);

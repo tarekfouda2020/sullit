@@ -33,7 +33,7 @@ class BuildShippingButtons extends StatelessWidget {
             child: DefaultButton(
               title: tr('continueToDelivery'),
               color: context.colors.primary,
-              onTap: () => controller.cartAddAddress(context),
+              onTap: () {},
             ),
           ),
         ],

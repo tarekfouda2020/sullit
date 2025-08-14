@@ -10,7 +10,7 @@ class ReceivingMethodController{
 
   Future<void> onPressProceed(BuildContext context)async{
     if(changeTabCubit.state.data == 0){
-      await shippingController.cartAddAddress(context);
+      // await shippingController.cartAddAddress(context);
       changeTabCubit.onUpdateData(1);
     }else{
       deliveryController.setCartStoreShipping(context);

@@ -9,13 +9,8 @@ class LoyaltyPoints extends StatefulWidget {
 
 class _LoyaltyPointsState extends State<LoyaltyPoints> {
 
-  late LoyaltyPointsController controller;
+  late LoyaltyPointsController controller = LoyaltyPointsController();
 
-  @override
-  void initState() {
-    controller = LoyaltyPointsController();
-    super.initState();
-  }
 
 
   @override

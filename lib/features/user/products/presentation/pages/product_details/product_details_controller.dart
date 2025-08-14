@@ -228,17 +228,17 @@ class ProductDetailsController {
       loadingCubit.onUpdateData(true);
       final newQty = cartItem.quantity + 1;
       final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
-      if (success) {
+      if (success!=null) {
         loadingCubit.onUpdateData(false);
         cartItem.quantity = newQty;
-        cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+        cartItemsBloc.onUpdateData(success);
         if(cartItem.productId == detailsCubit.state.data?.product.id){
           // detailsCubit.state.data.product.variant.
           // await getProductDetails(context, productId);
           // increaseQty();
         }
       }
-       getCartItems();
+       // getCartItems();
     } else {
       CustomToast.showSimpleToast(
         msg: '${tr("only")} ${cartItem.stockQty} ${tr("availableStock")}',
@@ -251,10 +251,10 @@ class ProductDetailsController {
       loadingCubit.onUpdateData(true);
       final newQty = cartItem.quantity - 1;
       final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
-      if (success) {
+      if (success!=null) {
         loadingCubit.onUpdateData(false);
         cartItem.quantity = newQty;
-        cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+        cartItemsBloc.onUpdateData(success);
         if(cartItem.productId == detailsCubit.state.data?.product.id){
           // decreaseQty();
         }
@@ -277,6 +277,13 @@ class ProductDetailsController {
       context.read<CountCubit>().onUpdateCount(cartCount, countCubit.discount);
       CustomToast.showSimpleToast(
           msg: tr('itemDeleted'), type: ToastType.success);
+      log("==================cartCount===================${countCubit.cartCount}======================");
+      log("==================cartCount===================$cartCount======================");
+      if((cartItemsBloc.state.data.items ?? <CartItem>[]).isEmpty){
+        // context.read<CountCubit>().onUpdateCount(0, countCubit.discount);
+        Navigator.pop(context);
+        return ;
+      }
       getCartItems();
     }
   }

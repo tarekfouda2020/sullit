@@ -41,7 +41,7 @@ class GiftCardInfoWidget extends StatelessWidget {
         ),
         Gaps.vGap13,
         Text(
-            "Valid For ${model.expiredInDays} Days",
+            "Valid For ${model.validateDays} Days",
             style: AppTextStyle.s18_w400(color: context.colors.white)
         ),
       ],

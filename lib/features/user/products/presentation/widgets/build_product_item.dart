@@ -26,13 +26,16 @@ class BuildProductItem extends StatefulWidget {
   final Product productModel;
   final VoidCallback onFavRefresh;
   final VoidCallback? onCompareRefresh;
+  final VoidCallback? afterAddToCart;
   final bool? showVipDiscount;
+
   const BuildProductItem({
     super.key,
     required this.productModel,
     required this.onFavRefresh,
     this.onCompareRefresh,
     this.showVipDiscount,
+    this.afterAddToCart,
   });
 
   @override
@@ -76,39 +79,17 @@ class _BuildProductItemState extends State<BuildProductItem> {
                     url: widget.productModel.thumbnailImage!,
                   ),
                   Visibility(
-                    visible: widget.showVipDiscount ?? widget.productModel.hasDiscount!,
-                    child: PositionedDirectional(
-                      top: 20.r,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: context.colors.primary,
-                        ),
-                        child: Row(
-                          children: [
-                            Text(
-                              tr('off'),
-                              style: AppTextStyle.s12_w600(
-                                color: context.colors.white,
-                              ),
-                            ),
-                            Gaps.hGap2,
-                            Text(
-                              widget.productModel.discount!,
-                              style: AppTextStyle.s12_w600(
-                                color: context.colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    visible: widget.productModel.hasDiscount!,
+                    replacement: Visibility(
+                        visible: (widget.showVipDiscount ?? false) && widget.productModel.hasVipOffer!,
+                        child: _discountWidget(context)),
+                    child: _discountWidget(context),
                   ),
                   PositionedDirectional(
                     end: 3,
                     child: Column(
                       children: [
-                        BlocBuilder<GenericBloc, GenericState>(
+                        BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
                           bloc: showLoading,
                           builder: (context, state) {
                             return Visibility(
@@ -162,7 +143,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                   Gaps.vGap3,
                   // if((productModel.rating ?? 0.0) > 0)
                   RatingBar.builder(
-                    initialRating: (widget.productModel.rating ?? 0).toDouble() ,
+                    initialRating: (widget.productModel.rating ?? 0).toDouble(),
                     minRating: 0.5,
                     direction: Axis.horizontal,
                     allowHalfRating: true,
@@ -195,7 +176,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                             ),
                             Gaps.vGap3,
                             Visibility(
-                              visible: widget.productModel.hasDiscount!,
+                              visible: widget.productModel.hasDiscount ?? false || (widget.showVipDiscount ?? false),
                               child: Text(
                                 widget.productModel.priceHighLow!,
                                 style: AppTextStyle.s12_w400(
@@ -213,6 +194,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                         onTap: () => getIt<CartHelper>().addToCartDialog(
                           context,
                           widget.productModel,
+                          afterAddToCart: widget.afterAddToCart,
                         ),
                         child: Container(
                           height: 25,
@@ -249,6 +231,35 @@ class _BuildProductItemState extends State<BuildProductItem> {
                   //   onRatingUpdate: (rating) {},
                   // ),
                 ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  PositionedDirectional _discountWidget(BuildContext context) {
+    return PositionedDirectional(
+      top: 20.r,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
+        decoration: BoxDecoration(
+          color: context.colors.primary,
+        ),
+        child: Row(
+          children: [
+            Text(
+              tr('off'),
+              style: AppTextStyle.s12_w600(
+                color: context.colors.white,
+              ),
+            ),
+            Gaps.hGap2,
+            Text(
+              widget.productModel.discount!,
+              style: AppTextStyle.s12_w600(
+                color: context.colors.white,
               ),
             ),
           ],

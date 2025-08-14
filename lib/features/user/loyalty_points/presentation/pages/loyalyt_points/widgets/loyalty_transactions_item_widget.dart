@@ -24,7 +24,7 @@ class LoyaltyTransactionItemWidget extends StatelessWidget {
           ),
           Gaps.vGap8,
           Text(
-            model.points.toString(),
+            "${model.points}",
             style: AppTextStyle.s22_w600(color: context.colors.primary),
           ),
           Gaps.vGap6,

@@ -16,6 +16,7 @@ class DeliveryController {
         );
   }
 
+
   void onChangeType(SellerShipping model, int value) {
     model.deliveryType = value;
     selectedItem = model;

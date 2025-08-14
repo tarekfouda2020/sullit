@@ -6,6 +6,7 @@ import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/user/cart/data/data_sources/cart_data_sources.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/seller_shipping_model/seller_shipping_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/shipping_summary_model/shipping_summary_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/entities/add_cart_address_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
@@ -30,7 +31,7 @@ class ImplCartRepository extends CartRepository with ModelToDomain{
   }
 
   @override
-  Future<Either<Failure, bool>> addCartAddress(int param)async {
+  Future<Either<Failure, bool>> addCartAddress(AddCartAddressParams param)async {
     return await dataSource.addCartAddress(param);
   }
 

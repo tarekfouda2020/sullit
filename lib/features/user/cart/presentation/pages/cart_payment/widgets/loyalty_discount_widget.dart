@@ -25,7 +25,7 @@ class LoyaltyDiscountWidget extends StatelessWidget {
                   BlocBuilder<GenericBloc<LoyaltyPointsBalanceDomainModel?>, GenericState<LoyaltyPointsBalanceDomainModel?>>(
                     bloc: controller.loyaltyPointsBalanceBloc,
                     builder: (context, state) {
-                      return Text("${state.data == null ? '0' : state.data!.points.toString()} Point = ${state.data == null ? '0:00' : state.data!.amount}",
+                      return Text("${state.data == null ? '0' : state.data!.points.toString()} Point = ${state.data == null ? '0' : state.data!.amount}",
                         style: AppTextStyle.s12_w700(color: context.colors.primary),
                       );
                     },
@@ -34,7 +34,11 @@ class LoyaltyDiscountWidget extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-              SwitchButtonWidget(switchBloc: controller.applyPointsSwitchCubit, controller: controller,),
+              SwitchButtonWidget(
+                switchBloc: controller.applyPointsSwitchCubit,
+                controller: controller,
+                onToggle: (value) => controller.switchApplyPoints(),
+              ),
             ],
           ),
         ),
