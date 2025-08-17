@@ -21,17 +21,29 @@ class _AddressesState extends State<Addresses> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(title: tr('addresses')),
-      body: GenericListView(
-        type: ListViewType.api,
-        cubit: controller.addressesBloc,
-        onRefresh: controller.getAddress,
-        padding: Dimens.paddingAll15PX,
-        itemBuilder: (_, index, item) => BuildNewAddressItem(
-          address: item,
-          controller: controller,
+      body : RefreshIndicator(
+        onRefresh: () => controller.getAddress(1),
+        child: PagedListView<int, Address>(
+          pagingController: controller.pagingController,
+          builderDelegate: PagedChildBuilderDelegate<Address>(
+            itemBuilder: (_, item, index) {
+              return BuildNewAddressItem(
+                address: item,
+                controller: controller,
+              );
+            },
+            noItemsFoundIndicatorBuilder: (cxt) =>const BuildAddressesEmptyView(),
+            firstPageProgressIndicatorBuilder: (_) => const BuildAddressLoading(),
+            newPageProgressIndicatorBuilder: (context) =>  const SizedBox(
+              width: 15,height: 15,
+              child: Center(
+                child: CircularProgressIndicator.adaptive(
+              strokeWidth: 2,
+                ),
+              ),
+            ),
+          ),
         ),
-        emptyWidget: const BuildAddressesEmptyView(),
-        loadingWidget: const BuildAddressLoading(),
       ),
       bottomNavigationBar: BuildAddAddressBtn(controller: controller),
     );

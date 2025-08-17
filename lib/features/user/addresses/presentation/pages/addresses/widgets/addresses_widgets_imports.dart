@@ -19,3 +19,4 @@ part 'build_address_loading.dart';
 part 'build_address_title_item.dart';
 part 'build_addresses_empty_view.dart';
 part 'build_new_address_item.dart';
+part 'address_loading_item_widget.dart';

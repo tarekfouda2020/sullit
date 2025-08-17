@@ -1,16 +1,23 @@
 
 
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
-import 'package:flutter_tdd/features/user/cart/presentation/pages/receiving_method/views/delivery/delivery_imports.dart';
+import 'package:flutter_tdd/features/user/cart/data/enum/delivery_type_enum.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/seller_shipping.dart';
+import 'package:flutter_tdd/features/user/cart/domain/use_cases/set_cart_store_shipping.dart';
+import 'package:flutter_tdd/features/user/cart/presentation/pages/receiving_method/views/delivery/pickup_tab_imports.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/receiving_method/views/shipping/shipping_imports.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/receiving_method/widgets/receiving_method_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/widgets/build_cart_stepper.dart';

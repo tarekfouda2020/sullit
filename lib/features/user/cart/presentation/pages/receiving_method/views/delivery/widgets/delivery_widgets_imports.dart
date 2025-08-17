@@ -15,7 +15,7 @@ import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/pick_up.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/seller_shipping.dart';
-import 'package:flutter_tdd/features/user/cart/presentation/pages/receiving_method/views/delivery/delivery_imports.dart';
+import 'package:flutter_tdd/features/user/cart/presentation/pages/receiving_method/views/delivery/pickup_tab_imports.dart';
 
 part 'build_delivery_buttons.dart';
 part 'build_delivery_item.dart';

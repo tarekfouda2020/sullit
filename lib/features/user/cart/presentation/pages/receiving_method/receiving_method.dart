@@ -10,8 +10,13 @@ class ReceivingMethod extends StatefulWidget {
 
 class _ReceivingMethodState extends State<ReceivingMethod> {
 
-  final ReceivingMethodController controller = ReceivingMethodController();
+ late final ReceivingMethodController controller;
 
+ @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    controller = ReceivingMethodController(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +62,9 @@ class _ReceivingMethodState extends State<ReceivingMethod> {
   Widget currentTab(int index){
     switch(index){
       case 0: return  Shipping(shippingController: controller.shippingController);
-      case 1 : return  Delivery(deliveryController: controller.deliveryController);
+      case 1 : return  Visibility(
+          visible: controller.isPickUpInAllSellers(),
+          child: PickupTab(deliveryController: controller.pickupController));
       default: return Gaps.empty;
     }
   }

@@ -2,7 +2,8 @@
 part of 'shipping_imports.dart';
 
 class Shipping extends StatefulWidget {
-  final ShippingController shippingController;
+  final DeliveryTabController shippingController;
+
   const Shipping({Key? key, required this.shippingController}) : super(key: key);
 
   @override
@@ -10,7 +11,7 @@ class Shipping extends StatefulWidget {
 }
 
 class _ShippingState extends State<Shipping> {
-  late ShippingController controller;
+  late DeliveryTabController controller;
 
   @override
   void initState() {
@@ -24,19 +25,44 @@ class _ShippingState extends State<Shipping> {
       children: [
         BuildNewShipping(controller: controller),
         Gaps.vGap10,
-        SizedBox(
-          height: 410.r,
-          child: GenericListView<Address>(
-            type: ListViewType.api,
-            cubit: controller.addressesBloc,
-            onRefresh: ({bool refresh = false}) => controller.getAddress(context),
-            itemBuilder: (_, index, item) => BuildShippingAddressItem(
-              address: item,
-              controller: controller,
-            ),
-            loadingWidget: const BuildAddressLoading(),
-            emptyWidget: const BuildAddressesEmptyView(),
-          ),
+        BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+          bloc: controller.refreshCubit,
+          builder: (context, state) {
+            return SizedBox(
+              height: 350.h,
+              child: RefreshIndicator(
+                onRefresh: () => controller.getPaginateAddress(context, 1),
+                child: PagedListView<int, Address>(
+                  pagingController: controller.pagingController,
+                  builderDelegate: PagedChildBuilderDelegate<Address>(
+                    itemBuilder: (_, item, index) {
+                      return BuildShippingAddressItem(
+                        address: item,
+                        controller: controller,
+                      );
+                    },
+                    noItemsFoundIndicatorBuilder: (cxt) => const BuildAddressesEmptyView(),
+                    firstPageProgressIndicatorBuilder: (_) =>
+                        Column(
+                          children: List.generate(2, (index) {
+                            return const AddressLoadingItemWidget();
+                          }),
+                        ),
+                    newPageProgressIndicatorBuilder: (context) =>
+                    const Center(
+                      child: SizedBox(
+                        width: 25,
+                        height: 25,
+                        child: CircularProgressIndicator.adaptive(
+                          strokeWidth: 2,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
         ),
       ],
     );

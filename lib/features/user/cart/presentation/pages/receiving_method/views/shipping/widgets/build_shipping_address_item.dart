@@ -1,7 +1,7 @@
 part of 'shipping_widgets_imports.dart';
 
 class BuildShippingAddressItem extends StatelessWidget {
-  final ShippingController controller;
+  final DeliveryTabController controller;
 
   final Address address;
 

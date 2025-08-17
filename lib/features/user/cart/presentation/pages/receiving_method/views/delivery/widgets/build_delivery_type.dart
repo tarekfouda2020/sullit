@@ -1,7 +1,7 @@
 part of 'delivery_widgets_imports.dart';
 
 class BuildDeliveryType extends StatelessWidget {
-  final DeliveryController controller;
+  final PickupTabController controller;
   final SellerShipping shipping;
 
   const BuildDeliveryType(
@@ -91,7 +91,7 @@ class BuildDeliveryType extends StatelessWidget {
                       id: shipping.pickup.id,
                     ),
                   ],
-                  onChange: (model) => controller.onSelectPoint(model),
+                  onChange: (model) => controller.onSelectPoint(model,shipping),
                 ),
               ),
             ],

@@ -12,6 +12,7 @@ import 'package:flutter_tdd/features/user/addresses/domain/entities/edit_address
 import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/models/address_type_model.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/repository/addresses_repository.dart';
+import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: AddressesRepository)
@@ -19,7 +20,7 @@ class ImplAddressesRepository extends AddressesRepository with ModelToDomain {
   var dataSources = getIt<AddressesDataSources>();
 
   @override
-  Future<Either<Failure, List<Address>>> getAddress(bool param) async {
+  Future<Either<Failure, List<Address>>> getAddress(GenericPaginateParams param) async {
     var result = await dataSources.getAddress(param);
     return toDomainResultList(result);
   }

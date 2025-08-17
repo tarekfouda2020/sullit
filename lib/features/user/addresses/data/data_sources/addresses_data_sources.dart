@@ -7,9 +7,10 @@ import 'package:flutter_tdd/features/user/addresses/data/models/address_model/ad
 import 'package:flutter_tdd/features/user/addresses/data/models/address_type/address_type.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/entities/add_address_params.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/entities/edit_address_params.dart';
+import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 
 abstract class AddressesDataSources {
-  Future<Either<Failure, List<AddressModel>>> getAddress (bool param);
+  Future<Either<Failure, List<AddressModel>>> getAddress (GenericPaginateParams param);
   Future<Either<Failure, AddressModel>> addNewAddress (AddAddressParams params);
   Future<Either<Failure, List<CountryModel>>> getCountries (bool param);
   Future<Either<Failure, List<StateModel>>> getStatesByCountryId (int param);

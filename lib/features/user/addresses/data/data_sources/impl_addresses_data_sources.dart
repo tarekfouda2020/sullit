@@ -13,16 +13,17 @@ import 'package:flutter_tdd/features/user/addresses/data/models/address_model/ad
 import 'package:flutter_tdd/features/user/addresses/data/models/address_type/address_type.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/entities/add_address_params.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/entities/edit_address_params.dart';
+import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: AddressesDataSources)
 class ImplAddressesDataSources extends AddressesDataSources {
   @override
-  Future<Either<Failure, List<AddressModel>>> getAddress(bool param) async {
+  Future<Either<Failure, List<AddressModel>>> getAddress(GenericPaginateParams param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.userAddresses,
+      url: ApiNames.userAddresses+param.paramsToQuery(),
       requestMethod: RequestMethod.get,
-      refresh: param,
+      refresh: param.refresh,
       responseType: ResType.list,
       showLoader: true,
       toJsonFunc: (json) => List<AddressModel>.from(

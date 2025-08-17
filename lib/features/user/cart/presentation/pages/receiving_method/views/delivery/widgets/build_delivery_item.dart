@@ -2,7 +2,7 @@ part of 'delivery_widgets_imports.dart';
 
 class BuildDeliveryItem extends StatelessWidget {
   final SellerShipping shippingModel;
-  final DeliveryController controller;
+  final PickupTabController controller;
 
   const BuildDeliveryItem(
       {super.key, required this.shippingModel, required this.controller});

@@ -1,7 +1,8 @@
 part of 'delivery_widgets_imports.dart';
 
 class SellerNameWidget extends StatelessWidget {
-  const SellerNameWidget({super.key});
+  final SellerShipping shipping;
+  const SellerNameWidget({super.key, required this.shipping});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class SellerNameWidget extends StatelessWidget {
           Gaps.vGap4,
           Row(
             children: [
-              Text("Munch Corner",
+              Text(shipping.name,
                 style: AppTextStyle.s14_w600(color: context.colors.black),
               ),
             ],

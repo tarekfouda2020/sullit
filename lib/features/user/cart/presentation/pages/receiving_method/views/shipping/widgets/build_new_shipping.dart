@@ -1,7 +1,7 @@
 part of 'shipping_widgets_imports.dart';
 
 class BuildNewShipping extends StatelessWidget {
-  final ShippingController controller;
+  final DeliveryTabController controller;
 
   const BuildNewShipping({super.key, required this.controller});
 

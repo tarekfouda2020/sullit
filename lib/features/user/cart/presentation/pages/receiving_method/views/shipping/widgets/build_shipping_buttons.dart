@@ -1,7 +1,7 @@
 part of 'shipping_widgets_imports.dart';
 
 class BuildShippingButtons extends StatelessWidget {
-  final ShippingController controller ;
+  final DeliveryTabController controller ;
   const BuildShippingButtons({Key? key, required this.controller}) : super(key: key);
 
   @override

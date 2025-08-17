@@ -3,11 +3,39 @@ part of 'addresses_imports.dart';
 class AddressesController {
   final GenericBloc<List<Address>> addressesBloc = GenericBloc([]);
 
-  Future<void> getAddress({bool refresh = true}) async {
-    return await GetAddresses().call(refresh).then(
-      (value) {
-        addressesBloc.onUpdateData(value);
-      },
+  final PagingController<int, Address> pagingController = PagingController(firstPageKey: 1);
+  int pageSize = 12;
+
+
+  AddressesController() {
+    pagingController.addPageRequestListener((pageKey) {
+      getAddress(pageKey, refresh: false);
+      getAddress(pageKey);
+    });
+  }
+
+  Future<void> getAddress(int page, {bool refresh = true}) async {
+    var params = _paginateParams(page, refresh);
+    var data =await GetAddresses().call(params);
+    final isLastPage = data.length < pageSize;
+    if (page == 1) {
+      pagingController.itemList = [];
+    }
+    if (isLastPage) {
+      pagingController.appendLastPage(data);
+    } else {
+      final nextPageKey = page + 1;
+      pagingController.appendPage(data, nextPageKey);
+    }
+  }
+
+
+
+  GenericPaginateParams _paginateParams(int page, bool refresh) {
+    return GenericPaginateParams(
+      currentPage: page,
+      refresh: refresh,
+      pageSize: pageSize,
     );
   }
 
