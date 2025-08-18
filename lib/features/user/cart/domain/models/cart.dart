@@ -29,10 +29,6 @@ class CartDomainModel extends BaseDomainModel {
     }
     )
         .toList();
-    final List<int> count = (items ?? <CartItem>[])
-        .map((element) => element.quantity)
-        .toList();
-
     double sumAllPrices = allPrices.fold(0.0, (sum, item) => sum + item);
     return sumAllPrices.toStringAsFixed(2);
   }
