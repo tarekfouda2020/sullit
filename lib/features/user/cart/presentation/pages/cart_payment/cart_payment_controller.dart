@@ -74,7 +74,6 @@ class CartPaymentController {
         var params = _orderParams();
         var data = await CreateOrder().call(params);
         if (data != null) {
-          log("======================transactionUrl ${data.transactionUrl} =====================");
           if (data.transactionUrl != null) {
             _goToPay(data.transactionUrl, context);
           } else {
@@ -145,10 +144,8 @@ class CartPaymentController {
     isWalletSelected.onUpdateData(false);
     List<PaymentOption> paymentOptions = shippingBloc.state.data!.paymentOption!;
     for(PaymentOption item in paymentOptions){
-      if(item.paymentTypeKey == PayTypeEnum.wallet.name){
-        item.selected = false;
-        item.fakeSelected = false;
-      }
+      item.selected = false;
+      item.fakeSelected = false;
     }
     PaymentOption firstPayment = paymentOptions.first;
     firstPayment.fakeSelected = true;
