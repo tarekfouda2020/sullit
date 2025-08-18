@@ -33,31 +33,34 @@ class GiftCardItemWidget extends StatelessWidget {
               children: [
                 Image.asset(Res.giftCardPlaceholder,width: 72, height: 72,),
                 Gaps.hGap15,
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(model.title ,
-                    style: AppTextStyle.s14_w400(color: context.colors.black),
-                    ),
-                    Gaps.vGap8,
-                    Row(
-                      children: [
-                        if(!isMyGiftCard)
-                        Text(tr("payOnly"), style: AppTextStyle.s16_w400(color: context.colors.black)),
-                        if(!isMyGiftCard)
-                        Gaps.hGap8,
-                        Text(model.price, style: AppTextStyle.s22_w600(color: context.colors.primary)),
-                      ],
-                    ),
-                    Gaps.vGap8,
-                    Row(
-                      children: [
-                        Text(tr("andGetPurchasesWith"), style: AppTextStyle.s12_w400(color: context.colors.textColor)),
-                        Gaps.hGap2,
-                        Text(model.value, style: AppTextStyle.s12_w700(color: context.colors.black)),
-                      ],
-                    ),
-                  ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(model.title ,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTextStyle.s14_w400(color: context.colors.black),
+                      ),
+                      Gaps.vGap8,
+                      Row(
+                        children: [
+                          if(!isMyGiftCard)
+                          Text(tr("payOnly"), style: AppTextStyle.s16_w400(color: context.colors.black)),
+                          if(!isMyGiftCard)
+                          Gaps.hGap8,
+                          Text(model.price, style: AppTextStyle.s22_w600(color: context.colors.primary)),
+                        ],
+                      ),
+                      Gaps.vGap8,
+                      Row(
+                        children: [
+                          Text(tr("andGetPurchasesWith"), style: AppTextStyle.s12_w400(color: context.colors.textColor)),
+                          Gaps.hGap2,
+                          Text(model.value, style: AppTextStyle.s12_w700(color: context.colors.black)),
+                        ],
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),
