@@ -65,14 +65,14 @@ mixin _$OrderModel {
   String get customerName => throw _privateConstructorUsedError;
   @JsonKey(name: 'customer_email')
   String get customerEmail => throw _privateConstructorUsedError;
+  @JsonKey(name: 'customer_phone')
+  String get customerPhone => throw _privateConstructorUsedError;
   @JsonKey(name: 'return_reason')
   String get returnReason => throw _privateConstructorUsedError;
   @JsonKey(name: 'sold_by_type')
   String get soldByType => throw _privateConstructorUsedError;
   @JsonKey(name: 'sold_by_name')
   String get soldBy => throw _privateConstructorUsedError;
-  @JsonKey(name: 'customer_phone')
-  String get customerPhone => throw _privateConstructorUsedError;
   @JsonKey(name: 'loyalty_points_value')
   String get loyaltyPointsValue => throw _privateConstructorUsedError;
   @JsonKey(name: 'loyalty_points_applied')
@@ -124,10 +124,10 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'shipping_address') String shippingAddress,
       @JsonKey(name: 'customer_name') String customerName,
       @JsonKey(name: 'customer_email') String customerEmail,
+      @JsonKey(name: 'customer_phone') String customerPhone,
       @JsonKey(name: 'return_reason') String returnReason,
       @JsonKey(name: 'sold_by_type') String soldByType,
       @JsonKey(name: 'sold_by_name') String soldBy,
-      @JsonKey(name: 'customer_phone') String customerPhone,
       @JsonKey(name: 'loyalty_points_value') String loyaltyPointsValue,
       @JsonKey(name: 'loyalty_points_applied') bool loyaltyPointsApplied,
       @JsonKey(name: 'loyalty_points') int loyaltyPoints,
@@ -174,10 +174,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? shippingAddress = null,
     Object? customerName = null,
     Object? customerEmail = null,
+    Object? customerPhone = null,
     Object? returnReason = null,
     Object? soldByType = null,
     Object? soldBy = null,
-    Object? customerPhone = null,
     Object? loyaltyPointsValue = null,
     Object? loyaltyPointsApplied = null,
     Object? loyaltyPoints = null,
@@ -289,6 +289,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.customerEmail
           : customerEmail // ignore: cast_nullable_to_non_nullable
               as String,
+      customerPhone: null == customerPhone
+          ? _value.customerPhone
+          : customerPhone // ignore: cast_nullable_to_non_nullable
+              as String,
       returnReason: null == returnReason
           ? _value.returnReason
           : returnReason // ignore: cast_nullable_to_non_nullable
@@ -300,10 +304,6 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
       soldBy: null == soldBy
           ? _value.soldBy
           : soldBy // ignore: cast_nullable_to_non_nullable
-              as String,
-      customerPhone: null == customerPhone
-          ? _value.customerPhone
-          : customerPhone // ignore: cast_nullable_to_non_nullable
               as String,
       loyaltyPointsValue: null == loyaltyPointsValue
           ? _value.loyaltyPointsValue
@@ -364,10 +364,10 @@ abstract class _$$_OrderModelCopyWith<$Res>
       @JsonKey(name: 'shipping_address') String shippingAddress,
       @JsonKey(name: 'customer_name') String customerName,
       @JsonKey(name: 'customer_email') String customerEmail,
+      @JsonKey(name: 'customer_phone') String customerPhone,
       @JsonKey(name: 'return_reason') String returnReason,
       @JsonKey(name: 'sold_by_type') String soldByType,
       @JsonKey(name: 'sold_by_name') String soldBy,
-      @JsonKey(name: 'customer_phone') String customerPhone,
       @JsonKey(name: 'loyalty_points_value') String loyaltyPointsValue,
       @JsonKey(name: 'loyalty_points_applied') bool loyaltyPointsApplied,
       @JsonKey(name: 'loyalty_points') int loyaltyPoints,
@@ -412,10 +412,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? shippingAddress = null,
     Object? customerName = null,
     Object? customerEmail = null,
+    Object? customerPhone = null,
     Object? returnReason = null,
     Object? soldByType = null,
     Object? soldBy = null,
-    Object? customerPhone = null,
     Object? loyaltyPointsValue = null,
     Object? loyaltyPointsApplied = null,
     Object? loyaltyPoints = null,
@@ -527,6 +527,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.customerEmail
           : customerEmail // ignore: cast_nullable_to_non_nullable
               as String,
+      customerPhone: null == customerPhone
+          ? _value.customerPhone
+          : customerPhone // ignore: cast_nullable_to_non_nullable
+              as String,
       returnReason: null == returnReason
           ? _value.returnReason
           : returnReason // ignore: cast_nullable_to_non_nullable
@@ -538,10 +542,6 @@ class __$$_OrderModelCopyWithImpl<$Res>
       soldBy: null == soldBy
           ? _value.soldBy
           : soldBy // ignore: cast_nullable_to_non_nullable
-              as String,
-      customerPhone: null == customerPhone
-          ? _value.customerPhone
-          : customerPhone // ignore: cast_nullable_to_non_nullable
               as String,
       loyaltyPointsValue: null == loyaltyPointsValue
           ? _value.loyaltyPointsValue
@@ -600,10 +600,10 @@ class _$_OrderModel extends _OrderModel {
       @JsonKey(name: 'shipping_address') required this.shippingAddress,
       @JsonKey(name: 'customer_name') required this.customerName,
       @JsonKey(name: 'customer_email') required this.customerEmail,
+      @JsonKey(name: 'customer_phone') required this.customerPhone,
       @JsonKey(name: 'return_reason') required this.returnReason,
       @JsonKey(name: 'sold_by_type') required this.soldByType,
       @JsonKey(name: 'sold_by_name') required this.soldBy,
-      @JsonKey(name: 'customer_phone') required this.customerPhone,
       @JsonKey(name: 'loyalty_points_value') required this.loyaltyPointsValue,
       @JsonKey(name: 'loyalty_points_applied')
       required this.loyaltyPointsApplied,
@@ -689,6 +689,9 @@ class _$_OrderModel extends _OrderModel {
   @JsonKey(name: 'customer_email')
   final String customerEmail;
   @override
+  @JsonKey(name: 'customer_phone')
+  final String customerPhone;
+  @override
   @JsonKey(name: 'return_reason')
   final String returnReason;
   @override
@@ -697,9 +700,6 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'sold_by_name')
   final String soldBy;
-  @override
-  @JsonKey(name: 'customer_phone')
-  final String customerPhone;
   @override
   @JsonKey(name: 'loyalty_points_value')
   final String loyaltyPointsValue;
@@ -723,7 +723,7 @@ class _$_OrderModel extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, customerPhone: $customerPhone, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, orderDetails: $orderDetails)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, orderDetails: $orderDetails)';
   }
 
   @override
@@ -778,13 +778,13 @@ class _$_OrderModel extends _OrderModel {
                 other.customerName == customerName) &&
             (identical(other.customerEmail, customerEmail) ||
                 other.customerEmail == customerEmail) &&
+            (identical(other.customerPhone, customerPhone) ||
+                other.customerPhone == customerPhone) &&
             (identical(other.returnReason, returnReason) ||
                 other.returnReason == returnReason) &&
             (identical(other.soldByType, soldByType) ||
                 other.soldByType == soldByType) &&
             (identical(other.soldBy, soldBy) || other.soldBy == soldBy) &&
-            (identical(other.customerPhone, customerPhone) ||
-                other.customerPhone == customerPhone) &&
             (identical(other.loyaltyPointsValue, loyaltyPointsValue) ||
                 other.loyaltyPointsValue == loyaltyPointsValue) &&
             (identical(other.loyaltyPointsApplied, loyaltyPointsApplied) ||
@@ -827,10 +827,10 @@ class _$_OrderModel extends _OrderModel {
         shippingAddress,
         customerName,
         customerEmail,
+        customerPhone,
         returnReason,
         soldByType,
         soldBy,
-        customerPhone,
         loyaltyPointsValue,
         loyaltyPointsApplied,
         loyaltyPoints,
@@ -885,10 +885,10 @@ abstract class _OrderModel extends OrderModel {
       @JsonKey(name: 'shipping_address') required final String shippingAddress,
       @JsonKey(name: 'customer_name') required final String customerName,
       @JsonKey(name: 'customer_email') required final String customerEmail,
+      @JsonKey(name: 'customer_phone') required final String customerPhone,
       @JsonKey(name: 'return_reason') required final String returnReason,
       @JsonKey(name: 'sold_by_type') required final String soldByType,
       @JsonKey(name: 'sold_by_name') required final String soldBy,
-      @JsonKey(name: 'customer_phone') required final String customerPhone,
       @JsonKey(name: 'loyalty_points_value')
       required final String loyaltyPointsValue,
       @JsonKey(name: 'loyalty_points_applied')
@@ -974,6 +974,9 @@ abstract class _OrderModel extends OrderModel {
   @JsonKey(name: 'customer_email')
   String get customerEmail;
   @override
+  @JsonKey(name: 'customer_phone')
+  String get customerPhone;
+  @override
   @JsonKey(name: 'return_reason')
   String get returnReason;
   @override
@@ -982,9 +985,6 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'sold_by_name')
   String get soldBy;
-  @override
-  @JsonKey(name: 'customer_phone')
-  String get customerPhone;
   @override
   @JsonKey(name: 'loyalty_points_value')
   String get loyaltyPointsValue;

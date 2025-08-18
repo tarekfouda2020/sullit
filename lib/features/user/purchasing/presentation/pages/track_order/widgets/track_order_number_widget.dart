@@ -17,7 +17,7 @@ class TrackOrderNumberWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Order No. :",
+          Text("${tr("orderNo")} :",
           style: AppTextStyle.s18_w300(color: context.colors.textColor),
           ),
           Text(" ${model.id}",

@@ -12,7 +12,7 @@ class RenewPlanButtonWidget extends StatelessWidget {
         onTap: _isDisabled()
             ?() {}
             :()=> controller.onPressRenew(context),
-        title: "Renew",
+        title: tr("renew"),
         disabled: _isDisabled(),
         elevation: 0,
         borderColor: Colors.transparent,

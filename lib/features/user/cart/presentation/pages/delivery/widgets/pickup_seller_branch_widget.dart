@@ -1,7 +1,7 @@
 part of 'delivery_widgets_imports.dart';
 
 class PickupSellerBranchWidget extends StatelessWidget {
-  final PickupTabController controller;
+  final DeliveryController controller;
   final SellerShipping shipping;
   const PickupSellerBranchWidget({super.key, required this.controller, required this.shipping});
 
@@ -36,7 +36,7 @@ class PickupSellerBranchWidget extends StatelessWidget {
                 id: shipping.pickup.id,
               ),
             ],
-            onChange: (model) => controller.onSelectPoint(model,shipping),
+            onChange: (model) => controller.onSelectPoint(model),
           ),
         ),
       ],

@@ -23,7 +23,7 @@ class PayMethodBottomSheetWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
            BottomSheetHeaderWidget(
-            title: "Select Payment Method",
+            title: tr("selectPaymentMethod"),
             onClose: onClose,
           ),
           Gaps.vGap20,

@@ -65,7 +65,7 @@ class BuildCartItem extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text("Sold By :",
+                    Text("${tr("soldBy")} :",
                       style: AppTextStyle.s14_w600(color: context.colors.textColor),
                     ),
                     Gaps.hGap5,

@@ -13,7 +13,7 @@ class CurrentSubscriptionSectionWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("My Current Plan",
+              Text(tr("myCurrentPlan"),
                 style: AppTextStyle.s18_w700(color: context.colors.black),
               ),
             ],

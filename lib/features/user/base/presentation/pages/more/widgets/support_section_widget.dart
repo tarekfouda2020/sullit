@@ -8,7 +8,7 @@ class SupportSectionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MoreGridViewWidget(
       crossAxisCount: 2,
-      title: "Support",
+      title: tr("support"),
       children: [
         BuildMoreItem(
           image: Res.ticketLogo,

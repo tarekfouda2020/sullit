@@ -10,7 +10,7 @@ class CartDiscountWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const CartPaymentSectionTitleWidget(title: "Discount"),
+        CartPaymentSectionTitleWidget(title: tr("discount")),
         Gaps.vGap9,
         Container(
           padding: const EdgeInsetsDirectional.only(start: 18,top: 19,end: 24,bottom: 10),

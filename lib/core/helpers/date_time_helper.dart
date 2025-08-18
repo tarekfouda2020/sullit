@@ -3,14 +3,16 @@
 import 'package:intl/intl.dart';
 
 class DateTimeHelper {
+
+
   static String formatDate({required DateTime date, required String formatType}) {
-    String formatted = DateFormat(formatType).format(date);
+    String formatted = DateFormat(formatType,"en").format(date);
     return formatted;
   }
 
 
   static DateTime convertToDateTime({required String strDate,  String? formatType}) {
-    DateTime formatted = DateFormat("dd-MM-yyyy hh:mm a").parse(strDate);
+    DateTime formatted = DateFormat("dd-MM-yyyy hh:mm a",).parse(strDate);
     return formatted;
   }
 

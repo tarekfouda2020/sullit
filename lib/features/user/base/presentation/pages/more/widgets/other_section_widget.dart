@@ -7,7 +7,7 @@ class OtherSectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MoreGridViewWidget(
-      title: "Other",
+      title: tr("other"),
       children: [
         // BuildMoreItem(
         //   image: Res.compareLogo,

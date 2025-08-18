@@ -21,16 +21,20 @@ class CartDomainModel extends BaseDomainModel {
 
 
   String getProductsTotalWithoutTax() {
-    final List<double> allTaxList = (items ?? <CartItem>[])
-        .map((element) =>
-    getIt<Utilities>().extractFormattedNumberToDouble(element.tax) ?? 0.0)
+    final List<double> allPrices = (items ?? <CartItem>[])
+        .map((element) {
+          var price =  getIt<Utilities>().extractFormattedNumberToDouble(element.price) ?? 0.0;
+          var qty = element.quantity;
+          return price * qty;
+    }
+    )
+        .toList();
+    final List<int> count = (items ?? <CartItem>[])
+        .map((element) => element.quantity)
         .toList();
 
-    double tax = allTaxList.fold(0.0, (sum, item) => sum + item);
-
-    double totalWithoutTax = (calculableTotal ?? 0).toDouble() - tax;
-
-    return totalWithoutTax.toStringAsFixed(2);
+    double sumAllPrices = allPrices.fold(0.0, (sum, item) => sum + item);
+    return sumAllPrices.toStringAsFixed(2);
   }
 
 }

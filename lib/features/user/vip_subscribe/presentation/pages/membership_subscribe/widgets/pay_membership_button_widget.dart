@@ -8,7 +8,7 @@ class PayMembershipButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultButton(
       onTap: ()=> controller.showPayMethodsSheet(context),
-      title: "Continue To Payment",
+      title: tr("continueToPayment"),
       height: 50,
       fontSize: 18,
       fontWeight: FontWeight.w700,

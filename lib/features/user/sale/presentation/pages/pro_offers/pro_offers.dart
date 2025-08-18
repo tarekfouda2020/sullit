@@ -19,7 +19,7 @@ class _ProOffersState extends State<ProOffers> {
         children: [
           VipOffersWidget(
             onTap: () => AutoRouter.of(context).push(const MembershipSubscribeRoute()),
-            text: "Subscribe Now",
+            text: tr("subscribeNow"),
           ),
           Gaps.vGap10,
           Expanded(

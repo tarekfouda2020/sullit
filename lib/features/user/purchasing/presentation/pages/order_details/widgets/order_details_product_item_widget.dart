@@ -59,7 +59,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                            "Qnt : ${orderDetails.quantity.toString() ?? 1}",
+                            "${tr("quantity")}${orderDetails.quantity.toString() ?? 1}",
                           style: AppTextStyle.s14_w400(color: context.colors.black),
                         ),
                       ],
@@ -81,7 +81,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        "Review Product",
+                        tr("reviewProduct"),
                         style: AppTextStyle.s14_w400(color: context.colors.primary),
                       ),
                       Gaps.hGap10,

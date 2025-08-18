@@ -17,8 +17,8 @@ class VipPlansBottomSheetWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const BottomSheetHeaderWidget(
-            title: 'VIP Membership',
+          BottomSheetHeaderWidget(
+            title: tr('vipMembership'),
           ),
           Gaps.vGap24,
           Flexible(
@@ -37,7 +37,7 @@ class VipPlansBottomSheetWidget extends StatelessWidget {
                   noItemsFoundIndicatorBuilder: (cxt) {
                     return Center(
                       child: Text(
-                        "No Subscriptions",
+                        tr("noSubscriptions"),
                         style: AppTextStyle.s16_w700(color: context.colors.black),
                       ),
                     );

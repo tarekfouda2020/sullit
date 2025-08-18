@@ -10,7 +10,7 @@ class ReturnedOrderDetailsWidget extends StatelessWidget {
     return Column(
       children: [
         OrderINfoItemWidget(
-            title: 'Returend Date',
+            title: tr('returnedDate'),
             describe:  DateTimeHelper.formatDate(
                 date: order?.getOrderDate?? DateTime.now(),
                 formatType: "d MMM yyyy - hh:mm a"
@@ -19,15 +19,15 @@ class ReturnedOrderDetailsWidget extends StatelessWidget {
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
-            title: 'Total Items',
+            title: tr('totalItems'),
             describe: order?.totalItemsCount().toString() ?? '2',
             gaps: Gaps.hGap9
         ),
         Gaps.vGap8,
-        OrderINfoItemWidget(title: 'Phone', describe: '+99753583245', gaps: Gaps.hGap17),
+        OrderINfoItemWidget(title: tr('phone'), describe: '+99753583245', gaps: Gaps.hGap17),
         Gaps.vGap8,
         OrderINfoItemWidget(
-            title: 'Refund Method',
+            title: tr('refundMethod'),
             describe: order?.paymentMethod ?? 'Apple Pay',
             gaps: Gaps.hGap5
         ),

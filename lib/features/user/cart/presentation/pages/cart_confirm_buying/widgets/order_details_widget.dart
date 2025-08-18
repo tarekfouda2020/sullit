@@ -20,7 +20,7 @@ class CartOrderDetailsWidget extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Text("Thank You For Your Order!",
+                Text(tr("thankYouForYourOrder"),
                 style: AppTextStyle.s18_w700(color: context.colors.black),
                 ),
                 Gaps.vGap18,
@@ -30,7 +30,7 @@ class CartOrderDetailsWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Order No. : ",
+                      "${tr("orderNo")} : ",
                       style: AppTextStyle.s18_w300(color: context.colors.black),
                     ),
                     Text(
@@ -42,7 +42,7 @@ class CartOrderDetailsWidget extends StatelessWidget {
                 Gaps.vGap8,
                 Gaps.line(context.colors.softGray, 0),
                 Gaps.vGap14,
-                CartOrderInfoWidget(summary: summary,),
+                CartOrderInfoWidget(orderSummary: summary,),
               ],
             )
         ),

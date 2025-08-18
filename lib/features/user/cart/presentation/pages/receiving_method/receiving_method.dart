@@ -30,7 +30,7 @@ class _ReceivingMethodState extends State<ReceivingMethod> {
           Gaps.vGap12,
           Padding(
             padding: Dimens.paddingStart20,
-            child: Text("Select receiving method",
+            child: Text(tr("selectReceivingMethod"),
                 style: AppTextStyle.s16_w600(color: context.colors.black)
             ),
           ),
@@ -61,10 +61,10 @@ class _ReceivingMethodState extends State<ReceivingMethod> {
 
   Widget currentTab(int index){
     switch(index){
-      case 0: return  Shipping(shippingController: controller.shippingController);
+      case 0: return  const Shipping();
       case 1 : return  Visibility(
           visible: controller.isPickUpInAllSellers(),
-          child: PickupTab(deliveryController: controller.pickupController));
+          child: const Delivery());
       default: return Gaps.empty;
     }
   }

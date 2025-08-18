@@ -15,7 +15,7 @@ class _MyGiftCardsState extends State<MyGiftCards> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "My Gift Cards",elevation: 0,),
+      appBar: DefaultAppBar(title: tr("myGiftCards"),elevation: 0,),
       body: MyGiftCardsListWidget(controller: controller),
     );
   }

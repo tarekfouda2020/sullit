@@ -10,6 +10,7 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart/widgets/cart_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
@@ -78,7 +79,9 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                   ),
                   const Spacer(),
                   Text(
-                    "${state.data!.priceHighLowDiscount} ",
+                    showDiscount(context)
+                        ?"${state.data!.priceHighLowDiscount} "
+                        :"${state.data!.priceHighLow} ",
                     style: AppTextStyle.s14_w600(
                       color: context.colors.primary,
                     ),
@@ -86,7 +89,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                 ],
               ),
               Visibility(
-                visible: state.data!.hasDiscount!,
+                visible: showDiscount(context),
                 child: Column(
                   children: [
                     Gaps.vGap10,
@@ -139,7 +142,9 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                     ),
                   ),
                   Text(
-                    "${state.data!.variant?.calculablePrice} ${state.data!.variant?.currencySymbol}",
+                    !showDiscount(context)
+                        ?"${state.data!.priceHighLow}"
+                        :"${state.data!.variant?.calculablePrice} ${state.data!.variant?.currencySymbol}",
                     style: AppTextStyle.s16_w500(color: context.colors.primary),
                   ),
                 ],
@@ -191,4 +196,19 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
       ),
     );
   }
+
+
+
+
+  bool showDiscount(BuildContext context){
+    final bool hasVipDiscount = context.read<UserCubit>().state.model!.hasValidSubscription ?? false;
+    bool isVipProduct = widget.product.hasVipOffer!;
+    if(isVipProduct){
+      return hasVipDiscount;
+    }else{
+      return widget.product.hasDiscount!;
+    }
+  }
+
+
 }

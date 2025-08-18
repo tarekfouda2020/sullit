@@ -2,10 +2,13 @@ part of 'delivery_widgets_imports.dart';
 
 class BuildDeliveryItem extends StatelessWidget {
   final SellerShipping shippingModel;
-  final PickupTabController controller;
+  final DeliveryController controller;
 
-  const BuildDeliveryItem(
-      {super.key, required this.shippingModel, required this.controller});
+  const BuildDeliveryItem({
+    super.key,
+    required this.shippingModel,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,7 @@ class BuildDeliveryItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        // BuildDeliveryProducts(shippingModel: shippingModel),
+        BuildDeliveryProducts(shippingModel: shippingModel),
         BuildDeliveryType(
           controller: controller,
           shipping: shippingModel,

@@ -17,14 +17,14 @@ class _LoyaltyPointsState extends State<LoyaltyPoints> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Loyalty Points"),
+      appBar:  DefaultAppBar(title: tr("loyaltyPoints")),
       body: Padding(
         padding: Dimens.paddingHorizontal20PX,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             LoyaltyPointsInfo(controller: controller,),
-            Text('Transactions',
+            Text(tr('transactions'),
             style: AppTextStyle.s20_w700(color: context.colors.black),
             ),
             Gaps.vGap12,
@@ -41,12 +41,12 @@ class _LoyaltyPointsState extends State<LoyaltyPoints> {
                       );
                     },
                     noItemsFoundIndicatorBuilder: (cxt) {
-                      return  Center(
-                        child: Text(
-                          "No Transactions Found",
-                          style: AppTextStyle.s16_w700(color: context.colors.black),
-                        ),
-                      );
+                                              return  Center(
+                          child: Text(
+                            tr("noTransactionsFound"),
+                            style: AppTextStyle.s16_w700(color: context.colors.black),
+                          ),
+                        );
                     },
                     firstPageProgressIndicatorBuilder: (_) => Column(
                       children: List.generate(5, (index) {

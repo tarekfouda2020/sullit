@@ -27,7 +27,7 @@ class GetPlansWidget extends StatelessWidget {
           child: Column(
             children: [
               Gaps.vGap(60),
-              Text("Save Your Money with",
+              Text(tr("saveYourMoneyWith"),
               style: AppTextStyle.s22_w400(color: context.colors.white),
               ),
               Gaps.vGap11,

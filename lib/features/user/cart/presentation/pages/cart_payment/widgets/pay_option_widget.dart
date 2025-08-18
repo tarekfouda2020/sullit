@@ -30,7 +30,7 @@ class PayOptionWidget extends StatelessWidget {
             onTap: () => controller.paymentMethodSheet(context),
             child: Row(
               children: [
-                Text("Change",
+                Text(tr("change"),
                     style: AppTextStyle.s14_w400(color: context.colors.primary)
                 ),
                 Gaps.hGap7,

@@ -1,7 +1,7 @@
 part of 'shipping_widgets_imports.dart';
 
 class BuildShippingAddressItem extends StatelessWidget {
-  final DeliveryTabController controller;
+  final ShippingController controller;
 
   final Address address;
 
@@ -16,7 +16,7 @@ class BuildShippingAddressItem extends StatelessWidget {
       child: Container(
         margin: Dimens.marginBottom12,
         padding: EdgeInsetsDirectional.only(top: 14.r,start: 20.r,end: 10.r,bottom: 14.r),
-        decoration: CustomDecoration(),
+        decoration: const CustomDecoration(),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -27,12 +27,12 @@ class VipOffersWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Save Your Money with",
+                tr("saveYourMoneyWith"),
                 style: AppTextStyle.s12_w400(color: context.colors.white),
               ),
               Gaps.vGap5,
               Text(
-                "VIP Offers",
+                tr("vipOffers"),
                 style: AppTextStyle.s22_w700(color: context.colors.white),
               ),
             ],

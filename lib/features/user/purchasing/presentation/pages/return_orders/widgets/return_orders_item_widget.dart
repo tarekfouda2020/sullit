@@ -59,7 +59,7 @@ class ReturnOrdersItemWidget extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "Returned Date",
+                          tr("returnedDate"),
                           style: AppTextStyle.s12_w400(color: context.colors.primary),
                         ),
                         Gaps.hGap6,

@@ -41,6 +41,7 @@ class BuildConditions extends StatelessWidget {
                   tr("agreeTo"),
                   style: AppTextStyle.s14_w400(color: context.colors.textColor),
                 ),
+                Gaps.hGap5,
                 GestureDetector(
                   onTap: () => AutoRouter.of(context).push(const TermsRoute()),
                   child: Text(

@@ -4,16 +4,15 @@ class ReceivingMethodController{
 
   final GenericBloc<int> changeTabCubit = GenericBloc(0);
 
-  late final DeliveryTabController shippingController;
-  final PickupTabController pickupController = PickupTabController();
+  late final ShippingController shippingController;
+  final DeliveryController pickupController = DeliveryController();
 
   ///  this cubit updated after select address
   List<SellerShipping> get _sellerShippingData => pickupController.sellerShippingBloc.state.data;
 
 
   ReceivingMethodController(BuildContext context) {
-    shippingController = DeliveryTabController(context);
-    shippingController.receivingMethodController = this;
+    shippingController = ShippingController();
   }
 
 

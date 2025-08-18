@@ -1,7 +1,7 @@
 part of 'delivery_widgets_imports.dart';
 
 class BuildDeliveryType extends StatelessWidget {
-  final PickupTabController controller;
+  final DeliveryController controller;
   final SellerShipping shipping;
 
   const BuildDeliveryType(
@@ -13,17 +13,22 @@ class BuildDeliveryType extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width,
-          padding: Dimens.paddingAll15PX,
+          padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 22),
           margin: Dimens.paddingVertical8PX,
+
           decoration: BoxDecoration(
-            color: context.colors.offWhite,
-            border: Border.all(color: context.colors.white),
-            borderRadius: Dimens.borderRadius10PX,
+            color: context.colors.white,
+            border: Border.all(color: context.colors.gray3),
+            borderRadius: Dimens.borderRadius12PX,
           ),
-          child: Text(
-            tr('chooseDeliveryType'),
-            style: AppTextStyle.s15_w700(color: context.colors.black),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                tr('chooseDeliveryType'),
+                style: AppTextStyle.s16_w700(color: context.colors.black),
+              ),
+            ],
           ),
         ),
         Padding(
@@ -32,13 +37,16 @@ class BuildDeliveryType extends StatelessWidget {
             children: [
               Row(
                 children: [
+                  if(shipping.activeDelivery)
                   BuildDeliveryTypeItem(
                     title: tr("homeDelivery"),
                     value: 0,
                     groupValue: shipping.deliveryType,
                     onChanged: (val) => controller.onChangeType(shipping, val!),
                   ),
+                  if(shipping.activeDelivery)
                   Gaps.hGap10,
+                  if(shipping.activePickup)
                   BuildDeliveryTypeItem(
                     title: tr('localPick'),
                     value: 1,
@@ -91,7 +99,7 @@ class BuildDeliveryType extends StatelessWidget {
                       id: shipping.pickup.id,
                     ),
                   ],
-                  onChange: (model) => controller.onSelectPoint(model,shipping),
+                  onChange: (model) => controller.onSelectPoint(model),
                 ),
               ),
             ],

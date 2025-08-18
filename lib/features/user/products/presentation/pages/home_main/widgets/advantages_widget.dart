@@ -10,30 +10,30 @@ class AdvantagesWidget extends StatelessWidget {
         Expanded(
             child: _advantageItem(
           context,
-          title: "Free Delivery",
+          title: tr("freeDelivery"),
           icon: Res.truckIcon,
-          subTitle: "From 200 AED",
+          subTitle: tr("from200AED"),
         )),
         Expanded(
             child: _advantageItem(
           context,
-          title: "99% Customer",
+          title: tr("99Customer"),
           icon: Res.feedBackIcon,
-          subTitle: "Feedbacks",
+          subTitle: tr("feedbacks"),
         )),
         Expanded(
             child: _advantageItem(
           context,
-          title: "7 Days",
+          title: tr("7Days"),
           icon: Res.recyleIcon,
-          subTitle: "For Free return",
+          subTitle: tr("forFreeReturn"),
         )),
         Expanded(
             child: _advantageItem(
           context,
-          title: "Payment",
+          title: tr("payment"),
           icon: Res.savePaymentIcon,
-          subTitle: "Secure system",
+          subTitle: tr("secureSystem"),
         )),
       ],
     );

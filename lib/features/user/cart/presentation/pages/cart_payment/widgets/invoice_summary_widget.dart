@@ -19,7 +19,7 @@ class InvoiceSummaryWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const CartPaymentSectionTitleWidget(title: "Invoice Summary"),
+        CartPaymentSectionTitleWidget(title: tr("invoiceSummary")),
         Gaps.vGap6,
         InvoiceSummaryCard(
             children: [
@@ -39,7 +39,7 @@ class InvoiceSummaryWidget extends StatelessWidget {
                   visible: shippingSummary.couponApplied == true || shippingSummary.loyaltyPointsApplied==true,
                     child: BuildSummaryHeader(
                       title: shippingSummary.loyaltyPointsApplied == true
-                          ? "Points Discount"
+                          ? tr("pointsDiscount")
                           :tr("voucherDiscount"),
                       details: shippingSummary.loyaltyPointsApplied == true
                           ? "${shippingSummary.loyaltyPointsValue} "
@@ -50,7 +50,7 @@ class InvoiceSummaryWidget extends StatelessWidget {
               Visibility(
                 visible: applyGiftCard,
                 child: BuildSummaryHeader(
-                  title: "Applied Gift Card",
+                  title: tr("appliedGiftCard"),
                   details: "-$giftCardTotal",
                   detailsColor: context.colors.primary,
                 ),

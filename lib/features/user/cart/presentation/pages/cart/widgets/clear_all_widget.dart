@@ -11,7 +11,7 @@ class CleaAllWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("Cart Products",
+          Text(tr("cartProducts"),
           style: AppTextStyle.s16_w700(color: context.colors.black),
           ),
         GestureDetector(
@@ -23,7 +23,7 @@ class CleaAllWidget extends StatelessWidget {
                 colorFilter: ColorFilter.mode(context.colors.redAccent, BlendMode.srcIn),
               ),
               Gaps.hGap4,
-              Text("Clear all cart",
+              Text(tr("clearAllCart"),
                   style: AppTextStyle.s14_w400(color: context.colors.redAccent)
               )
             ],

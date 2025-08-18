@@ -22,7 +22,7 @@ class MyGiftCardsListWidget extends StatelessWidget {
           noItemsFoundIndicatorBuilder: (cxt) {
             return  Center(
               child: Text(
-                "You're not subscribed to any gift cards. Check out our latest offers!",
+                tr("notSubscribedToGiftCards"),
                 style: AppTextStyle.s16_w700(color: context.colors.black).copyWith(
                   height: 1.5
                 ),

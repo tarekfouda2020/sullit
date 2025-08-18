@@ -23,7 +23,7 @@ class OrderDetailsProductsWidget extends StatelessWidget {
           Row(
             children: [
               Text(
-                "Sold By :",
+                tr("soldBy"),
                 style: AppTextStyle.s14_w400(color: context.colors.textColor),
               ),
               Gaps.hGap7,
@@ -53,7 +53,7 @@ class OrderDetailsProductsWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      "Track Shipment",
+                      tr("trackShipment"),
                       style: AppTextStyle.s14_w400(color: context.colors.primary),
                     ),
                     Gaps.hGap10,
@@ -63,7 +63,7 @@ class OrderDetailsProductsWidget extends StatelessWidget {
                     ),
                     const Spacer(),
                     Text(
-                      "Shipped",
+                      tr("shipped"),
                       style: AppTextStyle.s14_w700(color: context.colors.black),
                     ),
                   ],

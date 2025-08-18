@@ -1,7 +1,7 @@
 part of 'shipping_widgets_imports.dart';
 
 class BuildNewShipping extends StatelessWidget {
-  final DeliveryTabController controller;
+  final ShippingController controller;
 
   const BuildNewShipping({super.key, required this.controller});
 
@@ -12,7 +12,7 @@ class BuildNewShipping extends StatelessWidget {
       onTap:()=> controller.onAddNewAddress(context),
       color: context.colors.white,
       borderColor: context.colors.primary,
-      margin: EdgeInsets.zero,
+      margin: Dimens.paddingHorizontal20PX,
       customLabel: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

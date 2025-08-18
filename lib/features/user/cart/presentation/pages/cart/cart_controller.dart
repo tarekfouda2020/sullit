@@ -80,7 +80,8 @@ class CartController {
     if (auth) {
       if (cartItemsBloc.state.data.items!.isNotEmpty) {
         AutoRouter.of(context).push(
-          const ReceivingMethodRoute(),
+          // const ReceivingMethodRoute(),
+          const ShippingRoute(),
         );
       } else {
         CustomToast.showSimpleToast(msg: tr('cartIsEmpty'));
@@ -99,8 +100,7 @@ class CartController {
       cartItemsBloc.state.data.items!.clear();
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
       var countCubit = context.read<CountCubit>().state;
-      var cartCount = countCubit.cartCount - 1;
-      context.read<CountCubit>().onUpdateCount(cartCount, countCubit.discount);
+      context.read<CountCubit>().onUpdateCount(0, countCubit.discount);
     });
   }
 

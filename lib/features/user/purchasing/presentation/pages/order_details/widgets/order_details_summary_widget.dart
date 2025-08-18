@@ -16,25 +16,25 @@ class OrderDetailsSummaryWidget extends StatelessWidget {
       child: Column(
         children: [
            OrderSummaryItemWidget(
-            priceType: 'Total Items',
+            priceType: tr('totalItems'),
             price: order?.subtotal ?? '63.00 AED',
           ),
           Gaps.vGap10,
            OrderSummaryItemWidget(
-            priceType: 'Tax',
+            priceType: tr('tax'),
             price: order?.tax ?? '7.00 AED',
           ),
           Gaps.vGap10,
           if(!isReturned)
            OrderSummaryItemWidget(
-            priceType: 'Shipping fees',
+            priceType: tr('shippingFees'),
             price: order?.shipping ?? '7.00 AED',
           ),
           if(!isReturned)
             Gaps.vGap10,
          if(order?.isCouponApply ?? true)
           OrderSummaryItemWidget(
-              priceType: 'Voucher Discount',
+              priceType: tr('voucherDiscount'),
               price: order?.getDiscountNumber().toString() ?? '-2.00 AED',
               priceColor: context.colors.primary
           ),
@@ -44,8 +44,8 @@ class OrderDetailsSummaryWidget extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: Text(
-                  "Total",
+                child:               Text(
+                  tr("total"),
                   style: AppTextStyle.s16_w400(color: context.colors.black),
                 ),
               ),

@@ -18,7 +18,7 @@ class _PurchasedOrdersState extends State<PurchasedOrders> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Purchased Orders",),
+      appBar: DefaultAppBar(title: tr("purchasedOrders"),),
       body: RefreshIndicator(
         onRefresh: () => controller.getPurchasingHistory(1),
         child: PagedListView<int, Orders>(

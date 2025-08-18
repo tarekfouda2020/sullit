@@ -81,7 +81,6 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                          ),
                        ),
                        Gaps.vGap16,
-                       // Shimmer for buttons
                        BuildShimmerItem(
                          height: 48,
                          width: MediaQuery.of(context).size.width,

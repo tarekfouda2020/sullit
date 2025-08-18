@@ -7,7 +7,7 @@ class ShortCutSectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MoreGridViewWidget(
-        title: "Your Shortcuts",
+        title: tr("yourShortcuts"),
         children: [
           BuildMoreItem(
             title: tr('manageProfile'),
@@ -29,7 +29,7 @@ class ShortCutSectionWidget extends StatelessWidget {
           ),
           BuildMoreItem(
             image: Res.giftCardsLogo,
-            title: "Gift Cards",
+            title: tr("giftCards"),
             isSvg: true,
             onTap: () => controller.checkAuth(context, MoreRoutes.giftCards),
           ),
@@ -41,25 +41,25 @@ class ShortCutSectionWidget extends StatelessWidget {
           ),
           BuildMoreItem(
             image: Res.loyaltyIcon,
-            title: "Loyalty Points",
+            title: tr("loyaltyPoints"),
             isSvg: true,
             onTap: () => controller.checkAuth(context, MoreRoutes.loyaltyPoints),
           ),
           BuildMoreItem(
-            title: "Purchased Orders",
+            title: tr("purchasedOrders"),
             onTap: () => controller.checkAuth(
                 context, MoreRoutes.purchasedProducts),
             image: Res.purchasedHistory,
           ),
           BuildMoreItem(
             image: Res.addAddresses,
-            title: "My Addresses",
+            title: tr("myAddresses"),
             isSvg: true,
             onTap: () => controller.checkAuth(context, MoreRoutes.addresses),
           ),
           BuildMoreItem(
             image: Res.redVipIcon,
-            title: "VIP Subscription",
+            title: tr("vipSubscription"),
             isSvg: true,
             onTap: () => controller.checkAuth(context, MoreRoutes.vipSubscription),
           ),

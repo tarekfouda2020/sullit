@@ -7,7 +7,7 @@ class SeeMemberShipsButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultButton(
         onTap: ()=> AutoRouter.of(context).push(const MembershipSubscribeRoute()),
-        title: "See Membership Plans",
+        title: tr("seeMembershipPlans"),
         elevation: 0,
         borderColor: Colors.transparent,
         color:  context.colors.primary,

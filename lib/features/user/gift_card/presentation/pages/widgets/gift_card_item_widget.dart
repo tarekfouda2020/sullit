@@ -70,7 +70,7 @@ class GiftCardItemWidget extends StatelessWidget {
                     Gaps.vGap17,
                     Gaps.line(context.colors.textColor, 0),
                     Gaps.vGap17,
-                    Text("Valid for ${model.expiredInDays} Days", style: AppTextStyle.s12_w400(color: context.colors.textColor)),
+                    Text("${tr("validForExpiredDays")} ${model.expiredInDays} ${tr("days")}", style: AppTextStyle.s12_w400(color: context.colors.textColor)),
                   ],
                 ))
           ],

@@ -213,15 +213,12 @@ class ProductDetailsController {
     cartItemsBloc.onUpdateData(result);
   }
 
-
   void showCartSuccessDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => const BuildCartSuccessDialog(),
     );
   }
-
-
 
   Future<void> onIncreaseCart(BuildContext context,CartItem cartItem, GenericBloc<bool> loadingCubit) async {
     if (cartItem.quantity < cartItem.stockQty) {
@@ -302,7 +299,6 @@ class ProductDetailsController {
 
   void updateFavFromSheet(CartItem cartItem){
     if(cartItem.productId == detailsCubit.state.data?.product.id){
-      print("==================inside if===================");
       detailsCubit.state.data!.product.isWishlist = cartItem.isWishlist;
       detailsCubit.onUpdateData(detailsCubit.state.data);
     }

@@ -43,9 +43,6 @@ class OrderSummary extends BaseDomainModel {
   double get total {
     var subTotalList = (sectionOrders ?? <Orders>[])
         .map((e) {
-          print("===========>>>>>>>>>>>> total ${e.total} <<<<<<<<<<<");
-          var uuu = getIt<Utilities>().extractFormattedNumberToDouble(e.total);
-          print("===========>>>>>>>>>>>> total $uuu <<<<<<<<<<<");
           return getIt<Utilities>().extractFormattedNumberToDouble(e.total) ?? 0.0;
     })
         .toList();

@@ -18,7 +18,7 @@ class OrderInfoWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Order No. : ",
+                tr("orderNo"),
                 style: AppTextStyle.s18_w300(color: context.colors.black),
               ),
               Text(

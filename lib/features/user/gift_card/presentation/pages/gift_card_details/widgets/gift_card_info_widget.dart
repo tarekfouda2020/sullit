@@ -18,7 +18,7 @@ class GiftCardInfoWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if(!controller.isMyGiftCard && model.code != null)
-              Text("Pay only", style: AppTextStyle.s20_w400(color: context.colors.white)),
+              Text(tr("payOnly"), style: AppTextStyle.s20_w400(color: context.colors.white)),
             if(!controller.isMyGiftCard && model.code != null)
               Gaps.hGap8,
             Text(model.price, style: AppTextStyle.s30_w800(color: context.colors.gold)),
@@ -30,7 +30,7 @@ class GiftCardInfoWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-                "and get purchases with",
+                tr("andGetPurchasesWith"),
                 style: AppTextStyle.s18_w400(color: context.colors.white)
             ),
             Gaps.hGap2,
@@ -41,7 +41,7 @@ class GiftCardInfoWidget extends StatelessWidget {
         ),
         Gaps.vGap13,
         Text(
-            "Valid For ${model.validateDays} Days",
+            "${tr("validForDays")} ${model.validateDays} ${tr("days")}",
             style: AppTextStyle.s18_w400(color: context.colors.white)
         ),
       ],

@@ -16,7 +16,7 @@ class AboutGiftCardWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("About",
+          Text(tr("about"),
           style: AppTextStyle.s12_w400(color: context.colors.textColor),
           ),
           Gaps.vGap4,

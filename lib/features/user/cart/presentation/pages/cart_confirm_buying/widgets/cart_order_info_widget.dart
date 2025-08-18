@@ -1,57 +1,66 @@
 part of 'cart_confirm_buying_widgets_imports.dart';
 
 class CartOrderInfoWidget extends StatelessWidget {
-  final OrderSummary summary;
-  const CartOrderInfoWidget({super.key, required this.summary});
+  final OrderSummary orderSummary;
+  const CartOrderInfoWidget({super.key, required this.orderSummary});
 
   @override
   Widget build(BuildContext context) {
-    print('${summary.summary!.totalItems.toString()}>>>>>>>');
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         OrderINfoItemWidget(
-          title: 'Date',
-          describe: summary.summary!.orderDate,
+          title: tr('date'),
+          describe: _getDate,
           gaps: Gaps.hGap16,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
-          title: 'Status',
-          describe: summary.summary!.orderStatus,
+          title: tr('orderStatus'),
+          describe: orderSummary.summary!.orderStatus,
           gaps: Gaps.hGap7,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
-          title: 'Total Items',
-          describe: summary.summary!.totalItems.toString(),
+          title: tr('totalItems'),
+          describe: (orderSummary.sectionOrders ?? <Orders>[]).length.toString(),
           gaps: Gaps.hGap9,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
-          title: 'Receipt Status',
-          describe: summary.summary!.orderStatus,
+          title: tr('deliverStatus'),
+          describe: orderSummary.summary!.orderStatus,
           gaps: Gaps.hGap9,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
-          title: 'Address',
-          describe: summary.summary!.shippingAddress,
+          title: tr('address'),
+          describe: orderSummary.summary!.shippingAddress,
           gaps: Gaps.hGap7,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
-          title: 'email',
-          describe: summary.summary!.email,
+          title: tr('mail'),
+          describe: orderSummary.summary!.email,
           gaps: Gaps.hGap17,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
-          title: 'Payment Method',
-          describe: summary.summary!.paymentMethod,
+          title: tr('paymentMethod'),
+          describe: orderSummary.summary!.paymentMethod,
           gaps: Gaps.hGap9,
         ),
       ],
     );
   }
+
+
+   String get _getDate {
+    var dateTime = DateTimeHelper.convertToDateTime(strDate: orderSummary.summary!.orderDate);
+    return DateTimeHelper.formatDate(date: dateTime, formatType: "d MMM yyyy - hh:mm a");
+  }
+
+
+
+
 }

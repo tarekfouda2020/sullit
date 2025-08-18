@@ -9,7 +9,7 @@ class ShowMyGiftCardsButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultButton(
         onTap: () => controller.routeRoMyGiftCard(context),
-        title: "Show My Gift Cards",
+        title: tr("showMyGiftCards"),
         height: 50,
         fontSize: 18,
         fontWeight: FontWeight.w700,

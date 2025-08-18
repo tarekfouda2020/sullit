@@ -14,7 +14,7 @@ class GiftCardCouponWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "Discount code",
+            tr("discountCode"),
             style: AppTextStyle.s14_w400(color: context.colors.white),
           ),
           Gaps.vGap15,
@@ -40,7 +40,7 @@ class GiftCardCouponWidget extends StatelessWidget {
           ),
           Gaps.vGap15,
           Text(
-            "Applied on online Purchases",
+            tr("appliedOnOnlinePurchases"),
             style: AppTextStyle.s14_w400(color: context.colors.white),
           )
         ],

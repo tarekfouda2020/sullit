@@ -25,6 +25,7 @@ class _AddressesState extends State<Addresses> {
         onRefresh: () => controller.getAddress(1),
         child: PagedListView<int, Address>(
           pagingController: controller.pagingController,
+          padding: Dimens.paddingHorizontal20PX,
           builderDelegate: PagedChildBuilderDelegate<Address>(
             itemBuilder: (_, item, index) {
               return BuildNewAddressItem(

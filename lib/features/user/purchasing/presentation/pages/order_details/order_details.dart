@@ -23,7 +23,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Order Details"),
+      appBar: DefaultAppBar(title: tr("orderDetails")),
       body: BlocBuilder<GenericBloc<Orders?>, GenericState<Orders?>>(
         bloc: controller.orderDetailsBloc,
         builder: (context, state) {
@@ -35,7 +35,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 order: state.data,
               ),
               Gaps.vGap12,
-              const OrderDetailsSectionsTitleWidget(title: "Products"),
+              OrderDetailsSectionsTitleWidget(title: tr("products")),
               Gaps.vGap8,
               OrderDetailsProductsWidget(
                 isReturned: widget.isReturnedOrder,
@@ -44,7 +44,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 order: state.data!,
               ),
               Gaps.vGap12,
-              const OrderDetailsSectionsTitleWidget(title: "Invoice Summary"),
+              OrderDetailsSectionsTitleWidget(title: tr("invoiceSummary")),
               Gaps.vGap8,
               OrderDetailsSummaryWidget(isReturned: widget.isReturnedOrder, order: state.data),
               Gaps.vGap50

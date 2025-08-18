@@ -8,7 +8,7 @@ class GetPlansButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultButton(
       onTap: () => controller.showVipPlansBottomSheet(context),
-      title: "Get Membership Plans",
+      title: tr("getMembershipPlans"),
       color: context.colors.white,
       textColor: context.colors.primary,
       fontSize: 18,

@@ -16,7 +16,7 @@ class _VipMemberShipsState extends State<VipMemberShips> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "VIP Membership", elevation: 0),
+      appBar: DefaultAppBar(title: tr("vipMembership"), elevation: 0),
       body: BlocBuilder<GenericBloc<VipCurrentPlanDomainModel?>, GenericState<VipCurrentPlanDomainModel?>>(
         bloc: controller.currentSubscriptionBloc,
         builder: (context, state) {
@@ -31,7 +31,7 @@ class _VipMemberShipsState extends State<VipMemberShips> {
                Row(
                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                  children: [
-                   Text("Other Plans",
+                   Text(tr("otherPlans"),
                      style: AppTextStyle.s18_w700(color: context.colors.black),
                    ),
                  ],

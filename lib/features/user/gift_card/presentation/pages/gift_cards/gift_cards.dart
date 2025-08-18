@@ -15,8 +15,8 @@ class _GiftCardsState extends State<GiftCards> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(
-        title: "Gift Cards",
+      appBar:  DefaultAppBar(
+        title: tr("giftCards"),
         elevation: 0,
       ),
       body: Padding(
@@ -25,7 +25,7 @@ class _GiftCardsState extends State<GiftCards> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ShowMyGiftCardsButtonWidget(controller: controller),
-            Text("New Offers",
+            Text(tr("newOffers"),
               style: AppTextStyle.s18_w700(color: context.colors.black),
             ),
             Gaps.vGap9,

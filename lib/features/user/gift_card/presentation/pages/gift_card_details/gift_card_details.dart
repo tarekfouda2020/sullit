@@ -29,7 +29,7 @@ class _GiftCardDetailsState extends State<GiftCardDetails> {
         return Scaffold(
           backgroundColor: context.colors.customBackground,
           appBar: DefaultAppBar(
-            title: (controller.isMyGiftCard) ? "My Gift Card Details" : "Gift Card Details",
+            title: (controller.isMyGiftCard) ? tr("myGiftCardDetails") : tr("giftCardDetails"),
             elevation: 0,
             onBack: () => controller.onPop(context),
           ),

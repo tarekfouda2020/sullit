@@ -17,12 +17,11 @@ import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/user/cart/data/enum/delivery_type_enum.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/seller_shipping.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/set_cart_store_shipping.dart';
-import 'package:flutter_tdd/features/user/cart/presentation/pages/receiving_method/views/delivery/pickup_tab_imports.dart';
-import 'package:flutter_tdd/features/user/cart/presentation/pages/receiving_method/views/shipping/shipping_imports.dart';
+import 'package:flutter_tdd/features/user/cart/presentation/pages/delivery/delivery_imports.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/receiving_method/widgets/receiving_method_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/cart/presentation/pages/shipping/shipping_imports.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/widgets/build_cart_stepper.dart';
 
-import 'views/shipping/widgets/shipping_widgets_imports.dart';
 
 part 'receiving_method.dart';
 part 'receiving_method_controller.dart';

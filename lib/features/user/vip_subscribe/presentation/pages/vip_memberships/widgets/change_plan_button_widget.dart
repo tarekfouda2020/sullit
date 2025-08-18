@@ -37,9 +37,9 @@ class ChangePlanButtonWidget extends StatelessWidget {
 
   String  _title(){
     if(controller.currentSubscriptionBloc.state.data!.currentSubscription==null){
-      return "Subscribe";
+      return tr("subscribe");
     }else{
-      return "Change Plan";
+      return tr("changePlan");
     }
   }
 
