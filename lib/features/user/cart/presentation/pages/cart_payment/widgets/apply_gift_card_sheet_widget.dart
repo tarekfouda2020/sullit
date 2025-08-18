@@ -26,7 +26,7 @@ class ApplyGiftCardSheet extends StatelessWidget {
               BottomSheetHeaderWidget(title: tr("applyGiftCard")),
               Gaps.vGap20,
               Text(
-                "Gift Card Code",
+                tr("giftCardCode"),
                 style: AppTextStyle.s16_w600(color: context.colors.black),
               ),
               GiftCardCodeWidget(controller: controller),

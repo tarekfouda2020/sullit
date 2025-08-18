@@ -738,7 +738,9 @@
   "validForExpiredDays": "صالح لمدة",
   "orderNumber": "رقم الطلب",
   "returnedDate": "تاريخ الإرجاع",
-  "refundMethod": "طريقة الاسترداد"
+  "refundMethod": "طريقة الاسترداد",
+  "giftCardApplied": "تم تطبيق بطاقة الهدايا"
+
 }
 
 

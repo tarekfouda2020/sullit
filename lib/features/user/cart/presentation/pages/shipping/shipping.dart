@@ -16,7 +16,11 @@ class _ShippingState extends State<Shipping> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: DefaultAppBar(title: tr("shipping"),bgColor: context.colors.white),
+      appBar: DefaultAppBar(
+          // title: tr("shipping"),
+          title: tr("cart"),
+          bgColor: context.colors.white
+      ),
       body: Column(
         children: [
           const BuildCartStepper(current: 2),

@@ -564,7 +564,8 @@
   "returnedDate": "Returned Date",
   "refundMethod": "Refund Method",
   "voucherDiscount": "Voucher Discount",
-  "shippingFees": "Shipping fees"
+  "shippingFees": "Shipping fees",
+  "giftCardApplied": "Gift Card Applied",
 }
 
 
