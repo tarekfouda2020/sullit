@@ -42,7 +42,7 @@ class RetrieveOrderController {
   }
 
   void navigateToAddresses(BuildContext context) async {
-    var result = await AutoRouter.of(context).push(const AddressesRoute());
+    var result = await AutoRouter.of(context).push( AddressesRoute(isFromReturn: true));
     if (result != null) {
       Address addressModel = result as Address;
       addressCubit.onUpdateData(addressModel);

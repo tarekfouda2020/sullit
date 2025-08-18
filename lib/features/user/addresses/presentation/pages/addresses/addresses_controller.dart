@@ -6,12 +6,13 @@ class AddressesController {
   final PagingController<int, Address> pagingController = PagingController(firstPageKey: 1);
   int pageSize = 12;
 
-
-  AddressesController() {
+ late final bool isFromReturn;
+  AddressesController(bool fromReturn) {
     pagingController.addPageRequestListener((pageKey) {
       getAddress(pageKey, refresh: false);
       getAddress(pageKey);
     });
+    isFromReturn = fromReturn;
   }
 
   Future<void> getAddress(int page, {bool refresh = true}) async {
@@ -72,6 +73,10 @@ class AddressesController {
   }
 
   void navigateToEditAddress(BuildContext context, Address model) async {
+    if(isFromReturn){
+      AutoRouter.of(context).pop(model);
+      return ;
+    }
     var result = await AutoRouter.of(context).push(
       EditAddressRoute(address: model),
     );
