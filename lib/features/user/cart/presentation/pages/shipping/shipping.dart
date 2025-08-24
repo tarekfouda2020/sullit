@@ -24,6 +24,7 @@ class _ShippingState extends State<Shipping> {
       body: Column(
         children: [
           const BuildCartStepper(current: 2),
+          Gaps.vGap16,
           BuildNewShipping(controller: controller),
           Gaps.vGap15,
           ShippingAddressListWidget(controller: controller),

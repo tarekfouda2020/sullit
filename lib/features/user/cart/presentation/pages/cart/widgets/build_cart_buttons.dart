@@ -12,7 +12,7 @@ class BuildCartButtons extends StatelessWidget {
     return Visibility(
       visible: cartModel.items!.isNotEmpty,
       child: Container(
-       color: context.colors.white,
+       color: context.colors.cartBg,
         padding:const EdgeInsetsDirectional.only(start: 15,top: 20,end: 40,bottom: 15),
         child: Row(
           children: [
@@ -31,7 +31,8 @@ class BuildCartButtons extends StatelessWidget {
                     style: AppTextStyle.s12_w400(color: context.colors.textColor)
                 ),
                 Gaps.vGap6,
-                Text(tr("${cartModel.getProductsTotalWithoutTax()}${cartModel.currencySymbol}"),
+                Text(tr("${cartModel.calculableTotal}${cartModel.currencySymbol}"),
+                  // Text(tr("${cartModel.getProductsTotalWithoutTax()}${cartModel.currencySymbol}"),
                     style: AppTextStyle.s14_w600(color: context.colors.primary)
                 ),
               ],

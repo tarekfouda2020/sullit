@@ -7,7 +7,6 @@ class CartController {
       GenericBloc(CartDomainModel());
 
   CartController() {
-    getCartItems(refresh: false);
     getCartItems();
   }
 
