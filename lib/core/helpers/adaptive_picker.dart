@@ -47,9 +47,7 @@ class AdaptivePicker {
         borderRadius: 16,
         height: 300,
         theme: ThemeData.light().copyWith(
-          primaryColor: context.colors.primary,
-          backgroundColor: context.colors.white,
-          buttonTheme:
+          primaryColor: context.colors.primary, buttonTheme:
               const ButtonThemeData(textTheme: ButtonTextTheme.primary),
         )).then(onConfirm);
   }
@@ -176,7 +174,7 @@ class AdaptivePicker {
                       Navigator.of(context).pop();
                     },
                     style: ElevatedButton.styleFrom(
-                        elevation: 0, primary: context.colors.white),
+                        elevation: 0, backgroundColor: context.colors.white),
                     child: Text(
                       "Done",
                       style:

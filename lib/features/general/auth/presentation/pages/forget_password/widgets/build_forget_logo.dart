@@ -6,8 +6,8 @@ class BuildForgetLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20,bottom: 40),
-      child: Image.asset(Res.forgetLogo,height: 118.72,width: 141.22,),
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Image.asset(Res.forgetImage,height: 170.72,width: 171.22,),
     );
   }
 }

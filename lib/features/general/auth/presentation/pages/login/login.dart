@@ -27,7 +27,7 @@ class _LoginState extends State<Login> {
                   children: [
                     const BuildHeaderLogo(),
                     BuildHeaderTitle(
-                      title: state.data == 0 ? tr('login') : tr('register'),
+                      title: state.data == 0 ? 'Log in' : tr('register'),
                       subTitle: state.data == 1
                           ? tr("registerHint")
                           : tr("loginHint"),
