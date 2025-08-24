@@ -29,6 +29,7 @@ class BuildCartStepper extends StatelessWidget {
           Row(
             children: List.generate(stepsIconWidget(context).length * 2 - 1, (i) {
               if (i.isEven) {
+                print("============>>>>>>>>>>${i}<<<<<<<<<<<<<<<<");
                 int index = i ~/ 2;
                 var containerColor = current > index ? context.colors.primary : context.colors.gray4;
                 return Row(
@@ -38,6 +39,7 @@ class BuildCartStepper extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: containerColor,
                         shape: BoxShape.circle,
+                        border: Border.all(color: Colors.transparent,width: 3),
                       ),
                       child: stepsIconWidget(context)[index],
                     ),
@@ -66,7 +68,7 @@ class BuildCartStepper extends StatelessWidget {
                   padding:  EdgeInsetsDirectional.only(start: index== 1 ? paddingFromStart(lang) : 10),
                   child: Text(
                     getTitle(index),
-                    style: AppTextStyle.s12_w700(color: textColor),
+                    style: AppTextStyle.s10_w700(color: textColor),
                     textAlign: TextAlign.center,
                   ),
                 ),

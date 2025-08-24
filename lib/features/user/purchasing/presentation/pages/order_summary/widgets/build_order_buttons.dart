@@ -19,7 +19,7 @@ class BuildOrderButtons extends StatelessWidget {
           ),
         ),
         Visibility(
-          // visible: orderModel.availableReturnOrder,
+          visible: orderModel.availableReturnOrder,
           child: DefaultButton(
             title: tr('returnOrder'),
             onTap: () => AutoRouter.of(context).push(

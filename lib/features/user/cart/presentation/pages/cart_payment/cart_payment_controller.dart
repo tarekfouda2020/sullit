@@ -274,12 +274,14 @@ class CartPaymentController {
     );
   }
 
-  Future<void> applyGiftCard()async{
+  Future<void> applyGiftCard(BuildContext context)async{
+    FocusScope.of(context).unfocus();
     await ApplyGiftCard().call(ApplyGiftCardParams(giftCardCode: giftCardCode.text)).then((value) {
       if (value != null) {
       shippingBloc.state.data!.summary = value.summary;
       shippingBloc.state.data!.summary.appliedGiftCard = value.appliedGiftCard;
       shippingBloc.onUpdateData(shippingBloc.state.data);
+      CustomToast.showSimpleToast(msg: tr("giftCardApplied"));
       }
     });
   }

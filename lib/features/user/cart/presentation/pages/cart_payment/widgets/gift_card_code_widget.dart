@@ -15,7 +15,7 @@ class GiftCardCodeWidget extends StatelessWidget {
       margin: const EdgeInsets.only(top: 5),
       fillColor: context.colors.white,
       validate: (value) => value?.noValidate(),
-      suffixIcon: ApplyButtonWidget(onPressApply: ()=> controller.applyGiftCard()),
+      suffixIcon: ApplyButtonWidget(onPressApply: ()=> controller.applyGiftCard(context)),
     );
   }
 

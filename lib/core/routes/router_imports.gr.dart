@@ -512,9 +512,14 @@ class AppRouter extends _i97.RootStackRouter {
       );
     },
     AddressesRoute.name: (routeData) {
+      final args = routeData.argsAs<AddressesRouteArgs>(
+          orElse: () => const AddressesRouteArgs());
       return _i97.AdaptivePage<_i99.Address>(
         routeData: routeData,
-        child: const _i38.Addresses(),
+        child: _i38.Addresses(
+          key: args.key,
+          isFromReturn: args.isFromReturn,
+        ),
         opaque: true,
       );
     },
@@ -2045,14 +2050,36 @@ class AddNewAddressRoute extends _i97.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i38.Addresses]
-class AddressesRoute extends _i97.PageRouteInfo<void> {
-  const AddressesRoute()
-      : super(
+class AddressesRoute extends _i97.PageRouteInfo<AddressesRouteArgs> {
+  AddressesRoute({
+    _i100.Key? key,
+    bool? isFromReturn,
+  }) : super(
           AddressesRoute.name,
           path: '/Addresses',
+          args: AddressesRouteArgs(
+            key: key,
+            isFromReturn: isFromReturn,
+          ),
         );
 
   static const String name = 'AddressesRoute';
+}
+
+class AddressesRouteArgs {
+  const AddressesRouteArgs({
+    this.key,
+    this.isFromReturn,
+  });
+
+  final _i100.Key? key;
+
+  final bool? isFromReturn;
+
+  @override
+  String toString() {
+    return 'AddressesRouteArgs{key: $key, isFromReturn: $isFromReturn}';
+  }
 }
 
 /// generated route for

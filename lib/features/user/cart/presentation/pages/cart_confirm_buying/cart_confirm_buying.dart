@@ -20,49 +20,55 @@ class _CartConfirmBuyingState extends State<CartConfirmBuying> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colors.customBackground,
-      appBar: DefaultAppBar(
-          title: tr("cart"),
-          bgColor: context.colors.white,
-        onBack: () => AutoRouter.of(context).push(HomeRoute(index: 0)),
-      ),
-      body: BlocBuilder<GenericBloc<OrderSummary?>,
-          GenericState<OrderSummary?>>(
-        bloc: controller.orderSummaryBloc,
-        builder: (context, state) {
-          if (state is GenericUpdateState) {
-            return Column(
-              children: [
-                const BuildCartStepper(current: 5),
-               Flexible(
-                   child: ListView(
-                 children: [
-                   Gaps.vGap13,
-                   CartOrderDetailsWidget(summary: state.data!,),
-                   Gaps.vGap12,
-                   CartPaymentSectionTitleWidget(
-                     title: tr("products"),
-                     padding: Dimens.paddingHorizontal20PX,
-                   ),
-                   Gaps.vGap8,
-                   CartConfirmBuyingProductsWidget(controller: controller, orderSummary: state.data!,),
-                   Gaps.vGap12,
-                   CartPaymentSectionTitleWidget(
-                     title: tr("invoiceSummary"),
-                     padding: Dimens.paddingHorizontal20PX,
-                   ),
-                   Gaps.vGap8,
-                   ConfirmBuyingSummaryWidget(orderSummary: state.data!,),
-                   Gaps.vGap30,
-                 ],
-               ))
-              ],
-            );
-          } else {
-            return const CartConfirmShimmerWidget();
-          }
-        },
+    return WillPopScope(
+      onWillPop: () async{
+        AutoRouter.of(context).push(HomeRoute(index: 0));
+        return true;
+      },
+      child: Scaffold(
+        backgroundColor: context.colors.customBackground,
+        appBar: DefaultAppBar(
+            title: tr("cart"),
+            bgColor: context.colors.white,
+          onBack: () => AutoRouter.of(context).push(HomeRoute(index: 0)),
+        ),
+        body: BlocBuilder<GenericBloc<OrderSummary?>,
+            GenericState<OrderSummary?>>(
+          bloc: controller.orderSummaryBloc,
+          builder: (context, state) {
+            if (state is GenericUpdateState) {
+              return Column(
+                children: [
+                  const BuildCartStepper(current: 5),
+                 Flexible(
+                     child: ListView(
+                   children: [
+                     Gaps.vGap13,
+                     CartOrderDetailsWidget(summary: state.data!,),
+                     Gaps.vGap12,
+                     CartPaymentSectionTitleWidget(
+                       title: tr("products"),
+                       padding: Dimens.paddingHorizontal20PX,
+                     ),
+                     Gaps.vGap8,
+                     CartConfirmBuyingProductsWidget(controller: controller, orderSummary: state.data!,),
+                     Gaps.vGap12,
+                     CartPaymentSectionTitleWidget(
+                       title: tr("invoiceSummary"),
+                       padding: Dimens.paddingHorizontal20PX,
+                     ),
+                     Gaps.vGap8,
+                     ConfirmBuyingSummaryWidget(orderSummary: state.data!,),
+                     Gaps.vGap30,
+                   ],
+                 ))
+                ],
+              );
+            } else {
+              return const CartConfirmShimmerWidget();
+            }
+          },
+        ),
       ),
     );
   }

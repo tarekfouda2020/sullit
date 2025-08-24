@@ -56,7 +56,7 @@ class ProfileController {
   // }
 
   void navigateToAddresses(BuildContext context) async {
-    var result = await AutoRouter.of(context).push(const AddressesRoute());
+    var result = await AutoRouter.of(context).push( AddressesRoute());
     if (result != null) {
       addressModel = result as Address;
       addressController.text = addressModel?.address ?? "";

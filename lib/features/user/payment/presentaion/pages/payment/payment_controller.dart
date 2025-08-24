@@ -9,6 +9,7 @@ class PaymentController {
   void onChangeUrl(BuildContext context) {
     urlState = flutterWebViewPlugin.onUrlChanged.listen(
       (String url) async {
+        log("=====================>>>>>>>>>>>>url is $url <<<< ======================");
         if (url.contains("combined_order_id")) {
           int id = int.parse(url.split('combined_order_id=').last);
           flutterWebViewPlugin.close();

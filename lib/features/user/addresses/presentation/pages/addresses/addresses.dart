@@ -1,7 +1,8 @@
 part of 'addresses_imports.dart';
 
 class Addresses extends StatefulWidget {
-  const Addresses({Key? key}) : super(key: key);
+  final bool? isFromReturn;
+  const Addresses({Key? key, this.isFromReturn}) : super(key: key);
 
   @override
   State<Addresses> createState() => _AddressesState();
@@ -12,8 +13,8 @@ class _AddressesState extends State<Addresses> {
 
   @override
   void initState() {
-    controller = AddressesController();
     super.initState();
+    controller = AddressesController(widget.isFromReturn ?? false);
   }
 
   @override

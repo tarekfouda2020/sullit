@@ -21,7 +21,7 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.colors.white,
+      backgroundColor: context.colors.cartBg,
       // appBar: const BuildCustomAppBar(),
       appBar: DefaultAppBar(title: tr("cart"),bgColor: context.colors.white),
       body: BlocBuilder<GenericBloc<CartDomainModel>,

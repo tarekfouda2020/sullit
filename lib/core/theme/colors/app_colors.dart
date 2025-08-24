@@ -94,6 +94,7 @@ abstract class AppColors {
   Color get softGray;
   Color get gray4;
   Color get redAccent;
+  Color get cartBg;
 
 
   Color get bgIcon;

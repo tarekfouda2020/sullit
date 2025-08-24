@@ -24,7 +24,6 @@ class GiftCardShimmerWidget extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Gift card image shimmer
               BuildShimmerItem(
                 child: Container(
                   width: 72,
@@ -89,7 +88,7 @@ class GiftCardShimmerWidget extends StatelessWidget {
                       children: [
                         const BuildShimmerItem(
                           height: 12,
-                          width: 120,
+                          width: 100,
                         ),
                         Gaps.hGap2,
                         const BuildShimmerItem(
