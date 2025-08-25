@@ -80,7 +80,6 @@ extension Validator on String {
     }
     return null;
   }
-
   String? validatePhone({String? message}) {
     if (trim().isEmpty) {
       return message ?? tr("fillField");

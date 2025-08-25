@@ -1,5 +1,5 @@
 {
-  "validateName": "يجب أن يكون أكبر من 8 وأقل من 30",
+  "validateName": "يجب أن يكون الاسم أكبر من 8 وأقل من 30",
   "createAccount": "إنشاء حساب",
   "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
   "welcome": "مرحبا",

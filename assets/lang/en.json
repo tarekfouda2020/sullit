@@ -27,7 +27,7 @@
   "confirmPassword": "Confirm password ",
   "mail": "E-mail ",
   "forgetPassword": "Forgot password ?",
-  "validateName": "Should be more than 8 and less than 30",
+  "validateName": "Name Should be more than 8 and less than 30",
   "validateNumber": "Should be numbers only",
   "createAccount": "Create an account",
   "registerHint": "Register now and get 10% off your first order",
