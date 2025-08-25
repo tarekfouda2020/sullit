@@ -8,7 +8,7 @@ class BuildTopCategories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Dimens.paddingHorizontal15PX,
+      padding: Dimens.paddingHorizontal20PX,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -28,7 +28,7 @@ class BuildTopCategories extends StatelessWidget {
             ),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 5,
-              childAspectRatio: 0.61,
+              childAspectRatio: 0.60,
               crossAxisSpacing: 5,
               mainAxisSpacing: 15,
             ),

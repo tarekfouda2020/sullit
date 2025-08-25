@@ -1,7 +1,7 @@
 part of 'search_widgets_imports.dart';
 
 class BuildSearchField extends StatelessWidget {
-  final SearchController controller;
+  final search.SearchController controller;
 
   const BuildSearchField({super.key, required this.controller});
 
