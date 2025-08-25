@@ -201,9 +201,10 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
 
 
   bool showDiscount(BuildContext context){
-    final bool hasVipDiscount = context.read<UserCubit>().state.model!.hasValidSubscription ?? false;
+     bool hasVipDiscount = context.read<UserCubit>().state.model?.hasValidSubscription ?? false;
     bool isVipProduct = widget.product.hasVipOffer!;
     if(isVipProduct){
+      print("===========>>>>>>>>>>>${context.read<UserCubit>().state.model == null}<<<<<<<<==================");
       return hasVipDiscount;
     }else{
       return widget.product.hasDiscount!;

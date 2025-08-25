@@ -41,7 +41,7 @@ class UnitFieldsWidget extends StatelessWidget {
         GenericTextField(
           controller: controller.flatNumberController,
           fieldTypes: FieldTypes.normal,
-          type: TextInputType.streetAddress,
+          type: TextInputType.number,
           fillColor: context.colors.white,
           action: TextInputAction.next,
           validate: (value) => value?.validateEmpty(),

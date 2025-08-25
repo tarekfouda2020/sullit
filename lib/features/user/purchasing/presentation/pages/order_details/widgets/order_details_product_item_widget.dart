@@ -14,7 +14,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
       child: Column(
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CachedImage(
                 url:orderDetails.product?.thumbnailImage ?? "",
@@ -25,60 +25,63 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
               ),
               Gaps.hGap11,
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      orderDetails.product?.name ?? "",
-                      style: AppTextStyle.s14_w600(color: context.colors.black),
-                    ),
-                    Gaps.vGap5,
-                    RatingBar.builder(
-                      initialRating: (orderDetails.review?.rate ?? orderDetails.product?.rating ?? 0.0).toDouble(),
-                      minRating: 0,
-                      direction: Axis.horizontal,
-                      allowHalfRating: false,
-                      itemCount: 5,
-                      itemSize: 10.sp,
-                      ignoreGestures: true,
-                      itemBuilder: (context, _) => Icon(
-                        Icons.star_rounded,
-                        color: context.colors.yellow,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        orderDetails.product?.name ?? "",
+                        style: AppTextStyle.s14_w600(color: context.colors.black),
                       ),
-                      unratedColor: context.colors.grey,
-                      onRatingUpdate: (rating) {},
-                    ),
-                    Gaps.vGap5,
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Visibility(
-                                visible: (orderDetails.product?.hasDiscount ?? false)
-                                    ||(orderDetails.product?.hasVipOffer ?? false),
-                                child: Text(
-                                  orderDetails.product?.priceHighLow ?? "",
-                                  style: AppTextStyle.s14_w400(color: context.colors.textColor).copyWith(
-                                    decoration: TextDecoration.lineThrough
+                      Gaps.vGap5,
+                      RatingBar.builder(
+                        initialRating: (orderDetails.review?.rate ?? orderDetails.product?.rating ?? 0.0).toDouble(),
+                        minRating: 0,
+                        direction: Axis.horizontal,
+                        allowHalfRating: false,
+                        itemCount: 5,
+                        itemSize: 10.sp,
+                        ignoreGestures: true,
+                        itemBuilder: (context, _) => Icon(
+                          Icons.star_rounded,
+                          color: context.colors.yellow,
+                        ),
+                        unratedColor: context.colors.grey,
+                        onRatingUpdate: (rating) {},
+                      ),
+                      Gaps.vGap7,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Visibility(
+                                  visible: (orderDetails.product?.hasDiscount ?? false)
+                                      ||(orderDetails.product?.hasVipOffer ?? false),
+                                  child: Text(
+                                    orderDetails.product?.priceHighLow ?? "",
+                                    style: AppTextStyle.s14_w400(color: context.colors.textColor).copyWith(
+                                      decoration: TextDecoration.lineThrough
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Text(
-                                orderDetails.product?.priceHighLowDiscount ?? "",
-                                style: AppTextStyle.s14_w600(color: context.colors.primary),
-                              )
-                            ],
+                                Text(
+                                  orderDetails.product?.priceHighLowDiscount ?? "",
+                                  style: AppTextStyle.s14_w600(color: context.colors.primary),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        Text(
-                            "${tr("qnt")}${orderDetails.quantity}",
-                          style: AppTextStyle.s14_w400(color: context.colors.black),
-                        ),
-                      ],
-                    ),
-                  ],
+                          Text(
+                              "${tr("qnt")}${orderDetails.quantity}",
+                            style: AppTextStyle.s14_w400(color: context.colors.black),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],
