@@ -30,7 +30,6 @@ class CartOrderProductsWidget extends StatelessWidget {
           ...List.generate(order.orderDetails.length, (index) {
             var item = order.orderDetails[index];
             return  OrderDetailsProductItemWidget(
-              hasReview: false,
               onPressReview: () => controller.reviewSheet(context,item),
               orderDetails: item,
             );

@@ -122,30 +122,49 @@ class ProfileController {
 
   Future<void> setEditProfile(BuildContext context) async {
     if (isDataChanged(context)) {
-      if (formKey.currentState!.validate()) {
-        var params = _profileParams();
-        if (isEmailChanged(context)) {
-          await SetEditProfileEmail().call(emailController.text);
-          CustomToast.showSimpleToast(
-            msg: tr("verifyEmailMsg"),
-            type: ToastType.success,
-          );
-        }
-        if (isAddressChanged(context)) {
-          if (addressModel!.isActive == true) {
-            await SetDefaultAddress().call(addressModel!.id!);
-          } else {
-            CustomToast.showSimpleToast(
-              msg: tr("verifyAddress"),
-              type: ToastType.error,
-            );
-            return;
-          }
-        }
-        var data = await SetEditProfile().call(params);
-        if (data != null) {
-          _cashAndRoute(data, context);
-        }
+      var params = _profileParams();
+      // if (isEmailChanged(context)) {
+      //   await SetEditProfileEmail().call(emailController.text);
+      //   CustomToast.showSimpleToast(
+      //     msg: tr("verifyEmailMsg"),
+      //     type: ToastType.success,
+      //   );
+      // }
+      // if (isAddressChanged(context)) {
+      //   if (addressModel!.isActive == true) {
+      //     await SetDefaultAddress().call(addressModel!.id!);
+      //   } else {
+      //     CustomToast.showSimpleToast(
+      //       msg: tr("verifyAddress"),
+      //       type: ToastType.error,
+      //     );
+      //     return;
+      //   }
+      // }
+      if(nameController.text.isNotEmpty && nameController.text.validateName() != null){
+        CustomToast.showSnakeBar(
+          tr("validateName"),
+          type: ToastType.error,
+        );
+        return ;
+      }
+      if(emailController.text.isNotEmpty && emailController.text.validateEmail() != null){
+        CustomToast.showSnakeBar(
+          tr("mailValidation"),
+          type: ToastType.error,
+        );
+        return ;
+      }
+      if(!isPhoneValid()){
+        CustomToast.showSnakeBar(
+           tr("phoneValidation"),
+          type: ToastType.error,
+        );
+        return ;
+      }
+      var data = await SetEditProfile().call(params);
+      if (data != null) {
+        _cashAndRoute(data, context);
       }
     } else {
       CustomToast.showSimpleToast(
@@ -154,6 +173,18 @@ class ProfileController {
       );
     }
   }
+
+
+  bool isPhoneValid(){
+    if(phoneController.text.isNotEmpty){
+      return((countryCubit.state.data?.callingCode ?? "") + (phoneController.text))
+          .validatePhone() == null;
+    }else{
+      return true;
+    }
+
+  }
+
 
   void onSaveUserData(BuildContext context) async {
     if (context.mounted) {
@@ -180,6 +211,7 @@ class ProfileController {
       msg: tr('informationUpdatedSuccessfully'),
       type: ToastType.success,
     );
+    AutoRouter.of(context).pop();
   }
 
   void onActivePhone(BuildContext context) async {
@@ -196,9 +228,10 @@ class ProfileController {
   ProfileParams _profileParams() {
     return ProfileParams(
       name: nameController.text,
-      countryCode: countryCubit.state.data?.callingCode ?? "",
+      countryCode: countryCubit.state.data?.callingCode ?? "" ,
       phone: phoneController.text,
       image: imageCubit.state.data,
+      email: emailController.text,
     );
   }
 

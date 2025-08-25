@@ -4,7 +4,7 @@ class ProfileParams {
   String name;
   String countryCode;
   String phone;
-
+  String email;
   File? image;
 
   ProfileParams({
@@ -12,12 +12,18 @@ class ProfileParams {
     required this.countryCode,
     required this.phone,
     required this.image,
+    required this.email,
   });
 
   Map<String, dynamic> toJson ()=> {
-    "name":name,
-    "country_code":countryCode,
-    "phone": phone,
-    "image": image,
+    if( name.isNotEmpty) "name":name,
+    if(countryCode.isNotEmpty && phone.isNotEmpty) "country_code":countryCode,
+    if(countryCode.isNotEmpty && phone.isNotEmpty) "phone": phone,
+    if(image!=null) "image": image,
+    if(email.isNotEmpty) "email": email,
   };
+
+  void seeData(){
+    print("==========<<<<<<<  phone is$phone>>>>>>");
+  }
 }

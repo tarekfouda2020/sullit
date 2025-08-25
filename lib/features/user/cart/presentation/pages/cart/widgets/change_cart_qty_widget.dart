@@ -22,15 +22,18 @@ class _ChangeCartQtyWidgetState extends State<ChangeCartQtyWidget> {
         return Opacity(
           opacity: state.data? 0.3 : 1 ,
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               BuildCustomBounce(
                 onTap: state.data ? (){} : () => widget.controller.onDecreaseCart(widget.cartItem,loadingCubit),
                 iconData: CupertinoIcons.minus,
                 margin: const EdgeInsetsDirectional.only(end: 19),
+                size: 29,
+               padding: EdgeInsets.zero,
               ),
               Text(
                 widget.cartItem.quantity.toString(),
-                style: AppTextStyle.s16_w400(
+                style: AppTextStyle.s18_w600(
                   color: context.colors.black,
                 ),
               ),
@@ -38,6 +41,8 @@ class _ChangeCartQtyWidgetState extends State<ChangeCartQtyWidget> {
                 onTap: state.data ? (){} : () => widget.controller.onIncreaseCart(widget.cartItem,loadingCubit),
                 iconData: CupertinoIcons.add,
                 margin: const EdgeInsetsDirectional.only(start: 19),
+                size: 29,
+                padding: EdgeInsets.zero,
               ),
               const Spacer(),
               GestureDetector(

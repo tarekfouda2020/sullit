@@ -10,6 +10,7 @@ class CartPaymentController {
   final GenericBloc<GiftCardApllieCartDomainModel?> giftCardBlocBloc = GenericBloc(null);
   final GlobalKey<FormState> couponFormKey = GlobalKey();
   final GlobalKey<FormState> additionalFormKey = GlobalKey();
+  final GlobalKey<FormState> giftCardFormKey = GlobalKey();
   final GenericBloc<int> paymentCubit = GenericBloc(0);
   final GenericBloc<bool> conditionsCubit = GenericBloc(false);
   final GenericBloc<bool> isWalletSelected = GenericBloc(false);
@@ -70,7 +71,7 @@ class CartPaymentController {
   Future<void> createOrder(BuildContext context) async {
     if (conditionsCubit.state.data) {
       // _checkPayMethodSel();
-      if (isBalanceEnough()) {
+      if (isWalletSelectedAndBalanceEnough()) {
         var params = _orderParams();
         var data = await CreateOrder().call(params);
         if (data != null) {
@@ -93,7 +94,7 @@ class CartPaymentController {
     }
   }
 
-  bool isBalanceEnough() {
+  bool isWalletSelectedAndBalanceEnough() {
     var summary = shippingBloc.state.data!.summary;
     var balance = summary.walletBalanceValue;
     var totalPrice = summary.calTotal;
@@ -132,7 +133,7 @@ class CartPaymentController {
 
     if(isWalletSelected.state.data){
       unSelectWalletPayMethod();
-    }else if(isBalanceEnough()){
+    }else if(isWalletSelectedAndBalanceEnough()){
       selectWalletPayMethod();
     }
     shippingBloc.onUpdateData(shippingBloc.state.data);
@@ -275,15 +276,17 @@ class CartPaymentController {
   }
 
   Future<void> applyGiftCard(BuildContext context)async{
-    FocusScope.of(context).unfocus();
-    await ApplyGiftCard().call(ApplyGiftCardParams(giftCardCode: giftCardCode.text)).then((value) {
-      if (value != null) {
-      shippingBloc.state.data!.summary = value.summary;
-      shippingBloc.state.data!.summary.appliedGiftCard = value.appliedGiftCard;
-      shippingBloc.onUpdateData(shippingBloc.state.data);
-      CustomToast.showSimpleToast(msg: tr("giftCardApplied"));
-      }
-    });
+    if(giftCardFormKey.currentState!.validate()){
+      FocusScope.of(context).unfocus();
+      await ApplyGiftCard().call(ApplyGiftCardParams(giftCardCode: giftCardCode.text)).then((value) {
+        if (value != null) {
+          shippingBloc.state.data!.summary = value.summary;
+          shippingBloc.state.data!.summary.appliedGiftCard = value.appliedGiftCard;
+          shippingBloc.onUpdateData(shippingBloc.state.data);
+          CustomToast.showSimpleToast(msg: tr("giftCardApplied"));
+        }
+      });
+    }
   }
 
   Future<void> removeCoupon()async{

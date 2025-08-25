@@ -34,10 +34,9 @@ class OrderDetailsProductsWidget extends StatelessWidget {
             ],
           ),
           Gaps.vGap12,
-          ...List.generate(order?.orderDetails.length ?? 0, (index) {
+          ...List.generate(order.orderDetails.length ?? 0, (index) {
             return  OrderDetailsProductItemWidget(
-              hasReview: hasReview,
-              onPressReview: () => controller.reviewSheet(context,order?.orderDetails[index]),
+              onPressReview: () => controller.reviewSheet(context,order.orderDetails[index]),
               orderDetails: controller.orderDetailsBloc.state.data!.orderDetails[index],
             );
           }),

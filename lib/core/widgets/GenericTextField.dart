@@ -14,7 +14,7 @@ class GenericTextField extends StatelessWidget {
   final bool autoFocus;
   final int? max;
   final EdgeInsets? margin;
-  final EdgeInsets? contentPadding;
+  final EdgeInsetsGeometry? contentPadding;
   final TextInputType type;
   final TextInputAction action;
   final BorderRadius? radius;

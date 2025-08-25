@@ -5,7 +5,8 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/res.dart';
 
 class BuildEmptyDataImage extends StatelessWidget {
-  const BuildEmptyDataImage({Key? key}) : super(key: key);
+  final bool? enablePop;
+  const BuildEmptyDataImage({Key? key, this.enablePop = true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +14,10 @@ class BuildEmptyDataImage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        InkWell(
-          onTap: () => AutoRouter.of(context).pop(),
+        GestureDetector(
+          onTap: enablePop!
+              ?() => AutoRouter.of(context).pop()
+              :(){},
           child: Container(
             alignment: Alignment.center,
             child: Image.asset(
