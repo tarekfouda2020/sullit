@@ -16,7 +16,7 @@ class BuildSubCategorySideItem extends StatelessWidget {
   Widget build(BuildContext context) {
     print("======>>>>>>${subCategoryModel.id}");
     return Padding(
-      padding: Dimens.paddingAll10PX,
+      padding: const EdgeInsetsDirectional.only(start: Dimens.dp10, end: Dimens.dp10,top: Dimens.dp20,bottom: Dimens.dp10),
       child: Visibility(
         visible: length > 1,
         replacement: SubCategorySideItemReplacementWidget(
@@ -48,8 +48,8 @@ class BuildSubCategorySideItem extends StatelessWidget {
                     children: [
                       CachedImage(
                         url: "",
-                        width: Dimens.dp80,
-                        height: Dimens.dp80,
+                        width: Dimens.dp70,
+                        height: Dimens.dp70,
                         fit: BoxFit.fill,
                         bgColor: context.colors.lightPink,
                         boxShape: BoxShape.circle,

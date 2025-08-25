@@ -6,8 +6,8 @@ class AdvantagesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Dimens.paddingHorizontal10PX,
-      child: Row(
+      padding: Dimens.paddingHorizontal20PX,
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
               child: _advantageItem(
@@ -51,11 +51,13 @@ class AdvantagesWidget extends StatelessWidget {
           SvgPicture.asset(icon),
           Gaps.vGap8,
           Text(
+            textAlign: TextAlign.center,
             title,
             style: AppTextStyle.s12_w700(color: context.colors.black),
           ),
           Gaps.vGap5,
           Text(
+            textAlign: TextAlign.center,
             subTitle,
             style: AppTextStyle.s12_w300(color: context.colors.textColor),
           ),

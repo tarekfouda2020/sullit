@@ -23,7 +23,7 @@ class BuildHomeSwiper extends StatelessWidget {
         child: Swiper(
           itemBuilder: (BuildContext context, int index) {
             return Padding(
-              padding: const EdgeInsetsDirectional.only(end: 10,start: 10),
+              padding: const EdgeInsetsDirectional.only(end: 20,start: 20),
               child: CachedImage(
                 width: MediaQuery.of(context).size.width,
                 borderRadius: BorderRadius.circular(Dimens.dp30),

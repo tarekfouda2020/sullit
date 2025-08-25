@@ -109,12 +109,16 @@ class Dimens {
       const EdgeInsets.symmetric(horizontal: dp15, vertical: dp5).r;
   static EdgeInsets paddingH10V5 =
       const EdgeInsets.symmetric(horizontal: dp10, vertical: dp5).r;
+  static EdgeInsets paddingH10V10 =
+      const EdgeInsets.symmetric(horizontal: dp10, vertical: dp10).r;
   static EdgeInsets paddingH10V15 =
       const EdgeInsets.symmetric(horizontal: dp10, vertical: dp15).r;
   static EdgeInsets paddingH10V20 =
       const EdgeInsets.symmetric(horizontal: dp10, vertical: dp20).r;
   static EdgeInsets paddingH20V10 =
       const EdgeInsets.symmetric(horizontal: dp20, vertical: dp10).r;
+  static EdgeInsets paddingH20V15 =
+      const EdgeInsets.symmetric(horizontal: dp20, vertical: dp15).r;
   static EdgeInsets paddingH35V26 =
       const EdgeInsets.symmetric(horizontal: dp35, vertical: dp26).r;
   static EdgeInsets paddingH50V10 =

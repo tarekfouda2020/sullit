@@ -91,8 +91,9 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
             padding: const EdgeInsets.symmetric(vertical: 15),
             child: Transform.scale(
               scale: 0.5,
-              child: SvgPicture.asset(
-                  Res.arrowBackIcon
+              child: IconButton(
+                icon: Icon(Icons.arrow_back_outlined, size: 40.sp),
+                onPressed: () => Navigator.of(context).pop(),
               ),
             )
         ),

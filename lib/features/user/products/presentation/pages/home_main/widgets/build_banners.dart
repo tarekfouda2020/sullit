@@ -41,9 +41,9 @@ class BuildBanners extends StatelessWidget {
                   child: CachedImage(
                     url: banners[index].photo,
                     fit: BoxFit.fill,
-                    borderRadius: Dimens.borderRadius5PX,
+                    borderRadius: Dimens.borderRadius13PX,
                     height: 130.spMin,
-                    imgMargin: Dimens.paddingHorizontal12PX,
+                    imgMargin: Dimens.paddingHorizontal20PX,
                   ),
                 );
               },
