@@ -24,7 +24,7 @@ class BottomSheetHeaderWidget extends StatelessWidget {
           child: Icon(
             Icons.close,
             color: context.colors.black,
-            size: 18.sp,
+            size: 22,
           ),
         ),
 

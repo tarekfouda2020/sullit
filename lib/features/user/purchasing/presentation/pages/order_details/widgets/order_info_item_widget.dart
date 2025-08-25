@@ -12,7 +12,7 @@ class OrderINfoItemWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "$title:",
+          "$title :",
           style: AppTextStyle.s14_w400(color: context.colors.black),
         ),
         gaps,
@@ -20,7 +20,7 @@ class OrderINfoItemWidget extends StatelessWidget {
           child: Text(
             describe,
             style: AppTextStyle.s14_w600(color: context.colors.black).copyWith(
-              height: 1.1
+              height: 1.3
             ),
           ),
         ),

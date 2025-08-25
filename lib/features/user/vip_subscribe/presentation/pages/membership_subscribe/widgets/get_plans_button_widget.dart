@@ -13,8 +13,8 @@ class GetPlansButtonWidget extends StatelessWidget {
       textColor: context.colors.primary,
       fontSize: 18,
       fontWeight: FontWeight.w700,
-      height: 50,
-     borderRadius: Dimens.borderRadius30PX,
+      height: 45,
+      borderRadius: Dimens.borderRadius30PX,
       margin: EdgeInsets.zero,
     );
   }

@@ -12,7 +12,10 @@ class GetPlansWidget extends StatelessWidget {
       alignment: Alignment.topCenter,
       children: [
         Container(
-          padding: Dimens.paddingH35V26,
+          padding: const EdgeInsets.symmetric(
+            horizontal:26,
+            vertical: 26
+          ),
           margin: const EdgeInsets.only(top: 85),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
@@ -40,6 +43,7 @@ class GetPlansWidget extends StatelessWidget {
           ),
         ),
         Positioned(
+          top: -10,
           child: SvgPicture.asset(Res.redVipMark),
         )
       ],

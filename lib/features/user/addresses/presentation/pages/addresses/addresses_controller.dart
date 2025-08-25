@@ -45,8 +45,7 @@ class AddressesController {
     if (data) {
       CustomToast.showSimpleToast(
           msg: tr('addressDeleted'), type: ToastType.success);
-      addressesBloc.state.data.remove(model);
-      addressesBloc.onUpdateData(addressesBloc.state.data);
+      getAddress(1);
     }
   }
   void onActiveAddress(BuildContext context, Address address) async {
@@ -64,12 +63,8 @@ class AddressesController {
       CustomToast.showAuthDialog(context);
       return;
     }
-    var result = await AutoRouter.of(context).push(const AddNewAddressRoute());
-    if (result != null) {
-      Address model = result as Address;
-      addressesBloc.state.data.add(model);
-      addressesBloc.onUpdateData(addressesBloc.state.data);
-    }
+    await AutoRouter.of(context).push(const AddNewAddressRoute());
+    getAddress(1);
   }
 
   void navigateToEditAddress(BuildContext context, Address model) async {
@@ -77,17 +72,10 @@ class AddressesController {
       AutoRouter.of(context).pop(model);
       return ;
     }
-    var result = await AutoRouter.of(context).push(
+   await AutoRouter.of(context).push(
       EditAddressRoute(address: model),
     );
-    if (result != null) {
-      model = result as Address;
-      int index = addressesBloc.state.data.indexWhere((e) => e.id == model.id);
-      addressesBloc.state.data[index] = model;
-      var data = addressesBloc.state.data;
-      addressesBloc.onUpdateData([]);
-      addressesBloc.onUpdateData(data);
-    }
+    getAddress(1);
   }
 
   void onSelectAddress(BuildContext context, Address address, bool? val) {

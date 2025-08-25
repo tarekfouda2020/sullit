@@ -33,7 +33,7 @@ class _ProfileState extends State<Profile>with WidgetsBindingObserver  {
         children: [
           Flexible(
             child: ListView(
-              padding: Dimens.paddingAll15PX,
+              padding:const EdgeInsets.only(right: 15, left: 15, bottom: 15),
               children: [
                 BuildProfileImage(controller: controller),
                 BuildProfileFormFields(controller: controller),

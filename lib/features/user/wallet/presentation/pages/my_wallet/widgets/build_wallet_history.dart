@@ -15,13 +15,27 @@ class BuildWalletHistory extends StatelessWidget {
           Gaps.vGap24,
           Text(
             tr('transactions'),
-            style: AppTextStyle.s16_w500(color: context.colors.black),
+            style: AppTextStyle.s20_w700(color: context.colors.black),
           ),
           Gaps.vGap10,
-          ...List.generate(
-            walletRechargeHistory.wallets.length ?? 0,
-                (index) =>  WalletItemWidget(item: walletRechargeHistory.wallets[index]),
-          ),
+          Visibility(
+           visible:  walletRechargeHistory.wallets.isNotEmpty,
+            replacement: Padding(
+              padding: const EdgeInsets.only(top: 250),
+              child: Center(
+                child: Text(
+                    tr('noTransactionsFound'),
+                  style: AppTextStyle.s20_w700(color: context.colors.black),
+                ),
+              ),
+            ),
+            child: Column(
+              children: List.generate(
+                walletRechargeHistory.wallets.length ?? 0,
+                    (index) =>  WalletItemWidget(item: walletRechargeHistory.wallets[index]),
+              ),
+            ),
+          )
         ],
       ),
     );

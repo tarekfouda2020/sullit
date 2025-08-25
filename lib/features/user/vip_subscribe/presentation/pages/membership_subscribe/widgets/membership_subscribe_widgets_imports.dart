@@ -24,6 +24,7 @@ import 'package:flutter_tdd/features/user/vip_subscribe/domain/models/vip_subscr
 import 'package:flutter_tdd/features/user/vip_subscribe/presentation/widgets/membership_item_shimmer_widget.dart';
 import 'package:flutter_tdd/features/user/vip_subscribe/presentation/widgets/membership_item_widget.dart';
 import 'package:flutter_tdd/res.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 part 'get_plans_widget.dart';

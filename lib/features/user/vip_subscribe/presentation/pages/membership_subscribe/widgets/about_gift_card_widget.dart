@@ -23,9 +23,10 @@ class AboutGiftCardWidget extends StatelessWidget {
           Html(data: model.description,
             style: {
               "body": Style(
-                color: context.colors.textColor,
+                color: context.colors.blackTextColor,
                 fontSize: FontSize(14),
                 fontWeight: FontWeight.w600,
+                fontFamily: GoogleFonts.openSans().fontFamily,
                 alignment: lang == "ar" ? Alignment.centerLeft : Alignment.centerRight,
                 margin: Margins.all(0),
                 padding: HtmlPaddings.all(0),

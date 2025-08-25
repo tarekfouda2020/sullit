@@ -254,7 +254,7 @@
   "coupons": "Coupons",
   "totalPrice": "Total Price",
   "off": "Off",
-  "yourName": "Your Name",
+  "yourName": "User Name",
   "informationUpdatedSuccessfully": "Profile information updated successfully",
   "completePayment": "Complete Payment",
   "returnOrder": "Return Order",
@@ -296,7 +296,7 @@
   "ticketDetails": "Ticket Details",
   "videoViewer": "Video Viewer",
   "rechargeWallet": "Recharge Wallet",
-  "walBalance": "Wallet Balance",
+  "walBalance": "Your Wallet Balance",
   "walRechargeHistory": "Wallet Recharge History",
   "addToCart": "Add To Cart",
   "enterVerifyCode": "Verification code",
@@ -333,7 +333,7 @@
   "bySellAgree": "By signing up you agree to our ",
   "registerVerify": "Register Done Successfully. Please verify and log in to your account",
   "registerYourShop": "Register Your Shop",
-  "yourEmail": "Your E-mail",
+  "yourEmail": "E-mail",
   "yourPassword": "Your Password",
   "basicInfo": "Basic Info",
   "shopName": "Shop Name",
@@ -565,7 +565,9 @@
   "refundMethod": "Refund Method",
   "voucherDiscount": "Voucher Discount",
   "shippingFees": "Shipping fees",
-  "giftCardApplied": "Gift Card Applied"
+  "giftCardApplied": "Gift Card Applied",
+  "chargeWallet": "Charge Wallet Balance",
+  "enterAmount": "Enter Amount"
 }
 
 

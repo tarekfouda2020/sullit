@@ -124,4 +124,7 @@ class AppDarkColors extends AppColors {
 
   @override
   Color get cartBg => const Color(0xfff5f5f5);
+
+  @override
+  Color get blackTextColor => const Color(0xff1E1E1E);
 }

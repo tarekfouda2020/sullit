@@ -38,6 +38,7 @@ class AgreeTermsConditionsWidget extends StatelessWidget {
                   style: AppTextStyle.s14_w400(
                       color: context.colors.textColor),
                 ),
+                Gaps.hGap4,
                 GestureDetector(
                   onTap: () => AutoRouter.of(context).push(const TermsRoute()),
                   child: Text(

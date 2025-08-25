@@ -26,6 +26,11 @@ class OrderDetailsProductsWidget extends StatelessWidget {
                 tr("soldBy"),
                 style: AppTextStyle.s14_w400(color: context.colors.textColor),
               ),
+              Gaps.hGap4,
+              Text(
+                ":",
+                style: AppTextStyle.s14_w400(color: context.colors.textColor),
+              ),
               Gaps.hGap7,
               Text(
                order?.soldBy ?? "Munch Corner",

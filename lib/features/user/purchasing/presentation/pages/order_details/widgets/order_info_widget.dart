@@ -22,7 +22,11 @@ class OrderInfoWidget extends StatelessWidget {
                 style: AppTextStyle.s18_w300(color: context.colors.black),
               ),
               Text(
-               "${order?.id ?? 3253646}",
+                " : ",
+                style: AppTextStyle.s18_w300(color: context.colors.black),
+              ),
+              Text(
+               "${order?.code ?? 3253646}",
                 style: AppTextStyle.s18_w300(color: context.colors.primary),
               ),
             ],

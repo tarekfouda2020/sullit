@@ -66,6 +66,33 @@ class Utilities {
       return permission;
     }
   }
+  String parseCurrency(String text, {String lang = "en"}) {
+    final RegExp regExp = RegExp(r"^([^\d]+)([\d.,]+)$");
+    final match = regExp.firstMatch(text);
+
+    if (match == null) return text;
+
+    String currencyPart = match.group(1)!.trim();
+    String numberPart = match.group(2)!.trim();
+
+    final Map<String, String> currencyMap = {
+      "د.إ": "AED",
+      "ر.س": "SAR",
+      "ج.م": "EGP",
+      "د.ك": "KWD",
+    };
+
+    if (lang == "en" && currencyMap.containsKey(currencyPart)) {
+      currencyPart = currencyMap[currencyPart]!;
+    }
+
+    return "${num.parse(numberPart.replaceAll(',', '')).toStringAsFixed(0)} $currencyPart";
+  }
+
+  String capitalize(String text) {
+    if (text.isEmpty) return text;
+    return text[0].toUpperCase() + text.substring(1);
+  }
 
   Future<List<File>> getImages(BuildContext context) async {
     FocusScope.of(context).requestFocus(FocusNode());
@@ -78,6 +105,33 @@ class Utilities {
       return [];
     }
   }
+
+  String getPrice(String text) {
+    final RegExp regExp = RegExp(r"^([^\d]+)([\d.,]+)$");
+    final match = regExp.firstMatch(text);
+    if (match == null) return "0";
+    String numberPart = match.group(2)!.replaceAll(",", "").trim();
+    double value = double.tryParse(numberPart) ?? 0.0;
+    return value.toStringAsFixed(2);
+  }
+
+  String getCurrency(String text, {String lang = "en"}) {
+    final RegExp regExp = RegExp(r"^([^\d]+)([\d.,]+)$");
+    final match = regExp.firstMatch(text);
+    if (match == null) return "";
+    String currencyPart = match.group(1)!.trim();
+    final Map<String, String> currencyMap = {
+      "د.إ": "AED",
+      "ر.س": "SAR",
+      "ج.م": "EGP",
+      "د.ك": "KWD",
+    };
+    if (lang == "en" && currencyMap.containsKey(currencyPart)) {
+      return currencyMap[currencyPart]!;
+    }
+    return currencyPart;
+  }
+
 
   String customizePhoneNumber(String phone, String? code) {
     String phoneNumber = "";

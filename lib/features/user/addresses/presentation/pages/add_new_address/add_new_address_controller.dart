@@ -84,7 +84,25 @@ class AddNewAddressController {
 
 
   void showCountryCode(BuildContext context) async {
-    package.Country? data = await package.showCountryPickerDialog(
+    package.Country? data = await package.showCountryPickerSheet(
+      cancelWidget: PositionedDirectional(
+        end: 10,
+        child: InkWell(
+          onTap: () => Navigator.of(context).pop(),
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+            decoration: BoxDecoration(
+              color: context.colors.primary,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Text(
+              'Cancel',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+      ),
       context,
       cornerRadius: 3,
     );
