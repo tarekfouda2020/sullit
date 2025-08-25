@@ -79,4 +79,10 @@ class ImplAuthRepository extends AuthRepository with ModelToDomain {
     return await dataSources.verifyResetPassword(params);
 
   }
+  @override
+  Future<Either<Failure, UserDomainModel>> emailVerify (CodeVerifyParams params)async {
+    var result = await dataSources.emailVerify(params);
+    return toDomainResult(result);
+
+  }
 }

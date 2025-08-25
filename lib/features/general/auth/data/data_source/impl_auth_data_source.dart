@@ -165,4 +165,18 @@ class ImplAuthDataSource extends AuthDataSource {
     );
     return await GenericHttpImpl<String>()(model);
   }
+  @override
+  Future<Either<Failure, UserModel>> emailVerify (CodeVerifyParams params) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.verifyEmail,
+      requestMethod: RequestMethod.post,
+      responseType: ResType.model,
+      requestBody: params.toJson(),
+      responseKey: (data) => data["data"],
+      errorFunc: (data) => data['msg'],
+      showLoader: false,
+      toJsonFunc: (data) => UserModel.fromJson(data),
+    );
+    return await GenericHttpImpl<UserModel>()(model);
+  }
 }

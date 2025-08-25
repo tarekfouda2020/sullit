@@ -567,7 +567,8 @@
   "shippingFees": "Shipping fees",
   "giftCardApplied": "Gift Card Applied",
   "applyGiftCard": "Apply Gift Card",
-  "qnt": "Qnt:"
+  "qnt": "Qnt:",
+  "emailVerify": "Your email has been verified successfully"
 }
 
 
