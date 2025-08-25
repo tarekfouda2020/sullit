@@ -10,7 +10,7 @@ class BuildDeals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Dimens.paddingAll15PX,
+      padding: Dimens.paddingH10V15,
       child: Stack(
         alignment: Alignment.center,
         children: [

@@ -8,7 +8,7 @@ class BuildTopCategories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Dimens.paddingHorizontal15PX,
+      padding: Dimens.paddingHorizontal12PX,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

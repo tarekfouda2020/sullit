@@ -29,7 +29,7 @@ class BuildBanners extends StatelessWidget {
                 fit: BoxFit.fill,
                 borderRadius: Dimens.borderRadius5PX,
                 height: 130.spMin,
-                imgMargin: Dimens.paddingHorizontal5PX,
+                imgMargin: Dimens.paddingHorizontal10PX,
               ),
             ),
             child: Swiper(
