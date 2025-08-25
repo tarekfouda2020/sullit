@@ -29,7 +29,6 @@ class BuildCartStepper extends StatelessWidget {
           Row(
             children: List.generate(stepsIconWidget(context).length * 2 - 1, (i) {
               if (i.isEven) {
-                print("============>>>>>>>>>>${i}<<<<<<<<<<<<<<<<");
                 int index = i ~/ 2;
                 var containerColor = current > index ? context.colors.primary : context.colors.gray4;
                 return Row(

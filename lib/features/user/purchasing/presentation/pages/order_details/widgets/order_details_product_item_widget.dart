@@ -1,10 +1,9 @@
 part of 'order_details_widgets_imports.dart';
 
 class OrderDetailsProductItemWidget extends StatelessWidget {
-  final bool hasReview;
   final  void Function()? onPressReview;
   final OrderDetails orderDetails;
-  const OrderDetailsProductItemWidget({super.key, required this.hasReview, this.onPressReview, required this.orderDetails});
+  const OrderDetailsProductItemWidget({super.key, this.onPressReview, required this.orderDetails});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CachedImage(
-                url:orderDetails.product?.thumbnailImage ?? "https://palmercandy.com/cdn/shop/files/smarties.webp?v=1696350898",
+                url:orderDetails.product?.thumbnailImage ?? "",
                 width: 46,
                 height: 46,
                 bgColor: Colors.transparent,
@@ -30,7 +29,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      orderDetails.product?.name ?? "Dubai Chocolate Konafa Pistachio",
+                      orderDetails.product?.name ?? "",
                       style: AppTextStyle.s14_w600(color: context.colors.black),
                     ),
                     Gaps.vGap5,
@@ -53,13 +52,28 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                          child: Text(
-                            orderDetails.product?.priceHighLow ?? "31.50 AED",
-                            style: AppTextStyle.s14_w600(color: context.colors.primary),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Visibility(
+                                visible: (orderDetails.product?.hasDiscount ?? false)
+                                    ||(orderDetails.product?.hasVipOffer ?? false),
+                                child: Text(
+                                  orderDetails.product?.priceHighLow ?? "",
+                                  style: AppTextStyle.s14_w400(color: context.colors.textColor).copyWith(
+                                    decoration: TextDecoration.lineThrough
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                orderDetails.product?.priceHighLowDiscount ?? "",
+                                style: AppTextStyle.s14_w600(color: context.colors.primary),
+                              )
+                            ],
                           ),
                         ),
                         Text(
-                            "${tr("quantity")}${orderDetails.quantity.toString() ?? 1}",
+                            "${tr("qnt")}${orderDetails.quantity}",
                           style: AppTextStyle.s14_w400(color: context.colors.black),
                         ),
                       ],

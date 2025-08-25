@@ -47,8 +47,7 @@ class UserDomainModel extends BaseDomainModel {
     isPhoneActive = json['phone_is_active'];
     isEmailActive=json['email_is_active'];
     hasValidSubscription=json['has_valid_subscription'];
-    address =
-        json['address'] != null ? Address.fromJson(json['address']) : null;
+    address = json['address'] != null ? Address.fromJson(json['address']) : null;
   }
 
   Map<String, dynamic> toJson() {

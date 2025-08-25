@@ -23,9 +23,9 @@ class CartOrderDetailsWidget extends StatelessWidget {
                 Text(tr("thankYouForYourOrder"),
                 style: AppTextStyle.s18_w700(color: context.colors.black),
                 ),
-                Gaps.vGap18,
-                Gaps.line(context.colors.softGray, 0),
-                Gaps.vGap8,
+                Gaps.vGap22,
+                Divider(color:context.colors.softGray , thickness: 0.8,height: 0,),
+                Gaps.vGap12,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -39,8 +39,8 @@ class CartOrderDetailsWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                Gaps.vGap8,
-                Gaps.line(context.colors.softGray, 0),
+                Gaps.vGap12,
+                Divider(color:context.colors.softGray , thickness: 0.8,height: 0),
                 Gaps.vGap14,
                 CartOrderInfoWidget(orderSummary: summary,),
               ],

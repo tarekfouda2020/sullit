@@ -27,20 +27,39 @@ class _TrackOrderState extends State<TrackOrder> {
       body: BlocBuilder<GenericBloc<TrackOrderModel?>, GenericState<TrackOrderModel?>>(
         bloc: controller.trackOrderCubit,
         builder: (context, state) {
-          if(state is GenericUpdateState){
+          if (state is GenericUpdateState) {
             return ListView(
               padding: Dimens.paddingHorizontal15PX,
               children: [
-                TrackOrderNumberWidget(model: state.data!,),
+                TrackOrderNumberWidget(
+                  model: state.data!,
+                ),
                 Gaps.vGap17,
-                ...List.generate(
-                    state.data!.tracking.length, (index) {
-                  return TrackOrderItemWidget(
-                    statusModel: state.data!.tracking[index],
-                    trackModel: state.data!,
-                    isLast: index == state.data!.tracking.length - 1,
-                  );
-                })
+                Stack(
+                  children: [
+                    Column(
+                      children:
+                        List.generate(
+                            5,
+                                (index) {
+                              return TrackStatusWidget(
+                                isActive: false,
+                                isLast: index == 4,
+                              );
+                            }),
+                    ),
+                    Column(
+                      children: List.generate(state.data!.tracking.length, (index) {
+                        return TrackOrderItemWidget(
+                          statusModel: state.data!.tracking[index],
+                          trackModel: state.data!,
+                          isLast: index == 4,
+                        );
+                      }),
+                    )
+
+                  ],
+                )
 
                 // const TrackOrderItemWidget(
                 //   isLast: false,
@@ -60,14 +79,21 @@ class _TrackOrderState extends State<TrackOrder> {
                 // ),
                 // BuildTrackOrderField(controller: controller),
                 // BuildTrackOrderSummary(controller: controller),
-
               ],
             );
-          }else{
+          } else {
             return const TrackingOrderShimmerWidget();
           }
         },
       ),
     );
   }
+
+
+  // int inActiveItemsListLength(TrackOrderModel model){
+  //   var isCancelled = model.tracking.map((e) => e.status).toList().contains("Cancelled");
+  //   return 5;
+  // }
+
+
 }

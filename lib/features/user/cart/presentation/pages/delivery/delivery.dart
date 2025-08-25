@@ -14,6 +14,7 @@ class _DeliveryState extends State<Delivery> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      backgroundColor: context.colors.cartBg,
       appBar:   DefaultAppBar(
           // title: tr("delivery"),
           title: tr("cart"),

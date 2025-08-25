@@ -45,7 +45,8 @@ class Address extends BaseDomainModel {
     this.flatNumber,
     this.buildingName,
     this.addressType,
-    this.addressTypeLabel
+    this.addressTypeLabel,
+    this.selected,
   });
 
   Address.fromJson(Map<String, dynamic> json) {
@@ -65,6 +66,7 @@ class Address extends BaseDomainModel {
     buildingName = json['building_name'];
     flatNumber = json['flat_number'];
     addressTypeLabel = json['address_type_label'];
+    selected = false;
   }
 
   Map<String, dynamic> toJson() {

@@ -11,20 +11,22 @@ class BuildCartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: Dimens.paddingVertical5PX,
-      padding: const EdgeInsetsDirectional.only(end: 16,top: 16,bottom: 16),
+      padding: const EdgeInsetsDirectional.only(end: 16,top: 16,bottom: 16,start: 5),
       decoration: CustomDecoration(
         myBoxShadow: const [],
         radius: Dimens.borderRadius12PX,
         boxBorder: Border.all(color: context.colors.borderColor),
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CachedImage(
             url: cartItem.thumbnailImage,
-            height: 70.h,
-            width: 80.w,
+            height: 60,
+            width: 60,
             fit: BoxFit.fill,
           ),
+          Gaps.hGap11,
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +68,7 @@ class BuildCartItem extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text("${tr("soldBy")} :",
-                      style: AppTextStyle.s14_w600(color: context.colors.textColor),
+                      style: AppTextStyle.s12_w400(color: context.colors.textColor),
                     ),
                     Gaps.hGap5,
                     Text(cartItem.soldBy,

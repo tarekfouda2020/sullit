@@ -31,11 +31,14 @@ class BuildNotificationsItem extends StatelessWidget {
                   Text(
                     /// edit from back end
                     notification.text,
-                    style: AppTextStyle.s12_w400(color: context.colors.black),
+                    style: AppTextStyle.s12_w400(color: context.colors.black).copyWith(
+                      height: 1.3
+                    ),
                   ),
                   Gaps.vGap10,
                   Text(
                     notification.createdAt,
+                    // getDate(),
                     style: AppTextStyle.s12_w400(
                         color: context.colors.blackOpacity),
                   ),
@@ -47,4 +50,12 @@ class BuildNotificationsItem extends StatelessWidget {
       ),
     );
   }
+  
+  
+  // String getDate(){
+  //   DateTime date = DateTimeHelper.convertToDateTime(strDate: notification.createdAt);
+  //   return DateTimeHelper.formatDate(date: date, formatType: "dd MMM yyyy - hh:mm a");
+  // }
+  
+  
 }

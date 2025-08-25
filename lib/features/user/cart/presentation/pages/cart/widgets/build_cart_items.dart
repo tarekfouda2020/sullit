@@ -12,7 +12,9 @@ class BuildCartItems extends StatelessWidget {
     return Visibility(
       visible: cartItems.isNotEmpty,
       replacement: const Flexible(
-        child: BuildEmptyDataImage(),
+        child: BuildEmptyDataImage(
+          enablePop: false,
+        ),
       ),
       child: Flexible(
         child: ListView.builder(

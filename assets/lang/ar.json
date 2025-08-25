@@ -739,8 +739,8 @@
   "orderNumber": "رقم الطلب",
   "returnedDate": "تاريخ الإرجاع",
   "refundMethod": "طريقة الاسترداد",
-  "giftCardApplied": "تم تطبيق بطاقة الهدايا"
-
+  "giftCardApplied": "تم تطبيق بطاقة الهدايا",
+  "qnt": "الكمية:"
 }
 
 

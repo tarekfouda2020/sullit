@@ -6,16 +6,19 @@ class GiftCardCodeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GenericTextField(
-      hint: tr("enterGiftCardCode"),
-      controller: controller.giftCardCode ,
-      fieldTypes: FieldTypes.normal,
-      type: TextInputType.text,
-      action: TextInputAction.done,
-      margin: const EdgeInsets.only(top: 5),
-      fillColor: context.colors.white,
-      validate: (value) => value?.noValidate(),
-      suffixIcon: ApplyButtonWidget(onPressApply: ()=> controller.applyGiftCard(context)),
+    return Form(
+      key: controller.giftCardFormKey,
+      child: GenericTextField(
+        hint: tr("enterGiftCardCode"),
+        controller: controller.giftCardCode ,
+        fieldTypes: FieldTypes.normal,
+        type: TextInputType.text,
+        action: TextInputAction.done,
+        margin: const EdgeInsets.only(top: 5),
+        fillColor: context.colors.white,
+        validate: (value) => value?.validateEmpty(),
+        suffixIcon: ApplyButtonWidget(onPressApply: ()=> controller.applyGiftCard(context)),
+      ),
     );
   }
 
