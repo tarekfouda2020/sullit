@@ -34,7 +34,8 @@ class CartOrderDetailsWidget extends StatelessWidget {
                       style: AppTextStyle.s18_w300(color: context.colors.black),
                     ),
                     Text(
-                      "3253646",
+                      // "${summary.summary!.combinedOrderId}",
+                      "${summary.sectionOrders!.first.id}",
                       style: AppTextStyle.s18_w300(color: context.colors.primary),
                     ),
                   ],

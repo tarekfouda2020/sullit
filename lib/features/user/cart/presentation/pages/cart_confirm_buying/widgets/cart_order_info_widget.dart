@@ -23,7 +23,7 @@ class CartOrderInfoWidget extends StatelessWidget {
         Gaps.vGap12,
         OrderINfoItemWidget(
           title: tr('totalItems'),
-          describe: (orderSummary.sectionOrders ?? <Orders>[]).length.toString(),
+          describe: orderSummary.summary?.totalItems.toString() ?? "0",
           gaps: Gaps.hGap9,
         ),
         Gaps.vGap12,

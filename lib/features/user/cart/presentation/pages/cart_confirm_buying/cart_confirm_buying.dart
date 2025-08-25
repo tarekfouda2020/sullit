@@ -30,7 +30,7 @@ class _CartConfirmBuyingState extends State<CartConfirmBuying> {
         appBar: DefaultAppBar(
             title: tr("cart"),
             bgColor: context.colors.white,
-          // onBack: () => AutoRouter.of(context).push(HomeRoute(index: 0)),
+          onBack: () => AutoRouter.of(context).push(HomeRoute(index: 0)),
         ),
         body: BlocBuilder<GenericBloc<OrderSummary?>,
             GenericState<OrderSummary?>>(
