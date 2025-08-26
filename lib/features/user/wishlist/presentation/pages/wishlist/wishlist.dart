@@ -38,7 +38,7 @@ class _WishlistState extends State<Wishlist> {
           onFavRefresh: () => controller.onChangeFav(item),
         ),
         loadingWidget: const BuildLoadingProductsGridView(),
-        emptyWidget: const BuildEmptyDataImage(),
+        emptyWidget: const BuildEmptyDataImage(enablePop: false),
       ),
     );
   }

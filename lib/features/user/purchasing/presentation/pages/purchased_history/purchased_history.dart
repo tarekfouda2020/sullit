@@ -34,7 +34,7 @@ class _PurchasedHistoryState extends State<PurchasedHistory> {
               controller: controller,
             ),
             noItemsFoundIndicatorBuilder: (cxt) {
-              return const BuildEmptyDataImage();
+              return const BuildEmptyDataImage(enablePop: false,);
             },
           ),
         ),
