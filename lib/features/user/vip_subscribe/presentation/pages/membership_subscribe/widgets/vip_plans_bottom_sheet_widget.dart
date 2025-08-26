@@ -21,7 +21,8 @@ class VipPlansBottomSheetWidget extends StatelessWidget {
             title: tr('vipMembership'),
           ),
           Gaps.vGap24,
-          Flexible(
+          SizedBox(
+            height: MediaQuery.of(context).size.height *.4,
             child: RefreshIndicator(
               onRefresh: () => controller.getSubscriptions(1),
               child: PagedListView<int, VipSubscribeDomainModel>(
@@ -61,6 +62,7 @@ class VipPlansBottomSheetWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AgreeTermsConditionsWidget(controller: controller),
+                      Gaps.vGap8,
                       PayMembershipButtonWidget(controller: controller)
                     ],
                   );
@@ -85,7 +87,7 @@ class VipPlansBottomSheetWidget extends StatelessWidget {
                   );
                 }
               },
-          )
+          ),
         ],
       ),
     );

@@ -32,6 +32,7 @@ class CartOrderProductsWidget extends StatelessWidget {
             return  OrderDetailsProductItemWidget(
               onPressReview: () => controller.reviewSheet(context,item),
               orderDetails: item,
+              hasReview: false,
             );
           }),
             Padding(

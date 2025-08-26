@@ -1,23 +1,31 @@
 part of 'order_details_widgets_imports.dart';
 
 class OrderDetailsProductItemWidget extends StatelessWidget {
-  final  void Function()? onPressReview;
+  final bool hasReview;
+  final void Function()? onPressReview;
   final OrderDetails orderDetails;
-  const OrderDetailsProductItemWidget({super.key, this.onPressReview, required this.orderDetails});
+
+  const OrderDetailsProductItemWidget(
+      {super.key,
+      required this.hasReview,
+      this.onPressReview,
+      required this.orderDetails});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: Dimens.paddingH17V13,
       margin: const EdgeInsets.only(bottom: 8),
-      decoration: CustomDecoration(boxBorder: Border.all(color: context.colors.gray3), myBoxShadow: const []),
+      decoration: CustomDecoration(
+          boxBorder: Border.all(color: context.colors.gray3),
+          myBoxShadow: const []),
       child: Column(
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CachedImage(
-                url:orderDetails.product?.thumbnailImage ?? "",
+                url: orderDetails.product?.thumbnailImage ??"",
                 width: 46,
                 height: 46,
                 bgColor: Colors.transparent,
@@ -32,11 +40,15 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                     children: [
                       Text(
                         orderDetails.product?.name ?? "",
-                        style: AppTextStyle.s14_w600(color: context.colors.black),
+                        style:
+                            AppTextStyle.s14_w600(color: context.colors.black),
                       ),
                       Gaps.vGap5,
                       RatingBar.builder(
-                        initialRating: (orderDetails.review?.rate ?? orderDetails.product?.rating ?? 0.0).toDouble(),
+                        initialRating: (orderDetails.review?.rate ??
+                                orderDetails.product?.rating ??
+                                0.0)
+                            .toDouble(),
                         minRating: 0,
                         direction: Axis.horizontal,
                         allowHalfRating: false,
@@ -58,25 +70,48 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Visibility(
-                                  visible: (orderDetails.product?.hasDiscount ?? false)
-                                      ||(orderDetails.product?.hasVipOffer ?? false),
+                                  visible: (orderDetails.product?.hasDiscount ??
+                                          false) ||
+                                      (orderDetails.product?.hasVipOffer ??
+                                          false),
                                   child: Text(
-                                    orderDetails.product?.priceHighLow ?? "",
-                                    style: AppTextStyle.s14_w400(color: context.colors.textColor).copyWith(
-                                      decoration: TextDecoration.lineThrough
+                                    getIt<Utilities>().parseCurrency(
+                                      orderDetails.product?.priceHighLow ?? '',
+                                      lang: context
+                                          .read<DeviceCubit>()
+                                          .state
+                                          .model
+                                          .locale
+                                          .languageCode,
                                     ),
+                                    style: AppTextStyle.s14_w400(
+                                            color: context.colors.textColor)
+                                        .copyWith(
+                                            decoration:
+                                                TextDecoration.lineThrough),
                                   ),
                                 ),
                                 Text(
-                                  orderDetails.product?.priceHighLowDiscount ?? "",
-                                  style: AppTextStyle.s14_w600(color: context.colors.primary),
+                                  getIt<Utilities>().parseCurrency(
+                                    orderDetails.product?.priceHighLow ??
+                                        '',
+                                    lang: context
+                                        .read<DeviceCubit>()
+                                        .state
+                                        .model
+                                        .locale
+                                        .languageCode,
+                                  ),
+                                  style: AppTextStyle.s14_w600(
+                                      color: context.colors.primary),
                                 )
                               ],
                             ),
                           ),
                           Text(
-                              "${tr("qnt")}${orderDetails.quantity}",
-                            style: AppTextStyle.s14_w400(color: context.colors.black),
+                            "${tr("qnt")}${orderDetails.quantity}",
+                            style: AppTextStyle.s14_w400(
+                                color: context.colors.black),
                           ),
                         ],
                       ),
@@ -99,7 +134,8 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                     children: [
                       Text(
                         tr("reviewProduct"),
-                        style: AppTextStyle.s14_w400(color: context.colors.primary),
+                        style: AppTextStyle.s14_w400(
+                            color: context.colors.primary),
                       ),
                       Gaps.hGap10,
                       Icon(
