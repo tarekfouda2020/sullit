@@ -10,6 +10,7 @@ class BuildWalletDetails extends StatelessWidget {
     return Container(
       alignment: AlignmentDirectional.center,
       padding: Dimens.paddingAll20PX,
+      margin: Dimens.paddingAll15PX,
       decoration: BoxDecoration(
         color: context.colors.white,
         borderRadius: Dimens.borderRadius12PX,
@@ -30,7 +31,6 @@ class BuildWalletDetails extends StatelessWidget {
           Text(
             getIt<Utilities>().parseCurrency(
               walletBalance,
-              lang: context.read<DeviceCubit>().state.model.locale.languageCode,
             ),
             style: AppTextStyle.s24_w700(color: context.colors.primary),
           ),

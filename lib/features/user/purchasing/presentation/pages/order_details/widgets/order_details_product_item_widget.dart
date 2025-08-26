@@ -75,15 +75,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                                       (orderDetails.product?.hasVipOffer ??
                                           false),
                                   child: Text(
-                                    getIt<Utilities>().parseCurrency(
-                                      orderDetails.product?.priceHighLow ?? '',
-                                      lang: context
-                                          .read<DeviceCubit>()
-                                          .state
-                                          .model
-                                          .locale
-                                          .languageCode,
-                                    ),
+                                      orderDetails.product?.priceHighLow.parseCurrency ?? "",
                                     style: AppTextStyle.s14_w400(
                                             color: context.colors.textColor)
                                         .copyWith(
@@ -92,16 +84,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  getIt<Utilities>().parseCurrency(
-                                    orderDetails.product?.priceHighLow ??
-                                        '',
-                                    lang: context
-                                        .read<DeviceCubit>()
-                                        .state
-                                        .model
-                                        .locale
-                                        .languageCode,
-                                  ),
+                                  orderDetails.product?.priceHighLow .parseCurrency ?? '',
                                   style: AppTextStyle.s14_w600(
                                       color: context.colors.primary),
                                 )
