@@ -13,14 +13,11 @@ class BuildEmptyDataView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        InkWell(
-          onTap: () => AutoRouter.of(context).pop(),
-          child: Container(
-            alignment: Alignment.center,
-            child: Image.asset(
-              Res.emptyCart,
-              scale: 3,
-            ),
+        Container(
+          alignment: Alignment.center,
+          child: Image.asset(
+            Res.emptyCart,
+            scale: 3,
           ),
         ),
         Text(
