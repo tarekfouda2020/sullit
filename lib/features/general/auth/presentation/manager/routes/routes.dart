@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/pages/active_account/active_account_imports.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/pages/change_password/change_password_imports.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/pages/forget_password/forget_password_imports.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/pages/login/login_imports.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/pages/register/register_imports.dart';
@@ -19,5 +20,6 @@ const List<AutoRoute> authRoute = [
   AdaptiveRoute(page: RegisterShop),
   AdaptiveRoute(page: VerifyRegister),
   AdaptiveRoute(page: ResetPasswordVerify),
+  AdaptiveRoute(page: ChangePassword),
 
 ];

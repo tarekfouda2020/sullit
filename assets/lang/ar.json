@@ -741,7 +741,9 @@
   "refundMethod": "طريقة الاسترداد",
   "giftCardApplied": "تم تطبيق بطاقة الهدايا",
   "qnt": "الكمية:",
-  "emailVerify": "تم التحقق من بريدك الإلكتروني بنجاح"
+  "emailVerify": "تم التحقق من بريدك الإلكتروني بنجاح",
+  "confirmChange":"تأكيد",
+  "currentPassword":"كلمة المرور الحالية"
 }
 
 

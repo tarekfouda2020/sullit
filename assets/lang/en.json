@@ -568,7 +568,10 @@
   "giftCardApplied": "Gift Card Applied",
   "applyGiftCard": "Apply Gift Card",
   "qnt": "Qnt:",
-  "emailVerify": "Your email has been verified successfully"
+  "emailVerify": "Your email has been verified successfully",
+  "changePassword":"Change Password" ,
+  "confirmChange":"Confirm change ",
+  "currentPassword":"Current Password"
 }
 
 

@@ -3,6 +3,7 @@ import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/general/auth/data/models/user_login_model/user_login_model.dart';
 import 'package:flutter_tdd/features/general/auth/data/models/user_model/user_model.dart';
+import 'package:flutter_tdd/features/general/auth/domain/entities/change_password_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/code_verify_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/login_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/reset_password_params.dart';
@@ -10,21 +11,30 @@ import 'package:flutter_tdd/features/general/auth/domain/entities/user_register_
 import 'package:flutter_tdd/features/general/auth/domain/entities/verify_phone_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/verify_reset_password_params.dart';
 
-abstract class AuthDataSource{
+abstract class AuthDataSource {
   Future<Either<Failure, UserLoginModel>> login(LoginParams param);
+
   Future<Either<Failure, String>> forgetPassword(String param);
+
   Future<Either<Failure, String>> resendPasswordCode(String param);
+
   Future<Either<Failure, String>> resendRegisterCode(String param);
+
   Future<Either<Failure, String>> resetPassword(ResetPasswordParams param);
-  Future<Either<Failure, UserModel>> register (UserRegisterParams params);
-  Future<Either<Failure, bool>> verifyPhone (VerifyPhoneParams params);
+
+  Future<Either<Failure, UserModel>> register(UserRegisterParams params);
+
+  Future<Either<Failure, bool>> verifyPhone(VerifyPhoneParams params);
+
   Future<Either<Failure, String>> resendVerifyCode(String param);
 
-  Future<Either<Failure, String>> codeVerify (CodeVerifyParams params);
+  Future<Either<Failure, String>> codeVerify(CodeVerifyParams params);
 
-  Future<Either<Failure, bool>> deleteAccount (NoParams params);
+  Future<Either<Failure, bool>> deleteAccount(NoParams params);
 
-  Future<Either<Failure, String>> verifyResetPassword (VerifyResetPasswordParams params);
+  Future<Either<Failure, String>> verifyResetPassword(VerifyResetPasswordParams params);
 
-  Future<Either<Failure, UserModel>> emailVerify (CodeVerifyParams params);
+  Future<Either<Failure, UserModel>> emailVerify(CodeVerifyParams params);
+
+  Future<Either<Failure, String>> changePassword(ChangePasswordParams params);
 }
