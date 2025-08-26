@@ -17,7 +17,7 @@ class BuildProductSuggestItem extends StatelessWidget {
       child: Container(
         margin: Dimens.cardMargin,
         padding: Dimens.paddingVertical8PX,
-        decoration: CustomDecoration(),
+        decoration: const CustomDecoration(),
         child: ListTile(
           leading: CachedImage(
             url: productModel.images?.first ?? "",
@@ -30,7 +30,7 @@ class BuildProductSuggestItem extends StatelessWidget {
             style: AppTextStyle.s15_w500(color: context.colors.black),
           ),
           subtitle: Text(
-            productModel.priceHighLow ?? "",
+            productModel.priceHighLow.parseCurrency,
             style: AppTextStyle.s15_w700(color: context.colors.primary),
           ),
         ),

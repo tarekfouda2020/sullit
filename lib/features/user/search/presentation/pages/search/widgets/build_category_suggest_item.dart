@@ -2,8 +2,9 @@ part of 'search_widgets_imports.dart';
 
 class BuildCategorySuggestItem extends StatelessWidget {
   final List<Category> categories;
+  final SearchController controller;
 
-  const BuildCategorySuggestItem({super.key, required this.categories});
+  const BuildCategorySuggestItem({super.key, required this.categories, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -15,20 +16,22 @@ class BuildCategorySuggestItem extends StatelessWidget {
           BuildSuggestHeader(title: tr('catSuggestions')),
           ...List.generate(
             categories.length,
-            (index) => GestureDetector(
-              onTap: () => AutoRouter.of(context).push(
-                CategoryDetailsRoute(
-                  categoryModel: categories[index],
+                (index) =>
+                GestureDetector(
+                  onTap: () =>
+                      AutoRouter.of(context).push(
+                        CategoryDetailsRoute(
+                          categoryModel: categories[index],
+                        ),
+                      ),
+                  child: Padding(
+                    padding: Dimens.standardPadding,
+                    child: Text(
+                      categories[index].name.toUpperCase(),
+                      style: AppTextStyle.s15_w500(color: context.colors.black),
+                    ),
+                  ),
                 ),
-              ),
-              child: Padding(
-                padding: Dimens.standardPadding,
-                child: Text(
-                  categories[index].name.toUpperCase(),
-                  style: AppTextStyle.s15_w500(color: context.colors.black),
-                ),
-              ),
-            ),
           )
         ],
       ),

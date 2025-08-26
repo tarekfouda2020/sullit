@@ -38,6 +38,7 @@ class _SearchState extends State<Search> {
                       children: [
                         BuildCategorySuggestItem(
                           categories: state.data!.categories,
+                          controller: controller,
                         ),
                         BuildProductSuggestions(
                           products: state.data!.products,

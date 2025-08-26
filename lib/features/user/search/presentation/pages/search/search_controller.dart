@@ -3,6 +3,7 @@ part of 'search_imports.dart';
 class SearchController {
   final TextEditingController searchController = TextEditingController();
   final GenericBloc<SearchResults?> resultsCubit = GenericBloc(null);
+  // final GenericBloc<bool> showCategorySection = GenericBloc<bool>(true);
 
   SearchController(String searchText) {
     searchController.text = searchText;
@@ -22,4 +23,11 @@ class SearchController {
       refresh: refresh,
     );
   }
+
+
+  void onPressSearch(BuildContext context){
+    FocusScope.of(context).unfocus();
+    getSearchResults();
+  }
+
 }
