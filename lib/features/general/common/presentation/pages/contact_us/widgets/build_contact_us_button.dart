@@ -11,7 +11,7 @@ class BuildContactUsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LoadingButton(
-      title: tr('submit'),
+      title: tr('send'),
       onTap: () => controller.contactUs(),
       color: context.colors.primary,
       textColor: context.colors.white,

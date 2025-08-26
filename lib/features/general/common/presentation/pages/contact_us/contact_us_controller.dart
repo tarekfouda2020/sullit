@@ -57,6 +57,8 @@ class ContactUsController {
       var params = _contactUsParams();
       var data = await SetContactUs().call(params);
       if (data) {
+        subject.clear();
+        message.clear();
         CustomToast.showSimpleToast(
           msg: tr('msgSent'),
           type: ToastType.success,

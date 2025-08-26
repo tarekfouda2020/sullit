@@ -82,13 +82,13 @@ class LocationFieldsWidget extends StatelessWidget {
             );
           },
         ),
-        const BuildInputLabel(
-          label: "Address Type",
+        BuildInputLabel(
+          label: tr("addressType"),
         ),
         DropdownTextField<AddressTypeModel>(
           dropKey: controller.addressTypeKey,
-          title: "Select Type",
-          hint: "Select Type",
+          title: tr("selectType"),
+          hint: tr("selectType"),
           margin: Dimens.paddingVertical10PX,
           itemAsString: (item) => item.label,
           fillColor: context.colors.white,

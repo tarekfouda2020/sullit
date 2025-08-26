@@ -93,7 +93,7 @@ class BuildAddAddressForm extends StatelessWidget {
         replacement: Padding(
           padding: const EdgeInsetsDirectional.only(start: 23,top: 16,end: 17),
           child: Text(
-            "Select Country",
+            tr("selectCountry"),
             style: AppTextStyle.s14_w400(color: context.colors.black),
           ),
         ),

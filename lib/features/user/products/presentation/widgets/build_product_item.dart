@@ -27,6 +27,7 @@ class BuildProductItem extends StatefulWidget {
   final VoidCallback onFavRefresh;
   final VoidCallback? onCompareRefresh;
   final VoidCallback? afterAddToCart;
+  final VoidCallback? onRefresh;
   final bool? showVipDiscount;
 
   const BuildProductItem({
@@ -36,6 +37,7 @@ class BuildProductItem extends StatefulWidget {
     this.onCompareRefresh,
     this.showVipDiscount,
     this.afterAddToCart,
+    this.onRefresh,
   });
 
   @override
@@ -56,12 +58,15 @@ class _BuildProductItemState extends State<BuildProductItem> {
             color: context.colors.greyWhite,
           )),
       child: InkWell(
-        onTap: () => AutoRouter.of(context).push(
-          ProductDetailsRoute(
-            productId: widget.productModel.id!,
-            isResale: widget.productModel.isResale!,
-          ),
-        ),
+        onTap: () async {
+          await AutoRouter.of(context).push(
+            ProductDetailsRoute(
+              productId: widget.productModel.id!,
+              isResale: widget.productModel.isResale!,
+            ),
+          );
+          widget.onRefresh?.call();
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -81,7 +86,8 @@ class _BuildProductItemState extends State<BuildProductItem> {
                   Visibility(
                     visible: widget.productModel.hasDiscount!,
                     replacement: Visibility(
-                        visible: (widget.showVipDiscount ?? false) && widget.productModel.hasVipOffer!,
+                        visible: (widget.showVipDiscount ?? false) &&
+                            widget.productModel.hasVipOffer!,
                         child: _discountWidget(context)),
                     child: _discountWidget(context),
                   ),
@@ -95,7 +101,9 @@ class _BuildProductItemState extends State<BuildProductItem> {
                             return Visibility(
                               visible: state.data,
                               replacement: BuildIconItem(
-                                icon: widget.productModel.isWishlist! ? Res.favIcon : Res.emptyFavIcon,
+                                icon: widget.productModel.isWishlist!
+                                    ? Res.favIcon
+                                    : Res.emptyFavIcon,
                                 changeBgColor: false,
                                 onTap: () => ProductsHelper().toggleFavourite(
                                   id: widget.productModel.id!,
@@ -176,7 +184,8 @@ class _BuildProductItemState extends State<BuildProductItem> {
                             ),
                             Gaps.vGap3,
                             Visibility(
-                              visible: widget.productModel.hasDiscount ?? false || (widget.showVipDiscount ?? false),
+                              visible: widget.productModel.hasDiscount ??
+                                  false || (widget.showVipDiscount ?? false),
                               child: Text(
                                 widget.productModel.priceHighLow!,
                                 style: AppTextStyle.s12_w400(
@@ -208,7 +217,8 @@ class _BuildProductItemState extends State<BuildProductItem> {
                             Res.shopCart,
                             width: 14,
                             height: 14,
-                            colorFilter: ColorFilter.mode(context.colors.black, BlendMode.srcIn),
+                            colorFilter: ColorFilter.mode(
+                                context.colors.black, BlendMode.srcIn),
                           ),
                         ),
                       ),
