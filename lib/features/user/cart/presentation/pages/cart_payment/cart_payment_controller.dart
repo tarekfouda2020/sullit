@@ -19,6 +19,9 @@ class CartPaymentController {
   GenericBloc(null);
   String? selectedPayment;
 
+  bool isGiftCardApplied = false;
+
+
   CartPaymentController(Shipping shipping) {
     shipping.paymentOption?.first.selected = true;
     selectedPayment = shipping.paymentOption?.first.paymentTypeKey;
@@ -280,6 +283,7 @@ class CartPaymentController {
       FocusScope.of(context).unfocus();
       await ApplyGiftCard().call(ApplyGiftCardParams(giftCardCode: giftCardCode.text)).then((value) {
         if (value != null) {
+          isGiftCardApplied = true;
           shippingBloc.state.data!.summary = value.summary;
           shippingBloc.state.data!.summary.appliedGiftCard = value.appliedGiftCard;
           shippingBloc.onUpdateData(shippingBloc.state.data);

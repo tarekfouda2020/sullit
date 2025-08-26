@@ -126,6 +126,17 @@ class HomeMainController {
 
   }
 
+
+
+  void routeToSearchPage(BuildContext context){
+    AutoRouter.of(context).push(
+      SearchRoute(
+        searchText: homeController.searchController.text,
+      ),
+    );
+  }
+
+
   //
   // Future<void> scanSkuNumber() async {
   //   try {

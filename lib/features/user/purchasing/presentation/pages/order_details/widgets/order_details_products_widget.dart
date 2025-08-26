@@ -2,13 +2,13 @@ part of 'order_details_widgets_imports.dart';
 
 class OrderDetailsProductsWidget extends StatelessWidget {
   final bool isReturned;
-  final bool hasReview;
+  // final bool hasReview;
   final Orders order;
    final OrderDetailsPageController controller;
   const OrderDetailsProductsWidget({
     super.key,
     required this.isReturned,
-    required this.hasReview,
+    // required this.hasReview,
     required this.controller,
     required this.order,
   });
@@ -33,15 +33,15 @@ class OrderDetailsProductsWidget extends StatelessWidget {
               ),
               Gaps.hGap7,
               Text(
-               order?.soldBy ?? "Munch Corner",
+               order.soldBy,
                 style: AppTextStyle.s14_w600(color: context.colors.black),
               ),
             ],
           ),
           Gaps.vGap12,
-          ...List.generate(order.orderDetails.length ?? 0, (index) {
+          ...List.generate(order.orderDetails.length, (index) {
             return  OrderDetailsProductItemWidget(
-              hasReview: hasReview,
+              hasReview: order.orderDetails[index].isAvailableReview,
               onPressReview: () => controller.reviewSheet(context,order.orderDetails[index]),
               orderDetails: controller.orderDetailsBloc.state.data!.orderDetails[index],
             );
@@ -50,11 +50,7 @@ class OrderDetailsProductsWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 18),
               child: GestureDetector(
-                onTap:  () {
-                  if(order?.id != null){
-                    AutoRouter.of(context).push( TrackOrderRoute(orderId: order!.id));
-                  }
-                },
+                onTap:  () => AutoRouter.of(context).push( TrackOrderRoute(orderId: order.id)),
                 child: Row(
                   children: [
                     Text(

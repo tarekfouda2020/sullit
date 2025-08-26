@@ -1,4 +1,4 @@
-part  of 'loyalty_points_imports.dart';
+part of 'loyalty_points_imports.dart';
 
 class LoyaltyPoints extends StatefulWidget {
   const LoyaltyPoints({super.key});
@@ -8,24 +8,24 @@ class LoyaltyPoints extends StatefulWidget {
 }
 
 class _LoyaltyPointsState extends State<LoyaltyPoints> {
-
   late LoyaltyPointsController controller = LoyaltyPointsController();
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(title: tr("loyaltyPoints")),
+      appBar: DefaultAppBar(title: tr("loyaltyPoints")),
       body: Padding(
         padding: Dimens.paddingHorizontal20PX,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LoyaltyPointsInfo(controller: controller,),
-            Text(tr('transactions'),
-            style: AppTextStyle.s20_w700(color: context.colors.black),
+            LoyaltyPointsInfo(
+              controller: controller,
+            ),
+            Text(
+              tr('transactions'),
+              style: AppTextStyle.s20_w700(color: context.colors.black),
             ),
             Gaps.vGap12,
             Expanded(
@@ -41,12 +41,12 @@ class _LoyaltyPointsState extends State<LoyaltyPoints> {
                       );
                     },
                     noItemsFoundIndicatorBuilder: (cxt) {
-                                              return  Center(
-                          child: Text(
-                            tr("noTransactionsFound"),
-                            style: AppTextStyle.s16_w700(color: context.colors.black),
-                          ),
-                        );
+                      return Center(
+                        child: Text(
+                          tr("noTransactionsFound"),
+                          style: AppTextStyle.s16_w700(color: context.colors.black),
+                        ),
+                      );
                     },
                     firstPageProgressIndicatorBuilder: (_) => Column(
                       children: List.generate(5, (index) {

@@ -736,14 +736,22 @@
   "myGiftCards": "بطاقات الهديا الخاصة بي",
   "notSubscribedToGiftCards": "أنت غير مشترك في أي بطاقات هدية. تحقق من أحدث عروضنا!",
   "validForExpiredDays": "صالح لمدة",
-  "orderNumber": "رقم الطلب",
+  "orderNumber": "طلب #",
   "returnedDate": "تاريخ الإرجاع",
   "refundMethod": "طريقة الاسترداد",
   "giftCardApplied": "تم تطبيق بطاقة الهدايا",
   "qnt": "الكمية:",
   "emailVerify": "تم التحقق من بريدك الإلكتروني بنجاح",
   "confirmChange":"تأكيد",
-  "currentPassword":"كلمة المرور الحالية"
+  "currentPassword":"كلمة المرور الحالية",
+  "currency":"د.إ",
+  "applyGiftCardFirst":"يرجى استخدام بطاقة الهدايا أولاً",
+  "benefits":"المميزات",
+  "review":"التقيم",
+  "addReview": "إضافة مراجعة",
+  "viewReview": "عرض المراجعة"
+
+
 }
 
 

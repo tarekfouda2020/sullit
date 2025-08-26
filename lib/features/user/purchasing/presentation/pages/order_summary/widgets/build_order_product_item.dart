@@ -34,12 +34,12 @@ class BuildOrderProductItem extends StatelessWidget {
         ),
         BuildOrderInfoItem(
           title: "${tr('price')} :",
-          subTitle: orderDetails.price,
+          subTitle: orderDetails.price.parseCurrency,
         ),
         Visibility(
           visible: orderDetails.isAvailableReview,
           child: DefaultButton(
-            title: orderDetails.review == null ? 'Add Review' : "View Review",
+            title: orderDetails.review == null ? tr("addReview") : tr("viewReview"),
             onTap: () => controller.showReviewDialog(context, orderDetails),
             height: 30.h,
             width: 200.w,

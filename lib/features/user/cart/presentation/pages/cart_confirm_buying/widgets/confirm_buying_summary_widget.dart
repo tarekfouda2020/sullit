@@ -12,15 +12,15 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
         children: [
           BuildSummaryHeader(
             title: tr('totalItems'),
-            details: "${orderSummary.subTotal.toString()}${tr("currencyCode")}",
+            details: "${orderSummary.subTotal.toString()} ${tr("currency")}",
           ),
           BuildSummaryHeader(
             title: tr('tax'),
-            details: "${orderSummary.tax.toString()}${tr("currencyCode")}",
+            details: "${orderSummary.tax.toString()} ${tr("currency")}",
           ),
           BuildSummaryHeader(
             title: tr('shippingFees'),
-            details: "${orderSummary.shippingTotal.toString()}${tr("currencyCode")}",
+            details: "${orderSummary.shippingTotal.toString()}${tr("currency")}",
           ),
           Visibility(
             visible: orderSummary.loyaltyPointsDiscount>0 || orderSummary.discounts > 0,
@@ -29,15 +29,15 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
                   ? tr("pointsDiscount")
                   :tr("voucherDiscount"),
               details: orderSummary.loyaltyPointsDiscount>0
-                  ? "${orderSummary.loyaltyPointsDiscount}${tr("currencyCode")}"
-                  :"${orderSummary.discounts}${tr("currencyCode")}",
+                  ? "${orderSummary.loyaltyPointsDiscount}${tr("currency")}"
+                  :"${orderSummary.discounts}${tr("currency")}",
               detailsColor: context.colors.primary,
             ),
           ),
           Gaps.line(context.colors.softGray, 15.h),
           BuildSummaryHeader(
             title: tr("total"),
-            details: "${orderSummary.total}${tr("currencyCode")}",
+            details: "${orderSummary.total}${tr("currency")}",
             // isTotal: true,
           ),
         ]);

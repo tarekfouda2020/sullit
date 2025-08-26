@@ -11,7 +11,7 @@ class TrackOrderController {
   TrackOrderController(this.orderId);
 
   Future<void> getTrackOrder() async {
-    GetTrackHistory().call(orderId).then((value) {
+   await GetTrackHistory().call(orderId).then((value) {
       if (value != null) {
         trackOrderCubit.onUpdateData(value);
       }

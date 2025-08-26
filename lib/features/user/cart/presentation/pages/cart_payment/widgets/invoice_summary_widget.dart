@@ -25,15 +25,15 @@ class InvoiceSummaryWidget extends StatelessWidget {
             children: [
           BuildSummaryHeader(
             title: tr('totalItems'),
-            details: shippingSummary.subTotal,
+            details: shippingSummary.subTotal.parseCurrency,
           ),
           BuildSummaryHeader(
             title: tr('tax'),
-            details: shippingSummary.tax,
+            details: shippingSummary.tax.parseCurrency,
           ),
           BuildSummaryHeader(
             title: tr('shippingFees'),
-            details: shippingSummary.shipping,
+            details: shippingSummary.shipping.parseCurrency,
           ),
               Visibility(
                   visible: shippingSummary.couponApplied == true || shippingSummary.loyaltyPointsApplied==true,
@@ -42,8 +42,8 @@ class InvoiceSummaryWidget extends StatelessWidget {
                           ? tr("pointsDiscount")
                           :tr("voucherDiscount"),
                       details: shippingSummary.loyaltyPointsApplied == true
-                          ? "${shippingSummary.loyaltyPointsValue} "
-                          :shippingSummary.couponDiscount,
+                          ? "-${shippingSummary.loyaltyPointsValue.parseCurrency} "
+                          :"-${shippingSummary.couponDiscount.parseCurrency}",
                       detailsColor: context.colors.primary,
                     ),
                 ),
@@ -51,7 +51,7 @@ class InvoiceSummaryWidget extends StatelessWidget {
                 visible: applyGiftCard,
                 child: BuildSummaryHeader(
                   title: tr("appliedGiftCard"),
-                  details: "-$giftCardTotal",
+                  details: "-${giftCardTotal.parseCurrency}",
                   detailsColor: context.colors.primary,
                 ),
               ),
@@ -61,7 +61,7 @@ class InvoiceSummaryWidget extends StatelessWidget {
             title: tr("total"),
             details: applyGiftCard
                 ?"0.00"
-                :shippingSummary.total,
+                :shippingSummary.total.parseCurrency,
             // isTotal: true,
           ),
         ]

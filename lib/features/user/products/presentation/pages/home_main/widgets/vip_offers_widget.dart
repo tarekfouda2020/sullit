@@ -8,6 +8,7 @@ class VipOffersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String lang = context.read<DeviceCubit>().state.model.locale.languageCode;
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -51,9 +52,12 @@ class VipOffersWidget extends StatelessWidget {
                   decoration: BoxDecoration(color: context.colors.white,
                   shape: BoxShape.circle
                   ),
-                  child: Transform.scale(
-                      scale: 0.4,
-                      child: SvgPicture.asset(Res.arrowForward)),
+                  child: Transform.rotate(
+                    angle: lang == 'ar'? pi : 0,
+                    child: Transform.scale(
+                        scale: 0.4,
+                        child: SvgPicture.asset(Res.arrowForward)),
+                  ),
                 ),
                 Text(
                   text,

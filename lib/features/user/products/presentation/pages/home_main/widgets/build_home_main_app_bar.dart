@@ -41,12 +41,9 @@ class BuildHomeMainAppBar extends StatelessWidget {
                       ),
                     ),
                   ),
+                  onSubmit: () => homeMainController.routeToSearchPage(context),
                   prefixIcon: InkWell(
-                    onTap: () => AutoRouter.of(context).push(
-                      SearchRoute(
-                        searchText: controller.searchController.text,
-                      ),
-                    ),
+                    onTap: () => homeMainController.routeToSearchPage(context),
                     child: Transform.scale(
                       scale: 0.4,
                       child: SvgPicture.asset(Res.searchIcon),

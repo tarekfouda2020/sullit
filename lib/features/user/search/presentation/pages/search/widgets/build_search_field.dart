@@ -19,9 +19,9 @@ class BuildSearchField extends StatelessWidget {
       onSubmit: () => controller.getSearchResults(),
       suffixIcon: InkWell(
         onTap: () => controller.getSearchResults(),
-        child: Icon(
-          Icons.search,
-          color: context.colors.black,
+        child: Transform.scale(
+          scale: 0.4,
+          child: SvgPicture.asset(Res.searchIcon),
         ),
       ),
       margin: Dimens.standardPadding,

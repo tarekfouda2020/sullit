@@ -6,5 +6,8 @@ extension StringHelperExtension on String? {
   String get parseCurrency {
   return getIt<Utilities>().parseCurrency(this ?? "");
   }
+  String get rawPrice {
+  return getIt<Utilities>().getPrice(this ?? "");
+  }
 
 }

@@ -20,7 +20,7 @@ class CartItemModel extends BaseApiModel<CartItem> with _$CartItemModel {
     required String price,
     required String tax,
     required int quantity,
-    required int rating,
+    required double rating,
     @JsonKey(name: "is_digital") required bool isDigital,
     required String total,
     @JsonKey(name: "calculable_total") required num calculableTotal,

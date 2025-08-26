@@ -17,25 +17,26 @@ class OrderDetailsSummaryWidget extends StatelessWidget {
         children: [
            OrderSummaryItemWidget(
             priceType: tr('totalItems'),
-            price: order?.subtotal ?? '63.00 AED',
+            price: order?.subtotal.parseCurrency ?? '',
           ),
           Gaps.vGap10,
            OrderSummaryItemWidget(
             priceType: tr('tax'),
-            price: order?.tax ?? '7.00 AED',
+            price: order?.tax.parseCurrency ?? '',
           ),
           Gaps.vGap10,
           if(!isReturned)
            OrderSummaryItemWidget(
             priceType: tr('shippingFees'),
-            price: order?.shipping ?? '7.00 AED',
+            price: order?.shipping.parseCurrency ?? '',
           ),
           if(!isReturned)
             Gaps.vGap10,
          if(order?.isCouponApply ?? true)
           OrderSummaryItemWidget(
               priceType: tr('voucherDiscount'),
-              price: order?.getDiscountNumber().toString() ?? '-2.00 AED',
+              // price: order?.getDiscountNumber().toString() ?? '',
+              price: order?.couponDiscount.parseCurrency?? '',
               priceColor: context.colors.primary
           ),
           Gaps.vGap10,
@@ -50,7 +51,7 @@ class OrderDetailsSummaryWidget extends StatelessWidget {
                 ),
               ),
               Text(
-                order?.total ?? "17.00 AED",
+                order?.total.parseCurrency ?? "",
                 style: AppTextStyle.s16_w700(color: context.colors.black),
               )
             ],

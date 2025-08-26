@@ -52,7 +52,8 @@ class BuildProductButtons extends StatelessWidget {
                     bloc: controller.qtyCubit,
                     builder: (context, state) {
                       return Text(
-                        "${detailsModel.product.variant?.calculablePrice} ${detailsModel.product.currencySymbol}",
+                        "${detailsModel.product.variant?.calculablePrice} ${tr("currency")}",
+                        // "${detailsModel.product.variant?.calculablePrice} ${detailsModel.product.currencySymbol}",
                         style: AppTextStyle.s14_w600(
                           color: context.colors.primary,
                         ),

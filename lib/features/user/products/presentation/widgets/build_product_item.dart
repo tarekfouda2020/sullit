@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
@@ -168,7 +169,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              widget.productModel.priceHighLowDiscount!,
+                              widget.productModel.priceHighLowDiscount!.parseCurrency,
                               // style: AppTextStyle.s11_bold(
                               style: AppTextStyle.s14_w600(
                                 color: context.colors.primary,
@@ -178,7 +179,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                             Visibility(
                               visible: widget.productModel.hasDiscount ?? false || (widget.showVipDiscount ?? false),
                               child: Text(
-                                widget.productModel.priceHighLow!,
+                                widget.productModel.priceHighLow!.parseCurrency,
                                 style: AppTextStyle.s12_w400(
                                   color: context.colors.textColor,
                                 ).copyWith(

@@ -29,7 +29,7 @@ mixin _$CartItemModel {
   String get price => throw _privateConstructorUsedError;
   String get tax => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
-  int get rating => throw _privateConstructorUsedError;
+  double get rating => throw _privateConstructorUsedError;
   @JsonKey(name: "is_digital")
   bool get isDigital => throw _privateConstructorUsedError;
   String get total => throw _privateConstructorUsedError;
@@ -72,7 +72,7 @@ abstract class $CartItemModelCopyWith<$Res> {
       String price,
       String tax,
       int quantity,
-      int rating,
+      double rating,
       @JsonKey(name: "is_digital") bool isDigital,
       String total,
       @JsonKey(name: "calculable_total") num calculableTotal,
@@ -151,7 +151,7 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       isDigital: null == isDigital
           ? _value.isDigital
           : isDigital // ignore: cast_nullable_to_non_nullable
@@ -216,7 +216,7 @@ abstract class _$$_CartItemModelCopyWith<$Res>
       String price,
       String tax,
       int quantity,
-      int rating,
+      double rating,
       @JsonKey(name: "is_digital") bool isDigital,
       String total,
       @JsonKey(name: "calculable_total") num calculableTotal,
@@ -293,7 +293,7 @@ class __$$_CartItemModelCopyWithImpl<$Res>
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       isDigital: null == isDigital
           ? _value.isDigital
           : isDigital // ignore: cast_nullable_to_non_nullable
@@ -388,7 +388,7 @@ class _$_CartItemModel extends _CartItemModel {
   @override
   final int quantity;
   @override
-  final int rating;
+  final double rating;
   @override
   @JsonKey(name: "is_digital")
   final bool isDigital;
@@ -510,7 +510,7 @@ abstract class _CartItemModel extends CartItemModel {
       required final String price,
       required final String tax,
       required final int quantity,
-      required final int rating,
+      required final double rating,
       @JsonKey(name: "is_digital") required final bool isDigital,
       required final String total,
       @JsonKey(name: "calculable_total") required final num calculableTotal,
@@ -544,7 +544,7 @@ abstract class _CartItemModel extends CartItemModel {
   @override
   int get quantity;
   @override
-  int get rating;
+  double get rating;
   @override
   @JsonKey(name: "is_digital")
   bool get isDigital;

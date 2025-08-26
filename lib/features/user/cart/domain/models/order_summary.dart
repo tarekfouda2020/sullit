@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
@@ -19,52 +20,31 @@ class OrderSummary extends BaseDomainModel {
     this.transactionUrl,
   });
 
-  double get subTotal {
-    var subTotalList = (sectionOrders ?? <Orders>[])
-        .map((e) => getIt<Utilities>().extractFormattedNumberToDouble(e.subtotal) ?? 0.0)
-        .toList();
-    return subTotalList.fold(0.0, (previousValue, element) => previousValue+element);
+  double _sumBy(double? Function(Orders e) selector) {
+    return (sectionOrders ?? <Orders>[]).map((e) => selector(e) ?? 0.0).fold(0.0, (prev, element) => prev + element);
   }
 
-  double get tax {
-    var subTotalList = (sectionOrders ?? <Orders>[])
-        .map((e) => getIt<Utilities>().extractFormattedNumberToDouble(e.tax) ?? 0.0)
-        .toList();
-    return subTotalList.fold(0.0, (previousValue, element) => previousValue+element);
-  }
+  double get subTotal => _sumBy(
+        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.subtotal),
+      );
 
-  double get shippingTotal {
-    var subTotalList = (sectionOrders ?? <Orders>[])
-        .map((e) => getIt<Utilities>().extractFormattedNumberToDouble(e.shipping) ?? 0.0)
-        .toList();
-    return subTotalList.fold(0.0, (previousValue, element) => previousValue+element);
-  }
+  double get tax => _sumBy(
+        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.tax),
+      );
 
-  double get total {
-    var subTotalList = (sectionOrders ?? <Orders>[])
-        .map((e) {
-          return getIt<Utilities>().extractFormattedNumberToDouble(e.total) ?? 0.0;
-    })
-        .toList();
-    return subTotalList.fold(0.0, (previousValue, element) => previousValue+element);
-  }
+  double get shippingTotal => _sumBy(
+        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.shipping),
+      );
 
-  double get loyaltyPointsDiscount {
-    var subTotalList = (sectionOrders ?? <Orders>[])
-        .map((e) {
-      return getIt<Utilities>().extractFormattedNumberToDouble(e.loyaltyPointsValue) ?? 0.0;
-    })
-        .toList();
-    return subTotalList.fold(0.0, (previousValue, element) => previousValue+element);
-  }
+  double get total => _sumBy(
+        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.total),
+      );
 
-  double get discounts {
-    var subTotalList = (sectionOrders ?? <Orders>[])
-        .map((e) {
-      return getIt<Utilities>().extractFormattedNumberToDouble(e.couponDiscount) ?? 0.0;
-    })
-        .toList();
-    return subTotalList.fold(0.0, (previousValue, element) => previousValue+element);
-  }
+  double get loyaltyPointsDiscount => _sumBy(
+        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.loyaltyPointsValue),
+      );
 
+  double get discounts => _sumBy(
+        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.couponDiscount),
+      );
 }

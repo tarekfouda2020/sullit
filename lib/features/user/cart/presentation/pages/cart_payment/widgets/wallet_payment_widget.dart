@@ -23,11 +23,11 @@ class WalletPaymentWidget extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Use Wallet Balance",
+                    Text(tr("useWalletBalance"),
                       style: AppTextStyle.s14_w400(color: context.colors.black),
                     ),
                     Gaps.vGap6,
-                    Text(shipping.summary.walletBalance,
+                    Text(shipping.summary.walletBalance.parseCurrency,
                       style: AppTextStyle.s12_w700(color: context.colors.primary),
                     ),
 

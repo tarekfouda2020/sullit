@@ -15,7 +15,7 @@ _$_CartItemModel _$$_CartItemModelFromJson(Map<String, dynamic> json) =>
       price: json['price'] as String,
       tax: json['tax'] as String,
       quantity: json['quantity'] as int,
-      rating: json['rating'] as int,
+      rating: (json['rating'] as num).toDouble(),
       isDigital: json['is_digital'] as bool,
       total: json['total'] as String,
       calculableTotal: json['calculable_total'] as num,

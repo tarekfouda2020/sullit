@@ -28,58 +28,61 @@ class _TrackOrderState extends State<TrackOrder> {
         bloc: controller.trackOrderCubit,
         builder: (context, state) {
           if (state is GenericUpdateState) {
-            return ListView(
-              padding: Dimens.paddingHorizontal15PX,
-              children: [
-                TrackOrderNumberWidget(
-                  model: state.data!,
-                ),
-                Gaps.vGap17,
-                Stack(
-                  children: [
-                    Column(
-                      children:
-                        List.generate(
-                            5,
-                                (index) {
-                              return TrackStatusWidget(
-                                isActive: false,
-                                isLast: index == 4,
-                              );
-                            }),
-                    ),
-                    Column(
-                      children: List.generate(state.data!.tracking.length, (index) {
-                        return TrackOrderItemWidget(
-                          statusModel: state.data!.tracking[index],
-                          trackModel: state.data!,
-                          isLast: index == 4,
-                        );
-                      }),
-                    )
+            return RefreshIndicator(
+              onRefresh: () async => await controller.getTrackOrder(),
+              child: ListView(
+                padding: Dimens.paddingHorizontal15PX,
+                children: [
+                  TrackOrderNumberWidget(
+                    model: state.data!,
+                  ),
+                  Gaps.vGap17,
+                  Stack(
+                    children: [
+                      Column(
+                        children:
+                          List.generate(
+                              inActiveItemsListLength(state.data!),
+                                  (index) {
+                                return TrackStatusWidget(
+                                  isActive: false,
+                                  isLast: index == inActiveItemsListLength(state.data!)-1,
+                                );
+                              }),
+                      ),
+                      Column(
+                        children: List.generate(state.data!.tracking.length, (index) {
+                          return TrackOrderItemWidget(
+                            statusModel: state.data!.tracking[index],
+                            trackModel: state.data!,
+                            isLast: index == inActiveItemsListLength(state.data!)-1,
+                          );
+                        }),
+                      )
 
-                  ],
-                )
+                    ],
+                  )
 
-                // const TrackOrderItemWidget(
-                //   isLast: false,
-                //   trackStatus: TrackOrderEnum.placed,
-                // ),
-                // const TrackOrderItemWidget(
-                //   isLast: false,
-                //   trackStatus: TrackOrderEnum.pickedUp,
-                // ),
-                // const TrackOrderItemWidget(
-                //   isLast: false,
-                //   trackStatus: TrackOrderEnum.onTheWay,
-                // ),
-                // const TrackOrderItemWidget(
-                //   isLast: true,
-                //   trackStatus: TrackOrderEnum.delivered,
-                // ),
-                // BuildTrackOrderField(controller: controller),
-                // BuildTrackOrderSummary(controller: controller),
-              ],
+                  // const TrackOrderItemWidget(
+                  //   isLast: false,
+                  //   trackStatus: TrackOrderEnum.placed,
+                  // ),
+                  // const TrackOrderItemWidget(
+                  //   isLast: false,
+                  //   trackStatus: TrackOrderEnum.pickedUp,
+                  // ),
+                  // const TrackOrderItemWidget(
+                  //   isLast: false,
+                  //   trackStatus: TrackOrderEnum.onTheWay,
+                  // ),
+                  // const TrackOrderItemWidget(
+                  //   isLast: true,
+                  //   trackStatus: TrackOrderEnum.delivered,
+                  // ),
+                  // BuildTrackOrderField(controller: controller),
+                  // BuildTrackOrderSummary(controller: controller),
+                ],
+              ),
             );
           } else {
             return const TrackingOrderShimmerWidget();
@@ -90,10 +93,23 @@ class _TrackOrderState extends State<TrackOrder> {
   }
 
 
-  // int inActiveItemsListLength(TrackOrderModel model){
-  //   var isCancelled = model.tracking.map((e) => e.status).toList().contains("Cancelled");
-  //   return 5;
-  // }
+  int inActiveItemsListLength(TrackOrderModel model){
+    var isCompleted = model.isCompleted;
+   // (3 steps from dashboard) in case confirmed then delivered directly
+    if( isCompleted && model.tracking.length == 3 ){
+      return 3;
+    }
+    // (4 steps from dashboard) in case pickedUp then delivered directly
+    if(isCompleted && model.tracking.length == 4){
+      return 4;
+    }
+    // (5 steps from dashboard) in case onTheWay then delivered directly
+    if(isCompleted && model.tracking.length == 5){
+      return 5;
+    }
+    // (5 all steps number in regular case)
+    return 5;
+  }
 
 
 }

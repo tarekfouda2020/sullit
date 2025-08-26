@@ -62,7 +62,7 @@ class CartSheetItemWidget extends StatelessWidget {
                   onRatingUpdate: (rating) {},
                 ),
                 Gaps.vGap5,
-                Text(item.price,
+                Text(item.price.parseCurrency,
                   style: AppTextStyle.s14_w600(color: context.colors.primary),
                 ),
                 Gaps.vGap6,

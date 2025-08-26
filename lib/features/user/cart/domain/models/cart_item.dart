@@ -19,7 +19,7 @@ class CartItem extends BaseDomainModel {
   String soldByType;
   String soldBy;
   int shopId;
-  int rating;
+  double rating;
 
 
   CartItem({

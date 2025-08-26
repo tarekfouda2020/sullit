@@ -574,7 +574,16 @@
   "currentPassword":"Current Password",
   "productScanned": "Product Scanned",
   "chargeWallet": "Charge Wallet Balance",
-  "enterAmount": "Enter Amount"
+  "enterAmount": "Enter Amount",
+  "currency":"AED",
+  "applyGiftCardFirst":"Please apply gift card first",
+  "benefits":"Benefits",
+  "review":"Review",
+  "addReview":"Add Review",
+  "viewReview":"View Review"
+
+
+
 }
 
 

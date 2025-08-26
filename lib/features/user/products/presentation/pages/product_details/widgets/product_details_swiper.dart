@@ -65,7 +65,7 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
                 ),
               ),
               child: const Center(child: LoadingIconWidget(
-                margin: EdgeInsets.all(30),
+                margin: EdgeInsets.all(25),
               )),
             );
           },

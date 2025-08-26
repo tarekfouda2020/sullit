@@ -75,7 +75,7 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                       ),
                       Gaps.vGap14,
                       DefaultButton(
-                        title: "${tr('checkout')} - ${state.data.subTotal}",
+                        title: "${tr('checkout')} - ${state.data.subTotal.parseCurrency}",
                         onTap: () => AutoRouter.of(context).popAndPush(const CartRoute()),
                         margin: EdgeInsets.zero,
                       ),

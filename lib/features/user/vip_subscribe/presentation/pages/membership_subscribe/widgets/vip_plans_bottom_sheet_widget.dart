@@ -54,6 +54,7 @@ class VipPlansBottomSheetWidget extends StatelessWidget {
               ),
             ),
           ),
+          Gaps.vGap10,
           BlocBuilder<GenericBloc<bool>,GenericState<bool>>(
             bloc: controller.isDataLoaded,
               builder: (context, state) {

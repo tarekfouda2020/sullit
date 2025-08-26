@@ -14,6 +14,7 @@ import 'package:geocode/geocode.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
+import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -92,7 +93,9 @@ class Utilities {
       currencyPart = currencyMap[currencyPart]!;
     }
 
-    return "${num.parse(numberPart.replaceAll(',', '')).toStringAsFixed(0)} $currencyPart";
+    final double value = num.parse(numberPart.replaceAll(',', '')).toDouble();
+    final formattedNumber = NumberFormat("#,##0.00", lang).format(value);
+    return "$formattedNumber $currencyPart";
   }
 
   String capitalize(String text) {
@@ -113,15 +116,22 @@ class Utilities {
   }
 
   String getPrice(String text) {
-    final RegExp regExp = RegExp(r"^([^\d]+)([\d.,]+)$");
+    BuildContext ctx = getIt<GlobalContext>().context();
+    // String lang = GlobalState.instance.get("lang");
+    String lang = ctx.read<DeviceCubit>().state.model.locale.languageCode;
+    final RegExp regExp = RegExp(r"^([^\d]+)?([\d.,]+)$");
     final match = regExp.firstMatch(text);
-    if (match == null) return "0";
+    if (match == null) return "0.00";
     String numberPart = match.group(2)!.replaceAll(",", "").trim();
     double value = double.tryParse(numberPart) ?? 0.0;
-    return value.toStringAsFixed(2);
+
+    return NumberFormat("#,##0.00", lang).format(value);
   }
 
-  String getCurrency(String text, {String lang = "en"}) {
+  String getCurrency(String text) {
+    BuildContext ctx = getIt<GlobalContext>().context();
+    // String lang = GlobalState.instance.get("lang");
+    String lang = ctx.read<DeviceCubit>().state.model.locale.languageCode;
     final RegExp regExp = RegExp(r"^([^\d]+)([\d.,]+)$");
     final match = regExp.firstMatch(text);
     if (match == null) return "";

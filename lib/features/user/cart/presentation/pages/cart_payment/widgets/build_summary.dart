@@ -58,7 +58,7 @@ class BuildSummary extends StatelessWidget {
             visible: shipping.isAdminDiscount == true,
             child: BuildSummaryHeader(
               title: tr("discount"),
-              details: "${shipping.discountVal} ${tr("currencyCode")} ",
+              details: "${shipping.discountVal} ${tr("currency")} ",
             ),
           ),
           Gaps.line(context.colors.primary, 15.h),

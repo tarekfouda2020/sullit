@@ -38,19 +38,12 @@ class _ProfileState extends State<Profile>with WidgetsBindingObserver  {
                 BuildProfileImage(controller: controller),
                 BuildProfileFormFields(controller: controller),
                 BuildProfileButton(controller: controller),
+                const ChangePasswordWidget()
               ],
             ),
           ),
           LogoutButtonWidget(controller: controller),
           BuildDeleteAccountButton(controller: controller),
-          // DefaultButton(
-          //   title: tr("changePassword"),
-          //   height: 35.h,
-          //   color: context.colors.white,
-          //   textColor: context.colors.primary,
-          //   borderColor: context.colors.primary,
-          //   onTap: () => AutoRouter.of(context).push(const ChangePasswordRoute()),
-          // )
         ],
       ),
     );

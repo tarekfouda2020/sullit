@@ -18,14 +18,16 @@ class LoyaltyDiscountWidget extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Use Loyalty Points",
+                  Text(tr("useLoyaltyPoints"),
                     style: AppTextStyle.s14_w400(color: context.colors.black),
                   ),
                   Gaps.vGap6,
                   BlocBuilder<GenericBloc<LoyaltyPointsBalanceDomainModel?>, GenericState<LoyaltyPointsBalanceDomainModel?>>(
                     bloc: controller.loyaltyPointsBalanceBloc,
                     builder: (context, state) {
-                      return Text("${state.data == null ? '0' : state.data!.points.toString()} Point = ${state.data == null ? '0' : state.data!.amount}",
+                      return Text("${state.data == null ? '0'
+                          : state.data!.points.toString()} ${tr("point")} = ${state.data == null
+                          ? '0' : state.data!.amount.parseCurrency}",
                         style: AppTextStyle.s12_w700(color: context.colors.primary),
                       );
                     },

@@ -50,23 +50,26 @@ class BuildReviewDialog extends StatelessWidget {
                 unratedColor: context.colors.grey,
                 onRatingUpdate: (rating) {},
               ),
-              Padding(
-                padding: Dimens.paddingVertical15PX,
-                child: Row(
-                  children: [
-                    Text(
-                      "${tr('comment')} : ",
-                      style: AppTextStyle.s15_w700(
-                        color: context.colors.black,
+              Visibility(
+                visible:orderDetailsModel.review?.comment != null && orderDetailsModel.review?.createdAt != "" ,
+                child: Padding(
+                  padding: Dimens.paddingVertical15PX,
+                  child: Row(
+                    children: [
+                      Text(
+                        "${tr('comment')} : ",
+                        style: AppTextStyle.s15_w700(
+                          color: context.colors.black,
+                        ),
                       ),
-                    ),
-                    Text(
-                      orderDetailsModel.review?.comment??"",
-                      style: AppTextStyle.s15_w400(
-                        color: context.colors.black,
+                      Text(
+                        orderDetailsModel.review?.comment??"",
+                        style: AppTextStyle.s15_w400(
+                          color: context.colors.black,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               )
             ],

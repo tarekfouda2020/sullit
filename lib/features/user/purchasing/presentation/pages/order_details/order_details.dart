@@ -39,7 +39,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
               Gaps.vGap8,
               OrderDetailsProductsWidget(
                 isReturned: widget.isReturnedOrder,
-                hasReview: false,
+                // hasReview: false,
                 controller: controller,
                 order: state.data!,
               ),

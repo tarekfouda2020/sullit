@@ -26,19 +26,23 @@ class CartOrderDetailsWidget extends StatelessWidget {
                 Gaps.vGap22,
                 Divider(color:context.colors.softGray , thickness: 0.8,height: 0,),
                 Gaps.vGap12,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "${tr("orderNo")} : ",
-                      style: AppTextStyle.s18_w300(color: context.colors.black),
-                    ),
-                    Text(
-                      // "${summary.summary!.combinedOrderId}",
-                      "${summary.sectionOrders!.first.id}",
-                      style: AppTextStyle.s18_w300(color: context.colors.primary),
-                    ),
-                  ],
+                FittedBox(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "${tr("orderNo")} : ",
+                        style: AppTextStyle.s18_w300(color: context.colors.black),
+                      ),
+                      Text(
+                        // "${summary.summary!.combinedOrderId}",
+                        summary.sectionOrders!.first.code,
+                        style: AppTextStyle.s18_w600(color: context.colors.primary),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
                 Gaps.vGap12,
                 Divider(color:context.colors.softGray , thickness: 0.8,height: 0),

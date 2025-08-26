@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_sheet_header_widget.dart';
@@ -36,7 +37,7 @@ class _ReviewProductSheetWidgetState extends State<ReviewProductSheetWidget> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const BottomSheetHeaderWidget(title: "Review"),
+             BottomSheetHeaderWidget(title: tr("review")),
             Gaps.vGap(32),
             BlocBuilder<GenericBloc<double>, GenericState<double>>(
               bloc: ratCubit,
@@ -62,7 +63,7 @@ class _ReviewProductSheetWidgetState extends State<ReviewProductSheetWidget> {
             ),
             Gaps.vGap(52),
             DefaultButton(
-              title: "Confirm",
+              title: tr("confirm"),
               onTap: () => widget.onRateProduct(ratCubit.state.data),
               margin: EdgeInsets.zero,
             )

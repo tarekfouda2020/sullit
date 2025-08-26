@@ -74,7 +74,7 @@ class BuildDeliveryType extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        shipping.delivery?.shippingCost ?? "",
+                        shipping.delivery?.shippingCost.parseCurrency ?? "",
                         style: AppTextStyle.s14_w400(
                           color: context.colors.black,
                         ),

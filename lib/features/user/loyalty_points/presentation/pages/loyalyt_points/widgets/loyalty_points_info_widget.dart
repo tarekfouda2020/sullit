@@ -35,7 +35,7 @@ class LoyaltyPointsInfo extends StatelessWidget {
                       style: AppTextStyle.s28_w800(color: context.colors.gold),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 7),
+                      padding: const EdgeInsetsDirectional.only(top: 7,start: 3),
                       child: Text(
                         tr("point"),
                         style: AppTextStyle.s20_w400(color: context.colors.gold),
@@ -51,9 +51,17 @@ class LoyaltyPointsInfo extends StatelessWidget {
                     ),
                     Gaps.hGap16,
                     Text(
-                      state.data == null ? '0:00' : state.data!.amount,
+                      state.data == null ? '0:00' : state.data!.amount.rawPrice,
                       style: AppTextStyle.s28_w800(color: context.colors.gold),
                     ),
+                    Gaps.hGap3,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 7),
+                      child: Text(
+                        tr("currency"),
+                        style: AppTextStyle.s20_w400(color: context.colors.gold),
+                      ),
+                    )
                   ],
                 ),
                 Gaps.vGap19,

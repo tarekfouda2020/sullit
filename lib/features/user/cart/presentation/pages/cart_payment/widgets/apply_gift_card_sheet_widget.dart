@@ -49,14 +49,20 @@ class ApplyGiftCardSheet extends StatelessWidget {
               BuildPaymentButtons(
                 controller: controller,
                 margin: EdgeInsets.zero,
-                onTap: () {
-                  controller.createOrder(context);
-                },
+                onTap: () => _onPressSubmit(context),
               )
             ],
           ),
         ),
       ),
     );
+  }
+
+  void _onPressSubmit(BuildContext context) {
+      if(controller.isGiftCardApplied){
+      controller.createOrder(context);
+    }else{
+      CustomToast.showSimpleToast(msg: tr("applyGiftCardFirst"));
+    }
   }
 }

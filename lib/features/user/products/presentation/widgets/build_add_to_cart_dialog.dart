@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
@@ -80,8 +81,8 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                   const Spacer(),
                   Text(
                     showDiscount(context)
-                        ?"${state.data!.priceHighLowDiscount} "
-                        :"${state.data!.priceHighLow} ",
+                        ?"${state.data!.priceHighLowDiscount.parseCurrency} "
+                        :"${state.data!.priceHighLow.parseCurrency} ",
                     style: AppTextStyle.s14_w600(
                       color: context.colors.primary,
                     ),
@@ -94,7 +95,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                   children: [
                     Gaps.vGap10,
                     Text(
-                      "${state.data!.priceHighLow} ",
+                      "${state.data!.priceHighLow.parseCurrency} ",
                       style: AppTextStyle.s14_w600(
                         color: context.colors.black,
                       ).copyWith(
@@ -143,8 +144,8 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                   ),
                   Text(
                     !showDiscount(context)
-                        ?"${state.data!.priceHighLow}"
-                        :"${state.data!.variant?.calculablePrice} ${state.data!.variant?.currencySymbol}",
+                        ?state.data!.priceHighLow.parseCurrency
+                        :"${state.data!.variant?.calculablePrice.parseCurrency}",
                     style: AppTextStyle.s16_w500(color: context.colors.primary),
                   ),
                 ],

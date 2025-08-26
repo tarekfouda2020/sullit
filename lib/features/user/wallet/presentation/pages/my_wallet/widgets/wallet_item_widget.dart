@@ -34,7 +34,7 @@ class WalletItemWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  "Transaction no : #${item.referenceNo}",
+                  "Transaction no : #${item.id}",
                   style: AppTextStyle.s14_w700(
                     color: context.colors.black,
                   ),

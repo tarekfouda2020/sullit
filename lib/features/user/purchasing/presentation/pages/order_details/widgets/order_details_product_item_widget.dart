@@ -104,7 +104,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
               )
             ],
           ),
-          if (orderDetails.isAvailableReview)
+          if (orderDetails.isAvailableReview && orderDetails.review == null)
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

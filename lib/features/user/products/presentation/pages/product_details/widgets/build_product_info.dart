@@ -60,7 +60,7 @@ class BuildProductInfo extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "${productModel.priceHighLowDiscount} ",
+                  "${productModel.priceHighLowDiscount.parseCurrency} ",
                   style: AppTextStyle.s22_w600(
                     color: context.colors.primary,
                   ),
@@ -69,7 +69,7 @@ class BuildProductInfo extends StatelessWidget {
                 Visibility(
                   visible: productModel.hasDiscount!,
                   child: Text(
-                    "${productModel.priceHighLow} ",
+                    "${productModel.priceHighLow.parseCurrency} ",
                     style: AppTextStyle.s18_w400(
                       color: context.colors.textColor,
                     ).copyWith(
