@@ -39,17 +39,23 @@ class GiftCardInfoWidget extends StatelessWidget {
                 style: AppTextStyle.s18_w400(color: context.colors.white)
             ),
             Gaps.hGap2,
-            Text(getIt<Utilities>().parseCurrency(model.value),
+            Text(model.value.parseCurrency,
                 style: AppTextStyle.s18_w700(color: context.colors.gold)
             ),
           ],
         ),
         Gaps.vGap13,
         Text(
-            "${tr("validForDays")} ${model.validateDays} ${tr("days")}",
+            "${tr("validForDays")} ${_validateDays(model)} ${tr("days")}",
             style: AppTextStyle.s18_w400(color: context.colors.white)
         ),
       ],
     );
   }
+
+
+  int _validateDays(GiftCardDomainModel model){
+    return model.expiredInDays ?? model.validateDays;
+  }
+
 }

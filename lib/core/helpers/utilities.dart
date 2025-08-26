@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
@@ -18,7 +17,6 @@ import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:geocoding/geocoding.dart';
 
 import 'custom_toast.dart';
 
@@ -33,28 +31,6 @@ class Utilities {
     );
   }
 
-
-  Future<String?> scanBarcode({ScanMode? scanMode}) async {
-    try {
-      String barcode = await FlutterBarcodeScanner.scanBarcode(
-        '#ff6666',
-        tr('cancel'),
-        true,
-        scanMode ?? ScanMode.QR,
-      );
-
-      if (barcode == '-1' || barcode.isEmpty) {
-        return null;
-      }
-      return barcode;
-    } catch (e) {
-          CustomToast.showSimpleToast(
-            msg: tr('scanCancel'),
-            type: ToastType.error,
-          );
-          return null;
-    }
-  }
 
 
 

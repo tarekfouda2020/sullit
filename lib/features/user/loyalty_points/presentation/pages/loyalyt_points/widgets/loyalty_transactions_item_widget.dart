@@ -19,7 +19,7 @@ class LoyaltyTransactionItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            model.type,
+            model.type.capitalize,
             style: AppTextStyle.s14_w600(color: model.transactionType().getColor(context)),
           ),
           Gaps.vGap8,

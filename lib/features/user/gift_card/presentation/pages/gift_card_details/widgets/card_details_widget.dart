@@ -33,7 +33,7 @@ class GiftCardDetailsWidget extends StatelessWidget {
                     Gaps.vGap30,
                     GiftCardInfoWidget(controller: controller, model: state.data!,),
                     if(controller.isMyGiftCard)
-                      const GiftCardBarcodeWidget(),
+                       GiftCardBarcodeWidget(model: state.data!,),
                     if(controller.isMyGiftCard)
                       GiftCardCouponWidget(model: state.data!)
                   ],

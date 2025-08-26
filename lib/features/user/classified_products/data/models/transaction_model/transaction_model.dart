@@ -11,7 +11,7 @@ class TransactionModel extends BaseApiModel<Transaction> with _$TransactionModel
   const TransactionModel._();
   @JsonSerializable(explicitToJson: true)
   const factory TransactionModel({
-    @JsonKey(name: 'transaction_url') required String transactionUrl
+    @JsonKey(name: 'transaction_url')  String? transactionUrl
   }) = _TransactionModel;
 
 

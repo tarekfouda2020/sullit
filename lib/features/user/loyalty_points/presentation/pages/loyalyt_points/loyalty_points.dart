@@ -28,6 +28,7 @@ class _LoyaltyPointsState extends State<LoyaltyPoints> {
               style: AppTextStyle.s20_w700(color: context.colors.black),
             ),
             Gaps.vGap12,
+            // QrImageView(),
             Expanded(
               child: RefreshIndicator(
                 onRefresh: () => controller.getTransactions(1),

@@ -96,7 +96,7 @@ class MembershipItemWidget extends StatelessWidget {
                   style: AppTextStyle.s22_w600(color: context.colors.primary),
                 ),
                 Text(
-                  "${getIt<Utilities>().getCurrency(model.price)}/${getIt<Utilities>().capitalize(model.duration)}",
+                  "${getIt<Utilities>().getCurrency(model.price)}/${model.duration.capitalize}",
                   style: AppTextStyle.s22_w300(color: context.colors.primary),
                 ),
               ],

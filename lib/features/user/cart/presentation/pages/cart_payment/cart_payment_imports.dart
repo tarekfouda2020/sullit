@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,6 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
-import 'package:flutter_tdd/core/widgets/build_custom_app_bar.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/apply_gift_card_params.dart';
@@ -21,7 +19,6 @@ import 'package:flutter_tdd/features/user/cart/domain/models/gift_card_domain_mo
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/payment_option.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart';
-import 'package:flutter_tdd/features/user/cart/domain/models/shipping_summary.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/apply_coupon.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/apply_gift_card.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/apply_loyalty_points.dart';

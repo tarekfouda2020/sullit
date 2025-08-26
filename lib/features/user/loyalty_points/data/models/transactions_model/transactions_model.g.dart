@@ -10,7 +10,7 @@ _$_TransactionsModel _$$_TransactionsModelFromJson(Map<String, dynamic> json) =>
     _$_TransactionsModel(
       id: json['id'] as int,
       points: json['points'] as int,
-      transactionNo: json['transaction_no'] as String,
+      transactionNo: json['transaction_no'] as int,
       type: json['type'] as String,
       typeLabel: json['type_label'] as String,
       createdAt: json['created_at'] as String,

@@ -4,7 +4,7 @@ import 'package:flutter_tdd/features/user/gift_card/domain/enum/loyalty_point_ty
 class TransactionsDomainModel extends BaseDomainModel {
   final int id;
   final int points;
-  final String transactionsNo;
+  final int transactionsNo;
   final String type;
   final String typeLabel;
   final String createdAt;

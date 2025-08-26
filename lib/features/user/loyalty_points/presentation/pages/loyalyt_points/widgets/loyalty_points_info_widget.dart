@@ -64,11 +64,15 @@ class LoyaltyPointsInfo extends StatelessWidget {
                     )
                   ],
                 ),
-                Gaps.vGap19,
-                Image.asset(
-                  Res.giftCardBarcodePlaceholder,
-                  width: 236,
-                )
+                // Gaps.vGap19,
+                // Container(
+                //   color: context.colors.white,
+                //   padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
+                //   child: SvgPicture.string(
+                //     getIt<BarcodeService>().generateBarcode(state.data?.amount.rawPrice ?? ""),
+                //     width: 236, height: 74,
+                //   ),
+                // ),
               ],
             ),
           );

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
@@ -63,8 +64,7 @@ class GiftCardItemWidget extends StatelessWidget {
                                     color: context.colors.black)),
                           if (!isMyGiftCard) Gaps.hGap8,
                           Text(
-                              getIt<Utilities>()
-                                  .parseCurrency(model.price),
+                              model.price.parseCurrency,
                               style: AppTextStyle.s22_w600(
                                   color: context.colors.primary)),
                         ],
@@ -77,8 +77,7 @@ class GiftCardItemWidget extends StatelessWidget {
                                   color: context.colors.textColor)),
                           Gaps.hGap2,
                           Text(
-                              getIt<Utilities>()
-                                  .parseCurrency(model.value),
+                              model.value.parseCurrency,
                               style: AppTextStyle.s12_w700(
                                   color: context.colors.black)),
                         ],

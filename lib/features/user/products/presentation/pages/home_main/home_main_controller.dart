@@ -114,7 +114,7 @@ class HomeMainController {
 
 
   void scanProduct(BuildContext context)async{
-    String? barcode = await getIt<Utilities>().scanBarcode();
+    String? barcode = await getIt<BarcodeService>().scanBarcode();
     if(barcode!=null && barcode.isNotEmpty){
           getProductWithSkuAndRoute(context,barcode);
           CustomToast.showSnakeBar(

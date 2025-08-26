@@ -95,18 +95,17 @@ class GiftCardDetailsController {
     getIt<LoadingHelper>().showLoadingDialog();
     await PayGiftCardSubscribe().call(params).then((value) async {
       if (value != null) {
+        BuildContext ctx = getIt<GlobalContext>().context();
         if (value.transactionUrl != null) {
-          BuildContext ctx = getIt<GlobalContext>().context();
           getIt<LoadingHelper>().dismissDialog();
          var result = await AutoRouter.of(ctx).push(PaymentRoute(transactionUrl: value.transactionUrl!));
-          if(result == true){
-            isMyGiftCard = true;
-            await  myGiftCardDetails();
-          }
-        } else {
-        isMyGiftCard = true;
-        await  myGiftCardDetails();
+          // if(result == true){
+          //   isMyGiftCard = true;
+          //   await  myGiftCardDetails();
+          // }
         }
+        CustomToast.showSnakeBar(tr("giftCardSubscribed"));
+        AutoRouter.of(ctx).pop(true);
       }
       getIt<LoadingHelper>().dismissDialog();
     });

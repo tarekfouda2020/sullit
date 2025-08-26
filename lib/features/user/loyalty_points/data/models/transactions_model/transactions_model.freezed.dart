@@ -23,7 +23,7 @@ mixin _$TransactionsModel {
   int get id => throw _privateConstructorUsedError;
   int get points => throw _privateConstructorUsedError;
   @JsonKey(name: "transaction_no")
-  String get transactionNo => throw _privateConstructorUsedError;
+  int get transactionNo => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   @JsonKey(name: "type_label")
   String get typeLabel => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $TransactionsModelCopyWith<$Res> {
   $Res call(
       {int id,
       int points,
-      @JsonKey(name: "transaction_no") String transactionNo,
+      @JsonKey(name: "transaction_no") int transactionNo,
       String type,
       @JsonKey(name: "type_label") String typeLabel,
       @JsonKey(name: "created_at") String createdAt});
@@ -83,7 +83,7 @@ class _$TransactionsModelCopyWithImpl<$Res, $Val extends TransactionsModel>
       transactionNo: null == transactionNo
           ? _value.transactionNo
           : transactionNo // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -111,7 +111,7 @@ abstract class _$$_TransactionsModelCopyWith<$Res>
   $Res call(
       {int id,
       int points,
-      @JsonKey(name: "transaction_no") String transactionNo,
+      @JsonKey(name: "transaction_no") int transactionNo,
       String type,
       @JsonKey(name: "type_label") String typeLabel,
       @JsonKey(name: "created_at") String createdAt});
@@ -147,7 +147,7 @@ class __$$_TransactionsModelCopyWithImpl<$Res>
       transactionNo: null == transactionNo
           ? _value.transactionNo
           : transactionNo // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -186,7 +186,7 @@ class _$_TransactionsModel extends _TransactionsModel {
   final int points;
   @override
   @JsonKey(name: "transaction_no")
-  final String transactionNo;
+  final int transactionNo;
   @override
   final String type;
   @override
@@ -241,7 +241,7 @@ abstract class _TransactionsModel extends TransactionsModel {
   factory _TransactionsModel(
           {required final int id,
           required final int points,
-          @JsonKey(name: "transaction_no") required final String transactionNo,
+          @JsonKey(name: "transaction_no") required final int transactionNo,
           required final String type,
           @JsonKey(name: "type_label") required final String typeLabel,
           @JsonKey(name: "created_at") required final String createdAt}) =
@@ -257,7 +257,7 @@ abstract class _TransactionsModel extends TransactionsModel {
   int get points;
   @override
   @JsonKey(name: "transaction_no")
-  String get transactionNo;
+  int get transactionNo;
   @override
   String get type;
   @override

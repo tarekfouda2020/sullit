@@ -21,7 +21,7 @@ TransactionModel _$TransactionModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TransactionModel {
   @JsonKey(name: 'transaction_url')
-  String get transactionUrl => throw _privateConstructorUsedError;
+  String? get transactionUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $TransactionModelCopyWith<$Res> {
           TransactionModel value, $Res Function(TransactionModel) then) =
       _$TransactionModelCopyWithImpl<$Res, TransactionModel>;
   @useResult
-  $Res call({@JsonKey(name: 'transaction_url') String transactionUrl});
+  $Res call({@JsonKey(name: 'transaction_url') String? transactionUrl});
 }
 
 /// @nodoc
@@ -51,13 +51,13 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? transactionUrl = null,
+    Object? transactionUrl = freezed,
   }) {
     return _then(_value.copyWith(
-      transactionUrl: null == transactionUrl
+      transactionUrl: freezed == transactionUrl
           ? _value.transactionUrl
           : transactionUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -70,7 +70,7 @@ abstract class _$$_TransactionModelCopyWith<$Res>
       __$$_TransactionModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'transaction_url') String transactionUrl});
+  $Res call({@JsonKey(name: 'transaction_url') String? transactionUrl});
 }
 
 /// @nodoc
@@ -84,13 +84,13 @@ class __$$_TransactionModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? transactionUrl = null,
+    Object? transactionUrl = freezed,
   }) {
     return _then(_$_TransactionModel(
-      transactionUrl: null == transactionUrl
+      transactionUrl: freezed == transactionUrl
           ? _value.transactionUrl
           : transactionUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -100,7 +100,7 @@ class __$$_TransactionModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_TransactionModel extends _TransactionModel {
   const _$_TransactionModel(
-      {@JsonKey(name: 'transaction_url') required this.transactionUrl})
+      {@JsonKey(name: 'transaction_url') this.transactionUrl})
       : super._();
 
   factory _$_TransactionModel.fromJson(Map<String, dynamic> json) =>
@@ -108,7 +108,7 @@ class _$_TransactionModel extends _TransactionModel {
 
   @override
   @JsonKey(name: 'transaction_url')
-  final String transactionUrl;
+  final String? transactionUrl;
 
   @override
   String toString() {
@@ -144,8 +144,8 @@ class _$_TransactionModel extends _TransactionModel {
 
 abstract class _TransactionModel extends TransactionModel {
   const factory _TransactionModel(
-      {@JsonKey(name: 'transaction_url')
-      required final String transactionUrl}) = _$_TransactionModel;
+          {@JsonKey(name: 'transaction_url') final String? transactionUrl}) =
+      _$_TransactionModel;
   const _TransactionModel._() : super._();
 
   factory _TransactionModel.fromJson(Map<String, dynamic> json) =
@@ -153,7 +153,7 @@ abstract class _TransactionModel extends TransactionModel {
 
   @override
   @JsonKey(name: 'transaction_url')
-  String get transactionUrl;
+  String? get transactionUrl;
   @override
   @JsonKey(ignore: true)
   _$$_TransactionModelCopyWith<_$_TransactionModel> get copyWith =>
