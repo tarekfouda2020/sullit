@@ -9,48 +9,42 @@ class BuildBanners extends StatelessWidget {
   Widget build(BuildContext context) {
     return Visibility(
       visible: banners.isNotEmpty,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: Dimens.dp10,
-          horizontal: 0,
-        ),
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: 130.spMin,
-          child: Visibility(
-            visible: banners.length > 1,
-            replacement: InkWell(
-              onTap: () => HelperMethods.instance.launchURL(
-                url: banners.first.url ?? "",
-              ),
-              child: CachedImage(
-                // url: "banners.first.photo",
-                url: "",
-                fit: BoxFit.fill,
-                borderRadius: Dimens.borderRadius5PX,
-                height: 130.spMin,
-                imgMargin: Dimens.paddingHorizontal10PX,
-              ),
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: 130.spMin,
+        child: Visibility(
+          visible: banners.length > 1,
+          replacement: InkWell(
+            onTap: () => HelperMethods.instance.launchURL(
+              url: banners.first.url ?? "",
             ),
-            child: Swiper(
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () => HelperMethods.instance.launchURL(
-                    url: banners[index].url ?? "",
-                  ),
-                  child: CachedImage(
-                    url: banners[index].photo,
-                    fit: BoxFit.fill,
-                    borderRadius: Dimens.borderRadius13PX,
-                    height: 130.spMin,
-                    imgMargin: Dimens.paddingHorizontal20PX,
-                  ),
-                );
-              },
-              viewportFraction: 1.0,
-              autoplay: false,
-              itemCount: banners.length,
+            child: CachedImage(
+              // url: "banners.first.photo",
+              url: "",
+              fit: BoxFit.fill,
+              borderRadius: Dimens.borderRadius5PX,
+              height: 130.spMin,
+              imgMargin: Dimens.paddingHorizontal10PX,
             ),
+          ),
+          child: Swiper(
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () => HelperMethods.instance.launchURL(
+                  url: banners[index].url ?? "",
+                ),
+                child: CachedImage(
+                  url: banners[index].photo,
+                  fit: BoxFit.fill,
+                  borderRadius: Dimens.borderRadius13PX,
+                  height: 130.spMin,
+                  // imgMargin: Dimens.paddingHorizontal20PX,
+                ),
+              );
+            },
+            viewportFraction: 1.0,
+            autoplay: false,
+            itemCount: banners.length,
           ),
         ),
       ),
