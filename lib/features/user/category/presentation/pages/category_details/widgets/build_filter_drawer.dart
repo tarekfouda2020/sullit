@@ -21,28 +21,29 @@ class BuildFilterDrawer extends StatelessWidget {
               children: [
                 Gaps.vGap32,
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      tr('filter'),
-                      style: AppTextStyle.s15_w700(color: context.colors.black),
-                    ),
-                    IconButton(
-                      onPressed: () => AutoRouter.of(context).pop(),
-                      icon: Icon(
-                        CupertinoIcons.clear,
-                        color: context.colors.black,
+                    Expanded(
+                      child: Text(
+                        tr('filter'),
+                        style: AppTextStyle.s15_w700(color: context.colors.black),
                       ),
-                    )
+                    ),
+                    GestureDetector(
+                      onTap: () => Navigator.pop(context),
+                      child: Icon(Icons.close,
+                      color: context.colors.black,
+                      ),
+                    ),
                   ],
                 ),
-                Gaps.line(context.colors.gray, 10),
+                // Gaps.line(context.colors.gray, 10),
+                Divider(endIndent: 5,color: context.colors.gray,height: 10),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
                         CustomPriceRangeWidget(rangeCubit: categoryDetailsController.rangeCubit,),
-                        Gaps.line(context.colors.gray, 15),
+                        Divider(endIndent: 5,color: context.colors.gray,height: 15),
                          BrandsFilterItem(controller: categoryDetailsController),
                         ...List.generate(
                           state.data!.attributes.length,

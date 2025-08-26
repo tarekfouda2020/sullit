@@ -16,18 +16,15 @@ class BuildCategorySearchView extends StatelessWidget {
       controller: categoriesController.searchController,
       action: TextInputAction.search,
       radius: const BorderRadius.all(Radius.circular(30)),
-      validate: (value) {},
+      validate: (value) => value?.noValidate(),
       autoFocus: false,
       fillColor: context.colors.white,
       enableBorderColor: context.colors.borderColor,
       focusBorderColor: context.colors.borderColor,
       hint: tr('searchCats'),
+      onSubmit: () => categoriesController.routeToSearch(context),
       suffixIcon: InkWell(
-        onTap: () => AutoRouter.of(context).push(
-          SearchRoute(
-            searchText: categoriesController.searchController.text,
-          ),
-        ),
+        onTap: () => categoriesController.routeToSearch(context),
         child: Transform.scale(
           scale: 0.4,
           child: SvgPicture.asset(Res.searchIcon),

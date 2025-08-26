@@ -12,22 +12,24 @@ class BuildTopSellingProducts extends StatelessWidget {
     return SliverToBoxAdapter(
       child: Visibility(
         visible: topProducts.isNotEmpty,
-        child: Container(
+        child: SizedBox(
           height: 280.spMin,
-          margin: Dimens.standardPadding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gaps.vGap10,
-              Text(
-                tr('topSelling'),
-                style: AppTextStyle.s18_w600(
-                  color: context.colors.black,
+              Padding(
+                padding: const EdgeInsetsDirectional.only(start: 15),
+                child: Text(
+                  tr('topSelling'),
+                  style: AppTextStyle.s18_w600(
+                    color: context.colors.black,
+                  ),
                 ),
               ),
               Flexible(
                 child: SingleChildScrollView(
-                  padding: Dimens.paddingVertical10PX,
+                  padding: const EdgeInsetsDirectional.only(top: 10,bottom: 10,start: 15),
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   child: Row(

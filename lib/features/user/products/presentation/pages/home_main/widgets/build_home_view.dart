@@ -15,18 +15,16 @@ class BuildHomeView extends StatelessWidget {
     return Flexible(
       child: ListView(
         controller: controller.scrollController,
-        padding: Dimens.paddingVertical10PX,
+        padding: Dimens.paddingVertical10PXHorizontal20PX,
         children: [
           BuildHomeSwiper(slider: homeDomainModel.sliders),
           Gaps.vGap25,
           const AdvantagesWidget(),
           Gaps.vGap16,
-           Padding(
-             padding: const EdgeInsets.symmetric(horizontal: 10),
-             child: VipOffersWidget(
-                 onTap: () => controller.homeController.animateTabsPages(3,context),
-               text: tr("seeOffers"),
-             ),
+           VipOffersWidget(
+               onTap: () => controller.homeController.animateTabsPages(3,context),
+             text: tr("seeOffers"),
+             margin: EdgeInsets.zero,
            ),
           Gaps.vGap12,
           BuildTopCategories(categories: homeDomainModel.categories),

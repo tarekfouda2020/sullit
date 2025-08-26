@@ -37,7 +37,7 @@ class Utilities {
         '#ff6666',
         tr('cancel'),
         true,
-        scanMode ?? ScanMode.BARCODE,
+        scanMode ?? ScanMode.QR,
       );
 
       if (barcode == '-1' || barcode.isEmpty) {
@@ -49,6 +49,7 @@ class Utilities {
             msg: tr('scanCancel'),
             type: ToastType.error,
           );
+          return null;
     }
   }
 
@@ -254,8 +255,6 @@ class Utilities {
     }
     return null;
   }
-
-
 
 
 

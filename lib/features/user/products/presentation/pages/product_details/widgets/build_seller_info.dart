@@ -16,7 +16,7 @@ class BuildSellerInfo extends StatelessWidget {
         decoration: CustomDecoration(
           radius: BorderRadius.circular(12),
         ),
-        padding: const EdgeInsetsDirectional.only(start: 32, top: 10, bottom: 10),
+        padding: Dimens.paddingS22T10B10,
         child: Row(
           children: [
             Expanded(

@@ -23,14 +23,18 @@ class _CartSheetItemFavoriteWidgetState extends State<CartSheetItemFavoriteWidge
           child: Visibility(
             visible: state.data,
             replacement: Container(
-              padding: Dimens.paddingAll6PX,
+              padding: Dimens.paddingAll5PX,
               decoration: CustomDecoration(
-                  myBoxShadow: const [],
-                  radius: Dimens.borderRadius5PX,
+                myBoxShadow: const [],
+                radius: Dimens.borderRadius5PX,
+                boxBorder: Border.all(color: context.colors.gray3, width: .5),
               ),
               child: SvgPicture.asset(widget.cartItem.isWishlist ? Res.favIcon : Res.emptyFavIcon),
             ),
-            child: const LoadingIconWidget(margin: EdgeInsets.zero),
+            child: LoadingIconWidget(
+              margin: Dimens.paddingAll5PX,
+              size: 15,
+            ),
           ),
         );
       },

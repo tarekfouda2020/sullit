@@ -5,64 +5,66 @@ class AdvantagesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: Dimens.paddingHorizontal20PX,
-      child: Row(crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-              child: _advantageItem(
-            context,
-            title: tr("freeDelivery"),
-            icon: Res.truckIcon,
-            subTitle: tr("from200AED"),
-          )),
-          Expanded(
-              child: _advantageItem(
-            context,
-            title: tr("99Customer"),
-            icon: Res.feedBackIcon,
-            subTitle: tr("feedbacks"),
-          )),
-          Expanded(
-              child: _advantageItem(
-            context,
-            title: tr("7Days"),
-            icon: Res.recyleIcon,
-            subTitle: tr("forFreeReturn"),
-          )),
-          Expanded(
-              child: _advantageItem(
-            context,
-            title: tr("payment"),
-            icon: Res.savePaymentIcon,
-            subTitle: tr("secureSystem"),
-          )),
-        ],
-      ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Flexible(
+          flex: 5,
+            child: _advantageItem(
+          context,
+          title: tr("freeDelivery"),
+          icon: Res.truckIcon,
+          subTitle: tr("from200AED"),
+        )),
+        Flexible(
+          flex: 6,
+            child: _advantageItem(
+          context,
+          title: tr("99Customer"),
+          icon: Res.feedBackIcon,
+          subTitle: tr("feedbacks"),
+        )),
+        Flexible(
+          flex: 6,
+            child: _advantageItem(
+          context,
+          title: tr("7Days"),
+          icon: Res.recyleIcon,
+          subTitle: tr("forFreeReturn"),
+        )),
+        Flexible(
+          flex: 6,
+            child: _advantageItem(
+          context,
+          title: tr("payment"),
+          icon: Res.savePaymentIcon,
+          subTitle: tr("secureSystem"),
+        )),
+      ],
     );
   }
 
   Widget _advantageItem(BuildContext context, {required String icon, required String title, required String subTitle}) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(end: 0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SvgPicture.asset(icon),
-          Gaps.vGap8,
-          Text(
-            textAlign: TextAlign.center,
-            title,
-            style: AppTextStyle.s12_w700(color: context.colors.black),
-          ),
-          Gaps.vGap5,
-          Text(
-            textAlign: TextAlign.center,
-            subTitle,
-            style: AppTextStyle.s12_w300(color: context.colors.textColor),
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SvgPicture.asset(icon),
+        Gaps.vGap8,
+        Text(
+          textAlign: TextAlign.center,
+          title,
+          style: AppTextStyle.s11_w700(color: context.colors.black),
+        ),
+        Gaps.vGap5,
+        Text(
+          textAlign: TextAlign.center,
+          subTitle,
+          style: AppTextStyle.s11_w400(color: context.colors.textColor),
+        ),
+      ],
     );
   }
 }

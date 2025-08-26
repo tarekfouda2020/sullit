@@ -28,7 +28,7 @@ class BrandsFilterItem extends StatelessWidget {
                 ],
               ),
             ),
-            Gaps.line(context.colors.gray, 15),
+            Divider(endIndent: 5,color: context.colors.gray,height: 15),
             if(state.data)
             BlocBuilder<GenericBloc<SubCategory?>, GenericState<SubCategory?>>(
               bloc: controller.specificationsCubit,

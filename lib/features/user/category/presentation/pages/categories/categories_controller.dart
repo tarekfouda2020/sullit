@@ -48,6 +48,19 @@ class CategoriesController {
       banner: "",
     );
   }
+
+
+
+  void routeToSearch(BuildContext context){
+    AutoRouter.of(context).push(
+      SearchRoute(
+        searchText: searchController.text,
+      ),
+    );
+  }
+
+
+
 // void onSelectSubCat(Category subCatModel) {
 //   if (selectedSideSubCat == null) {
 //     onChangeSubCat(subCatModel);
