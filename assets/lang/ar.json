@@ -1,5 +1,5 @@
 {
-  "validateName": "يجب أن يكون أكبر من 8 وأقل من 30",
+  "validateName": "يجب أن يكون الاسم أكبر من 8 وأقل من 30",
   "createAccount": "إنشاء حساب",
   "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
   "welcome": "مرحبا",
@@ -739,7 +739,11 @@
   "orderNumber": "رقم الطلب",
   "returnedDate": "تاريخ الإرجاع",
   "refundMethod": "طريقة الاسترداد",
-  "giftCardApplied": "تم تطبيق بطاقة الهدايا"
+  "giftCardApplied": "تم تطبيق بطاقة الهدايا",
+  "qnt": "الكمية:",
+  "emailVerify": "تم التحقق من بريدك الإلكتروني بنجاح",
+  "confirmChange":"تأكيد",
+  "currentPassword":"كلمة المرور الحالية"
 }
 
 

@@ -28,3 +28,4 @@ part 'build_track_order_summary_item.dart';
 part 'track_order_number_widget.dart';
 part 'track_order_item_widget.dart';
 part 'tracking_order_shimmer_widge.dart';
+part 'in_active_track_item_widget.dart';

@@ -30,6 +30,10 @@ mixin _$SummaryModel {
   String get orderStatus => throw _privateConstructorUsedError;
   @JsonKey(name: 'total_order_amount')
   String get totalOrderAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'combined_order_id')
+  int get combinedOrderId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'total_items')
+  int get totalItems => throw _privateConstructorUsedError;
   String get shipping => throw _privateConstructorUsedError;
   @JsonKey(name: "payment_method")
   String get paymentMethod => throw _privateConstructorUsedError;
@@ -53,6 +57,8 @@ abstract class $SummaryModelCopyWith<$Res> {
       @JsonKey(name: 'shipping_address') String shippingAddress,
       @JsonKey(name: 'order_status') String orderStatus,
       @JsonKey(name: 'total_order_amount') String totalOrderAmount,
+      @JsonKey(name: 'combined_order_id') int combinedOrderId,
+      @JsonKey(name: 'total_items') int totalItems,
       String shipping,
       @JsonKey(name: "payment_method") String paymentMethod});
 }
@@ -76,6 +82,8 @@ class _$SummaryModelCopyWithImpl<$Res, $Val extends SummaryModel>
     Object? shippingAddress = null,
     Object? orderStatus = null,
     Object? totalOrderAmount = null,
+    Object? combinedOrderId = null,
+    Object? totalItems = null,
     Object? shipping = null,
     Object? paymentMethod = null,
   }) {
@@ -104,6 +112,14 @@ class _$SummaryModelCopyWithImpl<$Res, $Val extends SummaryModel>
           ? _value.totalOrderAmount
           : totalOrderAmount // ignore: cast_nullable_to_non_nullable
               as String,
+      combinedOrderId: null == combinedOrderId
+          ? _value.combinedOrderId
+          : combinedOrderId // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalItems: null == totalItems
+          ? _value.totalItems
+          : totalItems // ignore: cast_nullable_to_non_nullable
+              as int,
       shipping: null == shipping
           ? _value.shipping
           : shipping // ignore: cast_nullable_to_non_nullable
@@ -131,6 +147,8 @@ abstract class _$$_SummaryModelCopyWith<$Res>
       @JsonKey(name: 'shipping_address') String shippingAddress,
       @JsonKey(name: 'order_status') String orderStatus,
       @JsonKey(name: 'total_order_amount') String totalOrderAmount,
+      @JsonKey(name: 'combined_order_id') int combinedOrderId,
+      @JsonKey(name: 'total_items') int totalItems,
       String shipping,
       @JsonKey(name: "payment_method") String paymentMethod});
 }
@@ -152,6 +170,8 @@ class __$$_SummaryModelCopyWithImpl<$Res>
     Object? shippingAddress = null,
     Object? orderStatus = null,
     Object? totalOrderAmount = null,
+    Object? combinedOrderId = null,
+    Object? totalItems = null,
     Object? shipping = null,
     Object? paymentMethod = null,
   }) {
@@ -180,6 +200,14 @@ class __$$_SummaryModelCopyWithImpl<$Res>
           ? _value.totalOrderAmount
           : totalOrderAmount // ignore: cast_nullable_to_non_nullable
               as String,
+      combinedOrderId: null == combinedOrderId
+          ? _value.combinedOrderId
+          : combinedOrderId // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalItems: null == totalItems
+          ? _value.totalItems
+          : totalItems // ignore: cast_nullable_to_non_nullable
+              as int,
       shipping: null == shipping
           ? _value.shipping
           : shipping // ignore: cast_nullable_to_non_nullable
@@ -203,6 +231,8 @@ class _$_SummaryModel extends _SummaryModel {
       @JsonKey(name: 'shipping_address') required this.shippingAddress,
       @JsonKey(name: 'order_status') required this.orderStatus,
       @JsonKey(name: 'total_order_amount') required this.totalOrderAmount,
+      @JsonKey(name: 'combined_order_id') required this.combinedOrderId,
+      @JsonKey(name: 'total_items') required this.totalItems,
       required this.shipping,
       @JsonKey(name: "payment_method") required this.paymentMethod})
       : super._();
@@ -227,6 +257,12 @@ class _$_SummaryModel extends _SummaryModel {
   @JsonKey(name: 'total_order_amount')
   final String totalOrderAmount;
   @override
+  @JsonKey(name: 'combined_order_id')
+  final int combinedOrderId;
+  @override
+  @JsonKey(name: 'total_items')
+  final int totalItems;
+  @override
   final String shipping;
   @override
   @JsonKey(name: "payment_method")
@@ -234,7 +270,7 @@ class _$_SummaryModel extends _SummaryModel {
 
   @override
   String toString() {
-    return 'SummaryModel(orderDate: $orderDate, name: $name, email: $email, shippingAddress: $shippingAddress, orderStatus: $orderStatus, totalOrderAmount: $totalOrderAmount, shipping: $shipping, paymentMethod: $paymentMethod)';
+    return 'SummaryModel(orderDate: $orderDate, name: $name, email: $email, shippingAddress: $shippingAddress, orderStatus: $orderStatus, totalOrderAmount: $totalOrderAmount, combinedOrderId: $combinedOrderId, totalItems: $totalItems, shipping: $shipping, paymentMethod: $paymentMethod)';
   }
 
   @override
@@ -252,6 +288,10 @@ class _$_SummaryModel extends _SummaryModel {
                 other.orderStatus == orderStatus) &&
             (identical(other.totalOrderAmount, totalOrderAmount) ||
                 other.totalOrderAmount == totalOrderAmount) &&
+            (identical(other.combinedOrderId, combinedOrderId) ||
+                other.combinedOrderId == combinedOrderId) &&
+            (identical(other.totalItems, totalItems) ||
+                other.totalItems == totalItems) &&
             (identical(other.shipping, shipping) ||
                 other.shipping == shipping) &&
             (identical(other.paymentMethod, paymentMethod) ||
@@ -260,8 +300,18 @@ class _$_SummaryModel extends _SummaryModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, orderDate, name, email,
-      shippingAddress, orderStatus, totalOrderAmount, shipping, paymentMethod);
+  int get hashCode => Object.hash(
+      runtimeType,
+      orderDate,
+      name,
+      email,
+      shippingAddress,
+      orderStatus,
+      totalOrderAmount,
+      combinedOrderId,
+      totalItems,
+      shipping,
+      paymentMethod);
 
   @JsonKey(ignore: true)
   @override
@@ -286,6 +336,8 @@ abstract class _SummaryModel extends SummaryModel {
       @JsonKey(name: 'order_status') required final String orderStatus,
       @JsonKey(name: 'total_order_amount')
       required final String totalOrderAmount,
+      @JsonKey(name: 'combined_order_id') required final int combinedOrderId,
+      @JsonKey(name: 'total_items') required final int totalItems,
       required final String shipping,
       @JsonKey(name: "payment_method")
       required final String paymentMethod}) = _$_SummaryModel;
@@ -310,6 +362,12 @@ abstract class _SummaryModel extends SummaryModel {
   @override
   @JsonKey(name: 'total_order_amount')
   String get totalOrderAmount;
+  @override
+  @JsonKey(name: 'combined_order_id')
+  int get combinedOrderId;
+  @override
+  @JsonKey(name: 'total_items')
+  int get totalItems;
   @override
   String get shipping;
   @override

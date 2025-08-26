@@ -5,11 +5,14 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 class BuildPinField extends StatelessWidget {
   final Function(String) onComplete;
+  final int? count;
   final EdgeInsetsGeometry? margin;
 
   const BuildPinField({
     Key? key,
-    required this.onComplete, this.margin,
+    required this.onComplete,
+     this.count,
+    this.margin,
   }) : super(key: key);
 
   @override
@@ -17,7 +20,7 @@ class BuildPinField extends StatelessWidget {
     return Container(
        margin:margin?? const EdgeInsets.symmetric(vertical: 20),
       child: PinCodeTextField(
-        length: 6,
+        length: count ?? 6,
         appContext: context,
         onChanged: (String value) {},
         backgroundColor: Colors.transparent,

@@ -32,6 +32,7 @@ _$_AddressModel _$$_AddressModelFromJson(Map<String, dynamic> json) =>
       streetName: json['street_name'] as String,
       buildingName: json['building_name'] as String,
       flatNumber: json['flat_number'] as String,
+      selected: json['selected'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_AddressModelToJson(_$_AddressModel instance) =>
@@ -54,4 +55,5 @@ Map<String, dynamic> _$$_AddressModelToJson(_$_AddressModel instance) =>
       'street_name': instance.streetName,
       'building_name': instance.buildingName,
       'flat_number': instance.flatNumber,
+      'selected': instance.selected,
     };

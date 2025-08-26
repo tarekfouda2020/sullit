@@ -17,8 +17,8 @@ class PayOptionWidget extends StatelessWidget {
             boxShape: BoxShape.circle,
             haveRadius: false,
             fit: BoxFit.contain,
-            width: 30,
-            height: 30,
+            width: 35,
+            height: 35,
           ),
           Gaps.hGap10,
           Expanded(

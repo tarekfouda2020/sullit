@@ -122,7 +122,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -201,7 +201,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                           width: 25,
                           padding: Dimens.paddingAll5PX,
                           decoration: BoxDecoration(
-                            color: context.colors.bgIcon,
+                            color: context.colors.customBackground,
                             borderRadius: BorderRadius.circular(Dimens.dp4),
                           ),
                           child: SvgPicture.asset(

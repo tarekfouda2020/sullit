@@ -20,23 +20,27 @@ class BuildDeleteDialog extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  DefaultButton(
-                    title: tr('cancel'),
-                    textColor: context.colors.black,
-                    height: 35.h,
-                    color: context.colors.greyWhite,
-                    width: 100,
-                    borderColor: context.colors.white,
-                    borderRadius: Dimens.borderRadius10PX,
-                    onTap: () => AutoRouter.of(context).pop(),
+                  Flexible(
+                    child: DefaultButton(
+                      title: tr('cancel'),
+                      textColor: context.colors.black,
+                      height: 35.h,
+                      color: context.colors.greyWhite,
+                      // width: 100,
+                      borderColor: context.colors.white,
+                      borderRadius: Dimens.borderRadius30PX,
+                      onTap: () => Navigator.of(context).pop(),
+                    ),
                   ),
-                  DefaultButton(
-                    title: tr('confirm'),
-                    height: 35.h,
-                    width: 100,
-                    borderColor: context.colors.white,
-                    borderRadius: Dimens.borderRadius10PX,
-                    onTap: () => getIt<AuthHelper>().deleteAccount(context),
+                  Flexible(
+                    child: DefaultButton(
+                      title: tr('confirm'),
+                      height: 35.h,
+                      // width: 100,
+                      borderColor: context.colors.white,
+                      borderRadius: Dimens.borderRadius30PX,
+                      onTap: () => getIt<AuthHelper>().deleteAccount(context),
+                    ),
                   ),
                 ],
               ),

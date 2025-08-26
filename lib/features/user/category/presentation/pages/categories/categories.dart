@@ -30,10 +30,11 @@ class _CategoriesState extends State<Categories> {
             BuildCategorySearchView(categoriesController: categoriesController),
             Flexible(
               child: Padding(
-                padding: Dimens.marginTop10,
+                padding: const EdgeInsetsDirectional.only(top: 10,start: 15,end: 15),
                 child: Row(
                   children: [
                     Expanded(
+                      flex: 2,
                       child: BlocBuilder<GenericBloc<List<Category>>,
                           GenericState<List<Category>>>(
                         bloc: categoriesController.categoriesCubit,
@@ -53,25 +54,28 @@ class _CategoriesState extends State<Categories> {
                       ),
                     ),
                     Expanded(
-                      flex: 2,
-                      child: BlocBuilder<GenericBloc<List<Category>>,
-                          GenericState<List<Category>>>(
-                        bloc: categoriesController.sideSubCatsCubit,
-                        builder: (context, state) {
-                          if (state is GenericUpdateState) {
-                            return ListView.builder(
-                              itemBuilder: (_, index) =>
-                                  BuildSubCategorySideItem(
-                                categoriesController: categoriesController,
-                                subCategoryModel: state.data[index],
-                                length: state.data.length,
-                              ),
-                              itemCount: state.data.length,
-                            );
-                          } else {
-                            return const BuildLoadingSideSubCategories();
-                          }
-                        },
+                      flex: 3,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 25),
+                        child: BlocBuilder<GenericBloc<List<Category>>,
+                            GenericState<List<Category>>>(
+                          bloc: categoriesController.sideSubCatsCubit,
+                          builder: (context, state) {
+                            if (state is GenericUpdateState) {
+                              return ListView.builder(
+                                itemBuilder: (_, index) =>
+                                    BuildSubCategorySideItem(
+                                  categoriesController: categoriesController,
+                                  subCategoryModel: state.data[index],
+                                  length: state.data.length,
+                                ),
+                                itemCount: state.data.length,
+                              );
+                            } else {
+                              return const BuildLoadingSideSubCategories();
+                            }
+                          },
+                        ),
                       ),
                     )
                   ],

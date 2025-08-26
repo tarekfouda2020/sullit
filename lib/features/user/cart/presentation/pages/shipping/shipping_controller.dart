@@ -41,21 +41,10 @@ class ShippingController {
       CustomToast.showAuthDialog(context);
       return;
     }
-
     for (var e in pagingController.itemList!) {
       e.selected = false;
     }
     address.selected = true;
-
-    // if(address.selected == true){
-    //   address.selected = false;
-    // }else{
-    //   for (var e in pagingController.itemList!) {
-    //     e.selected = false;
-    //   }
-    //   address.selected = true;
-    // }
-
     // addressesBloc.onUpdateData(addressesBloc.state.data);
     refreshCubit.onUpdateData(true);
 
@@ -72,7 +61,6 @@ class ShippingController {
   }
 
   void onActiveAddress(BuildContext context, Address address) async {
-    print(">>>>>>>${address.fullPhone}");
     var result = await AutoRouter.of(context)
         .push(ActiveAccountRoute(phoneOrEmail: address.fullPhone!));
     if (result == true) {
@@ -88,7 +76,7 @@ class ShippingController {
       CustomToast.showAuthDialog(context);
       return;
     }
-    var selectedList = pagingController.itemList ?? <Address>[]
+    var selectedList = pagingController.itemList!
         .where((element) => element.selected == true)
         .toList();
     if (selectedList.isNotEmpty) {

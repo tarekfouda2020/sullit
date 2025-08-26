@@ -28,7 +28,7 @@ class PaymentMethodBottomSheetWidget extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () => controller.onChangePayment(state.data!, index),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 19),
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 17),
                       margin: const EdgeInsets.only(bottom: 12),
                       decoration: CustomDecoration(
                           myBoxShadow: const [],
@@ -37,15 +37,19 @@ class PaymentMethodBottomSheetWidget extends StatelessWidget {
                               color: payOption.fakeSelected ? context.colors.primary : context.colors.borderColor)),
                       child: Row(
                         children: [
-                          CustomRadioWidget(selected: payOption.fakeSelected),
+                          CustomRadioWidget(
+                            selected: payOption.fakeSelected,
+                          inActiveColor: context.colors.black,
+                          ),
                           Gaps.hGap14,
                           Expanded(
-                            child: Text(payOption.title, style: AppTextStyle.s14_w400(color: context.colors.black)),
+                            child: Text(payOption.title, style: AppTextStyle.s14_w700(color: context.colors.black)),
                           ),
                           CachedImage(
                             url: payOption.image,
                             width: 30,
                             height: 26,
+                            fit: BoxFit.contain,
                           )
                         ],
                       ),

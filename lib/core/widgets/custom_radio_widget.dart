@@ -7,7 +7,8 @@ class CustomRadioWidget extends StatelessWidget {
   final bool selected;
   final double? size;
   final double? padding;
-  const CustomRadioWidget({super.key, required this.selected, this.size, this.padding});
+  final Color? inActiveColor;
+  const CustomRadioWidget({super.key, required this.selected, this.size, this.padding,this.inActiveColor});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class CustomRadioWidget extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(
-            color: selected ? context.colors.primary : context.colors.textColor, width: 1.5),
+            color: selected ? context.colors.primary : inActiveColor ?? context.colors.textColor, width: 1.5),
       ),
       child: Container(
         decoration: BoxDecoration(

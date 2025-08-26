@@ -12,7 +12,7 @@ class DateTimeHelper {
 
 
   static DateTime convertToDateTime({required String strDate,  String? formatType}) {
-    DateTime formatted = DateFormat("dd-MM-yyyy hh:mm a",).parse(strDate);
+    DateTime formatted = DateFormat(formatType ?? "dd-MM-yyyy hh:mm a",).parse(strDate);
     return formatted;
   }
 

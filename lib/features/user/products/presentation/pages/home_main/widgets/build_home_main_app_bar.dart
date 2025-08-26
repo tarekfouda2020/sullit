@@ -31,11 +31,14 @@ class BuildHomeMainAppBar extends StatelessWidget {
                   enableBorderColor: context.colors.borderColor,
                   focusBorderColor: context.colors.borderColor,
                   hint: tr('searchCats'),
-                  suffixIcon: InkWell(
-                    onTap: () => homeMainController.scanProduct(context),
-                    child: Transform.scale(
-                      scale: 0.4,
-                      child: SvgPicture.asset(Res.qrScanIcon),
+                  suffixIcon: Padding(
+                    padding: const EdgeInsetsDirectional.only(end: 16),
+                    child: InkWell(
+                      onTap: () => homeMainController.scanProduct(context),
+                      child: Transform.scale(
+                        scale: 0.7,
+                        child: SvgPicture.asset(Res.qrScanIcon),
+                      ),
                     ),
                   ),
                   prefixIcon: InkWell(
@@ -51,7 +54,7 @@ class BuildHomeMainAppBar extends StatelessWidget {
                   ),
                 ),
               ),
-              Gaps.hGap20,
+              Gaps.hGap10,
               InkWell(
                 onTap: () => controller.goNotification(context),
                 child: Container(

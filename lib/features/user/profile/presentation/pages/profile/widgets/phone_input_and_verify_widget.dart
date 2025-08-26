@@ -25,6 +25,8 @@ class PhoneInputAndVerify extends StatelessWidget {
                     fillColor: context.colors.white,
                     type: TextInputType.number,
                     action: TextInputAction.done,
+                    // contentPadding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                    // contentPadding: const EdgeInsetsDirectional.only(start: 32,end: 0,top:16,bottom: 16 ),
                     validate: (value) => ((state.data?.callingCode ?? "") + (value ?? "")).validatePhoneOrNull(),
                     hint: tr("phone"),
                     margin: Dimens.marginTop5,

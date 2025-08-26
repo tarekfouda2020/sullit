@@ -50,7 +50,7 @@ class ApplyGiftCardSheet extends StatelessWidget {
                 controller: controller,
                 margin: EdgeInsets.zero,
                 onTap: () {
-                  controller.createOrder(context).then((value) => Navigator.pop(context));
+                  controller.createOrder(context);
                 },
               )
             ],

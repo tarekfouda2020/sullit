@@ -9,6 +9,7 @@ class HomeController {
   final GenericBloc<bool> visibleSearch = GenericBloc(false);
   final TextEditingController searchController = TextEditingController();
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  bool showToast = false;
 
   List<String> tabs = [
     Res.home,
@@ -54,6 +55,8 @@ class HomeController {
   //     ),
   //   );
   // }
+
+
 
   void initBottomNavigation(TickerProvider ticker, int index) {
     tabController =
@@ -108,4 +111,24 @@ class HomeController {
   void routeToCart(BuildContext context){
     AutoRouter.of(context).push(const CartRoute());
   }
+
+
+  Future<bool> onBack(BuildContext context) async {
+    if(tabController.index>0){
+      tabController.animateTo(0);
+      homeTabCubit.onUpdateData(0);
+      showToast = false;
+      return false;
+    }
+    if(showToast == false){
+      showToast = true;
+      CustomToast.showSnakeBar('Press again to exit');
+      Future.delayed(const Duration(seconds: 6)).then((value) => showToast = false);
+      return false;
+    }else{
+      SystemNavigator.pop();
+      return true;
+    }
+  }
+
 }

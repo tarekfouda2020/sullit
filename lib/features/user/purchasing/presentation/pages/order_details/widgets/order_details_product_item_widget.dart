@@ -25,8 +25,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CachedImage(
-                url: orderDetails.product?.thumbnailImage ??
-                    "https://palmercandy.com/cdn/shop/files/smarties.webp?v=1696350898",
+                url: orderDetails.product?.thumbnailImage ??"",
                 width: 46,
                 height: 46,
                 bgColor: Colors.transparent,
@@ -34,60 +33,90 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
               ),
               Gaps.hGap11,
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      orderDetails.product?.name ??
-                          "Dubai Chocolate Konafa Pistachio",
-                      style: AppTextStyle.s14_w600(color: context.colors.black),
-                    ),
-                    Gaps.vGap5,
-                    RatingBar.builder(
-                      initialRating: (orderDetails.review?.rate ??
-                              orderDetails.product?.rating ??
-                              0.0)
-                          .toDouble(),
-                      minRating: 0,
-                      direction: Axis.horizontal,
-                      allowHalfRating: false,
-                      itemCount: 5,
-                      itemSize: 10.sp,
-                      ignoreGestures: true,
-                      itemBuilder: (context, _) => Icon(
-                        Icons.star_rounded,
-                        color: context.colors.yellow,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        orderDetails.product?.name ?? "",
+                        style:
+                            AppTextStyle.s14_w600(color: context.colors.black),
                       ),
-                      unratedColor: context.colors.grey,
-                      onRatingUpdate: (rating) {},
-                    ),
-                    Gaps.vGap5,
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            getIt<Utilities>().parseCurrency(
-                              orderDetails.product?.priceHighLow ??
-                                  '"31.50 AED"',
-                              lang: context
-                                  .read<DeviceCubit>()
-                                  .state
-                                  .model
-                                  .locale
-                                  .languageCode,
+                      Gaps.vGap5,
+                      RatingBar.builder(
+                        initialRating: (orderDetails.review?.rate ??
+                                orderDetails.product?.rating ??
+                                0.0)
+                            .toDouble(),
+                        minRating: 0,
+                        direction: Axis.horizontal,
+                        allowHalfRating: false,
+                        itemCount: 5,
+                        itemSize: 10.sp,
+                        ignoreGestures: true,
+                        itemBuilder: (context, _) => Icon(
+                          Icons.star_rounded,
+                          color: context.colors.yellow,
+                        ),
+                        unratedColor: context.colors.grey,
+                        onRatingUpdate: (rating) {},
+                      ),
+                      Gaps.vGap7,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Visibility(
+                                  visible: (orderDetails.product?.hasDiscount ??
+                                          false) ||
+                                      (orderDetails.product?.hasVipOffer ??
+                                          false),
+                                  child: Text(
+                                    getIt<Utilities>().parseCurrency(
+                                      orderDetails.product?.priceHighLow ?? '',
+                                      lang: context
+                                          .read<DeviceCubit>()
+                                          .state
+                                          .model
+                                          .locale
+                                          .languageCode,
+                                    ),
+                                    style: AppTextStyle.s14_w400(
+                                            color: context.colors.textColor)
+                                        .copyWith(
+                                            decoration:
+                                                TextDecoration.lineThrough),
+                                  ),
+                                ),
+                                Text(
+                                  getIt<Utilities>().parseCurrency(
+                                    orderDetails.product?.priceHighLow ??
+                                        '',
+                                    lang: context
+                                        .read<DeviceCubit>()
+                                        .state
+                                        .model
+                                        .locale
+                                        .languageCode,
+                                  ),
+                                  style: AppTextStyle.s14_w600(
+                                      color: context.colors.primary),
+                                )
+                              ],
                             ),
-                            style: AppTextStyle.s14_w600(
-                                color: context.colors.primary),
                           ),
-                        ),
-                        Text(
-                          "${tr("quantity")}${orderDetails.quantity.toString() ?? 1}",
-                          style: AppTextStyle.s14_w400(
-                              color: context.colors.black),
-                        ),
-                      ],
-                    ),
-                  ],
+                          Text(
+                            "${tr("qnt")}${orderDetails.quantity}",
+                            style: AppTextStyle.s14_w400(
+                                color: context.colors.black),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],

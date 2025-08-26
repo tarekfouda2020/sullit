@@ -33,6 +33,7 @@ class AddressModel extends BaseApiModel<Address> with _$AddressModel {
     @JsonKey(name: "street_name") required String streetName,
     @JsonKey(name: "building_name") required String buildingName,
     @JsonKey(name: "flat_number") required String flatNumber,
+    @JsonKey(name: "selected",defaultValue: false)  bool? selected,
   }) = _AddressModel;
 
   factory AddressModel.fromJson(Map<String, dynamic> json) =>
@@ -60,6 +61,7 @@ class AddressModel extends BaseApiModel<Address> with _$AddressModel {
       streetName: streetName,
       buildingName: buildingName,
       flatNumber: flatNumber,
+      selected: selected ?? false,
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/models/model_to_domain/model_to_domain.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/general/auth/data/data_source/auth_data_source.dart';
+import 'package:flutter_tdd/features/general/auth/domain/entities/change_password_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/code_verify_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/login_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/reset_password_params.dart';
@@ -20,8 +21,7 @@ class ImplAuthRepository extends AuthRepository with ModelToDomain {
   var dataSources = getIt<AuthDataSource>();
 
   @override
-  Future<Either<Failure, UserDomainModel>> register(
-      UserRegisterParams params) async {
+  Future<Either<Failure, UserDomainModel>> register(UserRegisterParams params) async {
     var result = await dataSources.register(params);
     return toDomainResult(result);
   }
@@ -43,8 +43,7 @@ class ImplAuthRepository extends AuthRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, String>> resetPassword(
-      ResetPasswordParams param) async {
+  Future<Either<Failure, String>> resetPassword(ResetPasswordParams param) async {
     return await dataSources.resetPassword(param);
   }
 
@@ -69,14 +68,23 @@ class ImplAuthRepository extends AuthRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, String>> resendVerifyCode(String param)async {
+  Future<Either<Failure, String>> resendVerifyCode(String param) async {
     return await dataSources.resendVerifyCode(param);
-
   }
 
   @override
-  Future<Either<Failure, String>> verifyResetPassword (VerifyResetPasswordParams params)async {
+  Future<Either<Failure, String>> verifyResetPassword(VerifyResetPasswordParams params) async {
     return await dataSources.verifyResetPassword(params);
+  }
 
+  @override
+  Future<Either<Failure, UserDomainModel>> emailVerify(CodeVerifyParams params) async {
+    var result = await dataSources.emailVerify(params);
+    return toDomainResult(result);
+  }
+
+  @override
+  Future<Either<Failure, String>> changePassword(ChangePasswordParams params) async {
+    return await dataSources.changePassword(params);
   }
 }

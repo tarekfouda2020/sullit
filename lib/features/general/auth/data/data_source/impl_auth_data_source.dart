@@ -9,6 +9,7 @@ import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/general/auth/data/data_source/auth_data_source.dart';
 import 'package:flutter_tdd/features/general/auth/data/models/user_login_model/user_login_model.dart';
 import 'package:flutter_tdd/features/general/auth/data/models/user_model/user_model.dart';
+import 'package:flutter_tdd/features/general/auth/domain/entities/change_password_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/code_verify_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/login_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/reset_password_params.dart';
@@ -162,6 +163,34 @@ class ImplAuthDataSource extends AuthDataSource {
       requestBody: params.toJson(),
       responseKey: (data) => data["msg"],
       showLoader: true,
+    );
+    return await GenericHttpImpl<String>()(model);
+  }
+  @override
+  Future<Either<Failure, UserModel>> emailVerify (CodeVerifyParams params) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.verifyEmail,
+      requestMethod: RequestMethod.post,
+      responseType: ResType.model,
+      requestBody: params.toJson(),
+      responseKey: (data) => data["data"],
+      errorFunc: (data) => data['msg'],
+      showLoader: false,
+      toJsonFunc: (data) => UserModel.fromJson(data),
+    );
+    return await GenericHttpImpl<UserModel>()(model);
+  }
+
+  @override
+  Future<Either<Failure, String>> changePassword(ChangePasswordParams params) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.changePassword,
+      requestMethod: RequestMethod.post,
+      responseType: ResType.type,
+      requestBody: params.toJson(),
+      responseKey: (data) => data["msg"],
+      errorFunc: (data) => data['msg'],
+      showLoader: false,
     );
     return await GenericHttpImpl<String>()(model);
   }

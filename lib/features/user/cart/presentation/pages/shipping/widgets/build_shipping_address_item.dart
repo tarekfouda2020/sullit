@@ -22,28 +22,28 @@ class BuildShippingAddressItem extends StatelessWidget {
           children: [
             CustomRadioWidget(selected: address.selected!),
             Gaps.hGap10,
-            Flexible(
+            Expanded(
               child: Column(
                 children: [
                   BuildAddressTitleItem(
                     title: tr('address'),
                     desc: address.address!,
                   ),
-                  const BuildAddressTitleItem(
+                   BuildAddressTitleItem(
                     title: 'Type',
-                    desc: "Business",
+                    desc: address.addressType ?? "",
                   ),
-                  const BuildAddressTitleItem(
+                   BuildAddressTitleItem(
                     title: 'Street Name',
-                    desc: "Jumeirah",
+                    desc: address.streetName ?? "",
                   ),
-                  const BuildAddressTitleItem(
+                   BuildAddressTitleItem(
                     title: 'Building Name',
-                    desc: "B 32",
+                    desc: address.buildingName ?? "",
                   ),
-                  const BuildAddressTitleItem(
+                   BuildAddressTitleItem(
                     title: 'Flat No.',
-                    desc: "402",
+                    desc: address.buildingName!,
                   ),
                   // BuildAddressTitleItem(
                   //   title: tr('postalCode'),

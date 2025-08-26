@@ -24,25 +24,30 @@ class _VerifyRegisterState extends State<VerifyRegister> {
       onWillPop: () => controller.onBackPressed(context),
       child: Scaffold(
         backgroundColor: context.colors.background,
+        appBar:  DefaultAppBar(title: "",bgColor: Colors.transparent,
+        onBack: () => controller.onBackPressed(context),
+        ),
         body: SingleChildScrollView(
           padding: Dimens.paddingH20V10,
           child: Column(
             children: [
-              BuildAuthAppBar(
-                onBack: () => controller.onBackPressed(context),
-              ),
-              const BuildHeaderLogo(),
+              const BuildHeaderLogo(marginTop: 20),
               BuildHeaderTitle(
                 title: tr('verifyYourEmailAddress'),
                 subTitle: tr('verifyRegister'),
               ),
-              DefaultButton(
-                title: tr('requestAnotherLink'),
-                onTap: () => controller.resendCode(),
-                height: 40.h,
-                width: 200,
-                borderRadius: BorderRadius.circular(24),
-              )
+              BuildPinField(
+                onComplete: (code) => controller.verifyEmail(context,code),
+                count: 4,
+              ),
+              ReSendCodeTimerWidget(controller: controller),
+              // DefaultButton(
+              //   title: tr('requestAnotherLink'),
+              //   onTap: () => controller.resendCode(),
+              //   height: 40.h,
+              //   width: 200,
+              //   borderRadius: BorderRadius.circular(24),
+              // )
             ],
           ),
         ),

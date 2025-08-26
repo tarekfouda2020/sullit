@@ -28,6 +28,7 @@ class Res {
   static const String google = "assets/images/google.png";
   static const String arrowBack = "assets/images/arrow_back.png";
   static const String forgetLogo = "assets/images/forget_logo.png";
+  static const String forgetImage = "assets/images/forget_image.png";
   static const String splashLogo = "assets/images/splash_logo.png";
   static const String downloadLogo = "assets/images/download_logo.png";
   static const String returnOrdersLogo = "assets/images/return_orders_logo.png";

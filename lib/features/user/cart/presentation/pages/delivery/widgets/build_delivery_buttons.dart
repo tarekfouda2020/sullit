@@ -8,7 +8,16 @@ class BuildDeliveryButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const CustomDecoration(),
+      decoration: BoxDecoration(
+        color: context.colors.cartBg,
+        boxShadow: [
+          BoxShadow(
+            color: context.colors.greyWhite,
+            blurRadius: 1,
+            spreadRadius: 1,
+          )
+        ],
+      ),
       padding:Dimens.paddingAll15PX,
       child : Column(
         mainAxisSize: MainAxisSize.min,

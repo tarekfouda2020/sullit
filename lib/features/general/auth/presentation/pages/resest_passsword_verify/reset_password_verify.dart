@@ -24,6 +24,7 @@ class _ResetPasswordVerifyState extends State<ResetPasswordVerify> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        backgroundColor: context.colors.customBackground,
         appBar: const DefaultAppBar(title: "",bgColor: Colors.transparent,),
         body: SingleChildScrollView(
           padding: Dimens.paddingHorizontal20PX,

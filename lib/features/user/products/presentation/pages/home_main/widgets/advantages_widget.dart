@@ -5,37 +5,40 @@ class AdvantagesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-            child: _advantageItem(
-          context,
-          title: tr("freeDelivery"),
-          icon: Res.truckIcon,
-          subTitle: tr("from200AED"),
-        )),
-        Expanded(
-            child: _advantageItem(
-          context,
-          title: tr("99Customer"),
-          icon: Res.feedBackIcon,
-          subTitle: tr("feedbacks"),
-        )),
-        Expanded(
-            child: _advantageItem(
-          context,
-          title: tr("7Days"),
-          icon: Res.recyleIcon,
-          subTitle: tr("forFreeReturn"),
-        )),
-        Expanded(
-            child: _advantageItem(
-          context,
-          title: tr("payment"),
-          icon: Res.savePaymentIcon,
-          subTitle: tr("secureSystem"),
-        )),
-      ],
+    return Padding(
+      padding: Dimens.paddingHorizontal20PX,
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+              child: _advantageItem(
+            context,
+            title: tr("freeDelivery"),
+            icon: Res.truckIcon,
+            subTitle: tr("from200AED"),
+          )),
+          Expanded(
+              child: _advantageItem(
+            context,
+            title: tr("99Customer"),
+            icon: Res.feedBackIcon,
+            subTitle: tr("feedbacks"),
+          )),
+          Expanded(
+              child: _advantageItem(
+            context,
+            title: tr("7Days"),
+            icon: Res.recyleIcon,
+            subTitle: tr("forFreeReturn"),
+          )),
+          Expanded(
+              child: _advantageItem(
+            context,
+            title: tr("payment"),
+            icon: Res.savePaymentIcon,
+            subTitle: tr("secureSystem"),
+          )),
+        ],
+      ),
     );
   }
 
@@ -48,11 +51,13 @@ class AdvantagesWidget extends StatelessWidget {
           SvgPicture.asset(icon),
           Gaps.vGap8,
           Text(
+            textAlign: TextAlign.center,
             title,
             style: AppTextStyle.s12_w700(color: context.colors.black),
           ),
           Gaps.vGap5,
           Text(
+            textAlign: TextAlign.center,
             subTitle,
             style: AppTextStyle.s12_w300(color: context.colors.textColor),
           ),

@@ -8,7 +8,7 @@ class BuildShippingButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: context.colors.white,
+        color: context.colors.cartBg,
         boxShadow: [
           BoxShadow(
             color: context.colors.greyWhite,

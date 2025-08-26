@@ -56,7 +56,7 @@ class ResetPasswordForm extends StatelessWidget {
                     !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
-                validate: (value) => value?.validatePassword(),
+                validate: (value) => value?.validatePasswordConfirm(pass: controller.password.text),
                 suffixIcon: IconButton(
                   onPressed: () =>
                       controller.confirmPasswordCubit.onUpdateData(!state.data),

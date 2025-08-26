@@ -229,10 +229,9 @@ class _SelectDialogState<T> extends State<SelectDialog<T>> {
                     }
                     return Scrollbar(
                       controller: widget.scrollbarProps?.controller,
-                      isAlwaysShown: widget.scrollbarProps?.isAlwaysShown,
-                      showTrackOnHover:
+                      thumbVisibility: widget.scrollbarProps?.isAlwaysShown,
+                      trackVisibility:
                       widget.scrollbarProps?.showTrackOnHover,
-                      hoverThickness: widget.scrollbarProps?.hoverThickness,
                       thickness: widget.scrollbarProps?.thickness,
                       radius: widget.scrollbarProps?.radius,
                       notificationPredicate:
@@ -637,7 +636,6 @@ class _SelectDialogState<T> extends State<SelectDialog<T>> {
       child: Text(
         _selectedItemAsString(item),
         textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.subtitle1,
       ),
     );
   }
