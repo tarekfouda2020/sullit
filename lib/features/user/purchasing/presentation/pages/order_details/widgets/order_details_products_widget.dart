@@ -26,6 +26,11 @@ class OrderDetailsProductsWidget extends StatelessWidget {
                 tr("soldBy"),
                 style: AppTextStyle.s14_w400(color: context.colors.textColor),
               ),
+              Gaps.hGap4,
+              Text(
+                ":",
+                style: AppTextStyle.s14_w400(color: context.colors.textColor),
+              ),
               Gaps.hGap7,
               Text(
                order?.soldBy ?? "Munch Corner",
@@ -36,6 +41,7 @@ class OrderDetailsProductsWidget extends StatelessWidget {
           Gaps.vGap12,
           ...List.generate(order.orderDetails.length ?? 0, (index) {
             return  OrderDetailsProductItemWidget(
+              hasReview: hasReview,
               onPressReview: () => controller.reviewSheet(context,order.orderDetails[index]),
               orderDetails: controller.orderDetailsBloc.state.data!.orderDetails[index],
             );

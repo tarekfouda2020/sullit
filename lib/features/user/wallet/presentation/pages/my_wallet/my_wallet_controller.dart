@@ -15,9 +15,8 @@ class MyWalletController {
   }
 
   Future<void> getWallet({bool refresh = true}) async {
-    return await GetMyWallet().call(refresh).then(
-          (value) => walletBloc.onUpdateData(value),
-        );
+    var result = await GetMyWallet().call(refresh);
+    walletBloc.onUpdateData(result);
   }
 
   Future<List<WalletTypes>> getWalletTypes({bool refresh = true}) async {
@@ -30,9 +29,11 @@ class MyWalletController {
       var params = _walletParams();
       var result = await SetRechargeWallet().call(params);
       if (result != "") {
-        walletTypeModel=null;
+        walletTypeModel = null;
         amountController.clear();
-        AutoRouter.of(context).popAndPush(PaymentRoute(transactionUrl: result));
+        await AutoRouter.of(context)
+            .popAndPush(PaymentRoute(transactionUrl: result));
+        getWallet();
       }
     }
   }
@@ -57,7 +58,7 @@ class MyWalletController {
     );
   }
 
-  void showChargeWalletSheet(BuildContext context){
+  void showChargeWalletSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -67,6 +68,4 @@ class MyWalletController {
       builder: (context) => ChargeWalletSheetWidget(controller: this),
     );
   }
-
-
 }

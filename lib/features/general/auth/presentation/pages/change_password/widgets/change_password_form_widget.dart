@@ -1,10 +1,9 @@
-part of 'reset_password_widgets_imports.dart';
+part of 'change_password_widgets_imports.dart';
 
-class ResetPasswordForm extends StatelessWidget {
-  final ResetPasswordController controller;
 
-  const ResetPasswordForm({Key? key, required this.controller})
-      : super(key: key);
+class ChangePasswordFormWidget extends StatelessWidget {
+  final ChangePasswordController controller;
+  const ChangePasswordFormWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -13,19 +12,49 @@ class ResetPasswordForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           BuildInputLabel(label: tr("newPassword"),),
+          BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+            bloc: controller.oldPasswordCubit,
+            builder: (context, state) {
+              return GenericTextField(
+                hint: tr("currentPassword"),
+                fillColor: context.colors.white,
+                contentPadding: Dimens.paddingH32V16,
+                enableBorderColor: context.colors.borderColor,
+                focusBorderColor: context.colors.white,
+                margin: Dimens.headerTitlePadding,
+                controller: controller.oldPassword,
+                radius: Dimens.borderRadius40PX,
+                fieldTypes:
+                !state.data ? FieldTypes.password : FieldTypes.normal,
+                type: TextInputType.text,
+                action: TextInputAction.done,
+                validate: (value) => value?.validatePassword(),
+                suffixIcon: IconButton(
+                  onPressed: () =>
+                      controller.oldPasswordCubit.onUpdateData(!state.data),
+                  icon: Icon(
+                    !state.data ? Icons.visibility : Icons.visibility_off,
+                    size: 17.sp,
+                    color: context.colors.black,
+                  ),
+                ),
+              );
+            },
+          ),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.passwordCubit,
             builder: (context, state) {
               return GenericTextField(
-                fillColor: context.colors.authField,
-                enableBorderColor: context.colors.white,
+                hint: tr("newPassword"),
+                fillColor: context.colors.white,
+                contentPadding: Dimens.paddingH32V16,
+                enableBorderColor: context.colors.borderColor,
                 focusBorderColor: context.colors.white,
                 margin: Dimens.headerTitlePadding,
                 controller: controller.password,
                 radius: Dimens.borderRadius20PX,
                 fieldTypes:
-                    !state.data ? FieldTypes.password : FieldTypes.normal,
+                !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
                 validate: (value) => value?.validatePassword(),
@@ -41,19 +70,20 @@ class ResetPasswordForm extends StatelessWidget {
               );
             },
           ),
-           BuildInputLabel(label: tr("confirmPassword"),),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.confirmPasswordCubit,
             builder: (context, state) {
               return GenericTextField(
-                fillColor: context.colors.authField,
-                enableBorderColor: context.colors.white,
+                hint: tr("confirmPassword"),
+                fillColor: context.colors.white,
+                contentPadding: Dimens.paddingH32V16,
+                enableBorderColor: context.colors.borderColor,
                 focusBorderColor: context.colors.white,
                 margin: Dimens.headerTitlePadding,
                 controller: controller.confirmPassword,
                 radius: Dimens.borderRadius20PX,
                 fieldTypes:
-                    !state.data ? FieldTypes.password : FieldTypes.normal,
+                !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
                 validate: (value) => value?.validatePasswordConfirm(pass: controller.password.text),

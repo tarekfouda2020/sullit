@@ -27,7 +27,7 @@ class PurchasedOrderItemWidget extends StatelessWidget {
              crossAxisAlignment: CrossAxisAlignment.start,
              children: [
                Text(
-                 "${tr("orderNumber")} ${order.code}",
+                 "${tr("orderNumber")}${order.code}",
                  style: AppTextStyle.s14_w600(color: context.colors.black),
                ),
                Gaps.vGap6,

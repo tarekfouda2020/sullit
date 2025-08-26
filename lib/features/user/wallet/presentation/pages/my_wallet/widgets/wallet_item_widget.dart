@@ -6,6 +6,9 @@ class WalletItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(
+      getIt<Utilities>().parseCurrency(item!.dmoun, lang: context.read<DeviceCubit>().state.model.locale.languageCode),
+    );
     return Container(
       margin: Dimens.paddingVertical5PX,
       padding: const EdgeInsetsDirectional.only(top: 16,bottom: 16,start: 19,end: 24),
@@ -18,13 +21,12 @@ class WalletItemWidget extends StatelessWidget {
           Text(
             item?.approval ?? "",
             style: AppTextStyle.s14_w600(
-              /// if deduct color darkRed
               color: context.colors.green,
             ),
           ),
           Gaps.vGap6,
           Text(
-            item?.dmoun ?? "",
+            getIt<Utilities>().parseCurrency(item!.dmoun, lang: context.read<DeviceCubit>().state.model.locale.languageCode),
             style: AppTextStyle.s22_w600(
               color: context.colors.primary,
             ),
@@ -34,14 +36,14 @@ class WalletItemWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  "Transaction no : #545757",
+                  "Transaction no : #${item!.id}",
                   style: AppTextStyle.s14_w700(
                     color: context.colors.black,
                   ),
                 ),
               ),
               Text(
-                "1 Hour Ago",
+                item!.date,
                 style: AppTextStyle.s14_w400(
                   color: context.colors.textColor,
                 ),
@@ -67,5 +69,11 @@ class WalletItemWidget extends StatelessWidget {
       //   minLeadingWidth: 10.w,
       // ),
     );
+  }
+
+  String convertToTimeAgo(String dateString) {
+    final DateFormat formatter = DateFormat("dd-MM-yyyy");
+    final DateTime date = formatter.parse(dateString);
+    return timeago.format(date, allowFromNow: true);
   }
 }

@@ -3,8 +3,7 @@ part of 'my_wallet_widgets_imports.dart';
 class BuildWalletDetails extends StatelessWidget {
   final String walletBalance;
 
-  const BuildWalletDetails({Key? key, required this.walletBalance})
-      : super(key: key);
+  const BuildWalletDetails({Key? key, required this.walletBalance}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +11,7 @@ class BuildWalletDetails extends StatelessWidget {
       alignment: AlignmentDirectional.center,
       padding: Dimens.paddingAll20PX,
       decoration: BoxDecoration(
-         color: context.colors.white,
+        color: context.colors.white,
         borderRadius: Dimens.borderRadius12PX,
       ),
       child: Column(
@@ -29,7 +28,10 @@ class BuildWalletDetails extends StatelessWidget {
           ),
           Gaps.vGap10,
           Text(
-            "$walletBalance",
+            getIt<Utilities>().parseCurrency(
+              walletBalance,
+              lang: context.read<DeviceCubit>().state.model.locale.languageCode,
+            ),
             style: AppTextStyle.s24_w700(color: context.colors.primary),
           ),
         ],

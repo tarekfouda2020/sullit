@@ -33,7 +33,7 @@ class _ProfileState extends State<Profile>with WidgetsBindingObserver  {
         children: [
           Flexible(
             child: ListView(
-              padding: Dimens.paddingAll15PX,
+              padding:const EdgeInsets.only(right: 15, left: 15, bottom: 15),
               children: [
                 BuildProfileImage(controller: controller),
                 BuildProfileFormFields(controller: controller),
@@ -43,6 +43,14 @@ class _ProfileState extends State<Profile>with WidgetsBindingObserver  {
           ),
           LogoutButtonWidget(controller: controller),
           BuildDeleteAccountButton(controller: controller),
+          // DefaultButton(
+          //   title: tr("changePassword"),
+          //   height: 35.h,
+          //   color: context.colors.white,
+          //   textColor: context.colors.primary,
+          //   borderColor: context.colors.primary,
+          //   onTap: () => AutoRouter.of(context).push(const ChangePasswordRoute()),
+          // )
         ],
       ),
     );

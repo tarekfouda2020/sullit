@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:country_calling_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sim_country_code/flutter_sim_country_code.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 
 import './country.dart';
 
@@ -68,7 +69,9 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
                         top: 4,
                         bottom: 0,
                         child: TextButton(
-                            child: Text('Cancel'),
+                            child: Text('Cancel', style: TextStyle(
+                              color: context.colors.white
+                            ),),
                             onPressed: () => Navigator.pop(context)),
                       ),
                   Center(

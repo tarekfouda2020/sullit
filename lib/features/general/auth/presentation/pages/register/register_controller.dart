@@ -31,13 +31,8 @@ class RegisterController {
   }
 
   void _cashAndRoute(BuildContext context, UserDomainModel data) async {
-    context.read<DeviceCubit>().updateUserAuth(true);
-    GlobalState.instance.set("token", data.token);
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setString("user", json.encode(data.toJson()));
-    context.read<UserCubit>().onUpdateUserData(data);
-    AutoRouter.of(context)
-        .push(VerifyRegisterRoute(email: emailController.text));
+    getIt<UserServiceHelper>().updateUserdata(context, data);
+    AutoRouter.of(context).push(VerifyRegisterRoute(email: emailController.text));
     getIt<ComparedProductsDb>().deleteEverything();
     CustomToast.showSimpleToast(
       msg: tr('registerVerify'),

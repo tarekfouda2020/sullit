@@ -24,6 +24,8 @@ class ApiNames {
 
   static const String codeVerify = "check-activation-code";
   static const String deleteAccount = "delete-account";
+  static const String verifyEmail = "email/verify";
+  static const String changePassword = "update-password?_method=patch";
 
   // profile urls
   static const String updateProfile = "profile/update?_method=put";

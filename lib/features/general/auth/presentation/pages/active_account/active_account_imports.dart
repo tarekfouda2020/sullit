@@ -8,6 +8,7 @@ import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
+import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/verify_phone_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/use_cases/set_code_verify.dart';
 import 'package:flutter_tdd/features/general/auth/domain/use_cases/set_resend_verify_code.dart';

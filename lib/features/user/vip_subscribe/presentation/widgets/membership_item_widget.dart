@@ -4,6 +4,8 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
@@ -34,6 +36,9 @@ class MembershipItemWidget extends StatelessWidget {
         decoration: CustomDecoration(
             radius: BorderRadius.circular(12),
         ).copyWith(
+          boxShadow: [
+
+          ],
           border: model.subscription!=null
               ? null
               : Border.all(color: model.isSelected ?
@@ -85,21 +90,21 @@ class MembershipItemWidget extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "${model.price} ",
+                  "${getIt<Utilities>().getPrice(model.price)} ",
                   style: AppTextStyle.s22_w600(color: context.colors.primary),
                 ),
                 Text(
-                  model.duration,
+                  "${getIt<Utilities>().getCurrency(model.price)}/${getIt<Utilities>().capitalize(model.duration)}",
                   style: AppTextStyle.s22_w300(color: context.colors.primary),
                 ),
               ],
             ),
-            Gaps.vGap6,
+            Gaps.vGap8,
             Text(
               "Benefits :",
               style: AppTextStyle.s12_w600(color: context.colors.black),
             ),
-            Gaps.vGap8,
+            Gaps.vGap6,
             Html(data: model.description,
               style: {
               "body": Style(

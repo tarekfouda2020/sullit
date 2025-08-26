@@ -13,6 +13,7 @@ class PayMembershipButtonWidget extends StatelessWidget {
       fontSize: 18,
       fontWeight: FontWeight.w700,
       color: context.colors.primary,
+      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
       textColor: context.colors.white,
       borderRadius: Dimens.borderRadius30PX
     );

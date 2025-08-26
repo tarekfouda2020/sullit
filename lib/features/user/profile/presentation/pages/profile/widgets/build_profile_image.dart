@@ -11,7 +11,7 @@ class BuildProfileImage extends StatelessWidget {
     var user = context.watch<UserCubit>().state.model;
     return Container(
       alignment: Alignment.center,
-      margin: const EdgeInsets.all(10).r,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10).r,
       ),
@@ -26,8 +26,8 @@ class BuildProfileImage extends StatelessWidget {
                 InkWell(
                   onTap: () => controller.getImage(context),
                   child: Container(
-                    height: 100,
-                    width: 100,
+                    height: 124,
+                    width: 124,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
@@ -63,31 +63,29 @@ class BuildProfileImage extends StatelessWidget {
               children: [
                 Container(
                   padding: const EdgeInsets.all(1),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                   ),
                   child: CachedImage(
                     url: user?.avatarOriginal ?? "",
-                    height: 100,
-                    width: 100,
-                    borderRadius: BorderRadius.circular(
-                      50,
-                    ).r,
-                    haveRadius: true,
+                    height: 124,
+                    width: 124,
+                    haveRadius: false,
+                    boxShape: BoxShape.circle,
                   ),
                 ),
                 PositionedDirectional(
-                  bottom: 5,
-                  end: 0,
+                  bottom: 2,
+                  end: 5,
                   child: InkWell(
                     onTap: () => controller.getImage(context),
                     child: Container(
-                      padding: const EdgeInsets.all(4).r,
+                      padding: const EdgeInsets.all(12).r,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: context.colors.lightPrimary,
                       ),
-                      child: SvgPicture.asset(Res.pencilIcon),
+                      child: SvgPicture.asset(Res.pencilIcon, height: 16, width: 16,),
                     ),
                   ),
                 )

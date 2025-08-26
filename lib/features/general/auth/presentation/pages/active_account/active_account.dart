@@ -28,11 +28,11 @@ class _ActiveAccountState extends State<ActiveAccount> {
     return GestureDetector(
       onTap: FocusScope.of(context).unfocus,
       child: Scaffold(
+        appBar:  const DefaultAppBar(title: '',bgColor: Colors.transparent),
         body: SingleChildScrollView(
           padding: Dimens.paddingH24V40,
           child: Column(
             children: [
-              const BuildAuthAppBar(),
               BuildHeaderTitle(title: tr('enterVerifyCode')),
               BuildPinField(onComplete: controller.onComplete),
               BuildActiveTimer(
