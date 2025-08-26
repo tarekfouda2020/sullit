@@ -1,43 +1,60 @@
 part of'my_wallet_widgets_imports.dart';
 class BuildWalletHistory extends StatelessWidget {
-  final WalletRechargeHistory walletRechargeHistory;
-
-  const BuildWalletHistory({Key? key,  required this.walletRechargeHistory})
+ final MyWalletController controller;
+  const BuildWalletHistory({Key? key, required this.controller})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      visible: true,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Gaps.vGap24,
-          Text(
-            tr('transactions'),
-            style: AppTextStyle.s20_w700(color: context.colors.black),
-          ),
-          Gaps.vGap10,
-          Visibility(
-           visible:  walletRechargeHistory.wallets.isNotEmpty,
-            replacement: Padding(
+    return Flexible(
+      child: PagedListView<int, WalletTransaction>(
+        padding: Dimens.paddingAll15PX,
+        pagingController: controller.pagingController,
+        builderDelegate: PagedChildBuilderDelegate<WalletTransaction>(
+          itemBuilder: (_, item, index) => WalletItemWidget(item: item,),
+          firstPageProgressIndicatorBuilder: (_) => _transactionsLoading(),
+          noItemsFoundIndicatorBuilder: (cxt) {
+            return Padding(
               padding: const EdgeInsets.only(top: 250),
               child: Center(
                 child: Text(
-                    tr('noTransactionsFound'),
+                  tr('noTransactionsFound'),
                   style: AppTextStyle.s20_w700(color: context.colors.black),
                 ),
               ),
-            ),
-            child: Column(
-              children: List.generate(
-                walletRechargeHistory.wallets.length ?? 0,
-                    (index) =>  WalletItemWidget(item: walletRechargeHistory.wallets[index]),
-              ),
-            ),
-          )
-        ],
+            );
+          },
+        ),
       ),
     );
   }
+
+
+  Widget _transactionsLoading(){
+    return Column(
+      children: List.generate(5, (index) {
+        return Container(
+          margin: Dimens.paddingVertical5PX,
+          decoration: CustomDecoration(),
+          child: ListTile(
+            title: Row(
+              children: const [
+                BuildShimmerItem(
+                  height: 12,
+                  width: 100,
+                ),
+              ],
+            ),
+            trailing: const BuildShimmerItem(
+              height: 7,
+              width: 50,
+            ),
+            minLeadingWidth: 10.w,
+          ),
+        );
+      }),
+    );
+  }
+
+
 }

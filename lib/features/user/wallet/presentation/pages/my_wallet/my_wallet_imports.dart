@@ -8,13 +8,17 @@ import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/custom_dropDown/CustomDropDown.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
+import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 import 'package:flutter_tdd/features/user/wallet/domain/entites/recharge_wallet_params.dart';
 import 'package:flutter_tdd/features/user/wallet/domain/models/wallet.dart';
+import 'package:flutter_tdd/features/user/wallet/domain/models/wallet_transaction.dart';
 import 'package:flutter_tdd/features/user/wallet/domain/models/wallet_types.dart';
 import 'package:flutter_tdd/features/user/wallet/domain/use_cases/get_my_wallet.dart';
+import 'package:flutter_tdd/features/user/wallet/domain/use_cases/get_wallet_transactions.dart';
 import 'package:flutter_tdd/features/user/wallet/domain/use_cases/get_wallet_types.dart';
 import 'package:flutter_tdd/features/user/wallet/domain/use_cases/set_recharge_wallet.dart';
 import 'package:flutter_tdd/features/user/wallet/presentation/pages/my_wallet/widgets/my_wallet_widgets_imports.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 part 'my_wallet.dart';
 part 'my_wallet_controller.dart';

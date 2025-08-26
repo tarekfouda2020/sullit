@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/helpers/validator.dart';
@@ -20,9 +21,11 @@ import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_she
 import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_input_label.dart';
 import 'package:flutter_tdd/features/user/wallet/domain/models/wallet_history.dart';
 import 'package:flutter_tdd/features/user/wallet/domain/models/wallet_item.dart';
+import 'package:flutter_tdd/features/user/wallet/domain/models/wallet_transaction.dart';
 import 'package:flutter_tdd/features/user/wallet/domain/models/wallet_types.dart';
 import 'package:flutter_tdd/features/user/wallet/presentation/pages/my_wallet/my_wallet_imports.dart';
 import 'package:flutter_tdd/res.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:timeago/timeago.dart' as timeago;
 

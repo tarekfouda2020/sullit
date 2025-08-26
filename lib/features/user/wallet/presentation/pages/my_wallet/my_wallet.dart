@@ -25,12 +25,11 @@ class _MyWalletState extends State<MyWallet> {
         bloc: controller.walletBloc,
         builder: (context, state) {
           if (state is GenericUpdateState) {
-            return ListView(
-              padding: Dimens.paddingAll15PX,
+            return Column(
               children: [
                 BuildWalletDetails(walletBalance: state.data!.walletBalance),
                 BuildWalletHistory(
-                  walletRechargeHistory: state.data!.rechargeHistory,
+                  controller: controller,
                 ),
                 // WalletItemWidget()
               ],

@@ -26,7 +26,6 @@ class GiftCardItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var lang = context.read<DeviceCubit>().state.model.locale.languageCode;
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -65,7 +64,7 @@ class GiftCardItemWidget extends StatelessWidget {
                           if (!isMyGiftCard) Gaps.hGap8,
                           Text(
                               getIt<Utilities>()
-                                  .parseCurrency(model.price, lang: lang),
+                                  .parseCurrency(model.price),
                               style: AppTextStyle.s22_w600(
                                   color: context.colors.primary)),
                         ],
@@ -79,7 +78,7 @@ class GiftCardItemWidget extends StatelessWidget {
                           Gaps.hGap2,
                           Text(
                               getIt<Utilities>()
-                                  .parseCurrency(model.value, lang: lang),
+                                  .parseCurrency(model.value),
                               style: AppTextStyle.s12_w700(
                                   color: context.colors.black)),
                         ],
