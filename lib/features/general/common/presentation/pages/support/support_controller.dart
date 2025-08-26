@@ -23,8 +23,6 @@ class SupportController {
   void getSupportMessages() async {
     var result = await GetSupportMessages()(NoParams());
     msgCubit.onUpdateData(result);
-    var reversed = msgCubit.state.data.reversed.toList();
-    msgCubit.onUpdateData(reversed);
   }
 
   void sendMessage() async {
@@ -45,8 +43,6 @@ class SupportController {
       var params = _msgParams();
       var result = await SendSupportMessages().call(params);
       msgCubit.onUpdateData(result);
-      var reversed = msgCubit.state.data.reversed.toList();
-      msgCubit.onUpdateData(reversed);
       imageCubit.onUpdateToInitState(null);
     }
   }

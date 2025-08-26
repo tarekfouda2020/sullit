@@ -28,19 +28,37 @@ class ProfileController {
 
   ProfileController(BuildContext context) {
     getInitialData(context);
-    countryCubit.onUpdateData(CountryPickerHelper.defaultCountry());
   }
 
-  void getInitialData(BuildContext context) {
+  Future<void> getInitialData(BuildContext context) async {
     var user = context.read<UserCubit>().state.model;
     if (user != UserDomainModel()) {
       nameController.text = user?.name ?? "";
       emailController.text = user?.email ?? "";
       phoneController.text = user?.phone ?? "";
-      countryCubit.onUpdateData(Country("", "", "", user?.countryCode ?? ""));
+      await _initializeCountryFromUser(context, user);
       addressModel = user?.address;
       addressController.text = user?.address?.address ?? "";
       verifyPhoneCubit.onUpdateData(user?.isPhoneActive ?? false);
+    }
+  }
+
+  Future<void> _initializeCountryFromUser(BuildContext context, UserDomainModel? user) async {
+    if (user?.countryCode != null && user!.countryCode!.isNotEmpty) {
+      try {
+        final country = await CountryPickerHelper.getCountryByCallingCode(
+            context, user.countryCode!);
+        if (country != null) {
+          countryCubit.onUpdateData(country);
+        } else {
+          countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync());
+        }
+      } catch (e) {
+        print("Profile: Error getting country for calling code ${user.countryCode}: $e");
+        countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync());
+      }
+    } else {
+      countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync());
     }
   }
 

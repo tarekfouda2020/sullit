@@ -11,7 +11,6 @@ class GiftCardBarcodeWidget extends StatelessWidget {
         CachedImage(
           width: 236, height: 74,
             url: "",
-          /// place holder will be removed after use the api
           placeHolder: Image.asset(Res.giftCardBarcodePlaceholder),
 
         ),

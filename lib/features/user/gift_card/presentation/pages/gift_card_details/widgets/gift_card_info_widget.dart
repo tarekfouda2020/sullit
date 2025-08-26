@@ -7,6 +7,7 @@ class GiftCardInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var lang = context.read<DeviceCubit>().state.model.locale.languageCode;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -21,7 +22,7 @@ class GiftCardInfoWidget extends StatelessWidget {
               Text(tr("payOnly"), style: AppTextStyle.s20_w400(color: context.colors.white)),
             if(!controller.isMyGiftCard && model.code != null)
               Gaps.hGap8,
-            Text(model.price, style: AppTextStyle.s30_w800(color: context.colors.gold)),
+            Text(getIt<Utilities>().parseCurrency(model.price, lang: lang), style: AppTextStyle.s30_w800(color: context.colors.gold)),
           ],
         ),
         Gaps.vGap13,
@@ -34,7 +35,7 @@ class GiftCardInfoWidget extends StatelessWidget {
                 style: AppTextStyle.s18_w400(color: context.colors.white)
             ),
             Gaps.hGap2,
-            Text(model.value,
+            Text(getIt<Utilities>().parseCurrency(model.value, lang: lang),
                 style: AppTextStyle.s18_w700(color: context.colors.gold)
             ),
           ],
