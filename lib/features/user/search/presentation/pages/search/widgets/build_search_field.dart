@@ -16,6 +16,7 @@ class BuildSearchField extends StatelessWidget {
       controller: controller.searchController,
       validate: (value) => value?.noValidate(),
       hint: tr('searchCats'),
+      onSubmit: () => controller.getSearchResults(),
       suffixIcon: InkWell(
         onTap: () => controller.getSearchResults(),
         child: Icon(

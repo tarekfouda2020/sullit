@@ -183,6 +183,8 @@ class Dimens {
 
   static EdgeInsetsDirectional paddingStart20 = EdgeInsetsDirectional.only(start: 20.r);
 
+  static EdgeInsetsDirectional paddingS22T10B10 = const EdgeInsetsDirectional.only(start: 22, top: 10, bottom: 10);
+
   static EdgeInsets paddingAll3PX = const EdgeInsets.all(3).r;
   static EdgeInsets paddingAll5PX = const EdgeInsets.all(5).r;
   static EdgeInsets paddingAll6PX = const EdgeInsets.all(6).r;

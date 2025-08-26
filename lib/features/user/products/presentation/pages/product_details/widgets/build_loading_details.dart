@@ -17,14 +17,6 @@ class BuildLoadingDetails extends StatelessWidget {
                 children: [
                   BuildShimmerItem(
                     child: BuildIconItem(
-                      iconData: Icons.compare_arrows,
-                      onTap: () {},
-                      padding: Dimens.paddingAll10PX,
-                    ),
-                  ),
-                  BuildShimmerItem(
-                    child: BuildIconItem(
-                      iconData: Icons.compare_arrows,
                       onTap: () {},
                       padding: Dimens.paddingAll10PX,
                     ),
@@ -35,10 +27,12 @@ class BuildLoadingDetails extends StatelessWidget {
             PositionedDirectional(
               start: 5,
               top: 10,
-              child: BuildIconItem(
-                iconData: Icons.west,
-                onTap: () => AutoRouter.of(context).pop(),
-                padding: Dimens.paddingAll10PX,
+              child: BuildShimmerItem(
+                child: BuildIconItem(
+                  onTap: () {},
+                  padding: Dimens.paddingAll10PX,
+                   iconData: Icons.arrow_back,
+                ),
               ),
             )
           ],
