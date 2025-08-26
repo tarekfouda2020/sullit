@@ -17,6 +17,8 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
    <application
+       android:allowBackup="false"
+       android:fullBackupContent="false"
         android:label="Suliit"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
