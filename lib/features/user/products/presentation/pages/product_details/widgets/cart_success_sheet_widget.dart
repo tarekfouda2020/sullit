@@ -10,8 +10,6 @@ class CartSuccessSheetWidget extends StatefulWidget {
 }
 
 class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
-
-
   @override
   void initState() {
     super.initState();
@@ -39,18 +37,33 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
             child: BlocBuilder<GenericBloc<CartDomainModel>, GenericState<CartDomainModel>>(
               bloc: widget.controller.cartItemsBloc,
               builder: (context, state) {
-                 if(state is GenericUpdateState){
+                if (state is GenericUpdateState) {
                   return Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Flexible(child: ListView.builder(
-                        itemCount: (state.data.items ?? <CartItem>[]).length,
-                        itemBuilder: (context, index) {
+                      // Flexible(
+                      //     child: ListView.builder(
+                      //   itemCount: (state.data.items ?? <CartItem>[]).length,
+                      //   itemBuilder: (context, index) {
+                      //     return CartSheetItemWidget(
+                      //       item: (state.data.items ?? <CartItem>[])[index],
+                      //       controller: widget.controller,
+                      //     );
+                      //   },
+                      // )),
+                      Flexible(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                          children: List.generate((state.data.items ?? <CartItem>[]).length, (index) {
                           return CartSheetItemWidget(
                             item: (state.data.items ?? <CartItem>[])[index],
                             controller: widget.controller,
                           );
-                        },
-                      )),
+                          }),
+                          ),
+                        ),
+                      ),
                       Gaps.vGap16,
                       DefaultButton(
                         title: tr('returnToShop'),
@@ -69,33 +82,34 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                       Gaps.vGap10,
                     ],
                   );
-                }else{
-                   return Column(
-                     children: [
-                       Flexible(
-                         child: ListView.builder(
-                           itemCount: 2, // Show 3 shimmer items while loading
-                           itemBuilder: (context, index) {
-                             return const CartSheetItemShimmerWidget();
-                           },
-                         ),
-                       ),
-                       Gaps.vGap16,
-                       BuildShimmerItem(
-                         height: 48,
-                         width: MediaQuery.of(context).size.width,
-                         borderRadius: Dimens.borderRadius30PX,
-                       ),
-                       Gaps.vGap14,
-                       BuildShimmerItem(
-                         height: 48,
-                         width: MediaQuery.of(context).size.width,
-                         borderRadius:Dimens.borderRadius30PX,
-                       ),
-                       Gaps.vGap10,
-                     ],
-                   );
-                 }
+                } else {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        child: ListView.builder(
+                          itemCount: 2, // Show 3 shimmer items while loading
+                          itemBuilder: (context, index) {
+                            return const CartSheetItemShimmerWidget();
+                          },
+                        ),
+                      ),
+                      Gaps.vGap16,
+                      BuildShimmerItem(
+                        height: 48,
+                        width: MediaQuery.of(context).size.width,
+                        borderRadius: Dimens.borderRadius30PX,
+                      ),
+                      Gaps.vGap14,
+                      BuildShimmerItem(
+                        height: 48,
+                        width: MediaQuery.of(context).size.width,
+                        borderRadius: Dimens.borderRadius30PX,
+                      ),
+                      Gaps.vGap10,
+                    ],
+                  );
+                }
               },
             ),
           )

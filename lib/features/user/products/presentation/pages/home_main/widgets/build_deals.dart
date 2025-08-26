@@ -10,7 +10,7 @@ class BuildDeals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Dimens.paddingH20V15,
+      padding: const EdgeInsets.symmetric(vertical: 15),
       child: Stack(
         alignment: Alignment.center,
         children: [

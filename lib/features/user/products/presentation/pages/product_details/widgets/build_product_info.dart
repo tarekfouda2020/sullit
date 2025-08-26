@@ -10,7 +10,6 @@ class BuildProductInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(productModel.rating!.toDouble());
     return SliverToBoxAdapter(
       child: Container(
         margin: Dimens.standardPadding,

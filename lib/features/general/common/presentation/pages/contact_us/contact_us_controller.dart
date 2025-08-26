@@ -4,8 +4,10 @@ class ContactUsController {
   final GlobalKey<CustomButtonState> btnKey = GlobalKey();
   final GlobalKey<FormState> formKey = GlobalKey();
   final GenericBloc<String> contactUsCubit = GenericBloc("");
-  final GenericBloc<Country?> countryCubit = GenericBloc(CountryPickerHelper.defaultCountry());
-  final GenericBloc<List<ContactUsSocialModel>> contactUsSocialCubit = GenericBloc<List<ContactUsSocialModel>>([]);
+  final GenericBloc<Country?> countryCubit =
+      GenericBloc(CountryPickerHelper.defaultCountrySync());
+  final GenericBloc<List<ContactUsSocialModel>> contactUsSocialCubit =
+      GenericBloc<List<ContactUsSocialModel>>([]);
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController phone = TextEditingController();
@@ -13,7 +15,6 @@ class ContactUsController {
   TextEditingController subject = TextEditingController();
 
   ContactUsController(BuildContext context) {
-    // getContactUs();
     getInitialData(context);
     getContactSocials();
   }
@@ -23,12 +24,31 @@ class ContactUsController {
     contactUsCubit.onUpdateData(result);
   }
 
-  void getInitialData(BuildContext context) {
+  Future<void> getInitialData(BuildContext context) async {
     var user = context.read<UserCubit>().state.model;
+    print(user?.toJson());
     if (user != UserDomainModel()) {
       name.text = user?.name ?? "";
       email.text = user?.email ?? "";
       phone.text = user?.phone ?? "";
+      await _initializeCountryFromUser(context, user);
+    }
+  }
+
+  Future<void> _initializeCountryFromUser(
+      BuildContext context, UserDomainModel? user) async {
+    if (user?.countryCode != null && user!.countryCode!.isNotEmpty) {
+      try {
+        final country = await CountryPickerHelper.getCountryByCallingCode(
+            context, user.countryCode!);
+        if (country != null) {
+          countryCubit.onUpdateData(country);
+        } else {
+          print("No country found for calling code: ${user.countryCode}");
+        }
+      } catch (e) {
+        print("Error getting country for calling code ${user.countryCode}: $e");
+      }
     }
   }
 
@@ -59,7 +79,7 @@ class ContactUsController {
     await GetContactUsSocials().call(NoParams()).then((value) {
       if (value.isNotEmpty) {
         contactUsSocialCubit.onUpdateData(value);
-      }else{
+      } else {
         contactUsSocialCubit.onUpdateData([]);
       }
     });

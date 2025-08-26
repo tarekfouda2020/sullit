@@ -12,23 +12,17 @@ class BuildHomeSwiper extends StatelessWidget {
       height: 165,
       child: Visibility(
         visible: slider.length > 1,
-        replacement: Padding(
-          padding: Dimens.paddingHorizontal20PX,
-          child: CachedImage(
-            width: MediaQuery.of(context).size.width,
-            borderRadius: BorderRadius.circular(Dimens.dp30),
-            url: slider.first.photo,
-          ),
+        replacement: CachedImage(
+          width: MediaQuery.of(context).size.width,
+          borderRadius: BorderRadius.circular(Dimens.dp30),
+          url: slider.first.photo,
         ),
         child: Swiper(
           itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: const EdgeInsetsDirectional.only(end: 20,start: 20),
-              child: CachedImage(
-                width: MediaQuery.of(context).size.width,
-                borderRadius: BorderRadius.circular(Dimens.dp30),
-                url: slider[index].photo,
-              ),
+            return CachedImage(
+              width: MediaQuery.of(context).size.width,
+              borderRadius: BorderRadius.circular(Dimens.dp30),
+              url: slider[index].photo,
             );
           },
           itemCount: slider.length,

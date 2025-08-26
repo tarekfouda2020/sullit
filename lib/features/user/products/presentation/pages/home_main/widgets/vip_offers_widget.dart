@@ -3,14 +3,15 @@ part of 'home_main_widgets_imports.dart';
 class VipOffersWidget extends StatelessWidget {
   final void Function() onTap;
   final String text;
-  const VipOffersWidget({super.key, required this.onTap, required this.text});
+  final EdgeInsetsGeometry? margin;
+  const VipOffersWidget({super.key, required this.onTap, required this.text,  this.margin});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10),
+        margin: margin ?? const EdgeInsets.symmetric(horizontal: 10),
         padding:  const EdgeInsetsDirectional.only(start:31 ,end:11,top: 10,bottom: 8),
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -25,21 +26,22 @@ class VipOffersWidget extends StatelessWidget {
           children: [
             SvgPicture.asset(Res.vipMark),
             Gaps.hGap20,
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  tr("saveYourMoneyWith"),
-                  style: AppTextStyle.s12_w400(color: context.colors.white),
-                ),
-                Gaps.vGap5,
-                Text(
-                  tr("vipOffers"),
-                  style: AppTextStyle.s22_w700(color: context.colors.white),
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    tr("saveYourMoneyWith"),
+                    style: AppTextStyle.s12_w400(color: context.colors.white),
+                  ),
+                  Gaps.vGap5,
+                  Text(
+                    tr("vipOffers"),
+                    style: AppTextStyle.s22_w700(color: context.colors.white),
+                  ),
+                ],
+              ),
             ),
-            const Spacer(),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [

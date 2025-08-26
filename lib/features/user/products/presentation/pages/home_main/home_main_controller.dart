@@ -116,16 +116,17 @@ class HomeMainController {
   void scanProduct(BuildContext context)async{
     String? barcode = await getIt<Utilities>().scanBarcode();
     if(barcode!=null && barcode.isNotEmpty){
+          getProductWithSkuAndRoute(context,barcode);
           CustomToast.showSnakeBar(
-           tr('productScanned'),
+            // "${tr('productScanned')} code: $barcode",
+            tr('productScanned'),
             type: ToastType.success,
           );
-           // getProductWithSku(context,barcode);
     }
 
   }
 
-
+  //
   // Future<void> scanSkuNumber() async {
   //   try {
   //     // Method 1: Get just the SKU
@@ -165,7 +166,7 @@ class HomeMainController {
   //     );
   //   }
   // }
-
+  //
   // /// Alternative method to get just the barcode
   // Future<void> scanBarcodeOnly() async {
   //   try {

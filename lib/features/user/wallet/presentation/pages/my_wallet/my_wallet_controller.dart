@@ -9,9 +9,35 @@ class MyWalletController {
   final GlobalKey<DropdownSearchState> walletController = GlobalKey();
   WalletTypes? walletTypeModel;
 
+
+  final PagingController<int, WalletTransaction> pagingController =
+  PagingController(firstPageKey: 1);
+  int pageSize = 12;
+
   MyWalletController() {
+    pagingController.addPageRequestListener((pageKey) {
+      getTransactions(pageKey,refresh: false);
+      getTransactions(pageKey);
+    });
     getWallet(refresh: false);
     getWallet();
+  }
+
+
+
+  Future<void> getTransactions(int page, {bool refresh = true}) async {
+    var params = _historyParams(page, refresh);
+    var data = await GetWalletTransactions().call(params);
+    final isLastPage = data.length < pageSize;
+    if (page == 1) {
+      pagingController.itemList = [];
+    }
+    if (isLastPage) {
+      pagingController.appendLastPage(data);
+    } else {
+      final nextPageKey = page + 1;
+      pagingController.appendPage(data, nextPageKey);
+    }
   }
 
   Future<void> getWallet({bool refresh = true}) async {
@@ -68,4 +94,14 @@ class MyWalletController {
       builder: (context) => ChargeWalletSheetWidget(controller: this),
     );
   }
+
+  GenericPaginateParams _historyParams(int page, bool refresh) {
+    return GenericPaginateParams(
+      currentPage: page,
+      refresh: refresh,
+      pageSize: pageSize,
+    );
+  }
+
+
 }

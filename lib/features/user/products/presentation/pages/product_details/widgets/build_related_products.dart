@@ -10,23 +10,26 @@ final ProductDetailsController controller;
     return SliverToBoxAdapter(
       child: Visibility(
         visible: relatedProducts.isNotEmpty,
-        child: Container(
+        child: SizedBox(
           height: 280.spMin,
-          margin: Dimens.standardPadding,
+          // margin: Dimens.standardPadding,
           // decoration: const CustomDecoration(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gaps.vGap10,
-              Text(
-                tr('relatedProducts'),
-                style: AppTextStyle.s18_w600(
-                  color: context.colors.black,
+              Padding(
+                padding: const EdgeInsetsDirectional.only(start: 15),
+                child: Text(
+                  tr('relatedProducts'),
+                  style: AppTextStyle.s18_w600(
+                    color: context.colors.black,
+                  ),
                 ),
               ),
               Flexible(
                 child: SingleChildScrollView(
-                  padding: Dimens.paddingVertical10PX,
+                  padding: const EdgeInsetsDirectional.only(top: 10,bottom: 10,start: 15),
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -36,6 +39,7 @@ final ProductDetailsController controller;
                         padding: Dimens.paddingHorizontal5PX,
                         child: BuildProductItem(
                           productModel: relatedProducts[index],
+                          afterAddToCart: () => controller.showCartSuccessSheet(context),
                           onFavRefresh: () => controller.onChangeFav(
                             context,
                             relatedProducts[index],

@@ -52,12 +52,12 @@ class BuildAddTicketsImages extends StatelessWidget {
                         margin: Dimens.paddingHorizontal5PX,
                         decoration: BoxDecoration(
                             borderRadius: Dimens.borderRadius10PX,
-                            color: context.colors.offWhite
+                            color: context.colors.gray3
                         ),
                         child: Icon(
                           Icons.add,
                           size: 15.sp,
-                          color: context.colors.blackOpacity,
+                          color: context.colors.black,
                         ),
                       ),
                     ),

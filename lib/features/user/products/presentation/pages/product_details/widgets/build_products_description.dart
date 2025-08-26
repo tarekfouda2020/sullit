@@ -13,14 +13,14 @@ class BuildProductDescription extends StatelessWidget {
         decoration:  CustomDecoration(
             radius: BorderRadius.circular(12)
         ),
-        padding: const EdgeInsetsDirectional.only(start: 32,top: 10,bottom: 10),
+        padding: Dimens.paddingS22T10B10,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "${tr('description')} : ",
               style: AppTextStyle.s12_w400(
-                color: context.colors.black,
+                color: context.colors.textColor,
               ),
             ),
             Gaps.vGap8,

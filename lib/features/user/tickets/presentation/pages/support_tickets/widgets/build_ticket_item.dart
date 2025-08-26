@@ -9,14 +9,15 @@ class BuildTicketItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(getDate(ticketModel.sendingDate.toString()));
     return Container(
       padding: const EdgeInsetsDirectional.only(start: 34,top: 14,bottom: 20,end: 10),
-      decoration:  CustomDecoration(),
+      decoration: const CustomDecoration(),
       child: Column(
         children: [
         Row(
           children: [
-            Text( "${tr("ticketId")}:",
+            Text( "${tr("ticketId")} :",
             style: AppTextStyle.s14_w400(color: context.colors.black),
             ),
             Gaps.hGap5,
@@ -28,10 +29,10 @@ class BuildTicketItem extends StatelessWidget {
           Gaps.vGap10,
           Row(
             children: [
-              Text( "${tr("subject")}:",
+              Text( "${tr("subject")} :",
                 style: AppTextStyle.s14_w400(color: context.colors.black),
               ),
-              Gaps.hGap14,
+              Gaps.hGap5,
               Text( ticketModel.subject,
                 style: AppTextStyle.s14_w600(color: context.colors.black),
               ),
@@ -40,11 +41,11 @@ class BuildTicketItem extends StatelessWidget {
           Gaps.vGap10,
           Row(
             children: [
-              Text( "${tr('sendingDate')}:",
+              Text( "${tr('sendingDate')} :",
                 style: AppTextStyle.s14_w400(color: context.colors.black),
               ),
-              Gaps.hGap14,
-              Text( getDate(),
+              Gaps.hGap5,
+              Text( getDate(ticketModel.sendingDate.toString()),
                 style: AppTextStyle.s14_w600(color: context.colors.black),
               ),
             ],
@@ -52,10 +53,10 @@ class BuildTicketItem extends StatelessWidget {
           Gaps.vGap10,
           Row(
             children: [
-              Text( "${tr('status')}:",
+              Text( "${tr('status')} :",
                 style: AppTextStyle.s14_w400(color: context.colors.black),
               ),
-              Gaps.hGap14,
+              Gaps.hGap5,
               Text( ticketModel.status,
                 style: AppTextStyle.s14_w600(color: context.colors.black),
               ),
@@ -66,6 +67,24 @@ class BuildTicketItem extends StatelessWidget {
     );
   }
 
-  String getDate() => DateFormat("dd MMM yyyy - hh:mm a", "en").format(ticketModel.sendingDate);
+
+  String getDate(String backendDate, {String locale = "en"}) {
+    try {
+      final parsed = DateTime.parse(backendDate.replaceAll(" ", "T"));
+      final utcTime = DateTime.utc(
+        parsed.year,
+        parsed.month,
+        parsed.day,
+        parsed.hour,
+        parsed.minute,
+        parsed.second,
+      );
+      final localTime = utcTime.toLocal();
+      return DateFormat("dd MMM yyyy - hh:mm a", locale).format(localTime);
+    } catch (e) {
+      return backendDate;
+    }
+  }
+
 
 }

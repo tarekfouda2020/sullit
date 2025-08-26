@@ -572,6 +572,7 @@
   "changePassword":"Change Password" ,
   "confirmChange":"Confirm change ",
   "currentPassword":"Current Password",
+  "productScanned": "Product Scanned",
   "chargeWallet": "Charge Wallet Balance",
   "enterAmount": "Enter Amount"
 }

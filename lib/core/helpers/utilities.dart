@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:geocode/geocode.dart';
@@ -37,7 +39,7 @@ class Utilities {
         '#ff6666',
         tr('cancel'),
         true,
-        scanMode ?? ScanMode.BARCODE,
+        scanMode ?? ScanMode.QR,
       );
 
       if (barcode == '-1' || barcode.isEmpty) {
@@ -49,6 +51,7 @@ class Utilities {
             msg: tr('scanCancel'),
             type: ToastType.error,
           );
+          return null;
     }
   }
 
@@ -66,7 +69,10 @@ class Utilities {
       return permission;
     }
   }
-  String parseCurrency(String text, {String lang = "en"}) {
+  String parseCurrency(String text) {
+    BuildContext ctx = getIt<GlobalContext>().context();
+    // String lang = GlobalState.instance.get("lang");
+    String lang = ctx.read<DeviceCubit>().state.model.locale.languageCode;
     final RegExp regExp = RegExp(r"^([^\d]+)([\d.,]+)$");
     final match = regExp.firstMatch(text);
 
@@ -254,8 +260,6 @@ class Utilities {
     }
     return null;
   }
-
-
 
 
 

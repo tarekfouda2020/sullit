@@ -105,6 +105,7 @@ class ApiNames {
   static const String getMyWallet = "my-wallet";
   static const String getWalletTypes = "recharge-wallet-payment-types";
   static const String rechargeWallet = "recharge-wallet";
+  static const String walletTransactions = "wallet/transactions";
 
   // general
   static const String terms = "terms";

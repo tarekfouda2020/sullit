@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:country_calling_code_picker/picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
@@ -33,8 +32,29 @@ class CountryPickerHelper {
     return data;
   }
 
+  static Future<Country?> getCountryByCallingCode(BuildContext context, String callingCode) async {
+    try {
+      final countries = await getCountries(context);
+      return countries.firstWhere(
+        (country) => country.callingCode == callingCode,
+        orElse: () => throw StateError('No country found with calling code: $callingCode'),
+      );
+    } catch (e) {
+      return null;
+    }
+  }
 
-  static Country defaultCountry(){
+  static Future<Country> defaultCountry(BuildContext context) async {
+    try {
+      return await getDefaultCountry(context);
+    } catch (e) {
+      return const Country(
+          "United Arab Emirates","flags/are.png","AE","+971"
+      );
+    }
+  }
+
+  static Country defaultCountrySync(){
     return const Country(
         "United Arab Emirates","flags/are.png","AE","+971"
     );

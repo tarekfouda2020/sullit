@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
@@ -15,7 +17,12 @@ class GiftCardItemWidget extends StatelessWidget {
   final bool isMyGiftCard;
   final GiftCardDomainModel model;
   final void Function() onTap;
-  const GiftCardItemWidget({super.key, required this.isMyGiftCard, required this.model, required this.onTap});
+
+  const GiftCardItemWidget(
+      {super.key,
+      required this.isMyGiftCard,
+      required this.model,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -31,32 +38,49 @@ class GiftCardItemWidget extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(Res.giftCardPlaceholder,width: 72, height: 72,),
+                Image.asset(
+                  Res.giftCardPlaceholder,
+                  width: 72,
+                  height: 72,
+                ),
                 Gaps.hGap15,
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(model.title ,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyle.s14_w400(color: context.colors.black),
+                      Text(
+                        model.title,
+                        overflow: TextOverflow.ellipsis,
+                        style:
+                            AppTextStyle.s14_w400(color: context.colors.black),
                       ),
                       Gaps.vGap8,
                       Row(
                         children: [
-                          if(!isMyGiftCard)
-                          Text(tr("payOnly"), style: AppTextStyle.s16_w400(color: context.colors.black)),
-                          if(!isMyGiftCard)
-                          Gaps.hGap8,
-                          Text(model.price, style: AppTextStyle.s22_w600(color: context.colors.primary)),
+                          if (!isMyGiftCard)
+                            Text(tr("payOnly"),
+                                style: AppTextStyle.s16_w400(
+                                    color: context.colors.black)),
+                          if (!isMyGiftCard) Gaps.hGap8,
+                          Text(
+                              getIt<Utilities>()
+                                  .parseCurrency(model.price),
+                              style: AppTextStyle.s22_w600(
+                                  color: context.colors.primary)),
                         ],
                       ),
                       Gaps.vGap8,
                       Row(
                         children: [
-                          Text(tr("andGetPurchasesWith"), style: AppTextStyle.s12_w400(color: context.colors.textColor)),
+                          Text(tr("andGetPurchasesWith"),
+                              style: AppTextStyle.s12_w400(
+                                  color: context.colors.textColor)),
                           Gaps.hGap2,
-                          Text(model.value, style: AppTextStyle.s12_w700(color: context.colors.black)),
+                          Text(
+                              getIt<Utilities>()
+                                  .parseCurrency(model.value),
+                              style: AppTextStyle.s12_w700(
+                                  color: context.colors.black)),
                         ],
                       ),
                     ],
@@ -73,7 +97,10 @@ class GiftCardItemWidget extends StatelessWidget {
                     Gaps.vGap17,
                     Gaps.line(context.colors.textColor, 0),
                     Gaps.vGap17,
-                    Text("${tr("validForExpiredDays")} ${model.expiredInDays} ${tr("days")}", style: AppTextStyle.s12_w400(color: context.colors.textColor)),
+                    Text(
+                        "${tr("validForExpiredDays")} ${model.expiredInDays} ${tr("days")}",
+                        style: AppTextStyle.s12_w400(
+                            color: context.colors.textColor)),
                   ],
                 ))
           ],

@@ -1,14 +1,11 @@
 part of 'my_wallet_widgets_imports.dart';
 
 class WalletItemWidget extends StatelessWidget {
-  final WalletItem? item;
-  const WalletItemWidget({super.key, this.item});
+  final WalletTransaction item;
+  const WalletItemWidget({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
-    print(
-      getIt<Utilities>().parseCurrency(item!.dmoun, lang: context.read<DeviceCubit>().state.model.locale.languageCode),
-    );
     return Container(
       margin: Dimens.paddingVertical5PX,
       padding: const EdgeInsetsDirectional.only(top: 16,bottom: 16,start: 19,end: 24),
@@ -19,14 +16,15 @@ class WalletItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            item?.approval ?? "",
+            item.typeLabel,
             style: AppTextStyle.s14_w600(
               color: context.colors.green,
             ),
           ),
           Gaps.vGap6,
           Text(
-            getIt<Utilities>().parseCurrency(item!.dmoun, lang: context.read<DeviceCubit>().state.model.locale.languageCode),
+              item.amount.parseCurrency,
+            // getIt<Utilities>().parseCurrency(item!.dmoun),
             style: AppTextStyle.s22_w600(
               color: context.colors.primary,
             ),
@@ -36,14 +34,14 @@ class WalletItemWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  "Transaction no : #${item!.id}",
+                  "Transaction no : #${item.referenceNo}",
                   style: AppTextStyle.s14_w700(
                     color: context.colors.black,
                   ),
                 ),
               ),
               Text(
-                item!.date,
+                item.createdAt,
                 style: AppTextStyle.s14_w400(
                   color: context.colors.textColor,
                 ),
