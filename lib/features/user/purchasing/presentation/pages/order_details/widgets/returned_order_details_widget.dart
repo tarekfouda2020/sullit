@@ -20,15 +20,15 @@ class ReturnedOrderDetailsWidget extends StatelessWidget {
         Gaps.vGap8,
         OrderINfoItemWidget(
             title: tr('totalItems'),
-            describe: order?.totalItemsCount().toString() ?? '2',
+            describe: order?.totalItemsCount().toString() ?? '',
             gaps: Gaps.hGap9
         ),
         Gaps.vGap8,
-        OrderINfoItemWidget(title: tr('phone'), describe: '+99753583245', gaps: Gaps.hGap17),
+        OrderINfoItemWidget(title: tr('phone'), describe: order?.customerPhone ?? "", gaps: Gaps.hGap17),
         Gaps.vGap8,
         OrderINfoItemWidget(
             title: tr('refundMethod'),
-            describe: order?.paymentMethod ?? 'Apple Pay',
+            describe: order?.paymentMethod ?? '',
             gaps: Gaps.hGap5
         ),
       ],

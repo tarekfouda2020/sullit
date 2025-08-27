@@ -5,15 +5,13 @@ class BuildAddressLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GenericListView(
-      padding: Dimens.paddingAll15PX,
-      type: ListViewType.normal,
+    return Column(
       children: List.generate(
         3,
         (index) => Container(
           margin: Dimens.paddingVertical12PX,
           padding: Dimens.paddingAll10PX,
-          decoration: CustomDecoration(),
+          decoration: const CustomDecoration(),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
