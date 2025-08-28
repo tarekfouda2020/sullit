@@ -20,10 +20,10 @@ class BuildTabsView extends StatelessWidget {
         labelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
         indicatorSize: TabBarIndicatorSize.label,
         tabs: [
-          const Text(
+           Text(
             textAlign: TextAlign.center,
-            "Pro Offers",
-            style: TextStyle(
+            tr("proOffers"),
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),

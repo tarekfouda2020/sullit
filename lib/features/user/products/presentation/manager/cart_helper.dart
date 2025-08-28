@@ -54,10 +54,11 @@ class CartHelper {
     }).toList();
     productCubit.state.data?.minQty = 1;
     productCubit.onUpdateData(productCubit.state.data);
+    
     getVariantPrice(context, productCubit);
   }
 
-  void getVariantPrice(
+  Future<void> getVariantPrice(
       BuildContext context, GenericBloc<Product?> productCubit) async {
     var params = _variantPriceParams(productCubit.state.data!.id!);
     var result = await GetVariantPrice().call(params);

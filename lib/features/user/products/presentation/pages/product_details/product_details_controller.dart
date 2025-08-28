@@ -46,17 +46,15 @@ class ProductDetailsController {
   void _initVariants(BuildContext context) {
     detailsCubit.state.data?.product.choiceOptions?.map((e) {
       if (e.options != null && e.options!.isNotEmpty) {
-        e.selectedAttribute!.add(e.options!.first);
-        e.hasValue = true;
+        // Initialize with empty selection - no default selection
+        e.selectedAttribute = [];
+        e.hasValue = false;
       } else {
         e.hasValue = false;
       }
     }).toList();
-    var selectedList = detailsCubit.state.data!.product.choiceOptions!
-        .map((e) => e.selectedAttribute)
-        .toList();
-    selectedVariants = selectedList.expand((element) => element!).toList();
-    if (selectedVariants.isNotEmpty) getVariantPrice(context);
+    // Don't get variant price initially since no attributes are selected
+    selectedVariants = [];
   }
 
   void getVariantPrice(BuildContext context) async {
@@ -209,8 +207,11 @@ class ProductDetailsController {
 
 
   Future<void> getCartItems({bool refresh = true}) async {
-    CartDomainModel result = await getIt<CartHelper>().getCartItems(refresh: refresh);
-    cartItemsBloc.onUpdateData(result);
+    await getIt<CartHelper>().getCartItems(refresh: refresh).then((value) {
+    if(value.items!.isNotEmpty){
+      cartItemsBloc.onUpdateData(value);
+    }
+    });
   }
 
   void showCartSuccessDialog(BuildContext context) {

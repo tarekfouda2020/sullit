@@ -39,6 +39,7 @@ class _VerifyRegisterState extends State<VerifyRegister> {
               BuildPinField(
                 onComplete: (code) => controller.verifyEmail(context,code),
                 count: 4,
+                alignment: MainAxisAlignment.spaceAround,
               ),
               ReSendCodeTimerWidget(controller: controller),
               // DefaultButton(

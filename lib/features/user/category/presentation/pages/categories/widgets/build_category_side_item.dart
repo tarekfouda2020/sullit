@@ -21,7 +21,7 @@ class BuildCategorySideItem extends StatelessWidget {
               ? context.colors.gray2
               : context.colors.lightPrimary,
         ),
-        padding: const EdgeInsets.all(17),
+        padding: const EdgeInsets.all(16),
         child: Text(
           categoryModel.name,
           textAlign: TextAlign.center,

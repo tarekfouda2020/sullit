@@ -16,8 +16,8 @@ class BuildWalletHistory extends StatelessWidget {
             itemBuilder: (_, item, index) => WalletItemWidget(item: item,),
             firstPageProgressIndicatorBuilder: (_) => _transactionsLoading(),
             noItemsFoundIndicatorBuilder: (cxt) {
-              return Padding(
-                padding: const EdgeInsets.only(top: 250),
+              return SizedBox(
+                height: MediaQuery.of(context).size.height * 0.5,
                 child: Center(
                   child: Text(
                     tr('noTransactionsFound'),

@@ -155,7 +155,7 @@ class EditAddressController {
       long: locationCubit.state.model!.lng,
       buildingName: buildingController.text,
       flatNumber:flatController.text ,
-      streetName:address.streetName ?? streetController.text,
+      streetName:streetController.text,
       addressType: addressTypeModel!.key
     );
   }

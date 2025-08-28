@@ -21,7 +21,7 @@ class _ProOffersState extends State<ProOffers> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: VipOffersWidget(
-                onTap: () => AutoRouter.of(context).push(const MembershipSubscribeRoute()),
+                onTap: () => controller.routeToMembershipSubscribe(context),
                 text: tr("subscribeNow"),
               ),
             ),

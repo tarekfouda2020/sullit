@@ -36,9 +36,9 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
     if (widget.product.choiceOptions!.isNotEmpty) {
       widget.product.choiceOptions?.map((e) {
         if(e.options!.isNotEmpty&&e.options!=null){
+          // Initialize with empty selection - no default selection
           e.selectedAttribute = [];
-          e.selectedAttribute?.add(e.options!.first);
-          e.hasValue = true;
+          e.hasValue = false;
         }
       }).toList();
       productCubit.onUpdateData(widget.product);
@@ -106,7 +106,13 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                 ),
               ),
               Gaps.line(context.colors.grey, 20.h),
-              BuildProductAttributes(productCubit: productCubit),
+              Visibility(
+                visible: productCubit.state.data!.choiceOptions!.isNotEmpty,
+                child: Flexible(child: BuildProductAttributes(productCubit: productCubit)),
+              ),
+              Visibility(
+                  visible: productCubit.state.data!.choiceOptions!.isNotEmpty,
+                  child: Gaps.line(context.colors.greyWhite, 20.h)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -152,7 +158,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
               ),
               Gaps.vGap24,
               Visibility(
-                visible: state.data!.variant!.currentStock! > 0,
+                visible: (state.data!.variant?.currentStock! ?? 0) > 0,
                 replacement: Text(
                   tr('outOfStock'),
                   style: AppTextStyle.s16_w800(
@@ -160,15 +166,17 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                   ),
                 ),
                 child: GestureDetector(
-                  onTap: () => getIt<CartHelper>().addProductToCart(
-                    context,
-                    state.data!.minQty!,
-                    state.data!.variant?.id,
-                    onAddCartFunc: () {
-                      Navigator.pop(context);
-                      widget.afterAddToCart?.call();
-                    },
-                  ),
+                  onTap: () {
+                    getIt<CartHelper>().addProductToCart(
+                      context,
+                      state.data!.minQty!,
+                      state.data!.variant?.id,
+                      onAddCartFunc: () {
+                        Navigator.pop(context);
+                        widget.afterAddToCart?.call();
+                      },
+                    );
+                  },
                   child: Container(
                     margin: Dimens.paddingHorizontal5PX,
                     padding: Dimens.standardPadding,
@@ -210,6 +218,22 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
     }else{
       return widget.product.hasDiscount!;
     }
+  }
+
+  bool _hasSelectedAttributes() {
+    if (productCubit.state.data?.choiceOptions == null || 
+        productCubit.state.data!.choiceOptions!.isEmpty) {
+      return false; // No attributes to select
+    }
+    
+    for (var option in productCubit.state.data!.choiceOptions!) {
+      if (option.options != null && option.options!.isNotEmpty) {
+        if (option.selectedAttribute != null && option.selectedAttribute!.isNotEmpty) {
+          return true; // At least one attribute is selected
+        }
+      }
+    }
+    return false; // No attributes are selected
   }
 
 

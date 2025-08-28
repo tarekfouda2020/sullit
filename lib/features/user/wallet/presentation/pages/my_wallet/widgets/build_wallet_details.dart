@@ -10,7 +10,7 @@ class BuildWalletDetails extends StatelessWidget {
     return Container(
       alignment: AlignmentDirectional.center,
       padding: Dimens.paddingAll20PX,
-      margin: Dimens.paddingAll15PX,
+      margin: const EdgeInsets.only(top: 20,left: 20,right: 20,bottom: 16),
       decoration: BoxDecoration(
         color: context.colors.white,
         borderRadius: Dimens.borderRadius12PX,

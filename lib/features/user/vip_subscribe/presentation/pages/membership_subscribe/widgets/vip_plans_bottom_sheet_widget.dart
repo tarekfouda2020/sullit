@@ -9,7 +9,7 @@ class VipPlansBottomSheetWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 29, left: 20, right: 20, bottom: 10),
-      margin: const EdgeInsets.only(top: kToolbarHeight+20),
+      margin: const EdgeInsets.only(top: kToolbarHeight + 20),
       decoration: BoxDecoration(
         color: context.colors.customBackground,
         borderRadius: Dimens.sheetBorderRadius,
@@ -17,37 +17,29 @@ class VipPlansBottomSheetWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          BottomSheetHeaderWidget(
-            title: tr('vipMembership'),
-          ),
+          BottomSheetHeaderWidget(title: tr('vipMembership')),
           Gaps.vGap24,
-          SizedBox(
-            height: MediaQuery.of(context).size.height *.4,
+          Flexible(
             child: RefreshIndicator(
               onRefresh: () => controller.getSubscriptions(1),
               child: PagedListView<int, VipSubscribeDomainModel>(
                 pagingController: controller.pagingController,
                 builderDelegate: PagedChildBuilderDelegate<VipSubscribeDomainModel>(
-                  itemBuilder: (_, item, index) {
-                    return MembershipItemWidget(
-                      model: item,
-                      isBottomSheet: true,
-                      onSelect: () => controller.updateSelectedMemberShip(item),
-                    );
-                  },
-                  noItemsFoundIndicatorBuilder: (cxt) {
-                    return Center(
-                      child: Text(
-                        tr("noSubscriptions"),
-                        style: AppTextStyle.s16_w700(color: context.colors.black),
-                      ),
-                    );
-                  },
-                  firstPageProgressIndicatorBuilder: (_) => SingleChildScrollView(
-                    child: Column(
-                      children: List.generate(3, (index) {
-                        return const MembershipItemShimmerWidget();
-                      }),
+                  itemBuilder: (_, item, index) => MembershipItemWidget(
+                    model: item,
+                    isBottomSheet: true,
+                    onSelect: () => controller.updateSelectedMemberShip(item),
+                  ),
+                  noItemsFoundIndicatorBuilder: (_) => Center(
+                    child: Text(
+                      tr("noSubscriptions"),
+                      style: AppTextStyle.s16_w700(color: context.colors.black),
+                    ),
+                  ),
+                  firstPageProgressIndicatorBuilder: (_) => Column(
+                    children: List.generate(
+                      3,
+                          (_) => const MembershipItemShimmerWidget(),
                     ),
                   ),
                 ),
@@ -55,39 +47,38 @@ class VipPlansBottomSheetWidget extends StatelessWidget {
             ),
           ),
           Gaps.vGap10,
-          BlocBuilder<GenericBloc<bool>,GenericState<bool>>(
+          BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.isDataLoaded,
-              builder: (context, state) {
-                if(state is GenericUpdateState){
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AgreeTermsConditionsWidget(controller: controller),
-                      Gaps.vGap8,
-                      PayMembershipButtonWidget(controller: controller)
-                    ],
-                  );
-                }
-                else{
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                       BuildShimmerItem(
-                        height: 20,
-                        width: 200,
-                          borderRadius: Dimens.borderRadius20PX,
-                      ),
-                      Gaps.vGap10,
-                      BuildShimmerItem(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width,
-                        borderRadius: Dimens.borderRadius30PX,
-                      ),
-                      Gaps.vGap20
-                    ],
-                  );
-                }
-              },
+            builder: (context, state) {
+              if (state is GenericUpdateState) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AgreeTermsConditionsWidget(controller: controller),
+                    Gaps.vGap8,
+                    PayMembershipButtonWidget(controller: controller),
+                  ],
+                );
+              } else {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BuildShimmerItem(
+                      height: 20,
+                      width: 200,
+                      borderRadius: Dimens.borderRadius20PX,
+                    ),
+                    Gaps.vGap10,
+                    BuildShimmerItem(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width,
+                      borderRadius: Dimens.borderRadius30PX,
+                    ),
+                    Gaps.vGap20,
+                  ],
+                );
+              }
+            },
           ),
         ],
       ),

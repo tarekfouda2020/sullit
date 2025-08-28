@@ -52,18 +52,20 @@ class ContactUsController {
     }
   }
 
-  Future<void> contactUs() async {
+  Future<void> contactUs(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       var params = _contactUsParams();
-      var data = await SetContactUs().call(params);
-      if (data) {
-        subject.clear();
-        message.clear();
-        CustomToast.showSimpleToast(
-          msg: tr('msgSent'),
-          type: ToastType.success,
-        );
-      }
+     await SetContactUs().call(params).then((value) {
+        if (value) {
+          // subject.clear();
+          // message.clear();
+          CustomToast.showSimpleToast(
+            msg: tr('msgSent'),
+            type: ToastType.success,
+          );
+          AutoRouter.of(context).pop();
+        }
+      });
     }
   }
 

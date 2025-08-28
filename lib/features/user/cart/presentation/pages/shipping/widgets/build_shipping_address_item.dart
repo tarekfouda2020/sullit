@@ -24,14 +24,52 @@ class BuildShippingAddressItem extends StatelessWidget {
             Gaps.hGap10,
             Expanded(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BuildAddressTitleItem(
-                    title: tr('address'),
-                    desc: address.address!,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: BuildAddressTitleItem(
+                          title: tr('address'),
+                          desc: address.address!,
+                        ),
+                      ),
+                      Visibility(
+                        visible: address.isActive != true,
+                        child: InkWell(
+                          onTap: () => controller.onActiveAddress(context, address),
+                          child: Container(
+                            padding: Dimens.paddingAll8PX,
+                            decoration: BoxDecoration(
+                              borderRadius: Dimens.borderRadius5PX,
+                              color: context.colors.primary,
+                            ),
+                            child: Text(
+                              tr('verifyPhone'),
+                              style: AppTextStyle.s12_w300(
+                                color: context.colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                    BuildAddressTitleItem(
                     title: 'Type',
                     desc: address.addressType ?? "",
+                  ),
+                  BuildAddressTitleItem(
+                    title: tr('city'),
+                    desc: address.city?.name ?? "",
+                  ),
+                  BuildAddressTitleItem(
+                    title: tr("state"),
+                    desc: address.state?.name ?? "",
+                  ),
+                  BuildAddressTitleItem(
+                    title: tr('country'),
+                    desc: address.country?.name ?? "",
                   ),
                    BuildAddressTitleItem(
                     title: 'Street Name',
@@ -50,43 +88,12 @@ class BuildShippingAddressItem extends StatelessWidget {
                   //   desc: address.postalCode!,
                   // ),
                   BuildAddressTitleItem(
-                    title: tr('city'),
-                    desc: address.city?.name ?? "",
-                  ),
-                  BuildAddressTitleItem(
-                    title: tr("state"),
-                    desc: address.state?.name ?? "",
-                  ),
-                  BuildAddressTitleItem(
-                    title: tr('country'),
-                    desc: address.country?.name ?? "",
-                  ),
-                  BuildAddressTitleItem(
                     title: tr('phone'),
                     desc: address.fullPhone ?? "",
                   )
                 ],
               ),
             ),
-            Visibility(
-              visible: address.isActive != true,
-              child: InkWell(
-                onTap: () => controller.onActiveAddress(context, address),
-                child: Container(
-                  padding: Dimens.paddingAll8PX,
-                  decoration: BoxDecoration(
-                    borderRadius: Dimens.borderRadius5PX,
-                    color: context.colors.primary,
-                  ),
-                  child: Text(
-                    tr('verifyPhone'),
-                    style: AppTextStyle.s12_w300(
-                      color: context.colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            )
           ],
         ),
       ),

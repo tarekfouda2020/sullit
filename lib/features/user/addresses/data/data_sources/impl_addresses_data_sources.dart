@@ -79,7 +79,7 @@ class ImplAddressesDataSources extends AddressesDataSources {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.states + headers,
       requestMethod: RequestMethod.get,
-      refresh: false,
+      // refresh: false,
       responseType: ResType.list,
       showLoader: true,
       toJsonFunc: (json) => List<StateModel>.from(
@@ -99,7 +99,7 @@ class ImplAddressesDataSources extends AddressesDataSources {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.cities + headers,
       requestMethod: RequestMethod.get,
-      refresh: false,
+      // refresh: false,
       responseType: ResType.list,
       showLoader: true,
       toJsonFunc: (json) => List<CityModel>.from(

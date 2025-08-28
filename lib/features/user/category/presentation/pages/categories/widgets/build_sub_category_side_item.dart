@@ -16,7 +16,7 @@ class BuildSubCategorySideItem extends StatelessWidget {
   Widget build(BuildContext context) {
     print("======>>>>>> sub cat 1${subCategoryModel.id}");
     return Padding(
-      padding: const EdgeInsetsDirectional.only(start: Dimens.dp10, end: Dimens.dp10,top: Dimens.dp20,bottom: Dimens.dp10),
+      padding: const EdgeInsetsDirectional.only(start: Dimens.dp10, end: Dimens.dp10,top: Dimens.dp20,bottom: Dimens.dp35),
       child: Visibility(
         visible: length > 1,
         replacement: SubCategorySideItemReplacementWidget(

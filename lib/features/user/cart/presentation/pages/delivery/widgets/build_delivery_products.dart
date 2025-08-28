@@ -23,7 +23,7 @@ class BuildDeliveryProducts extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Seller",
+                tr("seller"),
                 style: AppTextStyle.s12_w400(
                   color: context.colors.textColor,
                 ),

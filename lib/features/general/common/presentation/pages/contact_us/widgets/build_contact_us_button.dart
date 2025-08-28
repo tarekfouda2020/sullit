@@ -12,7 +12,7 @@ class BuildContactUsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoadingButton(
       title: tr('send'),
-      onTap: () => controller.contactUs(),
+      onTap: () => controller.contactUs(context),
       color: context.colors.primary,
       textColor: context.colors.white,
       btnKey: controller.btnKey,

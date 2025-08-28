@@ -8,7 +8,7 @@ class AddressLoadingItemWidget extends StatelessWidget {
     return Container(
       margin: Dimens.paddingVertical12PX,
       padding: Dimens.paddingAll10PX,
-      decoration: CustomDecoration(),
+      decoration: const CustomDecoration(),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

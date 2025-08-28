@@ -14,12 +14,18 @@ class BuildLoadingSideSubCategories extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (_, index) => Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Wrap(
+                    direction: Axis.horizontal,
+                    runSpacing: Dimens.dp15,
+                    spacing: Dimens.dp15,
                     children: [
-                      const Flexible(
-                        child: BuildShimmerItem(height: Dimens.dp15),
-                      ),
+                       ...List.generate(3, (index) {
+                         return BuildShimmerItem(
+                           height: Dimens.dp70,
+                           width: Dimens.dp70,
+                           borderRadius: Dimens.borderRadius30PX,
+                         );
+                       }),
                       Gaps.hGap5,
                       BuildShimmerItem(
                         height: Dimens.dp22,

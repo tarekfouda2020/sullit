@@ -55,27 +55,24 @@ class _CategoriesState extends State<Categories> {
                     ),
                     Expanded(
                       flex: 3,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 25),
-                        child: BlocBuilder<GenericBloc<List<Category>>,
-                            GenericState<List<Category>>>(
-                          bloc: categoriesController.sideSubCatsCubit,
-                          builder: (context, state) {
-                            if (state is GenericUpdateState) {
-                              return ListView.builder(
-                                itemBuilder: (_, index) =>
-                                    BuildSubCategorySideItem(
-                                  categoriesController: categoriesController,
-                                  subCategoryModel: state.data[index],
-                                  length: state.data.length,
-                                ),
-                                itemCount: state.data.length,
-                              );
-                            } else {
-                              return const BuildLoadingSideSubCategories();
-                            }
-                          },
-                        ),
+                      child: BlocBuilder<GenericBloc<List<Category>>,
+                          GenericState<List<Category>>>(
+                        bloc: categoriesController.sideSubCatsCubit,
+                        builder: (context, state) {
+                          if (state is GenericUpdateState) {
+                            return ListView.builder(
+                              itemBuilder: (_, index) =>
+                                  BuildSubCategorySideItem(
+                                categoriesController: categoriesController,
+                                subCategoryModel: state.data[index],
+                                length: state.data.length,
+                              ),
+                              itemCount: state.data.length,
+                            );
+                          } else {
+                            return const BuildLoadingSideSubCategories();
+                          }
+                        },
                       ),
                     )
                   ],

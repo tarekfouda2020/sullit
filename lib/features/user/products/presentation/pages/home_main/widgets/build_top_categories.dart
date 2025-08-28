@@ -27,7 +27,7 @@ class BuildTopCategories extends StatelessWidget {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 5,
             childAspectRatio: 0.60,
-            crossAxisSpacing: 5,
+            crossAxisSpacing: 8,
             mainAxisSpacing: 15,
           ),
         )

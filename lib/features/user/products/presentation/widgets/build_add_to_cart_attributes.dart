@@ -19,9 +19,7 @@ class BuildProductAttributes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<ProductOptions> options = productCubit.state.data!.choiceOptions!;
-    return Visibility(
-      visible: options.isNotEmpty,
-      replacement: Gaps.vGap5,
+    return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -47,7 +45,7 @@ class BuildProductAttributes extends StatelessWidget {
               ],
             ),
           ),
-          Gaps.line(context.colors.greyWhite, 20.h),
+          Gaps.line(Colors.transparent, 20.h),
         ],
       ),
     );

@@ -26,8 +26,16 @@ class _MyWalletState extends State<MyWallet> {
         builder: (context, state) {
           if (state is GenericUpdateState) {
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BuildWalletDetails(walletBalance: state.data!.walletBalance),
+                Padding(
+                  padding:  const EdgeInsetsDirectional.only(start: 20),
+                  child: Text(tr("transactions"),
+                  style: AppTextStyle.s20_w700(color: context.colors.black),
+                  ),
+                ),
+                Gaps.vGap5,
                 BuildWalletHistory(
                   controller: controller,
                 ),

@@ -74,35 +74,42 @@ class BuildNewAddressItem extends StatelessWidget {
                   //   desc: address.postalCode!,
                   // ),
 
-                  BuildAddressTitleItem(
-                    title: tr('phone'),
-                    desc: address.fullPhone ?? "",
+                  Row(
+                    children: [
+                      Expanded(
+                        child: BuildAddressTitleItem(
+                          title: tr('phone'),
+                          desc: address.fullPhone ?? "",
+                        ),
+                      ),
+                      Visibility(
+                        visible:  address.isActive != true,
+                        child: InkWell(
+                          onTap: () => controller.onActiveAddress(context, address),
+                          child: Container(
+                            padding: Dimens.paddingAll8PX,
+                            margin: const EdgeInsets.only(bottom: 10),
+                            decoration: BoxDecoration(
+                              borderRadius: Dimens.borderRadius5PX,
+                              color: context.colors.primary,
+                            ),
+                            child: Text(
+                              tr('verifyPhone'),
+                              style: AppTextStyle.s12_w300(
+                                color: context.colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   )
                 ],
               ),
             ),
             Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Visibility(
-                  visible: address.isActive != true,
-                  child: InkWell(
-                    onTap: () => controller.onActiveAddress(context, address),
-                    child: Container(
-                      padding: Dimens.paddingAll8PX,
-                      margin: const EdgeInsets.only(bottom: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: Dimens.borderRadius5PX,
-                        color: context.colors.primary,
-                      ),
-                      child: Text(
-                        tr('verifyPhone'),
-                        style: AppTextStyle.s12_w300(
-                          color: context.colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
                 GestureDetector(
                     onTap: () => controller.deleteAddress(address),
                     child: SvgPicture.asset(Res.trashIcon)

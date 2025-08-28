@@ -22,3 +22,4 @@ class WalletTransaction extends BaseDomainModel {
   });
 }
 
+

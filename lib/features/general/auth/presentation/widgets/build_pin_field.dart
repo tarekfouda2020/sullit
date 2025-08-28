@@ -7,12 +7,14 @@ class BuildPinField extends StatelessWidget {
   final Function(String) onComplete;
   final int? count;
   final EdgeInsetsGeometry? margin;
+  final MainAxisAlignment? alignment;
 
   const BuildPinField({
     Key? key,
     required this.onComplete,
      this.count,
     this.margin,
+    this.alignment,
   }) : super(key: key);
 
   @override
@@ -42,6 +44,7 @@ class BuildPinField extends StatelessWidget {
         animationDuration: const Duration(milliseconds: 300),
         enableActiveFill: true,
         onCompleted: onComplete,
+        mainAxisAlignment: alignment ?? MainAxisAlignment.spaceBetween
       ),
     );
   }
