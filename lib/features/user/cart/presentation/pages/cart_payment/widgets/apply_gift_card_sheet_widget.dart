@@ -31,6 +31,8 @@ class ApplyGiftCardSheet extends StatelessWidget {
               ),
               GiftCardCodeWidget(controller: controller),
               Gaps.vGap12,
+              const GiftCardAnnotationWidget(),
+              Gaps.vGap17,
               BlocBuilder < GenericBloc<Shipping?>,
               GenericState<Shipping?>>(
                 bloc: controller.shippingBloc,

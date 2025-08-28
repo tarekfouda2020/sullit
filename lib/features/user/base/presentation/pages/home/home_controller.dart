@@ -122,7 +122,7 @@ class HomeController {
     }
     if(showToast == false){
       showToast = true;
-      CustomToast.showSnakeBar('Press again to exit');
+      CustomToast.showSnakeBar(tr("PressAgainToExit"));
       Future.delayed(const Duration(seconds: 6)).then((value) => showToast = false);
       return false;
     }else{

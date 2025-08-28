@@ -125,6 +125,9 @@ class AppLightColors extends AppColors {
   Color get redAccent => const Color(0xffC71919);
 
   @override
+  Color get bloodyRed => const Color(0xffE20000);
+
+  @override
   Color get cartBg => const Color(0xfff5f5f5);
 
   @override

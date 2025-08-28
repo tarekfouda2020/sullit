@@ -128,6 +128,14 @@ class ProfileController {
       return false;
     }
   }
+  bool isNameChanged(BuildContext context) {
+    var user = context.read<UserCubit>().state.model;
+    if (nameController.text != user!.name) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   bool isAddressChanged(BuildContext context) {
     var user = context.read<UserCubit>().state.model;
@@ -140,7 +148,7 @@ class ProfileController {
 
   Future<void> setEditProfile(BuildContext context) async {
     if (isDataChanged(context)) {
-      var params = _profileParams();
+      var params = _profileParams(context);
       // if (isEmailChanged(context)) {
       //   await SetEditProfileEmail().call(emailController.text);
       //   CustomToast.showSimpleToast(
@@ -243,13 +251,21 @@ class ProfileController {
     }
   }
 
-  ProfileParams _profileParams() {
+  ProfileParams _profileParams(BuildContext context) {
     return ProfileParams(
-      name: nameController.text,
-      countryCode: countryCubit.state.data?.callingCode ?? "" ,
-      phone: phoneController.text,
-      image: imageCubit.state.data,
-      email: emailController.text,
+      name: isNameChanged(context)
+          ?nameController.text
+          :null,
+      countryCode: countryCubit.state.data?.callingCode ,
+      phone: isPhoneValid()
+          ? phoneController.text
+          :null,
+      image: isImageChanged()
+          ?imageCubit.state.data
+          :null,
+      email: isEmailChanged(context)
+          ?emailController.text
+          :null,
     );
   }
 

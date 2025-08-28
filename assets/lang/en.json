@@ -437,7 +437,7 @@
   "thankYouForYourOrder": "Thank You For Your Order!",
   "useLoyaltyPoints": "Use Loyalty Points",
   "useWalletBalance": "Use Wallet Balance",
-  "giftCardCode": "Enter Gift Card Code",
+  "enterGiftCardCode": "Enter Gift Card Code",
   "applePay": "Apple Pay",
   "orderNo": "Order No.",
   "cartProducts": "Cart Products",
@@ -583,7 +583,11 @@
   "review":"Review",
   "addReview":"Add Review",
   "viewReview":"View Review",
-  "giftCardSubscribed":"Gift card subscribed!"
+  "giftCardSubscribed":"Gift card subscribed!",
+  "noCategoriesFound":"No Categories Found...",
+  "PressAgainToExit":"Press again to exit",
+  "giftCardCode":"Gift Card Code",
+  "giftCardAnnotation":"Note that the remaining of gift card value will add to your wallet balance so you can use it in next orders"
 
 
 

@@ -21,3 +21,4 @@ class WalletTransaction extends BaseDomainModel {
     required this.createdAt,
   });
 }
+

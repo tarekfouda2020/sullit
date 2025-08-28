@@ -60,6 +60,7 @@ class MyWalletController {
         await AutoRouter.of(context)
             .popAndPush(PaymentRoute(transactionUrl: result));
         getWallet();
+        getTransactions(1);
       }
     }
   }

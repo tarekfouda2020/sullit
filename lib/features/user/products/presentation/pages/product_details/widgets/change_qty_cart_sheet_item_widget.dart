@@ -26,18 +26,22 @@ class _ChangeQtyCartSheetItemWidgetState extends State<ChangeQtyCartSheetItemWid
               BuildCustomBounce(
                 onTap: state.data ? (){} : () => widget.controller.onDecreaseCart(context,widget.cartItem,loadingCubit),
                 iconData: CupertinoIcons.minus,
-                margin: const EdgeInsetsDirectional.only(end: 19),
+                margin: Dimens.paddingEnd19,
+                padding: EdgeInsets.zero,
+                size: Dimens.dp29,
               ),
               Text(
                 widget.cartItem.quantity.toString(),
-                style: AppTextStyle.s16_w400(
+                style: AppTextStyle.s18_w600(
                   color: context.colors.black,
                 ),
               ),
               BuildCustomBounce(
                 onTap: state.data ? (){} :() => widget.controller.onIncreaseCart(context,widget.cartItem,loadingCubit),
                 iconData: CupertinoIcons.add,
-                margin: const EdgeInsetsDirectional.only(start: 19),
+                margin: Dimens.paddingStart19,
+                padding: EdgeInsets.zero,
+                size: Dimens.dp29,
               ),
               const Spacer(),
               GestureDetector(

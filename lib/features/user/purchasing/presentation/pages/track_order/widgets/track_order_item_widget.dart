@@ -62,7 +62,7 @@ class TrackOrderItemWidget extends StatelessWidget {
             Gaps.vGap5,
             // if(currentStep>=trackStatus.getStepNumber())
             Text(
-              statusModel.createdAt,
+              DateTimeHelper.getDate(statusModel.createdAt) ,
               style: AppTextStyle.s16_w400(
                   color: context.colors.textColor)
                   .copyWith(
@@ -75,6 +75,7 @@ class TrackOrderItemWidget extends StatelessWidget {
       ],
     );
   }
+
 
 
   // Color _getLineColor(BuildContext context) {

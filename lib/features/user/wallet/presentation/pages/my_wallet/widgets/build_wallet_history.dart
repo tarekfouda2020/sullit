@@ -7,23 +7,26 @@ class BuildWalletHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
-      child: PagedListView<int, WalletTransaction>(
-        padding: Dimens.paddingAll15PX,
-        pagingController: controller.pagingController,
-        builderDelegate: PagedChildBuilderDelegate<WalletTransaction>(
-          itemBuilder: (_, item, index) => WalletItemWidget(item: item,),
-          firstPageProgressIndicatorBuilder: (_) => _transactionsLoading(),
-          noItemsFoundIndicatorBuilder: (cxt) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 250),
-              child: Center(
-                child: Text(
-                  tr('noTransactionsFound'),
-                  style: AppTextStyle.s20_w700(color: context.colors.black),
+      child: RefreshIndicator(
+        onRefresh: () async => controller.getTransactions(1),
+        child: PagedListView<int, WalletTransaction>(
+          padding: Dimens.paddingAll15PX,
+          pagingController: controller.pagingController,
+          builderDelegate: PagedChildBuilderDelegate<WalletTransaction>(
+            itemBuilder: (_, item, index) => WalletItemWidget(item: item,),
+            firstPageProgressIndicatorBuilder: (_) => _transactionsLoading(),
+            noItemsFoundIndicatorBuilder: (cxt) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 250),
+                child: Center(
+                  child: Text(
+                    tr('noTransactionsFound'),
+                    style: AppTextStyle.s20_w700(color: context.colors.black),
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

@@ -80,6 +80,8 @@ abstract class AppColors {
 
   Color get purpleLight;
 
+  Color get bloodyRed;
+
   Color get authField;
   Color get textColor;
   Color get splashColor;

@@ -21,13 +21,15 @@ class BuildHomeSwiper extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return CachedImage(
               width: MediaQuery.of(context).size.width,
-              borderRadius: BorderRadius.circular(Dimens.dp30),
+              borderRadius: Dimens.borderRadius30PX,
               url: slider[index].photo,
             );
           },
           itemCount: slider.length,
           // pagination: const SwiperPagination(),
-          viewportFraction: 1.0,
+          // viewportFraction: 1.0,
+          viewportFraction: 0.98,
+          scale: 0.95,
           autoplay: false,
         ),
       ),

@@ -1,10 +1,10 @@
 import 'dart:io';
 
 class ProfileParams {
-  String name;
-  String countryCode;
-  String phone;
-  String email;
+  String? name;
+  String? countryCode;
+  String? phone;
+  String? email;
   File? image;
 
   ProfileParams({
@@ -16,14 +16,10 @@ class ProfileParams {
   });
 
   Map<String, dynamic> toJson ()=> {
-    if( name.isNotEmpty) "name":name,
-    if(countryCode.isNotEmpty && phone.isNotEmpty) "country_code":countryCode,
-    if(countryCode.isNotEmpty && phone.isNotEmpty) "phone": phone,
+    if( name!=null) "name":name,
+    if(countryCode!=null && phone!=null) "country_code":countryCode,
+    if(countryCode!=null && phone!=null) "phone": phone,
     if(image!=null) "image": image,
-    if(email.isNotEmpty) "email": email,
+    if(email != null) "email": email,
   };
-
-  void seeData(){
-    print("==========<<<<<<<  phone is$phone>>>>>>");
-  }
 }

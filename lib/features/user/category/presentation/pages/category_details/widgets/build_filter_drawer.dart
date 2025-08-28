@@ -25,7 +25,7 @@ class BuildFilterDrawer extends StatelessWidget {
                     Expanded(
                       child: Text(
                         tr('filter'),
-                        style: AppTextStyle.s15_w700(color: context.colors.black),
+                        style: AppTextStyle.s20_w700(color: context.colors.black),
                       ),
                     ),
                     GestureDetector(

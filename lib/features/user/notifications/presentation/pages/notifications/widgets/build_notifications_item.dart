@@ -37,8 +37,7 @@ class BuildNotificationsItem extends StatelessWidget {
                   ),
                   Gaps.vGap10,
                   Text(
-                    notification.createdAt,
-                    // getDate(),
+                    DateTimeHelper.getDate( notification.createdAt),
                     style: AppTextStyle.s12_w400(
                         color: context.colors.blackOpacity),
                   ),
@@ -50,12 +49,7 @@ class BuildNotificationsItem extends StatelessWidget {
       ),
     );
   }
-  
-  
-  // String getDate(){
-  //   DateTime date = DateTimeHelper.convertToDateTime(strDate: notification.createdAt);
-  //   return DateTimeHelper.formatDate(date: date, formatType: "dd MMM yyyy - hh:mm a");
-  // }
+
   
   
 }

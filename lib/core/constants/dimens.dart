@@ -46,6 +46,7 @@ class Dimens {
   static const double dp25 = 25;
   static const double dp26 = 26;
   static const double dp28 = 28;
+  static const double dp29 = 29;
   static const double dp30 = 30;
   static const double dp32 = 32;
   static const double dp34 = 34;
@@ -182,6 +183,8 @@ class Dimens {
 
 
   static EdgeInsetsDirectional paddingStart20 = EdgeInsetsDirectional.only(start: 20.r);
+  static EdgeInsetsDirectional paddingStart19 = EdgeInsetsDirectional.only(start: 19.r);
+  static EdgeInsetsDirectional paddingEnd19 = const EdgeInsetsDirectional.only(end: 19);
 
   static EdgeInsetsDirectional paddingS22T10B10 = const EdgeInsetsDirectional.only(start: 22, top: 10, bottom: 10);
 

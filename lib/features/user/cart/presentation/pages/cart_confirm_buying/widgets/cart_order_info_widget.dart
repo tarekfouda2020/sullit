@@ -60,10 +60,8 @@ class CartOrderInfoWidget extends StatelessWidget {
     );
   }
 
-
    String get _getDate {
-    var dateTime = DateTimeHelper.convertToDateTime(strDate: orderSummary.summary!.orderDate);
-    return DateTimeHelper.formatDate(date: dateTime, formatType: "d MMM yyyy - hh:mm a");
+    return DateTimeHelper.getDate(orderSummary.summary!.orderDate.toString());
   }
 
 

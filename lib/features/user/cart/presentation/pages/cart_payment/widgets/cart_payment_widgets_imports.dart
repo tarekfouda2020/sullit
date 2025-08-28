@@ -56,3 +56,4 @@ part 'payment_method_bottom_sheet_widget.dart';
 part 'apply_gift_card_sheet_widget.dart';
 part 'gift_card_code_widget.dart';
 part 'apply_button_widget.dart';
+part 'gift_card_annotation_widget.dart';
