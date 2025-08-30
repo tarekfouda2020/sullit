@@ -49,7 +49,7 @@ class BuildProductInfo extends StatelessWidget {
                 ),
                 Gaps.hGap5,
                 Text(
-                  "(${productModel.reviews?.length} reviews)",
+                  "(${productModel.reviews?.length} ${tr("reviews")})",
                   style: AppTextStyle.s14_w400(
                     color: context.colors.black,
                   ),
@@ -57,27 +57,53 @@ class BuildProductInfo extends StatelessWidget {
               ],
             ),
             Gaps.vGap10,
-            Row(
-              children: [
-                Text(
-                  "${productModel.priceHighLowDiscount.parseCurrency} ",
-                  style: AppTextStyle.s22_w600(
-                    color: context.colors.primary,
-                  ),
-                ),
-                Gaps.hGap14,
-                Visibility(
-                  visible: productModel.hasDiscount!,
-                  child: Text(
-                    "${productModel.priceHighLow.parseCurrency} ",
-                    style: AppTextStyle.s18_w400(
-                      color: context.colors.textColor,
-                    ).copyWith(
-                      decoration: TextDecoration.lineThrough,
+            Visibility(
+              visible: (productModel.isMultiple == false),
+              replacement: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "${productModel.priceHighLowDiscount.parseCurrency} ",
+                    style: AppTextStyle.s22_w600(
+                      color: context.colors.primary,
                     ),
                   ),
-                ),
-              ],
+                  Gaps.vGap8,
+                  Visibility(
+                    visible: productModel.hasDiscount!,
+                    child: Text(
+                      "${productModel.priceHighLow.parseCurrency} ",
+                      style: AppTextStyle.s18_w400(
+                        color: context.colors.textColor,
+                      ).copyWith(
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Text(
+                    "${productModel.priceHighLowDiscount.parseCurrency} ",
+                    style: AppTextStyle.s22_w600(
+                      color: context.colors.primary,
+                    ),
+                  ),
+                  Gaps.hGap14,
+                  Visibility(
+                    visible: productModel.hasDiscount!,
+                    child: Text(
+                      "${productModel.priceHighLow.parseCurrency} ",
+                      style: AppTextStyle.s18_w400(
+                        color: context.colors.textColor,
+                      ).copyWith(
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Gaps.vGap7,
             BuildSellerInfo(

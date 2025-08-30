@@ -8,6 +8,7 @@ import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/get_device_id.dart';
+import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
@@ -61,11 +62,13 @@ class CartHelper {
   Future<void> getVariantPrice(
       BuildContext context, GenericBloc<Product?> productCubit) async {
     var params = _variantPriceParams(productCubit.state.data!.id!);
+    getIt<LoadingHelper>().showLoadingDialog();
     var result = await GetVariantPrice().call(params);
     if (result != null) {
       productCubit.state.data?.variant = result.variant;
       productCubit.onUpdateData(productCubit.state.data);
     }
+    getIt<LoadingHelper>().dismissDialog();
   }
 
   void onIncreaseQty(GenericBloc<Product?> productCubit) {
