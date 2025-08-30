@@ -75,7 +75,6 @@ class Res {
   static const String redVipMark = "assets/images/red_vip_mark.svg";
   static const String giftCardPlaceholder = "assets/images/gift_card_placeholder.png";
   static const String giftCardsLogo = "assets/images/gift_card_logo.svg";
-  static const String giftCardBarcodePlaceholder = "assets/images/gift_card_barcode.png";
   static const String copyIcon = "assets/images/copy_icon.svg";
   static const String redVipIcon = "assets/images/vip_icon.svg";
   static const String loyaltyIcon = "assets/images/loyalty_icon.svg";
