@@ -9,7 +9,7 @@ class Summary extends BaseDomainModel {
   String totalOrderAmount;
   String shipping;
   String paymentMethod;
-  int  totalItems;
+  // int  totalItems;
   int combinedOrderId;
 
   Summary({
@@ -21,7 +21,7 @@ class Summary extends BaseDomainModel {
     required this.totalOrderAmount,
     required this.shipping,
     required this.paymentMethod,
-    required this.totalItems,
+    // required this.totalItems,
     required this.combinedOrderId,
   });
 }

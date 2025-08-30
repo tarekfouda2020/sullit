@@ -90,6 +90,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       loyaltyPointsValue: loyaltyPointsValue,
       loyaltyPointsApplied: loyaltyPointsApplied,
       loyaltyPoints: loyaltyPoints,
+      totalItems: totalItems,
     );
   }
 }

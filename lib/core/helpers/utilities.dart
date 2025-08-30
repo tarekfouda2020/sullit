@@ -48,15 +48,7 @@ class Utilities {
   }
   String parseCurrency(String text) {
     BuildContext ctx = getIt<GlobalContext>().context();
-    // String lang = GlobalState.instance.get("lang");
     String lang = ctx.read<DeviceCubit>().state.model.locale.languageCode;
-    final RegExp regExp = RegExp(r"^([^\d]+)([\d.,]+)$");
-    final match = regExp.firstMatch(text);
-
-    if (match == null) return text;
-
-    String currencyPart = match.group(1)!.trim();
-    String numberPart = match.group(2)!.trim();
 
     final Map<String, String> currencyMap = {
       "د.إ": "AED",
@@ -65,15 +57,22 @@ class Utilities {
       "د.ك": "KWD",
     };
 
-    if (lang == "en" && currencyMap.containsKey(currencyPart)) {
-      currencyPart = currencyMap[currencyPart]!;
-    }
+    final regExp = RegExp(r"([^\d\s]+)\s*([\d.,]+)");
 
-    final double value = num.parse(numberPart.replaceAll(',', '')).toDouble();
-    final formattedNumber = NumberFormat("#,##0.00", lang).format(value);
-    return "$formattedNumber $currencyPart";
+    return text.replaceAllMapped(regExp, (match) {
+      String currencyPart = match.group(1)!.trim();
+      String numberPart = match.group(2)!.trim();
+
+      if (lang == "en" && currencyMap.containsKey(currencyPart)) {
+        currencyPart = currencyMap[currencyPart]!;
+      }
+
+      final double value = num.parse(numberPart.replaceAll(',', '')).toDouble();
+      final formattedNumber = NumberFormat("#,##0.00", lang).format(value);
+
+      return "$formattedNumber $currencyPart";
+    });
   }
-
   String capitalize(String text) {
     if (text.isEmpty) return text;
     return text[0].toUpperCase() + text.substring(1);

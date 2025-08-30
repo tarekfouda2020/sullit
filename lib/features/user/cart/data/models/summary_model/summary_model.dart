@@ -20,7 +20,7 @@ class SummaryModel extends BaseApiModel<Summary> with _$SummaryModel {
       @JsonKey(name: 'order_status') required String orderStatus,
       @JsonKey(name: 'total_order_amount') required String totalOrderAmount,
       @JsonKey(name: 'combined_order_id') required int combinedOrderId,
-      @JsonKey(name: 'total_items') required int totalItems,
+      // @JsonKey(name: 'total_items') required int totalItems,
       required String shipping,
       @JsonKey(name: "payment_method") required String paymentMethod}) = _SummaryModel;
 
@@ -38,7 +38,7 @@ class SummaryModel extends BaseApiModel<Summary> with _$SummaryModel {
       shipping: shipping,
       paymentMethod: paymentMethod,
       combinedOrderId: combinedOrderId,
-      totalItems: totalItems,
+      // totalItems: totalItems,
     );
   }
 }

@@ -14,6 +14,7 @@ class Orders extends BaseDomainModel{
   String tax;
   String couponDiscount;
   String total;
+  int totalItems;
   String date;
   String deliveryStatusConst;
   String deliveryStatus;
@@ -75,6 +76,7 @@ class Orders extends BaseDomainModel{
     required this.loyaltyPointsValue,
     required this.loyaltyPointsApplied,
     required this.loyaltyPoints,
+    required this.totalItems,
   });
 
 

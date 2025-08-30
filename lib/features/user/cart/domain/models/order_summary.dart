@@ -47,4 +47,6 @@ class OrderSummary extends BaseDomainModel {
   double get discounts => _sumBy(
         (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.couponDiscount),
       );
+
+   int getTotalItems() => sectionOrders!.fold(0, (previousValue, element) => previousValue+element.totalItems);
 }
