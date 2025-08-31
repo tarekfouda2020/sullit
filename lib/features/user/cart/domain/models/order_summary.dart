@@ -48,12 +48,12 @@ class OrderSummary extends BaseDomainModel {
         (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.couponDiscount),
       );
 
-   // int getTotalItems() {
-   //  var  orderDetailsList = sectionOrders!.expand((element) => element.orderDetails).toList();
-   //  var quantityList = orderDetailsList.map((e) => e.quantity).toList();
-   //  return quantityList.fold(0, (previousValue, element) => previousValue+element);
-   // }
+   int getTotalItems() {
+    var  orderDetailsList = sectionOrders!.expand((element) => element.orderDetails).toList();
+    var quantityList = orderDetailsList.map((e) => e.quantity).toList();
+    return quantityList.fold(0, (previousValue, element) => previousValue+element);
+   }
 
-   int getTotalItems() => sectionOrders!.fold(0, (previousValue, element) => previousValue+element.totalItems);
+   // int getTotalItems() => sectionOrders!.fold(0, (previousValue, element) => previousValue+element.totalItems);
 
 }
