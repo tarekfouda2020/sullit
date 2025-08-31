@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/enum/pay_type_enum.dart';
 
 class PayMethodDomainModel extends BaseDomainModel {
   final String paymentType;
@@ -21,5 +22,24 @@ class PayMethodDomainModel extends BaseDomainModel {
     required this.title,
      this.isSelected = false,
   });
+
+
+
+  /// there is no cash option in giftCard payment
+  PayTypeEnum getPaymentType() {
+    switch (paymentTypeKey) {
+      case "tap":
+        return PayTypeEnum.tap;
+      case "stripe":
+        return PayTypeEnum.stripe;
+      case "wallet":
+        return PayTypeEnum.wallet;
+      case "cash_on_delivery":
+        return PayTypeEnum.cash;
+      default:
+        return PayTypeEnum.wallet;
+    }
+  }
+
 
 }

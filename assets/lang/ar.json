@@ -565,6 +565,7 @@
   "inWishlist": "في قائمة أمنياتك",
   "youOrdered": "لقد طلبت",
   "days": "أيام",
+  "day": "يوم",
   "hours": "ساعات",
   "minutes": "دقائق",
   "second": "ثانيه",
@@ -758,6 +759,10 @@
   "PressAgainToExit":"اضغط مرة أخرى للخروج",
   "proOffers": "العروض المميزة",
   "transactionNo": "رقم المعاملة: #",
+  "validForOneDay": "صالح لمدةيوم واحد",
+  "validForTwoDay": "صالح لمدة يومين",
+  "nothingToTellYou": "لا تحديثات.!",
+  "processPayment": "إتمام الدفع",
   "giftCardAnnotation":"يرجى ملاحظة أن المبلغ المتبقي من قيمة بطاقة الهدية سيتم إضافته إلى رصيد محفظتك حتى تتمكن من استخدامه في الطلبات التالية"
 
 

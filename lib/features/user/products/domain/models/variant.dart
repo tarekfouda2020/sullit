@@ -11,6 +11,8 @@ class Variant extends BaseDomainModel {
   String? currencySymbol;
   String? image;
   String? options;
+   bool? hasDiscount;
+  String? originalPrice;
 
   Variant({
     required this.id,
@@ -23,6 +25,8 @@ class Variant extends BaseDomainModel {
     required this.image,
     required this.options,
     required this.sku,
+    required this.hasDiscount,
+    required this.originalPrice,
   });
 
   Variant.fromJson(Map<String, dynamic> json) {
@@ -36,6 +40,8 @@ class Variant extends BaseDomainModel {
     currencySymbol = json['currency_symbol'];
     image = json['image'];
     options = json['options'];
+    originalPrice = json['original_price'];
+    hasDiscount = json['has_discount'];
   }
 
   Map<String, dynamic> toJson() {
@@ -50,6 +56,8 @@ class Variant extends BaseDomainModel {
     data['image'] = image;
     data['options'] = options;
     data['sku'] = sku;
+    data['has_discount'] = hasDiscount;
+    data['original_price'] = originalPrice;
     return data;
   }
 }

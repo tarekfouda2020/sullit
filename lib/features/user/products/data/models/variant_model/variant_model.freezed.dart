@@ -33,6 +33,10 @@ mixin _$VariantModel {
   int get currentStock => throw _privateConstructorUsedError;
   @JsonKey(name: "currency_symbol")
   String get currencySymbol => throw _privateConstructorUsedError;
+  @JsonKey(name: "has_discount")
+  bool? get hasDiscount => throw _privateConstructorUsedError;
+  @JsonKey(name: "original_price")
+  String? get originalPrice => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String get options => throw _privateConstructorUsedError;
 
@@ -57,6 +61,8 @@ abstract class $VariantModelCopyWith<$Res> {
       @JsonKey(name: "main_price") String mainPrice,
       @JsonKey(name: "current_stock") int currentStock,
       @JsonKey(name: "currency_symbol") String currencySymbol,
+      @JsonKey(name: "has_discount") bool? hasDiscount,
+      @JsonKey(name: "original_price") String? originalPrice,
       String image,
       String options});
 }
@@ -82,6 +88,8 @@ class _$VariantModelCopyWithImpl<$Res, $Val extends VariantModel>
     Object? mainPrice = null,
     Object? currentStock = null,
     Object? currencySymbol = null,
+    Object? hasDiscount = freezed,
+    Object? originalPrice = freezed,
     Object? image = null,
     Object? options = null,
   }) {
@@ -118,6 +126,14 @@ class _$VariantModelCopyWithImpl<$Res, $Val extends VariantModel>
           ? _value.currencySymbol
           : currencySymbol // ignore: cast_nullable_to_non_nullable
               as String,
+      hasDiscount: freezed == hasDiscount
+          ? _value.hasDiscount
+          : hasDiscount // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      originalPrice: freezed == originalPrice
+          ? _value.originalPrice
+          : originalPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -147,6 +163,8 @@ abstract class _$$_VariantModelCopyWith<$Res>
       @JsonKey(name: "main_price") String mainPrice,
       @JsonKey(name: "current_stock") int currentStock,
       @JsonKey(name: "currency_symbol") String currencySymbol,
+      @JsonKey(name: "has_discount") bool? hasDiscount,
+      @JsonKey(name: "original_price") String? originalPrice,
       String image,
       String options});
 }
@@ -170,6 +188,8 @@ class __$$_VariantModelCopyWithImpl<$Res>
     Object? mainPrice = null,
     Object? currentStock = null,
     Object? currencySymbol = null,
+    Object? hasDiscount = freezed,
+    Object? originalPrice = freezed,
     Object? image = null,
     Object? options = null,
   }) {
@@ -206,6 +226,14 @@ class __$$_VariantModelCopyWithImpl<$Res>
           ? _value.currencySymbol
           : currencySymbol // ignore: cast_nullable_to_non_nullable
               as String,
+      hasDiscount: freezed == hasDiscount
+          ? _value.hasDiscount
+          : hasDiscount // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      originalPrice: freezed == originalPrice
+          ? _value.originalPrice
+          : originalPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -231,6 +259,8 @@ class _$_VariantModel extends _VariantModel {
       @JsonKey(name: "main_price") required this.mainPrice,
       @JsonKey(name: "current_stock") required this.currentStock,
       @JsonKey(name: "currency_symbol") required this.currencySymbol,
+      @JsonKey(name: "has_discount") this.hasDiscount,
+      @JsonKey(name: "original_price") this.originalPrice,
       required this.image,
       required this.options})
       : super._();
@@ -260,13 +290,19 @@ class _$_VariantModel extends _VariantModel {
   @JsonKey(name: "currency_symbol")
   final String currencySymbol;
   @override
+  @JsonKey(name: "has_discount")
+  final bool? hasDiscount;
+  @override
+  @JsonKey(name: "original_price")
+  final String? originalPrice;
+  @override
   final String image;
   @override
   final String options;
 
   @override
   String toString() {
-    return 'VariantModel(id: $id, name: $name, sku: $sku, strokedPrice: $strokedPrice, calculablePrice: $calculablePrice, mainPrice: $mainPrice, currentStock: $currentStock, currencySymbol: $currencySymbol, image: $image, options: $options)';
+    return 'VariantModel(id: $id, name: $name, sku: $sku, strokedPrice: $strokedPrice, calculablePrice: $calculablePrice, mainPrice: $mainPrice, currentStock: $currentStock, currencySymbol: $currencySymbol, hasDiscount: $hasDiscount, originalPrice: $originalPrice, image: $image, options: $options)';
   }
 
   @override
@@ -287,14 +323,30 @@ class _$_VariantModel extends _VariantModel {
                 other.currentStock == currentStock) &&
             (identical(other.currencySymbol, currencySymbol) ||
                 other.currencySymbol == currencySymbol) &&
+            (identical(other.hasDiscount, hasDiscount) ||
+                other.hasDiscount == hasDiscount) &&
+            (identical(other.originalPrice, originalPrice) ||
+                other.originalPrice == originalPrice) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.options, options) || other.options == options));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, sku, strokedPrice,
-      calculablePrice, mainPrice, currentStock, currencySymbol, image, options);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      sku,
+      strokedPrice,
+      calculablePrice,
+      mainPrice,
+      currentStock,
+      currencySymbol,
+      hasDiscount,
+      originalPrice,
+      image,
+      options);
 
   @JsonKey(ignore: true)
   @override
@@ -320,6 +372,8 @@ abstract class _VariantModel extends VariantModel {
       @JsonKey(name: "main_price") required final String mainPrice,
       @JsonKey(name: "current_stock") required final int currentStock,
       @JsonKey(name: "currency_symbol") required final String currencySymbol,
+      @JsonKey(name: "has_discount") final bool? hasDiscount,
+      @JsonKey(name: "original_price") final String? originalPrice,
       required final String image,
       required final String options}) = _$_VariantModel;
   const _VariantModel._() : super._();
@@ -348,6 +402,12 @@ abstract class _VariantModel extends VariantModel {
   @override
   @JsonKey(name: "currency_symbol")
   String get currencySymbol;
+  @override
+  @JsonKey(name: "has_discount")
+  bool? get hasDiscount;
+  @override
+  @JsonKey(name: "original_price")
+  String? get originalPrice;
   @override
   String get image;
   @override

@@ -32,6 +32,7 @@ class _NewArrivalState extends State<NewArrival> {
         itemBuilder: (_, index, item) => BuildProductItem(
           productModel: item,
           onFavRefresh: () => controller.onChangeFav(item),
+          onRefresh: () => controller.getArrival(refresh: true),
         ),
         loadingWidget: const BuildLoadingProductsGridView(),
         emptyWidget: const BuildEmptyDataView(),

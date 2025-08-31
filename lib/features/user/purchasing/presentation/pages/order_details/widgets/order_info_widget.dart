@@ -8,7 +8,7 @@ class OrderInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 12,bottom: 20,right:21 ,left: 21).r,
+      padding: const EdgeInsets.only(top: 12,bottom: 20,right:21 ,left: 18).r,
       decoration: CustomDecoration(
         thisColor: context.colors.white,
       ),

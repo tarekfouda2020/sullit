@@ -23,10 +23,10 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: true,
-      child: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
+    return WillPopScope(
+      onWillPop: () async => controller.onPop(context),
+      child: SafeArea(
+        top: true,
         child: Scaffold(
           backgroundColor: context.colors.customBackground,
           body: BlocBuilder<GenericBloc<ProductDetailsDomainModel?>,

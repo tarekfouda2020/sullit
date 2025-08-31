@@ -16,6 +16,8 @@ _$_VariantModel _$$_VariantModelFromJson(Map<String, dynamic> json) =>
       mainPrice: json['main_price'] as String,
       currentStock: json['current_stock'] as int,
       currencySymbol: json['currency_symbol'] as String,
+      hasDiscount: json['has_discount'] as bool?,
+      originalPrice: json['original_price'] as String?,
       image: json['image'] as String,
       options: json['options'] as String,
     );
@@ -30,6 +32,8 @@ Map<String, dynamic> _$$_VariantModelToJson(_$_VariantModel instance) =>
       'main_price': instance.mainPrice,
       'current_stock': instance.currentStock,
       'currency_symbol': instance.currencySymbol,
+      'has_discount': instance.hasDiscount,
+      'original_price': instance.originalPrice,
       'image': instance.image,
       'options': instance.options,
     };

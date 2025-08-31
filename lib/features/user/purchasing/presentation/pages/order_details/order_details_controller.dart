@@ -5,8 +5,10 @@ class OrderDetailsPageController {
 
   final GenericBloc<Orders?> orderDetailsBloc = GenericBloc(null);
 
-  OrderDetailsPageController(Orders? orderModel){
+  OrderDetailsPageController(Orders orderModel){
     orderDetailsBloc.onUpdateData(orderModel);
+    getOrderDetails(orderModel.id,refresh: false);
+    getOrderDetails(orderModel.id,);
   }
 
 
@@ -48,6 +50,21 @@ class OrderDetailsPageController {
       productId: model.product?.id,
       rating: rate,
     );
+  }
+
+
+  Future<void> getOrderDetails(int id, {bool refresh = true})async{
+    GenericParams params = _params(id, refresh);
+    await GetOrderDetails()(params).then((value) {
+      if(value != null){
+        orderDetailsBloc.onUpdateData(value);
+      }
+    });
+  }
+
+
+  GenericParams _params(int id,bool refresh){
+    return GenericParams(id: id,refresh:refresh );
   }
 
 

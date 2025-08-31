@@ -59,20 +59,22 @@ class BuildProductInfo extends StatelessWidget {
             Gaps.vGap10,
             Visibility(
               visible: (productModel.isMultiple == false),
-              replacement: Column(
+              replacement: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${productModel.priceHighLowDiscount.parseCurrency} ",
+                    // "${productModel.priceHighLowDiscount.parseCurrency} ",
+                    productModel.variant!.mainPrice.parseCurrency,
                     style: AppTextStyle.s22_w600(
                       color: context.colors.primary,
                     ),
                   ),
-                  Gaps.vGap8,
+                  Gaps.hGap8,
                   Visibility(
-                    visible: productModel.hasDiscount!,
+                    visible:( productModel.hasDiscount!) ||(productModel.variant!.hasDiscount==true),
                     child: Text(
-                      "${productModel.priceHighLow.parseCurrency} ",
+                      // "${productModel.priceHighLow.parseCurrency} ",
+                      "${productModel.variant!.originalPrice.parseCurrency} ",
                       style: AppTextStyle.s18_w400(
                         color: context.colors.textColor,
                       ).copyWith(

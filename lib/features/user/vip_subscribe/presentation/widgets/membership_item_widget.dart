@@ -92,11 +92,11 @@ class MembershipItemWidget extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "${getIt<Utilities>().getPrice(model.price)} ",
+                  model.price.rawPrice,
                   style: AppTextStyle.s22_w600(color: context.colors.primary),
                 ),
                 Text(
-                  "${getIt<Utilities>().getCurrency(model.price)}/${model.duration.capitalize}",
+                  " ${tr("currency")}/${model.duration.capitalize}",
                   style: AppTextStyle.s22_w300(color: context.colors.primary),
                 ),
               ],
@@ -120,10 +120,27 @@ class MembershipItemWidget extends StatelessWidget {
                 "ul": Style(
                   margin: Margins.all(0),
                   padding: HtmlPaddings.all(0),
+                  color: context.colors.textColor,
+                  fontSize:FontSize(12) ,
+                  fontWeight: FontWeight.w400,
                 ),
                 "li": Style(
                   margin: Margins.all(0),
                   padding:HtmlPaddings.all(0),
+                  color: context.colors.textColor,
+                  fontSize:FontSize(12) ,
+                  fontWeight: FontWeight.w400,
+                ),
+                "strong": Style(
+                  color: context.colors.textColor,
+                  fontSize: FontSize(12),
+                  fontWeight: FontWeight.w400,
+                ),
+                "em": Style(
+                  color: context.colors.textColor,
+                  fontSize: FontSize(12),
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
                 ),
               },
 
@@ -152,16 +169,36 @@ class MembershipItemWidget extends StatelessWidget {
                  Gaps.vGap15,
                  Divider(color: context.colors.textColor),
                  Gaps.vGap15,
-                 Text("Valid for ${model.expiredInDays} Days",
+                 Text(getExpireText(model),
                    style: AppTextStyle.s12_w400(color: context.colors.textColor),
                  ),
                ],
              ),
            )
-
           ],
         ),
       ),
     );
   }
+
+  String getExpireText(VipSubscribeDomainModel model){
+    var days = model.expiredInDays;
+    if(days!=null){
+      if(days==1){
+        return tr("validForOneDay");
+      }else
+      if(days == 2){
+        return tr("validForTwoDay");
+      }else
+      if(days >= 5 && days<=10 ){
+        return "${tr("validForDays")} ${model.expiredInDays} ${tr("days")}";
+      }else{
+        return "${tr("validForDays")} ${model.expiredInDays} ${tr("day")}";
+      }
+    }else{
+      return "";
+    }
+  }
+
+
 }

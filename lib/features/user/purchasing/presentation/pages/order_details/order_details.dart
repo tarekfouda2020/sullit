@@ -27,28 +27,31 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
       body: BlocBuilder<GenericBloc<Orders?>, GenericState<Orders?>>(
         bloc: controller.orderDetailsBloc,
         builder: (context, state) {
-          return GenericListView(
-            padding: Dimens.paddingHorizontal20PX,
-            children: [
-              OrderInfoWidget(
-                isReturned: widget.isReturnedOrder,
-                order: state.data,
-              ),
-              Gaps.vGap12,
-              OrderDetailsSectionsTitleWidget(title: tr("products")),
-              Gaps.vGap8,
-              OrderDetailsProductsWidget(
-                isReturned: widget.isReturnedOrder,
-                // hasReview: false,
-                controller: controller,
-                order: state.data!,
-              ),
-              Gaps.vGap12,
-              OrderDetailsSectionsTitleWidget(title: tr("invoiceSummary")),
-              Gaps.vGap8,
-              OrderDetailsSummaryWidget(isReturned: widget.isReturnedOrder, order: state.data),
-              Gaps.vGap50
-            ],
+          return RefreshIndicator(
+            onRefresh: () async => await controller.getOrderDetails(widget.order.id),
+            child: GenericListView(
+              padding: Dimens.paddingHorizontal20PX,
+              children: [
+                OrderInfoWidget(
+                  isReturned: widget.isReturnedOrder,
+                  order: state.data,
+                ),
+                Gaps.vGap12,
+                OrderDetailsSectionsTitleWidget(title: tr("products")),
+                Gaps.vGap8,
+                OrderDetailsProductsWidget(
+                  isReturned: widget.isReturnedOrder,
+                  // hasReview: false,
+                  controller: controller,
+                  order: state.data!,
+                ),
+                Gaps.vGap12,
+                OrderDetailsSectionsTitleWidget(title: tr("invoiceSummary")),
+                Gaps.vGap8,
+                OrderDetailsSummaryWidget(isReturned: widget.isReturnedOrder, order: state.data),
+                Gaps.vGap50
+              ],
+            ),
           );
         },
       ),

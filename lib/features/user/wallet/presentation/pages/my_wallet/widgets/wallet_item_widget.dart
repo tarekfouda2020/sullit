@@ -8,7 +8,7 @@ class WalletItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: Dimens.paddingVertical5PX,
-      padding: const EdgeInsetsDirectional.only(top: 16,bottom: 16,start: 19,end: 24),
+      padding: const EdgeInsetsDirectional.only(top: 16,bottom: 16,start: 19,end: 20),
       decoration: const CustomDecoration(
         myBoxShadow: [],
       ),
@@ -35,7 +35,7 @@ class WalletItemWidget extends StatelessWidget {
               Expanded(
                 child: Text(
                   "${tr("transactionNo")} ${item.referenceNo}",
-                  style: AppTextStyle.s14_w700(
+                  style: AppTextStyle.s12_w700(
                     color: context.colors.black,
                   ),
                 ),

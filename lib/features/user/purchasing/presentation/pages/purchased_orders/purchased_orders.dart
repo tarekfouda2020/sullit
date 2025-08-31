@@ -25,9 +25,9 @@ class _PurchasedOrdersState extends State<PurchasedOrders> {
           padding: Dimens.paddingAll15PX,
           pagingController: controller.pagingController,
           builderDelegate: PagedChildBuilderDelegate<Orders>(
-            firstPageProgressIndicatorBuilder: (_) =>
-            const BuildLoadingOrders(),
-            itemBuilder: (_, item, index) => PurchasedOrderItemWidget(
+            firstPageProgressIndicatorBuilder: (_) => const BuildLoadingOrders(),
+            itemBuilder: (_, item, index)
+            => PurchasedOrderItemWidget(
               order: item,
               controller: controller,
             ),

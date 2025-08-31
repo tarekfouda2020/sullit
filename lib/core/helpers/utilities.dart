@@ -8,7 +8,9 @@ import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
+import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/features/user/base/data/enums/lang_type_enum.dart';
 import 'package:geocode/geocode.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -63,7 +65,7 @@ class Utilities {
       String currencyPart = match.group(1)!.trim();
       String numberPart = match.group(2)!.trim();
 
-      if (lang == "en" && currencyMap.containsKey(currencyPart)) {
+      if ((lang == LangCodeHelper.langEN || lang == LangCodeHelper.langBN ) && currencyMap.containsKey(currencyPart)) {
         currencyPart = currencyMap[currencyPart]!;
       }
 
@@ -160,11 +162,21 @@ class Utilities {
     return [];
   }
 
+  /// stored lang in sharedPref & DeviceCubit is use for local translates
+  /// while stored lang in global state is use for back-end
+  /// back-end lang code is different from local lang code
+
   Future<void> changeLanguage(String lang, BuildContext context) async {
     context.read<DeviceCubit>().updateLanguage(Locale(lang));
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("lang", lang);
-    GlobalState.instance.set("lang", lang);
+    prefs.setString(LangCodeHelper.langKey, lang);
+    if(lang == LangCodeHelper.langAR){
+      lang = LangTypeEnum.arabic.getLangCode();
+    }
+    // if(lang == LangCodeHelper.langBN){
+    //   lang = LangTypeEnum.bangladesh.getLangCode();
+    // }
+    GlobalState.instance.set(LangCodeHelper.langKey, lang);
   }
 
   Future<File?> getAttachmentFile(FileType fileType) async {

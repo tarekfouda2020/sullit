@@ -10,7 +10,7 @@ class GiftCardFooterSectionWidget extends StatelessWidget {
       visible: controller.isMyGiftCard,
       replacement: DefaultButton(
         onTap: () => controller.showPayMethodsSheet(context),
-        title: "Buy Now",
+        title: tr("buyNow"),
         color: context.colors.primary,
         textColor: context.colors.white,
         fontSize: 18,

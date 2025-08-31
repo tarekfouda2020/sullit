@@ -19,8 +19,8 @@ import 'package:flutter_tdd/features/user/products/presentation/widgets/build_ad
 class BuildAddToCartDialog extends StatefulWidget {
   final Product product;
   final void Function()? afterAddToCart;
-  const BuildAddToCartDialog({Key? key, required this.product, this.afterAddToCart})
-      : super(key: key);
+
+  const BuildAddToCartDialog({Key? key, required this.product, this.afterAddToCart}) : super(key: key);
 
   @override
   State<BuildAddToCartDialog> createState() => _BuildAddToCartDialogState();
@@ -34,10 +34,10 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
     productCubit.onUpdateData(widget.product);
     if (widget.product.choiceOptions!.isNotEmpty) {
       widget.product.choiceOptions?.map((e) {
-        if(e.options!.isNotEmpty&&e.options!=null){
-          // Initialize with empty selection - no default selection
+        if (e.options!.isNotEmpty && e.options != null) {
           e.selectedAttribute = [];
-          e.hasValue = false;
+          e.selectedAttribute?.add(e.options!.first);
+          e.hasValue = true;
         }
       }).toList();
       productCubit.onUpdateData(widget.product);
@@ -80,8 +80,8 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                   const Spacer(),
                   Text(
                     showDiscount(context)
-                        ?"${state.data!.priceHighLowDiscount.parseCurrency} "
-                        :"${state.data!.priceHighLow.parseCurrency} ",
+                        ? "${state.data!.priceHighLowDiscount.parseCurrency} "
+                        : "${state.data!.priceHighLow.parseCurrency} ",
                     style: AppTextStyle.s14_w600(
                       color: context.colors.primary,
                     ),
@@ -91,6 +91,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
               Visibility(
                 visible: showDiscount(context),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Gaps.vGap10,
                     Text(
@@ -107,7 +108,9 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
               Gaps.line(context.colors.grey, 20.h),
               Visibility(
                 visible: productCubit.state.data!.choiceOptions!.isNotEmpty,
-                child: Flexible(child: BuildProductAttributes(productCubit: productCubit)),
+                child: Flexible(
+                  child: BuildProductAttributes(productCubit: productCubit),
+                ),
               ),
               Visibility(
                   visible: productCubit.state.data!.choiceOptions!.isNotEmpty,
@@ -120,8 +123,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                     style: AppTextStyle.s16_w400(color: context.colors.black),
                   ),
                   BuildCustomBounce(
-                    onTap: () =>
-                        getIt<CartHelper>().onDecreaseQty(productCubit),
+                    onTap: () => getIt<CartHelper>().onDecreaseQty(productCubit),
                     iconData: Icons.remove,
                   ),
                   Text(
@@ -131,8 +133,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                     ),
                   ),
                   BuildCustomBounce(
-                    onTap: () =>
-                        getIt<CartHelper>().onIncreaseQty(productCubit),
+                    onTap: () => getIt<CartHelper>().onIncreaseQty(productCubit),
                     iconData: Icons.add,
                   )
                 ],
@@ -147,10 +148,14 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                       color: context.colors.black,
                     ),
                   ),
+                  // Text(
+                  //   !showDiscount(context)
+                  //       ?state.data!.priceHighLow.parseCurrency
+                  //       : "${_calculablePrice(state.data!)} ${tr("currency")}",
+                  //   style: AppTextStyle.s16_w500(color: context.colors.primary),
+                  // ),
                   Text(
-                    !showDiscount(context)
-                        ?state.data!.priceHighLow.parseCurrency
-                        :"${state.data!.variant?.calculablePrice.parseCurrency}",
+                    "${_calculablePrice(state.data!)} ${tr("currency")}",
                     style: AppTextStyle.s16_w500(color: context.colors.primary),
                   ),
                 ],
@@ -205,26 +210,21 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
     );
   }
 
-
-
-
-  bool showDiscount(BuildContext context){
-     bool hasVipDiscount = context.read<UserCubit>().state.model?.hasValidSubscription ?? false;
+  bool showDiscount(BuildContext context) {
+    bool hasVipDiscount = context.read<UserCubit>().state.model?.hasValidSubscription ?? false;
     bool isVipProduct = widget.product.hasVipOffer!;
-    if(isVipProduct){
-      print("===========>>>>>>>>>>>${context.read<UserCubit>().state.model == null}<<<<<<<<==================");
+    if (isVipProduct) {
       return hasVipDiscount;
-    }else{
+    } else {
       return widget.product.hasDiscount!;
     }
   }
 
   bool _hasSelectedAttributes() {
-    if (productCubit.state.data?.choiceOptions == null || 
-        productCubit.state.data!.choiceOptions!.isEmpty) {
+    if (productCubit.state.data?.choiceOptions == null || productCubit.state.data!.choiceOptions!.isEmpty) {
       return false; // No attributes to select
     }
-    
+
     for (var option in productCubit.state.data!.choiceOptions!) {
       if (option.options != null && option.options!.isNotEmpty) {
         if (option.selectedAttribute != null && option.selectedAttribute!.isNotEmpty) {
@@ -235,5 +235,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
     return false; // No attributes are selected
   }
 
-
+  String _calculablePrice(Product product) {
+    return double.parse(product.variant?.calculablePrice ?? "0.0").toStringAsFixed(2);
+  }
 }

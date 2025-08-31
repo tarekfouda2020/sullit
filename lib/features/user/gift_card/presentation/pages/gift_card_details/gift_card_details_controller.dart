@@ -85,12 +85,12 @@ class GiftCardDetailsController {
   }
 
   Future<void> byGiftCard(BuildContext context) async {
-    String payMethod = payMethodsCubit.state.data.firstWhere((element) => element.isSelected).paymentTypeKey;
-     if(payMethod =="wallet" && isWalletBalanceEnough() == false ){
+    PayTypeEnum payMethod = payMethodsCubit.state.data.firstWhere((element) => element.isSelected).getPaymentType();
+     if(payMethod == PayTypeEnum.wallet && isWalletBalanceEnough() == false ){
        CustomToast.showSimpleToast(msg: tr('walletBalanceEmpty'), type: ToastType.error);
       return ;
      }
-    var params = _subscribeParams(payMethod);
+    var params = _subscribeParams(payMethod.name);
     Navigator.pop(context);
     getIt<LoadingHelper>().showLoadingDialog();
     await PayGiftCardSubscribe().call(params).then((value) async {

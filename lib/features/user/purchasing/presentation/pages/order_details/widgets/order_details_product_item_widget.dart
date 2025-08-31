@@ -69,22 +69,22 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Visibility(
-                                  visible: (orderDetails.product?.hasDiscount ??
-                                          false) ||
-                                      (orderDetails.product?.hasVipOffer ??
-                                          false),
-                                  child: Text(
-                                      orderDetails.product?.priceHighLow.parseCurrency ?? "",
-                                    style: AppTextStyle.s14_w400(
-                                            color: context.colors.textColor)
-                                        .copyWith(
-                                            decoration:
-                                                TextDecoration.lineThrough),
-                                  ),
-                                ),
+                                // Visibility(
+                                //   visible: (orderDetails.product?.hasDiscount ??
+                                //           false) ||
+                                //       (orderDetails.product?.hasVipOffer ??
+                                //           false),
+                                //   child: Text(
+                                //       orderDetails.product?.priceHighLow.parseCurrency ?? "",
+                                //     style: AppTextStyle.s14_w400(
+                                //             color: context.colors.textColor)
+                                //         .copyWith(
+                                //             decoration:
+                                //                 TextDecoration.lineThrough),
+                                //   ),
+                                // ),
                                 Text(
-                                  orderDetails.product?.priceHighLow .parseCurrency ?? '',
+                                  (orderDetails.product?.variant?.mainPrice ?? ''),
                                   style: AppTextStyle.s14_w600(
                                       color: context.colors.primary),
                                 )

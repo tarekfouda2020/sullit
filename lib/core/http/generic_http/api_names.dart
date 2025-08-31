@@ -144,6 +144,9 @@ class ApiNames {
   // notifications
   static const String notifications = "notifications";
 
+  ///general
+ static const String getLanguages = "settings/languages";
+
   //tickets
   static const String createTicket = "tickets/store";
   static const String tickets = "tickets";

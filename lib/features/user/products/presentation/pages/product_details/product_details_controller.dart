@@ -46,15 +46,17 @@ class ProductDetailsController {
   void _initVariants(BuildContext context) {
     detailsCubit.state.data?.product.choiceOptions?.map((e) {
       if (e.options != null && e.options!.isNotEmpty) {
-        // Initialize with empty selection - no default selection
-        e.selectedAttribute = [];
-        e.hasValue = false;
+        e.selectedAttribute!.add(e.options!.first);
+        e.hasValue = true;
       } else {
         e.hasValue = false;
       }
     }).toList();
-    // Don't get variant price initially since no attributes are selected
-    selectedVariants = [];
+    var selectedList = detailsCubit.state.data!.product.choiceOptions!
+        .map((e) => e.selectedAttribute)
+        .toList();
+    selectedVariants = selectedList.expand((element) => element!).toList();
+    if (selectedVariants.isNotEmpty) getVariantPrice(context);
   }
 
   void getVariantPrice(BuildContext context) async {
@@ -70,10 +72,12 @@ class ProductDetailsController {
       details?.product.variant = result.variant;
       detailsCubit.onUpdateData(details);
     }
+    getIt<LoadingHelper>().dismissDialog();
   }
 
   void onSelectAttributes(BuildContext context, List<ProductOptions> model,
       int index, int position) async {
+    getIt<LoadingHelper>().showLoadingDialog();
     List<String> selected = [];
     var optionItem = model[index];
     var attributes = optionItem.selectedAttribute;
@@ -275,8 +279,6 @@ class ProductDetailsController {
       context.read<CountCubit>().onUpdateCount(cartCount, countCubit.discount);
       CustomToast.showSimpleToast(
           msg: tr('itemDeleted'), type: ToastType.success);
-      log("==================cartCount===================${countCubit.cartCount}======================");
-      log("==================cartCount===================$cartCount======================");
       if((cartItemsBloc.state.data.items ?? <CartItem>[]).isEmpty){
         // context.read<CountCubit>().onUpdateCount(0, countCubit.discount);
         Navigator.pop(context);
@@ -297,6 +299,18 @@ class ProductDetailsController {
       builder: (context) =>  CartSuccessSheetWidget(controller: this),
   );
   }
+
+
+
+  Future<bool> onPop(BuildContext context)async{
+    if(detailsCubit.state.data!.product.isWishlist == true){
+      AutoRouter.of(context).pop(true);
+    }else{
+      AutoRouter.of(context).pop(false);
+    }
+    return true;
+  }
+
 
   void updateFavFromSheet(CartItem cartItem){
     if(cartItem.productId == detailsCubit.state.data?.product.id){

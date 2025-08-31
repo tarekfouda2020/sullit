@@ -60,13 +60,15 @@ class _BuildProductItemState extends State<BuildProductItem> {
           )),
       child: InkWell(
         onTap: () async {
-          await AutoRouter.of(context).push(
+         var result =  await AutoRouter.of(context).push(
             ProductDetailsRoute(
               productId: widget.productModel.id!,
               isResale: widget.productModel.isResale!,
             ),
           );
-          widget.onRefresh?.call();
+         if(result == true){
+           widget.onRefresh?.call();
+         }
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

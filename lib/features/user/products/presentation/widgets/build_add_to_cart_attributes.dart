@@ -26,20 +26,25 @@ class BuildProductAttributes extends StatelessWidget {
           Gaps.vGap10,
           ...List.generate(
             options.length,
-            (index) => Column(
+            (index) => Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  options[index].title!,
-                  style: AppTextStyle.s16_w400(
-                    color: context.colors.black,
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: Text(
+                    "${options[index].title!} : ",
+                    style: AppTextStyle.s18_w400(
+                      color: context.colors.black,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
-                Gaps.vGap10,
-                BuildAddToCartAttributeList(
-                  index: index,
-                  productCubit: productCubit,
+                Gaps.hGap5,
+                Flexible(
+                  child: BuildAddToCartAttributeList(
+                    index: index,
+                    productCubit: productCubit,
+                  ),
                 ),
                 Gaps.vGap15,
               ],

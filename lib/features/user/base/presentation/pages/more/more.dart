@@ -10,7 +10,13 @@ class More extends StatefulWidget {
 }
 
 class _MoreState extends State<More> {
-  final MoreController controller = MoreController();
+  late final MoreController controller;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    controller = MoreController(context);
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
                   title: "Base TDD",
                   darkTheme: darkTheme,
                   theme: theme,
-                  supportedLocales: const [Locale('en', 'US'), Locale('ar', 'EG')],
+                  supportedLocales: const [Locale('en', 'US'), Locale('ar', 'EG'),Locale('bn', 'BD')],
                   localizationsDelegates: const [
                     SetLocalization.localizationsDelegate,
                     GlobalMaterialLocalizations.delegate,

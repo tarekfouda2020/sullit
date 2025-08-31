@@ -129,7 +129,6 @@ class AddNewAddressController {
   }
 
 
-
   void routeToDetectLocation(BuildContext context)async{
     var result = await AutoRouter.of(context).push( LocationAddressRoute(fromEdit: false));
     if(result != null){

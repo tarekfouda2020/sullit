@@ -42,6 +42,7 @@ class _ProOffersState extends State<ProOffers> {
                     productModel: item,
                     showVipDiscount: item.hasVipOffer,
                     onFavRefresh: () => controller.onChangeFav(item),
+                    onRefresh: () => controller.getArrival(refresh: true),
                   );
                 },
                 loadingWidget: const BuildLoadingProductsGridView(),

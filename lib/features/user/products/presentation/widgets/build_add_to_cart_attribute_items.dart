@@ -31,15 +31,15 @@ class BuildAddToCartAttributeItems extends StatelessWidget {
       onTap: () => getIt<CartHelper>().onSelectAttributes(
           context, productCubit, allOptions, index, position),
       child: Container(
-        width: 100.w,
-        padding: Dimens.paddingAll8PX,
+        // width: 100.w,
+        padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 10),
         decoration: BoxDecoration(
           border: Border.all(
             color: current ? context.colors.primary : context.colors.greyWhite,
           ),
           borderRadius: Dimens.borderRadius5PX,
         ),
-        alignment: Alignment.center,
+        // alignment: Alignment.center,
         child: Text(
           optionItem,
           style: AppTextStyle.s12_w400(color: context.colors.black),

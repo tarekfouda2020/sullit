@@ -25,11 +25,13 @@ class BuildDetailsView extends StatelessWidget {
               productModel: detailsModel.product,
             ),
 
-            ///not in figma
-            // BuildProductSpecifications(
-            //   controller: controller,
-            //   productModel: detailsModel.product,
-            // ),
+            BuildProductSpecifications(
+              controller: controller,
+              productModel: detailsModel.product,
+            ),
+           SliverToBoxAdapter(
+             child:  Gaps.vGap20,
+           ),
             BuildProductQty(controller: controller, productModel: detailsModel.product),
             /// not in figma
             // BuildProductReviews(

@@ -24,3 +24,4 @@ class WalletTransaction extends BaseDomainModel {
 
 
 
+

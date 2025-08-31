@@ -59,9 +59,11 @@ class GiftCardItemWidget extends StatelessWidget {
                       Row(
                         children: [
                           if (!isMyGiftCard)
-                            Text(tr("payOnly"),
-                                style: AppTextStyle.s16_w400(
-                                    color: context.colors.black)),
+                            Flexible(
+                              child: Text(tr("payOnly"),
+                                  style: AppTextStyle.s16_w400(
+                                      color: context.colors.black)),
+                            ),
                           if (!isMyGiftCard) Gaps.hGap8,
                           Text(
                               model.price.parseCurrency,

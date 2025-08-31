@@ -46,7 +46,7 @@ class PayMethodBottomSheetWidget extends StatelessWidget {
                     if (_isItemSelected(state.data))
                       DefaultButton(
                         onTap: onPressProcess,
-                        title: "Process Payment",
+                        title: tr("processPayment"),
                         height: 50,
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
@@ -82,5 +82,5 @@ class PayMethodBottomSheetWidget extends StatelessWidget {
     );
   }
 
-  bool _isItemSelected(List<PayMethodDomainModel> data) => data.any((element) => element.isSelected);
+  bool _isItemSelected(List<PayMethodDomainModel> data) => data.any((e) => e.isSelected);
 }

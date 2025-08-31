@@ -15,6 +15,7 @@ import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/features/user/base/data/enums/enums.dart';
+import 'package:flutter_tdd/features/user/base/domain/models/lang_domain_model.dart';
 import 'package:flutter_tdd/res.dart';
 
 import '../../../../../../../../core/constants/gaps.dart';

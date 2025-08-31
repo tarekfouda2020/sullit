@@ -8,7 +8,7 @@ class BuildTabsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       color: context.colors.white,
       child: TabBar(
         physics: const AlwaysScrollableScrollPhysics(),

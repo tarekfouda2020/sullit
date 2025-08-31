@@ -86,7 +86,7 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
         // ),
       ],
       leading: GestureDetector(
-        onTap: ()=> AutoRouter.of(context).pop(),
+        onTap: ()=> widget.controller.onPop(context),
         child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),
             child: Transform.scale(

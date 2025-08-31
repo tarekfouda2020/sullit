@@ -393,7 +393,8 @@
   "inCart": "in your cart",
   "inWishlist": "In your wishList",
   "youOrdered": "You ordered",
-"days": "Days",
+  "days": "Days",
+  "day": "Day",
   "hours": "Hours",
   "minutes": "Minutes",
   "second": "Seconds",
@@ -590,6 +591,10 @@
   "giftCardCode":"Gift Card Code",
   "proOffers":"Pro Offers",
   "transactionNo": "Transaction no : #",
+  "validForOneDay": "Valid for one day",
+  "validForTwoDay": "Valid for two days",
+  "nothingToTellYou": "Nothing to tell you.",
+  "processPayment": "Process Payment",
   "giftCardAnnotation":"Note that the remaining of gift card value will add to your wallet balance so you can use it in next orders"
 
 

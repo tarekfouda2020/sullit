@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../helpers/global_state.dart';
@@ -6,13 +7,12 @@ import '../../../helpers/global_state.dart';
 class DioHeader {
   Map<String, String> call() {
     String? token = GlobalState.instance.get("token");
-    String lang = GlobalState.instance.get('lang');
-    print(lang);
+    String lang = GlobalState.instance.get(LangCodeHelper.langKey);
     return {
       "Content-Type": "application/json",
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
-      'lang': lang,
+      'App-Language': lang,
     };
   }
 }

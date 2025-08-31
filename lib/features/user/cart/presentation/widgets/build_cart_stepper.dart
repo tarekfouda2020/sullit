@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
@@ -34,12 +35,14 @@ class BuildCartStepper extends StatelessWidget {
                 return Row(
                   children: [
                     Container(
-                      padding: Dimens.paddingAll10PX,
+                      width: 50,
+                      height: 50,
                       decoration: BoxDecoration(
                         color: containerColor,
                         shape: BoxShape.circle,
-                        border: Border.all(color: Colors.transparent,width: 3),
+                        border: Border.all(color: Colors.transparent, width: 3),
                       ),
+                      alignment: Alignment.center, // center the icon
                       child: stepsIconWidget(context)[index],
                     ),
                   ],
@@ -64,7 +67,10 @@ class BuildCartStepper extends StatelessWidget {
               var textColor = current > index ? context.colors.primary : context.colors.textColor;
               return Flexible(
                 child: Padding(
-                  padding:  EdgeInsetsDirectional.only(start: index== 1 ? paddingFromStart(lang) : 10),
+                  padding:  EdgeInsetsDirectional.only(
+                      start: index== 1 ? paddingFromStart(lang) : 9.r,
+                      end: index==stepsIconWidget(context).length-1 ? 5.r : 0
+                  ),
                   child: Text(
                     getTitle(index),
                     style: AppTextStyle.s10_w700(color: textColor),
@@ -82,7 +88,7 @@ class BuildCartStepper extends StatelessWidget {
 
 
   double paddingFromStart(String lang){
-    return lang == 'ar' ? 5 : 25;
+    return lang == LangCodeHelper.langAR ? 5.r : 28.r;
   }
 
   String getTitle(int index) {

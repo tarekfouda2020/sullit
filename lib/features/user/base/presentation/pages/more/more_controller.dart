@@ -2,6 +2,12 @@ part of 'more_imports.dart';
 
 class MoreController {
   final GenericBloc<File?> imageCubit = GenericBloc(null);
+  final GenericBloc<List<LangDomainModel>> languagesCubit = GenericBloc<List<LangDomainModel>>([]);
+
+  MoreController(BuildContext context){
+    callLanguages(context);
+  }
+
 
   Future<void> getImage(BuildContext context) async {
     var image = await getIt<Utilities>().getImageFile(context);
@@ -9,6 +15,9 @@ class MoreController {
       imageCubit.onUpdateData(image);
     }
   }
+
+
+
 
   void checkAuth(BuildContext context, MoreRoutes route) {
     bool auth = context.read<DeviceCubit>().state.model.auth;
@@ -124,9 +133,37 @@ class MoreController {
   }
 
 
-  void setUserLang(BuildContext context, String lang) async {
-    getIt<Utilities>().changeLanguage(lang, context);
+  void setUserLang(BuildContext context, LangDomainModel model) async {
+    String code = model.code;
+    if(code == LangTypeEnum.arabic.getLangCode()){
+      code = LangCodeHelper.langAR;
+    }
+    if(code == LangTypeEnum.bangladesh.getLangCode()){
+      code = LangCodeHelper.langBN;
+    }
+    // List<LangModel> languages = langRequester.data!;
+    // for(var item in languages){
+    //   item.isDefault = false;
+    // }
+    // model.isDefault = true;
+    getIt<Utilities>().changeLanguage(code, context);
     Phoenix.rebirth(context);
+  }
+
+
+  Future<void> _getLanguages(bool refresh)async{
+    await GetLanguages().call(refresh).then((value) {
+      languagesCubit.onUpdateData(value);
+    });
+  }
+
+
+  void callLanguages(BuildContext context){
+    bool isAuth = context.read<DeviceCubit>().state.model.auth;
+    if(isAuth){
+      _getLanguages(false);
+      _getLanguages(true);
+    }
   }
 
 
