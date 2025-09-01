@@ -5,15 +5,9 @@ class BuildSupportMsgItem extends StatelessWidget {
 
   const BuildSupportMsgItem({super.key, required this.model});
 
-  // Helper function to get current locale
-  Locale _getCurrentLocale(BuildContext context) {
-    return Localizations.localeOf(context);
-  }
-
-  // Helper function to check if current language is RTL
   bool _isRTL(BuildContext context) {
     final locale = context.read<DeviceCubit>().state.model.locale;
-    return locale.languageCode == 'ar';
+    return locale.languageCode == LangCodeHelper.langAR;
   }
 
   // Helper function to get appropriate padding based on language direction
@@ -133,15 +127,15 @@ class BuildSupportMsgItem extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 color: model.isSender ? context.colors.primary : context.colors.gray4,
-                borderRadius: BorderRadius.only(
-                  topLeft: model.isSender
+                borderRadius: BorderRadiusDirectional.only(
+                  topStart: model.isSender
                       ? const Radius.circular(0)  // Small radius for sender's bottom-left
                       : const Radius.circular(20),
-                  topRight: model.isSender
+                  topEnd: model.isSender
                       ? const Radius.circular(20)
                       : const Radius.circular(0),
-                  bottomLeft:  const Radius.circular(20),
-                  bottomRight:  const Radius.circular(20), // Small radius for receiver's bottom-right
+                  bottomStart:  const Radius.circular(20),
+                  bottomEnd:  const Radius.circular(20), // Small radius for receiver's bottom-right
                 ),
                 // Optional: Add subtle shadow for depth
                 boxShadow: [

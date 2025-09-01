@@ -16,7 +16,7 @@ class WalletItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            item.typeLabel,
+            item.typeLabel.capitalize,
             style: AppTextStyle.s14_w600(
               color: context.colors.green,
             ),
@@ -67,11 +67,5 @@ class WalletItemWidget extends StatelessWidget {
       //   minLeadingWidth: 10.w,
       // ),
     );
-  }
-
-  String convertToTimeAgo(String dateString) {
-    final DateFormat formatter = DateFormat("dd-MM-yyyy");
-    final DateTime date = formatter.parse(dateString);
-    return timeago.format(date, allowFromNow: true);
   }
 }

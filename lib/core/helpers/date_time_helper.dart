@@ -55,6 +55,8 @@ class DateTimeHelper {
           "MMMM dd yyyy, hh:mm a",
           "MMMM dd yyyy, h:mm a",
           "yyyy-MM-dd HH:mm:ss",
+          "yyyy-M-d H:mm",
+          "yyyy-M-d HH:mm",
         ];
         String normalizeAmPm(String input) =>
             input.replaceAllMapped(RegExp(r'\b(am|pm)\b', caseSensitive: false),
@@ -67,6 +69,8 @@ class DateTimeHelper {
           RegExp(r"(\d{2}) (\w{3}) (\d{4}) (\d{2}):(\d{2}) (AM|PM)", caseSensitive: false),
           // Pattern 3: "30 August 2025 08:50 AM" (dd MMMM yyyy hh:mm a)
           RegExp(r"(\d{2}) (\w+) (\d{4}) (\d{2}):(\d{2}) (AM|PM)", caseSensitive: false),
+          // Pattern 4: "2025-8-13 1:42" (yyyy-M-d H:mm)
+          RegExp(r"(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{2})"),
         ];
 
         for (int i = 0; i < regexPatterns.length; i++) {
@@ -138,6 +142,21 @@ class DateTimeHelper {
                 
                 parsed = DateTime(year, month, day, hour, minute);
                 print("Parsed with pattern 3: $parsed");
+                break;
+                
+              } else if (i == 3) {
+                // Pattern 4: "2025-8-13 1:42" (yyyy-M-d H:mm)
+                int year = int.parse(match.group(1)!);
+                int month = int.parse(match.group(2)!);
+                int day = int.parse(match.group(3)!);
+                int hour = int.parse(match.group(4)!);
+                int minute = int.parse(match.group(5)!);
+                
+                // For this format, assume 24-hour time if no AM/PM specified
+                // Keep the hour as-is since it's likely already in 24-hour format
+                
+                parsed = DateTime(year, month, day, hour, minute);
+                print("Parsed with pattern 4: $parsed");
                 break;
               }
             }
