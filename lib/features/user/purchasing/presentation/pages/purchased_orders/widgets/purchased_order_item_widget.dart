@@ -32,7 +32,7 @@ class PurchasedOrderItemWidget extends StatelessWidget {
                ),
                Gaps.vGap6,
                Text(
-                 DateTimeHelper.formatDate(date: _getDate, formatType: "d MMM yyyy - hh:mm a"),
+                 DateTimeHelper.getDate(order.orderDate),
                  style: AppTextStyle.s12_w400(color: context.colors.textColor),
                ),
              ],
@@ -43,8 +43,6 @@ class PurchasedOrderItemWidget extends StatelessWidget {
     );
   }
 
-
-  DateTime  get _getDate => DateTimeHelper.convertToDateTime(strDate: order.orderDate);
 
 
 }

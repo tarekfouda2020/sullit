@@ -56,7 +56,7 @@ class BuildShippingAddressItem extends StatelessWidget {
                     ],
                   ),
                    BuildAddressTitleItem(
-                    title: 'Type',
+                    title: tr("type"),
                     desc: address.addressType ?? "",
                   ),
                   BuildAddressTitleItem(
@@ -72,15 +72,15 @@ class BuildShippingAddressItem extends StatelessWidget {
                     desc: address.country?.name ?? "",
                   ),
                    BuildAddressTitleItem(
-                    title: 'Street Name',
+                    title: tr("streetName"),
                     desc: address.streetName ?? "",
                   ),
                    BuildAddressTitleItem(
-                    title: 'Building Name',
+                    title: tr("buildingName"),
                     desc: address.buildingName ?? "",
                   ),
                    BuildAddressTitleItem(
-                    title: 'Flat No.',
+                    title: tr("flatNo"),
                     desc: address.buildingName!,
                   ),
                   // BuildAddressTitleItem(
@@ -89,7 +89,7 @@ class BuildShippingAddressItem extends StatelessWidget {
                   // ),
                   BuildAddressTitleItem(
                     title: tr('phone'),
-                    desc: address.fullPhone ?? "",
+                    desc:  getIt<Utilities>().handleFullPhone(context, address.fullPhone ?? ""),
                   )
                 ],
               ),

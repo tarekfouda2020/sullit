@@ -131,7 +131,7 @@ void onPressRenew(BuildContext context){
          await routeToPaymentPage(ctx, value.transactionUrl!);
         }
         await getCurrentSubscription();
-        CustomToast.showSimpleToast(msg: "You have successfully subscribed", type: ToastType.success);
+        CustomToast.showSimpleToast(msg: tr("subscribedSuccess"), type: ToastType.success);
       }
       getIt<LoadingHelper>().dismissDialog();
     });

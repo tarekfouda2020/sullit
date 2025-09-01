@@ -5,30 +5,126 @@ class BuildSupportMsgItem extends StatelessWidget {
 
   const BuildSupportMsgItem({super.key, required this.model});
 
+  // Helper function to get current locale
+  Locale _getCurrentLocale(BuildContext context) {
+    return Localizations.localeOf(context);
+  }
+
+  // Helper function to check if current language is RTL
+  bool _isRTL(BuildContext context) {
+    final locale = context.read<DeviceCubit>().state.model.locale;
+    return locale.languageCode == 'ar';
+  }
+
+  // Helper function to get appropriate padding based on language direction
+  EdgeInsets _getMessagePadding(BuildContext context) {
+    final isRTL = _isRTL(context);
+    
+    if (model.isSender) {
+      // Sender message
+      if (isRTL) {
+        // Arabic: sender messages on the right
+        return const EdgeInsets.only(
+          left: 120,
+          right: 10,
+          bottom: 19,
+        );
+      } else {
+        // English/Bengali: sender messages on the left
+        return const EdgeInsets.only(
+          right: 120,
+          left: 10,
+          bottom: 19,
+        );
+      }
+    } else {
+      // Admin message
+      if (isRTL) {
+        // Arabic: admin messages on the left
+        return const EdgeInsets.only(
+          right: 120,
+          left: 10,
+          bottom: 19,
+        );
+      } else {
+        // English/Bengali: admin messages on the right
+        return const EdgeInsets.only(
+          left: 120,
+          right: 10,
+          bottom: 19,
+        );
+      }
+    }
+  }
+
+  // Helper function to get appropriate alignment based on language direction
+  AlignmentDirectional _getMessageAlignment(BuildContext context) {
+    final isRTL = _isRTL(context);
+    
+    if (model.isSender) {
+      // Sender message
+      if (isRTL) {
+        // Arabic: sender messages align to start (right)
+        return AlignmentDirectional.centerStart;
+      } else {
+        // English/Bengali: sender messages align to start (left)
+        return AlignmentDirectional.centerStart;
+      }
+    } else {
+      // Admin message
+      if (isRTL) {
+        // Arabic: admin messages align to end (left)
+        return AlignmentDirectional.centerEnd;
+      } else {
+        // English/Bengali: admin messages align to end (right)
+        return AlignmentDirectional.centerEnd;
+      }
+    }
+  }
+
+  // Helper function to get appropriate cross alignment based on language direction
+  CrossAxisAlignment _getCrossAxisAlignment(BuildContext context) {
+    final isRTL = _isRTL(context);
+    
+    if (model.isSender) {
+      // Sender message
+      if (isRTL) {
+        // Arabic: sender messages align content to start (right)
+        return CrossAxisAlignment.start;
+      } else {
+        // English/Bengali: sender messages align content to start (left)
+        return CrossAxisAlignment.start;
+      }
+    } else {
+      // Admin message
+      if (isRTL) {
+        // Arabic: admin messages align content to end (left)
+        return CrossAxisAlignment.end;
+      } else {
+        // English/Bengali: admin messages align content to end (right)
+        return CrossAxisAlignment.end;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
-        right: model.isSender ? 120 : 10,
-        left: model.isSender ? 10 : 120,
-        bottom: 19
-      ),
+      padding: _getMessagePadding(context),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            model.isSender?"You" : "Admin",
+            model.isSender ? tr("you") : tr("admin"),
             style: AppTextStyle.s18_w400(color: context.colors.black),
           ),
           Gaps.vGap10,
           Text(
-            "10 feb 2025 - 11:43 PM",
+            DateTimeHelper.getDate(model.createdAt),
             style: AppTextStyle.s12_w400(color: context.colors.textColor),
           ),
           Container(
-            alignment: model.isSender
-                ? AlignmentDirectional.centerStart
-                : AlignmentDirectional.centerEnd,
+            alignment: _getMessageAlignment(context),
             margin: const EdgeInsets.only(top: 10),
             child: Container(
               padding: const EdgeInsets.symmetric(
@@ -58,8 +154,7 @@ class BuildSupportMsgItem extends StatelessWidget {
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment:
-                model.isSender ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+                crossAxisAlignment: _getCrossAxisAlignment(context),
                 children: [
                   Visibility(
                     visible: model.msgType == "text",

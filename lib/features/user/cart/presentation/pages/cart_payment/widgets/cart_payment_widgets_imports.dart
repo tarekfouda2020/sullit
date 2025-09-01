@@ -45,7 +45,6 @@ part 'payment_method_widget.dart';
 part 'cart_payment_section_title_widget.dart';
 part 'payment_options_widget.dart';
 part 'pay_option_widget.dart';
-part 'apple_pay_option_widget.dart';
 part 'wallet_payment_widget.dart';
 part 'apply_gift_card_widget.dart';
 part 'cart_discount_widget.dart';

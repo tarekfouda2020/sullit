@@ -173,9 +173,9 @@ class Utilities {
     if(lang == LangCodeHelper.langAR){
       lang = LangTypeEnum.arabic.getLangCode();
     }
-    // if(lang == LangCodeHelper.langBN){
-    //   lang = LangTypeEnum.bangladesh.getLangCode();
-    // }
+    if(lang == LangCodeHelper.langBN){
+      lang = LangTypeEnum.bangladesh.getLangCode();
+    }
     GlobalState.instance.set(LangCodeHelper.langKey, lang);
   }
 
@@ -258,6 +258,17 @@ class Utilities {
     return null;
   }
 
+  String handleFullPhone(BuildContext context,String phone){
+    var lang = context.read<DeviceCubit>().state.model.locale.languageCode;
+    if(lang == LangCodeHelper.langAR){
+      var split = phone.split("");
+      split.removeAt(0);
+      var phoneWithoutPlus = split.join();
+      return "$phoneWithoutPlus+";
+    }else{
+      return phone;
+    }
+  }
 
 
   String convertDigitsToLatin(String s) {

@@ -28,7 +28,7 @@ class ShippingAlertWidget extends StatelessWidget {
                   ),
                   Gaps.vGap8,
                   Center(
-                    child: Text("Not all Sellers have delivery support to this address",
+                    child: Text(tr("notAllSellersDelivery"),
                       style: AppTextStyle.s16_w600(color: context.colors.black),)),
                   DefaultButton(title: "Ok",
                   height: 50,

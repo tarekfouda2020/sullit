@@ -68,7 +68,7 @@ class BuildCartStepper extends StatelessWidget {
               return Flexible(
                 child: Padding(
                   padding:  EdgeInsetsDirectional.only(
-                      start: index== 1 ? paddingFromStart(lang) : 9.r,
+                      start: index== 1 ? paddingFromStart(lang) : 13.r,
                       end: index==stepsIconWidget(context).length-1 ? 5.r : 0
                   ),
                   child: Text(
@@ -88,7 +88,7 @@ class BuildCartStepper extends StatelessWidget {
 
 
   double paddingFromStart(String lang){
-    return lang == LangCodeHelper.langAR ? 5.r : 28.r;
+    return lang == LangCodeHelper.langAR ? 5.r :23.r;
   }
 
   String getTitle(int index) {

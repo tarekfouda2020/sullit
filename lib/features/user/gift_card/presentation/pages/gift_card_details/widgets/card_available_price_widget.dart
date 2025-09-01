@@ -16,7 +16,7 @@ class CardAvailablePrice extends StatelessWidget {
            return  Row(
              mainAxisAlignment: MainAxisAlignment.center,
              children: [
-               Text("Remain amount", style: AppTextStyle.s22_w400(color: context.colors.black)),
+               Text(tr("remainAmount"), style: AppTextStyle.s22_w400(color: context.colors.black)),
                Gaps.hGap5,
                Text(state.data!.price,
                    style: AppTextStyle.s24_w700(color: context.colors.primary)),

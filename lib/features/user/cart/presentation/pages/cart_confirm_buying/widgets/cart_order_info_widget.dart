@@ -42,12 +42,12 @@ class CartOrderInfoWidget extends StatelessWidget {
         OrderINfoItemWidget(
           title: tr('mail'),
           describe: orderSummary.summary!.email,
-          gaps: Gaps.hGap17,
+          gaps: Gaps.hGap7,
         ),
         Gaps.vGap12,
         OrderINfoItemWidget(
-          title: "phone",
-          describe: orderSummary.sectionOrders!.first.customerPhone,
+          title: tr("phone"),
+          describe: getIt<Utilities>().handleFullPhone(context, orderSummary.sectionOrders!.first.customerPhone),
           gaps: Gaps.hGap9,
         ),
         Gaps.vGap12,

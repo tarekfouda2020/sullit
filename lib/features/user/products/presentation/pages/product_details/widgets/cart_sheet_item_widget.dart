@@ -69,7 +69,7 @@ class CartSheetItemWidget extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text("Sold By :",
+                    Text("${tr("soldBy")} :",
                       style: AppTextStyle.s12_w400(color: context.colors.textColor),
                     ),
                     Gaps.hGap5,

@@ -43,3 +43,4 @@ class WalletTransactionModel extends BaseApiModel<WalletTransaction> with _$Wall
 
 
 
+

@@ -9,6 +9,7 @@ class BuildDeliveryType extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String langCode = context.read<DeviceCubit>().state.model.locale.languageCode;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -67,10 +68,13 @@ class BuildDeliveryType extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        shipping.delivery?.transitIn ?? "",
-                        style: AppTextStyle.s14_w400(
-                          color: context.colors.black,
+                      Directionality(
+                        textDirection:  TextDirection.ltr,
+                        child: Text(
+                          shipping.delivery?.transitIn ?? "",
+                          style: AppTextStyle.s14_w400(
+                            color: context.colors.black,
+                          ),
                         ),
                       ),
                       Text(

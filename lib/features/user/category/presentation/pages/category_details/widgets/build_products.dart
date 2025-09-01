@@ -30,6 +30,7 @@ class BuildProducts extends StatelessWidget {
               productModel: item,
               onFavRefresh: () => detailsController.onFavChanged(item),
               showVipDiscount: haveVipDiscount,
+              onRefresh: () => detailsController.getPopularProducts(1),
             ),
             noItemsFoundIndicatorBuilder: (cxt) => const BuildEmptyDataView(),
           ),

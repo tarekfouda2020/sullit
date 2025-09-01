@@ -9,7 +9,6 @@ class PayOptionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Visibility(
       // visible: Platform.isAndroid,
-      replacement: ApplePayOptionWidget(controller: controller),
       child: Row(
         children: [
           CachedImage(

@@ -10,7 +10,7 @@ class ApplyGiftCardWidget extends StatelessWidget {
       onTap: () => controller.giftCardSheet(context),
       child: Row(
         children: [
-          Text("Or Apply Gift Card",
+          Text(tr("orApplyGiftCard"),
               style: AppTextStyle.s14_w400(color: context.colors.primary)
           ),
           Gaps.hGap7,

@@ -12,7 +12,7 @@ class PickupSellerBranchWidget extends StatelessWidget {
       children: [
          SellerNameWidget(shipping: shipping),
         Gaps.vGap24,
-        Text("Pickup Seller Branch",
+        Text(tr("pickupSellerBranch"),
         style: AppTextStyle.s16_w600(color: context.colors.black),
         ),
         Gaps.vGap12,
@@ -51,7 +51,7 @@ class PickupSellerBranchWidget extends StatelessWidget {
           myBoxShadow: const [],
           radius: Dimens.borderRadius12PX
       ),
-      child: Text("No Branches Available for ${shipping.name}",
+      child: Text("${tr("noBranchesAvailable")} ${shipping.name}",
         style: AppTextStyle.s14_w600(color: context.colors.black).copyWith(
           height: 1.5
         ),

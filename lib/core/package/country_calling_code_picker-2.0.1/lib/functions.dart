@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:country_calling_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sim_country_code/flutter_sim_country_code.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 
 import './country.dart';
@@ -45,7 +46,8 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
     Widget? cancelWidget,
     double cornerRadius: 35,
     bool focusSearchBox: false,
-    double heightFactor: 0.9}) {
+    double heightFactor: 0.9,
+    bool forceArabic: false}) {
   assert(heightFactor <= 0.9 && heightFactor >= 0.4,
       'heightFactor must be between 0.4 and 0.9');
   return showModalBottomSheet<Country?>(
@@ -77,7 +79,7 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
                   Center(
                     child: title ??
                         Text(
-                          'Choose region',
+                          tr("chooseRegion"),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 25,
@@ -91,6 +93,7 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
               Expanded(
                 child: CountryPickerWidget(
                   onSelected: (country) => Navigator.of(context).pop(country),
+                  forceArabic: forceArabic,
                 ),
               ),
             ],
@@ -104,6 +107,7 @@ Future<Country?> showCountryPickerDialog(
   Widget? title,
   double cornerRadius: 35,
   bool focusSearchBox: false,
+  bool forceArabic: false,
 }) {
   return showDialog<Country?>(
     context: context,
@@ -140,11 +144,12 @@ Future<Country?> showCountryPickerDialog(
             ],
           ),
           SizedBox(height: 16),
-          Expanded(
-            child: CountryPickerWidget(
-              onSelected: (country) => Navigator.of(context).pop(country),
+                      Expanded(
+              child: CountryPickerWidget(
+                onSelected: (country) => Navigator.of(context).pop(country),
+                forceArabic: forceArabic,
+              ),
             ),
-          ),
         ],
       ),
     ),

@@ -2,6 +2,8 @@ library countrycodepicker;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sim_country_code/flutter_sim_country_code.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/core/helpers/country_localization_helper.dart';
 
 import 'country.dart';
 import 'functions.dart';
@@ -36,6 +38,9 @@ class CountryPickerWidget extends StatefulWidget {
   ///This will change the hint of the search box. Alternatively [searchInputDecoration] can be used to change decoration fully.
   final String searchHintText;
 
+  /// Force Arabic language for country names (useful for testing)
+  final bool forceArabic;
+
   const CountryPickerWidget({
     Key? key,
     this.onSelected,
@@ -46,6 +51,7 @@ class CountryPickerWidget extends StatefulWidget {
     this.flagIconSize = 32,
     this.showSeparator = false,
     this.focusSearchBox = false,
+    this.forceArabic = false,
   }) : super(key: key);
 
   @override
@@ -70,6 +76,11 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
       setState(() {
         _filteredList = _list
             .where((element) =>
+                (widget.forceArabic 
+                    ? CountryLocalizationHelper.getArabicCountryName(element.countryCode)
+                    : CountryLocalizationHelper.getLocalizedCountryName(element.countryCode, context))
+                    .toLowerCase()
+                    .contains(text.toString().toLowerCase()) ||
                 element.name
                     .toLowerCase()
                     .contains(text.toString().toLowerCase()) ||
@@ -151,7 +162,9 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                   ),
                   contentPadding:
                       EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
-                  hintText: widget.searchHintText,
+                  hintText: widget.searchHintText == _kDefaultSearchHintText 
+                      ? tr('searchCountryNameCode') 
+                      : widget.searchHintText,
                 ),
             textInputAction: TextInputAction.done,
             controller: _controller,
@@ -190,7 +203,9 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                             ),
                             Expanded(
                                 child: Text(
-                              '${_filteredList[index].callingCode} ${_filteredList[index].name}',
+                              '${_filteredList[index].callingCode} ${widget.forceArabic 
+                                  ? CountryLocalizationHelper.getArabicCountryName(_filteredList[index].countryCode)
+                                  : _filteredList[index].name}',
                               style: widget.itemTextStyle,
                             )),
                           ],

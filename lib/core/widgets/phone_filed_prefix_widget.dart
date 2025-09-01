@@ -16,7 +16,6 @@ class PhoneFieldPrefixWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("========>>>>>> name ${countryCubit.state.data?.name}");
     return GestureDetector(
       onTap: () async{
         var country = await CountryPickerHelper.pickCountry(context);

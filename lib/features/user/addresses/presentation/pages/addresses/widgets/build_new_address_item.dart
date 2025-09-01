@@ -58,15 +58,15 @@ class BuildNewAddressItem extends StatelessWidget {
                     desc: address.country?.name ?? "",
                   ),
                    BuildAddressTitleItem(
-                    title: 'Street Name',
+                    title: tr("streetName"),
                     desc: address.streetName!,
                   ),
                    BuildAddressTitleItem(
-                    title: 'Building Name',
+                    title: tr("buildingName"),
                     desc: address.buildingName!,
                   ),
                    BuildAddressTitleItem(
-                    title: 'Flat No.',
+                    title: tr("flatNo"),
                     desc: address.flatNumber!,
                   ),
                   // BuildAddressTitleItem(
@@ -79,7 +79,7 @@ class BuildNewAddressItem extends StatelessWidget {
                       Expanded(
                         child: BuildAddressTitleItem(
                           title: tr('phone'),
-                          desc: address.fullPhone ?? "",
+                          desc: getIt<Utilities>().handleFullPhone(context, address.fullPhone ?? ""),
                         ),
                       ),
                       Visibility(

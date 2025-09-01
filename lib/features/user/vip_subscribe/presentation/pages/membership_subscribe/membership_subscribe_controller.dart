@@ -85,7 +85,7 @@ class MembershipSubscribeController{
 
   void showPayMethodsSheet(BuildContext context) {
     if(pagingController.itemList!.any((element) => element.isSelected) == false){
-      CustomToast.showSimpleToast(msg: "Please Select a membership", type: ToastType.info);
+      CustomToast.showSimpleToast(msg: tr("selectMembership"), type: ToastType.info);
       return ;
     }
     if(!termCubit.state.data){
@@ -130,12 +130,12 @@ class MembershipSubscribeController{
 
 
   Future<void> subscribeInMembership(BuildContext context) async {
-    String payMethod = payMethodsCubit.state.data.firstWhere((element) => element.isSelected).paymentTypeKey;
-    if(payMethod =="wallet" && isWalletBalanceEnough() == false ){
+    PayTypeEnum payMethod = payMethodsCubit.state.data.firstWhere((element) => element.isSelected).getPaymentType();
+    if(payMethod ==PayTypeEnum.wallet && isWalletBalanceEnough() == false ){
       CustomToast.showSimpleToast(msg: tr('walletBalanceEmpty'), type: ToastType.error);
       return ;
     }
-    var params = _subscribeParams(payMethod);
+    var params = _subscribeParams(payMethod.name);
     Navigator.pop(context);
     Future.delayed(const Duration(milliseconds: 200));
     Navigator.pop(context);
@@ -148,7 +148,7 @@ class MembershipSubscribeController{
            await AutoRouter.of(ctx).push(PaymentRoute(transactionUrl: value.transactionUrl!));
         }
         AutoRouter.of(ctx).pop();
-        CustomToast.showSimpleToast(msg: "You have successfully subscribed", type: ToastType.success);
+        CustomToast.showSimpleToast(msg: tr("subscribedSuccess"), type: ToastType.success);
       }
       getIt<LoadingHelper>().dismissDialog();
     });

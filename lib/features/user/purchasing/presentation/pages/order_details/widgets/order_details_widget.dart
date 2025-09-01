@@ -11,7 +11,7 @@ class OrderDetailsWidget extends StatelessWidget {
       children: [
         OrderINfoItemWidget(
           title: tr('date'),
-          describe: DateTimeHelper.formatDate(date: order?.getOrderDate?? DateTime.now(), formatType: "d MMM yyyy - hh:mm a"),
+          describe: DateTimeHelper.getDate(order?.orderDate ?? "",formatType: "d MMM yyyy - hh:mm a"),
           gaps: Gaps.hGap16,
         ),
         Gaps.vGap12,
@@ -42,7 +42,7 @@ class OrderDetailsWidget extends StatelessWidget {
         Gaps.vGap12,
         OrderINfoItemWidget(
           title: tr('phone'),
-          describe: order?.customerPhone ?? "",
+          describe: getIt<Utilities>().handleFullPhone(context, order?.customerPhone ?? ""),
           gaps: Gaps.hGap17,
         ),
         Gaps.vGap12,

@@ -249,7 +249,7 @@
   "blogs": "المدونات",
   "wishlist": "قائمة المفضلة",
   "compare": "مقارنة المنتجات",
-  "trackOrder": "متابعة طلب",
+  "trackOrder": "متابعة الطلب",
   "myWallet": "محفظتي",
   "supportTickets": "تذاكر الدعم الفني",
   "manageProfile": "إدارة الحساب",
@@ -763,23 +763,22 @@
   "validForTwoDay": "صالح لمدة يومين",
   "nothingToTellYou": "لا تحديثات.!",
   "processPayment": "إتمام الدفع",
-  "giftCardAnnotation":"يرجى ملاحظة أن المبلغ المتبقي من قيمة بطاقة الهدية سيتم إضافته إلى رصيد محفظتك حتى تتمكن من استخدامه في الطلبات التالية"
-
-
-
+  "giftCardAnnotation":"يرجى ملاحظة أن المبلغ المتبقي من قيمة بطاقة الهدية سيتم إضافته إلى رصيد محفظتك حتى تتمكن من استخدامه في الطلبات التالية",
+  "noBranchesAvailable": "لا توجد فروع متاحة لـ",
+  "notAllSellersDelivery": "ليس جميع البائعين لديهم دعم التوصيل لهذا العنوان",
+  "select": "اختر",
+  "errorGettingItems": "خطأ في الحصول على العناصر عبر الإنترنت",
+  "ok": "موافق",
+  "dealsCountdown": ":",
+  "orVoucherCode": "أو رمز القسيمة",
+  "you": "أنت",
+  "trackOrderComingSoon": "ميزة تتبع الطلب قريباً!",
+  "loGin": "تسجيل الدخول",
+  "receiptStatus": "حالة الإيصال",
+  "chooseRegion": "اختر الدوله",
+  "searchCountryNameCode": "البحث عن اسم البلد أو الرمز",
+  "subscribedSuccess": "لقد اشتركت بنجاح",
+  "selectMembership": "يرجى اختيار عضوية",
+  "selectLocationOnMap": "اختر موقع على الخريطة",
+  "bn": "মানচিত্রে অবস্থান নির্বাচন করুন"
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

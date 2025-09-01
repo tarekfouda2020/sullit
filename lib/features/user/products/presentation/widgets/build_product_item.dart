@@ -66,9 +66,10 @@ class _BuildProductItemState extends State<BuildProductItem> {
               isResale: widget.productModel.isResale!,
             ),
           );
-         if(result == true){
-           widget.onRefresh?.call();
-         }
+         widget.onRefresh?.call();
+         // if(result == true){
+         //   widget.onRefresh?.call();
+         // }
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

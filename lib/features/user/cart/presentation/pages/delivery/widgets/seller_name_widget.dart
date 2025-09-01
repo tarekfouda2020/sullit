@@ -15,7 +15,7 @@ class SellerNameWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Seller",
+          Text(tr("seller"),
           style: AppTextStyle.s12_w400(color: context.colors.textColor),
           ),
           Gaps.vGap4,

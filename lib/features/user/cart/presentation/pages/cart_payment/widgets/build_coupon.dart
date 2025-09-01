@@ -13,11 +13,11 @@ class BuildCoupon extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Or Voucher Code",
+            tr("orVoucherCode"),
             style: AppTextStyle.s14_w400(color: context.colors.primary),
           ),
           GenericTextField(
-            hint: "Enter Voucher Code",
+            hint: tr("enterVoucherCode"),
             fieldTypes: FieldTypes.normal,
             controller: controller.coupon,
             action: TextInputAction.done,

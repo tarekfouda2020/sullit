@@ -64,7 +64,7 @@ class _DealsCountDownWidgetState extends State<DealsCountDownWidget> {
                   BuildCustomTimer(
                     firstTimeNumber: widget.controller.getDigit(state.data.myDuration, 'seconds', 0),
                     secondTimeNumber: widget.controller.getDigit(state.data.myDuration, 'seconds', 1),
-                    text: tr("seconds"),
+                    text: tr("second"),
                   ),
                 ],
               );
@@ -96,7 +96,7 @@ class _DealsCountDownWidgetState extends State<DealsCountDownWidget> {
   Widget _buildSeparatorText(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
-      child: Text(':',
+      child: Text(tr('dealsCountdown'),
         style: AppTextStyle.s16_w700(color: context.colors.gold),
       ),
     );

@@ -4,10 +4,11 @@ class MoreController {
   final GenericBloc<File?> imageCubit = GenericBloc(null);
   final GenericBloc<List<LangDomainModel>> languagesCubit = GenericBloc<List<LangDomainModel>>([]);
 
-  MoreController(BuildContext context){
-    callLanguages(context);
+  MoreController(BuildContext context) {
+    // allLanguages(BuildContext context);
+    _getLanguages(false);
+    _getLanguages(true);
   }
-
 
   Future<void> getImage(BuildContext context) async {
     var image = await getIt<Utilities>().getImageFile(context);
@@ -16,15 +17,16 @@ class MoreController {
     }
   }
 
-
-
-
   void checkAuth(BuildContext context, MoreRoutes route) {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
-    if (auth) {
+    if (canBePress(route)) {
       _getMoreItemRoute(route, context);
     } else {
-      CustomToast.showAuthDialog(context);
+      bool auth = context.read<DeviceCubit>().state.model.auth;
+      if (auth) {
+        _getMoreItemRoute(route, context);
+      } else {
+        CustomToast.showAuthDialog(context);
+      }
     }
   }
 
@@ -62,11 +64,10 @@ class MoreController {
         AutoRouter.of(context).push(const SupportTicketsRoute());
         break;
       case MoreRoutes.profile:
-        AutoRouter.of(context).push( const ProfileRoute());
+        AutoRouter.of(context).push(const ProfileRoute());
         break;
       case MoreRoutes.trackOrder:
-        return ;
-        break;
+        return;
       case MoreRoutes.classifiedProducts:
         AutoRouter.of(context).push(const ClassifiedProductsRoute());
         break;
@@ -76,54 +77,67 @@ class MoreController {
       case MoreRoutes.support:
         AutoRouter.of(context).push(const SupportRoute());
         break;
-        case MoreRoutes.giftCards:
+      case MoreRoutes.giftCards:
         AutoRouter.of(context).push(const GiftCardsRoute());
         break;
-        case MoreRoutes.vipSubscription:
-          AutoRouter.of(context).push(const VipMemberShipsRoute());
+      case MoreRoutes.vipSubscription:
+        AutoRouter.of(context).push(const VipMemberShipsRoute());
         break;
-        case MoreRoutes.loyaltyPoints:
-          AutoRouter.of(context).push(const LoyaltyPointsRoute());
+      case MoreRoutes.loyaltyPoints:
+        AutoRouter.of(context).push(const LoyaltyPointsRoute());
         break;
-        case MoreRoutes.addresses:
-          AutoRouter.of(context).push( AddressesRoute());
+      case MoreRoutes.addresses:
+        AutoRouter.of(context).push(AddressesRoute());
         break;
-        case MoreRoutes.allBrands:
-          AutoRouter.of(context).push(const BrandsRoute());
+      case MoreRoutes.allBrands:
+        AutoRouter.of(context).push(const BrandsRoute());
         break;
-        case MoreRoutes.allCategories:
-          AutoRouter.of(context).push(HomeRoute(index: 1));
+      case MoreRoutes.allCategories:
+        AutoRouter.of(context).push(HomeRoute(index: 1));
         break;
-        case MoreRoutes.contactUs:
-          AutoRouter.of(context).push(const ContactUsRoute());
+      case MoreRoutes.contactUs:
+        AutoRouter.of(context).push(const ContactUsRoute());
         break;
-        case MoreRoutes.termsAndConditions:
-          AutoRouter.of(context).push(const TermsRoute());
+      case MoreRoutes.termsAndConditions:
+        AutoRouter.of(context).push(const TermsRoute());
         break;
-        case MoreRoutes.privacyPolicy:
-          AutoRouter.of(context).push(const PrivacyRoute());
+      case MoreRoutes.privacyPolicy:
+        AutoRouter.of(context).push(const PrivacyRoute());
         break;
-        case MoreRoutes.supportPolicy:
-          AutoRouter.of(context).push(const SupportPolicyRoute());
+      case MoreRoutes.supportPolicy:
+        AutoRouter.of(context).push(const SupportPolicyRoute());
         break;
-        case MoreRoutes.returnPolicy:
-          AutoRouter.of(context).push(const ReturnPolicyRoute());
+      case MoreRoutes.returnPolicy:
+        AutoRouter.of(context).push(const ReturnPolicyRoute());
         break;
-        case MoreRoutes.language:
-          showLangBottomSheet(context);
+      case MoreRoutes.language:
+        showLangBottomSheet(context);
         break;
       case MoreRoutes.test:
         // TODO: Handle this case.
         break;
+    }
+  }
 
+  bool canBePress(MoreRoutes route) {
+    bool isInShopBySection = route == MoreRoutes.allBrands || route == MoreRoutes.allCategories;
+    bool isOtherSection = route == MoreRoutes.contactUs ||
+        route == MoreRoutes.termsAndConditions ||
+        route == MoreRoutes.privacyPolicy ||
+        route == MoreRoutes.supportPolicy ||
+        route == MoreRoutes.returnPolicy ||
+        route == MoreRoutes.language;
+    if (isInShopBySection || isOtherSection) {
+      return true;
+    } else {
+      return false;
     }
   }
 
   void showLangBottomSheet(BuildContext context) {
     showModalBottomSheet(
       shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(15), topRight: Radius.circular(15))),
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15))),
       backgroundColor: context.colors.white,
       context: context,
       builder: (context) => BuildLangBottomSheet(
@@ -132,13 +146,12 @@ class MoreController {
     );
   }
 
-
   void setUserLang(BuildContext context, LangDomainModel model) async {
     String code = model.code;
-    if(code == LangTypeEnum.arabic.getLangCode()){
+    if (code == LangTypeEnum.arabic.getLangCode()) {
       code = LangCodeHelper.langAR;
     }
-    if(code == LangTypeEnum.bangladesh.getLangCode()){
+    if (code == LangTypeEnum.bangladesh.getLangCode()) {
       code = LangCodeHelper.langBN;
     }
     // List<LangModel> languages = langRequester.data!;
@@ -150,21 +163,17 @@ class MoreController {
     Phoenix.rebirth(context);
   }
 
-
-  Future<void> _getLanguages(bool refresh)async{
+  Future<void> _getLanguages(bool refresh) async {
     await GetLanguages().call(refresh).then((value) {
       languagesCubit.onUpdateData(value);
     });
   }
 
-
-  void callLanguages(BuildContext context){
-    bool isAuth = context.read<DeviceCubit>().state.model.auth;
-    if(isAuth){
-      _getLanguages(false);
-      _getLanguages(true);
-    }
-  }
-
-
+  // void callLanguages(BuildContext context) {
+  //   bool isAuth = context.read<DeviceCubit>().state.model.auth;
+  //   if (isAuth) {
+  //    _getLanguages(false);
+//       _getLanguages(true);
+  //   }
+  // }
 }

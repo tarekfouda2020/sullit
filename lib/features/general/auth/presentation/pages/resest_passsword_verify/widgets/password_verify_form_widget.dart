@@ -11,11 +11,11 @@ class PasswordVerifyForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const BuildInputLabel(
-            label: "Code",
+           BuildInputLabel(
+            label: tr("code"),
           ),
           GenericTextField(
-            hint: "Enter Code Sent to Your Email",
+            hint: tr("enterCodeSentToYourEmail"),
             hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
             fillColor: context.colors.white,
             controller: controller.code,

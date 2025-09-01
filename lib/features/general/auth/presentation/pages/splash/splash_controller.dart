@@ -3,8 +3,8 @@
 part of 'splash_imports.dart';
 
 class SplashController {
-  void manipulateSaveData(BuildContext context) async {
-    updateLang(context);
+  Future<void> manipulateSaveData(BuildContext context) async {
+     updateLang(context);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var strUser = prefs.get("user");
     if (strUser != null) {
@@ -39,9 +39,9 @@ class SplashController {
         if(value == LangCodeHelper.langAR){
           value = LangTypeEnum.arabic.getLangCode();
         }
-        // if(value == LangCodeHelper.langBN){
-        //   value = LangTypeEnum.bangladesh.getLangCode();
-        // }
+        if(value == LangCodeHelper.langBN){
+          value = LangTypeEnum.bangladesh.getLangCode();
+        }
         GlobalState.instance.set(LangCodeHelper.langKey, value ?? LangCodeHelper.langEN);
 
       },
