@@ -612,5 +612,6 @@
   "subscribedSuccess": "You have successfully subscribed",
   "selectMembership": "Please Select a membership",
   "selectLocationOnMap": "Select location on map",
-  "comingSoon": "Coming Soon!"
+  "comingSoon": "Coming Soon!",
+  "noCategoriesAdded": "No Categories added for now!"
 }

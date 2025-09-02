@@ -780,5 +780,6 @@
   "subscribedSuccess": "لقد اشتركت بنجاح",
   "selectMembership": "يرجى اختيار عضوية",
   "selectLocationOnMap": "اختر موقع على الخريطة",
-  "comingSoon": "قريباً!"
+  "comingSoon": "قريباً!",
+  "noCategoriesAdded": "لم تتم إضافة أي فئات حالياً!"
 }

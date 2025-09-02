@@ -67,8 +67,8 @@ class _CategoriesState extends State<Categories> {
                           if (state is GenericUpdateState) {
                             return Visibility(
                               visible: state.data.isNotEmpty,
-                              replacement: const BuildEmptyDataView(
-                                text: "No Categories added for now!",
+                              replacement:  BuildEmptyDataView(
+                                text: tr("noCategoriesAdded"),
                               ),
                               child: ListView.builder(
                                 itemBuilder: (_, index) =>
