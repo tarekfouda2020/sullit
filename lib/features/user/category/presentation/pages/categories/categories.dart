@@ -33,25 +33,30 @@ class _CategoriesState extends State<Categories> {
                 padding: const EdgeInsetsDirectional.only(top: 10,start: 15,end: 15),
                 child: Row(
                   children: [
-                    Expanded(
-                      flex: 2,
-                      child: BlocBuilder<GenericBloc<List<Category>>,
-                          GenericState<List<Category>>>(
-                        bloc: categoriesController.categoriesCubit,
-                        builder: (context, state) {
-                          if (state is GenericUpdateState) {
-                            return ListView.builder(
-                              itemBuilder: (_, index) => BuildCategorySideItem(
-                                categoryModel: state.data[index],
-                                categoriesController: categoriesController,
+                    BlocBuilder<GenericBloc<List<Category>>,
+                        GenericState<List<Category>>>(
+                      bloc: categoriesController.categoriesCubit,
+                      builder: (context, state) {
+                        if (state is GenericUpdateState) {
+                          return Visibility(
+                            visible: state.data.isNotEmpty,
+                            child: Expanded(
+                              flex: 2,
+                              child: ListView.builder(
+                                itemBuilder: (_, index) => BuildCategorySideItem(
+                                  categoryModel: state.data[index],
+                                  categoriesController: categoriesController,
+                                ),
+                                itemCount: state.data.length,
                               ),
-                              itemCount: state.data.length,
-                            );
-                          } else {
-                            return const BuildLoadingSideCategories();
-                          }
-                        },
-                      ),
+                            ),
+                          );
+                        } else {
+                          return const Expanded(
+                              flex: 2,
+                              child: BuildLoadingSideCategories());
+                        }
+                      },
                     ),
                     Expanded(
                       flex: 3,
@@ -60,14 +65,20 @@ class _CategoriesState extends State<Categories> {
                         bloc: categoriesController.sideSubCatsCubit,
                         builder: (context, state) {
                           if (state is GenericUpdateState) {
-                            return ListView.builder(
-                              itemBuilder: (_, index) =>
-                                  BuildSubCategorySideItem(
-                                categoriesController: categoriesController,
-                                subCategoryModel: state.data[index],
-                                length: state.data.length,
+                            return Visibility(
+                              visible: state.data.isNotEmpty,
+                              replacement: const BuildEmptyDataView(
+                                text: "No Categories added for now!",
                               ),
-                              itemCount: state.data.length,
+                              child: ListView.builder(
+                                itemBuilder: (_, index) =>
+                                    BuildSubCategorySideItem(
+                                  categoriesController: categoriesController,
+                                  subCategoryModel: state.data[index],
+                                  length: state.data.length,
+                                ),
+                                itemCount: state.data.length,
+                              ),
                             );
                           } else {
                             return const BuildLoadingSideSubCategories();

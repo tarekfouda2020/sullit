@@ -1,9 +1,9 @@
 // ignore_for_file: constant_identifier_names
 
 class ApiNames {
-  ///Development
+  ///staging
   static const String baseUrl = "https://staging.suliit.com/api/v3/";
-  ///Production
+  ///development
   // static const String baseUrl = "https://suliit.com/api/v3/";
 
   // auth routes

@@ -12,10 +12,15 @@ class CategoriesController {
 
   void getCategories({bool refresh = true}) async {
     var result = await GetCategories().call(refresh);
-    result.first.isSelected = true;
     categoriesCubit.onUpdateData(result);
-    mainCategory=result.first;
-    getSideSubCategories(result.first.id, result.first.name);
+    if(result.isNotEmpty){
+      result.first.isSelected = true;
+      mainCategory=result.first;
+      getSideSubCategories(result.first.id, result.first.name);
+    }else{
+      sideSubCatsCubit.onUpdateData([]);
+    }
+
   }
 
   Future<void> getSideSubCategories(int catId, String catName) async {
@@ -27,7 +32,6 @@ class CategoriesController {
   }
 
   void onSelectMainCat(Category categoryModel) {
-    print("dsdfsfef===${categoryModel.id}");
     categoriesCubit.state.data.map((e) => e.isSelected = false).toList();
     categoryModel.isSelected = true;
     categoriesCubit.onUpdateData(categoriesCubit.state.data);

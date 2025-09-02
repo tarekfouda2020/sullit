@@ -8,7 +8,7 @@ class WalletItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: Dimens.paddingVertical5PX,
-      padding: const EdgeInsetsDirectional.only(top: 16,bottom: 16,start: 19,end: 20),
+      padding: const EdgeInsetsDirectional.only(top: 16,bottom: 16,start: 15,end: 15),
       decoration: const CustomDecoration(
         myBoxShadow: [],
       ),
@@ -18,16 +18,28 @@ class WalletItemWidget extends StatelessWidget {
           Text(
             item.typeLabel.capitalize,
             style: AppTextStyle.s14_w600(
-              color: context.colors.green,
+              color: item.transactionType().color,
             ),
           ),
           Gaps.vGap6,
-          Text(
-              item.amount.parseCurrency,
-            // getIt<Utilities>().parseCurrency(item!.dmoun),
-            style: AppTextStyle.s22_w600(
-              color: context.colors.primary,
-            ),
+          Row(
+            children: [
+              Text(
+                item.transactionType().transactionSign,
+                // getIt<Utilities>().parseCurrency(item!.dmoun),
+                style: AppTextStyle.s22_w600(
+                  color: item.transactionType().color,
+                ),
+              ),
+              Gaps.hGap4,
+              Text(
+                  item.amount.parseCurrency,
+                // getIt<Utilities>().parseCurrency(item!.dmoun),
+                style: AppTextStyle.s22_w600(
+                  color: context.colors.primary,
+                ),
+              ),
+            ],
           ),
           Gaps.vGap4,
           Row(

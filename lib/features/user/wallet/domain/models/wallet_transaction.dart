@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+import 'package:flutter_tdd/features/user/wallet/data/enum/wallet_transaction_type_enum.dart';
 
 class WalletTransaction extends BaseDomainModel {
   final int id;
@@ -20,6 +21,17 @@ class WalletTransaction extends BaseDomainModel {
     required this.referenceNo,
     required this.createdAt,
   });
+
+
+  WalletTransactionType transactionType() {
+    switch(type){
+      case "deduct": return WalletTransactionType.deduct;
+      case "income": return WalletTransactionType.income;
+      default: return WalletTransactionType.deduct;
+    }
+  }
+
+
 }
 
 

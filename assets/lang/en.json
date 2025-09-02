@@ -611,5 +611,6 @@
   "searchCountryNameCode": "Search country name, code",
   "subscribedSuccess": "You have successfully subscribed",
   "selectMembership": "Please Select a membership",
-  "selectLocationOnMap": "Select location on map"
+  "selectLocationOnMap": "Select location on map",
+  "comingSoon": "Coming Soon!"
 }
