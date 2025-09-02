@@ -3,6 +3,7 @@ import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'cart_item_model.freezed.dart';
+
 part 'cart_item_model.g.dart';
 
 @freezed
@@ -19,6 +20,7 @@ class CartItemModel extends BaseApiModel<CartItem> with _$CartItemModel {
     required String price,
     required String tax,
     required int quantity,
+    required int rating,
     @JsonKey(name: "is_digital") required bool isDigital,
     required String total,
     @JsonKey(name: "calculable_total") required num calculableTotal,
@@ -26,10 +28,13 @@ class CartItemModel extends BaseApiModel<CartItem> with _$CartItemModel {
     @JsonKey(name: "product_id") required int productId,
     @JsonKey(name: "min_qty") required int minQty,
     @JsonKey(name: "stock_qty") required int stockQty,
+    @JsonKey(name: "is_wishlist") required bool isWishlist,
+    @JsonKey(name: "sold_by_type") required String soldByType,
+    @JsonKey(name: "sold_by_name") required String soldBy,
+    @JsonKey(name: "shop_id") required int shopId,
   }) = _CartItemModel;
 
-  factory CartItemModel.fromJson(Map<String, dynamic> json) =>
-      _$CartItemModelFromJson(json);
+  factory CartItemModel.fromJson(Map<String, dynamic> json) => _$CartItemModelFromJson(json);
 
   @override
   CartItem toDomainModel() {
@@ -48,6 +53,11 @@ class CartItemModel extends BaseApiModel<CartItem> with _$CartItemModel {
       productId: productId,
       minQty: minQty,
       stockQty: stockQty,
+      isWishlist: isWishlist,
+      soldBy: soldBy,
+      soldByType: soldByType,
+      shopId: shopId,
+      rating: rating,
     );
   }
 }

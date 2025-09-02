@@ -7,8 +7,11 @@ class BuildIconItem extends StatelessWidget {
   final Function() onTap;
   final bool? checkValue;
   final bool? isFormCompare;
+  final bool? changeBgColor;
   final EdgeInsetsGeometry? margin;
   final double? width;
+  final double? height;
+  final double? radius;
 
   // final Color? containerColor;
 
@@ -23,6 +26,9 @@ class BuildIconItem extends StatelessWidget {
     this.margin,
     this.iconData,
     this.width,
+    this.height,
+    this.radius,
+    this.changeBgColor = true,
   });
 
   @override
@@ -35,15 +41,15 @@ class BuildIconItem extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         margin: margin ?? Dimens.paddingAll5PX,
-        height: 25,
+        height: height ?? 25,
         width: width ?? 25,
         padding: padding,
         decoration: BoxDecoration(
-          border: Border.all(color: context.colors.greyWhite,width: .5),
-          color: checkValue == true
+          border: Border.all(color: context.colors.gray3,width: .5),
+          color: checkValue == true && changeBgColor!
               ? context.colors.primary
               : context.colors.white,
-          borderRadius: BorderRadius.circular(Dimens.dp4),
+          borderRadius: BorderRadius.circular(radius ?? Dimens.dp4),
         ),
         child: iconData != null
             ? Icon(

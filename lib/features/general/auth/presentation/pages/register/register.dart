@@ -19,7 +19,6 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         BuildRegisterFormFields(registerController: controller),
         Gaps.vGap10,

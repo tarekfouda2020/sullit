@@ -3,6 +3,7 @@ import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 class Variant extends BaseDomainModel {
   int? id;
   String? name;
+  String? sku;
   String? strokedPrice;
   String? calculablePrice;
   String? mainPrice;
@@ -21,10 +22,12 @@ class Variant extends BaseDomainModel {
     required this.currencySymbol,
     required this.image,
     required this.options,
+    required this.sku,
   });
 
   Variant.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    sku = json['sku'];
     name = json['name'];
     strokedPrice = json['stroked_price'];
     calculablePrice = json['calculable_price'];
@@ -46,6 +49,7 @@ class Variant extends BaseDomainModel {
     data['currency_symbol'] = currencySymbol;
     data['image'] = image;
     data['options'] = options;
+    data['sku'] = sku;
     return data;
   }
 }

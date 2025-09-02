@@ -10,6 +10,7 @@ _$_VariantModel _$$_VariantModelFromJson(Map<String, dynamic> json) =>
     _$_VariantModel(
       id: json['id'] as int,
       name: json['name'] as String,
+      sku: json['sku'] as String,
       strokedPrice: json['stroked_price'] as String,
       calculablePrice: json['calculable_price'] as String,
       mainPrice: json['main_price'] as String,
@@ -23,6 +24,7 @@ Map<String, dynamic> _$$_VariantModelToJson(_$_VariantModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'sku': instance.sku,
       'stroked_price': instance.strokedPrice,
       'calculable_price': instance.calculablePrice,
       'main_price': instance.mainPrice,

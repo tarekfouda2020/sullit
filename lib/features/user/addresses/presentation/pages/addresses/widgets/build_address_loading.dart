@@ -11,20 +11,20 @@ class BuildAddressLoading extends StatelessWidget {
       children: List.generate(
         3,
         (index) => Container(
-          margin: Dimens.paddingVertical5PX,
+          margin: Dimens.paddingVertical12PX,
           padding: Dimens.paddingAll10PX,
           decoration: CustomDecoration(),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              BuildShimmerItem(
-                child: Radio<bool>(
-                  onChanged: (value) {},
-                  value: false,
-                  groupValue: true,
-                ),
-              ),
-              Gaps.hGap10,
+              // BuildShimmerItem(
+              //   child: Radio<bool>(
+              //     onChanged: (value) {},
+              //     value: false,
+              //     groupValue: true,
+              //   ),
+              // ),
+              // Gaps.hGap10,
               Expanded(
                 child: Column(
                   children: List.generate(
@@ -35,7 +35,7 @@ class BuildAddressLoading extends StatelessWidget {
                         children: [
                           BuildShimmerItem(
                             height: 5.h,
-                            width: index.isEven ? 100.w : 70.w,
+                            width: index.isEven ? 80.w : 60.w,
                           ),
                           BuildShimmerItem(
                             child: Text(

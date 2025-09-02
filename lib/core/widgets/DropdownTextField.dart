@@ -29,7 +29,7 @@ class DropdownTextField<T> extends StatelessWidget {
   final Future<List<T>> Function(String text)? onFind;
   final EdgeInsets? arrowBtnPadding;
   final EdgeInsets? clearBtnPadding;
-  final EdgeInsets? contentPadding;
+  final EdgeInsetsGeometry? contentPadding;
   final bool useName;
   final bool showClearButton;
   final Color? enableColor;
@@ -96,7 +96,7 @@ class DropdownTextField<T> extends StatelessWidget {
         ),
         dropDownButton: Padding(
           padding: arrowBtnPadding ?? const EdgeInsets.symmetric(horizontal: 5),
-          child: Icon(Icons.arrow_drop_down,
+          child: Icon(Icons.keyboard_arrow_down_outlined,
               size: 24, color: buttonsColor ?? Colors.black),
         ),
         selectedItem: selectedItem,
@@ -140,7 +140,7 @@ class DropdownTextField<T> extends StatelessWidget {
           lang: lang,
           prefIcon: prefixIcon,
           padding: contentPadding ??
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
+              const EdgeInsets.symmetric(horizontal: 30, vertical: 10).r,
         ),
         emptyBuilder: (context, action) => const Center(
           child: Text(

@@ -1,4 +1,6 @@
+import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/enum/track_order_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 
 class Orders extends BaseDomainModel{
@@ -29,8 +31,14 @@ class Orders extends BaseDomainModel{
   String customerName;
   String customerEmail;
   String returnReason;
+  String soldByType;
+  String soldBy;
+  String customerPhone;
   List<OrderDetails> orderDetails;
   bool selected = false ;
+  bool loyaltyPointsApplied;
+  int loyaltyPoints;
+  String loyaltyPointsValue;
 
   Orders({
     required this.id,
@@ -61,5 +69,45 @@ class Orders extends BaseDomainModel{
     required this.customerEmail,
     required this.returnReason,
     required this.orderDetails,
+    required this.soldByType,
+    required this.soldBy,
+    required this.customerPhone,
+    required this.loyaltyPointsValue,
+    required this.loyaltyPointsApplied,
+    required this.loyaltyPoints,
   });
+
+
+  int  totalItemsCount() => orderDetails.fold(0, (previousValue, element) => previousValue + element.quantity);
+
+  DateTime get getOrderDate => DateTimeHelper.convertToDateTime(strDate: orderDate);
+
+  double getDiscountNumber() {
+  String number =  couponDiscount.replaceAll("د.إ", "");
+    double discount = double.parse(number);
+    return discount;
+}
+
+bool get isCouponApply => getDiscountNumber() > 0;
+
+  TrackOrderEnum get getTrackOrderStatus{
+
+    /// at first its Placed
+    ///  Confirmed
+    /// Picked Up
+    /// On The Way in this step you can cancel it
+    /// Delivered
+    /// Cancelled
+
+
+    switch(deliveryStatusConst){
+      case "Placed": return TrackOrderEnum.placed;
+      case "Confirmed": return TrackOrderEnum.placed;
+      case "Picked Up": return TrackOrderEnum.placed;
+      case "Delivered": return TrackOrderEnum.delivered;
+      case "Cancelled": return TrackOrderEnum.delivered;
+      default: return TrackOrderEnum.placed;
+    }
+  }
+
 }

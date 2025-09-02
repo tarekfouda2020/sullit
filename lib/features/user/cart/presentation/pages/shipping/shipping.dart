@@ -9,40 +9,43 @@ class Shipping extends StatefulWidget {
 }
 
 class _ShippingState extends State<Shipping> {
-  late ShippingController controller;
+   final ShippingController controller = ShippingController();
 
-  @override
-  void initState() {
-    controller = ShippingController();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const BuildCustomAppBar(),
-      bottomNavigationBar: BuildShippingButtons(controller: controller),
+      appBar: DefaultAppBar(
+          // title: tr("shipping"),
+          title: tr("cart"),
+          bgColor: context.colors.white
+      ),
       body: Column(
         children: [
           const BuildCartStepper(current: 2),
+          Gaps.vGap16,
           BuildNewShipping(controller: controller),
-          Flexible(
-            child: GenericListView(
-              type: ListViewType.api,
-              cubit: controller.addressesBloc,
-              onRefresh: controller.getAddress,
-              padding: Dimens.paddingAll15PX,
-              itemBuilder: (_, index, item) => BuildShippingAddressItem(
-                address: item,
-                controller: controller,
-              ),
-              loadingWidget: const BuildAddressLoading(),
-              emptyWidget: const BuildAddressesEmptyView(),
-            ),
-          )
+          Gaps.vGap15,
+          ShippingAddressListWidget(controller: controller),
+
+          // Flexible(
+          //   child: GenericListView(
+          //     type: ListViewType.api,
+          //     cubit: controller.addressesBloc,
+          //     onRefresh: controller.getAddress,
+          //     padding: Dimens.paddingAll15PX,
+          //     itemBuilder: (_, index, item) => BuildShippingAddressItem(
+          //       address: item,
+          //       controller: controller,
+          //     ),
+          //     loadingWidget: const BuildAddressLoading(),
+          //     emptyWidget: const BuildAddressesEmptyView(),
+          //   ),
+          // )
         ],
       ),
+      bottomNavigationBar: BuildShippingButtons(controller: controller),
     );
   }
 }

@@ -19,6 +19,10 @@ class ShippingSummary extends BaseDomainModel{
   bool avilablePayWithWallet;
   bool avilableCashOnDelivery ;
   List<ShippingItem> items ;
+  String? loyaltyPointsValue;
+  int? loyaltyPoints;
+  bool? loyaltyPointsApplied;
+  String? appliedGiftCard;
 
   ShippingSummary({
     required this.subTotal,
@@ -37,6 +41,10 @@ class ShippingSummary extends BaseDomainModel{
     required this.walletBalanceValue,
     required this.avilablePayWithWallet,
     required this.avilableCashOnDelivery,
-    required this.items
+    required this.items,
+    this.loyaltyPointsValue,
+    this.loyaltyPoints,
+    this.loyaltyPointsApplied,
+    this.appliedGiftCard,
 });
 }

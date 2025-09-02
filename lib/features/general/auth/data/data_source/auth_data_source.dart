@@ -8,6 +8,7 @@ import 'package:flutter_tdd/features/general/auth/domain/entities/login_params.d
 import 'package:flutter_tdd/features/general/auth/domain/entities/reset_password_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/user_register_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/verify_phone_params.dart';
+import 'package:flutter_tdd/features/general/auth/domain/entities/verify_reset_password_params.dart';
 
 abstract class AuthDataSource{
   Future<Either<Failure, UserLoginModel>> login(LoginParams param);
@@ -21,4 +22,6 @@ abstract class AuthDataSource{
 
   Future<Either<Failure, String>> codeVerify (CodeVerifyParams params);
   Future<Either<Failure, bool>> deleteAccount (NoParams params);
+
+  Future<Either<Failure, String>> verifyResetPassword (VerifyResetPasswordParams params);
 }

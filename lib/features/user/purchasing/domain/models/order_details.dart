@@ -15,11 +15,15 @@ class OrderDetails extends BaseDomainModel {
   String? tax;
   bool isAvailableReview;
   String msgCantReview;
+  String soldBy;
+  String soldByType;
   Reviews? review;
   OrderReview? orderReview;
   String? shippedBy;
   bool? isSelected;
   GenericBloc<int>?qtyCubit;
+
+
 
   OrderDetails({
     required this.id,
@@ -29,6 +33,8 @@ class OrderDetails extends BaseDomainModel {
     required this.availableReturnQty,
     required this.deliveryType,
     required this.price,
+    required this.soldBy,
+    required this.soldByType,
     this.tax,
     required this.isAvailableReview,
     required this.msgCantReview,

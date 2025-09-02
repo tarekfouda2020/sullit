@@ -11,9 +11,9 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i84;
-import 'package:flutter/cupertino.dart' as _i87;
-import 'package:flutter/material.dart' as _i85;
+import 'package:auto_route/auto_route.dart' as _i97;
+import 'package:flutter/cupertino.dart' as _i100;
+import 'package:flutter/material.dart' as _i98;
 import 'package:flutter_tdd/features/general/auth/presentation/pages/active_account/active_account_imports.dart'
     as _i3;
 import 'package:flutter_tdd/features/general/auth/presentation/pages/forget_password/forget_password_imports.dart'
@@ -24,6 +24,8 @@ import 'package:flutter_tdd/features/general/auth/presentation/pages/register/re
     as _i6;
 import 'package:flutter_tdd/features/general/auth/presentation/pages/register_shop/register_shop_imports.dart'
     as _i7;
+import 'package:flutter_tdd/features/general/auth/presentation/pages/resest_passsword_verify/reset_password_verify_imports.dart'
+    as _i9;
 import 'package:flutter_tdd/features/general/auth/presentation/pages/reset_password/reset_password_imports.dart'
     as _i4;
 import 'package:flutter_tdd/features/general/auth/presentation/pages/splash/splash_imports.dart'
@@ -31,190 +33,217 @@ import 'package:flutter_tdd/features/general/auth/presentation/pages/splash/spla
 import 'package:flutter_tdd/features/general/auth/presentation/pages/verify_register/verify_register_imports.dart'
     as _i8;
 import 'package:flutter_tdd/features/general/common/presentation/pages/contact_us/contact_us_imports.dart'
-    as _i13;
-import 'package:flutter_tdd/features/general/common/presentation/pages/image_zoom/image_zoom.dart'
     as _i14;
-import 'package:flutter_tdd/features/general/common/presentation/pages/privacy/privacy_imports.dart'
-    as _i10;
-import 'package:flutter_tdd/features/general/common/presentation/pages/return_policy/return_policy_import.dart'
-    as _i11;
-import 'package:flutter_tdd/features/general/common/presentation/pages/support/support_imports.dart'
+import 'package:flutter_tdd/features/general/common/presentation/pages/image_zoom/image_zoom.dart'
     as _i15;
-import 'package:flutter_tdd/features/general/common/presentation/pages/support_policy/support_policy_imports.dart'
-    as _i12;
-import 'package:flutter_tdd/features/general/common/presentation/pages/terms/terms_imports.dart'
-    as _i9;
-import 'package:flutter_tdd/features/general/conversations/presentations/pages/conversations/conversations_imports.dart'
-    as _i16;
-import 'package:flutter_tdd/features/seller/dashboard/presentation/pages/seller_dashboard/seller_dashboard_imports.dart'
+import 'package:flutter_tdd/features/general/common/presentation/pages/location_address/LocationAddressImports.dart'
     as _i17;
-import 'package:flutter_tdd/features/seller/files/presentation/pages/seller_uploaded_file/seller_uploaded_file_imports.dart'
+import 'package:flutter_tdd/features/general/common/presentation/pages/privacy/privacy_imports.dart'
+    as _i11;
+import 'package:flutter_tdd/features/general/common/presentation/pages/return_policy/return_policy_import.dart'
+    as _i12;
+import 'package:flutter_tdd/features/general/common/presentation/pages/support/support_imports.dart'
+    as _i16;
+import 'package:flutter_tdd/features/general/common/presentation/pages/support_policy/support_policy_imports.dart'
+    as _i13;
+import 'package:flutter_tdd/features/general/common/presentation/pages/terms/terms_imports.dart'
+    as _i10;
+import 'package:flutter_tdd/features/general/conversations/presentations/pages/conversations/conversations_imports.dart'
     as _i18;
-import 'package:flutter_tdd/features/seller/notifications/presentation/pages/seller_notifications/seller_notifications_imports.dart'
+import 'package:flutter_tdd/features/seller/dashboard/presentation/pages/seller_dashboard/seller_dashboard_imports.dart'
     as _i19;
-import 'package:flutter_tdd/features/seller/orders/presentation/pages/seller_commission_history/seller_commission_history_imports.dart'
-    as _i22;
-import 'package:flutter_tdd/features/seller/orders/presentation/pages/seller_order_details/seller_order_details_imports.dart'
+import 'package:flutter_tdd/features/seller/files/presentation/pages/seller_uploaded_file/seller_uploaded_file_imports.dart'
     as _i20;
-import 'package:flutter_tdd/features/seller/orders/presentation/pages/seller_orders/seller_orders_imports.dart'
+import 'package:flutter_tdd/features/seller/notifications/presentation/pages/seller_notifications/seller_notifications_imports.dart'
     as _i21;
-import 'package:flutter_tdd/features/seller/payment/presentation/pages/payment_history/payment_history_imports.dart'
-    as _i23;
-import 'package:flutter_tdd/features/seller/payment/presentation/pages/seller_money_withdraw/seller_money_withdraw_imports.dart'
+import 'package:flutter_tdd/features/seller/orders/presentation/pages/seller_commission_history/seller_commission_history_imports.dart'
     as _i24;
-import 'package:flutter_tdd/features/seller/payment/presentation/pages/seller_payment_setting/seller_payment_setting_imports.dart'
+import 'package:flutter_tdd/features/seller/orders/presentation/pages/seller_order_details/seller_order_details_imports.dart'
+    as _i22;
+import 'package:flutter_tdd/features/seller/orders/presentation/pages/seller_orders/seller_orders_imports.dart'
+    as _i23;
+import 'package:flutter_tdd/features/seller/payment/presentation/pages/payment_history/payment_history_imports.dart'
     as _i25;
-import 'package:flutter_tdd/features/seller/products/presentation/pages/seller_add_product/seller_add_product_imports.dart'
+import 'package:flutter_tdd/features/seller/payment/presentation/pages/seller_money_withdraw/seller_money_withdraw_imports.dart'
     as _i26;
-import 'package:flutter_tdd/features/seller/products/presentation/pages/seller_add_product_specifications/seller_add_product_specifications_imports.dart'
+import 'package:flutter_tdd/features/seller/payment/presentation/pages/seller_payment_setting/seller_payment_setting_imports.dart'
     as _i27;
-import 'package:flutter_tdd/features/seller/products/presentation/pages/seller_digetal_products/seller_digetal_products_imports.dart'
+import 'package:flutter_tdd/features/seller/products/presentation/pages/seller_add_product/seller_add_product_imports.dart'
     as _i28;
-import 'package:flutter_tdd/features/seller/products/presentation/pages/seller_product_bulk/seller_product_bulk_imports.dart'
+import 'package:flutter_tdd/features/seller/products/presentation/pages/seller_add_product_specifications/seller_add_product_specifications_imports.dart'
     as _i29;
-import 'package:flutter_tdd/features/seller/products/presentation/pages/seller_product_review/seller_product_review_imports.dart'
+import 'package:flutter_tdd/features/seller/products/presentation/pages/seller_digetal_products/seller_digetal_products_imports.dart'
     as _i30;
-import 'package:flutter_tdd/features/seller/products/presentation/pages/seller_products/seller_products_imports.dart'
+import 'package:flutter_tdd/features/seller/products/presentation/pages/seller_product_bulk/seller_product_bulk_imports.dart'
     as _i31;
-import 'package:flutter_tdd/features/seller/products/presentation/pages/seller_reselling/seller_reselling_imports.dart'
+import 'package:flutter_tdd/features/seller/products/presentation/pages/seller_product_review/seller_product_review_imports.dart'
     as _i32;
-import 'package:flutter_tdd/features/seller/profile/presentation/pages/seller_profile/seller_profile_imports.dart'
+import 'package:flutter_tdd/features/seller/products/presentation/pages/seller_products/seller_products_imports.dart'
     as _i33;
-import 'package:flutter_tdd/features/seller/shop/presentation/pages/seller_shop_setting/seller_shop_setting_imports.dart'
+import 'package:flutter_tdd/features/seller/products/presentation/pages/seller_reselling/seller_reselling_imports.dart'
     as _i34;
-import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart'
-    as _i86;
-import 'package:flutter_tdd/features/user/addresses/presentation/pages/add_new_address/add_new_address_imports.dart'
+import 'package:flutter_tdd/features/seller/profile/presentation/pages/seller_profile/seller_profile_imports.dart'
     as _i35;
-import 'package:flutter_tdd/features/user/addresses/presentation/pages/addresses/addresses_imports.dart'
+import 'package:flutter_tdd/features/seller/shop/presentation/pages/seller_shop_setting/seller_shop_setting_imports.dart'
     as _i36;
-import 'package:flutter_tdd/features/user/addresses/presentation/pages/edit_address/edit_address_imports.dart'
+import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart'
+    as _i99;
+import 'package:flutter_tdd/features/user/addresses/presentation/pages/add_new_address/add_new_address_imports.dart'
     as _i37;
-import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_imports.dart'
-    as _i40;
-import 'package:flutter_tdd/features/user/base/presentation/pages/more/more_imports.dart'
-    as _i41;
-import 'package:flutter_tdd/features/user/blog/domain/models/blog.dart' as _i88;
-import 'package:flutter_tdd/features/user/blog/presentation/pages/blog_details/blog_details_imports.dart'
-    as _i39;
-import 'package:flutter_tdd/features/user/blog/presentation/pages/blogs/blogs_imports.dart'
+import 'package:flutter_tdd/features/user/addresses/presentation/pages/addresses/addresses_imports.dart'
     as _i38;
-import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart'
-    as _i90;
-import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart'
-    as _i89;
-import 'package:flutter_tdd/features/user/cart/presentation/pages/cart/cart_imports.dart'
+import 'package:flutter_tdd/features/user/addresses/presentation/pages/edit_address/edit_address_imports.dart'
+    as _i39;
+import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_imports.dart'
     as _i42;
-import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_payment/cart_payment_imports.dart'
-    as _i44;
-import 'package:flutter_tdd/features/user/cart/presentation/pages/conformation/conformation_imports.dart'
-    as _i46;
-import 'package:flutter_tdd/features/user/cart/presentation/pages/delivery/delivery_imports.dart'
+import 'package:flutter_tdd/features/user/base/presentation/pages/more/more_imports.dart'
     as _i43;
-import 'package:flutter_tdd/features/user/cart/presentation/pages/shipping/shipping_imports.dart'
-    as _i45;
-import 'package:flutter_tdd/features/user/category/domain/models/category.dart'
-    as _i91;
-import 'package:flutter_tdd/features/user/category/presentation/pages/brand_details/brand_details_imports.dart'
+import 'package:flutter_tdd/features/user/blog/domain/models/blog.dart'
+    as _i101;
+import 'package:flutter_tdd/features/user/blog/presentation/pages/blog_details/blog_details_imports.dart'
+    as _i41;
+import 'package:flutter_tdd/features/user/blog/presentation/pages/blogs/blogs_imports.dart'
+    as _i40;
+import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart'
+    as _i103;
+import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart'
+    as _i102;
+import 'package:flutter_tdd/features/user/cart/presentation/pages/cart/cart_imports.dart'
+    as _i44;
+import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_confirm_buying/cart_confirm_buying_imports.dart'
     as _i50;
-import 'package:flutter_tdd/features/user/category/presentation/pages/brands/brands_imports.dart'
-    as _i47;
-import 'package:flutter_tdd/features/user/category/presentation/pages/categories/categories_imports.dart'
+import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_payment/cart_payment_imports.dart'
+    as _i46;
+import 'package:flutter_tdd/features/user/cart/presentation/pages/confirmation/confirmation_imports.dart'
     as _i48;
-import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/category_details_imports.dart'
+import 'package:flutter_tdd/features/user/cart/presentation/pages/delivery/delivery_imports.dart'
+    as _i45;
+import 'package:flutter_tdd/features/user/cart/presentation/pages/receiving_method/receiving_method_imports.dart'
     as _i49;
-import 'package:flutter_tdd/features/user/classified_products/domain/models/cus_product.dart'
-    as _i96;
-import 'package:flutter_tdd/features/user/classified_products/domain/models/file_domain_model.dart'
-    as _i95;
-import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/add_classified_product/add_classified_product_imports.dart'
-    as _i77;
-import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/classified_products/classified_products_imports.dart'
-    as _i75;
-import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/customers_packages/customers_packages_imports.dart'
-    as _i76;
-import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/edit_classified_product/edit_classified_product_imports.dart'
-    as _i78;
-import 'package:flutter_tdd/features/user/customers_products/presentaion/pages/customer_product_details/customer_product_details_imports.dart'
-    as _i80;
-import 'package:flutter_tdd/features/user/customers_products/presentaion/pages/customers_products/customers_products_imports.dart'
-    as _i79;
-import 'package:flutter_tdd/features/user/dashboard/presentation/pages/dashboard/dashboard_imports.dart'
-    as _i51;
-import 'package:flutter_tdd/features/user/notifications/presentation/pages/notifications/notifications_imports.dart'
-    as _i52;
-import 'package:flutter_tdd/features/user/payment/presentaion/pages/payment/payment_imports.dart'
-    as _i59;
-import 'package:flutter_tdd/features/user/products/domain/models/popular_products_domain_model.dart'
-    as _i92;
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart'
-    as _i93;
-import 'package:flutter_tdd/features/user/products/presentation/pages/all_products_page/all_product_page_imports.dart'
-    as _i58;
-import 'package:flutter_tdd/features/user/products/presentation/pages/compare/compare_imports.dart'
-    as _i53;
-import 'package:flutter_tdd/features/user/products/presentation/pages/downloads/downloads_import.dart'
+import 'package:flutter_tdd/features/user/cart/presentation/pages/shipping/shipping_imports.dart'
+    as _i47;
+import 'package:flutter_tdd/features/user/category/domain/models/category.dart'
+    as _i104;
+import 'package:flutter_tdd/features/user/category/presentation/pages/brand_details/brand_details_imports.dart'
     as _i54;
-import 'package:flutter_tdd/features/user/products/presentation/pages/home_main/home_main_imports.dart'
-    as _i55;
-import 'package:flutter_tdd/features/user/products/presentation/pages/popular_products/popular_products_imports.dart'
-    as _i57;
-import 'package:flutter_tdd/features/user/products/presentation/pages/product_details/product_details_imports.dart'
-    as _i56;
-import 'package:flutter_tdd/features/user/profile/presentation/pages/profile/profile_imports.dart'
-    as _i62;
-import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart'
-    as _i94;
-import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_summary/order_summary_imports.dart'
-    as _i63;
-import 'package:flutter_tdd/features/user/purchasing/presentation/pages/purchased_history/purchased_history_imports.dart'
-    as _i64;
-import 'package:flutter_tdd/features/user/purchasing/presentation/pages/retrieve_order/retrieve_order_imports.dart'
-    as _i67;
-import 'package:flutter_tdd/features/user/purchasing/presentation/pages/return_orders/return_orders_imports.dart'
-    as _i65;
-import 'package:flutter_tdd/features/user/purchasing/presentation/pages/track_order/track_order_imports.dart'
-    as _i66;
-import 'package:flutter_tdd/features/user/sale/presentation/pages/coupons/coupons_imports.dart'
-    as _i70;
-import 'package:flutter_tdd/features/user/sale/presentation/pages/flash_sale/flash_sale_imports.dart'
-    as _i68;
-import 'package:flutter_tdd/features/user/sale/presentation/pages/on_sale/on_sale_imports.dart'
-    as _i71;
-import 'package:flutter_tdd/features/user/sale/presentation/pages/sale_details/sale_details_imports.dart'
-    as _i69;
-import 'package:flutter_tdd/features/user/search/presentation/pages/search/search_imports.dart'
-    as _i60;
-import 'package:flutter_tdd/features/user/tickets/presentation/pages/support_tickets/support_tickets_imports.dart'
-    as _i72;
-import 'package:flutter_tdd/features/user/tickets/presentation/pages/tickets_details/tickets_details_imports.dart'
-    as _i73;
-import 'package:flutter_tdd/features/user/video_viewer/presentation/pages/motion_viewer/motion_viewer_imports.dart'
+import 'package:flutter_tdd/features/user/category/presentation/pages/brands/brands_imports.dart'
+    as _i51;
+import 'package:flutter_tdd/features/user/category/presentation/pages/categories/categories_imports.dart'
+    as _i52;
+import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/category_details_imports.dart'
+    as _i53;
+import 'package:flutter_tdd/features/user/classified_products/domain/models/cus_product.dart'
+    as _i110;
+import 'package:flutter_tdd/features/user/classified_products/domain/models/file_domain_model.dart'
+    as _i109;
+import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/add_classified_product/add_classified_product_imports.dart'
+    as _i84;
+import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/classified_products/classified_products_imports.dart'
     as _i82;
-import 'package:flutter_tdd/features/user/video_viewer/presentation/pages/vimeo_viewer/vimeo_viewer_imports.dart'
+import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/customers_packages/customers_packages_imports.dart'
     as _i83;
-import 'package:flutter_tdd/features/user/video_viewer/presentation/pages/youtube_viewer/youtube_viewer_imports.dart'
-    as _i81;
-import 'package:flutter_tdd/features/user/wallet/presentation/pages/my_wallet/my_wallet_imports.dart'
-    as _i74;
-import 'package:flutter_tdd/features/user/wishlist/presentation/pages/wishlist/wishlist_imports.dart'
+import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/edit_classified_product/edit_classified_product_imports.dart'
+    as _i85;
+import 'package:flutter_tdd/features/user/customers_products/presentaion/pages/customer_product_details/customer_product_details_imports.dart'
+    as _i87;
+import 'package:flutter_tdd/features/user/customers_products/presentaion/pages/customers_products/customers_products_imports.dart'
+    as _i86;
+import 'package:flutter_tdd/features/user/dashboard/presentation/pages/dashboard/dashboard_imports.dart'
+    as _i55;
+import 'package:flutter_tdd/features/user/gift_card/presentation/pages/gift_card_details/gift_card_details_imports.dart'
+    as _i93;
+import 'package:flutter_tdd/features/user/gift_card/presentation/pages/gift_cards/gift_cards_imports.dart'
+    as _i91;
+import 'package:flutter_tdd/features/user/gift_card/presentation/pages/my_gift_cards/my_gift_cards_imports.dart'
+    as _i92;
+import 'package:flutter_tdd/features/user/loyalty_points/presentation/pages/loyalyt_points/loyalty_points_imports.dart'
+    as _i96;
+import 'package:flutter_tdd/features/user/notifications/presentation/pages/notifications/notifications_imports.dart'
+    as _i56;
+import 'package:flutter_tdd/features/user/payment/presentaion/pages/payment/payment_imports.dart'
+    as _i64;
+import 'package:flutter_tdd/features/user/products/domain/models/popular_products_domain_model.dart'
+    as _i105;
+import 'package:flutter_tdd/features/user/products/domain/models/product.dart'
+    as _i106;
+import 'package:flutter_tdd/features/user/products/domain/models/shop.dart'
+    as _i107;
+import 'package:flutter_tdd/features/user/products/presentation/pages/all_products_page/all_product_page_imports.dart'
+    as _i62;
+import 'package:flutter_tdd/features/user/products/presentation/pages/compare/compare_imports.dart'
+    as _i57;
+import 'package:flutter_tdd/features/user/products/presentation/pages/downloads/downloads_import.dart'
+    as _i58;
+import 'package:flutter_tdd/features/user/products/presentation/pages/home_main/home_main_imports.dart'
+    as _i59;
+import 'package:flutter_tdd/features/user/products/presentation/pages/popular_products/popular_products_imports.dart'
     as _i61;
+import 'package:flutter_tdd/features/user/products/presentation/pages/product_details/product_details_imports.dart'
+    as _i60;
+import 'package:flutter_tdd/features/user/products/presentation/pages/seller_products/seller_products_imports.dart'
+    as _i63;
+import 'package:flutter_tdd/features/user/profile/presentation/pages/profile/profile_imports.dart'
+    as _i67;
+import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart'
+    as _i108;
+import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/order_details_imports.dart'
+    as _i73;
+import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_summary/order_summary_imports.dart'
+    as _i68;
+import 'package:flutter_tdd/features/user/purchasing/presentation/pages/purchased_history/purchased_history_imports.dart'
+    as _i69;
+import 'package:flutter_tdd/features/user/purchasing/presentation/pages/purchased_orders/purchased_orders_imports.dart'
+    as _i74;
+import 'package:flutter_tdd/features/user/purchasing/presentation/pages/retrieve_order/retrieve_order_imports.dart'
+    as _i72;
+import 'package:flutter_tdd/features/user/purchasing/presentation/pages/return_orders/return_orders_imports.dart'
+    as _i70;
+import 'package:flutter_tdd/features/user/purchasing/presentation/pages/track_order/track_order_imports.dart'
+    as _i71;
+import 'package:flutter_tdd/features/user/sale/presentation/pages/coupons/coupons_imports.dart'
+    as _i77;
+import 'package:flutter_tdd/features/user/sale/presentation/pages/flash_sale/flash_sale_imports.dart'
+    as _i75;
+import 'package:flutter_tdd/features/user/sale/presentation/pages/on_sale/on_sale_imports.dart'
+    as _i78;
+import 'package:flutter_tdd/features/user/sale/presentation/pages/sale_details/sale_details_imports.dart'
+    as _i76;
+import 'package:flutter_tdd/features/user/search/presentation/pages/search/search_imports.dart'
+    as _i65;
+import 'package:flutter_tdd/features/user/tickets/presentation/pages/support_tickets/support_tickets_imports.dart'
+    as _i79;
+import 'package:flutter_tdd/features/user/tickets/presentation/pages/tickets_details/tickets_details_imports.dart'
+    as _i80;
+import 'package:flutter_tdd/features/user/video_viewer/presentation/pages/motion_viewer/motion_viewer_imports.dart'
+    as _i89;
+import 'package:flutter_tdd/features/user/video_viewer/presentation/pages/vimeo_viewer/vimeo_viewer_imports.dart'
+    as _i90;
+import 'package:flutter_tdd/features/user/video_viewer/presentation/pages/youtube_viewer/youtube_viewer_imports.dart'
+    as _i88;
+import 'package:flutter_tdd/features/user/vip_subscribe/presentation/pages/membership_subscribe/membership_subscribe_imports.dart'
+    as _i94;
+import 'package:flutter_tdd/features/user/vip_subscribe/presentation/pages/vip_memberships/vip_memberships_imports.dart'
+    as _i95;
+import 'package:flutter_tdd/features/user/wallet/presentation/pages/my_wallet/my_wallet_imports.dart'
+    as _i81;
+import 'package:flutter_tdd/features/user/wishlist/presentation/pages/wishlist/wishlist_imports.dart'
+    as _i66;
 
-class AppRouter extends _i84.RootStackRouter {
-  AppRouter([_i85.GlobalKey<_i85.NavigatorState>? navigatorKey])
+class AppRouter extends _i97.RootStackRouter {
+  AppRouter([_i98.GlobalKey<_i98.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i84.PageFactory> pagesMap = {
+  final Map<String, _i97.PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i1.Splash(),
         opaque: true,
       );
     },
     LoginRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i2.Login(),
         opaque: true,
@@ -222,7 +251,7 @@ class AppRouter extends _i84.RootStackRouter {
     },
     ActiveAccountRoute.name: (routeData) {
       final args = routeData.argsAs<ActiveAccountRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i3.ActiveAccount(
           key: args.key,
@@ -234,7 +263,7 @@ class AppRouter extends _i84.RootStackRouter {
     },
     ResetPasswordRoute.name: (routeData) {
       final args = routeData.argsAs<ResetPasswordRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i4.ResetPassword(
           key: args.key,
@@ -245,21 +274,21 @@ class AppRouter extends _i84.RootStackRouter {
       );
     },
     ForgetPasswordRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i5.ForgetPassword(),
         opaque: true,
       );
     },
     RegisterRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i6.Register(),
         opaque: true,
       );
     },
     RegisterShopRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i7.RegisterShop(),
         opaque: true,
@@ -267,7 +296,7 @@ class AppRouter extends _i84.RootStackRouter {
     },
     VerifyRegisterRoute.name: (routeData) {
       final args = routeData.argsAs<VerifyRegisterRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i8.VerifyRegister(
           key: args.key,
@@ -276,203 +305,229 @@ class AppRouter extends _i84.RootStackRouter {
         opaque: true,
       );
     },
-    TermsRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+    ResetPasswordVerifyRoute.name: (routeData) {
+      final args = routeData.argsAs<ResetPasswordVerifyRouteArgs>();
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i9.Terms(),
+        child: _i9.ResetPasswordVerify(
+          key: args.key,
+          email: args.email,
+        ),
+        opaque: true,
+      );
+    },
+    TermsRoute.name: (routeData) {
+      return _i97.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i10.Terms(),
       );
     },
     PrivacyRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i10.Privacy(),
+        child: const _i11.Privacy(),
       );
     },
     ReturnPolicyRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i11.ReturnPolicy(),
+        child: const _i12.ReturnPolicy(),
       );
     },
     SupportPolicyRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i12.SupportPolicy(),
+        child: const _i13.SupportPolicy(),
       );
     },
     ContactUsRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i13.ContactUs(),
+        child: const _i14.ContactUs(),
       );
     },
     ImageZoomRoute.name: (routeData) {
       final args = routeData.argsAs<ImageZoomRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i14.ImageZoom(
+        child: _i15.ImageZoom(
           key: args.key,
           image: args.image,
         ),
       );
     },
     SupportRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i15.Support(),
+        child: const _i16.Support(),
+      );
+    },
+    LocationAddressRoute.name: (routeData) {
+      final args = routeData.argsAs<LocationAddressRouteArgs>();
+      return _i97.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: _i17.LocationAddress(
+          key: args.key,
+          fromEdit: args.fromEdit,
+        ),
       );
     },
     ConversationsRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i16.Conversations(),
+        child: const _i18.Conversations(),
       );
     },
     SellerDashboardRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i17.SellerDashboard(),
+        child: const _i19.SellerDashboard(),
         opaque: true,
       );
     },
     SellerUploadedFileRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i18.SellerUploadedFile(),
+        child: const _i20.SellerUploadedFile(),
         opaque: true,
       );
     },
     SellerNotificationsRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i19.SellerNotifications(),
+        child: const _i21.SellerNotifications(),
         opaque: true,
       );
     },
     SellerOrderDetailsRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i20.SellerOrderDetails(),
+        child: const _i22.SellerOrderDetails(),
         opaque: true,
       );
     },
     SellerOrdersRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i21.SellerOrders(),
+        child: const _i23.SellerOrders(),
         opaque: true,
       );
     },
     SellerCommissionHistoryRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i22.SellerCommissionHistory(),
+        child: const _i24.SellerCommissionHistory(),
         opaque: true,
       );
     },
     PaymentHistoryRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i23.PaymentHistory(),
+        child: const _i25.PaymentHistory(),
         opaque: true,
       );
     },
     SellerMoneyWithDrawRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i24.SellerMoneyWithDraw(),
+        child: const _i26.SellerMoneyWithDraw(),
         opaque: true,
       );
     },
     SellerPaymentSettingRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i25.SellerPaymentSetting(),
+        child: const _i27.SellerPaymentSetting(),
         opaque: true,
       );
     },
     SellerAddProductRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i26.SellerAddProduct(),
+        child: const _i28.SellerAddProduct(),
         opaque: true,
       );
     },
     SellerAddProductSpecificationsRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i27.SellerAddProductSpecifications(),
+        child: const _i29.SellerAddProductSpecifications(),
         opaque: true,
       );
     },
     SellerDigitalProductsRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i28.SellerDigitalProducts(),
+        child: const _i30.SellerDigitalProducts(),
         opaque: true,
       );
     },
     SellerProductBulkRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i29.SellerProductBulk(),
+        child: const _i31.SellerProductBulk(),
         opaque: true,
       );
     },
     SellerProductReviewRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i30.SellerProductReview(),
+        child: const _i32.SellerProductReview(),
         opaque: true,
       );
     },
     SellerProductsRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i31.SellerProducts(),
+        child: const _i33.SellerProducts(),
         opaque: true,
       );
     },
     SellerResellingRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i32.SellerReselling(),
+        child: const _i34.SellerReselling(),
         opaque: true,
       );
     },
     SellerProfileRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i33.SellerProfile(),
+        child: const _i35.SellerProfile(),
         opaque: true,
       );
     },
     SellerShopSettingRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i34.SellerShopSetting(),
+        child: const _i36.SellerShopSetting(),
         opaque: true,
       );
     },
     AddNewAddressRoute.name: (routeData) {
-      return _i84.AdaptivePage<_i86.Address>(
+      return _i97.AdaptivePage<_i99.Address>(
         routeData: routeData,
-        child: const _i35.AddNewAddress(),
+        child: const _i37.AddNewAddress(),
         opaque: true,
       );
     },
     AddressesRoute.name: (routeData) {
-      return _i84.AdaptivePage<_i86.Address>(
+      final args = routeData.argsAs<AddressesRouteArgs>(
+          orElse: () => const AddressesRouteArgs());
+      return _i97.AdaptivePage<_i99.Address>(
         routeData: routeData,
-        child: const _i36.Addresses(),
+        child: _i38.Addresses(
+          key: args.key,
+          isFromReturn: args.isFromReturn,
+        ),
         opaque: true,
       );
     },
     EditAddressRoute.name: (routeData) {
       final args = routeData.argsAs<EditAddressRouteArgs>();
-      return _i84.AdaptivePage<_i86.Address>(
+      return _i97.AdaptivePage<_i99.Address>(
         routeData: routeData,
-        child: _i37.EditAddress(
+        child: _i39.EditAddress(
           key: args.key,
           address: args.address,
         ),
@@ -480,17 +535,17 @@ class AppRouter extends _i84.RootStackRouter {
       );
     },
     BlogsRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i38.Blogs(),
+        child: const _i40.Blogs(),
         opaque: true,
       );
     },
     BlogDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<BlogDetailsRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i39.BlogDetails(
+        child: _i41.BlogDetails(
           key: args.key,
           blog: args.blog,
         ),
@@ -499,9 +554,9 @@ class AppRouter extends _i84.RootStackRouter {
     },
     HomeRoute.name: (routeData) {
       final args = routeData.argsAs<HomeRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i40.Home(
+        child: _i42.Home(
           key: args.key,
           index: args.index,
         ),
@@ -510,9 +565,9 @@ class AppRouter extends _i84.RootStackRouter {
     },
     MoreRoute.name: (routeData) {
       final args = routeData.argsAs<MoreRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i41.More(
+        child: _i43.More(
           key: args.key,
           homeController: args.homeController,
         ),
@@ -520,24 +575,24 @@ class AppRouter extends _i84.RootStackRouter {
       );
     },
     CartRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i42.Cart(),
+        child: const _i44.Cart(),
         opaque: true,
       );
     },
     DeliveryRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i43.Delivery(),
+        child: const _i45.Delivery(),
         opaque: true,
       );
     },
     CartPaymentRoute.name: (routeData) {
       final args = routeData.argsAs<CartPaymentRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i44.CartPayment(
+        child: _i46.CartPayment(
           key: args.key,
           shipping: args.shipping,
         ),
@@ -545,18 +600,38 @@ class AppRouter extends _i84.RootStackRouter {
       );
     },
     ShippingRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i45.Shipping(),
+        child: const _i47.Shipping(),
         opaque: true,
       );
     },
     ConfirmationRoute.name: (routeData) {
       final args = routeData.argsAs<ConfirmationRouteArgs>(
           orElse: () => const ConfirmationRouteArgs());
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i46.Confirmation(
+        child: _i48.Confirmation(
+          key: args.key,
+          summary: args.summary,
+          combinedId: args.combinedId,
+        ),
+        opaque: true,
+      );
+    },
+    ReceivingMethodRoute.name: (routeData) {
+      return _i97.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i49.ReceivingMethod(),
+        opaque: true,
+      );
+    },
+    CartConfirmBuyingRoute.name: (routeData) {
+      final args = routeData.argsAs<CartConfirmBuyingRouteArgs>(
+          orElse: () => const CartConfirmBuyingRouteArgs());
+      return _i97.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: _i50.CartConfirmBuying(
           key: args.key,
           summary: args.summary,
           combinedId: args.combinedId,
@@ -565,17 +640,17 @@ class AppRouter extends _i84.RootStackRouter {
       );
     },
     BrandsRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i47.Brands(),
+        child: const _i51.Brands(),
         opaque: true,
       );
     },
     CategoriesRoute.name: (routeData) {
       final args = routeData.argsAs<CategoriesRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i48.Categories(
+        child: _i52.Categories(
           key: args.key,
           homeController: args.homeController,
         ),
@@ -584,9 +659,9 @@ class AppRouter extends _i84.RootStackRouter {
     },
     CategoryDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<CategoryDetailsRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i49.CategoryDetails(
+        child: _i53.CategoryDetails(
           key: args.key,
           categoryModel: args.categoryModel,
           fromHome: args.fromHome,
@@ -596,9 +671,9 @@ class AppRouter extends _i84.RootStackRouter {
     },
     BrandDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<BrandDetailsRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i50.BrandDetails(
+        child: _i54.BrandDetails(
           key: args.key,
           brandId: args.brandId,
         ),
@@ -606,38 +681,38 @@ class AppRouter extends _i84.RootStackRouter {
       );
     },
     DashBoardRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i51.DashBoard(),
+        child: const _i55.DashBoard(),
         opaque: true,
       );
     },
     NotificationsRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i52.Notifications(),
+        child: const _i56.Notifications(),
         opaque: true,
       );
     },
     CompareRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i53.Compare(),
+        child: const _i57.Compare(),
         opaque: true,
       );
     },
     DownloadsRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i54.Downloads(),
+        child: const _i58.Downloads(),
         opaque: true,
       );
     },
     HomeMainRoute.name: (routeData) {
       final args = routeData.argsAs<HomeMainRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i55.HomeMain(
+        child: _i59.HomeMain(
           key: args.key,
           homeController: args.homeController,
         ),
@@ -646,9 +721,9 @@ class AppRouter extends _i84.RootStackRouter {
     },
     ProductDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<ProductDetailsRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i56.ProductDetails(
+        child: _i60.ProductDetails(
           key: args.key,
           productId: args.productId,
           isResale: args.isResale,
@@ -658,9 +733,9 @@ class AppRouter extends _i84.RootStackRouter {
     },
     PopularProductsRoute.name: (routeData) {
       final args = routeData.argsAs<PopularProductsRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i57.PopularProducts(
+        child: _i61.PopularProducts(
           key: args.key,
           popularProductsModel: args.popularProductsModel,
         ),
@@ -669,20 +744,31 @@ class AppRouter extends _i84.RootStackRouter {
     },
     AllProductPageRoute.name: (routeData) {
       final args = routeData.argsAs<AllProductPageRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i58.AllProductPage(
+        child: _i62.AllProductPage(
           key: args.key,
           bestSellingProducts: args.bestSellingProducts,
         ),
         opaque: true,
       );
     },
+    SellerProductsPageRoute.name: (routeData) {
+      final args = routeData.argsAs<SellerProductsPageRouteArgs>();
+      return _i97.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: _i63.SellerProductsPage(
+          key: args.key,
+          shopModel: args.shopModel,
+        ),
+        opaque: true,
+      );
+    },
     PaymentRoute.name: (routeData) {
       final args = routeData.argsAs<PaymentRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i59.Payment(
+        child: _i64.Payment(
           key: args.key,
           transactionUrl: args.transactionUrl,
         ),
@@ -691,9 +777,9 @@ class AppRouter extends _i84.RootStackRouter {
     },
     SearchRoute.name: (routeData) {
       final args = routeData.argsAs<SearchRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i60.Search(
+        child: _i65.Search(
           key: args.key,
           searchText: args.searchText,
         ),
@@ -701,24 +787,24 @@ class AppRouter extends _i84.RootStackRouter {
       );
     },
     WishlistRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i61.Wishlist(),
+        child: const _i66.Wishlist(),
         opaque: true,
       );
     },
     ProfileRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i62.Profile(),
+        child: const _i67.Profile(),
         opaque: true,
       );
     },
     OrderSummaryRoute.name: (routeData) {
       final args = routeData.argsAs<OrderSummaryRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i63.OrderSummary(
+        child: _i68.OrderSummary(
           key: args.key,
           orderId: args.orderId,
         ),
@@ -726,49 +812,72 @@ class AppRouter extends _i84.RootStackRouter {
       );
     },
     PurchasedHistoryRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i64.PurchasedHistory(),
+        child: const _i69.PurchasedHistory(),
         opaque: true,
       );
     },
     ReturnOrdersRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i65.ReturnOrders(),
+        child: const _i70.ReturnOrders(),
         opaque: true,
       );
     },
     TrackOrderRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      final args = routeData.argsAs<TrackOrderRouteArgs>();
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i66.TrackOrder(),
+        child: _i71.TrackOrder(
+          key: args.key,
+          orderId: args.orderId,
+        ),
         opaque: true,
       );
     },
     RetrieveOrderRoute.name: (routeData) {
       final args = routeData.argsAs<RetrieveOrderRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i67.RetrieveOrder(
+        child: _i72.RetrieveOrder(
           key: args.key,
           orderModel: args.orderModel,
         ),
         opaque: true,
       );
     },
-    FlashSaleRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+    OrderDetailsPageRoute.name: (routeData) {
+      final args = routeData.argsAs<OrderDetailsPageRouteArgs>();
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i68.FlashSale(),
+        child: _i73.OrderDetailsPage(
+          key: args.key,
+          isReturnedOrder: args.isReturnedOrder,
+          order: args.order,
+        ),
+        opaque: true,
+      );
+    },
+    PurchasedOrdersRoute.name: (routeData) {
+      return _i97.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i74.PurchasedOrders(),
+        opaque: true,
+      );
+    },
+    FlashSaleRoute.name: (routeData) {
+      return _i97.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i75.FlashSale(),
         opaque: true,
       );
     },
     SaleDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<SaleDetailsRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i69.SaleDetails(
+        child: _i76.SaleDetails(
           key: args.key,
           dealId: args.dealId,
         ),
@@ -777,9 +886,9 @@ class AppRouter extends _i84.RootStackRouter {
     },
     CouponsRoute.name: (routeData) {
       final args = routeData.argsAs<CouponsRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i70.Coupons(
+        child: _i77.Coupons(
           key: args.key,
           homeController: args.homeController,
         ),
@@ -788,9 +897,9 @@ class AppRouter extends _i84.RootStackRouter {
     },
     OnSaleRoute.name: (routeData) {
       final args = routeData.argsAs<OnSaleRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i71.OnSale(
+        child: _i78.OnSale(
           key: args.key,
           homeController: args.homeController,
         ),
@@ -798,17 +907,17 @@ class AppRouter extends _i84.RootStackRouter {
       );
     },
     SupportTicketsRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i72.SupportTickets(),
+        child: const _i79.SupportTickets(),
         opaque: true,
       );
     },
     TicketsDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<TicketsDetailsRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i73.TicketsDetails(
+        child: _i80.TicketsDetails(
           key: args.key,
           id: args.id,
         ),
@@ -816,32 +925,32 @@ class AppRouter extends _i84.RootStackRouter {
       );
     },
     MyWalletRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i74.MyWallet(),
+        child: const _i81.MyWallet(),
         opaque: true,
       );
     },
     ClassifiedProductsRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i75.ClassifiedProducts(),
+        child: const _i82.ClassifiedProducts(),
         opaque: true,
       );
     },
     CustomersPackagesRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i76.CustomersPackages(),
+        child: const _i83.CustomersPackages(),
         opaque: true,
       );
     },
     AddClassifiedProductRoute.name: (routeData) {
       final args = routeData.argsAs<AddClassifiedProductRouteArgs>(
           orElse: () => const AddClassifiedProductRouteArgs());
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i77.AddClassifiedProduct(
+        child: _i84.AddClassifiedProduct(
           key: args.key,
           images: args.images,
           thumbnailImage: args.thumbnailImage,
@@ -853,9 +962,9 @@ class AppRouter extends _i84.RootStackRouter {
     },
     EditClassifiedProductRoute.name: (routeData) {
       final args = routeData.argsAs<EditClassifiedProductRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i78.EditClassifiedProduct(
+        child: _i85.EditClassifiedProduct(
           key: args.key,
           productModel: args.productModel,
         ),
@@ -863,17 +972,17 @@ class AppRouter extends _i84.RootStackRouter {
       );
     },
     CustomersProductsRoute.name: (routeData) {
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i79.CustomersProducts(),
+        child: const _i86.CustomersProducts(),
         opaque: true,
       );
     },
     CustomerProductDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<CustomerProductDetailsRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i80.CustomerProductDetails(
+        child: _i87.CustomerProductDetails(
           key: args.key,
           id: args.id,
         ),
@@ -882,9 +991,9 @@ class AppRouter extends _i84.RootStackRouter {
     },
     YoutubeViewerRoute.name: (routeData) {
       final args = routeData.argsAs<YoutubeViewerRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i81.YoutubeViewer(
+        child: _i88.YoutubeViewer(
           key: args.key,
           videoLink: args.videoLink,
         ),
@@ -893,9 +1002,9 @@ class AppRouter extends _i84.RootStackRouter {
     },
     MotionViewerRoute.name: (routeData) {
       final args = routeData.argsAs<MotionViewerRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i82.MotionViewer(
+        child: _i89.MotionViewer(
           key: args.key,
           videoLink: args.videoLink,
         ),
@@ -904,357 +1013,456 @@ class AppRouter extends _i84.RootStackRouter {
     },
     VimeoViewerRoute.name: (routeData) {
       final args = routeData.argsAs<VimeoViewerRouteArgs>();
-      return _i84.AdaptivePage<dynamic>(
+      return _i97.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i83.VimeoViewer(
+        child: _i90.VimeoViewer(
           key: args.key,
           videoLink: args.videoLink,
         ),
         opaque: true,
       );
     },
+    GiftCardsRoute.name: (routeData) {
+      return _i97.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i91.GiftCards(),
+        opaque: true,
+      );
+    },
+    MyGiftCardsRoute.name: (routeData) {
+      return _i97.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i92.MyGiftCards(),
+        opaque: true,
+      );
+    },
+    GiftCardDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<GiftCardDetailsRouteArgs>();
+      return _i97.AdaptivePage<bool>(
+        routeData: routeData,
+        child: _i93.GiftCardDetails(
+          key: args.key,
+          isMyGiftCard: args.isMyGiftCard,
+          giftCardId: args.giftCardId,
+        ),
+        opaque: true,
+      );
+    },
+    MembershipSubscribeRoute.name: (routeData) {
+      return _i97.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i94.MembershipSubscribe(),
+        opaque: true,
+      );
+    },
+    VipMemberShipsRoute.name: (routeData) {
+      return _i97.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i95.VipMemberShips(),
+        opaque: true,
+      );
+    },
+    LoyaltyPointsRoute.name: (routeData) {
+      return _i97.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i96.LoyaltyPoints(),
+        opaque: true,
+      );
+    },
   };
 
   @override
-  List<_i84.RouteConfig> get routes => [
-        _i84.RouteConfig(
+  List<_i97.RouteConfig> get routes => [
+        _i97.RouteConfig(
           SplashRoute.name,
           path: '/',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           LoginRoute.name,
           path: '/Login',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           ActiveAccountRoute.name,
           path: '/active-account',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           ResetPasswordRoute.name,
           path: '/reset-password',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           ForgetPasswordRoute.name,
           path: '/forget-password',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           RegisterRoute.name,
           path: '/Register',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           RegisterShopRoute.name,
           path: '/register-shop',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           VerifyRegisterRoute.name,
           path: '/verify-register',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
+          ResetPasswordVerifyRoute.name,
+          path: '/reset-password-verify',
+        ),
+        _i97.RouteConfig(
           TermsRoute.name,
           path: '/Terms',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           PrivacyRoute.name,
           path: '/Privacy',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           ReturnPolicyRoute.name,
           path: '/return-policy',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SupportPolicyRoute.name,
           path: '/support-policy',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           ContactUsRoute.name,
           path: '/contact-us',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           ImageZoomRoute.name,
           path: '/image-zoom',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SupportRoute.name,
           path: '/Support',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
+          LocationAddressRoute.name,
+          path: '/location-address',
+        ),
+        _i97.RouteConfig(
           ConversationsRoute.name,
           path: '/Conversations',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerDashboardRoute.name,
           path: '/seller-dashboard',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerUploadedFileRoute.name,
           path: '/seller-uploaded-file',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerNotificationsRoute.name,
           path: '/seller-notifications',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerOrderDetailsRoute.name,
           path: '/seller-order-details',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerOrdersRoute.name,
           path: '/seller-orders',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerCommissionHistoryRoute.name,
           path: '/seller-commission-history',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           PaymentHistoryRoute.name,
           path: '/payment-history',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerMoneyWithDrawRoute.name,
           path: '/seller-money-with-draw',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerPaymentSettingRoute.name,
           path: '/seller-payment-setting',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerAddProductRoute.name,
           path: '/seller-add-product',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerAddProductSpecificationsRoute.name,
           path: '/seller-add-product-specifications',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerDigitalProductsRoute.name,
           path: '/seller-digital-products',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerProductBulkRoute.name,
           path: '/seller-product-bulk',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerProductReviewRoute.name,
           path: '/seller-product-review',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerProductsRoute.name,
           path: '/seller-products',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerResellingRoute.name,
           path: '/seller-reselling',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerProfileRoute.name,
           path: '/seller-profile',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SellerShopSettingRoute.name,
           path: '/seller-shop-setting',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           AddNewAddressRoute.name,
           path: '/add-new-address',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           AddressesRoute.name,
           path: '/Addresses',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           EditAddressRoute.name,
           path: '/edit-address',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           BlogsRoute.name,
           path: '/Blogs',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           BlogDetailsRoute.name,
           path: '/blog-details',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           HomeRoute.name,
           path: '/Home',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           MoreRoute.name,
           path: '/More',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           CartRoute.name,
           path: '/Cart',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           DeliveryRoute.name,
           path: '/Delivery',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           CartPaymentRoute.name,
           path: '/cart-payment',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           ShippingRoute.name,
           path: '/Shipping',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           ConfirmationRoute.name,
           path: '/Confirmation',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
+          ReceivingMethodRoute.name,
+          path: '/receiving-method',
+        ),
+        _i97.RouteConfig(
+          CartConfirmBuyingRoute.name,
+          path: '/cart-confirm-buying',
+        ),
+        _i97.RouteConfig(
           BrandsRoute.name,
           path: '/Brands',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           CategoriesRoute.name,
           path: '/Categories',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           CategoryDetailsRoute.name,
           path: '/category-details',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           BrandDetailsRoute.name,
           path: '/brand-details',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           DashBoardRoute.name,
           path: '/dash-board',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           NotificationsRoute.name,
           path: '/Notifications',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           CompareRoute.name,
           path: '/Compare',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           DownloadsRoute.name,
           path: '/Downloads',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           HomeMainRoute.name,
           path: '/home-main',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           ProductDetailsRoute.name,
           path: '/product-details',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           PopularProductsRoute.name,
           path: '/popular-products',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           AllProductPageRoute.name,
           path: '/all-product-page',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
+          SellerProductsPageRoute.name,
+          path: '/seller-products-page',
+        ),
+        _i97.RouteConfig(
           PaymentRoute.name,
           path: '/Payment',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SearchRoute.name,
           path: '/Search',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           WishlistRoute.name,
           path: '/Wishlist',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           ProfileRoute.name,
           path: '/Profile',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           OrderSummaryRoute.name,
           path: '/order-summary',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           PurchasedHistoryRoute.name,
           path: '/purchased-history',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           ReturnOrdersRoute.name,
           path: '/return-orders',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           TrackOrderRoute.name,
           path: '/track-order',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           RetrieveOrderRoute.name,
           path: '/retrieve-order',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
+          OrderDetailsPageRoute.name,
+          path: '/order-details-page',
+        ),
+        _i97.RouteConfig(
+          PurchasedOrdersRoute.name,
+          path: '/purchased-orders',
+        ),
+        _i97.RouteConfig(
           FlashSaleRoute.name,
           path: '/flash-sale',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SaleDetailsRoute.name,
           path: '/sale-details',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           CouponsRoute.name,
           path: '/Coupons',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           OnSaleRoute.name,
           path: '/on-sale',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           SupportTicketsRoute.name,
           path: '/support-tickets',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           TicketsDetailsRoute.name,
           path: '/tickets-details',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           MyWalletRoute.name,
           path: '/my-wallet',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           ClassifiedProductsRoute.name,
           path: '/classified-products',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           CustomersPackagesRoute.name,
           path: '/customers-packages',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           AddClassifiedProductRoute.name,
           path: '/add-classified-product',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           EditClassifiedProductRoute.name,
           path: '/edit-classified-product',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           CustomersProductsRoute.name,
           path: '/customers-products',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           CustomerProductDetailsRoute.name,
           path: '/customer-product-details',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           YoutubeViewerRoute.name,
           path: '/youtube-viewer',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           MotionViewerRoute.name,
           path: '/motion-viewer',
         ),
-        _i84.RouteConfig(
+        _i97.RouteConfig(
           VimeoViewerRoute.name,
           path: '/vimeo-viewer',
+        ),
+        _i97.RouteConfig(
+          GiftCardsRoute.name,
+          path: '/gift-cards',
+        ),
+        _i97.RouteConfig(
+          MyGiftCardsRoute.name,
+          path: '/my-gift-cards',
+        ),
+        _i97.RouteConfig(
+          GiftCardDetailsRoute.name,
+          path: '/gift-card-details',
+        ),
+        _i97.RouteConfig(
+          MembershipSubscribeRoute.name,
+          path: '/membership-subscribe',
+        ),
+        _i97.RouteConfig(
+          VipMemberShipsRoute.name,
+          path: '/vip-member-ships',
+        ),
+        _i97.RouteConfig(
+          LoyaltyPointsRoute.name,
+          path: '/loyalty-points',
         ),
       ];
 }
 
 /// generated route for
 /// [_i1.Splash]
-class SplashRoute extends _i84.PageRouteInfo<void> {
+class SplashRoute extends _i97.PageRouteInfo<void> {
   const SplashRoute()
       : super(
           SplashRoute.name,
@@ -1266,7 +1474,7 @@ class SplashRoute extends _i84.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.Login]
-class LoginRoute extends _i84.PageRouteInfo<void> {
+class LoginRoute extends _i97.PageRouteInfo<void> {
   const LoginRoute()
       : super(
           LoginRoute.name,
@@ -1278,9 +1486,9 @@ class LoginRoute extends _i84.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.ActiveAccount]
-class ActiveAccountRoute extends _i84.PageRouteInfo<ActiveAccountRouteArgs> {
+class ActiveAccountRoute extends _i97.PageRouteInfo<ActiveAccountRouteArgs> {
   ActiveAccountRoute({
-    _i87.Key? key,
+    _i100.Key? key,
     required String phoneOrEmail,
     bool fromForget = false,
   }) : super(
@@ -1303,7 +1511,7 @@ class ActiveAccountRouteArgs {
     this.fromForget = false,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
   final String phoneOrEmail;
 
@@ -1317,9 +1525,9 @@ class ActiveAccountRouteArgs {
 
 /// generated route for
 /// [_i4.ResetPassword]
-class ResetPasswordRoute extends _i84.PageRouteInfo<ResetPasswordRouteArgs> {
+class ResetPasswordRoute extends _i97.PageRouteInfo<ResetPasswordRouteArgs> {
   ResetPasswordRoute({
-    _i87.Key? key,
+    _i100.Key? key,
     required String email,
     required String code,
   }) : super(
@@ -1342,7 +1550,7 @@ class ResetPasswordRouteArgs {
     required this.code,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
   final String email;
 
@@ -1356,7 +1564,7 @@ class ResetPasswordRouteArgs {
 
 /// generated route for
 /// [_i5.ForgetPassword]
-class ForgetPasswordRoute extends _i84.PageRouteInfo<void> {
+class ForgetPasswordRoute extends _i97.PageRouteInfo<void> {
   const ForgetPasswordRoute()
       : super(
           ForgetPasswordRoute.name,
@@ -1368,7 +1576,7 @@ class ForgetPasswordRoute extends _i84.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.Register]
-class RegisterRoute extends _i84.PageRouteInfo<void> {
+class RegisterRoute extends _i97.PageRouteInfo<void> {
   const RegisterRoute()
       : super(
           RegisterRoute.name,
@@ -1380,7 +1588,7 @@ class RegisterRoute extends _i84.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.RegisterShop]
-class RegisterShopRoute extends _i84.PageRouteInfo<void> {
+class RegisterShopRoute extends _i97.PageRouteInfo<void> {
   const RegisterShopRoute()
       : super(
           RegisterShopRoute.name,
@@ -1392,9 +1600,9 @@ class RegisterShopRoute extends _i84.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.VerifyRegister]
-class VerifyRegisterRoute extends _i84.PageRouteInfo<VerifyRegisterRouteArgs> {
+class VerifyRegisterRoute extends _i97.PageRouteInfo<VerifyRegisterRouteArgs> {
   VerifyRegisterRoute({
-    _i87.Key? key,
+    _i100.Key? key,
     required String email,
   }) : super(
           VerifyRegisterRoute.name,
@@ -1414,7 +1622,7 @@ class VerifyRegisterRouteArgs {
     required this.email,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
   final String email;
 
@@ -1425,8 +1633,43 @@ class VerifyRegisterRouteArgs {
 }
 
 /// generated route for
-/// [_i9.Terms]
-class TermsRoute extends _i84.PageRouteInfo<void> {
+/// [_i9.ResetPasswordVerify]
+class ResetPasswordVerifyRoute
+    extends _i97.PageRouteInfo<ResetPasswordVerifyRouteArgs> {
+  ResetPasswordVerifyRoute({
+    _i100.Key? key,
+    required String email,
+  }) : super(
+          ResetPasswordVerifyRoute.name,
+          path: '/reset-password-verify',
+          args: ResetPasswordVerifyRouteArgs(
+            key: key,
+            email: email,
+          ),
+        );
+
+  static const String name = 'ResetPasswordVerifyRoute';
+}
+
+class ResetPasswordVerifyRouteArgs {
+  const ResetPasswordVerifyRouteArgs({
+    this.key,
+    required this.email,
+  });
+
+  final _i100.Key? key;
+
+  final String email;
+
+  @override
+  String toString() {
+    return 'ResetPasswordVerifyRouteArgs{key: $key, email: $email}';
+  }
+}
+
+/// generated route for
+/// [_i10.Terms]
+class TermsRoute extends _i97.PageRouteInfo<void> {
   const TermsRoute()
       : super(
           TermsRoute.name,
@@ -1437,8 +1680,8 @@ class TermsRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.Privacy]
-class PrivacyRoute extends _i84.PageRouteInfo<void> {
+/// [_i11.Privacy]
+class PrivacyRoute extends _i97.PageRouteInfo<void> {
   const PrivacyRoute()
       : super(
           PrivacyRoute.name,
@@ -1449,8 +1692,8 @@ class PrivacyRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.ReturnPolicy]
-class ReturnPolicyRoute extends _i84.PageRouteInfo<void> {
+/// [_i12.ReturnPolicy]
+class ReturnPolicyRoute extends _i97.PageRouteInfo<void> {
   const ReturnPolicyRoute()
       : super(
           ReturnPolicyRoute.name,
@@ -1461,8 +1704,8 @@ class ReturnPolicyRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i12.SupportPolicy]
-class SupportPolicyRoute extends _i84.PageRouteInfo<void> {
+/// [_i13.SupportPolicy]
+class SupportPolicyRoute extends _i97.PageRouteInfo<void> {
   const SupportPolicyRoute()
       : super(
           SupportPolicyRoute.name,
@@ -1473,8 +1716,8 @@ class SupportPolicyRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i13.ContactUs]
-class ContactUsRoute extends _i84.PageRouteInfo<void> {
+/// [_i14.ContactUs]
+class ContactUsRoute extends _i97.PageRouteInfo<void> {
   const ContactUsRoute()
       : super(
           ContactUsRoute.name,
@@ -1485,10 +1728,10 @@ class ContactUsRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i14.ImageZoom]
-class ImageZoomRoute extends _i84.PageRouteInfo<ImageZoomRouteArgs> {
+/// [_i15.ImageZoom]
+class ImageZoomRoute extends _i97.PageRouteInfo<ImageZoomRouteArgs> {
   ImageZoomRoute({
-    _i87.Key? key,
+    _i100.Key? key,
     required String image,
   }) : super(
           ImageZoomRoute.name,
@@ -1508,7 +1751,7 @@ class ImageZoomRouteArgs {
     required this.image,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
   final String image;
 
@@ -1519,8 +1762,8 @@ class ImageZoomRouteArgs {
 }
 
 /// generated route for
-/// [_i15.Support]
-class SupportRoute extends _i84.PageRouteInfo<void> {
+/// [_i16.Support]
+class SupportRoute extends _i97.PageRouteInfo<void> {
   const SupportRoute()
       : super(
           SupportRoute.name,
@@ -1531,8 +1774,43 @@ class SupportRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i16.Conversations]
-class ConversationsRoute extends _i84.PageRouteInfo<void> {
+/// [_i17.LocationAddress]
+class LocationAddressRoute
+    extends _i97.PageRouteInfo<LocationAddressRouteArgs> {
+  LocationAddressRoute({
+    _i100.Key? key,
+    required bool fromEdit,
+  }) : super(
+          LocationAddressRoute.name,
+          path: '/location-address',
+          args: LocationAddressRouteArgs(
+            key: key,
+            fromEdit: fromEdit,
+          ),
+        );
+
+  static const String name = 'LocationAddressRoute';
+}
+
+class LocationAddressRouteArgs {
+  const LocationAddressRouteArgs({
+    this.key,
+    required this.fromEdit,
+  });
+
+  final _i100.Key? key;
+
+  final bool fromEdit;
+
+  @override
+  String toString() {
+    return 'LocationAddressRouteArgs{key: $key, fromEdit: $fromEdit}';
+  }
+}
+
+/// generated route for
+/// [_i18.Conversations]
+class ConversationsRoute extends _i97.PageRouteInfo<void> {
   const ConversationsRoute()
       : super(
           ConversationsRoute.name,
@@ -1543,8 +1821,8 @@ class ConversationsRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i17.SellerDashboard]
-class SellerDashboardRoute extends _i84.PageRouteInfo<void> {
+/// [_i19.SellerDashboard]
+class SellerDashboardRoute extends _i97.PageRouteInfo<void> {
   const SellerDashboardRoute()
       : super(
           SellerDashboardRoute.name,
@@ -1555,8 +1833,8 @@ class SellerDashboardRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i18.SellerUploadedFile]
-class SellerUploadedFileRoute extends _i84.PageRouteInfo<void> {
+/// [_i20.SellerUploadedFile]
+class SellerUploadedFileRoute extends _i97.PageRouteInfo<void> {
   const SellerUploadedFileRoute()
       : super(
           SellerUploadedFileRoute.name,
@@ -1567,8 +1845,8 @@ class SellerUploadedFileRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i19.SellerNotifications]
-class SellerNotificationsRoute extends _i84.PageRouteInfo<void> {
+/// [_i21.SellerNotifications]
+class SellerNotificationsRoute extends _i97.PageRouteInfo<void> {
   const SellerNotificationsRoute()
       : super(
           SellerNotificationsRoute.name,
@@ -1579,8 +1857,8 @@ class SellerNotificationsRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i20.SellerOrderDetails]
-class SellerOrderDetailsRoute extends _i84.PageRouteInfo<void> {
+/// [_i22.SellerOrderDetails]
+class SellerOrderDetailsRoute extends _i97.PageRouteInfo<void> {
   const SellerOrderDetailsRoute()
       : super(
           SellerOrderDetailsRoute.name,
@@ -1591,8 +1869,8 @@ class SellerOrderDetailsRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i21.SellerOrders]
-class SellerOrdersRoute extends _i84.PageRouteInfo<void> {
+/// [_i23.SellerOrders]
+class SellerOrdersRoute extends _i97.PageRouteInfo<void> {
   const SellerOrdersRoute()
       : super(
           SellerOrdersRoute.name,
@@ -1603,8 +1881,8 @@ class SellerOrdersRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i22.SellerCommissionHistory]
-class SellerCommissionHistoryRoute extends _i84.PageRouteInfo<void> {
+/// [_i24.SellerCommissionHistory]
+class SellerCommissionHistoryRoute extends _i97.PageRouteInfo<void> {
   const SellerCommissionHistoryRoute()
       : super(
           SellerCommissionHistoryRoute.name,
@@ -1615,8 +1893,8 @@ class SellerCommissionHistoryRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i23.PaymentHistory]
-class PaymentHistoryRoute extends _i84.PageRouteInfo<void> {
+/// [_i25.PaymentHistory]
+class PaymentHistoryRoute extends _i97.PageRouteInfo<void> {
   const PaymentHistoryRoute()
       : super(
           PaymentHistoryRoute.name,
@@ -1627,8 +1905,8 @@ class PaymentHistoryRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i24.SellerMoneyWithDraw]
-class SellerMoneyWithDrawRoute extends _i84.PageRouteInfo<void> {
+/// [_i26.SellerMoneyWithDraw]
+class SellerMoneyWithDrawRoute extends _i97.PageRouteInfo<void> {
   const SellerMoneyWithDrawRoute()
       : super(
           SellerMoneyWithDrawRoute.name,
@@ -1639,8 +1917,8 @@ class SellerMoneyWithDrawRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i25.SellerPaymentSetting]
-class SellerPaymentSettingRoute extends _i84.PageRouteInfo<void> {
+/// [_i27.SellerPaymentSetting]
+class SellerPaymentSettingRoute extends _i97.PageRouteInfo<void> {
   const SellerPaymentSettingRoute()
       : super(
           SellerPaymentSettingRoute.name,
@@ -1651,8 +1929,8 @@ class SellerPaymentSettingRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i26.SellerAddProduct]
-class SellerAddProductRoute extends _i84.PageRouteInfo<void> {
+/// [_i28.SellerAddProduct]
+class SellerAddProductRoute extends _i97.PageRouteInfo<void> {
   const SellerAddProductRoute()
       : super(
           SellerAddProductRoute.name,
@@ -1663,8 +1941,8 @@ class SellerAddProductRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i27.SellerAddProductSpecifications]
-class SellerAddProductSpecificationsRoute extends _i84.PageRouteInfo<void> {
+/// [_i29.SellerAddProductSpecifications]
+class SellerAddProductSpecificationsRoute extends _i97.PageRouteInfo<void> {
   const SellerAddProductSpecificationsRoute()
       : super(
           SellerAddProductSpecificationsRoute.name,
@@ -1675,8 +1953,8 @@ class SellerAddProductSpecificationsRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i28.SellerDigitalProducts]
-class SellerDigitalProductsRoute extends _i84.PageRouteInfo<void> {
+/// [_i30.SellerDigitalProducts]
+class SellerDigitalProductsRoute extends _i97.PageRouteInfo<void> {
   const SellerDigitalProductsRoute()
       : super(
           SellerDigitalProductsRoute.name,
@@ -1687,8 +1965,8 @@ class SellerDigitalProductsRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i29.SellerProductBulk]
-class SellerProductBulkRoute extends _i84.PageRouteInfo<void> {
+/// [_i31.SellerProductBulk]
+class SellerProductBulkRoute extends _i97.PageRouteInfo<void> {
   const SellerProductBulkRoute()
       : super(
           SellerProductBulkRoute.name,
@@ -1699,8 +1977,8 @@ class SellerProductBulkRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i30.SellerProductReview]
-class SellerProductReviewRoute extends _i84.PageRouteInfo<void> {
+/// [_i32.SellerProductReview]
+class SellerProductReviewRoute extends _i97.PageRouteInfo<void> {
   const SellerProductReviewRoute()
       : super(
           SellerProductReviewRoute.name,
@@ -1711,8 +1989,8 @@ class SellerProductReviewRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i31.SellerProducts]
-class SellerProductsRoute extends _i84.PageRouteInfo<void> {
+/// [_i33.SellerProducts]
+class SellerProductsRoute extends _i97.PageRouteInfo<void> {
   const SellerProductsRoute()
       : super(
           SellerProductsRoute.name,
@@ -1723,8 +2001,8 @@ class SellerProductsRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i32.SellerReselling]
-class SellerResellingRoute extends _i84.PageRouteInfo<void> {
+/// [_i34.SellerReselling]
+class SellerResellingRoute extends _i97.PageRouteInfo<void> {
   const SellerResellingRoute()
       : super(
           SellerResellingRoute.name,
@@ -1735,8 +2013,8 @@ class SellerResellingRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i33.SellerProfile]
-class SellerProfileRoute extends _i84.PageRouteInfo<void> {
+/// [_i35.SellerProfile]
+class SellerProfileRoute extends _i97.PageRouteInfo<void> {
   const SellerProfileRoute()
       : super(
           SellerProfileRoute.name,
@@ -1747,8 +2025,8 @@ class SellerProfileRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i34.SellerShopSetting]
-class SellerShopSettingRoute extends _i84.PageRouteInfo<void> {
+/// [_i36.SellerShopSetting]
+class SellerShopSettingRoute extends _i97.PageRouteInfo<void> {
   const SellerShopSettingRoute()
       : super(
           SellerShopSettingRoute.name,
@@ -1759,8 +2037,8 @@ class SellerShopSettingRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i35.AddNewAddress]
-class AddNewAddressRoute extends _i84.PageRouteInfo<void> {
+/// [_i37.AddNewAddress]
+class AddNewAddressRoute extends _i97.PageRouteInfo<void> {
   const AddNewAddressRoute()
       : super(
           AddNewAddressRoute.name,
@@ -1771,23 +2049,45 @@ class AddNewAddressRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i36.Addresses]
-class AddressesRoute extends _i84.PageRouteInfo<void> {
-  const AddressesRoute()
-      : super(
+/// [_i38.Addresses]
+class AddressesRoute extends _i97.PageRouteInfo<AddressesRouteArgs> {
+  AddressesRoute({
+    _i100.Key? key,
+    bool? isFromReturn,
+  }) : super(
           AddressesRoute.name,
           path: '/Addresses',
+          args: AddressesRouteArgs(
+            key: key,
+            isFromReturn: isFromReturn,
+          ),
         );
 
   static const String name = 'AddressesRoute';
 }
 
+class AddressesRouteArgs {
+  const AddressesRouteArgs({
+    this.key,
+    this.isFromReturn,
+  });
+
+  final _i100.Key? key;
+
+  final bool? isFromReturn;
+
+  @override
+  String toString() {
+    return 'AddressesRouteArgs{key: $key, isFromReturn: $isFromReturn}';
+  }
+}
+
 /// generated route for
-/// [_i37.EditAddress]
-class EditAddressRoute extends _i84.PageRouteInfo<EditAddressRouteArgs> {
+/// [_i39.EditAddress]
+class EditAddressRoute extends _i97.PageRouteInfo<EditAddressRouteArgs> {
   EditAddressRoute({
-    _i87.Key? key,
-    required _i86.Address address,
+    _i100.Key? key,
+    required _i99.Address address,
   }) : super(
           EditAddressRoute.name,
           path: '/edit-address',
@@ -1806,9 +2106,9 @@ class EditAddressRouteArgs {
     required this.address,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
-  final _i86.Address address;
+  final _i99.Address address;
 
   @override
   String toString() {
@@ -1817,8 +2117,8 @@ class EditAddressRouteArgs {
 }
 
 /// generated route for
-/// [_i38.Blogs]
-class BlogsRoute extends _i84.PageRouteInfo<void> {
+/// [_i40.Blogs]
+class BlogsRoute extends _i97.PageRouteInfo<void> {
   const BlogsRoute()
       : super(
           BlogsRoute.name,
@@ -1829,11 +2129,11 @@ class BlogsRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i39.BlogDetails]
-class BlogDetailsRoute extends _i84.PageRouteInfo<BlogDetailsRouteArgs> {
+/// [_i41.BlogDetails]
+class BlogDetailsRoute extends _i97.PageRouteInfo<BlogDetailsRouteArgs> {
   BlogDetailsRoute({
-    _i87.Key? key,
-    required _i88.Blog blog,
+    _i100.Key? key,
+    required _i101.Blog blog,
   }) : super(
           BlogDetailsRoute.name,
           path: '/blog-details',
@@ -1852,9 +2152,9 @@ class BlogDetailsRouteArgs {
     required this.blog,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
-  final _i88.Blog blog;
+  final _i101.Blog blog;
 
   @override
   String toString() {
@@ -1863,10 +2163,10 @@ class BlogDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i40.Home]
-class HomeRoute extends _i84.PageRouteInfo<HomeRouteArgs> {
+/// [_i42.Home]
+class HomeRoute extends _i97.PageRouteInfo<HomeRouteArgs> {
   HomeRoute({
-    _i87.Key? key,
+    _i100.Key? key,
     required int index,
   }) : super(
           HomeRoute.name,
@@ -1886,7 +2186,7 @@ class HomeRouteArgs {
     required this.index,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
   final int index;
 
@@ -1897,11 +2197,11 @@ class HomeRouteArgs {
 }
 
 /// generated route for
-/// [_i41.More]
-class MoreRoute extends _i84.PageRouteInfo<MoreRouteArgs> {
+/// [_i43.More]
+class MoreRoute extends _i97.PageRouteInfo<MoreRouteArgs> {
   MoreRoute({
-    _i87.Key? key,
-    required _i40.HomeController homeController,
+    _i100.Key? key,
+    required _i42.HomeController homeController,
   }) : super(
           MoreRoute.name,
           path: '/More',
@@ -1920,9 +2220,9 @@ class MoreRouteArgs {
     required this.homeController,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
-  final _i40.HomeController homeController;
+  final _i42.HomeController homeController;
 
   @override
   String toString() {
@@ -1931,8 +2231,8 @@ class MoreRouteArgs {
 }
 
 /// generated route for
-/// [_i42.Cart]
-class CartRoute extends _i84.PageRouteInfo<void> {
+/// [_i44.Cart]
+class CartRoute extends _i97.PageRouteInfo<void> {
   const CartRoute()
       : super(
           CartRoute.name,
@@ -1943,8 +2243,8 @@ class CartRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i43.Delivery]
-class DeliveryRoute extends _i84.PageRouteInfo<void> {
+/// [_i45.Delivery]
+class DeliveryRoute extends _i97.PageRouteInfo<void> {
   const DeliveryRoute()
       : super(
           DeliveryRoute.name,
@@ -1955,11 +2255,11 @@ class DeliveryRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i44.CartPayment]
-class CartPaymentRoute extends _i84.PageRouteInfo<CartPaymentRouteArgs> {
+/// [_i46.CartPayment]
+class CartPaymentRoute extends _i97.PageRouteInfo<CartPaymentRouteArgs> {
   CartPaymentRoute({
-    _i87.Key? key,
-    required _i89.Shipping shipping,
+    _i100.Key? key,
+    required _i102.Shipping shipping,
   }) : super(
           CartPaymentRoute.name,
           path: '/cart-payment',
@@ -1978,9 +2278,9 @@ class CartPaymentRouteArgs {
     required this.shipping,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
-  final _i89.Shipping shipping;
+  final _i102.Shipping shipping;
 
   @override
   String toString() {
@@ -1989,8 +2289,8 @@ class CartPaymentRouteArgs {
 }
 
 /// generated route for
-/// [_i45.Shipping]
-class ShippingRoute extends _i84.PageRouteInfo<void> {
+/// [_i47.Shipping]
+class ShippingRoute extends _i97.PageRouteInfo<void> {
   const ShippingRoute()
       : super(
           ShippingRoute.name,
@@ -2001,11 +2301,11 @@ class ShippingRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i46.Confirmation]
-class ConfirmationRoute extends _i84.PageRouteInfo<ConfirmationRouteArgs> {
+/// [_i48.Confirmation]
+class ConfirmationRoute extends _i97.PageRouteInfo<ConfirmationRouteArgs> {
   ConfirmationRoute({
-    _i87.Key? key,
-    _i90.OrderSummary? summary,
+    _i100.Key? key,
+    _i103.OrderSummary? summary,
     int? combinedId,
   }) : super(
           ConfirmationRoute.name,
@@ -2027,9 +2327,9 @@ class ConfirmationRouteArgs {
     this.combinedId,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
-  final _i90.OrderSummary? summary;
+  final _i103.OrderSummary? summary;
 
   final int? combinedId;
 
@@ -2040,8 +2340,60 @@ class ConfirmationRouteArgs {
 }
 
 /// generated route for
-/// [_i47.Brands]
-class BrandsRoute extends _i84.PageRouteInfo<void> {
+/// [_i49.ReceivingMethod]
+class ReceivingMethodRoute extends _i97.PageRouteInfo<void> {
+  const ReceivingMethodRoute()
+      : super(
+          ReceivingMethodRoute.name,
+          path: '/receiving-method',
+        );
+
+  static const String name = 'ReceivingMethodRoute';
+}
+
+/// generated route for
+/// [_i50.CartConfirmBuying]
+class CartConfirmBuyingRoute
+    extends _i97.PageRouteInfo<CartConfirmBuyingRouteArgs> {
+  CartConfirmBuyingRoute({
+    _i100.Key? key,
+    _i103.OrderSummary? summary,
+    int? combinedId,
+  }) : super(
+          CartConfirmBuyingRoute.name,
+          path: '/cart-confirm-buying',
+          args: CartConfirmBuyingRouteArgs(
+            key: key,
+            summary: summary,
+            combinedId: combinedId,
+          ),
+        );
+
+  static const String name = 'CartConfirmBuyingRoute';
+}
+
+class CartConfirmBuyingRouteArgs {
+  const CartConfirmBuyingRouteArgs({
+    this.key,
+    this.summary,
+    this.combinedId,
+  });
+
+  final _i100.Key? key;
+
+  final _i103.OrderSummary? summary;
+
+  final int? combinedId;
+
+  @override
+  String toString() {
+    return 'CartConfirmBuyingRouteArgs{key: $key, summary: $summary, combinedId: $combinedId}';
+  }
+}
+
+/// generated route for
+/// [_i51.Brands]
+class BrandsRoute extends _i97.PageRouteInfo<void> {
   const BrandsRoute()
       : super(
           BrandsRoute.name,
@@ -2052,11 +2404,11 @@ class BrandsRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i48.Categories]
-class CategoriesRoute extends _i84.PageRouteInfo<CategoriesRouteArgs> {
+/// [_i52.Categories]
+class CategoriesRoute extends _i97.PageRouteInfo<CategoriesRouteArgs> {
   CategoriesRoute({
-    _i87.Key? key,
-    required _i40.HomeController homeController,
+    _i100.Key? key,
+    required _i42.HomeController homeController,
   }) : super(
           CategoriesRoute.name,
           path: '/Categories',
@@ -2075,9 +2427,9 @@ class CategoriesRouteArgs {
     required this.homeController,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
-  final _i40.HomeController homeController;
+  final _i42.HomeController homeController;
 
   @override
   String toString() {
@@ -2086,12 +2438,12 @@ class CategoriesRouteArgs {
 }
 
 /// generated route for
-/// [_i49.CategoryDetails]
+/// [_i53.CategoryDetails]
 class CategoryDetailsRoute
-    extends _i84.PageRouteInfo<CategoryDetailsRouteArgs> {
+    extends _i97.PageRouteInfo<CategoryDetailsRouteArgs> {
   CategoryDetailsRoute({
-    _i87.Key? key,
-    required _i91.Category categoryModel,
+    _i100.Key? key,
+    required _i104.Category categoryModel,
     bool fromHome = false,
   }) : super(
           CategoryDetailsRoute.name,
@@ -2113,9 +2465,9 @@ class CategoryDetailsRouteArgs {
     this.fromHome = false,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
-  final _i91.Category categoryModel;
+  final _i104.Category categoryModel;
 
   final bool fromHome;
 
@@ -2126,10 +2478,10 @@ class CategoryDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i50.BrandDetails]
-class BrandDetailsRoute extends _i84.PageRouteInfo<BrandDetailsRouteArgs> {
+/// [_i54.BrandDetails]
+class BrandDetailsRoute extends _i97.PageRouteInfo<BrandDetailsRouteArgs> {
   BrandDetailsRoute({
-    _i87.Key? key,
+    _i100.Key? key,
     required int brandId,
   }) : super(
           BrandDetailsRoute.name,
@@ -2149,7 +2501,7 @@ class BrandDetailsRouteArgs {
     required this.brandId,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
   final int brandId;
 
@@ -2160,8 +2512,8 @@ class BrandDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i51.DashBoard]
-class DashBoardRoute extends _i84.PageRouteInfo<void> {
+/// [_i55.DashBoard]
+class DashBoardRoute extends _i97.PageRouteInfo<void> {
   const DashBoardRoute()
       : super(
           DashBoardRoute.name,
@@ -2172,8 +2524,8 @@ class DashBoardRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i52.Notifications]
-class NotificationsRoute extends _i84.PageRouteInfo<void> {
+/// [_i56.Notifications]
+class NotificationsRoute extends _i97.PageRouteInfo<void> {
   const NotificationsRoute()
       : super(
           NotificationsRoute.name,
@@ -2184,8 +2536,8 @@ class NotificationsRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i53.Compare]
-class CompareRoute extends _i84.PageRouteInfo<void> {
+/// [_i57.Compare]
+class CompareRoute extends _i97.PageRouteInfo<void> {
   const CompareRoute()
       : super(
           CompareRoute.name,
@@ -2196,8 +2548,8 @@ class CompareRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i54.Downloads]
-class DownloadsRoute extends _i84.PageRouteInfo<void> {
+/// [_i58.Downloads]
+class DownloadsRoute extends _i97.PageRouteInfo<void> {
   const DownloadsRoute()
       : super(
           DownloadsRoute.name,
@@ -2208,11 +2560,11 @@ class DownloadsRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i55.HomeMain]
-class HomeMainRoute extends _i84.PageRouteInfo<HomeMainRouteArgs> {
+/// [_i59.HomeMain]
+class HomeMainRoute extends _i97.PageRouteInfo<HomeMainRouteArgs> {
   HomeMainRoute({
-    _i87.Key? key,
-    required _i40.HomeController homeController,
+    _i100.Key? key,
+    required _i42.HomeController homeController,
   }) : super(
           HomeMainRoute.name,
           path: '/home-main',
@@ -2231,9 +2583,9 @@ class HomeMainRouteArgs {
     required this.homeController,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
-  final _i40.HomeController homeController;
+  final _i42.HomeController homeController;
 
   @override
   String toString() {
@@ -2242,10 +2594,10 @@ class HomeMainRouteArgs {
 }
 
 /// generated route for
-/// [_i56.ProductDetails]
-class ProductDetailsRoute extends _i84.PageRouteInfo<ProductDetailsRouteArgs> {
+/// [_i60.ProductDetails]
+class ProductDetailsRoute extends _i97.PageRouteInfo<ProductDetailsRouteArgs> {
   ProductDetailsRoute({
-    _i87.Key? key,
+    _i100.Key? key,
     required int productId,
     required bool isResale,
   }) : super(
@@ -2268,7 +2620,7 @@ class ProductDetailsRouteArgs {
     required this.isResale,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
   final int productId;
 
@@ -2281,12 +2633,12 @@ class ProductDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i57.PopularProducts]
+/// [_i61.PopularProducts]
 class PopularProductsRoute
-    extends _i84.PageRouteInfo<PopularProductsRouteArgs> {
+    extends _i97.PageRouteInfo<PopularProductsRouteArgs> {
   PopularProductsRoute({
-    _i87.Key? key,
-    required _i92.PopularProductsDomainModel popularProductsModel,
+    _i100.Key? key,
+    required _i105.PopularProductsDomainModel popularProductsModel,
   }) : super(
           PopularProductsRoute.name,
           path: '/popular-products',
@@ -2305,9 +2657,9 @@ class PopularProductsRouteArgs {
     required this.popularProductsModel,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
-  final _i92.PopularProductsDomainModel popularProductsModel;
+  final _i105.PopularProductsDomainModel popularProductsModel;
 
   @override
   String toString() {
@@ -2316,11 +2668,11 @@ class PopularProductsRouteArgs {
 }
 
 /// generated route for
-/// [_i58.AllProductPage]
-class AllProductPageRoute extends _i84.PageRouteInfo<AllProductPageRouteArgs> {
+/// [_i62.AllProductPage]
+class AllProductPageRoute extends _i97.PageRouteInfo<AllProductPageRouteArgs> {
   AllProductPageRoute({
-    _i87.Key? key,
-    required List<_i93.Product> bestSellingProducts,
+    _i100.Key? key,
+    required List<_i106.Product> bestSellingProducts,
   }) : super(
           AllProductPageRoute.name,
           path: '/all-product-page',
@@ -2339,9 +2691,9 @@ class AllProductPageRouteArgs {
     required this.bestSellingProducts,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
-  final List<_i93.Product> bestSellingProducts;
+  final List<_i106.Product> bestSellingProducts;
 
   @override
   String toString() {
@@ -2350,10 +2702,45 @@ class AllProductPageRouteArgs {
 }
 
 /// generated route for
-/// [_i59.Payment]
-class PaymentRoute extends _i84.PageRouteInfo<PaymentRouteArgs> {
+/// [_i63.SellerProductsPage]
+class SellerProductsPageRoute
+    extends _i97.PageRouteInfo<SellerProductsPageRouteArgs> {
+  SellerProductsPageRoute({
+    _i100.Key? key,
+    required _i107.Shop shopModel,
+  }) : super(
+          SellerProductsPageRoute.name,
+          path: '/seller-products-page',
+          args: SellerProductsPageRouteArgs(
+            key: key,
+            shopModel: shopModel,
+          ),
+        );
+
+  static const String name = 'SellerProductsPageRoute';
+}
+
+class SellerProductsPageRouteArgs {
+  const SellerProductsPageRouteArgs({
+    this.key,
+    required this.shopModel,
+  });
+
+  final _i100.Key? key;
+
+  final _i107.Shop shopModel;
+
+  @override
+  String toString() {
+    return 'SellerProductsPageRouteArgs{key: $key, shopModel: $shopModel}';
+  }
+}
+
+/// generated route for
+/// [_i64.Payment]
+class PaymentRoute extends _i97.PageRouteInfo<PaymentRouteArgs> {
   PaymentRoute({
-    _i87.Key? key,
+    _i100.Key? key,
     required String transactionUrl,
   }) : super(
           PaymentRoute.name,
@@ -2373,7 +2760,7 @@ class PaymentRouteArgs {
     required this.transactionUrl,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
   final String transactionUrl;
 
@@ -2384,10 +2771,10 @@ class PaymentRouteArgs {
 }
 
 /// generated route for
-/// [_i60.Search]
-class SearchRoute extends _i84.PageRouteInfo<SearchRouteArgs> {
+/// [_i65.Search]
+class SearchRoute extends _i97.PageRouteInfo<SearchRouteArgs> {
   SearchRoute({
-    _i87.Key? key,
+    _i100.Key? key,
     required String searchText,
   }) : super(
           SearchRoute.name,
@@ -2407,7 +2794,7 @@ class SearchRouteArgs {
     required this.searchText,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
   final String searchText;
 
@@ -2418,8 +2805,8 @@ class SearchRouteArgs {
 }
 
 /// generated route for
-/// [_i61.Wishlist]
-class WishlistRoute extends _i84.PageRouteInfo<void> {
+/// [_i66.Wishlist]
+class WishlistRoute extends _i97.PageRouteInfo<void> {
   const WishlistRoute()
       : super(
           WishlistRoute.name,
@@ -2430,8 +2817,8 @@ class WishlistRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i62.Profile]
-class ProfileRoute extends _i84.PageRouteInfo<void> {
+/// [_i67.Profile]
+class ProfileRoute extends _i97.PageRouteInfo<void> {
   const ProfileRoute()
       : super(
           ProfileRoute.name,
@@ -2442,10 +2829,10 @@ class ProfileRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i63.OrderSummary]
-class OrderSummaryRoute extends _i84.PageRouteInfo<OrderSummaryRouteArgs> {
+/// [_i68.OrderSummary]
+class OrderSummaryRoute extends _i97.PageRouteInfo<OrderSummaryRouteArgs> {
   OrderSummaryRoute({
-    _i87.Key? key,
+    _i100.Key? key,
     required int orderId,
   }) : super(
           OrderSummaryRoute.name,
@@ -2465,7 +2852,7 @@ class OrderSummaryRouteArgs {
     required this.orderId,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
   final int orderId;
 
@@ -2476,8 +2863,8 @@ class OrderSummaryRouteArgs {
 }
 
 /// generated route for
-/// [_i64.PurchasedHistory]
-class PurchasedHistoryRoute extends _i84.PageRouteInfo<void> {
+/// [_i69.PurchasedHistory]
+class PurchasedHistoryRoute extends _i97.PageRouteInfo<void> {
   const PurchasedHistoryRoute()
       : super(
           PurchasedHistoryRoute.name,
@@ -2488,8 +2875,8 @@ class PurchasedHistoryRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i65.ReturnOrders]
-class ReturnOrdersRoute extends _i84.PageRouteInfo<void> {
+/// [_i70.ReturnOrders]
+class ReturnOrdersRoute extends _i97.PageRouteInfo<void> {
   const ReturnOrdersRoute()
       : super(
           ReturnOrdersRoute.name,
@@ -2500,23 +2887,45 @@ class ReturnOrdersRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i66.TrackOrder]
-class TrackOrderRoute extends _i84.PageRouteInfo<void> {
-  const TrackOrderRoute()
-      : super(
+/// [_i71.TrackOrder]
+class TrackOrderRoute extends _i97.PageRouteInfo<TrackOrderRouteArgs> {
+  TrackOrderRoute({
+    _i100.Key? key,
+    required int orderId,
+  }) : super(
           TrackOrderRoute.name,
           path: '/track-order',
+          args: TrackOrderRouteArgs(
+            key: key,
+            orderId: orderId,
+          ),
         );
 
   static const String name = 'TrackOrderRoute';
 }
 
+class TrackOrderRouteArgs {
+  const TrackOrderRouteArgs({
+    this.key,
+    required this.orderId,
+  });
+
+  final _i100.Key? key;
+
+  final int orderId;
+
+  @override
+  String toString() {
+    return 'TrackOrderRouteArgs{key: $key, orderId: $orderId}';
+  }
+}
+
 /// generated route for
-/// [_i67.RetrieveOrder]
-class RetrieveOrderRoute extends _i84.PageRouteInfo<RetrieveOrderRouteArgs> {
+/// [_i72.RetrieveOrder]
+class RetrieveOrderRoute extends _i97.PageRouteInfo<RetrieveOrderRouteArgs> {
   RetrieveOrderRoute({
-    _i87.Key? key,
-    required _i94.Orders orderModel,
+    _i100.Key? key,
+    required _i108.Orders orderModel,
   }) : super(
           RetrieveOrderRoute.name,
           path: '/retrieve-order',
@@ -2535,9 +2944,9 @@ class RetrieveOrderRouteArgs {
     required this.orderModel,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
-  final _i94.Orders orderModel;
+  final _i108.Orders orderModel;
 
   @override
   String toString() {
@@ -2546,8 +2955,60 @@ class RetrieveOrderRouteArgs {
 }
 
 /// generated route for
-/// [_i68.FlashSale]
-class FlashSaleRoute extends _i84.PageRouteInfo<void> {
+/// [_i73.OrderDetailsPage]
+class OrderDetailsPageRoute
+    extends _i97.PageRouteInfo<OrderDetailsPageRouteArgs> {
+  OrderDetailsPageRoute({
+    _i100.Key? key,
+    required bool isReturnedOrder,
+    required _i108.Orders order,
+  }) : super(
+          OrderDetailsPageRoute.name,
+          path: '/order-details-page',
+          args: OrderDetailsPageRouteArgs(
+            key: key,
+            isReturnedOrder: isReturnedOrder,
+            order: order,
+          ),
+        );
+
+  static const String name = 'OrderDetailsPageRoute';
+}
+
+class OrderDetailsPageRouteArgs {
+  const OrderDetailsPageRouteArgs({
+    this.key,
+    required this.isReturnedOrder,
+    required this.order,
+  });
+
+  final _i100.Key? key;
+
+  final bool isReturnedOrder;
+
+  final _i108.Orders order;
+
+  @override
+  String toString() {
+    return 'OrderDetailsPageRouteArgs{key: $key, isReturnedOrder: $isReturnedOrder, order: $order}';
+  }
+}
+
+/// generated route for
+/// [_i74.PurchasedOrders]
+class PurchasedOrdersRoute extends _i97.PageRouteInfo<void> {
+  const PurchasedOrdersRoute()
+      : super(
+          PurchasedOrdersRoute.name,
+          path: '/purchased-orders',
+        );
+
+  static const String name = 'PurchasedOrdersRoute';
+}
+
+/// generated route for
+/// [_i75.FlashSale]
+class FlashSaleRoute extends _i97.PageRouteInfo<void> {
   const FlashSaleRoute()
       : super(
           FlashSaleRoute.name,
@@ -2558,10 +3019,10 @@ class FlashSaleRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i69.SaleDetails]
-class SaleDetailsRoute extends _i84.PageRouteInfo<SaleDetailsRouteArgs> {
+/// [_i76.SaleDetails]
+class SaleDetailsRoute extends _i97.PageRouteInfo<SaleDetailsRouteArgs> {
   SaleDetailsRoute({
-    _i87.Key? key,
+    _i100.Key? key,
     required int dealId,
   }) : super(
           SaleDetailsRoute.name,
@@ -2581,7 +3042,7 @@ class SaleDetailsRouteArgs {
     required this.dealId,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
   final int dealId;
 
@@ -2592,11 +3053,11 @@ class SaleDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i70.Coupons]
-class CouponsRoute extends _i84.PageRouteInfo<CouponsRouteArgs> {
+/// [_i77.Coupons]
+class CouponsRoute extends _i97.PageRouteInfo<CouponsRouteArgs> {
   CouponsRoute({
-    _i87.Key? key,
-    required _i40.HomeController homeController,
+    _i100.Key? key,
+    required _i42.HomeController homeController,
   }) : super(
           CouponsRoute.name,
           path: '/Coupons',
@@ -2615,9 +3076,9 @@ class CouponsRouteArgs {
     required this.homeController,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
-  final _i40.HomeController homeController;
+  final _i42.HomeController homeController;
 
   @override
   String toString() {
@@ -2626,11 +3087,11 @@ class CouponsRouteArgs {
 }
 
 /// generated route for
-/// [_i71.OnSale]
-class OnSaleRoute extends _i84.PageRouteInfo<OnSaleRouteArgs> {
+/// [_i78.OnSale]
+class OnSaleRoute extends _i97.PageRouteInfo<OnSaleRouteArgs> {
   OnSaleRoute({
-    _i87.Key? key,
-    required _i40.HomeController homeController,
+    _i100.Key? key,
+    required _i42.HomeController homeController,
   }) : super(
           OnSaleRoute.name,
           path: '/on-sale',
@@ -2649,9 +3110,9 @@ class OnSaleRouteArgs {
     required this.homeController,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
-  final _i40.HomeController homeController;
+  final _i42.HomeController homeController;
 
   @override
   String toString() {
@@ -2660,8 +3121,8 @@ class OnSaleRouteArgs {
 }
 
 /// generated route for
-/// [_i72.SupportTickets]
-class SupportTicketsRoute extends _i84.PageRouteInfo<void> {
+/// [_i79.SupportTickets]
+class SupportTicketsRoute extends _i97.PageRouteInfo<void> {
   const SupportTicketsRoute()
       : super(
           SupportTicketsRoute.name,
@@ -2672,10 +3133,10 @@ class SupportTicketsRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i73.TicketsDetails]
-class TicketsDetailsRoute extends _i84.PageRouteInfo<TicketsDetailsRouteArgs> {
+/// [_i80.TicketsDetails]
+class TicketsDetailsRoute extends _i97.PageRouteInfo<TicketsDetailsRouteArgs> {
   TicketsDetailsRoute({
-    _i87.Key? key,
+    _i100.Key? key,
     required int id,
   }) : super(
           TicketsDetailsRoute.name,
@@ -2695,7 +3156,7 @@ class TicketsDetailsRouteArgs {
     required this.id,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
   final int id;
 
@@ -2706,8 +3167,8 @@ class TicketsDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i74.MyWallet]
-class MyWalletRoute extends _i84.PageRouteInfo<void> {
+/// [_i81.MyWallet]
+class MyWalletRoute extends _i97.PageRouteInfo<void> {
   const MyWalletRoute()
       : super(
           MyWalletRoute.name,
@@ -2718,8 +3179,8 @@ class MyWalletRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i75.ClassifiedProducts]
-class ClassifiedProductsRoute extends _i84.PageRouteInfo<void> {
+/// [_i82.ClassifiedProducts]
+class ClassifiedProductsRoute extends _i97.PageRouteInfo<void> {
   const ClassifiedProductsRoute()
       : super(
           ClassifiedProductsRoute.name,
@@ -2730,8 +3191,8 @@ class ClassifiedProductsRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i76.CustomersPackages]
-class CustomersPackagesRoute extends _i84.PageRouteInfo<void> {
+/// [_i83.CustomersPackages]
+class CustomersPackagesRoute extends _i97.PageRouteInfo<void> {
   const CustomersPackagesRoute()
       : super(
           CustomersPackagesRoute.name,
@@ -2742,15 +3203,15 @@ class CustomersPackagesRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i77.AddClassifiedProduct]
+/// [_i84.AddClassifiedProduct]
 class AddClassifiedProductRoute
-    extends _i84.PageRouteInfo<AddClassifiedProductRouteArgs> {
+    extends _i97.PageRouteInfo<AddClassifiedProductRouteArgs> {
   AddClassifiedProductRoute({
-    _i87.Key? key,
-    List<_i95.FileDomainModel>? images,
-    _i95.FileDomainModel? thumbnailImage,
-    _i95.FileDomainModel? metaImage,
-    _i95.FileDomainModel? pdf,
+    _i100.Key? key,
+    List<_i109.FileDomainModel>? images,
+    _i109.FileDomainModel? thumbnailImage,
+    _i109.FileDomainModel? metaImage,
+    _i109.FileDomainModel? pdf,
   }) : super(
           AddClassifiedProductRoute.name,
           path: '/add-classified-product',
@@ -2775,15 +3236,15 @@ class AddClassifiedProductRouteArgs {
     this.pdf,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
-  final List<_i95.FileDomainModel>? images;
+  final List<_i109.FileDomainModel>? images;
 
-  final _i95.FileDomainModel? thumbnailImage;
+  final _i109.FileDomainModel? thumbnailImage;
 
-  final _i95.FileDomainModel? metaImage;
+  final _i109.FileDomainModel? metaImage;
 
-  final _i95.FileDomainModel? pdf;
+  final _i109.FileDomainModel? pdf;
 
   @override
   String toString() {
@@ -2792,12 +3253,12 @@ class AddClassifiedProductRouteArgs {
 }
 
 /// generated route for
-/// [_i78.EditClassifiedProduct]
+/// [_i85.EditClassifiedProduct]
 class EditClassifiedProductRoute
-    extends _i84.PageRouteInfo<EditClassifiedProductRouteArgs> {
+    extends _i97.PageRouteInfo<EditClassifiedProductRouteArgs> {
   EditClassifiedProductRoute({
-    _i87.Key? key,
-    required _i96.CusProduct productModel,
+    _i100.Key? key,
+    required _i110.CusProduct productModel,
   }) : super(
           EditClassifiedProductRoute.name,
           path: '/edit-classified-product',
@@ -2816,9 +3277,9 @@ class EditClassifiedProductRouteArgs {
     required this.productModel,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
-  final _i96.CusProduct productModel;
+  final _i110.CusProduct productModel;
 
   @override
   String toString() {
@@ -2827,8 +3288,8 @@ class EditClassifiedProductRouteArgs {
 }
 
 /// generated route for
-/// [_i79.CustomersProducts]
-class CustomersProductsRoute extends _i84.PageRouteInfo<void> {
+/// [_i86.CustomersProducts]
+class CustomersProductsRoute extends _i97.PageRouteInfo<void> {
   const CustomersProductsRoute()
       : super(
           CustomersProductsRoute.name,
@@ -2839,11 +3300,11 @@ class CustomersProductsRoute extends _i84.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i80.CustomerProductDetails]
+/// [_i87.CustomerProductDetails]
 class CustomerProductDetailsRoute
-    extends _i84.PageRouteInfo<CustomerProductDetailsRouteArgs> {
+    extends _i97.PageRouteInfo<CustomerProductDetailsRouteArgs> {
   CustomerProductDetailsRoute({
-    _i87.Key? key,
+    _i100.Key? key,
     required int id,
   }) : super(
           CustomerProductDetailsRoute.name,
@@ -2863,7 +3324,7 @@ class CustomerProductDetailsRouteArgs {
     required this.id,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
   final int id;
 
@@ -2874,10 +3335,10 @@ class CustomerProductDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i81.YoutubeViewer]
-class YoutubeViewerRoute extends _i84.PageRouteInfo<YoutubeViewerRouteArgs> {
+/// [_i88.YoutubeViewer]
+class YoutubeViewerRoute extends _i97.PageRouteInfo<YoutubeViewerRouteArgs> {
   YoutubeViewerRoute({
-    _i87.Key? key,
+    _i100.Key? key,
     required String videoLink,
   }) : super(
           YoutubeViewerRoute.name,
@@ -2897,7 +3358,7 @@ class YoutubeViewerRouteArgs {
     required this.videoLink,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
   final String videoLink;
 
@@ -2908,10 +3369,10 @@ class YoutubeViewerRouteArgs {
 }
 
 /// generated route for
-/// [_i82.MotionViewer]
-class MotionViewerRoute extends _i84.PageRouteInfo<MotionViewerRouteArgs> {
+/// [_i89.MotionViewer]
+class MotionViewerRoute extends _i97.PageRouteInfo<MotionViewerRouteArgs> {
   MotionViewerRoute({
-    _i87.Key? key,
+    _i100.Key? key,
     required String videoLink,
   }) : super(
           MotionViewerRoute.name,
@@ -2931,7 +3392,7 @@ class MotionViewerRouteArgs {
     required this.videoLink,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
   final String videoLink;
 
@@ -2942,10 +3403,10 @@ class MotionViewerRouteArgs {
 }
 
 /// generated route for
-/// [_i83.VimeoViewer]
-class VimeoViewerRoute extends _i84.PageRouteInfo<VimeoViewerRouteArgs> {
+/// [_i90.VimeoViewer]
+class VimeoViewerRoute extends _i97.PageRouteInfo<VimeoViewerRouteArgs> {
   VimeoViewerRoute({
-    _i87.Key? key,
+    _i100.Key? key,
     required String videoLink,
   }) : super(
           VimeoViewerRoute.name,
@@ -2965,7 +3426,7 @@ class VimeoViewerRouteArgs {
     required this.videoLink,
   });
 
-  final _i87.Key? key;
+  final _i100.Key? key;
 
   final String videoLink;
 
@@ -2973,4 +3434,104 @@ class VimeoViewerRouteArgs {
   String toString() {
     return 'VimeoViewerRouteArgs{key: $key, videoLink: $videoLink}';
   }
+}
+
+/// generated route for
+/// [_i91.GiftCards]
+class GiftCardsRoute extends _i97.PageRouteInfo<void> {
+  const GiftCardsRoute()
+      : super(
+          GiftCardsRoute.name,
+          path: '/gift-cards',
+        );
+
+  static const String name = 'GiftCardsRoute';
+}
+
+/// generated route for
+/// [_i92.MyGiftCards]
+class MyGiftCardsRoute extends _i97.PageRouteInfo<void> {
+  const MyGiftCardsRoute()
+      : super(
+          MyGiftCardsRoute.name,
+          path: '/my-gift-cards',
+        );
+
+  static const String name = 'MyGiftCardsRoute';
+}
+
+/// generated route for
+/// [_i93.GiftCardDetails]
+class GiftCardDetailsRoute
+    extends _i97.PageRouteInfo<GiftCardDetailsRouteArgs> {
+  GiftCardDetailsRoute({
+    _i100.Key? key,
+    required bool isMyGiftCard,
+    required int giftCardId,
+  }) : super(
+          GiftCardDetailsRoute.name,
+          path: '/gift-card-details',
+          args: GiftCardDetailsRouteArgs(
+            key: key,
+            isMyGiftCard: isMyGiftCard,
+            giftCardId: giftCardId,
+          ),
+        );
+
+  static const String name = 'GiftCardDetailsRoute';
+}
+
+class GiftCardDetailsRouteArgs {
+  const GiftCardDetailsRouteArgs({
+    this.key,
+    required this.isMyGiftCard,
+    required this.giftCardId,
+  });
+
+  final _i100.Key? key;
+
+  final bool isMyGiftCard;
+
+  final int giftCardId;
+
+  @override
+  String toString() {
+    return 'GiftCardDetailsRouteArgs{key: $key, isMyGiftCard: $isMyGiftCard, giftCardId: $giftCardId}';
+  }
+}
+
+/// generated route for
+/// [_i94.MembershipSubscribe]
+class MembershipSubscribeRoute extends _i97.PageRouteInfo<void> {
+  const MembershipSubscribeRoute()
+      : super(
+          MembershipSubscribeRoute.name,
+          path: '/membership-subscribe',
+        );
+
+  static const String name = 'MembershipSubscribeRoute';
+}
+
+/// generated route for
+/// [_i95.VipMemberShips]
+class VipMemberShipsRoute extends _i97.PageRouteInfo<void> {
+  const VipMemberShipsRoute()
+      : super(
+          VipMemberShipsRoute.name,
+          path: '/vip-member-ships',
+        );
+
+  static const String name = 'VipMemberShipsRoute';
+}
+
+/// generated route for
+/// [_i96.LoyaltyPoints]
+class LoyaltyPointsRoute extends _i97.PageRouteInfo<void> {
+  const LoyaltyPointsRoute()
+      : super(
+          LoyaltyPointsRoute.name,
+          path: '/loyalty-points',
+        );
+
+  static const String name = 'LoyaltyPointsRoute';
 }

@@ -5,11 +5,11 @@ class BuildFilterItem extends StatelessWidget {
   final Attributes attributesModel;
   final int index;
 
-  const BuildFilterItem(
-      {super.key,
+  const BuildFilterItem({super.key,
       required this.attributesModel,
       required this.index,
-      required this.categoryDetailsController});
+      required this.categoryDetailsController
+      });
 
   @override
   Widget build(BuildContext context) {

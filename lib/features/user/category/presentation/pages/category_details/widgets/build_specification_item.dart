@@ -15,27 +15,33 @@ class BuildSpecificationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color textColor = attributeValueModel.selected
-        ? context.colors.primary
-        : context.colors.black;
-    return Container(
-      margin: Dimens.paddingHorizontal10PX,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            attributeValueModel.value,
-            style: AppTextStyle.s14_w400(color: textColor),
-          ),
-          Checkbox(
-            value: attributeValueModel.selected,
-            visualDensity: const VisualDensity(vertical: -2),
-            onChanged: (val) => categoryDetailsController.onSelectAttributes(
-                attributeIndex, position),
-            checkColor: context.colors.white,
-          )
-        ],
-      ),
+    // final Color textColor = attributeValueModel.selected
+    //     ? context.colors.primary
+    //     : context.colors.black;
+    return SubFilterItemWidget(
+        text: attributeValueModel.value, 
+        isSelected: attributeValueModel.selected,
+        onSelect: (val) => categoryDetailsController.onSelectAttributes(attributeIndex, position),
     );
+
+    // return Container(
+    //   margin: Dimens.paddingHorizontal10PX,
+    //   child: Row(
+    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //     children: [
+    //       Text(
+    //         attributeValueModel.value,
+    //         style: AppTextStyle.s14_w400(color: textColor),
+    //       ),
+    //       Checkbox(
+    //         value: attributeValueModel.selected,
+    //         visualDensity: const VisualDensity(vertical: -2),
+    //         onChanged: (val) => categoryDetailsController.onSelectAttributes(
+    //             attributeIndex, position),
+    //         checkColor: context.colors.white,
+    //       )
+    //     ],
+    //   ),
+    // );
   }
 }

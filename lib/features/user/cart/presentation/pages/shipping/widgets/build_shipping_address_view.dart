@@ -5,15 +5,16 @@ class BuildShippingAddressView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: List.generate(
-        controller.addressesBloc.state.data.length, (index) {
-        return BuildShippingAddressItem(
-          address: controller.addressesBloc.state.data[index],
-          controller: controller,
-        );
-      },
-      ),
-    );
+    return Gaps.empty;
+    // return Column(
+    //   children: List.generate(
+    //     controller.addressesBloc.state.data.length, (index) {
+    //     return BuildShippingAddressItem(
+    //       address: controller.addressesBloc.state.data[index],
+    //       controller: controller,
+    //     );
+    //   },
+    //   ),
+    // );
   }
 }

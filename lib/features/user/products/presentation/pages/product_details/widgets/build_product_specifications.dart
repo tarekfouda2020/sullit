@@ -10,21 +10,35 @@ class BuildProductSpecifications extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Container(
-        padding: Dimens.paddingAll8PX,
-        margin: Dimens.paddingHorizontal15PX,
-        decoration: CustomDecoration(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BuildProductAttributes(
-              controller: controller,
-              productOptions: productModel.choiceOptions ?? [],
-            ),
-            BuildProductQty(controller: controller, productModel: productModel),
-          ],
+      child: Visibility(
+        visible: showSection(),
+        replacement: Gaps.empty,
+        child: Container(
+          padding: Dimens.paddingAll8PX,
+          margin: Dimens.paddingHorizontal15PX,
+          decoration:  CustomDecoration(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              BuildProductAttributes(
+                controller: controller,
+                productOptions: productModel.choiceOptions ?? [],
+              ),
+              // BuildProductQty(controller: controller, productModel: productModel),
+            ],
+          ),
         ),
       ),
     );
   }
+
+
+  bool showSection() {
+    var options = productModel.choiceOptions ?? [];
+    if (options.isEmpty) return false;
+    return options.every((element) {
+      return (element.options ?? <String>[]).isNotEmpty;
+    });
+  }
+
 }

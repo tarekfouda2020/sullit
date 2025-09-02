@@ -9,6 +9,7 @@ import 'package:flutter_tdd/features/user/category/domain/entities/generic_pagin
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/products/data/models/reviews_model/reviews_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_model/order_model.dart';
+import 'package:flutter_tdd/features/user/purchasing/data/models/track_order/track_order.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/return_order_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/send_review_params.dart';
 import 'package:injectable/injectable.dart';
@@ -130,5 +131,17 @@ class ImplPurchasingDataSources extends PurchasingDataSources {
       responseKey: (data) => data['data']['transaction_url'],
     );
     return await GenericHttpImpl<String>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, TrackOrder>> trackingHistory(int param) async{
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.trackingHistory(param),
+      requestMethod: RequestMethod.get,
+      responseType: ResType.model,
+      toJsonFunc:(data) =>TrackOrder.fromJson(data),
+      responseKey: (data) => data['data'],
+    );
+    return await GenericHttpImpl<TrackOrder>().call(model);
   }
 }

@@ -15,6 +15,7 @@ _$_CartItemModel _$$_CartItemModelFromJson(Map<String, dynamic> json) =>
       price: json['price'] as String,
       tax: json['tax'] as String,
       quantity: json['quantity'] as int,
+      rating: json['rating'] as int,
       isDigital: json['is_digital'] as bool,
       total: json['total'] as String,
       calculableTotal: json['calculable_total'] as num,
@@ -22,6 +23,10 @@ _$_CartItemModel _$$_CartItemModelFromJson(Map<String, dynamic> json) =>
       productId: json['product_id'] as int,
       minQty: json['min_qty'] as int,
       stockQty: json['stock_qty'] as int,
+      isWishlist: json['is_wishlist'] as bool,
+      soldByType: json['sold_by_type'] as String,
+      soldBy: json['sold_by_name'] as String,
+      shopId: json['shop_id'] as int,
     );
 
 Map<String, dynamic> _$$_CartItemModelToJson(_$_CartItemModel instance) =>
@@ -33,6 +38,7 @@ Map<String, dynamic> _$$_CartItemModelToJson(_$_CartItemModel instance) =>
       'price': instance.price,
       'tax': instance.tax,
       'quantity': instance.quantity,
+      'rating': instance.rating,
       'is_digital': instance.isDigital,
       'total': instance.total,
       'calculable_total': instance.calculableTotal,
@@ -40,4 +46,8 @@ Map<String, dynamic> _$$_CartItemModelToJson(_$_CartItemModel instance) =>
       'product_id': instance.productId,
       'min_qty': instance.minQty,
       'stock_qty': instance.stockQty,
+      'is_wishlist': instance.isWishlist,
+      'sold_by_type': instance.soldByType,
+      'sold_by_name': instance.soldBy,
+      'shop_id': instance.shopId,
     };

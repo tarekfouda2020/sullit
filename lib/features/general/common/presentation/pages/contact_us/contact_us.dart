@@ -21,10 +21,12 @@ class _ContactUsState extends State<ContactUs> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar:  DefaultAppBar(title: tr('contactUs')),
-      body: Column(
+      body: ListView(
+        padding: Dimens.paddingAll15PX,
         children: [
-          BuildContactUsFields(controller: controller),
-          BuildContactUsButton(controller: controller)
+          ContactUsFormWidget(controller: controller),
+          BuildContactUsButton(controller: controller),
+          BuildSocial(controller: controller),
         ],
       ),
     );

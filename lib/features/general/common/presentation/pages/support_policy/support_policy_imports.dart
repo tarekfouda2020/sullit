@@ -9,6 +9,7 @@ import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_header_logo.dart';
 import 'package:flutter_tdd/features/general/common/domain/use_cases/get_support_policy.dart';
 
 part 'support_policy.dart';

@@ -6,6 +6,7 @@ import 'package:country_calling_code_picker/picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
@@ -18,8 +19,12 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
+import 'package:flutter_tdd/core/widgets/phone_filed_prefix_widget.dart';
+import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/helpers/auth_helper.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_input_label.dart';
+import 'package:flutter_tdd/res.dart';
 
 import '../profile_imports.dart';
 
@@ -28,3 +33,5 @@ part 'build_profile_form_fields.dart';
 part 'build_profile_image.dart';
 part 'build_delete_account_button.dart';
 part 'build_delete_dialog.dart';
+part 'phone_input_and_verify_widget.dart';
+part 'logout_button_widget.dart';

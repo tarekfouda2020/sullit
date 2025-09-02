@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
@@ -19,13 +20,20 @@ class ProductsHelper {
     required BuildContext context,
     required int id,
     required Function() onRefresh,
+    GenericBloc<bool>? loadingBloc,
   }) async {
     bool auth = context.read<DeviceCubit>().state.model.auth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
       return;
     }
+    if (loadingBloc != null) {
+      loadingBloc.onUpdateData(true);
+    }
     var data = await SetToggleFavourite().call(id);
+    if (loadingBloc != null) {
+      loadingBloc.onUpdateData(false);
+    }
     if (data) {
       CustomToast.showSimpleToast(
         msg: tr('itemAddedToWishlist'),

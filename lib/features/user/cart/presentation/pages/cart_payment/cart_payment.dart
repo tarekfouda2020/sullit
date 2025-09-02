@@ -12,7 +12,7 @@ class CartPayment extends StatefulWidget {
 }
 
 class _CartPaymentState extends State<CartPayment> {
-  late CartPaymentController controller;
+  late final CartPaymentController controller;
 
   @override
   void initState() {
@@ -26,8 +26,7 @@ class _CartPaymentState extends State<CartPayment> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
-        appBar: const BuildCustomAppBar(),
-        bottomNavigationBar: BuildPaymentButtons(controller: controller),
+        appBar: DefaultAppBar(title: tr("cart"), bgColor: context.colors.white),
         body: BlocBuilder<GenericBloc<Shipping?>, GenericState<Shipping?>>(
           bloc: controller.shippingBloc,
           builder: (context, state) {
@@ -39,16 +38,28 @@ class _CartPaymentState extends State<CartPayment> {
                     child: ListView(
                       padding: Dimens.paddingHorizontal15PX,
                       children: [
-                        BuildSummary(
+                        Gaps.vGap16,
+                        PaymentMethodWidget(controller: controller, shipping: state.data!),
+                        Gaps.vGap12,
+                        CartDiscountWidget(controller: controller),
+                        Gaps.vGap20,
+                        InvoiceSummaryWidget(
                           controller: controller,
-                          shipping: state.data!,
+                          shippingSummary: state.data!.summary,
+                          giftCardTotal: state.data!.summary.appliedGiftCard != null? state.data!.summary.appliedGiftCard! : '',
+                          applyGiftCard: state.data!.summary.appliedGiftCard != null,
                         ),
-                        BuildPaymentOptions(
-                          controller: controller,
-                          shippingModel: state.data!,
-                        ),
-                        BuildAdditionalInfo(controller: controller),
                         BuildConditions(controller: controller),
+                        // BuildSummary(
+                        //   controller: controller,
+                        //   shipping: state.data!,
+                        // ),
+                        // BuildPaymentOptions(
+                        //   controller: controller,
+                        //   shippingModel: state.data!,
+                        // ),
+                        // BuildAdditionalInfo(controller: controller),
+                        // BuildConditions(controller: controller),
                       ],
                     ),
                   ),
@@ -58,6 +69,10 @@ class _CartPaymentState extends State<CartPayment> {
               return Container();
             }
           },
+        ),
+        bottomNavigationBar: BuildPaymentButtons(
+          controller: controller,
+          onTap: () => controller.createOrder(context),
         ),
       ),
     );

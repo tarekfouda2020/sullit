@@ -39,9 +39,15 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'shipping_address') required String shippingAddress,
     @JsonKey(name: 'customer_name') required String customerName,
     @JsonKey(name: 'customer_email') required String customerEmail,
+    @JsonKey(name: 'customer_phone') required String customerPhone,
     @JsonKey(name: 'return_reason') required String returnReason,
-    @JsonKey(name: 'order_details')
-        required List<OrderDetailsModel> orderDetails,
+    @JsonKey(name: 'sold_by_type') required String soldByType,
+    @JsonKey(name: 'sold_by_name') required String soldBy,
+    @JsonKey(name: 'loyalty_points_value') required String loyaltyPointsValue,
+    @JsonKey(name: 'loyalty_points_applied') required bool loyaltyPointsApplied,
+    @JsonKey(name: 'loyalty_points') required int loyaltyPoints,
+    @JsonKey(name: 'total_items') required int totalItems,
+    @JsonKey(name: 'order_details') required List<OrderDetailsModel> orderDetails,
   }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) =>
@@ -78,6 +84,12 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       customerEmail: customerEmail,
       returnReason: returnReason,
       orderDetails: orderDetails.map((e) => e.toDomainModel()).toList(),
+      soldBy: soldBy,
+      soldByType: soldByType,
+      customerPhone: customerPhone,
+      loyaltyPointsValue: loyaltyPointsValue,
+      loyaltyPointsApplied: loyaltyPointsApplied,
+      loyaltyPoints: loyaltyPoints,
     );
   }
 }

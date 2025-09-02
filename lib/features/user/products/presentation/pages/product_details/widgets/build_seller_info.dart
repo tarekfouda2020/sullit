@@ -1,6 +1,7 @@
 part of 'product_details_widgets_imports.dart';
 
 class BuildSellerInfo extends StatelessWidget {
+  /// shopModel return in product details
   final Shop? shopModel;
   final ProductDetailsController controller;
 
@@ -9,55 +10,56 @@ class BuildSellerInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Gaps.vGap10,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return GestureDetector(
+      onTap: () => AutoRouter.of(context).push( SellerProductsPageRoute(shopModel: shopModel!)),
+      child: Container(
+        decoration: CustomDecoration(
+          radius: BorderRadius.circular(12),
+        ),
+        padding: const EdgeInsetsDirectional.only(start: 32, top: 10, bottom: 10),
+        child: Row(
           children: [
             Expanded(
-              flex: 3,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "${tr("soldBy")} :",
-                    style: AppTextStyle.s15_w700(
-                      color: context.colors.black,
+                    style: AppTextStyle.s12_w400(
+                      color: context.colors.textColor,
                     ),
                   ),
                   Gaps.vGap5,
                   Text(
                     shopModel?.name ?? tr('inHouseProduct'),
-                    style: AppTextStyle.s14_w400(
+                    style: AppTextStyle.s14_w600(
                       color: context.colors.black,
                     ),
                   ),
                 ],
               ),
             ),
-            Visibility(
-              visible: shopModel != null,
-              child: Expanded(
-                flex: 2,
-                child: DefaultButton(
-                  margin: Dimens.paddingHorizontal10PX,
-                  title:
-                      shopModel?.follow == true ? tr("unfollow") : tr("follow"),
-                  onTap: () =>
-                      controller.onChangeFollowing(context, shopModel!.userId!),
-                  color: shopModel?.follow == true
-                      ? context.colors.black
-                      : context.colors.primary,
-                  height: 35.h,
-                  borderRadius: Dimens.borderRadius5PX,
-                ),
-              ),
-            )
+            /// not shown in figma
+            // Visibility(
+            //   visible: shopModel != null,
+            //   child: Flexible(
+            //     child: DefaultButton(
+            //       margin: Dimens.paddingHorizontal10PX,
+            //       title:
+            //       shopModel?.follow == true ? tr("unfollow") : tr("follow"),
+            //       onTap: () => controller.onChangeFollowing(context, shopModel!.userId!),
+            //       color: shopModel?.follow == true
+            //           ? context.colors.black
+            //           : context.colors.primary,
+            //       height: 25.h,
+            //       borderRadius: Dimens.borderRadius5PX,
+            //       //width: 100,
+            //     ),
+            //   ),
+            // )
           ],
         ),
-        Gaps.line(context.colors.greyWhite, 20.h),
-      ],
+      ),
     );
   }
 }

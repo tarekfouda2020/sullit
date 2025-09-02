@@ -34,10 +34,8 @@ class BuildAllCategoriesView extends StatelessWidget {
                            fit: BoxFit.fill,
                            boxShape: BoxShape.circle,
                            haveRadius: false,
-                           placeHolder: Icon(
-                             Icons.category_outlined,
-                             color: context.colors.black,
-                             size: Dimens.dp30,
+                           placeHolder: SvgPicture.asset(Res.category,
+                           colorFilter: ColorFilter.mode(context.colors.primary, BlendMode.srcIn),
                            ),
                          ),
                          Gaps.vGap10,

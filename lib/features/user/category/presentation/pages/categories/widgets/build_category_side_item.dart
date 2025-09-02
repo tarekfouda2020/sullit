@@ -18,15 +18,17 @@ class BuildCategorySideItem extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: categoryModel.isSelected == false
-              ? context.colors.greyWhite
-              : context.colors.transparent,
+              ? context.colors.gray2
+              : context.colors.lightPrimary,
         ),
         padding: Dimens.paddingAll20PX,
         child: Text(
           categoryModel.name,
           textAlign: TextAlign.center,
-          style: AppTextStyle.s12_w700(
-            color: context.colors.black,
+          style: AppTextStyle.s14_w600(
+            color:categoryModel.isSelected == false
+                ? context.colors.black
+                :context.colors.primary,
           ),
         ),
       ),

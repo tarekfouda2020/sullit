@@ -17,11 +17,10 @@ class BuildHeaderTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
-          style: AppTextStyle.s18_w500(color: context.colors.black),
+          style: AppTextStyle.s22_w700(color: context.colors.black),
         ),
         Visibility(
           visible: subTitle.isNotEmpty,
@@ -30,7 +29,8 @@ class BuildHeaderTitle extends StatelessWidget {
             padding: Dimens.headerTitlePadding,
             child: Text(
               subTitle,
-              style: AppTextStyle.s14_w400(color: context.colors.textColor),
+              textAlign: TextAlign.center,
+              style: AppTextStyle.s16_w400(color: context.colors.textColor),
             ),
           ),
         ),

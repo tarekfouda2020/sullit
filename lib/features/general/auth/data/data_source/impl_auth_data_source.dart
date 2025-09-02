@@ -14,6 +14,7 @@ import 'package:flutter_tdd/features/general/auth/domain/entities/login_params.d
 import 'package:flutter_tdd/features/general/auth/domain/entities/reset_password_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/user_register_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/verify_phone_params.dart';
+import 'package:flutter_tdd/features/general/auth/domain/entities/verify_reset_password_params.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: AuthDataSource)
@@ -147,6 +148,18 @@ class ImplAuthDataSource extends AuthDataSource {
       requestMethod: RequestMethod.post,
       responseType: ResType.type,
       requestBody: {"phone": param},
+      responseKey: (data) => data["msg"],
+      showLoader: true,
+    );
+    return await GenericHttpImpl<String>()(model);
+  }
+  @override
+  Future<Either<Failure, String>> verifyResetPassword (VerifyResetPasswordParams params) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.resetPassword,
+      requestMethod: RequestMethod.post,
+      responseType: ResType.type,
+      requestBody: params.toJson(),
       responseKey: (data) => data["msg"],
       showLoader: true,
     );

@@ -56,4 +56,17 @@ class MyWalletController {
       walletType: walletTypeModel?.paymentTypeKey,
     );
   }
+
+  void showChargeWalletSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      useRootNavigator: true,
+      enableDrag: false,
+      builder: (context) => ChargeWalletSheetWidget(controller: this),
+    );
+  }
+
+
 }

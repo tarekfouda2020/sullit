@@ -14,16 +14,14 @@ class BuildTopSellingProducts extends StatelessWidget {
         visible: topProducts.isNotEmpty,
         child: Container(
           height: 280.spMin,
-          padding: const EdgeInsets.only(left: 8,top: 8),
-          margin: Dimens.paddingHorizontal15PX,
-          decoration: const CustomDecoration(),
+          margin: Dimens.standardPadding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gaps.vGap10,
               Text(
                 tr('topSelling'),
-                style: AppTextStyle.s15_w700(
+                style: AppTextStyle.s18_w600(
                   color: context.colors.black,
                 ),
               ),
@@ -39,12 +37,14 @@ class BuildTopSellingProducts extends StatelessWidget {
                         padding: Dimens.paddingHorizontal5PX,
                         child: BuildProductItem(
                           productModel: topProducts[index],
+                          afterAddToCart: () => controller.showCartSuccessSheet(context),
                           onFavRefresh: () => controller.onChangeFav(
+                            context,
                             topProducts[index],
                           ),
-                          onCompareRefresh: () => controller.onChangeCompare(
-                            topProducts[index],
-                          ),
+                          // onCompareRefresh: () => controller.onChangeCompare(
+                          //   topProducts[index],
+                          // ),
                         ),
                       ),
                     ),

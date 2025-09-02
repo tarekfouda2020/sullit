@@ -379,7 +379,7 @@ class __MultiSelectChipFieldViewState<V>
                           MediaQuery.of(context).size.height * 0.08,
                       child: widget.scrollBar != null
                           ? Scrollbar(
-                              isAlwaysShown:
+                              thumbVisibility:
                                   widget.scrollBar!.isAlwaysShown,
                               controller: _scrollController,
                               child: ListView.builder(

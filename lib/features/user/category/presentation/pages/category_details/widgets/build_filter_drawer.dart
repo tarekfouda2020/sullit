@@ -41,9 +41,9 @@ class BuildFilterDrawer extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        BuildPriceRange(
-                          categoryDetailsController: categoryDetailsController,
-                        ),
+                        CustomPriceRangeWidget(rangeCubit: categoryDetailsController.rangeCubit,),
+                        Gaps.line(context.colors.gray, 15),
+                         BrandsFilterItem(controller: categoryDetailsController),
                         ...List.generate(
                           state.data!.attributes.length,
                           (index) => BuildFilterItem(
@@ -61,17 +61,51 @@ class BuildFilterDrawer extends StatelessWidget {
                     ),
                   ),
                 ),
-                DefaultButton(
-                  width: 100.w,
-                  height: 35.h,
-                  title: tr('confirm'),
-                  margin: EdgeInsets.zero,
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    categoryDetailsController.pagingController.refresh();
-                  },
-                  color: context.colors.primary,
-                  borderRadius: Dimens.borderRadius10PX,
+                Gaps.vGap12,
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: DefaultButton(
+                        height: 35.h,
+                        title: tr('confirm'),
+                        margin: EdgeInsets.zero,
+                        onTap: () => categoryDetailsController.confirmFilter(context),
+                        color: context.colors.primary,
+                        borderRadius: Dimens.borderRadius30PX,
+                        textColor: context.colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+
+                      ),
+                    ),
+                    Gaps.hGap5,
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: ()=> categoryDetailsController.resetFilter(context),
+                        child: Text(tr('reset',
+                        ),
+                        textAlign: TextAlign.center,
+                        style: AppTextStyle.s18_w700(color: context.colors.primary),
+                        ),
+                      ),
+                      // child: DefaultButton(
+                      //   height: 35.h,
+                      //   title: tr('reset'),
+                      //   elevation: 0,
+                      //   textColor: context.colors.primary,
+                      //   fontSize: 18,
+                      //   fontWeight: FontWeight.w700,
+                      //   margin: EdgeInsets.zero,
+                      //   onTap: () {
+                      //     Navigator.of(context).pop();
+                      //     // categoryDetailsController.pagingController.refresh();
+                      //   },
+                      //   color: Colors.transparent,
+                      //   borderRadius: Dimens.borderRadius10PX,
+                      // ),
+                    ),
+                  ],
                 ),
               ],
             );

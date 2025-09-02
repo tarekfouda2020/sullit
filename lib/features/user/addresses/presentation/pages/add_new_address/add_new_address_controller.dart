@@ -4,12 +4,17 @@ part of 'add_new_address_imports.dart';
 
 class AddNewAddressController {
   final GlobalKey<FormState> formKey = GlobalKey();
+  final TextEditingController locationController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
   final TextEditingController postalCodeController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+  final TextEditingController streetNameController = TextEditingController();
+  final TextEditingController buildingNameController = TextEditingController();
+  final TextEditingController flatNumberController = TextEditingController();
   final GlobalKey<DropdownSearchState> countryController = GlobalKey();
   final GlobalKey<DropdownSearchState> stateController = GlobalKey();
   final GlobalKey<DropdownSearchState> cityController = GlobalKey();
+  final GlobalKey<DropdownSearchState> addressTypeKey = GlobalKey();
   final LocationCubit locationCubit = LocationCubit();
 
   final GenericBloc<package.Country?> countryCodeCubit = GenericBloc(null);
@@ -20,6 +25,7 @@ class AddNewAddressController {
   Country? countryModel;
   StateDomainModel? stateModel;
   City? cityModel;
+  AddressTypeModel? addressTypeModel;
 
   void onChangeCountry(Country? model) {
     countryCubit.onUpdateToInitState(null);
@@ -48,9 +54,21 @@ class AddNewAddressController {
     }
   }
 
+
+  void onSelectAddressType(AddressTypeModel? model) {
+    if (model != null) {
+      addressTypeModel = model;
+    }
+  }
+
   Future<List<Country>> getCountries({bool refresh = true}) async {
     var data = await GetCountries().call(refresh);
     return data;
+  }
+
+  Future<List<AddressTypeModel>> getAddressTypes({bool refresh = true}) async {
+     var data = await GetAddressTypes().call(refresh);
+     return data;
   }
 
   Future<List<StateDomainModel>> getStateByCountryId(
@@ -77,7 +95,7 @@ class AddNewAddressController {
 
   Future<void> addNewAddress(BuildContext context) async {
     if (formKey.currentState!.validate()) {
-      var params = _addressParams();
+      var params = await _addressParams();
       var result = await SetAddNewAddress().call(params);
       if (result != null) {
         CustomToast.showSimpleToast(msg: tr("msgInfoAddedSuccess"),type: ToastType.success);
@@ -87,17 +105,37 @@ class AddNewAddressController {
   }
 
 
-  AddAddressParams _addressParams() {
+  LocationEntity? locationEntity() {
+    BuildContext context = getIt<GlobalContext>().context();
+    return context.read<LocationCubit>().state.model ;
+  }
+
+
+
+  void routeToDetectLocation(BuildContext context)async{
+    var result = await AutoRouter.of(context).push( LocationAddressRoute(fromEdit: false));
+    if(result != null){
+      locationController.text = result as String;
+    }
+  }
+
+
+  Future<AddAddressParams> _addressParams() async{
     return AddAddressParams(
       address: addressController.text,
-      postalCode: postalCodeController.text,
+      addressType: addressTypeModel!.key,
+      // postalCode: postalCodeController.text,
+      // postalCode: await getPostalCode(),
       countryId: countryModel!.id,
       stateId: stateModel!.id,
       cityId: cityModel!.id,
       phone: phoneController.text,
       countryCode: countryCodeCubit.state.data?.callingCode ?? "",
-      lat: locationCubit.state.model!.lat,
-      long: locationCubit.state.model!.lng,
+      lat: locationEntity()?.lat ?? 0.0,
+      long: locationEntity()?.lng ?? 0.0,
+      streetName: streetNameController.text,
+      flatNumber: flatNumberController.text,
+      buildingName:buildingNameController.text ,
     );
   }
 }

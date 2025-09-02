@@ -4,7 +4,9 @@ import 'package:flutter_tdd/features/user/products/presentation/pages/downloads/
 import 'package:flutter_tdd/features/user/products/presentation/pages/home_main/home_main_imports.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/popular_products/popular_products_imports.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/product_details/product_details_imports.dart';
+import 'package:flutter_tdd/features/user/products/presentation/pages/seller_products/seller_products_imports.dart';
 
+import '../../../../../seller/products/presentation/pages/seller_products/seller_products_imports.dart';
 import '../../pages/all_products_page/all_product_page_imports.dart';
 
 const List<AutoRoute> productsRoute = [
@@ -14,5 +16,6 @@ const List<AutoRoute> productsRoute = [
   AdaptiveRoute(page: ProductDetails),
   AdaptiveRoute(page: PopularProducts),
   AdaptiveRoute(page: AllProductPage),
+  AdaptiveRoute(page: SellerProductsPage),
 
 ];

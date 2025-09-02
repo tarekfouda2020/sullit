@@ -1,3 +1,4 @@
+
 import 'package:auto_route/auto_route.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/product_section
 import 'package:flutter_tdd/features/user/products/domain/models/slider_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/home_main/home_main_imports.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
+import 'package:flutter_tdd/features/user/sale/domain/entities/timer_entity.dart';
 import 'package:flutter_tdd/features/user/sale/domain/models/flash_sale.dart';
 import 'package:flutter_tdd/res.dart';
 
@@ -56,3 +58,7 @@ part 'build_top_categories.dart';
 part 'build_top_category_item.dart';
 part 'build_header_icon.dart';
 part 'build_discount_msg.dart';
+part 'advantages_widget.dart';
+part 'categories_header_widget.dart';
+part 'vip_offers_widget.dart';
+part 'deals_count_down_widget.dart';

@@ -1,5 +1,10 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
@@ -14,6 +19,8 @@ import 'package:flutter_tdd/core/helpers/validator.dart';
 import 'package:flutter_tdd/features/general/common/domain/models/support_msg.dart';
 import 'package:flutter_tdd/features/general/common/presentation/pages/image_zoom/image_zoom.dart';
 import 'package:flutter_tdd/features/general/common/presentation/pages/support/support_imports.dart';
+
+import '../../../../../../../res.dart';
 part 'build_loading_support_msgs.dart';
 part 'build_support_fields.dart';
 part 'build_support_msg_item.dart';

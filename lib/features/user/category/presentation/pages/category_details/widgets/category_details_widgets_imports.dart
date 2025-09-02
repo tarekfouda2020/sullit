@@ -17,7 +17,8 @@ import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/core/widgets/DropdownTextField.dart';
 import 'package:flutter_tdd/core/widgets/build_empty_data_view.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
-import 'package:flutter_tdd/features/user/category/domain/entities/price_range_params.dart';
+import 'package:flutter_tdd/core/widgets/custom_price_range_widget.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/attribute_value.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/attributes.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
@@ -27,6 +28,7 @@ import 'package:flutter_tdd/features/user/category/presentation/pages/category_d
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item_shimmer.dart';
+import 'package:flutter_tdd/res.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 part 'build_all_categories_view.dart';
@@ -39,8 +41,9 @@ part 'build_icon_item.dart';
 part 'build_loading_cats_products.dart';
 part 'build_loading_filter_bar.dart';
 part 'build_loading_sub_cats.dart';
-part 'build_price_range.dart';
 part 'build_products.dart';
 part 'build_specification_item.dart';
 part 'build_sub_categories.dart';
 part 'build_sub_category_item.dart';
+part 'brands_filter_item_widget.dart';
+part 'sub_filter_item_widget.dart';

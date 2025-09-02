@@ -26,8 +26,8 @@ class _HomeMainState extends State<HomeMain> {
         child: MyScaffold(
           body: Column(
             children: [
-              BuildHomeMainAppBar(controller: widget.homeController),
-              const BuildDiscountMsg(),
+              BuildHomeMainAppBar(controller: widget.homeController, homeMainController: controller),
+              // const BuildDiscountMsg(),
               BlocBuilder<GenericBloc<HomeDomainModel?>,
                   GenericState<HomeDomainModel?>>(
                 bloc: controller.homeCubit,

@@ -12,35 +12,31 @@ class BuildCartButtons extends StatelessWidget {
     return Visibility(
       visible: cartModel.items!.isNotEmpty,
       child: Container(
-        decoration: CustomDecoration(),
-        padding:Dimens.paddingAll15PX,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+       color: context.colors.cartBg,
+        padding:const EdgeInsetsDirectional.only(start: 15,top: 20,end: 40,bottom: 15),
+        child: Row(
           children: [
-            BuildTotalCost(
-              price: cartModel.calculableTotal!,
-              currency: cartModel.currencySymbol ?? "",
+            Expanded(
+              child: DefaultButton(
+                margin: EdgeInsets.zero,
+                title: tr("continue"),
+                onTap: () => controller.navigateToShipping(context),
+              ),
             ),
-            Row(
+            Gaps.hGap11,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: DefaultButton(
-                    title: tr("returnToShop"),
-                    borderColor: context.colors.primary,
-                    textColor: context.colors.primary,
-                    color: context.colors.white,
-                    onTap: () => AutoRouter.of(context).push(HomeRoute(index: 0)),
-                  ),
+                Text(tr("total"),
+                    style: AppTextStyle.s12_w400(color: context.colors.textColor)
                 ),
-                Expanded(
-                  child: DefaultButton(
-                    title: tr('continueToShipping'),
-                    color: context.colors.primary,
-                    onTap: () => controller.navigateToShipping(context),
-                  ),
+                Gaps.vGap6,
+                Text(tr("${cartModel.calculableTotal}${cartModel.currencySymbol}"),
+                  // Text(tr("${cartModel.getProductsTotalWithoutTax()}${cartModel.currencySymbol}"),
+                    style: AppTextStyle.s14_w600(color: context.colors.primary)
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

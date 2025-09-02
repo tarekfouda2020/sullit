@@ -1,6 +1,6 @@
 part of 'compare_widgets_imports.dart';
 
-class BuildCompareItem extends StatelessWidget {
+class BuildCompareItem extends StatefulWidget {
   final Product productModel;
   final CompareController controller;
 
@@ -8,15 +8,22 @@ class BuildCompareItem extends StatelessWidget {
       {super.key, required this.productModel, required this.controller});
 
   @override
+  State<BuildCompareItem> createState() => _BuildCompareItemState();
+}
+
+class _BuildCompareItemState extends State<BuildCompareItem> {
+  final GenericBloc<bool> showLoading = GenericBloc<bool>(false);
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: CustomDecoration(),
+      decoration:  CustomDecoration(),
       padding: Dimens.paddingAll10PX,
       margin: Dimens.paddingVertical5PX,
       child: Row(
         children: [
           CachedImage(
-            url: productModel.images?.first ?? "",
+            url: widget.productModel.images?.first ?? "",
             height: 70.r,
             width: 70.r,
             fit: BoxFit.fill,
@@ -28,45 +35,55 @@ class BuildCompareItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  productModel.name ?? "",
+                  widget.productModel.name ?? "",
                   style: AppTextStyle.s15_w500(color: context.colors.black),
                 ),
                 Gaps.vGap5,
                 BuildHeaderText(
                   text: "${tr('price')} : ",
-                  details: "${productModel.priceHighLow}",
+                  details: "${widget.productModel.priceHighLow}",
                   detailsColor: context.colors.primary,
                 ),
                 BuildHeaderText(
                   text: "${tr('brand')} : ",
-                  details: "${productModel.brandName}",
+                  details: "${widget.productModel.brandName}",
                 ),
                 BuildHeaderText(
                   text: "${tr('category')} : ",
-                  details: "${productModel.categoryName}",
+                  details: "${widget.productModel.categoryName}",
                 ),
               ],
             ),
           ),
           Column(
             children: [
-              BuildIconItem(
-                iconData: productModel.isWishlist!
-                    ? Icons.favorite
-                    : Icons.favorite_border,
-                onTap: () => ProductsHelper().toggleFavourite(
-                  id: productModel.id!,
-                  context: context,
-                  onRefresh: () => controller.onFavChanged(productModel),
-                ),
-                checkValue: productModel.isWishlist,
-                padding: Dimens.paddingAll5PX,
+              BlocBuilder<GenericBloc, GenericState>(
+                bloc: showLoading,
+                builder: (context, state) {
+                  return Visibility(
+                    visible: state.data,
+                    replacement: BuildIconItem(
+                      iconData: widget.productModel.isWishlist!
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      onTap: () => ProductsHelper().toggleFavourite(
+                        id: widget.productModel.id!,
+                        context: context,
+                        loadingBloc: showLoading,
+                        onRefresh: () => widget.controller.onFavChanged(widget.productModel),
+                      ),
+                      checkValue: widget.productModel.isWishlist,
+                      padding: Dimens.paddingAll5PX,
+                    ),
+                    child: const LoadingIconWidget(),
+                  );
+                },
               ),
               BuildIconItem(
                 iconData: Icons.shopping_cart,
                 onTap: () => getIt<CartHelper>().addToCartDialog(
                   context,
-                  productModel,
+                  widget.productModel,
                 ),
                 padding: Dimens.paddingAll5PX,
               ),

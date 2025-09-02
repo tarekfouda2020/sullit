@@ -17,6 +17,7 @@ class DefaultButton extends StatelessWidget {
   final bool? disabled;
   final String? fontFamily;
   final FontWeight? fontWeight;
+  final Widget? customLabel;
 
   const DefaultButton({
     super.key,
@@ -34,6 +35,7 @@ class DefaultButton extends StatelessWidget {
     this.height,
     this.fontWeight,
     this.elevation,
+    this.customLabel,
   });
 
   @override
@@ -51,19 +53,19 @@ class DefaultButton extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             backgroundColor: color ?? context.colors.primary,
             shape: RoundedRectangleBorder(
-              borderRadius: borderRadius ?? BorderRadius.circular(10),
+              borderRadius: borderRadius ?? BorderRadius.circular(30),
               side: BorderSide(color: borderColor ?? border, width: 1),
             ),
             elevation: elevation ?? 0,
           ),
-          child: Text(
+          child: customLabel ?? Text(
             title,
             textAlign: TextAlign.center,
-            style: AppTextStyle.s16_w500(color: textColor ?? Colors.white,)
+            style: AppTextStyle.s18_w700(color: textColor ?? Colors.white,)
                 .copyWith(
-              fontSize: fontSize ?? 13,
+              fontSize: fontSize ?? 18,
               fontFamily: fontFamily,
-              fontWeight: fontWeight,
+              fontWeight: fontWeight ?? FontWeight.w700,
             ),
           ),
         ),

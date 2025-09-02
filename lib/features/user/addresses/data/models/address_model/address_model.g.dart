@@ -20,7 +20,6 @@ _$_AddressModel _$$_AddressModelFromJson(Map<String, dynamic> json) =>
       city: json['city'] == null
           ? null
           : CityModel.fromJson(json['city'] as Map<String, dynamic>),
-      postalCode: json['postal_code'] as String,
       phone: json['phone'] as String,
       fullPhone: json['full_phone'] as String,
       countryCode: json['country_code'] as String,
@@ -28,6 +27,11 @@ _$_AddressModel _$$_AddressModelFromJson(Map<String, dynamic> json) =>
       lat: json['lat'] as String,
       lang: json['lang'] as String,
       isActive: json['is_active'] as bool,
+      addressType: json['address_type'] as String,
+      addressTypeLabel: json['address_type_label'] as String,
+      streetName: json['street_name'] as String,
+      buildingName: json['building_name'] as String,
+      flatNumber: json['flat_number'] as String,
     );
 
 Map<String, dynamic> _$$_AddressModelToJson(_$_AddressModel instance) =>
@@ -38,7 +42,6 @@ Map<String, dynamic> _$$_AddressModelToJson(_$_AddressModel instance) =>
       'country': instance.country?.toJson(),
       'state': instance.state?.toJson(),
       'city': instance.city?.toJson(),
-      'postal_code': instance.postalCode,
       'phone': instance.phone,
       'full_phone': instance.fullPhone,
       'country_code': instance.countryCode,
@@ -46,4 +49,9 @@ Map<String, dynamic> _$$_AddressModelToJson(_$_AddressModel instance) =>
       'lat': instance.lat,
       'lang': instance.lang,
       'is_active': instance.isActive,
+      'address_type': instance.addressType,
+      'address_type_label': instance.addressTypeLabel,
+      'street_name': instance.streetName,
+      'building_name': instance.buildingName,
+      'flat_number': instance.flatNumber,
     };

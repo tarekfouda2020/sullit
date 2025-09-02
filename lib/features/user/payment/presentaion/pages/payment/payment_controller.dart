@@ -9,10 +9,12 @@ class PaymentController {
   void onChangeUrl(BuildContext context) {
     urlState = flutterWebViewPlugin.onUrlChanged.listen(
       (String url) async {
+        log("=====================>>>>>>>>>>>>url is $url <<<< ======================");
         if (url.contains("combined_order_id")) {
           int id = int.parse(url.split('combined_order_id=').last);
           flutterWebViewPlugin.close();
-          AutoRouter.of(context).push(ConfirmationRoute(combinedId: id));
+          // AutoRouter.of(context).push(ConfirmationRoute(combinedId: id));
+          AutoRouter.of(context).push(CartConfirmBuyingRoute(combinedId: id));
         } else if (url.contains('Fail')) {
           flutterWebViewPlugin.close();
           CustomToast.showSimpleToast(
@@ -26,7 +28,7 @@ class PaymentController {
             msg: tr('paymentDone'),
             type: ToastType.success,
           );
-          AutoRouter.of(context).pop();
+          AutoRouter.of(context).pop(true);
         }
       },
     );

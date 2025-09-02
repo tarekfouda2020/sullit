@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
@@ -14,6 +15,7 @@ import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:geocoding/geocoding.dart';
 
 import 'custom_toast.dart';
 
@@ -27,6 +29,30 @@ class Utilities {
       },
     );
   }
+
+
+  Future<String?> scanBarcode({ScanMode? scanMode}) async {
+    try {
+      String barcode = await FlutterBarcodeScanner.scanBarcode(
+        '#ff6666',
+        tr('cancel'),
+        true,
+        scanMode ?? ScanMode.BARCODE,
+      );
+
+      if (barcode == '-1' || barcode.isEmpty) {
+        return null;
+      }
+      return barcode;
+    } catch (e) {
+          CustomToast.showSimpleToast(
+            msg: tr('scanCancel'),
+            type: ToastType.error,
+          );
+    }
+  }
+
+
 
   Future<PermissionStatus> getContactsPermission() async {
     await Permission.contacts.request();
@@ -159,6 +185,25 @@ class Utilities {
       return "";
     }
   }
+
+  double? extractFormattedNumberToDouble(String text) {
+    final RegExp numberRegex = RegExp(r'[\d,]+(\.\d+)?');
+    final match = numberRegex.firstMatch(text);
+    if (match != null) {
+      String number = match.group(0)!;
+      number = number.replaceAll(',', '');
+      try {
+        return double.parse(number);
+      } catch (e) {
+        return null;
+      }
+    }
+    return null;
+  }
+
+
+
+
 
   String convertDigitsToLatin(String s) {
     var sb = StringBuffer();

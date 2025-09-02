@@ -12,7 +12,7 @@ class BuildBanners extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: Dimens.dp10,
-          horizontal: Dimens.dp16,
+          horizontal: 0,
         ),
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
@@ -24,11 +24,12 @@ class BuildBanners extends StatelessWidget {
                 url: banners.first.url ?? "",
               ),
               child: CachedImage(
-                url: banners.first.photo,
+                // url: "banners.first.photo",
+                url: "",
                 fit: BoxFit.fill,
                 borderRadius: Dimens.borderRadius5PX,
                 height: 130.spMin,
-                imgMargin: Dimens.paddingHorizontal5PX,
+                imgMargin: Dimens.paddingHorizontal10PX,
               ),
             ),
             child: Swiper(
@@ -42,11 +43,11 @@ class BuildBanners extends StatelessWidget {
                     fit: BoxFit.fill,
                     borderRadius: Dimens.borderRadius5PX,
                     height: 130.spMin,
-                    imgMargin: Dimens.paddingHorizontal5PX,
+                    imgMargin: Dimens.paddingHorizontal12PX,
                   ),
                 );
               },
-              viewportFraction: 0.9,
+              viewportFraction: 1.0,
               autoplay: false,
               itemCount: banners.length,
             ),

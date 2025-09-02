@@ -28,10 +28,7 @@ class _ReturnOrdersState extends State<ReturnOrders> {
           pagingController: controller.pagingController,
           builderDelegate: PagedChildBuilderDelegate<Orders>(
             firstPageProgressIndicatorBuilder: (_) => const BuildLoadingOrders(),
-            itemBuilder: (_, item, index) => BuildReturnOrderItem(
-              order: item,
-              controller: controller,
-            ),
+            itemBuilder: (_, item, index) => ReturnOrdersItemWidget(order: item,controller: controller),
             noItemsFoundIndicatorBuilder: (cxt) {
               return const BuildEmptyDataImage();
             },

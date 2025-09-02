@@ -4,6 +4,8 @@ class ContactUsController {
   final GlobalKey<CustomButtonState> btnKey = GlobalKey();
   final GlobalKey<FormState> formKey = GlobalKey();
   final GenericBloc<String> contactUsCubit = GenericBloc("");
+  final GenericBloc<Country?> countryCubit = GenericBloc(CountryPickerHelper.defaultCountry());
+  final GenericBloc<List<ContactUsSocialModel>> contactUsSocialCubit = GenericBloc<List<ContactUsSocialModel>>([]);
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController phone = TextEditingController();
@@ -11,8 +13,9 @@ class ContactUsController {
   TextEditingController subject = TextEditingController();
 
   ContactUsController(BuildContext context) {
-    getContactUs();
+    // getContactUs();
     getInitialData(context);
+    getContactSocials();
   }
 
   void getContactUs() async {
@@ -50,5 +53,15 @@ class ContactUsController {
       message: message.text,
       title: subject.text,
     );
+  }
+
+  Future<void> getContactSocials() async {
+    await GetContactUsSocials().call(NoParams()).then((value) {
+      if (value.isNotEmpty) {
+        contactUsSocialCubit.onUpdateData(value);
+      }else{
+        contactUsSocialCubit.onUpdateData([]);
+      }
+    });
   }
 }

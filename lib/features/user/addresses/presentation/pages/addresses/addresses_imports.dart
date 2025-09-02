@@ -13,6 +13,8 @@ import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/use_cases/get_addresses.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/use_cases/set_delete_address.dart';
+import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'widgets/addresses_widgets_imports.dart';
 

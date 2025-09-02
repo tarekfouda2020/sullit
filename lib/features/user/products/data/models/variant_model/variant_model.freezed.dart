@@ -22,6 +22,7 @@ VariantModel _$VariantModelFromJson(Map<String, dynamic> json) {
 mixin _$VariantModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get sku => throw _privateConstructorUsedError;
   @JsonKey(name: "stroked_price")
   String get strokedPrice => throw _privateConstructorUsedError;
   @JsonKey(name: "calculable_price")
@@ -50,6 +51,7 @@ abstract class $VariantModelCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
+      String sku,
       @JsonKey(name: "stroked_price") String strokedPrice,
       @JsonKey(name: "calculable_price") String calculablePrice,
       @JsonKey(name: "main_price") String mainPrice,
@@ -74,6 +76,7 @@ class _$VariantModelCopyWithImpl<$Res, $Val extends VariantModel>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? sku = null,
     Object? strokedPrice = null,
     Object? calculablePrice = null,
     Object? mainPrice = null,
@@ -90,6 +93,10 @@ class _$VariantModelCopyWithImpl<$Res, $Val extends VariantModel>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      sku: null == sku
+          ? _value.sku
+          : sku // ignore: cast_nullable_to_non_nullable
               as String,
       strokedPrice: null == strokedPrice
           ? _value.strokedPrice
@@ -134,6 +141,7 @@ abstract class _$$_VariantModelCopyWith<$Res>
   $Res call(
       {int id,
       String name,
+      String sku,
       @JsonKey(name: "stroked_price") String strokedPrice,
       @JsonKey(name: "calculable_price") String calculablePrice,
       @JsonKey(name: "main_price") String mainPrice,
@@ -156,6 +164,7 @@ class __$$_VariantModelCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? sku = null,
     Object? strokedPrice = null,
     Object? calculablePrice = null,
     Object? mainPrice = null,
@@ -172,6 +181,10 @@ class __$$_VariantModelCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      sku: null == sku
+          ? _value.sku
+          : sku // ignore: cast_nullable_to_non_nullable
               as String,
       strokedPrice: null == strokedPrice
           ? _value.strokedPrice
@@ -212,6 +225,7 @@ class _$_VariantModel extends _VariantModel {
   const _$_VariantModel(
       {required this.id,
       required this.name,
+      required this.sku,
       @JsonKey(name: "stroked_price") required this.strokedPrice,
       @JsonKey(name: "calculable_price") required this.calculablePrice,
       @JsonKey(name: "main_price") required this.mainPrice,
@@ -228,6 +242,8 @@ class _$_VariantModel extends _VariantModel {
   final int id;
   @override
   final String name;
+  @override
+  final String sku;
   @override
   @JsonKey(name: "stroked_price")
   final String strokedPrice;
@@ -250,7 +266,7 @@ class _$_VariantModel extends _VariantModel {
 
   @override
   String toString() {
-    return 'VariantModel(id: $id, name: $name, strokedPrice: $strokedPrice, calculablePrice: $calculablePrice, mainPrice: $mainPrice, currentStock: $currentStock, currencySymbol: $currencySymbol, image: $image, options: $options)';
+    return 'VariantModel(id: $id, name: $name, sku: $sku, strokedPrice: $strokedPrice, calculablePrice: $calculablePrice, mainPrice: $mainPrice, currentStock: $currentStock, currencySymbol: $currencySymbol, image: $image, options: $options)';
   }
 
   @override
@@ -260,6 +276,7 @@ class _$_VariantModel extends _VariantModel {
             other is _$_VariantModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.sku, sku) || other.sku == sku) &&
             (identical(other.strokedPrice, strokedPrice) ||
                 other.strokedPrice == strokedPrice) &&
             (identical(other.calculablePrice, calculablePrice) ||
@@ -276,7 +293,7 @@ class _$_VariantModel extends _VariantModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, strokedPrice,
+  int get hashCode => Object.hash(runtimeType, id, name, sku, strokedPrice,
       calculablePrice, mainPrice, currentStock, currencySymbol, image, options);
 
   @JsonKey(ignore: true)
@@ -297,6 +314,7 @@ abstract class _VariantModel extends VariantModel {
   const factory _VariantModel(
       {required final int id,
       required final String name,
+      required final String sku,
       @JsonKey(name: "stroked_price") required final String strokedPrice,
       @JsonKey(name: "calculable_price") required final String calculablePrice,
       @JsonKey(name: "main_price") required final String mainPrice,
@@ -313,6 +331,8 @@ abstract class _VariantModel extends VariantModel {
   int get id;
   @override
   String get name;
+  @override
+  String get sku;
   @override
   @JsonKey(name: "stroked_price")
   String get strokedPrice;

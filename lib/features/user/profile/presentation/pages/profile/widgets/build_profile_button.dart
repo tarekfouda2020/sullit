@@ -9,10 +9,9 @@ class BuildProfileButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultButton(
-      title: tr('confirm'),
+      title: tr('save'),
       height: 35.h,
-      borderRadius: Dimens.borderRadius10PX,
-      margin: const EdgeInsets.only(left: 22,right: 22,top: 10),
+      margin:  Dimens.marginTop31,
       onTap: () => controller.setEditProfile(context),
     );
   }

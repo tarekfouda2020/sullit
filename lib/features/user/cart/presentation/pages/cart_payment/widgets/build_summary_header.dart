@@ -3,11 +3,13 @@ part of 'cart_payment_widgets_imports.dart';
 class BuildSummaryHeader extends StatelessWidget {
   final String title;
   final String details;
+  final Color? detailsColor;
 
   const BuildSummaryHeader({
     super.key,
     required this.title,
     required this.details,
+     this.detailsColor,
   });
 
   @override
@@ -19,11 +21,11 @@ class BuildSummaryHeader extends StatelessWidget {
         children: [
           Text(
             title,
-            style: AppTextStyle.s15_w700(color: context.colors.black),
+            style: AppTextStyle.s14_w400(color: context.colors.black),
           ),
           Text(
             details,
-            style: AppTextStyle.s15_w700(color: context.colors.black),
+            style: AppTextStyle.s14_w600(color: detailsColor ?? context.colors.black),
           ),
         ],
       ),

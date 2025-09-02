@@ -13,13 +13,13 @@ class BuildNotificationsItem extends StatelessWidget {
           .push(OrderSummaryRoute(orderId: notification.orderId)),
       child: Container(
         margin: Dimens.paddingVertical5PX,
-        padding: Dimens.paddingH10V20,
-        decoration: CustomDecoration(),
+        padding: const EdgeInsets.symmetric(horizontal: 21,vertical: 16),
+        decoration: CustomDecoration(radius: Dimens.borderRadius12PX),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(
-              Res.logo,
-              height: 40.r,
+              Res.smallLogo,
               width: 40.h,
             ),
             Gaps.hGap12,
@@ -27,7 +27,9 @@ class BuildNotificationsItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Gaps.vGap5,
                   Text(
+                    /// edit from back end
                     notification.text,
                     style: AppTextStyle.s12_w400(color: context.colors.black),
                   ),

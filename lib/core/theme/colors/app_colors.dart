@@ -83,6 +83,18 @@ abstract class AppColors {
   Color get authField;
   Color get textColor;
   Color get splashColor;
+  Color get borderColor;
+  Color get lightPink;
+  Color get darkRed;
+  Color get gold;
+  Color get gray2;
+  Color get lightPrimary;
+  Color get deepGray;
+  Color get gray3;
+  Color get softGray;
+  Color get gray4;
+  Color get redAccent;
+  Color get cartBg;
 
 
   Color get bgIcon;

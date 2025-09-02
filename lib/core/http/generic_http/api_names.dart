@@ -45,7 +45,12 @@ class ApiNames {
   static const String sendQuery = "product-queries";
 
   static String getVariantPrice(int id) => "products/$id/variant/price";
+
+  static String skuSearch(String sku) => "products/search-by-barcode?sku=$sku";
+
   static const String getDownloadProducts = "orders/digital-purchase-history";
+
+  static  String shopProducts(int id) => "shops/$id/all-products";
 
   static String getProductSections(int page) => "sections?page=$page";
 
@@ -76,6 +81,7 @@ class ApiNames {
   static const String countries = "countries";
   static const String states = "states";
   static const String cities = "cities";
+  static const String addressTypes = "address-types";
 
   static String setDefaultAddress(int id) =>
       "user/addresses/$id/set-default?_method=put";
@@ -88,9 +94,10 @@ class ApiNames {
   static const String getAllFlashSale = "flash-deals";
   static const String getSaleDetails = "flash-deal-products/";
   static const String getCoupons = "exclusive-coupons";
-  static const String getNewArrival = "new-arrival";
-  static const String getOnSale = "on-sale";
-  static const String getBestRated = "best-rated";
+  static const String getNewArrival = "offers/new-arrival";
+  static const String getOnSale = "offers/on-sale";
+  static const String vipProducts = "offers/vip-products";
+  static const String getBestRated = "offers/best-rated";
 
   //wallet urls
   static const String getMyWallet = "my-wallet";
@@ -101,6 +108,7 @@ class ApiNames {
   static const String terms = "terms";
   static const String privacyPolicy = "privacy-policy";
   static const String contactUs = "contact-us";
+  static const String contactUsSocials = "socials";
   static const String supportPolicy = "support-policy";
   static const String returnPolicy = "return-policy";
   static const String getContactUs = "settings/contact-data";
@@ -124,6 +132,11 @@ class ApiNames {
   static const String storeProductToCart = "cart/store";
   static const String cartShippingInfo = "cart/shipping-info";
   static const String getCombinedOrder = "combined-order/";
+  static const String applyLoyaltyPoints = "cart/apply-loyalty-points";
+  static const String removeLoyaltyPoints = "cart/remove-loyalty-points";
+  static const String applyGiftCard = "cart/apply-gift-card";
+  static const String clearCart = "cart/clear";
+  static const String removeCoupon = "cart/remove-coupon";
 
   // notifications
   static const String notifications = "notifications";
@@ -150,6 +163,8 @@ class ApiNames {
 
   static String cancelOrder(int orderId) => "orders/$orderId/cancel-order";
 
+  static String trackingHistory(int orderId) => "orders/$orderId/tracking-history";
+
   static String returnOrder(int orderId) =>
       "orders/$orderId/store-return-order";
 
@@ -164,6 +179,7 @@ class ApiNames {
   static const String cusProductsBrands = "user/customer-products-brands";
   static const String cusProductsCats = "user/customer-products-categories";
   static const String classifiedProducts = "user/customer-products";
+  static const String loyaltyPointsBalance = "loyalty-points/balance";
 
   static String changeStatus(int id) =>
       "user/customer-products/$id/switch-available-status";
@@ -184,4 +200,32 @@ class ApiNames {
   //Customers Products
   static const String getCustomersProducts = "customer-products";
   static const String getCustomersProductsDetails = "customer-products";
+
+  /// giftCards
+  static const String paymentMethods = "gift-cards/payment-methods";
+
+  static const String giftCardSubscriptions = "gift-card-subscriptions";
+
+  static const String giftCards = "gift-cards";
+  static const String loyaltyPointsTransactions = "loyalty-points/transactions";
+
+  static  String giftCardSubscriptionDetails(int params) => "gift-card-subscriptions/$params";
+
+  static  String giftCardDetails(int params) => "gift-cards/$params";
+
+  static String payGiftCardSubscribe(int params) => "gift-cards/$params/subscribe";
+
+
+  /// vip subscriptions
+  static const String subscriptionsPaymentMethods = "subscriptions/payment-methods";
+
+  static const String subscriptions = "subscriptions";
+
+  static const String currentSubscription = "subscriptions/current";
+
+  static  String paySubscription(int param) => "subscriptions/$param/subscribe";
+
+  static const String subscriptionPage = "subscription-page";
+
+
 }

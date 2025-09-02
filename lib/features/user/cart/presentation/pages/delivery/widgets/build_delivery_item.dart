@@ -4,8 +4,11 @@ class BuildDeliveryItem extends StatelessWidget {
   final SellerShipping shippingModel;
   final DeliveryController controller;
 
-  const BuildDeliveryItem(
-      {super.key, required this.shippingModel, required this.controller});
+  const BuildDeliveryItem({
+    super.key,
+    required this.shippingModel,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {

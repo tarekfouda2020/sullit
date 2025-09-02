@@ -26,7 +26,7 @@ class _OrderSummaryState extends State<OrderSummary> {
       body: BlocBuilder<GenericBloc<Orders?>, GenericState<Orders?>>(
         bloc: controller.orderDetailsBloc,
         builder: (context, state) {
-          if (state is GenericUpdateState) {
+          if (state is GenericUpdateState && state.data != null) {
             return ListView(
               padding: Dimens.paddingAll15PX,
               children: [

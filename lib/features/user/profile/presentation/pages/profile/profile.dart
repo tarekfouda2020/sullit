@@ -37,10 +37,11 @@ class _ProfileState extends State<Profile>with WidgetsBindingObserver  {
               children: [
                 BuildProfileImage(controller: controller),
                 BuildProfileFormFields(controller: controller),
+                BuildProfileButton(controller: controller),
               ],
             ),
           ),
-          BuildProfileButton(controller: controller),
+          LogoutButtonWidget(controller: controller),
           BuildDeleteAccountButton(controller: controller),
         ],
       ),

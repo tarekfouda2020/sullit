@@ -1,3 +1,5 @@
+import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 
@@ -16,4 +18,19 @@ class CartDomainModel extends BaseDomainModel {
      this.calculableTotal,
      this.currencySymbol,
   });
+
+
+  String getProductsTotalWithoutTax() {
+    final List<double> allPrices = (items ?? <CartItem>[])
+        .map((element) {
+          var price =  getIt<Utilities>().extractFormattedNumberToDouble(element.price) ?? 0.0;
+          var qty = element.quantity;
+          return price * qty;
+    }
+    )
+        .toList();
+    double sumAllPrices = allPrices.fold(0.0, (sum, item) => sum + item);
+    return sumAllPrices.toStringAsFixed(2);
+  }
+
 }

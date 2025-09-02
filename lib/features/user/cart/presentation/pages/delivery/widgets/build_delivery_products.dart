@@ -12,19 +12,35 @@ class BuildDeliveryProducts extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width,
-          padding: Dimens.paddingAll15PX,
+          padding: const EdgeInsets.symmetric(vertical: 9,horizontal: 22),
           margin: Dimens.paddingVertical8PX,
           decoration: BoxDecoration(
-            color: context.colors.offWhite,
-            border: Border.all(color: context.colors.white),
-            borderRadius: Dimens.borderRadius10PX,
+            color: context.colors.white,
+            border: Border.all(color: context.colors.gray3),
+            borderRadius: Dimens.borderRadius12PX,
           ),
-          child: Text(
-            shippingModel.name,
-            style: AppTextStyle.s15_w700(
-              color: context.colors.black,
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Seller",
+                style: AppTextStyle.s12_w400(
+                  color: context.colors.textColor,
+                ),
+              ),
+              Gaps.vGap4,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    shippingModel.name,
+                    style: AppTextStyle.s15_w600(
+                      color: context.colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
         ...List.generate(

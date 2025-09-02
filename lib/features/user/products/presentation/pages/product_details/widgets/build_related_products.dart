@@ -12,16 +12,15 @@ final ProductDetailsController controller;
         visible: relatedProducts.isNotEmpty,
         child: Container(
           height: 280.spMin,
-          padding: const EdgeInsets.only(left: 8,top: 8),
           margin: Dimens.standardPadding,
-          decoration: const CustomDecoration(),
+          // decoration: const CustomDecoration(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gaps.vGap10,
               Text(
                 tr('relatedProducts'),
-                style: AppTextStyle.s15_w700(
+                style: AppTextStyle.s18_w600(
                   color: context.colors.black,
                 ),
               ),
@@ -38,6 +37,7 @@ final ProductDetailsController controller;
                         child: BuildProductItem(
                           productModel: relatedProducts[index],
                           onFavRefresh: () => controller.onChangeFav(
+                            context,
                             relatedProducts[index],
                           ),
                           onCompareRefresh: () => controller.onChangeCompare(

@@ -5,13 +5,17 @@ class BuildMoreItem extends StatelessWidget {
   final String image;
   final Function() onTap;
   final bool haveStatus;
-
+  final bool? isSvg;
+  final double? size;
   const BuildMoreItem(
       {Key? key,
       required this.title,
         required this.image,
       required this.onTap,
-      this.haveStatus = false})
+      this.haveStatus = false,
+        this.isSvg = false,
+        this.size = 35
+      })
       : super(key: key);
 
   @override
@@ -19,6 +23,7 @@ class BuildMoreItem extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -34,16 +39,26 @@ class BuildMoreItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
+            Gaps.vGap10,
+            isSvg!
+                ?SvgPicture.asset(
+                image,
+              width: size,
+              height: size,
+            )
+                :Image.asset(
               image,
-              width: 35,
-              height: 35,
+              width: size,
+              height: size,
             ),
             Gaps.vGap10,
             Text(
               title,
-              style: AppTextStyle.s14_w500(color: context.colors.black),
+               textAlign: TextAlign.center,
+              style: AppTextStyle.s14_w500(color: context.colors.black).copyWith(
+              ),
             ),
+            Gaps.vGap10,
           ],
         ),
       ),

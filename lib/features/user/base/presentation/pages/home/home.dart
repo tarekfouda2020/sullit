@@ -21,7 +21,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: () async => controller.onBack(context),
       child: DefaultTabController(
         initialIndex: widget.index,
         length: 5,
@@ -34,13 +34,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             body: TabBarView(
               controller: controller.tabController,
               physics: const NeverScrollableScrollPhysics(),
-              children: [
-                HomeMain(homeController: controller),
-                Categories(homeController: controller),
-                Summary(homeController: controller),
-                Coupons(homeController: controller),
-                More(homeController: controller),
-              ],
+              children: controller.pages(),
             ),
             bottomNavigationBar: BuildBottomNavBar(controller: controller),
           ),

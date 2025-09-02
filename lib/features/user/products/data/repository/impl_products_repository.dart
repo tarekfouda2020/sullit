@@ -8,6 +8,7 @@ import 'package:flutter_tdd/features/user/products/data/data_source/remote_data_
 import 'package:flutter_tdd/features/user/products/data/models/home_model/home_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/product_details_model/product_details_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/popular_products_params.dart';
+import 'package:flutter_tdd/features/user/products/domain/entities/seller_products_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/send_query_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/variant_price_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/home_domain_model.dart';
@@ -15,6 +16,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_details_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_sections.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/queries.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/seller_product_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/repository/products_repository.dart';
 import 'package:injectable/injectable.dart';
 
@@ -79,8 +81,19 @@ class ImplProductsRepository extends ProductsRepository with ModelToDomain {
   }
 
   @override
+  Future<Either<Failure, ProductDetailsModel>> scanProduct(String param) async{
+    var result = await dataSources.scanProduct(param);
+    return toDomainResult(result);
+  }
+
+  @override
   Future<Either<Failure, bool>> toggleFollowing(int param) async{
     return dataSources.toggleFollowing(param);
+  }
 
+  @override
+  Future<Either<Failure, SellerProductDomainModel>> sellerProducts(SellerProductsParams param) async{
+    var result = await dataSources.sellerProducts(param);
+    return toDomainResult(result);
   }
 }

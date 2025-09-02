@@ -1,4 +1,4 @@
-part of 'support_tickets_widgets_imports.dart';
+part of 'support_tickets_sheet_widgets_imports.dart';
 
 class BuildAddTicketBtn extends StatelessWidget {
   final SupportTicketsController controller;
@@ -7,14 +7,21 @@ class BuildAddTicketBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: Dimens.paddingAll10PX,
-      child: FloatingActionButton(
-        backgroundColor: context.colors.primary,
-        elevation: 2,
-        onPressed: () => controller.showAddTicketDialog(context, controller),
-        child: Icon(Icons.add, color: context.colors.white, size: 30.sp),
+    return DefaultButton(
+        title: "",
+      onTap: ()=> controller.showAddTicketsSheet(context),
+      height: 50,
+      customLabel: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.add, color: context.colors.white, size: 20.sp),
+          Gaps.hGap2,
+          Text(tr("createTicket"),
+          style: AppTextStyle.s18_w700(color: context.colors.white),
+          )
+        ],
       ),
+
     );
   }
 }

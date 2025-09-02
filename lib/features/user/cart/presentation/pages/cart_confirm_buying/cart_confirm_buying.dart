@@ -1,0 +1,75 @@
+part of 'cart_confirm_buying_imports.dart';
+
+class CartConfirmBuying extends StatefulWidget {
+  final OrderSummary? summary;
+  final int? combinedId;
+  const CartConfirmBuying({super.key, this.summary, this.combinedId});
+
+  @override
+  State<CartConfirmBuying> createState() => _CartConfirmBuyingState();
+}
+
+class _CartConfirmBuyingState extends State<CartConfirmBuying> {
+  late final ConfirmBuyingController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = ConfirmBuyingController(widget.summary,widget.combinedId);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () async{
+        AutoRouter.of(context).push(HomeRoute(index: 0));
+        return true;
+      },
+      child: Scaffold(
+        backgroundColor: context.colors.customBackground,
+        appBar: DefaultAppBar(
+            title: tr("cart"),
+            bgColor: context.colors.white,
+          onBack: () => AutoRouter.of(context).push(HomeRoute(index: 0)),
+        ),
+        body: BlocBuilder<GenericBloc<OrderSummary?>,
+            GenericState<OrderSummary?>>(
+          bloc: controller.orderSummaryBloc,
+          builder: (context, state) {
+            if (state is GenericUpdateState) {
+              return Column(
+                children: [
+                  const BuildCartStepper(current: 5),
+                 Flexible(
+                     child: ListView(
+                   children: [
+                     Gaps.vGap13,
+                     CartOrderDetailsWidget(summary: state.data!,),
+                     Gaps.vGap12,
+                     CartPaymentSectionTitleWidget(
+                       title: tr("products"),
+                       padding: Dimens.paddingHorizontal20PX,
+                     ),
+                     Gaps.vGap8,
+                     CartConfirmBuyingProductsWidget(controller: controller, orderSummary: state.data!,),
+                     Gaps.vGap12,
+                     CartPaymentSectionTitleWidget(
+                       title: tr("invoiceSummary"),
+                       padding: Dimens.paddingHorizontal20PX,
+                     ),
+                     Gaps.vGap8,
+                     ConfirmBuyingSummaryWidget(orderSummary: state.data!,),
+                     Gaps.vGap30,
+                   ],
+                 ))
+                ],
+              );
+            } else {
+              return const CartConfirmShimmerWidget();
+            }
+          },
+        ),
+      ),
+    );
+  }
+}

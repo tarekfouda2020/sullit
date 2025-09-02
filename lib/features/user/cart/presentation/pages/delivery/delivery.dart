@@ -2,31 +2,27 @@
 part of 'delivery_imports.dart';
 
 class Delivery extends StatefulWidget {
-  const Delivery({Key? key}) : super(key: key);
+  const Delivery({Key? key,}) : super(key: key);
 
   @override
   _DeliveryState createState() => _DeliveryState();
 }
 
 class _DeliveryState extends State<Delivery> {
-  late DeliveryController controller;
-
-  @override
-  void initState() {
-    controller = DeliveryController();
-    super.initState();
-  }
+   final DeliveryController controller = DeliveryController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colors.customBackground,
-      appBar: const BuildCustomAppBar(),
-      bottomNavigationBar: BuildDeliveryButtons(controller: controller),
+    return  Scaffold(
+      appBar:   DefaultAppBar(
+          // title: tr("delivery"),
+          title: tr("cart"),
+          bgColor: context.colors.white),
       body: Column(
         children: [
           const BuildCartStepper(current: 3),
           Flexible(
+            // height: MediaQuery.of(context).size.height*0.6,
             child: GenericListView(
               padding: Dimens.paddingHorizontal15PX,
               type: ListViewType.api,
@@ -37,9 +33,13 @@ class _DeliveryState extends State<Delivery> {
                 controller: controller,
               ),
             ),
-          )
+          ),
         ],
       ),
+      bottomNavigationBar: BuildDeliveryButtons(controller: controller),
     );
+
   }
 }
+
+

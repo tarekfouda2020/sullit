@@ -13,7 +13,8 @@ class CustomInputDecoration extends InputDecoration {
   final Color? hintColor;
   final Color? customFillColor;
   final BorderRadius? borderRadius;
-  final EdgeInsets? padding;
+  final EdgeInsetsGeometry? padding;
+  final TextStyle? hintTxtStyle;
 
   const CustomInputDecoration(
       {required this.lang,
@@ -26,32 +27,33 @@ class CustomInputDecoration extends InputDecoration {
         this.enableColor,
         this.focsColor,
         this.borderRadius,
+        this.hintTxtStyle,
         this.padding})
       : super();
 
   @override
   InputBorder get enabledBorder => OutlineInputBorder(
     borderSide: BorderSide(
-        color: enableColor ?? AppColors.noContextInstance.greyWhite,
+        color: enableColor ?? AppColors.noContextInstance.borderColor,
         width: .7),
-    borderRadius: borderRadius ?? BorderRadius.circular(10),
+    borderRadius: borderRadius ?? BorderRadius.circular(30),
   );
 
   @override
   InputBorder get focusedBorder => OutlineInputBorder(
-      borderRadius: borderRadius ?? BorderRadius.circular(10),
+      borderRadius: borderRadius ?? BorderRadius.circular(30),
       borderSide: BorderSide(
-          color: focusColor ?? AppColors.noContextInstance.greyWhite,
+          color: focusColor ?? AppColors.noContextInstance.borderColor,
           width: 1));
 
   @override
   InputBorder get errorBorder => OutlineInputBorder(
       borderSide: const BorderSide(color: Colors.red, width: .5),
-      borderRadius: borderRadius ?? BorderRadius.circular(10));
+      borderRadius: borderRadius ?? BorderRadius.circular(30));
 
   @override
   InputBorder get focusedErrorBorder => OutlineInputBorder(
-      borderRadius: borderRadius ?? BorderRadius.circular(10),
+      borderRadius: borderRadius ?? BorderRadius.circular(30),
       borderSide: const BorderSide(color: Colors.red, width: 2));
 
   @override
@@ -77,12 +79,13 @@ class CustomInputDecoration extends InputDecoration {
       AppTextStyle.s12_w400(color: AppColors.noContextInstance.blackOpacity);
 
   @override
-  TextStyle? get hintStyle =>
-      AppTextStyle.s12_w400(color: AppColors.noContextInstance.blackOpacity);
+  TextStyle? get hintStyle => hintTxtStyle ??
+      AppTextStyle.s14_w400(color: AppColors.noContextInstance.textColor);
 
   @override
   EdgeInsetsGeometry get contentPadding =>
-      padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 10);
+      // padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 10);
+      padding ??  const EdgeInsets.symmetric(horizontal: 32, vertical: 16);
 
   @override
   bool get filled => true;

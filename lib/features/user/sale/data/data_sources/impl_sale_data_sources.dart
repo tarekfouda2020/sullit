@@ -115,4 +115,20 @@ class ImplSaleRepository extends SaleDataSources {
     );
     return await GenericHttpImpl<List<ProductModel>>().call(model);
   }
+
+  @override
+  Future<Either<Failure, List<ProductModel>>> getVipOffers(bool param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.vipProducts,
+      requestMethod: RequestMethod.get,
+      refresh: param,
+      responseType: ResType.list,
+      showLoader: true,
+      toJsonFunc: (json) => List<ProductModel>.from(
+        json.map((e) => ProductModel.fromJson(e)),
+      ),
+      responseKey: (data) => data["data"]["products"],
+    );
+    return await GenericHttpImpl<List<ProductModel>>().call(model);
+  }
 }

@@ -12,8 +12,11 @@ class ForgetPasswordController {
       if (result != "") {
         CustomToast.showSimpleToast(msg: result, type: ToastType.success);
         AutoRouter.of(context).push(
-          ActiveAccountRoute(phoneOrEmail: email.text,fromForget:true),
+           ResetPasswordVerifyRoute(email: email.text),
+          // ActiveAccountRoute(phoneOrEmail: email.text,fromForget:true),
         );
+      }else{
+        CustomToast.showSimpleToast(msg: "User Not Found", type: ToastType.error);
       }
     }
   }

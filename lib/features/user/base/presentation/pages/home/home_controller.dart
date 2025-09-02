@@ -9,15 +9,33 @@ class HomeController {
   final GenericBloc<bool> visibleSearch = GenericBloc(false);
   final TextEditingController searchController = TextEditingController();
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  bool showToast = false;
 
-  List<String> tabs = [Res.home, Res.category,Res.compass, Res.offers, Res.account];
+  List<String> tabs = [
+    Res.home,
+    Res.category,
+    "",
+    Res.offers,
+    Res.menuIcon
+  ];
+
+
+  List<Widget> pages() => [
+    HomeMain(homeController: this),
+    Categories(homeController: this),
+    // Summary(homeController: controller),
+    Gaps.empty,
+    Coupons(homeController: this),
+    More(homeController: this),
+  ];
 
   List<String> tabsText(BuildContext context) => [
         tr('home', context: context),
         tr('categories', context: context),
-        tr('explore', context: context),
+        // tr('explore', context: context),
+        tr('cart', context: context),
         tr('offers', context: context),
-        tr("account", context: context),
+        tr("more", context: context),
       ];
 
   void setUserLang(BuildContext context, String lang) async {
@@ -25,18 +43,20 @@ class HomeController {
     Phoenix.rebirth(context);
   }
 
-  void showLangBottomSheet(BuildContext context, HomeController controller) {
-    showModalBottomSheet(
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(15), topRight: Radius.circular(15))),
-      backgroundColor: context.colors.white,
-      context: context,
-      builder: (context) => BuildLangBottomSheet(
-        controller: controller,
-      ),
-    );
-  }
+  // void showLangBottomSheet(BuildContext context, HomeController controller) {
+  //   showModalBottomSheet(
+  //     shape: const RoundedRectangleBorder(
+  //         borderRadius: BorderRadius.only(
+  //             topLeft: Radius.circular(15), topRight: Radius.circular(15))),
+  //     backgroundColor: context.colors.white,
+  //     context: context,
+  //     builder: (context) => BuildLangBottomSheet(
+  //       controller: controller,
+  //     ),
+  //   );
+  // }
+
+
 
   void initBottomNavigation(TickerProvider ticker, int index) {
     tabController =
@@ -47,10 +67,14 @@ class HomeController {
 
   void animateTabsPages(int index, BuildContext context) {
     bool auth = context.read<DeviceCubit>().state.model.auth;
-    if (index == 2 && !auth) {
-      CustomToast.showAuthDialog(context);
+    // if (index == 2 && !auth) {
+    //   CustomToast.showAuthDialog(context);
+    //   return;
+    // }
+    if (index == 2) {
+      routeToCart(context);
       return;
-    }else{
+    } else{
       homeTabCubit.onUpdateData(index);
       tabController.animateTo(index);
     }
@@ -83,4 +107,28 @@ class HomeController {
     SystemNavigator.pop();
     return true;
   }
+
+  void routeToCart(BuildContext context){
+    AutoRouter.of(context).push(const CartRoute());
+  }
+
+
+  Future<bool> onBack(BuildContext context) async {
+    if(tabController.index>0){
+      tabController.animateTo(0);
+      homeTabCubit.onUpdateData(0);
+      showToast = false;
+      return false;
+    }
+    if(showToast == false){
+      showToast = true;
+      CustomToast.showSnakeBar('Press again to exit');
+      Future.delayed(const Duration(seconds: 6)).then((value) => showToast = false);
+      return false;
+    }else{
+      SystemNavigator.pop();
+      return true;
+    }
+  }
+
 }

@@ -5,18 +5,17 @@ class BuildRegisterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: LoadingButton(
-        title: tr('register'),
-        onTap: () => controller.setUserRegister(context),
-        color: context.colors.primary,
-        textColor: context.colors.white,
-        btnKey: controller.btnKey,
-        margin: Dimens.paddingH50V10,
-        height: 40.h,
-        width: 200,
-        borderRadius: 40,
-      ),
+    return LoadingButton(
+      title: tr('register'),
+      onTap: () => controller.setUserRegister(context),
+      color: context.colors.primary,
+      textColor: context.colors.white,
+      btnKey: controller.btnKey,
+      margin: EdgeInsets.only(bottom: 20.r),
+      height: 40.h,
+      borderRadius: 40,
+      fontSize:18 ,
+      fontWeight: FontWeight.w700,
     );
   }
 }

@@ -7,6 +7,7 @@ class BuildProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool? haveVipDiscount = context.read<UserCubit>().state.model?.hasValidSubscription;
     return Flexible(
       child: RefreshIndicator(
         onRefresh: () => detailsController.getPopularProducts(1),
@@ -28,6 +29,7 @@ class BuildProducts extends StatelessWidget {
             itemBuilder: (_, item, index) => BuildProductItem(
               productModel: item,
               onFavRefresh: () => detailsController.onFavChanged(item),
+              showVipDiscount: haveVipDiscount,
             ),
             noItemsFoundIndicatorBuilder: (cxt) => const BuildEmptyDataView(),
           ),

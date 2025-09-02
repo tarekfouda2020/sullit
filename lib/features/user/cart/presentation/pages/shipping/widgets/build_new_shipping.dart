@@ -7,26 +7,21 @@ class BuildNewShipping extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return DefaultButton(
+        title: "",
       onTap:()=> controller.onAddNewAddress(context),
-      child: Container(
-        margin: Dimens.paddingHorizontal15PX,
-        padding:Dimens.paddingAll15PX,
-        decoration: BoxDecoration(
-          borderRadius: Dimens.borderRadius10PX,
-          color: context.colors.white,
-          border: Border.all(color: context.colors.greyWhite),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              tr('addNewAddress'),
-              style: AppTextStyle.s15_w700(color: context.colors.primary),
-            ),
-            Icon(Icons.add_circle, color: context.colors.primary),
-          ],
-        ),
+      color: context.colors.white,
+      borderColor: context.colors.primary,
+      margin: Dimens.paddingHorizontal20PX,
+      customLabel: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.add,color: context.colors.primary,size: 15.sp,),
+          Gaps.hGap4,
+          Text(tr('addNewAddress'),
+          style: AppTextStyle.s18_w700(color: context.colors.primary),
+          )
+        ],
       ),
     );
   }

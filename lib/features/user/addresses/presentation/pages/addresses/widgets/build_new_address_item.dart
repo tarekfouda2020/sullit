@@ -15,17 +15,24 @@ class BuildNewAddressItem extends StatelessWidget {
       child: Container(
         margin: Dimens.paddingVertical5PX,
         padding: Dimens.paddingAll10PX,
-        decoration: CustomDecoration(),
+        decoration: const CustomDecoration(myBoxShadow: []),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Radio<bool>(
-              value: false,
-              groupValue: !address.selected!,
-              onChanged: (val) =>
-                  controller.onSelectAddress(context, address, val),
-              activeColor: context.colors.primary,
-            ),
+            // Radio<bool>(
+            //   value: false,
+            //   groupValue: !address.selected!,
+            //   onChanged: (val) =>
+            //       controller.onSelectAddress(context, address, val),
+            //   activeColor: context.colors.primary,
+            //   fillColor: MaterialStateProperty.resolveWith<Color>(
+            //         (states) => states.contains(MaterialState.selected)
+            //         ? context.colors.primary
+            //         : context.colors.grey,
+            //   ),
+            //   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            //   visualDensity: const VisualDensity(horizontal: -4.0, vertical: -4.0),
+            // ),
             Gaps.hGap10,
             Flexible(
               child: Column(
@@ -34,9 +41,9 @@ class BuildNewAddressItem extends StatelessWidget {
                     title: tr('address'),
                     desc: address.address!,
                   ),
-                  BuildAddressTitleItem(
-                    title: tr('postalCode'),
-                    desc: address.postalCode!,
+                   BuildAddressTitleItem(
+                    title: 'Type',
+                    desc: address.addressType!,
                   ),
                   BuildAddressTitleItem(
                     title: tr('city'),
@@ -50,6 +57,23 @@ class BuildNewAddressItem extends StatelessWidget {
                     title: tr('country'),
                     desc: address.country?.name ?? "",
                   ),
+                   BuildAddressTitleItem(
+                    title: 'Street Name',
+                    desc: address.streetName!,
+                  ),
+                   BuildAddressTitleItem(
+                    title: 'Building Name',
+                    desc: address.buildingName!,
+                  ),
+                   BuildAddressTitleItem(
+                    title: 'Flat No.',
+                    desc: address.flatNumber!,
+                  ),
+                  // BuildAddressTitleItem(
+                  //   title: tr('postalCode'),
+                  //   desc: address.postalCode!,
+                  // ),
+
                   BuildAddressTitleItem(
                     title: tr('phone'),
                     desc: address.fullPhone ?? "",
@@ -65,6 +89,7 @@ class BuildNewAddressItem extends StatelessWidget {
                     onTap: () => controller.onActiveAddress(context, address),
                     child: Container(
                       padding: Dimens.paddingAll8PX,
+                      margin: const EdgeInsets.only(bottom: 10),
                       decoration: BoxDecoration(
                         borderRadius: Dimens.borderRadius5PX,
                         color: context.colors.primary,
@@ -78,10 +103,9 @@ class BuildNewAddressItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                IconButton(
-                  icon:
-                      Icon(Icons.delete_outline, color: context.colors.primary),
-                  onPressed: () => controller.deleteAddress(address),
+                GestureDetector(
+                    onTap: () => controller.deleteAddress(address),
+                    child: SvgPicture.asset(Res.trashIcon)
                 ),
               ],
             )

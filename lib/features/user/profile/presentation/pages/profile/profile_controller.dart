@@ -19,7 +19,7 @@ class ProfileController {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
-  final GenericBloc<Country?> countryCubit = GenericBloc(null);
+  final GenericBloc<Country?> countryCubit = GenericBloc(null );
   final GenericBloc<bool> verifyPhoneCubit = GenericBloc(false);
 
   // final GenericBloc<bool> verifyEmailCubit = GenericBloc(false);
@@ -28,6 +28,7 @@ class ProfileController {
 
   ProfileController(BuildContext context) {
     getInitialData(context);
+    countryCubit.onUpdateData(CountryPickerHelper.defaultCountry());
   }
 
   void getInitialData(BuildContext context) {
@@ -43,19 +44,19 @@ class ProfileController {
     }
   }
 
-  void showCountryCode(BuildContext context) async {
-    Country? data = await showCountryPickerDialog(
-      context,
-      cornerRadius: 3,
-    );
-    if (data != null) {
-      countryCubit.onUpdateData(data);
-      phoneController.clear();
-    }
-  }
+  // void showCountryCode(BuildContext context) async {
+  //   Country? data = await showCountryPickerDialog(
+  //     context,
+  //     cornerRadius: 3,
+  //   );
+  //   if (data != null) {
+  //     countryCubit.onUpdateData(data);
+  //     phoneController.clear();
+  //   }
+  // }
 
   void navigateToAddresses(BuildContext context) async {
-    var result = await AutoRouter.of(context).push(const AddressesRoute());
+    var result = await AutoRouter.of(context).push( AddressesRoute());
     if (result != null) {
       addressModel = result as Address;
       addressController.text = addressModel?.address ?? "";
@@ -200,4 +201,11 @@ class ProfileController {
       image: imageCubit.state.data,
     );
   }
+
+
+  void logOut(BuildContext context) {
+    context.read<CountCubit>().onUpdateCount(0, 0);
+    getIt<AuthHelper>().onLogOut(context);
+  }
+
 }

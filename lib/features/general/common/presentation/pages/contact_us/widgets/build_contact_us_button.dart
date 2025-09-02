@@ -10,18 +10,14 @@ class BuildContactUsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        LoadingButton(
-          title: tr('submit'),
-          onTap: () => controller.contactUs(),
-          color: context.colors.primary,
-          textColor: context.colors.white,
-          btnKey: controller.btnKey,
-          margin: Dimens.paddingAll20PX,
-          height: 35.h,
-        ),
-      ],
+    return LoadingButton(
+      title: tr('submit'),
+      onTap: () => controller.contactUs(),
+      color: context.colors.primary,
+      textColor: context.colors.white,
+      btnKey: controller.btnKey,
+      height: 35.h,
+      elevation: 0,
     );
   }
 }

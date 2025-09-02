@@ -1,9 +1,18 @@
 part of 'coupons_imports.dart';
 
 class CouponsController {
+
+  late final HomeController homeController;
   final PagingController<int, Coupon> pagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 12;
+
+  List<Widget> pages() => [
+    const ProOffers(),
+    const NewArrival(),
+    OnSale(homeController: homeController),
+    const BestRated(),
+  ];
 
   // CouponsController() {
   //   pagingController.addPageRequestListener((pageKey) {

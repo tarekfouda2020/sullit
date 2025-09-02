@@ -2,6 +2,7 @@
 
 part of 'delivery_imports.dart';
 
+
 class DeliveryController {
   final GenericBloc<int> deliveryTypeCubit = GenericBloc(0);
   final GenericBloc<List<SellerShipping>> sellerShippingBloc = GenericBloc([]);
@@ -11,7 +12,7 @@ class DeliveryController {
   Future<void> getShippingInfo({bool refresh = true}) async {
     return await GetShippingInfo().call(refresh).then(
           (value) => sellerShippingBloc.onUpdateData(value),
-        );
+    );
   }
 
   void onChangeType(SellerShipping model, int value) {
@@ -45,10 +46,12 @@ class DeliveryController {
     var arrangedItems = shipping
         .map(
           (e) => {
-            'owner_id':  e.ownerId,
-            'shipiing_type': e.deliveryType == 0 ? 'DELIVERY' : 'LOCAL_PICKUP'
-          },
-        )
+        'owner_id':  e.ownerId,
+        'shipiing_type': e.deliveryType == 0
+            ? DeliveryTypeEnum.delivery.getEnumValue()
+            : DeliveryTypeEnum.pickUp.getEnumValue()
+      },
+    )
         .toList();
     return arrangedItems;
   }

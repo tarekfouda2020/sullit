@@ -26,6 +26,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       key: controller.scaffold,
+      drawerEnableOpenDragGesture: false,
+      drawer: BuildFilterDrawer(categoryDetailsController: controller),
       appBar: DefaultAppBar(
         titleWidget: BlocBuilder<GenericBloc<String>, GenericState<String>>(
           bloc: controller.titleCubit,
@@ -37,8 +39,19 @@ class _CategoryDetailsState extends State<CategoryDetails> {
           },
         ),
         title: "",
+        actions: [
+          InkWell(
+            onTap: () => controller.openDrawerFilter(),
+            child: Padding(
+              padding:  const EdgeInsets.all(Dimens.dp5),
+              child: SvgPicture.asset(
+                Res.filterIcon,
+              ),
+            ),
+          ),
+          Gaps.hGap20,
+        ],
       ),
-      drawer: BuildFilterDrawer(categoryDetailsController: controller),
       body: Column(
         children: [
           Visibility(
@@ -46,7 +59,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
             replacement: Gaps.vGap15,
             child: BuildAllCategoriesView(detailsController: controller),
           ),
-          BuildFilterBar(detailsController: controller),
+          // BuildFilterBar(detailsController: controller),
           BuildProducts(detailsController: controller),
         ],
       ),

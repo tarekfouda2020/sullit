@@ -21,7 +21,6 @@ class AddressModel extends BaseApiModel<Address> with _$AddressModel {
     CountryModel? country,
     StateModel? state,
     CityModel? city,
-    @JsonKey(name: "postal_code") required String postalCode,
     required String phone,
   @JsonKey(name: "full_phone") required String fullPhone,
     @JsonKey(name: "country_code") required String countryCode,
@@ -29,6 +28,11 @@ class AddressModel extends BaseApiModel<Address> with _$AddressModel {
     required String lat,
     required String lang,
     @JsonKey(name: "is_active") required bool isActive,
+    @JsonKey(name: "address_type") required String addressType,
+    @JsonKey(name: "address_type_label") required String addressTypeLabel,
+    @JsonKey(name: "street_name") required String streetName,
+    @JsonKey(name: "building_name") required String buildingName,
+    @JsonKey(name: "flat_number") required String flatNumber,
   }) = _AddressModel;
 
   factory AddressModel.fromJson(Map<String, dynamic> json) =>
@@ -43,7 +47,7 @@ class AddressModel extends BaseApiModel<Address> with _$AddressModel {
       country: country?.toDomainModel(),
       state: state?.toDomainModel(),
       city: city?.toDomainModel(),
-      postalCode: postalCode,
+      // postalCode: postalCode,
       phone: phone,
       fullPhone: fullPhone,
       countryCode:countryCode,
@@ -51,6 +55,11 @@ class AddressModel extends BaseApiModel<Address> with _$AddressModel {
       lat: lat,
       lang: lang,
       isActive: isActive,
+      addressType: addressType,
+      addressTypeLabel: addressTypeLabel,
+      streetName: streetName,
+      buildingName: buildingName,
+      flatNumber: flatNumber,
     );
   }
 }

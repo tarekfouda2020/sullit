@@ -18,6 +18,17 @@ class BuildEditAddressForm extends StatelessWidget {
           padding: const EdgeInsets.all(Dimens.dp20),
           children: [
             GenericTextField(
+              type: TextInputType.none,
+              controller: controller.locationController,
+              fieldTypes: FieldTypes.clickable,
+              onTab: ()  => controller.routeToDetectLocation(context),
+              action: TextInputAction.done,
+              fillColor: context.colors.white,
+              validate: (value) => value?.validateEmpty(),
+              label: tr("detectLocation"),
+              margin: Dimens.paddingVertical10PX,
+            ),
+            GenericTextField(
               controller: controller.addressController,
               fieldTypes: FieldTypes.rich,
               type: TextInputType.multiline,
@@ -66,6 +77,7 @@ class BuildEditAddressForm extends StatelessWidget {
                 );
               },
             ),
+
             BlocBuilder<GenericBloc<StateDomainModel?>,
                 GenericState<StateDomainModel?>>(
               bloc: controller.stateCubit,
@@ -90,18 +102,32 @@ class BuildEditAddressForm extends StatelessWidget {
                 );
               },
             ),
-            GenericTextField(
-              controller: controller.postalCodeController,
-              fieldTypes: FieldTypes.normal,
-              type: TextInputType.text,
-              fillColor: context.colors.white,
+            DropdownTextField<AddressTypeModel>(
+              dropKey: controller.addressTypeKey,
+              title: "Select Type",
+              label: "Select Type",
               margin: Dimens.paddingVertical10PX,
-              action: TextInputAction.next,
-              validate: (value) => value?.validateEmpty(),
-              label: tr("postalCode"),
+              itemAsString: (item) => item.label,
+              fillColor: context.colors.white,
+              textSize: 16.sp,
+              useName: true,
+              onFind: (data)=> controller.getAddressTypes(),
+              fontSize: 16.sp,
+              onChange: (value) => controller.onSelectAddressType(value),
+              validate: (value) => validateDropDown(value),
+              selectedItem: controller.addressTypeModel,
             ),
-            BlocBuilder<GenericBloc<package.Country?>,
-                GenericState<package.Country?>>(
+            // GenericTextField(
+            //   controller: controller.postalCodeController,
+            //   fieldTypes: FieldTypes.normal,
+            //   type: TextInputType.text,
+            //   fillColor: context.colors.white,
+            //   margin: Dimens.paddingVertical10PX,
+            //   action: TextInputAction.next,
+            //   validate: (value) => value?.validateEmpty(),
+            //   label: tr("postalCode"),
+            // ),
+            BlocBuilder<GenericBloc<package.Country?>, GenericState<package.Country?>>(
               bloc: controller.countryCodeCubit,
               builder: (context, state) {
                 return Row(
@@ -139,6 +165,36 @@ class BuildEditAddressForm extends StatelessWidget {
                   ],
                 );
               },
+            ),
+            GenericTextField(
+              controller: controller.streetController,
+              fieldTypes: FieldTypes.normal,
+              type: TextInputType.text,
+              fillColor: context.colors.white,
+              margin: Dimens.paddingVertical10PX,
+              action: TextInputAction.next,
+              validate: (value) => value?.validateEmpty(),
+              label: "street name",
+            ),
+            GenericTextField(
+              controller: controller.buildingController,
+              fieldTypes: FieldTypes.normal,
+              type: TextInputType.text,
+              fillColor: context.colors.white,
+              margin: Dimens.paddingVertical10PX,
+              action: TextInputAction.next,
+              validate: (value) => value?.validateEmpty(),
+              label: "building name",
+            ),
+            GenericTextField(
+              controller: controller.flatController,
+              fieldTypes: FieldTypes.normal,
+              type: TextInputType.number,
+              fillColor: context.colors.white,
+              margin: Dimens.paddingVertical10PX,
+              action: TextInputAction.next,
+              validate: (value) => value?.validateEmpty(),
+              label: "flat No:",
             ),
           ],
         ),

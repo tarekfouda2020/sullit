@@ -15,6 +15,12 @@ class CartItem extends BaseDomainModel {
   int productId;
   int minQty;
   int stockQty;
+  bool isWishlist;
+  String soldByType;
+  String soldBy;
+  int shopId;
+  int rating;
+
 
   CartItem({
     required this.id,
@@ -30,6 +36,11 @@ class CartItem extends BaseDomainModel {
     required this.currencySymbol,
     required this.productId,
     required this.minQty,
-    required this.stockQty
+    required this.stockQty,
+    required this.isWishlist,
+    required this.soldBy,
+    required this.soldByType,
+    required this.shopId,
+    required this.rating,
   });
 }

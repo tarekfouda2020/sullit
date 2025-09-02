@@ -24,8 +24,9 @@ class MoreController {
       case MoreRoutes.dashboard:
         AutoRouter.of(context).push(const DashBoardRoute());
         break;
-      case MoreRoutes.purchasedHistory:
-        AutoRouter.of(context).push(const PurchasedHistoryRoute());
+      case MoreRoutes.purchasedProducts:
+        AutoRouter.of(context).push(const PurchasedOrdersRoute());
+        // AutoRouter.of(context).push(const PurchasedHistoryRoute());
         break;
       case MoreRoutes.returnOrders:
         AutoRouter.of(context).push(const ReturnOrdersRoute());
@@ -55,7 +56,7 @@ class MoreController {
         AutoRouter.of(context).push( const ProfileRoute());
         break;
       case MoreRoutes.trackOrder:
-        AutoRouter.of(context).push(const TrackOrderRoute());
+        return ;
         break;
       case MoreRoutes.classifiedProducts:
         AutoRouter.of(context).push(const ClassifiedProductsRoute());
@@ -66,9 +67,67 @@ class MoreController {
       case MoreRoutes.support:
         AutoRouter.of(context).push(const SupportRoute());
         break;
+        case MoreRoutes.giftCards:
+        AutoRouter.of(context).push(const GiftCardsRoute());
+        break;
+        case MoreRoutes.vipSubscription:
+          AutoRouter.of(context).push(const VipMemberShipsRoute());
+        break;
+        case MoreRoutes.loyaltyPoints:
+          AutoRouter.of(context).push(const LoyaltyPointsRoute());
+        break;
+        case MoreRoutes.addresses:
+          AutoRouter.of(context).push( AddressesRoute());
+        break;
+        case MoreRoutes.allBrands:
+          AutoRouter.of(context).push(const BrandsRoute());
+        break;
+        case MoreRoutes.allCategories:
+          AutoRouter.of(context).push(HomeRoute(index: 1));
+        break;
+        case MoreRoutes.contactUs:
+          AutoRouter.of(context).push(const ContactUsRoute());
+        break;
+        case MoreRoutes.termsAndConditions:
+          AutoRouter.of(context).push(const TermsRoute());
+        break;
+        case MoreRoutes.privacyPolicy:
+          AutoRouter.of(context).push(const PrivacyRoute());
+        break;
+        case MoreRoutes.supportPolicy:
+          AutoRouter.of(context).push(const SupportPolicyRoute());
+        break;
+        case MoreRoutes.returnPolicy:
+          AutoRouter.of(context).push(const ReturnPolicyRoute());
+        break;
+        case MoreRoutes.language:
+          showLangBottomSheet(context);
+        break;
       case MoreRoutes.test:
         // TODO: Handle this case.
         break;
+
     }
   }
+
+  void showLangBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15), topRight: Radius.circular(15))),
+      backgroundColor: context.colors.white,
+      context: context,
+      builder: (context) => BuildLangBottomSheet(
+        controller: this,
+      ),
+    );
+  }
+
+
+  void setUserLang(BuildContext context, String lang) async {
+    getIt<Utilities>().changeLanguage(lang, context);
+    Phoenix.rebirth(context);
+  }
+
+
 }

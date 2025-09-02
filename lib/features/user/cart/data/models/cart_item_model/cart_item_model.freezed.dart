@@ -29,6 +29,7 @@ mixin _$CartItemModel {
   String get price => throw _privateConstructorUsedError;
   String get tax => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
+  int get rating => throw _privateConstructorUsedError;
   @JsonKey(name: "is_digital")
   bool get isDigital => throw _privateConstructorUsedError;
   String get total => throw _privateConstructorUsedError;
@@ -42,6 +43,14 @@ mixin _$CartItemModel {
   int get minQty => throw _privateConstructorUsedError;
   @JsonKey(name: "stock_qty")
   int get stockQty => throw _privateConstructorUsedError;
+  @JsonKey(name: "is_wishlist")
+  bool get isWishlist => throw _privateConstructorUsedError;
+  @JsonKey(name: "sold_by_type")
+  String get soldByType => throw _privateConstructorUsedError;
+  @JsonKey(name: "sold_by_name")
+  String get soldBy => throw _privateConstructorUsedError;
+  @JsonKey(name: "shop_id")
+  int get shopId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -63,13 +72,18 @@ abstract class $CartItemModelCopyWith<$Res> {
       String price,
       String tax,
       int quantity,
+      int rating,
       @JsonKey(name: "is_digital") bool isDigital,
       String total,
       @JsonKey(name: "calculable_total") num calculableTotal,
       @JsonKey(name: "currency_symbol") String currencySymbol,
       @JsonKey(name: "product_id") int productId,
       @JsonKey(name: "min_qty") int minQty,
-      @JsonKey(name: "stock_qty") int stockQty});
+      @JsonKey(name: "stock_qty") int stockQty,
+      @JsonKey(name: "is_wishlist") bool isWishlist,
+      @JsonKey(name: "sold_by_type") String soldByType,
+      @JsonKey(name: "sold_by_name") String soldBy,
+      @JsonKey(name: "shop_id") int shopId});
 }
 
 /// @nodoc
@@ -92,6 +106,7 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
     Object? price = null,
     Object? tax = null,
     Object? quantity = null,
+    Object? rating = null,
     Object? isDigital = null,
     Object? total = null,
     Object? calculableTotal = null,
@@ -99,6 +114,10 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
     Object? productId = null,
     Object? minQty = null,
     Object? stockQty = null,
+    Object? isWishlist = null,
+    Object? soldByType = null,
+    Object? soldBy = null,
+    Object? shopId = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -129,6 +148,10 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as int,
       isDigital: null == isDigital
           ? _value.isDigital
           : isDigital // ignore: cast_nullable_to_non_nullable
@@ -157,6 +180,22 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
           ? _value.stockQty
           : stockQty // ignore: cast_nullable_to_non_nullable
               as int,
+      isWishlist: null == isWishlist
+          ? _value.isWishlist
+          : isWishlist // ignore: cast_nullable_to_non_nullable
+              as bool,
+      soldByType: null == soldByType
+          ? _value.soldByType
+          : soldByType // ignore: cast_nullable_to_non_nullable
+              as String,
+      soldBy: null == soldBy
+          ? _value.soldBy
+          : soldBy // ignore: cast_nullable_to_non_nullable
+              as String,
+      shopId: null == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -177,13 +216,18 @@ abstract class _$$_CartItemModelCopyWith<$Res>
       String price,
       String tax,
       int quantity,
+      int rating,
       @JsonKey(name: "is_digital") bool isDigital,
       String total,
       @JsonKey(name: "calculable_total") num calculableTotal,
       @JsonKey(name: "currency_symbol") String currencySymbol,
       @JsonKey(name: "product_id") int productId,
       @JsonKey(name: "min_qty") int minQty,
-      @JsonKey(name: "stock_qty") int stockQty});
+      @JsonKey(name: "stock_qty") int stockQty,
+      @JsonKey(name: "is_wishlist") bool isWishlist,
+      @JsonKey(name: "sold_by_type") String soldByType,
+      @JsonKey(name: "sold_by_name") String soldBy,
+      @JsonKey(name: "shop_id") int shopId});
 }
 
 /// @nodoc
@@ -204,6 +248,7 @@ class __$$_CartItemModelCopyWithImpl<$Res>
     Object? price = null,
     Object? tax = null,
     Object? quantity = null,
+    Object? rating = null,
     Object? isDigital = null,
     Object? total = null,
     Object? calculableTotal = null,
@@ -211,6 +256,10 @@ class __$$_CartItemModelCopyWithImpl<$Res>
     Object? productId = null,
     Object? minQty = null,
     Object? stockQty = null,
+    Object? isWishlist = null,
+    Object? soldByType = null,
+    Object? soldBy = null,
+    Object? shopId = null,
   }) {
     return _then(_$_CartItemModel(
       id: null == id
@@ -241,6 +290,10 @@ class __$$_CartItemModelCopyWithImpl<$Res>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as int,
       isDigital: null == isDigital
           ? _value.isDigital
           : isDigital // ignore: cast_nullable_to_non_nullable
@@ -269,6 +322,22 @@ class __$$_CartItemModelCopyWithImpl<$Res>
           ? _value.stockQty
           : stockQty // ignore: cast_nullable_to_non_nullable
               as int,
+      isWishlist: null == isWishlist
+          ? _value.isWishlist
+          : isWishlist // ignore: cast_nullable_to_non_nullable
+              as bool,
+      soldByType: null == soldByType
+          ? _value.soldByType
+          : soldByType // ignore: cast_nullable_to_non_nullable
+              as String,
+      soldBy: null == soldBy
+          ? _value.soldBy
+          : soldBy // ignore: cast_nullable_to_non_nullable
+              as String,
+      shopId: null == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -285,13 +354,18 @@ class _$_CartItemModel extends _CartItemModel {
       required this.price,
       required this.tax,
       required this.quantity,
+      required this.rating,
       @JsonKey(name: "is_digital") required this.isDigital,
       required this.total,
       @JsonKey(name: "calculable_total") required this.calculableTotal,
       @JsonKey(name: "currency_symbol") required this.currencySymbol,
       @JsonKey(name: "product_id") required this.productId,
       @JsonKey(name: "min_qty") required this.minQty,
-      @JsonKey(name: "stock_qty") required this.stockQty})
+      @JsonKey(name: "stock_qty") required this.stockQty,
+      @JsonKey(name: "is_wishlist") required this.isWishlist,
+      @JsonKey(name: "sold_by_type") required this.soldByType,
+      @JsonKey(name: "sold_by_name") required this.soldBy,
+      @JsonKey(name: "shop_id") required this.shopId})
       : super._();
 
   factory _$_CartItemModel.fromJson(Map<String, dynamic> json) =>
@@ -314,6 +388,8 @@ class _$_CartItemModel extends _CartItemModel {
   @override
   final int quantity;
   @override
+  final int rating;
+  @override
   @JsonKey(name: "is_digital")
   final bool isDigital;
   @override
@@ -333,10 +409,22 @@ class _$_CartItemModel extends _CartItemModel {
   @override
   @JsonKey(name: "stock_qty")
   final int stockQty;
+  @override
+  @JsonKey(name: "is_wishlist")
+  final bool isWishlist;
+  @override
+  @JsonKey(name: "sold_by_type")
+  final String soldByType;
+  @override
+  @JsonKey(name: "sold_by_name")
+  final String soldBy;
+  @override
+  @JsonKey(name: "shop_id")
+  final int shopId;
 
   @override
   String toString() {
-    return 'CartItemModel(id: $id, ownerId: $ownerId, thumbnailImage: $thumbnailImage, name: $name, price: $price, tax: $tax, quantity: $quantity, isDigital: $isDigital, total: $total, calculableTotal: $calculableTotal, currencySymbol: $currencySymbol, productId: $productId, minQty: $minQty, stockQty: $stockQty)';
+    return 'CartItemModel(id: $id, ownerId: $ownerId, thumbnailImage: $thumbnailImage, name: $name, price: $price, tax: $tax, quantity: $quantity, rating: $rating, isDigital: $isDigital, total: $total, calculableTotal: $calculableTotal, currencySymbol: $currencySymbol, productId: $productId, minQty: $minQty, stockQty: $stockQty, isWishlist: $isWishlist, soldByType: $soldByType, soldBy: $soldBy, shopId: $shopId)';
   }
 
   @override
@@ -353,6 +441,7 @@ class _$_CartItemModel extends _CartItemModel {
             (identical(other.tax, tax) || other.tax == tax) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.isDigital, isDigital) ||
                 other.isDigital == isDigital) &&
             (identical(other.total, total) || other.total == total) &&
@@ -364,27 +453,39 @@ class _$_CartItemModel extends _CartItemModel {
                 other.productId == productId) &&
             (identical(other.minQty, minQty) || other.minQty == minQty) &&
             (identical(other.stockQty, stockQty) ||
-                other.stockQty == stockQty));
+                other.stockQty == stockQty) &&
+            (identical(other.isWishlist, isWishlist) ||
+                other.isWishlist == isWishlist) &&
+            (identical(other.soldByType, soldByType) ||
+                other.soldByType == soldByType) &&
+            (identical(other.soldBy, soldBy) || other.soldBy == soldBy) &&
+            (identical(other.shopId, shopId) || other.shopId == shopId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      ownerId,
-      thumbnailImage,
-      name,
-      price,
-      tax,
-      quantity,
-      isDigital,
-      total,
-      calculableTotal,
-      currencySymbol,
-      productId,
-      minQty,
-      stockQty);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        ownerId,
+        thumbnailImage,
+        name,
+        price,
+        tax,
+        quantity,
+        rating,
+        isDigital,
+        total,
+        calculableTotal,
+        currencySymbol,
+        productId,
+        minQty,
+        stockQty,
+        isWishlist,
+        soldByType,
+        soldBy,
+        shopId
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -409,14 +510,18 @@ abstract class _CartItemModel extends CartItemModel {
       required final String price,
       required final String tax,
       required final int quantity,
+      required final int rating,
       @JsonKey(name: "is_digital") required final bool isDigital,
       required final String total,
       @JsonKey(name: "calculable_total") required final num calculableTotal,
       @JsonKey(name: "currency_symbol") required final String currencySymbol,
       @JsonKey(name: "product_id") required final int productId,
       @JsonKey(name: "min_qty") required final int minQty,
-      @JsonKey(name: "stock_qty")
-      required final int stockQty}) = _$_CartItemModel;
+      @JsonKey(name: "stock_qty") required final int stockQty,
+      @JsonKey(name: "is_wishlist") required final bool isWishlist,
+      @JsonKey(name: "sold_by_type") required final String soldByType,
+      @JsonKey(name: "sold_by_name") required final String soldBy,
+      @JsonKey(name: "shop_id") required final int shopId}) = _$_CartItemModel;
   const _CartItemModel._() : super._();
 
   factory _CartItemModel.fromJson(Map<String, dynamic> json) =
@@ -439,6 +544,8 @@ abstract class _CartItemModel extends CartItemModel {
   @override
   int get quantity;
   @override
+  int get rating;
+  @override
   @JsonKey(name: "is_digital")
   bool get isDigital;
   @override
@@ -458,6 +565,18 @@ abstract class _CartItemModel extends CartItemModel {
   @override
   @JsonKey(name: "stock_qty")
   int get stockQty;
+  @override
+  @JsonKey(name: "is_wishlist")
+  bool get isWishlist;
+  @override
+  @JsonKey(name: "sold_by_type")
+  String get soldByType;
+  @override
+  @JsonKey(name: "sold_by_name")
+  String get soldBy;
+  @override
+  @JsonKey(name: "shop_id")
+  int get shopId;
   @override
   @JsonKey(ignore: true)
   _$$_CartItemModelCopyWith<_$_CartItemModel> get copyWith =>

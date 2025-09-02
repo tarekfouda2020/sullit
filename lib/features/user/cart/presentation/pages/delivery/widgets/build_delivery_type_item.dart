@@ -29,12 +29,8 @@ class BuildDeliveryTypeItem extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Radio<int>(
-                value: value,
-                groupValue: groupValue,
-                onChanged: onChanged,
-                activeColor: context.colors.primary,
-              ),
+              CustomRadioWidget(selected: value == groupValue,size: 18),
+              Gaps.hGap10,
               Flexible(
                 child: Text(
                   title,

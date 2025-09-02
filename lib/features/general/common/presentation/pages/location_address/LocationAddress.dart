@@ -2,6 +2,9 @@ part of 'LocationAddressImports.dart';
 
 
 class LocationAddress extends StatefulWidget {
+  final bool fromEdit;
+
+  const LocationAddress({super.key, required this.fromEdit});
   @override
   State<StatefulWidget> createState() => _LocationAddress();
 }
@@ -11,19 +14,20 @@ class _LocationAddress extends State<LocationAddress> {
 
   @override
   void initState() {
-    var loc = context.read<LocationCubit>().state.model;
-    double lat = loc?.lat??	24.774265;
-    double lng = loc?.lng??	46.738586;
-    locationAddressData.locationModel=LocationEntity(lat: lat, lng: lng);
-    locationAddressData.getLocationAddress(context);
     super.initState();
+    locationAddressData.getLocation(context);
   }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: locationAddressData._scaffold,
+      key: locationAddressData.scaffold,
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: context.colors.black),
+          onPressed: () => locationAddressData.onPop(context),
+        ),
         title: BlocBuilder<LocationCubit,LocationState>(
           builder: (context,state){
             return Text(

@@ -21,8 +21,9 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.colors.customBackground,
-      appBar: const BuildCustomAppBar(),
+      backgroundColor: context.colors.cartBg,
+      // appBar: const BuildCustomAppBar(),
+      appBar: DefaultAppBar(title: tr("cart"),bgColor: context.colors.white),
       body: BlocBuilder<GenericBloc<CartDomainModel>,
           GenericState<CartDomainModel>>(
         bloc: controller.cartItemsBloc,
@@ -30,7 +31,11 @@ class _CartState extends State<Cart> {
           if (state is GenericUpdateState) {
             return Column(
               children: [
-                const BuildCartStepper(current: 1),
+                 const BuildCartStepper(current: 1),
+                Gaps.vGap11,
+                if((state.data.items ?? []).isNotEmpty)
+                  CleaAllWidget(controller: controller,),
+                Gaps.vGap12,
                 BuildCartItems(
                   controller: controller,
                   cartItems: state.data.items!,

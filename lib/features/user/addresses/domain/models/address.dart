@@ -2,6 +2,7 @@ import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/core/models/domain_models/city.dart';
 import 'package:flutter_tdd/core/models/domain_models/country.dart';
 import 'package:flutter_tdd/core/models/domain_models/state.dart';
+import 'package:flutter_tdd/features/user/addresses/domain/models/address_type_model.dart';
 
 class Address extends BaseDomainModel {
   int? id;
@@ -19,6 +20,11 @@ class Address extends BaseDomainModel {
   String? lang;
   bool? isActive;
   bool? selected = false;
+  String? addressType;
+  String? addressTypeLabel;
+  String? streetName;
+  String? buildingName;
+  String? flatNumber;
 
   Address({
     this.id,
@@ -35,6 +41,11 @@ class Address extends BaseDomainModel {
     this.lat,
     this.lang,
     this.isActive,
+    this.streetName,
+    this.flatNumber,
+    this.buildingName,
+    this.addressType,
+    this.addressTypeLabel
   });
 
   Address.fromJson(Map<String, dynamic> json) {
@@ -49,6 +60,11 @@ class Address extends BaseDomainModel {
     lat = json['lat'];
     lang = json['lang'];
     isActive = json['is_active'];
+    addressType = json['address_type'];
+    streetName = json['street_name'];
+    buildingName = json['building_name'];
+    flatNumber = json['flat_number'];
+    addressTypeLabel = json['address_type_label'];
   }
 
   Map<String, dynamic> toJson() {
@@ -64,6 +80,14 @@ class Address extends BaseDomainModel {
     data['lat'] = lat;
     data['lang'] = lang;
     data['is_active'] = isActive;
+    data["address_type"] = addressType;
+    data["address_type_label"] = addressTypeLabel;
+    data["street_name"] = streetName;
+    data["building_name"] = buildingName;
+    data["flat_number"] = flatNumber;
     return data;
   }
+
+
+
 }

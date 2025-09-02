@@ -5,20 +5,30 @@ part of 'cart_payment_imports.dart';
 class CartPaymentController {
   final TextEditingController coupon = TextEditingController();
   final TextEditingController additionalInfo = TextEditingController();
+  final TextEditingController giftCardCode = TextEditingController();
   final GenericBloc<Shipping?> shippingBloc = GenericBloc(null);
+  final GenericBloc<GiftCardApllieCartDomainModel?> giftCardBlocBloc = GenericBloc(null);
   final GlobalKey<FormState> couponFormKey = GlobalKey();
   final GlobalKey<FormState> additionalFormKey = GlobalKey();
   final GenericBloc<int> paymentCubit = GenericBloc(0);
   final GenericBloc<bool> conditionsCubit = GenericBloc(false);
+  final GenericBloc<bool> isWalletSelected = GenericBloc(false);
+  final GenericBloc<bool> applyPointsSwitchCubit = GenericBloc(false);
+  final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc =
+  GenericBloc(null);
   String? selectedPayment;
 
   CartPaymentController(Shipping shipping) {
     shipping.paymentOption?.first.selected = true;
     selectedPayment = shipping.paymentOption?.first.paymentTypeKey;
+   shipping.paymentOption?.first.fakeSelected = true;
+   shipping.paymentOption?.first.selected = true;
     shippingBloc.onUpdateData(shipping);
     if (shipping.isAdminDiscount == true) {
       calculateDiscount();
     }
+    getLoyaltyPointsBalance(refresh: false);
+    getLoyaltyPointsBalance();
   }
 
   void calculateDiscount() {
@@ -87,7 +97,7 @@ class CartPaymentController {
     var summary = shippingBloc.state.data!.summary;
     var balance = summary.walletBalanceValue;
     var totalPrice = summary.calTotal;
-    if (selectedPayment == "wallet" && totalPrice > balance) {
+    if (selectedPayment == PayTypeEnum.wallet.name && totalPrice > balance) {
       CustomToast.showSimpleToast(
           msg: tr('walletBalanceEmpty'), type: ToastType.error);
       return false;
@@ -101,18 +111,60 @@ class CartPaymentController {
       msg: tr('thanksForYourOrder'),
       type: ToastType.success,
     );
-    AutoRouter.of(context).push(
-      ConfirmationRoute(summary: data),
-    );
+    // AutoRouter.of(context).push(
+    //   ConfirmationRoute(summary: data),
+    // );
+    AutoRouter.of(context).push( CartConfirmBuyingRoute(summary: data));
+
   }
 
   void onChangePayment(Shipping model, int index) {
     for (var e in model.paymentOption!) {
-      e.selected = false;
+      e.fakeSelected = false;
     }
-    model.paymentOption![index].selected = true;
-    selectedPayment = model.paymentOption![index].paymentTypeKey;
+    model.paymentOption![index].fakeSelected = true;
     shippingBloc.onUpdateData(shippingBloc.state.data);
+  }
+
+  void switchApplyWalletBalance(){
+
+    /// switch apply wallet method in the bottom sheet and in switch toggle
+
+    if(isWalletSelected.state.data){
+      unSelectWalletPayMethod();
+    }else if(isBalanceEnough()){
+      selectWalletPayMethod();
+    }
+    shippingBloc.onUpdateData(shippingBloc.state.data);
+  }
+
+
+
+  void unSelectWalletPayMethod(){
+    isWalletSelected.onUpdateData(false);
+    List<PaymentOption> paymentOptions = shippingBloc.state.data!.paymentOption!;
+    for(PaymentOption item in paymentOptions){
+      item.selected = false;
+      item.fakeSelected = false;
+    }
+    PaymentOption firstPayment = paymentOptions.first;
+    firstPayment.fakeSelected = true;
+    firstPayment.selected = true;
+    selectedPayment = firstPayment.paymentTypeKey;
+  }
+
+  void selectWalletPayMethod(){
+    for(PaymentOption item in shippingBloc.state.data!.paymentOption!){
+      if(item.paymentTypeKey == PayTypeEnum.wallet.name){
+        item.selected = true;
+        item.fakeSelected = true;
+      }else{
+        item.selected = false;
+        item.fakeSelected = false;
+      }
+    }
+    isWalletSelected.onUpdateData(true);
+    selectedPayment = PayTypeEnum.wallet.name;
   }
 
   void _goToPay(String? transactionUrl, BuildContext context) {
@@ -139,6 +191,110 @@ class CartPaymentController {
     return CreateOrderParams(
       paymentOption: selectedPayment ?? "",
       additionalInfo: additionalInfo.text,
+      giftCardCode: giftCardCode.text.trim(),
     );
   }
+
+
+  void paymentMethodSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      useRootNavigator: true,
+      enableDrag: false,
+      builder: (context) => PaymentMethodBottomSheetWidget(controller: this),
+    );
+  }
+
+  void confirmSelectPayMethod(BuildContext context){
+    List<PaymentOption> paymentOptions =  shippingBloc.state.data!.paymentOption!;
+   for(var item in paymentOptions){
+     item.selected = item.fakeSelected;
+   }
+    PaymentOption selectedMethod = paymentOptions.firstWhere((element) => element.selected);
+   if(selectedMethod.getPaymentType() == PayTypeEnum.wallet){
+     isWalletSelected.onUpdateData(true);
+   }else{
+     isWalletSelected.onUpdateData(false);
+   }
+   selectedPayment = selectedMethod.paymentTypeKey;
+   shippingBloc.onUpdateData(shippingBloc.state.data);
+   Navigator.pop(context);
+  }
+
+
+  void giftCardSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      useRootNavigator: true,
+      enableDrag: false,
+      builder: (context) => ApplyGiftCardSheet(controller: this),
+    );
+  }
+
+  Future<void> applyLoyaltyPoint()async{
+     await ApplyLoyaltyPoints().call(NoParams()).then((value) {
+       if (value != null) {
+         applyPointsSwitchCubit.onUpdateData(true);
+         shippingBloc.state.data!.summary=value;
+         shippingBloc.onUpdateData(shippingBloc.state.data);
+       }
+     });
+  }
+
+  Future<void> removeLoyaltyPoint()async{
+    await RemoveLoyaltyPoints().call(NoParams()).then((value) {
+      if (value != null) {
+        applyPointsSwitchCubit.onUpdateData(false);
+        shippingBloc.state.data!.summary=value;
+        shippingBloc.onUpdateData(shippingBloc.state.data);
+      }
+    });
+  }
+
+  Future <void> switchApplyPoints()async{
+    if((loyaltyPointsBalanceBloc.state.data?.points ?? 0) > 0 ) {
+      if (applyPointsSwitchCubit.state.data) {
+        removeLoyaltyPoint();
+      } else {
+        if(shippingBloc.state.data!.summary.couponApplied==true) {
+          await removeCoupon();
+        }
+        applyLoyaltyPoint();
+      }
+    }
+    }
+
+  Future<void> getLoyaltyPointsBalance({bool refresh = true}) async {
+    return await GetLoyaltyPointsBalance().call(refresh).then(
+          (value) => loyaltyPointsBalanceBloc.onUpdateData(value),
+    );
+  }
+
+  Future<void> applyGiftCard(BuildContext context)async{
+    FocusScope.of(context).unfocus();
+    await ApplyGiftCard().call(ApplyGiftCardParams(giftCardCode: giftCardCode.text)).then((value) {
+      if (value != null) {
+      shippingBloc.state.data!.summary = value.summary;
+      shippingBloc.state.data!.summary.appliedGiftCard = value.appliedGiftCard;
+      shippingBloc.onUpdateData(shippingBloc.state.data);
+      CustomToast.showSimpleToast(msg: tr("giftCardApplied"));
+      }
+    });
+  }
+
+  Future<void> removeCoupon()async{
+    await RemoveCoupon().call(NoParams()).then((value) {
+      if (value != null) {
+        shippingBloc.state.data!.summary=value;
+        shippingBloc.onUpdateData(shippingBloc.state.data);
+      }
+    });
+  }
+
+
+
 }

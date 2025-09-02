@@ -17,7 +17,7 @@ class BuildProductSuggestions extends StatelessWidget {
             padding: Dimens.paddingVertical20PX,
             alignment: Alignment.center,
             child: Text(
-              tr('noProductFound'),
+              tr('noProductsFound'),
               style: AppTextStyle.s15_w700(color: context.colors.black),
             ),
           ),

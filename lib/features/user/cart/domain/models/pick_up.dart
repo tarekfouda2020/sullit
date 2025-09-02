@@ -7,11 +7,13 @@ class Pickup extends BaseDomainModel{
   String phone;
   double? lat;
   double? lang;
+  bool isSelected;
 
   Pickup({required this.id,
     required this.address,
     required this.postalCode,
     required this.phone,
     required this.lat,
+     this.isSelected = false,
     required this.lang});
 }

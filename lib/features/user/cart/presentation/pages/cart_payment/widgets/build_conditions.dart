@@ -14,43 +14,39 @@ class BuildConditions extends StatelessWidget {
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.conditionsCubit,
             builder: (_, state) {
-              return Checkbox(
-                value: state.data,
-                activeColor: Colors.grey.withOpacity(.3),
-                visualDensity: const VisualDensity(horizontal: -2),
-                onChanged: (val) =>
-                    controller.conditionsCubit.onUpdateData(!state.data),
+              return SizedBox(
+                width: 19, height: 19,
+                child: Checkbox(
+                  checkColor: context.colors.white,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  activeColor: context.colors.primary,
+                  value: state.data,
+                  onChanged: (value) => controller.conditionsCubit.onUpdateData(value!),
+                  side: BorderSide(
+                    color: context.colors.textColor,
+                    width: 1,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: Dimens.borderRadius4PX,
+                  ),
+                ),
               );
             },
           ),
+          Gaps.hGap4,
           Expanded(
-            child: Wrap(
+            child: Row(
               children: [
                 Text(
-                  tr("iAgree"),
-                  style: AppTextStyle.s16_w400(color: context.colors.black),
+                  tr("agreeTo"),
+                  style: AppTextStyle.s14_w400(color: context.colors.textColor),
                 ),
+                Gaps.hGap5,
                 GestureDetector(
                   onTap: () => AutoRouter.of(context).push(const TermsRoute()),
                   child: Text(
-                    tr('termsAndConditions'),
-                    style: AppTextStyle.s16_w400(color: context.colors.primary),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () =>
-                      AutoRouter.of(context).push(const ReturnPolicyRoute()),
-                  child: Text(
-                    "${tr('returnPolicy')} & ",
-                    style: AppTextStyle.s16_w400(color: context.colors.primary),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () =>
-                      AutoRouter.of(context).push(const PrivacyRoute()),
-                  child: Text(
-                    tr('privacyPolicy'),
-                    style: AppTextStyle.s16_w400(color: context.colors.primary),
+                    tr('rulesAndConditions'),
+                    style: AppTextStyle.s14_w700(color: context.colors.black),
                   ),
                 ),
               ],

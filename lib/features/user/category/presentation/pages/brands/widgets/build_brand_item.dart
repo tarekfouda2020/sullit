@@ -12,11 +12,16 @@ class BuildBrandItem extends StatelessWidget {
         BrandDetailsRoute(brandId: brand.id),
       ),
       child: Container(
-        decoration: CustomDecoration(),
+        padding: const EdgeInsets.all(4),
+        decoration:  const CustomDecoration(
+          boxShape: BoxShape.circle,
+          myBoxShadow: []
+        ),
         child: CachedImage(
           fit: BoxFit.contain,
-          haveRadius: true,
-          borderRadius: BorderRadius.circular(5).r,
+          haveRadius: false,
+        borderColor: Colors.transparent,
+        boxShape: BoxShape.circle,
           url: brand.logo,
         ),
       ),

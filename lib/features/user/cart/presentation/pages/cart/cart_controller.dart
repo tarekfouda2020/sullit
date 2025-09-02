@@ -7,30 +7,17 @@ class CartController {
       GenericBloc(CartDomainModel());
 
   CartController() {
-    getCartItems(refresh: false);
     getCartItems();
   }
 
   Future<void> getCartItems({bool refresh = true}) async {
-    String? token = await getIt<GetDeviceId>().deviceId;
-    var params = _cartParams(refresh, token!);
-    return await GetCart().call(params).then(
-          (value) => cartItemsBloc.onUpdateData(value),
-        );
+    CartDomainModel result = await getIt<CartHelper>().getCartItems(refresh: refresh);
+    cartItemsBloc.onUpdateData(result);
   }
 
-  Future<void> updateCartItem(int qty, int id) async {
-    var params = await _updateCartItemParams(qty, id);
-    await UpdateCartItem().call(params).then(
-      (value) {
-        cartItemsBloc.onUpdateData(value!);
-      },
-    );
-  }
 
   Future<void> deleteItemFromCart(BuildContext context,CartItem cartItem) async {
-    var params = await _deleteItemFormCart(cartItem.id);
-    var data = await DeleteItemFormCart().call(params);
+    var data = await getIt<CartHelper>().deleteItemFromCart(context,cartItem);
     if (data) {
       var newSubTotal =
           cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
@@ -46,22 +33,44 @@ class CartController {
     }
   }
 
-  void onIncreaseCart(CartItem cartItem) {
+  Future<void> onIncreaseCart(CartItem cartItem, GenericBloc<bool> loadingCubit) async {
     if (cartItem.quantity < cartItem.stockQty) {
-      cartItem.quantity++;
-      cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
-      updateCartItem(cartItem.quantity, cartItem.id);
+      loadingCubit.onUpdateData(true);
+      final newQty = cartItem.quantity + 1;
+      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+      loadingCubit.onUpdateData(false);
+      if (success!=null) {
+        cartItem.quantity = newQty;
+        cartItemsBloc.onUpdateData(success);
+      }
+      // else{
+      //   CustomToast.showSimpleToast(
+      //     msg: "can't add product",
+      //   );
+      // }
     } else {
       CustomToast.showSimpleToast(
-          msg: '${tr("only")} ${cartItem.stockQty} ${tr("availableStock")}');
+        msg: '${tr("only")} ${cartItem.stockQty} ${tr("availableStock")}',
+      );
     }
   }
 
-  void onDecreaseCart(CartItem cartItem) {
+  Future<void> onDecreaseCart(CartItem cartItem, GenericBloc<bool> loadingCubit) async {
     if (cartItem.quantity > 1) {
-      cartItem.quantity--;
-      cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
-      updateCartItem(cartItem.quantity, cartItem.id);
+      loadingCubit.onUpdateData(true);
+
+      final newQty = cartItem.quantity - 1;
+      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+      loadingCubit.onUpdateData(false);
+      if (success!=null) {
+        cartItem.quantity = newQty;
+        cartItemsBloc.onUpdateData(success);
+      }
+      // else{
+      //   CustomToast.showSimpleToast(
+      //     msg: "can't remove product",
+      //   );
+      // }
     }
   }
 
@@ -70,6 +79,7 @@ class CartController {
     if (auth) {
       if (cartItemsBloc.state.data.items!.isNotEmpty) {
         AutoRouter.of(context).push(
+          // const ReceivingMethodRoute(),
           const ShippingRoute(),
         );
       } else {
@@ -81,19 +91,24 @@ class CartController {
     }
   }
 
-  GetCartItemsParams _cartParams(bool refresh, String token) {
-    return GetCartItemsParams(
-      macAddress: token,
-      refresh: refresh,
+  Future<void> clearCart(BuildContext context) async {
+    String? token = await getIt<GetDeviceId>().deviceId;
+    var params = await _cartParams(token!);
+    await ClearCart().call(params).then((value){
+      CustomToast.showSimpleToast(msg: value, type: ToastType.success);
+      cartItemsBloc.state.data.items!.clear();
+      cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+      var countCubit = context.read<CountCubit>().state;
+      context.read<CountCubit>().onUpdateCount(0, countCubit.discount);
+    });
+  }
+
+  Future<CartParams> _cartParams(String token) async {
+    return CartParams(
+      macAddress: token, refresh: false,
     );
   }
 
-  Future<DeleteCartItemParams> _deleteItemFormCart(int id) async {
-    return DeleteCartItemParams(
-      id: id,
-      deviceId: await getIt<GetDeviceId>().deviceId,
-    );
-  }
 
   Future<UpdateCartItemParams> _updateCartItemParams(int qty, int id) async {
     return UpdateCartItemParams(

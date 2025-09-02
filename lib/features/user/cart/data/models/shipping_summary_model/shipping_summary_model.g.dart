@@ -28,6 +28,9 @@ _$_ShippingSummaryModel _$$_ShippingSummaryModelFromJson(
       items: (json['items'] as List<dynamic>)
           .map((e) => ShippingItemModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      loyaltyPointsValue: json['loyalty_points_value'] as String?,
+      loyaltyPointsApplied: json['loyalty_points_applied'] as bool?,
+      loyaltyPoints: json['loyalty_points'] as int?,
     );
 
 Map<String, dynamic> _$$_ShippingSummaryModelToJson(
@@ -50,4 +53,7 @@ Map<String, dynamic> _$$_ShippingSummaryModelToJson(
       'avilable_pay_with_wallet': instance.avilablePayWithWallet,
       'avilable_cash_on_delivery': instance.avilableCashOnDelivery,
       'items': instance.items.map((e) => e.toJson()).toList(),
+      'loyalty_points_value': instance.loyaltyPointsValue,
+      'loyalty_points_applied': instance.loyaltyPointsApplied,
+      'loyalty_points': instance.loyaltyPoints,
     };

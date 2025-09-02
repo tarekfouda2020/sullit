@@ -7,19 +7,34 @@ class BuildChargeWallet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton.extended(
-      elevation: 3,
-      backgroundColor: context.colors.primary,
-      onPressed: () => controller.showChargeDialog(context),
-      label: Text(
-        tr("rechargeWallet"),
-        style: AppTextStyle.s14_w500(color: context.colors.white),
-      ),
-      icon: Icon(
-        Icons.add,
-        color: context.colors.white,
-        size: 25.sp,
-      ),
+    return DefaultButton(
+      title: "",
+    // onTap:()=> controller.showChargeDialog(context),
+    onTap:()=> controller.showChargeWalletSheet(context),
+    customLabel: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(Icons.add,color: context.colors.white,size: 15.sp,),
+        Gaps.hGap4,
+        Text(tr("chargeWallet"),
+        style: AppTextStyle.s18_w700(color: context.colors.white),
+        )
+      ],
+    ),
     );
+    // return FloatingActionButton.extended(
+    //   elevation: 3,
+    //   backgroundColor: context.colors.primary,
+    //   onPressed: () => controller.showChargeDialog(context),
+    //   label: Text(
+    //     tr("rechargeWallet"),
+    //     style: AppTextStyle.s14_w500(color: context.colors.white),
+    //   ),
+    //   icon: Icon(
+    //     Icons.add,
+    //     color: context.colors.white,
+    //     size: 25.sp,
+    //   ),
+    // );
   }
 }
