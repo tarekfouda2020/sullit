@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:country_calling_code_picker/picker.dart'as package;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +14,8 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/models/domain_models/city.dart';
 import 'package:flutter_tdd/core/models/domain_models/country.dart';
 import 'package:flutter_tdd/core/models/domain_models/state.dart';
+import 'package:flutter_tdd/core/package/country_calling_code_picker-2.0.1/lib/country.dart' as package;
+import 'package:flutter_tdd/core/package/country_calling_code_picker-2.0.1/lib/functions.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/DefaultButton.dart';

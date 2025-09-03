@@ -102,7 +102,7 @@ class EditAddressController {
   }
 
   void showCountryCode(BuildContext context) async {
-    package.Country? data = await package.showCountryPickerDialog(
+    package.Country? data = await showCountryPickerDialog(
       context,
       cornerRadius: 3,
     );

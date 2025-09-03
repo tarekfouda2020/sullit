@@ -84,7 +84,7 @@ class AddNewAddressController {
 
 
   void showCountryCode(BuildContext context) async {
-    package.Country? data = await package.showCountryPickerSheet(
+    package.Country? data = await showCountryPickerSheet(
       cancelWidget: PositionedDirectional(
         end: 10,
         child: InkWell(

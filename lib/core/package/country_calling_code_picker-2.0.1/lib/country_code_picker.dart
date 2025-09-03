@@ -1,7 +1,6 @@
 library countrycodepicker;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_sim_country_code/flutter_sim_country_code.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/helpers/country_localization_helper.dart';
 
@@ -114,16 +113,22 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
     });
     _list = await getCountries(context);
     try {
-      String? code = await FlutterSimCountryCode.simCountryCode;
-      _currentCountry =
-          _list.firstWhere((element) => element.countryCode == code);
+      final locale = Localizations.maybeLocaleOf(context);
+      final code = locale?.countryCode;
+      if (code != null && code.isNotEmpty) {
+        _currentCountry = _list.firstWhere(
+          (element) => element.countryCode.toLowerCase() == code.toLowerCase(),
+          orElse: () => _list.first,
+        );
+      } else {
+        _currentCountry = _list.first;
+      }
       final country = _currentCountry;
       if (country != null) {
-        _list.removeWhere(
-            (element) => element.callingCode == country.callingCode);
+        _list.removeWhere((element) => element.callingCode == country.callingCode);
         _list.insert(0, country);
       }
-    } catch (e) {} finally {
+    } finally {
       setState(() {
         _filteredList = _list.map((e) => e).toList();
         _isLoading = false;

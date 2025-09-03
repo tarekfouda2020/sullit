@@ -8,7 +8,7 @@ import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/helper_methods.dart';
 import 'package:flutter_tdd/core/helpers/validator.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
-import 'package:country_calling_code_picker/picker.dart';
+import 'package:flutter_tdd/core/package/country_calling_code_picker-2.0.1/lib/country.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';

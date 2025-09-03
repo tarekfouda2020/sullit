@@ -7,7 +7,7 @@ import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/helpers/country_picker_helper.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
-import 'package:country_calling_code_picker/picker.dart';
+import 'package:flutter_tdd/core/package/country_calling_code_picker-2.0.1/lib/country.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';

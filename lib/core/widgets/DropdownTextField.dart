@@ -113,7 +113,7 @@ class DropdownTextField<T> extends StatelessWidget {
         ),
         searchBoxDecoration: CustomInputDecoration(
           hintColor: context.colors.black,
-          hint: searchHint ?? tr('search'),
+          hintStr: searchHint ?? tr('search'),
           enableColor: Colors.black,
           lang: lang,
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -133,7 +133,7 @@ class DropdownTextField<T> extends StatelessWidget {
         dropdownSearchDecoration: CustomInputDecoration(
           hintColor: hintColor,
           labelTxt: label,
-          hint: hint,
+          hintStr: hint,
           customFillColor: fillColor,
           enableColor: enableColor,
           borderRadius: radius,

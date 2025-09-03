@@ -5,7 +5,7 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 class CustomInputDecoration extends InputDecoration {
   final String lang;
   final String? labelTxt;
-  final String? hint;
+  final String? hintStr;
   final Widget? prefIcon;
   final Widget? sufIcon;
   final Color? enableColor;
@@ -18,18 +18,17 @@ class CustomInputDecoration extends InputDecoration {
 
   const CustomInputDecoration(
       {required this.lang,
-        this.hint,
         this.labelTxt,
         this.prefIcon,
         this.sufIcon,
         this.hintColor,
         this.customFillColor,
+        this.hintStr,
         this.enableColor,
         this.focsColor,
         this.borderRadius,
         this.hintTxtStyle,
-        this.padding})
-      : super();
+        this.padding}) :super();
 
   @override
   InputBorder get enabledBorder => OutlineInputBorder(
@@ -61,7 +60,9 @@ class CustomInputDecoration extends InputDecoration {
       const AppTextStyle.s12_w400(color: AppColors.snackBarRedError);
 
   @override
-  String? get hintText => hint;
+  String? get hintText => hintStr;
+
+
 
   @override
   int? get errorMaxLines => 2;

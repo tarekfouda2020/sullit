@@ -1,12 +1,11 @@
 import 'dart:convert';
 
-import 'package:country_calling_code_picker/country_code_picker.dart';
+import 'package:flutter_tdd/core/package/country_calling_code_picker-2.0.1/lib/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sim_country_code/flutter_sim_country_code.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 
-import './country.dart';
+import 'country.dart';
 
 ///This function returns list of countries
 Future<List<Country>> getCountries(BuildContext context) async {
@@ -23,12 +22,15 @@ Future<List<Country>> getCountries(BuildContext context) async {
 Future<Country> getDefaultCountry(BuildContext context) async {
   final list = await getCountries(context);
   try {
-    final countryCode = await FlutterSimCountryCode.simCountryCode;
-    if (countryCode == null) {
+    final locale = Localizations.maybeLocaleOf(context);
+    final countryCode = locale?.countryCode;
+    if (countryCode == null || countryCode.isEmpty) {
       return list.first;
     }
-    return list.firstWhere((element) =>
-        element.countryCode.toLowerCase() == countryCode.toLowerCase());
+    return list.firstWhere(
+      (element) => element.countryCode.toLowerCase() == countryCode.toLowerCase(),
+      orElse: () => list.first,
+    );
   } catch (e) {
     return list.first;
   }
@@ -44,10 +46,10 @@ Future<Country?> getCountryByCountryCode(
 Future<Country?> showCountryPickerSheet(BuildContext context,
     {Widget? title,
     Widget? cancelWidget,
-    double cornerRadius: 35,
-    bool focusSearchBox: false,
-    double heightFactor: 0.9,
-    bool forceArabic: false}) {
+    double cornerRadius = 35,
+    bool focusSearchBox = false,
+    double heightFactor = 0.9,
+    bool forceArabic = false}) {
   assert(heightFactor <= 0.9 && heightFactor >= 0.4,
       'heightFactor must be between 0.4 and 0.9');
   return showModalBottomSheet<Country?>(
@@ -105,9 +107,9 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
 Future<Country?> showCountryPickerDialog(
   BuildContext context, {
   Widget? title,
-  double cornerRadius: 35,
-  bool focusSearchBox: false,
-  bool forceArabic: false,
+  double cornerRadius = 35,
+  bool focusSearchBox = false,
+  bool forceArabic = false,
 }) {
   return showDialog<Country?>(
     context: context,

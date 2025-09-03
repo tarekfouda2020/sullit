@@ -9,29 +9,28 @@ class Payment extends StatefulWidget {
 
 class _PaymentState extends State<Payment> {
   PaymentController controller = PaymentController();
+
   @override
   void initState() {
-    controller.onChangeUrl(context);
     super.initState();
+    controller.init(widget.transactionUrl, context);
   }
 
   @override
   void dispose() {
-    controller.urlState!.cancel();
-    controller.flutterWebViewPlugin.dispose();
+    controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: MediaQuery.of(context).viewInsets,
-      child: WebviewScaffold(
-        withZoom: true,
-        url: widget.transactionUrl,
-        appBar:  DefaultAppBar(
-          title: tr('payment'),
-        ),
+    return Scaffold(
+      appBar: DefaultAppBar(
+        title: tr('payment'),
+      ),
+      body: Padding(
+        padding: MediaQuery.of(context).viewInsets,
+        child: WebViewWidget(controller: controller.webController),
       ),
     );
   }

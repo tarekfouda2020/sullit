@@ -1,5 +1,5 @@
 import 'package:barcode/barcode.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:injectable/injectable.dart';
@@ -19,16 +19,18 @@ class BarcodeService {
   }
 
 
-  Future<String?> scanBarcode({ScanMode? scanMode}) async {
+  Future<String?> scanBarcode() async {
     try {
-      String barcode = await FlutterBarcodeScanner.scanBarcode(
-        '#ff6666',
-        tr('cancel'),
-        true,
-        scanMode ?? ScanMode.QR,
+      final result = await BarcodeScanner.scan(
+        options: ScanOptions(
+          strings: {
+            'cancel': tr('cancel'),
+          },
+        ),
       );
 
-      if (barcode == '-1' || barcode.isEmpty) {
+      final String barcode = result.rawContent;
+      if (barcode.isEmpty) {
         return null;
       }
       return barcode;
