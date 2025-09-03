@@ -35,11 +35,17 @@ class CategoryDetailsController {
 
   CategoryDetailsController(BuildContext context, Category categoryModel) {
     titleCubit.onUpdateData(categoryModel.name);
-    getSubCategories(context, categoryModel.id).then((value) {
-      getPopularProducts(1, refresh: false);
-      pagingController.addPageRequestListener((pageKey) {
-        getPopularProducts(pageKey, refresh: true);
-      });
+    getData(context,categoryModel);
+
+  }
+
+
+  Future<void> getData(BuildContext context, Category categoryModel)async{
+    await getSubCategories(context, categoryModel.id);
+    getPopularProducts(1, refresh: false);
+    getPopularProducts(1, refresh: true);
+    pagingController.addPageRequestListener((pageKey) {
+      getPopularProducts(pageKey, refresh: true);
     });
   }
 
@@ -47,7 +53,7 @@ class CategoryDetailsController {
       {bool refresh = true}) async {
     currentCatId = id;
     var params = _productsParams(1, refresh);
-    print(">>>>>${params.toJson()}");
+    // print(">>>>>${params.toJson()}");
     var result = await GetSubCategories().call(params);
     subCategoriesCubit.onUpdateData(result);
     RangeValues rangeValues = RangeValues(double.parse(result!.priceRange.min),
@@ -58,7 +64,7 @@ class CategoryDetailsController {
   }
 
   void onSubCatSelect(BuildContext context, Category selectedCat) {
-    print("@@@@@@${selectedCat.id}");
+    // print("@@@@@@${selectedCat.id}");
     subCategoriesCubit.onUpdateToInitState(null);
     titleCubit.onUpdateData(selectedCat.name);
     getSubCategories(context, selectedCat.id);
@@ -104,7 +110,7 @@ class CategoryDetailsController {
       {bool refresh = true}) async {
     var params = _productsParams(currentPage, refresh);
     var data = await GetCategoryProducts().call(params);
-    print("--------${data.length}");
+    // print("--------${data.length}");
     final isLastPage = data.length < pageSize;
     if (currentPage == 1) {
       pagingController.itemList = [];
