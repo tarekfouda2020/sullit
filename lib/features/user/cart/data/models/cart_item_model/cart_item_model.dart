@@ -31,7 +31,7 @@ class CartItemModel extends BaseApiModel<CartItem> with _$CartItemModel {
     @JsonKey(name: "is_wishlist") required bool isWishlist,
     @JsonKey(name: "sold_by_type") required String soldByType,
     @JsonKey(name: "sold_by_name") required String soldBy,
-    @JsonKey(name: "shop_id") required int shopId,
+    @JsonKey(name: "shop_id") required int? shopId,
   }) = _CartItemModel;
 
   factory CartItemModel.fromJson(Map<String, dynamic> json) => _$CartItemModelFromJson(json);

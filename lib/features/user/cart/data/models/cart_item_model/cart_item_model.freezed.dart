@@ -50,7 +50,7 @@ mixin _$CartItemModel {
   @JsonKey(name: "sold_by_name")
   String get soldBy => throw _privateConstructorUsedError;
   @JsonKey(name: "shop_id")
-  int get shopId => throw _privateConstructorUsedError;
+  int? get shopId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -83,7 +83,7 @@ abstract class $CartItemModelCopyWith<$Res> {
       @JsonKey(name: "is_wishlist") bool isWishlist,
       @JsonKey(name: "sold_by_type") String soldByType,
       @JsonKey(name: "sold_by_name") String soldBy,
-      @JsonKey(name: "shop_id") int shopId});
+      @JsonKey(name: "shop_id") int? shopId});
 }
 
 /// @nodoc
@@ -117,7 +117,7 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
     Object? isWishlist = null,
     Object? soldByType = null,
     Object? soldBy = null,
-    Object? shopId = null,
+    Object? shopId = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -192,10 +192,10 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
           ? _value.soldBy
           : soldBy // ignore: cast_nullable_to_non_nullable
               as String,
-      shopId: null == shopId
+      shopId: freezed == shopId
           ? _value.shopId
           : shopId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -227,7 +227,7 @@ abstract class _$$_CartItemModelCopyWith<$Res>
       @JsonKey(name: "is_wishlist") bool isWishlist,
       @JsonKey(name: "sold_by_type") String soldByType,
       @JsonKey(name: "sold_by_name") String soldBy,
-      @JsonKey(name: "shop_id") int shopId});
+      @JsonKey(name: "shop_id") int? shopId});
 }
 
 /// @nodoc
@@ -259,7 +259,7 @@ class __$$_CartItemModelCopyWithImpl<$Res>
     Object? isWishlist = null,
     Object? soldByType = null,
     Object? soldBy = null,
-    Object? shopId = null,
+    Object? shopId = freezed,
   }) {
     return _then(_$_CartItemModel(
       id: null == id
@@ -334,10 +334,10 @@ class __$$_CartItemModelCopyWithImpl<$Res>
           ? _value.soldBy
           : soldBy // ignore: cast_nullable_to_non_nullable
               as String,
-      shopId: null == shopId
+      shopId: freezed == shopId
           ? _value.shopId
           : shopId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -420,7 +420,7 @@ class _$_CartItemModel extends _CartItemModel {
   final String soldBy;
   @override
   @JsonKey(name: "shop_id")
-  final int shopId;
+  final int? shopId;
 
   @override
   String toString() {
@@ -521,7 +521,7 @@ abstract class _CartItemModel extends CartItemModel {
       @JsonKey(name: "is_wishlist") required final bool isWishlist,
       @JsonKey(name: "sold_by_type") required final String soldByType,
       @JsonKey(name: "sold_by_name") required final String soldBy,
-      @JsonKey(name: "shop_id") required final int shopId}) = _$_CartItemModel;
+      @JsonKey(name: "shop_id") required final int? shopId}) = _$_CartItemModel;
   const _CartItemModel._() : super._();
 
   factory _CartItemModel.fromJson(Map<String, dynamic> json) =
@@ -576,7 +576,7 @@ abstract class _CartItemModel extends CartItemModel {
   String get soldBy;
   @override
   @JsonKey(name: "shop_id")
-  int get shopId;
+  int? get shopId;
   @override
   @JsonKey(ignore: true)
   _$$_CartItemModelCopyWith<_$_CartItemModel> get copyWith =>
