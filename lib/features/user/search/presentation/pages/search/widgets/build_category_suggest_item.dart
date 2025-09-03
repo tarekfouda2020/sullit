@@ -2,9 +2,12 @@ part of 'search_widgets_imports.dart';
 
 class BuildCategorySuggestItem extends StatelessWidget {
   final List<Category> categories;
-  final SearchController controller;
+  // final SearchController controller;
 
-  const BuildCategorySuggestItem({super.key, required this.categories, required this.controller});
+  const BuildCategorySuggestItem({super.key, required this.categories,
+
+    // required this.controller
+  });
 
   @override
   Widget build(BuildContext context) {
