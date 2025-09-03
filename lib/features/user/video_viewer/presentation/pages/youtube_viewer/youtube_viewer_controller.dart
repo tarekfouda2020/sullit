@@ -6,20 +6,21 @@ class YoutubeViewerController {
 
   YoutubeViewerController(String video) {
     var videoLink = convertLink(video);
-    youtubeController = YoutubePlayerController(
-      initialVideoId: videoLink,
-      flags: const YoutubePlayerFlags(
-        autoPlay: true,
+    youtubeController = YoutubePlayerController.fromVideoId(
+      videoId: videoLink,
+      autoPlay: true,
+      params: const YoutubePlayerParams(
         mute: false,
+        showControls: true,
+        showFullscreenButton: true,
       ),
     );
-    youtubeController.addListener(() { });
     youtubeCubit.onUpdateData(youtubeController);
   }
 
   String convertLink(String video) {
     String? videoId;
-    videoId = YoutubePlayer.convertUrlToId(video);
+    videoId = YoutubePlayerController.convertUrlToId(video);
     return videoId ?? "";
   }
 }

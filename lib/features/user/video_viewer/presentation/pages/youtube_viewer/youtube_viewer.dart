@@ -31,7 +31,6 @@ class _YoutubeViewerState extends State<YoutubeViewer> {
             if (state is GenericUpdateState) {
               return YoutubePlayer(
                 controller: state.data!,
-                showVideoProgressIndicator: true,
               );
             } else {
               return getIt<LoadingHelper>().showLoadingView();
@@ -45,7 +44,7 @@ class _YoutubeViewerState extends State<YoutubeViewer> {
   @override
   void dispose() {
     super.dispose();
-    controller.youtubeController.dispose();
+    controller.youtubeController.close();
     controller.youtubeCubit.onUpdateData(null);
   }
 }
