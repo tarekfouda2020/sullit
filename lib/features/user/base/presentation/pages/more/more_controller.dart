@@ -121,7 +121,7 @@ class MoreController {
 
   bool canBePress(MoreRoutes route) {
     bool isInShopBySection = route == MoreRoutes.allBrands || route == MoreRoutes.allCategories;
-    bool isOtherSection = route == MoreRoutes.contactUs ||
+    bool isOtherSection =
         route == MoreRoutes.termsAndConditions ||
         route == MoreRoutes.privacyPolicy ||
         route == MoreRoutes.supportPolicy ||
