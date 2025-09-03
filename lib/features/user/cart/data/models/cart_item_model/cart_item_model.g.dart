@@ -26,7 +26,7 @@ _$_CartItemModel _$$_CartItemModelFromJson(Map<String, dynamic> json) =>
       isWishlist: json['is_wishlist'] as bool,
       soldByType: json['sold_by_type'] as String,
       soldBy: json['sold_by_name'] as String,
-      shopId: json['shop_id'] as int,
+      shopId: json['shop_id'] as int?,
     );
 
 Map<String, dynamic> _$$_CartItemModelToJson(_$_CartItemModel instance) =>

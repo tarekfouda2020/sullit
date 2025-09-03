@@ -84,7 +84,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                                 //   ),
                                 // ),
                                 Text(
-                                  (orderDetails.product?.variant?.mainPrice ?? ''),
+                                  (orderDetails.product?.variant?.mainPrice.parseCurrency ?? ''),
                                   style: AppTextStyle.s14_w600(
                                       color: context.colors.primary),
                                 )

@@ -18,7 +18,7 @@ class CartItem extends BaseDomainModel {
   bool isWishlist;
   String soldByType;
   String soldBy;
-  int shopId;
+  int? shopId;
   double rating;
 
 

@@ -20,7 +20,7 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
           ),
           BuildSummaryHeader(
             title: tr('shippingFees'),
-            details: "${orderSummary.shippingTotal.toString()}${tr("currency")}",
+            details: "${orderSummary.shippingTotal.toString()} ${tr("currency")}",
           ),
           Visibility(
             visible: orderSummary.loyaltyPointsDiscount>0 || orderSummary.discounts > 0,
