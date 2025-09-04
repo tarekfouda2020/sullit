@@ -12,7 +12,7 @@ class AppLightTheme extends AppTheme {
         fontFamily: AppTheme.fontFamily,
         colorScheme: colorScheme,
         // textTheme: textTheme,
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
         radioTheme: RadioThemeData(
           fillColor: MaterialStateProperty.all(_colorsLight.secondary),
         ),
@@ -26,9 +26,10 @@ class AppLightTheme extends AppTheme {
           elevation: 0,
           centerTitle: true,
           // titleTextStyle: textTheme.headline2!.copyWith(color: _colorsLight.black),
-          systemOverlayStyle: const SystemUiOverlayStyle(
-              statusBarColor: Colors.transparent,
-              statusBarBrightness: Brightness.light),
+                systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarBrightness: Brightness.dark,
+          statusBarIconBrightness: Brightness.dark),
           iconTheme: IconThemeData(color: _colorsLight.black, size: 21),
         ),
         inputDecorationTheme: const InputDecorationTheme(
@@ -91,6 +92,6 @@ class AppLightTheme extends AppTheme {
         onBackground: _colorsLight.black,
         surface: _colorsLight.primary,
         onSurface: _colorsLight.white,
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
       );
 }

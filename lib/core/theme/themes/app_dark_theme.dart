@@ -30,7 +30,9 @@ class AppDarkTheme extends AppTheme {
       centerTitle: true,
       // titleTextStyle: textTheme.headline2!.copyWith(color: _colorsDark.black),
       systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent, statusBarBrightness: Brightness.light),
+          statusBarColor: Colors.transparent, 
+          statusBarBrightness: Brightness.dark,
+          statusBarIconBrightness: Brightness.dark),
       iconTheme: IconThemeData(color: _colorsDark.black, size: 21),
     ),
     inputDecorationTheme: const InputDecorationTheme(

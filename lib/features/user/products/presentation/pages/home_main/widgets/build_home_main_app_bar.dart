@@ -8,12 +8,11 @@ class BuildHomeMainAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var countCubit = context.watch<CountCubit>().state;
     return BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
       bloc: controller.visibleSearch,
       builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.only(top: kToolbarHeight-30,left: 16,right: 16, bottom: 6),
+        return Container(
+          padding: const EdgeInsets.only(top: 10,left: 16,right: 16, bottom: 6),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
