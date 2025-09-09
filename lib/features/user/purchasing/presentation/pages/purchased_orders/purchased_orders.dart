@@ -32,7 +32,7 @@ class _PurchasedOrdersState extends State<PurchasedOrders> {
               controller: controller,
             ),
             noItemsFoundIndicatorBuilder: (cxt) {
-              return const BuildEmptyDataImage(enablePop: false,);
+              return const BuildEmptyDataImage();
             },
           ),
         ),

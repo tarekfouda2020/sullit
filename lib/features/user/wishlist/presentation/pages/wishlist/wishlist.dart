@@ -39,7 +39,7 @@ class _WishlistState extends State<Wishlist> {
           onRefresh: () => controller.getWishlist(),
         ),
         loadingWidget: const BuildLoadingProductsGridView(),
-        emptyWidget: const BuildEmptyDataImage(enablePop: false),
+        emptyWidget: const BuildEmptyDataImage(),
       ),
     );
   }
