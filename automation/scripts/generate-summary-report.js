@@ -271,22 +271,31 @@ function parseTestResults() {
             jsonFiles.forEach(file => {
                 try {
                     const content = fs.readFileSync(path.join(jsonDir, file), 'utf8');
+                    
+                    // Skip empty files
+                    if (!content.trim()) {
+                        console.log(`Skipping empty file: ${file}`);
+                        return;
+                    }
+                    
                     const results = JSON.parse(content);
                     
-                    // Process results (structure depends on actual JSON format)
-                    // This is a template - adjust based on actual JSON structure
+                    // Process WebDriverIO JSON results structure
                     if (results.suites) {
                         results.suites.forEach(suite => {
-                            const category = {
-                                name: suite.title,
-                                tests: suite.tests.map(test => ({
-                                    name: test.title,
-                                    status: test.state || 'unknown',
-                                    duration: test.duration || 0,
-                                    error: test.err ? test.err.message : null
-                                }))
-                            };
-                            platformData.categories.push(category);
+                            // Only process suites that have tests
+                            if (suite.tests && suite.tests.length > 0) {
+                                const category = {
+                                    name: suite.name || suite.title,
+                                    tests: suite.tests.map(test => ({
+                                        name: test.name || test.title,
+                                        status: test.state || 'unknown',
+                                        duration: test.duration || 0,
+                                        error: test.error ? test.error.message : null
+                                    }))
+                                };
+                                platformData.categories.push(category);
+                            }
                         });
                     }
                 } catch (error) {

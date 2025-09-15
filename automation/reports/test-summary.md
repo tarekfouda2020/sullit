@@ -1,16 +1,16 @@
 # 🤖 Suliit Automation Test Results
 
-**Generated:** 9/15/2025, 11:50:09 PM
+**Generated:** 9/16/2025, 12:12:37 AM
 
 ## 📊 Summary
 
 | Metric | Value |
 |--------|-------|
-| Total Tests | 6 |
-| Passed | 6 ✅ |
-| Failed | 0 ❌ |
+| Total Tests | 18 |
+| Passed | 7 ✅ |
+| Failed | 11 ❌ |
 | Skipped | 0 ⏭️ |
-| Success Rate | 100% |
+| Success Rate | 39% |
 
 ## 📱 Platform Results
 
@@ -38,17 +38,37 @@
 ### IOS Results
 
 
-#### undefined
+#### App Launch and Basic Functionality
 
 | Test Case | Status | Duration |
 |-----------|--------|----------|
+| should launch the app successfully | ❌ FAILED | 215ms |
+| should display the main screen elements | ❌ FAILED | 2374ms |
+| should be responsive to touch interactions | ❌ FAILED | 188ms |
+| should handle app backgrounding and foregrounding | ❌ FAILED | 4088ms |
 
-
-#### undefined
+#### Navigation and User Interface
 
 | Test Case | Status | Duration |
 |-----------|--------|----------|
+| should detect navigation elements | ❌ FAILED | 1855ms |
+| should handle swipe gestures | ❌ FAILED | 170ms |
+| should handle tap interactions on different screen areas | ❌ FAILED | 239ms |
 
+#### App State and Stability
+
+| Test Case | Status | Duration |
+|-----------|--------|----------|
+| should maintain stability during extended use | ❌ FAILED | 182ms |
+| should handle rapid gestures without crashing | ❌ FAILED | 181ms |
+| should respond to device orientation changes | ✅ PASSED | 164ms |
+
+#### Performance and Memory
+
+| Test Case | Status | Duration |
+|-----------|--------|----------|
+| should maintain good performance during interactions | ❌ FAILED | 165ms |
+| should handle memory efficiently | ❌ FAILED | 1750ms |
 
 
 
