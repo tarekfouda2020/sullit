@@ -18,3 +18,7 @@ samples, guidance on mobile development, and a full API reference.
 ## Build App Bundle
 - flutter build appbundle --release --no-tree-shake-icons
 - build ipa --release --no-tree-shake-icons
+
+## Automation
+- npx wdio run wdio.ios.conf.js
+- npm run dashboard

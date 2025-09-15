@@ -44,4 +44,11 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Automation testing artifacts
 /automation/node_modules/
+/automation/logs/
+/automation/reports/
+/automation/reports/junit/ios/
+/automation/screenshots/
+/automation/screenshots/ios/

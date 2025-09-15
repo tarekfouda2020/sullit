@@ -28,9 +28,16 @@
     "report:ios": "allure generate reports/allure-results/ios/ --clean -o reports/allure-report/ios/",
     "report:serve:android": "allure serve reports/allure-results/android/",
     "report:serve:ios": "allure serve reports/allure-results/ios/",
-    "clean:reports": "rm -rf reports/allure-results/* reports/allure-report/* reports/junit/*",
+    "report:open:android": "open reports/allure-report/android/index.html",
+    "report:open:ios": "open reports/allure-report/ios/index.html",
+    "report:summary": "node scripts/generate-summary-report.js",
+    "clean:reports": "rm -rf reports/allure-results/* reports/allure-report/* reports/junit/* reports/json/* reports/mochawesome/*",
     "clean:screenshots": "rm -rf screenshots/android/* screenshots/ios/*",
-    "clean:all": "npm run clean:reports && npm run clean:screenshots"
+    "clean:all": "npm run clean:reports && npm run clean:screenshots",
+    "test:full:android": "npm run clean:all && npm run test:android && npm run report:android && npm run report:summary",
+    "test:full:ios": "npm run clean:all && npm run test:ios && npm run report:ios && npm run report:summary",
+    "test:full:both": "npm run clean:all && npm run test:both && npm run report:android && npm run report:ios && npm run report:summary",
+    "dashboard": "npm run report:summary && open reports/test-summary.html"
   },
   "keywords": [
     "appium",
@@ -50,6 +57,7 @@
     "@wdio/allure-reporter": "^9.19.2",
     "@wdio/appium-service": "^9.19.2",
     "@wdio/cli": "^9.19.2",
+    "@wdio/json-reporter": "^9.19.2",
     "@wdio/junit-reporter": "^9.19.2",
     "@wdio/local-runner": "^9.19.2",
     "@wdio/mocha-framework": "^9.19.2",
@@ -65,6 +73,9 @@
     "chai": "^6.0.1",
     "chai-as-promised": "^8.0.2",
     "mocha": "^11.7.2",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.0.0",
+    "mochawesome-report-generator": "^6.3.0",
     "wd": "^1.14.0",
     "webdriverio": "^9.19.2"
   }

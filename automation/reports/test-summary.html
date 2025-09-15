@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suliit Automation Test Results</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6; 
+            color: #333; 
+            background: #f5f5f5;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        
+        .summary-cards { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 20px; 
+            margin-bottom: 30px; 
+        }
+        .card { 
+            background: white; 
+            padding: 25px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .card h3 { color: #555; margin-bottom: 15px; font-size: 1.1em; }
+        .card .number { font-size: 2.5em; font-weight: bold; margin-bottom: 10px; }
+        .card .label { color: #777; font-size: 0.9em; }
+        
+        .success { color: #27ae60; }
+        .warning { color: #f39c12; }
+        .error { color: #e74c3c; }
+        .info { color: #3498db; }
+        
+        .platform-section { 
+            background: white; 
+            margin-bottom: 30px; 
+            border-radius: 10px; 
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .platform-header { 
+            padding: 20px; 
+            font-size: 1.5em; 
+            font-weight: bold;
+            color: white;
+        }
+        .android-header { background: #4CAF50; }
+        .ios-header { background: #2196F3; }
+        
+        .test-results { padding: 25px; }
+        .test-category { margin-bottom: 25px; }
+        .test-category h4 { 
+            color: #555; 
+            margin-bottom: 15px; 
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .test-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 12px; 
+            margin-bottom: 8px; 
+            border-radius: 6px;
+            background: #f8f9fa;
+        }
+        .test-item.passed { border-left: 4px solid #27ae60; }
+        .test-item.failed { border-left: 4px solid #e74c3c; }
+        .test-item.skipped { border-left: 4px solid #f39c12; }
+        
+        .test-name { flex: 1; font-weight: 500; }
+        .test-status { 
+            padding: 4px 12px; 
+            border-radius: 20px; 
+            font-size: 0.85em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .status-passed { background: #d4edda; color: #155724; }
+        .status-failed { background: #f8d7da; color: #721c24; }
+        .status-skipped { background: #fff3cd; color: #856404; }
+        
+        .duration { color: #666; font-size: 0.9em; margin-left: 10px; }
+        
+        .footer { 
+            text-align: center; 
+            padding: 30px; 
+            color: #777; 
+            border-top: 1px solid #eee;
+            margin-top: 30px;
+        }
+        
+        .links { 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            margin-top: 20px; 
+        }
+        .link { 
+            padding: 10px 20px; 
+            background: #007bff; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .link:hover { background: #0056b3; }
+        
+        .screenshots { margin-top: 20px; }
+        .screenshot-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+            gap: 15px; 
+        }
+        .screenshot-item { 
+            text-align: center; 
+            background: white; 
+            padding: 15px; 
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .screenshot-item img { 
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 4px; 
+            margin-bottom: 10px;
+        }
+        .screenshot-item .caption { 
+            font-size: 0.9em; 
+            color: #666; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 Suliit Automation Test Results</h1>
+            <p>Generated on 9/15/2025, 11:50:09 PM</p>
+        </div>
+        
+        <div class="summary-cards">
+            <div class="card">
+                <h3>Total Tests</h3>
+                <div class="number info">6</div>
+                <div class="label">Test Cases Executed</div>
+            </div>
+            <div class="card">
+                <h3>Passed</h3>
+                <div class="number success">6</div>
+                <div class="label">Successful Tests</div>
+            </div>
+            <div class="card">
+                <h3>Failed</h3>
+                <div class="number error">0</div>
+                <div class="label">Failed Tests</div>
+            </div>
+            <div class="card">
+                <h3>Success Rate</h3>
+                <div class="number success">100%</div>
+                <div class="label">Pass Percentage</div>
+            </div>
+        </div>
+        
+        
+        <div class="platform-section">
+            <div class="platform-header android-header">
+                📱 ANDROID Test Results
+            </div>
+            <div class="test-results">
+                
+                <div class="test-category">
+                    <h4>App Launch Tests</h4>
+                    
+                    <div class="test-item passed">
+                        <div class="test-name">Should launch app successfully</div>
+                        <div>
+                            <span class="test-status status-passed">passed</span>
+                            <span class="duration">1200ms</span>
+                        </div>
+                    </div>
+                    
+                    <div class="test-item passed">
+                        <div class="test-name">Should display main screen</div>
+                        <div>
+                            <span class="test-status status-passed">passed</span>
+                            <span class="duration">800ms</span>
+                        </div>
+                    </div>
+                    
+                    <div class="test-item passed">
+                        <div class="test-name">Should be responsive to touch</div>
+                        <div>
+                            <span class="test-status status-passed">passed</span>
+                            <span class="duration">600ms</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="test-category">
+                    <h4>Navigation Tests</h4>
+                    
+                    <div class="test-item passed">
+                        <div class="test-name">Should navigate between tabs</div>
+                        <div>
+                            <span class="test-status status-passed">passed</span>
+                            <span class="duration">1500ms</span>
+                        </div>
+                    </div>
+                    
+                    <div class="test-item passed">
+                        <div class="test-name">Should open drawer menu</div>
+                        <div>
+                            <span class="test-status status-passed">passed</span>
+                            <span class="duration">900ms</span>
+                        </div>
+                    </div>
+                    
+                    <div class="test-item passed">
+                        <div class="test-name">Should handle back navigation</div>
+                        <div>
+                            <span class="test-status status-passed">passed</span>
+                            <span class="duration">700ms</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="platform-section">
+            <div class="platform-header ios-header">
+                📱 IOS Test Results
+            </div>
+            <div class="test-results">
+                
+                <div class="test-category">
+                    <h4>undefined</h4>
+                    
+                </div>
+                
+                <div class="test-category">
+                    <h4>undefined</h4>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="links">
+            <a href="reports/allure-report/android/index.html" class="link">📊 Android Allure Report</a>
+            <a href="reports/allure-report/ios/index.html" class="link">📊 iOS Allure Report</a>
+            <a href="reports/mochawesome-report/android/mochawesome.html" class="link">📈 Android Mochawesome Report</a>
+            <a href="reports/mochawesome-report/ios/mochawesome.html" class="link">📈 iOS Mochawesome Report</a>
+        </div>
+        
+        <div class="footer">
+            <p>🤖 Generated by Suliit Automation Testing Framework</p>
+            <p>For detailed test logs and screenshots, check the reports directory</p>
+        </div>
+    </div>
+</body>
+</html>

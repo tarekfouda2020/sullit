@@ -121,16 +121,27 @@ exports.config = {
     // Test reporter for stdout
     //
     reporters: [
-        'spec',
+        ['spec', {
+            addConsoleLogs: true,
+            showPreface: false
+        }],
         ['allure', {
             outputDir: 'reports/allure-results/ios/',
-            disableWebdriverStepsReporting: true,
+            disableWebdriverStepsReporting: false,
             disableWebdriverScreenshotsReporting: false,
+            useCucumberStepReporter: false,
+            addConsoleLogs: true
         }],
         ['junit', {
             outputDir: 'reports/junit/ios/',
             outputFileFormat: function(options) {
                 return `ios-results-${options.cid}.xml`
+            }
+        }],
+        ['json', {
+            outputDir: 'reports/json/ios/',
+            outputFileFormat: function(options) {
+                return `ios-results-${options.cid}.json`
             }
         }]
     ],

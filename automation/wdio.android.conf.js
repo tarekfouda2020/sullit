@@ -115,16 +115,27 @@ exports.config = {
     // Test reporter for stdout
     //
     reporters: [
-        'spec',
+        ['spec', {
+            addConsoleLogs: true,
+            showPreface: false
+        }],
         ['allure', {
             outputDir: 'reports/allure-results/android/',
-            disableWebdriverStepsReporting: true,
+            disableWebdriverStepsReporting: false,
             disableWebdriverScreenshotsReporting: false,
+            useCucumberStepReporter: false,
+            addConsoleLogs: true
         }],
         ['junit', {
             outputDir: 'reports/junit/android/',
             outputFileFormat: function(options) {
                 return `android-results-${options.cid}.xml`
+            }
+        }],
+        ['json', {
+            outputDir: 'reports/json/android/',
+            outputFileFormat: function(options) {
+                return `android-results-${options.cid}.json`
             }
         }]
     ],
