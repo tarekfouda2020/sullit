@@ -1,0 +1,40 @@
+{
+  "android": {
+    "platformName": "Android",
+    "automationName": "UiAutomator2",
+    "deviceName": "Android Emulator",
+    "platformVersion": "13.0",
+    "app": "build/app/outputs/flutter-apk/app-debug.apk",
+    "appPackage": "com.example.flutter_tdd",
+    "appActivity": ".MainActivity",
+    "noReset": false,
+    "fullReset": false,
+    "newCommandTimeout": 300,
+    "autoGrantPermissions": true,
+    "unicodeKeyboard": true,
+    "resetKeyboard": true
+  },
+  "ios": {
+    "platformName": "iOS",
+    "automationName": "XCUITest",
+    "deviceName": "iPhone 15",
+    "platformVersion": "17.0",
+    "app": "build/ios/ipa/Runner.app",
+    "bundleId": "com.example.flutterTdd",
+    "noReset": false,
+    "fullReset": false,
+    "newCommandTimeout": 300,
+    "autoAcceptAlerts": true,
+    "autoDismissAlerts": true,
+    "xcodeOrgId": "YOUR_TEAM_ID",
+    "xcodeSigningId": "iPhone Developer",
+    "updatedWDABundleId": "com.example.WebDriverAgentRunner"
+  },
+  "server": {
+    "host": "127.0.0.1",
+    "port": 4723,
+    "logLevel": "info",
+    "sessionOverride": true,
+    "relaxedSecurity": true
+  }
+}
