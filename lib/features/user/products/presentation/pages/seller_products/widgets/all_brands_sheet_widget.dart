@@ -14,7 +14,7 @@ class AllBrandsSheetWidget extends StatelessWidget {
         color: context.colors.white,
         borderRadius: Dimens.sheetBorderRadius,
       ),
-      child: RefreshIndicator(
+      child: CustomRefreshIndicatorWidget(
         onRefresh: () => controller.getBrands(1),
         child: PagedListView<int, BrandDomainModel>(
           pagingController: controller.brandsPagingController,

@@ -30,7 +30,7 @@ class _LoyaltyPointsState extends State<LoyaltyPoints> {
             Gaps.vGap12,
             // QrImageView(),
             Expanded(
-              child: RefreshIndicator(
+              child: CustomRefreshIndicatorWidget(
                 onRefresh: () => controller.getTransactions(1),
                 child: PagedListView<int, TransactionsDomainModel>(
                   pagingController: controller.pagingController,

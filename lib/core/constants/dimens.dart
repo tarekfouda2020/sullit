@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Dimens {
   static double cardBorderRadius = 10.w;
 
+  static double iosBottomDp(BuildContext context) => MediaQuery.paddingOf(context).bottom + 13;
+
   static const double font_sp10 = 10.0;
   static const double font_sp12 = 12.0;
   static const double font_sp14 = 14.0;

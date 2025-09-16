@@ -19,6 +19,15 @@ class AgreeTermsConditionsWidget extends StatelessWidget {
                 checkColor: context.colors.white,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 activeColor: context.colors.primary,
+                fillColor: WidgetStateProperty. resolveWith<Color>((Set<WidgetState> states) {
+                  if (states. contains(WidgetState. disabled)) {
+                    return context.colors.white;
+                  }
+                  if (states. contains(WidgetState.selected)) {
+                    return context.colors.primary;
+                  }
+                  return Colors.transparent;
+                }),
                 value: state.data,
                 onChanged: (value) => controller.termCubit.onUpdateData(value!),
                 side: BorderSide(

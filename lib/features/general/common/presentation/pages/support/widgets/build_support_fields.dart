@@ -31,7 +31,8 @@ class BuildSupportFields extends StatelessWidget {
               controller: controller.msgController,
               fieldTypes: FieldTypes.chat,
               type: TextInputType.text,
-              action: TextInputAction.next,
+              action: TextInputAction.send,
+              onSubmit: () => controller.sendMessage(),
               radius: Dimens.borderRadius30PX,
               validate: (value) => value?.noValidate(),
               fillColor: context.colors.white,
@@ -41,7 +42,6 @@ class BuildSupportFields extends StatelessWidget {
                   onTap: () => controller.getImage(context),
                   child: SvgPicture.asset(
                       Res.attachments
-
                   ),
                 ),
               ),
@@ -49,7 +49,7 @@ class BuildSupportFields extends StatelessWidget {
           ),
           Gaps.hGap17,
           Transform.rotate(
-            angle: lang == 'ar' ? pi : 0,
+            angle: lang == LangCodeHelper.langAR ? pi : 0,
             child: InkWell(
               onTap: () => controller.sendMessage(),
                 child: SvgPicture.asset(Res.sendMessage)

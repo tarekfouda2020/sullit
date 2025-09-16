@@ -55,6 +55,7 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
   return showModalBottomSheet<Country?>(
       context: context,
       isScrollControlled: true,
+      backgroundColor: context.colors.white,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(cornerRadius),
@@ -62,6 +63,9 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
       builder: (_) {
         return Container(
           height: MediaQuery.of(context).size.height * heightFactor,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(12))
+          ),
           child: Column(
             children: <Widget>[
               SizedBox(height: 16),
@@ -86,6 +90,7 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.w500,
+                            color: context.colors.black
                           ),
                         ),
                   ),

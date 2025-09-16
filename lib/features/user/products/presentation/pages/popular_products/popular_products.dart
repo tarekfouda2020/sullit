@@ -26,7 +26,7 @@ class _PopularProductsState extends State<PopularProducts> {
         title: widget.popularProductsModel.name,
         showBack: true,
       ),
-      body: RefreshIndicator(
+      body: CustomRefreshIndicatorWidget(
         onRefresh: () =>
             controller.getPopularProducts(widget.popularProductsModel.id, 1),
         child: PagedGridView<int, Product>(

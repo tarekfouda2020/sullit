@@ -13,6 +13,7 @@ import 'package:flutter_tdd/core/widgets/DropdownTextField.dart';
 import 'package:flutter_tdd/core/widgets/GenericListView.dart';
 import 'package:flutter_tdd/core/widgets/build_empty_data_view.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
+import 'package:flutter_tdd/core/widgets/custom_refresh_indicator_widget.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/customers_products/domain/models/customer_product.dart';
 import 'package:flutter_tdd/features/user/customers_products/domain/models/product_specifications.dart';

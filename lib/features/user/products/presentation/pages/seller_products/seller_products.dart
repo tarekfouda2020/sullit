@@ -42,7 +42,7 @@ class SellerProductsPageState extends State<SellerProductsPage> {
           Gaps.hGap20,
         ],
       ),
-      body: RefreshIndicator(
+      body: CustomRefreshIndicatorWidget(
         onRefresh: () => controller.getProducts(1),
         child: PagedGridView<int, Product>(
           pagingController: controller.pagingController,

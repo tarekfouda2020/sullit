@@ -21,7 +21,7 @@ class _PurchasedHistoryState extends State<PurchasedHistory> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(title: tr('purchasedHistory'), showBack: true),
-      body: RefreshIndicator(
+      body: CustomRefreshIndicatorWidget(
         onRefresh: () => controller.getPurchasingHistory(1),
         child: PagedListView<int, Orders>(
           padding: Dimens.paddingAll15PX,

@@ -20,31 +20,32 @@ class VipPlansBottomSheetWidget extends StatelessWidget {
           BottomSheetHeaderWidget(title: tr('vipMembership')),
           Gaps.vGap24,
           Flexible(
-            child: RefreshIndicator(
-              onRefresh: () => controller.getSubscriptions(1),
-              child: PagedListView<int, VipSubscribeDomainModel>(
-                pagingController: controller.pagingController,
-                builderDelegate: PagedChildBuilderDelegate<VipSubscribeDomainModel>(
-                  itemBuilder: (_, item, index) => MembershipItemWidget(
-                    model: item,
-                    isBottomSheet: true,
-                    onSelect: () => controller.updateSelectedMemberShip(item),
-                  ),
-                  noItemsFoundIndicatorBuilder: (_) => Center(
-                    child: Text(
-                      tr("noSubscriptions"),
-                      style: AppTextStyle.s16_w700(color: context.colors.black),
+            child: CustomRefreshIndicatorWidget(
+                onRefresh: () => controller.getSubscriptions(1),
+                child: PagedListView<int, VipSubscribeDomainModel>(
+                  pagingController: controller.pagingController,
+                  builderDelegate: PagedChildBuilderDelegate<VipSubscribeDomainModel>(
+                    itemBuilder: (_, item, index) => MembershipItemWidget(
+                      model: item,
+                      isBottomSheet: true,
+                      onSelect: () => controller.updateSelectedMemberShip(item),
+                    ),
+                    noItemsFoundIndicatorBuilder: (_) => Center(
+                      child: Text(
+                        tr("noSubscriptions"),
+                        style: AppTextStyle.s16_w700(color: context.colors.black),
+                      ),
+                    ),
+                    firstPageProgressIndicatorBuilder: (_) => Column(
+                      children: List.generate(
+                        3,
+                            (_) => const MembershipItemShimmerWidget(),
+                      ),
                     ),
                   ),
-                  firstPageProgressIndicatorBuilder: (_) => Column(
-                    children: List.generate(
-                      3,
-                          (_) => const MembershipItemShimmerWidget(),
-                    ),
-                  ),
-                ),
-              ),
+                )
             ),
+
           ),
           Gaps.vGap10,
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(

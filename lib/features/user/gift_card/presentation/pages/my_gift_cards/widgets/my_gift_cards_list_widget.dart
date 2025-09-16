@@ -6,7 +6,7 @@ class MyGiftCardsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
+    return CustomRefreshIndicatorWidget(
       onRefresh: () => controller.getMyGiftCards(1),
       child: PagedListView<int, GiftCardDomainModel>(
         pagingController: controller.pagingController,

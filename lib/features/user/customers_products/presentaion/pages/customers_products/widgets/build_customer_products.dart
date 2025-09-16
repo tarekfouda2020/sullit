@@ -8,7 +8,7 @@ class BuildCustomerProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
-      child: RefreshIndicator(
+      child: CustomRefreshIndicatorWidget(
         onRefresh: () => controller.getCustomerProducts(1),
         child: PagedGridView<int, CustomerProduct>(
           padding: Dimens.standardPadding,

@@ -9,7 +9,7 @@ class BuildBrandShimmer extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       child: GridView.builder(
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: 10,
+        itemCount: 5,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 15.r,
@@ -20,7 +20,7 @@ class BuildBrandShimmer extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               color: context.colors.white,
-              borderRadius: BorderRadius.circular(5),
+              shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
                   color: context.colors.greyWhite,

@@ -22,7 +22,7 @@ class _NotificationsState extends State<Notifications> {
       appBar: DefaultAppBar(title: tr('notifications')),
       backgroundColor: context.colors.customBackground,
 
-      body: RefreshIndicator(
+      body: CustomRefreshIndicatorWidget(
         onRefresh: () => controller.getNotifications(1),
         child: PagedListView<int, NotificationDomainModel>(
           padding: Dimens.paddingAll15PX,

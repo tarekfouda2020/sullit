@@ -25,32 +25,29 @@ class _ProductDetailsState extends State<ProductDetails> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => controller.onPop(context),
-      child: SafeArea(
-        top: true,
-        child: Scaffold(
-          backgroundColor: context.colors.customBackground,
-          body: BlocBuilder<GenericBloc<ProductDetailsDomainModel?>,
-              GenericState<ProductDetailsDomainModel?>>(
-            bloc: controller.detailsCubit,
-            builder: (context, state) {
-              if (state is GenericUpdateState) {
-                return Column(
-                  children: [
-                    BuildDetailsView(
-                      controller: controller,
-                      detailsModel: state.data!,
-                    ),
-                    BuildProductButtons(
-                      controller: controller,
-                      detailsModel: state.data!,
-                    ),
-                  ],
-                );
-              } else {
-                return const BuildLoadingDetails();
-              }
-            },
-          ),
+      child: Scaffold(
+        backgroundColor: context.colors.customBackground,
+        body: BlocBuilder<GenericBloc<ProductDetailsDomainModel?>,
+            GenericState<ProductDetailsDomainModel?>>(
+          bloc: controller.detailsCubit,
+          builder: (context, state) {
+            if (state is GenericUpdateState) {
+              return Column(
+                children: [
+                  BuildDetailsView(
+                    controller: controller,
+                    detailsModel: state.data!,
+                  ),
+                  BuildProductButtons(
+                    controller: controller,
+                    detailsModel: state.data!,
+                  ),
+                ],
+              );
+            } else {
+              return const BuildLoadingDetails();
+            }
+          },
         ),
       ),
     );

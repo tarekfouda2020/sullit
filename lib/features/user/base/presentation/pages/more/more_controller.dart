@@ -1,11 +1,15 @@
 part of 'more_imports.dart';
 
 class MoreController {
+
   final GenericBloc<File?> imageCubit = GenericBloc(null);
   final GenericBloc<List<LangDomainModel>> languagesCubit = GenericBloc<List<LangDomainModel>>([]);
 
-  MoreController(BuildContext context) {
+  late final HomeController homeController;
+
+  MoreController(BuildContext context, HomeController controller) {
     // allLanguages(BuildContext context);
+    homeController = controller;
     _getLanguages(false);
     _getLanguages(true);
   }
@@ -93,7 +97,7 @@ class MoreController {
         AutoRouter.of(context).push(const BrandsRoute());
         break;
       case MoreRoutes.allCategories:
-        AutoRouter.of(context).push(HomeRoute(index: 1));
+        homeController.animateTabsPages(1, context);
         break;
       case MoreRoutes.contactUs:
         AutoRouter.of(context).push(const ContactUsRoute());

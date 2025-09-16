@@ -1,4 +1,7 @@
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
 import 'package:flutter_tdd/core/package/country_calling_code_picker-2.0.1/lib/country.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
@@ -10,7 +13,8 @@ import 'package:flutter_tdd/core/helpers/country_localization_helper.dart';
 class CountryPickerHelper {
 
   static Future<Country?> pickCountry(BuildContext context)async{
-    Country? data = await showCountryPickerSheet(
+    String lang = context.read<DeviceCubit>().state.model.locale.languageCode;
+    final externalCountry = await showCountryPickerSheet(
       context,
       cancelWidget: PositionedDirectional(
         end: 10,
@@ -31,14 +35,15 @@ class CountryPickerHelper {
         ),
       ),
       cornerRadius: 3,
-      forceArabic: true
+      forceArabic: lang == LangCodeHelper.langAR
     );
-    return data;
+    
+    return externalCountry;
   }
 
   /// Pick country with forced Arabic display
   static Future<Country?> pickCountryForceArabic(BuildContext context)async{
-    Country? data = await showCountryPickerSheet(
+    final externalCountry = await showCountryPickerSheet(
       context,
       cancelWidget: PositionedDirectional(
         end: 10,
@@ -47,7 +52,7 @@ class CountryPickerHelper {
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
             decoration: BoxDecoration(
-              color: context.colors.primary,
+              color: context.colors.white,
               borderRadius: BorderRadius.circular(8),
             ),
             child:  Text(
@@ -58,10 +63,10 @@ class CountryPickerHelper {
           ),
         ),
       ),
-      cornerRadius: 3,
-      forceArabic: true, // Force Arabic display
+      cornerRadius: 8,
     );
-    return data;
+    
+    return externalCountry;
   }
 
   static Future<Country?> getCountryByCallingCode(BuildContext context, String callingCode) async {

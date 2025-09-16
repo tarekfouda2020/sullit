@@ -7,7 +7,7 @@ import 'package:flutter_tdd/core/helpers/country_localization_helper.dart';
 import 'country.dart';
 import 'functions.dart';
 
-const TextStyle _defaultItemTextStyle = const TextStyle(fontSize: 16);
+const TextStyle _defaultItemTextStyle = const TextStyle(fontSize: 16,color: Colors.black);
 const TextStyle _defaultSearchInputStyle = const TextStyle(fontSize: 16);
 const String _kDefaultSearchHintText = 'Search country name, code';
 const String countryCodePackageName = 'country_calling_code_picker';
@@ -150,6 +150,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
             autofocus: widget.focusSearchBox,
             decoration: widget.searchInputDecoration ??
                 InputDecoration(
+                  hintStyle: TextStyle(color: Colors.black),
                   suffixIcon: Visibility(
                     visible: _controller.text.isNotEmpty,
                     child: InkWell(
@@ -202,6 +203,21 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                               _filteredList[index].flag,
                               package: countryCodePackageName,
                               width: widget.flagIconSize,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Container(
+                                  width: widget.flagIconSize,
+                                  height: widget.flagIconSize,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: Icon(
+                                    Icons.flag,
+                                    size: widget.flagIconSize * 0.6,
+                                    color: Colors.grey,
+                                  ),
+                                );
+                              },
                             ),
                             SizedBox(
                               width: 16,
