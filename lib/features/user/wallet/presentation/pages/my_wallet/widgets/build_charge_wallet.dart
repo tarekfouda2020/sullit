@@ -9,6 +9,7 @@ class BuildChargeWallet extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultButton(
       title: "",
+    margin: EdgeInsets.only(bottom: Dimens.iosBottomDp(context),right: 15,left: 15,top: 15),
     onTap:()=> controller.showChargeWalletSheet(context),
     customLabel: Row(
       mainAxisSize: MainAxisSize.min,

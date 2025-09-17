@@ -28,8 +28,10 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
       toolbarHeight: 60.h,
       stretch: true,
       expandedHeight: 350.spMin,
+      forceMaterialTransparency: false,
       automaticallyImplyLeading: false,
       backgroundColor: context.colors.customBackground,
+
       centerTitle: true,
       title: AnimatedOpacity(
         opacity: widget.innerBoxIsScrolled ? 1 : 0,
@@ -70,20 +72,6 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
             );
           },
         ),
-        // BuildCompareItem(
-        //   width: 43,
-        //   margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-        //   productModel: productModel,
-        //   onTap: () {},
-        // ),
-        // BuildIconItem(
-        //   width: 43,
-        //   margin: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-        //   iconData: Icons.compare_arrows,
-        //   checkValue: productModel.isAddedTCompare,
-        //   onTap: () => controller.addToCompare(context, productModel),
-        //   padding: Dimens.paddingAll8PX,
-        // ),
       ],
       leading: GestureDetector(
         onTap: ()=> widget.controller.onPop(context),

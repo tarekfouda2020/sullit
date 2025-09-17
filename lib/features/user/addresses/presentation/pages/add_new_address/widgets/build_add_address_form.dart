@@ -9,77 +9,75 @@ class BuildAddAddressForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       key: controller.formKey,
-      child: Flexible(
-        child: ListView(
-          padding: const EdgeInsets.all(Dimens.dp20),
-          children: [
-            BuildInputLabel(
-              label: tr("location"),
-            ),
-            GenericTextField(
-              type: TextInputType.none,
-              controller: controller.locationController,
-              fieldTypes: FieldTypes.clickable,
-              onTab: ()  => controller.routeToDetectLocation(context),
-              action: TextInputAction.done,
-              fillColor: context.colors.white,
-              validate: (value) => value?.validateEmpty(),
-              hint: tr("detectLocation"),
-              margin: Dimens.paddingVertical10PX,
-            ),
-            BuildInputLabel(
-              label: tr("addressName"),
-            ),
-            GenericTextField(
-              controller: controller.addressController,
-              fieldTypes: FieldTypes.rich,
-              type: TextInputType.multiline,
-              action: TextInputAction.newline,
-              fillColor: context.colors.white,
-              validate: (value) => value?.validateEmpty(),
-              hint: tr("enterAddressName"),
-              margin: Dimens.paddingVertical10PX,
-            ),
-            LocationFieldsWidget(controller: controller),
-            UnitFieldsWidget(controller: controller),
-            // BuildInputLabel(
-            //   label: tr("postalCode"),
-            // ),
-            // GenericTextField(
-            //   controller: controller.postalCodeController,
-            //   fieldTypes: FieldTypes.normal,
-            //   type: TextInputType.text,
-            //   fillColor: context.colors.white,
-            //   action: TextInputAction.next,
-            //   validate: (value) => value?.validateEmpty(),
-            //   hint: tr("postalCode"),
-            //   margin: Dimens.paddingVertical10PX,
-            // ),
-            BuildInputLabel(
-              label: tr("phoneNumber"),
-            ),
-            BlocBuilder<GenericBloc<package.Country?>,
-                GenericState<package.Country?>>(
-              bloc: controller.countryCodeCubit,
-              builder: (context, state) {
-                return  GenericTextField(
-                  controller: controller.phoneController,
-                  fieldTypes: FieldTypes.normal,
-                  fillColor: context.colors.white,
-                  type: TextInputType.number,
-                  action: TextInputAction.done,
-                  validate: (value) =>
-                      ((state.data?.callingCode ?? "") + (value ?? ""))
-                          .validatePhone(),
-                  // validate: (value) => value?.validatePhone(),
-                  hint: tr("phoneNumber"),
-                  margin: Dimens.paddingVertical10PX,
-                  prefixIcon: _buildPrefixIcon(context,state),
-                );
-              },
-            ),
-          ],
-        ),
+      child: ListView(
+        padding: const EdgeInsets.all(Dimens.dp20),
+        children: [
+          BuildInputLabel(
+            label: tr("location"),
+          ),
+          GenericTextField(
+            type: TextInputType.none,
+            controller: controller.locationController,
+            fieldTypes: FieldTypes.clickable,
+            onTab: ()  => controller.routeToDetectLocation(context),
+            action: TextInputAction.done,
+            fillColor: context.colors.white,
+            validate: (value) => value?.validateEmpty(),
+            hint: tr("detectLocation"),
+            margin: Dimens.paddingVertical10PX,
+          ),
+          BuildInputLabel(
+            label: tr("addressName"),
+          ),
+          GenericTextField(
+            controller: controller.addressController,
+            fieldTypes: FieldTypes.rich,
+            type: TextInputType.multiline,
+            action: TextInputAction.newline,
+            fillColor: context.colors.white,
+            validate: (value) => value?.validateEmpty(),
+            hint: tr("enterAddressName"),
+            margin: Dimens.paddingVertical10PX,
+          ),
+          LocationFieldsWidget(controller: controller),
+          UnitFieldsWidget(controller: controller),
+          // BuildInputLabel(
+          //   label: tr("postalCode"),
+          // ),
+          // GenericTextField(
+          //   controller: controller.postalCodeController,
+          //   fieldTypes: FieldTypes.normal,
+          //   type: TextInputType.text,
+          //   fillColor: context.colors.white,
+          //   action: TextInputAction.next,
+          //   validate: (value) => value?.validateEmpty(),
+          //   hint: tr("postalCode"),
+          //   margin: Dimens.paddingVertical10PX,
+          // ),
+          BuildInputLabel(
+            label: tr("phoneNumber"),
+          ),
+          BlocBuilder<GenericBloc<package.Country?>,
+              GenericState<package.Country?>>(
+            bloc: controller.countryCodeCubit,
+            builder: (context, state) {
+              return  GenericTextField(
+                controller: controller.phoneController,
+                fieldTypes: FieldTypes.normal,
+                fillColor: context.colors.white,
+                type: TextInputType.number,
+                action: TextInputAction.done,
+                validate: (value) =>
+                    ((state.data?.callingCode ?? "") + (value ?? ""))
+                        .validatePhone(),
+                // validate: (value) => value?.validatePhone(),
+                hint: tr("phoneNumber"),
+                margin: Dimens.paddingVertical10PX,
+                prefixIcon: _buildPrefixIcon(context,state),
+              );
+            },
+          ),
+        ],
       ),
     );
   }

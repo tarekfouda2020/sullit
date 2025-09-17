@@ -5,6 +5,7 @@ import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/core/widgets/custom_refresh_indicator_widget.dart';
 import 'package:flutter_tdd/features/user/gift_card/domain/models/git_card_domain_model.dart';
 import 'package:flutter_tdd/features/user/gift_card/presentation/pages/gift_cards/widgets/gift_card_shimmer_widget.dart';
 import 'package:flutter_tdd/features/user/gift_card/presentation/pages/my_gift_cards/my_gift_cards_imports.dart';

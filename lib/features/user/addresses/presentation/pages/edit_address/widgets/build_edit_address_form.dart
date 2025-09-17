@@ -146,10 +146,11 @@ class BuildEditAddressForm extends StatelessWidget {
             BuildInputLabel(
               label: tr("phoneNumber"),
             ),
-            BlocBuilder<GenericBloc<package.Country?>,
-                GenericState<package.Country?>>(
-              bloc: controller.countryCodeCubit,
-              builder: (context, state) {
+            BlocProvider.value(
+              value: controller.countryCodeCubit,
+              child: BlocBuilder<GenericBloc<package.Country?>,
+                  GenericState<package.Country?>>(
+                builder: (context, state) {
                 return  GenericTextField(
                   controller: controller.phoneController,
                   fieldTypes: FieldTypes.normal,
@@ -165,6 +166,7 @@ class BuildEditAddressForm extends StatelessWidget {
                   prefixIcon: _buildPrefixIcon(context,state),
                 );
               },
+              ),
             ),
             // BlocBuilder<GenericBloc<package.Country?>, GenericState<package.Country?>>(
             //   bloc: controller.countryCodeCubit,

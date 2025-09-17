@@ -32,7 +32,7 @@ dependencies:
   freezed: ^2.3.2
   freezed_annotation: ^2.2.0
   dartz: ^0.10.1
-  tf_dio_cache: ^1.0.1
+  tf_dio_cache: ^1.0.2
   fluttertoast: ^8.2.12
   shared_preferences: ^2.2.3
   auto_route: ^5.0.4
@@ -99,6 +99,8 @@ dependencies:
   barcode: ^2.2.9
   timeago:
   timezone:
+  country_calling_code_picker:
+    path: ./lib/core/package/country_calling_code_picker-2.0.1
 
   #country_phone_validator: ^1.0.1
   # flutter_sim_country_code removed; using locale-based detection
@@ -136,6 +138,8 @@ flutter:
     - assets/fonts/quicksand/
     - assets/images/
     - assets/lang/
+    - lib/core/package/country_calling_code_picker-2.0.1/flags/
+    - lib/core/package/country_calling_code_picker-2.0.1/raw/
   fonts:
     - family: Quicksand
       fonts:

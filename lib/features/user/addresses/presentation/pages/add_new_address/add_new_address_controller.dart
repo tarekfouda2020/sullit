@@ -95,10 +95,10 @@ class AddNewAddressController {
               color: context.colors.primary,
               borderRadius: BorderRadius.circular(8),
             ),
-            child: const Text(
-              'Cancel',
+            child:  Text(
+              tr("cancel"),
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),

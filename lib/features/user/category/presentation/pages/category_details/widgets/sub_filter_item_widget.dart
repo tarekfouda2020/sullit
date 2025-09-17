@@ -28,6 +28,22 @@ class SubFilterItemWidget extends StatelessWidget {
             visualDensity: const VisualDensity(vertical: -2),
             onChanged: onSelect,
             checkColor: context.colors.white,
+            side: BorderSide(
+              color: context.colors.textColor,
+              width: 1,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: Dimens.borderRadius4PX,
+            ),
+            fillColor: WidgetStateProperty. resolveWith<Color>((Set<WidgetState> states) {
+              if (states. contains(WidgetState. disabled)) {
+                return context.colors.white;
+              }
+              if (states. contains(WidgetState.selected)) {
+                return context.colors.primary;
+              }
+              return Colors.transparent;
+            }),
           )
         ],
       ),

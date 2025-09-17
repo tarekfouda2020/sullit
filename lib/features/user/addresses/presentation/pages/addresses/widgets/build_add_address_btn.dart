@@ -10,6 +10,7 @@ class BuildAddAddressBtn extends StatelessWidget {
     return DefaultButton(
         title: "",
       onTap: () => controller.checkAddAddress(context),
+      margin: EdgeInsets.only(left: 20,right: 20,bottom: Dimens.iosBottomDp(context),top: 15),
       customLabel: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

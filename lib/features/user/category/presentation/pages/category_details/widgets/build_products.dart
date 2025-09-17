@@ -9,7 +9,7 @@ class BuildProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     bool? haveVipDiscount = context.read<UserCubit>().state.model?.hasValidSubscription;
     return Flexible(
-      child: RefreshIndicator(
+      child: CustomRefreshIndicatorWidget(
         onRefresh: () => detailsController.getPopularProducts(1),
         child: PagedGridView<int, Product>(
           padding: Dimens.standardPadding,

@@ -26,25 +26,30 @@ class _ProfileState extends State<Profile>with WidgetsBindingObserver  {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(title: tr('manageProfile')),
-      body: Column(
-        children: [
-          Flexible(
-            child: ListView(
-              padding:const EdgeInsets.only(right: 15, left: 15, bottom: 15),
-              children: [
-                BuildProfileImage(controller: controller),
-                BuildProfileFormFields(controller: controller),
-                BuildProfileButton(controller: controller),
-                const ChangePasswordWidget()
-              ],
-            ),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        backgroundColor: context.colors.customBackground,
+        appBar:  DefaultAppBar(title: tr('manageProfile')),
+        body: SingleChildScrollView(
+          padding:const EdgeInsets.only(right: 15, left: 15, bottom: 15),
+          child: Column(
+            children: [
+              BuildProfileImage(controller: controller),
+              BuildProfileFormFields(controller: controller),
+              BuildProfileButton(controller: controller),
+              const ChangePasswordWidget(),
+            ],
           ),
-          LogoutButtonWidget(controller: controller),
-          BuildDeleteAccountButton(controller: controller),
-        ],
+        ),
+        bottomNavigationBar: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            LogoutButtonWidget(controller: controller),
+            BuildDeleteAccountButton(controller: controller),
+            Gaps.vGap20
+          ],
+        ),
       ),
     );
   }

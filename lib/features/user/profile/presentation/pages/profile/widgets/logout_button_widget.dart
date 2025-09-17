@@ -12,6 +12,7 @@ class LogoutButtonWidget extends StatelessWidget {
       height: 35.h,
       color: context.colors.primary,
       textColor: context.colors.white,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
       onTap: () => controller.logOut(context),
     );
   }

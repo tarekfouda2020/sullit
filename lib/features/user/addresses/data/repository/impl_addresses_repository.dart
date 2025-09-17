@@ -6,7 +6,6 @@ import 'package:flutter_tdd/core/models/domain_models/country.dart';
 import 'package:flutter_tdd/core/models/domain_models/state.dart';
 import 'package:flutter_tdd/core/models/model_to_domain/model_to_domain.dart';
 import 'package:flutter_tdd/features/user/addresses/data/data_sources/addresses_data_sources.dart';
-import 'package:flutter_tdd/features/user/addresses/data/models/address_type/address_type.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/entities/add_address_params.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/entities/edit_address_params.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart';

@@ -10,29 +10,37 @@ class BuildLangBottomSheet extends StatelessWidget {
     return BlocBuilder<GenericBloc<List<LangDomainModel>>, GenericState<List<LangDomainModel>>>(
       bloc: controller.languagesCubit,
       builder: (context, state) {
-        return Container(
+        return Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
-            children: List.generate(state.data.length, (index) {
-              LangDomainModel item = state.data[index];
-              return Column(
-                children: [
-                  InkWell(
-                    onTap: () => controller.setUserLang(context, item),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                        item.name,
-                        style: AppTextStyle.s14_w600(color: context.colors.black),),
+            children: [
+              ...List.generate(state.data.length, (index) {
+                LangDomainModel item = state.data[index];
+                return Column(
+                  children: [
+                    InkWell(
+                      onTap: () => controller.setUserLang(context, item),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              item.name,
+                              style: AppTextStyle.s14_w600(color: context.colors.black),),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
-                  if(index != state.data.length-1)
-                  Divider(thickness: 1, color: context.colors.greyWhite)
-                ],
-              );
-            }),
+                    if(index != state.data.length-1)
+                      Divider(thickness: 1, color: context.colors.greyWhite)
+                  ],
+                );
+              }),
+                Gaps.vGap20
+            ],
           ),
         );
       },

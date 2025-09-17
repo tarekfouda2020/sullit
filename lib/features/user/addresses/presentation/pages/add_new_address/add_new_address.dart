@@ -24,16 +24,12 @@ class _AddNewAddressState extends State<AddNewAddress> {
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
         appBar:  DefaultAppBar(title: tr('addNewAddress')),
-        body: Column(
-          children: [
-            BuildAddAddressForm(controller: controller),
-            DefaultButton(
-              title: tr('save'),
-              onTap: () => controller.addNewAddress(context),
-              height: 35.h,
-              margin: Dimens.paddingAll20PX,
-            )
-          ],
+        body: BuildAddAddressForm(controller: controller),
+        bottomNavigationBar: DefaultButton(
+          title: tr('save'),
+          onTap: () => controller.addNewAddress(context),
+          height: 35.h,
+          margin: EdgeInsets.only(right: 10,left: 10,bottom: Dimens.iosBottomDp(context),top: 10),
         ),
       ),
     );

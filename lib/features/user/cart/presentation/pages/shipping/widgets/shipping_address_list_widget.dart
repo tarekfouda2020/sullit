@@ -8,7 +8,7 @@ class ShippingAddressListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
-        child: RefreshIndicator(
+        child: CustomRefreshIndicatorWidget(
           onRefresh: () => controller.getPaginateAddress(1),
           child: BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.refreshCubit,

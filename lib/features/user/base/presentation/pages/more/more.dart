@@ -15,7 +15,7 @@ class _MoreState extends State<More> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    controller = MoreController(context);
+    controller = MoreController(context,widget.homeController);
   }
 
   @override

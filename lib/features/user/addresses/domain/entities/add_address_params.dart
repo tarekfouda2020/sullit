@@ -45,7 +45,6 @@ class AddAddressParams {
         "street_name": streetName,
         "building_name": buildingName,
         "flat_number": flatNumber,
-        "address_type": addressType,
       };
 
   bool isSuccess(json) => json["key"] == "success";
