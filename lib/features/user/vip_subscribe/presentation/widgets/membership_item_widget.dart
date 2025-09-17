@@ -6,6 +6,7 @@ import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
@@ -113,7 +114,7 @@ class MembershipItemWidget extends StatelessWidget {
                 color: context.colors.textColor,
                 fontSize: FontSize(12),
                 fontWeight: FontWeight.w400,
-                alignment: lang == "ar" ? Alignment.centerLeft : Alignment.centerRight,
+                alignment: lang == LangCodeHelper.langAR ? Alignment.centerLeft : Alignment.centerRight,
                 margin: Margins.all(0),
                 padding: HtmlPaddings.all(0),
               ),
@@ -143,24 +144,7 @@ class MembershipItemWidget extends StatelessWidget {
                   fontStyle: FontStyle.normal,
                 ),
               },
-
             ),
-            // ...List.generate(3, (index) {
-            //   return Row(
-            //     children: [
-            //       Container(
-            //         width: 5,
-            //         height: 5,
-            //         decoration: BoxDecoration(color: context.colors.textColor, shape: BoxShape.circle),
-            //       ),
-            //       Gaps.hGap10,
-            //       Text(
-            //         "Lorem Ipsum is simply dummy text of the printing ",
-            //         style: AppTextStyle.s12_w400(color: context.colors.textColor),
-            //       ),
-            //     ],
-            //   );
-            // }),
            Visibility(
              visible: model.subscription!=null,
              child: Column(

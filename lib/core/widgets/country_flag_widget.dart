@@ -60,3 +60,4 @@ class CountryFlagWidget extends StatelessWidget {
     );
   }
 }
+
