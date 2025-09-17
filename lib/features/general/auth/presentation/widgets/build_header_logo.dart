@@ -35,10 +35,10 @@ class BuildHeaderLogo extends StatelessWidget {
   }
 
 
-  double get height{
-    return Platform.isIOS
-        ?60
-        : 20;
-  }
+  // double get height{
+  //   return Platform.isIOS
+  //       ?60
+  //       : 20;
+  // }
 
 }
