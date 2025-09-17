@@ -36,7 +36,7 @@ class _GiftCardDetailsState extends State<GiftCardDetails> {
           body: ListView(
             padding: Dimens.paddingHorizontal20PX,
             children: [
-              const BuildHeaderLogo(marginTop: 5, marginBottom: 25),
+              const BuildHeaderLogo(marginTop: 5,marginBottom: 15),
               GiftCardDetailsWidget(controller: controller),
               GiftCardFooterSectionWidget(controller: controller)
             ],

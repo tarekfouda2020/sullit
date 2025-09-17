@@ -15,7 +15,7 @@ class BuildHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0.2,
       backgroundColor: context.colors.white,
       toolbarHeight:  70,
-      leading: Gaps.empty,
+      leading: Icon(Icons.menu,color: context.colors.black,size: 20),
       // leading: IconButton(
       //   onPressed: () => homeController?.scaffoldKey.currentState!.openDrawer(),
       //   icon: Icon(
@@ -24,7 +24,7 @@ class BuildHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       //     size: 25,
       //   ),
       // ),
-      title: Image.asset(Res.logo, height: 30, width: 150),
+      title: Image.asset(Res.newAuthLogo, height: 52, width: 152),
     );
   }
 

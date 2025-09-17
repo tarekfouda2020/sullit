@@ -11,7 +11,7 @@ class BuildBestRated extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const BuildHeaderTitle(title: "Best Rated"),
+        //const BuildHeaderTitle(title: "Best Rated"),
         SizedBox(
           height: 220,
           child: SingleChildScrollView(

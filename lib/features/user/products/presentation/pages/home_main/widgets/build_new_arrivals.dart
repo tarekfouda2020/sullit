@@ -12,7 +12,7 @@ class BuildNewArrivals extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const BuildHeaderTitle(title: "New Arrivals"),
+        //const BuildHeaderTitle(title: "New Arrivals"),
         SizedBox(
           height: 220,
           child: SingleChildScrollView(

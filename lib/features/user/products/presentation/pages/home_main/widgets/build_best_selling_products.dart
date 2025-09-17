@@ -15,12 +15,12 @@ class BuildBestSellingProducts extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        BuildHeaderTitle(
-          title: tr('justForYou'),
-          // onTap: () => AutoRouter.of(context).push(AllProductPageRoute(
-          //   bestSellingProducts: bestSellingProducts,
-          // )),
-        ),
+        // BuildHeaderTitle(
+        //   title: tr('justForYou'),
+        //   // onTap: () => AutoRouter.of(context).push(AllProductPageRoute(
+        //   //   bestSellingProducts: bestSellingProducts,
+        //   // )),
+        // ),
         SizedBox(
           height: 220,
           child: SingleChildScrollView(

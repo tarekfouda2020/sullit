@@ -12,7 +12,7 @@ class BuildFeaturedProducts extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        BuildHeaderTitle(title: tr('featuredProducts')),
+        //BuildHeaderTitle(title: tr('featuredProducts')),
         SizedBox(
           height: 220,
           child: SingleChildScrollView(

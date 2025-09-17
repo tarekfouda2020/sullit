@@ -28,6 +28,7 @@ class _CategoriesState extends State<Categories> {
           children: [
             Gaps.vGap10,
             BuildCategorySearchView(categoriesController: categoriesController),
+            Gaps.vGap20,
             Flexible(
               child: Padding(
                 padding: const EdgeInsetsDirectional.only(top: 10,start: 15,end: 15),

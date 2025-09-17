@@ -30,6 +30,7 @@ class BuildProductItem extends StatefulWidget {
   final VoidCallback? afterAddToCart;
   final VoidCallback? onRefresh;
   final bool? showVipDiscount;
+  final EdgeInsetsDirectional? margin;
 
   const BuildProductItem({
     super.key,
@@ -38,7 +39,7 @@ class BuildProductItem extends StatefulWidget {
     this.onCompareRefresh,
     this.showVipDiscount,
     this.afterAddToCart,
-    this.onRefresh,
+    this.onRefresh, this.margin,
   });
 
   @override
@@ -51,6 +52,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: widget.margin?? const EdgeInsets.all(0),
       width: 160,
       decoration: CustomDecoration(
           myBoxShadow: const [],
@@ -163,7 +165,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                     ignoreGestures: true,
                     updateOnDrag: false,
                     itemCount: 5,
-                    itemSize: 15,
+                    itemSize: 13,
                     unratedColor: context.colors.deepGray,
                     itemBuilder: (context, _) => const Icon(
                       Icons.star_rounded,

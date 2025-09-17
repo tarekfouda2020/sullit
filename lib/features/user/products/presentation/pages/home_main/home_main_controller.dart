@@ -9,20 +9,31 @@ class HomeMainController {
   final ScrollController scrollController = ScrollController();
   final GenericBloc<bool> scrollCubit = GenericBloc(true);
   final GenericBloc<TimerEntity> countDownCubit = GenericBloc(TimerEntity());
+  final GenericBloc<List<Product>> vipOffersCubit = GenericBloc([]);
+  final GenericBloc<List<Product>> arrivalCubit = GenericBloc([]);
+  final GenericBloc<List<Product>> onSaleCubit = GenericBloc([]);
+  final GenericBloc<List<Product>> bestRatedCubit = GenericBloc([]);
+  final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
+
   List<ProductSections> allSections = [];
   int currentPage = 1;
   int pageSize = 5;
 
   late final HomeController homeController;
+
   HomeMainController(BuildContext context, HomeController controller) {
     homeController = controller;
     controller.searchController.clear();
     controller.visibleSearch.onUpdateData(false);
     // getHome(context, refresh: false);
     getHome(context);
+    getVipOffers();
+    getBestRatedOffers();
+    getNewArrivalOffers();
+    getOnSaleOffers();
+    getAllBrands();
     getProductSections();
     scrollController.addListener(scrollListener);
-
   }
 
   void scrollListener() {
@@ -68,7 +79,6 @@ class HomeMainController {
     var deal = homeCubit.state.data?.flashSales;
     AutoRouter.of(context).push(SaleDetailsRoute(dealId: deal!.id));
   }
-
 
 
   String getDigit(Duration duration, String unit, int index) {
@@ -123,12 +133,9 @@ class HomeMainController {
             type: ToastType.success,
           );
     }
-
   }
 
-
-
-  void routeToSearchPage(BuildContext context){
+  void routeToSearchPage(BuildContext context) {
     AutoRouter.of(context).push(
       SearchRoute(
         searchText: homeController.searchController.text,
@@ -136,69 +143,137 @@ class HomeMainController {
     );
   }
 
+  // used to get vip offers
+  void getVipOffers({bool refresh = true}) async {
+    var result = await GetVipOffers().call(refresh);
+    vipOffersCubit.onUpdateData(result);
+  }
 
-  //
-  // Future<void> scanSkuNumber() async {
-  //   try {
-  //     // Method 1: Get just the SKU
-  //     String? sku = await SimpleBarcodeScanner.scanAndGetSku();
-  //
-  //     if (sku != null) {
-  //       print('Scanned SKU: $sku');
-  //       // TODO: Add your logic here to handle the SKU
-  //     }
-  //   } catch (e) {
-  //     CustomToast.showSimpleToast(
-  //       msg: tr('scanError'),
-  //       type: ToastType.error,
-  //     );
-  //   }
-  // }
-  //
-  // /// Alternative method to get both barcode and SKU
-  // Future<void> scanBarcodeAndSku() async {
-  //   try {
-  //     // Method 2: Get both barcode and SKU
-  //     Map<String, String?> result = await SimpleBarcodeScanner.scanBarcodeAndSku();
-  //
-  //     String? barcode = result['barcode'];
-  //     String? sku = result['sku'];
-  //
-  //     if (barcode != null && sku != null) {
-  //       print('Barcode: $barcode');
-  //       print('SKU: $sku');
-  //
-  //       // TODO: Add your logic here
-  //     }
-  //   } catch (e) {
-  //     CustomToast.showSimpleToast(
-  //       msg: tr('scanError'),
-  //       type: ToastType.error,
-  //     );
-  //   }
-  // }
-  //
-  // /// Alternative method to get just the barcode
-  // Future<void> scanBarcodeOnly() async {
-  //   try {
-  //     // Method 3: Get just the barcode without processing
-  //     String? barcode = await SimpleBarcodeScanner.scanBarcodeOnly();
-  //
-  //     if (barcode != null) {
-  //       print('Barcode: $barcode');
-  //
-  //       // You can manually extract SKU from barcode
-  //       String sku = SimpleBarcodeScanner.extractSkuFromBarcode(barcode);
-  //       print('Extracted SKU: $sku');
-  //
-  //       // TODO: Add your logic here
-  //     }
-  //   } catch (e) {
-  //     CustomToast.showSimpleToast(
-  //       msg: tr('scanError'),
-  //       type: ToastType.error,
-  //     );
-  //   }
-  // }
+  // used to add vip offer on favorite
+  void onChangeVipOffersFav(Product item) {
+    item.isWishlist = !item.isWishlist!;
+    vipOffersCubit.onUpdateData(vipOffersCubit.state.data);
+  }
 
+  // ---------------------------------------------------------
+
+  // used to get new arrival offers
+  void getNewArrivalOffers({bool refresh = true}) async {
+    var result = await GetNewArrival().call(refresh);
+    arrivalCubit.onUpdateData(result);
+  }
+
+  // used to add new arrival offer on favorite
+  void onChangeArrivalOffersFav(Product item) {
+    item.isWishlist = !item.isWishlist!;
+    arrivalCubit.onUpdateData(arrivalCubit.state.data);
+  }
+
+  // --------------------------------------------------------
+
+  // used to get on sale offers
+  void getOnSaleOffers({bool refresh = true}) async {
+    var result = await GetOnSale().call(refresh);
+    onSaleCubit.onUpdateData(result);
+  }
+
+  // used to add on sale offer on favorite
+  void onChangeOnSaleOffersFav(Product item) {
+    item.isWishlist = !item.isWishlist!;
+    onSaleCubit.onUpdateData(onSaleCubit.state.data);
+  }
+
+  // --------------------------------------------------------
+
+  // used to get best rated offers
+  void getBestRatedOffers({bool refresh = true}) async {
+    var result = await GetBestRated().call(refresh);
+    bestRatedCubit.onUpdateData(result);
+  }
+
+  // used to add best rated offer on favorite
+  void onChangeBestRatedFav(Product item) {
+    item.isWishlist = !item.isWishlist!;
+    bestRatedCubit.onUpdateData(bestRatedCubit.state.data);
+  }
+
+  // --------------------------------------------------------
+
+  Future<void> getAllBrands({bool refresh = true}) async {
+    var params = _brandsParams(refresh);
+    var data = await GetBrands().call(params);
+    brandsCubit.onUpdateData(data);
+  }
+
+  BrandsParams _brandsParams(bool refresh) {
+    return BrandsParams(
+      paginate: 5,
+      refresh: refresh,
+      page: 1,
+    );
+  }
+
+//
+// Future<void> scanSkuNumber() async {
+//   try {
+//     // Method 1: Get just the SKU
+//     String? sku = await SimpleBarcodeScanner.scanAndGetSku();
+//
+//     if (sku != null) {
+//       print('Scanned SKU: $sku');
+//       // TODO: Add your logic here to handle the SKU
+//     }
+//   } catch (e) {
+//     CustomToast.showSimpleToast(
+//       msg: tr('scanError'),
+//       type: ToastType.error,
+//     );
+//   }
+// }
+//
+// /// Alternative method to get both barcode and SKU
+// Future<void> scanBarcodeAndSku() async {
+//   try {
+//     // Method 2: Get both barcode and SKU
+//     Map<String, String?> result = await SimpleBarcodeScanner.scanBarcodeAndSku();
+//
+//     String? barcode = result['barcode'];
+//     String? sku = result['sku'];
+//
+//     if (barcode != null && sku != null) {
+//       print('Barcode: $barcode');
+//       print('SKU: $sku');
+//
+//       // TODO: Add your logic here
+//     }
+//   } catch (e) {
+//     CustomToast.showSimpleToast(
+//       msg: tr('scanError'),
+//       type: ToastType.error,
+//     );
+//   }
+// }
+//
+// /// Alternative method to get just the barcode
+// Future<void> scanBarcodeOnly() async {
+//   try {
+//     // Method 3: Get just the barcode without processing
+//     String? barcode = await SimpleBarcodeScanner.scanBarcodeOnly();
+//
+//     if (barcode != null) {
+//       print('Barcode: $barcode');
+//
+//       // You can manually extract SKU from barcode
+//       String sku = SimpleBarcodeScanner.extractSkuFromBarcode(barcode);
+//       print('Extracted SKU: $sku');
+//
+//       // TODO: Add your logic here
+//     }
+//   } catch (e) {
+//     CustomToast.showSimpleToast(
+//       msg: tr('scanError'),
+//       type: ToastType.error,
+//     );
+//   }
+// }
 }

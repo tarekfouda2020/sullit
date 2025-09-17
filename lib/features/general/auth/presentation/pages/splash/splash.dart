@@ -22,6 +22,7 @@ class _SplashState extends State<Splash> {
     precacheImage(const AssetImage(Res.logo), context);
     precacheImage(const AssetImage(Res.logoIcon), context);
     precacheImage(const AssetImage(Res.logoPng), context);
+    precacheImage(const AssetImage(Res.newSplashImage), context);
     precacheImage(const AssetImage(Res.dealOfDayBackGround), context);
   }
 
@@ -37,17 +38,18 @@ class _SplashState extends State<Splash> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  Res.logoIcon,
+                  Res.newSplashImage,
                 ),
-                Image.asset(
-                  Res.logoPng,
-                  width: MediaQuery.of(context).size.width * .3,
-                ),
-                Gaps.vGap12,
-                Text(
-                  'its worth it, thats it',
-                  style: AppTextStyle.s16_w700(color: context.colors.black),
-                ),
+                Gaps.vGap20,
+                // Image.asset(
+                //   Res.logoPng,
+                //   width: MediaQuery.of(context).size.width * .3,
+                // ),
+                // Gaps.vGap12,
+                // Text(
+                //   'its worth it, thats it',
+                //   style: AppTextStyle.s16_w700(color: context.colors.black),
+                // ),
               ],
             ),
           ),
