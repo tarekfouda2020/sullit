@@ -9,7 +9,7 @@ part of 'attribute_value_model.dart';
 _$_AttributeValueModel _$$_AttributeValueModelFromJson(
         Map<String, dynamic> json) =>
     _$_AttributeValueModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       value: json['value'] as String,
       colorCode: json['color_code'] as String?,
     );

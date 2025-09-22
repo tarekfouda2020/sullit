@@ -9,7 +9,7 @@ part of 'product_options_model.dart';
 _$_ProductOptionsModel _$$_ProductOptionsModelFromJson(
         Map<String, dynamic> json) =>
     _$_ProductOptionsModel(
-      attributeId: json['attribute_id'] as int,
+      attributeId: (json['attribute_id'] as num).toInt(),
       title: json['title'] as String,
       options:
           (json['options'] as List<dynamic>).map((e) => e as String).toList(),

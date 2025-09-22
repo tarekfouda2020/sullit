@@ -9,12 +9,12 @@ part of 'current_package_model.dart';
 _$_CurrentPackageModel _$$_CurrentPackageModelFromJson(
         Map<String, dynamic> json) =>
     _$_CurrentPackageModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       logo: json['logo'] as String,
       isFree: json['is_free'] as bool,
       amount: json['amount'] as String,
-      productUpload: json['product_upload'] as int,
+      productUpload: (json['product_upload'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$_CurrentPackageModelToJson(

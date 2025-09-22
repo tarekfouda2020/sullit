@@ -20,7 +20,7 @@ _$_SellerShippingModel _$$_SellerShippingModelFromJson(
       delivery: json['delivery'] == null
           ? null
           : DeliveryModel.fromJson(json['delivery'] as Map<String, dynamic>),
-      ownerId: json['owner_id'] as int,
+      ownerId: (json['owner_id'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$_SellerShippingModelToJson(

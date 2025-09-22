@@ -10,7 +10,7 @@ _$_PayMethodModel _$$_PayMethodModelFromJson(Map<String, dynamic> json) =>
     _$_PayMethodModel(
       paymentType: json['payment_type'] as String,
       paymentTypeKey: json['payment_type_key'] as String,
-      offlinePaymentId: json['offline_payment_id'] as int,
+      offlinePaymentId: (json['offline_payment_id'] as num).toInt(),
       image: json['image'] as String,
       details: json['details'] as String,
       name: json['name'] as String,

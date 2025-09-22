@@ -8,13 +8,13 @@ part of 'variant_model.dart';
 
 _$_VariantModel _$$_VariantModelFromJson(Map<String, dynamic> json) =>
     _$_VariantModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       sku: json['sku'] as String,
       strokedPrice: json['stroked_price'] as String,
       calculablePrice: json['calculable_price'] as String,
       mainPrice: json['main_price'] as String,
-      currentStock: json['current_stock'] as int,
+      currentStock: (json['current_stock'] as num).toInt(),
       currencySymbol: json['currency_symbol'] as String,
       hasDiscount: json['has_discount'] as bool?,
       originalPrice: json['original_price'] as String?,

@@ -8,7 +8,7 @@ part of 'track_order.dart';
 
 _$_TrackOrder _$$_TrackOrderFromJson(Map<String, dynamic> json) =>
     _$_TrackOrder(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       code: json['code'] as String,
       isCompleted: json['is_completed'] as bool,
       orderType: json['order_type'] as String,

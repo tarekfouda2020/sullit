@@ -9,10 +9,10 @@ part of 'popular_product_model.dart';
 _$_PopularProductModel _$$_PopularProductModelFromJson(
         Map<String, dynamic> json) =>
     _$_PopularProductModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       banner: json['banner'] as String?,
-      productsCount: json['products_count'] as int,
+      productsCount: (json['products_count'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$_PopularProductModelToJson(

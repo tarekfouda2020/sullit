@@ -13,7 +13,7 @@ _$_WalletTypesModel _$$_WalletTypesModelFromJson(Map<String, dynamic> json) =>
       image: json['image'] as String,
       name: json['name'] as String,
       title: json['title'] as String,
-      offlinePaymentId: json['offline_payment_id'] as int,
+      offlinePaymentId: (json['offline_payment_id'] as num).toInt(),
       details: json['details'] as String,
     );
 

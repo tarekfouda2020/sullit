@@ -8,7 +8,7 @@ part of 'flash_sale_model.dart';
 
 _$_FlashSaleModel _$$_FlashSaleModelFromJson(Map<String, dynamic> json) =>
     _$_FlashSaleModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       title: json['title'] as String,
       date: DateTime.parse(json['date'] as String),
       banner: json['banner'] as String,

@@ -8,8 +8,8 @@ part of 'reviews_model.dart';
 
 _$_ReviewsModel _$$_ReviewsModelFromJson(Map<String, dynamic> json) =>
     _$_ReviewsModel(
-      id: json['id'] as int,
-      rate: json['rate'] as int,
+      id: (json['id'] as num).toInt(),
+      rate: (json['rate'] as num).toInt(),
       comment: json['comment'] as String,
       userReview:
           UserDetailsModel.fromJson(json['user'] as Map<String, dynamic>),

@@ -9,7 +9,7 @@ part of 'loyalty_points_balance_model.dart';
 _$_LoyaltyPointsBalanceModel _$$_LoyaltyPointsBalanceModelFromJson(
         Map<String, dynamic> json) =>
     _$_LoyaltyPointsBalanceModel(
-      points: json['points'] as int,
+      points: (json['points'] as num).toInt(),
       amount: json['amount'] as String,
     );
 
