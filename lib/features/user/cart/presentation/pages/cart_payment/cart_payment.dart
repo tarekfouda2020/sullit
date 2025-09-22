@@ -25,6 +25,7 @@ class _CartPaymentState extends State<CartPayment> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        //resizeToAvoidBottomInset: false,
         backgroundColor: context.colors.customBackground,
         appBar: DefaultAppBar(title: tr("cart"), bgColor: context.colors.white),
         body: BlocBuilder<GenericBloc<Shipping?>, GenericState<Shipping?>>(

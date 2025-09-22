@@ -782,5 +782,6 @@
   "selectLocationOnMap": "اختر موقع على الخريطة",
   "comingSoon": "قريباً!",
   "noCategoriesAdded": "لم تتم إضافة أي فئات حالياً!",
-  "brands": "العلامات التجارية"
+  "brands": "العلامات التجارية",
+  "recoverPasswordCode": "أدخل كود التحقق لاستعادة كلمة المرور"
 }

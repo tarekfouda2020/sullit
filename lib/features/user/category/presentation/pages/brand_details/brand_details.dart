@@ -36,6 +36,7 @@ class _BrandDetailsState extends State<BrandDetails> {
         itemBuilder: (_, index, item) => BuildProductItem(
           productModel: item,
           onFavRefresh: () => controller.onChangeFav(item),
+          onRefresh: () => controller.getBrandProducts(context, widget.brandId),
         ),
         loadingWidget: const BuildLoadingProductsGridView(),
         emptyWidget: const BuildEmptyDataView(),

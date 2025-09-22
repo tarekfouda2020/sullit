@@ -25,6 +25,7 @@ class _PaymentState extends State<Payment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: DefaultAppBar(
         title: tr('payment'),
       ),

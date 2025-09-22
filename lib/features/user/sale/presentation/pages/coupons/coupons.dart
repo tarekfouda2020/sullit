@@ -36,6 +36,7 @@ class _CouponsState extends State<Coupons>{
              BuildTabsView(controller: controller),
             Flexible(
               child: TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
                 children: controller.pages(),
               ),
             )

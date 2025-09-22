@@ -43,10 +43,10 @@ class BuildRetrieveAddress extends StatelessWidget {
                         title: tr('address'),
                         desc: state.data?.address ?? "",
                       ),
-                      BuildAddressTitleItem(
-                        title: tr('postalCode'),
-                        desc: state.data?.postalCode ?? "",
-                      ),
+                      // BuildAddressTitleItem(
+                      //   title: tr('postalCode'),
+                      //   desc: state.data?.postalCode ?? "",
+                      // ),
                       BuildAddressTitleItem(
                         title: tr('city'),
                         desc: state.data?.city?.name ?? "",

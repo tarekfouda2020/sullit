@@ -186,7 +186,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                               // style: AppTextStyle.s11_bold(
                               style: AppTextStyle.s14_w600(
                                 color: context.colors.primary,
-                              ),
+                              ).copyWith(overflow: TextOverflow.ellipsis),
                             ),
                             Gaps.vGap3,
                             Visibility(

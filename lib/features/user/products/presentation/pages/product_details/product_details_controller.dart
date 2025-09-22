@@ -303,11 +303,7 @@ class ProductDetailsController {
 
 
   Future<bool> onPop(BuildContext context)async{
-    if(detailsCubit.state.data!.product.isWishlist == true){
-      AutoRouter.of(context).pop(true);
-    }else{
-      AutoRouter.of(context).pop(false);
-    }
+    AutoRouter.of(context).pop();
     return true;
   }
 
