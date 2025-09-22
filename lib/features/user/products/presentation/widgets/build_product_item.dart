@@ -69,9 +69,9 @@ class _BuildProductItemState extends State<BuildProductItem> {
             ),
           );
          widget.onRefresh?.call();
-         // if(result == true){
-         //   widget.onRefresh?.call();
-         // }
+         if(result == true){
+           widget.onRefresh?.call();
+         }
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

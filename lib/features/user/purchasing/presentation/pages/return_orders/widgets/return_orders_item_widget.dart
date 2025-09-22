@@ -37,7 +37,7 @@ class ReturnOrdersItemWidget extends StatelessWidget {
                         Gaps.hGap6,
                         Text(
                          "#${order.code}",
-                          style: AppTextStyle.s14_w400(color: context.colors.black),
+                          style: AppTextStyle.s14_w600(color: context.colors.black),
                         ),
                       ],
                     ),
@@ -45,13 +45,17 @@ class ReturnOrdersItemWidget extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "${tr('Seller')}:",
-                          style: AppTextStyle.s14_w400(color: context.colors.black),
+                          tr('Seller'),
+                          style: AppTextStyle.s12_w400(color: context.colors.black),
                         ),
-                        Gaps.hGap6,
+                        Gaps.hGap2,
+                        Text(
+                          ": ",
+                          style: AppTextStyle.s12_w400(color: context.colors.black),
+                        ),
                         Text(
                           order.soldBy,
-                          style: AppTextStyle.s14_w400(color: context.colors.black),
+                          style: AppTextStyle.s12_w600(color: context.colors.black),
                         ),
                       ],
                     ),
@@ -62,13 +66,17 @@ class ReturnOrdersItemWidget extends StatelessWidget {
                           tr("returnedDate"),
                           style: AppTextStyle.s12_w400(color: context.colors.primary),
                         ),
-                        Gaps.hGap6,
+                        Gaps.hGap2,
+                        Text(
+                          ":",
+                          style: AppTextStyle.s12_w400(color: context.colors.primary),
+                        ),
                         Text(
                           DateTimeHelper.formatDate(
                               date: _getDate,
                               formatType: "d MMM yyyy - hh:mm a"
                           ),
-                          style: AppTextStyle.s14_w400(color: context.colors.textColor),
+                          style: AppTextStyle.s12_w400(color: context.colors.textColor),
                         ),
                       ],
                     ),

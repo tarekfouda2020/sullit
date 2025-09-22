@@ -45,16 +45,23 @@ class WalletItemWidget extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: Text(
-                  "${tr("transactionNo")} ${item.referenceNo}",
-                  style: AppTextStyle.s12_w700(
-                    color: context.colors.black,
+                child: FittedBox(
+                  child: Row(
+                    children: [
+                      Text(
+                        "${tr("transactionNo")} ${item.referenceNo}",
+                        style: AppTextStyle.s12_w700(
+                          color: context.colors.black,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
+              Gaps.hGap3,
               Text(
                 item.createdAt,
-                style: AppTextStyle.s14_w400(
+                style: AppTextStyle.s13_w400(
                   color: context.colors.textColor,
                 ),
               )

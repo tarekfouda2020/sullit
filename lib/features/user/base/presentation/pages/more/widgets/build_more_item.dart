@@ -7,15 +7,15 @@ class BuildMoreItem extends StatelessWidget {
   final bool haveStatus;
   final bool? isSvg;
   final double? size;
+
   const BuildMoreItem(
       {Key? key,
       required this.title,
-        required this.image,
+      required this.image,
       required this.onTap,
       this.haveStatus = false,
-        this.isSvg = false,
-        this.size = 35
-      })
+      this.isSvg = false,
+      this.size = 35})
       : super(key: key);
 
   @override
@@ -41,23 +41,22 @@ class BuildMoreItem extends StatelessWidget {
           children: [
             Gaps.vGap10,
             isSvg!
-                ?SvgPicture.asset(
-                image,
-              width: size,
-              height: size,
-            )
-                :Image.asset(
-              image,
-              width: size,
-              height: size,
-            ),
+                ? SvgPicture.asset(
+                    image,
+                    width: size,
+                    height: size,
+                  )
+                : Image.asset(
+                    image,
+                    width: size,
+                    height: size,
+                  ),
             Gaps.vGap10,
             Flexible(
               child: Text(
                 title,
-                 textAlign: TextAlign.center,
-                style: AppTextStyle.s14_w500(color: context.colors.black).copyWith(
-                ),
+                textAlign: TextAlign.center,
+                style: AppTextStyle.s14_w500(color: context.colors.black).copyWith(),
               ),
             ),
             Gaps.vGap10,

@@ -2,6 +2,7 @@ part of 'contact_us_widgets_imports.dart';
 
 class ContactUsFormWidget extends StatelessWidget {
   final ContactUsController controller;
+
   const ContactUsFormWidget({super.key, required this.controller});
 
   @override
@@ -56,7 +57,9 @@ class ContactUsFormWidget extends StatelessWidget {
                 hint: "53534332",
                 margin: Dimens.marginTop5Bottom12,
                 validate: (value) => ((state.data?.callingCode ?? "") + (value ?? "")).validatePhoneOrNull(),
-                prefixIcon: PhoneFieldPrefixWidget(countryCubit: controller.countryCubit,),
+                prefixIcon: PhoneFieldPrefixWidget(
+                  countryCubit: controller.countryCubit,
+                ),
               );
             },
           ),
@@ -71,7 +74,7 @@ class ContactUsFormWidget extends StatelessWidget {
             type: TextInputType.text,
             action: TextInputAction.next,
             validate: (value) => value?.validateEmpty(),
-            hint: tr('title'),
+            hint: tr('enterTitle'),
             margin: Dimens.marginTop5Bottom12,
           ),
           BuildInputLabel(

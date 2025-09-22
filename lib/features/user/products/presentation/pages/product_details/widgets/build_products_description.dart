@@ -23,7 +23,6 @@ class BuildProductDescription extends StatelessWidget {
                 color: context.colors.textColor,
               ),
             ),
-            Gaps.vGap8,
             Html(
               data: description,
               style: {

@@ -1,14 +1,14 @@
 library countrycodepicker;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/helpers/country_localization_helper.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 
 import 'country.dart';
 import 'functions.dart';
 
-const TextStyle _defaultItemTextStyle = const TextStyle(fontSize: 16,color: Colors.black);
-const TextStyle _defaultSearchInputStyle = const TextStyle(fontSize: 16,color: Colors.black);
+const TextStyle _defaultItemTextStyle = const TextStyle(fontSize: 16, color: Colors.black);
+const TextStyle _defaultSearchInputStyle = const TextStyle(fontSize: 16, color: Colors.black);
 const String _kDefaultSearchHintText = 'Search country name, code';
 const String countryCodePackageName = 'country_calling_code_picker';
 
@@ -75,20 +75,15 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
       setState(() {
         _filteredList = _list
             .where((element) =>
-                (widget.forceArabic 
-                    ? CountryLocalizationHelper.getArabicCountryName(element.countryCode)
-                    : CountryLocalizationHelper.getLocalizedCountryName(element.countryCode, context))
+                CountryLocalizationHelper.getArabicCountryName(element.countryCode)
                     .toLowerCase()
                     .contains(text.toString().toLowerCase()) ||
-                element.name
+                CountryLocalizationHelper.getLocalizedCountryName(element.countryCode, context)
                     .toLowerCase()
                     .contains(text.toString().toLowerCase()) ||
-                element.callingCode
-                    .toLowerCase()
-                    .contains(text.toString().toLowerCase()) ||
-                element.countryCode
-                    .toLowerCase()
-                    .startsWith(text.toString().toLowerCase()))
+                element.name.toLowerCase().contains(text.toString().toLowerCase()) ||
+                element.callingCode.toLowerCase().contains(text.toString().toLowerCase()) ||
+                element.countryCode.toLowerCase().startsWith(text.toString().toLowerCase()))
             .map((e) => e)
             .toList();
       });
@@ -166,10 +161,9 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                     borderSide: BorderSide(),
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  contentPadding:
-                      EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
-                  hintText: widget.searchHintText == _kDefaultSearchHintText 
-                      ? tr('searchCountryNameCode') 
+                  contentPadding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
+                  hintText: widget.searchHintText == _kDefaultSearchHintText
+                      ? tr('searchCountryNameCode')
                       : widget.searchHintText,
                 ),
             textInputAction: TextInputAction.done,
@@ -187,16 +181,14 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                   padding: EdgeInsets.only(top: 16),
                   controller: _scrollController,
                   itemCount: _filteredList.length,
-                  separatorBuilder: (_, index) =>
-                      widget.showSeparator ? Divider() : Container(),
+                  separatorBuilder: (_, index) => widget.showSeparator ? Divider() : Container(),
                   itemBuilder: (_, index) {
                     return InkWell(
                       onTap: () {
                         widget.onSelected?.call(_filteredList[index]);
                       },
                       child: Container(
-                        padding: EdgeInsets.only(
-                            bottom: 12, top: 12, left: 24, right: 24),
+                        padding: EdgeInsets.only(bottom: 12, top: 12, left: 24, right: 24),
                         child: Row(
                           children: <Widget>[
                             Image.asset(
@@ -224,9 +216,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                             ),
                             Expanded(
                                 child: Text(
-                              '${_filteredList[index].callingCode} ${widget.forceArabic 
-                                  ? CountryLocalizationHelper.getArabicCountryName(_filteredList[index].countryCode)
-                                  : _filteredList[index].name}',
+                              '${_filteredList[index].callingCode} ${widget.forceArabic ? CountryLocalizationHelper.getArabicCountryName(_filteredList[index].countryCode) : _filteredList[index].name}',
                               style: widget.itemTextStyle,
                             )),
                           ],

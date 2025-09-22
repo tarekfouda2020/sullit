@@ -3,7 +3,7 @@ import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/enum/track_order_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 
-class Orders extends BaseDomainModel{
+class Orders extends BaseDomainModel {
   int id;
   String code;
   String orderType;
@@ -36,7 +36,8 @@ class Orders extends BaseDomainModel{
   String soldBy;
   String customerPhone;
   List<OrderDetails> orderDetails;
-  bool selected = false ;
+  bool selected = false;
+
   bool loyaltyPointsApplied;
   int loyaltyPoints;
   String loyaltyPointsValue;
@@ -79,21 +80,20 @@ class Orders extends BaseDomainModel{
     required this.totalItems,
   });
 
-
-  int  totalItemsCount() => orderDetails.fold(0, (previousValue, element) => previousValue + element.quantity);
+  int totalItemsCount() => orderDetails.fold(0, (previousValue, element) => previousValue + element.quantity);
 
   DateTime get getOrderDate => DateTimeHelper.convertToDateTime(strDate: orderDate);
 
   double getDiscountNumber() {
-  String number =  couponDiscount.replaceAll("د.إ", "");
+    String number = couponDiscount.replaceAll("د.إ", "");
+    number = number.replaceAll("D", "");
     double discount = double.parse(number);
     return discount;
-}
+  }
 
-bool get isCouponApply => getDiscountNumber() > 0;
+  bool get isCouponApply => getDiscountNumber() > 0;
 
-  TrackOrderEnum get getTrackOrderStatus{
-
+  TrackOrderEnum get getTrackOrderStatus {
     /// at first its Placed
     ///  Confirmed
     /// Picked Up
@@ -101,15 +101,19 @@ bool get isCouponApply => getDiscountNumber() > 0;
     /// Delivered
     /// Cancelled
 
-
-    switch(deliveryStatusConst){
-      case "Placed": return TrackOrderEnum.placed;
-      case "Confirmed": return TrackOrderEnum.placed;
-      case "Picked Up": return TrackOrderEnum.placed;
-      case "Delivered": return TrackOrderEnum.delivered;
-      case "Cancelled": return TrackOrderEnum.delivered;
-      default: return TrackOrderEnum.placed;
+    switch (deliveryStatusConst) {
+      case "Placed":
+        return TrackOrderEnum.placed;
+      case "Confirmed":
+        return TrackOrderEnum.placed;
+      case "Picked Up":
+        return TrackOrderEnum.placed;
+      case "Delivered":
+        return TrackOrderEnum.delivered;
+      case "Cancelled":
+        return TrackOrderEnum.delivered;
+      default:
+        return TrackOrderEnum.placed;
     }
   }
-
 }
