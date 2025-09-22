@@ -232,23 +232,57 @@ class AppTextStyle extends TextStyle {
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s22_w400({required Color color})
-      : super(color: color, fontSize: 22, fontWeight: FontWeight.w400, height: fontHeight,);
+      : super(
+          color: color,
+          fontSize: 22,
+          fontWeight: FontWeight.w400,
+          height: fontHeight,
+        );
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s22_w600({required Color color})
-      : super(color: color, fontSize: 22, fontWeight: FontWeight.w600, height: fontHeight,);
+      : super(
+          color: color,
+          fontSize: 22,
+          fontWeight: FontWeight.w600,
+          height: fontHeight,
+        );
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s22_w700({required Color color})
-      : super(color: color, fontSize: 22, fontWeight: FontWeight.w700, height: fontHeight,);
+      : super(
+          color: color,
+          fontSize: 22,
+          fontWeight: FontWeight.w700,
+          height: fontHeight,
+        );
+
+  // ignore: non_constant_identifier_names
+  const AppTextStyle.s22_w800({required Color color})
+      : super(
+          color: color,
+          fontSize: 22,
+          fontWeight: FontWeight.w800,
+          height: fontHeight,
+        );
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s24_w700({required Color color})
-      : super(color: color, fontSize: 24, fontWeight: FontWeight.w700, height: fontHeight,);
+      : super(
+          color: color,
+          fontSize: 24,
+          fontWeight: FontWeight.w700,
+          height: fontHeight,
+        );
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s24_w800({required Color color})
-      : super(color: color, fontSize: 24, fontWeight: FontWeight.w800, height: fontHeight,);
+      : super(
+          color: color,
+          fontSize: 24,
+          fontWeight: FontWeight.w800,
+          height: fontHeight,
+        );
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s28_w700({required Color color})

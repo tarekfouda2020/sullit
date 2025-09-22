@@ -85,12 +85,13 @@ class Orders extends BaseDomainModel{
   DateTime get getOrderDate => DateTimeHelper.convertToDateTime(strDate: orderDate);
 
   double getDiscountNumber() {
-  String number =  couponDiscount.replaceAll("د.إ", "");
+    var currencySymbol = orderDetails.first.product?.variant?.currencySymbol;
+    String number = couponDiscount.replaceAll(currencySymbol ?? '', "");
     double discount = double.parse(number);
     return discount;
-}
+  }
 
-bool get isCouponApply => getDiscountNumber() > 0;
+  bool get isCouponApply => getDiscountNumber() > 0;
 
   TrackOrderEnum get getTrackOrderStatus{
 

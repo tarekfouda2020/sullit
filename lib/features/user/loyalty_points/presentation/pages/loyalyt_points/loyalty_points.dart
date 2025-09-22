@@ -49,11 +49,7 @@ class _LoyaltyPointsState extends State<LoyaltyPoints> {
                         ),
                       );
                     },
-                    firstPageProgressIndicatorBuilder: (_) => Column(
-                      children: List.generate(5, (index) {
-                        return Container();
-                      }),
-                    ),
+                    firstPageProgressIndicatorBuilder: (_) => const LoyaltyPointsTransactionsLoadingWidget(),
                   ),
                 ),
               ),

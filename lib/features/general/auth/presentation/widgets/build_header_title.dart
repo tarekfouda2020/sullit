@@ -20,7 +20,7 @@ class BuildHeaderTitle extends StatelessWidget {
       children: [
         Text(
           title,
-          style: AppTextStyle.s22_w700(color: context.colors.black),
+          style: AppTextStyle.s22_w800(color: context.colors.black),
         ),
         Visibility(
           visible: subTitle.isNotEmpty,

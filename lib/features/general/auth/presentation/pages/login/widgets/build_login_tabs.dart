@@ -26,7 +26,7 @@ class BuildLoginTabs extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: AppTextStyle.s14_w600(
+          style: AppTextStyle.s14_w800(
               color:
                   selected ? context.colors.white : context.colors.textColor),
         ),

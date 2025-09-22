@@ -28,7 +28,7 @@ class _TrackOrderState extends State<TrackOrder> {
         bloc: controller.trackOrderCubit,
         builder: (context, state) {
           if (state is GenericUpdateState) {
-            return RefreshIndicator(
+            return CustomRefreshIndicatorWidget(
               onRefresh: () async => await controller.getTrackOrder(),
               child: ListView(
                 padding: Dimens.paddingHorizontal15PX,

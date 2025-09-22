@@ -38,7 +38,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 ),
                 Gaps.vGap12,
                 OrderDetailsSectionsTitleWidget(title: tr("products")),
-                Gaps.vGap8,
+                Gaps.vGap12,
                 OrderDetailsProductsWidget(
                   isReturned: widget.isReturnedOrder,
                   // hasReview: false,
@@ -47,7 +47,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 ),
                 Gaps.vGap12,
                 OrderDetailsSectionsTitleWidget(title: tr("invoiceSummary")),
-                Gaps.vGap8,
+                Gaps.vGap12,
                 OrderDetailsSummaryWidget(isReturned: widget.isReturnedOrder, order: state.data),
                 Gaps.vGap50
               ],
