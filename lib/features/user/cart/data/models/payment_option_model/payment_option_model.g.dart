@@ -13,7 +13,7 @@ _$_PaymentOptionModel _$$_PaymentOptionModelFromJson(
       paymentTypeKey: json['payment_type_key'] as String,
       image: json['image'] as String,
       title: json['title'] as String,
-      offlinePaymentId: json['offline_payment_id'] as int,
+      offlinePaymentId: (json['offline_payment_id'] as num).toInt(),
       details: json['details'] as String,
     );
 

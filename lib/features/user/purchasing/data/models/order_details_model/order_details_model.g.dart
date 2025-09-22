@@ -8,13 +8,13 @@ part of 'order_details_model.dart';
 
 _$_OrderDetailsModel _$$_OrderDetailsModelFromJson(Map<String, dynamic> json) =>
     _$_OrderDetailsModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       product: json['product'] == null
           ? null
           : ProductModel.fromJson(json['product'] as Map<String, dynamic>),
       variation: json['variation'] as String,
-      quantity: json['quantity'] as int,
-      availableReturnQty: json['available_return_qty'] as int,
+      quantity: (json['quantity'] as num).toInt(),
+      availableReturnQty: (json['available_return_qty'] as num).toInt(),
       deliveryType: json['delivery_type'] as String,
       price: json['price'] as String,
       tax: json['tax'] as String?,

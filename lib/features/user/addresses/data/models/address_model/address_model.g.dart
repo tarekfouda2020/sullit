@@ -8,8 +8,8 @@ part of 'address_model.dart';
 
 _$_AddressModel _$$_AddressModelFromJson(Map<String, dynamic> json) =>
     _$_AddressModel(
-      id: json['id'] as int,
-      userId: json['user_id'] as int,
+      id: (json['id'] as num).toInt(),
+      userId: (json['user_id'] as num).toInt(),
       address: json['address'] as String,
       country: json['country'] == null
           ? null

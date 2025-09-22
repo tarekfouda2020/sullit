@@ -44,11 +44,11 @@ Map<String, dynamic> _$$_SectionProductsModelToJson(
 _$_SellerPaginationData _$$_SellerPaginationDataFromJson(
         Map<String, dynamic> json) =>
     _$_SellerPaginationData(
-      totalItems: json['total_items'] as int,
-      countItems: json['count_items'] as int,
+      totalItems: (json['total_items'] as num).toInt(),
+      countItems: (json['count_items'] as num).toInt(),
       perPage: json['per_page'] as String,
-      totalPages: json['total_pages'] as int,
-      currentPage: json['current_page'] as int,
+      totalPages: (json['total_pages'] as num).toInt(),
+      currentPage: (json['current_page'] as num).toInt(),
       nextPageUrl: json['next_page_url'] as String,
       pervPageUrl: json['perv_page_url'] as String,
     );

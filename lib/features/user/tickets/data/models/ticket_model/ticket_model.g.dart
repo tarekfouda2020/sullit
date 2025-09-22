@@ -8,7 +8,7 @@ part of 'ticket_model.dart';
 
 _$_TicketModel _$$_TicketModelFromJson(Map<String, dynamic> json) =>
     _$_TicketModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       ticketId: json['ticket_id'] as String,
       sendingDate: DateTime.parse(json['sending_date'] as String),
       subject: json['subject'] as String,

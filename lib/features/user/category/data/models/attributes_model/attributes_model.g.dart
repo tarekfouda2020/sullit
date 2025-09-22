@@ -8,7 +8,7 @@ part of 'attributes_model.dart';
 
 _$_AttributesModel _$$_AttributesModelFromJson(Map<String, dynamic> json) =>
     _$_AttributesModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       attributesValues: (json['attribute_values'] as List<dynamic>)
           .map((e) => AttributeValueModel.fromJson(e as Map<String, dynamic>))

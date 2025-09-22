@@ -4,10 +4,10 @@ publish_to: 'none'
 
 
 #android live
-#version: 1.0.9+10
+#version: 1.0.12+13
 
 #ios live
-version: 1.0.5+1
+version: 1.0.8+2
 
 
 environment:
@@ -112,6 +112,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_driver:
+    sdk: flutter
   drift_dev: ^2.8.0
   build_runner: ^2.4.6
   auto_route_generator: ^5.0.3
@@ -128,6 +130,8 @@ flutter_icons:
 
 dependency_overrides:
   sqflite_android: 2.4.1
+  watcher: ^1.1.0
+  frontend_server_client: ^4.0.0
 
 flutter:
 

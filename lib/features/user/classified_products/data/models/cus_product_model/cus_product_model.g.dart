@@ -8,7 +8,7 @@ part of 'cus_product_model.dart';
 
 _$_CusProductModel _$$_CusProductModelFromJson(Map<String, dynamic> json) =>
     _$_CusProductModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       unit: json['unit'] as String,
       description: json['description'] as String,

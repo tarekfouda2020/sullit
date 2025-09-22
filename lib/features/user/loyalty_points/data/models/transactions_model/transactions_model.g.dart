@@ -8,9 +8,9 @@ part of 'transactions_model.dart';
 
 _$_TransactionsModel _$$_TransactionsModelFromJson(Map<String, dynamic> json) =>
     _$_TransactionsModel(
-      id: json['id'] as int,
-      points: json['points'] as int,
-      transactionNo: json['transaction_no'] as int,
+      id: (json['id'] as num).toInt(),
+      points: (json['points'] as num).toInt(),
+      transactionNo: (json['transaction_no'] as num).toInt(),
       type: json['type'] as String,
       typeLabel: json['type_label'] as String,
       createdAt: json['created_at'] as String,

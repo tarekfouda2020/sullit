@@ -8,7 +8,7 @@ part of 'color_model.dart';
 
 _$_ColorModel _$$_ColorModelFromJson(Map<String, dynamic> json) =>
     _$_ColorModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       code: json['code'] as String,
     );
