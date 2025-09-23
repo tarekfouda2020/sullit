@@ -59,7 +59,7 @@ class AppLightColors extends AppColors {
   Color get darkPurple => const Color(0xFF2E294E);
 
   @override
-  Color get transparent =>  Colors.transparent;
+  Color get transparent => Colors.transparent;
 
   @override
   Color get drawerColor => const Color(0xFFe9e9f0);
@@ -68,7 +68,6 @@ class AppLightColors extends AppColors {
   Color get offWhite => const Color(0xffF2F2F2);
 
   @override
- 
   Color get purpleDark => const Color(0xffb854a6);
 
   @override
@@ -80,7 +79,6 @@ class AppLightColors extends AppColors {
   @override
   // Color get textColor => const Color(0xff59595B);
   Color get textColor => const Color(0xff515151);
-
 
   @override
   Color get bgIcon => const Color(0xfff8f8f8);
@@ -133,4 +131,6 @@ class AppLightColors extends AppColors {
   @override
   Color get blackTextColor => const Color(0xff1E1E1E);
 
+  @override
+  Color get gray5 => const Color(0xff515151);
 }

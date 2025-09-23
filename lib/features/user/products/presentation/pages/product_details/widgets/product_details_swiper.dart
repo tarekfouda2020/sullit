@@ -5,11 +5,12 @@ class BuildProductDetailsSwiper extends StatefulWidget {
   final Product productModel;
   final ProductDetailsController controller;
 
-  const BuildProductDetailsSwiper(
-      {super.key,
-      required this.innerBoxIsScrolled,
-      required this.productModel,
-      required this.controller});
+  const BuildProductDetailsSwiper({
+    super.key,
+    required this.innerBoxIsScrolled,
+    required this.productModel,
+    required this.controller,
+  });
 
   @override
   State<BuildProductDetailsSwiper> createState() => _BuildProductDetailsSwiperState();
@@ -31,20 +32,25 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
       forceMaterialTransparency: false,
       automaticallyImplyLeading: false,
       backgroundColor: context.colors.customBackground,
-
       centerTitle: true,
-      title: AnimatedOpacity(
-        opacity: widget.innerBoxIsScrolled ? 1 : 0,
-        curve: Curves.bounceIn,
-        duration: const Duration(milliseconds: 100),
-        child: Text(
-          widget.productModel.name!,
-          overflow: TextOverflow.ellipsis,
-          style: AppTextStyle.s14_w500(
-            color: context.colors.black,
-          ),
-        ),
+      title: BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+        bloc: widget.controller.showAppBarTitleCubit,
+        builder: (context, state) {
+          return AnimatedOpacity(
+            opacity: state.data ? 1 : 0,
+            curve: Curves.bounceIn,
+            duration: const Duration(milliseconds: 100),
+            child: Text(
+              widget.productModel.name!,
+              overflow: TextOverflow.ellipsis,
+              style: AppTextStyle.s16_w700(
+                color: context.colors.black,
+              ),
+            ),
+          );
+        },
       ),
+      actionsPadding: EdgeInsets.zero,
       actions: [
         BlocBuilder<GenericBloc, GenericState>(
           bloc: showLoading,
@@ -54,7 +60,7 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
               replacement: BuildIconItem(
                 width: 32,
                 height: 32,
-                margin: const EdgeInsets.all(25),
+                margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
                 changeBgColor: false,
                 radius: Dimens.dp5,
                 icon: widget.productModel.isWishlist! ? Res.favIcon : Res.emptyFavIcon,
@@ -63,28 +69,28 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
                   context: context,
                   id: widget.productModel.id!,
                   loadingBloc: showLoading,
-                  onRefresh: () => widget.controller.onChangeFav(context,widget.productModel),
+                  onRefresh: () => widget.controller.onChangeFav(context, widget.productModel),
                 ),
               ),
-              child: const Center(child: LoadingIconWidget(
-                margin: EdgeInsets.all(25),
-              )),
+              child: const Center(
+                child: LoadingIconWidget(margin: EdgeInsets.all(25)),
+              ),
             );
           },
         ),
       ],
+
       leading: GestureDetector(
-        onTap: ()=> widget.controller.onPop(context),
+        onTap: () => widget.controller.onPop(context),
         child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15),
+            padding: const EdgeInsets.symmetric(vertical: 10),
             child: Transform.scale(
               scale: 0.5,
               child: IconButton(
                 icon: Icon(Icons.arrow_back_outlined, size: 40.sp),
                 onPressed: () => Navigator.of(context).pop(),
               ),
-            )
-        ),
+            )),
       ),
       flexibleSpace: FlexibleSpaceBar(
         background: Swiper(
@@ -93,8 +99,7 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
           pagination: const SwiperPagination(),
           itemBuilder: (BuildContext context, int index) {
             return InkWell(
-              onTap: () => AutoRouter.of(context)
-                  .push(ImageZoomRoute(image: widget.productModel.images![index])),
+              onTap: () => AutoRouter.of(context).push(ImageZoomRoute(image: widget.productModel.images![index])),
               child: CachedImage(
                 fit: BoxFit.fill,
                 url: widget.productModel.images![index],

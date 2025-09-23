@@ -35,7 +35,6 @@ class _MyWalletState extends State<MyWallet> {
                   style: AppTextStyle.s20_w700(color: context.colors.black),
                   ),
                 ),
-                Gaps.vGap5,
                 BuildWalletHistory(
                   controller: controller,
                 ),

@@ -5,17 +5,14 @@ class BuildSellerInfo extends StatelessWidget {
   final Shop? shopModel;
   final ProductDetailsController controller;
 
-  const BuildSellerInfo(
-      {super.key, required this.shopModel, required this.controller});
+  const BuildSellerInfo({super.key, required this.shopModel, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => AutoRouter.of(context).push( SellerProductsPageRoute(shopModel: shopModel!)),
+    return InkWell(
+      onTap: () => AutoRouter.of(context).push(SellerProductsPageRoute(shopModel: shopModel!)),
       child: Container(
-        decoration: CustomDecoration(
-          radius: BorderRadius.circular(12),
-        ),
+        decoration: CustomDecoration(radius: BorderRadius.circular(12)),
         padding: Dimens.paddingS22T10B10,
         child: Row(
           children: [
@@ -39,6 +36,7 @@ class BuildSellerInfo extends StatelessWidget {
                 ],
               ),
             ),
+
             /// not shown in figma
             // Visibility(
             //   visible: shopModel != null,

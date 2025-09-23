@@ -7,13 +7,16 @@ class ProductDetailsController {
   final GenericBloc<int> qtyCubit = GenericBloc(0);
   final GenericBloc<int> isSelected = GenericBloc(0);
   final GenericBloc<int> selectedColorCubit = GenericBloc(0);
+  final GenericBloc<bool> showAppBarTitleCubit = GenericBloc(false);
   final GenericBloc<ProductDetailsDomainModel?> detailsCubit = GenericBloc(null);
   final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
+  final ScrollController scrollController = ScrollController();
   late bool isResale;
+
+  // late bool isFav;
   late int productId;
   List<String> selectedVariants = [];
   List<String> basicImage = [];
-
 
   ProductDetailsController(BuildContext context, int id, bool productResale) {
     getProductDetails(context, id, refresh: false);
@@ -22,25 +25,35 @@ class ProductDetailsController {
     productId = id;
     getCartItems(refresh: false);
     getCartItems();
+    onScroll();
   }
 
+  void onScroll() {
+    scrollController.addListener(
+      () {
+        final isScrollingDown = scrollController.position.pixels > 250;
+        log("${scrollController.position.pixels}");
+        showAppBarTitleCubit.onUpdateData(isScrollingDown);
+      },
+    );
+  }
 
   /// resetQty set false when change favorite and item already have qty more than 1
   Future<void> getProductDetails(BuildContext context, int productId,
       {bool refresh = true, bool resetQty = true}) async {
     var params = _detailsParams(refresh, productId);
     var result = await GetProductDetails().call(params);
+    // !refresh ? result?.product.isWishlist = isFav : null;
     detailsCubit.onUpdateData(result);
     basicImage = detailsCubit.state.data!.product.images!;
-    if(resetQty){
-      if((result?.product.variant?.currentStock ?? 0) >0 ){
+    if (resetQty) {
+      if ((result?.product.variant?.currentStock ?? 0) > 0) {
         qtyCubit.onUpdateData(1);
       }
     }
-  if(resetQty){
-    _initVariants(context);
-  }
-
+    if (resetQty) {
+      _initVariants(context);
+    }
   }
 
   void _initVariants(BuildContext context) {
@@ -52,9 +65,7 @@ class ProductDetailsController {
         e.hasValue = false;
       }
     }).toList();
-    var selectedList = detailsCubit.state.data!.product.choiceOptions!
-        .map((e) => e.selectedAttribute)
-        .toList();
+    var selectedList = detailsCubit.state.data!.product.choiceOptions!.map((e) => e.selectedAttribute).toList();
     selectedVariants = selectedList.expand((element) => element!).toList();
     if (selectedVariants.isNotEmpty) getVariantPrice(context);
   }
@@ -75,8 +86,7 @@ class ProductDetailsController {
     getIt<LoadingHelper>().dismissDialog();
   }
 
-  void onSelectAttributes(BuildContext context, List<ProductOptions> model,
-      int index, int position) async {
+  void onSelectAttributes(BuildContext context, List<ProductOptions> model, int index, int position) async {
     getIt<LoadingHelper>().showLoadingDialog();
     List<String> selected = [];
     var optionItem = model[index];
@@ -147,12 +157,10 @@ class ProductDetailsController {
         qtyCubit.onUpdateData(newQty);
         detailsCubit.onUpdateData(detailsCubit.state.data);
       } else {
-        CustomToast.showSimpleToast(
-            msg:
-                "${tr('only')} ${variantPrice.currentStock} available in stock");
+        CustomToast.showSimpleToast(msg: "${tr('only')} ${variantPrice.currentStock} available in stock");
         return;
       }
-    }else{
+    } else {
       CustomToast.showSimpleToast(msg: tr('outOfStock'));
     }
   }
@@ -169,9 +177,9 @@ class ProductDetailsController {
     }
   }
 
-  void onChangeFav(BuildContext context,Product item) {
+  void onChangeFav(BuildContext context, Product item) {
     item.isWishlist = !item.isWishlist!;
-    getProductDetails(context, productId,resetQty: false);
+    getProductDetails(context, productId, resetQty: false);
     // detailsCubit.onUpdateData(detailsCubit.state.data);
   }
 
@@ -209,12 +217,11 @@ class ProductDetailsController {
     );
   }
 
-
   Future<void> getCartItems({bool refresh = true}) async {
     await getIt<CartHelper>().getCartItems(refresh: refresh).then((value) {
-    if(value.items!.isNotEmpty){
-      cartItemsBloc.onUpdateData(value);
-    }
+      if (value.items!.isNotEmpty) {
+        cartItemsBloc.onUpdateData(value);
+      }
     });
   }
 
@@ -225,22 +232,22 @@ class ProductDetailsController {
     );
   }
 
-  Future<void> onIncreaseCart(BuildContext context,CartItem cartItem, GenericBloc<bool> loadingCubit) async {
+  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem, GenericBloc<bool> loadingCubit) async {
     if (cartItem.quantity < cartItem.stockQty) {
       loadingCubit.onUpdateData(true);
       final newQty = cartItem.quantity + 1;
       final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
-      if (success!=null) {
+      if (success != null) {
         loadingCubit.onUpdateData(false);
         cartItem.quantity = newQty;
         cartItemsBloc.onUpdateData(success);
-        if(cartItem.productId == detailsCubit.state.data?.product.id){
+        if (cartItem.productId == detailsCubit.state.data?.product.id) {
           // detailsCubit.state.data.product.variant.
           // await getProductDetails(context, productId);
           // increaseQty();
         }
       }
-       // getCartItems();
+      // getCartItems();
     } else {
       CustomToast.showSimpleToast(
         msg: '${tr("only")} ${cartItem.stockQty} ${tr("availableStock")}',
@@ -248,16 +255,16 @@ class ProductDetailsController {
     }
   }
 
-  Future<void> onDecreaseCart(BuildContext context,CartItem cartItem, GenericBloc<bool> loadingCubit) async {
+  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem, GenericBloc<bool> loadingCubit) async {
     if (cartItem.quantity > 1) {
       loadingCubit.onUpdateData(true);
       final newQty = cartItem.quantity - 1;
       final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
-      if (success!=null) {
+      if (success != null) {
         loadingCubit.onUpdateData(false);
         cartItem.quantity = newQty;
         cartItemsBloc.onUpdateData(success);
-        if(cartItem.productId == detailsCubit.state.data?.product.id){
+        if (cartItem.productId == detailsCubit.state.data?.product.id) {
           // decreaseQty();
         }
         getCartItems(refresh: true);
@@ -265,51 +272,44 @@ class ProductDetailsController {
     }
   }
 
-
-  Future<void> deleteItemFromCart(BuildContext context,CartItem cartItem) async {
-    var data = await getIt<CartHelper>().deleteItemFromCart(context,cartItem);
+  Future<void> deleteItemFromCart(BuildContext context, CartItem cartItem) async {
+    var data = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
     if (data) {
-      var newSubTotal =
-          cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
+      var newSubTotal = cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
       cartItemsBloc.state.data.calculableTotal = newSubTotal;
       cartItemsBloc.state.data.items!.remove(cartItem);
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
       var countCubit = context.read<CountCubit>().state;
       var cartCount = countCubit.cartCount - 1;
       context.read<CountCubit>().onUpdateCount(cartCount, countCubit.discount);
-      CustomToast.showSimpleToast(
-          msg: tr('itemDeleted'), type: ToastType.success);
-      if((cartItemsBloc.state.data.items ?? <CartItem>[]).isEmpty){
+      CustomToast.showSimpleToast(msg: tr('itemDeleted'), type: ToastType.success);
+      if ((cartItemsBloc.state.data.items ?? <CartItem>[]).isEmpty) {
         // context.read<CountCubit>().onUpdateCount(0, countCubit.discount);
         Navigator.pop(context);
-        return ;
+        return;
       }
       getCartItems();
     }
   }
 
-
   void showCartSuccessSheet(BuildContext context) {
-  showModalBottomSheet(
+    showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       useRootNavigator: true,
       enableDrag: false,
-      builder: (context) =>  CartSuccessSheetWidget(controller: this),
-  );
+      builder: (context) => CartSuccessSheetWidget(controller: this),
+    );
   }
 
-
-
-  Future<bool> onPop(BuildContext context)async{
+  Future<bool> onPop(BuildContext context) async {
     AutoRouter.of(context).pop();
     return true;
   }
 
-
-  void updateFavFromSheet(CartItem cartItem){
-    if(cartItem.productId == detailsCubit.state.data?.product.id){
+  void updateFavFromSheet(CartItem cartItem) {
+    if (cartItem.productId == detailsCubit.state.data?.product.id) {
       detailsCubit.state.data!.product.isWishlist = cartItem.isWishlist;
       detailsCubit.onUpdateData(detailsCubit.state.data);
     }

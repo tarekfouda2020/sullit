@@ -4,35 +4,28 @@ class BuildTicketItem extends StatelessWidget {
   final Ticket ticketModel;
   final SupportTicketsController controller;
 
-  const BuildTicketItem(
-      {super.key, required this.ticketModel, required this.controller});
+  const BuildTicketItem({super.key, required this.ticketModel, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsetsDirectional.only(start: 34,top: 14,bottom: 20,end: 10),
-      decoration: const CustomDecoration(),
+      padding: const EdgeInsetsDirectional.only(start: 34, top: 14, bottom: 20, end: 10),
+      margin: const EdgeInsets.only(bottom: 10),
+      decoration: const CustomDecoration().copyWith(
+        border: Border.all(color: context.colors.gray3, width: 1),
+        boxShadow: [],
+      ),
       child: Column(
         children: [
-        Row(
-          children: [
-            Text( "${tr("ticketId")} :",
-            style: AppTextStyle.s14_w400(color: context.colors.black),
-            ),
-            Gaps.hGap5,
-            Text( ticketModel.ticketId,
-            style: AppTextStyle.s14_w600(color: context.colors.black),
-            ),
-          ],
-        ),
-          Gaps.vGap10,
           Row(
             children: [
-              Text( "${tr("subject")} :",
+              Text(
+                "${tr("ticketId")} :",
                 style: AppTextStyle.s14_w400(color: context.colors.black),
               ),
               Gaps.hGap5,
-              Text( ticketModel.subject,
+              Text(
+                ticketModel.ticketId,
                 style: AppTextStyle.s14_w600(color: context.colors.black),
               ),
             ],
@@ -40,12 +33,28 @@ class BuildTicketItem extends StatelessWidget {
           Gaps.vGap10,
           Row(
             children: [
-              Text( "${tr('sendingDate')} :",
+              Text(
+                "${tr("subject")} :",
+                style: AppTextStyle.s14_w400(color: context.colors.black),
+              ),
+              Gaps.hGap5,
+              Text(
+                ticketModel.subject,
+                style: AppTextStyle.s14_w600(color: context.colors.black),
+              ),
+            ],
+          ),
+          Gaps.vGap10,
+          Row(
+            children: [
+              Text(
+                "${tr('sendingDate')} :",
                 style: AppTextStyle.s14_w400(color: context.colors.black),
               ),
               Gaps.hGap5,
               // Text( getDate(ticketModel.sendingDate.toString()),
-              Text( getDate(),
+              Text(
+                getDate(),
                 style: AppTextStyle.s14_w600(color: context.colors.black),
               ),
             ],
@@ -53,11 +62,13 @@ class BuildTicketItem extends StatelessWidget {
           Gaps.vGap10,
           Row(
             children: [
-              Text( "${tr('status')} :",
+              Text(
+                "${tr('status')} :",
                 style: AppTextStyle.s14_w400(color: context.colors.black),
               ),
               Gaps.hGap5,
-              Text( ticketModel.status,
+              Text(
+                ticketModel.status,
                 style: AppTextStyle.s14_w600(color: context.colors.black),
               ),
             ],
@@ -67,11 +78,7 @@ class BuildTicketItem extends StatelessWidget {
     );
   }
 
-
-  String getDate(){
+  String getDate() {
     return DateTimeHelper.getDate(ticketModel.sendingDate.toString(), formatType: "dd MMM yyyy - hh:mm a");
   }
-
-
-  }
-
+}

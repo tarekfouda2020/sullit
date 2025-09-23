@@ -3,8 +3,7 @@ part of 'profile_widgets_imports.dart';
 class BuildProfileImage extends StatelessWidget {
   final ProfileController controller;
 
-  const BuildProfileImage({Key? key, required this.controller})
-      : super(key: key);
+  const BuildProfileImage({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,17 +60,20 @@ class BuildProfileImage extends StatelessWidget {
           } else {
             return Stack(
               children: [
-                Container(
-                  padding: const EdgeInsets.all(1),
-                  decoration: const BoxDecoration(
+                InkWell(
+                  onTap: () => AutoRouter.of(context).push(ImageZoomRoute(image: user?.avatarOriginal ?? "")),
+                  child: Container(
+                    padding: const EdgeInsets.all(1),
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                  ),
-                  child: CachedImage(
-                    url: user?.avatarOriginal ?? "",
-                    height: 124,
-                    width: 124,
-                    haveRadius: false,
-                    boxShape: BoxShape.circle,
+                    ),
+                    child: CachedImage(
+                      url: user?.avatarOriginal ?? "",
+                      height: 124,
+                      width: 124,
+                      haveRadius: false,
+                      boxShape: BoxShape.circle,
+                    ),
                   ),
                 ),
                 PositionedDirectional(
@@ -85,7 +87,11 @@ class BuildProfileImage extends StatelessWidget {
                         shape: BoxShape.circle,
                         color: context.colors.lightPrimary,
                       ),
-                      child: SvgPicture.asset(Res.pencilIcon, height: 16, width: 16,),
+                      child: SvgPicture.asset(
+                        Res.pencilIcon,
+                        height: 16,
+                        width: 16,
+                      ),
                     ),
                   ),
                 )

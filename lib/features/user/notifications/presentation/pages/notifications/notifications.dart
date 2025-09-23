@@ -21,21 +21,18 @@ class _NotificationsState extends State<Notifications> {
     return Scaffold(
       appBar: DefaultAppBar(title: tr('notifications')),
       backgroundColor: context.colors.customBackground,
-
       body: CustomRefreshIndicatorWidget(
         onRefresh: () => controller.getNotifications(1),
         child: PagedListView<int, NotificationDomainModel>(
           padding: Dimens.paddingAll15PX,
           pagingController: controller.pagingController,
           builderDelegate: PagedChildBuilderDelegate<NotificationDomainModel>(
-            firstPageProgressIndicatorBuilder: (_) =>
-            const  BuildNotifiesLoading(),
-            itemBuilder: (_, item, index) =>
-                BuildNotificationsItem(
-                  notification: item,
-                ),
+            firstPageProgressIndicatorBuilder: (_) => const BuildNotifiesLoading(),
+            itemBuilder: (_, item, index) => BuildNotificationsItem(
+              notification: item,
+            ),
             noItemsFoundIndicatorBuilder: (cxt) {
-              return  Center(
+              return Center(
                 child: Text(
                   tr('noNotifies'),
                   style: AppTextStyle.s16_w700(color: context.colors.black),
@@ -45,8 +42,6 @@ class _NotificationsState extends State<Notifications> {
           ),
         ),
       ),
-
-
     );
   }
 }
