@@ -8,14 +8,14 @@ part of 'gift_card_model.dart';
 
 _$_GiftCardModel _$$_GiftCardModelFromJson(Map<String, dynamic> json) =>
     _$_GiftCardModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       title: json['title'] as String,
       code: json['code'] as String?,
       price: json['price'] as String,
       value: json['value'] as String,
-      validateDays: json['validity_days'] as int,
+      validateDays: (json['validity_days'] as num).toInt(),
       expiredAt: json['expired_at'] as String?,
-      expiredInDays: json['expired_in_days'] as int?,
+      expiredInDays: (json['expired_in_days'] as num?)?.toInt(),
       isExpired: json['is_expired'] as bool?,
     );
 

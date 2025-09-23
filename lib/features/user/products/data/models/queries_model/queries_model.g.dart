@@ -8,7 +8,7 @@ part of 'queries_model.dart';
 
 _$_QueriesModel _$$_QueriesModelFromJson(Map<String, dynamic> json) =>
     _$_QueriesModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       question: json['question'] as String,
       reply: json['reply'] as String,
       userDetails:

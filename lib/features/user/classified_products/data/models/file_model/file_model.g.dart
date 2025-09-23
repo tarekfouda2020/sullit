@@ -7,11 +7,11 @@ part of 'file_model.dart';
 // **************************************************************************
 
 _$_FileModel _$$_FileModelFromJson(Map<String, dynamic> json) => _$_FileModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       fileOriginalName: json['file_original_name'] as String,
       fileName: json['file_name'] as String,
       url: json['url'] as String,
-      fileSize: json['file_size'] as int,
+      fileSize: (json['file_size'] as num).toInt(),
       extension: json['extension'] as String,
       type: json['type'] as String,
     );

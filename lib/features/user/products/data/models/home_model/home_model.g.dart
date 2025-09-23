@@ -22,10 +22,10 @@ _$_HomeModel _$$_HomeModelFromJson(Map<String, dynamic> json) => _$_HomeModel(
       flashSales: json['flash_deal'] == null
           ? null
           : FlashSaleModel.fromJson(json['flash_deal'] as Map<String, dynamic>),
-      cartCount: json['cart_count'] as int,
-      favCount: json['wishlist_count'] as int,
+      cartCount: (json['cart_count'] as num).toInt(),
+      favCount: (json['wishlist_count'] as num).toInt(),
       isAdminDiscount: json['is_admin_discount'] as bool,
-      discountRate: json['discount_rate'] as int,
+      discountRate: (json['discount_rate'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$_HomeModelToJson(_$_HomeModel instance) =>

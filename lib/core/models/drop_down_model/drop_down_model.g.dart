@@ -8,7 +8,7 @@ part of 'drop_down_model.dart';
 
 _$_DropDownModel _$$_DropDownModelFromJson(Map<String, dynamic> json) =>
     _$_DropDownModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
     );
 

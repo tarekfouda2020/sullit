@@ -27,7 +27,7 @@ _$_SubCategoryModel _$$_SubCategoryModelFromJson(Map<String, dynamic> json) =>
           .toList(),
       priceRange:
           PriceRangeModel.fromJson(json['price_range'] as Map<String, dynamic>),
-      selectedId: json['selectedId'] as int?,
+      selectedId: (json['selectedId'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$_SubCategoryModelToJson(_$_SubCategoryModel instance) =>

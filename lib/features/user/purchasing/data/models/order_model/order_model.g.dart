@@ -8,7 +8,7 @@ part of 'order_model.dart';
 
 _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
     _$_OrderModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       code: json['code'] as String,
       orderType: json['order_type'] as String,
       availableReturnOrder: json['available_return_order'] as bool,
@@ -40,8 +40,8 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       soldBy: json['sold_by_name'] as String,
       loyaltyPointsValue: json['loyalty_points_value'] as String,
       loyaltyPointsApplied: json['loyalty_points_applied'] as bool,
-      loyaltyPoints: json['loyalty_points'] as int,
-      totalItems: json['total_items'] as int,
+      loyaltyPoints: (json['loyalty_points'] as num).toInt(),
+      totalItems: (json['total_items'] as num).toInt(),
       orderDetails: (json['order_details'] as List<dynamic>)
           .map((e) => OrderDetailsModel.fromJson(e as Map<String, dynamic>))
           .toList(),

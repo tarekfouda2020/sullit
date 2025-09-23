@@ -8,7 +8,7 @@ part of 'wallet_item_model.dart';
 
 _$_WalletItemModel _$$_WalletItemModelFromJson(Map<String, dynamic> json) =>
     _$_WalletItemModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       date: json['date'] as String,
       dmount: json['dmount'] as String,
       paymentMethod: json['payment_method'] as String,

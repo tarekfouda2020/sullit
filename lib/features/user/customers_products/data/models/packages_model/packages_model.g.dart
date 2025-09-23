@@ -8,12 +8,12 @@ part of 'packages_model.dart';
 
 _$_PackagesModel _$$_PackagesModelFromJson(Map<String, dynamic> json) =>
     _$_PackagesModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       logo: json['logo'] as String,
       isFree: json['is_free'] as bool,
       amount: json['amount'] as String,
-      productUpload: json['product_upload'] as int,
+      productUpload: (json['product_upload'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$_PackagesModelToJson(_$_PackagesModel instance) =>

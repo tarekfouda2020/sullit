@@ -9,7 +9,7 @@ part of 'wallet_transaction_model.dart';
 _$_WalletTransactionModel _$$_WalletTransactionModelFromJson(
         Map<String, dynamic> json) =>
     _$_WalletTransactionModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       type: json['type'] as String,
       typeLabel: json['type_label'] as String,
       sourceType: json['source_type'] as String,
