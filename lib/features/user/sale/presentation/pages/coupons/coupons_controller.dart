@@ -3,6 +3,7 @@ part of 'coupons_imports.dart';
 class CouponsController {
 
   late final HomeController homeController;
+  late TabController tabController;
   final PagingController<int, Coupon> pagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 12;
@@ -13,6 +14,13 @@ class CouponsController {
     OnSale(homeController: homeController),
     const BestRated(),
   ];
+
+  void initBottomNavigation(TickerProvider ticker, int index) {
+    tabController =
+        TabController(length: 4, vsync: ticker, initialIndex: index);
+    tabController.animateTo(index);
+    //homeTabCubit.onUpdateData(index);
+  }
 
   // CouponsController() {
   //   pagingController.addPageRequestListener((pageKey) {

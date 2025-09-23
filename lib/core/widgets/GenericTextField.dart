@@ -131,7 +131,7 @@ class GenericTextField extends StatelessWidget {
         enableColor: enableBorderColor,
         focsColor: focusBorderColor,
         customFillColor: fillColor,
-        padding: contentPadding,
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         hintColor: hintColor,
         borderRadius: radius,
         lang: context.watch<DeviceCubit>().state.model.locale.languageCode,

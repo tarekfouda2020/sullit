@@ -685,6 +685,7 @@ class AppRouter extends _i98.RootStackRouter {
         child: _i55.BrandDetails(
           key: args.key,
           brandId: args.brandId,
+          brandName: args.brandName,
         ),
         opaque: true,
       );
@@ -900,6 +901,7 @@ class AppRouter extends _i98.RootStackRouter {
         child: _i78.Coupons(
           key: args.key,
           homeController: args.homeController,
+          index: args.index,
         ),
         opaque: true,
       );
@@ -2508,12 +2510,14 @@ class BrandDetailsRoute extends _i98.PageRouteInfo<BrandDetailsRouteArgs> {
   BrandDetailsRoute({
     _i101.Key? key,
     required int brandId,
+    required String brandName,
   }) : super(
           BrandDetailsRoute.name,
           path: '/brand-details',
           args: BrandDetailsRouteArgs(
             key: key,
             brandId: brandId,
+            brandName: brandName,
           ),
         );
 
@@ -2524,15 +2528,18 @@ class BrandDetailsRouteArgs {
   const BrandDetailsRouteArgs({
     this.key,
     required this.brandId,
+    required this.brandName,
   });
 
   final _i101.Key? key;
 
   final int brandId;
 
+  final String brandName;
+
   @override
   String toString() {
-    return 'BrandDetailsRouteArgs{key: $key, brandId: $brandId}';
+    return 'BrandDetailsRouteArgs{key: $key, brandId: $brandId, brandName: $brandName}';
   }
 }
 
@@ -3083,12 +3090,14 @@ class CouponsRoute extends _i98.PageRouteInfo<CouponsRouteArgs> {
   CouponsRoute({
     _i101.Key? key,
     required _i43.HomeController homeController,
+    required int index,
   }) : super(
           CouponsRoute.name,
           path: '/Coupons',
           args: CouponsRouteArgs(
             key: key,
             homeController: homeController,
+            index: index,
           ),
         );
 
@@ -3099,15 +3108,18 @@ class CouponsRouteArgs {
   const CouponsRouteArgs({
     this.key,
     required this.homeController,
+    required this.index,
   });
 
   final _i101.Key? key;
 
   final _i43.HomeController homeController;
 
+  final int index;
+
   @override
   String toString() {
-    return 'CouponsRouteArgs{key: $key, homeController: $homeController}';
+    return 'CouponsRouteArgs{key: $key, homeController: $homeController, index: $index}';
   }
 }
 
