@@ -11,7 +11,7 @@ class BuildRetrieveOrderDetailsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: Dimens.paddingVertical5PX,
-      child: Row(
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,

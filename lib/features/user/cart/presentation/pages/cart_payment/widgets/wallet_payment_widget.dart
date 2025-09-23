@@ -12,7 +12,7 @@ class WalletPaymentWidget extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SvgPicture.asset(Res.walletIcon),
+        SvgPicture.asset(Res.walletIcon,color: context.colors.primary),
         Gaps.hGap11,
         Expanded(
           child: Padding(
