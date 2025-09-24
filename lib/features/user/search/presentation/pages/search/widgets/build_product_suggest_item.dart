@@ -10,6 +10,7 @@ class BuildProductSuggestItem extends StatelessWidget {
     return InkWell(
       onTap: () => AutoRouter.of(context).push(
         ProductDetailsRoute(
+          isFav: productModel.isWishlist!,
           productId: productModel.id!,
           isResale: productModel.isResale!,
         ),

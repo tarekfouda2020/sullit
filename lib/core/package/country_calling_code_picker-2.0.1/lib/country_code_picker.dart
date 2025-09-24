@@ -75,14 +75,23 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
       setState(() {
         _filteredList = _list
             .where((element) =>
+                // Always search in Arabic name
                 CountryLocalizationHelper.getArabicCountryName(element.countryCode)
                     .toLowerCase()
                     .contains(text.toString().toLowerCase()) ||
+                // Always search in English name
+                CountryLocalizationHelper.getEnglishCountryName(element.countryCode)
+                    .toLowerCase()
+                    .contains(text.toString().toLowerCase()) ||
+                // Also search in the localized name (could be same as one of above)
                 CountryLocalizationHelper.getLocalizedCountryName(element.countryCode, context)
                     .toLowerCase()
                     .contains(text.toString().toLowerCase()) ||
+                // Search in default name
                 element.name.toLowerCase().contains(text.toString().toLowerCase()) ||
+                // Search in calling code (e.g., +971)
                 element.callingCode.toLowerCase().contains(text.toString().toLowerCase()) ||
+                // Search in country code (e.g., AE, US)
                 element.countryCode.toLowerCase().startsWith(text.toString().toLowerCase()))
             .map((e) => e)
             .toList();
@@ -216,7 +225,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                             ),
                             Expanded(
                                 child: Text(
-                              '${_filteredList[index].callingCode} ${widget.forceArabic ? CountryLocalizationHelper.getArabicCountryName(_filteredList[index].countryCode) : _filteredList[index].name}',
+                              '${_filteredList[index].callingCode} ${CountryLocalizationHelper.getLocalizedCountryName(_filteredList[index].countryCode, context)}',
                               style: widget.itemTextStyle,
                             )),
                           ],

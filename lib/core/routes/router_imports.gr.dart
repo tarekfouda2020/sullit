@@ -737,6 +737,7 @@ class AppRouter extends _i98.RootStackRouter {
           key: args.key,
           productId: args.productId,
           isResale: args.isResale,
+          isFav: args.isFav,
         ),
         opaque: true,
       );
@@ -2632,6 +2633,7 @@ class ProductDetailsRoute extends _i98.PageRouteInfo<ProductDetailsRouteArgs> {
     _i101.Key? key,
     required int productId,
     required bool isResale,
+    required bool isFav,
   }) : super(
           ProductDetailsRoute.name,
           path: '/product-details',
@@ -2639,6 +2641,7 @@ class ProductDetailsRoute extends _i98.PageRouteInfo<ProductDetailsRouteArgs> {
             key: key,
             productId: productId,
             isResale: isResale,
+            isFav: isFav,
           ),
         );
 
@@ -2650,6 +2653,7 @@ class ProductDetailsRouteArgs {
     this.key,
     required this.productId,
     required this.isResale,
+    required this.isFav,
   });
 
   final _i101.Key? key;
@@ -2658,9 +2662,11 @@ class ProductDetailsRouteArgs {
 
   final bool isResale;
 
+  final bool isFav;
+
   @override
   String toString() {
-    return 'ProductDetailsRouteArgs{key: $key, productId: $productId, isResale: $isResale}';
+    return 'ProductDetailsRouteArgs{key: $key, productId: $productId, isResale: $isResale, isFav: $isFav}';
   }
 }
 
