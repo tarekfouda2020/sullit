@@ -33,15 +33,19 @@ class _BuildTimerState extends State<BuildTimer> {
             children: [
               BuildTimeItem(
                 time: state.data.days(),
+                title: tr("days"),
               ),
               BuildTimeItem(
                 time: state.data.hours(),
+                title: tr("hours"),
               ),
               BuildTimeItem(
                 time: state.data.minutes(),
+                title: tr("minutes"),
               ),
               BuildTimeItem(
                 time: state.data.seconds(),
+                title: tr("second"),
               ),
             ],
           ),

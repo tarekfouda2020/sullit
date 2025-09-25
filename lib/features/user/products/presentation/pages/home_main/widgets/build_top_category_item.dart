@@ -13,7 +13,7 @@ class BuildTopCategoriesItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: 69, height: 69,
+             height: 69,
             padding: const EdgeInsets.all(7),
             decoration: BoxDecoration(
               color: context.colors.lightPink,
