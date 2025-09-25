@@ -47,25 +47,32 @@ class InvoiceSummaryWidget extends StatelessWidget {
                       detailsColor: context.colors.primary,
                     ),
                 ),
-              Visibility(
-                visible: applyGiftCard,
-                child: BuildSummaryHeader(
-                  title: tr("appliedGiftCard"),
-                  details: "-${giftCardTotal.parseCurrency}",
-                  detailsColor: context.colors.primary,
-                ),
-              ),
-
-          Gaps.line(context.colors.softGray, 15.h),
-          BuildSummaryHeader(
-            title: tr("total"),
-            details: applyGiftCard
-                ?"0.00"
-                :shippingSummary.total.parseCurrency,
-            // isTotal: true,
+          Visibility(
+            visible: applyGiftCard,
+            child: BuildSummaryHeader(
+              title: tr("appliedGiftCard"),
+              details: "-${giftCardTotal.parseCurrency}",
+              detailsColor: context.colors.primary,
+            ),
           ),
-        ]
-        )
+          Gaps.line(context.colors.softGray, 15.h),
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  tr("total"),
+                  style: AppTextStyle.s14_w400(color: context.colors.black),
+                ),
+                Text(
+                  applyGiftCard ? "0.00" : shippingSummary.total.parseCurrency,
+                  style: AppTextStyle.s14_w800(color:context.colors.black),
+                ),
+              ],
+            ),
+          ),
+        ])
       ],
     );
   }

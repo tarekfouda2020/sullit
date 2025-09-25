@@ -79,7 +79,7 @@ dependencies:
   flutter_rounded_date_picker: ^3.0.2
   infinite_scroll_pagination: ^4.0.0
   lottie: ^2.3.2
-  flutter_html:
+  flutter_html: ^3.0.0
   drift: ^2.8.0
   sqlite3_flutter_libs: ^0.5.0
   path: ^1.8.2

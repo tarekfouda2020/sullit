@@ -71,8 +71,7 @@ class HomeMainController {
   }
 
   void onChangeFav(Product item) {
-    item.isWishlist = !item.isWishlist!;
-    homeCubit.onUpdateData(homeCubit.state.data);
+    _synchronizeFavoriteStatus(item);
   }
 
   void navigateToDeals(BuildContext context) {
@@ -114,10 +113,10 @@ class HomeMainController {
      if(value!=null){
        AutoRouter.of(context).push(
            ProductDetailsRoute(
-               productId: value.product.id,
-               isResale: value.product.isResale
-           )
-       );
+            isFav: value.product.isWishlist,
+            productId: value.product.id,
+            isResale: value.product.isResale,
+          ));
      }
    },);
   }
@@ -149,10 +148,48 @@ class HomeMainController {
     vipOffersCubit.onUpdateData(result);
   }
 
+  void _synchronizeFavoriteStatus(Product item) {
+    final newFavoriteStatus = !item.isWishlist!;
+    for (var product in vipOffersCubit.state.data) {
+      if (product.id == item.id) {
+        product.isWishlist = newFavoriteStatus;
+      }
+    }
+    for (var product in arrivalCubit.state.data) {
+      if (product.id == item.id) {
+        product.isWishlist = newFavoriteStatus;
+      }
+    }
+    for (var product in onSaleCubit.state.data) {
+      if (product.id == item.id) {
+        product.isWishlist = newFavoriteStatus;
+      }
+    }
+    for (var product in bestRatedCubit.state.data) {
+      if (product.id == item.id) {
+        product.isWishlist = newFavoriteStatus;
+      }
+    }
+    for (var section in sectionsCubit.state.data) {
+      for (var product in section.products) {
+        if (product.id == item.id) {
+          product.isWishlist = newFavoriteStatus;
+        }
+      }
+    }
+    vipOffersCubit.onUpdateData(vipOffersCubit.state.data);
+    arrivalCubit.onUpdateData(arrivalCubit.state.data);
+    onSaleCubit.onUpdateData(onSaleCubit.state.data);
+    bestRatedCubit.onUpdateData(bestRatedCubit.state.data);
+    sectionsCubit.onUpdateData(sectionsCubit.state.data);
+    if (homeCubit.state.data != null) {
+      homeCubit.onUpdateData(homeCubit.state.data);
+    }
+  }
+
   // used to add vip offer on favorite
   void onChangeVipOffersFav(Product item) {
-    item.isWishlist = !item.isWishlist!;
-    vipOffersCubit.onUpdateData(vipOffersCubit.state.data);
+    _synchronizeFavoriteStatus(item);
   }
 
   // ---------------------------------------------------------
@@ -165,8 +202,7 @@ class HomeMainController {
 
   // used to add new arrival offer on favorite
   void onChangeArrivalOffersFav(Product item) {
-    item.isWishlist = !item.isWishlist!;
-    arrivalCubit.onUpdateData(arrivalCubit.state.data);
+    _synchronizeFavoriteStatus(item);
   }
 
   // --------------------------------------------------------
@@ -179,8 +215,7 @@ class HomeMainController {
 
   // used to add on sale offer on favorite
   void onChangeOnSaleOffersFav(Product item) {
-    item.isWishlist = !item.isWishlist!;
-    onSaleCubit.onUpdateData(onSaleCubit.state.data);
+    _synchronizeFavoriteStatus(item);
   }
 
   // --------------------------------------------------------
@@ -193,8 +228,7 @@ class HomeMainController {
 
   // used to add best rated offer on favorite
   void onChangeBestRatedFav(Product item) {
-    item.isWishlist = !item.isWishlist!;
-    bestRatedCubit.onUpdateData(bestRatedCubit.state.data);
+    _synchronizeFavoriteStatus(item);
   }
 
   // --------------------------------------------------------

@@ -11,6 +11,7 @@ class LoyaltyPointsInfo extends StatelessWidget {
       bloc: controller.loyaltyPointsBalanceBloc,
       builder: (context, state) {
         if (state is GenericUpdateState) {
+          //return const LoyaltyPointsInfoLoadingWidget();
           return Container(
             padding: const EdgeInsets.symmetric(vertical: 27, horizontal: 12),
             margin: Dimens.marginBottom20,

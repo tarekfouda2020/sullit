@@ -12,17 +12,16 @@ class ProductDetailsController {
   final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
   final ScrollController scrollController = ScrollController();
   late bool isResale;
+  late bool isFav;
 
   // late bool isFav;
   late int productId;
   List<String> selectedVariants = [];
   List<String> basicImage = [];
 
-  ProductDetailsController(BuildContext context, int id, bool productResale) {
-    getProductDetails(context, id, refresh: false);
-    getProductDetails(context, id);
-    isResale = productResale;
-    productId = id;
+  ProductDetailsController(BuildContext context,this.productId, this.isResale,this.isFav) {
+    getProductDetails(context, productId, refresh: false);
+    getProductDetails(context, productId);
     getCartItems(refresh: false);
     getCartItems();
     onScroll();
@@ -43,7 +42,7 @@ class ProductDetailsController {
       {bool refresh = true, bool resetQty = true}) async {
     var params = _detailsParams(refresh, productId);
     var result = await GetProductDetails().call(params);
-    // !refresh ? result?.product.isWishlist = isFav : null;
+    !refresh ? result?.product.isWishlist = isFav : null;
     detailsCubit.onUpdateData(result);
     basicImage = detailsCubit.state.data!.product.images!;
     if (resetQty) {

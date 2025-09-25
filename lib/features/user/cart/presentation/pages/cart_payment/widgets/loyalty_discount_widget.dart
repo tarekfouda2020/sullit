@@ -9,7 +9,7 @@ class LoyaltyDiscountWidget extends StatelessWidget {
     return  Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SvgPicture.asset(Res.loyaltyDiscount),
+        SvgPicture.asset(Res.loyaltyDiscount,color: context.colors.primary),
         Gaps.hGap11,
         Expanded(
           child: Row(

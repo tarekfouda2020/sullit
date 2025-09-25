@@ -19,7 +19,14 @@ class OnSaleOffersFormWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BuildHeaderTitle(title: tr('onSale'),controller: controller),
+                  BuildHeaderTitle(
+                    title: tr('onSale'),
+                    controller: controller,
+                    onTap: () {
+                      controller.homeController.index = 2;
+                      controller.homeController.animateTabsPages(3, context);
+                    },
+                  ),
                   Gaps.vGap8,
                   Flexible(
                     child: ListView.builder(
@@ -27,7 +34,7 @@ class OnSaleOffersFormWidget extends StatelessWidget {
                       itemCount: length,
                       itemBuilder: (context, index) {
                         return BuildProductItem(
-                          margin: EdgeInsetsDirectional.only(end:index== length-1 ? 0 : 8),
+                          margin: EdgeInsetsDirectional.only(end: index == length - 1 ? 0 : 8),
                           productModel: state.data[index],
                           onFavRefresh: () => controller.onChangeOnSaleOffersFav(state.data[index]),
                         );

@@ -3,9 +3,9 @@ part of 'product_details_imports.dart';
 class ProductDetails extends StatefulWidget {
   final int productId;
   final bool isResale;
-  // final bool isFav;
+  final bool isFav;
 
-  const ProductDetails({super.key, required this.productId, required this.isResale});
+  const ProductDetails({super.key, required this.productId, required this.isResale,required this.isFav});
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
@@ -16,7 +16,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   void initState() {
-    controller = ProductDetailsController(context, widget.productId, widget.isResale);
+    controller = ProductDetailsController(context, widget.productId, widget.isResale,widget.isFav);
     super.initState();
   }
 

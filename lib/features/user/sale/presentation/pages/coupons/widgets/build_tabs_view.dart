@@ -10,6 +10,7 @@ class BuildTabsView extends StatelessWidget {
     return Container(
       color: context.colors.white,
       child: TabBar(
+        controller: controller.tabController,
         physics: const AlwaysScrollableScrollPhysics(),
         isScrollable: true,
         labelColor: context.colors.primary,
