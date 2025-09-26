@@ -42,6 +42,7 @@ class _CategoriesState extends State<Categories> {
                 );
               },
             ),
+            Gaps.vGap20,
             // Flexible(
             //   child: Padding(
             //     padding: const EdgeInsetsDirectional.only(top: 10,start: 15,end: 15),

@@ -77,7 +77,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                     '${tr('price')} : ',
                     style: AppTextStyle.s16_w400(color: context.colors.black),
                   ),
-                  const Spacer(),
+                  //const Spacer(),
                   Text(
                     showDiscount(context)
                         ? "${state.data!.priceHighLowDiscount.parseCurrency} "

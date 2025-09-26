@@ -29,10 +29,17 @@ class LoyaltyTransactionItemWidget extends StatelessWidget {
           ),
           Gaps.vGap6,
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: Text(
-                  "Transaction no : #${model.transactionsNo}",
+                  "Transaction no : ",
+                  style: AppTextStyle.s12_w700(color: context.colors.black),
+                ),
+              ),
+              Expanded(
+                child: Text(
+                  "#${model.transactionsNo}",
                   style: AppTextStyle.s14_w700(color: context.colors.black),
                 ),
               ),

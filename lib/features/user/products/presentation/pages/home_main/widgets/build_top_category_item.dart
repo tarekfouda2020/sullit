@@ -33,7 +33,7 @@ class BuildTopCategoriesItem extends StatelessWidget {
           Text(
             categoryModel.name,
             textAlign: TextAlign.center,
-            style: AppTextStyle.s12_w700(color: context.colors.black),
+            style: AppTextStyle.s10_w700(color: context.colors.black),
           ),
         ],
       ),

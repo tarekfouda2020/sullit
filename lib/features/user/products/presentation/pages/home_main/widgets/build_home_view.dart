@@ -23,8 +23,9 @@ class BuildHomeView extends StatelessWidget {
             const AdvantagesWidget(),
             //Gaps.vGap12,
             BuildTopCategories(categories: homeDomainModel.categories),
-            Gaps.vGap20,
+            //Gaps.vGap20,
             VipOffersFormWidget(controller: controller),
+            Gaps.vGap16,
             VipOffersWidget(
               onTap: () => controller.homeController.animateTabsPages(3, context),
               text: tr("seeOffers"),

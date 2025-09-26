@@ -25,7 +25,6 @@ class BuildDetailsView extends StatelessWidget {
               controller: controller,
               productModel: detailsModel.product,
             ),
-
             BuildProductSpecifications(
               controller: controller,
               productModel: detailsModel.product,

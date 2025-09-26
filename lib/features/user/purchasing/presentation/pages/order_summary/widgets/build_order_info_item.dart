@@ -31,7 +31,7 @@ class BuildOrderInfoItem extends StatelessWidget {
                 subTitle,
                 style: AppTextStyle.s12_w400(
                   color: subTitleColor ?? context.colors.black,
-                ),
+                ).copyWith(height: 1.5),
               ),
             )
           ],

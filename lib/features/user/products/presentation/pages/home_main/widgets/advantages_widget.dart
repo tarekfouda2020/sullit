@@ -10,38 +10,41 @@ class AdvantagesWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Flexible(
-          flex: 5,
-            child: _advantageItem(
-          context,
-          title: tr("freeDelivery"),
-          icon: Res.truckIcon,
-          subTitle: tr("from200AED"),
-        )),
-        Flexible(
-          flex: 6,
-            child: _advantageItem(
-          context,
-          title: tr("99Customer"),
-          icon: Res.feedBackIcon,
-          subTitle: tr("feedbacks"),
-        )),
-        Flexible(
-          flex: 6,
-            child: _advantageItem(
-          context,
-          title: tr("7Days"),
-          icon: Res.recyleIcon,
-          subTitle: tr("forFreeReturn"),
-        )),
-        Flexible(
-          flex: 6,
-            child: _advantageItem(
-          context,
-          title: tr("payment"),
-          icon: Res.savePaymentIcon,
-          subTitle: tr("secureSystem"),
-        )),
+        Expanded(
+          child: _advantageItem(
+            context,
+            title: tr("freeDelivery"),
+            icon: Res.truckIcon,
+            subTitle: tr("from200AED"),
+          ),
+        ),
+        Gaps.hGap12,
+        Expanded(
+          child: _advantageItem(
+            context,
+            title: tr("99Customer"),
+            icon: Res.feedBackIcon,
+            subTitle: tr("feedbacks"),
+          ),
+        ),
+        Gaps.hGap6,
+        Expanded(
+          child: _advantageItem(
+            context,
+            title: tr("7Days"),
+            icon: Res.recyleIcon,
+            subTitle: tr("forFreeReturn"),
+          ),
+        ),
+        Gaps.hGap6,
+        Expanded(
+          child: _advantageItem(
+            context,
+            title: tr("payment"),
+            icon: Res.savePaymentIcon,
+            subTitle: tr("secureSystem"),
+          ),
+        ),
       ],
     );
   }
@@ -49,20 +52,24 @@ class AdvantagesWidget extends StatelessWidget {
   Widget _advantageItem(BuildContext context, {required String icon, required String title, required String subTitle}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
+      //mainAxisSize: MainAxisSize.min,
       children: [
-        SvgPicture.asset(icon),
+        SvgPicture.asset(icon, height: 27, width: 30),
         Gaps.vGap8,
-        Text(
-          textAlign: TextAlign.center,
-          title,
-          style: AppTextStyle.s11_w700(color: context.colors.black),
+        FittedBox(
+          child: Text(
+            textAlign: TextAlign.center,
+            title,
+            style: AppTextStyle.s11_w700(color: context.colors.black),
+          ),
         ),
         Gaps.vGap5,
-        Text(
-          textAlign: TextAlign.center,
-          subTitle,
-          style: AppTextStyle.s11_w400(color: context.colors.textColor),
+        FittedBox(
+          child: Text(
+            textAlign: TextAlign.center,
+            subTitle,
+            style: AppTextStyle.s11_w400(color: context.colors.textColor),
+          ),
         ),
       ],
     );

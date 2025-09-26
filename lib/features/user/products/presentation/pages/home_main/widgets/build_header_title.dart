@@ -3,10 +3,10 @@ part of 'home_main_widgets_imports.dart';
 class BuildHeaderTitle extends StatelessWidget {
   final String title;
   final String? btnText;
-  final Function()? onTap;
+  final Function() onTap;
   final HomeMainController controller;
 
-  const BuildHeaderTitle({Key? key, required this.title, this.btnText, this.onTap, required this.controller})
+  const BuildHeaderTitle({Key? key, required this.title, this.btnText, required this.onTap, required this.controller})
       : super(key: key);
 
   @override
@@ -22,7 +22,7 @@ class BuildHeaderTitle extends StatelessWidget {
           ),
         ),
         InkWell(
-          onTap: onTap ?? () => controller.homeController.animateTabsPages(3, context),
+          onTap: onTap,
           child: Text(
             btnText ?? tr("seeAll"),
             style: AppTextStyle.s12_w400(

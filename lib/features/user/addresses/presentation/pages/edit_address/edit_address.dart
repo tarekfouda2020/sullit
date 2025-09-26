@@ -21,24 +21,27 @@ class _EditAddressState extends State<EditAddress> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colors.customBackground,
-      appBar: DefaultAppBar(
-        title: tr('editNewAddress'),
-      ),
-      body: Column(
-        children: [
-          BuildEditAddressForm(
-            controller: controller,
-            address: widget.address,
-          ),
-          DefaultButton(
-            title: tr('update'),
-            onTap: () => controller.editAddress(context, widget.address),
-            height: 40.h,
-            margin: Dimens.paddingAll20PX,
-          )
-        ],
+    return Form(
+      key: controller.formKey,
+      child: Scaffold(
+        backgroundColor: context.colors.customBackground,
+        appBar: DefaultAppBar(
+          title: tr('editNewAddress'),
+        ),
+        body: Column(
+          children: [
+            BuildEditAddressForm(
+              controller: controller,
+              address: widget.address,
+            ),
+            DefaultButton(
+              title: tr('update'),
+              onTap: () => controller.editAddress(context, widget.address),
+              height: 40.h,
+              margin: Dimens.paddingAll20PX,
+            )
+          ],
+        ),
       ),
     );
   }
