@@ -19,7 +19,7 @@ class _MyWalletState extends State<MyWallet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  DefaultAppBar(title: tr('myWallet')),
+      appBar: DefaultAppBar(title: tr('myWallet')),
       backgroundColor: context.colors.customBackground,
       body: BlocBuilder<GenericBloc<Wallet?>, GenericState<Wallet?>>(
         bloc: controller.walletBloc,
@@ -30,14 +30,13 @@ class _MyWalletState extends State<MyWallet> {
               children: [
                 BuildWalletDetails(walletBalance: state.data!.walletBalance),
                 Padding(
-                  padding:  const EdgeInsetsDirectional.only(start: 20),
-                  child: Text(tr("transactions"),
-                  style: AppTextStyle.s20_w700(color: context.colors.black),
+                  padding: const EdgeInsetsDirectional.only(start: 20),
+                  child: Text(
+                    tr("transactions"),
+                    style: AppTextStyle.s20_w700(color: context.colors.black),
                   ),
                 ),
-                BuildWalletHistory(
-                  controller: controller,
-                ),
+                BuildWalletHistory(controller: controller),
                 // WalletItemWidget()
               ],
             );
