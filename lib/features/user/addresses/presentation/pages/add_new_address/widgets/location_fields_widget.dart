@@ -26,7 +26,7 @@ class LocationFieldsWidget extends StatelessWidget {
           selectedItem: controller.countryModel,
           onChange: (value) => controller.onChangeCountry(value),
           validate: (value) => validateDropDown(value),
-          contentPadding: const EdgeInsetsDirectional.only(start: 32,end: 29),
+          contentPadding: const EdgeInsetsDirectional.only(start: 12,end: 16),
         ),
         BuildInputLabel(
           label: tr("state"),
@@ -50,7 +50,7 @@ class LocationFieldsWidget extends StatelessWidget {
                 selectedItem: controller.stateModel,
                 onChange: (value) => controller.onChangeState(value),
                 validate: (value) => validateDropDown(value),
-                contentPadding: const EdgeInsetsDirectional.only(start: 32,end: 29),
+                contentPadding: const EdgeInsetsDirectional.only(start: 12,end: 16),
               ),
             );
           },
@@ -77,7 +77,7 @@ class LocationFieldsWidget extends StatelessWidget {
                 selectedItem: controller.cityModel,
                 onChange: (value) => controller.onChangeCity(value),
                 validate: (value) => validateDropDown(value),
-                contentPadding: const EdgeInsetsDirectional.only(start: 32,end: 29),
+                contentPadding: const EdgeInsetsDirectional.only(start: 12,end: 16),
               ),
             );
           },
@@ -98,7 +98,7 @@ class LocationFieldsWidget extends StatelessWidget {
           fontSize: 16.sp,
           onChange: (value) => controller.onSelectAddressType(value),
           validate: (value) => validateDropDown(value),
-          contentPadding: const EdgeInsetsDirectional.only(start: 32,end: 29),
+          contentPadding: const EdgeInsetsDirectional.only(start: 12,end: 16),
           selectedItem: controller.addressTypeModel,
         ),
       ],

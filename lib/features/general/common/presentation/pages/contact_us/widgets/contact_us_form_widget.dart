@@ -47,7 +47,7 @@ class ContactUsFormWidget extends StatelessWidget {
             builder: (context, state) {
               return GenericTextField(
                 fillColor: context.colors.white,
-                contentPadding: Dimens.paddingH32V16,
+                contentPadding: Dimens.paddingH12V16,
                 enableBorderColor: context.colors.white,
                 focusBorderColor: context.colors.borderColor,
                 controller: controller.phone,
@@ -68,7 +68,7 @@ class ContactUsFormWidget extends StatelessWidget {
           ),
           GenericTextField(
             fillColor: context.colors.white,
-            contentPadding: Dimens.paddingH32V16,
+            contentPadding: Dimens.paddingH12V16,
             controller: controller.subject,
             fieldTypes: FieldTypes.normal,
             type: TextInputType.text,
@@ -82,7 +82,7 @@ class ContactUsFormWidget extends StatelessWidget {
           ),
           GenericTextField(
             fillColor: context.colors.white,
-            contentPadding: Dimens.paddingH32V16,
+            contentPadding: Dimens.paddingH12V16,
             controller: controller.message,
             fieldTypes: FieldTypes.rich,
             type: TextInputType.text,

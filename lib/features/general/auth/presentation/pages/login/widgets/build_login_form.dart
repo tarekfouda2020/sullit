@@ -18,7 +18,7 @@ class BuildLoginForm extends StatelessWidget {
           GenericTextField(
             hint: tr("enterYourEmailHint"),
             fillColor: context.colors.white,
-            contentPadding: Dimens.paddingH32V16,
+            contentPadding: Dimens.paddingH12V16,
             enableBorderColor: context.colors.white,
             focusBorderColor: context.colors.borderColor,
             controller: controller.email,
@@ -38,7 +38,7 @@ class BuildLoginForm extends StatelessWidget {
               return GenericTextField(
                 hint: tr("enterYourPassword"),
                 fillColor: context.colors.white,
-                contentPadding: Dimens.paddingH32V16,
+                contentPadding: Dimens.paddingH12V16,
                 enableBorderColor: context.colors.borderColor,
                 focusBorderColor: context.colors.white,
                 margin: Dimens.headerTitlePadding,

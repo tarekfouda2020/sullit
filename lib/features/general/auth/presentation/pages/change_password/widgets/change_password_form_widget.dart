@@ -18,7 +18,7 @@ class ChangePasswordFormWidget extends StatelessWidget {
               return GenericTextField(
                 hint: tr("currentPassword"),
                 fillColor: context.colors.white,
-                contentPadding: Dimens.paddingH32V16,
+                contentPadding: Dimens.paddingH12V16,
                 enableBorderColor: context.colors.borderColor,
                 focusBorderColor: context.colors.white,
                 margin: Dimens.headerTitlePadding,
@@ -47,7 +47,7 @@ class ChangePasswordFormWidget extends StatelessWidget {
               return GenericTextField(
                 hint: tr("newPassword"),
                 fillColor: context.colors.white,
-                contentPadding: Dimens.paddingH32V16,
+                contentPadding: Dimens.paddingH12V16,
                 enableBorderColor: context.colors.borderColor,
                 focusBorderColor: context.colors.white,
                 margin: Dimens.headerTitlePadding,
@@ -76,7 +76,7 @@ class ChangePasswordFormWidget extends StatelessWidget {
               return GenericTextField(
                 hint: tr("confirmPassword"),
                 fillColor: context.colors.white,
-                contentPadding: Dimens.paddingH32V16,
+                contentPadding: Dimens.paddingH12V16,
                 enableBorderColor: context.colors.borderColor,
                 focusBorderColor: context.colors.white,
                 margin: Dimens.headerTitlePadding,
