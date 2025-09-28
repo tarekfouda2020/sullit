@@ -43,6 +43,12 @@ class HomeMainController {
     }
   }
 
+  void changeCouponsTab(int index){
+    homeController.index = index;
+    homeController.homeTabCubit.onUpdateData(index);
+    print("==========>>>>>> index inside changeCouponsTab $index<<<<<<<<========");
+  }
+
   void getHome(BuildContext context, {bool refresh = true}) async {
     var result = await GetHome().call(refresh);
     context
@@ -70,8 +76,11 @@ class HomeMainController {
     }
   }
 
-  void onChangeFav(Product item) {
-    _synchronizeFavoriteStatus(item);
+  void onChangeFav(Product item,BuildContext context) {
+    var isAuth = context.read<DeviceCubit>().state.model.auth;
+    if(isAuth){
+      _synchronizeFavoriteStatus(item);
+    }
   }
 
   void navigateToDeals(BuildContext context) {
@@ -150,6 +159,7 @@ class HomeMainController {
 
   void _synchronizeFavoriteStatus(Product item) {
     final newFavoriteStatus = !item.isWishlist!;
+    log("===============inside favorite============");
     for (var product in vipOffersCubit.state.data) {
       if (product.id == item.id) {
         product.isWishlist = newFavoriteStatus;

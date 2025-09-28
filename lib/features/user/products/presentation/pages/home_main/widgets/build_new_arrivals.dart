@@ -29,7 +29,7 @@ class BuildNewArrivals extends StatelessWidget {
                       child: BuildProductItem(
                         productModel: newArrivals[index],
                         onFavRefresh: () => controller.onChangeFav(
-                          newArrivals[index],
+                          newArrivals[index],context
                         ),
 
                       ),

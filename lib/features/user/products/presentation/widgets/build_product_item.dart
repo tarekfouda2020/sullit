@@ -61,17 +61,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
             color: context.colors.greyWhite,
           )),
       child: InkWell(
-        onTap: () async {
-          var result = await AutoRouter.of(context).push(
-            ProductDetailsRoute(
-              isFav: widget.productModel.isWishlist!,
-              productId: widget.productModel.id!,
-              isResale: widget.productModel.isResale!,
-            ),
-          );
-          widget.onRefresh?.call();
-          widget.onFavRefresh();
-        },
+        onTap: () async  => await _routeToDetails(context),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -201,7 +191,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                           ],
                         ),
                       ),
-                      InkWell(
+                      GestureDetector(
                         onTap: () => getIt<CartHelper>().addToCartDialog(
                           context,
                           widget.productModel,
@@ -248,6 +238,18 @@ class _BuildProductItemState extends State<BuildProductItem> {
         ),
       ),
     );
+  }
+
+  Future<void> _routeToDetails(BuildContext context) async {
+    await AutoRouter.of(context).push(
+      ProductDetailsRoute(
+        isFav: widget.productModel.isWishlist!,
+        productId: widget.productModel.id!,
+        isResale: widget.productModel.isResale!,
+      ),
+    );
+    widget.onRefresh?.call();
+    widget.onFavRefresh.call();
   }
 
   PositionedDirectional _discountWidget(BuildContext context) {

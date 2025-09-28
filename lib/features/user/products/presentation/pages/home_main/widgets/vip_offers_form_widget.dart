@@ -24,7 +24,7 @@ class VipOffersFormWidget extends StatelessWidget {
                     title: tr('vipOffers'),
                     controller: controller,
                     onTap: () {
-                      controller.homeController.index = 0;
+                      controller.changeCouponsTab(0);
                       controller.homeController.animateTabsPages(3, context);
                     },
                   ),

@@ -30,9 +30,12 @@ class BuildProductSuggestItem extends StatelessWidget {
             productModel.name ?? "",
             style: AppTextStyle.s15_w500(color: context.colors.black),
           ),
-          subtitle: Text(
-            productModel.priceHighLow.parseCurrency,
-            style: AppTextStyle.s15_w700(color: context.colors.primary),
+          subtitle: Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Text(
+              productModel.priceHighLow.parseCurrency,
+              style: AppTextStyle.s15_w700(color: context.colors.primary),
+            ),
           ),
         ),
       ),

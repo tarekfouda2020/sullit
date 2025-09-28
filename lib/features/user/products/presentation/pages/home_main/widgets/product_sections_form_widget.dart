@@ -34,9 +34,7 @@ class ProductSectionsFormWidget extends StatelessWidget {
                             padding: Dimens.paddingHorizontal5PX,
                             child: BuildProductItem(
                               productModel: state.data[index].products[position],
-                              onFavRefresh: () => controller.onChangeFav(
-                                state.data[index].products[position],
-                              ),
+                              onFavRefresh: () => controller.onChangeFav(state.data[index].products[position], context),
                             ),
                           );
                         },

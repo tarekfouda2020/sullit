@@ -23,7 +23,7 @@ class OnSaleOffersFormWidget extends StatelessWidget {
                     title: tr('onSale'),
                     controller: controller,
                     onTap: () {
-                      controller.homeController.index = 2;
+                      controller.changeCouponsTab(2);
                       controller.homeController.animateTabsPages(3, context);
                     },
                   ),

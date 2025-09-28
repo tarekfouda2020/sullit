@@ -15,13 +15,16 @@ class HomeController {
   List<String> tabs = [Res.home, Res.category, "", Res.offers, Res.menuIcon];
 
   List<Widget> pages() => [
-        HomeMain(homeController: this),
-        Categories(homeController: this),
-        // Summary(homeController: controller),
-        Gaps.empty,
-        Coupons(homeController: this, index: index),
-        More(homeController: this),
-      ];
+    HomeMain(homeController: this),
+    Categories(homeController: this),
+    // Summary(homeController: controller),
+    Gaps.empty,
+    BlocBuilder<GenericBloc<int>, GenericState<int>>(
+      bloc: homeTabCubit,
+      builder: (context, state) => Coupons(homeController: this, index: index),
+    ),
+    More(homeController: this),
+  ];
 
   List<String> tabsText(BuildContext context) => [
         tr('home', context: context),

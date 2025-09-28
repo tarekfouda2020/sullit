@@ -34,7 +34,7 @@ class BuildHomeMainAppBar extends StatelessWidget {
                   minWidth: 20,
                   suffixIcon: Padding(
                     padding: const EdgeInsetsDirectional.only(end: 16),
-                    child: InkWell(
+                    child: GestureDetector(
                       onTap: () => homeMainController.scanProduct(context),
                       child: Transform.scale(
                         scale: 0.7,
@@ -43,7 +43,7 @@ class BuildHomeMainAppBar extends StatelessWidget {
                     ),
                   ),
                   onSubmit: () => homeMainController.routeToSearchPage(context),
-                  prefixIcon: InkWell(
+                  prefixIcon: GestureDetector(
                     onTap: () => homeMainController.routeToSearchPage(context),
                     child: Padding(
                       padding: const EdgeInsetsDirectional.only(start: 15),

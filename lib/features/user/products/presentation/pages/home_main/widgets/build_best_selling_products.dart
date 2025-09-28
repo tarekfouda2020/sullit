@@ -36,9 +36,7 @@ class BuildBestSellingProducts extends StatelessWidget {
                       padding: Dimens.paddingHorizontal5PX,
                       child: BuildProductItem(
                         productModel: bestSellingProducts[index],
-                        onFavRefresh: () => controller.onChangeFav(
-                          bestSellingProducts[index],
-                        ),
+                        onFavRefresh: () => controller.onChangeFav(bestSellingProducts[index],context),
                         onCompareRefresh: () {
                           bestSellingProducts[index].isAddedTCompare =
                               !bestSellingProducts[index].isAddedTCompare!;

@@ -9,10 +9,13 @@ class CategoriesHeaderTitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: AppTextStyle.s16_w600(color: context.colors.black)),
-        InkWell(
+        Expanded(child: Text(title, style: AppTextStyle.s16_w600(color: context.colors.black).copyWith(
+          height: 1.3
+        ))),
+        Gaps.hGap8,
+        GestureDetector(
           onTap: onTap,
           child: Text(
             tr('seeAll'),

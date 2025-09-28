@@ -22,7 +22,9 @@ class BuildTopCategories extends StatelessWidget {
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: categories.length,
+            itemCount: categories.length>10
+                ?categories.take(10).length
+                :categories.length,
             itemBuilder: (_, index) => BuildTopCategoriesItem(
               categoryModel: categories[index],
             ),
@@ -33,6 +35,24 @@ class BuildTopCategories extends StatelessWidget {
               mainAxisSpacing: 15,
             ),
           )
+          // SizedBox(
+          //   height: 600,
+          //   child: GridView.builder(
+          //     // shrinkWrap: true,
+          //     // physics: const NeverScrollableScrollPhysics(),
+          //     scrollDirection: Axis.horizontal,
+          //     itemCount: categories.length,
+          //     itemBuilder: (_, index) => BuildTopCategoriesItem(
+          //       categoryModel: categories[index],
+          //     ),
+          //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          //       crossAxisCount: 5,
+          //       childAspectRatio: 0.60,
+          //       crossAxisSpacing: 8,
+          //       mainAxisSpacing: 15,
+          //     ),
+          //   ),
+          // )
         ],
       ),
     );

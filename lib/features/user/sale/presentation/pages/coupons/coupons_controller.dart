@@ -4,8 +4,8 @@ class CouponsController {
 
   late final HomeController homeController;
   late TabController tabController;
-  final PagingController<int, Coupon> pagingController =
-      PagingController(firstPageKey: 1);
+  final PagingController<int, Coupon> pagingController = PagingController(firstPageKey: 1);
+
   int pageSize = 12;
 
   List<Widget> pages() => [
@@ -16,10 +16,8 @@ class CouponsController {
   ];
 
   void initBottomNavigation(TickerProvider ticker, int index) {
-    tabController =
-        TabController(length: 4, vsync: ticker, initialIndex: index);
-    tabController.animateTo(index);
-    //homeTabCubit.onUpdateData(index);
+    print("==========>>>>>> index inside initBottomNavigation $index<<<<<<<<========");
+    tabController = TabController(length: pages().length, vsync: ticker, initialIndex: index);
   }
 
   // CouponsController() {
@@ -28,6 +26,13 @@ class CouponsController {
   //     getCoupons(pageKey);
   //   });
   // }
+
+
+  void changeTab(int index){
+    if (tabController.index != index) {
+      tabController.animateTo(index);
+    }
+  }
 
   Future<void> getCoupons(int page, {bool refresh = true}) async {
     var params = _paginateParams(page, refresh);

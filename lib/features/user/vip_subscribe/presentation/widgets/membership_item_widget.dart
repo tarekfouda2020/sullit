@@ -5,7 +5,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
+import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
@@ -100,8 +102,7 @@ class MembershipItemWidget extends StatelessWidget {
               style: AppTextStyle.s12_w600(color: context.colors.black),
             ),
             Gaps.vGap6,
-            Html(
-              data: model.description,
+            Html(data: getIt<Utilities>().cleanHtml(model.description),
               style: {
                 "body": Style(
                   color: context.colors.textColor,
