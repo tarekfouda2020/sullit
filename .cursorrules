@@ -1,0 +1,537 @@
+# Flutter TDD Project - Cursor Rules
+
+## Project Overview
+This is a Flutter e-commerce application built with Clean Architecture, following TDD principles. The app supports both user and seller functionalities with features like product management, cart, orders, payments, wallet, and more.
+
+## Architecture & Structure
+
+### Clean Architecture Layers
+- **Domain Layer**: Contains business logic, entities, use cases, and repository interfaces
+- **Data Layer**: Contains data sources, repositories implementations, and models
+- **Presentation Layer**: Contains UI components, controllers, and state management
+
+### Core Folder Structure
+```
+lib/
+├── core/                    # Shared components and utilities
+│   ├── bloc/               # State management (BLoC pattern)
+│   ├── constants/          # App constants, dimensions, gaps
+│   ├── errors/             # Error handling and failures
+│   ├── helpers/            # Utility functions and helpers
+│   ├── http/               # HTTP client and API handling
+│   ├── localization/       # Multi-language support
+│   ├── models/             # Base models and domain models
+│   ├── network/            # Network connectivity
+│   ├── routes/             # Navigation and routing
+│   ├── theme/              # App theming and styling
+│   ├── usecases/           # Base use case classes
+│   └── widgets/            # Reusable UI components
+├── features/               # Feature-based modules
+│   ├── general/            # Shared features (auth, common)
+│   ├── user/               # User-specific features
+│   └── seller/             # Seller-specific features
+```
+
+## State Management
+
+### BLoC Pattern
+- Use `flutter_bloc` for state management
+- Controllers handle business logic and UI state
+- Generic BLoC for common state management patterns
+- DeviceCubit for app-wide state (theme, locale, auth status)
+
+### State Management Guidelines
+```dart
+// Use GenericBloc for simple state management
+final GenericBloc<List<Product>> productsBloc = GenericBloc([]);
+
+// Use specific Cubits for complex state
+class ProductCubit extends Cubit<ProductState> {
+  // State management logic
+}
+```
+
+## Dependency Injection
+
+### GetIt + Injectable
+- Use `@injectable` annotation for dependency registration
+- Register services as `@lazySingleton` or `@factory`
+- Use `getIt` for service locator pattern
+- Configure dependencies in `lib/core/helpers/di.dart`
+
+### DI Guidelines
+```dart
+@injectable
+class MyService {
+  // Service implementation
+}
+
+@Injectable(as: RepositoryInterface)
+class RepositoryImpl extends RepositoryInterface {
+  // Repository implementation
+}
+```
+
+## API & Data Handling
+
+### HTTP Layer
+- Generic HTTP client using Dio
+- Request/Response models with proper typing
+- Error handling with Either pattern (dartz)
+- Caching support with tf_dio_cache
+
+### Data Models Pattern
+```dart
+// API Models (for JSON serialization)
+@freezed
+class ProductModel extends BaseApiModel<Product> {
+  // API model with toDomainModel() method
+}
+
+// Domain Models (business logic)
+class Product extends BaseDomainModel {
+  // Domain model for business logic
+}
+```
+
+### Model Transformation
+- Use `ModelToDomain` mixin for API to Domain conversion
+- Implement `toDomainModel()` in API models
+- Use `toDomainResult()` and `toDomainResultList()` helpers
+
+### Model Creation Pattern
+
+#### API Models (Freezed)
+- Create API models in `lib/features/{feature}/data/models/`
+- Use `@freezed` annotation for immutable data classes
+- Extend `BaseApiModel<T>` where T is the corresponding domain model
+- Use `@JsonKey(name: "key_name")` for snake_case JSON keys
+- Implement `toDomainModel()` method for conversion to domain model
+
+```dart
+@freezed
+class CurrentSubscriptionModel extends BaseApiModel<CurrentSubscriptionDomainModel> with _$CurrentSubscriptionModel {
+  const CurrentSubscriptionModel._();
+
+  @JsonSerializable(explicitToJson: true)
+  factory CurrentSubscriptionModel({
+    required int id,
+    required String name,
+    @JsonKey(name: "starts_at") required String startsAt,
+    @JsonKey(name: "is_expired") required bool isExpired,
+    required VipSubscribeModel subscription,
+  }) = _CurrentSubscriptionModel;
+
+  factory CurrentSubscriptionModel.fromJson(Map<String, dynamic> json) => _$CurrentSubscriptionModelFromJson(json);
+
+  @override
+  CurrentSubscriptionDomainModel toDomainModel() {
+    return CurrentSubscriptionDomainModel(
+      id: id,
+      name: name,
+      startsAt: startsAt,
+      isExpired: isExpired,
+      subscription: subscription.toDomainModel(),
+    );
+  }
+}
+```
+
+#### Domain Models
+- Create domain models in `lib/features/{feature}/domain/models/`
+- Extend `BaseDomainModel` for business logic
+- Use simple classes (not freezed) for domain models
+- Include business logic and validation
+- Can have mutable properties for UI state (e.g., `isSelected`)
+
+```dart
+class CurrentSubscriptionDomainModel extends BaseDomainModel {
+  final int id;
+  final String name;
+  final String startsAt;
+  final bool isExpired;
+  final VipSubscribeDomainModel subscription;
+
+  CurrentSubscriptionDomainModel({
+    required this.id,
+    required this.name,
+    required this.startsAt,
+    required this.isExpired,
+    required this.subscription,
+  });
+}
+```
+
+#### Why Domain Models?
+1. **Separation of Concerns**: API models handle JSON serialization, domain models handle business logic
+2. **Type Safety**: Domain models provide compile-time type checking for business rules
+3. **Testability**: Domain models can be easily unit tested without API dependencies
+4. **Flexibility**: Domain models can have additional properties not in API (e.g., `isSelected` for UI)
+5. **Clean Architecture**: Follows the dependency inversion principle
+6. **Maintainability**: Changes to API structure don't affect business logic
+
+## Repository Pattern
+
+### Repository Interface (Domain Layer)
+- Define repository interfaces in `lib/features/{feature}/domain/repositories/`
+- Use domain models in method signatures
+- Follow the established naming convention
+
+```dart
+abstract class VipRepositories {
+  Future<Either<Failure, List<VipSubscribeDomainModel>>> getSubscriptions();
+  Future<Either<Failure, List<PayMethodDomainModel>>> getPayMethods();
+  Future<Either<Failure, VipCurrentPlanDomainModel>> getCurrentSubscription(bool refresh);
+  Future<Either<Failure, SubscribePaymentDomainModel>> paySubscription(PaySubscribeParams params);
+}
+```
+
+### Repository Implementation (Data Layer)
+- Implement repositories in `lib/features/{feature}/data/repositories/`
+- Use `ModelToDomain` mixin for API to Domain conversion
+- Use `toDomainResult()` and `toDomainResultList()` helpers
+- Inject data source using `getIt<VipDataSource>()`
+
+```dart
+@Injectable(as: VipRepositories)
+class ImplVipSubscribe extends VipRepositories with ModelToDomain {
+  final VipDataSource _dataSource = getIt<VipDataSource>();
+
+  @override
+  Future<Either<Failure, List<VipSubscribeDomainModel>>> getSubscriptions() async {
+    var result = await _dataSource.getSubscriptions();
+    return toDomainResultList<VipSubscribeDomainModel, VipSubscribeModel>(result);
+  }
+
+  @override
+  Future<Either<Failure, VipCurrentPlanDomainModel>> getCurrentSubscription(bool refresh) async {
+    var result = await _dataSource.getCurrentSubscription(refresh);
+    return toDomainResult<VipCurrentPlanDomainModel, VipCurrentPlanModel>(result);
+  }
+}
+```
+
+### Use Case Pattern
+- Create use cases in `lib/features/{feature}/domain/use_case/`
+- Use domain models in return types
+- Handle errors with Either pattern
+- Return empty list or null on failure
+
+```dart
+class GetSubscriptions implements UseCase<List<VipSubscribeDomainModel>, void> {
+  @override
+  Future<List<VipSubscribeDomainModel>> call(void param) async {
+    var result = await getIt.get<VipRepositories>().getSubscriptions();
+    return result.fold(
+      (l) => [],
+      (r) => r,
+    );
+  }
+}
+```
+
+### Key Repository Guidelines
+1. **Domain Models in Interface**: Repository interfaces use domain models, not API models
+2. **ModelToDomain Mixin**: Use this mixin in repository implementations for conversion
+3. **Error Handling**: Use Either pattern for proper error handling
+4. **Dependency Injection**: Use `getIt` for data source injection
+5. **Type Safety**: Maintain type safety throughout the chain
+6. **Consistent Naming**: Follow established naming conventions
+
+## Navigation
+
+### Auto Route
+- Use `auto_route` for type-safe navigation
+- Define routes in feature-specific route files
+- Use `AdaptiveRoute` for platform-specific routing
+- Centralized routing in `lib/core/routes/router.dart`
+
+### Navigation Guidelines
+```dart
+// Navigate to routes
+AutoRouter.of(context).push(const ProductDetailsRoute());
+
+// Pass parameters
+AutoRouter.of(context).push(ProductDetailsRoute(productId: id));
+
+// Get result from navigation
+var result = await AutoRouter.of(context).push(const AddAddressRoute());
+```
+
+## UI & Styling
+
+### Theme System
+- Adaptive theme support (light/dark)
+- Custom color schemes in `lib/core/theme/colors/`
+- Text styles in `lib/core/theme/text/app_text_style.dart`
+- Responsive design with `flutter_screenutil`
+
+### Color Usage
+```dart
+// Access colors through context
+context.colors.primary
+context.colors.background
+
+// Use theme-aware colors
+AppColors.of(context).primary
+```
+
+### Custom Widgets
+- Create reusable widgets in `lib/core/widgets/`
+- Use consistent naming: `DefaultButton`, `GenericTextField`, etc.
+- Implement proper theming and responsiveness
+- Follow the established widget patterns
+
+## Widget Organization
+
+### Small vs Big Widgets
+- **Small Widgets**: Reusable components (buttons, inputs, cards)
+- **Big Widgets**: Page-specific widgets with complex logic
+- Use part files for widget organization within features
+- Separate business logic in controllers
+
+### Widget Guidelines
+```dart
+// Small reusable widget
+class CustomButton extends StatelessWidget {
+  // Simple, reusable component
+}
+
+// Big page-specific widget
+part 'build_product_list.dart';
+part 'build_product_item.dart';
+```
+
+## Controllers & Business Logic
+
+### Controller Pattern
+- Controllers handle business logic and state management
+- Use BLoC for state updates
+- Keep UI logic separate from business logic
+- Implement proper error handling
+
+### Controller Guidelines
+```dart
+class ProductController {
+  final GenericBloc<List<Product>> productsBloc = GenericBloc([]);
+  
+  Future<void> getProducts({bool refresh = true}) async {
+    // Business logic here
+  }
+  
+  void onProductSelected(Product product) {
+    // UI logic here
+  }
+}
+```
+
+## Error Handling
+
+### Failure Pattern
+- Use `Either<Failure, T>` for error handling
+- Define specific failure types
+- Handle network, server, and validation errors
+- Show user-friendly error messages
+
+### Error Handling Guidelines
+```dart
+// Handle errors in repositories
+return result.fold(
+  (failure) => Left(failure),
+  (data) => Right(data),
+);
+
+// Show user-friendly messages
+CustomToast.showSimpleToast(
+  msg: tr('errorMessage'),
+  type: ToastType.error,
+);
+```
+
+## Localization
+
+### Multi-language Support
+- Use `flutter_localizations` for RTL support
+- Store translations in `assets/lang/`
+- Use `tr()` function for text localization
+- Support Arabic and English
+
+### Localization Guidelines
+```dart
+// Use tr() for translations
+Text(tr('welcome_message'))
+
+// Context-aware translations
+Text(tr('product_count', context: context))
+```
+
+## Testing & Code Quality
+
+### Code Organization
+- Follow feature-based folder structure
+- Use consistent naming conventions
+- Implement proper separation of concerns
+- Keep files focused and single-purpose
+
+### Best Practices
+- Use `freezed` for immutable data classes
+- Implement proper null safety
+- Use `equatable` for value equality
+- Follow Flutter linting rules
+
+## API Integration
+
+### HTTP Requests
+- Use `GenericHttp` for API calls
+- Implement proper request/response models
+- Handle authentication with Bearer tokens
+- Support request caching and refresh
+
+### API Guidelines
+```dart
+// Make API requests
+var result = await GetProducts().call(params);
+
+// Handle responses
+result.fold(
+  (failure) => handleError(failure),
+  (data) => handleSuccess(data),
+);
+```
+
+## State Management Patterns
+
+### BLoC Usage
+- Use `GenericBloc` for simple state
+- Create specific Cubits for complex features
+- Implement proper state updates
+- Handle loading, success, and error states
+
+### State Guidelines
+```dart
+// Update state
+cubit.onUpdateData(newData);
+
+// Handle loading states
+if (state is GenericUpdateState) {
+  // Show data
+} else {
+  // Show loading
+}
+```
+
+## File Organization
+
+### Feature Structure
+```
+feature/
+├── data/
+│   ├── data_sources/
+│   ├── models/
+│   └── repository/
+├── domain/
+│   ├── entities/
+│   ├── models/
+│   ├── repository/
+│   └── usecases/
+└── presentation/
+    ├── manager/
+    ├── pages/
+    └── widgets/
+```
+
+### Import Organization
+- Use part files for widget organization
+- Group imports logically
+- Use relative imports within features
+- Use absolute imports for core components
+
+## Performance & Optimization
+
+### Best Practices
+- Use `const` constructors where possible
+- Implement proper list virtualization
+- Cache network images
+- Optimize widget rebuilds
+- Use proper state management patterns
+
+### Memory Management
+- Dispose controllers properly
+- Cancel subscriptions
+- Clear caches when needed
+- Handle image memory efficiently
+
+## Security
+
+### Authentication
+- Store tokens securely
+- Implement proper token refresh
+- Handle session expiration
+- Use secure storage for sensitive data
+
+### Data Protection
+- Validate user inputs
+- Sanitize API responses
+- Implement proper error handling
+- Use HTTPS for all API calls
+
+## Documentation
+
+### Code Comments
+- Document complex business logic
+- Explain non-obvious implementations
+- Use clear, concise comments
+- Keep documentation up-to-date
+
+### README Guidelines
+- Document setup instructions
+- Explain architecture decisions
+- Provide usage examples
+- Include troubleshooting guides
+
+## Development Workflow
+
+### Code Style
+- Follow Dart/Flutter conventions
+- Use consistent formatting
+- Implement proper error handling
+- Write clean, readable code
+
+### Git Practices
+- Use meaningful commit messages
+- Create feature branches
+- Review code before merging
+- Keep commits focused and atomic
+
+## Dependencies
+
+### Key Packages
+- `flutter_bloc`: State management
+- `auto_route`: Navigation
+- `get_it` + `injectable`: Dependency injection
+- `dartz`: Functional programming
+- `freezed`: Immutable data classes
+- `dio`: HTTP client
+- `flutter_screenutil`: Responsive design
+
+### Package Guidelines
+- Keep dependencies up-to-date
+- Use specific version constraints
+- Avoid unnecessary dependencies
+- Document package usage
+
+## Environment Setup
+
+### Development Environment
+- Flutter SDK: >=2.17.1 <3.0.0
+- Dart SDK: Compatible with Flutter version
+- IDE: VS Code or Android Studio
+- Platform: iOS, Android, Web support
+
+### Build Configuration
+- Configure Firebase services
+- Set up signing for releases
+- Configure app icons and branding
+- Set up environment-specific configs
+
+This project follows Clean Architecture principles with proper separation of concerns, comprehensive state management, and scalable code organization. The modular structure allows for easy maintenance and feature development. 
