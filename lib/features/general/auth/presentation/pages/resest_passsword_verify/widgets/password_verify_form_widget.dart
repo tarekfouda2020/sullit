@@ -81,11 +81,10 @@ class PasswordVerifyForm extends StatelessWidget {
                 enableBorderColor: context.colors.borderColor,
                 focusBorderColor: context.colors.borderColor,
                 controller: controller.confirmPassword,
-                fieldTypes:
-                !state.data ? FieldTypes.password : FieldTypes.normal,
+                fieldTypes: !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
-                validate: (value) => value?.validatePassword(),
+                validate: (value) => value?.validatePasswordConfirm(pass: controller.password.text),
                 hint: tr('enterYourPassword'),
                 margin: const EdgeInsets.symmetric(vertical: Dimens.dp12),
                 radius: Dimens.borderRadius40PX,

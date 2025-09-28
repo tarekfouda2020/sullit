@@ -12,7 +12,7 @@ class BuildBrandItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => AutoRouter.of(context).push(
-        BrandDetailsRoute(brandId: brand.id),
+        BrandDetailsRoute(brandId: brand.id, brandName: brand.name),
       ),
       child: Container(
         margin: margin ?? EdgeInsets.zero,

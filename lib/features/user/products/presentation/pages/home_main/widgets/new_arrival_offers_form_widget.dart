@@ -19,7 +19,14 @@ class NewArrivalOffersFormWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BuildHeaderTitle(title: tr('newArrival'),controller: controller),
+                  BuildHeaderTitle(
+                    title: tr('newArrival'),
+                    controller: controller,
+                    onTap: () {
+                      controller.homeController.index = 1;
+                      controller.homeController.animateTabsPages(3, context);
+                    },
+                  ),
                   Gaps.vGap8,
                   Flexible(
                     child: ListView.builder(
@@ -27,7 +34,7 @@ class NewArrivalOffersFormWidget extends StatelessWidget {
                       itemCount: length,
                       itemBuilder: (context, index) {
                         return BuildProductItem(
-                          margin: EdgeInsetsDirectional.only(end:index== length-1 ? 0 : 8),
+                          margin: EdgeInsetsDirectional.only(end: index == length - 1 ? 0 : 8),
                           productModel: state.data[index],
                           onFavRefresh: () => controller.onChangeArrivalOffersFav(state.data[index]),
                         );

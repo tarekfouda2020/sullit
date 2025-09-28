@@ -8,28 +8,21 @@ class BuildTopCategoriesItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AutoRouter.of(context).push(
-        CategoryDetailsRoute(
-          categoryModel: categoryModel,
-          fromHome: true,
-        ),
-      ),
+      onTap: () => AutoRouter.of(context).push(CategoryDetailsRoute(categoryModel: categoryModel,fromHome: true)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            width: 69,
-            height: 69,
+             height: 69,
             padding: const EdgeInsets.all(7),
             decoration: BoxDecoration(
               color: context.colors.lightPink,
-              shape: BoxShape.circle,
+              shape:  BoxShape.circle
             ),
             child: CachedImage(
               height: 45,
               width: 45,
-              bgColor: context.colors.lightPink,
+              bgColor: context.colors.lightPink ,
               fit: BoxFit.cover,
               haveRadius: false,
               url: categoryModel.icon,
@@ -42,7 +35,7 @@ class BuildTopCategoriesItem extends StatelessWidget {
             textAlign: TextAlign.center,
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
-            style: AppTextStyle.s12_w700(
+            style: AppTextStyle.s10_w700(
               color: context.colors.black,
             ),
           ),

@@ -15,10 +15,16 @@ class AppTextStyle extends TextStyle {
   // ignore: non_constant_identifier_names
   const AppTextStyle.s8_w400({required Color color})
       : super(color: color, fontSize: 8, fontWeight: FontWeight.w400, height: fontHeight,);
+  // ignore: non_constant_identifier_names
+  const AppTextStyle.s8_w500({required Color color})
+      : super(color: color, fontSize: 8, fontWeight: FontWeight.w500, height: fontHeight,);
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s9_w400({required Color color})
       : super(color: color, fontSize: 9, fontWeight: FontWeight.w400, height: fontHeight,);
+  // ignore: non_constant_identifier_names
+  const AppTextStyle.s9_w500({required Color color})
+      : super(color: color, fontSize: 9, fontWeight: FontWeight.w500, height: fontHeight,);
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s10_w400({required Color color})
@@ -37,22 +43,57 @@ class AppTextStyle extends TextStyle {
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s10_w300({required Color color})
-      : super(color: color, fontSize: 10, fontWeight: FontWeight.w300, height: fontHeight,);
+      : super(
+          color: color,
+          fontSize: 10,
+          fontWeight: FontWeight.w300,
+          height: fontHeight,
+        );
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s11_w400({required Color color})
-      : super(color: color, fontSize: 11, fontWeight: FontWeight.w400, height: fontHeight,);
+      : super(
+          color: color,
+          fontSize: 11,
+          fontWeight: FontWeight.w400,
+          height: fontHeight,
+        );
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s11_w700({required Color color})
-      : super(color: color, fontSize: 11, fontWeight: FontWeight.w700, height: fontHeight,);
+      : super(
+          color: color,
+          fontSize: 11,
+          fontWeight: FontWeight.w700,
+          height: fontHeight,
+        );
+
+  // ignore: non_constant_identifier_names
+  const AppTextStyle.s11_w600({required Color color})
+      : super(
+          color: color,
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+          height: fontHeight,
+        );
+
   // ignore: non_constant_identifier_names
   const AppTextStyle.s11_bold({required Color color})
-      : super(color: color, fontSize: 11, fontWeight: FontWeight.bold, height: fontHeight,);
+      : super(
+          color: color,
+          fontSize: 11,
+          fontWeight: FontWeight.bold,
+          height: fontHeight,
+        );
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s12_w400({required Color color})
-      : super(color: color, fontSize: 12, fontWeight: FontWeight.w400, height: fontHeight,);
+      : super(
+          color: color,
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+          height: fontHeight,
+        );
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s12_w300({required Color color})
@@ -197,23 +238,57 @@ class AppTextStyle extends TextStyle {
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s22_w400({required Color color})
-      : super(color: color, fontSize: 22, fontWeight: FontWeight.w400, height: fontHeight,);
+      : super(
+          color: color,
+          fontSize: 22,
+          fontWeight: FontWeight.w400,
+          height: fontHeight,
+        );
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s22_w600({required Color color})
-      : super(color: color, fontSize: 22, fontWeight: FontWeight.w600, height: fontHeight,);
+      : super(
+          color: color,
+          fontSize: 22,
+          fontWeight: FontWeight.w600,
+          height: fontHeight,
+        );
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s22_w700({required Color color})
-      : super(color: color, fontSize: 22, fontWeight: FontWeight.w700, height: fontHeight,);
+      : super(
+          color: color,
+          fontSize: 22,
+          fontWeight: FontWeight.w700,
+          height: fontHeight,
+        );
+
+  // ignore: non_constant_identifier_names
+  const AppTextStyle.s22_w800({required Color color})
+      : super(
+          color: color,
+          fontSize: 22,
+          fontWeight: FontWeight.w800,
+          height: fontHeight,
+        );
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s24_w700({required Color color})
-      : super(color: color, fontSize: 24, fontWeight: FontWeight.w700, height: fontHeight,);
+      : super(
+          color: color,
+          fontSize: 24,
+          fontWeight: FontWeight.w700,
+          height: fontHeight,
+        );
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s24_w800({required Color color})
-      : super(color: color, fontSize: 24, fontWeight: FontWeight.w800, height: fontHeight,);
+      : super(
+          color: color,
+          fontSize: 24,
+          fontWeight: FontWeight.w800,
+          height: fontHeight,
+        );
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s28_w700({required Color color})

@@ -48,6 +48,19 @@ class Utilities {
       return permission;
     }
   }
+
+  String cleanHtml(String html) {
+    return html
+        .replaceAll(RegExp(r'<span[^>]*>|</span>'), '')
+        .replaceAll(RegExp(r'<o:p>.*?</o:p>'), '')
+        .replaceAll(RegExp(r'style="[^"]*"'), '')
+        .replaceAll(RegExp(r'class="[^"]*"'), '')
+        .replaceAll(RegExp(r'<br\s*/?>'), '')
+        .replaceAll(RegExp(r'&nbsp;'), ' ')
+        .replaceAll(RegExp(r'\s+'), ' ')
+        .trim();
+  }
+
   String parseCurrency(String text) {
     BuildContext ctx = getIt<GlobalContext>().context();
     String lang = ctx.read<DeviceCubit>().state.model.locale.languageCode;

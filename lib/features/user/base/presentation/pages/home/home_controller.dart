@@ -10,6 +10,7 @@ class HomeController {
   final TextEditingController searchController = TextEditingController();
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   bool showToast = false;
+  int index=0;
 
   List<String> tabs = [
     Res.home,
@@ -25,7 +26,7 @@ class HomeController {
     Categories(homeController: this),
     // Summary(homeController: controller),
     Gaps.empty,
-    Coupons(homeController: this),
+    Coupons(homeController: this,index: index),
     More(homeController: this),
   ];
 

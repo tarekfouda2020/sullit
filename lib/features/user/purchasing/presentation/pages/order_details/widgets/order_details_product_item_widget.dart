@@ -22,10 +22,10 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
       child: Column(
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CachedImage(
-                url: orderDetails.product?.thumbnailImage ??"",
+                url: orderDetails.product?.thumbnailImage ?? "",
                 width: 46,
                 height: 46,
                 bgColor: Colors.transparent,
@@ -40,8 +40,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                     children: [
                       Text(
                         orderDetails.product?.name ?? "",
-                        style:
-                            AppTextStyle.s14_w600(color: context.colors.black),
+                        style: AppTextStyle.s14_w600(color: context.colors.black),
                       ),
                       Gaps.vGap5,
                       RatingBar.builder(
@@ -85,16 +84,22 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                                 // ),
                                 Text(
                                   (orderDetails.product?.variant?.mainPrice.parseCurrency ?? ''),
-                                  style: AppTextStyle.s14_w600(
-                                      color: context.colors.primary),
+                                  style: AppTextStyle.s14_w600(color: context.colors.primary),
                                 )
                               ],
                             ),
                           ),
-                          Text(
-                            "${tr("qnt")}${orderDetails.quantity}",
-                            style: AppTextStyle.s14_w400(
-                                color: context.colors.black),
+                          Row(
+                            children: [
+                              Text(
+                                tr("qnt"),
+                                style: AppTextStyle.s14_w400(color: context.colors.black),
+                              ),
+                              Text(
+                                "${orderDetails.quantity}",
+                                style: AppTextStyle.s14_w600(color: context.colors.black),
+                              ),
+                            ],
                           ),
                         ],
                       ),

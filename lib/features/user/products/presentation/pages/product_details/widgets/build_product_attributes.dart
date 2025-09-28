@@ -41,7 +41,7 @@ class BuildProductAttributes extends StatelessWidget {
               ),
             ),
           ),
-          Gaps.line(context.colors.greyWhite, 10),
+          //Gaps.line(context.colors.greyWhite, 10),
         ],
       ),
     );

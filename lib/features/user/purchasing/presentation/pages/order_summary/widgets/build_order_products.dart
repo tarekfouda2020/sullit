@@ -10,9 +10,9 @@ class BuildOrderProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: Dimens.paddingAll15PX,
+      padding: Dimens.paddingAll10PX,
       margin: Dimens.paddingVertical5PX,
-      decoration: CustomDecoration(),
+      decoration: const CustomDecoration(),
       child: Column(
         children: List.generate(
           orderModel.orderDetails.length,

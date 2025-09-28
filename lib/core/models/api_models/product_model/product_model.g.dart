@@ -8,7 +8,7 @@ part of 'product_model.dart';
 
 _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
     _$_ProductModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       thumbnailImage: json['thumbnail_image'] as String,
       images:
@@ -24,13 +24,13 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       colors: (json['colors'] as List<dynamic>?)
           ?.map((e) => ColorModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      minQty: json['min_qty'] as int,
+      minQty: (json['min_qty'] as num).toInt(),
       currencySymbol: json['currency_symbol'] as String,
       variant: json['variant'] == null
           ? null
           : VariantModel.fromJson(json['variant'] as Map<String, dynamic>),
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
-      countReviews: json['count_reviews'] as int,
+      countReviews: (json['count_reviews'] as num).toInt(),
       soldByType: json['sold_by_type'] as String,
       soldByName: json['sold_by_name'] as String,
       hasVipOffer: json['has_vip_offer'] as bool,
@@ -41,7 +41,7 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
           ?.map((e) => ReviewsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       isResale: json['is_resale'] as bool,
-      resellerId: json['reseller_id'] as int,
+      resellerId: (json['reseller_id'] as num).toInt(),
       category: json['category'] == null
           ? null
           : CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
@@ -50,8 +50,8 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       isWishlist: json['is_wishlist'] as bool,
       mainPrice: json['main_price'] as String?,
       rating: json['rating'] as num,
-      sales: json['sales'] as int,
-      sellerId: json['seller_id'] as int,
+      sales: (json['sales'] as num).toInt(),
+      sellerId: (json['seller_id'] as num).toInt(),
       brand: json['brand'] == null
           ? null
           : BrandModel.fromJson(json['brand'] as Map<String, dynamic>),

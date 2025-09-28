@@ -15,8 +15,10 @@ class BuildShippingAddressItem extends StatelessWidget {
       onTap: () => controller.onSelectAddress(context, address),
       child: Container(
         margin: Dimens.marginBottom12,
-        padding: EdgeInsetsDirectional.only(top: 14.r,start: 20.r,end: 10.r,bottom: 14.r),
-        decoration: const CustomDecoration(),
+        padding: EdgeInsetsDirectional.only(top: 14.r, start: 20.r, end: 10.r, bottom: 14.r),
+        decoration: CustomDecoration(
+          boxBorder: Border.all(color: address.selected! ? context.colors.primary : context.colors.borderColor),
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -26,36 +28,11 @@ class BuildShippingAddressItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: BuildAddressTitleItem(
-                          title: tr('address'),
-                          desc: address.address!,
-                        ),
-                      ),
-                      Visibility(
-                        visible: address.isActive != true,
-                        child: InkWell(
-                          onTap: () => controller.onActiveAddress(context, address),
-                          child: Container(
-                            padding: Dimens.paddingAll8PX,
-                            decoration: BoxDecoration(
-                              borderRadius: Dimens.borderRadius5PX,
-                              color: context.colors.primary,
-                            ),
-                            child: Text(
-                              tr('verifyPhone'),
-                              style: AppTextStyle.s12_w300(
-                                color: context.colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
+                  BuildAddressTitleItem(
+                    title: tr('address'),
+                    desc: address.address!,
                   ),
-                   BuildAddressTitleItem(
+                  BuildAddressTitleItem(
                     title: tr("type"),
                     desc: address.addressType ?? "",
                   ),
@@ -79,17 +56,43 @@ class BuildShippingAddressItem extends StatelessWidget {
                     title: tr("buildingName"),
                     desc: address.buildingName ?? "",
                   ),
-                   BuildAddressTitleItem(
+                  BuildAddressTitleItem(
                     title: tr("flatNo"),
-                    desc: address.buildingName!,
+                    desc: address.flatNumber!,
                   ),
                   // BuildAddressTitleItem(
                   //   title: tr('postalCode'),
                   //   desc: address.postalCode!,
                   // ),
-                  BuildAddressTitleItem(
-                    title: tr('phone'),
-                    desc:  getIt<Utilities>().handleFullPhone(context, address.fullPhone ?? ""),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: BuildAddressTitleItem(
+                          title: tr('phone'),
+                          desc: getIt<Utilities>().handleFullPhone(context, address.fullPhone ?? ""),
+                        ),
+                      ),
+                      Visibility(
+                        visible: address.isActive != true,
+                        child: InkWell(
+                          onTap: () => controller.onActiveAddress(context, address, address.fullPhone!),
+                          child: Container(
+                            padding: Dimens.paddingAll8PX,
+                            decoration: BoxDecoration(
+                              borderRadius: Dimens.borderRadius5PX,
+                              color: context.colors.primary,
+                            ),
+                            child: Text(
+                              tr('verifyPhone'),
+                              style: AppTextStyle.s12_w300(
+                                color: context.colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
                   )
                 ],
               ),

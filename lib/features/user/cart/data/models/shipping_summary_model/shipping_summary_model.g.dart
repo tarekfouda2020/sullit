@@ -17,7 +17,7 @@ _$_ShippingSummaryModel _$$_ShippingSummaryModelFromJson(
       total: json['total'] as String,
       couponCode: json['coupon_code'] as String?,
       couponApplied: json['coupon_applied'] as bool?,
-      totalItems: json['total_items'] as int,
+      totalItems: (json['total_items'] as num).toInt(),
       minimumOrderAmountStatus: json['minimum_order_amount_status'] as bool,
       minimumOrderAmountMsg: json['minimum_order_amount_msg'] as String,
       walletSystemActive: json['wallet_system_active'] as bool,
@@ -30,7 +30,7 @@ _$_ShippingSummaryModel _$$_ShippingSummaryModelFromJson(
           .toList(),
       loyaltyPointsValue: json['loyalty_points_value'] as String?,
       loyaltyPointsApplied: json['loyalty_points_applied'] as bool?,
-      loyaltyPoints: json['loyalty_points'] as int?,
+      loyaltyPoints: (json['loyalty_points'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$_ShippingSummaryModelToJson(

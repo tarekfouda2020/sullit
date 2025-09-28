@@ -4,10 +4,10 @@ publish_to: 'none'
 
 
 #android live
-#version: 1.0.9+10
+#version: 1.0.12+13
 
 #ios live
-version: 1.0.5+1
+version: 1.0.8+2
 
 
 environment:
@@ -27,7 +27,7 @@ dependencies:
   bloc: ^8.1.1
   image_picker: ^1.2.0
   equatable: ^2.0.5
-  json_serializable: ^6.6.1
+  json_serializable: ^6.7.1
   json_annotation: ^4.8.0
   freezed: ^2.3.2
   freezed_annotation: ^2.2.0
@@ -79,7 +79,7 @@ dependencies:
   flutter_rounded_date_picker: ^3.0.2
   infinite_scroll_pagination: ^4.0.0
   lottie: ^2.3.2
-  flutter_html:
+  flutter_html: ^3.0.0
   drift: ^2.8.0
   sqlite3_flutter_libs: ^0.5.0
   path: ^1.8.2
@@ -107,12 +107,15 @@ dependencies:
   flutter_switch: ^0.3.2
   http: ^0.13.6
   sqflite: ^2.4.2
+  watcher: ^1.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_driver:
+    sdk: flutter
   drift_dev: ^2.8.0
-  build_runner: ^2.3.3
+  build_runner: ^2.4.6
   auto_route_generator: ^5.0.3
   injectable_generator: ^2.1.3
   flutter_lints: ^2.0.1
@@ -123,10 +126,12 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/icon.png"
+  image_path: "assets/images/app_sulit_new_icon.png"
 
 dependency_overrides:
   sqflite_android: 2.4.1
+  watcher: ^1.1.0
+  frontend_server_client: ^4.0.0
 
 flutter:
 

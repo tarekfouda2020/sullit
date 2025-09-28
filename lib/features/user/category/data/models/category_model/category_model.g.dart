@@ -8,12 +8,12 @@ part of 'category_model.dart';
 
 _$_CategoryModel _$$_CategoryModelFromJson(Map<String, dynamic> json) =>
     _$_CategoryModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       banner: json['banner'] as String?,
       icon: json['icon'] as String,
-      orderLevel: json['order_level'] as int,
-      digital: json['digital'] as int,
+      orderLevel: (json['order_level'] as num).toInt(),
+      digital: (json['digital'] as num).toInt(),
       slug: json['slug'] as String,
       subCats: (json['chileds'] as List<dynamic>?)
           ?.map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))

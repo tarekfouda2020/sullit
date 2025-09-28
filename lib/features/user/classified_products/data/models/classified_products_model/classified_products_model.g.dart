@@ -9,7 +9,7 @@ part of 'classified_products_model.dart';
 _$_ClassifiedProductsModel _$$_ClassifiedProductsModelFromJson(
         Map<String, dynamic> json) =>
     _$_ClassifiedProductsModel(
-      remainingUploads: json['remaining_uploads'] as int,
+      remainingUploads: (json['remaining_uploads'] as num).toInt(),
       currentPackage: json['current_package'] == null
           ? null
           : CurrentPackageModel.fromJson(

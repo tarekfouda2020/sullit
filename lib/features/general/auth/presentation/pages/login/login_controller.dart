@@ -17,10 +17,10 @@ class LoginController {
 
   void onSubmit(BuildContext context) async {
     if (formKey.currentState!.validate()) {
-      btnKey.currentState?.animateForward();
+      //btnKey.currentState?.animateForward();
       var params = await _setLoginParams();
       var result = await SetLogin().call(params);
-      btnKey.currentState?.animateReverse();
+      //btnKey.currentState?.animateReverse();
       if (result?.key == "success") {
         _cashAndRoute(context, result?.userData, result?.userData?.user);
       }

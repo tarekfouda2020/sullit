@@ -7,7 +7,7 @@ part of 'blog_model.dart';
 // **************************************************************************
 
 _$_BlogModel _$$_BlogModelFromJson(Map<String, dynamic> json) => _$_BlogModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       banner: json['banner'] as String,
       title: json['title'] as String,
       slug: json['slug'] as String,

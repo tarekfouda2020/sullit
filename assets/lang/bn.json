@@ -11,6 +11,8 @@
   "langBd": "বাংলা",
   "offers": "অফার",
   "login": "লগইন",
+  "message": "বার্তা",
+  "enterTitle": "আপনার শিরোনাম এখানে লিখুন",
   "noDataChanged": "কোন ডেটা পরিবর্তন হয়নি",
   "search": "অনুসন্ধান",
   "walletBalanceEmpty": "ওয়ালেট ব্যালেন্স যথেষ্ট নয়",
@@ -680,5 +682,6 @@
   "selectLocationOnMap": "মানচিত্রে অবস্থান নির্বাচন করুন",
   "comingSoon": "শীঘ্রই আসছে!",
   "noCategoriesAdded": "এখনও কোনো বিভাগ যোগ করা হয়নি!",
-  "brands": "ব্র্যান্ড"
+  "brands": "ব্র্যান্ড",
+  "recoverPasswordCode": "পাসওয়ার্ড পুনরুদ্ধার করতে কোড লিখুন"
 }

@@ -15,8 +15,8 @@ _$_ProductQueriesModel _$$_ProductQueriesModelFromJson(
       otherProductQueries: (json['other_product_queries'] as List<dynamic>)
           .map((e) => QueriesModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      totalCount: json['total_count'] as int,
-      queriesOffset: json['queries_offset'] as int,
+      totalCount: (json['total_count'] as num).toInt(),
+      queriesOffset: (json['queries_offset'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$_ProductQueriesModelToJson(

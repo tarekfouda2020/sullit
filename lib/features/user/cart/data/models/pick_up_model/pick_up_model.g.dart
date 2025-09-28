@@ -8,7 +8,7 @@ part of 'pick_up_model.dart';
 
 _$_PickUpModel _$$_PickUpModelFromJson(Map<String, dynamic> json) =>
     _$_PickUpModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       address: json['address'] as String,
       postalCode: json['postal_code'] as String,
       lat: (json['lat'] as num?)?.toDouble(),

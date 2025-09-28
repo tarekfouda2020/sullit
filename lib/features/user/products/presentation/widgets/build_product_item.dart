@@ -64,14 +64,13 @@ class _BuildProductItemState extends State<BuildProductItem> {
         onTap: () async {
          var result =  await AutoRouter.of(context).push(
             ProductDetailsRoute(
+              isFav: widget.productModel.isWishlist!,
               productId: widget.productModel.id!,
               isResale: widget.productModel.isResale!,
             ),
           );
          widget.onRefresh?.call();
-         // if(result == true){
-         //   widget.onRefresh?.call();
-         // }
+         widget.onFavRefresh();
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -186,7 +185,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                               // style: AppTextStyle.s11_bold(
                               style: AppTextStyle.s14_w600(
                                 color: context.colors.primary,
-                              ),
+                              ).copyWith(overflow: TextOverflow.ellipsis),
                             ),
                             Gaps.vGap3,
                             Visibility(

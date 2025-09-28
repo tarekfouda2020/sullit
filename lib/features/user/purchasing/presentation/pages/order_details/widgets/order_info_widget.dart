@@ -31,7 +31,7 @@ class OrderInfoWidget extends StatelessWidget {
               ),
             ],
           ),
-          Gaps.vGap8,
+          Gaps.vGap14,
           Gaps.line(context.colors.softGray, 0),
           Gaps.vGap14,
           Visibility(

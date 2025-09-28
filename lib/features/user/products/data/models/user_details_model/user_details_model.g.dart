@@ -8,7 +8,7 @@ part of 'user_details_model.dart';
 
 _$_UserDetailsModel _$$_UserDetailsModelFromJson(Map<String, dynamic> json) =>
     _$_UserDetailsModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       avatar: json['avatar'] as String,
       avatarOriginal: json['avatar_original'] as String,

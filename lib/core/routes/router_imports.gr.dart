@@ -685,6 +685,7 @@ class AppRouter extends _i98.RootStackRouter {
         child: _i55.BrandDetails(
           key: args.key,
           brandId: args.brandId,
+          brandName: args.brandName,
         ),
         opaque: true,
       );
@@ -736,6 +737,7 @@ class AppRouter extends _i98.RootStackRouter {
           key: args.key,
           productId: args.productId,
           isResale: args.isResale,
+          isFav: args.isFav,
         ),
         opaque: true,
       );
@@ -900,6 +902,7 @@ class AppRouter extends _i98.RootStackRouter {
         child: _i78.Coupons(
           key: args.key,
           homeController: args.homeController,
+          index: args.index,
         ),
         opaque: true,
       );
@@ -2508,12 +2511,14 @@ class BrandDetailsRoute extends _i98.PageRouteInfo<BrandDetailsRouteArgs> {
   BrandDetailsRoute({
     _i101.Key? key,
     required int brandId,
+    required String brandName,
   }) : super(
           BrandDetailsRoute.name,
           path: '/brand-details',
           args: BrandDetailsRouteArgs(
             key: key,
             brandId: brandId,
+            brandName: brandName,
           ),
         );
 
@@ -2524,15 +2529,18 @@ class BrandDetailsRouteArgs {
   const BrandDetailsRouteArgs({
     this.key,
     required this.brandId,
+    required this.brandName,
   });
 
   final _i101.Key? key;
 
   final int brandId;
 
+  final String brandName;
+
   @override
   String toString() {
-    return 'BrandDetailsRouteArgs{key: $key, brandId: $brandId}';
+    return 'BrandDetailsRouteArgs{key: $key, brandId: $brandId, brandName: $brandName}';
   }
 }
 
@@ -2625,6 +2633,7 @@ class ProductDetailsRoute extends _i98.PageRouteInfo<ProductDetailsRouteArgs> {
     _i101.Key? key,
     required int productId,
     required bool isResale,
+    required bool isFav,
   }) : super(
           ProductDetailsRoute.name,
           path: '/product-details',
@@ -2632,6 +2641,7 @@ class ProductDetailsRoute extends _i98.PageRouteInfo<ProductDetailsRouteArgs> {
             key: key,
             productId: productId,
             isResale: isResale,
+            isFav: isFav,
           ),
         );
 
@@ -2643,6 +2653,7 @@ class ProductDetailsRouteArgs {
     this.key,
     required this.productId,
     required this.isResale,
+    required this.isFav,
   });
 
   final _i101.Key? key;
@@ -2651,9 +2662,11 @@ class ProductDetailsRouteArgs {
 
   final bool isResale;
 
+  final bool isFav;
+
   @override
   String toString() {
-    return 'ProductDetailsRouteArgs{key: $key, productId: $productId, isResale: $isResale}';
+    return 'ProductDetailsRouteArgs{key: $key, productId: $productId, isResale: $isResale, isFav: $isFav}';
   }
 }
 
@@ -3083,12 +3096,14 @@ class CouponsRoute extends _i98.PageRouteInfo<CouponsRouteArgs> {
   CouponsRoute({
     _i101.Key? key,
     required _i43.HomeController homeController,
+    required int index,
   }) : super(
           CouponsRoute.name,
           path: '/Coupons',
           args: CouponsRouteArgs(
             key: key,
             homeController: homeController,
+            index: index,
           ),
         );
 
@@ -3099,15 +3114,18 @@ class CouponsRouteArgs {
   const CouponsRouteArgs({
     this.key,
     required this.homeController,
+    required this.index,
   });
 
   final _i101.Key? key;
 
   final _i43.HomeController homeController;
 
+  final int index;
+
   @override
   String toString() {
-    return 'CouponsRouteArgs{key: $key, homeController: $homeController}';
+    return 'CouponsRouteArgs{key: $key, homeController: $homeController, index: $index}';
   }
 }
 

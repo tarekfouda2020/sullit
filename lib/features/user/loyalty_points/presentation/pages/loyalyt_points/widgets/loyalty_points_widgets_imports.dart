@@ -24,3 +24,4 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 part 'loyalty_points_info_widget.dart';
 part 'loyalty_transactions_item_widget.dart';
 part 'loyalty_points_info_loading_widget.dart';
+part 'loyalty_points_transactions_loading_widget.dart';

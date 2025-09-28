@@ -32,7 +32,7 @@ class _ResetPasswordVerifyState extends State<ResetPasswordVerify> {
             children: [
               BuildHeaderTitle(
                 title: tr('forgetPassword'),
-                subTitle: tr('recoverPassword'),
+                subTitle: tr('recoverPasswordCode'),
               ),
               const BuildForgetLogo(),
               PasswordVerifyForm(controller: controller),

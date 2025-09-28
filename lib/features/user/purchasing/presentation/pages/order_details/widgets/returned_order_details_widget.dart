@@ -11,25 +11,23 @@ class ReturnedOrderDetailsWidget extends StatelessWidget {
       children: [
         OrderINfoItemWidget(
             title: tr('returnedDate'),
-            describe:  DateTimeHelper.formatDate(
-                date: order?.getOrderDate?? DateTime.now(),
-                formatType: "d MMM yyyy - hh:mm a"
-            ),
-            gaps: Gaps.hGap5
+          describe: DateTimeHelper.formatDate(
+              date: order?.getOrderDate ?? DateTime.now(), formatType: "d MMM yyyy - hh:mm a"),
+          gaps: Gaps.hGap4,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(
-            title: tr('totalItems'),
-            describe: order?.totalItemsCount().toString() ?? '',
-            gaps: Gaps.hGap9
+          title: tr('totalItems'),
+          describe: order?.totalItemsCount().toString() ?? '',
+          gaps: Gaps.hGap4,
         ),
         Gaps.vGap8,
         OrderINfoItemWidget(title: tr('phone'), describe: order?.customerPhone ?? "", gaps: Gaps.hGap17),
         Gaps.vGap8,
         OrderINfoItemWidget(
-            title: tr('refundMethod'),
-            describe: order?.paymentMethod ?? '',
-            gaps: Gaps.hGap5
+          title: tr('refundMethod'),
+          describe: order?.paymentMethod ?? '',
+          gaps: Gaps.hGap4,
         ),
       ],
     );

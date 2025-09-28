@@ -28,7 +28,7 @@ class ImplAuthDataSource extends AuthDataSource {
       requestMethod: RequestMethod.post,
       responseKey: (data) => data,
       requestBody: param.toJson(),
-      showLoader: false,
+      showLoader: true,
       // errorFunc: (data) => data["msg"],
       toJsonFunc: (json) => UserLoginModel.fromJson(json),
     );

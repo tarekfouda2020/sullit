@@ -8,15 +8,15 @@ part of 'vip_subscribe_model.dart';
 
 _$_VipSubscribeModel _$$_VipSubscribeModelFromJson(Map<String, dynamic> json) =>
     _$_VipSubscribeModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       duration: json['duration'] as String,
       price: json['price'] as String,
-      days: json['days'] as int,
+      days: (json['days'] as num).toInt(),
       description: json['description'] as String,
       startsAt: json['starts_at'] as String?,
       expiresAt: json['expires_at'] as String?,
-      expiredInDays: json['expired_in_days'] as int?,
+      expiredInDays: (json['expired_in_days'] as num?)?.toInt(),
       isExpired: json['is_expired'] as bool?,
       subscription: json['subscription'] == null
           ? null

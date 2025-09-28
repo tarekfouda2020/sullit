@@ -71,6 +71,7 @@ class BuildRetrieveOrderItem extends StatelessWidget {
                 BuildCustomBounce(
                   onTap: () => controller.decreaseQty(orderDetails),
                   iconData: CupertinoIcons.minus,
+                  size: 29,
                 ),
                 Gaps.hGap10,
                 BlocBuilder<GenericBloc<int>, GenericState<int>>(
@@ -86,6 +87,7 @@ class BuildRetrieveOrderItem extends StatelessWidget {
                 BuildCustomBounce(
                   onTap: () => controller.increaseQty(orderDetails),
                   iconData: CupertinoIcons.add,
+                  size: 29,
                 ),
                 Gaps.hGap10,
               ],

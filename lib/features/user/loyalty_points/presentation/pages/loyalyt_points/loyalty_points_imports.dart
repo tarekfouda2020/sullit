@@ -18,5 +18,7 @@ import 'package:flutter_tdd/features/user/loyalty_points/domain/use_case/get_tra
 import 'package:flutter_tdd/features/user/loyalty_points/presentation/pages/loyalyt_points/widgets/loyalty_points_widgets_imports.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import '../../../../../../core/widgets/build_shimmer_item.dart';
+
 part 'loyalty_points.dart';
 part 'loyalty_points_controller.dart';

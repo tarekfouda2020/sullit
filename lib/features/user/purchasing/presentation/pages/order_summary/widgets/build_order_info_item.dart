@@ -29,9 +29,9 @@ class BuildOrderInfoItem extends StatelessWidget {
             Expanded(
               child: Text(
                 subTitle,
-                style: AppTextStyle.s14_w400(
+                style: AppTextStyle.s12_w400(
                   color: subTitleColor ?? context.colors.black,
-                ),
+                ).copyWith(height: 1.5),
               ),
             )
           ],

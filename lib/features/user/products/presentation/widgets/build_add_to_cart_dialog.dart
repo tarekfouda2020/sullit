@@ -77,7 +77,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                     '${tr('price')} : ',
                     style: AppTextStyle.s16_w400(color: context.colors.black),
                   ),
-                  const Spacer(),
+                  //const Spacer(),
                   Text(
                     showDiscount(context)
                         ? "${state.data!.priceHighLowDiscount.parseCurrency} "
@@ -236,6 +236,6 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
   }
 
   String _calculablePrice(Product product) {
-    return double.parse(product.variant?.calculablePrice ?? "0.0").toStringAsFixed(2);
+    return double.parse(product.variant?.calculablePrice?.split(',').join('') ?? "0.0").toStringAsFixed(2);
   }
 }

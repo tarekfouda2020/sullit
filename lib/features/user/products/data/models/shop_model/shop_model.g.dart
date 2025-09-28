@@ -7,15 +7,15 @@ part of 'shop_model.dart';
 // **************************************************************************
 
 _$_ShopModel _$$_ShopModelFromJson(Map<String, dynamic> json) => _$_ShopModel(
-      id: json['id'] as int,
-      userId: json['user_id'] as int,
+      id: (json['id'] as num).toInt(),
+      userId: (json['user_id'] as num).toInt(),
       name: json['name'] as String,
       title: json['title'] as String?,
       description: json['description'] as String?,
       logo: json['logo'] as String,
       packageInvalidAt: json['package_invalid_at'] as String,
-      products: json['products'] as int,
-      orders: json['orders'] as int,
+      products: (json['products'] as num).toInt(),
+      orders: (json['orders'] as num).toInt(),
       address: json['address'] as String?,
       email: json['email'] as String?,
       phone: json['phone'] as String?,

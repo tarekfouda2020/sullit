@@ -8,9 +8,9 @@ part of 'dashboards_model.dart';
 
 _$_DashboardsModel _$$_DashboardsModelFromJson(Map<String, dynamic> json) =>
     _$_DashboardsModel(
-      cartCount: json['cart_products_count'] as int,
-      wishlistCount: json['wishlist_products_count'] as int,
-      ordersCount: json['orders_products_count'] as int,
+      cartCount: (json['cart_products_count'] as num).toInt(),
+      wishlistCount: (json['wishlist_products_count'] as num).toInt(),
+      ordersCount: (json['orders_products_count'] as num).toInt(),
       defaultAddress: json['default shipping_address'] == null
           ? null
           : AddressModel.fromJson(

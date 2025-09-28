@@ -27,7 +27,8 @@ class _MembershipSubscribeState extends State<MembershipSubscribe> {
                const BuildHeaderLogo(marginTop: 5),
                GetPlansWidget(controller: controller,model: state.data!),
                Gaps.vGap19,
-                AboutGiftCardWidget(model: state.data!,)
+                AboutGiftCardWidget(model: state.data!,),
+               Gaps.vGap16,
              ],
            );
          }else{

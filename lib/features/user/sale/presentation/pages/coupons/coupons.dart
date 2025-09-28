@@ -2,19 +2,21 @@ part of 'coupons_imports.dart';
 
 class Coupons extends StatefulWidget {
   final HomeController homeController;
+  final int index;
 
-  const Coupons({Key? key, required this.homeController}) : super(key: key);
+  const Coupons({Key? key, required this.homeController, required this.index}) : super(key: key);
 
   @override
   _CouponsState createState() => _CouponsState();
 }
 
-class _CouponsState extends State<Coupons>{
+class _CouponsState extends State<Coupons> with TickerProviderStateMixin {
   late CouponsController controller;
 
   @override
   void initState() {
     controller = CouponsController();
+    controller.initBottomNavigation(this, widget.index);
     controller.homeController = widget.homeController;
     super.initState();
   }
@@ -22,6 +24,7 @@ class _CouponsState extends State<Coupons>{
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      initialIndex: widget.index,
       length: controller.pages().length,
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
@@ -36,6 +39,8 @@ class _CouponsState extends State<Coupons>{
              BuildTabsView(controller: controller),
             Flexible(
               child: TabBarView(
+                controller: controller.tabController,
+                physics: const NeverScrollableScrollPhysics(),
                 children: controller.pages(),
               ),
             )

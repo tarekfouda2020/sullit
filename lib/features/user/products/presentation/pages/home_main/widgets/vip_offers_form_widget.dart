@@ -20,7 +20,14 @@ class VipOffersFormWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Gaps.vGap19,
-                  BuildHeaderTitle(title: tr('vipOffers'),controller: controller),
+                  BuildHeaderTitle(
+                    title: tr('vipOffers'),
+                    controller: controller,
+                    onTap: () {
+                      controller.homeController.index = 0;
+                      controller.homeController.animateTabsPages(3, context);
+                    },
+                  ),
                   Gaps.vGap8,
                   Flexible(
                     child: ListView.builder(

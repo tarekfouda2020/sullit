@@ -69,7 +69,7 @@ class BuildProductInfo extends StatelessWidget {
                       color: context.colors.primary,
                     ),
                   ),
-                  Gaps.hGap8,
+                  Gaps.hGap20,
                   Visibility(
                     visible:( productModel.hasDiscount!) ||(productModel.variant!.hasDiscount==true),
                     child: Text(

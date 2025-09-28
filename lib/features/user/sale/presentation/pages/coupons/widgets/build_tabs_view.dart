@@ -8,16 +8,16 @@ class BuildTabsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric( vertical: 10),
       color: context.colors.white,
       child: TabBar(
+        controller: controller.tabController,
         physics: const AlwaysScrollableScrollPhysics(),
         isScrollable: true,
         labelColor: context.colors.primary,
         unselectedLabelColor: context.colors.black,
-        padding: EdgeInsets.zero,
+        //padding: EdgeInsets.only(left: 0.w, right: 1.w),
         tabAlignment: TabAlignment.center,
-        labelPadding: const EdgeInsetsDirectional.only(end: 20,top: 10,bottom: 10),
+        labelPadding: const EdgeInsetsDirectional.symmetric(horizontal: 15,vertical: 10),
         dividerColor: Colors.transparent,
         indicatorColor: context.colors.primary,
         labelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
@@ -25,7 +25,7 @@ class BuildTabsView extends StatelessWidget {
         tabs: [
            Text(
             textAlign: TextAlign.start,
-            tr("proOffers"),
+            tr("vipOffers"),
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,

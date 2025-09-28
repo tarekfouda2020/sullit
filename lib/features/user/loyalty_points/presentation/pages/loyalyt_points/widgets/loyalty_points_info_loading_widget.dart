@@ -9,13 +9,10 @@ class LoyaltyPointsInfoLoadingWidget extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       decoration: CustomDecoration(),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const BuildShimmerItem(height: 24),
-          Padding(
-            padding: Dimens.paddingVertical12PX,
-            child: const BuildShimmerItem(height: 43),
-          ),
-          const BuildShimmerItem(height: 74)
+           BuildShimmerItem(height: 22,width: 170),
+          BuildShimmerItem(height: 43),
         ],
       ),
     );

@@ -2,8 +2,9 @@ part of 'brand_details_imports.dart';
 
 class BrandDetails extends StatefulWidget {
   final int brandId;
+  final String brandName;
 
-  const BrandDetails({Key? key, required this.brandId}) : super(key: key);
+  const BrandDetails({Key? key, required this.brandId, required this.brandName}) : super(key: key);
 
   @override
   State<BrandDetails> createState() => _BrandDetailsState();
@@ -21,7 +22,7 @@ class _BrandDetailsState extends State<BrandDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar(title: tr('brandProducts'), showBack: true),
+      appBar: DefaultAppBar(title: "${tr('brand')} ${widget.brandName}", showBack: true),
       backgroundColor: context.colors.customBackground,
       body: GenericListView(
         type: ListViewType.gridApi,
@@ -36,6 +37,7 @@ class _BrandDetailsState extends State<BrandDetails> {
         itemBuilder: (_, index, item) => BuildProductItem(
           productModel: item,
           onFavRefresh: () => controller.onChangeFav(item),
+          onRefresh: () => controller.getBrandProducts(context, widget.brandId),
         ),
         loadingWidget: const BuildLoadingProductsGridView(),
         emptyWidget: const BuildEmptyDataView(),
