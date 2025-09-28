@@ -15,45 +15,34 @@ class BuildTabsView extends StatelessWidget {
         isScrollable: true,
         labelColor: context.colors.primary,
         unselectedLabelColor: context.colors.black,
+        unselectedLabelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
         //padding: EdgeInsets.only(left: 0.w, right: 1.w),
         tabAlignment: TabAlignment.center,
-        labelPadding: const EdgeInsetsDirectional.symmetric(horizontal: 15,vertical: 10),
+        indicator: BoxDecoration(
+            borderRadius: BorderRadius.zero,
+            color: context.colors.white,
+            border: Border(bottom: BorderSide(width: 2.5, color: context.colors.primary))),
+        labelPadding: const EdgeInsetsDirectional.fromSTEB(15, 10, 10, 10),
         dividerColor: Colors.transparent,
         indicatorColor: context.colors.primary,
-        labelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+        labelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
         indicatorSize: TabBarIndicatorSize.label,
         tabs: [
-           Text(
+          Text(
             textAlign: TextAlign.start,
             tr("vipOffers"),
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
           ),
           Text(
             textAlign: TextAlign.start,
             tr("newArrival"),
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
           ),
           Text(
             textAlign: TextAlign.start,
             tr("onSale"),
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
           ),
           Text(
             textAlign: TextAlign.start,
             tr("bestRated"),
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
           ),
         ],
       ),

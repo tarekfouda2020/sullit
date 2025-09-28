@@ -9,19 +9,23 @@ class CategoriesSectionFormWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 30),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       color: context.colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CategoriesHeaderTitleWidget(
-            onTap: () => AutoRouter.of(context).push(
-              CategoryDetailsRoute(categoryModel: item),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: CategoriesHeaderTitleWidget(
+              onTap: () => AutoRouter.of(context).push(
+                CategoryDetailsRoute(categoryModel: item),
+              ),
+              title: item.name,
             ),
-            title: item.name,
           ),
           Gaps.vGap12,
           SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             scrollDirection: Axis.horizontal,
             child: Row(
               children: List.generate(
