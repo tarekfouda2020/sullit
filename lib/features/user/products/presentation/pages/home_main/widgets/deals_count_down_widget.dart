@@ -1,4 +1,4 @@
-part of'home_main_widgets_imports.dart';
+part of 'home_main_widgets_imports.dart';
 
 class DealsCountDownWidget extends StatefulWidget {
   final FlashSale flashSales;
@@ -11,14 +11,12 @@ class DealsCountDownWidget extends StatefulWidget {
 }
 
 class _DealsCountDownWidgetState extends State<DealsCountDownWidget> {
-
-
   @override
   void initState() {
     super.initState();
     widget.controller.countDownCubit.state.data.initDuration(widget.flashSales.date);
     widget.controller.countDownCubit.state.data.startTimer(
-        callback: () => widget.controller.countDownCubit..onUpdateData(widget.controller.countDownCubit.state.data),
+      callback: () => widget.controller.countDownCubit..onUpdateData(widget.controller.countDownCubit.state.data),
     );
   }
 
@@ -46,6 +44,7 @@ class _DealsCountDownWidgetState extends State<DealsCountDownWidget> {
                   BuildCustomTimer(
                     firstTimeNumber: widget.controller.getDigit(state.data.myDuration, 'days', 0),
                     secondTimeNumber: widget.controller.getDigit(state.data.myDuration, 'days', 1),
+                    threeTimeNumber: widget.controller.getDigit(state.data.myDuration, 'days', 2),
                     text: tr("days"),
                   ),
                   _buildSeparatorText(context),
@@ -96,7 +95,8 @@ class _DealsCountDownWidgetState extends State<DealsCountDownWidget> {
   Widget _buildSeparatorText(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
-      child: Text(tr('dealsCountdown'),
+      child: Text(
+        tr('dealsCountdown'),
         style: AppTextStyle.s16_w700(color: context.colors.gold),
       ),
     );

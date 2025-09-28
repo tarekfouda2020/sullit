@@ -22,6 +22,7 @@ mixin _$DeviceModel {
   bool get isTablet => throw _privateConstructorUsedError;
   bool get isSmallPhone => throw _privateConstructorUsedError;
   AdaptiveThemeMode get themeMode => throw _privateConstructorUsedError;
+  bool get isNetworkConnected => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DeviceModelCopyWith<DeviceModel> get copyWith =>
@@ -40,7 +41,8 @@ abstract class $DeviceModelCopyWith<$Res> {
       bool isBundle,
       bool isTablet,
       bool isSmallPhone,
-      AdaptiveThemeMode themeMode});
+      AdaptiveThemeMode themeMode,
+      bool isNetworkConnected});
 }
 
 /// @nodoc
@@ -62,6 +64,7 @@ class _$DeviceModelCopyWithImpl<$Res, $Val extends DeviceModel>
     Object? isTablet = null,
     Object? isSmallPhone = null,
     Object? themeMode = null,
+    Object? isNetworkConnected = null,
   }) {
     return _then(_value.copyWith(
       locale: null == locale
@@ -88,6 +91,10 @@ class _$DeviceModelCopyWithImpl<$Res, $Val extends DeviceModel>
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as AdaptiveThemeMode,
+      isNetworkConnected: null == isNetworkConnected
+          ? _value.isNetworkConnected
+          : isNetworkConnected // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -106,7 +113,8 @@ abstract class _$$_DeviceModelCopyWith<$Res>
       bool isBundle,
       bool isTablet,
       bool isSmallPhone,
-      AdaptiveThemeMode themeMode});
+      AdaptiveThemeMode themeMode,
+      bool isNetworkConnected});
 }
 
 /// @nodoc
@@ -126,6 +134,7 @@ class __$$_DeviceModelCopyWithImpl<$Res>
     Object? isTablet = null,
     Object? isSmallPhone = null,
     Object? themeMode = null,
+    Object? isNetworkConnected = null,
   }) {
     return _then(_$_DeviceModel(
       locale: null == locale
@@ -152,6 +161,10 @@ class __$$_DeviceModelCopyWithImpl<$Res>
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as AdaptiveThemeMode,
+      isNetworkConnected: null == isNetworkConnected
+          ? _value.isNetworkConnected
+          : isNetworkConnected // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -165,7 +178,8 @@ class _$_DeviceModel implements _DeviceModel {
       required this.isBundle,
       required this.isTablet,
       required this.isSmallPhone,
-      required this.themeMode});
+      required this.themeMode,
+      required this.isNetworkConnected});
 
   @override
   final Locale locale;
@@ -179,10 +193,12 @@ class _$_DeviceModel implements _DeviceModel {
   final bool isSmallPhone;
   @override
   final AdaptiveThemeMode themeMode;
+  @override
+  final bool isNetworkConnected;
 
   @override
   String toString() {
-    return 'DeviceModel(locale: $locale, auth: $auth, isBundle: $isBundle, isTablet: $isTablet, isSmallPhone: $isSmallPhone, themeMode: $themeMode)';
+    return 'DeviceModel(locale: $locale, auth: $auth, isBundle: $isBundle, isTablet: $isTablet, isSmallPhone: $isSmallPhone, themeMode: $themeMode, isNetworkConnected: $isNetworkConnected)';
   }
 
   @override
@@ -199,12 +215,14 @@ class _$_DeviceModel implements _DeviceModel {
             (identical(other.isSmallPhone, isSmallPhone) ||
                 other.isSmallPhone == isSmallPhone) &&
             (identical(other.themeMode, themeMode) ||
-                other.themeMode == themeMode));
+                other.themeMode == themeMode) &&
+            (identical(other.isNetworkConnected, isNetworkConnected) ||
+                other.isNetworkConnected == isNetworkConnected));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, locale, auth, isBundle, isTablet, isSmallPhone, themeMode);
+  int get hashCode => Object.hash(runtimeType, locale, auth, isBundle, isTablet,
+      isSmallPhone, themeMode, isNetworkConnected);
 
   @JsonKey(ignore: true)
   @override
@@ -220,7 +238,8 @@ abstract class _DeviceModel implements DeviceModel {
       required final bool isBundle,
       required final bool isTablet,
       required final bool isSmallPhone,
-      required final AdaptiveThemeMode themeMode}) = _$_DeviceModel;
+      required final AdaptiveThemeMode themeMode,
+      required final bool isNetworkConnected}) = _$_DeviceModel;
 
   @override
   Locale get locale;
@@ -234,6 +253,8 @@ abstract class _DeviceModel implements DeviceModel {
   bool get isSmallPhone;
   @override
   AdaptiveThemeMode get themeMode;
+  @override
+  bool get isNetworkConnected;
   @override
   @JsonKey(ignore: true)
   _$$_DeviceModelCopyWith<_$_DeviceModel> get copyWith =>
