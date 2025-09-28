@@ -63,6 +63,18 @@ class OrderDetailsPageController {
   }
 
 
+  void onPayOrder(BuildContext context) async {
+    var result = await PayOrder().call(orderDetailsBloc.state.data!.id);
+    if (result.isNotEmpty) {
+      await AutoRouter.of(context).push(
+        PaymentRoute(transactionUrl: result),
+      );
+      getOrderDetails(orderDetailsBloc.state.data!.id,);
+
+    }
+  }
+
+
   GenericParams _params(int id,bool refresh){
     return GenericParams(id: id,refresh:refresh );
   }

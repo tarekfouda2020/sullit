@@ -23,7 +23,7 @@ class NewArrivalOffersFormWidget extends StatelessWidget {
                     title: tr('newArrival'),
                     controller: controller,
                     onTap: () {
-                      controller.homeController.index = 1;
+                      controller.changeCouponsTab(1);
                       controller.homeController.animateTabsPages(3, context);
                     },
                   ),

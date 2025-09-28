@@ -10,7 +10,7 @@ class HomeController {
   final TextEditingController searchController = TextEditingController();
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   bool showToast = false;
-  int index=0;
+  int index = 0;
 
   List<String> tabs = [
     Res.home,
@@ -26,7 +26,10 @@ class HomeController {
     Categories(homeController: this),
     // Summary(homeController: controller),
     Gaps.empty,
-    Coupons(homeController: this,index: index),
+    BlocBuilder<GenericBloc<int>, GenericState<int>>(
+      bloc: homeTabCubit,
+      builder: (context, state) => Coupons(homeController: this, index: index),
+    ),
     More(homeController: this),
   ];
 
@@ -79,10 +82,6 @@ class HomeController {
       homeTabCubit.onUpdateData(index);
       tabController.animateTo(index);
     }
-    // if (index != homeTabCubit.state.data) {
-    //   homeTabCubit.onUpdateData(index);
-    //   tabController.animateTo(index);
-    // }
   }
 
   void goNotification(BuildContext context) {

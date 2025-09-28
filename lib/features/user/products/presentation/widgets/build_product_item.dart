@@ -20,7 +20,6 @@ import 'package:flutter_tdd/features/user/category/presentation/pages/category_d
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
-import 'package:flutter_tdd/features/user/products/presentation/widgets/build_compare_item.dart';
 import 'package:flutter_tdd/res.dart';
 
 class BuildProductItem extends StatefulWidget {
@@ -39,7 +38,8 @@ class BuildProductItem extends StatefulWidget {
     this.onCompareRefresh,
     this.showVipDiscount,
     this.afterAddToCart,
-    this.onRefresh, this.margin,
+    this.onRefresh,
+    this.margin,
   });
 
   @override
@@ -52,7 +52,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: widget.margin?? const EdgeInsets.all(0),
+      margin: widget.margin ?? const EdgeInsets.all(0),
       width: 160,
       decoration: CustomDecoration(
           myBoxShadow: const [],
@@ -61,17 +61,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
             color: context.colors.greyWhite,
           )),
       child: InkWell(
-        onTap: () async {
-         var result =  await AutoRouter.of(context).push(
-            ProductDetailsRoute(
-              isFav: widget.productModel.isWishlist!,
-              productId: widget.productModel.id!,
-              isResale: widget.productModel.isResale!,
-            ),
-          );
-         widget.onRefresh?.call();
-         widget.onFavRefresh();
-        },
+        onTap: () async => await _routeToDetails(context),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -91,8 +81,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                   Visibility(
                     visible: widget.productModel.hasDiscount!,
                     replacement: Visibility(
-                        visible: (widget.showVipDiscount ?? false) &&
-                            widget.productModel.hasVipOffer!,
+                        visible: (widget.showVipDiscount ?? false) && widget.productModel.hasVipOffer!,
                         child: _discountWidget(context)),
                     child: _discountWidget(context),
                   ),
@@ -106,9 +95,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                             return Visibility(
                               visible: state.data,
                               replacement: BuildIconItem(
-                                icon: widget.productModel.isWishlist!
-                                    ? Res.favIcon
-                                    : Res.emptyFavIcon,
+                                icon: widget.productModel.isWishlist! ? Res.favIcon : Res.emptyFavIcon,
                                 changeBgColor: false,
                                 onTap: () => ProductsHelper().toggleFavourite(
                                   id: widget.productModel.id!,
@@ -189,8 +176,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                             ),
                             Gaps.vGap3,
                             Visibility(
-                              visible: widget.productModel.hasDiscount ??
-                                  false || (widget.showVipDiscount ?? false),
+                              visible: widget.productModel.hasDiscount ?? false || (widget.showVipDiscount ?? false),
                               child: Text(
                                 widget.productModel.priceHighLow!.parseCurrency,
                                 style: AppTextStyle.s12_w400(
@@ -198,13 +184,14 @@ class _BuildProductItemState extends State<BuildProductItem> {
                                 ).copyWith(
                                   decoration: TextDecoration.lineThrough,
                                   overflow: TextOverflow.ellipsis,
+                                  decorationColor: context.colors.textColor,
                                 ),
                               ),
                             ),
                           ],
                         ),
                       ),
-                      InkWell(
+                      GestureDetector(
                         onTap: () => getIt<CartHelper>().addToCartDialog(
                           context,
                           widget.productModel,
@@ -222,8 +209,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                             Res.shopCart,
                             width: 14,
                             height: 14,
-                            colorFilter: ColorFilter.mode(
-                                context.colors.black, BlendMode.srcIn),
+                            colorFilter: ColorFilter.mode(context.colors.black, BlendMode.srcIn),
                           ),
                         ),
                       ),
@@ -252,6 +238,18 @@ class _BuildProductItemState extends State<BuildProductItem> {
         ),
       ),
     );
+  }
+
+  Future<void> _routeToDetails(BuildContext context) async {
+    await AutoRouter.of(context).push(
+      ProductDetailsRoute(
+        isFav: widget.productModel.isWishlist!,
+        productId: widget.productModel.id!,
+        isResale: widget.productModel.isResale!,
+      ),
+    );
+    widget.onRefresh?.call();
+    widget.onFavRefresh.call();
   }
 
   PositionedDirectional _discountWidget(BuildContext context) {

@@ -23,7 +23,7 @@ class BestRatedOffersFormWidget extends StatelessWidget {
                     title: tr('bestRated'),
                     controller: controller,
                     onTap: () {
-                      controller.homeController.index = 3;
+                      controller.changeCouponsTab(3);
                       controller.homeController.animateTabsPages(3, context);
                     },
                   ),

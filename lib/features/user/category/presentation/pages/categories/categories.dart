@@ -32,14 +32,18 @@ class _CategoriesState extends State<Categories> {
             BlocBuilder<GenericBloc<List<Category>>, GenericState<List<Category>>>(
               bloc: categoriesController.categoriesCubit,
               builder: (context, state) {
-                return Flexible(
-                  child: ListView.builder(
-                    itemCount: state.data.length,
-                    itemBuilder: (context, index) {
-                      return CategoriesSectionFormWidget(item: state.data[index]);
-                    },
-                  ),
-                );
+               if(state is GenericUpdateState){
+                 return Flexible(
+                   child: ListView.builder(
+                     itemCount: state.data.length,
+                     itemBuilder: (context, index) {
+                       return CategoriesSectionFormWidget(item: state.data[index]);
+                     },
+                   ),
+                 );
+               }else{
+                 return const BuildLoadingCategoriesView();
+               }
               },
             ),
             Gaps.vGap20,

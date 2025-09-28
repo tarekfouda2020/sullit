@@ -22,7 +22,9 @@ class BuildTopCategories extends StatelessWidget {
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: categories.length,
+            itemCount: categories.length>10
+                ?categories.take(10).length
+                :categories.length,
             itemBuilder: (_, index) => BuildTopCategoriesItem(
               categoryModel: categories[index],
             ),

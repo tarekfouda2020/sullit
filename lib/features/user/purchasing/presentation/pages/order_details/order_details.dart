@@ -49,7 +49,15 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 OrderDetailsSectionsTitleWidget(title: tr("invoiceSummary")),
                 Gaps.vGap12,
                 OrderDetailsSummaryWidget(isReturned: widget.isReturnedOrder, order: state.data),
-                Gaps.vGap50
+                Gaps.vGap40,
+                Visibility(
+                  visible: state.data!.showButtonPay,
+                  child: DefaultButton(
+                    title: tr('completePayment'),
+                    onTap: () => controller.onPayOrder(context),
+                  ),
+                ),
+                Gaps.vGap20,
               ],
             ),
           );

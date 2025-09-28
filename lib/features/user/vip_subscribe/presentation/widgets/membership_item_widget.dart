@@ -108,7 +108,7 @@ class MembershipItemWidget extends StatelessWidget {
               style: AppTextStyle.s12_w600(color: context.colors.black),
             ),
             Gaps.vGap6,
-            Html(data: model.description,
+            Html(data: getIt<Utilities>().cleanHtml(model.description),
               style: {
               "body": Style(
                 color: context.colors.textColor,

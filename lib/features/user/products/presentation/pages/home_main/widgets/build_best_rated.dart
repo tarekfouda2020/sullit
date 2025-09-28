@@ -27,9 +27,7 @@ class BuildBestRated extends StatelessWidget {
                       padding: Dimens.paddingHorizontal5PX,
                       child: BuildProductItem(
                         productModel: bestRated[index],
-                        onFavRefresh: () => controller.onChangeFav(
-                          bestRated[index],
-                        ),
+                        onFavRefresh: () => controller.onChangeFav(bestRated[index],context),
 
                       ),
                     );
