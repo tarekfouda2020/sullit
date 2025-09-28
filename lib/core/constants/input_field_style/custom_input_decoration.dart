@@ -86,7 +86,7 @@ class CustomInputDecoration extends InputDecoration {
   @override
   EdgeInsetsGeometry get contentPadding =>
       // padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 10);
-      padding ??  const EdgeInsets.symmetric(horizontal: 32, vertical: 16);
+      padding ??  const EdgeInsets.symmetric(horizontal: 12, vertical: 16);
 
   @override
   bool get filled => true;

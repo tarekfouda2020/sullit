@@ -49,7 +49,7 @@ class PasswordVerifyForm extends StatelessWidget {
                 fillColor: context.colors.white,
                 hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
                 controller: controller.password,
-                contentPadding: Dimens.paddingH32V16,
+                contentPadding: Dimens.paddingH12V16,
                 fieldTypes:
                 !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
@@ -77,7 +77,7 @@ class PasswordVerifyForm extends StatelessWidget {
               return  GenericTextField(
                 fillColor: context.colors.white,
                 hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
-                contentPadding: Dimens.paddingH32V16,
+                contentPadding: Dimens.paddingH12V16,
                 enableBorderColor: context.colors.borderColor,
                 focusBorderColor: context.colors.borderColor,
                 controller: controller.confirmPassword,
