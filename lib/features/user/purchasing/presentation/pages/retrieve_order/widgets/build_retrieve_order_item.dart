@@ -54,10 +54,12 @@ class BuildRetrieveOrderItem extends StatelessWidget {
                       BuildRetrieveOrderDetailsItem(
                         title: "${tr('price')} : ",
                         details: orderDetails.price,
+                        useDirhamPrice: true,
                       ),
                       BuildRetrieveOrderDetailsItem(
                         title: "${tr('tax')} : ",
                         details: "${orderDetails.tax}",
+                        useDirhamPrice: true,
                       ),
                     ],
                   ),
