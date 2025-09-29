@@ -25,10 +25,20 @@ class LoyaltyDiscountWidget extends StatelessWidget {
                   BlocBuilder<GenericBloc<LoyaltyPointsBalanceDomainModel?>, GenericState<LoyaltyPointsBalanceDomainModel?>>(
                     bloc: controller.loyaltyPointsBalanceBloc,
                     builder: (context, state) {
-                      return Text("${state.data == null ? '0'
-                          : state.data!.points.toString()} ${tr("point")} = ${state.data == null
-                          ? '0' : state.data!.amount.parseCurrency}",
-                        style: AppTextStyle.s12_w700(color: context.colors.primary),
+                      return Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text("${state.data == null ? '0'
+                              : state.data!.points.toString()} ${tr("point")} = ",
+                            style: AppTextStyle.s12_w700(color: context.colors.primary),
+                          ),
+                          DirhamPrice(
+                            amount: state.data == null ? '0' : state.data!.amount,
+                            textStyle: AppTextStyle.s12_w700(color: context.colors.primary),
+                            currencyStyle: AppTextStyle.s14_w400(color: context.colors.primary),
+                            currencyOffset: 0,
+                          ),
+                        ],
                       );
                     },
                   )

@@ -40,31 +40,37 @@ class BuildSummary extends StatelessWidget {
             (index) => BuildSummaryItem(
               title: shipping.summary.items[index].name,
               details: shipping.summary.items[index].total,
+              useDirhamPrice: true,
             ),
           ),
           BuildSummaryHeader(
             title: tr('subTotal'),
             details: shipping.summary.subTotal,
+            useDirhamPrice: true,
           ),
           BuildSummaryHeader(
             title: tr('tax'),
             details: shipping.summary.tax,
+            useDirhamPrice: true,
           ),
           BuildSummaryHeader(
             title: tr('totalShipping'),
             details: shipping.summary.shipping,
+            useDirhamPrice: true,
           ),
           Visibility(
             visible: shipping.isAdminDiscount == true,
             child: BuildSummaryHeader(
               title: tr("discount"),
-              details: "${shipping.discountVal} ${tr("currency")} ",
+              details: shipping.discountVal.toString(),
+              useDirhamPrice: true,
             ),
           ),
           Gaps.line(context.colors.primary, 15.h),
           BuildSummaryHeader(
             title: tr("total"),
             details: shipping.summary.total,
+            useDirhamPrice: true,
             // isTotal: true,
           ),
           // BuildCoupon(controller: controller),

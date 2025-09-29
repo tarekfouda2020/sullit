@@ -12,6 +12,7 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/features/user/vip_subscribe/domain/models/vip_subscribe_domain_model.dart';
 import 'package:flutter_tdd/res.dart';
 
@@ -86,12 +87,13 @@ class MembershipItemWidget extends StatelessWidget {
             Visibility(visible: model.subscription == null, child: Gaps.vGap12),
             Row(
               children: [
-                Text(
-                  model.price.rawPrice,
-                  style: AppTextStyle.s22_w600(color: context.colors.primary),
+                DirhamPrice(
+                  amount: model.price.rawPrice,
+                  textStyle: AppTextStyle.s22_w600(color: context.colors.primary),
+                  currencyStyle:AppTextStyle.s24_w400(color: context.colors.primary) ,
                 ),
                 Text(
-                  " ${tr("currency")}/${model.duration.capitalize}",
+                  "/${model.duration.capitalize}",
                   style: AppTextStyle.s22_w300(color: context.colors.primary),
                 ),
               ],

@@ -617,5 +617,10 @@
   "comingSoon": "Coming Soon!",
   "noCategoriesAdded": "No Categories added for now!",
   "brands": "Brands",
-  "recoverPasswordCode": "Enter the code to recover the password"
+  "recoverPasswordCode": "Enter the code to recover the password",
+  "orderCreated": "Order Created",
+  "orderCreatedSuccess": "Your order has been created successfully. The payment status will remain Pending if you do not pay now.\nYou can complete the payment later from your (Purchased Orders) section.",
+  "proceedToPayment": "Proceed To Payment",
+  "addPurchases": "Add purchases to your cart at least with ",
+  "toCreateOrder": "to create your order"
 }

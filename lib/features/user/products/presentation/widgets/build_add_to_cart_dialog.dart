@@ -4,12 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
+import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart/widgets/cart_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
@@ -78,11 +78,14 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                     style: AppTextStyle.s16_w400(color: context.colors.black),
                   ),
                   //const Spacer(),
-                  Text(
-                    showDiscount(context)
-                        ? "${state.data!.priceHighLowDiscount.parseCurrency} "
-                        : "${state.data!.priceHighLow.parseCurrency} ",
-                    style: AppTextStyle.s14_w600(
+                  DirhamPrice(
+                    currencyStyle:AppTextStyle.s16_w600(
+                      color: context.colors.primary,
+                    ),
+                    amount: showDiscount(context)
+                        ? "${state.data!.priceHighLowDiscount} "
+                        : "${state.data!.priceHighLow} ",
+                    textStyle: AppTextStyle.s14_w600(
                       color: context.colors.primary,
                     ),
                   ),
@@ -94,12 +97,18 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Gaps.vGap10,
-                    Text(
-                      "${state.data!.priceHighLow.parseCurrency} ",
-                      style: AppTextStyle.s14_w600(
+                    DirhamPrice(
+                      showMinus: true,
+                     currencyStyle: AppTextStyle.s16_w600(color: context.colors.black).copyWith(
+                         decoration: TextDecoration.lineThrough,
+                         decorationColor: context.colors.black
+                     ),
+                     currencyOffset: 1,
+                     amount: "${state.data!.priceHighLow} ",
+                      textStyle: AppTextStyle.s14_w600(
                         color: context.colors.black,
                       ).copyWith(
-                        decoration: TextDecoration.lineThrough,
+                          decoration: TextDecoration.lineThrough,
                       ),
                     ),
                   ],
@@ -148,15 +157,11 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                       color: context.colors.black,
                     ),
                   ),
-                  // Text(
-                  //   !showDiscount(context)
-                  //       ?state.data!.priceHighLow.parseCurrency
-                  //       : "${_calculablePrice(state.data!)} ${tr("currency")}",
-                  //   style: AppTextStyle.s16_w500(color: context.colors.primary),
-                  // ),
-                  Text(
-                    "${_calculablePrice(state.data!)} ${tr("currency")}",
-                    style: AppTextStyle.s16_w500(color: context.colors.primary),
+                  DirhamPrice(
+                   amount: _calculablePrice(state.data!),
+                    currencyOffset: 0.5,
+                    currencyStyle: AppTextStyle.s20_w400(color: context.colors.primary),
+                    textStyle: AppTextStyle.s16_w500(color: context.colors.primary),
                   ),
                 ],
               ),

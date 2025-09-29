@@ -28,17 +28,21 @@ class WalletItemWidget extends StatelessWidget {
                 item.transactionType().transactionSign,
                 // getIt<Utilities>().parseCurrency(item!.dmoun),
                 style: AppTextStyle.s22_w600(
-                  color: item.transactionType().color,
+                  color: context.colors.primary,
                 ),
               ),
               Gaps.hGap4,
               Text(
-                  item.amount.parseCurrency,
+                  item.amount,
                 // getIt<Utilities>().parseCurrency(item!.dmoun),
                 style: AppTextStyle.s22_w600(
                   color: context.colors.primary,
                 ),
-              ),
+              ).withDirhamSymbol(
+                symbolStyle: AppTextStyle.s23_w500(
+                  color: context.colors.primary,
+                )
+              )
             ],
           ),
           Gaps.vGap4,

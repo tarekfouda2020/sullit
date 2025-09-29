@@ -25,15 +25,18 @@ class InvoiceSummaryWidget extends StatelessWidget {
             children: [
           BuildSummaryHeader(
             title: tr('totalItems'),
-            details: shippingSummary.subTotal.parseCurrency,
+            details: shippingSummary.subTotal,
+            useDirhamPrice: true,
           ),
           BuildSummaryHeader(
             title: tr('tax'),
-            details: shippingSummary.tax.parseCurrency,
+            details: shippingSummary.tax,
+            useDirhamPrice: true,
           ),
           BuildSummaryHeader(
             title: tr('shippingFees'),
-            details: shippingSummary.shipping.parseCurrency,
+            details: shippingSummary.shipping,
+            useDirhamPrice: true,
           ),
               Visibility(
                   visible: shippingSummary.couponApplied == true || shippingSummary.loyaltyPointsApplied==true,
@@ -42,17 +45,19 @@ class InvoiceSummaryWidget extends StatelessWidget {
                           ? tr("pointsDiscount")
                           :tr("voucherDiscount"),
                       details: shippingSummary.loyaltyPointsApplied == true
-                          ? "-${shippingSummary.loyaltyPointsValue.parseCurrency} "
-                          :"-${shippingSummary.couponDiscount.parseCurrency}",
+                          ? "-${shippingSummary.loyaltyPointsValue} "
+                          :"-${shippingSummary.couponDiscount}",
                       detailsColor: context.colors.primary,
+                      useDirhamPrice: true,
                     ),
                 ),
           Visibility(
             visible: applyGiftCard,
             child: BuildSummaryHeader(
               title: tr("appliedGiftCard"),
-              details: "-${giftCardTotal.parseCurrency}",
+              details: "-$giftCardTotal",
               detailsColor: context.colors.primary,
+              useDirhamPrice: true,
             ),
           ),
           Gaps.line(context.colors.softGray, 15.h),
@@ -65,9 +70,11 @@ class InvoiceSummaryWidget extends StatelessWidget {
                   tr("total"),
                   style: AppTextStyle.s14_w400(color: context.colors.black),
                 ),
-                Text(
-                  applyGiftCard ? "0.00" : shippingSummary.total.parseCurrency,
-                  style: AppTextStyle.s14_w800(color:context.colors.black),
+                DirhamPrice(
+                  amount: applyGiftCard ? "0.00" : shippingSummary.total,
+                  textStyle: AppTextStyle.s14_w800(color:context.colors.black),
+                  currencyStyle: AppTextStyle.s18_w400(color:context.colors.black),
+                  currencyOffset: 0,
                 ),
               ],
             ),

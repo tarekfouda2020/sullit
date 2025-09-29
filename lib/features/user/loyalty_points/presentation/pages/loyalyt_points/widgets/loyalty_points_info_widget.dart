@@ -51,18 +51,12 @@ class LoyaltyPointsInfo extends StatelessWidget {
                       ),
                     ),
                     Gaps.hGap16,
-                    Text(
-                      state.data == null ? '0:00' : state.data!.amount.rawPrice,
-                      style: AppTextStyle.s28_w800(color: context.colors.gold),
+                    DirhamPrice(
+                      amount: state.data == null ? '0:00' : state.data!.amount.rawPrice,
+                      currencyStyle: AppTextStyle.s30_w400(color: context.colors.gold),
+                      textStyle:AppTextStyle.s28_w800(color: context.colors.gold) ,
                     ),
                     Gaps.hGap3,
-                    Padding(
-                      padding: const EdgeInsets.only(top: 7),
-                      child: Text(
-                        tr("currency"),
-                        style: AppTextStyle.s20_w400(color: context.colors.gold),
-                      ),
-                    )
                   ],
                 ),
                 // Gaps.vGap19,

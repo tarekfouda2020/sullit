@@ -31,7 +31,6 @@ class ProductDetailsController {
     scrollController.addListener(
       () {
         final isScrollingDown = scrollController.position.pixels > 250;
-        log("${scrollController.position.pixels}");
         showAppBarTitleCubit.onUpdateData(isScrollingDown);
       },
     );

@@ -39,7 +39,8 @@ class BuildOrderInfo extends StatelessWidget {
           ),
           BuildOrderInfoItem(
             title: "${tr('totalOrderAmount')} :",
-            subTitle: orderModel.total.parseCurrency,
+            subTitle: orderModel.total,
+            useDirhamPrice: true,
           ),
           BuildOrderInfoItem(
             title: "${tr('shippingMethod')} :",

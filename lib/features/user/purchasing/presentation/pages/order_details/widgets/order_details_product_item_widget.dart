@@ -82,9 +82,10 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                                 //                 TextDecoration.lineThrough),
                                 //   ),
                                 // ),
-                                Text(
-                                  (orderDetails.product?.variant?.mainPrice.parseCurrency ?? ''),
-                                  style: AppTextStyle.s14_w600(color: context.colors.primary),
+                                DirhamPrice(
+                                  amount: orderDetails.product?.variant?.mainPrice ?? '',
+                                  textStyle: AppTextStyle.s14_w600(color: context.colors.primary),
+                                  currencyStyle: AppTextStyle.s16_w400(color: context.colors.primary),
                                 )
                               ],
                             ),

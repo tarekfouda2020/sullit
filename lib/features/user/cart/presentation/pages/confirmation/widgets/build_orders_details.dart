@@ -68,7 +68,7 @@ class BuildOrdersDetails extends StatelessWidget {
                     ),
                     Container(
                       padding: Dimens.paddingAll8PX,
-                      decoration: CustomDecoration(),
+                      decoration: const CustomDecoration(),
                       child: Row(
                         children: [
                           CachedImage(
@@ -133,10 +133,10 @@ class BuildOrdersDetails extends StatelessWidget {
                                     style: AppTextStyle.s12_w400(
                                         color: context.colors.black),
                                   ),
-                                  Text(
-                                    summary.sectionOrders![index]
+                                  DirhamPrice(
+                                    amount: summary.sectionOrders![index]
                                         .orderDetails[productsIndex].price,
-                                    style: AppTextStyle.s14_w400(
+                                    textStyle: AppTextStyle.s14_w400(
                                         color: context.colors.black),
                                   ),
                                 ],

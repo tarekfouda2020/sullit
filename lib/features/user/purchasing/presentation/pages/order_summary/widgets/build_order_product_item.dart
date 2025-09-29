@@ -34,7 +34,8 @@ class BuildOrderProductItem extends StatelessWidget {
         ),
         BuildOrderInfoItem(
           title: "${tr('price')} :",
-          subTitle: orderDetails.price.parseCurrency,
+          subTitle: orderDetails.price,
+          useDirhamPrice: true,
         ),
         Visibility(
           visible: orderDetails.isAvailableReview,

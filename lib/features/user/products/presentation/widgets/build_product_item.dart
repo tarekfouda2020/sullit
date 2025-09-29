@@ -7,7 +7,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
@@ -15,6 +14,7 @@ import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/core/widgets/loading_icon_widget.dart';
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/widgets/category_details_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
@@ -167,24 +167,23 @@ class _BuildProductItemState extends State<BuildProductItem> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              widget.productModel.priceHighLowDiscount!.parseCurrency,
-                              // style: AppTextStyle.s11_bold(
-                              style: AppTextStyle.s14_w600(
-                                color: context.colors.primary,
-                              ).copyWith(overflow: TextOverflow.ellipsis),
+                            DirhamPrice(
+                              amount: widget.productModel.variant!.calculablePrice ?? "0.0",
+
                             ),
                             Gaps.vGap3,
                             Visibility(
                               visible: widget.productModel.hasDiscount ?? false || (widget.showVipDiscount ?? false),
-                              child: Text(
-                                widget.productModel.priceHighLow!.parseCurrency,
-                                style: AppTextStyle.s12_w400(
-                                  color: context.colors.textColor,
-                                ).copyWith(
-                                  decoration: TextDecoration.lineThrough,
+                              child: DirhamPrice(
+                                amount: widget.productModel.priceHighLow ?? "0.0",
+                                showMinus: true,
+                                currencyOffset: 1,
+                                color: context.colors.textColor,
+                                textStyle: TextStyle(
                                   overflow: TextOverflow.ellipsis,
+                                  decoration:  TextDecoration.lineThrough,
                                   decorationColor: context.colors.textColor,
+                                  decorationThickness: 1.2,
                                 ),
                               ),
                             ),

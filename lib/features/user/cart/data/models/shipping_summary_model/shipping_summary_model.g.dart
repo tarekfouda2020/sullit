@@ -20,6 +20,8 @@ _$_ShippingSummaryModel _$$_ShippingSummaryModelFromJson(
       totalItems: (json['total_items'] as num).toInt(),
       minimumOrderAmountStatus: json['minimum_order_amount_status'] as bool,
       minimumOrderAmountMsg: json['minimum_order_amount_msg'] as String,
+      minimumOrderAmountAmount:
+          (json['minimum_order_amount'] as num).toDouble(),
       walletSystemActive: json['wallet_system_active'] as bool,
       walletBalance: json['wallet_balance'] as String,
       walletBalanceValue: (json['wallet_balance_value'] as num).toDouble(),
@@ -47,6 +49,7 @@ Map<String, dynamic> _$$_ShippingSummaryModelToJson(
       'total_items': instance.totalItems,
       'minimum_order_amount_status': instance.minimumOrderAmountStatus,
       'minimum_order_amount_msg': instance.minimumOrderAmountMsg,
+      'minimum_order_amount': instance.minimumOrderAmountAmount,
       'wallet_system_active': instance.walletSystemActive,
       'wallet_balance': instance.walletBalance,
       'wallet_balance_value': instance.walletBalanceValue,

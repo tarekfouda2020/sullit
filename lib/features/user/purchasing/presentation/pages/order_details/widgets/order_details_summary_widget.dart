@@ -17,18 +17,21 @@ class OrderDetailsSummaryWidget extends StatelessWidget {
         children: [
            OrderSummaryItemWidget(
             priceType: tr('totalItems'),
-            price: order?.subtotal.parseCurrency ?? '',
+            price: order?.subtotal ?? '',
+            useDirhamPrice: true,
           ),
           Gaps.vGap10,
            OrderSummaryItemWidget(
             priceType: tr('tax'),
-            price: order?.tax.parseCurrency ?? '',
+            price: order?.tax ?? '',
+            useDirhamPrice: true,
           ),
           Gaps.vGap10,
           if(!isReturned)
            OrderSummaryItemWidget(
             priceType: tr('shippingFees'),
-            price: order?.shipping.parseCurrency ?? '',
+            price: order?.shipping ?? '',
+            useDirhamPrice: true,
           ),
           if(!isReturned)
             Gaps.vGap10,
@@ -36,8 +39,9 @@ class OrderDetailsSummaryWidget extends StatelessWidget {
           OrderSummaryItemWidget(
               priceType: tr('voucherDiscount'),
               // price: order?.getDiscountNumber().toString() ?? '',
-              price: order?.couponDiscount.parseCurrency?? '',
-              priceColor: context.colors.primary
+              price: order?.couponDiscount ?? '',
+              priceColor: context.colors.primary,
+              useDirhamPrice: true,
           ),
           Gaps.vGap10,
           Gaps.line(context.colors.softGray, 0),
@@ -45,14 +49,16 @@ class OrderDetailsSummaryWidget extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child:               Text(
+                child: Text(
                   tr("total"),
                   style: AppTextStyle.s16_w400(color: context.colors.black),
                 ),
               ),
-              Text(
-                order?.total.parseCurrency ?? "",
-                style: AppTextStyle.s16_w700(color: context.colors.black),
+              DirhamPrice(
+                amount: order?.total ?? "",
+                currencyOffset: 0,
+                currencyStyle: AppTextStyle.s18_w400(color: context.colors.black),
+                textStyle: AppTextStyle.s16_w700(color: context.colors.black),
               )
             ],
           )

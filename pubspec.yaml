@@ -156,4 +156,11 @@ flutter:
           weight: 600
         - asset: assets/fonts/quicksand/Quicksand-Medium.ttf
           weight: 500
+    - family: dirhamicon
+      fonts:
+        - asset: assets/fonts/dirhamicon.otf
+          weight: 300
+    - family: SIcon
+      fonts:
+        - asset: assets/fonts/aed.ttf
 

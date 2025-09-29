@@ -61,19 +61,17 @@ class BuildProductInfo extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "${productModel.priceHighLowDiscount.parseCurrency} ",
-                    // productModel.variant!.mainPrice.parseCurrency,
-                    style: AppTextStyle.s22_w600(
-                      color: context.colors.primary,
-                    ),
+                  DirhamPrice(
+                   currencyStyle: AppTextStyle.s28_w400(color: context.colors.primary),
+                   amount: "${productModel.priceHighLowDiscount} ",
+                    textStyle: AppTextStyle.s22_w600(color: context.colors.primary),
                   ),
                   Gaps.hGap20,
                   if(( productModel.hasDiscount!) ||(productModel.variant?.hasDiscount==true))
-                    Text(
-                      "${productModel.priceHighLow.parseCurrency} ",
+                    DirhamPrice(
+                     amount: productModel.priceHighLow ?? "",
                       // "${productModel.variant!.originalPrice.parseCurrency} ",
-                      style: AppTextStyle.s18_w400(
+                      textStyle: AppTextStyle.s18_w400(
                         color: context.colors.textColor,
                       ).copyWith(
                           decoration: TextDecoration.lineThrough,

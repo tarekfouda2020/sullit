@@ -11,7 +11,7 @@ class BuildDeliveryProductItem extends StatelessWidget {
     return Container(
       padding: Dimens.paddingAll10PX,
       margin: Dimens.paddingVertical5PX,
-      decoration: CustomDecoration(),
+      decoration: const CustomDecoration(),
       child: Row(
         children: [
           CachedImage(
@@ -24,7 +24,9 @@ class BuildDeliveryProductItem extends StatelessWidget {
           Expanded(
             child: Text(
               cartItem.name,
-              style: AppTextStyle.s14_w400(color: context.colors.black),
+              style: AppTextStyle.s14_w400(color: context.colors.black).copyWith(
+                height: 1.3
+              ),
             ),
           ),
         ],

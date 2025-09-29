@@ -4,12 +4,14 @@ class OrderSummaryItemWidget extends StatelessWidget {
   final String priceType;
   final String price;
   final Color? priceColor;
+  final bool useDirhamPrice;
 
   const OrderSummaryItemWidget({
     super.key,
     required this.priceType,
     required this.price,
     this.priceColor,
+    this.useDirhamPrice = false,
   });
 
   @override
@@ -22,10 +24,16 @@ class OrderSummaryItemWidget extends StatelessWidget {
             style: AppTextStyle.s14_w400(color: context.colors.black),
           ),
         ),
-        Text(
-          price,
-          style: AppTextStyle.s14_w600(color: priceColor ?? context.colors.black),
-        )
+        useDirhamPrice
+            ? DirhamPrice(
+                amount: price,
+                currencyStyle: AppTextStyle.s16_w400(color: priceColor ?? context.colors.black),
+                textStyle: AppTextStyle.s14_w600(color: priceColor ?? context.colors.black),
+              )
+            : Text(
+                price,
+                style: AppTextStyle.s14_w600(color: priceColor ?? context.colors.black),
+              )
       ],
     );
   }

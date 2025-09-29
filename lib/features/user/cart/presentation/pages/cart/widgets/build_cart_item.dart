@@ -60,8 +60,10 @@ class BuildCartItem extends StatelessWidget {
                   onRatingUpdate: (rating) {},
                 ),
                 Gaps.vGap5,
-                Text(cartItem.price.parseCurrency,
-                  style: AppTextStyle.s14_w600(color: context.colors.primary),
+                DirhamPrice(
+                  amount: cartItem.price,
+                  currencyStyle:AppTextStyle.s16_w400(color: context.colors.primary) ,
+                  textStyle: AppTextStyle.s14_w600(color: context.colors.primary),
                 ),
                 Gaps.vGap6,
                 Row(

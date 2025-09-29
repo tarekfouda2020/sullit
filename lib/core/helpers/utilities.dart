@@ -285,6 +285,40 @@ class Utilities {
   }
 
 
+
+  String formatAmount(String amount, {bool showDecimals = true, int decimalPlaces = 2}) {
+    // Helper to format a single number
+    String formatSingle(String value) {
+      final baseAmount = showDecimals
+          ? double.parse(value).toStringAsFixed(decimalPlaces)
+          : double.parse(value).toInt().toString();
+
+      final parts = baseAmount.split('.');
+      final integerPart = parts[0];
+      final decimalPart = parts.length > 1 ? '.${parts[1]}' : '';
+
+      final formattedInteger = integerPart.replaceAllMapped(
+        RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+            (match) => '${match.group(1)},',
+      );
+
+      return formattedInteger + decimalPart;
+    }
+
+    // Handle range case like "10.00 - 40.00"
+    if (amount.contains('-')) {
+      final values = amount.split('-').map((e) => e.trim()).toList();
+      if (values.length == 2) {
+        return '${formatSingle(values[0])} - ${formatSingle(values[1])}';
+      }
+    }
+
+    // Default: single number
+    return formatSingle(amount);
+  }
+
+
+
   String convertDigitsToLatin(String s) {
     var sb = StringBuffer();
     for (int i = 0; i < s.length; i++) {

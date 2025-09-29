@@ -6,4 +6,6 @@ class Delivery extends BaseDomainModel{
   bool selected = false;
 
   Delivery({this.transitIn, this.shippingCost,});
+
+  bool get isShippingFree => shippingCost == "Free Shipping";
 }

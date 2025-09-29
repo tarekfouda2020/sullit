@@ -10,28 +10,33 @@ class BuildOrderAmount extends StatelessWidget {
     return Container(
       padding: Dimens.paddingAll15PX,
       margin: Dimens.paddingVertical5PX,
-      decoration: CustomDecoration(),
+      decoration: const CustomDecoration(),
       child: Column(
         children: [
           BuildOrderInfoItem(
             title: "${tr('subTotal')} :",
-            subTitle: orderModel.subtotal.parseCurrency,
+            subTitle: orderModel.subtotal,
+            useDirhamPrice: true,
           ),
           BuildOrderInfoItem(
             title: "${tr('shipping')} :",
-            subTitle: orderModel.shipping.parseCurrency,
+            subTitle: orderModel.shipping,
+            useDirhamPrice: true,
           ),
           BuildOrderInfoItem(
             title: "${tr('tax')} :",
-            subTitle: orderModel.tax.parseCurrency,
+            subTitle: orderModel.tax,
+            useDirhamPrice: true,
           ),
           BuildOrderInfoItem(
             title: "${tr('coupon')} :",
-            subTitle: orderModel.couponDiscount.parseCurrency,
+            subTitle: orderModel.couponDiscount,
+            useDirhamPrice: true,
           ),
           BuildOrderInfoItem(
             title: "${tr('total')} :",
-            subTitle: orderModel.total.parseCurrency,
+            subTitle: orderModel.total,
+            useDirhamPrice: true,
           ),
 
         ],
