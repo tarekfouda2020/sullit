@@ -286,23 +286,18 @@ class Utilities {
 
 
 
-  String formatAmount(String amount, {bool showDecimals = true, int decimalPlaces = 2}) {
+  String formatAmount(String amount) {
     // Helper to format a single number
     String formatSingle(String value) {
-      final baseAmount = showDecimals
-          ? double.parse(value).toStringAsFixed(decimalPlaces)
-          : double.parse(value).toInt().toString();
+      final parsed = double.tryParse(value.replaceAll(',', '')) ?? 0;
+      final intValue = parsed.toInt(); // remove decimals
 
-      final parts = baseAmount.split('.');
-      final integerPart = parts[0];
-      final decimalPart = parts.length > 1 ? '.${parts[1]}' : '';
-
-      final formattedInteger = integerPart.replaceAllMapped(
+      final formattedInteger = intValue.toString().replaceAllMapped(
         RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
             (match) => '${match.group(1)},',
       );
 
-      return formattedInteger + decimalPart;
+      return formattedInteger;
     }
 
     // Handle range case like "10.00 - 40.00"
