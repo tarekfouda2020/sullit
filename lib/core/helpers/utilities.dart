@@ -287,29 +287,28 @@ class Utilities {
 
 
   String formatAmount(String amount) {
-    // Helper to format a single number
-    String formatSingle(String value) {
-      final parsed = double.tryParse(value.replaceAll(',', '')) ?? 0;
-      final intValue = parsed.toInt(); // remove decimals
-
-      final formattedInteger = intValue.toString().replaceAllMapped(
-        RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-            (match) => '${match.group(1)},',
-      );
-
-      return formattedInteger;
-    }
-
     // Handle range case like "10.00 - 40.00"
     if (amount.contains('-')) {
       final values = amount.split('-').map((e) => e.trim()).toList();
       if (values.length == 2) {
-        return '${formatSingle(values[0])} - ${formatSingle(values[1])}';
+        return '${_formatSingle(values[0])} - ${_formatSingle(values[1])}';
       }
     }
 
     // Default: single number
-    return formatSingle(amount);
+    return _formatSingle(amount);
+  }
+
+  String _formatSingle(String value) {
+    final parsed = double.tryParse(value.replaceAll(',', '')) ?? 0;
+    final intValue = parsed.toStringAsFixed(2);
+
+    final formattedInteger = intValue.replaceAllMapped(
+      RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+          (match) => '${match.group(1)},',
+    );
+
+    return formattedInteger;
   }
 
 
