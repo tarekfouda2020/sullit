@@ -46,7 +46,6 @@ class HomeMainController {
   void changeCouponsTab(int index){
     homeController.index = index;
     homeController.homeTabCubit.onUpdateData(index);
-    print("==========>>>>>> index inside changeCouponsTab $index<<<<<<<<========");
   }
 
   void getHome(BuildContext context, {bool refresh = true}) async {
