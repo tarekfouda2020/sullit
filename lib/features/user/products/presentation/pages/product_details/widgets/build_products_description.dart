@@ -23,9 +23,9 @@ class BuildProductDescription extends StatelessWidget {
                 color: context.colors.textColor,
               ),
             ),
-            Gaps.vGap8,
+            Gaps.vGap4,
             Html(
-              data: description,
+              data: getIt<Utilities>().cleanHtml(description),
               style: {
                 "body": Style(
                   color: Colors.black,
@@ -34,6 +34,13 @@ class BuildProductDescription extends StatelessWidget {
                     Dimens.font_sp14.sp,
                   ),
                   fontWeight: FontWeight.w600,
+                ),
+                "p": Style(
+                  margin: Margins.zero,
+                  padding: HtmlPaddings.zero,
+                ),
+                "br": Style(
+                  fontSize: FontSize(0), // hides <br>
                 ),
               },
             ),

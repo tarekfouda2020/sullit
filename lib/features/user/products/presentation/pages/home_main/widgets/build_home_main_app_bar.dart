@@ -30,9 +30,11 @@ class BuildHomeMainAppBar extends StatelessWidget {
                   enableBorderColor: context.colors.borderColor,
                   focusBorderColor: context.colors.borderColor,
                   hint: tr('searchCats'),
+                  minHeight: 48,
+                  minWidth: 20,
                   suffixIcon: Padding(
                     padding: const EdgeInsetsDirectional.only(end: 16),
-                    child: InkWell(
+                    child: GestureDetector(
                       onTap: () => homeMainController.scanProduct(context),
                       child: Transform.scale(
                         scale: 0.7,
@@ -41,11 +43,14 @@ class BuildHomeMainAppBar extends StatelessWidget {
                     ),
                   ),
                   onSubmit: () => homeMainController.routeToSearchPage(context),
-                  prefixIcon: InkWell(
+                  prefixIcon: GestureDetector(
                     onTap: () => homeMainController.routeToSearchPage(context),
-                    child: Transform.scale(
-                      scale: 0.4,
-                      child: SvgPicture.asset(Res.searchIcon),
+                    child: Padding(
+                      padding: const EdgeInsetsDirectional.only(start: 15),
+                      child: Transform.scale(
+                        scale: 0.9,
+                        child: SvgPicture.asset(Res.searchIcon),
+                      ),
                     ),
                   ),
                 ),

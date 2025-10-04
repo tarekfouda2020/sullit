@@ -47,6 +47,7 @@ class BuildChargeWalletDialog extends StatelessWidget {
                 itemAsString: (item) => (item).name,
                 fillColor: context.colors.white,
                 textSize: 16.sp,
+                contentPadding: EdgeInsets.symmetric(horizontal: 12),
                 title: tr('paymentMethod'),
                 margin: Dimens.paddingVertical10PX,
                 label: tr('paymentMethod'),

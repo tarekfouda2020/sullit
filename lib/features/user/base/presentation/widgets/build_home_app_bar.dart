@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_imports.dart';
 import 'package:flutter_tdd/res.dart';
@@ -14,8 +13,8 @@ class BuildHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       elevation: 0.2,
       backgroundColor: context.colors.white,
-      toolbarHeight:  70,
-      leading: Gaps.empty,
+      toolbarHeight: 70,
+      leading: const Text(''),
       // leading: IconButton(
       //   onPressed: () => homeController?.scaffoldKey.currentState!.openDrawer(),
       //   icon: Icon(
@@ -24,7 +23,7 @@ class BuildHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       //     size: 25,
       //   ),
       // ),
-      title: Image.asset(Res.logo, height: 30, width: 150),
+      title: Image.asset(Res.newAuthLogo, height: 52, width: 152),
     );
   }
 

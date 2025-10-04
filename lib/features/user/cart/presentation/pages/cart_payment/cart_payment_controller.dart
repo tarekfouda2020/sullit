@@ -72,6 +72,13 @@ class CartPaymentController {
   }
 
   Future<void> createOrder(BuildContext context) async {
+    if(shippingBloc.state.data?.summary.minimumOrderAmountStatus == false){
+      CustomToast.showSimpleToast(
+        msg: "${tr("addPurchases")} ${shippingBloc.state.data?.summary.minimumOrderAmountAmount} ${"toCreateOrder"} ",
+        type: ToastType.error,
+      );
+      return ;
+    }
     if (conditionsCubit.state.data) {
       // _checkPayMethodSel();
       if (isWalletSelectedAndBalanceEnough()) {
@@ -79,7 +86,7 @@ class CartPaymentController {
         var data = await CreateOrder().call(params);
         if (data != null) {
           if (data.transactionUrl != null) {
-            _goToPay(data.transactionUrl, context);
+            showOrderCreatedBottomSheet(data.transactionUrl!,context);
           } else {
             _confirmOrder(context, data);
           }
@@ -96,6 +103,18 @@ class CartPaymentController {
       );
     }
   }
+
+
+  void showOrderCreatedBottomSheet(String url,BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+        ),
+        backgroundColor: Colors.white,
+        builder: (BuildContext context) {
+          return ConfirmOrderSheetWidget(controller: this, url: url,);
+        });}
 
   bool isWalletSelectedAndBalanceEnough() {
     var summary = shippingBloc.state.data!.summary;
@@ -131,15 +150,21 @@ class CartPaymentController {
   }
 
   void switchApplyWalletBalance(){
-
     /// switch apply wallet method in the bottom sheet and in switch toggle
 
-    if(isWalletSelected.state.data){
-      unSelectWalletPayMethod();
-    }else if(isWalletSelectedAndBalanceEnough()){
-      selectWalletPayMethod();
+    if(shippingBloc.state.data?.summary.avilablePayWithWallet == true){
+      if(isWalletSelected.state.data){
+        unSelectWalletPayMethod();
+      }else if(isWalletSelectedAndBalanceEnough()){
+        selectWalletPayMethod();
+      }
+      shippingBloc.onUpdateData(shippingBloc.state.data);
+    }else{
+      CustomToast.showSimpleToast(
+          msg: tr('walletBalanceEmpty'), type: ToastType.error);
     }
-    shippingBloc.onUpdateData(shippingBloc.state.data);
+
+
   }
 
 
@@ -171,7 +196,7 @@ class CartPaymentController {
     selectedPayment = PayTypeEnum.wallet.name;
   }
 
-  void _goToPay(String? transactionUrl, BuildContext context) {
+  void goToPay(String? transactionUrl, BuildContext context) {
     AutoRouter.of(context).push(
       PaymentRoute(
         transactionUrl: transactionUrl!,
@@ -302,6 +327,11 @@ class CartPaymentController {
     });
   }
 
+
+  void navigateToHome (BuildContext context)=> AutoRouter.of(context).pushAndPopUntil(
+    HomeRoute(index: 0),
+    predicate: (route) => false,
+  );
 
 
 }

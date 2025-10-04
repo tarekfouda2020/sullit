@@ -38,6 +38,8 @@ mixin _$ShippingSummaryModel {
   bool get minimumOrderAmountStatus => throw _privateConstructorUsedError;
   @JsonKey(name: "minimum_order_amount_msg")
   String get minimumOrderAmountMsg => throw _privateConstructorUsedError;
+  @JsonKey(name: "minimum_order_amount")
+  double get minimumOrderAmountAmount => throw _privateConstructorUsedError;
   @JsonKey(name: "wallet_system_active")
   bool get walletSystemActive => throw _privateConstructorUsedError;
   @JsonKey(name: "wallet_balance")
@@ -81,6 +83,7 @@ abstract class $ShippingSummaryModelCopyWith<$Res> {
       @JsonKey(name: "minimum_order_amount_status")
       bool minimumOrderAmountStatus,
       @JsonKey(name: "minimum_order_amount_msg") String minimumOrderAmountMsg,
+      @JsonKey(name: "minimum_order_amount") double minimumOrderAmountAmount,
       @JsonKey(name: "wallet_system_active") bool walletSystemActive,
       @JsonKey(name: "wallet_balance") String walletBalance,
       @JsonKey(name: "wallet_balance_value") double walletBalanceValue,
@@ -117,6 +120,7 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
     Object? totalItems = null,
     Object? minimumOrderAmountStatus = null,
     Object? minimumOrderAmountMsg = null,
+    Object? minimumOrderAmountAmount = null,
     Object? walletSystemActive = null,
     Object? walletBalance = null,
     Object? walletBalanceValue = null,
@@ -172,6 +176,10 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
           ? _value.minimumOrderAmountMsg
           : minimumOrderAmountMsg // ignore: cast_nullable_to_non_nullable
               as String,
+      minimumOrderAmountAmount: null == minimumOrderAmountAmount
+          ? _value.minimumOrderAmountAmount
+          : minimumOrderAmountAmount // ignore: cast_nullable_to_non_nullable
+              as double,
       walletSystemActive: null == walletSystemActive
           ? _value.walletSystemActive
           : walletSystemActive // ignore: cast_nullable_to_non_nullable
@@ -233,6 +241,7 @@ abstract class _$$_ShippingSummaryModelCopyWith<$Res>
       @JsonKey(name: "minimum_order_amount_status")
       bool minimumOrderAmountStatus,
       @JsonKey(name: "minimum_order_amount_msg") String minimumOrderAmountMsg,
+      @JsonKey(name: "minimum_order_amount") double minimumOrderAmountAmount,
       @JsonKey(name: "wallet_system_active") bool walletSystemActive,
       @JsonKey(name: "wallet_balance") String walletBalance,
       @JsonKey(name: "wallet_balance_value") double walletBalanceValue,
@@ -266,6 +275,7 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
     Object? totalItems = null,
     Object? minimumOrderAmountStatus = null,
     Object? minimumOrderAmountMsg = null,
+    Object? minimumOrderAmountAmount = null,
     Object? walletSystemActive = null,
     Object? walletBalance = null,
     Object? walletBalanceValue = null,
@@ -321,6 +331,10 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
           ? _value.minimumOrderAmountMsg
           : minimumOrderAmountMsg // ignore: cast_nullable_to_non_nullable
               as String,
+      minimumOrderAmountAmount: null == minimumOrderAmountAmount
+          ? _value.minimumOrderAmountAmount
+          : minimumOrderAmountAmount // ignore: cast_nullable_to_non_nullable
+              as double,
       walletSystemActive: null == walletSystemActive
           ? _value.walletSystemActive
           : walletSystemActive // ignore: cast_nullable_to_non_nullable
@@ -379,6 +393,8 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
       required this.minimumOrderAmountStatus,
       @JsonKey(name: "minimum_order_amount_msg")
       required this.minimumOrderAmountMsg,
+      @JsonKey(name: "minimum_order_amount")
+      required this.minimumOrderAmountAmount,
       @JsonKey(name: "wallet_system_active") required this.walletSystemActive,
       @JsonKey(name: "wallet_balance") required this.walletBalance,
       @JsonKey(name: "wallet_balance_value") required this.walletBalanceValue,
@@ -426,6 +442,9 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
   @JsonKey(name: "minimum_order_amount_msg")
   final String minimumOrderAmountMsg;
   @override
+  @JsonKey(name: "minimum_order_amount")
+  final double minimumOrderAmountAmount;
+  @override
   @JsonKey(name: "wallet_system_active")
   final bool walletSystemActive;
   @override
@@ -460,7 +479,7 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
 
   @override
   String toString() {
-    return 'ShippingSummaryModel(subtotal: $subtotal, tax: $tax, shipping: $shipping, couponDiscount: $couponDiscount, calTotal: $calTotal, total: $total, couponCode: $couponCode, couponApplied: $couponApplied, totalItems: $totalItems, minimumOrderAmountStatus: $minimumOrderAmountStatus, minimumOrderAmountMsg: $minimumOrderAmountMsg, walletSystemActive: $walletSystemActive, walletBalance: $walletBalance, walletBalanceValue: $walletBalanceValue, avilablePayWithWallet: $avilablePayWithWallet, avilableCashOnDelivery: $avilableCashOnDelivery, items: $items, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints)';
+    return 'ShippingSummaryModel(subtotal: $subtotal, tax: $tax, shipping: $shipping, couponDiscount: $couponDiscount, calTotal: $calTotal, total: $total, couponCode: $couponCode, couponApplied: $couponApplied, totalItems: $totalItems, minimumOrderAmountStatus: $minimumOrderAmountStatus, minimumOrderAmountMsg: $minimumOrderAmountMsg, minimumOrderAmountAmount: $minimumOrderAmountAmount, walletSystemActive: $walletSystemActive, walletBalance: $walletBalance, walletBalanceValue: $walletBalanceValue, avilablePayWithWallet: $avilablePayWithWallet, avilableCashOnDelivery: $avilableCashOnDelivery, items: $items, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints)';
   }
 
   @override
@@ -489,6 +508,9 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
                 other.minimumOrderAmountStatus == minimumOrderAmountStatus) &&
             (identical(other.minimumOrderAmountMsg, minimumOrderAmountMsg) ||
                 other.minimumOrderAmountMsg == minimumOrderAmountMsg) &&
+            (identical(
+                    other.minimumOrderAmountAmount, minimumOrderAmountAmount) ||
+                other.minimumOrderAmountAmount == minimumOrderAmountAmount) &&
             (identical(other.walletSystemActive, walletSystemActive) ||
                 other.walletSystemActive == walletSystemActive) &&
             (identical(other.walletBalance, walletBalance) ||
@@ -523,6 +545,7 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
         totalItems,
         minimumOrderAmountStatus,
         minimumOrderAmountMsg,
+        minimumOrderAmountAmount,
         walletSystemActive,
         walletBalance,
         walletBalanceValue,
@@ -564,6 +587,8 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
       required final bool minimumOrderAmountStatus,
       @JsonKey(name: "minimum_order_amount_msg")
       required final String minimumOrderAmountMsg,
+      @JsonKey(name: "minimum_order_amount")
+      required final double minimumOrderAmountAmount,
       @JsonKey(name: "wallet_system_active")
       required final bool walletSystemActive,
       @JsonKey(name: "wallet_balance") required final String walletBalance,
@@ -612,6 +637,9 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
   @override
   @JsonKey(name: "minimum_order_amount_msg")
   String get minimumOrderAmountMsg;
+  @override
+  @JsonKey(name: "minimum_order_amount")
+  double get minimumOrderAmountAmount;
   @override
   @JsonKey(name: "wallet_system_active")
   bool get walletSystemActive;

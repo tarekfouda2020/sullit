@@ -10,6 +10,7 @@ class BuildDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: NestedScrollView(
+        controller: controller.scrollController,
         headerSliverBuilder: (_, innerBoxIsScrolled) => [
           BuildProductDetailsSwiper(
             innerBoxIsScrolled: innerBoxIsScrolled,
@@ -24,15 +25,15 @@ class BuildDetailsView extends StatelessWidget {
               controller: controller,
               productModel: detailsModel.product,
             ),
-
             BuildProductSpecifications(
               controller: controller,
               productModel: detailsModel.product,
             ),
-           SliverToBoxAdapter(
-             child:  Gaps.vGap20,
-           ),
-            BuildProductQty(controller: controller, productModel: detailsModel.product),
+            SliverToBoxAdapter(
+              child: Gaps.vGap20,
+            ),
+            // BuildProductQty(controller: controller, productModel: detailsModel.product),
+
             /// not in figma
             // BuildProductReviews(
             //   allReviews: detailsModel.product.reviews ?? [],

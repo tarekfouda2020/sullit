@@ -22,10 +22,10 @@ class GiftCardInfoWidget extends StatelessWidget {
               Text(tr("payOnly"), style: AppTextStyle.s20_w400(color: context.colors.white)),
             if(!controller.isMyGiftCard && model.code != null)
               Gaps.hGap8,
-            Text(
-            model.price.parseCurrency,
-                // getIt<Utilities>().parseCurrency(model.price,),
-                style: AppTextStyle.s30_w800(color: context.colors.gold)
+            DirhamPrice(
+            amount: model.price,
+                textStyle: AppTextStyle.s30_w800(color: context.colors.gold),
+              currencyStyle: AppTextStyle.s32_w400(color: context.colors.gold),
             ),
           ],
         ),
@@ -39,8 +39,11 @@ class GiftCardInfoWidget extends StatelessWidget {
                 style: AppTextStyle.s18_w400(color: context.colors.white)
             ),
             Gaps.hGap2,
-            Text(model.value.parseCurrency,
-                style: AppTextStyle.s18_w700(color: context.colors.gold)
+            DirhamPrice(
+                amount: model.value,
+                textStyle: AppTextStyle.s18_w700(color: context.colors.gold),
+              currencyStyle: AppTextStyle.s20_w400(color: context.colors.gold),
+              currencyOffset: 0,
             ),
           ],
         ),

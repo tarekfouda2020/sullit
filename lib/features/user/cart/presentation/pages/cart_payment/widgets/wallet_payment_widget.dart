@@ -12,7 +12,7 @@ class WalletPaymentWidget extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SvgPicture.asset(Res.walletIcon),
+        SvgPicture.asset(Res.walletIcon,color: context.colors.primary),
         Gaps.hGap11,
         Expanded(
           child: Padding(
@@ -27,10 +27,12 @@ class WalletPaymentWidget extends StatelessWidget {
                       style: AppTextStyle.s14_w400(color: context.colors.black),
                     ),
                     Gaps.vGap6,
-                    Text(shipping.summary.walletBalance.parseCurrency,
-                      style: AppTextStyle.s12_w700(color: context.colors.primary),
+                    DirhamPrice(
+                      amount: shipping.summary.walletBalance,
+                      textStyle: AppTextStyle.s16_w700(color: context.colors.primary),
+                      currencyStyle: AppTextStyle.s18_w400(color: context.colors.primary),
+                      currencyOffset: 0,
                     ),
-
                   ],
                 ),
                 const Spacer(),

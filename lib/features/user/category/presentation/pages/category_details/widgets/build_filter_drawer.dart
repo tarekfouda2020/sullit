@@ -12,14 +12,13 @@ class BuildFilterDrawer extends StatelessWidget {
       backgroundColor: context.colors.white,
       child: Padding(
         padding: const EdgeInsets.all(Dimens.dp20),
-        child:
-            BlocBuilder<GenericBloc<SubCategory?>, GenericState<SubCategory?>>(
+        child: BlocBuilder<GenericBloc<SubCategory?>, GenericState<SubCategory?>>(
           bloc: categoryDetailsController.specificationsCubit,
           builder: (context, state) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Gaps.vGap32,
+                Platform.isIOS ? Gaps.vGap(kToolbarHeight) : Gaps.vGap32,
                 Row(
                   children: [
                     Expanded(
@@ -30,26 +29,28 @@ class BuildFilterDrawer extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
-                      child: Icon(Icons.close,
-                      color: context.colors.black,
+                      child: Icon(
+                        Icons.close,
+                        color: context.colors.black,
                       ),
                     ),
                   ],
                 ),
                 // Gaps.line(context.colors.gray, 10),
-                Divider(endIndent: 5,color: context.colors.gray,height: 10),
+                Divider(endIndent: 5, color: context.colors.gray, height: 10),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        CustomPriceRangeWidget(rangeCubit: categoryDetailsController.rangeCubit,),
-                        Divider(endIndent: 5,color: context.colors.gray,height: 15),
-                         BrandsFilterItem(controller: categoryDetailsController),
+                        CustomPriceRangeWidget(
+                          rangeCubit: categoryDetailsController.rangeCubit,
+                        ),
+                        Divider(endIndent: 5, color: context.colors.gray, height: 15),
+                        BrandsFilterItem(controller: categoryDetailsController),
                         ...List.generate(
                           state.data!.attributes.length,
                           (index) => BuildFilterItem(
-                            categoryDetailsController:
-                                categoryDetailsController,
+                            categoryDetailsController: categoryDetailsController,
                             attributesModel: state.data!.attributes[index],
                             index: index,
                           ),
@@ -77,17 +78,18 @@ class BuildFilterDrawer extends StatelessWidget {
                         textColor: context.colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
-
                       ),
                     ),
                     Gaps.hGap5,
                     Expanded(
                       child: GestureDetector(
-                        onTap: ()=> categoryDetailsController.resetFilter(context),
-                        child: Text(tr('reset',
-                        ),
-                        textAlign: TextAlign.center,
-                        style: AppTextStyle.s18_w700(color: context.colors.primary),
+                        onTap: () => categoryDetailsController.resetFilter(context),
+                        child: Text(
+                          tr(
+                            'reset',
+                          ),
+                          textAlign: TextAlign.center,
+                          style: AppTextStyle.s18_w700(color: context.colors.primary),
                         ),
                       ),
                       // child: DefaultButton(
@@ -108,6 +110,7 @@ class BuildFilterDrawer extends StatelessWidget {
                     ),
                   ],
                 ),
+                if (Platform.isIOS) Gaps.vGap(25) else Gaps.vGap(20)
               ],
             );
           },

@@ -10,12 +10,13 @@ abstract class DeviceState {
 class DeviceInitial extends DeviceState {
   DeviceInitial()
       : super(DeviceModel(
-      auth: false,
-      isTablet: false,
-      isBundle: false,
-      isSmallPhone: false,
-      locale: const Locale('en', 'US'),
-      themeMode: AdaptiveThemeMode.light,
+    auth: false,
+    isTablet: false,
+    isBundle: false,
+    isSmallPhone: false,
+    locale: const Locale('en', 'US'),
+    isNetworkConnected: true,
+    themeMode: AdaptiveThemeMode.light,
   ));
 }
 

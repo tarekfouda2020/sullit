@@ -3,9 +3,14 @@ part of 'cart_payment_widgets_imports.dart';
 class BuildSummaryItem extends StatelessWidget {
   final String title;
   final String details;
+  final bool useDirhamPrice;
 
-  const BuildSummaryItem(
-      {super.key, required this.title, required this.details});
+  const BuildSummaryItem({
+    super.key, 
+    required this.title, 
+    required this.details,
+    this.useDirhamPrice = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +22,15 @@ class BuildSummaryItem extends StatelessWidget {
         title,
         style: AppTextStyle.s15_w500(color: context.colors.black),
       ),
-      trailing: Text(
-        details,
-        style: AppTextStyle.s15_w500(color: context.colors.black),
-      ),
+      trailing: useDirhamPrice
+          ? DirhamPrice(
+              amount: details,
+              textStyle: AppTextStyle.s15_w500(color: context.colors.black),
+            )
+          : Text(
+              details,
+              style: AppTextStyle.s15_w500(color: context.colors.black),
+            ),
     );
   }
 }

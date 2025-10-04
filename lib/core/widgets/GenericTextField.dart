@@ -22,6 +22,8 @@ class GenericTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final Widget? prefixWidget;
   final Widget? suffixWidget;
+  final double? minHeight;
+  final double? minWidth;
   final Function()? onTab;
   final Color? enableBorderColor;
   final Color? focusBorderColor;
@@ -70,7 +72,9 @@ class GenericTextField extends StatelessWidget {
       this.enableBorderColor,
       this.focusBorderColor,
       this.hintStyle,
-      required this.validate});
+      required this.validate,
+      this.minHeight,
+      this.minWidth});
 
   @override
   Widget build(BuildContext context) {
@@ -131,6 +135,11 @@ class GenericTextField extends StatelessWidget {
         hintColor: hintColor,
         borderRadius: radius,
         lang: context.watch<DeviceCubit>().state.model.locale.languageCode,
+      ).copyWith(
+        prefixIconConstraints: BoxConstraints(
+          minWidth: minWidth ?? 48,
+          minHeight: minHeight ?? 48,
+        ),
       ),
     );
   }

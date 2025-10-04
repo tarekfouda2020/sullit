@@ -3,12 +3,14 @@ part of 'home_main_widgets_imports.dart';
 class BuildCustomTimer extends StatelessWidget {
   final String firstTimeNumber;
   final String secondTimeNumber;
+  final String? threeTimeNumber;
   final String text;
 
   const BuildCustomTimer({
     super.key,
     required this.text,
     required this.firstTimeNumber,
+    this.threeTimeNumber,
     required this.secondTimeNumber,
   });
 
@@ -21,6 +23,8 @@ class BuildCustomTimer extends StatelessWidget {
           children: [
             _buildContainer(context,firstTimeNumber),
             _buildContainer(context,secondTimeNumber),
+            if(threeTimeNumber != "0"  && threeTimeNumber != "" && threeTimeNumber != "null"&& threeTimeNumber!=null)
+            _buildContainer(context,threeTimeNumber!),
           ],
         ),
         Gaps.vGap3,

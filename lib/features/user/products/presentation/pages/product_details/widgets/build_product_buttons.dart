@@ -12,13 +12,13 @@ class BuildProductButtons extends StatelessWidget {
     return Visibility(
       visible: hasVariant ? detailsModel.product.variant!.currentStock! > 0 : false,
       child: Padding(
-        padding: const EdgeInsetsDirectional.only(top: 10,bottom: 10,start: 20,end: 45),
+        padding: const EdgeInsetsDirectional.only(top: 10,bottom: 18,start: 20,end: 45),
         child: SizedBox(
           height: 45.h,
           child: Row(
             children: [
               Expanded(
-                child: InkWell(
+                child: GestureDetector(
                   onTap: () => controller.onAddToCart(context),
                   child: Container(
                     alignment: Alignment.center,
@@ -51,10 +51,15 @@ class BuildProductButtons extends StatelessWidget {
                   BlocBuilder<GenericBloc<int>, GenericState<int>>(
                     bloc: controller.qtyCubit,
                     builder: (context, state) {
-                      return Text(
-                        "${detailsModel.product.variant?.calculablePrice} ${tr("currency")}",
+                      return DirhamPrice(
+                       amount:  "${detailsModel.product.variant?.calculablePrice}",
+                        currencyOffset: -0.5,
+                        currencyStyle: AppTextStyle.s18_w400(
+                          color: context.colors.primary,
+
+                        ),
                         // "${detailsModel.product.variant?.calculablePrice} ${detailsModel.product.currencySymbol}",
-                        style: AppTextStyle.s14_w600(
+                        textStyle: AppTextStyle.s14_w600(
                           color: context.colors.primary,
                         ),
                       );

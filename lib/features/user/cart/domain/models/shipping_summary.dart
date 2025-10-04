@@ -16,6 +16,7 @@ class ShippingSummary extends BaseDomainModel{
   bool walletSystemActive ;
   String walletBalance ;
   double walletBalanceValue;
+  double minimumOrderAmountAmount;
   bool avilablePayWithWallet;
   bool avilableCashOnDelivery ;
   List<ShippingItem> items ;
@@ -42,6 +43,7 @@ class ShippingSummary extends BaseDomainModel{
     required this.avilablePayWithWallet,
     required this.avilableCashOnDelivery,
     required this.items,
+    required this.minimumOrderAmountAmount,
     this.loyaltyPointsValue,
     this.loyaltyPoints,
     this.loyaltyPointsApplied,

@@ -16,21 +16,17 @@ class BuildAttributeItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool current = optionModel[index]
-        .selectedAttribute!.contains(optionModel[index].options![position]);
+    bool current = optionModel[index].selectedAttribute!.contains(optionModel[index].options![position]);
     return InkWell(
-      onTap: () =>
-          controller.onSelectAttributes(context, optionModel, index, position),
+      onTap: () => controller.onSelectAttributes(context, optionModel, index, position),
       child: Container(
-        width: 100.w,
-        padding: Dimens.paddingAll8PX,
+        padding: EdgeInsets.symmetric(vertical: 8,horizontal: 25),
         decoration: BoxDecoration(
           border: Border.all(
             color: current ? context.colors.primary : context.colors.greyWhite,
           ),
           borderRadius: Dimens.borderRadius5PX,
         ),
-        alignment: Alignment.center,
         child: Text(
           optionModel[index].options![position],
           style: AppTextStyle.s12_w400(

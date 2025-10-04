@@ -6,9 +6,10 @@ class BuildNotifiesLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: const NeverScrollableScrollPhysics(),
       child: Column(
         children: List.generate(
-          3,
+          20,
           (index) => Container(
               margin: const EdgeInsets.symmetric(
                 vertical: 5,

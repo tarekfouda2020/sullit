@@ -10,22 +10,19 @@ class HomeController {
   final TextEditingController searchController = TextEditingController();
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   bool showToast = false;
+  int index = 0;
 
-  List<String> tabs = [
-    Res.home,
-    Res.category,
-    "",
-    Res.offers,
-    Res.menuIcon
-  ];
-
+  List<String> tabs = [Res.home, Res.category, "", Res.offers, Res.menuIcon];
 
   List<Widget> pages() => [
     HomeMain(homeController: this),
     Categories(homeController: this),
     // Summary(homeController: controller),
     Gaps.empty,
-    Coupons(homeController: this),
+    BlocBuilder<GenericBloc<int>, GenericState<int>>(
+      bloc: homeTabCubit,
+      builder: (context, state) => Coupons(homeController: this, index: index),
+    ),
     More(homeController: this),
   ];
 
@@ -56,32 +53,31 @@ class HomeController {
   //   );
   // }
 
-
-
   void initBottomNavigation(TickerProvider ticker, int index) {
-    tabController =
-        TabController(length: 5, vsync: ticker, initialIndex: index);
+    tabController = TabController(length: 5, vsync: ticker, initialIndex: index);
     tabController.animateTo(index);
     homeTabCubit.onUpdateData(index);
   }
 
   void animateTabsPages(int index, BuildContext context) {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
-    // if (index == 2 && !auth) {
-    //   CustomToast.showAuthDialog(context);
-    //   return;
-    // }
-    if (index == 2) {
-      routeToCart(context);
-      return;
-    } else{
-      homeTabCubit.onUpdateData(index);
-      tabController.animateTo(index);
-    }
-    // if (index != homeTabCubit.state.data) {
-    //   homeTabCubit.onUpdateData(index);
-    //   tabController.animateTo(index);
-    // }
+    Future.delayed(const Duration(milliseconds: 700), () {
+      bool auth = context.read<DeviceCubit>().state.model.auth;
+      // if (index == 2 && !auth) {
+      //   CustomToast.showAuthDialog(context);
+      //   return;
+      // }
+      if (index == 2) {
+        routeToCart(context);
+        return;
+      } else {
+        homeTabCubit.onUpdateData(index);
+        tabController.animateTo(index);
+      }
+      // if (index != homeTabCubit.state.data) {
+      //   homeTabCubit.onUpdateData(index);
+      //   tabController.animateTo(index);
+      // }
+    });
   }
 
   void goNotification(BuildContext context) {
@@ -108,27 +104,25 @@ class HomeController {
     return true;
   }
 
-  void routeToCart(BuildContext context){
+  void routeToCart(BuildContext context) {
     AutoRouter.of(context).push(const CartRoute());
   }
 
-
   Future<bool> onBack(BuildContext context) async {
-    if(tabController.index>0){
+    if (tabController.index > 0) {
       tabController.animateTo(0);
       homeTabCubit.onUpdateData(0);
       showToast = false;
       return false;
     }
-    if(showToast == false){
+    if (showToast == false) {
       showToast = true;
       CustomToast.showSnakeBar(tr("PressAgainToExit"));
       Future.delayed(const Duration(seconds: 6)).then((value) => showToast = false);
       return false;
-    }else{
+    } else {
       SystemNavigator.pop();
       return true;
     }
   }
-
 }

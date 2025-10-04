@@ -20,9 +20,9 @@ class MoreGridViewWidget extends StatelessWidget {
           padding: const EdgeInsets.only( bottom: 16, top: 8),
           gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount ?? 3,
-            mainAxisExtent: 107,
-            crossAxisSpacing: 15,
-            mainAxisSpacing: 15,
+            mainAxisExtent: 110,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 12,
           ),
           children: children,
         ),

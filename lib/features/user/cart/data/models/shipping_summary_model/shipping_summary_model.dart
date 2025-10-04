@@ -25,6 +25,7 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary> with _$Shipping
     @JsonKey(name: "total_items") required int totalItems,
     @JsonKey(name: "minimum_order_amount_status") required bool minimumOrderAmountStatus,
     @JsonKey(name: "minimum_order_amount_msg") required String minimumOrderAmountMsg,
+    @JsonKey(name: "minimum_order_amount") required double minimumOrderAmountAmount,
     @JsonKey(name: "wallet_system_active") required bool walletSystemActive,
     @JsonKey(name: "wallet_balance") required String walletBalance,
     @JsonKey(name: "wallet_balance_value") required double walletBalanceValue,
@@ -61,6 +62,7 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary> with _$Shipping
       loyaltyPointsValue: loyaltyPointsValue,
       loyaltyPointsApplied: loyaltyPointsApplied,
       loyaltyPoints: loyaltyPoints,
+      minimumOrderAmountAmount: minimumOrderAmountAmount
     );
   }
 }

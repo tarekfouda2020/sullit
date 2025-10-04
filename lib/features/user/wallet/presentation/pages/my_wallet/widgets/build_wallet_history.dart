@@ -1,13 +1,15 @@
 part of'my_wallet_widgets_imports.dart';
+
 class BuildWalletHistory extends StatelessWidget {
- final MyWalletController controller;
+  final MyWalletController controller;
+
   const BuildWalletHistory({Key? key, required this.controller})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Flexible(
-      child: RefreshIndicator(
+      child: CustomRefreshIndicatorWidget(
         onRefresh: () async => controller.getTransactions(1),
         child: PagedListView<int, WalletTransaction>(
           padding: Dimens.paddingAll15PX,
@@ -33,15 +35,15 @@ class BuildWalletHistory extends StatelessWidget {
   }
 
 
-  Widget _transactionsLoading(){
+  Widget _transactionsLoading() {
     return Column(
       children: List.generate(5, (index) {
         return Container(
           margin: Dimens.paddingVertical5PX,
-          decoration: CustomDecoration(),
+          decoration: const CustomDecoration(),
           child: ListTile(
-            title: Row(
-              children: const [
+            title: const Row(
+              children: [
                 BuildShimmerItem(
                   height: 12,
                   width: 100,

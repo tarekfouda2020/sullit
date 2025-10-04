@@ -15,12 +15,12 @@ class BuildBestSellingProducts extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        BuildHeaderTitle(
-          title: tr('justForYou'),
-          // onTap: () => AutoRouter.of(context).push(AllProductPageRoute(
-          //   bestSellingProducts: bestSellingProducts,
-          // )),
-        ),
+        // BuildHeaderTitle(
+        //   title: tr('justForYou'),
+        //   // onTap: () => AutoRouter.of(context).push(AllProductPageRoute(
+        //   //   bestSellingProducts: bestSellingProducts,
+        //   // )),
+        // ),
         SizedBox(
           height: 220,
           child: SingleChildScrollView(
@@ -36,9 +36,7 @@ class BuildBestSellingProducts extends StatelessWidget {
                       padding: Dimens.paddingHorizontal5PX,
                       child: BuildProductItem(
                         productModel: bestSellingProducts[index],
-                        onFavRefresh: () => controller.onChangeFav(
-                          bestSellingProducts[index],
-                        ),
+                        onFavRefresh: () => controller.onChangeFav(bestSellingProducts[index],context),
                         onCompareRefresh: () {
                           bestSellingProducts[index].isAddedTCompare =
                               !bestSellingProducts[index].isAddedTCompare!;

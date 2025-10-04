@@ -13,4 +13,8 @@ extension StringHelperExtension on String? {
   String get capitalize {
     return getIt<Utilities>().capitalize(this ?? "");
   }
+
+  String  formatAmount() {
+    return getIt<Utilities>().formatAmount(this ?? "");
+  }
 }

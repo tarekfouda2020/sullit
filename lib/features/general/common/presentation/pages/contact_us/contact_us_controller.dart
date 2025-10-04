@@ -4,10 +4,8 @@ class ContactUsController {
   final GlobalKey<CustomButtonState> btnKey = GlobalKey();
   final GlobalKey<FormState> formKey = GlobalKey();
   final GenericBloc<String> contactUsCubit = GenericBloc("");
-  final GenericBloc<Country?> countryCubit =
-      GenericBloc(CountryPickerHelper.defaultCountrySync());
-  final GenericBloc<List<ContactUsSocialModel>> contactUsSocialCubit =
-      GenericBloc<List<ContactUsSocialModel>>([]);
+  final GenericBloc<Country?> countryCubit = GenericBloc(CountryPickerHelper.defaultCountrySync() as Country?);
+  final GenericBloc<List<ContactUsSocialModel>> contactUsSocialCubit = GenericBloc<List<ContactUsSocialModel>>([]);
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController phone = TextEditingController();
@@ -35,12 +33,10 @@ class ContactUsController {
     }
   }
 
-  Future<void> _initializeCountryFromUser(
-      BuildContext context, UserDomainModel? user) async {
+  Future<void> _initializeCountryFromUser(BuildContext context, UserDomainModel? user) async {
     if (user?.countryCode != null && user!.countryCode!.isNotEmpty) {
       try {
-        final country = await CountryPickerHelper.getCountryByCallingCode(
-            context, user.countryCode!);
+        final country = await CountryPickerHelper.getCountryByCallingCode(context, user.countryCode!);
         if (country != null) {
           countryCubit.onUpdateData(country);
         } else {
@@ -55,7 +51,7 @@ class ContactUsController {
   Future<void> contactUs(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       var params = _contactUsParams();
-     await SetContactUs().call(params).then((value) {
+      await SetContactUs().call(params).then((value) {
         if (value) {
           // subject.clear();
           // message.clear();

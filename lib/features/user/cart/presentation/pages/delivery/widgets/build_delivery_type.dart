@@ -16,7 +16,6 @@ class BuildDeliveryType extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 22),
           margin: Dimens.paddingVertical8PX,
-
           decoration: BoxDecoration(
             color: context.colors.white,
             border: Border.all(color: context.colors.gray3),
@@ -77,9 +76,16 @@ class BuildDeliveryType extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Text(
+                      shipping.delivery?.isShippingFree == true
+                          ?Text(
                         shipping.delivery?.shippingCost.parseCurrency ?? "",
-                        style: AppTextStyle.s14_w400(
+                        style: AppTextStyle.s14_w400(color: context.colors.black))
+                          :DirhamPrice(
+                        amount: shipping.delivery?.shippingCost ?? "",
+                        currencyStyle: AppTextStyle.s16_w400(
+                          color: context.colors.black,
+                        ),
+                        textStyle: AppTextStyle.s14_w400(
                           color: context.colors.black,
                         ),
                       ),

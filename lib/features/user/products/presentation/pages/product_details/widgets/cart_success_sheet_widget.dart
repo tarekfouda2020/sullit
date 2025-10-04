@@ -75,9 +75,23 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                       ),
                       Gaps.vGap14,
                       DefaultButton(
-                        title: "${tr('checkout')} - ${state.data.subTotal.parseCurrency}",
+                        title: "",
                         onTap: () => AutoRouter.of(context).popAndPush(const CartRoute()),
                         margin: EdgeInsets.zero,
+                        customLabel: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("${tr('checkout')} - ",
+                            style: AppTextStyle.s18_w700(color: context.colors.white),
+                            ),
+                            Text(state.data.subTotal ?? "",
+                              style: AppTextStyle.s18_w700(color: context.colors.white),
+                            ).withDirhamSymbol(
+                              symbolStyle: AppTextStyle.s20_w300(color: context.colors.white)
+                            ),
+                          ],
+                        ),
                       ),
                       Gaps.vGap10,
                     ],

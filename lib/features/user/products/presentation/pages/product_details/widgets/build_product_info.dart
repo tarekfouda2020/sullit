@@ -57,56 +57,82 @@ class BuildProductInfo extends StatelessWidget {
               ],
             ),
             Gaps.vGap10,
-            Visibility(
-              visible: (productModel.isMultiple == false),
-              replacement: Row(
+            FittedBox(
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    // "${productModel.priceHighLowDiscount.parseCurrency} ",
-                    productModel.variant!.mainPrice.parseCurrency,
-                    style: AppTextStyle.s22_w600(
-                      color: context.colors.primary,
-                    ),
+                  DirhamPrice(
+                   currencyStyle: AppTextStyle.s28_w400(color: context.colors.primary),
+                   amount: "${productModel.priceHighLowDiscount} ",
+                    textStyle: AppTextStyle.s22_w600(color: context.colors.primary),
                   ),
-                  Gaps.hGap8,
-                  Visibility(
-                    visible:( productModel.hasDiscount!) ||(productModel.variant!.hasDiscount==true),
-                    child: Text(
-                      // "${productModel.priceHighLow.parseCurrency} ",
-                      "${productModel.variant!.originalPrice.parseCurrency} ",
-                      style: AppTextStyle.s18_w400(
+                  Gaps.hGap20,
+                  if(( productModel.hasDiscount!) ||(productModel.variant?.hasDiscount==true))
+                    DirhamPrice(
+                     amount: productModel.priceHighLow ?? "",
+                      // "${productModel.variant!.originalPrice.parseCurrency} ",
+                      textStyle: AppTextStyle.s18_w400(
                         color: context.colors.textColor,
                       ).copyWith(
-                        decoration: TextDecoration.lineThrough,
+                          decoration: TextDecoration.lineThrough,
+                          decorationColor: context.colors.textColor
                       ),
                     ),
-                  ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  Text(
-                    "${productModel.priceHighLowDiscount.parseCurrency} ",
-                    style: AppTextStyle.s22_w600(
-                      color: context.colors.primary,
-                    ),
-                  ),
-                  Gaps.hGap14,
-                  Visibility(
-                    visible: productModel.hasDiscount!,
-                    child: Text(
-                      "${productModel.priceHighLow.parseCurrency} ",
-                      style: AppTextStyle.s18_w400(
-                        color: context.colors.textColor,
-                      ).copyWith(
-                        decoration: TextDecoration.lineThrough,
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),
+            // Visibility(
+            //   visible: (productModel.isMultiple == false),
+            //   replacement: FittedBox(
+            //     child: Row(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         Text(
+            //           "${productModel.priceHighLowDiscount.parseCurrency} ",
+            //           // productModel.variant!.mainPrice.parseCurrency,
+            //           style: AppTextStyle.s22_w600(
+            //             color: context.colors.primary,
+            //           ),
+            //         ),
+            //         Gaps.hGap20,
+            //         if(( productModel.hasDiscount!) ||(productModel.variant?.hasDiscount==true))
+            //         Text(
+            //           "${productModel.priceHighLow.parseCurrency} ",
+            //           // "${productModel.variant!.originalPrice.parseCurrency} ",
+            //           style: AppTextStyle.s18_w400(
+            //             color: context.colors.textColor,
+            //           ).copyWith(
+            //             decoration: TextDecoration.lineThrough,
+            //             decorationColor: context.colors.textColor
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            //   child: Row(
+            //     children: [
+            //       Text(
+            //         "${productModel.priceHighLowDiscount.parseCurrency} ",
+            //         style: AppTextStyle.s22_w600(
+            //           color: context.colors.primary,
+            //         ),
+            //       ),
+            //       Gaps.hGap12,
+            //       Visibility(
+            //         visible: productModel.hasDiscount!,
+            //         child: Text(
+            //           "${productModel.priceHighLow.parseCurrency} ",
+            //           style: AppTextStyle.s18_w400(
+            //             color: context.colors.textColor,
+            //           ).copyWith(
+            //             decoration: TextDecoration.lineThrough,
+            //             decorationColor: context.colors.textColor,
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             Gaps.vGap7,
             BuildSellerInfo(
               shopModel: productModel.shop,

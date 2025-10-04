@@ -10,6 +10,7 @@ class BuildAddTicketBtn extends StatelessWidget {
     return DefaultButton(
         title: "",
       onTap: ()=> controller.showAddTicketsSheet(context),
+      margin: EdgeInsets.only(right: 20,left: 20,bottom: Dimens.iosBottomDp(context)),
       height: 50,
       customLabel: Row(
         mainAxisSize: MainAxisSize.min,

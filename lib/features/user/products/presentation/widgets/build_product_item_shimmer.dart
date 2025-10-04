@@ -9,11 +9,13 @@ import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/widgets/category_details_widgets_imports.dart';
 
 class BuildProductItemShimmer extends StatelessWidget {
-  const BuildProductItemShimmer({Key? key}) : super(key: key);
+  final EdgeInsetsDirectional? margin;
+  const BuildProductItemShimmer({Key? key, this.margin}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: margin?? EdgeInsets.zero,
       width: 160.w,
       decoration: CustomDecoration(),
       child: Column(

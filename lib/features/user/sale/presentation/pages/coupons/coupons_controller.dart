@@ -3,8 +3,9 @@ part of 'coupons_imports.dart';
 class CouponsController {
 
   late final HomeController homeController;
-  final PagingController<int, Coupon> pagingController =
-      PagingController(firstPageKey: 1);
+  late TabController tabController;
+  final PagingController<int, Coupon> pagingController = PagingController(firstPageKey: 1);
+
   int pageSize = 12;
 
   List<Widget> pages() => [
@@ -14,12 +15,24 @@ class CouponsController {
     const BestRated(),
   ];
 
+  void initBottomNavigation(TickerProvider ticker, int index) {
+    print("==========>>>>>> index inside initBottomNavigation $index<<<<<<<<========");
+    tabController = TabController(length: pages().length, vsync: ticker, initialIndex: index);
+  }
+
   // CouponsController() {
   //   pagingController.addPageRequestListener((pageKey) {
   //     getCoupons(pageKey, refresh: false);
   //     getCoupons(pageKey);
   //   });
   // }
+
+
+  void changeTab(int index){
+    if (tabController.index != index) {
+      tabController.animateTo(index);
+    }
+  }
 
   Future<void> getCoupons(int page, {bool refresh = true}) async {
     var params = _paginateParams(page, refresh);

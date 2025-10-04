@@ -19,7 +19,7 @@ class _PurchasedOrdersState extends State<PurchasedOrders> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(title: tr("purchasedOrders"),),
-      body: RefreshIndicator(
+      body: CustomRefreshIndicatorWidget(
         onRefresh: () => controller.getPurchasingHistory(1),
         child: PagedListView<int, Orders>(
           padding: Dimens.paddingAll15PX,
@@ -32,7 +32,7 @@ class _PurchasedOrdersState extends State<PurchasedOrders> {
               controller: controller,
             ),
             noItemsFoundIndicatorBuilder: (cxt) {
-              return const BuildEmptyDataImage(enablePop: false,);
+              return const BuildEmptyDataImage();
             },
           ),
         ),

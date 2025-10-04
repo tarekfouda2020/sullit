@@ -1,16 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
-import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
-import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/features/user/gift_card/domain/models/git_card_domain_model.dart';
 import 'package:flutter_tdd/res.dart';
 
@@ -65,9 +59,11 @@ class GiftCardItemWidget extends StatelessWidget {
                                       color: context.colors.black)),
                             ),
                           if (!isMyGiftCard) Gaps.hGap8,
-                          Text(
-                              model.price.parseCurrency,
-                              style: AppTextStyle.s22_w600(
+                          DirhamPrice(
+                              amount: model.price,
+                              currencyStyle:AppTextStyle.s24_w400(
+                                  color: context.colors.primary) ,
+                              textStyle: AppTextStyle.s22_w600(
                                   color: context.colors.primary)),
                         ],
                       ),
@@ -78,9 +74,11 @@ class GiftCardItemWidget extends StatelessWidget {
                               style: AppTextStyle.s12_w400(
                                   color: context.colors.textColor)),
                           Gaps.hGap2,
-                          Text(
-                              model.value.parseCurrency,
-                              style: AppTextStyle.s12_w700(
+                          DirhamPrice(
+                              amount: model.value,
+                              currencyStyle: AppTextStyle.s14_w400(
+                                  color: context.colors.black),
+                              textStyle: AppTextStyle.s12_w700(
                                   color: context.colors.black)),
                         ],
                       ),

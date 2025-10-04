@@ -25,7 +25,7 @@ import 'package:flutter_tdd/features/user/addresses/domain/models/address_type_m
 import 'package:flutter_tdd/features/user/addresses/domain/use_cases/get_address_types.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/use_cases/get_cities_by_state_id.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/use_cases/get_countries.dart';
-import 'package:flutter_tdd/features/user/addresses/domain/use_cases/get_states_by_countryId.dart';
+import 'package:flutter_tdd/features/user/addresses/domain/use_cases/get_states_by_country_id.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/use_cases/set_edit_address.dart';
 import 'package:flutter_tdd/features/user/addresses/presentation/pages/edit_address/widgets/edit_address_w_imports.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';

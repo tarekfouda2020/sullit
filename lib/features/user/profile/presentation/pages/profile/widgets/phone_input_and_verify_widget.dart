@@ -14,9 +14,10 @@ class PhoneInputAndVerify extends StatelessWidget {
         BuildInputLabel(label: tr('phoneNumber')),
         Row(
           children: [
-            BlocBuilder<GenericBloc<Country?>, GenericState<Country?>>(
-              bloc: controller.countryCubit,
-              builder: (context, state) {
+            BlocProvider.value(
+              value: controller.countryCubit,
+              child: BlocBuilder<GenericBloc<Country?>, GenericState<Country?>>(
+                builder: (context, state) {
                 return Expanded(
                   flex: 2,
                   child: GenericTextField(
@@ -35,6 +36,7 @@ class PhoneInputAndVerify extends StatelessWidget {
                   ),
                 );
               },
+              ),
             ),
             Gaps.hGap5,
             BlocBuilder<GenericBloc<bool>, GenericState<bool>>(

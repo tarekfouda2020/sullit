@@ -14,6 +14,8 @@ enum WalletTransactionType {
     }
   }
 
+
+
   String get transactionSign {
     switch(this){
       case WalletTransactionType.income:

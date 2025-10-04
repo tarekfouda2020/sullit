@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+
+import '../constants/dimens.dart';
 
 class DefaultButton extends StatelessWidget {
   final String title;
@@ -58,16 +62,18 @@ class DefaultButton extends StatelessWidget {
             ),
             elevation: elevation ?? 0,
           ),
-          child: customLabel ?? Text(
-            title,
-            textAlign: TextAlign.center,
-            style: AppTextStyle.s18_w700(color: textColor ?? Colors.white,)
-                .copyWith(
-              fontSize: fontSize ?? 18,
-              fontFamily: fontFamily,
-              fontWeight: fontWeight ?? FontWeight.w700,
-            ),
-          ),
+          child: customLabel ??
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: AppTextStyle.s18_w700(
+                  color: textColor ?? Colors.white,
+                ).copyWith(
+                  fontSize: fontSize ?? 18,
+                  fontFamily: fontFamily,
+                  fontWeight: fontWeight ?? FontWeight.w700,
+                ),
+              ),
         ),
       ),
     );

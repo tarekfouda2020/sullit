@@ -29,26 +29,27 @@ class _OnSaleState extends State<OnSale> {
         builder: (context, state) {
           if (state is GenericUpdateState) {
             if (state.data.isNotEmpty) {
-              return Padding(
-                padding: Dimens.paddingAll20PX,
-                child: GridView.builder(
-                  // padding: Dimens.paddingHorizontal20PX,
-                  itemCount: state.data.length,
-                  gridDelegate: GridFixedHeightDelegate(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 15.r,
-                    crossAxisSpacing: 15.r,
-                    height: 220.spMin,
-                  ),
-                  itemBuilder: (_, index) {
-                    return BuildProductItem(
-                      productModel: state.data[index],
-                      onFavRefresh: () =>
-                          controller.onChangeFav(state.data[index]),
-                    );
-                  },
-                ),
-              );
+              return GenericListView<Product>(
+                 type: ListViewType.gridApi,
+                 onRefresh: controller.getOnSale,
+                 cubit: controller.onSaleCubit,
+                 runSpacing: 15.r,
+                 spacing: 15.r,
+                 gridCrossCount: 2,
+                 gridItemHeight: 220.spMin,
+                 padding: Dimens.paddingH20V15,
+                 itemBuilder: (_, index, item) {
+                   item as Product;
+                   return BuildProductItem(
+                     productModel: item,
+                     showVipDiscount: item.hasVipOffer,
+                     onFavRefresh: () => controller.onChangeFav(state.data[index]),
+                     onRefresh: () => controller.getOnSale(refresh: true),
+                   );
+                 },
+                 loadingWidget: const BuildLoadingProductsGridView(),
+                 emptyWidget: const BuildEmptyDataView(),
+               );
             } else {
               return const BuildEmptyDataView();
             }

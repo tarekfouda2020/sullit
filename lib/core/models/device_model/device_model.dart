@@ -13,5 +13,6 @@ class DeviceModel with _$DeviceModel {
     required bool isTablet,
     required bool isSmallPhone,
     required AdaptiveThemeMode themeMode,
+    required bool isNetworkConnected,
   }) = _DeviceModel;
 }

@@ -10,7 +10,6 @@ class OnSaleController {
   void getOnSale({bool refresh = true}) async {
     var result = await GetOnSale().call(refresh);
     onSaleCubit.onUpdateData(result);
-    print("====>${result.length}");
   }
 
   void onChangeFav(Product item) {

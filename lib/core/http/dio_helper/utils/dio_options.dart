@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:tf_dio_cache/dio_http_cache.dart';
+import 'package:tf_dio_cache/tf_dio_cache.dart';
 
 @lazySingleton
 class DioOptions{

@@ -63,6 +63,7 @@ class BuildProductQty extends StatelessWidget {
                       // ),
                       // Gaps.hGap10,
                       BuildCustomBounce(
+                        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 7.5),
                         onTap: () => controller.decreaseQty(),
                         iconData: CupertinoIcons.minus,
                         margin: EdgeInsets.zero,
@@ -74,6 +75,7 @@ class BuildProductQty extends StatelessWidget {
                       ),
                       Gaps.hGap19,
                       BuildCustomBounce(
+                        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 7.5),
                         onTap: () => controller.increaseQty(),
                         iconData: CupertinoIcons.add,
                         margin: EdgeInsets.zero,

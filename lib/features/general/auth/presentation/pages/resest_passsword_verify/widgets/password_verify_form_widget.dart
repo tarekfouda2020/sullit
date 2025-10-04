@@ -49,7 +49,7 @@ class PasswordVerifyForm extends StatelessWidget {
                 fillColor: context.colors.white,
                 hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
                 controller: controller.password,
-                contentPadding: Dimens.paddingH32V16,
+                contentPadding: Dimens.paddingH12V16,
                 fieldTypes:
                 !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
@@ -77,15 +77,14 @@ class PasswordVerifyForm extends StatelessWidget {
               return  GenericTextField(
                 fillColor: context.colors.white,
                 hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
-                contentPadding: Dimens.paddingH32V16,
+                contentPadding: Dimens.paddingH12V16,
                 enableBorderColor: context.colors.borderColor,
                 focusBorderColor: context.colors.borderColor,
                 controller: controller.confirmPassword,
-                fieldTypes:
-                !state.data ? FieldTypes.password : FieldTypes.normal,
+                fieldTypes: !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
-                validate: (value) => value?.validatePassword(),
+                validate: (value) => value?.validatePasswordConfirm(pass: controller.password.text),
                 hint: tr('enterYourPassword'),
                 margin: const EdgeInsets.symmetric(vertical: Dimens.dp12),
                 radius: Dimens.borderRadius40PX,

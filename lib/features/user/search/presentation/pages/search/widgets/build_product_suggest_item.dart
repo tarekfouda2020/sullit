@@ -10,6 +10,7 @@ class BuildProductSuggestItem extends StatelessWidget {
     return InkWell(
       onTap: () => AutoRouter.of(context).push(
         ProductDetailsRoute(
+          isFav: productModel.isWishlist!,
           productId: productModel.id!,
           isResale: productModel.isResale!,
         ),
@@ -29,9 +30,12 @@ class BuildProductSuggestItem extends StatelessWidget {
             productModel.name ?? "",
             style: AppTextStyle.s15_w500(color: context.colors.black),
           ),
-          subtitle: Text(
-            productModel.priceHighLow.parseCurrency,
-            style: AppTextStyle.s15_w700(color: context.colors.primary),
+          subtitle: Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Text(
+              productModel.priceHighLow.parseCurrency,
+              style: AppTextStyle.s15_w700(color: context.colors.primary),
+            ),
           ),
         ),
       ),

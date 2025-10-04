@@ -13,7 +13,7 @@ class BuildPopularProducts extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Gaps.vGap10,
-          BuildHeaderTitle(title: tr('mostPopular')),
+          //BuildHeaderTitle(title: tr('mostPopular')),
           Flexible(
             child: SingleChildScrollView(
               padding: Dimens.paddingVertical10PX,

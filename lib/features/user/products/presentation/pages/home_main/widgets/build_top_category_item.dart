@@ -7,13 +7,13 @@ class BuildTopCategoriesItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () => AutoRouter.of(context).push(CategoryDetailsRoute(categoryModel: categoryModel,fromHome: true)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: 69, height: 69,
+             height: 69,
             padding: const EdgeInsets.all(7),
             decoration: BoxDecoration(
               color: context.colors.lightPink,
@@ -33,7 +33,11 @@ class BuildTopCategoriesItem extends StatelessWidget {
           Text(
             categoryModel.name,
             textAlign: TextAlign.center,
-            style: AppTextStyle.s12_w700(color: context.colors.black),
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+            style: AppTextStyle.s10_w700(
+              color: context.colors.black,
+            ),
           ),
         ],
       ),

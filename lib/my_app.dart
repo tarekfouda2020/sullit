@@ -73,7 +73,11 @@ class _MyAppState extends State<MyApp> {
                   routeInformationParser: _appRouter.defaultRouteParser(),
                   builder: EasyLoading.init(builder: (ctx, child) {
                     ScreenUtil.init(ctx);
-                    return NetworkBuilderView(child: child!);
+                    return NetworkLayerWidget(
+                    isNetworkConnected: state.model.isNetworkConnected,
+                    child: child!,
+                    );
+
                   }),
                 );
               });

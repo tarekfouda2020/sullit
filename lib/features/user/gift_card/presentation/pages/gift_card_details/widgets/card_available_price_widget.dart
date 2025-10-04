@@ -18,8 +18,10 @@ class CardAvailablePrice extends StatelessWidget {
              children: [
                Text(tr("remainAmount"), style: AppTextStyle.s22_w400(color: context.colors.black)),
                Gaps.hGap5,
-               Text(state.data!.price,
-                   style: AppTextStyle.s24_w700(color: context.colors.primary)),
+               DirhamPrice(
+                 amount: state.data!.price,
+                 textStyle: AppTextStyle.s24_w700(color: context.colors.primary),
+               ),
              ],
            );
          }else{

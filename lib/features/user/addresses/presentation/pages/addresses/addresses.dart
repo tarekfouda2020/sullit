@@ -22,7 +22,7 @@ class _AddressesState extends State<Addresses> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(title: tr('addresses')),
-      body : RefreshIndicator(
+      body : CustomRefreshIndicatorWidget(
         onRefresh: () => controller.getAddress(1),
         child: PagedListView<int, Address>(
           pagingController: controller.pagingController,

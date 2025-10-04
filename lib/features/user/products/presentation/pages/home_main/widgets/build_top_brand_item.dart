@@ -8,8 +8,7 @@ class BuildTopBrandItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () =>
-          AutoRouter.of(context).push(BrandDetailsRoute(brandId: brandModel.id)),
+      onTap: () => AutoRouter.of(context).push(BrandDetailsRoute(brandId: brandModel.id, brandName: brandModel.name)),
       child: Container(
         height: 60.h,
         width: MediaQuery.of(context).size.width,

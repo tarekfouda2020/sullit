@@ -17,7 +17,7 @@ class BuildSearchField extends StatelessWidget {
       validate: (value) => value?.noValidate(),
       hint: tr('searchCats'),
       onSubmit: () => controller.onPressSearch(context),
-      suffixIcon: InkWell(
+      suffixIcon: GestureDetector(
         onTap: () => controller.onPressSearch(context),
         child: Transform.scale(
           scale: 0.4,

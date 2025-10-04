@@ -17,7 +17,7 @@ class BuildRetrieveAddress extends StatelessWidget {
               Gaps.vGap15,
               Container(
                 padding: Dimens.paddingAll20PX,
-                decoration: CustomDecoration(),
+                decoration: const CustomDecoration(),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -36,17 +36,17 @@ class BuildRetrieveAddress extends StatelessWidget {
                 child: Container(
                   margin: Dimens.paddingVertical15PX,
                   padding: Dimens.paddingAll15PX,
-                  decoration: CustomDecoration(),
+                  decoration: const CustomDecoration(),
                   child: Column(
                     children: [
                       BuildAddressTitleItem(
                         title: tr('address'),
                         desc: state.data?.address ?? "",
                       ),
-                      BuildAddressTitleItem(
-                        title: tr('postalCode'),
-                        desc: state.data?.postalCode ?? "",
-                      ),
+                      // BuildAddressTitleItem(
+                      //   title: tr('postalCode'),
+                      //   desc: state.data?.postalCode ?? "",
+                      // ),
                       BuildAddressTitleItem(
                         title: tr('city'),
                         desc: state.data?.city?.name ?? "",
@@ -62,7 +62,19 @@ class BuildRetrieveAddress extends StatelessWidget {
                       BuildAddressTitleItem(
                         title: tr('phone'),
                         desc: state.data?.phone ?? "",
-                      )
+                      ),
+                      BuildAddressTitleItem(
+                        title: tr("streetName"),
+                        desc: state.data?.streetName ?? "",
+                      ),
+                      BuildAddressTitleItem(
+                        title: tr("buildingName"),
+                        desc: state.data?.buildingName ?? "",
+                      ),
+                      BuildAddressTitleItem(
+                        title: tr("flatNo"),
+                        desc: state.data?.flatNumber ?? "",
+                      ),
                     ],
                   ),
                 ),

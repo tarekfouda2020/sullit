@@ -23,7 +23,7 @@ class _VerifyRegisterState extends State<VerifyRegister> {
     return WillPopScope(
       onWillPop: () => controller.onBackPressed(context),
       child: Scaffold(
-        backgroundColor: context.colors.background,
+        backgroundColor: context.colors.customBackground,
         appBar:  DefaultAppBar(title: "",bgColor: Colors.transparent,
         onBack: () => controller.onBackPressed(context),
         ),

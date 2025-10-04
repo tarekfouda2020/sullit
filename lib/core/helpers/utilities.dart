@@ -48,6 +48,19 @@ class Utilities {
       return permission;
     }
   }
+
+  String cleanHtml(String html) {
+    return html
+        .replaceAll(RegExp(r'<span[^>]*>|</span>'), '')
+        .replaceAll(RegExp(r'<o:p>.*?</o:p>'), '')
+        .replaceAll(RegExp(r'style="[^"]*"'), '')
+        .replaceAll(RegExp(r'class="[^"]*"'), '')
+        .replaceAll(RegExp(r'<br\s*/?>'), '')
+        .replaceAll(RegExp(r'&nbsp;'), ' ')
+        .replaceAll(RegExp(r'\s+'), ' ')
+        .trim();
+  }
+
   String parseCurrency(String text) {
     BuildContext ctx = getIt<GlobalContext>().context();
     String lang = ctx.read<DeviceCubit>().state.model.locale.languageCode;
@@ -270,6 +283,34 @@ class Utilities {
       return phone;
     }
   }
+
+
+
+  String formatAmount(String amount) {
+    // Handle range case like "10.00 - 40.00"
+    if (amount.contains('-')) {
+      final values = amount.split('-').map((e) => e.trim()).toList();
+      if (values.length == 2) {
+        return '${_formatSingle(values[0])} - ${_formatSingle(values[1])}';
+      }
+    }
+
+    // Default: single number
+    return _formatSingle(amount);
+  }
+
+  String _formatSingle(String value) {
+    final parsed = double.tryParse(value.replaceAll(',', '')) ?? 0;
+    final intValue = parsed.toStringAsFixed(2);
+
+    final formattedInteger = intValue.replaceAllMapped(
+      RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+          (match) => '${match.group(1)},',
+    );
+
+    return formattedInteger;
+  }
+
 
 
   String convertDigitsToLatin(String s) {

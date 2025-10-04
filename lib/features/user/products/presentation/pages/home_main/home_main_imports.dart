@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/barcode_service.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
@@ -11,6 +13,7 @@ import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/home_domain_model.dart';
@@ -21,8 +24,16 @@ import 'package:flutter_tdd/features/user/products/domain/use_cases/get_product_
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_sku_product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/home_main/widgets/home_main_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/timer_entity.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import '../../../../../../core/models/domain_models/brand_domain_model.dart';
 import '../../../../../../core/widgets/my_scaffold.dart';
+import '../../../../category/domain/entities/brands_params.dart';
+import '../../../../category/domain/use_cases/get_brands.dart';
+import '../../../../sale/domain/use_cases/get_best_rated.dart';
+import '../../../../sale/domain/use_cases/get_new_arrival.dart';
+import '../../../../sale/domain/use_cases/get_on_sale.dart';
+import '../../../../sale/domain/use_cases/get_vip_offers.dart';
 
 part 'home_main.dart';
 part 'home_main_controller.dart';

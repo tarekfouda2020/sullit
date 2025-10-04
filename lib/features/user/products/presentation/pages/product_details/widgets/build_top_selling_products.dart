@@ -29,7 +29,7 @@ class BuildTopSellingProducts extends StatelessWidget {
               ),
               Flexible(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsetsDirectional.only(top: 10,bottom: 10,start: 15),
+                  padding: const EdgeInsetsDirectional.only(top: 10, bottom: 10, start: 15, end: 10),
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   child: Row(

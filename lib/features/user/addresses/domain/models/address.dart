@@ -2,7 +2,6 @@ import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/core/models/domain_models/city.dart';
 import 'package:flutter_tdd/core/models/domain_models/country.dart';
 import 'package:flutter_tdd/core/models/domain_models/state.dart';
-import 'package:flutter_tdd/features/user/addresses/domain/models/address_type_model.dart';
 
 class Address extends BaseDomainModel {
   int? id;

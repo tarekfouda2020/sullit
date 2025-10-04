@@ -4,12 +4,14 @@ class BuildSummaryHeader extends StatelessWidget {
   final String title;
   final String details;
   final Color? detailsColor;
+  final bool useDirhamPrice;
 
   const BuildSummaryHeader({
     super.key,
     required this.title,
     required this.details,
-     this.detailsColor,
+    this.detailsColor,
+    this.useDirhamPrice = false,
   });
 
   @override
@@ -23,10 +25,17 @@ class BuildSummaryHeader extends StatelessWidget {
             title,
             style: AppTextStyle.s14_w400(color: context.colors.black),
           ),
-          Text(
-            details,
-            style: AppTextStyle.s14_w600(color: detailsColor ?? context.colors.black),
-          ),
+          useDirhamPrice
+              ? DirhamPrice(
+                  amount: details,
+                  textStyle: AppTextStyle.s14_w600(color: detailsColor ?? context.colors.black),
+            currencyStyle: AppTextStyle.s16_w400(color: detailsColor ?? context.colors.black),
+            currencyOffset: 0,
+                )
+              : Text(
+                  details,
+                  style: AppTextStyle.s14_w600(color: detailsColor ?? context.colors.black),
+                ),
         ],
       ),
     );

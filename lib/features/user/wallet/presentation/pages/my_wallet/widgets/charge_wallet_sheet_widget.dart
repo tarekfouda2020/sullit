@@ -50,7 +50,7 @@ class ChargeWalletSheetWidget extends StatelessWidget {
               selectedItem: controller.walletTypeModel,
               onChange: (value) => controller.onChangeType(value),
               validate: (value) => validateDropDown(value),
-              contentPadding: const EdgeInsetsDirectional.only(start: 32,end: 29),
+              contentPadding: const EdgeInsetsDirectional.only(start: 12,end: 16),
             ),
             Gaps.vGap32,
             DefaultButton(

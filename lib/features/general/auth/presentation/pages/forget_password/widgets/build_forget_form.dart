@@ -20,7 +20,7 @@ class BuildForgetForm extends StatelessWidget {
             hint: tr("enterYourEmailHint"),
             hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
             fillColor: context.colors.white,
-            contentPadding: Dimens.paddingH32V16,
+            contentPadding: Dimens.paddingH12V16,
             enableBorderColor: context.colors.white,
             focusBorderColor: context.colors.borderColor,
             controller: forgetPasswordController.email,

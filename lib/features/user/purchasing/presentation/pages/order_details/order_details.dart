@@ -27,7 +27,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
       body: BlocBuilder<GenericBloc<Orders?>, GenericState<Orders?>>(
         bloc: controller.orderDetailsBloc,
         builder: (context, state) {
-          return RefreshIndicator(
+          return CustomRefreshIndicatorWidget(
             onRefresh: () async => await controller.getOrderDetails(widget.order.id),
             child: GenericListView(
               padding: Dimens.paddingHorizontal20PX,
@@ -38,7 +38,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 ),
                 Gaps.vGap12,
                 OrderDetailsSectionsTitleWidget(title: tr("products")),
-                Gaps.vGap8,
+                Gaps.vGap12,
                 OrderDetailsProductsWidget(
                   isReturned: widget.isReturnedOrder,
                   // hasReview: false,
@@ -47,9 +47,17 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 ),
                 Gaps.vGap12,
                 OrderDetailsSectionsTitleWidget(title: tr("invoiceSummary")),
-                Gaps.vGap8,
+                Gaps.vGap12,
                 OrderDetailsSummaryWidget(isReturned: widget.isReturnedOrder, order: state.data),
-                Gaps.vGap50
+                Gaps.vGap40,
+                Visibility(
+                  visible: state.data!.showButtonPay,
+                  child: DefaultButton(
+                    title: tr('completePayment'),
+                    onTap: () => controller.onPayOrder(context),
+                  ),
+                ),
+                Gaps.vGap20,
               ],
             ),
           );

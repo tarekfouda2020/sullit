@@ -21,7 +21,7 @@ class _ReturnOrdersState extends State<ReturnOrders> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(title: tr('returnedOrders'), showBack: true),
-      body: RefreshIndicator(
+      body: CustomRefreshIndicatorWidget(
         onRefresh: () => controller.getReturnOrders(1),
         child: PagedListView<int, Orders>(
           padding: Dimens.paddingAll15PX,
@@ -30,7 +30,7 @@ class _ReturnOrdersState extends State<ReturnOrders> {
             firstPageProgressIndicatorBuilder: (_) => const BuildLoadingOrders(),
             itemBuilder: (_, item, index) => ReturnOrdersItemWidget(order: item,controller: controller),
             noItemsFoundIndicatorBuilder: (cxt) {
-              return const BuildEmptyDataImage(enablePop: false,);
+              return const BuildEmptyDataImage();
             },
           ),
         ),

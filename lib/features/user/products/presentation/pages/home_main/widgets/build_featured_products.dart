@@ -12,7 +12,7 @@ class BuildFeaturedProducts extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        BuildHeaderTitle(title: tr('featuredProducts')),
+        //BuildHeaderTitle(title: tr('featuredProducts')),
         SizedBox(
           height: 220,
           child: SingleChildScrollView(
@@ -28,9 +28,7 @@ class BuildFeaturedProducts extends StatelessWidget {
                       padding: Dimens.paddingHorizontal5PX,
                       child: BuildProductItem(
                         productModel: featuredProducts[index],
-                        onFavRefresh: () => controller.onChangeFav(
-                          featuredProducts[index],
-                        ),
+                        onFavRefresh: () => controller.onChangeFav(featuredProducts[index],context),
                         onCompareRefresh: () {
                           featuredProducts[index].isAddedTCompare = featuredProducts[index].isAddedTCompare;
                           controller.homeCubit.onUpdateData(controller.homeCubit.state.data);

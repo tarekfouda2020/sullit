@@ -33,9 +33,12 @@ import 'package:flutter_tdd/features/user/products/domain/models/product_section
 import 'package:flutter_tdd/features/user/products/domain/models/slider_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/home_main/home_main_imports.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
+import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item_shimmer.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/timer_entity.dart';
 import 'package:flutter_tdd/features/user/sale/domain/models/flash_sale.dart';
 import 'package:flutter_tdd/res.dart';
+
+import '../../../../../category/presentation/pages/brands/widgets/brands_widgets_imports.dart';
 
 part 'build_best_rated.dart';
 part 'build_new_arrivals.dart';
@@ -64,3 +67,11 @@ part 'advantages_widget.dart';
 part 'categories_header_widget.dart';
 part 'vip_offers_widget.dart';
 part 'deals_count_down_widget.dart';
+part 'vip_offers_form_widget.dart';
+part 'new_arrival_offers_form_widget.dart';
+part 'product_sections_form_widget.dart';
+part 'on_sale_offers_form_widget.dart';
+part 'best_rated_offers_form_widget.dart';
+part 'build_header_title_shimmer_widget.dart';
+part 'build_home_main_offers_shimmer_widget.dart';
+part 'brands_from_widget.dart';

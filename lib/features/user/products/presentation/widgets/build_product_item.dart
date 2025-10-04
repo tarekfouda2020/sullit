@@ -7,7 +7,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
@@ -15,12 +14,12 @@ import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/core/widgets/loading_icon_widget.dart';
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/widgets/category_details_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
-import 'package:flutter_tdd/features/user/products/presentation/widgets/build_compare_item.dart';
 import 'package:flutter_tdd/res.dart';
 
 class BuildProductItem extends StatefulWidget {
@@ -30,6 +29,7 @@ class BuildProductItem extends StatefulWidget {
   final VoidCallback? afterAddToCart;
   final VoidCallback? onRefresh;
   final bool? showVipDiscount;
+  final EdgeInsetsDirectional? margin;
 
   const BuildProductItem({
     super.key,
@@ -39,6 +39,7 @@ class BuildProductItem extends StatefulWidget {
     this.showVipDiscount,
     this.afterAddToCart,
     this.onRefresh,
+    this.margin,
   });
 
   @override
@@ -51,6 +52,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: widget.margin ?? const EdgeInsets.all(0),
       width: 160,
       decoration: CustomDecoration(
           myBoxShadow: const [],
@@ -59,18 +61,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
             color: context.colors.greyWhite,
           )),
       child: InkWell(
-        onTap: () async {
-         var result =  await AutoRouter.of(context).push(
-            ProductDetailsRoute(
-              productId: widget.productModel.id!,
-              isResale: widget.productModel.isResale!,
-            ),
-          );
-         widget.onRefresh?.call();
-         // if(result == true){
-         //   widget.onRefresh?.call();
-         // }
-        },
+        onTap: () async  => await _routeToDetails(context),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -90,8 +81,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                   Visibility(
                     visible: widget.productModel.hasDiscount!,
                     replacement: Visibility(
-                        visible: (widget.showVipDiscount ?? false) &&
-                            widget.productModel.hasVipOffer!,
+                        visible: (widget.showVipDiscount ?? false) && widget.productModel.hasVipOffer!,
                         child: _discountWidget(context)),
                     child: _discountWidget(context),
                   ),
@@ -105,9 +95,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                             return Visibility(
                               visible: state.data,
                               replacement: BuildIconItem(
-                                icon: widget.productModel.isWishlist!
-                                    ? Res.favIcon
-                                    : Res.emptyFavIcon,
+                                icon: widget.productModel.isWishlist! ? Res.favIcon : Res.emptyFavIcon,
                                 changeBgColor: false,
                                 onTap: () => ProductsHelper().toggleFavourite(
                                   id: widget.productModel.id!,
@@ -163,7 +151,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                     ignoreGestures: true,
                     updateOnDrag: false,
                     itemCount: 5,
-                    itemSize: 15,
+                    itemSize: 13,
                     unratedColor: context.colors.deepGray,
                     itemBuilder: (context, _) => const Icon(
                       Icons.star_rounded,
@@ -179,31 +167,30 @@ class _BuildProductItemState extends State<BuildProductItem> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              widget.productModel.priceHighLowDiscount!.parseCurrency,
-                              // style: AppTextStyle.s11_bold(
-                              style: AppTextStyle.s14_w600(
-                                color: context.colors.primary,
-                              ),
+                            DirhamPrice(
+                              amount: widget.productModel.variant!.calculablePrice ?? "0.0",
+
                             ),
                             Gaps.vGap3,
                             Visibility(
-                              visible: widget.productModel.hasDiscount ??
-                                  false || (widget.showVipDiscount ?? false),
-                              child: Text(
-                                widget.productModel.priceHighLow!.parseCurrency,
-                                style: AppTextStyle.s12_w400(
-                                  color: context.colors.textColor,
-                                ).copyWith(
-                                  decoration: TextDecoration.lineThrough,
+                              visible: widget.productModel.hasDiscount ?? false || (widget.showVipDiscount ?? false),
+                              child: DirhamPrice(
+                                amount: widget.productModel.priceHighLow ?? "0.0",
+                                showMinus: true,
+                                currencyOffset: 1,
+                                color: context.colors.textColor,
+                                textStyle: TextStyle(
                                   overflow: TextOverflow.ellipsis,
+                                  decoration:  TextDecoration.lineThrough,
+                                  decorationColor: context.colors.textColor,
+                                  decorationThickness: 1.2,
                                 ),
                               ),
                             ),
                           ],
                         ),
                       ),
-                      InkWell(
+                      GestureDetector(
                         onTap: () => getIt<CartHelper>().addToCartDialog(
                           context,
                           widget.productModel,
@@ -221,8 +208,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                             Res.shopCart,
                             width: 14,
                             height: 14,
-                            colorFilter: ColorFilter.mode(
-                                context.colors.black, BlendMode.srcIn),
+                            colorFilter: ColorFilter.mode(context.colors.black, BlendMode.srcIn),
                           ),
                         ),
                       ),
@@ -251,6 +237,18 @@ class _BuildProductItemState extends State<BuildProductItem> {
         ),
       ),
     );
+  }
+
+  Future<void> _routeToDetails(BuildContext context) async {
+    await AutoRouter.of(context).push(
+      ProductDetailsRoute(
+        isFav: widget.productModel.isWishlist!,
+        productId: widget.productModel.id!,
+        isResale: widget.productModel.isResale!,
+      ),
+    );
+    widget.onRefresh?.call();
+    widget.onFavRefresh.call();
   }
 
   PositionedDirectional _discountWidget(BuildContext context) {

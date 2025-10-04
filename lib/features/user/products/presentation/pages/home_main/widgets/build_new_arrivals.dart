@@ -12,7 +12,7 @@ class BuildNewArrivals extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const BuildHeaderTitle(title: "New Arrivals"),
+        //const BuildHeaderTitle(title: "New Arrivals"),
         SizedBox(
           height: 220,
           child: SingleChildScrollView(
@@ -29,7 +29,7 @@ class BuildNewArrivals extends StatelessWidget {
                       child: BuildProductItem(
                         productModel: newArrivals[index],
                         onFavRefresh: () => controller.onChangeFav(
-                          newArrivals[index],
+                          newArrivals[index],context
                         ),
 
                       ),

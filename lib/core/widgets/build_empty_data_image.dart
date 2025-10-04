@@ -16,9 +16,7 @@ class BuildEmptyDataImage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         GestureDetector(
-          onTap: enablePop!
-              ?() => AutoRouter.of(context).pop()
-              :(){},
+          onTap:() => AutoRouter.of(context).pop(),
           child: Container(
             alignment: Alignment.center,
             child: Image.asset(

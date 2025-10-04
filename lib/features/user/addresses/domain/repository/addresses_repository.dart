@@ -3,7 +3,6 @@ import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/models/domain_models/city.dart';
 import 'package:flutter_tdd/core/models/domain_models/country.dart';
 import 'package:flutter_tdd/core/models/domain_models/state.dart';
-import 'package:flutter_tdd/features/user/addresses/data/models/address_type/address_type.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/entities/add_address_params.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/entities/edit_address_params.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart';
