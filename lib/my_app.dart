@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
               builder: (theme, darkTheme) {
                 return MaterialApp.router(
                   debugShowCheckedModeBanner: false,
-                  title: "Sullit",
+                  title: "MCOOP",
                   darkTheme: darkTheme,
                   theme: theme,
                   supportedLocales: const [Locale('en', 'US'), Locale('ar', 'EG'),Locale('bn', 'BD')],
