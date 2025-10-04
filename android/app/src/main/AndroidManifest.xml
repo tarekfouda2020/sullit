@@ -20,7 +20,8 @@
         android:fullBackupContent="false"
         android:label="MCOOP"
         android:name="${applicationName}"
-        android:icon="@mipmap/launcher_icon">
+        android:icon="@mipmap/launcher_icon"
+        android:extractNativeLibs="false">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBndNTAgAxPYhF2QxY4rxC9x7v1GKNp1W0" />
@@ -61,6 +62,10 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- Support for 16KB memory page sizes -->
+        <meta-data
+            android:name="android.app.lib_name"
+            android:value="flutter" />
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and

@@ -15,5 +15,6 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+- flutter build appbundle --release --no-tree-shake-icons
 
-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
+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
