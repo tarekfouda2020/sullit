@@ -2,6 +2,7 @@ import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/enum/track_order_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/order_driver_domain_model.dart';
 
 class Orders extends BaseDomainModel {
   int id;
@@ -41,6 +42,7 @@ class Orders extends BaseDomainModel {
   bool loyaltyPointsApplied;
   int loyaltyPoints;
   String loyaltyPointsValue;
+  OrderDriverDomainModel? driverModel;
 
   Orders({
     required this.id,
@@ -78,6 +80,7 @@ class Orders extends BaseDomainModel {
     required this.loyaltyPointsApplied,
     required this.loyaltyPoints,
     required this.totalItems,
+     this.driverModel,
   });
 
   int totalItemsCount() => orderDetails.fold(0, (previousValue, element) => previousValue + element.quantity);

@@ -84,6 +84,8 @@ mixin _$OrderModel {
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel> get orderDetails =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'driver')
+  OrderDriverModel? get driver => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -132,7 +134,10 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'loyalty_points_applied') bool loyaltyPointsApplied,
       @JsonKey(name: 'loyalty_points') int loyaltyPoints,
       @JsonKey(name: 'total_items') int totalItems,
-      @JsonKey(name: 'order_details') List<OrderDetailsModel> orderDetails});
+      @JsonKey(name: 'order_details') List<OrderDetailsModel> orderDetails,
+      @JsonKey(name: 'driver') OrderDriverModel? driver});
+
+  $OrderDriverModelCopyWith<$Res>? get driver;
 }
 
 /// @nodoc
@@ -183,6 +188,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? loyaltyPoints = null,
     Object? totalItems = null,
     Object? orderDetails = null,
+    Object? driver = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -325,7 +331,23 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.orderDetails
           : orderDetails // ignore: cast_nullable_to_non_nullable
               as List<OrderDetailsModel>,
+      driver: freezed == driver
+          ? _value.driver
+          : driver // ignore: cast_nullable_to_non_nullable
+              as OrderDriverModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OrderDriverModelCopyWith<$Res>? get driver {
+    if (_value.driver == null) {
+      return null;
+    }
+
+    return $OrderDriverModelCopyWith<$Res>(_value.driver!, (value) {
+      return _then(_value.copyWith(driver: value) as $Val);
+    });
   }
 }
 
@@ -372,7 +394,11 @@ abstract class _$$_OrderModelCopyWith<$Res>
       @JsonKey(name: 'loyalty_points_applied') bool loyaltyPointsApplied,
       @JsonKey(name: 'loyalty_points') int loyaltyPoints,
       @JsonKey(name: 'total_items') int totalItems,
-      @JsonKey(name: 'order_details') List<OrderDetailsModel> orderDetails});
+      @JsonKey(name: 'order_details') List<OrderDetailsModel> orderDetails,
+      @JsonKey(name: 'driver') OrderDriverModel? driver});
+
+  @override
+  $OrderDriverModelCopyWith<$Res>? get driver;
 }
 
 /// @nodoc
@@ -421,6 +447,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? loyaltyPoints = null,
     Object? totalItems = null,
     Object? orderDetails = null,
+    Object? driver = freezed,
   }) {
     return _then(_$_OrderModel(
       id: null == id
@@ -563,6 +590,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value._orderDetails
           : orderDetails // ignore: cast_nullable_to_non_nullable
               as List<OrderDetailsModel>,
+      driver: freezed == driver
+          ? _value.driver
+          : driver // ignore: cast_nullable_to_non_nullable
+              as OrderDriverModel?,
     ));
   }
 }
@@ -610,7 +641,8 @@ class _$_OrderModel extends _OrderModel {
       @JsonKey(name: 'loyalty_points') required this.loyaltyPoints,
       @JsonKey(name: 'total_items') required this.totalItems,
       @JsonKey(name: 'order_details')
-      required final List<OrderDetailsModel> orderDetails})
+      required final List<OrderDetailsModel> orderDetails,
+      @JsonKey(name: 'driver') this.driver})
       : _orderDetails = orderDetails,
         super._();
 
@@ -722,8 +754,12 @@ class _$_OrderModel extends _OrderModel {
   }
 
   @override
+  @JsonKey(name: 'driver')
+  final OrderDriverModel? driver;
+
+  @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, orderDetails: $orderDetails)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, orderDetails: $orderDetails, driver: $driver)';
   }
 
   @override
@@ -794,7 +830,8 @@ class _$_OrderModel extends _OrderModel {
             (identical(other.totalItems, totalItems) ||
                 other.totalItems == totalItems) &&
             const DeepCollectionEquality()
-                .equals(other._orderDetails, _orderDetails));
+                .equals(other._orderDetails, _orderDetails) &&
+            (identical(other.driver, driver) || other.driver == driver));
   }
 
   @JsonKey(ignore: true)
@@ -835,7 +872,8 @@ class _$_OrderModel extends _OrderModel {
         loyaltyPointsApplied,
         loyaltyPoints,
         totalItems,
-        const DeepCollectionEquality().hash(_orderDetails)
+        const DeepCollectionEquality().hash(_orderDetails),
+        driver
       ]);
 
   @JsonKey(ignore: true)
@@ -896,7 +934,8 @@ abstract class _OrderModel extends OrderModel {
       @JsonKey(name: 'loyalty_points') required final int loyaltyPoints,
       @JsonKey(name: 'total_items') required final int totalItems,
       @JsonKey(name: 'order_details')
-      required final List<OrderDetailsModel> orderDetails}) = _$_OrderModel;
+      required final List<OrderDetailsModel> orderDetails,
+      @JsonKey(name: 'driver') final OrderDriverModel? driver}) = _$_OrderModel;
   const _OrderModel._() : super._();
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
@@ -1000,6 +1039,9 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel> get orderDetails;
+  @override
+  @JsonKey(name: 'driver')
+  OrderDriverModel? get driver;
   @override
   @JsonKey(ignore: true)
   _$$_OrderModelCopyWith<_$_OrderModel> get copyWith =>

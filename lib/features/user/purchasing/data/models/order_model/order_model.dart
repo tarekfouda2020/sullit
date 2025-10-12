@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_details_model/order_details_model.dart';
+import 'package:flutter_tdd/features/user/purchasing/data/models/order_driver_model/order_driver_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -48,6 +49,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'loyalty_points') required int loyaltyPoints,
     @JsonKey(name: 'total_items') required int totalItems,
     @JsonKey(name: 'order_details') required List<OrderDetailsModel> orderDetails,
+    @JsonKey(name: 'driver') OrderDriverModel? driver,
   }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) =>
@@ -91,6 +93,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       loyaltyPointsApplied: loyaltyPointsApplied,
       loyaltyPoints: loyaltyPoints,
       totalItems: totalItems,
+      driverModel: driver?.toDomainModel(),
     );
   }
 }
