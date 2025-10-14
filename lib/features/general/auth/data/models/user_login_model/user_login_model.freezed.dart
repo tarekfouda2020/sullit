@@ -24,6 +24,7 @@ mixin _$UserLoginModel {
   String get key => throw _privateConstructorUsedError;
   @JsonKey(name: "msg")
   String get msg => throw _privateConstructorUsedError;
+  @UserDataConverter()
   @JsonKey(name: "data")
   UserDataModel? get data => throw _privateConstructorUsedError;
 
@@ -42,7 +43,7 @@ abstract class $UserLoginModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "key") String key,
       @JsonKey(name: "msg") String msg,
-      @JsonKey(name: "data") UserDataModel? data});
+      @UserDataConverter() @JsonKey(name: "data") UserDataModel? data});
 
   $UserDataModelCopyWith<$Res>? get data;
 }
@@ -104,7 +105,7 @@ abstract class _$$_UserLoginModelCopyWith<$Res>
   $Res call(
       {@JsonKey(name: "key") String key,
       @JsonKey(name: "msg") String msg,
-      @JsonKey(name: "data") UserDataModel? data});
+      @UserDataConverter() @JsonKey(name: "data") UserDataModel? data});
 
   @override
   $UserDataModelCopyWith<$Res>? get data;
@@ -149,7 +150,7 @@ class _$_UserLoginModel extends _UserLoginModel {
   const _$_UserLoginModel(
       {@JsonKey(name: "key") required this.key,
       @JsonKey(name: "msg") required this.msg,
-      @JsonKey(name: "data") this.data})
+      @UserDataConverter() @JsonKey(name: "data") this.data})
       : super._();
 
   factory _$_UserLoginModel.fromJson(Map<String, dynamic> json) =>
@@ -162,6 +163,7 @@ class _$_UserLoginModel extends _UserLoginModel {
   @JsonKey(name: "msg")
   final String msg;
   @override
+  @UserDataConverter()
   @JsonKey(name: "data")
   final UserDataModel? data;
 
@@ -202,7 +204,9 @@ abstract class _UserLoginModel extends UserLoginModel {
   const factory _UserLoginModel(
       {@JsonKey(name: "key") required final String key,
       @JsonKey(name: "msg") required final String msg,
-      @JsonKey(name: "data") final UserDataModel? data}) = _$_UserLoginModel;
+      @UserDataConverter()
+      @JsonKey(name: "data")
+      final UserDataModel? data}) = _$_UserLoginModel;
   const _UserLoginModel._() : super._();
 
   factory _UserLoginModel.fromJson(Map<String, dynamic> json) =
@@ -215,6 +219,7 @@ abstract class _UserLoginModel extends UserLoginModel {
   @JsonKey(name: "msg")
   String get msg;
   @override
+  @UserDataConverter()
   @JsonKey(name: "data")
   UserDataModel? get data;
   @override

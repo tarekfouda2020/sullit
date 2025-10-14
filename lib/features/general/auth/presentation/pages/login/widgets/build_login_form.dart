@@ -25,7 +25,7 @@ class BuildLoginForm extends StatelessWidget {
             fieldTypes: FieldTypes.normal,
             type: TextInputType.emailAddress,
             action: TextInputAction.next,
-            validate: (value) => value?.validateEmpty(),
+            validate: (value) => value?.validateEmail(),
             margin: Dimens.headerTitlePadding,
             radius: Dimens.borderRadius40PX,
           ),

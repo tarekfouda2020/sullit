@@ -16,7 +16,7 @@ class CategoriesController {
     if(result.isNotEmpty){
       result.first.isSelected = true;
       mainCategory=result.first;
-      getSideSubCategories(result.first.id, result.first.name);
+      // getSideSubCategories(result.first.id, result.first.name);
     }else{
       sideSubCatsCubit.onUpdateData([]);
     }

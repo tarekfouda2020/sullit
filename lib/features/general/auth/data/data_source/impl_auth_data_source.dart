@@ -29,7 +29,7 @@ class ImplAuthDataSource extends AuthDataSource {
       responseKey: (data) => data,
       requestBody: param.toJson(),
       showLoader: true,
-      // errorFunc: (data) => data["msg"],
+      errorFunc: (data) => data["msg"],
       toJsonFunc: (json) => UserLoginModel.fromJson(json),
     );
     return await GenericHttpImpl<UserLoginModel>()(model);
