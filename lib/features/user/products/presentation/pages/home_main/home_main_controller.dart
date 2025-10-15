@@ -117,7 +117,9 @@ class HomeMainController {
 
 
   Future<void> getProductWithSkuAndRoute(BuildContext context,String sku)async{
+    getIt<LoadingHelper>().showLoadingDialog();
    await  GetSkuProduct().call(sku).then((value) {
+     getIt<LoadingHelper>().dismissDialog();
      if(value!=null){
        AutoRouter.of(context).push(
            ProductDetailsRoute(
@@ -125,12 +127,18 @@ class HomeMainController {
             productId: value.product.id,
             isResale: value.product.isResale,
           ));
+     }else{
+       CustomToast.showSnakeBar(
+         // "${tr('productScanned')} code: $barcode",
+          tr("productNotFound"),
+         type: ToastType.error,
+       );
      }
    },);
   }
 
 
-  void scanProduct(BuildContext context)async{
+  Future<void> scanProduct(BuildContext context)async{
     String? barcode = await getIt<BarcodeService>().scanBarcode();
     if(barcode!=null && barcode.isNotEmpty){
           getProductWithSkuAndRoute(context,barcode);
@@ -158,7 +166,6 @@ class HomeMainController {
 
   void _synchronizeFavoriteStatus(Product item) {
     final newFavoriteStatus = !item.isWishlist!;
-    log("===============inside favorite============");
     for (var product in vipOffersCubit.state.data) {
       if (product.id == item.id) {
         product.isWishlist = newFavoriteStatus;

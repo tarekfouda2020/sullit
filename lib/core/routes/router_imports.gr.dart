@@ -514,7 +514,7 @@ class AppRouter extends _i98.RootStackRouter {
       );
     },
     AddNewAddressRoute.name: (routeData) {
-      return _i98.AdaptivePage<_i100.Address>(
+      return _i98.AdaptivePage<_i100.AddressDomainModel>(
         routeData: routeData,
         child: const _i38.AddNewAddress(),
         opaque: true,
@@ -523,7 +523,7 @@ class AppRouter extends _i98.RootStackRouter {
     AddressesRoute.name: (routeData) {
       final args = routeData.argsAs<AddressesRouteArgs>(
           orElse: () => const AddressesRouteArgs());
-      return _i98.AdaptivePage<_i100.Address>(
+      return _i98.AdaptivePage<_i100.AddressDomainModel>(
         routeData: routeData,
         child: _i39.Addresses(
           key: args.key,
@@ -534,7 +534,7 @@ class AppRouter extends _i98.RootStackRouter {
     },
     EditAddressRoute.name: (routeData) {
       final args = routeData.argsAs<EditAddressRouteArgs>();
-      return _i98.AdaptivePage<_i100.Address>(
+      return _i98.AdaptivePage<_i100.AddressDomainModel>(
         routeData: routeData,
         child: _i40.EditAddress(
           key: args.key,
@@ -2115,7 +2115,7 @@ class AddressesRouteArgs {
 class EditAddressRoute extends _i98.PageRouteInfo<EditAddressRouteArgs> {
   EditAddressRoute({
     _i101.Key? key,
-    required _i100.Address address,
+    required _i100.AddressDomainModel address,
   }) : super(
           EditAddressRoute.name,
           path: '/edit-address',
@@ -2136,7 +2136,7 @@ class EditAddressRouteArgs {
 
   final _i101.Key? key;
 
-  final _i100.Address address;
+  final _i100.AddressDomainModel address;
 
   @override
   String toString() {

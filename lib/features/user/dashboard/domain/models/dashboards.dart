@@ -6,7 +6,7 @@ class Dashboards extends BaseDomainModel {
   final int cartCount;
   final int wishlistCount;
   final int ordersCount;
-  Address? defaultAddress;
+  AddressDomainModel? defaultAddress;
   Packages? customerPackage;
 
   Dashboards({

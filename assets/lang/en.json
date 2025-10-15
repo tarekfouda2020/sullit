@@ -622,5 +622,8 @@
   "orderCreatedSuccess": "Your order has been created successfully. The payment status will remain Pending if you do not pay now.\nYou can complete the payment later from your (Purchased Orders) section.",
   "proceedToPayment": "Proceed To Payment",
   "addPurchases": "Add purchases to your cart at least with ",
-  "toCreateOrder": "to create your order"
+  "to_create_order": "to create your order",
+  "want_to_clear_your_cart": "Want to clear your cart?",
+  "camera": "Camera",
+  "pick": "Pick"
 }

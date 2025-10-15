@@ -15,13 +15,11 @@ class BuildSpecificationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final Color textColor = attributeValueModel.selected
-    //     ? context.colors.primary
-    //     : context.colors.black;
     return SubFilterItemWidget(
-        text: attributeValueModel.value, 
-        isSelected: attributeValueModel.selected,
-        onSelect: (val) => categoryDetailsController.onSelectAttributes(attributeIndex, position),
+      key: ValueKey('spec_${attributeValueModel.id}'),
+      text: attributeValueModel.value, 
+      isSelected: attributeValueModel.selected,
+      onSelect: (val) => categoryDetailsController.onSelectAttributes(attributeIndex, position),
     );
 
     // return Container(

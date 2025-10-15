@@ -7,7 +7,7 @@ class ShippingController {
 
   final GenericBloc<bool> refreshCubit = GenericBloc<bool>(true);
 
-  final PagingController<int, Address> pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, AddressDomainModel> pagingController = PagingController(firstPageKey: 1);
   int pageSize = 12;
 
 
@@ -35,7 +35,7 @@ class ShippingController {
     }
   }
 
-  void onSelectAddress(BuildContext context, Address address,) {
+  void onSelectAddress(BuildContext context, AddressDomainModel address,) {
     var auth = context.read<DeviceCubit>().state.model.auth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
@@ -53,14 +53,14 @@ class ShippingController {
   void onAddNewAddress(BuildContext context) async {
     var result = await AutoRouter.of(context).push(const AddNewAddressRoute());
     if (result != null) {
-      Address model = result as Address;
+      AddressDomainModel model = result as AddressDomainModel;
       pagingController.itemList!.add(model);
       // addressesBloc.onUpdateData(addressesBloc.state.data);
       refreshCubit.onUpdateData(true);
     }
   }
 
-  void onActiveAddress(BuildContext context, Address address,String phone) async {
+  void onActiveAddress(BuildContext context, AddressDomainModel address,String phone) async {
     await SetResendVerifyCode().call(phone);
     var result =  AutoRouter.of(context)
         .push(ActiveAccountRoute(phoneOrEmail: address.fullPhone!));
@@ -103,7 +103,7 @@ class ShippingController {
     );
   }
 
-  AddCartAddressParams _addCartAddressParams(Address address) {
+  AddCartAddressParams _addCartAddressParams(AddressDomainModel address) {
     return AddCartAddressParams(
       addressId: address.id!,
       showLoader: true

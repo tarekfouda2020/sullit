@@ -10,7 +10,7 @@ part 'address_model.g.dart';
 
 @freezed
 @immutable
-class AddressModel extends BaseApiModel<Address> with _$AddressModel {
+class AddressModel extends BaseApiModel<AddressDomainModel> with _$AddressModel {
   const AddressModel._();
 
   @JsonSerializable(explicitToJson: true)
@@ -33,6 +33,8 @@ class AddressModel extends BaseApiModel<Address> with _$AddressModel {
     @JsonKey(name: "street_name") required String streetName,
     @JsonKey(name: "building_name") required String buildingName,
     @JsonKey(name: "flat_number") required String flatNumber,
+    @JsonKey(name: "state_name") required String stateName,
+    @JsonKey(name: "city_name") required String cityName,
     @JsonKey(name: "selected",defaultValue: false)  bool? selected,
   }) = _AddressModel;
 
@@ -40,8 +42,8 @@ class AddressModel extends BaseApiModel<Address> with _$AddressModel {
       _$AddressModelFromJson(json);
 
   @override
-  Address toDomainModel() {
-    return Address(
+  AddressDomainModel toDomainModel() {
+    return AddressDomainModel(
       id: id,
       userId: userId,
       address: address,
@@ -62,6 +64,8 @@ class AddressModel extends BaseApiModel<Address> with _$AddressModel {
       buildingName: buildingName,
       flatNumber: flatNumber,
       selected: selected ?? false,
+      cityName: cityName,
+      stateName: stateName
     );
   }
 }

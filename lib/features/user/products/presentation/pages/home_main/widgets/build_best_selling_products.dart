@@ -43,6 +43,7 @@ class BuildBestSellingProducts extends StatelessWidget {
                           controller.homeCubit
                               .onUpdateData(controller.homeCubit.state.data);
                         },
+                        onRefresh: () => controller.getHome(context, refresh: true),
                       ),
                     );
                   },

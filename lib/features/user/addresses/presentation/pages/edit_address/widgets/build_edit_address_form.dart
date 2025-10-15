@@ -3,7 +3,7 @@ part of 'edit_address_w_imports.dart';
 class BuildEditAddressForm extends StatelessWidget {
   final EditAddressController controller;
 
-  final Address? address;
+  final AddressDomainModel? address;
 
   const BuildEditAddressForm(
       {Key? key, required this.controller, required this.address})
@@ -63,56 +63,74 @@ class BuildEditAddressForm extends StatelessWidget {
           BuildInputLabel(
             label: tr("state"),
           ),
-          BlocBuilder<GenericBloc<Country?>, GenericState<Country?>>(
-            bloc: controller.countryCubit,
-            builder: (context, state) {
-              return AbsorbPointer(
-                absorbing: state.data == null,
-                child: DropdownTextField<StateDomainModel>(
-                  itemAsString: (item) => item.name,
-                  fillColor: context.colors.white,
-                  textSize: 16.sp,
-                  title: tr('selectState'),
-                  margin: Dimens.paddingVertical10PX,
-                  hint: tr('selectState'),
-                  dropKey: controller.stateController,
-                  useName: true,
-                  onFind: (data) => controller.getStateByCountryId(context),
-                  fontSize: 16.sp,
-                  selectedItem: address?.state ?? controller.stateModel,
-                  onChange: (value) => controller.onChangeState(value),
-                  validate: (value) => validateDropDown(value),
-                ),
-              );
-            },
+          GenericTextField(
+            controller: controller.stateNameCtr,
+            fieldTypes: FieldTypes.clickable,
+            type: TextInputType.text,
+            action: TextInputAction.next,
+            validate: (value) => value?.validateEmpty(),
+            hint: tr("selectState"),
+            margin: Dimens.paddingVertical10PX,
           ),
+          // BlocBuilder<GenericBloc<Country?>, GenericState<Country?>>(
+          //   bloc: controller.countryCubit,
+          //   builder: (context, state) {
+          //     return AbsorbPointer(
+          //       absorbing: state.data == null,
+          //       child: DropdownTextField<StateDomainModel>(
+          //         itemAsString: (item) => item.name,
+          //         fillColor: context.colors.white,
+          //         textSize: 16.sp,
+          //         title: tr('selectState'),
+          //         margin: Dimens.paddingVertical10PX,
+          //         hint: tr('selectState'),
+          //         dropKey: controller.stateController,
+          //         useName: true,
+          //         onFind: (data) => controller.getStateByCountryId(context),
+          //         fontSize: 16.sp,
+          //         selectedItem: address?.state ?? controller.stateModel,
+          //         onChange: (value) => controller.onChangeState(value),
+          //         validate: (value) => validateDropDown(value),
+          //       ),
+          //     );
+          //   },
+          // ),
           BuildInputLabel(
             label: tr("city"),
           ),
-          BlocBuilder<GenericBloc<StateDomainModel?>,
-              GenericState<StateDomainModel?>>(
-            bloc: controller.stateCubit,
-            builder: (context, state) {
-              return AbsorbPointer(
-                absorbing: state.data == null,
-                child: DropdownTextField<City>(
-                  itemAsString: (item) => item.name,
-                  fillColor: context.colors.white,
-                  textSize: 16.sp,
-                  title: tr("selectCity"),
-                  margin: Dimens.paddingVertical10PX,
-                  hint: tr('selectCity'),
-                  dropKey: controller.cityController,
-                  useName: true,
-                  onFind: (data) => controller.getCitiesByStateId(),
-                  fontSize: 16.sp,
-                  selectedItem: address?.city ?? controller.cityModel,
-                  onChange: (value) => controller.onChangeCity(value),
-                  validate: (value) => validateDropDown(value),
-                ),
-              );
-            },
+          GenericTextField(
+            controller: controller.cityNameCtr,
+            fieldTypes: FieldTypes.clickable,
+            type: TextInputType.text,
+            action: TextInputAction.next,
+            validate: (value) => value?.validateEmpty(),
+            hint: tr("selectCity"),
+            margin: Dimens.paddingVertical10PX,
           ),
+          // BlocBuilder<GenericBloc<StateDomainModel?>,
+          //     GenericState<StateDomainModel?>>(
+          //   bloc: controller.stateCubit,
+          //   builder: (context, state) {
+          //     return AbsorbPointer(
+          //       absorbing: state.data == null,
+          //       child: DropdownTextField<City>(
+          //         itemAsString: (item) => item.name,
+          //         fillColor: context.colors.white,
+          //         textSize: 16.sp,
+          //         title: tr("selectCity"),
+          //         margin: Dimens.paddingVertical10PX,
+          //         hint: tr('selectCity'),
+          //         dropKey: controller.cityController,
+          //         useName: true,
+          //         onFind: (data) => controller.getCitiesByStateId(),
+          //         fontSize: 16.sp,
+          //         selectedItem: address?.city ?? controller.cityModel,
+          //         onChange: (value) => controller.onChangeCity(value),
+          //         validate: (value) => validateDropDown(value),
+          //       ),
+          //     );
+          //   },
+          // ),
           BuildInputLabel(
             label: tr("addressType"),
           ),
@@ -161,7 +179,9 @@ class BuildEditAddressForm extends StatelessWidget {
                 // validate: (value) => value?.validatePhone(),
                 hint: tr("phoneNumber"),
                 margin: Dimens.paddingVertical10PX,
-                prefixIcon: _buildPrefixIcon(context,state),
+                prefixIcon: PhoneFieldPrefixWidget(
+                  countryCubit: controller.countryCodeCubit,
+                ),
               );
             },
             ),

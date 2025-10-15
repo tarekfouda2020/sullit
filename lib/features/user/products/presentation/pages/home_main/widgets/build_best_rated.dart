@@ -28,7 +28,7 @@ class BuildBestRated extends StatelessWidget {
                       child: BuildProductItem(
                         productModel: bestRated[index],
                         onFavRefresh: () => controller.onChangeFav(bestRated[index],context),
-
+                        onRefresh: () => controller.getBestRatedOffers(refresh: true),
                       ),
                     );
                   },

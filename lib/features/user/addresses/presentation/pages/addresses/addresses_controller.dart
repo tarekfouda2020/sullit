@@ -1,9 +1,9 @@
 part of 'addresses_imports.dart';
 
 class AddressesController {
-  final GenericBloc<List<Address>> addressesBloc = GenericBloc([]);
+  final GenericBloc<List<AddressDomainModel>> addressesBloc = GenericBloc([]);
 
-  final PagingController<int, Address> pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, AddressDomainModel> pagingController = PagingController(firstPageKey: 1);
   int pageSize = 12;
 
  late final bool isFromReturn;
@@ -40,7 +40,7 @@ class AddressesController {
     );
   }
 
-  Future<void> deleteAddress(Address model) async {
+  Future<void> deleteAddress(AddressDomainModel model) async {
     var data = await SetDeleteAddress().call(model.id!);
     if (data) {
       CustomToast.showSimpleToast(
@@ -48,7 +48,7 @@ class AddressesController {
       getAddress(1);
     }
   }
-  void onActiveAddress(BuildContext context, Address address) async {
+  void onActiveAddress(BuildContext context, AddressDomainModel address) async {
     var result = await AutoRouter.of(context)
         .push(ActiveAccountRoute(phoneOrEmail: address.fullPhone!));
     if (result == true) {
@@ -67,7 +67,7 @@ class AddressesController {
     getAddress(1);
   }
 
-  void navigateToEditAddress(BuildContext context, Address model) async {
+  void navigateToEditAddress(BuildContext context, AddressDomainModel model) async {
     if(isFromReturn){
       AutoRouter.of(context).pop(model);
       return ;
@@ -78,7 +78,7 @@ class AddressesController {
     getAddress(1);
   }
 
-  void onSelectAddress(BuildContext context, Address address, bool? val) {
+  void onSelectAddress(BuildContext context, AddressDomainModel address, bool? val) {
     for (var e in addressesBloc.state.data) {
       e.selected = false;
     }

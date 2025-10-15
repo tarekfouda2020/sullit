@@ -92,7 +92,7 @@ class CustomInputDecoration extends InputDecoration {
   bool get filled => true;
 
   @override
-  Color get fillColor => customFillColor ?? Colors.transparent;
+  Color get fillColor => customFillColor ?? AppColors.noContextInstance.white;
 
   @override
   bool get alignLabelWithHint => true;

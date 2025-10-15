@@ -1,10 +1,15 @@
 part of 'category_details_widgets_imports.dart';
 
-class BuildFilterDrawer extends StatelessWidget {
+class BuildFilterDrawer extends StatefulWidget {
   final CategoryDetailsController categoryDetailsController;
 
   const BuildFilterDrawer({super.key, required this.categoryDetailsController});
 
+  @override
+  State<BuildFilterDrawer> createState() => _BuildFilterDrawerState();
+}
+
+class _BuildFilterDrawerState extends State<BuildFilterDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -13,7 +18,7 @@ class BuildFilterDrawer extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(Dimens.dp20),
         child: BlocBuilder<GenericBloc<SubCategory?>, GenericState<SubCategory?>>(
-          bloc: categoryDetailsController.specificationsCubit,
+          bloc: widget.categoryDetailsController.specificationsCubit,
           builder: (context, state) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -39,28 +44,26 @@ class BuildFilterDrawer extends StatelessWidget {
                 // Gaps.line(context.colors.gray, 10),
                 Divider(endIndent: 5, color: context.colors.gray, height: 10),
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        CustomPriceRangeWidget(
-                          rangeCubit: categoryDetailsController.rangeCubit,
-                        ),
-                        Divider(endIndent: 5, color: context.colors.gray, height: 15),
-                        BrandsFilterItem(controller: categoryDetailsController),
-                        ...List.generate(
-                          state.data!.attributes.length,
-                          (index) => BuildFilterItem(
-                            categoryDetailsController: categoryDetailsController,
-                            attributesModel: state.data!.attributes[index],
-                            index: index,
-                          ),
-                        ),
-                        // BuildColorFilter(
-                        //     subCategoryModel: state.data!,
-                        //     categoryDetailsController:
-                        //         categoryDetailsController),
-                      ],
-                    ),
+                  child: ListView.builder(
+                    itemCount: state.data!.attributes.length + 2,
+                    itemBuilder: (context, index) {
+                      if (index == 0) {
+                        return CustomPriceRangeWidget(
+                          rangeCubit: widget.categoryDetailsController.rangeCubit,
+                        );
+                      } else if (index == 1) {
+                        return BrandsFilterItem(controller: widget.categoryDetailsController);
+                      } else {
+                        final attrIndex = index - 2;
+                        final attribute = state.data!.attributes[attrIndex];
+                        return BuildFilterItem(
+                          key: ValueKey(attribute.id),
+                          categoryDetailsController: widget.categoryDetailsController,
+                          attributesModel: attribute,
+                          index: attrIndex,
+                        );
+                      }
+                    },
                   ),
                 ),
                 Gaps.vGap12,
@@ -72,7 +75,7 @@ class BuildFilterDrawer extends StatelessWidget {
                         height: 35.h,
                         title: tr('confirm'),
                         margin: EdgeInsets.zero,
-                        onTap: () => categoryDetailsController.confirmFilter(context),
+                        onTap: () => widget.categoryDetailsController.confirmFilter(context),
                         color: context.colors.primary,
                         borderRadius: Dimens.borderRadius30PX,
                         textColor: context.colors.white,
@@ -83,7 +86,7 @@ class BuildFilterDrawer extends StatelessWidget {
                     Gaps.hGap5,
                     Expanded(
                       child: GestureDetector(
-                        onTap: () => categoryDetailsController.resetFilter(context),
+                        onTap: () => widget.categoryDetailsController.resetFilter(context),
                         child: Text(
                           tr(
                             'reset',

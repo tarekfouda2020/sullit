@@ -74,7 +74,7 @@ class CartPaymentController {
   Future<void> createOrder(BuildContext context) async {
     if(shippingBloc.state.data?.summary.minimumOrderAmountStatus == false){
       CustomToast.showSimpleToast(
-        msg: "${tr("addPurchases")} ${shippingBloc.state.data?.summary.minimumOrderAmountAmount} ${"toCreateOrder"} ",
+        msg: "${tr("addPurchases")}/n${shippingBloc.state.data?.summary.minimumOrderAmountAmount} ${"toCreateOrder"} ",
         type: ToastType.error,
       );
       return ;

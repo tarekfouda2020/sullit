@@ -9,8 +9,6 @@ class BuildGoogleMapView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LocationCubit, LocationState>(
       builder: (context, state) {
-        print("=======================0000000=======>>>> state ${state.model?.lat}");
-        print("=======================0000000=======>>>> state ${state.model?.lng}");
         return Stack(
           alignment: Alignment.center,
           children: [
@@ -48,20 +46,22 @@ class BuildGoogleMapView extends StatelessWidget {
                   onCameraIdle: () {
                     locationAddressData.getLocationAddress(context);
                   },
-                  onTap: (location) {
+                  onTap: (location) async{
                     locationAddressData.locationModel = LocationEntity(
                       lat: location.latitude,
                       lng: location.longitude,
-                      address: "",
+                      address: await getIt<LocationService>().getAddress(location),
+                      fullAddress: await getIt<LocationService>().getFullAddress(location)
                     );
                     locationAddressData.getLocationAddress(context);
                   },
-                  onCameraMove: (loc) {
+                  onCameraMove: (loc) async{
                     if(loc.target.latitude > 0 && loc.target.longitude > 0){
                       locationAddressData.locationModel = LocationEntity(
                         lat: loc.target.latitude,
                         lng: loc.target.longitude,
-                        address: "",
+                        address: await getIt<LocationService>().getAddress(loc.target),
+                          fullAddress: await getIt<LocationService>().getFullAddress(loc.target)
                       );
                     }
                   }

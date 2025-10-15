@@ -13,10 +13,10 @@ class ShippingAddressListWidget extends StatelessWidget {
           child: BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.refreshCubit,
             builder: (context, state) {
-              return PagedListView<int, Address>(
+              return PagedListView<int, AddressDomainModel>(
                 pagingController: controller.pagingController,
                 padding: Dimens.paddingHorizontal20PX,
-                builderDelegate: PagedChildBuilderDelegate<Address>(
+                builderDelegate: PagedChildBuilderDelegate<AddressDomainModel>(
                   itemBuilder: (_, item, index) {
                     return BuildShippingAddressItem(
                       address: item,

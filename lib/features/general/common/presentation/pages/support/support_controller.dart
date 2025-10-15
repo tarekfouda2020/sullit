@@ -37,9 +37,9 @@ class SupportController {
   }
 
   Future<void> getImage(BuildContext context) async {
-    var image = await getIt<Utilities>().getImageFile(context);
+    var image = await FileHelper().pickImagesFiles(context,allowMulti: false);
     if (image != null) {
-      imageCubit.onUpdateData(image);
+      imageCubit.onUpdateData(image.first);
       var params = _msgParams();
       var result = await SendSupportMessages().call(params);
       msgCubit.onUpdateData(result);

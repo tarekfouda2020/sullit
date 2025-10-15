@@ -5,8 +5,8 @@ class EditAddressParams {
   String address;
   // String postalCode;
   int countryId;
-  int stateId;
-  int cityId;
+  String stateName;
+  String cityName;
   String phone;
   String countryCode;
   String streetName;
@@ -21,8 +21,8 @@ class EditAddressParams {
     required this.address,
     // required this.postalCode,
     required this.countryId,
-    required this.stateId,
-    required this.cityId,
+    required this.stateName,
+    required this.cityName,
     required this.phone,
     required this.countryCode,
     required this.lat,
@@ -37,8 +37,8 @@ class EditAddressParams {
     "address":  address,
     // "postal_code": postalCode,
     "country_id": countryId,
-    "state_id": stateId,
-    "city_id": cityId,
+    "state_name": stateName,
+    "city_name": cityName,
     "phone": phone,
     "country_code":countryCode,
     "street_name":streetName,

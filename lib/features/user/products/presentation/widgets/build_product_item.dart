@@ -168,7 +168,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             DirhamPrice(
-                              amount: widget.productModel.variant!.calculablePrice ?? "0.0",
+                              amount: widget.productModel.variant?.calculablePrice ?? "0.0",
 
                             ),
                             Gaps.vGap3,
@@ -247,8 +247,9 @@ class _BuildProductItemState extends State<BuildProductItem> {
         isResale: widget.productModel.isResale!,
       ),
     );
+    // Only call onRefresh to fetch fresh data from API
+    // Don't call onFavRefresh as it toggles local state without checking actual API state
     widget.onRefresh?.call();
-    widget.onFavRefresh.call();
   }
 
   PositionedDirectional _discountWidget(BuildContext context) {

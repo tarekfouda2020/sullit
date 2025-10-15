@@ -47,6 +47,7 @@ final ProductDetailsController controller;
                           onCompareRefresh: () => controller.onChangeCompare(
                             relatedProducts[index],
                           ),
+                          onRefresh: () => controller.getProductDetails(context, controller.productId, resetQty: false),
                         ),
                       ),
                     ),

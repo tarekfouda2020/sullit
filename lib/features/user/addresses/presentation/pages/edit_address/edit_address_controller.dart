@@ -20,9 +20,12 @@ class EditAddressController {
   final GenericBloc<Country?> countryCubit = GenericBloc(null);
   final GenericBloc<StateDomainModel?> stateCubit = GenericBloc(null);
   final GenericBloc<City?> cityCubit = GenericBloc(null);
-  final GenericBloc<package.Country?> countryCodeCubit = GenericBloc(null);
+  final GenericBloc<package.Country?> countryCodeCubit = GenericBloc(CountryPickerHelper.defaultCountrySync);
 
-  EditAddressController(Address address) {
+  final TextEditingController stateNameCtr = TextEditingController();
+  final TextEditingController cityNameCtr = TextEditingController();
+
+  EditAddressController(AddressDomainModel address) {
     addressController.text = address.address ?? "";
     postalCodeController.text = address.postalCode ?? "";
     phoneController.text = address.phone ?? "";
@@ -30,6 +33,8 @@ class EditAddressController {
     flatController.text = address.flatNumber ?? "";
     buildingController.text = address.buildingName ?? "";
     streetController.text = address.streetName ?? "";
+    stateNameCtr.text = address.state?.name ?? "";
+    cityNameCtr.text = address.city?.name ?? "";
     countryCodeCubit.onUpdateData(
       package.Country("", "", "", address.countryCode ?? ""),
     );
@@ -111,7 +116,7 @@ class EditAddressController {
     }
   }
 
-  Future<void> editAddress(BuildContext context, Address address) async {
+  Future<void> editAddress(BuildContext context, AddressDomainModel address) async {
     if (formKey.currentState!.validate()) {
       var params = _addressParams(address);
       var result = await SetEditAddress().call(params);
@@ -128,8 +133,11 @@ class EditAddressController {
 
   void routeToDetectLocation(BuildContext context)async{
     var result = await AutoRouter.of(context).push( LocationAddressRoute(fromEdit: true));
-    if(result != null){
-      locationController.text = result as String;
+    if(result != null && result is LocationEntity){
+      locationController.text = result.address;
+      streetController.text = result.fullAddress?.streetAddress ?? "";
+      stateNameCtr.text = result.fullAddress?.region ?? "";
+      cityNameCtr.text = result.fullAddress?.city ?? "";
     }
   }
 
@@ -141,14 +149,14 @@ class EditAddressController {
     locationController.text =  address;
   }
 
-  EditAddressParams _addressParams(Address address) {
+  EditAddressParams _addressParams(AddressDomainModel address) {
     return EditAddressParams(
       id: address.id ?? 0,
       address: addressController.text,
       // postalCode: postalCodeController.text,
       countryId: countryModel?.id ?? address.country!.id,
-      stateId: stateModel?.id ?? address.state!.id,
-      cityId: cityModel?.id ?? address.city!.id,
+      stateName: stateNameCtr.text,
+      cityName: cityNameCtr.text,
       phone: phoneController.text,
       countryCode: countryCodeCubit.state.data?.callingCode ?? "",
       lat: locationCubit.state.model!.lat,

@@ -16,6 +16,7 @@ class PhoneFieldPrefixWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () async {
+          return ;
           Country? country = await CountryPickerHelper.pickCountry(context);
           if (country != null) {
             countryCubit.onUpdateData(country);

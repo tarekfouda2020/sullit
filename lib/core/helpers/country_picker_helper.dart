@@ -91,7 +91,7 @@ class CountryPickerHelper {
     }
   }
 
-  static Country defaultCountrySync(){
+  static Country get defaultCountrySync{
     return const Country(
         "United Arab Emirates","flags/are.png","AE","+971"
     );

@@ -5,7 +5,7 @@ part of 'retrieve_order_imports.dart';
 class RetrieveOrderController {
   final GlobalKey<FormState> formKey = GlobalKey();
   final TextEditingController reasonController = TextEditingController();
-  final GenericBloc<Address?> addressCubit = GenericBloc(null);
+  final GenericBloc<AddressDomainModel?> addressCubit = GenericBloc(null);
   final GenericBloc<List<OrderDetails>> orderCubit = GenericBloc([]);
   late Orders orderModel;
   List<OrderDetails> selectedProducts = [];
@@ -44,7 +44,7 @@ class RetrieveOrderController {
   void navigateToAddresses(BuildContext context) async {
     var result = await AutoRouter.of(context).push( AddressesRoute(isFromReturn: true));
     if (result != null) {
-      Address addressModel = result as Address;
+      AddressDomainModel addressModel = result as AddressDomainModel;
       addressCubit.onUpdateData(addressModel);
       print(">>>>>${addressCubit.state.data?.toJson()}");
     }

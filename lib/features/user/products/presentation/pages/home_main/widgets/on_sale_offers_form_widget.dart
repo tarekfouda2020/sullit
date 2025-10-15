@@ -37,6 +37,7 @@ class OnSaleOffersFormWidget extends StatelessWidget {
                           margin: EdgeInsetsDirectional.only(end: index == length - 1 ? 0 : 8),
                           productModel: state.data[index],
                           onFavRefresh: () => controller.onChangeOnSaleOffersFav(state.data[index]),
+                          onRefresh: () => controller.getOnSaleOffers(refresh: true),
                         );
                       },
                     ),

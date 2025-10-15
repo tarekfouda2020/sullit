@@ -1,7 +1,7 @@
 part of 'edit_address_imports.dart';
 
 class EditAddress extends StatefulWidget {
-  final Address address;
+  final AddressDomainModel address;
 
   const EditAddress({Key? key, required this.address}) : super(key: key);
 

@@ -32,6 +32,7 @@ class _BestRatedState extends State<BestRated> {
         itemBuilder: (_, index, item) => BuildProductItem(
           productModel: item,
           onFavRefresh: () => controller.onChangeFav(item),
+          onRefresh: () => controller.getBestRated(refresh: true),
         ),
         loadingWidget: const BuildLoadingProductsGridView(),
         emptyWidget: const BuildEmptyDataView(),

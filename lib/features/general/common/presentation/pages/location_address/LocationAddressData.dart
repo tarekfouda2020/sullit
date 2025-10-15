@@ -8,7 +8,7 @@ class LocationAddressData {
   final Completer<GoogleMapController> controller = Completer();
 
   late LocationEntity locationModel;
-  final apiKey = "AIzaSyDIBH6mfPQ13UnF9aZtmaUQtuu-mQcxxb0";
+  // final apiKey = "AIzaSyDIBH6mfPQ13UnF9aZtmaUQtuu-mQcxxb0";
 
   LocationAddressData() {
     locationModel = LocationEntity(lat: 0, lng: 0, address: "");
@@ -29,7 +29,6 @@ class LocationAddressData {
       var currentLocation = await getIt<LocationService>().getCurrentLocation();
       LatLng? loc;
       if(model == null || model.lat == 0.0 || model.lng == 0.0){
-        print("currentLocation ====>>> ${currentLocation!.latitude} ${currentLocation.longitude}");
         locationModel = LocationEntity(lat: currentLocation!.latitude, lng: currentLocation.longitude);
         loc = LatLng(locationModel.lat, locationModel.lng);
       }else{
@@ -76,8 +75,8 @@ class LocationAddressData {
       CustomToast.showSimpleToast(msg: tr("selectLocationOnMap"));
       return;
     }
-    // context.read<LocationCubit>().onLocationUpdated(locationModel);
-    AutoRouter.of(context).pop(locationModel.address);
+    context.read<LocationCubit>().onLocationUpdated(locationModel);
+    AutoRouter.of(context).pop(locationModel);
   }
 
   Future<void> onPop(BuildContext context) async{

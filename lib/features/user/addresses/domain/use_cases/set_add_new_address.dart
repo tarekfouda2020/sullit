@@ -4,9 +4,9 @@ import 'package:flutter_tdd/features/user/addresses/domain/entities/add_address_
 import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/repository/addresses_repository.dart';
 
-class SetAddNewAddress implements UseCase<Address?, AddAddressParams> {
+class SetAddNewAddress implements UseCase<AddressDomainModel?, AddAddressParams> {
   @override
-  Future<Address?> call(AddAddressParams params) async {
+  Future<AddressDomainModel?> call(AddAddressParams params) async {
     var result = await getIt<AddressesRepository>().addNewAddress(params);
     return result.fold((l) => null, (r) => r);
   }

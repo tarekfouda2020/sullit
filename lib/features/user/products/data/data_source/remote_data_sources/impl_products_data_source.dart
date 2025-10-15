@@ -161,7 +161,6 @@ class ImplProductsDataSource extends ProductsDataSource {
       url: ApiNames.skuSearch(param),
       requestMethod: RequestMethod.get,
       responseType: ResType.type,
-      showLoader: true,
       responseKey: (data) => data["data"],
       toJsonFunc: (data) => ProductDetailsModel.fromJson(data),
     );

@@ -4,7 +4,7 @@ class ContactUsController {
   final GlobalKey<CustomButtonState> btnKey = GlobalKey();
   final GlobalKey<FormState> formKey = GlobalKey();
   final GenericBloc<String> contactUsCubit = GenericBloc("");
-  final GenericBloc<Country?> countryCubit = GenericBloc(CountryPickerHelper.defaultCountrySync() as Country?);
+  final GenericBloc<Country?> countryCubit = GenericBloc(CountryPickerHelper.defaultCountrySync as Country?);
   final GenericBloc<List<ContactUsSocialModel>> contactUsSocialCubit = GenericBloc<List<ContactUsSocialModel>>([]);
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();

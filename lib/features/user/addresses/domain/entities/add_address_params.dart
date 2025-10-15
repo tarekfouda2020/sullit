@@ -6,8 +6,8 @@ class AddAddressParams {
 
   // String postalCode;
   int countryId;
-  int stateId;
-  int cityId;
+  String stateId;
+  String cityId;
   String phone;
   String countryCode;
   double lat;
@@ -35,8 +35,8 @@ class AddAddressParams {
         "address": address,
         // "postal_code": postalCode,
         "country_id": countryId,
-        "state_id": stateId,
-        "city_id": cityId,
+        "state_name": stateId,
+        "city_name": cityId,
         "address_type": addressType,
         "phone": phone,
         "country_code": countryCode,

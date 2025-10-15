@@ -9,7 +9,7 @@ class BuildRetrieveAddress extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => controller.navigateToAddresses(context),
-      child: BlocBuilder<GenericBloc<Address?>, GenericState<Address?>>(
+      child: BlocBuilder<GenericBloc<AddressDomainModel?>, GenericState<AddressDomainModel?>>(
         bloc: controller.addressCubit,
         builder: (context, state) {
           return Column(

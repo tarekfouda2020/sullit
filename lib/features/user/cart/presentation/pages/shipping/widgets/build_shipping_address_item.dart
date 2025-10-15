@@ -3,7 +3,7 @@ part of 'shipping_widgets_imports.dart';
 class BuildShippingAddressItem extends StatelessWidget {
   final ShippingController controller;
 
-  final Address address;
+  final AddressDomainModel address;
 
   const BuildShippingAddressItem(
       {Key? key, required this.controller, required this.address})

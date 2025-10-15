@@ -5,7 +5,7 @@ import 'package:flutter_tdd/features/user/addresses/presentation/pages/addresses
 import 'package:flutter_tdd/features/user/addresses/presentation/pages/edit_address/edit_address_imports.dart';
 
 const List<AutoRoute> addressesRoute = [
-  AdaptiveRoute<Address>(page: AddNewAddress),
-  AdaptiveRoute<Address>(page: Addresses),
-  AdaptiveRoute<Address>(page: EditAddress),
+  AdaptiveRoute<AddressDomainModel>(page: AddNewAddress),
+  AdaptiveRoute<AddressDomainModel>(page: Addresses),
+  AdaptiveRoute<AddressDomainModel>(page: EditAddress),
 ];

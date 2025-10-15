@@ -44,6 +44,7 @@ class BuildTopSellingProducts extends StatelessWidget {
                             context,
                             topProducts[index],
                           ),
+                          onRefresh: () => controller.getProductDetails(context, controller.productId, resetQty: false),
                           // onCompareRefresh: () => controller.onChangeCompare(
                           //   topProducts[index],
                           // ),

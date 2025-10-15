@@ -19,6 +19,7 @@ import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/clear_cart.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/widgets/build_cart_stepper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
+import 'package:flutter_tdd/features/user/profile/presentation/pages/profile/widgets/profile_widgets_imports.dart';
 
 import 'widgets/cart_widgets_imports.dart';
 
