@@ -55,7 +55,7 @@ class InvoiceSummaryWidget extends StatelessWidget {
             visible: applyGiftCard,
             child: BuildSummaryHeader(
               title: tr("appliedGiftCard"),
-              details: shippingSummary.appliedGiftCard!,
+              details: shippingSummary.appliedGiftCard ?? "",
               detailsColor: context.colors.primary,
               useDirhamPrice: true,
               isDiscount: true,

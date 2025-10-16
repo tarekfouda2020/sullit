@@ -19,30 +19,26 @@ class BuildDeleteDialog extends StatelessWidget {
                 style: AppTextStyle.s14_w500(color: context.colors.black),
               ),
               Gaps.vGap16,
-              Row(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Flexible(
-                    child: DefaultButton(
-                      title: tr('cancel'),
-                      textColor: context.colors.black,
-                      height: 35.h,
-                      color: context.colors.greyWhite,
-                      // width: 100,
-                      borderColor: context.colors.white,
-                      borderRadius: Dimens.borderRadius30PX,
-                      onTap: () => Navigator.of(context).pop(),
-                    ),
+                  DefaultButton(
+                    title: tr('confirm'),
+                    height: 35.h,
+                    // width: 100,
+                    borderColor: context.colors.white,
+                    borderRadius: Dimens.borderRadius30PX,
+                    onTap: onPressConfirm,
                   ),
-                  Flexible(
-                    child: DefaultButton(
-                      title: tr('confirm'),
-                      height: 35.h,
-                      // width: 100,
-                      borderColor: context.colors.white,
-                      borderRadius: Dimens.borderRadius30PX,
-                      onTap: onPressConfirm,
-                    ),
+                  DefaultButton(
+                    title: tr('cancel'),
+                    textColor: context.colors.black,
+                    height: 35.h,
+                    color: context.colors.greyWhite,
+                    // width: 100,
+                    borderColor: context.colors.white,
+                    borderRadius: Dimens.borderRadius30PX,
+                    onTap: () => Navigator.of(context).pop(),
                   ),
                 ],
               ),
