@@ -46,7 +46,6 @@ class RetrieveOrderController {
     if (result != null) {
       AddressDomainModel addressModel = result as AddressDomainModel;
       addressCubit.onUpdateData(addressModel);
-      print(">>>>>${addressCubit.state.data?.toJson()}");
     }
   }
 

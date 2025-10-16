@@ -42,7 +42,7 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
             duration: const Duration(milliseconds: 100),
             child: Text(
               widget.productModel.name!,
-              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
               style: AppTextStyle.s16_w700(
                 color: context.colors.black,
               ),

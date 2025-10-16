@@ -72,9 +72,9 @@ class CartPaymentController {
   }
 
   Future<void> createOrder(BuildContext context) async {
-    if(shippingBloc.state.data?.summary.minimumOrderAmountStatus == false){
+    if(!_isExistMinimumAmount){
       CustomToast.showSimpleToast(
-        msg: "${tr("addPurchases")}/n${shippingBloc.state.data?.summary.minimumOrderAmountAmount} ${"toCreateOrder"} ",
+        msg: "${tr("addPurchases")}\n${shippingBloc.state.data?.summary.minimumOrderAmountAmount} ${tr("to_create_order")} ",
         type: ToastType.error,
       );
       return ;
@@ -304,6 +304,14 @@ class CartPaymentController {
   }
 
   Future<void> applyGiftCard(BuildContext context)async{
+    if(!_isExistMinimumAmount){
+      CustomToast.showSimpleToast(
+        msg: "${tr("addPurchases")}\n${shippingBloc.state.data?.summary.minimumOrderAmountAmount} ${"toCreateOrder"} ",
+        type: ToastType.error,
+      );
+      return ;
+    }
+
     if(giftCardFormKey.currentState!.validate()){
       FocusScope.of(context).unfocus();
       await ApplyGiftCard().call(ApplyGiftCardParams(giftCardCode: giftCardCode.text)).then((value) {
@@ -332,6 +340,11 @@ class CartPaymentController {
     HomeRoute(index: 0),
     predicate: (route) => false,
   );
+
+
+
+
+  bool get _isExistMinimumAmount => shippingBloc.state.data?.summary.minimumOrderAmountStatus == true;
 
 
 }

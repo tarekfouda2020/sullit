@@ -19,7 +19,9 @@ class ConfirmOrderSheetWidget extends StatelessWidget {
            ),
           Gaps.vGap12,
            Text(tr("orderCreatedSuccess"),
-            style: AppTextStyle.s15_w400(color: context.colors.black),
+            style: AppTextStyle.s15_w400(color: context.colors.black).copyWith(
+              height: 1.4
+            ),
           ),
          Gaps.vGap20,
            DefaultButton(

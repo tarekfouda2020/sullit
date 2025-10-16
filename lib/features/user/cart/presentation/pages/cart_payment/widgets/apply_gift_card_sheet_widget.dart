@@ -40,7 +40,6 @@ class ApplyGiftCardSheet extends StatelessWidget {
                   return InvoiceSummaryWidget(
                     controller: controller,
                     shippingSummary: state.data!.summary,
-                    giftCardTotal:state.data!.summary.appliedGiftCard != null? state.data!.summary.appliedGiftCard! : '',
                     applyGiftCard: state.data!.summary.appliedGiftCard != null,
                   );
                 },

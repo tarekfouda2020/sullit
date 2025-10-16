@@ -625,5 +625,6 @@
   "to_create_order": "to create your order",
   "want_to_clear_your_cart": "Want to clear your cart?",
   "camera": "Camera",
-  "pick": "Pick"
+  "pick": "Pick",
+  "saveLocation": "Save location"
 }
