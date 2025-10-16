@@ -130,6 +130,7 @@ class MoreController {
         route == MoreRoutes.privacyPolicy ||
         route == MoreRoutes.supportPolicy ||
         route == MoreRoutes.returnPolicy ||
+        route == MoreRoutes.contactUs ||
         route == MoreRoutes.language;
     if (isInShopBySection || isOtherSection) {
       return true;
