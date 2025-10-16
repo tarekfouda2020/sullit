@@ -38,11 +38,11 @@ class BuildShippingAddressItem extends StatelessWidget {
                   ),
                   BuildAddressTitleItem(
                     title: tr('city'),
-                    desc: address.city?.name ?? "",
+                    desc: address.cityName ?? "",
                   ),
                   BuildAddressTitleItem(
                     title: tr("state"),
-                    desc: address.state?.name ?? "",
+                    desc: address.stateName ?? "",
                   ),
                   BuildAddressTitleItem(
                     title: tr('country'),

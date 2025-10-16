@@ -120,8 +120,6 @@ class AddNewAddressController {
   Future<void> addNewAddress(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       var params = await _addressParams();
-      print("==============>>>>>>>>> params city ${params.cityId}<<<<<<<<==============");
-      print("==============>>>>>>>>>params state ${params.stateId}<<<<<<<<==============");
       var result = await SetAddNewAddress().call(params);
       if (result != null) {
         CustomToast.showSimpleToast(msg: tr("msgInfoAddedSuccess"),type: ToastType.success);
@@ -144,6 +142,8 @@ class AddNewAddressController {
       streetNameController.text = result.fullAddress?.streetAddress ?? "";
       stateNameCtr.text = result.fullAddress?.region ?? "";
       cityNameCtr.text = result.fullAddress?.city ?? "";
+      print("==============>>>>>>>>> state name ${result.fullAddress?.region}<<<<<<<<==============");
+      print("==============>>>>>>>>>city name ${cityNameCtr.text}<<<<<<<<==============");
     }
   }
 

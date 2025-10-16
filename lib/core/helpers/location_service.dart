@@ -45,6 +45,10 @@ class LocationService {
     try {
       var address = await geoCode.reverseGeocoding(latitude: latLng.latitude, longitude: latLng.longitude);
       // var data = " ${setCountryName ? address.countryName??"" : ""}  ${address.city??""}  ${address.region??""}  ${address.streetAddress??""}";
+    print("=========>>>>> address${address.city}<<<<<<<<,=========");
+    print("=========>>>>> address ${address.region}<<<<<<<<,=========");
+    print("=========>>>>> address ${address.streetAddress}<<<<<<<<,=========");
+    print("=========>>>>> address ${address.streetNumber}<<<<<<<<,=========");
       return address;
     } catch (e) {
       return null;
