@@ -21,7 +21,7 @@ class ContactUsFormWidget extends StatelessWidget {
             type: TextInputType.text,
             action: TextInputAction.next,
             fillColor: context.colors.white,
-            validate: (value) => value?.validateName(),
+            validate: (value) => value?.validateEmpty(),
             hint: tr('userName'),
             margin: Dimens.marginTop5Bottom12,
           ),
