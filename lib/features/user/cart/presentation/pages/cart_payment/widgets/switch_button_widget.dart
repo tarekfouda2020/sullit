@@ -2,13 +2,11 @@ part of 'cart_payment_widgets_imports.dart';
 
 class SwitchButtonWidget extends StatelessWidget {
   final GenericBloc<bool> switchBloc;
-  final CartPaymentController controller;
   final void Function(bool value) onToggle;
 
   const SwitchButtonWidget({
     super.key,
     required this.switchBloc,
-    required this.controller,
     required this.onToggle,
   });
 

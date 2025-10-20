@@ -42,24 +42,24 @@ class BuildEditAddressForm extends StatelessWidget {
             fillColor: context.colors.white,
             margin: Dimens.paddingVertical10PX,
           ),
-          BuildInputLabel(
-            label: tr("country"),
-          ),
-          DropdownTextField<Country>(
-            itemAsString: (item) => (item).name,
-            fillColor: context.colors.white,
-            textSize: 16.sp,
-            title: tr('selectCountry'),
-            margin: Dimens.paddingVertical10PX,
-            hint: tr('selectCountry'),
-            dropKey: controller.countryController,
-            useName: true,
-            onFind: (data) => controller.getCountries(),
-            fontSize: 16.sp,
-            selectedItem: address?.country ?? controller.countryModel,
-            onChange: (value) => controller.onChangeCountry(value),
-            validate: (value) => validateDropDown(value),
-          ),
+          // BuildInputLabel(
+          //   label: tr("country"),
+          // ),
+          // DropdownTextField<Country>(
+          //   itemAsString: (item) => (item).name,
+          //   fillColor: context.colors.white,
+          //   textSize: 16.sp,
+          //   title: tr('selectCountry'),
+          //   margin: Dimens.paddingVertical10PX,
+          //   hint: tr('selectCountry'),
+          //   dropKey: controller.countryController,
+          //   useName: true,
+          //   onFind: (data) => controller.getCountries(),
+          //   fontSize: 16.sp,
+          //   selectedItem: address?.country ?? controller.countryModel,
+          //   onChange: (value) => controller.onChangeCountry(value),
+          //   validate: (value) => validateDropDown(value),
+          // ),
           BuildInputLabel(
             label: tr("state"),
           ),
@@ -159,33 +159,7 @@ class BuildEditAddressForm extends StatelessWidget {
           //   validate: (value) => value?.validateEmpty(),
           //   label: tr("postalCode"),
           // ),
-          BuildInputLabel(
-            label: tr("phoneNumber"),
-          ),
-          BlocProvider.value(
-            value: controller.countryCodeCubit,
-            child: BlocBuilder<GenericBloc<package.Country?>,
-                GenericState<package.Country?>>(
-              builder: (context, state) {
-              return  GenericTextField(
-                controller: controller.phoneController,
-                fieldTypes: FieldTypes.normal,
-                fillColor: context.colors.white,
-                type: TextInputType.number,
-                action: TextInputAction.done,
-                validate: (value) =>
-                    ((state.data?.callingCode ?? "") + (value ?? ""))
-                        .validatePhone(),
-                // validate: (value) => value?.validatePhone(),
-                hint: tr("phoneNumber"),
-                margin: Dimens.paddingVertical10PX,
-                prefixIcon: PhoneFieldPrefixWidget(
-                  countryCubit: controller.countryCodeCubit,
-                ),
-              );
-            },
-            ),
-          ),
+
           // BlocBuilder<GenericBloc<package.Country?>, GenericState<package.Country?>>(
           //   bloc: controller.countryCodeCubit,
           //   builder: (context, state) {
@@ -236,7 +210,7 @@ class BuildEditAddressForm extends StatelessWidget {
             margin: Dimens.paddingVertical10PX,
             action: TextInputAction.next,
             validate: (value) => value?.validateEmpty(),
-            hint: "street name",
+            hint: tr("streetName"),
           ),
           BuildInputLabel(
             label: tr("buildingName"),
@@ -249,7 +223,7 @@ class BuildEditAddressForm extends StatelessWidget {
             margin: Dimens.paddingVertical10PX,
             action: TextInputAction.next,
             validate: (value) => value?.validateEmpty(),
-            hint: "building name",
+            hint:tr("buildingName"),
           ),
           BuildInputLabel(
             label: tr("flatNo"),
@@ -262,71 +236,38 @@ class BuildEditAddressForm extends StatelessWidget {
             margin: Dimens.paddingVertical10PX,
             action: TextInputAction.next,
             validate: (value) => value?.validateEmpty(),
-            label: "flat No:",
+            hint: tr("flatNo"),
+          ),
+          BuildInputLabel(
+            label: tr("phoneNumber"),
+          ),
+          BlocProvider.value(
+            value: controller.countryCodeCubit,
+            child: BlocBuilder<GenericBloc<package.Country?>,
+                GenericState<package.Country?>>(
+              builder: (context, state) {
+                return  GenericTextField(
+                  controller: controller.phoneController,
+                  fieldTypes: FieldTypes.normal,
+                  fillColor: context.colors.white,
+                  type: TextInputType.number,
+                  action: TextInputAction.done,
+                  validate: (value) =>
+                      ((state.data?.callingCode ?? "") + (value ?? ""))
+                          .validatePhone(),
+                  // validate: (value) => value?.validatePhone(),
+                  hint: tr("phoneNumber"),
+                  margin: Dimens.paddingVertical10PX,
+                  prefixIcon: PhoneFieldPrefixWidget(
+                    countryCubit: controller.countryCodeCubit,
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildPrefixIcon(BuildContext context, GenericState<package.Country?> state) {
-    return GestureDetector(
-      onTap: () => controller.showCountryCode(context),
-      child: Visibility(
-        visible: state.data != null,
-        replacement: Padding(
-          padding: const EdgeInsetsDirectional.only(start: 23,top: 16,end: 17),
-          child: Text(
-            tr("selectCountry"),
-            style: AppTextStyle.s14_w400(color: context.colors.black),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsetsDirectional.only(start: 23),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if(state.data?.flag != null && state.data!.flag.isNotEmpty)
-                Image.asset(
-                  state.data!.flag,
-                  width: 25,
-                  height: 25,
-                  package: "country_calling_code_picker",
-                  errorBuilder: (context, error, stackTrace) => Container(
-                    width: 25,
-                    height: 25,
-                    decoration: BoxDecoration(
-                      color: context.colors.grey,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Icon(
-                      Icons.flag,
-                      size: 16,
-                      color: context.colors.white,
-                    ),
-                  ),
-                ),
-              Gaps.hGap5,
-              Flexible(
-                child: Text(
-                  state.data?.callingCode ?? "",
-                  style: AppTextStyle.s14_w400(color: context.colors.black),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              if(state.data?.callingCode != null && state.data!.callingCode.isNotEmpty)
-                Gaps.hGap5,
-              if(state.data?.callingCode != null && state.data!.callingCode.isNotEmpty)
-                Icon(
-                  Icons.keyboard_arrow_down_rounded,
-                  color: context.colors.black,
-                  size: 20,
-                ),
-              Gaps.hGap10,
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 }

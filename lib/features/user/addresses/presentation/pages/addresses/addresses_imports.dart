@@ -5,6 +5,8 @@ import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/location_service.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
@@ -14,6 +16,7 @@ import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/use_cases/get_addresses.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/use_cases/set_delete_address.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'widgets/addresses_widgets_imports.dart';

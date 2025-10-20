@@ -244,13 +244,13 @@ class Utilities {
     return storagePath;
   }
 
-  Future<String> getAddress(LatLng latLng, BuildContext context) async {
+  Future<String> getAddress(LatLng latLng, BuildContext context,{bool showCountryName = true}) async {
     GeoCode geoCode = GeoCode(apiKey: "554640628686038400400x13810");
     try {
       var address = await geoCode.reverseGeocoding(
           latitude: latLng.latitude, longitude: latLng.longitude);
       var data =
-          "${address.countryName ?? ""}  ${address.city ?? ""}  ${address.region ?? ""}  ${address.streetAddress ?? ""}";
+          "${showCountryName ? address.countryName ?? "" : ""}  ${address.city ?? ""}  ${address.region ?? ""}  ${address.streetAddress ?? ""}";
       return data;
     } catch (e) {
       return "";

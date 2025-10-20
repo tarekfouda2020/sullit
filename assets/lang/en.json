@@ -626,5 +626,7 @@
   "want_to_clear_your_cart": "Want to clear your cart?",
   "camera": "Camera",
   "pick": "Pick",
-  "saveLocation": "Save location"
+  "saveLocation": "Save location",
+  "countryLocation": "Please select location inside UAE",
+  "allowReplacement": "Would you like to allow product replacements if any items become unavailable during processing?"
 }

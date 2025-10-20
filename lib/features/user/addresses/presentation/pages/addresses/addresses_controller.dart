@@ -8,8 +8,8 @@ class AddressesController {
 
  late final bool isFromReturn;
   AddressesController(bool fromReturn) {
+    getAddress(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
-      getAddress(pageKey, refresh: false);
       getAddress(pageKey);
     });
     isFromReturn = fromReturn;
@@ -45,6 +45,10 @@ class AddressesController {
     if (data) {
       CustomToast.showSimpleToast(
           msg: tr('addressDeleted'), type: ToastType.success);
+      pagingController.itemList?.remove(model);
+      pagingController.itemList = [
+        ...?pagingController.itemList
+      ];
       getAddress(1);
     }
   }

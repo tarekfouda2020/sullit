@@ -53,6 +53,7 @@ class BuildNewAddressItem extends StatelessWidget {
                     title: tr("state"),
                     desc: address.stateName ?? "",
                   ),
+                  if(address.country!=null)
                   BuildAddressTitleItem(
                     title: tr('country'),
                     desc: address.country?.name ?? "",

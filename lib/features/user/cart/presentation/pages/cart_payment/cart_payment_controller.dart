@@ -15,6 +15,7 @@ class CartPaymentController {
   final GenericBloc<bool> conditionsCubit = GenericBloc(false);
   final GenericBloc<bool> isWalletSelected = GenericBloc(false);
   final GenericBloc<bool> applyPointsSwitchCubit = GenericBloc(false);
+  final GenericBloc<bool> allowReplacementCubit = GenericBloc(false);
   final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc =
   GenericBloc(null);
   String? selectedPayment;
@@ -83,6 +84,7 @@ class CartPaymentController {
       // _checkPayMethodSel();
       if (isWalletSelectedAndBalanceEnough()) {
         var params = _orderParams();
+        log("=======>>> allow replacement ${params.allowReplacement} <<<<<<<======");
         var data = await CreateOrder().call(params);
         if (data != null) {
           if (data.transactionUrl != null) {
@@ -221,6 +223,7 @@ class CartPaymentController {
       paymentOption: selectedPayment ?? "",
       additionalInfo: additionalInfo.text,
       giftCardCode: giftCardCode.text.trim(),
+      allowReplacement: allowReplacementCubit.state.data ? 1 : 0
     );
   }
 

@@ -28,10 +28,11 @@ class _LocationAddress extends State<LocationAddress> {
           icon: Icon(Icons.arrow_back, color: context.colors.black),
           onPressed: () => locationAddressData.onPop(context),
         ),
-        title: BlocBuilder<LocationCubit,LocationState>(
+        title: BlocBuilder<GenericBloc<String>,GenericState<String>>(
+          bloc: locationAddressData.titleBloc,
           builder: (context,state){
             return Text(
-              state.model!.address,
+              state.data,
               style: AppTextStyle.s12_w500(color: context.colors.black),
             );
           },

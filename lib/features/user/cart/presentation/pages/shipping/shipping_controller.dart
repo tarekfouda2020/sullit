@@ -62,7 +62,7 @@ class ShippingController {
 
   void onActiveAddress(BuildContext context, AddressDomainModel address,String phone) async {
     await SetResendVerifyCode().call(phone);
-    var result =  AutoRouter.of(context)
+    var result = await AutoRouter.of(context)
         .push(ActiveAccountRoute(phoneOrEmail: address.fullPhone!));
     if (result == true) {
       address.isActive = true;

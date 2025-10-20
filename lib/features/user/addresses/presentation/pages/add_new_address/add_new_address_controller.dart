@@ -17,7 +17,7 @@ class AddNewAddressController {
   final TextEditingController cityNameCtr = TextEditingController();
 
 
-  final GlobalKey<DropdownSearchState> countryController = GlobalKey();
+  // final GlobalKey<DropdownSearchState> countryController = GlobalKey();
   final GlobalKey<DropdownSearchState> stateController = GlobalKey();
   final GlobalKey<DropdownSearchState> cityController = GlobalKey();
   final GlobalKey<DropdownSearchState> addressTypeKey = GlobalKey();
@@ -144,6 +144,8 @@ class AddNewAddressController {
       cityNameCtr.text = result.fullAddress?.city ?? "";
       print("==============>>>>>>>>> state name ${result.fullAddress?.region}<<<<<<<<==============");
       print("==============>>>>>>>>>city name ${cityNameCtr.text}<<<<<<<<==============");
+    }else{
+      print("==============>>>>>>>>> type $result <<<<<<<<==============");
     }
   }
 
@@ -155,7 +157,7 @@ class AddNewAddressController {
       addressType: addressTypeModel!.key,
       // postalCode: postalCodeController.text,
       // postalCode: await getPostalCode(),
-      countryId: countryModel!.id,
+      countryId: countryModel?.id,
       stateId: stateNameCtr.text,
       cityId: cityNameCtr.text,
       phone: phoneController.text,

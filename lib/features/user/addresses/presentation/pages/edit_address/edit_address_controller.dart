@@ -33,11 +33,10 @@ class EditAddressController {
     flatController.text = address.flatNumber ?? "";
     buildingController.text = address.buildingName ?? "";
     streetController.text = address.streetName ?? "";
-    stateNameCtr.text = address.state?.name ?? "";
-    cityNameCtr.text = address.city?.name ?? "";
-    countryCodeCubit.onUpdateData(
-      package.Country("", "", "", address.countryCode ?? ""),
-    );
+    // stateNameCtr.text = address.state?.name ?? "";
+    // cityNameCtr.text = address.city?.name ?? "";
+    stateNameCtr.text = address.stateName ?? "";
+    cityNameCtr.text = address.cityName ?? "";
     addressTypeModel =  AddressTypeModel(
         key: address.addressType ?? "",
         label: address.addressTypeLabel ?? ""
@@ -154,7 +153,7 @@ class EditAddressController {
       id: address.id ?? 0,
       address: addressController.text,
       // postalCode: postalCodeController.text,
-      countryId: countryModel?.id ?? address.country!.id,
+      // countryId: countryModel?.id ?? address.country!.id,
       stateName: stateNameCtr.text,
       cityName: cityNameCtr.text,
       phone: phoneController.text,

@@ -50,6 +50,8 @@ class _CartPaymentState extends State<CartPayment> {
                           giftCardTotal: state.data!.summary.appliedGiftCard != null? state.data!.summary.appliedGiftCard! : '',
                           applyGiftCard: state.data!.summary.appliedGiftCard != null,
                         ),
+                        Gaps.vGap10,
+                        AllowReplacementWidget(controller: controller),
                         BuildConditions(controller: controller),
                         // BuildSummary(
                         //   controller: controller,

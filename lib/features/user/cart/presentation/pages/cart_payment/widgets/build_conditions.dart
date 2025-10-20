@@ -7,62 +7,29 @@ class BuildConditions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: Dimens.dp10),
-      child: Row(
-        children: [
-          BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-            bloc: controller.conditionsCubit,
-            builder: (_, state) {
-              return SizedBox(
-                width: 19, height: 19,
-                child: Checkbox(
-                  checkColor: context.colors.white,
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  activeColor: context.colors.primary,
-                  fillColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
-                    if (states.contains(WidgetState.disabled)) {
-                      return context.colors.white;
-                    }
-                    if (states.contains(WidgetState.selected)) {
-                      return context.colors.primary;
-                    }
-                    return Colors.transparent;
-                  }),
-                  value: state.data,
-                  onChanged: (value) => controller.conditionsCubit.onUpdateData(value!),
-                  side: BorderSide(
-                    color: context.colors.textColor,
-                    width: 1,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: Dimens.borderRadius4PX,
-                  ),
+    return Row(
+      children: [
+        CustomCheckBoxWidget(changeValueCubit: controller.conditionsCubit),
+        Gaps.hGap4,
+        Expanded(
+          child: Row(
+            children: [
+              Text(
+                tr("agreeTo"),
+                style: AppTextStyle.s14_w400(color: context.colors.textColor),
+              ),
+              Gaps.hGap5,
+              GestureDetector(
+                onTap: () => AutoRouter.of(context).push(const TermsRoute()),
+                child: Text(
+                  tr('rulesAndConditions'),
+                  style: AppTextStyle.s14_w700(color: context.colors.black),
                 ),
-              );
-            },
+              ),
+            ],
           ),
-          Gaps.hGap4,
-          Expanded(
-            child: Row(
-              children: [
-                Text(
-                  tr("agreeTo"),
-                  style: AppTextStyle.s14_w400(color: context.colors.textColor),
-                ),
-                Gaps.hGap5,
-                GestureDetector(
-                  onTap: () => AutoRouter.of(context).push(const TermsRoute()),
-                  child: Text(
-                    tr('rulesAndConditions'),
-                    style: AppTextStyle.s14_w700(color: context.colors.black),
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 }

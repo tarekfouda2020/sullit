@@ -4,7 +4,7 @@ class EditAddressParams {
   int id ;
   String address;
   // String postalCode;
-  int countryId;
+  int? countryId;
   String stateName;
   String cityName;
   String phone;
@@ -20,7 +20,7 @@ class EditAddressParams {
     required this.id,
     required this.address,
     // required this.postalCode,
-    required this.countryId,
+     this.countryId,
     required this.stateName,
     required this.cityName,
     required this.phone,
@@ -36,7 +36,7 @@ class EditAddressParams {
   Map<String, dynamic> toJson() => {
     "address":  address,
     // "postal_code": postalCode,
-    "country_id": countryId,
+   if(countryId!=null) "country_id": countryId,
     "state_name": stateName,
     "city_name": cityName,
     "phone": phone,

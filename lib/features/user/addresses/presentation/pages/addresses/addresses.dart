@@ -19,6 +19,7 @@ class _AddressesState extends State<Addresses> {
 
   @override
   Widget build(BuildContext context) {
+    getIt<LocationService>().getFullAddress(const LatLng(24.451984, 54.364400));
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(title: tr('addresses')),
