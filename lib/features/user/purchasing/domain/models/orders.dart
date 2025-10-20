@@ -4,6 +4,8 @@ import 'package:flutter_tdd/features/user/purchasing/domain/enum/track_order_enu
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_driver_domain_model.dart';
 
+import '../enum/order_payment_type.dart';
+
 class Orders extends BaseDomainModel {
   int id;
   String code;
@@ -119,4 +121,17 @@ class Orders extends BaseDomainModel {
         return TrackOrderEnum.placed;
     }
   }
+
+
+  OrderPaymentType orderPaymentType(){
+    switch(paymentMethod){
+      case "Cash on Delivery" :return OrderPaymentType.cash;
+      case "Stripe": return OrderPaymentType.stripe ;
+      case "Tap" : return OrderPaymentType.tap;
+      case "Wallet" :return OrderPaymentType.wallet;
+      default: return OrderPaymentType.tap;
+    }
+  }
+
+  bool get isPaymentCash => orderPaymentType() == OrderPaymentType.cash;
 }

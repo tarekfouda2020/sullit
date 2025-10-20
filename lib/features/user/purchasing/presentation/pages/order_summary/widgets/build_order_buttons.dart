@@ -12,7 +12,7 @@ class BuildOrderButtons extends StatelessWidget {
     return Column(
       children: [
         Visibility(
-          visible: orderModel.showButtonPay,
+          visible: orderModel.showButtonPay && !orderModel.isPaymentCash,
           child: DefaultButton(
             title: tr('completePayment'),
             onTap: () => controller.onPayOrder(context),
