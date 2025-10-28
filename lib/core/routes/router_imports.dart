@@ -29,6 +29,7 @@ import 'package:flutter_tdd/features/user/search/presentation/manager/routes/rou
 import 'package:flutter_tdd/features/user/tickets/presentation/manager/routes/routes.dart';
 import 'package:flutter_tdd/features/user/video_viewer/presentation/manager/routes.dart';
 import 'package:flutter_tdd/features/user/vip_subscribe/presentation/manager/routes/vip_membership_routes.dart';
+import 'package:flutter_tdd/features/user/vouchers/presentation/manager/routes.dart';
 import 'package:flutter_tdd/features/user/wallet/presentation/manager/routes/routes.dart';
 import 'package:flutter_tdd/features/user/wishlist/presentation/manager/routes/routes.dart';
 

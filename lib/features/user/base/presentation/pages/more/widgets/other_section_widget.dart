@@ -86,6 +86,7 @@ class OtherSectionWidget extends StatelessWidget {
         BuildMoreItem(
           image: Res.returnPolicyIcon,
           isSvg: true,
+          size: 30,
           title: tr('returnPolicy'),
           onTap: () =>
               controller.checkAuth(context, MoreRoutes.returnPolicy),

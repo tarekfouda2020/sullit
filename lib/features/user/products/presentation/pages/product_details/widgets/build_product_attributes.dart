@@ -4,8 +4,7 @@ class BuildProductAttributes extends StatelessWidget {
   final ProductDetailsController controller;
   final List<ProductOptions> productOptions;
 
-  const BuildProductAttributes(
-      {super.key, required this.controller, required this.productOptions});
+  const BuildProductAttributes({super.key, required this.controller, required this.productOptions});
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +22,15 @@ class BuildProductAttributes extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    productOptions[index].title!,
-                    style: AppTextStyle.s12_w500(
-                      color: context.colors.black,
+                  Padding(
+                    padding: Dimens.paddingHorizontal15PX,
+                    child: Text(
+                     "${tr("select")} ${productOptions[index].title!}",
+                      style: AppTextStyle.s18_w600(color: context.colors.blackTextColor),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
                   ),
-                  Gaps.vGap10,
+                  Gaps.vGap12,
                   BuildAttributeList(
                     controller: controller,
                     index: index,

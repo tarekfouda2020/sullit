@@ -18,7 +18,7 @@ enum LoyaltyPointTypeEnum {
   Color  getColor(BuildContext context) {
     switch (this) {
       case gained:
-        return context.colors.green;
+        return context.colors.green2;
       case deduct:
         return context.colors.darkRed;
     }

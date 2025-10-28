@@ -3,7 +3,12 @@ part of 'loyalty_points_widgets_imports.dart';
 class LoyaltyTransactionItemWidget extends StatelessWidget {
   final LoyaltyPointsController controller;
   final TransactionsDomainModel model;
-  const LoyaltyTransactionItemWidget({super.key, required this.controller, required this.model,});
+
+  const LoyaltyTransactionItemWidget({
+    super.key,
+    required this.controller,
+    required this.model,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,19 +17,27 @@ class LoyaltyTransactionItemWidget extends StatelessWidget {
       margin: Dimens.marginBottom8,
       decoration: BoxDecoration(
           color: context.colors.white,
-          border: Border.all(color: context.colors.borderColor,width: 1.3),
-          borderRadius: Dimens.borderRadius12PX
-      ),
+          border: Border.all(color: context.colors.borderColor, width: 1.3),
+          borderRadius: Dimens.borderRadius12PX),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            model.type.capitalize,
-            style: AppTextStyle.s14_w600(color: model.transactionType().getColor(context)),
+          Row(
+            children: [
+              Text(
+                model.type.capitalize,
+                style: AppTextStyle.s14_w600(color: model.transactionType().getColor(context)),
+              ),
+              const Spacer(),
+              Text(
+                "Expire in 10 oct 2025",
+                style: AppTextStyle.s12_w300(color: context.colors.blackTextColor),
+              ),
+            ],
           ),
           Gaps.vGap8,
           Text(
-            "${model.points}",
+            "${model.points} ${tr("point")}",
             style: AppTextStyle.s22_w600(color: context.colors.primary),
           ),
           Gaps.vGap6,
@@ -34,18 +47,18 @@ class LoyaltyTransactionItemWidget extends StatelessWidget {
               Expanded(
                 child: Text(
                   "Transaction no : ",
-                  style: AppTextStyle.s12_w700(color: context.colors.black),
+                  style: AppTextStyle.s12_w700(color: context.colors.blackTextColor),
                 ),
               ),
               Expanded(
                 child: Text(
                   "#${model.transactionsNo}",
-                  style: AppTextStyle.s14_w700(color: context.colors.black),
+                  style: AppTextStyle.s14_w700(color: context.colors.blackTextColor),
                 ),
               ),
               Text(
                 model.createdAt,
-                style: AppTextStyle.s14_w400(color: context.colors.textColor),
+                style: AppTextStyle.s14_w400(color: context.colors.gray5),
               ),
             ],
           )

@@ -15,22 +15,13 @@ abstract class AppColors {
   static const Color snackBarRedError = Color(0xffBF1C00);
   static const Color snackBarYellowAlert = Color(0xfffea632);
 
-  static AppColors get noContextInstance => getIt
-              .get<GlobalContext>()
-              .context()
-              .read<DeviceCubit>()
-              .state
-              .model
-              .themeMode ==
-          AdaptiveThemeMode.dark
-      ? _dark
-      : _light;
-
-  static AppColors of(BuildContext context) =>
-      context.read<DeviceCubit>().state.model.themeMode ==
-              AdaptiveThemeMode.dark
+  static AppColors get noContextInstance =>
+      getIt.get<GlobalContext>().context().read<DeviceCubit>().state.model.themeMode == AdaptiveThemeMode.dark
           ? _dark
           : _light;
+
+  static AppColors of(BuildContext context) =>
+      context.read<DeviceCubit>().state.model.themeMode == AdaptiveThemeMode.dark ? _dark : _light;
 
   Color get primary;
 
@@ -83,21 +74,40 @@ abstract class AppColors {
   Color get bloodyRed;
 
   Color get authField;
+
   Color get textColor;
+
   Color get splashColor;
+
   Color get borderColor;
+
   Color get lightPink;
+
   Color get darkRed;
+
   Color get gold;
+
   Color get gray2;
+
   Color get lightPrimary;
+
   Color get deepGray;
+
   Color get gray3;
+
   Color get softGray;
+
   Color get gray4;
+
   Color get gray5;
+
   Color get redAccent;
+
   Color get cartBg;
+
   Color get bgIcon;
+
+  Color get green2;
+
   Color get blackTextColor;
 }

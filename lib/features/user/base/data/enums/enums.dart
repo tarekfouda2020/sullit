@@ -23,6 +23,7 @@ enum MoreRoutes {
   supportPolicy,
   returnPolicy,
   language,
+  myVouchers,
 
   profile,
   classifiedProducts,

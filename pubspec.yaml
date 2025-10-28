@@ -142,6 +142,7 @@ flutter:
     - assets/fonts/
     - assets/fonts/quicksand/
     - assets/images/
+    - assets/images/vouchers.svg
     - assets/lang/
     - lib/core/package/country_calling_code_picker-2.0.1/flags/
     - lib/core/package/country_calling_code_picker-2.0.1/raw/

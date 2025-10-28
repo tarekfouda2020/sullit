@@ -20,18 +20,20 @@ class BuildAttributeItems extends StatelessWidget {
     return InkWell(
       onTap: () => controller.onSelectAttributes(context, optionModel, index, position),
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 8,horizontal: 25),
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 22.5),
         decoration: BoxDecoration(
+          color: current ? context.colors.lightPrimary : context.colors.white,
           border: Border.all(
-            color: current ? context.colors.primary : context.colors.greyWhite,
+            color: current ? context.colors.primary : context.colors.gray3,
           ),
-          borderRadius: Dimens.borderRadius5PX,
+          borderRadius: BorderRadius.circular(12),
         ),
         child: Text(
           optionModel[index].options![position],
-          style: AppTextStyle.s12_w400(
-            color: context.colors.black,
-          ),
+          style: current
+              ? AppTextStyle.s14_w700(color: context.colors.primary)
+              : AppTextStyle.s14_w400(color: context.colors.gray5),
           textAlign: TextAlign.center,
         ),
       ),

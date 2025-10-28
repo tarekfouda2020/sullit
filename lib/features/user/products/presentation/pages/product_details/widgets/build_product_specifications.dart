@@ -15,8 +15,6 @@ class BuildProductSpecifications extends StatelessWidget {
         replacement: Gaps.empty,
         child: Container(
           padding: Dimens.paddingAll8PX,
-          margin: Dimens.paddingHorizontal15PX,
-          decoration:  const CustomDecoration(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

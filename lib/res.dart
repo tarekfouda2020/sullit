@@ -110,6 +110,7 @@ class Res {
   static const String scaffBg1 = "assets/images/scaffBg1.svg";
   static const String scaffBg2 = "assets/images/scaffBg2.svg";
   static const String whats = "assets/images/whats.png";
+  static const String vouchers = "assets/images/vouchers.svg";
 
 // ---------------------------Fonts-------------------------------------
   static const String notoSans = "assets/fonts/NotoSans.ttf";

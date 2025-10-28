@@ -114,6 +114,9 @@ class MoreController {
       case MoreRoutes.returnPolicy:
         AutoRouter.of(context).push(const ReturnPolicyRoute());
         break;
+      case MoreRoutes.myVouchers:
+        AutoRouter.of(context).push(const  MyVouchersRoute());
+        break;
       case MoreRoutes.language:
         showLangBottomSheet(context);
         break;
