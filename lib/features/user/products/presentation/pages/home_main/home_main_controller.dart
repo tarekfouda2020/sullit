@@ -118,23 +118,23 @@ class HomeMainController {
 
   Future<void> getProductWithSkuAndRoute(BuildContext context,String sku)async{
     getIt<LoadingHelper>().showLoadingDialog();
-   await  GetSkuProduct().call(sku).then((value) {
-     getIt<LoadingHelper>().dismissDialog();
-     if(value!=null){
-       AutoRouter.of(context).push(
-           ProductDetailsRoute(
-            isFav: value.product.isWishlist,
-            productId: value.product.id,
-            isResale: value.product.isResale,
-          ));
-     }else{
-       CustomToast.showSnakeBar(
-         // "${tr('productScanned')} code: $barcode",
+    await  GetSkuProduct().call(sku).then((value) {
+      getIt<LoadingHelper>().dismissDialog();
+      if(value!=null){
+        AutoRouter.of(context).push(
+            ProductDetailsRoute(
+              isFav: value.product.isWishlist ?? false,
+              productId: value.product.id ?? 0,
+              isResale: value.product.isResale ?? false,
+            ));
+      }else{
+        CustomToast.showSnakeBar(
+          // "${tr('productScanned')} code: $barcode",
           tr("productNotFound"),
-         type: ToastType.error,
-       );
-     }
-   },);
+          type: ToastType.error,
+        );
+      }
+    },);
   }
 
 

@@ -21,11 +21,37 @@ class DeliveryController {
     sellerShippingBloc.onUpdateData(sellerShippingBloc.state.data);
   }
 
-  Future<void> setCartStoreShipping(BuildContext context) async {
+  bool isHaveDeliveryAndTimeAfterTenPm(BuildContext context){
+    var hasDelivery = _setCartStoreParams().any(
+          (e) => e['shipiing_type'] == DeliveryTypeEnum.delivery.getEnumValue(),
+    );
+
+    final hour = DateTime.now().hour;
+    // after 10 PM (22) or before 6 AM
+    if (hasDelivery && (hour >= 22 || hour < 6)) {
+      showDialog(context: context, builder: (context) {
+        return DeliveryTimeAlertWidget(controller: this);
+      },);
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  void onPresContinue(BuildContext context){
     if (selectedItem?.deliveryType == 1 && nearestPointModel == null) {
       CustomToast.showSimpleToast(msg: tr("chooseNearestPickupPoint"));
       return;
     }
+
+    if(isHaveDeliveryAndTimeAfterTenPm(context)){
+      return ;
+    }
+
+    setCartStoreShipping(context);
+  }
+
+  Future<void> setCartStoreShipping(BuildContext context) async {
     var params = _setCartStoreParams();
     var data = await SetCartStoreShipping().call(params);
     if (data != null) {
