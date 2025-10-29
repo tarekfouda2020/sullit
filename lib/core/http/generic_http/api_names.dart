@@ -214,6 +214,7 @@ class ApiNames {
   static const String giftCardSubscriptions = "gift-card-subscriptions";
 
   static const String giftCards = "gift-cards";
+
   static const String loyaltyPointsTransactions = "loyalty-points/transactions";
 
   static  String giftCardSubscriptionDetails(int params) => "gift-card-subscriptions/$params";

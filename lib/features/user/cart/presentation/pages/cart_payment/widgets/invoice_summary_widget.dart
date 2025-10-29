@@ -17,32 +17,65 @@ class InvoiceSummaryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        CartPaymentSectionTitleWidget(title: tr("invoiceSummary")),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            CartPaymentSectionTitleWidget(title: tr("invoiceSummary")),
+          ],
+        ),
         Gaps.vGap6,
         InvoiceSummaryCard(
             children: [
           BuildSummaryHeader(
-            title: tr('totalItems'),
+            title: "Subtotal",
             details: shippingSummary.subTotal,
             useDirhamPrice: true,
           ),
-          BuildSummaryHeader(
-            title: tr('tax'),
-            details: shippingSummary.tax,
+              // BuildSummaryHeader(
+              //   title: tr('tax'),
+              //   details: shippingSummary.tax,
+              //   useDirhamPrice: true,
+              // ),
+               BuildSummaryHeader(
+                title: "Tax Fees",
+                details: shippingSummary.tax,
+                useDirhamPrice: true,
+              ),
+              const BuildSummaryHeader(
+                title: "VAT Amount",
+                details: "0.0",
+                useDirhamPrice: true,
+              ),
+              BuildSummaryHeader(
+                title: "Service Fees",
+                details: shippingSummary.tax,
+                useDirhamPrice: true,
+                onPressInfo: (){},
+              ),
+               BuildSummaryHeader(
+            title: "Environment Fees",
+            details: "0.0",
             useDirhamPrice: true,
+                onPressInfo: (){},
           ),
           BuildSummaryHeader(
-            title: tr('shippingFees'),
+            title: "Delivery Fees",
             details: shippingSummary.shipping,
+            useDirhamPrice: true,
+            onPressInfo: (){},
+          ),
+              BuildSummaryHeader(
+            title: "Driver Tip",
+            details: controller.getDriverTip().toStringAsFixed(2),
             useDirhamPrice: true,
           ),
               Visibility(
                   visible: shippingSummary.couponApplied == true || shippingSummary.loyaltyPointsApplied==true,
                     child: BuildSummaryHeader(
                       title: shippingSummary.loyaltyPointsApplied == true
-                          ? tr("pointsDiscount")
+                          ? "Redeemed Bezat Value"
                           :tr("voucherDiscount"),
                       details: shippingSummary.loyaltyPointsApplied == true
                           ? "-${shippingSummary.loyaltyPointsValue} "
@@ -69,7 +102,7 @@ class InvoiceSummaryWidget extends StatelessWidget {
               children: [
                 Text(
                   tr("total"),
-                  style: AppTextStyle.s14_w400(color: context.colors.black),
+                  style: AppTextStyle.s14_w500(color: context.colors.black),
                 ),
                 DirhamPrice(
                   amount: applyGiftCard ? "0.00" : shippingSummary.total,
@@ -80,7 +113,9 @@ class InvoiceSummaryWidget extends StatelessWidget {
               ],
             ),
           ),
-        ])
+        ]),
+        const SavedAmountWidget(),
+
       ],
     );
   }

@@ -11,12 +11,17 @@ import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
+import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
+import 'package:flutter_tdd/features/user/cart/data/enum/instruction_type_enum.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/apply_gift_card_params.dart';
 import 'package:flutter_tdd/features/user/cart/data/enum/pay_type_enum.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_params.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instruction_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/driver_tips_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/gift_card_domain_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/payment_option.dart';
@@ -30,6 +35,7 @@ import 'package:flutter_tdd/features/user/cart/domain/use_cases/remove_loyalty_p
 import 'package:flutter_tdd/features/user/cart/presentation/widgets/build_cart_stepper.dart';
 import 'package:flutter_tdd/features/user/loyalty_points/domain/models/loyalty_points_balance_domain_model.dart';
 import 'package:flutter_tdd/features/user/loyalty_points/domain/use_case/get_loyalty_points_balance.dart';
+import 'package:flutter_tdd/features/user/products/presentation/pages/home_main/widgets/home_main_widgets_imports.dart';
 
 import 'widgets/cart_payment_widgets_imports.dart';
 

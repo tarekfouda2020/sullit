@@ -107,6 +107,11 @@ class Res {
   static const String newSplashImage = "assets/images/new_splash_image.png";
   static const String newAuthLogo = "assets/images/new_auth_logo.png";
 
+  static const String billOffIcon = "assets/images/no_alarm.svg";
+  static const String doorIcon = "assets/images/door_icon.svg";
+  static const String phoneOffIcon = "assets/images/avoid_call.svg";
+  static const String savedAmountIcon = "assets/images/saved_amount_icon.svg";
+
   static const String scaffBg1 = "assets/images/scaffBg1.svg";
   static const String scaffBg2 = "assets/images/scaffBg2.svg";
   static const String whats = "assets/images/whats.png";

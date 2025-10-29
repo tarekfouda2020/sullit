@@ -6,6 +6,10 @@ class CartPaymentController {
   final TextEditingController coupon = TextEditingController();
   final TextEditingController additionalInfo = TextEditingController();
   final TextEditingController giftCardCode = TextEditingController();
+
+  final TextEditingController driverTipCtr = TextEditingController();
+  final TextEditingController driverNotesCtr = TextEditingController();
+
   final GenericBloc<Shipping?> shippingBloc = GenericBloc(null);
   final GenericBloc<GiftCardApllieCartDomainModel?> giftCardBlocBloc = GenericBloc(null);
   final GlobalKey<FormState> couponFormKey = GlobalKey();
@@ -16,11 +20,31 @@ class CartPaymentController {
   final GenericBloc<bool> isWalletSelected = GenericBloc(false);
   final GenericBloc<bool> applyPointsSwitchCubit = GenericBloc(false);
   final GenericBloc<bool> allowReplacementCubit = GenericBloc(false);
+
+  final GenericBloc<List<DeliveryInstructionModel>> instructionListCubit = GenericBloc<List<DeliveryInstructionModel>>([]);
+
+  final GenericBloc<List<DriverTipsModel>> tipsListCubit = GenericBloc<List<DriverTipsModel>>([]);
+
   final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc =
   GenericBloc(null);
   String? selectedPayment;
 
   bool isGiftCardApplied = false;
+
+
+  final List<DeliveryInstructionModel> _instructions = [
+    DeliveryInstructionModel(type: InstructionTypeEnum.leaveAtDoor,isSelect: true),
+    DeliveryInstructionModel(type: InstructionTypeEnum.avoidCalling),
+    DeliveryInstructionModel(type: InstructionTypeEnum.noBillRing),
+  ];
+
+  final List<DriverTipsModel> _tipsList = [
+    DriverTipsModel(amount: "2",isSelect: true),
+    DriverTipsModel(amount: "3"),
+    DriverTipsModel(amount: "5"),
+    DriverTipsModel(amount: "custom",isCustom: true),
+  ];
+
 
 
   CartPaymentController(Shipping shipping) {
@@ -34,6 +58,8 @@ class CartPaymentController {
     }
     getLoyaltyPointsBalance(refresh: false);
     getLoyaltyPointsBalance();
+    instructionListCubit.onUpdateData(_instructions);
+    tipsListCubit.onUpdateData(_tipsList);
   }
 
   void calculateDiscount() {
@@ -348,6 +374,55 @@ class CartPaymentController {
 
 
   bool get _isExistMinimumAmount => shippingBloc.state.data?.summary.minimumOrderAmountStatus == true;
+
+
+
+  void selectInstructions(DeliveryInstructionModel model){
+    model.isSelect = !model.isSelect;
+    instructionListCubit.onUpdateData(instructionListCubit.state.data);
+
+  }
+
+  void selectDriverTip(DriverTipsModel model){
+    var data = tipsListCubit.state.data;
+    if(model.isSelect){
+      model.isSelect = false;
+    }else{
+      for(var item in data){
+        item.isSelect = false;
+      }
+      model.isSelect = true;
+    }
+    tipsListCubit.onUpdateData(data);
+  }
+
+
+  bool showRaiderTipsField(){
+    var data = tipsListCubit.state.data;
+    var selected = data.where((element) => element.isSelect).toList();
+    if(selected.isNotEmpty){
+      return  data.singleWhere((element) => element.isSelect).isCustom;
+    }else{
+      return false;
+    }
+  }
+
+  double getDriverTip(){
+    var data = tipsListCubit.state.data;
+    var selected = data.where((element) => element.isSelect && !element.isCustom).toList();
+    if(selected.isNotEmpty){
+      shippingBloc.onUpdateData(shippingBloc.state.data);
+      return  double.parse(selected.first.amount);
+    }else{
+      shippingBloc.onUpdateData(shippingBloc.state.data);
+
+      return double.parse(driverTipCtr.text.isNotEmpty
+          ?driverTipCtr.text
+          : "0.0");
+    }
+
+
+  }
 
 
 }

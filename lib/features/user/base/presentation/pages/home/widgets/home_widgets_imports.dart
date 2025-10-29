@@ -10,6 +10,8 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_imports.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 import 'package:flutter_tdd/res.dart';
 
 part 'build_bottom_nav_bar.dart';

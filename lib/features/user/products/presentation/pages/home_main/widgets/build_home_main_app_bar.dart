@@ -56,7 +56,14 @@ class BuildHomeMainAppBar extends StatelessWidget {
                 ),
               ),
               Gaps.hGap10,
-              InkWell(
+              // GestureDetector(
+              //   onTap: () => homeMainController.routeToSearchPage(context),
+              //   child: Icon(
+              //     Icons.shopping_cart_outlined,
+              //     color: context.colors.black,
+              //   ),
+              // ),
+              GestureDetector(
                 onTap: () => controller.goNotification(context),
                 child: Container(
                   height: 35,

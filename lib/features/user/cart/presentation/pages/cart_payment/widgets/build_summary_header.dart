@@ -6,7 +6,7 @@ class BuildSummaryHeader extends StatelessWidget {
   final Color? detailsColor;
   final bool useDirhamPrice;
   final bool isDiscount;
-
+ final void Function()? onPressInfo;
   const BuildSummaryHeader({
     super.key,
     required this.title,
@@ -14,6 +14,7 @@ class BuildSummaryHeader extends StatelessWidget {
     this.detailsColor,
     this.useDirhamPrice = false,
     this.isDiscount = false,
+    this.onPressInfo,
   });
 
   @override
@@ -23,9 +24,16 @@ class BuildSummaryHeader extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Text(
-              title,
-              style: AppTextStyle.s14_w400(color: context.colors.black),
+            child: Row(
+              children: [
+                Text(
+                  title,
+                  style: AppTextStyle.s14_w500(color: context.colors.black),
+                ),
+                Gaps.hGap5,
+                if(onPressInfo!=null)
+                  _infoContainer(),
+              ],
             ),
           ),
           if(isDiscount)
@@ -45,4 +53,24 @@ class BuildSummaryHeader extends StatelessWidget {
       ),
     );
   }
+
+
+
+  Widget _infoContainer(){
+    return GestureDetector(
+      onTap: onPressInfo,
+      child: Container(
+        width: Dimens.dp16, height: Dimens.dp16,
+        margin: const EdgeInsets.only(bottom: 8),
+        alignment: Alignment.center,
+        decoration: const BoxDecoration(
+          color: Color(0xffD9D9D9),
+          shape: BoxShape.circle
+        ),
+        child: const Icon(Icons.question_mark,color: Color(0xff5C5C5C),size: 10,),
+      ),
+    );
+  }
+
+
 }

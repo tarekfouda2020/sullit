@@ -110,4 +110,10 @@ abstract class AppColors {
   Color get green2;
 
   Color get blackTextColor;
+
+  Color get lightRed;
+
+  Color get darkPrimary;
+
+  Color get gray8;
 }

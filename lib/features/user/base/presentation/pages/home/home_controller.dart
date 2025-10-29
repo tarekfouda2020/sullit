@@ -14,6 +14,15 @@ class HomeController {
 
   List<String> tabs = [Res.home, Res.category, "", Res.offers, Res.menuIcon];
 
+
+  final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
+
+
+  Future<void> getCartItems({bool refresh = true}) async {
+    CartDomainModel result = await getIt<CartHelper>().getCartItems(refresh: refresh);
+    cartItemsBloc.onUpdateData(result);
+  }
+
   List<Widget> pages() => [
     HomeMain(homeController: this),
     Categories(homeController: this),

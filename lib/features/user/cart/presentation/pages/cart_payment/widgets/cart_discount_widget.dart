@@ -13,18 +13,38 @@ class CartDiscountWidget extends StatelessWidget {
         CartPaymentSectionTitleWidget(title: tr("discount")),
         Gaps.vGap9,
         Container(
-          padding: const EdgeInsetsDirectional.only(start: 18,top: 19,end: 24,bottom: 10),
+          padding: const EdgeInsetsDirectional.only(top: 19,bottom: 10),
           decoration: CustomDecoration(
             myBoxShadow: const [],
             boxBorder: Border.all(color: context.colors.borderColor)
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              LoyaltyDiscountWidget(controller: controller),
-              Gaps.vGap10,
-              Divider(color: context.colors.softGray),
-              Gaps.vGap7,
-              BuildCoupon(controller: controller),
+            Padding(
+              padding: const EdgeInsetsDirectional.only(start: 18,end: 24),
+              child: Column(
+                children: [
+                  LoyaltyDiscountWidget(controller: controller),
+                  Gaps.vGap10,
+                  Divider(color: context.colors.softGray),
+                  Gaps.vGap7,
+                  BuildCoupon(controller: controller),
+                ],
+              ),
+            ),
+              SizedBox(
+                height: 80,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                    child: Row(
+                  spacing: 12,
+                  children: List.generate(3, (index) {
+                    return  VoucherTicketCardWidget(index: index,isLast: index == 3-1,);
+                  },),
+                )),
+              )
+
             ],
           ),
         )

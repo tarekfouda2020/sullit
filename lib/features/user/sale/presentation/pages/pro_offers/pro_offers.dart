@@ -22,7 +22,7 @@ class _ProOffersState extends State<ProOffers> {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: VipOffersWidget(
                 onTap: () => controller.routeToMembershipSubscribe(context),
-                text: tr("subscribeNow"),
+                buttonText: tr("subscribeNow"),
               ),
             ),
             Gaps.vGap10,

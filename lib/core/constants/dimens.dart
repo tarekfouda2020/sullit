@@ -86,6 +86,7 @@ class Dimens {
   static BorderRadius borderRadius10PX = const BorderRadius.all(Radius.circular(10)).r;
   static BorderRadius borderRadius13PX = const BorderRadius.all(Radius.circular(13)).r;
   static BorderRadius borderRadius12PX = const BorderRadius.all(Radius.circular(12)).r;
+  static BorderRadius borderRadius15PX = const BorderRadius.all(Radius.circular(15)).r;
   static BorderRadius borderRadius20PX = const BorderRadius.all(Radius.circular(20)).r;
   static BorderRadius borderRadius25PX = const BorderRadius.all(Radius.circular(25)).r;
   static BorderRadius borderRadius30PX = const BorderRadius.all(Radius.circular(30)).r;

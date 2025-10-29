@@ -28,7 +28,7 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap16,
             VipOffersWidget(
               onTap: () => controller.homeController.animateTabsPages(3, context),
-              text: tr("seeOffers"),
+              buttonText: tr("seeOffers"),
               margin: EdgeInsets.zero,
             ),
             // BuildPopularProducts(
