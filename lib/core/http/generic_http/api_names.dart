@@ -49,7 +49,7 @@ class ApiNames {
 
   static String getVariantPrice(int id) => "products/$id/variant/price";
 
-  static String skuSearch(String sku) => "products/search-by-barcode?sku=$sku";
+  static String skuSearch(String sku) => "products/search-by-barcode?barcode=$sku";
 
   static const String getDownloadProducts = "orders/digital-purchase-history";
 
