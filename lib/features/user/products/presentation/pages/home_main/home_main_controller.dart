@@ -123,9 +123,9 @@ class HomeMainController {
      if(value!=null){
        AutoRouter.of(context).push(
            ProductDetailsRoute(
-            isFav: value.product.isWishlist,
-            productId: value.product.id,
-            isResale: value.product.isResale,
+            isFav: value.product.isWishlist ?? false,
+            productId: value.product.id ?? 0,
+            isResale: value.product.isResale ?? false,
           ));
      }else{
        CustomToast.showSnakeBar(

@@ -631,5 +631,7 @@
   "pick": "Pick",
   "saveLocation": "Save location",
   "countryLocation": "Please select location inside UAE",
-  "allowReplacement": "Would you like to allow product replacements if any items become unavailable during processing?"
+  "allowReplacement": "Would you like to allow product replacements if any items become unavailable during processing?",
+  "delivery_time_alert": "Due to time is beyond 10pm, Delivery will be available the following morning."
+
 }

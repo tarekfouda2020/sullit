@@ -37,7 +37,7 @@ abstract class ProductsRepository {
 
   Future<Either<Failure, bool>> toggleFollowing(int param);
 
-  Future<Either<Failure, ProductDetailsModel>> scanProduct(String param);
+  Future<Either<Failure, ProductDetailsDomainModel>> scanProduct(String param);
 
   Future<Either<Failure, SellerProductDomainModel>> sellerProducts(SellerProductsParams param);
 
