@@ -15,6 +15,7 @@ class DirhamPrice extends StatelessWidget {
   final bool useAlternativeSymbol;
   final bool? showMinus;
   final bool? applySameStyle;
+  final bool? applyDashSeperate;
   final TextStyle? textStyle;
   final TextStyle? currencyStyle;
   final TextDirection? textDirection;
@@ -33,6 +34,7 @@ class DirhamPrice extends StatelessWidget {
     this.currencyOffset,
     this.showMinus = false,
     this.applySameStyle = true,
+    this.applyDashSeperate = true,
   }) : super(key: key);
 
   @override
@@ -70,6 +72,6 @@ class DirhamPrice extends StatelessWidget {
   }
 
   String formattedAmount() {
-    return amount.formatAmount();
+    return amount.formatAmount(applyDashSeperate: applyDashSeperate!);
   }
 }

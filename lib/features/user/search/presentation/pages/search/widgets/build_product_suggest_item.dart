@@ -32,9 +32,8 @@ class BuildProductSuggestItem extends StatelessWidget {
           ),
           subtitle: Padding(
             padding: const EdgeInsets.only(top: 8),
-            child: Text(
-              productModel.priceHighLow.parseCurrency,
-              style: AppTextStyle.s15_w700(color: context.colors.primary),
+            child : DirhamPrice(amount: productModel.priceHighLow ?? "",
+            textStyle: AppTextStyle.s15_w700(color: context.colors.primary),
             ),
           ),
         ),

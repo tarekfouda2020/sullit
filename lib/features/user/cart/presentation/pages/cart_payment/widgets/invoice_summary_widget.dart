@@ -41,6 +41,8 @@ class InvoiceSummaryWidget extends StatelessWidget {
               Visibility(
                   visible: shippingSummary.couponApplied == true || shippingSummary.loyaltyPointsApplied==true,
                     child: BuildSummaryHeader(
+                      isDiscount: true,
+                      applyDashSeperate: false,
                       title: shippingSummary.loyaltyPointsApplied == true
                           ? tr("pointsDiscount")
                           :tr("voucherDiscount"),

@@ -6,6 +6,7 @@ class BuildSummaryHeader extends StatelessWidget {
   final Color? detailsColor;
   final bool useDirhamPrice;
   final bool isDiscount;
+  final bool? applyDashSeperate;
 
   const BuildSummaryHeader({
     super.key,
@@ -14,10 +15,12 @@ class BuildSummaryHeader extends StatelessWidget {
     this.detailsColor,
     this.useDirhamPrice = false,
     this.isDiscount = false,
+    this.applyDashSeperate = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    print("====>>>amount is ${details}<<<===");
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
@@ -34,11 +37,14 @@ class BuildSummaryHeader extends StatelessWidget {
             style: AppTextStyle.s14_w600(color: context.colors.primary),
           ),
            DirhamPrice(
-                  amount: details,
+                  amount: isDiscount
+                      ?details.replaceAll("-", "")
+                      :details,
                   textStyle: AppTextStyle.s14_w600(color: detailsColor ?? context.colors.black),
             currencyStyle: AppTextStyle.s16_w400(color: detailsColor ?? context.colors.black),
             currencyOffset: 0,
             showMinus: false,
+             applyDashSeperate: applyDashSeperate,
                 )
              ,
         ],
