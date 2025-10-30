@@ -32,8 +32,8 @@ class LocationAddressData {
     }else{
       permissionGranted = await getIt<PermissionServices>().requestPermission(Permission.location, context);
     }
-    var model = context.read<LocationCubit>().state.model;
     if(permissionGranted){
+      var model = context.read<LocationCubit>().state.model;
       var currentLocation = await getIt<LocationService>().getCurrentLocation();
       LatLng? loc;
       if(model == null || model.lat == 0.0 || model.lng == 0.0){
