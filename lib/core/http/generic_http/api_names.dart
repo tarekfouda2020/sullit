@@ -1,11 +1,12 @@
 // ignore_for_file: constant_identifier_names
 
 class ApiNames {
+
   ///staging
-  static const String baseUrl = "https://mushrifcoop.com/api/v3/";
+  // static const String baseUrl = "https://mushrifcoop.com/api/v3/";
 
   ///production
-  // static const String baseUrl = "https://mushrifcoop.com/";
+  static const String baseUrl = "https://mushrifcoop.com/api/v3/";
 
   // auth routes
   static const String login = "login";
