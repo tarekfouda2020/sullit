@@ -28,6 +28,7 @@ class CategoriesSectionFormWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             scrollDirection: Axis.horizontal,
             child: Row(
+              spacing: 5,
               children: List.generate(
                 item.subCats?.length ?? 0,
                 (index) {
@@ -50,9 +51,11 @@ class CategoriesSectionFormWidget extends StatelessWidget {
                             ),
                             Gaps.vGap8,
                             SizedBox(
-                              width: 60,
+                              width: 80,
                               child: Text(
                                 item.subCats?[index].name ?? '',
+                                maxLines: 2,
+                                textAlign: TextAlign.center,
                                 style: AppTextStyle.s12_w700(color: context.colors.black).copyWith(
                                   overflow: TextOverflow.ellipsis,
                                 ),

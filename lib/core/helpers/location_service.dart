@@ -15,7 +15,7 @@ class LocationService {
   static LocationService get instance => GetIt.I<LocationService>();
 
   Future<String> getAddress(LatLng latLng) async {
-    GeoCode geoCode = GeoCode();
+    GeoCode geoCode = GeoCode(apiKey: "554640628686038400400x13810");
     try {
       var address = await geoCode.reverseGeocoding(latitude: latLng.latitude, longitude: latLng.longitude);
       var data = "${address.countryName??""}  ${address.city??""}  ${address.region??""}  ${address.streetAddress??""}";
@@ -28,7 +28,9 @@ class LocationService {
   Future<LatLng?> getCurrentLocationWithPermission(BuildContext context)async{
     bool locationPermission = await getIt<PermissionServices>().requestPermission(Permission.location, context);
    if(locationPermission){
-     final Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+     final Position position = await Geolocator.getCurrentPosition(locationSettings: const LocationSettings(
+       accuracy: LocationAccuracy.high
+     ));
      return LatLng(position.latitude, position.longitude);
    }else{
      return null;
@@ -40,5 +42,14 @@ class LocationService {
     return Geolocator.getCurrentPosition().then((value) => LatLng(value.latitude, value.longitude)) ;
   }
 
+  Future<Address?> getFullAddress(LatLng latLng,) async {
+    GeoCode geoCode = GeoCode(apiKey: "554640628686038400400x13810" );
+    try {
+      var address = await geoCode.reverseGeocoding(latitude: latLng.latitude, longitude: latLng.longitude);
+      return address;
+    } catch (e) {
+      return null;
+    }
+  }
 
 }

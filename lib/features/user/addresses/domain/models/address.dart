@@ -3,7 +3,7 @@ import 'package:flutter_tdd/core/models/domain_models/city.dart';
 import 'package:flutter_tdd/core/models/domain_models/country.dart';
 import 'package:flutter_tdd/core/models/domain_models/state.dart';
 
-class Address extends BaseDomainModel {
+class AddressDomainModel extends BaseDomainModel {
   int? id;
   int? userId;
   String? address;
@@ -24,8 +24,10 @@ class Address extends BaseDomainModel {
   String? streetName;
   String? buildingName;
   String? flatNumber;
+  String? stateName;
+  String? cityName;
 
-  Address({
+  AddressDomainModel({
     this.id,
     this.userId,
     this.address,
@@ -46,9 +48,11 @@ class Address extends BaseDomainModel {
     this.addressType,
     this.addressTypeLabel,
     this.selected,
+    this.stateName,
+    this.cityName,
   });
 
-  Address.fromJson(Map<String, dynamic> json) {
+  AddressDomainModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['user_id'];
     address = json['address'];
@@ -65,6 +69,8 @@ class Address extends BaseDomainModel {
     buildingName = json['building_name'];
     flatNumber = json['flat_number'];
     addressTypeLabel = json['address_type_label'];
+    stateName = json['state_name'];
+    cityName = json['city_name'];
     selected = false;
   }
 
@@ -86,6 +92,8 @@ class Address extends BaseDomainModel {
     data["street_name"] = streetName;
     data["building_name"] = buildingName;
     data["flat_number"] = flatNumber;
+    data["state_name"] = stateName;
+    data["city_name"] = cityName;
     return data;
   }
 

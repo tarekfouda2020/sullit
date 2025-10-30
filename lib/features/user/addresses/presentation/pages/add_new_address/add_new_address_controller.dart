@@ -11,13 +11,19 @@ class AddNewAddressController {
   final TextEditingController streetNameController = TextEditingController();
   final TextEditingController buildingNameController = TextEditingController();
   final TextEditingController flatNumberController = TextEditingController();
-  final GlobalKey<DropdownSearchState> countryController = GlobalKey();
+
+
+  final TextEditingController stateNameCtr = TextEditingController();
+  final TextEditingController cityNameCtr = TextEditingController();
+
+
+  // final GlobalKey<DropdownSearchState> countryController = GlobalKey();
   final GlobalKey<DropdownSearchState> stateController = GlobalKey();
   final GlobalKey<DropdownSearchState> cityController = GlobalKey();
   final GlobalKey<DropdownSearchState> addressTypeKey = GlobalKey();
   final LocationCubit locationCubit = LocationCubit();
 
-  final GenericBloc<package.Country?> countryCodeCubit = GenericBloc(null);
+  final GenericBloc<package.Country?> countryCodeCubit = GenericBloc(CountryPickerHelper.defaultCountrySync);
   final GenericBloc<Country?> countryCubit = GenericBloc(null);
   final GenericBloc<StateDomainModel?> stateCubit = GenericBloc(null);
   final GenericBloc<City?> cityCubit = GenericBloc(null);
@@ -131,21 +137,29 @@ class AddNewAddressController {
 
   void routeToDetectLocation(BuildContext context)async{
     var result = await AutoRouter.of(context).push( LocationAddressRoute(fromEdit: false));
-    if(result != null){
-      locationController.text = result as String;
+    if(result != null && result is LocationEntity){
+      locationController.text = result.address;
+      streetNameController.text = result.fullAddress?.streetAddress ?? "";
+      stateNameCtr.text = result.fullAddress?.region ?? "";
+      cityNameCtr.text = result.fullAddress?.city ?? "";
+      print("==============>>>>>>>>> state name ${result.fullAddress?.region}<<<<<<<<==============");
+      print("==============>>>>>>>>>city name ${cityNameCtr.text}<<<<<<<<==============");
+    }else{
+      print("==============>>>>>>>>> type $result <<<<<<<<==============");
     }
   }
 
 
   Future<AddAddressParams> _addressParams() async{
+
     return AddAddressParams(
       address: addressController.text,
       addressType: addressTypeModel!.key,
       // postalCode: postalCodeController.text,
       // postalCode: await getPostalCode(),
-      countryId: countryModel!.id,
-      stateId: stateModel!.id,
-      cityId: cityModel!.id,
+      countryId: countryModel?.id,
+      stateId: stateNameCtr.text,
+      cityId: cityNameCtr.text,
       phone: phoneController.text,
       countryCode: countryCodeCubit.state.data?.callingCode ?? "",
       lat: locationEntity()?.lat ?? 0.0,

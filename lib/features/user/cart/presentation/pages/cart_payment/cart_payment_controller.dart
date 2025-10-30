@@ -15,6 +15,7 @@ class CartPaymentController {
   final GenericBloc<bool> conditionsCubit = GenericBloc(false);
   final GenericBloc<bool> isWalletSelected = GenericBloc(false);
   final GenericBloc<bool> applyPointsSwitchCubit = GenericBloc(false);
+  final GenericBloc<bool> allowReplacementCubit = GenericBloc(false);
   final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc =
   GenericBloc(null);
   String? selectedPayment;
@@ -72,9 +73,9 @@ class CartPaymentController {
   }
 
   Future<void> createOrder(BuildContext context) async {
-    if(shippingBloc.state.data?.summary.minimumOrderAmountStatus == false){
+    if(!_isExistMinimumAmount){
       CustomToast.showSimpleToast(
-        msg: "${tr("addPurchases")} ${shippingBloc.state.data?.summary.minimumOrderAmountAmount} ${"toCreateOrder"} ",
+        msg: "${tr("addPurchases")}\n${shippingBloc.state.data?.summary.minimumOrderAmountAmount} ${tr("to_create_order")} ",
         type: ToastType.error,
       );
       return ;
@@ -83,6 +84,7 @@ class CartPaymentController {
       // _checkPayMethodSel();
       if (isWalletSelectedAndBalanceEnough()) {
         var params = _orderParams();
+        log("=======>>> allow replacement ${params.allowReplacement} <<<<<<<======");
         var data = await CreateOrder().call(params);
         if (data != null) {
           if (data.transactionUrl != null) {
@@ -221,6 +223,7 @@ class CartPaymentController {
       paymentOption: selectedPayment ?? "",
       additionalInfo: additionalInfo.text,
       giftCardCode: giftCardCode.text.trim(),
+      allowReplacement: allowReplacementCubit.state.data ? 1 : 0
     );
   }
 
@@ -304,6 +307,14 @@ class CartPaymentController {
   }
 
   Future<void> applyGiftCard(BuildContext context)async{
+    if(!_isExistMinimumAmount){
+      CustomToast.showSimpleToast(
+        msg: "${tr("addPurchases")}\n${shippingBloc.state.data?.summary.minimumOrderAmountAmount} ${"toCreateOrder"} ",
+        type: ToastType.error,
+      );
+      return ;
+    }
+
     if(giftCardFormKey.currentState!.validate()){
       FocusScope.of(context).unfocus();
       await ApplyGiftCard().call(ApplyGiftCardParams(giftCardCode: giftCardCode.text)).then((value) {
@@ -332,6 +343,11 @@ class CartPaymentController {
     HomeRoute(index: 0),
     predicate: (route) => false,
   );
+
+
+
+
+  bool get _isExistMinimumAmount => shippingBloc.state.data?.summary.minimumOrderAmountStatus == true;
 
 
 }

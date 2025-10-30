@@ -3,20 +3,23 @@
 import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
 
 class CreateOrderParams {
-  String paymentOption;
+  final String paymentOption;
 
   String additionalInfo;
   String? giftCardCode;
+  final int allowReplacement;
 
   CreateOrderParams({
     required this.paymentOption,
     required this.additionalInfo,
+    required this.allowReplacement,
     this.giftCardCode,
   });
 
   Map<String, dynamic> toJson ()=> {
     "payment_option": paymentOption,
-    if(giftCardCode == "")"additional_info": additionalInfo,
+    "allow_replacement": allowReplacement,
+    if(additionalInfo != "")"additional_info": additionalInfo,
     if(giftCardCode!=null && giftCardCode != "")"gift_card_code": giftCardCode,
   };
 

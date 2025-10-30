@@ -41,6 +41,8 @@ class InvoiceSummaryWidget extends StatelessWidget {
               Visibility(
                   visible: shippingSummary.couponApplied == true || shippingSummary.loyaltyPointsApplied==true,
                     child: BuildSummaryHeader(
+                      isDiscount: true,
+                      applyDashSeperate: false,
                       title: shippingSummary.loyaltyPointsApplied == true
                           ? tr("pointsDiscount")
                           :tr("voucherDiscount"),
@@ -55,9 +57,10 @@ class InvoiceSummaryWidget extends StatelessWidget {
             visible: applyGiftCard,
             child: BuildSummaryHeader(
               title: tr("appliedGiftCard"),
-              details: "-$giftCardTotal",
+              details: shippingSummary.appliedGiftCard ?? "",
               detailsColor: context.colors.primary,
               useDirhamPrice: true,
+              isDiscount: true,
             ),
           ),
           Gaps.line(context.colors.softGray, 15.h),

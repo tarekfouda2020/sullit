@@ -48,6 +48,10 @@ mixin _$AddressModel {
   String get buildingName => throw _privateConstructorUsedError;
   @JsonKey(name: "flat_number")
   String get flatNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: "state_name")
+  String get stateName => throw _privateConstructorUsedError;
+  @JsonKey(name: "city_name")
+  String get cityName => throw _privateConstructorUsedError;
   @JsonKey(name: "selected", defaultValue: false)
   bool? get selected => throw _privateConstructorUsedError;
 
@@ -82,6 +86,8 @@ abstract class $AddressModelCopyWith<$Res> {
       @JsonKey(name: "street_name") String streetName,
       @JsonKey(name: "building_name") String buildingName,
       @JsonKey(name: "flat_number") String flatNumber,
+      @JsonKey(name: "state_name") String stateName,
+      @JsonKey(name: "city_name") String cityName,
       @JsonKey(name: "selected", defaultValue: false) bool? selected});
 
   $CountryModelCopyWith<$Res>? get country;
@@ -120,6 +126,8 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
     Object? streetName = null,
     Object? buildingName = null,
     Object? flatNumber = null,
+    Object? stateName = null,
+    Object? cityName = null,
     Object? selected = freezed,
   }) {
     return _then(_value.copyWith(
@@ -195,6 +203,14 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
           ? _value.flatNumber
           : flatNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      stateName: null == stateName
+          ? _value.stateName
+          : stateName // ignore: cast_nullable_to_non_nullable
+              as String,
+      cityName: null == cityName
+          ? _value.cityName
+          : cityName // ignore: cast_nullable_to_non_nullable
+              as String,
       selected: freezed == selected
           ? _value.selected
           : selected // ignore: cast_nullable_to_non_nullable
@@ -266,6 +282,8 @@ abstract class _$$_AddressModelCopyWith<$Res>
       @JsonKey(name: "street_name") String streetName,
       @JsonKey(name: "building_name") String buildingName,
       @JsonKey(name: "flat_number") String flatNumber,
+      @JsonKey(name: "state_name") String stateName,
+      @JsonKey(name: "city_name") String cityName,
       @JsonKey(name: "selected", defaultValue: false) bool? selected});
 
   @override
@@ -305,6 +323,8 @@ class __$$_AddressModelCopyWithImpl<$Res>
     Object? streetName = null,
     Object? buildingName = null,
     Object? flatNumber = null,
+    Object? stateName = null,
+    Object? cityName = null,
     Object? selected = freezed,
   }) {
     return _then(_$_AddressModel(
@@ -380,6 +400,14 @@ class __$$_AddressModelCopyWithImpl<$Res>
           ? _value.flatNumber
           : flatNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      stateName: null == stateName
+          ? _value.stateName
+          : stateName // ignore: cast_nullable_to_non_nullable
+              as String,
+      cityName: null == cityName
+          ? _value.cityName
+          : cityName // ignore: cast_nullable_to_non_nullable
+              as String,
       selected: freezed == selected
           ? _value.selected
           : selected // ignore: cast_nullable_to_non_nullable
@@ -411,6 +439,8 @@ class _$_AddressModel extends _AddressModel {
       @JsonKey(name: "street_name") required this.streetName,
       @JsonKey(name: "building_name") required this.buildingName,
       @JsonKey(name: "flat_number") required this.flatNumber,
+      @JsonKey(name: "state_name") required this.stateName,
+      @JsonKey(name: "city_name") required this.cityName,
       @JsonKey(name: "selected", defaultValue: false) this.selected})
       : super._();
 
@@ -464,12 +494,18 @@ class _$_AddressModel extends _AddressModel {
   @JsonKey(name: "flat_number")
   final String flatNumber;
   @override
+  @JsonKey(name: "state_name")
+  final String stateName;
+  @override
+  @JsonKey(name: "city_name")
+  final String cityName;
+  @override
   @JsonKey(name: "selected", defaultValue: false)
   final bool? selected;
 
   @override
   String toString() {
-    return 'AddressModel(id: $id, userId: $userId, address: $address, country: $country, state: $state, city: $city, phone: $phone, fullPhone: $fullPhone, countryCode: $countryCode, setDefault: $setDefault, lat: $lat, lang: $lang, isActive: $isActive, addressType: $addressType, addressTypeLabel: $addressTypeLabel, streetName: $streetName, buildingName: $buildingName, flatNumber: $flatNumber, selected: $selected)';
+    return 'AddressModel(id: $id, userId: $userId, address: $address, country: $country, state: $state, city: $city, phone: $phone, fullPhone: $fullPhone, countryCode: $countryCode, setDefault: $setDefault, lat: $lat, lang: $lang, isActive: $isActive, addressType: $addressType, addressTypeLabel: $addressTypeLabel, streetName: $streetName, buildingName: $buildingName, flatNumber: $flatNumber, stateName: $stateName, cityName: $cityName, selected: $selected)';
   }
 
   @override
@@ -504,6 +540,10 @@ class _$_AddressModel extends _AddressModel {
                 other.buildingName == buildingName) &&
             (identical(other.flatNumber, flatNumber) ||
                 other.flatNumber == flatNumber) &&
+            (identical(other.stateName, stateName) ||
+                other.stateName == stateName) &&
+            (identical(other.cityName, cityName) ||
+                other.cityName == cityName) &&
             (identical(other.selected, selected) ||
                 other.selected == selected));
   }
@@ -530,6 +570,8 @@ class _$_AddressModel extends _AddressModel {
         streetName,
         buildingName,
         flatNumber,
+        stateName,
+        cityName,
         selected
       ]);
 
@@ -568,6 +610,8 @@ abstract class _AddressModel extends AddressModel {
       @JsonKey(name: "street_name") required final String streetName,
       @JsonKey(name: "building_name") required final String buildingName,
       @JsonKey(name: "flat_number") required final String flatNumber,
+      @JsonKey(name: "state_name") required final String stateName,
+      @JsonKey(name: "city_name") required final String cityName,
       @JsonKey(name: "selected", defaultValue: false)
       final bool? selected}) = _$_AddressModel;
   const _AddressModel._() : super._();
@@ -621,6 +665,12 @@ abstract class _AddressModel extends AddressModel {
   @override
   @JsonKey(name: "flat_number")
   String get flatNumber;
+  @override
+  @JsonKey(name: "state_name")
+  String get stateName;
+  @override
+  @JsonKey(name: "city_name")
+  String get cityName;
   @override
   @JsonKey(name: "selected", defaultValue: false)
   bool? get selected;

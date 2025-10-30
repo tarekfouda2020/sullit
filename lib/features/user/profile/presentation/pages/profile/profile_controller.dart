@@ -24,7 +24,7 @@ class ProfileController {
 
   // final GenericBloc<bool> verifyEmailCubit = GenericBloc(false);
 
-  Address? addressModel;
+  AddressDomainModel? addressModel;
 
   ProfileController(BuildContext context) {
     getInitialData(context);
@@ -44,19 +44,21 @@ class ProfileController {
   }
 
   Future<void> _initializeCountryFromUser(BuildContext context, UserDomainModel? user) async {
+    countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
+    return ;
     if (user?.countryCode != null && user!.countryCode!.isNotEmpty) {
       try {
         final country = await CountryPickerHelper.getCountryByCallingCode(context, user.countryCode!);
         if (country != null) {
           countryCubit.onUpdateData(country);
         } else {
-          countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync());
+          countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
         }
       } catch (e) {
-        countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync());
+        countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
       }
     } else {
-      countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync());
+      countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
     }
   }
 
@@ -74,7 +76,7 @@ class ProfileController {
   void navigateToAddresses(BuildContext context) async {
     var result = await AutoRouter.of(context).push( AddressesRoute());
     if (result != null) {
-      addressModel = result as Address;
+      addressModel = result as AddressDomainModel;
       addressController.text = addressModel?.address ?? "";
     }
   }
@@ -83,7 +85,9 @@ class ProfileController {
     showDialog(
       context: context,
       builder: (context) {
-        return const BuildDeleteDialog();
+        return  BuildDeleteDialog(
+          onPressConfirm: () => getIt<AuthHelper>().deleteAccount(context),
+          content: tr("wantDeleteAccount"),);
       },
     );
   }

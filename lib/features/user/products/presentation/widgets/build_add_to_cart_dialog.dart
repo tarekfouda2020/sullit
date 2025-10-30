@@ -64,12 +64,17 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                 width: MediaQuery.of(context).size.width,
               ),
               Gaps.vGap10,
-              Padding(
-                padding: Dimens.paddingAll10PX,
-                child: Text(
-                  state.data!.name!,
-                  style: AppTextStyle.s16_w500(color: context.colors.black),
-                ),
+              Row(
+                children: [
+                  Flexible(
+                    child: Text(
+                      state.data!.name!,
+                      style: AppTextStyle.s16_w500(color: context.colors.black).copyWith(
+                        height: 1.3
+                      ),
+                    ),
+                  ),
+                ],
               ),
               Row(
                 children: [

@@ -22,6 +22,7 @@ class BuildProductAttributes extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 10,
         children: [
           Gaps.vGap10,
           ...List.generate(

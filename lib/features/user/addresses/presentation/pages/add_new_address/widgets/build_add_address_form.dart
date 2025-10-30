@@ -64,7 +64,6 @@ class BuildAddAddressForm extends StatelessWidget {
               return  GenericTextField(
                 controller: controller.phoneController,
                 fieldTypes: FieldTypes.normal,
-                fillColor: context.colors.white,
                 type: TextInputType.number,
                 action: TextInputAction.done,
                 validate: (value) =>
@@ -73,7 +72,9 @@ class BuildAddAddressForm extends StatelessWidget {
                 // validate: (value) => value?.validatePhone(),
                 hint: tr("phoneNumber"),
                 margin: Dimens.paddingVertical10PX,
-                prefixIcon: _buildPrefixIcon(context,state),
+                prefixIcon: PhoneFieldPrefixWidget(
+                  countryCubit: controller.countryCodeCubit,
+                ),
               );
             },
           ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
@@ -35,173 +37,75 @@ class DateTimeHelper {
 
 
   static String getDate(String backendDate, {String? formatType}) {
-
     try {
-      BuildContext context = getIt<GlobalContext>().context();
-      String locale = context.read<DeviceCubit>().state.model.locale.languageCode;
+      final context = getIt<GlobalContext>().context();
+      final locale = context.read<DeviceCubit>().state.model.locale.languageCode;
+
       DateTime? parsed;
-      try {
-        parsed = DateTime.parse(backendDate.replaceAll(" ", "T"));
-      } catch (_) {
-        parsed = null;
-      }
-      if (parsed == null) {
-        final fallbackFormats = [
-          "dd-MM-yyyy hh:mm a",
-          "dd-MM-yyyy HH:mm a",
-          "dd MMM yyyy hh:mm a",
-          "MMMM dd yyyy, hh:mm a",
-          "MMMM dd yyyy, h:mm a",
-          "yyyy-MM-dd HH:mm:ss",
-          "yyyy-M-d H:mm",
-          "yyyy-M-d HH:mm",
-        ];
-        String normalizeAmPm(String input) =>
-            input.replaceAllMapped(RegExp(r'\b(am|pm)\b', caseSensitive: false),
-                    (m) => m.group(0)!.toUpperCase());
-        // Try multiple regex patterns for different date formats
-        final regexPatterns = [
-          // Pattern 1: "26-08-2025 15:41 PM" (dd-MM-yyyy HH:mm a)
-          RegExp(r"(\d{2})-(\d{2})-(\d{4}) (\d{2}):(\d{2}) (AM|PM)", caseSensitive: false),
-          // Pattern 2: "30 Aug 2025 08:50 AM" (dd MMM yyyy hh:mm a)
-          RegExp(r"(\d{2}) (\w{3}) (\d{4}) (\d{2}):(\d{2}) (AM|PM)", caseSensitive: false),
-          // Pattern 3: "30 August 2025 08:50 AM" (dd MMMM yyyy hh:mm a)
-          RegExp(r"(\d{2}) (\w+) (\d{4}) (\d{2}):(\d{2}) (AM|PM)", caseSensitive: false),
-          // Pattern 4: "2025-8-13 1:42" (yyyy-M-d H:mm)
-          RegExp(r"(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{2})"),
-        ];
 
-        for (int i = 0; i < regexPatterns.length; i++) {
-          try {
-            final regex = regexPatterns[i];
-            final match = regex.firstMatch(backendDate);
-            
-            if (match != null) {
-              print("Matched pattern $i: ${regex.pattern}");
-              
-              if (i == 0) {
-                // Pattern 1: "26-08-2025 15:41 PM"
-                int day = int.parse(match.group(1)!);
-                int month = int.parse(match.group(2)!);
-                int year = int.parse(match.group(3)!);
-                int hour = int.parse(match.group(4)!);
-                int minute = int.parse(match.group(5)!);
-                
-                // Convert 24-hour to 12-hour format
-                if (hour > 12) {
-                  hour -= 12;
-                } else if (hour == 0) {
-                  hour = 12;
-                }
-                
-                parsed = DateTime(year, month, day, hour, minute);
-                print("Parsed with pattern 1: $parsed");
-                break;
-                
-              } else if (i == 1) {
-                // Pattern 2: "30 Aug 2025 08:50 AM"
-                int day = int.parse(match.group(1)!);
-                String monthStr = match.group(2)!;
-                int year = int.parse(match.group(3)!);
-                int hour = int.parse(match.group(4)!);
-                int minute = int.parse(match.group(5)!);
-                
-                // Convert month abbreviation to number
-                int month = _getMonthFromAbbreviation(monthStr);
-                
-                // Convert 24-hour to 12-hour format
-                if (hour > 12) {
-                  hour -= 12;
-                } else if (hour == 0) {
-                  hour = 12;
-                }
-                
-                parsed = DateTime(year, month, day, hour, minute);
-                print("Parsed with pattern 2: $parsed");
-                break;
-                
-              } else if (i == 2) {
-                // Pattern 3: "30 August 2025 08:50 AM"
-                int day = int.parse(match.group(1)!);
-                String monthStr = match.group(2)!;
-                int year = int.parse(match.group(3)!);
-                int hour = int.parse(match.group(4)!);
-                int minute = int.parse(match.group(5)!);
-                
-                // Convert month name to number
-                int month = _getMonthFromName(monthStr);
-                
-                // Convert 24-hour to 12-hour format
-                if (hour > 12) {
-                  hour -= 12;
-                } else if (hour == 0) {
-                  hour = 12;
-                }
-                
-                parsed = DateTime(year, month, day, hour, minute);
-                print("Parsed with pattern 3: $parsed");
-                break;
-                
-              } else if (i == 3) {
-                // Pattern 4: "2025-8-13 1:42" (yyyy-M-d H:mm)
-                int year = int.parse(match.group(1)!);
-                int month = int.parse(match.group(2)!);
-                int day = int.parse(match.group(3)!);
-                int hour = int.parse(match.group(4)!);
-                int minute = int.parse(match.group(5)!);
-                
-                // For this format, assume 24-hour time if no AM/PM specified
-                // Keep the hour as-is since it's likely already in 24-hour format
-                
-                parsed = DateTime(year, month, day, hour, minute);
-                print("Parsed with pattern 4: $parsed");
-                break;
-              }
-            }
-          } catch (e) {
-            print("Failed to parse with pattern $i: $e");
-          }
-        }
+      // Normalize AM/PM
+      String normalizeAmPm(String input) => input.replaceAllMapped(
+        RegExp(r'\b(am|pm)\b', caseSensitive: false),
+            (m) => m.group(0)!.toUpperCase(),
+      );
 
-        // If still not parsed, try the fallback formats
-        if (parsed == null) {
-          for (var f in fallbackFormats) {
-            try {
-              String dateToParse = normalizeAmPm(backendDate);
-              parsed = DateFormat(f, locale).parse(dateToParse);
-              break;
-            } catch (e) {
-              print("Failed to parse with format: $f, error: $e");
-            }
-          }
+      String normalizedDate = normalizeAmPm(backendDate.trim());
+
+      // --- 🩹 Fix invalid cases like "13:55 PM" or "00:30 AM" ---
+      final hourMatch = RegExp(r'(\d{1,2}):\d{2}').firstMatch(normalizedDate);
+      if (hourMatch != null) {
+        final hour = int.tryParse(hourMatch.group(1)!);
+        if (hour != null && hour > 12 && normalizedDate.contains(RegExp(r'AM|PM'))) {
+          // Convert to valid 12-hour format
+          final correctedHour = hour - 12;
+          normalizedDate = normalizedDate.replaceFirst(
+            RegExp(r'\b\d{1,2}:'),
+            '${correctedHour.toString().padLeft(2, "0")}:',
+          );
         }
       }
+
+      // --- Try parsing ---
+      final formats = [
+        "dd-MM-yyyy hh:mm a",
+        "dd-MM-yyyy HH:mm",
+        "dd MMM yyyy hh:mm a",
+        "dd MMM yyyy HH:mm",
+        "MMMM dd yyyy, hh:mm a",
+        "MMMM dd yyyy, h:mm a",
+        "yyyy-MM-dd HH:mm:ss",
+        "yyyy-M-d H:mm",
+        "yyyy-MM-dd hh:mm a",
+        "yyyy-MM-dd HH:mm",
+        "dd MMMM yyyy hh:mm a",
+      ];
+
+      for (var f in formats) {
+        try {
+          parsed = DateFormat(f, locale).parse(normalizedDate);
+          break;
+        } catch (_) {}
+      }
+
+      parsed ??= DateTime.tryParse(normalizedDate.replaceAll(" ", "T"));
+
       if (parsed == null) {
-        print("Could not parse date: $backendDate");
+        log("⚠️ Could not parse date: $backendDate");
         return backendDate;
       }
-      
-      /// Convert **assume UTC** → local
-      DateTime utcTime = DateTime.utc(
-        parsed.year,
-        parsed.month,
-        parsed.day,
-        parsed.hour,
-        parsed.minute,
-        parsed.second,
-      );
-      DateTime localTime = utcTime.toLocal();
-      
-      /// Format with proper locale
-      String formatted = DateFormat(formatType ?? "dd MMM yyyy - hh:mm a", locale)
-          .format(localTime);
+
+      final formatted = DateFormat(
+        formatType ?? "dd MMM yyyy - hh:mm a",
+        locale,
+      ).format(parsed);
+
       if (locale == LangCodeHelper.langAR) {
-        String arabicFormatted = _toArabicNumbers(formatted);
-        return arabicFormatted;
+        return _toArabicNumbers(formatted);
       }
+
       return formatted;
     } catch (e) {
-      print("Error in getDate: $e");
+      log("❌ Error in getDate: $e");
       return backendDate;
     }
   }

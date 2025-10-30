@@ -244,13 +244,13 @@ class Utilities {
     return storagePath;
   }
 
-  Future<String> getAddress(LatLng latLng, BuildContext context) async {
+  Future<String> getAddress(LatLng latLng, BuildContext context,{bool showCountryName = true}) async {
     GeoCode geoCode = GeoCode(apiKey: "554640628686038400400x13810");
     try {
       var address = await geoCode.reverseGeocoding(
           latitude: latLng.latitude, longitude: latLng.longitude);
       var data =
-          "${address.countryName ?? ""}  ${address.city ?? ""}  ${address.region ?? ""}  ${address.streetAddress ?? ""}";
+          "${showCountryName ? address.countryName ?? "" : ""}  ${address.city ?? ""}  ${address.region ?? ""}  ${address.streetAddress ?? ""}";
       return data;
     } catch (e) {
       return "";
@@ -286,9 +286,9 @@ class Utilities {
 
 
 
-  String formatAmount(String amount) {
+  String formatAmount(String amount,{bool applyDashSeperate = true}) {
     // Handle range case like "10.00 - 40.00"
-    if (amount.contains('-')) {
+    if (amount.contains('-') && applyDashSeperate) {
       final values = amount.split('-').map((e) => e.trim()).toList();
       if (values.length == 2) {
         return '${_formatSingle(values[0])} - ${_formatSingle(values[1])}';
@@ -300,7 +300,8 @@ class Utilities {
   }
 
   String _formatSingle(String value) {
-    final parsed = double.tryParse(value.replaceAll(',', '')) ?? 0;
+
+    final parsed = double.tryParse(value.replaceAll(',', '')) ?? 0 ;
     final intValue = parsed.toStringAsFixed(2);
 
     final formattedInteger = intValue.replaceAllMapped(

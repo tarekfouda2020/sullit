@@ -1,7 +1,9 @@
 part of 'profile_widgets_imports.dart';
 
 class BuildDeleteDialog extends StatelessWidget {
-  const BuildDeleteDialog({super.key});
+  final Function() onPressConfirm;
+  final String content;
+  const BuildDeleteDialog({super.key, required this.onPressConfirm, required this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -13,34 +15,30 @@ class BuildDeleteDialog extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                tr("wantDeleteAccount"),
+                content,
                 style: AppTextStyle.s14_w500(color: context.colors.black),
               ),
               Gaps.vGap16,
-              Row(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Flexible(
-                    child: DefaultButton(
-                      title: tr('cancel'),
-                      textColor: context.colors.black,
-                      height: 35.h,
-                      color: context.colors.greyWhite,
-                      // width: 100,
-                      borderColor: context.colors.white,
-                      borderRadius: Dimens.borderRadius30PX,
-                      onTap: () => Navigator.of(context).pop(),
-                    ),
+                  DefaultButton(
+                    title: tr('confirm'),
+                    height: 35.h,
+                    // width: 100,
+                    borderColor: context.colors.white,
+                    borderRadius: Dimens.borderRadius30PX,
+                    onTap: onPressConfirm,
                   ),
-                  Flexible(
-                    child: DefaultButton(
-                      title: tr('confirm'),
-                      height: 35.h,
-                      // width: 100,
-                      borderColor: context.colors.white,
-                      borderRadius: Dimens.borderRadius30PX,
-                      onTap: () => getIt<AuthHelper>().deleteAccount(context),
-                    ),
+                  DefaultButton(
+                    title: tr('cancel'),
+                    textColor: context.colors.black,
+                    height: 35.h,
+                    color: context.colors.greyWhite,
+                    // width: 100,
+                    borderColor: context.colors.white,
+                    borderRadius: Dimens.borderRadius30PX,
+                    onTap: () => Navigator.of(context).pop(),
                   ),
                 ],
               ),

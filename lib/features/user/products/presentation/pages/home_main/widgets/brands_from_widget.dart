@@ -15,7 +15,7 @@ class BrandsFromWidget extends StatelessWidget {
           return Visibility(
             visible: state.data.isNotEmpty,
             child: SizedBox(
-              height: 100,
+              height: 150,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -33,9 +33,9 @@ class BrandsFromWidget extends StatelessWidget {
                       itemCount: length,
                       itemBuilder: (context, index) {
                         return BuildBrandItem(
-                          //margin: EdgeInsetsDirectional.only(end: index == length - 1 ? 0 : 8),
-                          height: 56,
-                          width: 56,
+                          margin: EdgeInsetsDirectional.only(end: index == length - 1 ? 0 : 8),
+                          height: 84,
+                          width: 84,
                           brand: state.data[index],
                         );
                       },

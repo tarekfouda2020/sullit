@@ -2,15 +2,12 @@ part of 'LocationWidgetsImports.dart';
 
 class BuildGoogleMapView extends StatelessWidget {
   final LocationAddressData locationAddressData;
-
-  const BuildGoogleMapView({super.key, required this.locationAddressData});
+  const BuildGoogleMapView({super.key, required this.locationAddressData, });
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LocationCubit, LocationState>(
       builder: (context, state) {
-        print("=======================0000000=======>>>> state ${state.model?.lat}");
-        print("=======================0000000=======>>>> state ${state.model?.lng}");
         return Stack(
           alignment: Alignment.center,
           children: [
@@ -48,23 +45,8 @@ class BuildGoogleMapView extends StatelessWidget {
                   onCameraIdle: () {
                     locationAddressData.getLocationAddress(context);
                   },
-                  onTap: (location) {
-                    locationAddressData.locationModel = LocationEntity(
-                      lat: location.latitude,
-                      lng: location.longitude,
-                      address: "",
-                    );
-                    locationAddressData.getLocationAddress(context);
-                  },
-                  onCameraMove: (loc) {
-                    if(loc.target.latitude > 0 && loc.target.longitude > 0){
-                      locationAddressData.locationModel = LocationEntity(
-                        lat: loc.target.latitude,
-                        lng: loc.target.longitude,
-                        address: "",
-                      );
-                    }
-                  }
+                  // onTap: (location) async => locationAddressData.onTapOnMap(context, location),
+                  onCameraMove: (loc) async => locationAddressData.onTapOnMap(context, loc.target)
               ),
             ),
             ImageIcon(

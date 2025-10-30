@@ -13,6 +13,6 @@ class VariantPriceParams {
 
   Map<String, dynamic> toJson() => {
         "variants": variants,
-        "reseller_id": resellerId,
+       if(resellerId!=null) "reseller_id": resellerId,
       };
 }

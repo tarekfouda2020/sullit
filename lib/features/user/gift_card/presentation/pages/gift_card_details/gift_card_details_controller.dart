@@ -104,7 +104,7 @@ class GiftCardDetailsController {
           //   await  myGiftCardDetails();
           // }
         }
-        CustomToast.showSnakeBar(tr("giftCardSubscribed"));
+        CustomToast.showSnakeBar(tr("giftCardSubscribed"),type: ToastType.success);
         AutoRouter.of(ctx).pop(true);
       }
       getIt<LoadingHelper>().dismissDialog();

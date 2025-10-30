@@ -63,6 +63,7 @@ class BuildDeliveryType extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border.all(color: context.colors.greyWhite),
                     borderRadius: Dimens.borderRadius5PX,
+                    color: context.colors.white
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

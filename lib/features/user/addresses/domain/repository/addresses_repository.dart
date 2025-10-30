@@ -10,13 +10,13 @@ import 'package:flutter_tdd/features/user/addresses/domain/models/address_type_m
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 
 abstract class AddressesRepository{
-  Future<Either<Failure, List<Address>>> getAddress (GenericPaginateParams param);
-  Future<Either<Failure, Address>> addNewAddress (AddAddressParams params);
+  Future<Either<Failure, List<AddressDomainModel>>> getAddress (GenericPaginateParams param);
+  Future<Either<Failure, AddressDomainModel>> addNewAddress (AddAddressParams params);
   Future<Either<Failure, List<Country>>> getCountries (bool param);
   Future<Either<Failure, List<StateDomainModel>>> getStatesByCountryId (int param);
   Future<Either<Failure, List<City>>> getCitiesByStateId (int param);
   Future<Either<Failure, bool>> setDefaultAddress(int param);
   Future<Either<Failure, bool>> deleteAddress (int param);
-  Future<Either<Failure, Address>> editAddress (EditAddressParams params);
+  Future<Either<Failure, AddressDomainModel>> editAddress (EditAddressParams params);
   Future<Either<Failure, List<AddressTypeModel>>> addressTypes(bool param);
 }

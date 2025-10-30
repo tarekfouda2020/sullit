@@ -30,7 +30,7 @@ class SellerProductsPageState extends State<SellerProductsPage> {
         title: widget.shopModel.name ?? "",
         showBack: true,
         actions: [
-          InkWell(
+          GestureDetector(
             onTap: () => controller.openDrawerFilter(),
             child: Padding(
               padding: Dimens.paddingAll5PX,
@@ -77,6 +77,18 @@ class SellerProductsPageState extends State<SellerProductsPage> {
                     color: context.colors.black,
                   ),
                 ),
+              );
+            },
+            newPageProgressIndicatorBuilder: (context) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: context.colors.white,
+                    ),
+                  ),
+                ],
               );
             },
           ),

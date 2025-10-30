@@ -1,7 +1,7 @@
 part of 'addresses_widgets_imports.dart';
 
 class BuildNewAddressItem extends StatelessWidget {
-  final Address address;
+  final AddressDomainModel address;
   final AddressesController controller;
 
   const BuildNewAddressItem(
@@ -47,12 +47,13 @@ class BuildNewAddressItem extends StatelessWidget {
                   ),
                   BuildAddressTitleItem(
                     title: tr('city'),
-                    desc: address.city?.name ?? "",
+                    desc: address.cityName ?? "",
                   ),
                   BuildAddressTitleItem(
                     title: tr("state"),
-                    desc: address.state?.name ?? "",
+                    desc: address.stateName ?? "",
                   ),
+                  if(address.country!=null)
                   BuildAddressTitleItem(
                     title: tr('country'),
                     desc: address.country?.name ?? "",

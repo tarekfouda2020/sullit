@@ -2,6 +2,9 @@ import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/enum/track_order_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/order_driver_domain_model.dart';
+
+import '../enum/order_payment_type.dart';
 
 class Orders extends BaseDomainModel {
   int id;
@@ -41,6 +44,7 @@ class Orders extends BaseDomainModel {
   bool loyaltyPointsApplied;
   int loyaltyPoints;
   String loyaltyPointsValue;
+  OrderDriverDomainModel? driverModel;
 
   Orders({
     required this.id,
@@ -78,6 +82,7 @@ class Orders extends BaseDomainModel {
     required this.loyaltyPointsApplied,
     required this.loyaltyPoints,
     required this.totalItems,
+     this.driverModel,
   });
 
   int totalItemsCount() => orderDetails.fold(0, (previousValue, element) => previousValue + element.quantity);
@@ -116,4 +121,17 @@ class Orders extends BaseDomainModel {
         return TrackOrderEnum.placed;
     }
   }
+
+
+  OrderPaymentType orderPaymentType(){
+    switch(paymentMethod){
+      case "Cash on Delivery" :return OrderPaymentType.cash;
+      case "Stripe": return OrderPaymentType.stripe ;
+      case "Tap" : return OrderPaymentType.tap;
+      case "Wallet" :return OrderPaymentType.wallet;
+      default: return OrderPaymentType.tap;
+    }
+  }
+
+  bool get isPaymentCash => orderPaymentType() == OrderPaymentType.cash;
 }

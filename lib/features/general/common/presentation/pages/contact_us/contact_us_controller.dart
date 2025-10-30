@@ -4,7 +4,7 @@ class ContactUsController {
   final GlobalKey<CustomButtonState> btnKey = GlobalKey();
   final GlobalKey<FormState> formKey = GlobalKey();
   final GenericBloc<String> contactUsCubit = GenericBloc("");
-  final GenericBloc<Country?> countryCubit = GenericBloc(CountryPickerHelper.defaultCountrySync() as Country?);
+  final GenericBloc<Country?> countryCubit = GenericBloc(CountryPickerHelper.defaultCountrySync as Country?);
   final GenericBloc<List<ContactUsSocialModel>> contactUsSocialCubit = GenericBloc<List<ContactUsSocialModel>>([]);
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
@@ -29,24 +29,24 @@ class ContactUsController {
       name.text = user?.name ?? "";
       email.text = user?.email ?? "";
       phone.text = user?.phone ?? "";
-      await _initializeCountryFromUser(context, user);
+      // await _initializeCountryFromUser(context, user);
     }
   }
 
-  Future<void> _initializeCountryFromUser(BuildContext context, UserDomainModel? user) async {
-    if (user?.countryCode != null && user!.countryCode!.isNotEmpty) {
-      try {
-        final country = await CountryPickerHelper.getCountryByCallingCode(context, user.countryCode!);
-        if (country != null) {
-          countryCubit.onUpdateData(country);
-        } else {
-          print("No country found for calling code: ${user.countryCode}");
-        }
-      } catch (e) {
-        print("Error getting country for calling code ${user.countryCode}: $e");
-      }
-    }
-  }
+  // Future<void> _initializeCountryFromUser(BuildContext context, UserDomainModel? user) async {
+  //   if (user?.countryCode != null && user!.countryCode!.isNotEmpty) {
+  //     try {
+  //       final country = await CountryPickerHelper.getCountryByCallingCode(context, user.countryCode!);
+  //       if (country != null) {
+  //         countryCubit.onUpdateData(country);
+  //       } else {
+  //         print("No country found for calling code: ${user.countryCode}");
+  //       }
+  //     } catch (e) {
+  //       print("Error getting country for calling code ${user.countryCode}: $e");
+  //     }
+  //   }
+  // }
 
   Future<void> contactUs(BuildContext context) async {
     if (formKey.currentState!.validate()) {

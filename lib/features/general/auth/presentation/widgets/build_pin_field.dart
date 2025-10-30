@@ -24,6 +24,7 @@ class BuildPinField extends StatelessWidget {
       child: PinCodeTextField(
         length: count ?? 6,
         appContext: context,
+        keyboardType: TextInputType.number,
         onChanged: (String value) {},
         backgroundColor: Colors.transparent,
         textStyle: AppTextStyle.s16_w500(color: context.colors.black),

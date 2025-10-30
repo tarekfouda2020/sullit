@@ -17,7 +17,7 @@ class CategoryDetailsController {
 
   BrandDomainModel? brandModel;
   List<BrandDomainModel> brands = [];
-  int brandId = 0;
+  int? brandId;
   List<String> selectedColors = [];
   int currentCatId = 0;
   RangeValues? _initialRangeValues;
@@ -49,8 +49,7 @@ class CategoryDetailsController {
     });
   }
 
-  Future<void> getSubCategories(BuildContext context, int id,
-      {bool refresh = true}) async {
+  Future<void> getSubCategories(BuildContext context, int id, {bool refresh = true}) async {
     currentCatId = id;
     var params = _productsParams(1, refresh);
     // print(">>>>>${params.toJson()}");
@@ -171,10 +170,10 @@ class CategoryDetailsController {
   }
 
   void onOpenAttribute(int index) {
+    // State is now managed locally in BuildFilterItem widget
+    // No need to update the entire cubit for open/close state
     var specifications = specificationsCubit.state.data;
-    specifications!.attributes[index].opened =
-        !specifications.attributes[index].opened;
-    specificationsCubit.onUpdateData(specifications);
+    specifications!.attributes[index].opened = !specifications.attributes[index].opened;
   }
 
   void onSelectAttributes(int index, int position) {
@@ -251,7 +250,7 @@ class CategoryDetailsController {
   }
 
   void openDrawerFilter() {
-    if(subCategoriesCubit.state is GenericUpdateState || pagingController.itemList!.isNotEmpty){
+    if(subCategoriesCubit.state is GenericUpdateState || (pagingController.itemList?? [] ).isNotEmpty){
       scaffold.currentState?.openDrawer();
     }
   }

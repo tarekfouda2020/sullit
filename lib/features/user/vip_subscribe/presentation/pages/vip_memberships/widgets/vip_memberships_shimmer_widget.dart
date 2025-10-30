@@ -36,9 +36,9 @@ class VipMembershipsShimmerWidget extends StatelessWidget {
   }
 
   Widget _buildOtherPlansTitleShimmer(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         BuildShimmerItem(
           height: 18,
           width: 100,
@@ -49,7 +49,7 @@ class VipMembershipsShimmerWidget extends StatelessWidget {
 
   Widget _buildMembershipItemShimmer(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsetsDirectional.only(start: 22, end: 15, top: 15, bottom: 13),
       decoration: CustomDecoration(
         radius: BorderRadius.circular(12),
@@ -59,9 +59,9 @@ class VipMembershipsShimmerWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               BuildShimmerItem(
                 height: 14,
                 width: 120,
@@ -113,8 +113,6 @@ class VipMembershipsShimmerWidget extends StatelessWidget {
               );
             }),
           ),
-          Gaps.vGap15,
-          Divider(color: context.colors.textColor),
           Gaps.vGap15,
           const BuildShimmerItem(
             height: 12,

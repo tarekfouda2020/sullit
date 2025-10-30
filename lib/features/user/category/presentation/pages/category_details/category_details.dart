@@ -39,7 +39,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
         ),
         title: "",
         actions: [
-          InkWell(
+          GestureDetector(
             onTap: () => controller.openDrawerFilter(),
             child: Padding(
               padding:  const EdgeInsets.all(Dimens.dp5),

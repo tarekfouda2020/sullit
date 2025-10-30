@@ -48,7 +48,6 @@ class LoyaltyDiscountWidget extends StatelessWidget {
               const Spacer(),
               SwitchButtonWidget(
                 switchBloc: controller.applyPointsSwitchCubit,
-                controller: controller,
                 onToggle: (value) => controller.switchApplyPoints(),
               ),
             ],

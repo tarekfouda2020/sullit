@@ -37,6 +37,7 @@ class BestRatedOffersFormWidget extends StatelessWidget {
                           margin: EdgeInsetsDirectional.only(end: index == length - 1 ? 0 : 8),
                           productModel: state.data[index],
                           onFavRefresh: () => controller.onChangeBestRatedFav(state.data[index]),
+                          onRefresh: () => controller.getBestRatedOffers(refresh: true),
                         );
                       },
                     ),

@@ -25,7 +25,7 @@ class BuildDeliveryButtons extends StatelessWidget {
           DefaultButton(
             title: tr('conToPay'),
             color: context.colors.primary,
-            onTap: ()=> controller.setCartStoreShipping(context),
+            onTap: ()=> controller.onPresContinue(context),
             margin: const EdgeInsets.only(bottom: 15),
           ),
           DefaultButton(

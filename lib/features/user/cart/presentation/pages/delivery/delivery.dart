@@ -39,7 +39,6 @@ class _DeliveryState extends State<Delivery> {
       ),
       bottomNavigationBar: BuildDeliveryButtons(controller: controller),
     );
-
   }
 }
 

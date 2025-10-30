@@ -70,6 +70,13 @@ class SupportTicketsController {
     );
   }
 
+
+  void removeImage(File file){
+    imagesCubit.state.data.remove(file);
+    imagesCubit.onUpdateData(imagesCubit.state.data);
+  }
+
+
   CreateTicketParams _createTicketParams() {
     return CreateTicketParams(
       subject: subjectController.text,

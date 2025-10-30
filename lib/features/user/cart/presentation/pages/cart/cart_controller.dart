@@ -91,21 +91,40 @@ class CartController {
     }
   }
 
+
+  void showClearDialog(BuildContext context){
+    showDialog(
+      context: context,
+      builder: (context) {
+        return  BuildDeleteDialog(
+          onPressConfirm: () => clearCart(context),
+          content: tr("want_to_clear_your_cart"),
+        );
+      },
+    );
+  }
+
+
+
+
   Future<void> clearCart(BuildContext context) async {
-    String? token = await getIt<GetDeviceId>().deviceId;
-    var params = await _cartParams(token!);
-    await ClearCart().call(params).then((value){
+    var params = await _cartParams();
+    await ClearCart().call(params).then((value) async {
       CustomToast.showSimpleToast(msg: value, type: ToastType.success);
       cartItemsBloc.state.data.items!.clear();
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
       var countCubit = context.read<CountCubit>().state;
       context.read<CountCubit>().onUpdateCount(0, countCubit.discount);
+      Navigator.pop(context);
+     await Future.delayed(const Duration(milliseconds: 300));
+      Navigator.pop(context);
     });
   }
 
-  Future<CartParams> _cartParams(String token) async {
+  Future<CartParams> _cartParams() async {
     return CartParams(
-      macAddress: token, refresh: false,
+      macAddress: await getIt<GetDeviceId>().deviceId ?? "",
+      refresh: false,
     );
   }
 

@@ -15,7 +15,7 @@ class CleaAllWidget extends StatelessWidget {
           style: AppTextStyle.s16_w700(color: context.colors.black),
           ),
         GestureDetector(
-          onTap: ()=> controller.clearCart(context),
+          onTap: ()=> controller.showClearDialog(context),
           child: Row(
             children: [
               SvgPicture.asset(Res.trashIcon,

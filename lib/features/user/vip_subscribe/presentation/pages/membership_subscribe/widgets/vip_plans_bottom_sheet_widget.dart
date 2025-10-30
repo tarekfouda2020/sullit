@@ -81,7 +81,7 @@ class VipPlansBottomSheetWidget extends StatelessWidget {
               }
             },
           ),
-          Gaps.vGap(Dimens.iosBottomDp(context)-15)
+          Gaps.vGap(Dimens.iosBottomDp(context))
         ],
       ),
     );
