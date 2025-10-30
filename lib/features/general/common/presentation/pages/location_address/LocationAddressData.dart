@@ -26,7 +26,12 @@ class LocationAddressData {
 
 
   Future<void> getLocation(BuildContext context)async{
-    bool permissionGranted = await getIt<PermissionServices>().requestPermission(Permission.location, context);
+    bool permissionGranted ;
+    if(Platform.isIOS){
+      permissionGranted = true;
+    }else{
+      permissionGranted = await getIt<PermissionServices>().requestPermission(Permission.location, context);
+    }
     var model = context.read<LocationCubit>().state.model;
     if(permissionGranted){
       var currentLocation = await getIt<LocationService>().getCurrentLocation();
