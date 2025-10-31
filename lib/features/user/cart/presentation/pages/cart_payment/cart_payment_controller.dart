@@ -301,9 +301,13 @@ class CartPaymentController {
     }
 
   Future<void> getLoyaltyPointsBalance({bool refresh = true}) async {
-    return await GetLoyaltyPointsBalance().call(refresh).then(
+     await GetLoyaltyPointsBalance().call(refresh).then(
           (value) => loyaltyPointsBalanceBloc.onUpdateData(value),
     );
+     bool isPointsApplied = shippingBloc.state.data?.summary.loyaltyPointsApplied == true;
+     if(isPointsApplied){
+       applyPointsSwitchCubit.onUpdateData(true);
+     }
   }
 
   Future<void> applyGiftCard(BuildContext context)async{

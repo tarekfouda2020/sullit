@@ -82,7 +82,7 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("${tr('checkout')} - ",
+                            Text("${tr('checkout')} : ",
                             style: AppTextStyle.s18_w700(color: context.colors.white),
                             ),
                             Text(state.data.subTotal ?? "",

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,11 +7,13 @@ import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
+import 'package:flutter_tdd/features/user/cart/presentation/pages/cart/cart_imports.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart/widgets/cart_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
@@ -179,38 +182,59 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                     color: context.colors.black,
                   ),
                 ),
-                child: GestureDetector(
-                  onTap: () {
-                    getIt<CartHelper>().addProductToCart(
-                      context,
-                      state.data!.minQty!,
-                      state.data!.variant?.id,
-                      onAddCartFunc: () {
-                        Navigator.pop(context);
-                        widget.afterAddToCart?.call();
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        getIt<CartHelper>().addProductToCart(
+                          context,
+                          state.data!.minQty!,
+                          state.data!.variant?.id,
+                          onAddCartFunc: () {
+                            Navigator.pop(context);
+                            widget.afterAddToCart?.call();
+                          },
+                        );
                       },
-                    );
-                  },
-                  child: Container(
-                    margin: Dimens.paddingHorizontal5PX,
-                    padding: Dimens.standardPadding,
-                    decoration: BoxDecoration(
-                      color: context.colors.primary,
-                      borderRadius: Dimens.borderRadius5PX,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.shopping_cart,
-                          color: context.colors.white,
-                          size: 15,
+                      child: Container(
+                        margin: Dimens.paddingHorizontal5PX,
+                        padding: Dimens.standardPadding,
+                        decoration: BoxDecoration(
+                          color: context.colors.primary,
+                          borderRadius: Dimens.borderRadius5PX,
                         ),
-                        Gaps.hGap10,
-                        Text(tr('addToCart')),
-                      ],
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.shopping_cart,
+                              color: context.colors.white,
+                              size: 15,
+                            ),
+                            Gaps.hGap10,
+                            Text(tr('addToCart')),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
+                    Gaps.vGap10,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                        AutoRouter.of(context).push(const CartRoute());
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        margin: Dimens.paddingHorizontal5PX,
+                        padding: Dimens.standardPadding,
+                        decoration: BoxDecoration(
+                          color: context.colors.primary,
+                          borderRadius: Dimens.borderRadius5PX,
+                        ),
+                        child: Text(tr('checkout')),
+                      ),
+                    )
+                  ],
                 ),
               )
             ],
