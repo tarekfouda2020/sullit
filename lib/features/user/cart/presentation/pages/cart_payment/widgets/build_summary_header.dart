@@ -20,7 +20,6 @@ class BuildSummaryHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("====>>>amount is ${details}<<<===");
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
