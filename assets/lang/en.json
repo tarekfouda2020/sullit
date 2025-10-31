@@ -510,7 +510,7 @@
   "noProductsHere": "No products here",
   "submitOrder": "Submit Order",
   "agreeTo": "Agree",
-  "rulesAndConditions": "Rules & Conditions",
+  "rulesAndConditions": "Terms & Conditions",
   "invoiceSummary": "Invoice Summary",
   "soldBy": "Sold By",
   "trackShipment": "Track Shipment",
@@ -630,5 +630,7 @@
   "checkout": "check out",
   "countryLocation": "Please select location inside UAE",
   "allowReplacement": "Would you like to allow product replacements if any items become unavailable during processing?",
-  "delivery_time_alert": "Due to time is beyond 10pm, Delivery will be available the following morning."
+  "delivery_time_alert": "Due to time is beyond 10pm, Delivery will be available the following morning.",
+  "un_support_delivery_point": "Please select a pickup point for unsupported delivery or change your location."
+
 }

@@ -9,7 +9,6 @@ class BuildDeliveryType extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String langCode = context.read<DeviceCubit>().state.model.locale.languageCode;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -57,42 +56,7 @@ class BuildDeliveryType extends StatelessWidget {
               ),
               Visibility(
                 visible: shipping.deliveryType == 1,
-                replacement: Container(
-                  margin: Dimens.paddingVertical10PX,
-                  padding: Dimens.paddingAll15PX,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: context.colors.greyWhite),
-                    borderRadius: Dimens.borderRadius5PX,
-                    color: context.colors.white
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Directionality(
-                        textDirection:  TextDirection.ltr,
-                        child: Text(
-                          shipping.delivery?.transitIn ?? "",
-                          style: AppTextStyle.s14_w400(
-                            color: context.colors.black,
-                          ),
-                        ),
-                      ),
-                      shipping.delivery?.isShippingFree == true
-                          ?Text(
-                        shipping.delivery?.shippingCost.parseCurrency ?? "",
-                        style: AppTextStyle.s14_w400(color: context.colors.black))
-                          :DirhamPrice(
-                        amount: shipping.delivery?.shippingCost ?? "",
-                        currencyStyle: AppTextStyle.s16_w400(
-                          color: context.colors.black,
-                        ),
-                        textStyle: AppTextStyle.s14_w400(
-                          color: context.colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                replacement: DeliveryDurationCoastWidget(shipping: shipping,),
                 child: DropdownTextField<Pickup>(
                   title: tr('selectNearestPoint'),
                   hint: tr('selectNearestPoint'),

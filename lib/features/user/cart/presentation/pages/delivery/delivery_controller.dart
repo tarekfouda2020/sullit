@@ -18,6 +18,9 @@ class DeliveryController {
   void onChangeType(SellerShipping model, int value) {
     model.deliveryType = value;
     selectedItem = model;
+    if(value==0){
+      nearestPointModel = null;
+    }
     sellerShippingBloc.onUpdateData(sellerShippingBloc.state.data);
   }
 
@@ -38,7 +41,15 @@ class DeliveryController {
     }
   }
 
+  bool get deliveryInAll{
+    return sellerShippingBloc.state.data.every((element) => element.delivery!=null,);
+  }
+
   void onPresContinue(BuildContext context){
+    var deliverySelectInAll = sellerShippingBloc.state.data.every((element) => element.deliveryType == 0,);
+    if(deliverySelectInAll && !deliveryInAll){
+      return  CustomToast.showSimpleToast(msg: tr("un_support_delivery_point"));
+    }
     if (selectedItem?.deliveryType == 1 && nearestPointModel == null) {
       CustomToast.showSimpleToast(msg: tr("chooseNearestPickupPoint"));
       return;

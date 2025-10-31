@@ -23,6 +23,7 @@ class SellerShippingModel extends BaseApiModel<SellerShipping>
       @JsonKey(name: "active_pickup") required bool activePickUp,
       required PickUpModel pickup,
       @JsonKey(name: 'active_delivery') required bool activeDelivery,
+      @JsonKey(name: 'delivery_message') required String deliveryMessage,
       required DeliveryModel? delivery,
       @JsonKey(name: "owner_id") required int ownerId}) = _SellerShippingModel;
 
@@ -40,6 +41,7 @@ class SellerShippingModel extends BaseApiModel<SellerShipping>
       activeDelivery: activeDelivery,
       delivery: getDelivery(),
       ownerId: ownerId,
+      deliveryMessage: deliveryMessage
     );
   }
 
