@@ -8,7 +8,7 @@ class PurchasedOrderItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AutoRouter.of(context).push(OrderDetailsPageRoute(isReturnedOrder: false,order: order)),
+      onTap: () => controller.routeToOrderDetails(context,order),
       child: Container(
         padding: const EdgeInsets.all(20),
          margin: const EdgeInsets.only(bottom: 10),

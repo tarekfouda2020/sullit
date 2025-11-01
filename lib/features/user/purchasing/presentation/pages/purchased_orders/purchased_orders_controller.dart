@@ -8,8 +8,8 @@ class PurchasedOrdersController{
   int pageSize = 12;
 
   PurchasedOrdersController() {
+    getPurchasingHistory(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
-      getPurchasingHistory(pageKey, refresh: false);
       getPurchasingHistory(pageKey);
     });
   }
@@ -30,6 +30,12 @@ class PurchasedOrdersController{
   }
 
 
+  Future<void> routeToOrderDetails(BuildContext context,Orders order)async{
+    var result = await AutoRouter.of(context).push(OrderDetailsPageRoute(isReturnedOrder: false,order: order));
+    if(result== true){
+      getPurchasingHistory(1);
+    }
+  }
 
   GenericPaginateParams _historyParams(int page, bool refresh) {
     return GenericPaginateParams(

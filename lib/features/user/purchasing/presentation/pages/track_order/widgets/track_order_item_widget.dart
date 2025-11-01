@@ -55,7 +55,7 @@ class TrackOrderItemWidget extends StatelessWidget {
             Gaps.vGap8,
             // if(currentStep>=trackStatus.getStepNumber())
             Text(
-              statusModel.status,
+              statusModel.status.replaceAll("_", " "),
               style: AppTextStyle.s20_w700(
                   color: context.colors.black),
             ),

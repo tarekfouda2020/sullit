@@ -57,6 +57,13 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                     onTap: () => controller.onPayOrder(context),
                   ),
                 ),
+                Visibility(
+                  visible: state.data!.availableCancelOrder,
+                  child: DefaultButton(
+                    title: tr('cancel'),
+                    onTap: () => controller.cancelOrder(context,widget.order),
+                  ),
+                ),
                 Gaps.vGap20,
               ],
             ),
