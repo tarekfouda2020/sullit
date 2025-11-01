@@ -26,9 +26,11 @@ class LocationAddressData {
 
 
   Future<void> getLocation(BuildContext context)async{
-    bool permissionGranted = await getIt<PermissionServices>().requestPermission(Permission.location, context);
+    // Use locationWhenInUse specifically for iOS to avoid opening settings
+    Permission locationPermission = Permission.locationWhenInUse;
+    bool permissionGranted = await getIt<PermissionServices>().requestPermission(locationPermission, context);
     var model = context.read<LocationCubit>().state.model;
-    if(permissionGranted){
+    try{
       var currentLocation = await getIt<LocationService>().getCurrentLocation();
       LatLng? loc;
       if(model == null || model.lat == 0.0 || model.lng == 0.0){
@@ -44,7 +46,7 @@ class LocationAddressData {
       context.read<LocationCubit>().onLocationUpdated(locationModel);
       titleBloc.onUpdateData(locationModel.address);
       moveCameraToLocation(context, loc);
-    }else{
+    }catch(e){
       AutoRouter.of(context).pop();
     }
   }

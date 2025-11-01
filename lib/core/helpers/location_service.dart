@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/psermission_services.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_it/get_it.dart';
@@ -26,15 +27,16 @@ class LocationService {
   }
 
   Future<LatLng?> getCurrentLocationWithPermission(BuildContext context)async{
-    bool locationPermission = await getIt<PermissionServices>().requestPermission(Permission.location, context);
-   if(locationPermission){
-     final Position position = await Geolocator.getCurrentPosition(locationSettings: const LocationSettings(
-       accuracy: LocationAccuracy.high
-     ));
-     return LatLng(position.latitude, position.longitude);
-   }else{
-     return null;
-   }
+    // Use locationWhenInUse for better iOS compatibility
+     await getIt<PermissionServices>().requestPermission(Permission.locationWhenInUse, context);
+    try {
+      final Position position = await Geolocator.getCurrentPosition(locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.high
+      ));
+      return LatLng(position.latitude, position.longitude);
+    } catch (e) {
+      return null;
+    }
   }
 
 
