@@ -15,6 +15,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   void initState() {
     controller.initBottomNavigation(this, widget.index);
+    controller.getCartItems();
     super.initState();
   }
 
@@ -37,6 +38,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               children: controller.pages(),
             ),
             bottomNavigationBar: BuildBottomNavBar(controller: controller),
+            floatingActionButton: CartButtonWidget(controller: controller),
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           ),
         ),
       ),

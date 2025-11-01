@@ -18,7 +18,9 @@ import 'package:flutter_tdd/features/user/base/presentation/pages/home/widgets/h
 import 'package:flutter_tdd/features/user/base/presentation/pages/more/more_imports.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/summary/summary_imports.dart';
 import 'package:flutter_tdd/features/user/base/presentation/widgets/build_drawer.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
 import 'package:flutter_tdd/features/user/category/presentation/pages/categories/categories_imports.dart';
+import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/home_main/home_main_imports.dart';
 import 'package:flutter_tdd/features/user/sale/presentation/pages/coupons/coupons_imports.dart';
 import 'package:flutter_tdd/features/user/sale/presentation/pages/on_sale/on_sale_imports.dart';

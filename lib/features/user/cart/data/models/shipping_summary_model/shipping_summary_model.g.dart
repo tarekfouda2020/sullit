@@ -27,6 +27,8 @@ _$_ShippingSummaryModel _$$_ShippingSummaryModelFromJson(
       walletBalanceValue: (json['wallet_balance_value'] as num).toDouble(),
       avilablePayWithWallet: json['avilable_pay_with_wallet'] as bool,
       avilableCashOnDelivery: json['avilable_cash_on_delivery'] as bool,
+      serviceFee: json['service_fees'] as String,
+      technologyFees: json['technology_fees'] as String,
       items: (json['items'] as List<dynamic>)
           .map((e) => ShippingItemModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -55,6 +57,8 @@ Map<String, dynamic> _$$_ShippingSummaryModelToJson(
       'wallet_balance_value': instance.walletBalanceValue,
       'avilable_pay_with_wallet': instance.avilablePayWithWallet,
       'avilable_cash_on_delivery': instance.avilableCashOnDelivery,
+      'service_fees': instance.serviceFee,
+      'technology_fees': instance.technologyFees,
       'items': instance.items.map((e) => e.toJson()).toList(),
       'loyalty_points_value': instance.loyaltyPointsValue,
       'loyalty_points_applied': instance.loyaltyPointsApplied,

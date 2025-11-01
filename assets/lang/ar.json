@@ -266,7 +266,7 @@
   "noBlogs": "لا توجد مدونات",
   "returnToShop": "العودة الي التسوق",
   "continueToShipping": "الإستمرار الي الشحن",
-  "tax": "الضريبه",
+  "vat": "الضريبه",
   "total": "الإجمالي",
   "subTotal": "المجموع الفرعي",
   "itemDeleted": "تم حذف العنصر بنجاح",
@@ -629,7 +629,7 @@
   "orApplyGiftCard": "أو استخدم بطاقة الهديا",
   "thankYouForYourOrder": "شكراً لك على طلبك!",
   "change": "تغيير",
-  "useLoyaltyPoints": "استخدم نقاط الولاء",
+  "useLoyaltyPoints": "استخدم نقاط Bezat",
   "useWalletBalance": "استخدم رصيد المحفظة",
   "giftCardCode": "رمز بطاقة الهديا",
   "applePay": "ابل باي",
@@ -698,7 +698,7 @@
   "noProductsHere": "لا يوجد منتجات هنا",
   "invoiceSummary": "ملخص الفاتورة",
   "soldBy": "تباع بواسطة",
-  "trackShipment": "تتبع الشحنة",
+  "trackShipment": "تسليم الطلبة",
   "shipped": "تم الشحن",
   "pointsDiscount": "خصم النقاط",
   "appliedGiftCard": "بطاقة الهدية المطبقة",
@@ -797,7 +797,9 @@
   "allowReplacement": "هل ترغب في السماح باستبدال المنتجات إذا أصبحت بعض العناصر غير متوفرة أثناء تنفيذ طلبك؟",
   "countryLocation": "الرجاء تحديد موقع داخل الإمارات العربية المتحدة",
   "delivery_time_alert": "نظرًا لأن الوقت بعد الساعة العاشرة مساءً، ستكون خدمة التوصيل متاحة في صباح اليوم التالي.",
-  "un_support_delivery_point": "يرجى تحديد نقطة استلام للتوصيل غير المدعوم أو تغيير موقعك."
+  "un_support_delivery_point": "يرجى تحديد نقطة استلام للتوصيل غير المدعوم أو تغيير موقعك.",
+  "service_fees": "رسوم الخدمة",
+  "technology_fees": "رسوم التكنولوجيا"
 
 
 }

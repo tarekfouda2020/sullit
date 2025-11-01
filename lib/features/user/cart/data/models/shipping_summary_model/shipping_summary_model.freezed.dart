@@ -50,6 +50,10 @@ mixin _$ShippingSummaryModel {
   bool get avilablePayWithWallet => throw _privateConstructorUsedError;
   @JsonKey(name: "avilable_cash_on_delivery")
   bool get avilableCashOnDelivery => throw _privateConstructorUsedError;
+  @JsonKey(name: "service_fees")
+  String get serviceFee => throw _privateConstructorUsedError;
+  @JsonKey(name: "technology_fees")
+  String get technologyFees => throw _privateConstructorUsedError;
   List<ShippingItemModel> get items => throw _privateConstructorUsedError;
   @JsonKey(name: "loyalty_points_value")
   String? get loyaltyPointsValue => throw _privateConstructorUsedError;
@@ -89,6 +93,8 @@ abstract class $ShippingSummaryModelCopyWith<$Res> {
       @JsonKey(name: "wallet_balance_value") double walletBalanceValue,
       @JsonKey(name: "avilable_pay_with_wallet") bool avilablePayWithWallet,
       @JsonKey(name: "avilable_cash_on_delivery") bool avilableCashOnDelivery,
+      @JsonKey(name: "service_fees") String serviceFee,
+      @JsonKey(name: "technology_fees") String technologyFees,
       List<ShippingItemModel> items,
       @JsonKey(name: "loyalty_points_value") String? loyaltyPointsValue,
       @JsonKey(name: "loyalty_points_applied") bool? loyaltyPointsApplied,
@@ -126,6 +132,8 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
     Object? walletBalanceValue = null,
     Object? avilablePayWithWallet = null,
     Object? avilableCashOnDelivery = null,
+    Object? serviceFee = null,
+    Object? technologyFees = null,
     Object? items = null,
     Object? loyaltyPointsValue = freezed,
     Object? loyaltyPointsApplied = freezed,
@@ -200,6 +208,14 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
           ? _value.avilableCashOnDelivery
           : avilableCashOnDelivery // ignore: cast_nullable_to_non_nullable
               as bool,
+      serviceFee: null == serviceFee
+          ? _value.serviceFee
+          : serviceFee // ignore: cast_nullable_to_non_nullable
+              as String,
+      technologyFees: null == technologyFees
+          ? _value.technologyFees
+          : technologyFees // ignore: cast_nullable_to_non_nullable
+              as String,
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
@@ -247,6 +263,8 @@ abstract class _$$_ShippingSummaryModelCopyWith<$Res>
       @JsonKey(name: "wallet_balance_value") double walletBalanceValue,
       @JsonKey(name: "avilable_pay_with_wallet") bool avilablePayWithWallet,
       @JsonKey(name: "avilable_cash_on_delivery") bool avilableCashOnDelivery,
+      @JsonKey(name: "service_fees") String serviceFee,
+      @JsonKey(name: "technology_fees") String technologyFees,
       List<ShippingItemModel> items,
       @JsonKey(name: "loyalty_points_value") String? loyaltyPointsValue,
       @JsonKey(name: "loyalty_points_applied") bool? loyaltyPointsApplied,
@@ -281,6 +299,8 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
     Object? walletBalanceValue = null,
     Object? avilablePayWithWallet = null,
     Object? avilableCashOnDelivery = null,
+    Object? serviceFee = null,
+    Object? technologyFees = null,
     Object? items = null,
     Object? loyaltyPointsValue = freezed,
     Object? loyaltyPointsApplied = freezed,
@@ -355,6 +375,14 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
           ? _value.avilableCashOnDelivery
           : avilableCashOnDelivery // ignore: cast_nullable_to_non_nullable
               as bool,
+      serviceFee: null == serviceFee
+          ? _value.serviceFee
+          : serviceFee // ignore: cast_nullable_to_non_nullable
+              as String,
+      technologyFees: null == technologyFees
+          ? _value.technologyFees
+          : technologyFees // ignore: cast_nullable_to_non_nullable
+              as String,
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
@@ -402,6 +430,8 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
       required this.avilablePayWithWallet,
       @JsonKey(name: "avilable_cash_on_delivery")
       required this.avilableCashOnDelivery,
+      @JsonKey(name: "service_fees") required this.serviceFee,
+      @JsonKey(name: "technology_fees") required this.technologyFees,
       required final List<ShippingItemModel> items,
       @JsonKey(name: "loyalty_points_value") this.loyaltyPointsValue,
       @JsonKey(name: "loyalty_points_applied") this.loyaltyPointsApplied,
@@ -459,6 +489,12 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
   @override
   @JsonKey(name: "avilable_cash_on_delivery")
   final bool avilableCashOnDelivery;
+  @override
+  @JsonKey(name: "service_fees")
+  final String serviceFee;
+  @override
+  @JsonKey(name: "technology_fees")
+  final String technologyFees;
   final List<ShippingItemModel> _items;
   @override
   List<ShippingItemModel> get items {
@@ -479,7 +515,7 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
 
   @override
   String toString() {
-    return 'ShippingSummaryModel(subtotal: $subtotal, tax: $tax, shipping: $shipping, couponDiscount: $couponDiscount, calTotal: $calTotal, total: $total, couponCode: $couponCode, couponApplied: $couponApplied, totalItems: $totalItems, minimumOrderAmountStatus: $minimumOrderAmountStatus, minimumOrderAmountMsg: $minimumOrderAmountMsg, minimumOrderAmountAmount: $minimumOrderAmountAmount, walletSystemActive: $walletSystemActive, walletBalance: $walletBalance, walletBalanceValue: $walletBalanceValue, avilablePayWithWallet: $avilablePayWithWallet, avilableCashOnDelivery: $avilableCashOnDelivery, items: $items, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints)';
+    return 'ShippingSummaryModel(subtotal: $subtotal, tax: $tax, shipping: $shipping, couponDiscount: $couponDiscount, calTotal: $calTotal, total: $total, couponCode: $couponCode, couponApplied: $couponApplied, totalItems: $totalItems, minimumOrderAmountStatus: $minimumOrderAmountStatus, minimumOrderAmountMsg: $minimumOrderAmountMsg, minimumOrderAmountAmount: $minimumOrderAmountAmount, walletSystemActive: $walletSystemActive, walletBalance: $walletBalance, walletBalanceValue: $walletBalanceValue, avilablePayWithWallet: $avilablePayWithWallet, avilableCashOnDelivery: $avilableCashOnDelivery, serviceFee: $serviceFee, technologyFees: $technologyFees, items: $items, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints)';
   }
 
   @override
@@ -521,6 +557,10 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
                 other.avilablePayWithWallet == avilablePayWithWallet) &&
             (identical(other.avilableCashOnDelivery, avilableCashOnDelivery) ||
                 other.avilableCashOnDelivery == avilableCashOnDelivery) &&
+            (identical(other.serviceFee, serviceFee) ||
+                other.serviceFee == serviceFee) &&
+            (identical(other.technologyFees, technologyFees) ||
+                other.technologyFees == technologyFees) &&
             const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.loyaltyPointsValue, loyaltyPointsValue) ||
                 other.loyaltyPointsValue == loyaltyPointsValue) &&
@@ -551,6 +591,8 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
         walletBalanceValue,
         avilablePayWithWallet,
         avilableCashOnDelivery,
+        serviceFee,
+        technologyFees,
         const DeepCollectionEquality().hash(_items),
         loyaltyPointsValue,
         loyaltyPointsApplied,
@@ -598,6 +640,8 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
       required final bool avilablePayWithWallet,
       @JsonKey(name: "avilable_cash_on_delivery")
       required final bool avilableCashOnDelivery,
+      @JsonKey(name: "service_fees") required final String serviceFee,
+      @JsonKey(name: "technology_fees") required final String technologyFees,
       required final List<ShippingItemModel> items,
       @JsonKey(name: "loyalty_points_value") final String? loyaltyPointsValue,
       @JsonKey(name: "loyalty_points_applied") final bool? loyaltyPointsApplied,
@@ -655,6 +699,12 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
   @override
   @JsonKey(name: "avilable_cash_on_delivery")
   bool get avilableCashOnDelivery;
+  @override
+  @JsonKey(name: "service_fees")
+  String get serviceFee;
+  @override
+  @JsonKey(name: "technology_fees")
+  String get technologyFees;
   @override
   List<ShippingItemModel> get items;
   @override

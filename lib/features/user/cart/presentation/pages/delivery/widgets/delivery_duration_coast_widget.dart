@@ -27,10 +27,14 @@ class DeliveryDurationCoastWidget extends StatelessWidget {
             children: [
               Directionality(
                 textDirection:  TextDirection.ltr,
-                child: Text(
-                  shipping.delivery?.transitIn ?? "",
-                  style: AppTextStyle.s14_w400(
-                    color: context.colors.black,
+                child: Flexible(
+                  child: Text(
+                    shipping.delivery?.transitIn ?? "",
+                    style: AppTextStyle.s14_w400(
+                      color: context.colors.black,
+                    ).copyWith(
+                      height: 1.2
+                    ),
                   ),
                 ),
               ),

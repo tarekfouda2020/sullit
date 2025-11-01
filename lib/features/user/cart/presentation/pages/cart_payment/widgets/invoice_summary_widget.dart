@@ -24,15 +24,25 @@ class InvoiceSummaryWidget extends StatelessWidget {
         InvoiceSummaryCard(
             children: [
           BuildSummaryHeader(
-            title: tr('totalItems'),
+            title: tr('subTotal'),
             details: shippingSummary.subTotal,
             useDirhamPrice: true,
           ),
           BuildSummaryHeader(
-            title: tr('tax'),
+            title: tr('vat'),
             details: shippingSummary.tax,
             useDirhamPrice: true,
           ),
+              BuildSummaryHeader(
+                title: tr('service_fees'),
+                details: shippingSummary.serviceFees,
+                useDirhamPrice: true,
+              ),
+              // BuildSummaryHeader(
+              //   title: tr('technology_fees'),
+              //   details: shippingSummary.technologyFees,
+              //   useDirhamPrice: true,
+              // ),
           BuildSummaryHeader(
             title: tr('shippingFees'),
             details: shippingSummary.shipping,

@@ -94,7 +94,7 @@
   "returnToShop": "Continue shopping",
   "continueToShipping": "Continue to shipping",
   "price": "Price",
-  "tax": "VAT",
+  "vat": "VAT",
   "total": "Total",
   "subTotal": "Sub Total",
   "itemDeleted": "Item deleted successfully",
@@ -439,7 +439,7 @@
   "munchCorner": "Munch Corner",
   "orApplyGiftCard": "Or Apply Gift Card",
   "thankYouForYourOrder": "Thank You For Your Order!",
-  "useLoyaltyPoints": "Use Loyalty Points",
+  "useLoyaltyPoints": "Use Bezat Points",
   "useWalletBalance": "Use Wallet Balance",
   "enterGiftCardCode": "Enter Gift Card Code",
   "applePay": "Apple Pay",
@@ -513,7 +513,7 @@
   "rulesAndConditions": "Terms & Conditions",
   "invoiceSummary": "Invoice Summary",
   "soldBy": "Sold By",
-  "trackShipment": "Track Shipment",
+  "trackShipment": "Order Delivery",
   "shipped": "Shipped",
   "pointsDiscount": "Points Discount",
   "appliedGiftCard": "Applied Gift Card",
@@ -631,6 +631,8 @@
   "countryLocation": "Please select location inside UAE",
   "allowReplacement": "Would you like to allow product replacements if any items become unavailable during processing?",
   "delivery_time_alert": "Due to time is beyond 10pm, Delivery will be available the following morning.",
-  "un_support_delivery_point": "Please select a pickup point for unsupported delivery or change your location."
+  "un_support_delivery_point": "Please select a pickup point for unsupported delivery or change your location.",
+  "service_fees": "Service Fees",
+  "technology_fees": "Technology Fees"
 
 }
