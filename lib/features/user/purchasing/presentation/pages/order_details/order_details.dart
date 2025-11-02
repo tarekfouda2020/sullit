@@ -51,7 +51,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 OrderDetailsSummaryWidget(isReturned: widget.isReturnedOrder, order: state.data),
                 Gaps.vGap40,
                 Visibility(
-                  visible: state.data!.showButtonPay,
+                  visible: state.data!.showButtonPay && state.data!.orderPaymentType()!=OrderPaymentType.cash,
                   child: DefaultButton(
                     title: tr('completePayment'),
                     onTap: () => controller.onPayOrder(context),

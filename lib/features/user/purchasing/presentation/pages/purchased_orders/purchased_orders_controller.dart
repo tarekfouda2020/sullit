@@ -22,8 +22,10 @@ class PurchasedOrdersController{
       pagingController.itemList = [];
     }
     if (isLastPage) {
+      data.removeWhere((element) => !element.showButtonPay);
       pagingController.appendLastPage(data);
     } else {
+      data.removeWhere((element) => !element.showButtonPay);
       final nextPageKey = page + 1;
       pagingController.appendPage(data, nextPageKey);
     }
