@@ -3,7 +3,8 @@ part of 'cart_payment_widgets_imports.dart';
 class FeesSheetWidget extends StatelessWidget {
   final GenericBloc<FessMechanismModel?> feesCubit;
   final bool showService;
-  const FeesSheetWidget({super.key, required this.feesCubit,  this.showService = true});
+  final bool showTech;
+  const FeesSheetWidget({super.key, required this.feesCubit,  this.showService = true,this.showTech = true});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,10 @@ class FeesSheetWidget extends StatelessWidget {
           Gaps.vGap8,
           if(showService)
           FeesItemWidget(model: feesCubit.state.data!.service,),
+          if(showTech)
+          Gaps.vGap8,
+          if(showTech)
+          FeesItemWidget(model: feesCubit.state.data!.technology,),
           Gaps.vGap30
         ],
       ),

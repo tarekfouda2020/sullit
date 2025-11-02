@@ -87,6 +87,17 @@ class ConfirmBuyingController{
       },);
   }
 
+  void showTechFeesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        // Service fee
+        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
+        return FeesSheetWidget(feesCubit: feesCubit,showService: false, showTech: true,);
+      },);
+  }
+
   SendReviewParams _sendReviewParams(OrderDetails model, int rate) {
     return SendReviewParams(
       orderId: model.id ,

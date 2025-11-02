@@ -83,26 +83,26 @@ class BuildNewAddressItem extends StatelessWidget {
                           desc: getIt<Utilities>().handleFullPhone(context, address.fullPhone ?? ""),
                         ),
                       ),
-                      Visibility(
-                        visible:  address.isActive != true,
-                        child: InkWell(
-                          onTap: () => controller.onActiveAddress(context, address),
-                          child: Container(
-                            padding: Dimens.paddingAll8PX,
-                            margin: const EdgeInsets.only(bottom: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: Dimens.borderRadius5PX,
-                              color: context.colors.primary,
-                            ),
-                            child: Text(
-                              tr('verifyPhone'),
-                              style: AppTextStyle.s12_w300(
-                                color: context.colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      // Visibility(
+                      //   visible:  address.isActive != true,
+                      //   child: InkWell(
+                      //     onTap: () => controller.onActiveAddress(context, address),
+                      //     child: Container(
+                      //       padding: Dimens.paddingAll8PX,
+                      //       margin: const EdgeInsets.only(bottom: 10),
+                      //       decoration: BoxDecoration(
+                      //         borderRadius: Dimens.borderRadius5PX,
+                      //         color: context.colors.primary,
+                      //       ),
+                      //       child: Text(
+                      //         tr('verifyPhone'),
+                      //         style: AppTextStyle.s12_w300(
+                      //           color: context.colors.white,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   )
                 ],
