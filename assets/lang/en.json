@@ -633,6 +633,7 @@
   "delivery_time_alert": "Due to time is beyond 10pm, Delivery will be available the following morning.",
   "un_support_delivery_point": "Please select a pickup point for unsupported delivery or change your location.",
   "service_fees": "Service Fees",
-  "technology_fees": "Technology Fees"
+  "technology_fees": "Technology Fees",
+  "gained_bezat_point": "Gained Bezat point"
 
 }

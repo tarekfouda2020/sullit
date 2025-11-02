@@ -28,12 +28,20 @@ class OrderSummary extends BaseDomainModel {
         (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.subtotal),
       );
 
+  double get shippingTotal => _sumBy(
+        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.shipping),
+      );
+
   double get tax => _sumBy(
         (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.tax),
       );
 
-  double get shippingTotal => _sumBy(
-        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.shipping),
+  double get serviceFees => _sumBy(
+        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.serviceFees ?? "0.0"),
+  );
+
+  double get techFees => _sumBy(
+        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.technologyFees??"0.0"),
       );
 
   double get total => _sumBy(

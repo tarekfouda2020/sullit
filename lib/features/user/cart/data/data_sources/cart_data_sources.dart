@@ -3,6 +3,7 @@ import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/cart_model/cart_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/coupon_response_model/coupon_response_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/fess_mechanism_model/fess_mechanism_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/gift_card_model/gift_card_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/seller_shipping_model/seller_shipping_model.dart';
@@ -32,4 +33,6 @@ abstract class CartDataSources {
  Future<Either<Failure, GiftCardAppliedCartModel>> applyGiftCard (ApplyGiftCardParams params);
  Future<Either<Failure, String>> clearCart (CartParams params);
  Future<Either<Failure, ShippingSummaryModel>> removeCoupon (NoParams params);
+
+ Future<Either<Failure, FessMechanismModel>> getFees (bool params);
 }

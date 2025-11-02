@@ -32,11 +32,18 @@ class InvoiceSummaryWidget extends StatelessWidget {
             title: tr('vat'),
             details: shippingSummary.tax,
             useDirhamPrice: true,
-          ),
+           ),
               BuildSummaryHeader(
                 title: tr('service_fees'),
                 details: shippingSummary.serviceFees,
                 useDirhamPrice: true,
+                onPressInfo: ()=> controller.showFeesSheet(context),
+              ),
+              BuildSummaryHeader(
+                title: tr('technology_fees'),
+                details: shippingSummary.technologyFees,
+                useDirhamPrice: true,
+                onPressInfo: ()=> controller.showFeesSheet(context),
               ),
               // BuildSummaryHeader(
               //   title: tr('technology_fees'),
@@ -47,7 +54,25 @@ class InvoiceSummaryWidget extends StatelessWidget {
             title: tr('shippingFees'),
             details: shippingSummary.shipping,
             useDirhamPrice: true,
+            onPressInfo: ()=> controller.showDeliveryFeesSheet(context),
           ),
+              Gaps.vGap8,
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      tr("gained_bezat_point"),
+                      style: AppTextStyle.s14_w400(color: context.colors.black),
+                    ),
+                  ),
+                  Text(
+                    shippingSummary.expectedLoyaltyPoints.toString(),
+                    style: AppTextStyle.s14_w600(color: context.colors.black),
+                  ),
+
+                ],
+              ),
+              Gaps.vGap8,
               Visibility(
                   visible: shippingSummary.couponApplied == true || shippingSummary.loyaltyPointsApplied==true,
                     child: BuildSummaryHeader(

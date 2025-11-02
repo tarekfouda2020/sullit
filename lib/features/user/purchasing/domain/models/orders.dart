@@ -37,6 +37,8 @@ class Orders extends BaseDomainModel {
   String returnReason;
   String soldByType;
   String soldBy;
+  String? serviceFees;
+  String? technologyFees;
   String customerPhone;
   List<OrderDetails> orderDetails;
   bool selected = false;
@@ -83,6 +85,8 @@ class Orders extends BaseDomainModel {
     required this.loyaltyPoints,
     required this.totalItems,
      this.driverModel,
+     this.serviceFees,
+     this.technologyFees,
   });
 
   int totalItemsCount() => orderDetails.fold(0, (previousValue, element) => previousValue + element.quantity);

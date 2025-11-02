@@ -3,7 +3,8 @@ part of 'cart_confirm_buying_widgets_imports.dart';
 
 class ConfirmBuyingSummaryWidget extends StatelessWidget {
   final OrderSummary orderSummary;
-  const ConfirmBuyingSummaryWidget({super.key, required this.orderSummary});
+  final ConfirmBuyingController controller;
+  const ConfirmBuyingSummaryWidget({super.key, required this.orderSummary, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +15,27 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
         useDirhamPrice: true,
       ),
       BuildSummaryHeader(
-        title: tr('tax'),
+        title: tr('vat'),
         details: orderSummary.tax.toString(),
         useDirhamPrice: true,
+      ),
+      BuildSummaryHeader(
+        title: tr('service_fees'),
+        details: orderSummary.serviceFees.toString(),
+        useDirhamPrice: true,
+        onPressInfo: ()=> controller.showFeesSheet(context),
+      ),
+      BuildSummaryHeader(
+        title: tr('technology_fees'),
+        details: orderSummary.techFees.toString(),
+        useDirhamPrice: true,
+        onPressInfo: ()=> controller.showFeesSheet(context),
       ),
       BuildSummaryHeader(
         title: tr('shippingFees'),
         details: orderSummary.shippingTotal.toString(),
         useDirhamPrice: true,
+        onPressInfo: ()=>controller.showDeliveryFeesSheet(context),
       ),
       Visibility(
         visible: orderSummary.loyaltyPointsDiscount > 0 || orderSummary.discounts > 0,

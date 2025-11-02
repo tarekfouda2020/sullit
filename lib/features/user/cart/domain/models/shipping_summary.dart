@@ -11,6 +11,7 @@ class ShippingSummary extends BaseDomainModel{
   String? couponCode ;
   bool? couponApplied ;
   int totalItems ;
+  int expectedLoyaltyPoints ;
   bool minimumOrderAmountStatus ;
   String minimumOrderAmountMsg ;
   String serviceFees ;
@@ -48,6 +49,7 @@ class ShippingSummary extends BaseDomainModel{
     required this.minimumOrderAmountAmount,
     required this.technologyFees,
     required this.serviceFees,
+    required this.expectedLoyaltyPoints,
     this.loyaltyPointsValue,
     this.loyaltyPoints,
     this.loyaltyPointsApplied,

@@ -37,6 +37,7 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary> with _$Shipping
     @JsonKey(name: "loyalty_points_value") String? loyaltyPointsValue,
     @JsonKey(name: "loyalty_points_applied") bool? loyaltyPointsApplied,
     @JsonKey(name: "loyalty_points") int? loyaltyPoints,
+    @JsonKey(name: "expected_loyalty_points") required int expectedLoyaltyPoints,
   }) = _ShippingSummaryModel;
 
   factory ShippingSummaryModel.fromJson(Map<String, dynamic> json) => _$ShippingSummaryModelFromJson(json);
@@ -67,6 +68,7 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary> with _$Shipping
       minimumOrderAmountAmount: minimumOrderAmountAmount,
       serviceFees: serviceFee,
       technologyFees: technologyFees,
+      expectedLoyaltyPoints: expectedLoyaltyPoints,
     );
   }
 }
