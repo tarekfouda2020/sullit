@@ -30,7 +30,7 @@ class SupportController {
       var params = _msgParams();
       var result = await SendSupportMessages().call(params);
       msgCubit.onUpdateData(result);
-      var reversed = msgCubit.state.data.reversed.toList();
+      var reversed = msgCubit.state.data.toList();
       msgCubit.onUpdateData(reversed);
       msgController.clear();
     }
