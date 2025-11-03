@@ -11,7 +11,7 @@ class HomeController {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   bool showToast = false;
   int index = 0;
-
+  final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
   List<String> tabs = [Res.home, Res.category, "", Res.offers, Res.menuIcon];
 
   List<Widget> pages() => [
@@ -125,4 +125,12 @@ class HomeController {
       return true;
     }
   }
+
+
+  Future<void> getCartItems({bool refresh = true}) async {
+    CartDomainModel result = await getIt<CartHelper>().getCartItems(refresh: refresh);
+    cartItemsBloc.onUpdateData(result);
+  }
+
+
 }

@@ -7,7 +7,7 @@ class BuildSummaryHeader extends StatelessWidget {
   final bool useDirhamPrice;
   final bool isDiscount;
   final bool? applyDashSeperate;
-
+  final void Function()? onPressInfo;
   const BuildSummaryHeader({
     super.key,
     required this.title,
@@ -16,19 +16,38 @@ class BuildSummaryHeader extends StatelessWidget {
     this.useDirhamPrice = false,
     this.isDiscount = false,
     this.applyDashSeperate = false,
+    this.onPressInfo,
   });
 
   @override
   Widget build(BuildContext context) {
-    print("====>>>amount is ${details}<<<===");
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
           Expanded(
-            child: Text(
-              title,
-              style: AppTextStyle.s14_w400(color: context.colors.black),
+            child: Row(
+              children: [
+                Text(
+                  title,
+                  style: AppTextStyle.s14_w400(color: context.colors.black),
+                ),
+                Gaps.hGap10,
+                if(onPressInfo!=null)
+                GestureDetector(
+                  onTap: onPressInfo,
+                  child: Container(
+                    width: 15, height: 15,
+                    margin: const EdgeInsets.only(bottom: 5),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: context.colors.gray3,
+                      shape: BoxShape.circle
+                    ),
+                    child: Icon(Icons.question_mark,color: context.colors.gray,size: 13,),
+                  ),
+                )
+              ],
             ),
           ),
           if(isDiscount)

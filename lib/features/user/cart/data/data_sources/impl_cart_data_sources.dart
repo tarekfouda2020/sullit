@@ -11,6 +11,7 @@ import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/user/cart/data/data_sources/cart_data_sources.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/cart_model/cart_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/coupon_response_model/coupon_response_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/fess_mechanism_model/fess_mechanism_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/gift_card_model/gift_card_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/seller_shipping_model/seller_shipping_model.dart';
@@ -246,5 +247,18 @@ class ImplCartDataSources extends CartDataSources {
       toJsonFunc: (json) => ShippingSummaryModel.fromJson(json),
     );
     return await GenericHttpImpl<ShippingSummaryModel>()(model);
+  }
+
+  @override
+  Future<Either<Failure, FessMechanismModel>> getFees (bool params)async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.feesMechanism,
+      responseType: ResType.model,
+      requestMethod: RequestMethod.get,
+      responseKey: (data) => data['data'],
+      errorFunc: (data) => data["msg"],
+      toJsonFunc: (json) => FessMechanismModel.fromJson(json),
+    );
+    return await GenericHttpImpl<FessMechanismModel>()(model);
   }
 }

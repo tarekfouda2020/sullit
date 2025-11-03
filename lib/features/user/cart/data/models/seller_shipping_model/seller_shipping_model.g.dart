@@ -17,6 +17,7 @@ _$_SellerShippingModel _$$_SellerShippingModelFromJson(
       activePickUp: json['active_pickup'] as bool,
       pickup: PickUpModel.fromJson(json['pickup'] as Map<String, dynamic>),
       activeDelivery: json['active_delivery'] as bool,
+      deliveryMessage: json['delivery_message'] as String,
       delivery: json['delivery'] == null
           ? null
           : DeliveryModel.fromJson(json['delivery'] as Map<String, dynamic>),
@@ -32,6 +33,7 @@ Map<String, dynamic> _$$_SellerShippingModelToJson(
       'active_pickup': instance.activePickUp,
       'pickup': instance.pickup.toJson(),
       'active_delivery': instance.activeDelivery,
+      'delivery_message': instance.deliveryMessage,
       'delivery': instance.delivery?.toJson(),
       'owner_id': instance.ownerId,
     };

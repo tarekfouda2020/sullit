@@ -49,6 +49,8 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'loyalty_points') required int loyaltyPoints,
     @JsonKey(name: 'total_items') required int totalItems,
     @JsonKey(name: 'order_details') required List<OrderDetailsModel> orderDetails,
+    @JsonKey(name: 'service_fees') required String serviceFees,
+    @JsonKey(name: 'technology_fees') required String technologyFees,
     @JsonKey(name: 'driver') OrderDriverModel? driver,
   }) = _OrderModel;
 
@@ -94,6 +96,8 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       loyaltyPoints: loyaltyPoints,
       totalItems: totalItems,
       driverModel: driver?.toDomainModel(),
+      technologyFees: technologyFees,
+      serviceFees: serviceFees,
     );
   }
 }

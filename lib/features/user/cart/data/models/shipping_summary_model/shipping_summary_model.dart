@@ -31,10 +31,13 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary> with _$Shipping
     @JsonKey(name: "wallet_balance_value") required double walletBalanceValue,
     @JsonKey(name: "avilable_pay_with_wallet") required bool avilablePayWithWallet,
     @JsonKey(name: "avilable_cash_on_delivery") required bool avilableCashOnDelivery,
+    @JsonKey(name: "service_fees") required String serviceFee,
+    @JsonKey(name: "technology_fees") required String technologyFees,
     required List<ShippingItemModel> items,
     @JsonKey(name: "loyalty_points_value") String? loyaltyPointsValue,
     @JsonKey(name: "loyalty_points_applied") bool? loyaltyPointsApplied,
     @JsonKey(name: "loyalty_points") int? loyaltyPoints,
+    @JsonKey(name: "expected_loyalty_points") required int expectedLoyaltyPoints,
   }) = _ShippingSummaryModel;
 
   factory ShippingSummaryModel.fromJson(Map<String, dynamic> json) => _$ShippingSummaryModelFromJson(json);
@@ -62,7 +65,10 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary> with _$Shipping
       loyaltyPointsValue: loyaltyPointsValue,
       loyaltyPointsApplied: loyaltyPointsApplied,
       loyaltyPoints: loyaltyPoints,
-      minimumOrderAmountAmount: minimumOrderAmountAmount
+      minimumOrderAmountAmount: minimumOrderAmountAmount,
+      serviceFees: serviceFee,
+      technologyFees: technologyFees,
+      expectedLoyaltyPoints: expectedLoyaltyPoints,
     );
   }
 }

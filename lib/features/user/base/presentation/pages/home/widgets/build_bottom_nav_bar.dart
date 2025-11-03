@@ -26,6 +26,7 @@ class BuildBottomNavBar extends StatelessWidget {
               },
               backgroundColor: Colors.white,
               splashColor: context.colors.primary,
+              elevation: 0,
               activeIndex: state.data,
               shadow: BoxShadow(
                 color: Colors.black.withOpacity(.095),
@@ -44,9 +45,6 @@ class BuildBottomNavBar extends StatelessWidget {
             );
           },
         ),
-        Positioned(
-          top: -30,
-            child: CartButtonWidget(controller: controller))
       ],
     );
   }

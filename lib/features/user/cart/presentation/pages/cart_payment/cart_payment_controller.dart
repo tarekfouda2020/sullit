@@ -7,6 +7,7 @@ class CartPaymentController {
   final TextEditingController additionalInfo = TextEditingController();
   final TextEditingController giftCardCode = TextEditingController();
   final GenericBloc<Shipping?> shippingBloc = GenericBloc(null);
+  final GenericBloc<FessMechanismModel?> feesCubit = GenericBloc(null);
   final GenericBloc<GiftCardApllieCartDomainModel?> giftCardBlocBloc = GenericBloc(null);
   final GlobalKey<FormState> couponFormKey = GlobalKey();
   final GlobalKey<FormState> additionalFormKey = GlobalKey();
@@ -34,6 +35,8 @@ class CartPaymentController {
     }
     getLoyaltyPointsBalance(refresh: false);
     getLoyaltyPointsBalance();
+    getOrderFees(fromRemote: false);
+    getOrderFees();
   }
 
   void calculateDiscount() {
@@ -301,9 +304,13 @@ class CartPaymentController {
     }
 
   Future<void> getLoyaltyPointsBalance({bool refresh = true}) async {
-    return await GetLoyaltyPointsBalance().call(refresh).then(
+     await GetLoyaltyPointsBalance().call(refresh).then(
           (value) => loyaltyPointsBalanceBloc.onUpdateData(value),
     );
+     bool isPointsApplied = shippingBloc.state.data?.summary.loyaltyPointsApplied == true;
+     if(isPointsApplied){
+       applyPointsSwitchCubit.onUpdateData(true);
+     }
   }
 
   Future<void> applyGiftCard(BuildContext context)async{
@@ -345,6 +352,42 @@ class CartPaymentController {
   );
 
 
+  Future<void> getOrderFees({bool fromRemote = true})async{
+    await GetOrderFees().call(fromRemote).then((value) {
+       feesCubit.onUpdateData(value);
+    },);
+  }
+
+
+  void showFeesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+      return FeesSheetWidget(feesCubit: feesCubit);
+    },);
+  }
+
+  void showDeliveryFeesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        // Service fee
+        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
+        return FeesSheetWidget(feesCubit: feesCubit,showService: false,);
+      },);
+  }
+  void showTechFeesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        // Service fee
+        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
+        return FeesSheetWidget(feesCubit: feesCubit,showService: false, showTech: true,);
+      },);
+  }
 
 
   bool get _isExistMinimumAmount => shippingBloc.state.data?.summary.minimumOrderAmountStatus == true;

@@ -74,6 +74,17 @@ class OrderDetailsPageController {
     }
   }
 
+  void cancelOrder(BuildContext context,Orders model) async {
+    getIt<LoadingHelper>().showLoadingDialog();
+    var result = await CancelOrder().call(model.id);
+    if (result.isNotEmpty) {
+      CustomToast.showSimpleToast(msg: result);
+      model.availableCancelOrder = false;
+      AutoRouter.of(context).pop(true);
+    }
+    getIt<LoadingHelper>().dismissDialog();
+  }
+
 
   GenericParams _params(int id,bool refresh){
     return GenericParams(id: id,refresh:refresh );

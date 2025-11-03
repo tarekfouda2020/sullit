@@ -67,7 +67,12 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                       Gaps.vGap16,
                       DefaultButton(
                         title: tr('returnToShop'),
-                        onTap: () => AutoRouter.of(context).push(HomeRoute(index: 0)),
+                        onTap: () async{
+                          Navigator.pop(context);
+                         await Future.delayed(const Duration(milliseconds: 300));
+                         BuildContext ctx = getIt<GlobalContext>().context();
+                          AutoRouter.of(ctx).pop();
+                        },
                         borderColor: context.colors.primary,
                         color: context.colors.white,
                         textColor: context.colors.primary,
@@ -82,7 +87,7 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("${tr('checkout')} - ",
+                            Text("${tr('checkout')} : ",
                             style: AppTextStyle.s18_w700(color: context.colors.white),
                             ),
                             Text(state.data.subTotal ?? "",

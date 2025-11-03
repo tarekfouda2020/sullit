@@ -10,7 +10,6 @@ class BuildConditions extends StatelessWidget {
     return Row(
       children: [
         CustomCheckBoxWidget(changeValueCubit: controller.conditionsCubit),
-        Gaps.hGap4,
         Expanded(
           child: Row(
             children: [

@@ -119,6 +119,7 @@ class ApiNames {
   static const String getContactUs = "settings/contact-data";
   static const String getSupportMsg = "room";
   static const String sendSupportMsg = "room/send-message";
+  static const String feesMechanism = "fees-mechanism";
 
   // items routes
   static const String ITEMS = "Items";
