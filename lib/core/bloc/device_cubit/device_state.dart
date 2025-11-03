@@ -17,6 +17,7 @@ class DeviceInitial extends DeviceState {
     locale: const Locale('en', 'US'),
     isNetworkConnected: true,
     themeMode: AdaptiveThemeMode.light,
+    showCartButton: true
   ));
 }
 

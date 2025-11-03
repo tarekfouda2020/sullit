@@ -23,7 +23,9 @@ class BuildAddToCartDialog extends StatefulWidget {
   final Product product;
   final void Function()? afterAddToCart;
 
-  const BuildAddToCartDialog({Key? key, required this.product, this.afterAddToCart}) : super(key: key);
+  const BuildAddToCartDialog(
+      {Key? key, required this.product, this.afterAddToCart})
+      : super(key: key);
 
   @override
   State<BuildAddToCartDialog> createState() => _BuildAddToCartDialogState();
@@ -72,9 +74,8 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                   Flexible(
                     child: Text(
                       state.data!.name!,
-                      style: AppTextStyle.s16_w500(color: context.colors.black).copyWith(
-                        height: 1.3
-                      ),
+                      style: AppTextStyle.s16_w500(color: context.colors.black)
+                          .copyWith(height: 1.3),
                     ),
                   ),
                 ],
@@ -87,7 +88,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                   ),
                   //const Spacer(),
                   DirhamPrice(
-                    currencyStyle:AppTextStyle.s16_w600(
+                    currencyStyle: AppTextStyle.s16_w600(
                       color: context.colors.primary,
                     ),
                     amount: showDiscount(context)
@@ -107,16 +108,17 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                     Gaps.vGap10,
                     DirhamPrice(
                       showMinus: true,
-                     currencyStyle: AppTextStyle.s16_w600(color: context.colors.black).copyWith(
-                         decoration: TextDecoration.lineThrough,
-                         decorationColor: context.colors.black
-                     ),
-                     currencyOffset: 1,
-                     amount: "${state.data!.priceHighLow} ",
+                      currencyStyle:
+                          AppTextStyle.s16_w600(color: context.colors.black)
+                              .copyWith(
+                                  decoration: TextDecoration.lineThrough,
+                                  decorationColor: context.colors.black),
+                      currencyOffset: 1,
+                      amount: "${state.data!.priceHighLow} ",
                       textStyle: AppTextStyle.s14_w600(
                         color: context.colors.black,
                       ).copyWith(
-                          decoration: TextDecoration.lineThrough,
+                        decoration: TextDecoration.lineThrough,
                       ),
                     ),
                   ],
@@ -140,7 +142,8 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                     style: AppTextStyle.s16_w400(color: context.colors.black),
                   ),
                   BuildCustomBounce(
-                    onTap: () => getIt<CartHelper>().onDecreaseQty(productCubit),
+                    onTap: () =>
+                        getIt<CartHelper>().onDecreaseQty(productCubit),
                     iconData: Icons.remove,
                   ),
                   Text(
@@ -150,7 +153,8 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                     ),
                   ),
                   BuildCustomBounce(
-                    onTap: () => getIt<CartHelper>().onIncreaseQty(productCubit),
+                    onTap: () =>
+                        getIt<CartHelper>().onIncreaseQty(productCubit),
                     iconData: Icons.add,
                   )
                 ],
@@ -166,10 +170,12 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                     ),
                   ),
                   DirhamPrice(
-                   amount: _calculablePrice(state.data!),
+                    amount: _calculablePrice(state.data!),
                     currencyOffset: 0.5,
-                    currencyStyle: AppTextStyle.s20_w400(color: context.colors.primary),
-                    textStyle: AppTextStyle.s16_w500(color: context.colors.primary),
+                    currencyStyle:
+                        AppTextStyle.s20_w400(color: context.colors.primary),
+                    textStyle:
+                        AppTextStyle.s16_w500(color: context.colors.primary),
                   ),
                 ],
               ),
@@ -185,17 +191,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                 child: Column(
                   children: [
                     GestureDetector(
-                      onTap: () {
-                        getIt<CartHelper>().addProductToCart(
-                          context,
-                          state.data!.minQty!,
-                          state.data!.variant?.id,
-                          onAddCartFunc: () {
-                            Navigator.pop(context);
-                            widget.afterAddToCart?.call();
-                          },
-                        );
-                      },
+                      onTap: () => _buildAddProductToCart(context, state),
                       child: Container(
                         margin: Dimens.paddingHorizontal5PX,
                         padding: Dimens.standardPadding,
@@ -219,7 +215,8 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                     ),
                     Gaps.vGap10,
                     GestureDetector(
-                      onTap: () {
+                      onTap: () async{
+                       await _buildAddProductToCart(context, state);
                         Navigator.pop(context);
                         AutoRouter.of(context).push(const CartRoute());
                       },
@@ -244,8 +241,22 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
     );
   }
 
+  Future<void> _buildAddProductToCart(
+      BuildContext context, GenericState<Product?> state) {
+    return getIt<CartHelper>().addProductToCart(
+      context,
+      state.data!.minQty!,
+      state.data!.variant?.id,
+      onAddCartFunc: () {
+        Navigator.pop(context);
+        widget.afterAddToCart?.call();
+      },
+    );
+  }
+
   bool showDiscount(BuildContext context) {
-    bool hasVipDiscount = context.read<UserCubit>().state.model?.hasValidSubscription ?? false;
+    bool hasVipDiscount =
+        context.read<UserCubit>().state.model?.hasValidSubscription ?? false;
     bool isVipProduct = widget.product.hasVipOffer!;
     if (isVipProduct) {
       return hasVipDiscount;
@@ -255,13 +266,15 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
   }
 
   bool _hasSelectedAttributes() {
-    if (productCubit.state.data?.choiceOptions == null || productCubit.state.data!.choiceOptions!.isEmpty) {
+    if (productCubit.state.data?.choiceOptions == null ||
+        productCubit.state.data!.choiceOptions!.isEmpty) {
       return false; // No attributes to select
     }
 
     for (var option in productCubit.state.data!.choiceOptions!) {
       if (option.options != null && option.options!.isNotEmpty) {
-        if (option.selectedAttribute != null && option.selectedAttribute!.isNotEmpty) {
+        if (option.selectedAttribute != null &&
+            option.selectedAttribute!.isNotEmpty) {
           return true; // At least one attribute is selected
         }
       }
@@ -270,6 +283,8 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
   }
 
   String _calculablePrice(Product product) {
-    return double.parse(product.variant?.calculablePrice?.split(',').join('') ?? "0.0").toStringAsFixed(2);
+    return double.parse(
+            product.variant?.calculablePrice?.split(',').join('') ?? "0.0")
+        .toStringAsFixed(2);
   }
 }

@@ -127,9 +127,11 @@ class HomeController {
   }
 
 
-  Future<void> getCartItems({bool refresh = true}) async {
+  Future<void> getCartItems(BuildContext context,{bool refresh = true}) async {
     CartDomainModel result = await getIt<CartHelper>().getCartItems(refresh: refresh);
     cartItemsBloc.onUpdateData(result);
+    var qnt = (result.items??<CartItem>[]).fold<int>(0, (previousValue, element) => previousValue+element.quantity);
+    getIt<CartHelper>().updateCartCount(context, qnt);
   }
 
 

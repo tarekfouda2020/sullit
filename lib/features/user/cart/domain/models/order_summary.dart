@@ -64,4 +64,20 @@ class OrderSummary extends BaseDomainModel {
 
    // int getTotalItems() => sectionOrders!.fold(0, (previousValue, element) => previousValue+element.totalItems);
 
+  double getSubTotalWithoutVat(){
+    var sub  = subTotal;
+    var vatAmount = sub / 1.015;
+    return vatAmount;
+  }
+
+  double vatAmount(){
+    var different = subTotal - getSubTotalWithoutVat();
+    return different;
+  }
+
+  // double gainedBezatPoints(){
+  //   var different = getSubTotalWithoutVat() * 10;
+  //   return different;
+  // }
+
 }

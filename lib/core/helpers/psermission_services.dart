@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
@@ -49,7 +50,7 @@ class PermissionServices {
     // On iOS, if permission is already denied, don't request again
     // because iOS won't show the dialog - it will just mark as permanently denied
     if (Platform.isIOS && (currentStatus.isDenied || currentStatus.isPermanentlyDenied)) {
-      print("==== iOS: Permission already denied, must go to settings ====");
+      log("==== iOS: Permission already denied, must go to settings ====");
       String message = isLocationPermission
           ? tr("locationPermissionRequired")
           : tr("noPermission");

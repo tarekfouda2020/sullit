@@ -46,7 +46,7 @@ class LocationAddressData {
       context.read<LocationCubit>().onLocationUpdated(locationModel);
       titleBloc.onUpdateData(locationModel.address);
       moveCameraToLocation(context, loc);
-    }else{
+    }catch(e){
       AutoRouter.of(context).pop();
     }
   }

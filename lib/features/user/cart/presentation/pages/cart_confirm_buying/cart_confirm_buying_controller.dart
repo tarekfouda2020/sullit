@@ -72,7 +72,7 @@ class ConfirmBuyingController{
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        return FeesSheetWidget(feesCubit: feesCubit);
+        return FeesSheetWidget(feesCubit: feesCubit,showTech: false,showDelivery: false,);
       },);
   }
 
@@ -83,7 +83,7 @@ class ConfirmBuyingController{
       builder: (context) {
         // Service fee
         // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
-        return FeesSheetWidget(feesCubit: feesCubit,showService: false,);
+        return FeesSheetWidget(feesCubit: feesCubit,showService: false,showTech: false,);
       },);
   }
 
@@ -94,7 +94,7 @@ class ConfirmBuyingController{
       builder: (context) {
         // Service fee
         // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
-        return FeesSheetWidget(feesCubit: feesCubit,showService: false, showTech: true,);
+        return FeesSheetWidget(feesCubit: feesCubit,showService: false, showDelivery: false,);
       },);
   }
 

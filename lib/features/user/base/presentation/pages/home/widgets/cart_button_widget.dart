@@ -8,8 +8,7 @@ class CartButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<CartDomainModel>, GenericState<CartDomainModel>>(
-      bloc: controller.cartItemsBloc,
+    return BlocBuilder<CountCubit, CountState>(
       builder: (context, state) {
         return GestureDetector(
           onTap: () => controller.routeToCart(context),
@@ -29,7 +28,7 @@ class CartButtonWidget extends StatelessWidget {
                   clipBehavior: Clip.none,
                   children: [
                     SvgPicture.asset(Res.shopCart),
-                    if(state.data.items!=null && (state.data.items??<CartItem>[]).isNotEmpty)
+                    if(state.cartCount>0)
                       PositionedDirectional(
                         top:-7 ,
                         end: -8,
@@ -46,7 +45,7 @@ class CartButtonWidget extends StatelessWidget {
                                   width: 1.5
                               )
                           ),
-                            child: Text("${state.data.items?.length ?? 0 }",
+                            child: Text("${state.cartCount }",
                               style: AppTextStyle.s11_w500(color: context.colors.primary),
                             )
                         ),

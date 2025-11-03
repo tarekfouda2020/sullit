@@ -4,7 +4,8 @@ class FeesSheetWidget extends StatelessWidget {
   final GenericBloc<FessMechanismModel?> feesCubit;
   final bool showService;
   final bool showTech;
-  const FeesSheetWidget({super.key, required this.feesCubit,  this.showService = true,this.showTech = true});
+  final bool showDelivery;
+  const FeesSheetWidget({super.key, required this.feesCubit,  this.showService = true,this.showTech = true,this.showDelivery = true});
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +19,17 @@ class FeesSheetWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         spacing: 10,
         children: [
-          const BottomSheetHeaderWidget(title: ""),
+           BottomSheetHeaderWidget(title: feesCubit.state.data!.title),
+          if(showDelivery)
+            Gaps.vGap8,
+          if(showDelivery)
           FeesItemWidget(model: feesCubit.state.data!.delivery,),
+
           if(showService)
           Gaps.vGap8,
           if(showService)
           FeesItemWidget(model: feesCubit.state.data!.service,),
+
           if(showTech)
           Gaps.vGap8,
           if(showTech)

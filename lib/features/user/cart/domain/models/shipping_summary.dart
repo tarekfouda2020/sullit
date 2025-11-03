@@ -55,4 +55,22 @@ class ShippingSummary extends BaseDomainModel{
     this.loyaltyPointsApplied,
     this.appliedGiftCard,
 });
+
+
+  double getSubTotalWithoutVat(){
+    var sub  = double.parse(subTotal);
+    var vatAmount = sub / 1.015;
+    return vatAmount;
+  }
+
+  double vatAmount(){
+   var different = double.parse(subTotal) - getSubTotalWithoutVat();
+    return different;
+  }
+
+  double gainedBezatPoints(){
+    var different = getSubTotalWithoutVat()*10;
+    return different;
+  }
+
 }

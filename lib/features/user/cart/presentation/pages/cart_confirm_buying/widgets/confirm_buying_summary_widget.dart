@@ -12,11 +12,13 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
       BuildSummaryHeader(
         title: tr('totalItems'),
         details: orderSummary.subTotal.toString(),
+        // details: orderSummary.getSubTotalWithoutVat().toStringAsFixed(2),
         useDirhamPrice: true,
       ),
       BuildSummaryHeader(
         title: tr('vat'),
-        details: orderSummary.tax.toString(),
+        // details: orderSummary.tax.toString(),
+        details: orderSummary.vatAmount().toStringAsFixed(2),
         useDirhamPrice: true,
       ),
       BuildSummaryHeader(
@@ -29,7 +31,7 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
         title: tr('technology_fees'),
         details: orderSummary.techFees.toString(),
         useDirhamPrice: true,
-        onPressInfo: ()=> controller.showFeesSheet(context),
+        onPressInfo: ()=> controller.showTechFeesSheet(context),
       ),
       BuildSummaryHeader(
         title: tr('shippingFees'),

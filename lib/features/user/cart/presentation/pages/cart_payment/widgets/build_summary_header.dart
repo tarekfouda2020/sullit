@@ -44,7 +44,7 @@ class BuildSummaryHeader extends StatelessWidget {
                       color: context.colors.gray3,
                       shape: BoxShape.circle
                     ),
-                    child: Icon(Icons.question_mark,color: context.colors.gray,size: 13,),
+                    child: Icon(Icons.question_mark,color: context.colors.gray,size: 10,),
                   ),
                 )
               ],

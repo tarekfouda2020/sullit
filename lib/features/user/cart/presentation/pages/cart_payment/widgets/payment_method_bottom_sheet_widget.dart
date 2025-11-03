@@ -62,7 +62,8 @@ class PaymentMethodBottomSheetWidget extends StatelessWidget {
                 title: tr("confirm"),
                 margin: EdgeInsets.zero,
                 onTap: () => controller.confirmSelectPayMethod(context),
-              )
+              ),
+              Gaps.vGap10
             ],
           );
         },

@@ -26,10 +26,12 @@ class InvoiceSummaryWidget extends StatelessWidget {
           BuildSummaryHeader(
             title: tr('subTotal'),
             details: shippingSummary.subTotal,
+            // details: shippingSummary.getSubTotalWithoutVat().toStringAsFixed(2),
             useDirhamPrice: true,
           ),
           BuildSummaryHeader(
             title: tr('vat'),
+            // details: shippingSummary.vatAmount().toStringAsFixed(2),
             details: shippingSummary.tax,
             useDirhamPrice: true,
            ),
@@ -43,7 +45,7 @@ class InvoiceSummaryWidget extends StatelessWidget {
                 title: tr('technology_fees'),
                 details: shippingSummary.technologyFees,
                 useDirhamPrice: true,
-                onPressInfo: ()=> controller.showFeesSheet(context),
+                onPressInfo: ()=> controller.showTechFeesSheet(context),
               ),
               // BuildSummaryHeader(
               //   title: tr('technology_fees'),
@@ -66,10 +68,10 @@ class InvoiceSummaryWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    shippingSummary.expectedLoyaltyPoints.toString(),
+                    // shippingSummary.expectedLoyaltyPoints.toString(),
+                    shippingSummary.gainedBezatPoints().toStringAsFixed(2),
                     style: AppTextStyle.s14_w600(color: context.colors.black),
                   ),
-
                 ],
               ),
               Gaps.vGap8,

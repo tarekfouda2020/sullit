@@ -25,7 +25,7 @@ class _ChangeCartQtyWidgetState extends State<ChangeCartQtyWidget> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               BuildCustomBounce(
-                onTap: state.data ? (){} : () => widget.controller.onDecreaseCart(widget.cartItem,loadingCubit),
+                onTap: state.data ? (){} : () => widget.controller.onDecreaseCart(context,widget.cartItem,loadingCubit),
                 iconData: CupertinoIcons.minus,
                 margin: const EdgeInsetsDirectional.only(end: 19),
                 size: 29,
@@ -38,7 +38,7 @@ class _ChangeCartQtyWidgetState extends State<ChangeCartQtyWidget> {
                 ),
               ),
               BuildCustomBounce(
-                onTap: state.data ? (){} : () => widget.controller.onIncreaseCart(widget.cartItem,loadingCubit),
+                onTap: state.data ? (){} : () => widget.controller.onIncreaseCart(context,widget.cartItem,loadingCubit),
                 iconData: CupertinoIcons.add,
                 margin: const EdgeInsetsDirectional.only(start: 19),
                 size: 29,
