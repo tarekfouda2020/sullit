@@ -54,22 +54,6 @@ class InvoiceSummaryWidget extends StatelessWidget {
             onPressInfo: ()=> controller.showDeliveryFeesSheet(context),
           ),
               Gaps.vGap8,
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      tr("gained_bezat_point"),
-                      style: AppTextStyle.s14_w400(color: context.colors.black),
-                    ),
-                  ),
-                  Text(
-                    shippingSummary.expectedLoyaltyPoints.toString(),
-                    // shippingSummary.gainedBezatPoints().toStringAsFixed(2),
-                    style: AppTextStyle.s14_w600(color: context.colors.black),
-                  ),
-                ],
-              ),
-              Gaps.vGap8,
               Visibility(
                   visible: shippingSummary.couponApplied == true || shippingSummary.loyaltyPointsApplied==true,
                     child: BuildSummaryHeader(

@@ -142,7 +142,7 @@ class CartPaymentController {
     // AutoRouter.of(context).push(
     //   ConfirmationRoute(summary: data),
     // );
-    AutoRouter.of(context).push( CartConfirmBuyingRoute(summary: data));
+    AutoRouter.of(context).push( CartConfirmBuyingRoute(combinedId: data.summary!.combinedOrderId));
 
   }
 

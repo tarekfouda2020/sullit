@@ -21,7 +21,9 @@ class SummaryModel extends BaseApiModel<Summary> with _$SummaryModel {
       @JsonKey(name: 'total_order_amount') required String totalOrderAmount,
       @JsonKey(name: 'combined_order_id') required int combinedOrderId,
       // @JsonKey(name: 'total_items') required int totalItems,
-      required String shipping,
+        @JsonKey(name: "expected_loyalty_points")  int? expectedLoyaltyPoints,
+
+        required String shipping,
       @JsonKey(name: "payment_method") required String paymentMethod}) = _SummaryModel;
 
   factory SummaryModel.fromJson(Map<String, dynamic> json) => _$SummaryModelFromJson(json);
@@ -38,6 +40,7 @@ class SummaryModel extends BaseApiModel<Summary> with _$SummaryModel {
       shipping: shipping,
       paymentMethod: paymentMethod,
       combinedOrderId: combinedOrderId,
+      expectedLoyaltyPoints: expectedLoyaltyPoints
       // totalItems: totalItems,
     );
   }

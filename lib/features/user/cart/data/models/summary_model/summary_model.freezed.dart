@@ -33,6 +33,8 @@ mixin _$SummaryModel {
   @JsonKey(name: 'combined_order_id')
   int get combinedOrderId =>
       throw _privateConstructorUsedError; // @JsonKey(name: 'total_items') required int totalItems,
+  @JsonKey(name: "expected_loyalty_points")
+  int? get expectedLoyaltyPoints => throw _privateConstructorUsedError;
   String get shipping => throw _privateConstructorUsedError;
   @JsonKey(name: "payment_method")
   String get paymentMethod => throw _privateConstructorUsedError;
@@ -57,6 +59,7 @@ abstract class $SummaryModelCopyWith<$Res> {
       @JsonKey(name: 'order_status') String orderStatus,
       @JsonKey(name: 'total_order_amount') String totalOrderAmount,
       @JsonKey(name: 'combined_order_id') int combinedOrderId,
+      @JsonKey(name: "expected_loyalty_points") int? expectedLoyaltyPoints,
       String shipping,
       @JsonKey(name: "payment_method") String paymentMethod});
 }
@@ -81,6 +84,7 @@ class _$SummaryModelCopyWithImpl<$Res, $Val extends SummaryModel>
     Object? orderStatus = null,
     Object? totalOrderAmount = null,
     Object? combinedOrderId = null,
+    Object? expectedLoyaltyPoints = freezed,
     Object? shipping = null,
     Object? paymentMethod = null,
   }) {
@@ -113,6 +117,10 @@ class _$SummaryModelCopyWithImpl<$Res, $Val extends SummaryModel>
           ? _value.combinedOrderId
           : combinedOrderId // ignore: cast_nullable_to_non_nullable
               as int,
+      expectedLoyaltyPoints: freezed == expectedLoyaltyPoints
+          ? _value.expectedLoyaltyPoints
+          : expectedLoyaltyPoints // ignore: cast_nullable_to_non_nullable
+              as int?,
       shipping: null == shipping
           ? _value.shipping
           : shipping // ignore: cast_nullable_to_non_nullable
@@ -141,6 +149,7 @@ abstract class _$$_SummaryModelCopyWith<$Res>
       @JsonKey(name: 'order_status') String orderStatus,
       @JsonKey(name: 'total_order_amount') String totalOrderAmount,
       @JsonKey(name: 'combined_order_id') int combinedOrderId,
+      @JsonKey(name: "expected_loyalty_points") int? expectedLoyaltyPoints,
       String shipping,
       @JsonKey(name: "payment_method") String paymentMethod});
 }
@@ -163,6 +172,7 @@ class __$$_SummaryModelCopyWithImpl<$Res>
     Object? orderStatus = null,
     Object? totalOrderAmount = null,
     Object? combinedOrderId = null,
+    Object? expectedLoyaltyPoints = freezed,
     Object? shipping = null,
     Object? paymentMethod = null,
   }) {
@@ -195,6 +205,10 @@ class __$$_SummaryModelCopyWithImpl<$Res>
           ? _value.combinedOrderId
           : combinedOrderId // ignore: cast_nullable_to_non_nullable
               as int,
+      expectedLoyaltyPoints: freezed == expectedLoyaltyPoints
+          ? _value.expectedLoyaltyPoints
+          : expectedLoyaltyPoints // ignore: cast_nullable_to_non_nullable
+              as int?,
       shipping: null == shipping
           ? _value.shipping
           : shipping // ignore: cast_nullable_to_non_nullable
@@ -219,6 +233,7 @@ class _$_SummaryModel extends _SummaryModel {
       @JsonKey(name: 'order_status') required this.orderStatus,
       @JsonKey(name: 'total_order_amount') required this.totalOrderAmount,
       @JsonKey(name: 'combined_order_id') required this.combinedOrderId,
+      @JsonKey(name: "expected_loyalty_points") this.expectedLoyaltyPoints,
       required this.shipping,
       @JsonKey(name: "payment_method") required this.paymentMethod})
       : super._();
@@ -247,6 +262,9 @@ class _$_SummaryModel extends _SummaryModel {
   final int combinedOrderId;
 // @JsonKey(name: 'total_items') required int totalItems,
   @override
+  @JsonKey(name: "expected_loyalty_points")
+  final int? expectedLoyaltyPoints;
+  @override
   final String shipping;
   @override
   @JsonKey(name: "payment_method")
@@ -254,7 +272,7 @@ class _$_SummaryModel extends _SummaryModel {
 
   @override
   String toString() {
-    return 'SummaryModel(orderDate: $orderDate, name: $name, email: $email, shippingAddress: $shippingAddress, orderStatus: $orderStatus, totalOrderAmount: $totalOrderAmount, combinedOrderId: $combinedOrderId, shipping: $shipping, paymentMethod: $paymentMethod)';
+    return 'SummaryModel(orderDate: $orderDate, name: $name, email: $email, shippingAddress: $shippingAddress, orderStatus: $orderStatus, totalOrderAmount: $totalOrderAmount, combinedOrderId: $combinedOrderId, expectedLoyaltyPoints: $expectedLoyaltyPoints, shipping: $shipping, paymentMethod: $paymentMethod)';
   }
 
   @override
@@ -274,6 +292,8 @@ class _$_SummaryModel extends _SummaryModel {
                 other.totalOrderAmount == totalOrderAmount) &&
             (identical(other.combinedOrderId, combinedOrderId) ||
                 other.combinedOrderId == combinedOrderId) &&
+            (identical(other.expectedLoyaltyPoints, expectedLoyaltyPoints) ||
+                other.expectedLoyaltyPoints == expectedLoyaltyPoints) &&
             (identical(other.shipping, shipping) ||
                 other.shipping == shipping) &&
             (identical(other.paymentMethod, paymentMethod) ||
@@ -291,6 +311,7 @@ class _$_SummaryModel extends _SummaryModel {
       orderStatus,
       totalOrderAmount,
       combinedOrderId,
+      expectedLoyaltyPoints,
       shipping,
       paymentMethod);
 
@@ -318,6 +339,8 @@ abstract class _SummaryModel extends SummaryModel {
       @JsonKey(name: 'total_order_amount')
       required final String totalOrderAmount,
       @JsonKey(name: 'combined_order_id') required final int combinedOrderId,
+      @JsonKey(name: "expected_loyalty_points")
+      final int? expectedLoyaltyPoints,
       required final String shipping,
       @JsonKey(name: "payment_method")
       required final String paymentMethod}) = _$_SummaryModel;
@@ -346,6 +369,9 @@ abstract class _SummaryModel extends SummaryModel {
   @JsonKey(name: 'combined_order_id')
   int get combinedOrderId;
   @override // @JsonKey(name: 'total_items') required int totalItems,
+  @JsonKey(name: "expected_loyalty_points")
+  int? get expectedLoyaltyPoints;
+  @override
   String get shipping;
   @override
   @JsonKey(name: "payment_method")

@@ -38,6 +38,23 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
         useDirhamPrice: true,
         onPressInfo: ()=>controller.showDeliveryFeesSheet(context),
       ),
+      Gaps.vGap8,
+      Row(
+        children: [
+          Expanded(
+            child: Text(
+              tr("gained_bezat_point"),
+              style: AppTextStyle.s14_w400(color: context.colors.black),
+            ),
+          ),
+          Text(
+            "${orderSummary.summary!.expectedLoyaltyPoints ?? 0}",
+            // shippingSummary.gainedBezatPoints().toStringAsFixed(2),
+            style: AppTextStyle.s14_w600(color: context.colors.black),
+          ),
+        ],
+      ),
+      Gaps.vGap8,
       Visibility(
         visible: orderSummary.loyaltyPointsDiscount > 0 || orderSummary.discounts > 0,
         child: BuildSummaryHeader(
