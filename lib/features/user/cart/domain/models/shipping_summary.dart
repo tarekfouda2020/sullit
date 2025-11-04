@@ -67,6 +67,12 @@ class ShippingSummary extends BaseDomainModel{
    var different = double.parse(subTotal) - getSubTotalWithoutVat();
     return different;
   }
+  
+  double getTotalServiceAmount(){
+    var service = double.parse(serviceFees);
+    var techFees = double.parse(technologyFees);
+    return service+techFees;
+  }
 
   double gainedBezatPoints(){
     var different = getSubTotalWithoutVat()*10;

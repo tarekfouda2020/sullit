@@ -37,16 +37,22 @@ class InvoiceSummaryWidget extends StatelessWidget {
            ),
               BuildSummaryHeader(
                 title: tr('service_fees'),
-                details: shippingSummary.serviceFees,
+                details: shippingSummary.getTotalServiceAmount().toStringAsFixed(2),
                 useDirhamPrice: true,
                 onPressInfo: ()=> controller.showFeesSheet(context),
               ),
               BuildSummaryHeader(
-                title: tr('technology_fees'),
-                details: shippingSummary.technologyFees,
+                title: "Environment Fees",
+                details: shippingSummary.getTotalServiceAmount().toStringAsFixed(2),
                 useDirhamPrice: true,
-                onPressInfo: ()=> controller.showTechFeesSheet(context),
+                onPressInfo: ()=> controller.showFeesSheet(context),
               ),
+              // BuildSummaryHeader(
+              //   title: tr('technology_fees'),
+              //   details: shippingSummary.technologyFees,
+              //   useDirhamPrice: true,
+              //   onPressInfo: ()=> controller.showTechFeesSheet(context),
+              // ),
               // BuildSummaryHeader(
               //   title: tr('technology_fees'),
               //   details: shippingSummary.technologyFees,
@@ -68,8 +74,8 @@ class InvoiceSummaryWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    // shippingSummary.expectedLoyaltyPoints.toString(),
-                    shippingSummary.gainedBezatPoints().toStringAsFixed(2),
+                    shippingSummary.expectedLoyaltyPoints.toString(),
+                    // shippingSummary.gainedBezatPoints().toStringAsFixed(2),
                     style: AppTextStyle.s14_w600(color: context.colors.black),
                   ),
                 ],
