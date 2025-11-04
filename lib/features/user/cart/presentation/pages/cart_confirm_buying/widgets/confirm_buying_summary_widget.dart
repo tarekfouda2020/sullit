@@ -10,15 +10,14 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InvoiceSummaryCard(margin: Dimens.paddingHorizontal20PX, children: [
       BuildSummaryHeader(
-        title: tr('totalItems'),
+        title: tr('subTotal'),
         details: orderSummary.subTotal.toString(),
         // details: orderSummary.getSubTotalWithoutVat().toStringAsFixed(2),
         useDirhamPrice: true,
       ),
       BuildSummaryHeader(
         title: tr('vat'),
-        // details: orderSummary.tax.toString(),
-        details: orderSummary.vatAmount().toStringAsFixed(2),
+        details: orderSummary.tax.toString(),
         useDirhamPrice: true,
       ),
       BuildSummaryHeader(
@@ -27,12 +26,12 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
         useDirhamPrice: true,
         onPressInfo: ()=> controller.showFeesSheet(context),
       ),
-      BuildSummaryHeader(
-        title: "Environment Fees",
-        details: orderSummary.totalServiceFees.toStringAsFixed(2),
-        useDirhamPrice: true,
-        onPressInfo: ()=> controller.showFeesSheet(context),
-      ),
+      // BuildSummaryHeader(
+      //   title: "Environment Fees",
+      //   details: orderSummary.totalServiceFees.toStringAsFixed(2),
+      //   useDirhamPrice: true,
+      //   onPressInfo: ()=> controller.showFeesSheet(context),
+      // ),
       BuildSummaryHeader(
         title: tr('shippingFees'),
         details: orderSummary.shippingTotal.toString(),
