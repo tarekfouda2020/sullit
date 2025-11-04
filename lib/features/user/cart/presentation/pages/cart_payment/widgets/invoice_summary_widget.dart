@@ -41,17 +41,11 @@ class InvoiceSummaryWidget extends StatelessWidget {
                 useDirhamPrice: true,
                 onPressInfo: ()=> controller.showFeesSheet(context),
               ),
-              BuildSummaryHeader(
-                title: "Environment Fees",
-                details: shippingSummary.getTotalServiceAmount().toStringAsFixed(2),
-                useDirhamPrice: true,
-                onPressInfo: ()=> controller.showFeesSheet(context),
-              ),
               // BuildSummaryHeader(
-              //   title: tr('technology_fees'),
-              //   details: shippingSummary.technologyFees,
+              //   title: "Environment Fees",
+              //   details: shippingSummary.getTotalServiceAmount().toStringAsFixed(2),
               //   useDirhamPrice: true,
-              //   onPressInfo: ()=> controller.showTechFeesSheet(context),
+              //   onPressInfo: ()=> controller.showFeesSheet(context),
               // ),
               // BuildSummaryHeader(
               //   title: tr('technology_fees'),

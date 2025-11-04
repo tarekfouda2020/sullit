@@ -27,12 +27,12 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
         useDirhamPrice: true,
         onPressInfo: ()=> controller.showFeesSheet(context),
       ),
-      BuildSummaryHeader(
-        title: "Environment Fees",
-        details: orderSummary.totalServiceFees.toStringAsFixed(2),
-        useDirhamPrice: true,
-        onPressInfo: ()=> controller.showFeesSheet(context),
-      ),
+      // BuildSummaryHeader(
+      //   title: "Environment Fees",
+      //   details: orderSummary.totalServiceFees.toStringAsFixed(2),
+      //   useDirhamPrice: true,
+      //   onPressInfo: ()=> controller.showFeesSheet(context),
+      // ),
       BuildSummaryHeader(
         title: tr('shippingFees'),
         details: orderSummary.shippingTotal.toString(),
