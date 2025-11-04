@@ -364,7 +364,7 @@ class CartPaymentController {
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) {
-      return FeesSheetWidget(feesCubit: feesCubit,showTech: false,showDelivery: false,);
+      return FeesSheetWidget(feesCubit: feesCubit,showTech: true,showDelivery: false,);
     },);
   }
 
