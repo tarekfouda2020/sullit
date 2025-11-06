@@ -27,6 +27,9 @@ class ShippingSummary extends BaseDomainModel{
   int? loyaltyPoints;
   bool? loyaltyPointsApplied;
   String? appliedGiftCard;
+  String vatPercentage;
+  String vatFeeAmount;
+  String environmentFees;
 
   ShippingSummary({
     required this.subTotal,
@@ -50,6 +53,9 @@ class ShippingSummary extends BaseDomainModel{
     required this.technologyFees,
     required this.serviceFees,
     required this.expectedLoyaltyPoints,
+    required this.vatPercentage,
+    required this.vatFeeAmount,
+    required this.environmentFees,
     this.loyaltyPointsValue,
     this.loyaltyPoints,
     this.loyaltyPointsApplied,
@@ -57,26 +63,19 @@ class ShippingSummary extends BaseDomainModel{
 });
 
 
-  double getSubTotalWithoutVat(){
-    var sub  = double.parse(subTotal);
-    var vatAmount = sub / 1.015;
-    return vatAmount;
-  }
-
-  double vatAmount(){
-   var different = double.parse(subTotal) - getSubTotalWithoutVat();
-    return different;
-  }
-  
   double getTotalServiceAmount(){
     var service = double.parse(serviceFees);
     var techFees = double.parse(technologyFees);
     return service+techFees;
   }
 
-  double gainedBezatPoints(){
-    var different = getSubTotalWithoutVat()*10;
-    return different;
+
+
+  String getTotalVat(){
+    var vatOnSubTotal = double.parse(tax);
+    var vatOnFees = double.parse(vatFeeAmount);
+    return (vatOnSubTotal+vatOnFees).toStringAsFixed(2);
   }
+
 
 }

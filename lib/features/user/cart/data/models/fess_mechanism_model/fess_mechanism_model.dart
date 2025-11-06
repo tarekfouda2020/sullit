@@ -13,7 +13,7 @@ class FessMechanismModel with _$FessMechanismModel{
     required  FessModel delivery,
     required  FessModel service,
     required  FessModel technology,
-    // required  FessModel environment,
+    required  FessModel environment,
   }) = _FessMechanismModel;
 
 

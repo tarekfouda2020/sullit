@@ -44,7 +44,13 @@ class OrderSummary extends BaseDomainModel {
         (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.technologyFees??"0.0"),
       );
 
+  double get _totalFeesAmount => _sumBy(
+        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.vatFeeAmount??"0.0"),
+      );
+
   double get totalServiceFees => techFees+serviceFees;
+
+  double get totalVat => tax+_totalFeesAmount;
 
   double get total => _sumBy(
         (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.total),
@@ -56,6 +62,10 @@ class OrderSummary extends BaseDomainModel {
 
   double get discounts => _sumBy(
         (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.couponDiscount),
+      );
+
+  double get pointsRedeemed => _sumBy(
+        (e) => e.loyaltyPoints.toDouble(),
       );
 
    int getTotalItems() {

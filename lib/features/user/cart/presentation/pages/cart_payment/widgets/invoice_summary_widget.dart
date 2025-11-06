@@ -29,24 +29,18 @@ class InvoiceSummaryWidget extends StatelessWidget {
             // details: shippingSummary.getSubTotalWithoutVat().toStringAsFixed(2),
             useDirhamPrice: true,
           ),
-          BuildSummaryHeader(
-            title: tr('vat'),
-            // details: shippingSummary.vatAmount().toStringAsFixed(2),
-            details: shippingSummary.tax,
-            useDirhamPrice: true,
-           ),
               BuildSummaryHeader(
                 title: tr('service_fees'),
                 details: shippingSummary.getTotalServiceAmount().toStringAsFixed(2),
                 useDirhamPrice: true,
                 onPressInfo: ()=> controller.showFeesSheet(context),
               ),
-              // BuildSummaryHeader(
-              //   title: "Environment Fees",
-              //   details: shippingSummary.getTotalServiceAmount().toStringAsFixed(2),
-              //   useDirhamPrice: true,
-              //   onPressInfo: ()=> controller.showFeesSheet(context),
-              // ),
+              BuildSummaryHeader(
+                title: tr("environmentFee"),
+                details: shippingSummary.environmentFees,
+                useDirhamPrice: true,
+                onPressInfo: ()=> controller.showEnvFeesSheet(context),
+              ),
           BuildSummaryHeader(
             title: tr('shippingFees'),
             details: shippingSummary.shipping,
@@ -79,6 +73,12 @@ class InvoiceSummaryWidget extends StatelessWidget {
               isDiscount: true,
             ),
           ),
+              BuildSummaryHeader(
+                title: tr('totalVat'),
+                // details: shippingSummary.vatAmount().toStringAsFixed(2),
+                details: shippingSummary.getTotalVat(),
+                useDirhamPrice: true,
+              ),
           Gaps.line(context.colors.softGray, 15.h),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 8),

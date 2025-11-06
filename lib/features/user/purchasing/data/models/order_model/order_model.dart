@@ -48,9 +48,14 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'loyalty_points_applied') required bool loyaltyPointsApplied,
     @JsonKey(name: 'loyalty_points') required int loyaltyPoints,
     @JsonKey(name: 'total_items') required int totalItems,
+    @JsonKey(name: 'expected_loyalty_points') required int expectedLoyaltyPoints,
     @JsonKey(name: 'order_details') required List<OrderDetailsModel> orderDetails,
     @JsonKey(name: 'service_fees') required String serviceFees,
     @JsonKey(name: 'technology_fees') required String technologyFees,
+    @JsonKey(name: 'environment_fees') required String environmentFees,
+    @JsonKey(name: 'vat_fee_amount') required String vatFeeAmount,
+    /// total of fees with there *vat => (vatFeeAmount)*
+    @JsonKey(name: 'total_fee_amount') required String totalFeeAmount,
     @JsonKey(name: 'driver') OrderDriverModel? driver,
   }) = _OrderModel;
 
@@ -98,6 +103,10 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       driverModel: driver?.toDomainModel(),
       technologyFees: technologyFees,
       serviceFees: serviceFees,
+      vatFeeAmount: vatFeeAmount,
+      totalFeeAmount: totalFeeAmount,
+      expectedLoyaltyPoints: expectedLoyaltyPoints,
+      environmentFees: environmentFees
     );
   }
 }

@@ -695,8 +695,9 @@
   "un_support_delivery_point": "সমর্থিত নয় এমন ডেলিভারির জন্য একটি পিকআপ পয়েন্ট নির্বাচন করুন বা আপনার অবস্থান পরিবর্তন করুন।",
   "service_fees": "পরিষেবা ফি",
   "technology_fees": "প্রযুক্তি ফি",
-  "gained_bezat_point": "বেজাত পয়েন্ট অর্জন করা হয়েছে"
-
-
-
+  "gained_bezat_point": "বেজাত পয়েন্ট অর্জন করা হয়েছে",
+  "environmentFee": "পরিবেশ ফি",
+  "totalVat": "মোট ভ্যাট",
+  "new_bezat_balance": "নতুন বেজাত ব্যালেন্স",
+  "bezat_points_redeemed": "বেজাত পয়েন্ট রিডিম করা হয়েছে"
 }

@@ -6,6 +6,7 @@ class ConfirmBuyingController{
   final GenericBloc<OrderSummary?> orderSummaryBloc = GenericBloc(null);
   final GenericBloc<FessMechanismModel?> feesCubit = GenericBloc(null);
 
+  final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc = GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
 
 
   ConfirmBuyingController (OrderSummary? summary, int? id) {
@@ -16,6 +17,7 @@ class ConfirmBuyingController{
     }
     getOrderFees(fromRemote: false);
     getOrderFees();
+    getLoyaltyPointsBalance();
   }
 
   Future<void> getCombinedOrder (int id) async {
@@ -86,6 +88,29 @@ class ConfirmBuyingController{
         return FeesSheetWidget(feesCubit: feesCubit,showService: false,showTech: false,);
       },);
   }
+
+  void showEnvFeesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        // Service fee
+        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
+        return FeesSheetWidget(feesCubit: feesCubit,showService: false, showDelivery: false,showTech: false,showEnv: true,);
+      },);
+  }
+
+
+  Future<void> getLoyaltyPointsBalance({bool refresh = true}) async {
+    return await GetLoyaltyPointsBalance().call(refresh).then(
+          (value) => loyaltyPointsBalanceBloc.onUpdateData(value),
+    );
+  }
+
+
+
+
+
 
   SendReviewParams _sendReviewParams(OrderDetails model, int rate) {
     return SendReviewParams(

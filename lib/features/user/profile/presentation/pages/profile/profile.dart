@@ -42,14 +42,7 @@ class _ProfileState extends State<Profile>with WidgetsBindingObserver  {
             ],
           ),
         ),
-        bottomNavigationBar: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            LogoutButtonWidget(controller: controller),
-            BuildDeleteAccountButton(controller: controller),
-            Gaps.vGap20
-          ],
-        ),
+        bottomNavigationBar: ManageProfileBottomNavWidget(controller: controller),
       ),
     );
   }

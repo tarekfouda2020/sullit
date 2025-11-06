@@ -19,6 +19,8 @@ import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_combinedOrde
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_order_fees.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_payment/widgets/cart_payment_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/widgets/build_cart_stepper.dart';
+import 'package:flutter_tdd/features/user/loyalty_points/domain/models/loyalty_points_balance_domain_model.dart';
+import 'package:flutter_tdd/features/user/loyalty_points/domain/use_case/get_loyalty_points_balance.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/send_review_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/send_review.dart';

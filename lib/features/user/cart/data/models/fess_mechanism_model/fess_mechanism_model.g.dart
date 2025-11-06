@@ -14,6 +14,8 @@ _$_FessMechanismModel _$$_FessMechanismModelFromJson(
       service: FessModel.fromJson(json['service'] as Map<String, dynamic>),
       technology:
           FessModel.fromJson(json['technology'] as Map<String, dynamic>),
+      environment:
+          FessModel.fromJson(json['environment'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_FessMechanismModelToJson(
@@ -23,6 +25,7 @@ Map<String, dynamic> _$$_FessMechanismModelToJson(
       'delivery': instance.delivery.toJson(),
       'service': instance.service.toJson(),
       'technology': instance.technology.toJson(),
+      'environment': instance.environment.toJson(),
     };
 
 _$_FessModel _$$_FessModelFromJson(Map<String, dynamic> json) => _$_FessModel(

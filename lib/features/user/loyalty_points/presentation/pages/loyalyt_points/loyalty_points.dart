@@ -31,7 +31,7 @@ class _LoyaltyPointsState extends State<LoyaltyPoints> {
             // QrImageView(),
             Expanded(
               child: CustomRefreshIndicatorWidget(
-                onRefresh: () => controller.getTransactions(1),
+                onRefresh: () async => await controller.refresh(),
                 child: PagedListView<int, TransactionsDomainModel>(
                   pagingController: controller.pagingController,
                   builderDelegate: PagedChildBuilderDelegate<TransactionsDomainModel>(

@@ -16,43 +16,22 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
         useDirhamPrice: true,
       ),
       BuildSummaryHeader(
-        title: tr('vat'),
-        details: orderSummary.tax.toString(),
-        useDirhamPrice: true,
-      ),
-      BuildSummaryHeader(
         title: tr('service_fees'),
         details: orderSummary.totalServiceFees.toStringAsFixed(2),
         useDirhamPrice: true,
         onPressInfo: ()=> controller.showFeesSheet(context),
       ),
-      // BuildSummaryHeader(
-      //   title: "Environment Fees",
-      //   details: orderSummary.totalServiceFees.toStringAsFixed(2),
-      //   useDirhamPrice: true,
-      //   onPressInfo: ()=> controller.showFeesSheet(context),
-      // ),
+      BuildSummaryHeader(
+        title: tr("environmentFee"),
+        details: orderSummary.totalServiceFees.toStringAsFixed(2),
+        useDirhamPrice: true,
+        onPressInfo: ()=> controller.showEnvFeesSheet(context),
+      ),
       BuildSummaryHeader(
         title: tr('shippingFees'),
         details: orderSummary.shippingTotal.toString(),
         useDirhamPrice: true,
         onPressInfo: ()=>controller.showDeliveryFeesSheet(context),
-      ),
-      Gaps.vGap8,
-      Row(
-        children: [
-          Expanded(
-            child: Text(
-              tr("gained_bezat_point"),
-              style: AppTextStyle.s14_w400(color: context.colors.black),
-            ),
-          ),
-          Text(
-            "${orderSummary.summary!.expectedLoyaltyPoints ?? 0}",
-            // shippingSummary.gainedBezatPoints().toStringAsFixed(2),
-            style: AppTextStyle.s14_w600(color: context.colors.black),
-          ),
-        ],
       ),
       Gaps.vGap8,
       Visibility(
@@ -66,7 +45,12 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
           useDirhamPrice: true,
         ),
       ),
-      Gaps.line(context.colors.softGray, 15.h),
+      BuildSummaryHeader(
+        title: tr('totalVat'),
+        // details: shippingSummary.vatAmount().toStringAsFixed(2),
+        details: orderSummary.totalVat.toString(),
+        useDirhamPrice: true,
+      ),
       Container(
           margin: const EdgeInsets.symmetric(vertical: 8),
           child: Row(
@@ -82,6 +66,30 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
               ),
             ],
           )),
+      _buildRow(context,tr("gained_bezat_point"),orderSummary.summary!.expectedLoyaltyPoints.toString()),
+      Gaps.vGap8,
+      if(orderSummary.pointsRedeemed > 0)
+        _buildRow(context,tr("bezat_points_redeemed"),orderSummary.pointsRedeemed.toString()),
+      if(orderSummary.pointsRedeemed > 0)
+        Gaps.vGap8,
+      NewPointsBalanceWidget(cubit: controller.loyaltyPointsBalanceBloc,gainedPoints:orderSummary.summary!.expectedLoyaltyPoints ?? 0 ,),
     ]);
+  }
+
+  Row _buildRow(BuildContext context, String title, String endTitle) {
+    return Row(
+      children: [
+        Expanded(
+          child: Text(
+            title,
+            style: AppTextStyle.s14_w400(color: context.colors.black),
+          ),
+        ),
+        Text(
+          endTitle,
+          style:  AppTextStyle.s14_w800(color: context.colors.black),
+        ),
+      ],
+    );
   }
 }

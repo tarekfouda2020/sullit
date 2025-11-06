@@ -24,6 +24,7 @@ mixin _$FessMechanismModel {
   FessModel get delivery => throw _privateConstructorUsedError;
   FessModel get service => throw _privateConstructorUsedError;
   FessModel get technology => throw _privateConstructorUsedError;
+  FessModel get environment => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,11 +42,13 @@ abstract class $FessMechanismModelCopyWith<$Res> {
       {String title,
       FessModel delivery,
       FessModel service,
-      FessModel technology});
+      FessModel technology,
+      FessModel environment});
 
   $FessModelCopyWith<$Res> get delivery;
   $FessModelCopyWith<$Res> get service;
   $FessModelCopyWith<$Res> get technology;
+  $FessModelCopyWith<$Res> get environment;
 }
 
 /// @nodoc
@@ -65,6 +68,7 @@ class _$FessMechanismModelCopyWithImpl<$Res, $Val extends FessMechanismModel>
     Object? delivery = null,
     Object? service = null,
     Object? technology = null,
+    Object? environment = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -82,6 +86,10 @@ class _$FessMechanismModelCopyWithImpl<$Res, $Val extends FessMechanismModel>
       technology: null == technology
           ? _value.technology
           : technology // ignore: cast_nullable_to_non_nullable
+              as FessModel,
+      environment: null == environment
+          ? _value.environment
+          : environment // ignore: cast_nullable_to_non_nullable
               as FessModel,
     ) as $Val);
   }
@@ -109,6 +117,14 @@ class _$FessMechanismModelCopyWithImpl<$Res, $Val extends FessMechanismModel>
       return _then(_value.copyWith(technology: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FessModelCopyWith<$Res> get environment {
+    return $FessModelCopyWith<$Res>(_value.environment, (value) {
+      return _then(_value.copyWith(environment: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -123,7 +139,8 @@ abstract class _$$_FessMechanismModelCopyWith<$Res>
       {String title,
       FessModel delivery,
       FessModel service,
-      FessModel technology});
+      FessModel technology,
+      FessModel environment});
 
   @override
   $FessModelCopyWith<$Res> get delivery;
@@ -131,6 +148,8 @@ abstract class _$$_FessMechanismModelCopyWith<$Res>
   $FessModelCopyWith<$Res> get service;
   @override
   $FessModelCopyWith<$Res> get technology;
+  @override
+  $FessModelCopyWith<$Res> get environment;
 }
 
 /// @nodoc
@@ -148,6 +167,7 @@ class __$$_FessMechanismModelCopyWithImpl<$Res>
     Object? delivery = null,
     Object? service = null,
     Object? technology = null,
+    Object? environment = null,
   }) {
     return _then(_$_FessMechanismModel(
       title: null == title
@@ -166,6 +186,10 @@ class __$$_FessMechanismModelCopyWithImpl<$Res>
           ? _value.technology
           : technology // ignore: cast_nullable_to_non_nullable
               as FessModel,
+      environment: null == environment
+          ? _value.environment
+          : environment // ignore: cast_nullable_to_non_nullable
+              as FessModel,
     ));
   }
 }
@@ -178,7 +202,8 @@ class _$_FessMechanismModel extends _FessMechanismModel {
       {required this.title,
       required this.delivery,
       required this.service,
-      required this.technology})
+      required this.technology,
+      required this.environment})
       : super._();
 
   factory _$_FessMechanismModel.fromJson(Map<String, dynamic> json) =>
@@ -192,10 +217,12 @@ class _$_FessMechanismModel extends _FessMechanismModel {
   final FessModel service;
   @override
   final FessModel technology;
+  @override
+  final FessModel environment;
 
   @override
   String toString() {
-    return 'FessMechanismModel(title: $title, delivery: $delivery, service: $service, technology: $technology)';
+    return 'FessMechanismModel(title: $title, delivery: $delivery, service: $service, technology: $technology, environment: $environment)';
   }
 
   @override
@@ -208,13 +235,15 @@ class _$_FessMechanismModel extends _FessMechanismModel {
                 other.delivery == delivery) &&
             (identical(other.service, service) || other.service == service) &&
             (identical(other.technology, technology) ||
-                other.technology == technology));
+                other.technology == technology) &&
+            (identical(other.environment, environment) ||
+                other.environment == environment));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, title, delivery, service, technology);
+  int get hashCode => Object.hash(
+      runtimeType, title, delivery, service, technology, environment);
 
   @JsonKey(ignore: true)
   @override
@@ -236,7 +265,8 @@ abstract class _FessMechanismModel extends FessMechanismModel {
       {required final String title,
       required final FessModel delivery,
       required final FessModel service,
-      required final FessModel technology}) = _$_FessMechanismModel;
+      required final FessModel technology,
+      required final FessModel environment}) = _$_FessMechanismModel;
   _FessMechanismModel._() : super._();
 
   factory _FessMechanismModel.fromJson(Map<String, dynamic> json) =
@@ -250,6 +280,8 @@ abstract class _FessMechanismModel extends FessMechanismModel {
   FessModel get service;
   @override
   FessModel get technology;
+  @override
+  FessModel get environment;
   @override
   @JsonKey(ignore: true)
   _$$_FessMechanismModelCopyWith<_$_FessMechanismModel> get copyWith =>

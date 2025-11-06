@@ -801,6 +801,9 @@
   "service_fees": "رسوم الخدمة",
   "technology_fees": "رسوم التكنولوجيا",
   "gained_bezat_point": " نقط Bezat المكتسبه",
-  "locationPermissionRequired": "مطلوب إذن الموقع. يرجى تفعيله من إعدادات التطبيق للمتابعة."
-
+  "locationPermissionRequired": "مطلوب إذن الموقع. يرجى تفعيله من إعدادات التطبيق للمتابعة.",
+  "environmentFee": "رسوم البيئة",
+  "totalVat": " إجمالي الضريبة",
+  "new_bezat_balance": "رصيد النقط الجديد",
+  "bezat_points_redeemed": " نقاط Bezat المستخدمه"
 }

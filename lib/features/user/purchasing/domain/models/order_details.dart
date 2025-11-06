@@ -44,4 +44,8 @@ class OrderDetails extends BaseDomainModel {
     this.isSelected = false,
     this.qtyCubit,
   });
+
+
+  double get getPrice => double.parse(product?.variant?.mainPrice ?? "0.0" );
+
 }

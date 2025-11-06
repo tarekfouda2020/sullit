@@ -33,6 +33,9 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary> with _$Shipping
     @JsonKey(name: "avilable_cash_on_delivery") required bool avilableCashOnDelivery,
     @JsonKey(name: "service_fees") required String serviceFee,
     @JsonKey(name: "technology_fees") required String technologyFees,
+    @JsonKey(name: "vat_percentage ") required String vatPercentage,
+    @JsonKey(name: "vat_fee_amount") required String vatFeeAmount,
+    @JsonKey(name: "environment_fees") required String environmentFees,
     required List<ShippingItemModel> items,
     @JsonKey(name: "loyalty_points_value") String? loyaltyPointsValue,
     @JsonKey(name: "loyalty_points_applied") bool? loyaltyPointsApplied,
@@ -69,6 +72,9 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary> with _$Shipping
       serviceFees: serviceFee,
       technologyFees: technologyFees,
       expectedLoyaltyPoints: expectedLoyaltyPoints,
+      vatFeeAmount: vatFeeAmount,
+      vatPercentage: vatPercentage,
+      environmentFees: environmentFees,
     );
   }
 }

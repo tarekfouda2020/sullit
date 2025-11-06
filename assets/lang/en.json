@@ -571,6 +571,7 @@
   "refundMethod": "Refund Method",
   "voucherDiscount": "Voucher Discount",
   "shippingFees": "Delivery Fee",
+  "environmentFee": "Environment Fee",
   "giftCardApplied": "Gift Card Applied",
   "applyGiftCard": "Apply Gift Card",
   "qnt": "Qnt:",
@@ -635,6 +636,10 @@
   "un_support_delivery_point": "Please select a pickup point for unsupported delivery or change your location.",
   "service_fees": "Service Fee",
   "technology_fees": "Technology Fee",
-  "gained_bezat_point": " Bezat points gained"
+  "gained_bezat_point": "Bezat points earned",
+  "totalVat": "Total vat",
+  "new_bezat_balance": "New Bezat Balance",
+  "bezat_points_redeemed": "Bezat points redeemed"
+
 
 }

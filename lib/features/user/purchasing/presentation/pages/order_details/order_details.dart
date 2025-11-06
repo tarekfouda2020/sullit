@@ -48,7 +48,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 Gaps.vGap12,
                 OrderDetailsSectionsTitleWidget(title: tr("invoiceSummary")),
                 Gaps.vGap12,
-                OrderDetailsSummaryWidget(isReturned: widget.isReturnedOrder, order: state.data),
+                OrderDetailsSummaryWidget(isReturned: widget.isReturnedOrder, order: state.data,controller: controller,),
                 Gaps.vGap40,
                 Visibility(
                   visible: state.data!.showButtonPay && state.data!.orderPaymentType()!=OrderPaymentType.cash,

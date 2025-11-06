@@ -5,6 +5,7 @@ class FeesSheetWidget extends StatelessWidget {
   final bool showService;
   final bool showTech;
   final bool showDelivery;
+  final bool showEnv;
 
   const FeesSheetWidget({
     super.key,
@@ -12,6 +13,7 @@ class FeesSheetWidget extends StatelessWidget {
     this.showService = true,
     this.showTech = true,
     this.showDelivery = true,
+    this.showEnv = false,
   });
 
   @override
@@ -27,7 +29,7 @@ class FeesSheetWidget extends StatelessWidget {
         spacing: 10,
         children: [
           BottomSheetHeaderWidget(title: feesCubit.state.data!.title),
-          if (showDelivery) Gaps.vGap8,
+          Gaps.vGap8,
           if (showDelivery)
             FeesItemWidget(
               model: feesCubit.state.data!.delivery,
@@ -37,10 +39,13 @@ class FeesSheetWidget extends StatelessWidget {
             FeesItemWidget(
               model: feesCubit.state.data!.service,
             ),
-          if (showTech) Gaps.vGap8,
           if (showTech)
             FeesItemWidget(
               model: feesCubit.state.data!.technology,
+            ),
+          if (showEnv)
+            FeesItemWidget(
+              model: feesCubit.state.data!.environment,
             ),
           Gaps.vGap30
         ],
