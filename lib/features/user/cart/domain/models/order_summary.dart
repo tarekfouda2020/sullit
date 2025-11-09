@@ -39,6 +39,9 @@ class OrderSummary extends BaseDomainModel {
   double get serviceFees => _sumBy(
         (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.serviceFees ?? "0.0"),
   );
+  double get envFees => _sumBy(
+        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.environmentFees),
+  );
 
   double get techFees => _sumBy(
         (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.technologyFees??"0.0"),
