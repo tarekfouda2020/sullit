@@ -22,6 +22,7 @@ class InvoiceSummaryWidget extends StatelessWidget {
         CartPaymentSectionTitleWidget(title: tr("invoiceSummary")),
         Gaps.vGap6,
         InvoiceSummaryCard(
+          radius: const BorderRadius.vertical(top: Radius.circular(12)),
             children: [
           BuildSummaryHeader(
             title: tr('subTotal'),
@@ -47,6 +48,12 @@ class InvoiceSummaryWidget extends StatelessWidget {
             useDirhamPrice: true,
             onPressInfo: ()=> controller.showDeliveryFeesSheet(context),
           ),
+              BuildSummaryHeader(
+                title: tr('totalVat'),
+                details: shippingSummary.getTotalVat(),
+                useDirhamPrice: true,
+                vMargin: 0,
+              ),
               Gaps.vGap8,
               Visibility(
                   visible: shippingSummary.couponApplied == true || shippingSummary.loyaltyPointsApplied==true,
@@ -73,12 +80,6 @@ class InvoiceSummaryWidget extends StatelessWidget {
               isDiscount: true,
             ),
           ),
-              BuildSummaryHeader(
-                title: tr('totalVat'),
-                // details: shippingSummary.vatAmount().toStringAsFixed(2),
-                details: shippingSummary.getTotalVat(),
-                useDirhamPrice: true,
-              ),
           Gaps.line(context.colors.softGray, 15.h),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 8),
@@ -90,7 +91,7 @@ class InvoiceSummaryWidget extends StatelessWidget {
                   style: AppTextStyle.s14_w400(color: context.colors.black),
                 ),
                 DirhamPrice(
-                  amount: applyGiftCard ? "0.00" : shippingSummary.total,
+                  amount: controller.getTotal().toStringAsFixed(2),
                   textStyle: AppTextStyle.s14_w800(color:context.colors.black),
                   currencyStyle: AppTextStyle.s18_w400(color:context.colors.black),
                   currencyOffset: 0,
@@ -98,7 +99,9 @@ class InvoiceSummaryWidget extends StatelessWidget {
               ],
             ),
           ),
-        ])
+        ]
+        ),
+        // OrderGrandTotalWidget(amount: applyGiftCard ? "0.00" : shippingSummary.total,)
       ],
     );
   }

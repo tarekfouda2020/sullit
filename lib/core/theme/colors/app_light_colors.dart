@@ -133,4 +133,7 @@ class AppLightColors extends AppColors {
 
   @override
   Color get gray5 => const Color(0xff515151);
+
+  @override
+  Color get lightGreen => const Color(0xffEAFFEA);
 }

@@ -639,7 +639,9 @@
   "gained_bezat_point": "Bezat points earned",
   "totalVat": "Total vat",
   "new_bezat_balance": "New Bezat Balance",
-  "bezat_points_redeemed": "Bezat points redeemed"
+  "bezat_points_redeemed": "Bezat points redeemed",
+  "grand_total": "Grand Total ( Amount Charged )"
+
 
 
 }

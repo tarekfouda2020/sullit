@@ -699,5 +699,6 @@
   "environmentFee": "পরিবেশ ফি",
   "totalVat": "মোট ভ্যাট",
   "new_bezat_balance": "নতুন বেজাত ব্যালেন্স",
-  "bezat_points_redeemed": "বেজাত পয়েন্ট রিডিম করা হয়েছে"
+  "bezat_points_redeemed": "বেজাত পয়েন্ট রিডিম করা হয়েছে",
+  "grand_total": "Grand Total ( Amount Charged )"
 }

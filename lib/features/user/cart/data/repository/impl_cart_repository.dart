@@ -4,6 +4,7 @@ import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/models/model_to_domain/model_to_domain.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/user/cart/data/data_sources/cart_data_sources.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/delivery_instruction/delivery_instruction.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/fess_mechanism_model/fess_mechanism_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/seller_shipping_model/seller_shipping_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/shipping_summary_model/shipping_summary_model.dart';
@@ -15,6 +16,7 @@ import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_pa
 import 'package:flutter_tdd/features/user/cart/domain/entities/update_cart_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/coupon_response_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instruction_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/gift_card_domain_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/seller_shipping.dart';
@@ -115,6 +117,12 @@ class ImplCartRepository extends CartRepository with ModelToDomain{
   @override
   Future<Either<Failure, FessMechanismModel>> getFees (bool params)async {
     return await dataSource.getFees(params);
+  }
+
+  @override
+  Future<Either<Failure, List<DeliveryInstructionModel>>> getInstructions (bool params)async {
+    var result = await dataSource.getInstructions(params);
+    return toDomainResultList<DeliveryInstructionModel, DeliveryInstruction>(result);
   }
 
 }

@@ -9,6 +9,7 @@ import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_pa
 import 'package:flutter_tdd/features/user/cart/domain/entities/update_cart_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/coupon_response_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instruction_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/gift_card_domain_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/seller_shipping.dart';
@@ -36,4 +37,6 @@ abstract class CartRepository {
   Future<Either<Failure, String>> clearCart (CartParams params);
   Future<Either<Failure, ShippingSummary>> removeCoupon (NoParams params);
   Future<Either<Failure, FessMechanismModel>> getFees (bool params);
+
+  Future<Either<Failure, List<DeliveryInstructionModel>>> getInstructions(bool params);
 }

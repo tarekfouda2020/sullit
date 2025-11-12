@@ -805,5 +805,6 @@
   "environmentFee": "رسوم البيئة",
   "totalVat": " إجمالي الضريبة",
   "new_bezat_balance": "رصيد النقط الجديد",
-  "bezat_points_redeemed": " نقاط Bezat المستخدمه"
+  "bezat_points_redeemed": " نقاط Bezat المستخدمه",
+  "grand_total": "Grand Total ( Amount Charged )"
 }

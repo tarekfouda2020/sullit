@@ -77,5 +77,7 @@ class ShippingSummary extends BaseDomainModel{
     return (vatOnSubTotal+vatOnFees).toStringAsFixed(2);
   }
 
+  double get getFeesTotal => double.parse(environmentFees) + double.parse(shipping) + double.parse(serviceFees) + double.parse(technologyFees);
+
 
 }

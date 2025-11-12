@@ -7,6 +7,7 @@ class BuildSummaryHeader extends StatelessWidget {
   final bool useDirhamPrice;
   final bool isDiscount;
   final bool? applyDashSeperate;
+  final double? vMargin;
   final void Function()? onPressInfo;
   const BuildSummaryHeader({
     super.key,
@@ -17,12 +18,13 @@ class BuildSummaryHeader extends StatelessWidget {
     this.isDiscount = false,
     this.applyDashSeperate = false,
     this.onPressInfo,
+    this.vMargin,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
+      margin:  EdgeInsets.symmetric(vertical: vMargin ?? 8),
       child: Row(
         children: [
           Expanded(

@@ -17,8 +17,8 @@ class CartPaymentController {
   final GenericBloc<bool> isWalletSelected = GenericBloc(false);
   final GenericBloc<bool> applyPointsSwitchCubit = GenericBloc(false);
   final GenericBloc<bool> allowReplacementCubit = GenericBloc(false);
-  final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc =
-  GenericBloc(null);
+  final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc = GenericBloc(null);
+  final GenericBloc<List<DeliveryInstructionModel>> instructionsCubit = GenericBloc([]);
   String? selectedPayment;
 
   bool isGiftCardApplied = false;
@@ -37,6 +37,8 @@ class CartPaymentController {
     getLoyaltyPointsBalance();
     getOrderFees(fromRemote: false);
     getOrderFees();
+    getInstructions(fromRemote: false);
+    getInstructions();
   }
 
   void calculateDiscount() {
@@ -230,7 +232,6 @@ class CartPaymentController {
     );
   }
 
-
   void paymentMethodSheet(BuildContext context){
     showModalBottomSheet(
       context: context,
@@ -402,6 +403,34 @@ class CartPaymentController {
 
 
   bool get _isExistMinimumAmount => shippingBloc.state.data?.summary.minimumOrderAmountStatus == true;
+
+
+  double getTotal(){
+    ShippingSummary summary = shippingBloc.state.data!.summary;
+    double subTotal = double.parse(summary.subTotal);
+    double totalFeesAmount = summary.getFeesTotal;
+
+   if (summary.couponApplied == true ){
+     subTotal = subTotal -  double.parse(summary.couponDiscount);
+    }
+
+    if (summary.loyaltyPointsApplied == true ){
+      subTotal = subTotal -  double.parse(summary.loyaltyPointsValue ?? '0.0');
+    }
+
+    double amount = subTotal+totalFeesAmount;
+   if(amount > 0){
+     return amount;
+   }else{
+     return 0;
+   }
+  }
+
+  Future<void> getInstructions({bool fromRemote = true})async{
+    List<DeliveryInstructionModel> result =  await GetDeliveryInstructions().call(fromRemote);
+
+    instructionsCubit.onUpdateData(result);
+  }
 
 
 }

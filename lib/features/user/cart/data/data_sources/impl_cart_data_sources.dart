@@ -11,6 +11,7 @@ import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/user/cart/data/data_sources/cart_data_sources.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/cart_model/cart_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/coupon_response_model/coupon_response_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/delivery_instruction/delivery_instruction.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/fess_mechanism_model/fess_mechanism_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/gift_card_model/gift_card_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
@@ -261,4 +262,26 @@ class ImplCartDataSources extends CartDataSources {
     );
     return await GenericHttpImpl<FessMechanismModel>()(model);
   }
+
+
+
+  @override
+  Future<Either<Failure, List<DeliveryInstruction>>> getInstructions(bool params)async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.deliveryInstructions,
+      requestMethod: RequestMethod.get,
+      responseType: ResType.list,
+      refresh: params,
+      toJsonFunc: (json) => List<DeliveryInstruction>.from(
+        json.map(
+              (e) => DeliveryInstruction.fromJson(e),
+        ),
+      ),
+      responseKey: (data) => data["data"],
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<List<DeliveryInstruction>>().call(model);
+  }
+
+
 }

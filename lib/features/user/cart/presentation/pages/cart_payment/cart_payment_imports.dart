@@ -18,14 +18,17 @@ import 'package:flutter_tdd/features/user/cart/data/models/fess_mechanism_model/
 import 'package:flutter_tdd/features/user/cart/domain/entities/apply_gift_card_params.dart';
 import 'package:flutter_tdd/features/user/cart/data/enum/pay_type_enum.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_params.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instruction_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/gift_card_domain_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/payment_option.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/shipping_summary.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/apply_coupon.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/apply_gift_card.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/apply_loyalty_points.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/create_order.dart';
+import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_delivery_instructions.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_order_fees.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/remove_coupon.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/remove_loyalty_points.dart';
