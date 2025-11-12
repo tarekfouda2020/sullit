@@ -11,8 +11,11 @@ class ShippingSummary extends BaseDomainModel{
   String? couponCode ;
   bool? couponApplied ;
   int totalItems ;
+  int expectedLoyaltyPoints ;
   bool minimumOrderAmountStatus ;
   String minimumOrderAmountMsg ;
+  String serviceFees ;
+  String technologyFees ;
   bool walletSystemActive ;
   String walletBalance ;
   double walletBalanceValue;
@@ -24,6 +27,9 @@ class ShippingSummary extends BaseDomainModel{
   int? loyaltyPoints;
   bool? loyaltyPointsApplied;
   String? appliedGiftCard;
+  String vatPercentage;
+  String vatFeeAmount;
+  String environmentFees;
 
   ShippingSummary({
     required this.subTotal,
@@ -44,9 +50,34 @@ class ShippingSummary extends BaseDomainModel{
     required this.avilableCashOnDelivery,
     required this.items,
     required this.minimumOrderAmountAmount,
+    required this.technologyFees,
+    required this.serviceFees,
+    required this.expectedLoyaltyPoints,
+    required this.vatPercentage,
+    required this.vatFeeAmount,
+    required this.environmentFees,
     this.loyaltyPointsValue,
     this.loyaltyPoints,
     this.loyaltyPointsApplied,
     this.appliedGiftCard,
 });
+
+
+  double getTotalServiceAmount(){
+    var service = double.parse(serviceFees);
+    var techFees = double.parse(technologyFees);
+    return service+techFees;
+  }
+
+
+
+  String getTotalVat(){
+    var vatOnSubTotal = double.parse(tax);
+    var vatOnFees = double.parse(vatFeeAmount);
+    return (vatOnSubTotal+vatOnFees).toStringAsFixed(2);
+  }
+
+  double get getFeesTotal => double.parse(environmentFees) + double.parse(shipping) + double.parse(serviceFees) + double.parse(technologyFees);
+
+
 }

@@ -6,7 +6,9 @@ class BuildSummaryHeader extends StatelessWidget {
   final Color? detailsColor;
   final bool useDirhamPrice;
   final bool isDiscount;
- final void Function()? onPressInfo;
+  final bool? applyDashSeperate;
+  final double? vMargin;
+  final void Function()? onPressInfo;
   const BuildSummaryHeader({
     super.key,
     required this.title,
@@ -14,13 +16,15 @@ class BuildSummaryHeader extends StatelessWidget {
     this.detailsColor,
     this.useDirhamPrice = false,
     this.isDiscount = false,
+    this.applyDashSeperate = false,
     this.onPressInfo,
+    this.vMargin,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
+      margin:  EdgeInsets.symmetric(vertical: vMargin ?? 8),
       child: Row(
         children: [
           Expanded(
@@ -28,11 +32,23 @@ class BuildSummaryHeader extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: AppTextStyle.s14_w500(color: context.colors.black),
+                  style: AppTextStyle.s14_w400(color: context.colors.black),
                 ),
-                Gaps.hGap5,
+                Gaps.hGap10,
                 if(onPressInfo!=null)
-                  _infoContainer(),
+                GestureDetector(
+                  onTap: onPressInfo,
+                  child: Container(
+                    width: 15, height: 15,
+                    margin: const EdgeInsets.only(bottom: 5),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: context.colors.gray3,
+                      shape: BoxShape.circle
+                    ),
+                    child: Icon(Icons.question_mark,color: context.colors.gray,size: 10,),
+                  ),
+                )
               ],
             ),
           ),
@@ -42,35 +58,18 @@ class BuildSummaryHeader extends StatelessWidget {
             style: AppTextStyle.s14_w600(color: context.colors.primary),
           ),
            DirhamPrice(
-                  amount: details,
+                  amount: isDiscount
+                      ?details.replaceAll("-", "")
+                      :details,
                   textStyle: AppTextStyle.s14_w600(color: detailsColor ?? context.colors.black),
             currencyStyle: AppTextStyle.s16_w400(color: detailsColor ?? context.colors.black),
             currencyOffset: 0,
             showMinus: false,
+             applyDashSeperate: applyDashSeperate,
                 )
              ,
         ],
       ),
     );
   }
-
-
-
-  Widget _infoContainer(){
-    return GestureDetector(
-      onTap: onPressInfo,
-      child: Container(
-        width: Dimens.dp16, height: Dimens.dp16,
-        margin: const EdgeInsets.only(bottom: 8),
-        alignment: Alignment.center,
-        decoration: const BoxDecoration(
-          color: Color(0xffD9D9D9),
-          shape: BoxShape.circle
-        ),
-        child: const Icon(Icons.question_mark,color: Color(0xff5C5C5C),size: 10,),
-      ),
-    );
-  }
-
-
 }

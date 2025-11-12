@@ -28,13 +28,32 @@ class OrderSummary extends BaseDomainModel {
         (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.subtotal),
       );
 
+  double get shippingTotal => _sumBy(
+        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.shipping),
+      );
+
   double get tax => _sumBy(
         (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.tax),
       );
 
-  double get shippingTotal => _sumBy(
-        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.shipping),
+  double get serviceFees => _sumBy(
+        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.serviceFees ?? "0.0"),
+  );
+  double get envFees => _sumBy(
+        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.environmentFees),
+  );
+
+  double get techFees => _sumBy(
+        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.technologyFees??"0.0"),
       );
+
+  double get _totalFeesAmount => _sumBy(
+        (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.vatFeeAmount??"0.0"),
+      );
+
+  double get totalServiceFees => techFees+serviceFees;
+
+  double get totalVat => tax+_totalFeesAmount;
 
   double get total => _sumBy(
         (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.total),
@@ -48,6 +67,10 @@ class OrderSummary extends BaseDomainModel {
         (e) => getIt<Utilities>().extractFormattedNumberToDouble(e.couponDiscount),
       );
 
+  double get pointsRedeemed => _sumBy(
+        (e) => e.loyaltyPoints.toDouble(),
+      );
+
    int getTotalItems() {
     var  orderDetailsList = sectionOrders!.expand((element) => element.orderDetails).toList();
     var quantityList = orderDetailsList.map((e) => e.quantity).toList();
@@ -55,5 +78,21 @@ class OrderSummary extends BaseDomainModel {
    }
 
    // int getTotalItems() => sectionOrders!.fold(0, (previousValue, element) => previousValue+element.totalItems);
+
+  double getSubTotalWithoutVat(){
+    var sub  = subTotal;
+    var vatAmount = sub / 1.015;
+    return vatAmount;
+  }
+
+  double vatAmount(){
+    var different = subTotal - getSubTotalWithoutVat();
+    return different;
+  }
+
+  // double gainedBezatPoints(){
+  //   var different = getSubTotalWithoutVat() * 10;
+  //   return different;
+  // }
 
 }

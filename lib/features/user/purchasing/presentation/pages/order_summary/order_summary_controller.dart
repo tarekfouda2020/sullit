@@ -4,12 +4,17 @@ part of 'order_summary_imports.dart';
 
 class OrderSummaryController {
   final GenericBloc<Orders?> orderDetailsBloc = GenericBloc(null);
+  final GenericBloc<FessMechanismModel?> feesCubit = GenericBloc(null);
+  final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc = GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
   late int orderId;
 
   OrderSummaryController(int id) {
     orderId = id;
     getOrderDetails(orderId, refresh: false);
     getOrderDetails(orderId);
+    getOrderFees(fromRemote: false);
+    getOrderFees();
+    getLoyaltyPointsBalance();
   }
 
   Future<void> getOrderDetails(int id, {bool refresh = true}) async {
@@ -79,6 +84,48 @@ class OrderSummaryController {
       productId: model.product?.id,
       rating: model.orderReview?.ratingCubit.state.data,
       comment: model.orderReview?.rateComment.text,
+    );
+  }
+
+  Future<void> getOrderFees({bool fromRemote = true}) async {
+    await GetOrderFees().call(fromRemote).then((value) {
+      feesCubit.onUpdateData(value);
+    });
+  }
+
+  void showFeesSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return FeesSheetWidget(feesCubit: feesCubit, showDelivery: false, showTech: true);
+      },
+    );
+  }
+
+  void showDeliveryFeesSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return FeesSheetWidget(feesCubit: feesCubit, showService: false, showTech: false);
+      },
+    );
+  }
+
+  void showEnvFeesSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return FeesSheetWidget(feesCubit: feesCubit, showService: false, showDelivery: false, showTech: false, showEnv: true);
+      },
+    );
+  }
+
+  Future<void> getLoyaltyPointsBalance({bool refresh = true}) async {
+    return await GetLoyaltyPointsBalance().call(refresh).then(
+          (value) => loyaltyPointsBalanceBloc.onUpdateData(value),
     );
   }
 }

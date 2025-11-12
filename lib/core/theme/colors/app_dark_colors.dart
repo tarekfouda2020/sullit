@@ -135,6 +135,9 @@ class AppDarkColors extends AppColors {
   Color get blackTextColor => const Color(0xff1E1E1E);
 
   @override
+  Color get lightGreen => const Color(0xffEAFFEA);
+
+  @override
   Color get green2 => const Color(0xff25A80D);
 
   @override

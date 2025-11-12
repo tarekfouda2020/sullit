@@ -114,15 +114,17 @@ class CartHelper {
     }
     var data = await AddProductToCart().call(params);
     if (data != '') {
-      var countCubit = context.read<CountCubit>().state;
-      var cartCount = countCubit.cartCount + 1;
-      context.read<CountCubit>().onUpdateCount(cartCount, countCubit.discount);
+      updateCartCount(context,qty);
       CustomToast.showSimpleToast(
           msg: tr('productAddedToYourCart'), type: ToastType.success);
     }
     onAddCartFunc();
   }
 
+  void updateCartCount(BuildContext context,int qnt){
+    var countCubit = context.read<CountCubit>().state;
+    context.read<CountCubit>().onUpdateCount(qnt, countCubit.discount);
+  }
 
   void addToCartDialog(BuildContext context, Product product,{void Function()? afterAddToCart}) {
     showDialog(

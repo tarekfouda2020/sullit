@@ -142,10 +142,6 @@ class AddNewAddressController {
       streetNameController.text = result.fullAddress?.streetAddress ?? "";
       stateNameCtr.text = result.fullAddress?.region ?? "";
       cityNameCtr.text = result.fullAddress?.city ?? "";
-      print("==============>>>>>>>>> state name ${result.fullAddress?.region}<<<<<<<<==============");
-      print("==============>>>>>>>>>city name ${cityNameCtr.text}<<<<<<<<==============");
-    }else{
-      print("==============>>>>>>>>> type $result <<<<<<<<==============");
     }
   }
 

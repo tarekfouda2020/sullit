@@ -50,6 +50,16 @@ mixin _$ShippingSummaryModel {
   bool get avilablePayWithWallet => throw _privateConstructorUsedError;
   @JsonKey(name: "avilable_cash_on_delivery")
   bool get avilableCashOnDelivery => throw _privateConstructorUsedError;
+  @JsonKey(name: "service_fees")
+  String get serviceFee => throw _privateConstructorUsedError;
+  @JsonKey(name: "technology_fees")
+  String get technologyFees => throw _privateConstructorUsedError;
+  @JsonKey(name: "vat_percentage ")
+  String get vatPercentage => throw _privateConstructorUsedError;
+  @JsonKey(name: "vat_fee_amount")
+  String get vatFeeAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: "environment_fees")
+  String get environmentFees => throw _privateConstructorUsedError;
   List<ShippingItemModel> get items => throw _privateConstructorUsedError;
   @JsonKey(name: "loyalty_points_value")
   String? get loyaltyPointsValue => throw _privateConstructorUsedError;
@@ -57,6 +67,8 @@ mixin _$ShippingSummaryModel {
   bool? get loyaltyPointsApplied => throw _privateConstructorUsedError;
   @JsonKey(name: "loyalty_points")
   int? get loyaltyPoints => throw _privateConstructorUsedError;
+  @JsonKey(name: "expected_loyalty_points")
+  int get expectedLoyaltyPoints => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -89,10 +101,16 @@ abstract class $ShippingSummaryModelCopyWith<$Res> {
       @JsonKey(name: "wallet_balance_value") double walletBalanceValue,
       @JsonKey(name: "avilable_pay_with_wallet") bool avilablePayWithWallet,
       @JsonKey(name: "avilable_cash_on_delivery") bool avilableCashOnDelivery,
+      @JsonKey(name: "service_fees") String serviceFee,
+      @JsonKey(name: "technology_fees") String technologyFees,
+      @JsonKey(name: "vat_percentage ") String vatPercentage,
+      @JsonKey(name: "vat_fee_amount") String vatFeeAmount,
+      @JsonKey(name: "environment_fees") String environmentFees,
       List<ShippingItemModel> items,
       @JsonKey(name: "loyalty_points_value") String? loyaltyPointsValue,
       @JsonKey(name: "loyalty_points_applied") bool? loyaltyPointsApplied,
-      @JsonKey(name: "loyalty_points") int? loyaltyPoints});
+      @JsonKey(name: "loyalty_points") int? loyaltyPoints,
+      @JsonKey(name: "expected_loyalty_points") int expectedLoyaltyPoints});
 }
 
 /// @nodoc
@@ -126,10 +144,16 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
     Object? walletBalanceValue = null,
     Object? avilablePayWithWallet = null,
     Object? avilableCashOnDelivery = null,
+    Object? serviceFee = null,
+    Object? technologyFees = null,
+    Object? vatPercentage = null,
+    Object? vatFeeAmount = null,
+    Object? environmentFees = null,
     Object? items = null,
     Object? loyaltyPointsValue = freezed,
     Object? loyaltyPointsApplied = freezed,
     Object? loyaltyPoints = freezed,
+    Object? expectedLoyaltyPoints = null,
   }) {
     return _then(_value.copyWith(
       subtotal: null == subtotal
@@ -200,6 +224,26 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
           ? _value.avilableCashOnDelivery
           : avilableCashOnDelivery // ignore: cast_nullable_to_non_nullable
               as bool,
+      serviceFee: null == serviceFee
+          ? _value.serviceFee
+          : serviceFee // ignore: cast_nullable_to_non_nullable
+              as String,
+      technologyFees: null == technologyFees
+          ? _value.technologyFees
+          : technologyFees // ignore: cast_nullable_to_non_nullable
+              as String,
+      vatPercentage: null == vatPercentage
+          ? _value.vatPercentage
+          : vatPercentage // ignore: cast_nullable_to_non_nullable
+              as String,
+      vatFeeAmount: null == vatFeeAmount
+          ? _value.vatFeeAmount
+          : vatFeeAmount // ignore: cast_nullable_to_non_nullable
+              as String,
+      environmentFees: null == environmentFees
+          ? _value.environmentFees
+          : environmentFees // ignore: cast_nullable_to_non_nullable
+              as String,
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
@@ -216,6 +260,10 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
           ? _value.loyaltyPoints
           : loyaltyPoints // ignore: cast_nullable_to_non_nullable
               as int?,
+      expectedLoyaltyPoints: null == expectedLoyaltyPoints
+          ? _value.expectedLoyaltyPoints
+          : expectedLoyaltyPoints // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -247,10 +295,16 @@ abstract class _$$_ShippingSummaryModelCopyWith<$Res>
       @JsonKey(name: "wallet_balance_value") double walletBalanceValue,
       @JsonKey(name: "avilable_pay_with_wallet") bool avilablePayWithWallet,
       @JsonKey(name: "avilable_cash_on_delivery") bool avilableCashOnDelivery,
+      @JsonKey(name: "service_fees") String serviceFee,
+      @JsonKey(name: "technology_fees") String technologyFees,
+      @JsonKey(name: "vat_percentage ") String vatPercentage,
+      @JsonKey(name: "vat_fee_amount") String vatFeeAmount,
+      @JsonKey(name: "environment_fees") String environmentFees,
       List<ShippingItemModel> items,
       @JsonKey(name: "loyalty_points_value") String? loyaltyPointsValue,
       @JsonKey(name: "loyalty_points_applied") bool? loyaltyPointsApplied,
-      @JsonKey(name: "loyalty_points") int? loyaltyPoints});
+      @JsonKey(name: "loyalty_points") int? loyaltyPoints,
+      @JsonKey(name: "expected_loyalty_points") int expectedLoyaltyPoints});
 }
 
 /// @nodoc
@@ -281,10 +335,16 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
     Object? walletBalanceValue = null,
     Object? avilablePayWithWallet = null,
     Object? avilableCashOnDelivery = null,
+    Object? serviceFee = null,
+    Object? technologyFees = null,
+    Object? vatPercentage = null,
+    Object? vatFeeAmount = null,
+    Object? environmentFees = null,
     Object? items = null,
     Object? loyaltyPointsValue = freezed,
     Object? loyaltyPointsApplied = freezed,
     Object? loyaltyPoints = freezed,
+    Object? expectedLoyaltyPoints = null,
   }) {
     return _then(_$_ShippingSummaryModel(
       subtotal: null == subtotal
@@ -355,6 +415,26 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
           ? _value.avilableCashOnDelivery
           : avilableCashOnDelivery // ignore: cast_nullable_to_non_nullable
               as bool,
+      serviceFee: null == serviceFee
+          ? _value.serviceFee
+          : serviceFee // ignore: cast_nullable_to_non_nullable
+              as String,
+      technologyFees: null == technologyFees
+          ? _value.technologyFees
+          : technologyFees // ignore: cast_nullable_to_non_nullable
+              as String,
+      vatPercentage: null == vatPercentage
+          ? _value.vatPercentage
+          : vatPercentage // ignore: cast_nullable_to_non_nullable
+              as String,
+      vatFeeAmount: null == vatFeeAmount
+          ? _value.vatFeeAmount
+          : vatFeeAmount // ignore: cast_nullable_to_non_nullable
+              as String,
+      environmentFees: null == environmentFees
+          ? _value.environmentFees
+          : environmentFees // ignore: cast_nullable_to_non_nullable
+              as String,
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
@@ -371,6 +451,10 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
           ? _value.loyaltyPoints
           : loyaltyPoints // ignore: cast_nullable_to_non_nullable
               as int?,
+      expectedLoyaltyPoints: null == expectedLoyaltyPoints
+          ? _value.expectedLoyaltyPoints
+          : expectedLoyaltyPoints // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -402,10 +486,17 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
       required this.avilablePayWithWallet,
       @JsonKey(name: "avilable_cash_on_delivery")
       required this.avilableCashOnDelivery,
+      @JsonKey(name: "service_fees") required this.serviceFee,
+      @JsonKey(name: "technology_fees") required this.technologyFees,
+      @JsonKey(name: "vat_percentage ") required this.vatPercentage,
+      @JsonKey(name: "vat_fee_amount") required this.vatFeeAmount,
+      @JsonKey(name: "environment_fees") required this.environmentFees,
       required final List<ShippingItemModel> items,
       @JsonKey(name: "loyalty_points_value") this.loyaltyPointsValue,
       @JsonKey(name: "loyalty_points_applied") this.loyaltyPointsApplied,
-      @JsonKey(name: "loyalty_points") this.loyaltyPoints})
+      @JsonKey(name: "loyalty_points") this.loyaltyPoints,
+      @JsonKey(name: "expected_loyalty_points")
+      required this.expectedLoyaltyPoints})
       : _items = items,
         super._();
 
@@ -459,6 +550,21 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
   @override
   @JsonKey(name: "avilable_cash_on_delivery")
   final bool avilableCashOnDelivery;
+  @override
+  @JsonKey(name: "service_fees")
+  final String serviceFee;
+  @override
+  @JsonKey(name: "technology_fees")
+  final String technologyFees;
+  @override
+  @JsonKey(name: "vat_percentage ")
+  final String vatPercentage;
+  @override
+  @JsonKey(name: "vat_fee_amount")
+  final String vatFeeAmount;
+  @override
+  @JsonKey(name: "environment_fees")
+  final String environmentFees;
   final List<ShippingItemModel> _items;
   @override
   List<ShippingItemModel> get items {
@@ -476,10 +582,13 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
   @override
   @JsonKey(name: "loyalty_points")
   final int? loyaltyPoints;
+  @override
+  @JsonKey(name: "expected_loyalty_points")
+  final int expectedLoyaltyPoints;
 
   @override
   String toString() {
-    return 'ShippingSummaryModel(subtotal: $subtotal, tax: $tax, shipping: $shipping, couponDiscount: $couponDiscount, calTotal: $calTotal, total: $total, couponCode: $couponCode, couponApplied: $couponApplied, totalItems: $totalItems, minimumOrderAmountStatus: $minimumOrderAmountStatus, minimumOrderAmountMsg: $minimumOrderAmountMsg, minimumOrderAmountAmount: $minimumOrderAmountAmount, walletSystemActive: $walletSystemActive, walletBalance: $walletBalance, walletBalanceValue: $walletBalanceValue, avilablePayWithWallet: $avilablePayWithWallet, avilableCashOnDelivery: $avilableCashOnDelivery, items: $items, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints)';
+    return 'ShippingSummaryModel(subtotal: $subtotal, tax: $tax, shipping: $shipping, couponDiscount: $couponDiscount, calTotal: $calTotal, total: $total, couponCode: $couponCode, couponApplied: $couponApplied, totalItems: $totalItems, minimumOrderAmountStatus: $minimumOrderAmountStatus, minimumOrderAmountMsg: $minimumOrderAmountMsg, minimumOrderAmountAmount: $minimumOrderAmountAmount, walletSystemActive: $walletSystemActive, walletBalance: $walletBalance, walletBalanceValue: $walletBalanceValue, avilablePayWithWallet: $avilablePayWithWallet, avilableCashOnDelivery: $avilableCashOnDelivery, serviceFee: $serviceFee, technologyFees: $technologyFees, vatPercentage: $vatPercentage, vatFeeAmount: $vatFeeAmount, environmentFees: $environmentFees, items: $items, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, expectedLoyaltyPoints: $expectedLoyaltyPoints)';
   }
 
   @override
@@ -521,13 +630,25 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
                 other.avilablePayWithWallet == avilablePayWithWallet) &&
             (identical(other.avilableCashOnDelivery, avilableCashOnDelivery) ||
                 other.avilableCashOnDelivery == avilableCashOnDelivery) &&
+            (identical(other.serviceFee, serviceFee) ||
+                other.serviceFee == serviceFee) &&
+            (identical(other.technologyFees, technologyFees) ||
+                other.technologyFees == technologyFees) &&
+            (identical(other.vatPercentage, vatPercentage) ||
+                other.vatPercentage == vatPercentage) &&
+            (identical(other.vatFeeAmount, vatFeeAmount) ||
+                other.vatFeeAmount == vatFeeAmount) &&
+            (identical(other.environmentFees, environmentFees) ||
+                other.environmentFees == environmentFees) &&
             const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.loyaltyPointsValue, loyaltyPointsValue) ||
                 other.loyaltyPointsValue == loyaltyPointsValue) &&
             (identical(other.loyaltyPointsApplied, loyaltyPointsApplied) ||
                 other.loyaltyPointsApplied == loyaltyPointsApplied) &&
             (identical(other.loyaltyPoints, loyaltyPoints) ||
-                other.loyaltyPoints == loyaltyPoints));
+                other.loyaltyPoints == loyaltyPoints) &&
+            (identical(other.expectedLoyaltyPoints, expectedLoyaltyPoints) ||
+                other.expectedLoyaltyPoints == expectedLoyaltyPoints));
   }
 
   @JsonKey(ignore: true)
@@ -551,10 +672,16 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
         walletBalanceValue,
         avilablePayWithWallet,
         avilableCashOnDelivery,
+        serviceFee,
+        technologyFees,
+        vatPercentage,
+        vatFeeAmount,
+        environmentFees,
         const DeepCollectionEquality().hash(_items),
         loyaltyPointsValue,
         loyaltyPointsApplied,
-        loyaltyPoints
+        loyaltyPoints,
+        expectedLoyaltyPoints
       ]);
 
   @JsonKey(ignore: true)
@@ -598,11 +725,17 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
       required final bool avilablePayWithWallet,
       @JsonKey(name: "avilable_cash_on_delivery")
       required final bool avilableCashOnDelivery,
+      @JsonKey(name: "service_fees") required final String serviceFee,
+      @JsonKey(name: "technology_fees") required final String technologyFees,
+      @JsonKey(name: "vat_percentage ") required final String vatPercentage,
+      @JsonKey(name: "vat_fee_amount") required final String vatFeeAmount,
+      @JsonKey(name: "environment_fees") required final String environmentFees,
       required final List<ShippingItemModel> items,
       @JsonKey(name: "loyalty_points_value") final String? loyaltyPointsValue,
       @JsonKey(name: "loyalty_points_applied") final bool? loyaltyPointsApplied,
-      @JsonKey(name: "loyalty_points")
-      final int? loyaltyPoints}) = _$_ShippingSummaryModel;
+      @JsonKey(name: "loyalty_points") final int? loyaltyPoints,
+      @JsonKey(name: "expected_loyalty_points")
+      required final int expectedLoyaltyPoints}) = _$_ShippingSummaryModel;
   const _ShippingSummaryModel._() : super._();
 
   factory _ShippingSummaryModel.fromJson(Map<String, dynamic> json) =
@@ -656,6 +789,21 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
   @JsonKey(name: "avilable_cash_on_delivery")
   bool get avilableCashOnDelivery;
   @override
+  @JsonKey(name: "service_fees")
+  String get serviceFee;
+  @override
+  @JsonKey(name: "technology_fees")
+  String get technologyFees;
+  @override
+  @JsonKey(name: "vat_percentage ")
+  String get vatPercentage;
+  @override
+  @JsonKey(name: "vat_fee_amount")
+  String get vatFeeAmount;
+  @override
+  @JsonKey(name: "environment_fees")
+  String get environmentFees;
+  @override
   List<ShippingItemModel> get items;
   @override
   @JsonKey(name: "loyalty_points_value")
@@ -666,6 +814,9 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
   @override
   @JsonKey(name: "loyalty_points")
   int? get loyaltyPoints;
+  @override
+  @JsonKey(name: "expected_loyalty_points")
+  int get expectedLoyaltyPoints;
   @override
   @JsonKey(ignore: true)
   _$$_ShippingSummaryModelCopyWith<_$_ShippingSummaryModel> get copyWith =>

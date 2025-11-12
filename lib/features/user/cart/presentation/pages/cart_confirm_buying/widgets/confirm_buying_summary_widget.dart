@@ -3,26 +3,37 @@ part of 'cart_confirm_buying_widgets_imports.dart';
 
 class ConfirmBuyingSummaryWidget extends StatelessWidget {
   final OrderSummary orderSummary;
-  const ConfirmBuyingSummaryWidget({super.key, required this.orderSummary});
+  final ConfirmBuyingController controller;
+  const ConfirmBuyingSummaryWidget({super.key, required this.orderSummary, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return InvoiceSummaryCard(margin: Dimens.paddingHorizontal20PX, children: [
       BuildSummaryHeader(
-        title: tr('totalItems'),
+        title: tr('subTotal'),
         details: orderSummary.subTotal.toString(),
+        // details: orderSummary.getSubTotalWithoutVat().toStringAsFixed(2),
         useDirhamPrice: true,
       ),
       BuildSummaryHeader(
-        title: tr('tax'),
-        details: orderSummary.tax.toString(),
+        title: tr('service_fees'),
+        details: orderSummary.totalServiceFees.toStringAsFixed(2),
         useDirhamPrice: true,
+        onPressInfo: ()=> controller.showFeesSheet(context),
+      ),
+      BuildSummaryHeader(
+        title: tr("environmentFee"),
+        details: orderSummary.envFees.toStringAsFixed(2),
+        useDirhamPrice: true,
+        onPressInfo: ()=> controller.showEnvFeesSheet(context),
       ),
       BuildSummaryHeader(
         title: tr('shippingFees'),
         details: orderSummary.shippingTotal.toString(),
         useDirhamPrice: true,
+        onPressInfo: ()=>controller.showDeliveryFeesSheet(context),
       ),
+      Gaps.vGap8,
       Visibility(
         visible: orderSummary.loyaltyPointsDiscount > 0 || orderSummary.discounts > 0,
         child: BuildSummaryHeader(
@@ -33,6 +44,12 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
           detailsColor: context.colors.primary,
           useDirhamPrice: true,
         ),
+      ),
+      BuildSummaryHeader(
+        title: tr('totalVat'),
+        // details: shippingSummary.vatAmount().toStringAsFixed(2),
+        details: orderSummary.totalVat.toString(),
+        useDirhamPrice: true,
       ),
       Gaps.line(context.colors.softGray, 15.h),
       Container(
@@ -50,6 +67,31 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
               ),
             ],
           )),
+      Gaps.line(context.colors.softGray, 15.h),
+      _buildRow(context,tr("gained_bezat_point"),orderSummary.summary!.expectedLoyaltyPoints.toString()),
+      Gaps.vGap8,
+      if(orderSummary.pointsRedeemed > 0)
+        _buildRow(context,tr("bezat_points_redeemed"),orderSummary.pointsRedeemed.toString()),
+      if(orderSummary.pointsRedeemed > 0)
+        Gaps.vGap8,
+      NewPointsBalanceWidget(cubit: controller.loyaltyPointsBalanceBloc,gainedPoints:orderSummary.summary!.expectedLoyaltyPoints ?? 0 ,),
     ]);
+  }
+
+  Row _buildRow(BuildContext context, String title, String endTitle) {
+    return Row(
+      children: [
+        Expanded(
+          child: Text(
+            title,
+            style: AppTextStyle.s14_w400(color: context.colors.black),
+          ),
+        ),
+        Text(
+          endTitle,
+          style:  AppTextStyle.s14_w800(color: context.colors.black),
+        ),
+      ],
+    );
   }
 }

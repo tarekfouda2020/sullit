@@ -17,25 +17,33 @@ class _LoginState extends State<Login> {
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
         body: GestureDetector(
-          onTap: FocusScope.of(context).unfocus,
+          onTap: () => FocusScope.of(context).unfocus(),
           child: BlocBuilder<GenericBloc<int>, GenericState<int>>(
             bloc: loginController.tabsCubit,
             builder: (context, state) {
-              return SingleChildScrollView(
+              return Padding(
                 padding: Dimens.paddingHorizontal20PX,
                 child: Column(
                   children: [
                     const BuildHeaderLogo(),
-                    BuildHeaderTitle(
-                      title: state.data == 0 ? tr("login") : tr('register'),
-                      subTitle: state.data == 1 ? tr("registerHint") : tr("loginHint"),
-                    ),
-                    BuildLoginTabsView(
-                      controller: loginController,
-                    ),
-                    AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 300),
-                      child: _body(state),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            BuildHeaderTitle(
+                              title: state.data == 0 ? tr("login") : tr('register'),
+                              subTitle: state.data == 1 ? tr("registerHint") : tr("loginHint"),
+                            ),
+                            BuildLoginTabsView(
+                              controller: loginController,
+                            ),
+                            AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 300),
+                              child: _body(state),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),

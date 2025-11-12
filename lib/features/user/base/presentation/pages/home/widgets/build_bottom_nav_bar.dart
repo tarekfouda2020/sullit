@@ -8,38 +8,44 @@ class BuildBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<int>, GenericState<int>>(
-      bloc: controller.homeTabCubit,
-      builder: (context, state) {
-        return AnimatedBottomNavigationBar.builder(
-          itemCount: controller.pages().length,
-          tabBuilder: (int index, bool isActive) {
-            return BuildTabItem(
-              controller: controller,
-              index: index,
-              isActive: isActive,
+    return Stack(
+      alignment: Alignment.topCenter,
+      clipBehavior: Clip.none,
+      children: [
+        BlocBuilder<GenericBloc<int>, GenericState<int>>(
+          bloc: controller.homeTabCubit,
+          builder: (context, state) {
+            return AnimatedBottomNavigationBar.builder(
+              itemCount: controller.pages().length,
+              tabBuilder: (int index, bool isActive) {
+                return BuildTabItem(
+                  controller: controller,
+                  index: index,
+                  isActive: isActive,
+                );
+              },
+              backgroundColor: Colors.white,
+              splashColor: context.colors.primary,
+              elevation: 0,
+              activeIndex: state.data,
+              shadow: BoxShadow(
+                color: Colors.black.withOpacity(.095),
+                blurRadius: 8,
+              ),
+              gapLocation: GapLocation.none,
+              splashSpeedInMilliseconds: 200,
+              gapWidth: 25,
+              notchMargin: 0,
+              notchSmoothness: NotchSmoothness.sharpEdge,
+              blurEffect: false,
+              leftCornerRadius: 18,
+              rightCornerRadius: 18,
+              height: Platform.isIOS ? 75 : 85,
+              onTap: (index) => controller.animateTabsPages(index, context),
             );
           },
-          backgroundColor: Colors.white,
-          splashColor: context.colors.primary,
-          activeIndex: state.data,
-          shadow: BoxShadow(
-            color: Colors.black.withOpacity(.095),
-            blurRadius: 8,
-          ),
-          gapLocation: GapLocation.none,
-          splashSpeedInMilliseconds: 200,
-          gapWidth: 0,
-          notchMargin: 0,
-          notchSmoothness: NotchSmoothness.sharpEdge,
-          elevation: 0,
-          blurEffect: false,
-          leftCornerRadius: 18,
-          rightCornerRadius: 18,
-          height: Platform.isIOS ? 75 : 85,
-          onTap: (index) => controller.animateTabsPages(index, context),
-        );
-      },
+        ),
+      ],
     );
   }
 }

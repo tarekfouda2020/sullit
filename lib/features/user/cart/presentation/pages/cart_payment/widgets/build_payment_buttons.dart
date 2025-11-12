@@ -8,14 +8,15 @@ class BuildPaymentButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return KeyboardVisibilityBuilder(
-      builder: (context,isKeyboardOpen) {
-        return isKeyboardOpen
-            ?Gaps.empty
-            :DefaultButton(
-          title: tr("submitOrder"),
-          margin:margin ?? Dimens.paddingAll15PX,
-          onTap: onTap,
-          // onTap: () =>  AutoRouter.of(context).push( CartConfirmBuyingRoute()),
+      builder: (context,isOpen) {
+        return Visibility(
+          visible: !isOpen,
+          child: DefaultButton(
+            title: tr("submitOrder"),
+            margin:margin ?? Dimens.paddingAll15PX,
+            onTap: onTap,
+            // onTap: () =>  AutoRouter.of(context).push( CartConfirmBuyingRoute()),
+          ),
         );
       }
     );

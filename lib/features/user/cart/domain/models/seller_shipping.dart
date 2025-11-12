@@ -10,6 +10,7 @@ class SellerShipping extends BaseDomainModel {
   bool activePickup;
   Pickup pickup;
   bool activeDelivery;
+  String deliveryMessage;
   Delivery? delivery;
   int ownerId;
   int deliveryType = 0;
@@ -23,5 +24,6 @@ class SellerShipping extends BaseDomainModel {
    required this.activeDelivery,
    required this.delivery,
    required this.ownerId,
+   required this.deliveryMessage,
   });
 }

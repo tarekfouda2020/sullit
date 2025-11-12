@@ -37,13 +37,18 @@ class Orders extends BaseDomainModel {
   String returnReason;
   String soldByType;
   String soldBy;
+  String? serviceFees;
+  String? technologyFees;
+  String? vatFeeAmount;
   String customerPhone;
   List<OrderDetails> orderDetails;
   bool selected = false;
-
+  String totalFeeAmount;
   bool loyaltyPointsApplied;
   int loyaltyPoints;
   String loyaltyPointsValue;
+  int expectedLoyaltyPoints;
+  String environmentFees;
   OrderDriverDomainModel? driverModel;
 
   Orders({
@@ -82,7 +87,13 @@ class Orders extends BaseDomainModel {
     required this.loyaltyPointsApplied,
     required this.loyaltyPoints,
     required this.totalItems,
+    required this.totalFeeAmount,
+    required this.expectedLoyaltyPoints,
+    required this.environmentFees,
      this.driverModel,
+     this.serviceFees,
+     this.technologyFees,
+     this.vatFeeAmount,
   });
 
   int totalItemsCount() => orderDetails.fold(0, (previousValue, element) => previousValue + element.quantity);
@@ -97,6 +108,10 @@ class Orders extends BaseDomainModel {
   }
 
   bool get isCouponApply => getDiscountNumber() > 0;
+  
+  double get totalServiceFess => double.parse(technologyFees ?? "0.0" ) + double.parse(serviceFees??"0.0");
+
+  double get totalVat => double.parse(tax) + double.parse(vatFeeAmount ?? "0.0");
 
   TrackOrderEnum get getTrackOrderStatus {
     /// at first its Placed

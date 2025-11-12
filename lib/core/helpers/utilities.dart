@@ -286,9 +286,9 @@ class Utilities {
 
 
 
-  String formatAmount(String amount,{bool applyDashSeparate = true}) {
+  String formatAmount(String amount,{bool applyDashSeperate = true}) {
     // Handle range case like "10.00 - 40.00"
-    if (amount.contains('-') && applyDashSeparate) {
+    if (amount.contains('-') && applyDashSeperate) {
       final values = amount.split('-').map((e) => e.trim()).toList();
       if (values.length == 2) {
         return '${_formatSingle(values[0])} - ${_formatSingle(values[1])}';

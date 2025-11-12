@@ -17,65 +17,51 @@ class InvoiceSummaryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            CartPaymentSectionTitleWidget(title: tr("invoiceSummary")),
-          ],
-        ),
+        CartPaymentSectionTitleWidget(title: tr("invoiceSummary")),
         Gaps.vGap6,
         InvoiceSummaryCard(
+          radius: const BorderRadius.vertical(top: Radius.circular(12)),
             children: [
           BuildSummaryHeader(
-            title: "Subtotal",
+            title: tr('subTotal'),
             details: shippingSummary.subTotal,
+            // details: shippingSummary.getSubTotalWithoutVat().toStringAsFixed(2),
             useDirhamPrice: true,
           ),
-              // BuildSummaryHeader(
-              //   title: tr('tax'),
-              //   details: shippingSummary.tax,
-              //   useDirhamPrice: true,
-              // ),
-               BuildSummaryHeader(
-                title: "Tax Fees",
-                details: shippingSummary.tax,
+              BuildSummaryHeader(
+                title: tr('service_fees'),
+                details: shippingSummary.getTotalServiceAmount().toStringAsFixed(2),
                 useDirhamPrice: true,
-              ),
-              const BuildSummaryHeader(
-                title: "VAT Amount",
-                details: "0.0",
-                useDirhamPrice: true,
+                onPressInfo: ()=> controller.showFeesSheet(context),
               ),
               BuildSummaryHeader(
-                title: "Service Fees",
-                details: shippingSummary.tax,
+                title: tr("environmentFee"),
+                details: shippingSummary.environmentFees,
                 useDirhamPrice: true,
-                onPressInfo: (){},
+                onPressInfo: ()=> controller.showEnvFeesSheet(context),
               ),
-               BuildSummaryHeader(
-            title: "Environment Fees",
-            details: "0.0",
-            useDirhamPrice: true,
-                onPressInfo: (){},
-          ),
           BuildSummaryHeader(
-            title: "Delivery Fees",
+            title: tr('shippingFees'),
             details: shippingSummary.shipping,
             useDirhamPrice: true,
-            onPressInfo: (){},
+            onPressInfo: ()=> controller.showDeliveryFeesSheet(context),
           ),
               BuildSummaryHeader(
-            title: "Driver Tip",
-            details: controller.getDriverTip().toStringAsFixed(2),
-            useDirhamPrice: true,
-          ),
+                title: tr('totalVat'),
+                details: shippingSummary.getTotalVat(),
+                useDirhamPrice: true,
+                vMargin: 0,
+              ),
+              Gaps.vGap8,
               Visibility(
                   visible: shippingSummary.couponApplied == true || shippingSummary.loyaltyPointsApplied==true,
                     child: BuildSummaryHeader(
+                      isDiscount: true,
+                      applyDashSeperate: false,
                       title: shippingSummary.loyaltyPointsApplied == true
-                          ? "Redeemed Bezat Value"
+                          ? tr("pointsDiscount")
                           :tr("voucherDiscount"),
                       details: shippingSummary.loyaltyPointsApplied == true
                           ? "-${shippingSummary.loyaltyPointsValue} "
@@ -102,10 +88,10 @@ class InvoiceSummaryWidget extends StatelessWidget {
               children: [
                 Text(
                   tr("total"),
-                  style: AppTextStyle.s14_w500(color: context.colors.black),
+                  style: AppTextStyle.s14_w400(color: context.colors.black),
                 ),
                 DirhamPrice(
-                  amount: applyGiftCard ? "0.00" : shippingSummary.total,
+                  amount: controller.getTotal().toStringAsFixed(2),
                   textStyle: AppTextStyle.s14_w800(color:context.colors.black),
                   currencyStyle: AppTextStyle.s18_w400(color:context.colors.black),
                   currencyOffset: 0,
@@ -113,9 +99,9 @@ class InvoiceSummaryWidget extends StatelessWidget {
               ],
             ),
           ),
-        ]),
-        const SavedAmountWidget(),
-
+        ]
+        ),
+        // OrderGrandTotalWidget(amount: applyGiftCard ? "0.00" : shippingSummary.total,)
       ],
     );
   }

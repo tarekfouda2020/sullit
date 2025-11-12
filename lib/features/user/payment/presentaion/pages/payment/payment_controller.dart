@@ -19,7 +19,6 @@ class PaymentController {
   }
 
   void handleUrlChange(BuildContext context, String url) {
-    log("=====================>>>>>>>>>>>>url is $url <<<< ======================");
     if (url.contains("combined_order_id")) {
       int id = int.parse(url.split('combined_order_id=').last);
       // AutoRouter.of(context).push(ConfirmationRoute(combinedId: id));

@@ -1,11 +1,12 @@
 // ignore_for_file: constant_identifier_names
 
 class ApiNames {
+
   ///staging
-  static const String baseUrl = "https://mushrifcoop.com/api/v3/";
+  // static const String baseUrl = "https://mushrifcoop.com/api/v3/";
 
   ///production
-  // static const String baseUrl = "https://suliit.com/api/v3/";
+  static const String baseUrl = "https://mushrifcoop.com/api/v3/";
 
   // auth routes
   static const String login = "login";
@@ -49,7 +50,7 @@ class ApiNames {
 
   static String getVariantPrice(int id) => "products/$id/variant/price";
 
-  static String skuSearch(String sku) => "products/search-by-barcode?sku=$sku";
+  static String skuSearch(String sku) => "products/search-by-barcode?barcode=$sku";
 
   static const String getDownloadProducts = "orders/digital-purchase-history";
 
@@ -118,6 +119,7 @@ class ApiNames {
   static const String getContactUs = "settings/contact-data";
   static const String getSupportMsg = "room";
   static const String sendSupportMsg = "room/send-message";
+  static const String feesMechanism = "fees-mechanism";
 
   // items routes
   static const String ITEMS = "Items";
@@ -141,6 +143,7 @@ class ApiNames {
   static const String applyGiftCard = "cart/apply-gift-card";
   static const String clearCart = "cart/clear";
   static const String removeCoupon = "cart/remove-coupon";
+  static const String deliveryInstructions = "delivery-instructions";
 
   // notifications
   static const String notifications = "notifications";

@@ -8,8 +8,8 @@ class PurchasedOrdersController{
   int pageSize = 12;
 
   PurchasedOrdersController() {
+    getPurchasingHistory(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
-      getPurchasingHistory(pageKey, refresh: false);
       getPurchasingHistory(pageKey);
     });
   }
@@ -22,14 +22,22 @@ class PurchasedOrdersController{
       pagingController.itemList = [];
     }
     if (isLastPage) {
+      data.removeWhere((element) => !element.paymentStatus);
       pagingController.appendLastPage(data);
     } else {
+      data.removeWhere((element) => !element.paymentStatus);
       final nextPageKey = page + 1;
       pagingController.appendPage(data, nextPageKey);
     }
   }
 
 
+  Future<void> routeToOrderDetails(BuildContext context,Orders order)async{
+    var result = await AutoRouter.of(context).push(OrderDetailsPageRoute(isReturnedOrder: false,order: order));
+    if(result== true){
+      getPurchasingHistory(1);
+    }
+  }
 
   GenericPaginateParams _historyParams(int page, bool refresh) {
     return GenericPaginateParams(

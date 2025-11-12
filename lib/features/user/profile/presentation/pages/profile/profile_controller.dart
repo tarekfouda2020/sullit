@@ -259,7 +259,7 @@ class ProfileController {
           ?nameController.text
           :null,
       countryCode: countryCubit.state.data?.callingCode ,
-      phone: isPhoneValid()
+      phone: isPhoneValid() && phoneController.text.isNotEmpty
           ? phoneController.text
           :null,
       image: isImageChanged()

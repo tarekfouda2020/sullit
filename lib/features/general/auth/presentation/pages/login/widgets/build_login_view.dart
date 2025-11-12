@@ -11,6 +11,7 @@ class BuildLoginView extends StatelessWidget {
         BuildLoginForm(controller: controller),
         BuildLoginButton(controller: controller),
         const BuildForgetPasswordView(),
+        Gaps.vGap30,
       ],
     );
   }

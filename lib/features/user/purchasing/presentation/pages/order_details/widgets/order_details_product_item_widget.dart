@@ -83,7 +83,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                                 //   ),
                                 // ),
                                 DirhamPrice(
-                                  amount: orderDetails.product?.variant?.mainPrice ?? '',
+                                  amount: orderDetails.getPrice.toString(),
                                   textStyle: AppTextStyle.s14_w600(color: context.colors.primary),
                                   currencyStyle: AppTextStyle.s16_w400(color: context.colors.primary),
                                 )
@@ -104,6 +104,26 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                           ),
                         ],
                       ),
+                        Gaps.vGap10,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              tr("total"),
+                              style: AppTextStyle.s14_w400(color: context.colors.black),
+                            ),
+                            Text(
+                              " :",
+                              style: AppTextStyle.s14_w400(color: context.colors.black),
+                            ),
+                            Gaps.hGap5,
+                            Text(
+                              (orderDetails.quantity * orderDetails.getPrice).toStringAsFixed(2),
+                              style: AppTextStyle.s14_w600(color: context.colors.primary),
+                            ).withDirhamSymbol(),
+                          ],
+                        )
+
                     ],
                   ),
                 ),

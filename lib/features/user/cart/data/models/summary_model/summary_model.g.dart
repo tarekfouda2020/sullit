@@ -15,6 +15,7 @@ _$_SummaryModel _$$_SummaryModelFromJson(Map<String, dynamic> json) =>
       orderStatus: json['order_status'] as String,
       totalOrderAmount: json['total_order_amount'] as String,
       combinedOrderId: (json['combined_order_id'] as num).toInt(),
+      expectedLoyaltyPoints: (json['expected_loyalty_points'] as num?)?.toInt(),
       shipping: json['shipping'] as String,
       paymentMethod: json['payment_method'] as String,
     );
@@ -28,6 +29,7 @@ Map<String, dynamic> _$$_SummaryModelToJson(_$_SummaryModel instance) =>
       'order_status': instance.orderStatus,
       'total_order_amount': instance.totalOrderAmount,
       'combined_order_id': instance.combinedOrderId,
+      'expected_loyalty_points': instance.expectedLoyaltyPoints,
       'shipping': instance.shipping,
       'payment_method': instance.paymentMethod,
     };

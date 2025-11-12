@@ -37,7 +37,7 @@ class BuildEditAddressForm extends StatelessWidget {
             fieldTypes: FieldTypes.rich,
             type: TextInputType.multiline,
             action: TextInputAction.newline,
-            validate: (value) => value!.validateEmpty(),
+            validate: (value) => value!.noValidate(),
             hint: tr('address'),
             fillColor: context.colors.white,
             margin: Dimens.paddingVertical10PX,

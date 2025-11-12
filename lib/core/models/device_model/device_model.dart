@@ -14,5 +14,6 @@ class DeviceModel with _$DeviceModel {
     required bool isSmallPhone,
     required AdaptiveThemeMode themeMode,
     required bool isNetworkConnected,
+    required bool showCartButton,
   }) = _DeviceModel;
 }

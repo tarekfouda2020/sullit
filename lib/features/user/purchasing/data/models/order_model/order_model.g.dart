@@ -42,9 +42,15 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       loyaltyPointsApplied: json['loyalty_points_applied'] as bool,
       loyaltyPoints: (json['loyalty_points'] as num).toInt(),
       totalItems: (json['total_items'] as num).toInt(),
+      expectedLoyaltyPoints: (json['expected_loyalty_points'] as num).toInt(),
       orderDetails: (json['order_details'] as List<dynamic>)
           .map((e) => OrderDetailsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      serviceFees: json['service_fees'] as String,
+      technologyFees: json['technology_fees'] as String,
+      environmentFees: json['environment_fees'] as String,
+      vatFeeAmount: json['vat_fee_amount'] as String,
+      totalFeeAmount: json['total_fee_amount'] as String,
       driver: json['driver'] == null
           ? null
           : OrderDriverModel.fromJson(json['driver'] as Map<String, dynamic>),
@@ -86,6 +92,12 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'loyalty_points_applied': instance.loyaltyPointsApplied,
       'loyalty_points': instance.loyaltyPoints,
       'total_items': instance.totalItems,
+      'expected_loyalty_points': instance.expectedLoyaltyPoints,
       'order_details': instance.orderDetails.map((e) => e.toJson()).toList(),
+      'service_fees': instance.serviceFees,
+      'technology_fees': instance.technologyFees,
+      'environment_fees': instance.environmentFees,
+      'vat_fee_amount': instance.vatFeeAmount,
+      'total_fee_amount': instance.totalFeeAmount,
       'driver': instance.driver?.toJson(),
     };

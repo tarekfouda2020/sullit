@@ -38,6 +38,12 @@ class LoyaltyPointsController {
   }
 
 
+  Future<void> refresh()async{
+    await getTransactions(1);
+    await getLoyaltyPointsBalance();
+  }
+
+
   final List<LoyaltyPointTypeEnum> pointsTypes = [
     LoyaltyPointTypeEnum.gained,
     LoyaltyPointTypeEnum.deduct,

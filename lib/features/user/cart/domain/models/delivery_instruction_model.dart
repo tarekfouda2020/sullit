@@ -1,14 +1,18 @@
+import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 
-import 'package:flutter_tdd/features/user/cart/data/enum/instruction_type_enum.dart';
+class DeliveryInstructionModel extends BaseDomainModel {
 
-class DeliveryInstructionModel {
+  final int id;
 
-  final InstructionTypeEnum type;
-  bool isSelect;
+  final String image;
 
-  DeliveryInstructionModel({required this.type,this.isSelect = false});
+  final String name;
 
-
+  DeliveryInstructionModel({
+    required this.id,
+    required this.image,
+    required this.name,
+  });
 
 
 }

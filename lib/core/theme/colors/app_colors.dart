@@ -116,4 +116,5 @@ abstract class AppColors {
   Color get darkPrimary;
 
   Color get gray8;
+  Color get lightGreen;
 }

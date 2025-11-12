@@ -35,7 +35,10 @@ class _OrderSummaryState extends State<OrderSummary> {
                   orderModel: state.data!,
                   controller: controller,
                 ),
-                BuildOrderAmount(orderModel: state.data!),
+                BuildOrderAmount(
+                  orderModel: state.data!,
+                  controller: controller,
+                ),
                 BuildOrderButtons(
                   orderModel: state.data!,
                   controller: controller,

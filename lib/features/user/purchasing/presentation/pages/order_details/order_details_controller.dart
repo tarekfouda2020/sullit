@@ -5,10 +5,19 @@ class OrderDetailsPageController {
 
   final GenericBloc<Orders?> orderDetailsBloc = GenericBloc(null);
 
+  final GenericBloc<FessMechanismModel?> feesCubit = GenericBloc(null);
+
+  final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc = GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
+
+
+
   OrderDetailsPageController(Orders orderModel){
     orderDetailsBloc.onUpdateData(orderModel);
     getOrderDetails(orderModel.id,refresh: false);
     getOrderDetails(orderModel.id,);
+    getOrderFees(fromRemote: false);
+    getOrderFees();
+    getLoyaltyPointsBalance();
   }
 
 
@@ -73,6 +82,76 @@ class OrderDetailsPageController {
 
     }
   }
+
+  void cancelOrder(BuildContext context,Orders model) async {
+    getIt<LoadingHelper>().showLoadingDialog();
+    var result = await CancelOrder().call(model.id);
+    if (result.isNotEmpty) {
+      CustomToast.showSimpleToast(msg: result);
+      model.availableCancelOrder = false;
+      AutoRouter.of(context).pop(true);
+    }
+    getIt<LoadingHelper>().dismissDialog();
+  }
+
+
+  Future<void> getOrderFees({bool fromRemote = true})async{
+    await GetOrderFees().call(fromRemote).then((value) {
+      feesCubit.onUpdateData(value);
+    },);
+  }
+
+
+  void showFeesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return FeesSheetWidget(feesCubit: feesCubit,showDelivery: false,showTech: true,);
+      },);
+  }
+
+  void showDeliveryFeesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        // Service fee
+        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
+        return FeesSheetWidget(feesCubit: feesCubit,showService: false,showTech: false,);
+      },);
+  }
+
+  void showTechFeesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        // Service fee
+        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
+        return FeesSheetWidget(feesCubit: feesCubit,showService: false, showDelivery: false,);
+      },);
+  }
+
+  void showEnvFeesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        // Service fee
+        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
+        return FeesSheetWidget(feesCubit: feesCubit,showService: false, showDelivery: false,showTech: false,showEnv: true,);
+      },);
+  }
+
+  Future<void> getLoyaltyPointsBalance({bool refresh = true}) async {
+    return await GetLoyaltyPointsBalance().call(refresh).then(
+          (value) => loyaltyPointsBalanceBloc.onUpdateData(value),
+    );
+  }
+
+
+
 
 
   GenericParams _params(int id,bool refresh){

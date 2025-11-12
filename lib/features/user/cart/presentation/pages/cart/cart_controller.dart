@@ -24,16 +24,15 @@ class CartController {
       cartItemsBloc.state.data.calculableTotal = newSubTotal;
       cartItemsBloc.state.data.items!.remove(cartItem);
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
-      var countCubit = context.read<CountCubit>().state;
-      var cartCount = countCubit.cartCount - 1;
-      context.read<CountCubit>().onUpdateCount(cartCount, countCubit.discount);
+      updateCartCount(context);
+      // var cartCount = countCubit.cartCount - 1;
       CustomToast.showSimpleToast(
           msg: tr('itemDeleted'), type: ToastType.success);
       // getCartItems();
     }
   }
 
-  Future<void> onIncreaseCart(CartItem cartItem, GenericBloc<bool> loadingCubit) async {
+  Future<void> onIncreaseCart(BuildContext context,CartItem cartItem, GenericBloc<bool> loadingCubit) async {
     if (cartItem.quantity < cartItem.stockQty) {
       loadingCubit.onUpdateData(true);
       final newQty = cartItem.quantity + 1;
@@ -42,6 +41,7 @@ class CartController {
       if (success!=null) {
         cartItem.quantity = newQty;
         cartItemsBloc.onUpdateData(success);
+        updateCartCount(context);
       }
       // else{
       //   CustomToast.showSimpleToast(
@@ -55,7 +55,7 @@ class CartController {
     }
   }
 
-  Future<void> onDecreaseCart(CartItem cartItem, GenericBloc<bool> loadingCubit) async {
+  Future<void> onDecreaseCart(BuildContext context,CartItem cartItem, GenericBloc<bool> loadingCubit) async {
     if (cartItem.quantity > 1) {
       loadingCubit.onUpdateData(true);
 
@@ -65,6 +65,7 @@ class CartController {
       if (success!=null) {
         cartItem.quantity = newQty;
         cartItemsBloc.onUpdateData(success);
+        updateCartCount(context);
       }
       // else{
       //   CustomToast.showSimpleToast(
@@ -120,6 +121,15 @@ class CartController {
       Navigator.pop(context);
     });
   }
+
+
+
+  void updateCartCount(BuildContext context){
+    var allItemsCount = cartItemsBloc.state.data.items!.fold<int>(0, (previousValue, element) => previousValue+element.quantity,);
+    var countCubit = context.read<CountCubit>().state;
+    context.read<CountCubit>().onUpdateCount(allItemsCount, countCubit.discount);
+  }
+
 
   Future<CartParams> _cartParams() async {
     return CartParams(

@@ -64,7 +64,7 @@ class OrderDetailsProductsWidget extends StatelessWidget {
                     ),
                     const Spacer(),
                     Text(
-                      tr("shipped"),
+                      order.orderStatus,
                       style: AppTextStyle.s14_w700(color: context.colors.black),
                     ),
                   ],

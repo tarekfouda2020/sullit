@@ -81,9 +81,23 @@ mixin _$OrderModel {
   int get loyaltyPoints => throw _privateConstructorUsedError;
   @JsonKey(name: 'total_items')
   int get totalItems => throw _privateConstructorUsedError;
+  @JsonKey(name: 'expected_loyalty_points')
+  int get expectedLoyaltyPoints => throw _privateConstructorUsedError;
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel> get orderDetails =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'service_fees')
+  String get serviceFees => throw _privateConstructorUsedError;
+  @JsonKey(name: 'technology_fees')
+  String get technologyFees => throw _privateConstructorUsedError;
+  @JsonKey(name: 'environment_fees')
+  String get environmentFees => throw _privateConstructorUsedError;
+  @JsonKey(name: 'vat_fee_amount')
+  String get vatFeeAmount => throw _privateConstructorUsedError;
+
+  /// total of fees with there *vat => (vatFeeAmount)*
+  @JsonKey(name: 'total_fee_amount')
+  String get totalFeeAmount => throw _privateConstructorUsedError;
   @JsonKey(name: 'driver')
   OrderDriverModel? get driver => throw _privateConstructorUsedError;
 
@@ -134,7 +148,13 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'loyalty_points_applied') bool loyaltyPointsApplied,
       @JsonKey(name: 'loyalty_points') int loyaltyPoints,
       @JsonKey(name: 'total_items') int totalItems,
+      @JsonKey(name: 'expected_loyalty_points') int expectedLoyaltyPoints,
       @JsonKey(name: 'order_details') List<OrderDetailsModel> orderDetails,
+      @JsonKey(name: 'service_fees') String serviceFees,
+      @JsonKey(name: 'technology_fees') String technologyFees,
+      @JsonKey(name: 'environment_fees') String environmentFees,
+      @JsonKey(name: 'vat_fee_amount') String vatFeeAmount,
+      @JsonKey(name: 'total_fee_amount') String totalFeeAmount,
       @JsonKey(name: 'driver') OrderDriverModel? driver});
 
   $OrderDriverModelCopyWith<$Res>? get driver;
@@ -187,7 +207,13 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? loyaltyPointsApplied = null,
     Object? loyaltyPoints = null,
     Object? totalItems = null,
+    Object? expectedLoyaltyPoints = null,
     Object? orderDetails = null,
+    Object? serviceFees = null,
+    Object? technologyFees = null,
+    Object? environmentFees = null,
+    Object? vatFeeAmount = null,
+    Object? totalFeeAmount = null,
     Object? driver = freezed,
   }) {
     return _then(_value.copyWith(
@@ -327,10 +353,34 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.totalItems
           : totalItems // ignore: cast_nullable_to_non_nullable
               as int,
+      expectedLoyaltyPoints: null == expectedLoyaltyPoints
+          ? _value.expectedLoyaltyPoints
+          : expectedLoyaltyPoints // ignore: cast_nullable_to_non_nullable
+              as int,
       orderDetails: null == orderDetails
           ? _value.orderDetails
           : orderDetails // ignore: cast_nullable_to_non_nullable
               as List<OrderDetailsModel>,
+      serviceFees: null == serviceFees
+          ? _value.serviceFees
+          : serviceFees // ignore: cast_nullable_to_non_nullable
+              as String,
+      technologyFees: null == technologyFees
+          ? _value.technologyFees
+          : technologyFees // ignore: cast_nullable_to_non_nullable
+              as String,
+      environmentFees: null == environmentFees
+          ? _value.environmentFees
+          : environmentFees // ignore: cast_nullable_to_non_nullable
+              as String,
+      vatFeeAmount: null == vatFeeAmount
+          ? _value.vatFeeAmount
+          : vatFeeAmount // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalFeeAmount: null == totalFeeAmount
+          ? _value.totalFeeAmount
+          : totalFeeAmount // ignore: cast_nullable_to_non_nullable
+              as String,
       driver: freezed == driver
           ? _value.driver
           : driver // ignore: cast_nullable_to_non_nullable
@@ -394,7 +444,13 @@ abstract class _$$_OrderModelCopyWith<$Res>
       @JsonKey(name: 'loyalty_points_applied') bool loyaltyPointsApplied,
       @JsonKey(name: 'loyalty_points') int loyaltyPoints,
       @JsonKey(name: 'total_items') int totalItems,
+      @JsonKey(name: 'expected_loyalty_points') int expectedLoyaltyPoints,
       @JsonKey(name: 'order_details') List<OrderDetailsModel> orderDetails,
+      @JsonKey(name: 'service_fees') String serviceFees,
+      @JsonKey(name: 'technology_fees') String technologyFees,
+      @JsonKey(name: 'environment_fees') String environmentFees,
+      @JsonKey(name: 'vat_fee_amount') String vatFeeAmount,
+      @JsonKey(name: 'total_fee_amount') String totalFeeAmount,
       @JsonKey(name: 'driver') OrderDriverModel? driver});
 
   @override
@@ -446,7 +502,13 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? loyaltyPointsApplied = null,
     Object? loyaltyPoints = null,
     Object? totalItems = null,
+    Object? expectedLoyaltyPoints = null,
     Object? orderDetails = null,
+    Object? serviceFees = null,
+    Object? technologyFees = null,
+    Object? environmentFees = null,
+    Object? vatFeeAmount = null,
+    Object? totalFeeAmount = null,
     Object? driver = freezed,
   }) {
     return _then(_$_OrderModel(
@@ -586,10 +648,34 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.totalItems
           : totalItems // ignore: cast_nullable_to_non_nullable
               as int,
+      expectedLoyaltyPoints: null == expectedLoyaltyPoints
+          ? _value.expectedLoyaltyPoints
+          : expectedLoyaltyPoints // ignore: cast_nullable_to_non_nullable
+              as int,
       orderDetails: null == orderDetails
           ? _value._orderDetails
           : orderDetails // ignore: cast_nullable_to_non_nullable
               as List<OrderDetailsModel>,
+      serviceFees: null == serviceFees
+          ? _value.serviceFees
+          : serviceFees // ignore: cast_nullable_to_non_nullable
+              as String,
+      technologyFees: null == technologyFees
+          ? _value.technologyFees
+          : technologyFees // ignore: cast_nullable_to_non_nullable
+              as String,
+      environmentFees: null == environmentFees
+          ? _value.environmentFees
+          : environmentFees // ignore: cast_nullable_to_non_nullable
+              as String,
+      vatFeeAmount: null == vatFeeAmount
+          ? _value.vatFeeAmount
+          : vatFeeAmount // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalFeeAmount: null == totalFeeAmount
+          ? _value.totalFeeAmount
+          : totalFeeAmount // ignore: cast_nullable_to_non_nullable
+              as String,
       driver: freezed == driver
           ? _value.driver
           : driver // ignore: cast_nullable_to_non_nullable
@@ -640,8 +726,15 @@ class _$_OrderModel extends _OrderModel {
       required this.loyaltyPointsApplied,
       @JsonKey(name: 'loyalty_points') required this.loyaltyPoints,
       @JsonKey(name: 'total_items') required this.totalItems,
+      @JsonKey(name: 'expected_loyalty_points')
+      required this.expectedLoyaltyPoints,
       @JsonKey(name: 'order_details')
       required final List<OrderDetailsModel> orderDetails,
+      @JsonKey(name: 'service_fees') required this.serviceFees,
+      @JsonKey(name: 'technology_fees') required this.technologyFees,
+      @JsonKey(name: 'environment_fees') required this.environmentFees,
+      @JsonKey(name: 'vat_fee_amount') required this.vatFeeAmount,
+      @JsonKey(name: 'total_fee_amount') required this.totalFeeAmount,
       @JsonKey(name: 'driver') this.driver})
       : _orderDetails = orderDetails,
         super._();
@@ -744,6 +837,9 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'total_items')
   final int totalItems;
+  @override
+  @JsonKey(name: 'expected_loyalty_points')
+  final int expectedLoyaltyPoints;
   final List<OrderDetailsModel> _orderDetails;
   @override
   @JsonKey(name: 'order_details')
@@ -754,12 +850,29 @@ class _$_OrderModel extends _OrderModel {
   }
 
   @override
+  @JsonKey(name: 'service_fees')
+  final String serviceFees;
+  @override
+  @JsonKey(name: 'technology_fees')
+  final String technologyFees;
+  @override
+  @JsonKey(name: 'environment_fees')
+  final String environmentFees;
+  @override
+  @JsonKey(name: 'vat_fee_amount')
+  final String vatFeeAmount;
+
+  /// total of fees with there *vat => (vatFeeAmount)*
+  @override
+  @JsonKey(name: 'total_fee_amount')
+  final String totalFeeAmount;
+  @override
   @JsonKey(name: 'driver')
   final OrderDriverModel? driver;
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, orderDetails: $orderDetails, driver: $driver)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driver: $driver)';
   }
 
   @override
@@ -829,8 +942,20 @@ class _$_OrderModel extends _OrderModel {
                 other.loyaltyPoints == loyaltyPoints) &&
             (identical(other.totalItems, totalItems) ||
                 other.totalItems == totalItems) &&
+            (identical(other.expectedLoyaltyPoints, expectedLoyaltyPoints) ||
+                other.expectedLoyaltyPoints == expectedLoyaltyPoints) &&
             const DeepCollectionEquality()
                 .equals(other._orderDetails, _orderDetails) &&
+            (identical(other.serviceFees, serviceFees) ||
+                other.serviceFees == serviceFees) &&
+            (identical(other.technologyFees, technologyFees) ||
+                other.technologyFees == technologyFees) &&
+            (identical(other.environmentFees, environmentFees) ||
+                other.environmentFees == environmentFees) &&
+            (identical(other.vatFeeAmount, vatFeeAmount) ||
+                other.vatFeeAmount == vatFeeAmount) &&
+            (identical(other.totalFeeAmount, totalFeeAmount) ||
+                other.totalFeeAmount == totalFeeAmount) &&
             (identical(other.driver, driver) || other.driver == driver));
   }
 
@@ -872,7 +997,13 @@ class _$_OrderModel extends _OrderModel {
         loyaltyPointsApplied,
         loyaltyPoints,
         totalItems,
+        expectedLoyaltyPoints,
         const DeepCollectionEquality().hash(_orderDetails),
+        serviceFees,
+        technologyFees,
+        environmentFees,
+        vatFeeAmount,
+        totalFeeAmount,
         driver
       ]);
 
@@ -933,8 +1064,15 @@ abstract class _OrderModel extends OrderModel {
       required final bool loyaltyPointsApplied,
       @JsonKey(name: 'loyalty_points') required final int loyaltyPoints,
       @JsonKey(name: 'total_items') required final int totalItems,
+      @JsonKey(name: 'expected_loyalty_points')
+      required final int expectedLoyaltyPoints,
       @JsonKey(name: 'order_details')
       required final List<OrderDetailsModel> orderDetails,
+      @JsonKey(name: 'service_fees') required final String serviceFees,
+      @JsonKey(name: 'technology_fees') required final String technologyFees,
+      @JsonKey(name: 'environment_fees') required final String environmentFees,
+      @JsonKey(name: 'vat_fee_amount') required final String vatFeeAmount,
+      @JsonKey(name: 'total_fee_amount') required final String totalFeeAmount,
       @JsonKey(name: 'driver') final OrderDriverModel? driver}) = _$_OrderModel;
   const _OrderModel._() : super._();
 
@@ -1037,8 +1175,28 @@ abstract class _OrderModel extends OrderModel {
   @JsonKey(name: 'total_items')
   int get totalItems;
   @override
+  @JsonKey(name: 'expected_loyalty_points')
+  int get expectedLoyaltyPoints;
+  @override
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel> get orderDetails;
+  @override
+  @JsonKey(name: 'service_fees')
+  String get serviceFees;
+  @override
+  @JsonKey(name: 'technology_fees')
+  String get technologyFees;
+  @override
+  @JsonKey(name: 'environment_fees')
+  String get environmentFees;
+  @override
+  @JsonKey(name: 'vat_fee_amount')
+  String get vatFeeAmount;
+  @override
+
+  /// total of fees with there *vat => (vatFeeAmount)*
+  @JsonKey(name: 'total_fee_amount')
+  String get totalFeeAmount;
   @override
   @JsonKey(name: 'driver')
   OrderDriverModel? get driver;

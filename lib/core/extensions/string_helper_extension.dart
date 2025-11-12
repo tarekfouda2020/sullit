@@ -14,7 +14,7 @@ extension StringHelperExtension on String? {
     return getIt<Utilities>().capitalize(this ?? "");
   }
 
-  String  formatAmount({bool applyDashSeparate = true}) {
-    return getIt<Utilities>().formatAmount(this ?? "",applyDashSeparate: applyDashSeparate );
+  String  formatAmount({bool applyDashSeperate = true}) {
+    return getIt<Utilities>().formatAmount(this ?? "",applyDashSeperate: applyDashSeperate);
   }
 }

@@ -4,6 +4,10 @@ part of 'cart_confirm_buying_imports.dart';
 class ConfirmBuyingController{
 
   final GenericBloc<OrderSummary?> orderSummaryBloc = GenericBloc(null);
+  final GenericBloc<FessMechanismModel?> feesCubit = GenericBloc(null);
+
+  final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc = GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
+
 
   ConfirmBuyingController (OrderSummary? summary, int? id) {
     if(summary != null){
@@ -11,11 +15,20 @@ class ConfirmBuyingController{
     }else if(id != null){
       getCombinedOrder(id);
     }
+    getOrderFees(fromRemote: false);
+    getOrderFees();
+    getLoyaltyPointsBalance();
   }
 
   Future<void> getCombinedOrder (int id) async {
     var data = await GetCombinedOrder().call(id);
     orderSummaryBloc.onUpdateData(data);
+  }
+
+  Future<void> getOrderFees({bool fromRemote = true})async{
+    await GetOrderFees().call(fromRemote).then((value) {
+      feesCubit.onUpdateData(value);
+    },);
   }
 
   void navigateToHome (BuildContext context)=> AutoRouter.of(context).pushAndPopUntil(
@@ -54,6 +67,50 @@ class ConfirmBuyingController{
       Navigator.of(context).pop();
     }
   }
+
+
+  void showFeesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return FeesSheetWidget(feesCubit: feesCubit,showDelivery: false,);
+      },);
+  }
+
+  void showDeliveryFeesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        // Service fee
+        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
+        return FeesSheetWidget(feesCubit: feesCubit,showService: false,showTech: false,);
+      },);
+  }
+
+  void showEnvFeesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        // Service fee
+        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
+        return FeesSheetWidget(feesCubit: feesCubit,showService: false, showDelivery: false,showTech: false,showEnv: true,);
+      },);
+  }
+
+
+  Future<void> getLoyaltyPointsBalance({bool refresh = true}) async {
+    return await GetLoyaltyPointsBalance().call(refresh).then(
+          (value) => loyaltyPointsBalanceBloc.onUpdateData(value),
+    );
+  }
+
+
+
+
+
 
   SendReviewParams _sendReviewParams(OrderDetails model, int rate) {
     return SendReviewParams(

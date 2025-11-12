@@ -28,7 +28,7 @@ class _MyWalletState extends State<MyWallet> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                BuildWalletDetails(walletBalance: state.data!.walletBalance),
+                BuildWalletDetails(walletBalance: state.data?.walletBalance ??"0.0"),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(start: 20),
                   child: Text(

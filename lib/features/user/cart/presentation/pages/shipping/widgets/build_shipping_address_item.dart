@@ -74,25 +74,25 @@ class BuildShippingAddressItem extends StatelessWidget {
                           desc: getIt<Utilities>().handleFullPhone(context, address.fullPhone ?? ""),
                         ),
                       ),
-                      Visibility(
-                        visible: address.isActive != true,
-                        child: InkWell(
-                          onTap: () => controller.onActiveAddress(context, address, address.fullPhone!),
-                          child: Container(
-                            padding: Dimens.paddingAll8PX,
-                            decoration: BoxDecoration(
-                              borderRadius: Dimens.borderRadius5PX,
-                              color: context.colors.primary,
-                            ),
-                            child: Text(
-                              tr('verifyPhone'),
-                              style: AppTextStyle.s12_w300(
-                                color: context.colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
+                      // Visibility(
+                      //   visible: address.isActive != true,
+                      //   child: InkWell(
+                      //     onTap: () => controller.onActiveAddress(context, address, address.fullPhone!),
+                      //     child: Container(
+                      //       padding: Dimens.paddingAll8PX,
+                      //       decoration: BoxDecoration(
+                      //         borderRadius: Dimens.borderRadius5PX,
+                      //         color: context.colors.primary,
+                      //       ),
+                      //       child: Text(
+                      //         tr('verifyPhone'),
+                      //         style: AppTextStyle.s12_w300(
+                      //           color: context.colors.white,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // )
                     ],
                   )
                 ],

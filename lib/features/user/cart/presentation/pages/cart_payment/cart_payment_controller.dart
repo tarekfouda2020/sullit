@@ -11,6 +11,7 @@ class CartPaymentController {
   final TextEditingController driverNotesCtr = TextEditingController();
 
   final GenericBloc<Shipping?> shippingBloc = GenericBloc(null);
+  final GenericBloc<FessMechanismModel?> feesCubit = GenericBloc(null);
   final GenericBloc<GiftCardApllieCartDomainModel?> giftCardBlocBloc = GenericBloc(null);
   final GlobalKey<FormState> couponFormKey = GlobalKey();
   final GlobalKey<FormState> additionalFormKey = GlobalKey();
@@ -20,8 +21,9 @@ class CartPaymentController {
   final GenericBloc<bool> isWalletSelected = GenericBloc(false);
   final GenericBloc<bool> applyPointsSwitchCubit = GenericBloc(false);
   final GenericBloc<bool> allowReplacementCubit = GenericBloc(false);
+  final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc = GenericBloc(null);
+  final GenericBloc<List<DeliveryInstructionModel>> instructionsCubit = GenericBloc([]);
 
-  final GenericBloc<List<DeliveryInstructionModel>> instructionListCubit = GenericBloc<List<DeliveryInstructionModel>>([]);
 
   final GenericBloc<List<DriverTipsModel>> tipsListCubit = GenericBloc<List<DriverTipsModel>>([]);
 
@@ -31,12 +33,6 @@ class CartPaymentController {
 
   bool isGiftCardApplied = false;
 
-
-  final List<DeliveryInstructionModel> _instructions = [
-    DeliveryInstructionModel(type: InstructionTypeEnum.leaveAtDoor,isSelect: true),
-    DeliveryInstructionModel(type: InstructionTypeEnum.avoidCalling),
-    DeliveryInstructionModel(type: InstructionTypeEnum.noBillRing),
-  ];
 
   final List<DriverTipsModel> _tipsList = [
     DriverTipsModel(amount: "2",isSelect: true),
@@ -58,8 +54,10 @@ class CartPaymentController {
     }
     getLoyaltyPointsBalance(refresh: false);
     getLoyaltyPointsBalance();
-    instructionListCubit.onUpdateData(_instructions);
-    tipsListCubit.onUpdateData(_tipsList);
+    getOrderFees(fromRemote: false);
+    getOrderFees();
+    getInstructions(fromRemote: false);
+    getInstructions();
   }
 
   void calculateDiscount() {
@@ -165,7 +163,7 @@ class CartPaymentController {
     // AutoRouter.of(context).push(
     //   ConfirmationRoute(summary: data),
     // );
-    AutoRouter.of(context).push( CartConfirmBuyingRoute(summary: data));
+    AutoRouter.of(context).push( CartConfirmBuyingRoute(combinedId: data.summary!.combinedOrderId));
 
   }
 
@@ -253,7 +251,6 @@ class CartPaymentController {
     );
   }
 
-
   void paymentMethodSheet(BuildContext context){
     showModalBottomSheet(
       context: context,
@@ -327,9 +324,13 @@ class CartPaymentController {
     }
 
   Future<void> getLoyaltyPointsBalance({bool refresh = true}) async {
-    return await GetLoyaltyPointsBalance().call(refresh).then(
+     await GetLoyaltyPointsBalance().call(refresh).then(
           (value) => loyaltyPointsBalanceBloc.onUpdateData(value),
     );
+     bool isPointsApplied = shippingBloc.state.data?.summary.loyaltyPointsApplied == true;
+     if(isPointsApplied){
+       applyPointsSwitchCubit.onUpdateData(true);
+     }
   }
 
   Future<void> applyGiftCard(BuildContext context)async{
@@ -371,6 +372,53 @@ class CartPaymentController {
   );
 
 
+  Future<void> getOrderFees({bool fromRemote = true})async{
+    await GetOrderFees().call(fromRemote).then((value) {
+       feesCubit.onUpdateData(value);
+    },);
+  }
+
+
+  void showFeesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+      return FeesSheetWidget(feesCubit: feesCubit,showDelivery: false,showTech: true,);
+    },);
+  }
+
+  void showDeliveryFeesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        // Service fee
+        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
+        return FeesSheetWidget(feesCubit: feesCubit,showService: false,showTech: false,);
+      },);
+  }
+  void showTechFeesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        // Service fee
+        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
+        return FeesSheetWidget(feesCubit: feesCubit,showService: false, showDelivery: false,);
+      },);
+  }
+
+  void showEnvFeesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        // Service fee
+        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
+        return FeesSheetWidget(feesCubit: feesCubit,showService: false, showDelivery: false,showTech: false,showEnv: true,);
+      },);
+  }
 
 
   bool get _isExistMinimumAmount => shippingBloc.state.data?.summary.minimumOrderAmountStatus == true;
@@ -422,6 +470,34 @@ class CartPaymentController {
     }
 
 
+  }
+
+
+  double getTotal(){
+    ShippingSummary summary = shippingBloc.state.data!.summary;
+    double subTotal = double.parse(summary.subTotal);
+    double totalFeesAmount = summary.getFeesTotal;
+
+   if (summary.couponApplied == true ){
+     subTotal = subTotal -  double.parse(summary.couponDiscount);
+    }
+
+    if (summary.loyaltyPointsApplied == true ){
+      subTotal = subTotal -  double.parse(summary.loyaltyPointsValue ?? '0.0');
+    }
+
+    double amount = subTotal+totalFeesAmount;
+   if(amount > 0){
+     return amount;
+   }else{
+     return 0;
+   }
+  }
+
+  Future<void> getInstructions({bool fromRemote = true})async{
+    List<DeliveryInstructionModel> result =  await GetDeliveryInstructions().call(fromRemote);
+
+    instructionsCubit.onUpdateData(result);
   }
 
 
