@@ -23,7 +23,7 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
       ),
       BuildSummaryHeader(
         title: tr("environmentFee"),
-        details: orderSummary.totalServiceFees.toStringAsFixed(2),
+        details: orderSummary.envFees.toStringAsFixed(2),
         useDirhamPrice: true,
         onPressInfo: ()=> controller.showEnvFeesSheet(context),
       ),
@@ -51,6 +51,7 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
         details: orderSummary.totalVat.toString(),
         useDirhamPrice: true,
       ),
+      Gaps.line(context.colors.softGray, 15.h),
       Container(
           margin: const EdgeInsets.symmetric(vertical: 8),
           child: Row(
@@ -66,6 +67,7 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
               ),
             ],
           )),
+      Gaps.line(context.colors.softGray, 15.h),
       _buildRow(context,tr("gained_bezat_point"),orderSummary.summary!.expectedLoyaltyPoints.toString()),
       Gaps.vGap8,
       if(orderSummary.pointsRedeemed > 0)
