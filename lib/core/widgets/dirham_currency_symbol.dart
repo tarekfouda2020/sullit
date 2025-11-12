@@ -71,7 +71,7 @@ class DirhamCurrencySymbol extends StatelessWidget {
     return Transform.translate(
       offset:  Offset(0, currencyOffset ?? 1),
       child: Text(
-        useAlternativeSymbol ? '\ue002' : '\ue001',
+        useAlternativeSymbol ? AppTheme.dirhamIcon2 : AppTheme.dirhamIcon,
         style: (textStyle?.copyWith(
               fontFamily: AppTheme.dirhamFontFamily,
           height: 0

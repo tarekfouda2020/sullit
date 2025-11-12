@@ -14,6 +14,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/variant.dart';
 class Product extends BaseDomainModel {
   int? id;
   String? name;
+  String? unit;
   String? thumbnailImage;
   List<String>? images;
   bool? isMultiple;
@@ -89,6 +90,7 @@ class Product extends BaseDomainModel {
       this.categoryName,
       this.brandName,
       this.hasVipOffer,
+      this.unit,
       this.isAddedTCompare = false});
 
   Future<void> isAddedToCompare() async {
@@ -101,6 +103,7 @@ class Product extends BaseDomainModel {
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    unit = json['unit'];
     thumbnailImage = json['thumbnail_image'];
     images = json['images'].cast<String>();
     isMultiple = json['is_multiple'];
@@ -127,6 +130,7 @@ class Product extends BaseDomainModel {
     tags = json['tags'].cast<String>();
     rating = json['rating'];
     sales = json['sales'];
+    unit = json['unit'];
     isDigital = json['is_digital'];
     isWishlist = json['is_wishlist'];
     sellerId = json['seller_id'];

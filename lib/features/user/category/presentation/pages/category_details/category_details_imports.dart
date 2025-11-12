@@ -8,6 +8,7 @@ import 'package:flutter_tdd/core/models/domain_models/brand_domain_model.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
+import 'package:flutter_tdd/features/user/base/presentation/pages/home/widgets/home_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/price_range_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/search_products_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/attribute_value.dart';

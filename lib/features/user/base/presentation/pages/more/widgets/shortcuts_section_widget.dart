@@ -31,12 +31,17 @@ class ShortCutSectionWidget extends StatelessWidget {
         onTap: () => controller.checkAuth(context, MoreRoutes.giftCards),
       ),
       BuildMoreItem(
-        image: Res.vouchers,
-        title: tr('myVouchers'),
-        isSvg: true,
-        size: 33,
-        onTap: () => controller.checkAuth(context, MoreRoutes.myVouchers),
+        image: Res.wishListLogo,
+        title: tr('wishlist'),
+        onTap: () => controller.checkAuth(context, MoreRoutes.wishlist),
       ),
+      // BuildMoreItem(
+      //   image: Res.vouchers,
+      //   title: tr('myVouchers'),
+      //   isSvg: true,
+      //   size: 33,
+      //   onTap: () => controller.checkAuth(context, MoreRoutes.myVouchers),
+      // ),
       BuildMoreItem(
         image: Res.loyaltyIcon,
         title: tr("loyaltyPoints"),

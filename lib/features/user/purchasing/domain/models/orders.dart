@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instruction_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/enum/track_order_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_driver_domain_model.dart';
@@ -49,7 +50,9 @@ class Orders extends BaseDomainModel {
   String loyaltyPointsValue;
   int expectedLoyaltyPoints;
   String environmentFees;
+  String? driverNotes;
   OrderDriverDomainModel? driverModel;
+  List<DeliveryInstructionModel>? instructions;
 
   Orders({
     required this.id,
@@ -94,6 +97,8 @@ class Orders extends BaseDomainModel {
      this.serviceFees,
      this.technologyFees,
      this.vatFeeAmount,
+     this.driverNotes,
+     this.instructions,
   });
 
   int totalItemsCount() => orderDetails.fold(0, (previousValue, element) => previousValue + element.quantity);

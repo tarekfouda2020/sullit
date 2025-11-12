@@ -7,11 +7,13 @@ class DeliveryInstructionModel extends BaseDomainModel {
   final String image;
 
   final String name;
+   bool isSelect;
 
   DeliveryInstructionModel({
     required this.id,
     required this.image,
     required this.name,
+     this.isSelect = false,
   });
 
 

@@ -10,25 +10,23 @@ class CartPaymentController {
   final TextEditingController driverTipCtr = TextEditingController();
   final TextEditingController driverNotesCtr = TextEditingController();
 
-  final GenericBloc<Shipping?> shippingBloc = GenericBloc(null);
-  final GenericBloc<FessMechanismModel?> feesCubit = GenericBloc(null);
-  final GenericBloc<GiftCardApllieCartDomainModel?> giftCardBlocBloc = GenericBloc(null);
+  final GenericBloc<Shipping?> shippingBloc = GenericBloc<Shipping?>(null);
+  final GenericBloc<FessMechanismModel?> feesCubit = GenericBloc<FessMechanismModel?>(null);
+  final GenericBloc<GiftCardApllieCartDomainModel?> giftCardBlocBloc = GenericBloc<GiftCardApllieCartDomainModel?>(null);
   final GlobalKey<FormState> couponFormKey = GlobalKey();
   final GlobalKey<FormState> additionalFormKey = GlobalKey();
   final GlobalKey<FormState> giftCardFormKey = GlobalKey();
-  final GenericBloc<int> paymentCubit = GenericBloc(0);
-  final GenericBloc<bool> conditionsCubit = GenericBloc(false);
-  final GenericBloc<bool> isWalletSelected = GenericBloc(false);
-  final GenericBloc<bool> applyPointsSwitchCubit = GenericBloc(false);
-  final GenericBloc<bool> allowReplacementCubit = GenericBloc(false);
-  final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc = GenericBloc(null);
-  final GenericBloc<List<DeliveryInstructionModel>> instructionsCubit = GenericBloc([]);
+  final GenericBloc<int> paymentCubit = GenericBloc<int>(0);
+  final GenericBloc<bool> conditionsCubit = GenericBloc<bool>(false);
+  final GenericBloc<bool> isWalletSelected = GenericBloc<bool>(false);
+  final GenericBloc<bool> applyPointsSwitchCubit = GenericBloc<bool>(false);
+  final GenericBloc<bool> allowReplacementCubit = GenericBloc<bool>(false);
+  final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc = GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
+  final GenericBloc<List<DeliveryInstructionModel>> instructionsCubit = GenericBloc<List<DeliveryInstructionModel>>([]);
 
 
   final GenericBloc<List<DriverTipsModel>> tipsListCubit = GenericBloc<List<DriverTipsModel>>([]);
 
-  final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc =
-  GenericBloc(null);
   String? selectedPayment;
 
   bool isGiftCardApplied = false;
@@ -247,9 +245,22 @@ class CartPaymentController {
       paymentOption: selectedPayment ?? "",
       additionalInfo: additionalInfo.text,
       giftCardCode: giftCardCode.text.trim(),
-      allowReplacement: allowReplacementCubit.state.data ? 1 : 0
+      allowReplacement: allowReplacementCubit.state.data ? 1 : 0,
+      instructions: _selectedInstructions(),
+      driverNotes: driverNotesCtr.text
     );
   }
+
+
+  List<DeliveryInstructionModel> _selectedInstructions(){
+    List<DeliveryInstructionModel> data = instructionsCubit.state.data;
+    if(data.any((element) => element.isSelect)){
+      return data.where((element) => element.isSelect).toList();
+    }else{
+      return <DeliveryInstructionModel>[];
+    }
+  }
+
 
   void paymentMethodSheet(BuildContext context){
     showModalBottomSheet(
@@ -425,12 +436,6 @@ class CartPaymentController {
 
 
 
-  void selectInstructions(DeliveryInstructionModel model){
-    model.isSelect = !model.isSelect;
-    instructionListCubit.onUpdateData(instructionListCubit.state.data);
-
-  }
-
   void selectDriverTip(DriverTipsModel model){
     var data = tipsListCubit.state.data;
     if(model.isSelect){
@@ -498,6 +503,11 @@ class CartPaymentController {
     List<DeliveryInstructionModel> result =  await GetDeliveryInstructions().call(fromRemote);
 
     instructionsCubit.onUpdateData(result);
+  }
+
+  void selectInstructions(DeliveryInstructionModel model){
+    model.isSelect = !model.isSelect;
+    instructionsCubit.onUpdateData(instructionsCubit.state.data);
   }
 
 

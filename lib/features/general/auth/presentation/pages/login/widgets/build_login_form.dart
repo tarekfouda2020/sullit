@@ -43,15 +43,13 @@ class BuildLoginForm extends StatelessWidget {
                 focusBorderColor: context.colors.white,
                 margin: Dimens.headerTitlePadding,
                 controller: controller.password,
-                radius: Dimens.borderRadius40PX,
-                fieldTypes:
-                    !state.data ? FieldTypes.password : FieldTypes.normal,
+                fieldTypes: !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.visiblePassword,
+                onSubmit: () => controller.onSubmit(context),
                 action: TextInputAction.done,
                 validate: (value) => value?.validateEmpty(),
                 suffixIcon: IconButton(
-                  onPressed: () =>
-                      controller.passwordCubit.onUpdateData(!state.data),
+                  onPressed: () => controller.passwordCubit.onUpdateData(!state.data),
                   // splashColor: Colors.transparent,
                   icon: Icon(
                     !state.data ? Icons.visibility_outlined : Icons.visibility_off_outlined,

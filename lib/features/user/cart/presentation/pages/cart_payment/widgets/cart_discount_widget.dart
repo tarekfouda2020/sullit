@@ -33,17 +33,17 @@ class CartDiscountWidget extends StatelessWidget {
                 ],
               ),
             ),
-              SizedBox(
-                height: 80,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                    child: Row(
-                  spacing: 12,
-                  children: List.generate(3, (index) {
-                    return  VoucherTicketCardWidget(index: index,isLast: index == 3-1,);
-                  },),
-                )),
-              )
+              // SizedBox(
+              //   height: 80,
+              //   child: SingleChildScrollView(
+              //     scrollDirection: Axis.horizontal,
+              //       child: Row(
+              //     spacing: 12,
+              //     children: List.generate(3, (index) {
+              //       return  VoucherTicketCardWidget(index: index,isLast: index == 3-1,);
+              //     },),
+              //   )),
+              // )
 
             ],
           ),

@@ -2,20 +2,21 @@ part of 'home_widgets_imports.dart';
 
 
 class CartButtonWidget extends StatelessWidget {
-  final HomeController controller;
-
-  const CartButtonWidget({super.key, required this.controller});
+ final double size;
+ final EdgeInsetsDirectional? margin;
+  const CartButtonWidget({super.key,  this.size = 70, this.margin});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CountCubit, CountState>(
       builder: (context, state) {
         return GestureDetector(
-          onTap: () => controller.routeToCart(context),
+          onTap: () => AutoRouter.of(context).push(const CartRoute()),
           child: Container(
-            width: 70,
-            height: 70,
+            width: size,
+            height: size,
             alignment: Alignment.center,
+            margin: margin,
             decoration: BoxDecoration(
                 color: context.colors.primary,
                 shape: BoxShape.circle,

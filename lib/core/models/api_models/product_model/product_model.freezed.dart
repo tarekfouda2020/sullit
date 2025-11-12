@@ -22,6 +22,7 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
 mixin _$ProductModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get unit => throw _privateConstructorUsedError;
   @JsonKey(name: 'thumbnail_image')
   String get thumbnailImage => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
@@ -97,6 +98,7 @@ abstract class $ProductModelCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
+      String unit,
       @JsonKey(name: 'thumbnail_image') String thumbnailImage,
       List<String> images,
       @JsonKey(name: 'is_multiple') bool isMultiple,
@@ -154,6 +156,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? unit = null,
     Object? thumbnailImage = null,
     Object? images = null,
     Object? isMultiple = null,
@@ -198,6 +201,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
               as String,
       thumbnailImage: null == thumbnailImage
           ? _value.thumbnailImage
@@ -402,6 +409,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
   $Res call(
       {int id,
       String name,
+      String unit,
       @JsonKey(name: 'thumbnail_image') String thumbnailImage,
       List<String> images,
       @JsonKey(name: 'is_multiple') bool isMultiple,
@@ -461,6 +469,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? unit = null,
     Object? thumbnailImage = null,
     Object? images = null,
     Object? isMultiple = null,
@@ -505,6 +514,10 @@ class __$$_ProductModelCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
               as String,
       thumbnailImage: null == thumbnailImage
           ? _value.thumbnailImage
@@ -657,6 +670,7 @@ class _$_ProductModel extends _ProductModel {
   const _$_ProductModel(
       {required this.id,
       required this.name,
+      required this.unit,
       @JsonKey(name: 'thumbnail_image') required this.thumbnailImage,
       required final List<String> images,
       @JsonKey(name: 'is_multiple') required this.isMultiple,
@@ -708,6 +722,8 @@ class _$_ProductModel extends _ProductModel {
   final int id;
   @override
   final String name;
+  @override
+  final String unit;
   @override
   @JsonKey(name: 'thumbnail_image')
   final String thumbnailImage;
@@ -838,7 +854,7 @@ class _$_ProductModel extends _ProductModel {
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, name: $name, thumbnailImage: $thumbnailImage, images: $images, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, choiceOptions: $choiceOptions, colors: $colors, minQty: $minQty, currencySymbol: $currencySymbol, variant: $variant, tags: $tags, countReviews: $countReviews, soldByType: $soldByType, soldByName: $soldByName, hasVipOffer: $hasVipOffer, shop: $shop, reviews: $reviews, isResale: $isResale, resellerId: $resellerId, category: $category, strokedPrice: $strokedPrice, isDigital: $isDigital, isWishlist: $isWishlist, mainPrice: $mainPrice, rating: $rating, sales: $sales, sellerId: $sellerId, brand: $brand, description: $description, videoProvider: $videoProvider, videoLink: $videoLink, categoryName: $categoryName, brandName: $brandName)';
+    return 'ProductModel(id: $id, name: $name, unit: $unit, thumbnailImage: $thumbnailImage, images: $images, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, choiceOptions: $choiceOptions, colors: $colors, minQty: $minQty, currencySymbol: $currencySymbol, variant: $variant, tags: $tags, countReviews: $countReviews, soldByType: $soldByType, soldByName: $soldByName, hasVipOffer: $hasVipOffer, shop: $shop, reviews: $reviews, isResale: $isResale, resellerId: $resellerId, category: $category, strokedPrice: $strokedPrice, isDigital: $isDigital, isWishlist: $isWishlist, mainPrice: $mainPrice, rating: $rating, sales: $sales, sellerId: $sellerId, brand: $brand, description: $description, videoProvider: $videoProvider, videoLink: $videoLink, categoryName: $categoryName, brandName: $brandName)';
   }
 
   @override
@@ -848,6 +864,7 @@ class _$_ProductModel extends _ProductModel {
             other is _$_ProductModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.unit, unit) || other.unit == unit) &&
             (identical(other.thumbnailImage, thumbnailImage) ||
                 other.thumbnailImage == thumbnailImage) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
@@ -916,6 +933,7 @@ class _$_ProductModel extends _ProductModel {
         runtimeType,
         id,
         name,
+        unit,
         thumbnailImage,
         const DeepCollectionEquality().hash(_images),
         isMultiple,
@@ -971,6 +989,7 @@ abstract class _ProductModel extends ProductModel {
   const factory _ProductModel(
       {required final int id,
       required final String name,
+      required final String unit,
       @JsonKey(name: 'thumbnail_image') required final String thumbnailImage,
       required final List<String> images,
       @JsonKey(name: 'is_multiple') required final bool isMultiple,
@@ -1018,6 +1037,8 @@ abstract class _ProductModel extends ProductModel {
   int get id;
   @override
   String get name;
+  @override
+  String get unit;
   @override
   @JsonKey(name: 'thumbnail_image')
   String get thumbnailImage;

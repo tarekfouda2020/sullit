@@ -62,6 +62,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
           BuildProducts(detailsController: controller),
         ],
       ),
+      floatingActionButton: const CartButtonWidget(size: 65,margin: EdgeInsetsDirectional.only(start: 5,bottom: 5),),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
     );
   }
 }

@@ -21,7 +21,7 @@ class DirhamPrice extends StatelessWidget {
   final TextDirection? textDirection;
   final double? currencyOffset;
 
-  const DirhamPrice({
+  const  DirhamPrice({
     Key? key,
     required this.amount,
     this.color,

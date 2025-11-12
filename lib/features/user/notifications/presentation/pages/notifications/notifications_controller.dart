@@ -6,8 +6,8 @@ class NotificationsController {
   int pageSize = 12;
 
   NotificationsController() {
+    getNotifications(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
-      getNotifications(pageKey, refresh: false);
       getNotifications(pageKey);
     });
   }

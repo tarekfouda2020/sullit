@@ -22,7 +22,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    controller.getCartItems(context);
+    controller.getCartItems();
   }
 
   @override
@@ -44,7 +44,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               children: controller.pages(),
             ),
             bottomNavigationBar: BuildBottomNavBar(controller: controller),
-            floatingActionButton: CartButtonWidget(controller: controller),
+            floatingActionButton: const CartButtonWidget(),
             floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           ),
         ),

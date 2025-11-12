@@ -66,17 +66,30 @@ class BuildProductInfo extends StatelessWidget {
                    amount: "${productModel.priceHighLowDiscount} ",
                     textStyle: AppTextStyle.s22_w600(color: context.colors.primary),
                   ),
+                  Text(" / ${productModel.unit}",
+                    style: AppTextStyle.s20_w400(color: context.colors.textColor),
+                  ),
                   Gaps.hGap20,
                   if(( productModel.hasDiscount!) ||(productModel.variant?.hasDiscount==true))
-                    DirhamPrice(
-                     amount: productModel.priceHighLow ?? "",
-                      // "${productModel.variant!.originalPrice.parseCurrency} ",
-                      textStyle: AppTextStyle.s18_w400(
-                        color: context.colors.textColor,
-                      ).copyWith(
-                          decoration: TextDecoration.lineThrough,
-                          decorationColor: context.colors.textColor
-                      ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        DirhamPrice(
+                         amount: productModel.priceHighLow ?? "",
+                          // "${productModel.variant!.originalPrice.parseCurrency} ",
+                          textStyle: AppTextStyle.s18_w400(
+                            color: context.colors.textColor,
+                          ).copyWith(
+                              decoration: TextDecoration.lineThrough,
+                              decorationColor: context.colors.textColor
+                          ),
+                        ),
+                        Text(" / ${productModel.unit}",
+                          style: AppTextStyle.s20_w400(color: context.colors.textColor).copyWith(
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                      ],
                     ),
                 ],
               ),

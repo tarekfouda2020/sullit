@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/delivery_instruction/delivery_instruction.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_details_model/order_details_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_driver_model/order_driver_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
@@ -56,11 +57,12 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'vat_fee_amount') required String vatFeeAmount,
     /// total of fees with there *vat => (vatFeeAmount)*
     @JsonKey(name: 'total_fee_amount') required String totalFeeAmount,
+    @JsonKey(name: 'driver_notes') required String driverNotes,
+    @JsonKey(name: 'delivery_instructions') required List<DeliveryInstruction> deliveryInstructions,
     @JsonKey(name: 'driver') OrderDriverModel? driver,
   }) = _OrderModel;
 
-  factory OrderModel.fromJson(Map<String, dynamic> json) =>
-      _$OrderModelFromJson(json);
+  factory OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);
 
   @override
   Orders toDomainModel() {
@@ -106,7 +108,9 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       vatFeeAmount: vatFeeAmount,
       totalFeeAmount: totalFeeAmount,
       expectedLoyaltyPoints: expectedLoyaltyPoints,
-      environmentFees: environmentFees
+      environmentFees: environmentFees,
+      driverNotes: driverNotes,
+      instructions: deliveryInstructions.map((e) => e.toDomainModel()).toList(),
     );
   }
 }

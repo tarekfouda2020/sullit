@@ -167,24 +167,42 @@ class _BuildProductItemState extends State<BuildProductItem> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            DirhamPrice(
-                              amount: widget.productModel.variant?.calculablePrice ?? "0.0",
-
+                            Row(
+                              children: [
+                                DirhamPrice(
+                                  amount: widget.productModel.variant?.calculablePrice ?? "0.0",
+                                ),
+                                if(widget.productModel.unit!=null)
+                                Text(" / ${widget.productModel.unit}",
+                                style: AppTextStyle.s16_w400(color: context.colors.textColor),
+                                )
+                              ],
                             ),
                             Gaps.vGap3,
                             Visibility(
                               visible: widget.productModel.hasDiscount ?? false || (widget.showVipDiscount ?? false),
-                              child: DirhamPrice(
-                                amount: widget.productModel.priceHighLow ?? "0.0",
-                                showMinus: true,
-                                currencyOffset: 1,
-                                color: context.colors.textColor,
-                                textStyle: TextStyle(
-                                  overflow: TextOverflow.ellipsis,
-                                  decoration:  TextDecoration.lineThrough,
-                                  decorationColor: context.colors.textColor,
-                                  decorationThickness: 1.2,
-                                ),
+                              child: Row(
+                                children: [
+                                  DirhamPrice(
+                                    amount: widget.productModel.priceHighLow ?? "0.0",
+                                    showMinus: true,
+                                    currencyOffset: 1,
+                                    color: context.colors.textColor,
+                                    textStyle: TextStyle(
+                                      overflow: TextOverflow.ellipsis,
+                                      decoration:  TextDecoration.lineThrough,
+                                      decorationColor: context.colors.textColor,
+                                      decorationThickness: 1.2,
+                                    ),
+                                  ),
+                                  if(widget.productModel.unit!=null)
+                                    Text(" / ${widget.productModel.unit}",
+                                      style: AppTextStyle.s16_w400(color: context.colors.textColor).copyWith(
+                                        decoration:  TextDecoration.lineThrough,
+                                        decorationColor: context.colors.textColor,
+                                      ),
+                                    )
+                                ],
                               ),
                             ),
                           ],

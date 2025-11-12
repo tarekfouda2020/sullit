@@ -8,7 +8,7 @@ class ShopByWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MoreGridViewWidget(
         title: tr("shopBy"),
-        crossAxisCount: 3,
+        crossAxisCount: 2,
         children: [
           BuildMoreItem(
             image: Res.allBrandsIcon,
@@ -24,11 +24,11 @@ class ShopByWidget extends StatelessWidget {
             onTap: () =>
                 controller.checkAuth(context, MoreRoutes.allCategories),
           ),
-          BuildMoreItem(
-            image: Res.wishListLogo,
-            title: tr('wishlist'),
-            onTap: () => controller.checkAuth(context, MoreRoutes.wishlist),
-          ),
+          // BuildMoreItem(
+          //   image: Res.wishListLogo,
+          //   title: tr('wishlist'),
+          //   onTap: () => controller.checkAuth(context, MoreRoutes.wishlist),
+          // ),
         ]
     );
   }

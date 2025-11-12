@@ -51,6 +51,10 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       environmentFees: json['environment_fees'] as String,
       vatFeeAmount: json['vat_fee_amount'] as String,
       totalFeeAmount: json['total_fee_amount'] as String,
+      driverNotes: json['driver_notes'] as String,
+      deliveryInstructions: (json['delivery_instructions'] as List<dynamic>)
+          .map((e) => DeliveryInstruction.fromJson(e as Map<String, dynamic>))
+          .toList(),
       driver: json['driver'] == null
           ? null
           : OrderDriverModel.fromJson(json['driver'] as Map<String, dynamic>),
@@ -99,5 +103,8 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'environment_fees': instance.environmentFees,
       'vat_fee_amount': instance.vatFeeAmount,
       'total_fee_amount': instance.totalFeeAmount,
+      'driver_notes': instance.driverNotes,
+      'delivery_instructions':
+          instance.deliveryInstructions.map((e) => e.toJson()).toList(),
       'driver': instance.driver?.toJson(),
     };

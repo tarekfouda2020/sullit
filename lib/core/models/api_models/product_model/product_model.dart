@@ -21,6 +21,7 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
   const factory ProductModel({
     required int id,
     required String name,
+    required String unit,
     @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
     required List<String> images,
     @JsonKey(name: 'is_multiple') required bool isMultiple,
@@ -103,6 +104,7 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
       videoProvider: videoProvider,
       variant: variant?.toDomainModel(),
       hasVipOffer: hasVipOffer,
+      unit: unit,
     );
   }
 }

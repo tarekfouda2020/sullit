@@ -11,7 +11,7 @@ class InstructionItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => controller.selectInstructions(model),
       child: Container(
-        padding: const EdgeInsets.only(bottom: 12,right: 12,left: 12,top: 3),
+        padding: const EdgeInsetsDirectional.only(bottom: 12,start: 10,end: 15,top: 3),
         decoration: BoxDecoration(
           borderRadius: Dimens.borderRadius15PX,
           border: Border.all(
@@ -31,25 +31,36 @@ class InstructionItemWidget extends StatelessWidget {
               value: model.isSelect,
               onChange: (value) => controller.selectInstructions(model),
             ),
-           Column(
-             children: [
-               SvgPicture.asset(model.type.getIcon(),
-                 colorFilter: ColorFilter.mode(model.isSelect
-                     ?context.colors.primary
-                     :context.colors.gray8
-                     , BlendMode.srcIn),
-               ),
-               Gaps.vGap8,
-               Text(model.type.getTitle(),
-                 textAlign: TextAlign.center,
-                 style: AppTextStyle.s12_w500(color: model.isSelect
-                     ?context.colors.primary
-                     :context.colors.gray8).copyWith(
-                     height: 1.3
-                 ),
-               )
-             ],
-           )
+            Padding(
+              padding: const EdgeInsetsDirectional.only(start:8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CachedImage(url: model.image,
+                    width: 30, height: 30,
+                    fit: BoxFit.cover,
+                    borderColor: Colors.transparent,
+                    placeHolder: Gaps.empty,
+                    bgColor: Colors.transparent,
+                  ),
+                  Gaps.vGap4,
+                  SizedBox(
+                    width: 62,
+                    child: Text(
+                      model.name,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                      style: AppTextStyle.s12_w400(
+                        color: model.isSelect
+                            ?context.colors.primary
+                            :context.colors.gray8,
+                      ).copyWith(height: 1.2),
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
 

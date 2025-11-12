@@ -37,6 +37,7 @@ class _CartPaymentState extends State<CartPayment> {
                   const BuildCartStepper(current: 4),
                   Flexible(
                     child: ListView(
+                      cacheExtent: 999,
                       padding: Dimens.paddingHorizontal15PX,
                       children: [
                         Gaps.vGap16,
@@ -46,10 +47,10 @@ class _CartPaymentState extends State<CartPayment> {
                         Gaps.vGap20,
                         DeliveryInstructionsWidget(controller: controller),
                         Gaps.vGap12,
-                        DriverTipsWidget(controller: controller),
-                        Gaps.vGap16,
-                        const NearestVipCartWidget(),
-                        Gaps.vGap12,
+                        // DriverTipsWidget(controller: controller),
+                        // Gaps.vGap16,
+                        // const NearestVipCartWidget(),
+                        // Gaps.vGap12,
                         InvoiceSummaryWidget(
                           controller: controller,
                           shippingSummary: state.data!.summary,
@@ -59,6 +60,19 @@ class _CartPaymentState extends State<CartPayment> {
                         Gaps.vGap20,
                         AllowReplacementWidget(controller: controller),
                         BuildConditions(controller: controller),
+                        Gaps.vGap20,
+                        BezatPointsSummaryWidget(
+                          redeemedPoints: (state.data!.summary.loyaltyPoints ?? 0).toDouble(),
+                         redeemedValue: double.parse((state.data!.summary.loyaltyPointsValue ?? "0.0")),
+                         earnedPoints: state.data!.summary.expectedLoyaltyPoints.toDouble(),
+                       ),
+                        Gaps.vGap25,
+                        Center(
+                          child: Text("Thank you for your Order!",
+                          style: AppTextStyle.s18_w500(color: context.colors.black),
+                          ),
+                        ),
+                        Gaps.vGap25,
                         // BuildSummary(
                         //   controller: controller,
                         //   shipping: state.data!,

@@ -12,4 +12,6 @@ class NotificationDomainModel extends BaseDomainModel {
     required this.text,
     required this.createdAt,
   });
+
+
 }

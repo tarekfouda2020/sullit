@@ -15,8 +15,6 @@ class HomeController {
   List<String> tabs = [Res.home, Res.category, "", Res.offers, Res.menuIcon];
 
 
-  final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
-
 
   Future<void> getCartItems({bool refresh = true}) async {
     CartDomainModel result = await getIt<CartHelper>().getCartItems(refresh: refresh);
@@ -76,7 +74,7 @@ class HomeController {
       //   return;
       // }
       if (index == 2) {
-        routeToCart(context);
+        AutoRouter.of(context).push(const CartRoute());
         return;
       } else {
         homeTabCubit.onUpdateData(index);
@@ -113,9 +111,6 @@ class HomeController {
     return true;
   }
 
-  void routeToCart(BuildContext context) {
-    AutoRouter.of(context).push(const CartRoute());
-  }
 
   Future<bool> onBack(BuildContext context) async {
     if (tabController.index > 0) {
@@ -135,13 +130,6 @@ class HomeController {
     }
   }
 
-
-  Future<void> getCartItems(BuildContext context,{bool refresh = true}) async {
-    CartDomainModel result = await getIt<CartHelper>().getCartItems(refresh: refresh);
-    cartItemsBloc.onUpdateData(result);
-    var qnt = (result.items??<CartItem>[]).fold<int>(0, (previousValue, element) => previousValue+element.quantity);
-    getIt<CartHelper>().updateCartCount(context, qnt);
-  }
 
 
 }

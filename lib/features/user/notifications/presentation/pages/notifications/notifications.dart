@@ -8,13 +8,8 @@ class Notifications extends StatefulWidget {
 }
 
 class _NotificationsState extends State<Notifications> {
-  late NotificationsController controller;
 
-  @override
-  void initState() {
-    controller = NotificationsController();
-    super.initState();
-  }
+   final NotificationsController  controller = NotificationsController();
 
   @override
   Widget build(BuildContext context) {
