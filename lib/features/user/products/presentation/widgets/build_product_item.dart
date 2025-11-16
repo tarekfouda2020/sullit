@@ -173,8 +173,11 @@ class _BuildProductItemState extends State<BuildProductItem> {
                                   amount: widget.productModel.variant?.calculablePrice ?? "0.0",
                                 ),
                                 if(widget.productModel.unit!=null)
-                                Text(" / ${widget.productModel.unit}",
-                                style: AppTextStyle.s16_w400(color: context.colors.textColor),
+                                Flexible(
+                                  child: Text(" / ${widget.productModel.unit}",
+                                  style: AppTextStyle.s16_w400(color: context.colors.textColor),
+                                      overflow: TextOverflow.ellipsis
+                                  ),
                                 )
                               ],
                             ),
@@ -196,10 +199,13 @@ class _BuildProductItemState extends State<BuildProductItem> {
                                     ),
                                   ),
                                   if(widget.productModel.unit!=null)
-                                    Text(" / ${widget.productModel.unit}",
-                                      style: AppTextStyle.s16_w400(color: context.colors.textColor).copyWith(
-                                        decoration:  TextDecoration.lineThrough,
-                                        decorationColor: context.colors.textColor,
+                                    Flexible(
+                                      child: Text(" / ${widget.productModel.unit}",
+                                        style: AppTextStyle.s16_w400(color: context.colors.textColor).copyWith(
+                                          decoration:  TextDecoration.lineThrough,
+                                          decorationColor: context.colors.textColor,
+                                          overflow: TextOverflow.ellipsis
+                                        ),
                                       ),
                                     )
                                 ],
