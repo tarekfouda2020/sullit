@@ -44,7 +44,7 @@ class _BezaatPointsSummaryWidgetState extends State<BezatPointsSummaryWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20 ,vertical: 15),
+      padding: const EdgeInsetsDirectional.fromSTEB( 20,15,5,15 ),
       decoration: BoxDecoration(
           border: Border.all(
             color: context.colors.borderColor,
@@ -72,7 +72,7 @@ class _BezaatPointsSummaryWidgetState extends State<BezatPointsSummaryWidget> {
                   if (widget.redeemedValue > 0)
                     _buildPointsItem(
                       title: "Points Redeemed",
-                      points: widget.redeemedValue,
+                      points: widget.redeemedPoints,
                       showRedeemedValue: true,
                     ),
                 _buildPointsItem(
