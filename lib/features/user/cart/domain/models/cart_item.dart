@@ -13,9 +13,11 @@ class CartItem extends BaseDomainModel {
   num calculableTotal;
   String currencySymbol;
   int productId;
+  int loyaltyPoints;
   int minQty;
   int stockQty;
   bool isWishlist;
+  bool hasSpecialLoyaltyPoints;
   String soldByType;
   String soldBy;
   int? shopId;
@@ -42,5 +44,7 @@ class CartItem extends BaseDomainModel {
     required this.soldByType,
     required this.shopId,
     required this.rating,
+    required this.loyaltyPoints,
+    required this.hasSpecialLoyaltyPoints,
   });
 }

@@ -23,6 +23,8 @@ mixin _$CartItemModel {
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: "owner_id")
   int get ownerId => throw _privateConstructorUsedError;
+  @JsonKey(name: "loyalty_points")
+  int get loyaltyPoints => throw _privateConstructorUsedError;
   @JsonKey(name: "thumbnail_image")
   String get thumbnailImage => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -32,6 +34,8 @@ mixin _$CartItemModel {
   double get rating => throw _privateConstructorUsedError;
   @JsonKey(name: "is_digital")
   bool get isDigital => throw _privateConstructorUsedError;
+  @JsonKey(name: "has_special_loyalty_points")
+  bool get hasSpecialLoyaltyPoints => throw _privateConstructorUsedError;
   String get total => throw _privateConstructorUsedError;
   @JsonKey(name: "calculable_total")
   num get calculableTotal => throw _privateConstructorUsedError;
@@ -67,6 +71,7 @@ abstract class $CartItemModelCopyWith<$Res> {
   $Res call(
       {int id,
       @JsonKey(name: "owner_id") int ownerId,
+      @JsonKey(name: "loyalty_points") int loyaltyPoints,
       @JsonKey(name: "thumbnail_image") String thumbnailImage,
       String name,
       String price,
@@ -74,6 +79,7 @@ abstract class $CartItemModelCopyWith<$Res> {
       int quantity,
       double rating,
       @JsonKey(name: "is_digital") bool isDigital,
+      @JsonKey(name: "has_special_loyalty_points") bool hasSpecialLoyaltyPoints,
       String total,
       @JsonKey(name: "calculable_total") num calculableTotal,
       @JsonKey(name: "currency_symbol") String currencySymbol,
@@ -101,6 +107,7 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
   $Res call({
     Object? id = null,
     Object? ownerId = null,
+    Object? loyaltyPoints = null,
     Object? thumbnailImage = null,
     Object? name = null,
     Object? price = null,
@@ -108,6 +115,7 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
     Object? quantity = null,
     Object? rating = null,
     Object? isDigital = null,
+    Object? hasSpecialLoyaltyPoints = null,
     Object? total = null,
     Object? calculableTotal = null,
     Object? currencySymbol = null,
@@ -127,6 +135,10 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
       ownerId: null == ownerId
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
+              as int,
+      loyaltyPoints: null == loyaltyPoints
+          ? _value.loyaltyPoints
+          : loyaltyPoints // ignore: cast_nullable_to_non_nullable
               as int,
       thumbnailImage: null == thumbnailImage
           ? _value.thumbnailImage
@@ -155,6 +167,10 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
       isDigital: null == isDigital
           ? _value.isDigital
           : isDigital // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasSpecialLoyaltyPoints: null == hasSpecialLoyaltyPoints
+          ? _value.hasSpecialLoyaltyPoints
+          : hasSpecialLoyaltyPoints // ignore: cast_nullable_to_non_nullable
               as bool,
       total: null == total
           ? _value.total
@@ -211,6 +227,7 @@ abstract class _$$_CartItemModelCopyWith<$Res>
   $Res call(
       {int id,
       @JsonKey(name: "owner_id") int ownerId,
+      @JsonKey(name: "loyalty_points") int loyaltyPoints,
       @JsonKey(name: "thumbnail_image") String thumbnailImage,
       String name,
       String price,
@@ -218,6 +235,7 @@ abstract class _$$_CartItemModelCopyWith<$Res>
       int quantity,
       double rating,
       @JsonKey(name: "is_digital") bool isDigital,
+      @JsonKey(name: "has_special_loyalty_points") bool hasSpecialLoyaltyPoints,
       String total,
       @JsonKey(name: "calculable_total") num calculableTotal,
       @JsonKey(name: "currency_symbol") String currencySymbol,
@@ -243,6 +261,7 @@ class __$$_CartItemModelCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? ownerId = null,
+    Object? loyaltyPoints = null,
     Object? thumbnailImage = null,
     Object? name = null,
     Object? price = null,
@@ -250,6 +269,7 @@ class __$$_CartItemModelCopyWithImpl<$Res>
     Object? quantity = null,
     Object? rating = null,
     Object? isDigital = null,
+    Object? hasSpecialLoyaltyPoints = null,
     Object? total = null,
     Object? calculableTotal = null,
     Object? currencySymbol = null,
@@ -269,6 +289,10 @@ class __$$_CartItemModelCopyWithImpl<$Res>
       ownerId: null == ownerId
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
+              as int,
+      loyaltyPoints: null == loyaltyPoints
+          ? _value.loyaltyPoints
+          : loyaltyPoints // ignore: cast_nullable_to_non_nullable
               as int,
       thumbnailImage: null == thumbnailImage
           ? _value.thumbnailImage
@@ -297,6 +321,10 @@ class __$$_CartItemModelCopyWithImpl<$Res>
       isDigital: null == isDigital
           ? _value.isDigital
           : isDigital // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasSpecialLoyaltyPoints: null == hasSpecialLoyaltyPoints
+          ? _value.hasSpecialLoyaltyPoints
+          : hasSpecialLoyaltyPoints // ignore: cast_nullable_to_non_nullable
               as bool,
       total: null == total
           ? _value.total
@@ -349,6 +377,7 @@ class _$_CartItemModel extends _CartItemModel {
   const _$_CartItemModel(
       {required this.id,
       @JsonKey(name: "owner_id") required this.ownerId,
+      @JsonKey(name: "loyalty_points") required this.loyaltyPoints,
       @JsonKey(name: "thumbnail_image") required this.thumbnailImage,
       required this.name,
       required this.price,
@@ -356,6 +385,8 @@ class _$_CartItemModel extends _CartItemModel {
       required this.quantity,
       required this.rating,
       @JsonKey(name: "is_digital") required this.isDigital,
+      @JsonKey(name: "has_special_loyalty_points")
+      required this.hasSpecialLoyaltyPoints,
       required this.total,
       @JsonKey(name: "calculable_total") required this.calculableTotal,
       @JsonKey(name: "currency_symbol") required this.currencySymbol,
@@ -377,6 +408,9 @@ class _$_CartItemModel extends _CartItemModel {
   @JsonKey(name: "owner_id")
   final int ownerId;
   @override
+  @JsonKey(name: "loyalty_points")
+  final int loyaltyPoints;
+  @override
   @JsonKey(name: "thumbnail_image")
   final String thumbnailImage;
   @override
@@ -392,6 +426,9 @@ class _$_CartItemModel extends _CartItemModel {
   @override
   @JsonKey(name: "is_digital")
   final bool isDigital;
+  @override
+  @JsonKey(name: "has_special_loyalty_points")
+  final bool hasSpecialLoyaltyPoints;
   @override
   final String total;
   @override
@@ -424,7 +461,7 @@ class _$_CartItemModel extends _CartItemModel {
 
   @override
   String toString() {
-    return 'CartItemModel(id: $id, ownerId: $ownerId, thumbnailImage: $thumbnailImage, name: $name, price: $price, tax: $tax, quantity: $quantity, rating: $rating, isDigital: $isDigital, total: $total, calculableTotal: $calculableTotal, currencySymbol: $currencySymbol, productId: $productId, minQty: $minQty, stockQty: $stockQty, isWishlist: $isWishlist, soldByType: $soldByType, soldBy: $soldBy, shopId: $shopId)';
+    return 'CartItemModel(id: $id, ownerId: $ownerId, loyaltyPoints: $loyaltyPoints, thumbnailImage: $thumbnailImage, name: $name, price: $price, tax: $tax, quantity: $quantity, rating: $rating, isDigital: $isDigital, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, total: $total, calculableTotal: $calculableTotal, currencySymbol: $currencySymbol, productId: $productId, minQty: $minQty, stockQty: $stockQty, isWishlist: $isWishlist, soldByType: $soldByType, soldBy: $soldBy, shopId: $shopId)';
   }
 
   @override
@@ -434,6 +471,8 @@ class _$_CartItemModel extends _CartItemModel {
             other is _$_CartItemModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
+            (identical(other.loyaltyPoints, loyaltyPoints) ||
+                other.loyaltyPoints == loyaltyPoints) &&
             (identical(other.thumbnailImage, thumbnailImage) ||
                 other.thumbnailImage == thumbnailImage) &&
             (identical(other.name, name) || other.name == name) &&
@@ -444,6 +483,9 @@ class _$_CartItemModel extends _CartItemModel {
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.isDigital, isDigital) ||
                 other.isDigital == isDigital) &&
+            (identical(
+                    other.hasSpecialLoyaltyPoints, hasSpecialLoyaltyPoints) ||
+                other.hasSpecialLoyaltyPoints == hasSpecialLoyaltyPoints) &&
             (identical(other.total, total) || other.total == total) &&
             (identical(other.calculableTotal, calculableTotal) ||
                 other.calculableTotal == calculableTotal) &&
@@ -468,6 +510,7 @@ class _$_CartItemModel extends _CartItemModel {
         runtimeType,
         id,
         ownerId,
+        loyaltyPoints,
         thumbnailImage,
         name,
         price,
@@ -475,6 +518,7 @@ class _$_CartItemModel extends _CartItemModel {
         quantity,
         rating,
         isDigital,
+        hasSpecialLoyaltyPoints,
         total,
         calculableTotal,
         currencySymbol,
@@ -505,6 +549,7 @@ abstract class _CartItemModel extends CartItemModel {
   const factory _CartItemModel(
       {required final int id,
       @JsonKey(name: "owner_id") required final int ownerId,
+      @JsonKey(name: "loyalty_points") required final int loyaltyPoints,
       @JsonKey(name: "thumbnail_image") required final String thumbnailImage,
       required final String name,
       required final String price,
@@ -512,6 +557,8 @@ abstract class _CartItemModel extends CartItemModel {
       required final int quantity,
       required final double rating,
       @JsonKey(name: "is_digital") required final bool isDigital,
+      @JsonKey(name: "has_special_loyalty_points")
+      required final bool hasSpecialLoyaltyPoints,
       required final String total,
       @JsonKey(name: "calculable_total") required final num calculableTotal,
       @JsonKey(name: "currency_symbol") required final String currencySymbol,
@@ -533,6 +580,9 @@ abstract class _CartItemModel extends CartItemModel {
   @JsonKey(name: "owner_id")
   int get ownerId;
   @override
+  @JsonKey(name: "loyalty_points")
+  int get loyaltyPoints;
+  @override
   @JsonKey(name: "thumbnail_image")
   String get thumbnailImage;
   @override
@@ -548,6 +598,9 @@ abstract class _CartItemModel extends CartItemModel {
   @override
   @JsonKey(name: "is_digital")
   bool get isDigital;
+  @override
+  @JsonKey(name: "has_special_loyalty_points")
+  bool get hasSpecialLoyaltyPoints;
   @override
   String get total;
   @override

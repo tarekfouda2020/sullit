@@ -19,6 +19,8 @@ import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_add_to_cart_attributes.dart';
 
+import '../../../base/presentation/manager/count_cubit/count_cubit.dart';
+
 class BuildAddToCartDialog extends StatefulWidget {
   final Product product;
   final void Function()? afterAddToCart;
@@ -243,12 +245,14 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
 
   Future<void> _buildAddProductToCart(
       BuildContext context, GenericState<Product?> state) {
+    var existCount = context.read<CountCubit>().state.cartCount;
     return getIt<CartHelper>().addProductToCart(
       context,
       state.data!.minQty!,
       state.data!.variant?.id,
       onAddCartFunc: () {
         Navigator.pop(context);
+        getIt<CartHelper>().updateCartCount(context, state.data!.minQty! + existCount);
         widget.afterAddToCart?.call();
       },
     );
