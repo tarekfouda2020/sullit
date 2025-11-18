@@ -23,6 +23,7 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary> with _$Shipping
     @JsonKey(name: "coupon_code") String? couponCode,
     @JsonKey(name: "coupon_applied") bool? couponApplied,
     @JsonKey(name: "total_items") required int totalItems,
+    @JsonKey(name: "bag_count") required int bagsCount,
     @JsonKey(name: "minimum_order_amount_status") required bool minimumOrderAmountStatus,
     @JsonKey(name: "minimum_order_amount_msg") required String minimumOrderAmountMsg,
     @JsonKey(name: "minimum_order_amount") required double minimumOrderAmountAmount,
@@ -75,6 +76,7 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary> with _$Shipping
       vatFeeAmount: vatFeeAmount,
       vatPercentage: vatPercentage,
       environmentFees: environmentFees,
+      bagsCount: bagsCount,
     );
   }
 }

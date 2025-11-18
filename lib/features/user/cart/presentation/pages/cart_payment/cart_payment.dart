@@ -37,7 +37,7 @@ class _CartPaymentState extends State<CartPayment> {
                   const BuildCartStepper(current: 4),
                   Flexible(
                     child: ListView(
-                      cacheExtent: 999,
+                      cacheExtent: 9999,
                       padding: Dimens.paddingHorizontal15PX,
                       children: [
                         Gaps.vGap16,
@@ -68,7 +68,7 @@ class _CartPaymentState extends State<CartPayment> {
                        ),
                         Gaps.vGap25,
                         Center(
-                          child: Text("Thank you for your Order!",
+                          child: Text(tr("thank_you_for_order"),
                           style: AppTextStyle.s18_w500(color: context.colors.black),
                           ),
                         ),

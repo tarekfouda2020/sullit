@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
@@ -63,7 +63,7 @@ class _BezaatPointsSummaryWidgetState extends State<BezatPointsSummaryWidget> {
                   spacing: 10,
                   children: [
                     SvgPicture.asset(Res.loyaltyIcon,width: 25, height: 25,),
-                    Text("Bezat Points summary",
+                    Text(tr("bezat_points_summary"),
                       style: AppTextStyle.s18_w500(color: context.colors.primary),
                     )
                   ],
@@ -71,17 +71,16 @@ class _BezaatPointsSummaryWidgetState extends State<BezatPointsSummaryWidget> {
                   Gaps.vGap10,
                   if (widget.redeemedValue > 0)
                     _buildPointsItem(
-                      title: "Points Redeemed",
+                      title: tr("points_redeemed"),
                       points: widget.redeemedPoints,
                       showRedeemedValue: true,
                     ),
                 _buildPointsItem(
-                  title: "Points Earned on this order",
+                  title: tr("points_earned_on_this_order"),
                   points: widget.earnedPoints,
                 ),
-
                 _buildPointsItem(
-                  title: "New Bezat Points Balance",
+                  title: tr("new_bezat_points_balance"),
                   points: state.data!.points + widget.earnedPoints,
                 ),
               ],
@@ -126,7 +125,7 @@ class _BezaatPointsSummaryWidgetState extends State<BezatPointsSummaryWidget> {
                   style: AppTextStyle.s14_w500(color: context.colors.black),
                 ),
                 Text(
-                  "Points",
+                  tr("points"),
                   style: AppTextStyle.s14_w400(color: context.colors.black),
                 ),
                 if (showRedeemedValue) _buildRedeemedValue(),
@@ -146,7 +145,7 @@ class _BezaatPointsSummaryWidgetState extends State<BezatPointsSummaryWidget> {
         Text("${widget.redeemedValue}",
             style: AppTextStyle.s15_w400(color: context.colors.black))
             .withDirhamSymbol(),
-        Text(" Value) ",
+        Text(" ${tr("value")}) ",
             style: AppTextStyle.s15_w400(color: context.colors.black)),
       ],
     );

@@ -643,7 +643,20 @@
   "totalVat": "Total vat",
   "new_bezat_balance": "New Bezat Balance",
   "bezat_points_redeemed": "Bezat points redeemed",
-  "grand_total": "Grand Total ( Amount Charged )"
+  "grand_total": "Grand Total ( Amount Charged )",
+  "thank_you_for_order": "Thank you for your order!",
+  "bezat_points_summary": "Bezat Points Summary",
+  "points_redeemed": "Points Redeemed",
+  "points_earned_on_this_order": "Points Earned on this Order",
+  "new_bezat_points_balance": "New Bezat Points Balance",
+  "points": "Points",
+  "value": "Value",
+  "delivery_instructions": "Delivery Instructions",
+  "optional": " ( optional )",
+  "no_instructions": "No instructions..!",
+  "notes_for_driver": "Notes for driver ( optional )",
+  "bags": "Bags",
+  "write_notes_here": "Write notes here"
 
 
 

@@ -11,8 +11,8 @@ class DeliveryInstructionsWidget extends StatelessWidget {
       children: [
         Row(
           children: [
-            const CartPaymentSectionTitleWidget(title: 'Delivery Instructions',),
-            Text(" ( optional )",
+             CartPaymentSectionTitleWidget(title: tr("delivery_instructions"),),
+            Text( tr("optional"),
             style: AppTextStyle.s12_w400(color: context.colors.black),
             )
           ],
