@@ -23,7 +23,7 @@ class AllowReplacementWidget extends StatelessWidget {
               Expanded(
                 child: Text(
                   // tr("allowReplacement"),
-                  "Allow Items Replacement",
+                  tr("allow_items_replacement"),
                   style: AppTextStyle.s16_w500(color: context.colors.bloodyRed),
                 ),
               ),
@@ -35,7 +35,7 @@ class AllowReplacementWidget extends StatelessWidget {
 
             ],
           ),
-          Text("We do our best to ensure all items are in stock. However, in the rare case an item is unavailable at the time of picking your order, we want to get you what you need as quickly as possible",
+          Text(tr("replacement_info"),
           style: AppTextStyle.s11_w500(color: context.colors.black).copyWith(
             height: 1.3
           ),

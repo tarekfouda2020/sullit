@@ -18,13 +18,13 @@ class RequestReplaceSheetWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
               BottomSheetHeaderWidget(
-               title: "Confirmation",
+               title: tr("confirmation"),
                onClose: () => controller.refuseReplacement(context),
              ),
             Gaps.vGap26,
             SvgPicture.asset(Res.confirmationAlertIcon),
             Gaps.vGap26,
-            Text("Please replace any out-of-stock items with a similar product of equal or smaller value. I trust your judgment!",
+            Text(tr("replace_out_of_stock"),
             textAlign: TextAlign.center,
             style: AppTextStyle.s18_w700(color: context.colors.black).copyWith(
               height: 1.3
@@ -35,14 +35,14 @@ class RequestReplaceSheetWidget extends StatelessWidget {
               spacing: 9,
               children: [
                 Expanded(
-                  child: DefaultButton(title: "Yes Replace",
+                  child: DefaultButton(title:tr("yes_replace"),
                   margin: EdgeInsets.zero,
                   color: context.colors.mainGreen,
                     onTap: () => controller.confirmReplacement(context),
                   ),
                 ),
                 Expanded(
-                  child: DefaultButton(title: "No",
+                  child: DefaultButton(title: tr("no"),
                   color: context.colors.deepGray,
                     margin: EdgeInsets.zero,
                     onTap: () => controller.refuseReplacement(context),
