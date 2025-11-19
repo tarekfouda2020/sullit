@@ -37,12 +37,7 @@ class BuildCartStepper extends StatelessWidget {
                 return Row(
                   children: [
                     GestureDetector(
-                      onTap: () {
-                      if(current > index && current != 1 && current!= stepsIconWidget(context).length){
-                        int pops = current - index;
-                        getIt<Utilities>().popManyTimes(context, pops-1);
-                      }
-                      },
+                      onTap: () => _onTap(index, context),
                       child: Container(
                         width: 50,
                         height: 50,
@@ -93,6 +88,13 @@ class BuildCartStepper extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _onTap(int index, BuildContext context) {
+      if(current > index && current != 1 && current!= stepsIconWidget(context).length){
+      int pops = current - index;
+      getIt<Utilities>().popManyTimes(context, pops-1);
+    }
   }
 
 
