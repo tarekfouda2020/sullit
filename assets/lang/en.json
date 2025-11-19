@@ -634,7 +634,7 @@
   "checkout": "check out",
   "countryLocation": "Please select location inside UAE",
   "locationPermissionRequired": "Location permission is required. Please enable it in app settings to continue.",
-  "allowReplacement": "Would you like to allow product replacements if any items become unavailable during processing?",
+  "allowReplacement": "Allowing product replacements if any items become unavailable during processing",
   "delivery_time_alert": "Due to time is beyond 10pm, Delivery will be available the following morning.",
   "un_support_delivery_point": "Please select a pickup point for unsupported delivery or change your location.",
   "service_fees": "Service Fee",

@@ -59,6 +59,7 @@ class _CartPaymentState extends State<CartPayment> {
                         ),
                         Gaps.vGap20,
                         AllowReplacementWidget(controller: controller),
+                        Gaps.vGap13,
                         BuildConditions(controller: controller),
                         Gaps.vGap20,
                         BezatPointsSummaryWidget(

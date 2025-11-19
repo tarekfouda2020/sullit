@@ -7,24 +7,39 @@ class AllowReplacementWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsetsDirectional.only(start: 18,top: 10,end: 24,bottom: 10),
-      decoration: CustomDecoration(myBoxShadow: const [], boxBorder: Border.all(color: context.colors.borderColor)),
-      child: Row(
+      padding: const EdgeInsetsDirectional.only(start: 16,top: 15,end: 16,bottom: 9),
+      decoration: CustomDecoration(
+        myBoxShadow: const [],
+        thisColor: context.colors.lightPrimary,
+        boxBorder: Border.all(color: context.colors.lightPrimary),
+      ),
+      child: Column(
+        spacing: 8,
         children: [
-          Expanded(
-            child: Text(
-              tr("allowReplacement"),
-              style: AppTextStyle.s12_w500(color: context.colors.black).copyWith(
-                height: 1.3
+          Row(
+            children: [
+              SvgPicture.asset(Res.redWarningIcon),
+              Gaps.hGap7,
+              Expanded(
+                child: Text(
+                  // tr("allowReplacement"),
+                  "Allow Items Replacement",
+                  style: AppTextStyle.s16_w500(color: context.colors.bloodyRed),
+                ),
               ),
-            ),
-          ),
-          Gaps.hGap5,
-          SwitchButtonWidget(
-            switchBloc: controller.allowReplacementCubit,
-            onToggle: (value) => controller.allowReplacementCubit.onUpdateData(!controller.allowReplacementCubit.state.data),
-          )
+              Gaps.hGap5,
+              SwitchButtonWidget(
+                switchBloc: controller.allowReplacementCubit,
+                onToggle: (value) => controller.allowReplacementCubit.onUpdateData(!controller.allowReplacementCubit.state.data),
+              )
 
+            ],
+          ),
+          Text("We do our best to ensure all items are in stock. However, in the rare case an item is unavailable at the time of picking your order, we want to get you what you need as quickly as possible",
+          style: AppTextStyle.s11_w500(color: context.colors.black).copyWith(
+            height: 1.3
+          ),
+          )
         ],
       ),
     );
