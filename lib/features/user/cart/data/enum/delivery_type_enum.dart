@@ -1,15 +1,13 @@
 enum DeliveryTypeEnum {
 
-  delivery,
-  pickUp;
+  delivery, // => 0
+  pickUp; // => 1
 
   String getEnumValue() {
   switch (this) {
     case DeliveryTypeEnum.delivery:
       return "DELIVERY";
     case DeliveryTypeEnum.pickUp:
-      return "LOCAL_PICKUP";
-    default:
       return "LOCAL_PICKUP";
   }
 }
@@ -24,6 +22,12 @@ enum DeliveryTypeEnum {
         return "LOCAL_PICKUP";
     }
   }
+
+
+  bool get isDelivery => this == delivery;
+
+  bool get isPickUp => this == pickUp;
+
 
 }
 
