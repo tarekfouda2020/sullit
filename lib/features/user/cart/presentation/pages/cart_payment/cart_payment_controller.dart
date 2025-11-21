@@ -106,12 +106,7 @@ class CartPaymentController {
     if (conditionsCubit.state.data) {
       // _checkPayMethodSel();
       if (isWalletSelectedAndBalanceEnough()) {
-        if(allowReplacementCubit.state.data){
-          await showReplacementAlertSheet(context);
-          submitToCreateOrder();
-        }else{
-          submitToCreateOrder();
-        }
+        submitToCreateOrder();
       }
     } else {
       CustomToast.showSimpleToast(
@@ -477,9 +472,7 @@ class CartPaymentController {
   }
 
 
-
   bool get _isExistMinimumAmount => shippingBloc.state.data?.summary.minimumOrderAmountStatus == true;
-
 
 
   void selectDriverTip(DriverTipsModel model){
@@ -555,6 +548,16 @@ class CartPaymentController {
     model.isSelect = !model.isSelect;
     instructionsCubit.onUpdateData(instructionsCubit.state.data);
   }
+
+
+  void switchReplacementAccept(BuildContext context,bool newValue){
+    allowReplacementCubit.onUpdateData(newValue);
+    if(newValue){
+      showReplacementAlertSheet(context);
+    }
+
+  }
+
 
 
 }

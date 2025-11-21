@@ -19,7 +19,8 @@ class RequestReplaceSheetWidget extends StatelessWidget {
           children: [
               BottomSheetHeaderWidget(
                title: tr("confirmation"),
-               onClose: () => controller.refuseReplacement(context),
+               // onClose: () => controller.refuseReplacement(context),
+                showCloseIcon: false,
              ),
             Gaps.vGap26,
             SvgPicture.asset(Res.confirmationAlertIcon),

@@ -73,10 +73,19 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
               Row(
                 children: [
                   Flexible(
-                    child: Text(
-                      state.data!.name!,
-                      style: AppTextStyle.s16_w500(color: context.colors.black)
-                          .copyWith(height: 1.3),
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: state.data!.name!,
+                            style: AppTextStyle.s16_w500(color: context.colors.black).copyWith(height: 1.3)
+                          ),
+                          TextSpan(
+                              text: " / ${state.data!.unit}",
+                            style: AppTextStyle.s16_w500(color: context.colors.textColor)
+                          ),
+                        ]
+                      ),
                     ),
                   ),
                 ],

@@ -22,7 +22,6 @@ class AllowReplacementWidget extends StatelessWidget {
               Gaps.hGap7,
               Expanded(
                 child: Text(
-                  // tr("allowReplacement"),
                   tr("allow_items_replacement"),
                   style: AppTextStyle.s16_w500(color: context.colors.bloodyRed),
                 ),
@@ -30,9 +29,8 @@ class AllowReplacementWidget extends StatelessWidget {
               Gaps.hGap5,
               SwitchButtonWidget(
                 switchBloc: controller.allowReplacementCubit,
-                onToggle: (value) => controller.allowReplacementCubit.onUpdateData(!controller.allowReplacementCubit.state.data),
+                onToggle: (value) => controller.switchReplacementAccept(context,value),
               )
-
             ],
           ),
           Text(tr("replacement_info"),
