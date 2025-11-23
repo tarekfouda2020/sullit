@@ -661,7 +661,9 @@
   "replace_out_of_stock": "Please replace any out-of-stock items with a similar product of equal or smaller value. I trust your judgment!",
   "yes_replace": "Yes Replace",
   "no": "No",
+  "email_phone": "E-mail / Phone",
   "allow_items_replacement": "Allow Items Replacement",
+  "add_email_to_change_password": "Please add your email to change your password",
   "replacement_info": "We do our best to ensure all items are in stock. However, in the rare case an item is unavailable at the time of picking your order, we want to get you what you need as quickly as possible"
 
 

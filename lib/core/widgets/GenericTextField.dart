@@ -34,7 +34,7 @@ class GenericTextField extends StatelessWidget {
   final Function(String? value) validate;
   final FieldTypes fieldTypes;
   final Function()? onSubmit;
-  final Function(String)? onChange;
+  final Function(String value)? onChange;
   final List<TextInputFormatter>? inputFormatters;
  final AutovalidateMode? autoValidateMode;
  final String? fontFamily;

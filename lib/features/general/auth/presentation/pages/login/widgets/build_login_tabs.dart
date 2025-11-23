@@ -3,6 +3,8 @@ part of 'login_widgets_imports.dart';
 class BuildLoginTabs extends StatelessWidget {
   final String text;
   final bool selected;
+  final double? width;
+  final double? height;
   final void Function() onTap;
 
   const BuildLoginTabs({
@@ -10,6 +12,8 @@ class BuildLoginTabs extends StatelessWidget {
     required this.text,
     required this.selected,
     required this.onTap,
+     this.width,
+     this.height,
   });
 
   @override
@@ -17,8 +21,8 @@ class BuildLoginTabs extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: 109,
-        height: 34,
+        width: width ?? 109,
+        height: height ?? 34,
         alignment: Alignment.center,
         decoration: BoxDecoration(
             color: selected ? context.colors.primary : Colors.transparent,

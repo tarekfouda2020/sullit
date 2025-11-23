@@ -25,6 +25,7 @@ import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/
 import 'package:flutter_tdd/features/user/profile/domain/entities/profile_params.dart';
 import 'package:flutter_tdd/features/user/profile/domain/use_cases/get_profile.dart';
 import 'package:flutter_tdd/features/user/profile/domain/use_cases/set_edit_profile.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'widgets/profile_widgets_imports.dart';

@@ -1,3 +1,4 @@
+import 'package:country_phone_validator/country_phone_validator.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/models/video_provider.dart';
 import 'package:flutter_tdd/features/user/classified_products/presentaion/manager/helpers/video_url_validator.dart';
@@ -14,10 +15,33 @@ extension Validator on String {
     return null;
   }
 
-  String? validateCountryCode(String value, {String? message}) {
-    if (trim().isEmpty && value.isNotEmpty) {
-      return message ?? tr("fillField");
+  String? validateOnCode(String dialCode) {
+    // var phone = PhoneHelper.handlePhone(this);
+    bool isValid = CountryUtils.validatePhoneNumber(this, dialCode);
+    if (trim().isEmpty) {
+      return tr("fillField");
+    } else if (isValid == false) {
+      return tr("phoneValidation");
     }
+    return null;
+  }
+
+
+  String? isValidUAEPhone(String phone) {
+    String sanitized = phone.replaceAll(RegExp(r'\s+|-|\(|\)'), '');
+
+    final regex = RegExp(
+        r'^(?:\+971|0)?' // Optional +971 or 0
+        r'('
+        r'50|51|52|55|56|57|58|59' // Mobile prefixes
+        r'|2|3|4|6|7'               // Landline prefixes
+        r')'
+        r'\d{7,8}$'                 // 7 or 8 digits after prefix
+    );
+    if(!regex.hasMatch(sanitized)){
+      return tr("phoneValidation");
+    }
+
     return null;
   }
 

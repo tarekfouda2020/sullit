@@ -6,13 +6,21 @@ class LoginController {
   final GlobalKey<FormState> formKey = GlobalKey();
   final GlobalKey<CustomButtonState> btnKey = GlobalKey();
   final TextEditingController email = TextEditingController();
+  final TextEditingController phone = TextEditingController();
   final TextEditingController password = TextEditingController();
   final GenericBloc<bool> passwordCubit = GenericBloc(false);
   final GenericBloc<int> tabsCubit = GenericBloc(0);
+  final GenericBloc<bool?> refreshValidationCubit = GenericBloc(null);
+  final GenericBloc<int> switchEmailPhoneCubit = GenericBloc(0);
 
   List<String> tabs = [
     tr("login"),
     tr("register"),
+  ];
+
+  List<String> emailAndPhone = [
+    tr("email"),
+    tr("phone"),
   ];
 
   void onSubmit(BuildContext context) async {
@@ -69,8 +77,11 @@ class LoginController {
 
   Future<LoginParams> _setLoginParams() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
+    String emailOrPhone = switchEmailPhoneCubit.state.data==0
+        ? email.text
+        : phone.text;
     return LoginParams(
-      email: email.text,
+      emailOrPhone: emailOrPhone,
       password: password.text,
       macAddress: await getIt<GetDeviceId>().deviceId,
       deviceToken: await messaging.getToken(),
@@ -84,4 +95,12 @@ class LoginController {
     );
     return true;
   }
+
+
+  void switchEmailAndPhone(int value){
+    switchEmailPhoneCubit.onUpdateData(value);
+  }
+
+
+
 }
