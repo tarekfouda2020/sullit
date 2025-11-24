@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -9,13 +9,13 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
-import 'package:flutter_tdd/core/helpers/custom_html_widget.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
+import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/helpers/validator.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
@@ -42,9 +42,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/product_queries
 import 'package:flutter_tdd/features/user/products/domain/models/queries.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/reviews.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
-import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
-import 'package:flutter_tdd/features/user/products/presentation/widgets/build_compare_item.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
 import 'package:flutter_tdd/res.dart';
 
@@ -81,3 +79,5 @@ part 'cart_sheet_item_widget.dart';
 part 'cart_sheet_item_favorite_widget.dart';
 part 'change_qty_cart_sheet_item_widget.dart';
 part 'cart_sheet_item_shimmer_widget.dart';
+part 'product_gained_points_widget.dart';
+part 'points_promo_sheet_widget.dart';

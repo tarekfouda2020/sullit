@@ -107,6 +107,7 @@ class Res {
   static const String purchasedOrderIcon = "assets/images/purchased_order_icon.png";
   static const String newSplashImage = "assets/images/new_splash_image.png";
   static const String newAuthLogo = "assets/images/new_auth_logo.png";
+  static const String pointsPromoIcon = "assets/images/points_promo.svg";
 
   static const String billOffIcon = "assets/images/no_alarm.svg";
   static const String doorIcon = "assets/images/door_icon.svg";

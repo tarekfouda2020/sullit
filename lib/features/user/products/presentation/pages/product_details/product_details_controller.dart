@@ -8,8 +8,10 @@ class ProductDetailsController {
   final GenericBloc<int> isSelected = GenericBloc(0);
   final GenericBloc<int> selectedColorCubit = GenericBloc(0);
   final GenericBloc<bool> showAppBarTitleCubit = GenericBloc(false);
-  final GenericBloc<ProductDetailsDomainModel?> detailsCubit = GenericBloc(null);
-  final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
+  final GenericBloc<ProductDetailsDomainModel?> detailsCubit =
+      GenericBloc(null);
+  final GenericBloc<CartDomainModel> cartItemsBloc =
+      GenericBloc(CartDomainModel());
   final ScrollController scrollController = ScrollController();
   late bool isResale;
   late bool isFav;
@@ -19,7 +21,8 @@ class ProductDetailsController {
   List<String> selectedVariants = [];
   List<String> basicImage = [];
 
-  ProductDetailsController(BuildContext context,this.productId, this.isResale,this.isFav) {
+  ProductDetailsController(
+      BuildContext context, this.productId, this.isResale, this.isFav) {
     getProductDetails(context, productId, refresh: false);
     getProductDetails(context, productId);
     getCartItems(refresh: false);
@@ -63,7 +66,9 @@ class ProductDetailsController {
         e.hasValue = false;
       }
     }).toList();
-    var selectedList = detailsCubit.state.data!.product.choiceOptions!.map((e) => e.selectedAttribute).toList();
+    var selectedList = detailsCubit.state.data!.product.choiceOptions!
+        .map((e) => e.selectedAttribute)
+        .toList();
     selectedVariants = selectedList.expand((element) => element!).toList();
     if (selectedVariants.isNotEmpty) getVariantPrice(context);
   }
@@ -84,7 +89,8 @@ class ProductDetailsController {
     getIt<LoadingHelper>().dismissDialog();
   }
 
-  void onSelectAttributes(BuildContext context, List<ProductOptions> model, int index, int position) async {
+  void onSelectAttributes(BuildContext context, List<ProductOptions> model,
+      int index, int position) async {
     getIt<LoadingHelper>().showLoadingDialog();
     List<String> selected = [];
     var optionItem = model[index];
@@ -155,7 +161,9 @@ class ProductDetailsController {
         qtyCubit.onUpdateData(newQty);
         detailsCubit.onUpdateData(detailsCubit.state.data);
       } else {
-        CustomToast.showSimpleToast(msg: "${tr('only')} ${variantPrice.currentStock} available in stock");
+        CustomToast.showSimpleToast(
+            msg:
+                "${tr('only')} ${variantPrice.currentStock} available in stock");
         return;
       }
     } else {
@@ -230,11 +238,13 @@ class ProductDetailsController {
     );
   }
 
-  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem, GenericBloc<bool> loadingCubit) async {
+  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem,
+      GenericBloc<bool> loadingCubit) async {
     if (cartItem.quantity < cartItem.stockQty) {
       loadingCubit.onUpdateData(true);
       final newQty = cartItem.quantity + 1;
-      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+      final success =
+          await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
       if (success != null) {
         loadingCubit.onUpdateData(false);
         cartItem.quantity = newQty;
@@ -253,11 +263,13 @@ class ProductDetailsController {
     }
   }
 
-  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem, GenericBloc<bool> loadingCubit) async {
+  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem,
+      GenericBloc<bool> loadingCubit) async {
     if (cartItem.quantity > 1) {
       loadingCubit.onUpdateData(true);
       final newQty = cartItem.quantity - 1;
-      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+      final success =
+          await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
       if (success != null) {
         loadingCubit.onUpdateData(false);
         cartItem.quantity = newQty;
@@ -270,17 +282,20 @@ class ProductDetailsController {
     }
   }
 
-  Future<void> deleteItemFromCart(BuildContext context, CartItem cartItem) async {
+  Future<void> deleteItemFromCart(
+      BuildContext context, CartItem cartItem) async {
     var data = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
     if (data) {
-      var newSubTotal = cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
+      var newSubTotal =
+          cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
       cartItemsBloc.state.data.calculableTotal = newSubTotal;
       cartItemsBloc.state.data.items!.remove(cartItem);
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
       var countCubit = context.read<CountCubit>().state;
       var cartCount = countCubit.cartCount - 1;
       context.read<CountCubit>().onUpdateCount(cartCount, countCubit.discount);
-      CustomToast.showSimpleToast(msg: tr('itemDeleted'), type: ToastType.success);
+      CustomToast.showSimpleToast(
+          msg: tr('itemDeleted'), type: ToastType.success);
       if ((cartItemsBloc.state.data.items ?? <CartItem>[]).isEmpty) {
         // context.read<CountCubit>().onUpdateCount(0, countCubit.discount);
         Navigator.pop(context);
@@ -332,4 +347,23 @@ class ProductDetailsController {
       variants: selectedVariants.join(','),
     );
   }
+
+  void showPointsPromoSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      useRootNavigator: true,
+      backgroundColor: Colors.transparent,
+      enableDrag: false,
+      builder: (context) {
+        return PointsPromoSheetWidget(controller: this);
+      },
+    );
+  }
+
+
+  void routeToSubscriptions(BuildContext context){
+    Navigator.pop(context);
+    AutoRouter.of(context).push(const VipMemberShipsRoute());
+  }
+
 }

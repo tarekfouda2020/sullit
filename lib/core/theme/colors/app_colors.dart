@@ -120,4 +120,8 @@ abstract class AppColors {
   Color get lightGreen;
 
   Color get mainGreen;
+
+  Color get lightPink2;
+
+  Color get shadowPink;
 }
