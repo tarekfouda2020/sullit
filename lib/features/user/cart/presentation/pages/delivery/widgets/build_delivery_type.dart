@@ -39,7 +39,7 @@ class BuildDeliveryType extends StatelessWidget {
                   if(shipping.activeDelivery)
                   BuildDeliveryTypeItem(
                     title: tr("homeDelivery"),
-                    value: 0,
+                    value: DeliveryTypeEnum.delivery,
                     groupValue: shipping.deliveryType,
                     onChanged: (val) => controller.onChangeType(shipping, val!),
                   ),
@@ -48,14 +48,14 @@ class BuildDeliveryType extends StatelessWidget {
                   if(shipping.activePickup)
                   BuildDeliveryTypeItem(
                     title: tr('localPick'),
-                    value: 1,
+                    value: DeliveryTypeEnum.pickUp,
                     groupValue: shipping.deliveryType,
                     onChanged: (val) => controller.onChangeType(shipping, val!),
                   ),
                 ],
               ),
               Visibility(
-                visible: shipping.deliveryType == 1,
+                visible: shipping.deliveryType.isPickUp,
                 replacement: DeliveryDurationCoastWidget(shipping: shipping,),
                 child: DropdownTextField<Pickup>(
                   title: tr('selectNearestPoint'),
@@ -65,14 +65,7 @@ class BuildDeliveryType extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(vertical: Dimens.dp15),
                   validate: (value) => validateDropDown(context),
                   data: [
-                    Pickup(
-                      postalCode: shipping.pickup.postalCode,
-                      lang: shipping.pickup.lang,
-                      lat: shipping.pickup.lat,
-                      phone: shipping.pickup.phone,
-                      address: shipping.pickup.address,
-                      id: shipping.pickup.id,
-                    ),
+                    shipping.pickup,
                   ],
                   onChange: (model) => controller.onSelectPoint(model),
                 ),

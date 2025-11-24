@@ -700,5 +700,28 @@
   "totalVat": "মোট ভ্যাট",
   "new_bezat_balance": "নতুন বেজাত ব্যালেন্স",
   "bezat_points_redeemed": "বেজাত পয়েন্ট রিডিম করা হয়েছে",
-  "grand_total": "Grand Total ( Amount Charged )"
+  "grand_total": "Grand Total ( Amount Charged )",
+  "thank_you_for_order": "আপনার অর্ডারের জন্য ধন্যবাদ!",
+  "bezat_points_summary": "Bezat পয়েন্টস সারাংশ",
+  "points_redeemed": "রিডিম করা পয়েন্টস",
+  "points_earned_on_this_order": "এই অর্ডারে অর্জিত পয়েন্টস",
+  "new_bezat_points_balance": "নতুন Bezat পয়েন্টস ব্যালেন্স",
+  "points": "পয়েন্টস",
+  "value": "মান",
+  "delivery_instructions": "ডেলিভারি নির্দেশাবলী",
+  "optional": "( ঐচ্ছিক )",
+  "no_instructions": "কোনো নির্দেশ নেই..!",
+  "notes_for_driver": "ড্রাইভারের জন্য নোট ( ঐচ্ছিক )",
+  "bags": "ব্যাগ",
+  "write_notes_here": "এখানে নোট লিখুন",
+  "confirmation": "নিশ্চিতকরণ",
+  "replace_out_of_stock": "দয়া করে স্টকে না থাকা যেকোনো আইটেমকে একই বা কম মূল্যের অনুরূপ পণ্যে পরিবর্তন করুন। আমি আপনার সিদ্ধান্তের উপর ভরসা করি!",
+  "yes_replace": "হ্যাঁ, পরিবর্তন করুন",
+  "no": "না",
+  "email_phone": "ই-মেইল / ফোন",
+  "allow_items_replacement": "আইটেম পরিবর্তনের অনুমতি দিন",
+  "add_email_to_change_password": "পাসওয়ার্ড পরিবর্তন করতে দয়া করে আপনার ইমেইল যোগ করুন",
+  "replacement_info": "আমরা সর্বোচ্চ চেষ্টা করি যাতে সব পণ্য স্টকে থাকে। তবে, যদি অর্ডার পিক করার সময় কোনো আইটেম অনুপস্থিত থাকে, তাহলে আমরা যত দ্রুত সম্ভব উপযুক্ত বিকল্প দিতে চাই"
+
+
 }

@@ -2,9 +2,9 @@ part of 'delivery_widgets_imports.dart';
 
 class BuildDeliveryTypeItem extends StatelessWidget {
   final String title;
-  final int value;
-  final int groupValue;
-  final Function(int?) onChanged;
+  final DeliveryTypeEnum value;
+  final DeliveryTypeEnum groupValue;
+  final Function(DeliveryTypeEnum?) onChanged;
 
   const BuildDeliveryTypeItem(
       {super.key,

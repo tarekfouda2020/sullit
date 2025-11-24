@@ -46,6 +46,7 @@ class Res {
   static const String logoIcon = "assets/images/logo_icon.png";
   static const String dealOfDayBackGround = "assets/images/deal_of_day_bg.png";
   static const String redWarningIcon = "assets/images/red_warning_icon.svg";
+  static const String confirmationAlertIcon = "assets/images/confirmation_alert_icon.svg";
 
   static const String home = "assets/images/home.svg";
   static const String offers = "assets/images/offers.svg";

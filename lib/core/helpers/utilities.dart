@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -310,6 +311,21 @@ class Utilities {
 
     return formattedInteger;
   }
+
+
+
+
+  Future<void> popManyTimes(BuildContext context, int times) async {
+    for (int i = 0; i < times; i++) {
+      if (context.router.canPop()) {
+        context.router.pop();
+        await Future.delayed(const Duration(milliseconds: 150));
+      } else {
+        break;
+      }
+    }
+  }
+
 
 
 

@@ -21,7 +21,7 @@ class GiftCardsListWidget extends StatelessWidget {
           noItemsFoundIndicatorBuilder: (cxt) {
             return  Center(
               child: Text(
-                tr("noGiftCards"),
+                tr("comingSoon"),
                 style: AppTextStyle.s16_w700(color: context.colors.black),
               ),
             );

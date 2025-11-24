@@ -312,6 +312,14 @@ packages:
       relative: true
     source: path
     version: "2.0.1"
+  country_phone_validator:
+    dependency: "direct main"
+    description:
+      name: country_phone_validator
+      sha256: "669124932f77db39aafc08e71c9980e60d65a3bc5527a9e594695a647341225d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   cross_file:
     dependency: transitive
     description:

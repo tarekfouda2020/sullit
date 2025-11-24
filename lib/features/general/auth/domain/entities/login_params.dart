@@ -1,7 +1,7 @@
 
 
 class LoginParams {
-  String? email;
+  String? emailOrPhone;
   String? password;
   String? macAddress;
 
@@ -9,13 +9,13 @@ class LoginParams {
 
   LoginParams({
     this.password,
-    this.email,
+    this.emailOrPhone,
     this.macAddress,
     this.deviceToken,
   });
 
   Map<String, dynamic> toJson() => {
-        "email": email,
+        "email": emailOrPhone,
         "password": password,
         'mac_address': macAddress,
         "device_token": deviceToken,

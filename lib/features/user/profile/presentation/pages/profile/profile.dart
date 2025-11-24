@@ -38,7 +38,7 @@ class _ProfileState extends State<Profile>with WidgetsBindingObserver  {
               BuildProfileImage(controller: controller),
               BuildProfileFormFields(controller: controller),
               BuildProfileButton(controller: controller),
-              const ChangePasswordWidget(),
+               ChangePasswordWidget(controller: controller),
             ],
           ),
         ),

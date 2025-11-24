@@ -23,7 +23,7 @@ class DeliveryInstructionsCardWidget extends StatelessWidget {
                 replacement: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("No instructions..!",
+                    Text(tr("no_instructions"),
                     style: AppTextStyle.s15_w500(color: context.colors.primary),
                     )
                   ],
@@ -60,7 +60,7 @@ class DeliveryInstructionsCardWidget extends StatelessWidget {
           ),
           Gaps.vGap20,
           Text(
-            "Notes for driver ( optional )",
+            tr("notes_for_driver"),
             style: AppTextStyle.s14_w500(color: context.colors.black),
           ),
           Gaps.vGap9,
@@ -74,7 +74,7 @@ class DeliveryInstructionsCardWidget extends StatelessWidget {
             max: 4,
             fillColor: context.colors.customBackground,
             radius: Dimens.borderRadius20PX,
-            hint: "Write notes here",
+            hint: tr("write_notes_here"),
             hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
           )
         ],

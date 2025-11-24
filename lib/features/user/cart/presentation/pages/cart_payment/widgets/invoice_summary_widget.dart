@@ -37,7 +37,7 @@ class InvoiceSummaryWidget extends StatelessWidget {
                 onPressInfo: ()=> controller.showFeesSheet(context),
               ),
               BuildSummaryHeader(
-                title: tr("environmentFee"),
+                title: "${tr("environmentFee")} ( ${shippingSummary.bagsCount}x ${tr("bags")} )",
                 details: shippingSummary.environmentFees,
                 useDirhamPrice: true,
                 onPressInfo: ()=> controller.showEnvFeesSheet(context),

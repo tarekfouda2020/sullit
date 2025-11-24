@@ -98,6 +98,7 @@ class CartPaymentController {
     if(!_isExistMinimumAmount){
       CustomToast.showSimpleToast(
         msg: "${tr("addPurchases")}\n${shippingBloc.state.data?.summary.minimumOrderAmountAmount} ${tr("to_create_order")} ",
+        // msg: "${shippingBloc.state.data?.summary.minimumOrderAmountMsg}",
         type: ToastType.error,
       );
       return ;
@@ -105,26 +106,32 @@ class CartPaymentController {
     if (conditionsCubit.state.data) {
       // _checkPayMethodSel();
       if (isWalletSelectedAndBalanceEnough()) {
-        var params = _orderParams();
-        log("=======>>> allow replacement ${params.allowReplacement} <<<<<<<======");
-        var data = await CreateOrder().call(params);
-        if (data != null) {
-          if (data.transactionUrl != null) {
-            showOrderCreatedBottomSheet(data.transactionUrl!,context);
-          } else {
-            _confirmOrder(context, data);
-          }
-        } else {
-          var countCubit = context.read<CountCubit>().state;
-          context.read<CountCubit>().onUpdateCount(0, countCubit.discount);
-          AutoRouter.of(context).push(HomeRoute(index: 0));
-        }
+        submitToCreateOrder();
       }
     } else {
       CustomToast.showSimpleToast(
         msg: tr('acceptTerms'),
         type: ToastType.error,
       );
+    }
+  }
+
+
+
+  Future<void> submitToCreateOrder()async{
+    BuildContext ctx = getIt<GlobalContext>().context();
+    var params = _orderParams();
+    var data = await CreateOrder().call(params);
+    if (data != null) {
+      if (data.transactionUrl != null) {
+        showOrderCreatedBottomSheet(data.transactionUrl!,ctx);
+      } else {
+        _confirmOrder(ctx, data);
+      }
+    } else {
+      var countCubit = ctx.read<CountCubit>().state;
+      ctx.read<CountCubit>().onUpdateCount(0, countCubit.discount);
+      AutoRouter.of(ctx).push(HomeRoute(index: 0));
     }
   }
 
@@ -431,9 +438,41 @@ class CartPaymentController {
       },);
   }
 
+  void showReplacementInfoSheet(BuildContext context){
+     showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        // Service fee
+        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
+        return const ReplacementAlertSheet();
+      },);
+  }
+
+  Future<void> showReplacementAlertSheet(BuildContext context)async{
+    await showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      enableDrag: false,
+      isDismissible: false,
+      useRootNavigator: true,
+      builder: (context) {
+        return  RequestReplaceSheetWidget(controller: this);
+      },);
+  }
+
+
+  void refuseReplacement(BuildContext context){
+    allowReplacementCubit.onUpdateData(false);
+    Navigator.pop(context);
+  }
+
+  void confirmReplacement(BuildContext context){
+    Navigator.pop(context);
+  }
+
 
   bool get _isExistMinimumAmount => shippingBloc.state.data?.summary.minimumOrderAmountStatus == true;
-
 
 
   void selectDriverTip(DriverTipsModel model){
@@ -509,6 +548,16 @@ class CartPaymentController {
     model.isSelect = !model.isSelect;
     instructionsCubit.onUpdateData(instructionsCubit.state.data);
   }
+
+
+  void switchReplacementAccept(BuildContext context,bool newValue){
+    allowReplacementCubit.onUpdateData(newValue);
+    if(newValue){
+      showReplacementAlertSheet(context);
+    }
+
+  }
+
 
 
 }

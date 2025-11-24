@@ -634,7 +634,7 @@
   "checkout": "check out",
   "countryLocation": "Please select location inside UAE",
   "locationPermissionRequired": "Location permission is required. Please enable it in app settings to continue.",
-  "allowReplacement": "Would you like to allow product replacements if any items become unavailable during processing?",
+  "allowReplacement": "Allowing product replacements if any items become unavailable during processing",
   "delivery_time_alert": "Due to time is beyond 10pm, Delivery will be available the following morning.",
   "un_support_delivery_point": "Please select a pickup point for unsupported delivery or change your location.",
   "service_fees": "Service Fee",
@@ -643,7 +643,30 @@
   "totalVat": "Total vat",
   "new_bezat_balance": "New Bezat Balance",
   "bezat_points_redeemed": "Bezat points redeemed",
-  "grand_total": "Grand Total ( Amount Charged )"
+  "grand_total": "Grand Total ( Amount Charged )",
+  "thank_you_for_order": "Thank you for your order!",
+  "bezat_points_summary": "Bezat Points Summary",
+  "points_redeemed": "Points Redeemed",
+  "points_earned_on_this_order": "Points Earned on this Order",
+  "new_bezat_points_balance": "New Bezat Points Balance",
+  "points": "Points",
+  "value": "Value",
+  "delivery_instructions": "Delivery Instructions",
+  "optional": " ( optional )",
+  "no_instructions": "No instructions..!",
+  "notes_for_driver": "Notes for driver ( optional )",
+  "bags": "Bags",
+  "write_notes_here": "Write notes here",
+  "confirmation": "Confirmation",
+  "replace_out_of_stock": "Please replace any out-of-stock items with a similar product of equal or smaller value. I trust your judgment!",
+  "yes_replace": "Yes Replace",
+  "no": "No",
+  "email_phone": "E-mail / Phone",
+  "allow_items_replacement": "Allow Items Replacement",
+  "add_email_to_change_password": "Please add your email to change your password",
+  "replacement_info": "We do our best to ensure all items are in stock. However, in the rare case an item is unavailable at the time of picking your order, we want to get you what you need as quickly as possible"
+
+
 
 
 

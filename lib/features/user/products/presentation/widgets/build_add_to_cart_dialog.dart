@@ -13,11 +13,12 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
-import 'package:flutter_tdd/features/user/cart/presentation/pages/cart/cart_imports.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart/widgets/cart_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_add_to_cart_attributes.dart';
+
+import '../../../base/presentation/manager/count_cubit/count_cubit.dart';
 
 class BuildAddToCartDialog extends StatefulWidget {
   final Product product;
@@ -72,10 +73,19 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
               Row(
                 children: [
                   Flexible(
-                    child: Text(
-                      state.data!.name!,
-                      style: AppTextStyle.s16_w500(color: context.colors.black)
-                          .copyWith(height: 1.3),
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: state.data!.name!,
+                            style: AppTextStyle.s16_w500(color: context.colors.black).copyWith(height: 1.3)
+                          ),
+                          TextSpan(
+                              text: " / ${state.data!.unit}",
+                            style: AppTextStyle.s16_w500(color: context.colors.textColor)
+                          ),
+                        ]
+                      ),
                     ),
                   ),
                 ],
@@ -243,12 +253,14 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
 
   Future<void> _buildAddProductToCart(
       BuildContext context, GenericState<Product?> state) {
+    var existCount = context.read<CountCubit>().state.cartCount;
     return getIt<CartHelper>().addProductToCart(
       context,
       state.data!.minQty!,
       state.data!.variant?.id,
       onAddCartFunc: () {
         Navigator.pop(context);
+        getIt<CartHelper>().updateCartCount(context, state.data!.minQty! + existCount);
         widget.afterAddToCart?.call();
       },
     );

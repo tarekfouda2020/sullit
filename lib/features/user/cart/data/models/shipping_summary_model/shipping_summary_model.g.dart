@@ -18,6 +18,7 @@ _$_ShippingSummaryModel _$$_ShippingSummaryModelFromJson(
       couponCode: json['coupon_code'] as String?,
       couponApplied: json['coupon_applied'] as bool?,
       totalItems: (json['total_items'] as num).toInt(),
+      bagsCount: (json['bag_count'] as num).toInt(),
       minimumOrderAmountStatus: json['minimum_order_amount_status'] as bool,
       minimumOrderAmountMsg: json['minimum_order_amount_msg'] as String,
       minimumOrderAmountAmount:
@@ -53,6 +54,7 @@ Map<String, dynamic> _$$_ShippingSummaryModelToJson(
       'coupon_code': instance.couponCode,
       'coupon_applied': instance.couponApplied,
       'total_items': instance.totalItems,
+      'bag_count': instance.bagsCount,
       'minimum_order_amount_status': instance.minimumOrderAmountStatus,
       'minimum_order_amount_msg': instance.minimumOrderAmountMsg,
       'minimum_order_amount': instance.minimumOrderAmountAmount,

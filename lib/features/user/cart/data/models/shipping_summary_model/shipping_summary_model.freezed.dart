@@ -34,6 +34,8 @@ mixin _$ShippingSummaryModel {
   bool? get couponApplied => throw _privateConstructorUsedError;
   @JsonKey(name: "total_items")
   int get totalItems => throw _privateConstructorUsedError;
+  @JsonKey(name: "bag_count")
+  int get bagsCount => throw _privateConstructorUsedError;
   @JsonKey(name: "minimum_order_amount_status")
   bool get minimumOrderAmountStatus => throw _privateConstructorUsedError;
   @JsonKey(name: "minimum_order_amount_msg")
@@ -92,6 +94,7 @@ abstract class $ShippingSummaryModelCopyWith<$Res> {
       @JsonKey(name: "coupon_code") String? couponCode,
       @JsonKey(name: "coupon_applied") bool? couponApplied,
       @JsonKey(name: "total_items") int totalItems,
+      @JsonKey(name: "bag_count") int bagsCount,
       @JsonKey(name: "minimum_order_amount_status")
       bool minimumOrderAmountStatus,
       @JsonKey(name: "minimum_order_amount_msg") String minimumOrderAmountMsg,
@@ -136,6 +139,7 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
     Object? couponCode = freezed,
     Object? couponApplied = freezed,
     Object? totalItems = null,
+    Object? bagsCount = null,
     Object? minimumOrderAmountStatus = null,
     Object? minimumOrderAmountMsg = null,
     Object? minimumOrderAmountAmount = null,
@@ -191,6 +195,10 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
       totalItems: null == totalItems
           ? _value.totalItems
           : totalItems // ignore: cast_nullable_to_non_nullable
+              as int,
+      bagsCount: null == bagsCount
+          ? _value.bagsCount
+          : bagsCount // ignore: cast_nullable_to_non_nullable
               as int,
       minimumOrderAmountStatus: null == minimumOrderAmountStatus
           ? _value.minimumOrderAmountStatus
@@ -286,6 +294,7 @@ abstract class _$$_ShippingSummaryModelCopyWith<$Res>
       @JsonKey(name: "coupon_code") String? couponCode,
       @JsonKey(name: "coupon_applied") bool? couponApplied,
       @JsonKey(name: "total_items") int totalItems,
+      @JsonKey(name: "bag_count") int bagsCount,
       @JsonKey(name: "minimum_order_amount_status")
       bool minimumOrderAmountStatus,
       @JsonKey(name: "minimum_order_amount_msg") String minimumOrderAmountMsg,
@@ -327,6 +336,7 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
     Object? couponCode = freezed,
     Object? couponApplied = freezed,
     Object? totalItems = null,
+    Object? bagsCount = null,
     Object? minimumOrderAmountStatus = null,
     Object? minimumOrderAmountMsg = null,
     Object? minimumOrderAmountAmount = null,
@@ -382,6 +392,10 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
       totalItems: null == totalItems
           ? _value.totalItems
           : totalItems // ignore: cast_nullable_to_non_nullable
+              as int,
+      bagsCount: null == bagsCount
+          ? _value.bagsCount
+          : bagsCount // ignore: cast_nullable_to_non_nullable
               as int,
       minimumOrderAmountStatus: null == minimumOrderAmountStatus
           ? _value.minimumOrderAmountStatus
@@ -473,6 +487,7 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
       @JsonKey(name: "coupon_code") this.couponCode,
       @JsonKey(name: "coupon_applied") this.couponApplied,
       @JsonKey(name: "total_items") required this.totalItems,
+      @JsonKey(name: "bag_count") required this.bagsCount,
       @JsonKey(name: "minimum_order_amount_status")
       required this.minimumOrderAmountStatus,
       @JsonKey(name: "minimum_order_amount_msg")
@@ -526,6 +541,9 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
   @override
   @JsonKey(name: "total_items")
   final int totalItems;
+  @override
+  @JsonKey(name: "bag_count")
+  final int bagsCount;
   @override
   @JsonKey(name: "minimum_order_amount_status")
   final bool minimumOrderAmountStatus;
@@ -588,7 +606,7 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
 
   @override
   String toString() {
-    return 'ShippingSummaryModel(subtotal: $subtotal, tax: $tax, shipping: $shipping, couponDiscount: $couponDiscount, calTotal: $calTotal, total: $total, couponCode: $couponCode, couponApplied: $couponApplied, totalItems: $totalItems, minimumOrderAmountStatus: $minimumOrderAmountStatus, minimumOrderAmountMsg: $minimumOrderAmountMsg, minimumOrderAmountAmount: $minimumOrderAmountAmount, walletSystemActive: $walletSystemActive, walletBalance: $walletBalance, walletBalanceValue: $walletBalanceValue, avilablePayWithWallet: $avilablePayWithWallet, avilableCashOnDelivery: $avilableCashOnDelivery, serviceFee: $serviceFee, technologyFees: $technologyFees, vatPercentage: $vatPercentage, vatFeeAmount: $vatFeeAmount, environmentFees: $environmentFees, items: $items, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, expectedLoyaltyPoints: $expectedLoyaltyPoints)';
+    return 'ShippingSummaryModel(subtotal: $subtotal, tax: $tax, shipping: $shipping, couponDiscount: $couponDiscount, calTotal: $calTotal, total: $total, couponCode: $couponCode, couponApplied: $couponApplied, totalItems: $totalItems, bagsCount: $bagsCount, minimumOrderAmountStatus: $minimumOrderAmountStatus, minimumOrderAmountMsg: $minimumOrderAmountMsg, minimumOrderAmountAmount: $minimumOrderAmountAmount, walletSystemActive: $walletSystemActive, walletBalance: $walletBalance, walletBalanceValue: $walletBalanceValue, avilablePayWithWallet: $avilablePayWithWallet, avilableCashOnDelivery: $avilableCashOnDelivery, serviceFee: $serviceFee, technologyFees: $technologyFees, vatPercentage: $vatPercentage, vatFeeAmount: $vatFeeAmount, environmentFees: $environmentFees, items: $items, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, expectedLoyaltyPoints: $expectedLoyaltyPoints)';
   }
 
   @override
@@ -612,6 +630,8 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
                 other.couponApplied == couponApplied) &&
             (identical(other.totalItems, totalItems) ||
                 other.totalItems == totalItems) &&
+            (identical(other.bagsCount, bagsCount) ||
+                other.bagsCount == bagsCount) &&
             (identical(
                     other.minimumOrderAmountStatus, minimumOrderAmountStatus) ||
                 other.minimumOrderAmountStatus == minimumOrderAmountStatus) &&
@@ -664,6 +684,7 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
         couponCode,
         couponApplied,
         totalItems,
+        bagsCount,
         minimumOrderAmountStatus,
         minimumOrderAmountMsg,
         minimumOrderAmountAmount,
@@ -710,6 +731,7 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
       @JsonKey(name: "coupon_code") final String? couponCode,
       @JsonKey(name: "coupon_applied") final bool? couponApplied,
       @JsonKey(name: "total_items") required final int totalItems,
+      @JsonKey(name: "bag_count") required final int bagsCount,
       @JsonKey(name: "minimum_order_amount_status")
       required final bool minimumOrderAmountStatus,
       @JsonKey(name: "minimum_order_amount_msg")
@@ -764,6 +786,9 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
   @override
   @JsonKey(name: "total_items")
   int get totalItems;
+  @override
+  @JsonKey(name: "bag_count")
+  int get bagsCount;
   @override
   @JsonKey(name: "minimum_order_amount_status")
   bool get minimumOrderAmountStatus;

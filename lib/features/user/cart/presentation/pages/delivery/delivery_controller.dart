@@ -15,10 +15,10 @@ class DeliveryController {
     );
   }
 
-  void onChangeType(SellerShipping model, int value) {
+  void onChangeType(SellerShipping model, DeliveryTypeEnum value) {
     model.deliveryType = value;
     selectedItem = model;
-    if(value==0){
+    if(value.isDelivery){
       nearestPointModel = null;
     }
     sellerShippingBloc.onUpdateData(sellerShippingBloc.state.data);
@@ -41,16 +41,21 @@ class DeliveryController {
     }
   }
 
-  bool get deliveryInAll{
-    return sellerShippingBloc.state.data.every((element) => element.delivery!=null,);
+  bool get deliveryInOne{
+    return sellerShippingBloc.state.data.any((element) => element.delivery!=null,);
+  }
+
+  bool get isPointNotSelectInOne{
+    return sellerShippingBloc.state.data.any((element) => element.pickup.isSelected == false,);
   }
 
   void onPresContinue(BuildContext context){
-    var deliverySelectInAll = sellerShippingBloc.state.data.every((element) => element.deliveryType == 0,);
-    if(deliverySelectInAll && !deliveryInAll){
+    bool deliverySelectInOne = sellerShippingBloc.state.data.any((element) => element.deliveryType.isDelivery,);
+    bool pickUpSelectInOne = sellerShippingBloc.state.data.any((element) => element.deliveryType.isPickUp,);
+    if(deliverySelectInOne && !deliveryInOne){
       return  CustomToast.showSimpleToast(msg: tr("un_support_delivery_point"));
     }
-    if (selectedItem?.deliveryType == 1 && nearestPointModel == null) {
+    if (pickUpSelectInOne && isPointNotSelectInOne) {
       CustomToast.showSimpleToast(msg: tr("chooseNearestPickupPoint"));
       return;
     }
@@ -63,7 +68,7 @@ class DeliveryController {
   }
 
   Future<void> setCartStoreShipping(BuildContext context) async {
-    var params = _setCartStoreParams();
+    List<Map<dynamic, dynamic>> params = _setCartStoreParams();
     var data = await SetCartStoreShipping().call(params);
     if (data != null) {
       CustomToast.showSimpleToast(msg: tr('shippingAdded'),type: ToastType.success);
@@ -75,16 +80,17 @@ class DeliveryController {
     nearestPointModel = null;
     if (model != null) {
       nearestPointModel = model;
+      model.isSelected = true;
     }
   }
 
   List<Map> _setCartStoreParams() {
     var shipping = sellerShippingBloc.state.data;
-    var arrangedItems = shipping
+    List<Map<String, dynamic>> arrangedItems = shipping
         .map(
           (e) => {
         'owner_id':  e.ownerId,
-        'shipiing_type': e.deliveryType == 0
+        'shipiing_type': e.deliveryType.isDelivery
             ? DeliveryTypeEnum.delivery.getEnumValue()
             : DeliveryTypeEnum.pickUp.getEnumValue()
       },

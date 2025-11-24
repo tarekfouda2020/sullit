@@ -36,19 +36,7 @@ class BuildSummaryHeader extends StatelessWidget {
                 ),
                 Gaps.hGap10,
                 if(onPressInfo!=null)
-                GestureDetector(
-                  onTap: onPressInfo,
-                  child: Container(
-                    width: 15, height: 15,
-                    margin: const EdgeInsets.only(bottom: 5),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: context.colors.gray3,
-                      shape: BoxShape.circle
-                    ),
-                    child: Icon(Icons.question_mark,color: context.colors.gray,size: 10,),
-                  ),
-                )
+                QuestionMarkInfoWidget(onPressInfo: onPressInfo!)
               ],
             ),
           ),

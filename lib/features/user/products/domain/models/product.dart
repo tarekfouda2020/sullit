@@ -11,8 +11,10 @@ import 'package:flutter_tdd/features/user/products/domain/models/reviews.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/variant.dart';
 
+
 class Product extends BaseDomainModel {
   int? id;
+  int? loyaltyPoints;
   String? name;
   String? unit;
   String? thumbnailImage;
@@ -21,6 +23,8 @@ class Product extends BaseDomainModel {
   String? priceHighLowDiscount;
   String? priceHighLow;
   bool? hasDiscount;
+  bool? isFresh;
+  bool? hasSpecialLoyaltyPoints;
   String? discount;
   String? strokedPrice;
   String? mainPrice;
@@ -91,6 +95,9 @@ class Product extends BaseDomainModel {
       this.brandName,
       this.hasVipOffer,
       this.unit,
+      this.isFresh,
+      this.loyaltyPoints,
+      this.hasSpecialLoyaltyPoints,
       this.isAddedTCompare = false});
 
   Future<void> isAddedToCompare() async {

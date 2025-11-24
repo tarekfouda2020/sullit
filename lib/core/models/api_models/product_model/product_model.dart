@@ -59,6 +59,9 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
     @JsonKey(name: 'video_link') String? videoLink,
     @JsonKey(name: 'category_name') required String categoryName,
     @JsonKey(name: 'brand_name') required String brandName,
+    @JsonKey(name: 'is_fresh') required bool isFresh,
+    @JsonKey(name: 'has_special_loyalty_points') required bool hasSpecialLoyaltyPoints,
+    @JsonKey(name: 'loyalty_points') required int loyaltyPoints,
   }) = _ProductModel;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
@@ -105,6 +108,9 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
       variant: variant?.toDomainModel(),
       hasVipOffer: hasVipOffer,
       unit: unit,
+      loyaltyPoints: loyaltyPoints ,
+      hasSpecialLoyaltyPoints:hasSpecialLoyaltyPoints ,
+      isFresh: isFresh ,
     );
   }
 }

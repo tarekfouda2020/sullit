@@ -10,6 +10,7 @@ _$_CartItemModel _$$_CartItemModelFromJson(Map<String, dynamic> json) =>
     _$_CartItemModel(
       id: (json['id'] as num).toInt(),
       ownerId: (json['owner_id'] as num).toInt(),
+      loyaltyPoints: (json['loyalty_points'] as num).toInt(),
       thumbnailImage: json['thumbnail_image'] as String,
       name: json['name'] as String,
       price: json['price'] as String,
@@ -17,6 +18,7 @@ _$_CartItemModel _$$_CartItemModelFromJson(Map<String, dynamic> json) =>
       quantity: (json['quantity'] as num).toInt(),
       rating: (json['rating'] as num).toDouble(),
       isDigital: json['is_digital'] as bool,
+      hasSpecialLoyaltyPoints: json['has_special_loyalty_points'] as bool,
       total: json['total'] as String,
       calculableTotal: json['calculable_total'] as num,
       currencySymbol: json['currency_symbol'] as String,
@@ -33,6 +35,7 @@ Map<String, dynamic> _$$_CartItemModelToJson(_$_CartItemModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'owner_id': instance.ownerId,
+      'loyalty_points': instance.loyaltyPoints,
       'thumbnail_image': instance.thumbnailImage,
       'name': instance.name,
       'price': instance.price,
@@ -40,6 +43,7 @@ Map<String, dynamic> _$$_CartItemModelToJson(_$_CartItemModel instance) =>
       'quantity': instance.quantity,
       'rating': instance.rating,
       'is_digital': instance.isDigital,
+      'has_special_loyalty_points': instance.hasSpecialLoyaltyPoints,
       'total': instance.total,
       'calculable_total': instance.calculableTotal,
       'currency_symbol': instance.currencySymbol,

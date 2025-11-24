@@ -15,6 +15,7 @@ class CartItemModel extends BaseApiModel<CartItem> with _$CartItemModel {
   const factory CartItemModel({
     required int id,
     @JsonKey(name: "owner_id") required int ownerId,
+    @JsonKey(name: "loyalty_points") required int loyaltyPoints,
     @JsonKey(name: "thumbnail_image") required String thumbnailImage,
     required String name,
     required String price,
@@ -22,6 +23,7 @@ class CartItemModel extends BaseApiModel<CartItem> with _$CartItemModel {
     required int quantity,
     required double rating,
     @JsonKey(name: "is_digital") required bool isDigital,
+    @JsonKey(name: "has_special_loyalty_points") required bool hasSpecialLoyaltyPoints,
     required String total,
     @JsonKey(name: "calculable_total") required num calculableTotal,
     @JsonKey(name: "currency_symbol") required String currencySymbol,
@@ -58,6 +60,8 @@ class CartItemModel extends BaseApiModel<CartItem> with _$CartItemModel {
       soldByType: soldByType,
       shopId: shopId,
       rating: rating,
+      hasSpecialLoyaltyPoints: hasSpecialLoyaltyPoints,
+      loyaltyPoints: loyaltyPoints,
     );
   }
 }

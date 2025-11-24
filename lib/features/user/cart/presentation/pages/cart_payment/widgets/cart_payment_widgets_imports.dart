@@ -79,3 +79,6 @@ part 'instruction_item_widget.dart';
 part 'driver_tips_widget.dart';
 part 'nearest_vip_cart_widget.dart';
 part 'saved_amount_widget.dart';
+part 'question_mark_info_widget.dart';
+part 'replacement_alert_sheet.dart';
+part 'request_replace_sheet_widget.dart';

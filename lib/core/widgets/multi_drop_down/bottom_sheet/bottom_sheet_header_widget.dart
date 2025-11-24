@@ -7,7 +7,8 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 class BottomSheetHeaderWidget extends StatelessWidget {
   final String title;
   final void Function()? onClose;
-  const BottomSheetHeaderWidget({super.key, required this.title, this.onClose});
+  final bool showCloseIcon;
+  const BottomSheetHeaderWidget({super.key, required this.title, this.onClose,  this.showCloseIcon = true});
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +20,15 @@ class BottomSheetHeaderWidget extends StatelessWidget {
           title,
           style: AppTextStyle.s20_w700(color: context.colors.black),
         ),
-        GestureDetector(
-          onTap: onClose ?? () => Navigator.pop(context),
-          child: Icon(
-            Icons.close,
-            color: context.colors.black,
-            size: 22,
+        Visibility(
+          visible: showCloseIcon,
+          child: GestureDetector(
+            onTap: onClose ?? () => Navigator.pop(context),
+            child: Icon(
+              Icons.close,
+              color: context.colors.black,
+              size: 22,
+            ),
           ),
         ),
 

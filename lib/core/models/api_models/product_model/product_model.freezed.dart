@@ -82,6 +82,12 @@ mixin _$ProductModel {
   String get categoryName => throw _privateConstructorUsedError;
   @JsonKey(name: 'brand_name')
   String get brandName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_fresh')
+  bool get isFresh => throw _privateConstructorUsedError;
+  @JsonKey(name: 'has_special_loyalty_points')
+  bool get hasSpecialLoyaltyPoints => throw _privateConstructorUsedError;
+  @JsonKey(name: 'loyalty_points')
+  int get loyaltyPoints => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -133,7 +139,10 @@ abstract class $ProductModelCopyWith<$Res> {
       @JsonKey(name: 'video_provider') String? videoProvider,
       @JsonKey(name: 'video_link') String? videoLink,
       @JsonKey(name: 'category_name') String categoryName,
-      @JsonKey(name: 'brand_name') String brandName});
+      @JsonKey(name: 'brand_name') String brandName,
+      @JsonKey(name: 'is_fresh') bool isFresh,
+      @JsonKey(name: 'has_special_loyalty_points') bool hasSpecialLoyaltyPoints,
+      @JsonKey(name: 'loyalty_points') int loyaltyPoints});
 
   $VariantModelCopyWith<$Res>? get variant;
   $ShopModelCopyWith<$Res>? get shop;
@@ -192,6 +201,9 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? videoLink = freezed,
     Object? categoryName = null,
     Object? brandName = null,
+    Object? isFresh = null,
+    Object? hasSpecialLoyaltyPoints = null,
+    Object? loyaltyPoints = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -346,6 +358,18 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.brandName
           : brandName // ignore: cast_nullable_to_non_nullable
               as String,
+      isFresh: null == isFresh
+          ? _value.isFresh
+          : isFresh // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasSpecialLoyaltyPoints: null == hasSpecialLoyaltyPoints
+          ? _value.hasSpecialLoyaltyPoints
+          : hasSpecialLoyaltyPoints // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loyaltyPoints: null == loyaltyPoints
+          ? _value.loyaltyPoints
+          : loyaltyPoints // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
@@ -444,7 +468,10 @@ abstract class _$$_ProductModelCopyWith<$Res>
       @JsonKey(name: 'video_provider') String? videoProvider,
       @JsonKey(name: 'video_link') String? videoLink,
       @JsonKey(name: 'category_name') String categoryName,
-      @JsonKey(name: 'brand_name') String brandName});
+      @JsonKey(name: 'brand_name') String brandName,
+      @JsonKey(name: 'is_fresh') bool isFresh,
+      @JsonKey(name: 'has_special_loyalty_points') bool hasSpecialLoyaltyPoints,
+      @JsonKey(name: 'loyalty_points') int loyaltyPoints});
 
   @override
   $VariantModelCopyWith<$Res>? get variant;
@@ -505,6 +532,9 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? videoLink = freezed,
     Object? categoryName = null,
     Object? brandName = null,
+    Object? isFresh = null,
+    Object? hasSpecialLoyaltyPoints = null,
+    Object? loyaltyPoints = null,
   }) {
     return _then(_$_ProductModel(
       id: null == id
@@ -659,6 +689,18 @@ class __$$_ProductModelCopyWithImpl<$Res>
           ? _value.brandName
           : brandName // ignore: cast_nullable_to_non_nullable
               as String,
+      isFresh: null == isFresh
+          ? _value.isFresh
+          : isFresh // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasSpecialLoyaltyPoints: null == hasSpecialLoyaltyPoints
+          ? _value.hasSpecialLoyaltyPoints
+          : hasSpecialLoyaltyPoints // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loyaltyPoints: null == loyaltyPoints
+          ? _value.loyaltyPoints
+          : loyaltyPoints // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -707,7 +749,11 @@ class _$_ProductModel extends _ProductModel {
       @JsonKey(name: 'video_provider') this.videoProvider,
       @JsonKey(name: 'video_link') this.videoLink,
       @JsonKey(name: 'category_name') required this.categoryName,
-      @JsonKey(name: 'brand_name') required this.brandName})
+      @JsonKey(name: 'brand_name') required this.brandName,
+      @JsonKey(name: 'is_fresh') required this.isFresh,
+      @JsonKey(name: 'has_special_loyalty_points')
+      required this.hasSpecialLoyaltyPoints,
+      @JsonKey(name: 'loyalty_points') required this.loyaltyPoints})
       : _images = images,
         _choiceOptions = choiceOptions,
         _colors = colors,
@@ -851,10 +897,19 @@ class _$_ProductModel extends _ProductModel {
   @override
   @JsonKey(name: 'brand_name')
   final String brandName;
+  @override
+  @JsonKey(name: 'is_fresh')
+  final bool isFresh;
+  @override
+  @JsonKey(name: 'has_special_loyalty_points')
+  final bool hasSpecialLoyaltyPoints;
+  @override
+  @JsonKey(name: 'loyalty_points')
+  final int loyaltyPoints;
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, name: $name, unit: $unit, thumbnailImage: $thumbnailImage, images: $images, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, choiceOptions: $choiceOptions, colors: $colors, minQty: $minQty, currencySymbol: $currencySymbol, variant: $variant, tags: $tags, countReviews: $countReviews, soldByType: $soldByType, soldByName: $soldByName, hasVipOffer: $hasVipOffer, shop: $shop, reviews: $reviews, isResale: $isResale, resellerId: $resellerId, category: $category, strokedPrice: $strokedPrice, isDigital: $isDigital, isWishlist: $isWishlist, mainPrice: $mainPrice, rating: $rating, sales: $sales, sellerId: $sellerId, brand: $brand, description: $description, videoProvider: $videoProvider, videoLink: $videoLink, categoryName: $categoryName, brandName: $brandName)';
+    return 'ProductModel(id: $id, name: $name, unit: $unit, thumbnailImage: $thumbnailImage, images: $images, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, choiceOptions: $choiceOptions, colors: $colors, minQty: $minQty, currencySymbol: $currencySymbol, variant: $variant, tags: $tags, countReviews: $countReviews, soldByType: $soldByType, soldByName: $soldByName, hasVipOffer: $hasVipOffer, shop: $shop, reviews: $reviews, isResale: $isResale, resellerId: $resellerId, category: $category, strokedPrice: $strokedPrice, isDigital: $isDigital, isWishlist: $isWishlist, mainPrice: $mainPrice, rating: $rating, sales: $sales, sellerId: $sellerId, brand: $brand, description: $description, videoProvider: $videoProvider, videoLink: $videoLink, categoryName: $categoryName, brandName: $brandName, isFresh: $isFresh, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, loyaltyPoints: $loyaltyPoints)';
   }
 
   @override
@@ -924,7 +979,13 @@ class _$_ProductModel extends _ProductModel {
             (identical(other.categoryName, categoryName) ||
                 other.categoryName == categoryName) &&
             (identical(other.brandName, brandName) ||
-                other.brandName == brandName));
+                other.brandName == brandName) &&
+            (identical(other.isFresh, isFresh) || other.isFresh == isFresh) &&
+            (identical(
+                    other.hasSpecialLoyaltyPoints, hasSpecialLoyaltyPoints) ||
+                other.hasSpecialLoyaltyPoints == hasSpecialLoyaltyPoints) &&
+            (identical(other.loyaltyPoints, loyaltyPoints) ||
+                other.loyaltyPoints == loyaltyPoints));
   }
 
   @JsonKey(ignore: true)
@@ -968,7 +1029,10 @@ class _$_ProductModel extends _ProductModel {
         videoProvider,
         videoLink,
         categoryName,
-        brandName
+        brandName,
+        isFresh,
+        hasSpecialLoyaltyPoints,
+        loyaltyPoints
       ]);
 
   @JsonKey(ignore: true)
@@ -1026,8 +1090,12 @@ abstract class _ProductModel extends ProductModel {
       @JsonKey(name: 'video_provider') final String? videoProvider,
       @JsonKey(name: 'video_link') final String? videoLink,
       @JsonKey(name: 'category_name') required final String categoryName,
-      @JsonKey(name: 'brand_name')
-      required final String brandName}) = _$_ProductModel;
+      @JsonKey(name: 'brand_name') required final String brandName,
+      @JsonKey(name: 'is_fresh') required final bool isFresh,
+      @JsonKey(name: 'has_special_loyalty_points')
+      required final bool hasSpecialLoyaltyPoints,
+      @JsonKey(name: 'loyalty_points')
+      required final int loyaltyPoints}) = _$_ProductModel;
   const _ProductModel._() : super._();
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
@@ -1132,6 +1200,15 @@ abstract class _ProductModel extends ProductModel {
   @override
   @JsonKey(name: 'brand_name')
   String get brandName;
+  @override
+  @JsonKey(name: 'is_fresh')
+  bool get isFresh;
+  @override
+  @JsonKey(name: 'has_special_loyalty_points')
+  bool get hasSpecialLoyaltyPoints;
+  @override
+  @JsonKey(name: 'loyalty_points')
+  int get loyaltyPoints;
   @override
   @JsonKey(ignore: true)
   _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>

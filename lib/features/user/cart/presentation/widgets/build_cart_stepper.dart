@@ -4,9 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
-import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
+import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
@@ -34,16 +35,19 @@ class BuildCartStepper extends StatelessWidget {
                 var containerColor = current > index ? context.colors.primary : context.colors.gray4;
                 return Row(
                   children: [
-                    Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: containerColor,
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.transparent, width: 3),
+                    GestureDetector(
+                      onTap: () => _onTap(index, context),
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: containerColor,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.transparent, width: 3),
+                        ),
+                        alignment: Alignment.center, // center the icon
+                        child: stepsIconWidget(context)[index],
                       ),
-                      alignment: Alignment.center, // center the icon
-                      child: stepsIconWidget(context)[index],
                     ),
                   ],
                 );
@@ -83,6 +87,13 @@ class BuildCartStepper extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _onTap(int index, BuildContext context) {
+      if(current > index && current != 1 && current!= stepsIconWidget(context).length){
+      int pops = current - index;
+      getIt<Utilities>().popManyTimes(context, pops-1);
+    }
   }
 
 

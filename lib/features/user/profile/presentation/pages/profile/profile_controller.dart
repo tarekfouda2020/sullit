@@ -277,4 +277,18 @@ class ProfileController {
     getIt<AuthHelper>().onLogOut(context);
   }
 
+
+
+  void routeToChangePassword(BuildContext context){
+    String? email = context.read<UserCubit>().state.model?.email;
+    if(email == null || email == "") {
+      CustomToast.showSimpleToast(
+          msg: tr("add_email_to_change_password"),
+          type: ToastType.info,toastGravity: ToastGravity.BOTTOM
+      );
+      return ;
+    }
+    AutoRouter.of(context).push(const ChangePasswordRoute());
+  }
+
 }
