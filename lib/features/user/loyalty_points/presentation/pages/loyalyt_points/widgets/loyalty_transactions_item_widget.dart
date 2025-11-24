@@ -29,10 +29,10 @@ class LoyaltyTransactionItemWidget extends StatelessWidget {
                 style: AppTextStyle.s14_w600(color: model.transactionType().getColor(context)),
               ),
               const Spacer(),
-              Text(
-                "Expire in 10 oct 2025",
-                style: AppTextStyle.s12_w300(color: context.colors.blackTextColor),
-              ),
+              // Text(
+              //   "Expire in 10 oct 2025",
+              //   style: AppTextStyle.s12_w300(color: context.colors.blackTextColor),
+              // ),
             ],
           ),
           Gaps.vGap8,
