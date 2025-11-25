@@ -1,4 +1,3 @@
-import 'package:country_phone_validator/country_phone_validator.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/models/video_provider.dart';
 import 'package:flutter_tdd/features/user/classified_products/presentaion/manager/helpers/video_url_validator.dart';
@@ -15,16 +14,16 @@ extension Validator on String {
     return null;
   }
 
-  String? validateOnCode(String dialCode) {
-    // var phone = PhoneHelper.handlePhone(this);
-    bool isValid = CountryUtils.validatePhoneNumber(this, dialCode);
-    if (trim().isEmpty) {
-      return tr("fillField");
-    } else if (isValid == false) {
-      return tr("phoneValidation");
-    }
-    return null;
-  }
+  // String? validateOnCode(String dialCode) {
+  //   // var phone = PhoneHelper.handlePhone(this);
+  //   bool isValid = CountryUtils.validatePhoneNumber(this, dialCode);
+  //   if (trim().isEmpty) {
+  //     return tr("fillField");
+  //   } else if (isValid == false) {
+  //     return tr("phoneValidation");
+  //   }
+  //   return null;
+  // }
 
 
   String? isValidUAEPhone(String phone) {
