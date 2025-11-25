@@ -9,7 +9,7 @@ class ProductGainedPointsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     String lang = context.select<DeviceCubit, String>((value) => value.state.model.locale.languageCode);
     return Visibility(
-      visible: model.hasSpecialLoyaltyPoints== true,
+      visible: model.hasSpecialLoyaltyPoints == true,
       child: Padding(
         padding: Dimens.standardPadding,
         child: Stack(
@@ -73,7 +73,7 @@ class ProductGainedPointsWidget extends StatelessWidget {
                           ),
                           Gaps.hGap7,
                           Transform.rotate(
-                              angle: lang == LangCodeHelper.langEN ? pi : 0,
+                              angle: lang == LangCodeHelper.langAR || lang == LangCodeHelper.langUr ? 0 : pi,
                               child: SvgPicture.asset(Res.arrowBackIcon,
                                 width: 13,
                                 height: 13,
