@@ -73,7 +73,7 @@ class ProductGainedPointsWidget extends StatelessWidget {
                           ),
                           Gaps.hGap7,
                           Transform.rotate(
-                              angle: lang == LangCodeHelper.langAR || lang == LangCodeHelper.langUr ? 0 : pi,
+                              angle: lang == LangCodeHelper.langAR || lang == LangCodeHelper.langUR ? 0 : pi,
                               child: SvgPicture.asset(Res.arrowBackIcon,
                                 width: 13,
                                 height: 13,
@@ -92,7 +92,7 @@ class ProductGainedPointsWidget extends StatelessWidget {
                 alignment: AlignmentDirectional.center,
                 children: [
                   Transform.rotate(
-                    angle: lang == LangCodeHelper.langAR || lang == LangCodeHelper.langUr ? pi : 0,
+                    angle: lang == LangCodeHelper.langAR || lang == LangCodeHelper.langUR ? pi : 0,
                     child: SvgPicture.asset(Res.pointsPromoIcon,
                     colorFilter: ColorFilter.mode(context.colors.primary, BlendMode.srcIn),
                     ),
