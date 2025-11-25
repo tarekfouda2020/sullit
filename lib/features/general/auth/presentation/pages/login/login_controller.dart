@@ -19,8 +19,8 @@ class LoginController {
   ];
 
   List<String> emailAndPhone = [
-    tr("email"),
-    tr("phone"),
+    tr("emailAddress"),
+    tr("mobileNumber"),
   ];
 
   void onSubmit(BuildContext context) async {

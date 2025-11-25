@@ -35,7 +35,12 @@ class CountryPickerHelper {
         ),
       ),
       cornerRadius: 3,
-      forceArabic: lang == LangCodeHelper.langAR
+      forceArabic: lang == LangCodeHelper.langAR,
+      backgroundColor: context.colors.white,
+      textColor: context.colors.black,
+      chooseRegionText: tr("chooseRegion"),
+      getLocalizedCountryName: CountryLocalizationHelper.getLocalizedCountryName,
+      translate: (key) => tr(key),
     );
     
     return externalCountry;
@@ -64,6 +69,11 @@ class CountryPickerHelper {
         ),
       ),
       cornerRadius: 8,
+      backgroundColor: context.colors.white,
+      textColor: context.colors.black,
+      chooseRegionText: tr("chooseRegion"),
+      getLocalizedCountryName: CountryLocalizationHelper.getLocalizedCountryName,
+      translate: (key) => tr(key),
     );
     
     return externalCountry;

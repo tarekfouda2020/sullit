@@ -1,9 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter_tdd/core/package/country_calling_code_picker-2.0.1/lib/country_code_picker.dart';
+import 'package:country_calling_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tdd/core/localization/localization_methods.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 
 import 'country.dart';
 
@@ -11,8 +9,8 @@ import 'country.dart';
 Future<List<Country>> getCountries(BuildContext context) async {
   String rawData = await DefaultAssetBundle.of(context).loadString(
       'packages/country_calling_code_picker/raw/country_codes.json');
-  final parsed = json.decode(rawData.toString()).cast<Map<String, dynamic>>();
-  return parsed.map<Country>((json) => new Country.fromJson(json)).toList();
+  final parsed = json.decode(rawData.toString()) as List<dynamic>;
+  return parsed.map<Country>((json) => Country.fromJson(json as Map<String, dynamic>)).toList();
 }
 
 ///This function returns an user's current country. User's sim country code is matched with the ones in the list.
@@ -49,13 +47,22 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
     double cornerRadius = 35,
     bool focusSearchBox = false,
     double heightFactor = 0.9,
-    bool forceArabic = false}) {
+    bool forceArabic = false,
+    Color? backgroundColor,
+    Color? textColor,
+    String? chooseRegionText,
+    String Function(String countryCode, BuildContext context)? getLocalizedCountryName,
+    String Function(String key)? translate}) {
   assert(heightFactor <= 0.9 && heightFactor >= 0.4,
       'heightFactor must be between 0.4 and 0.9');
+  final bgColor = backgroundColor ?? Colors.white;
+  final txtColor = textColor ?? Colors.black;
+  final regionText = chooseRegionText ?? 'Choose region';
+  
   return showModalBottomSheet<Country?>(
       context: context,
       isScrollControlled: true,
-      backgroundColor: context.colors.white,
+      backgroundColor: bgColor,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(cornerRadius),
@@ -78,19 +85,19 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
                         bottom: 0,
                         child: TextButton(
                             child: Text('Cancel', style: TextStyle(
-                              color: context.colors.white
+                              color: txtColor
                             ),),
                             onPressed: () => Navigator.pop(context)),
                       ),
                   Center(
                     child: title ??
                         Text(
-                          tr("chooseRegion"),
+                          regionText,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.w500,
-                            color: context.colors.black
+                            color: txtColor
                           ),
                         ),
                   ),
@@ -101,6 +108,8 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
                 child: CountryPickerWidget(
                   onSelected: (country) => Navigator.of(context).pop(country),
                   forceArabic: forceArabic,
+                  getLocalizedCountryName: getLocalizedCountryName,
+                  translate: translate,
                 ),
               ),
             ],
@@ -155,6 +164,8 @@ Future<Country?> showCountryPickerDialog(
               child: CountryPickerWidget(
                 onSelected: (country) => Navigator.of(context).pop(country),
                 forceArabic: forceArabic,
+                getLocalizedCountryName: null,
+                translate: null,
               ),
             ),
         ],
