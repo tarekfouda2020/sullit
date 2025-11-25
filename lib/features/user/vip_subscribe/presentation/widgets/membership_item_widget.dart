@@ -32,7 +32,7 @@ class MembershipItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     String lang = context.read<DeviceCubit>().state.model.locale.languageCode;
     return GestureDetector(
-      onTap: !model.byInvite
+      onTap: model.byInvite == false
           ?onSelect
           :(){},
       child: Stack(
@@ -54,8 +54,8 @@ class MembershipItemWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if(model.byInvite)
-                Text(model.inviteLabel,
+                if(model.byInvite == true)
+                Text(model.inviteLabel ?? "",
                 style: AppTextStyle.s16_w500(color: context.colors.primary),
                 ),
                 Gaps.vGap10,
@@ -168,7 +168,7 @@ class MembershipItemWidget extends StatelessWidget {
               ],
             ),
           ),
-          if(model.byInvite)
+          if(model.byInvite == true)
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
