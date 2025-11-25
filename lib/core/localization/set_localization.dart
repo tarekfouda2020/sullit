@@ -34,7 +34,7 @@ class _GetLocalizationDelegate extends LocalizationsDelegate <SetLocalization> {
   @override
   bool isSupported(Locale locale) {
     // TODO: implement isSupported
-    return ['en', 'ar','bn'].contains(locale.languageCode);
+    return ['en', 'ar','bn', 'ur'].contains(locale.languageCode);
   }
 
   @override

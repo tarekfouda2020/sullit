@@ -12,40 +12,46 @@ class BuildLoginForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-               Expanded(
-                child: BuildInputLabel(
-                  label: tr("email_phone"),
-                ),
-              ),
-              SwitchPhoneEmailWidget(controller: controller),
-            ],
-          ),
           BlocBuilder<GenericBloc<int>, GenericState<int>>(
             bloc: controller.switchEmailPhoneCubit,
             builder: (context, state) {
               return AnimatedSwitcher(
                 duration: const Duration(milliseconds: 300),
-                child: state.data==1
-                    ?PhoneFiledWidget(controller: controller)
-                    :GenericTextField(
-                  hint: tr("enterYourEmailHint"),
-                  fillColor: context.colors.white,
-                  contentPadding: Dimens.paddingH12V16,
-                  enableBorderColor: context.colors.white,
-                  focusBorderColor: context.colors.borderColor,
-                  controller: controller.email,
-                  fieldTypes: FieldTypes.normal,
-                  type: TextInputType.emailAddress,
-                  action: TextInputAction.next,
-                  validate: (value) => value?.validateEmail(),
-                  margin: Dimens.headerTitlePadding,
-                  radius: Dimens.borderRadius40PX,
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: BuildInputLabel(
+                            label: state.data==1
+                                ?tr("mobile")
+                                :tr("email"),
+                          ),
+                        ),
+                      ],
+                    ),
+                    state.data == 1
+                        ? PhoneFiledWidget(controller: controller)
+                        : GenericTextField(
+                      hint: tr("enterYourEmailHint"),
+                      fillColor: context.colors.white,
+                      contentPadding: Dimens.paddingH12V16,
+                      enableBorderColor: context.colors.white,
+                      focusBorderColor: context.colors.borderColor,
+                      controller: controller.email,
+                      fieldTypes: FieldTypes.normal,
+                      type: TextInputType.emailAddress,
+                      action: TextInputAction.next,
+                      validate: (value) => value?.validateEmail(),
+                      margin: Dimens.headerTitlePadding,
+                      radius: Dimens.borderRadius40PX,
+                    ),
+                  ],
                 ),
               );
             },
           ),
+
           BuildInputLabel(
             label: tr("password"),
           ),

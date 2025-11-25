@@ -19,6 +19,8 @@ class VipSubscribeModel extends BaseApiModel<VipSubscribeDomainModel> with _$Vip
       required String price,
       required int days,
       required String description,
+        @JsonKey(name: "by_invite") required bool byInvite,
+        @JsonKey(name: "by_invite_label") required  String byInviteLabel,
         @JsonKey(name: "starts_at")  String? startsAt,
         @JsonKey(name: "expires_at")  String? expiresAt,
         @JsonKey(name: "expired_in_days")  int? expiredInDays,
@@ -42,7 +44,9 @@ class VipSubscribeModel extends BaseApiModel<VipSubscribeDomainModel> with _$Vip
       expiredInDays: expiredInDays,
       expiresAt: expiresAt,
       isExpired: isExpired,
-      startsAt: startsAt
+      startsAt: startsAt,
+      byInvite:byInvite ,
+      inviteLabel: byInviteLabel,
     );
   }
 }
