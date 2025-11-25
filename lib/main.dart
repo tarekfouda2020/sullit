@@ -12,6 +12,7 @@ import 'package:timezone/timezone.dart' as tz;
 
 
 import 'core/helpers/di.dart';
+import 'core/http/dio_helper/utils/http_tracking_interceptor.dart';
 import 'my_app.dart';
 
 
@@ -24,6 +25,7 @@ void main()async{
   await configureDependencies();
   getIt.registerSingleton(ComparedProductsDb());
   getIt<GlobalNotification>().setupNotification();
+  HttpTrackingInterceptor.instance.init();
   runApp(
     BlocProvider(
       create: (BuildContext context) => DeviceCubit(),

@@ -106,7 +106,8 @@ dependencies:
   #country_phone_validator: ^1.0.1
   # flutter_sim_country_code removed; using locale-based detection
   flutter_switch: ^0.3.2
-  http: ^0.13.6
+  http: ^1.1.0
+  flutter_alice: ^2.0.0
   sqflite: ^2.4.2
   watcher: ^1.1.0
 
@@ -133,6 +134,8 @@ dependency_overrides:
   sqflite_android: 2.4.1
   watcher: ^1.1.0
   frontend_server_client: ^4.0.0
+  # Ignore http version conflicts from dependencies
+  http: ^1.1.0
 
 flutter:
 

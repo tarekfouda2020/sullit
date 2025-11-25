@@ -1,5 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:firebase_analytics/observer.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -9,9 +10,11 @@ import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
+import 'package:flutter_tdd/core/http/dio_helper/utils/http_tracking_interceptor.dart';
 import 'package:flutter_tdd/core/theme/themes/app_dark_theme.dart';
 import 'package:flutter_tdd/core/theme/themes/app_light_theme.dart';
 import 'package:flutter_tdd/core/widgets/network_builder_view.dart';
+import 'package:flutter_tdd/core/widgets/alice_floating_button.dart';
 
 import 'core/helpers/firebase_analytics_helper.dart';
 import 'core/helpers/general_providers.dart';
@@ -75,9 +78,15 @@ class _MyAppState extends State<MyApp> {
                     ScreenUtil.init(ctx);
                     return MediaQuery(
                       data: _getMediaQueryData(ctx),
-                      child: NetworkLayerWidget(
-                      isNetworkConnected: state.model.isNetworkConnected,
-                      child: child!,
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          NetworkLayerWidget(
+                            isNetworkConnected: state.model.isNetworkConnected,
+                            child: child!,
+                          ),
+                          const AliceFloatingButton(),
+                        ],
                       ),
                     );
 
