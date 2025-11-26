@@ -150,12 +150,13 @@ class HomeMainController {
     }
   }
 
-  void routeToSearchPage(BuildContext context) {
-    AutoRouter.of(context).push(
+  Future<void> routeToSearchPage(BuildContext context) async{
+   await AutoRouter.of(context).push(
       SearchRoute(
         searchText: homeController.searchController.text,
       ),
     );
+    homeController.searchController.clear();
   }
 
   // used to get vip offers

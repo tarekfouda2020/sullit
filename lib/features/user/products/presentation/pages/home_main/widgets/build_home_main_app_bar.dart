@@ -32,16 +32,6 @@ class BuildHomeMainAppBar extends StatelessWidget {
                   hint: tr('searchCats'),
                   minHeight: 48,
                   minWidth: 20,
-                  suffixIcon: Padding(
-                    padding: const EdgeInsetsDirectional.only(end: 16),
-                    child: GestureDetector(
-                      onTap: () => homeMainController.scanProduct(context),
-                      child: Transform.scale(
-                        scale: 0.7,
-                        child: SvgPicture.asset(Res.qrScanIcon),
-                      ),
-                    ),
-                  ),
                   onSubmit: () => homeMainController.routeToSearchPage(context),
                   prefixIcon: GestureDetector(
                     onTap: () => homeMainController.routeToSearchPage(context),
@@ -50,6 +40,16 @@ class BuildHomeMainAppBar extends StatelessWidget {
                       child: Transform.scale(
                         scale: 0.9,
                         child: SvgPicture.asset(Res.searchIcon),
+                      ),
+                    ),
+                  ),
+                  suffixIcon: Padding(
+                    padding: const EdgeInsetsDirectional.only(end: 16),
+                    child: GestureDetector(
+                      onTap: () => homeMainController.scanProduct(context),
+                      child: Transform.scale(
+                        scale: 0.7,
+                        child: SvgPicture.asset(Res.qrScanIcon),
                       ),
                     ),
                   ),
