@@ -25,6 +25,7 @@ class SearchController {
     return SearchResultParams(
       searchTxt: searchController.text,
       refresh: refresh,
+      paginateParams: _paginateParams(refresh)
     );
   }
 
@@ -36,6 +37,15 @@ class SearchController {
       await getSearchResults();
       getIt<LoadingHelper>().dismissDialog();
     }
+  }
+
+
+  GenericPaginateParams _paginateParams(bool refresh){
+    return GenericPaginateParams(
+      refresh: refresh,
+      currentPage: 1,
+      pageSize: 12,
+    );
   }
 
 }

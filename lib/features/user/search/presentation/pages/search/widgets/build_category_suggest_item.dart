@@ -2,11 +2,16 @@ part of 'search_widgets_imports.dart';
 
 class BuildCategorySuggestItem extends StatelessWidget {
   final List<Category> categories;
+  final bool showSeeAll;
+  final SearchController controller;
+
   // final search.SearchController controller;
 
-  const BuildCategorySuggestItem({super.key, required this.categories,
-
-    // required this.controller
+  const BuildCategorySuggestItem({
+    super.key,
+    required this.categories,
+    required this.showSeeAll,
+    required this.controller,
   });
 
   @override
@@ -14,7 +19,12 @@ class BuildCategorySuggestItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        BuildSuggestHeader(title: tr('catSuggestions')),
+        BuildSuggestHeader(
+          title: tr('catSuggestions'),
+          showSeeAll: showSeeAll,
+          controller: controller,
+          isProduct: false,
+        ),
         Visibility(
           visible: categories.isEmpty,
           child: Container(
@@ -28,22 +38,20 @@ class BuildCategorySuggestItem extends StatelessWidget {
         ),
         ...List.generate(
           categories.length,
-              (index) =>
-              GestureDetector(
-                onTap: () =>
-                    AutoRouter.of(context).push(
-                      CategoryDetailsRoute(
-                        categoryModel: categories[index],
-                      ),
-                    ),
-                child: Padding(
-                  padding: Dimens.standardPadding,
-                  child: Text(
-                    categories[index].name.toUpperCase(),
-                    style: AppTextStyle.s15_w500(color: context.colors.black),
-                  ),
-                ),
+          (index) => GestureDetector(
+            onTap: () => AutoRouter.of(context).push(
+              CategoryDetailsRoute(
+                categoryModel: categories[index],
               ),
+            ),
+            child: Padding(
+              padding: Dimens.standardPadding,
+              child: Text(
+                categories[index].name.toUpperCase(),
+                style: AppTextStyle.s15_w500(color: context.colors.black),
+              ),
+            ),
+          ),
         )
       ],
     );
