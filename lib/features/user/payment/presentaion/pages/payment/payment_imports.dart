@@ -8,5 +8,7 @@ import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import 'widgets/payment_w_imports.dart';
+
 part 'payment.dart';
 part 'payment_controller.dart';

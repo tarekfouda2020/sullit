@@ -14,7 +14,8 @@ class ConfirmOrderSheetWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           BottomSheetHeaderWidget(title: tr("orderCreated"),
+           BottomSheetHeaderWidget(
+             title: tr("orderCreated"),
            onClose: () => controller.navigateToHome(context),
            ),
           Gaps.vGap12,
