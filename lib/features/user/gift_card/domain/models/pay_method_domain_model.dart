@@ -28,8 +28,8 @@ class PayMethodDomainModel extends BaseDomainModel {
   /// there is no cash option in giftCard payment
   PayTypeEnum getPaymentType() {
     switch (paymentTypeKey) {
-      case "tap":
-        return PayTypeEnum.tap;
+      case "paymob":
+        return PayTypeEnum.paymob;
       case "stripe":
         return PayTypeEnum.stripe;
       case "wallet":
@@ -37,7 +37,7 @@ class PayMethodDomainModel extends BaseDomainModel {
       case "cash_on_delivery":
         return PayTypeEnum.cash;
       default:
-        return PayTypeEnum.wallet;
+        return PayTypeEnum.paymob;
     }
   }
 
