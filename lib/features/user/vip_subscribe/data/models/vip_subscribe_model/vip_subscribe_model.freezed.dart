@@ -26,6 +26,10 @@ mixin _$VipSubscribeModel {
   String get price => throw _privateConstructorUsedError;
   int get days => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  @JsonKey(name: "by_invite")
+  bool? get byInvite => throw _privateConstructorUsedError;
+  @JsonKey(name: "by_invite_label")
+  String? get byInviteLabel => throw _privateConstructorUsedError;
   @JsonKey(name: "starts_at")
   String? get startsAt => throw _privateConstructorUsedError;
   @JsonKey(name: "expires_at")
@@ -56,6 +60,8 @@ abstract class $VipSubscribeModelCopyWith<$Res> {
       String price,
       int days,
       String description,
+      @JsonKey(name: "by_invite") bool? byInvite,
+      @JsonKey(name: "by_invite_label") String? byInviteLabel,
       @JsonKey(name: "starts_at") String? startsAt,
       @JsonKey(name: "expires_at") String? expiresAt,
       @JsonKey(name: "expired_in_days") int? expiredInDays,
@@ -84,6 +90,8 @@ class _$VipSubscribeModelCopyWithImpl<$Res, $Val extends VipSubscribeModel>
     Object? price = null,
     Object? days = null,
     Object? description = null,
+    Object? byInvite = freezed,
+    Object? byInviteLabel = freezed,
     Object? startsAt = freezed,
     Object? expiresAt = freezed,
     Object? expiredInDays = freezed,
@@ -115,6 +123,14 @@ class _$VipSubscribeModelCopyWithImpl<$Res, $Val extends VipSubscribeModel>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      byInvite: freezed == byInvite
+          ? _value.byInvite
+          : byInvite // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      byInviteLabel: freezed == byInviteLabel
+          ? _value.byInviteLabel
+          : byInviteLabel // ignore: cast_nullable_to_non_nullable
+              as String?,
       startsAt: freezed == startsAt
           ? _value.startsAt
           : startsAt // ignore: cast_nullable_to_non_nullable
@@ -166,6 +182,8 @@ abstract class _$$_VipSubscribeModelCopyWith<$Res>
       String price,
       int days,
       String description,
+      @JsonKey(name: "by_invite") bool? byInvite,
+      @JsonKey(name: "by_invite_label") String? byInviteLabel,
       @JsonKey(name: "starts_at") String? startsAt,
       @JsonKey(name: "expires_at") String? expiresAt,
       @JsonKey(name: "expired_in_days") int? expiredInDays,
@@ -193,6 +211,8 @@ class __$$_VipSubscribeModelCopyWithImpl<$Res>
     Object? price = null,
     Object? days = null,
     Object? description = null,
+    Object? byInvite = freezed,
+    Object? byInviteLabel = freezed,
     Object? startsAt = freezed,
     Object? expiresAt = freezed,
     Object? expiredInDays = freezed,
@@ -224,6 +244,14 @@ class __$$_VipSubscribeModelCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      byInvite: freezed == byInvite
+          ? _value.byInvite
+          : byInvite // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      byInviteLabel: freezed == byInviteLabel
+          ? _value.byInviteLabel
+          : byInviteLabel // ignore: cast_nullable_to_non_nullable
+              as String?,
       startsAt: freezed == startsAt
           ? _value.startsAt
           : startsAt // ignore: cast_nullable_to_non_nullable
@@ -259,6 +287,8 @@ class _$_VipSubscribeModel extends _VipSubscribeModel {
       required this.price,
       required this.days,
       required this.description,
+      @JsonKey(name: "by_invite") this.byInvite,
+      @JsonKey(name: "by_invite_label") this.byInviteLabel,
       @JsonKey(name: "starts_at") this.startsAt,
       @JsonKey(name: "expires_at") this.expiresAt,
       @JsonKey(name: "expired_in_days") this.expiredInDays,
@@ -282,6 +312,12 @@ class _$_VipSubscribeModel extends _VipSubscribeModel {
   @override
   final String description;
   @override
+  @JsonKey(name: "by_invite")
+  final bool? byInvite;
+  @override
+  @JsonKey(name: "by_invite_label")
+  final String? byInviteLabel;
+  @override
   @JsonKey(name: "starts_at")
   final String? startsAt;
   @override
@@ -299,7 +335,7 @@ class _$_VipSubscribeModel extends _VipSubscribeModel {
 
   @override
   String toString() {
-    return 'VipSubscribeModel(id: $id, name: $name, duration: $duration, price: $price, days: $days, description: $description, startsAt: $startsAt, expiresAt: $expiresAt, expiredInDays: $expiredInDays, isExpired: $isExpired, subscription: $subscription)';
+    return 'VipSubscribeModel(id: $id, name: $name, duration: $duration, price: $price, days: $days, description: $description, byInvite: $byInvite, byInviteLabel: $byInviteLabel, startsAt: $startsAt, expiresAt: $expiresAt, expiredInDays: $expiredInDays, isExpired: $isExpired, subscription: $subscription)';
   }
 
   @override
@@ -315,6 +351,10 @@ class _$_VipSubscribeModel extends _VipSubscribeModel {
             (identical(other.days, days) || other.days == days) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.byInvite, byInvite) ||
+                other.byInvite == byInvite) &&
+            (identical(other.byInviteLabel, byInviteLabel) ||
+                other.byInviteLabel == byInviteLabel) &&
             (identical(other.startsAt, startsAt) ||
                 other.startsAt == startsAt) &&
             (identical(other.expiresAt, expiresAt) ||
@@ -329,8 +369,21 @@ class _$_VipSubscribeModel extends _VipSubscribeModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, duration, price, days,
-      description, startsAt, expiresAt, expiredInDays, isExpired, subscription);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      duration,
+      price,
+      days,
+      description,
+      byInvite,
+      byInviteLabel,
+      startsAt,
+      expiresAt,
+      expiredInDays,
+      isExpired,
+      subscription);
 
   @JsonKey(ignore: true)
   @override
@@ -355,6 +408,8 @@ abstract class _VipSubscribeModel extends VipSubscribeModel {
       required final String price,
       required final int days,
       required final String description,
+      @JsonKey(name: "by_invite") final bool? byInvite,
+      @JsonKey(name: "by_invite_label") final String? byInviteLabel,
       @JsonKey(name: "starts_at") final String? startsAt,
       @JsonKey(name: "expires_at") final String? expiresAt,
       @JsonKey(name: "expired_in_days") final int? expiredInDays,
@@ -378,6 +433,12 @@ abstract class _VipSubscribeModel extends VipSubscribeModel {
   int get days;
   @override
   String get description;
+  @override
+  @JsonKey(name: "by_invite")
+  bool? get byInvite;
+  @override
+  @JsonKey(name: "by_invite_label")
+  String? get byInviteLabel;
   @override
   @JsonKey(name: "starts_at")
   String? get startsAt;

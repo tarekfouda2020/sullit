@@ -227,7 +227,6 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                     GestureDetector(
                       onTap: () async{
                        await _buildAddProductToCart(context, state);
-                        Navigator.pop(context);
                         AutoRouter.of(context).push(const CartRoute());
                       },
                       child: Container(

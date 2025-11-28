@@ -6,7 +6,6 @@ class AboutGiftCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String lang =  context.read<DeviceCubit>().state.model.locale.languageCode;
     return Container(
       decoration: CustomDecoration(
           radius: BorderRadius.circular(12), boxBorder: Border.all(color: context.colors.borderColor, width: 1)),
@@ -28,13 +27,12 @@ class AboutGiftCardWidget extends StatelessWidget {
                   fontSize: FontSize(15),
                   fontWeight: FontWeight.w400,
                   fontFamily: GoogleFonts.openSans().fontFamily,
-                  lineHeight: LineHeight(1.4),
-                  // سطر أقصر
+                  lineHeight: const LineHeight(1.4),
                   margin: Margins.zero,
                   padding: HtmlPaddings.zero,
                 ),
                 "p": Style(
-                  margin: Margins.symmetric(vertical: 2), // مسافة صغيرة بين الفقرات
+                  margin: Margins.symmetric(vertical: 2),
                   padding: HtmlPaddings.zero,
                   fontSize: FontSize(14),
                   fontWeight: FontWeight.w400,

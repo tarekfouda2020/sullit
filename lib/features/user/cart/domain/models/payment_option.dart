@@ -29,8 +29,8 @@ class PaymentOption extends BaseDomainModel {
 
   PayTypeEnum getPaymentType() {
     switch (paymentTypeKey) {
-      case "tap":
-        return PayTypeEnum.tap;
+      case "paymob":
+        return PayTypeEnum.paymob;
       case "stripe":
         return PayTypeEnum.stripe;
       case "wallet":
@@ -38,7 +38,7 @@ class PaymentOption extends BaseDomainModel {
       case "cash_on_delivery":
         return PayTypeEnum.cash;
       default:
-        return PayTypeEnum.wallet;
+        return PayTypeEnum.paymob;
     }
   }
 }

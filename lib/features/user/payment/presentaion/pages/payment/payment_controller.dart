@@ -38,7 +38,28 @@ class PaymentController {
     }
   }
 
-  void dispose() {
-    // No disposal needed for WebView widget
+
+
+  void showConfirmPopDialog(BuildContext context){
+   showDialog(context: context, builder: (context) {
+     return  ConfirmLeavingDialogWidget(controller: this);
+   },);
   }
+
+
+  void onPressStay(BuildContext context){
+    Navigator.pop(context);
+  }
+
+
+
+  void onPressLeave(BuildContext context){
+   AutoRouter.of(context).pushAndPopUntil(
+      HomeRoute(index: 0),
+     predicate: (route) => route.settings.name == HomeRoute.name,
+   );
+  }
+
+
+
 }

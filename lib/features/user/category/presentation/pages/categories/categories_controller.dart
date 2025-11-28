@@ -54,13 +54,13 @@ class CategoriesController {
   }
 
 
-
-  void routeToSearch(BuildContext context){
-    AutoRouter.of(context).push(
+  Future<void> routeToSearch(BuildContext context)async{
+   await AutoRouter.of(context).push(
       SearchRoute(
         searchText: searchController.text,
       ),
     );
+   searchController.clear();
   }
 
 

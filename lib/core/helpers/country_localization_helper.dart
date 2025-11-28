@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
-import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
