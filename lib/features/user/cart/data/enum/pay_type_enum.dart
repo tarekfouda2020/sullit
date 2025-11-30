@@ -1,5 +1,5 @@
 enum PayTypeEnum{
-  tap,
+  paymob,
   stripe,
   wallet,
   cash;

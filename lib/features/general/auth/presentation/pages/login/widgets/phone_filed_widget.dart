@@ -7,7 +7,8 @@ class PhoneFiledWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GenericTextField(
-      hint: tr("enterPhone"),
+      // hint: tr("enterPhone"),
+      hint: "0501234567",
       fillColor: context.colors.white,
       contentPadding: Dimens.paddingH12V16,
       enableBorderColor: context.colors.white,

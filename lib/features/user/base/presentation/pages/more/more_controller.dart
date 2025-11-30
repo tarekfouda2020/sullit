@@ -162,6 +162,9 @@ class MoreController {
     if (code == LangTypeEnum.bangladesh.getLangCode()) {
       code = LangCodeHelper.langBN;
     }
+    if (code == LangTypeEnum.urdu.getLangCode()) {
+      code = LangCodeHelper.langUR;
+    }
     // List<LangModel> languages = langRequester.data!;
     // for(var item in languages){
     //   item.isDefault = false;

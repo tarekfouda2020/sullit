@@ -91,6 +91,7 @@ class AddNewAddressController {
 
   void showCountryCode(BuildContext context) async {
     package.Country? data = await showCountryPickerSheet(
+      context,
       cancelWidget: PositionedDirectional(
         end: 10,
         child: InkWell(
@@ -109,8 +110,12 @@ class AddNewAddressController {
           ),
         ),
       ),
-      context,
       cornerRadius: 3,
+      backgroundColor: context.colors.white,
+      textColor: context.colors.black,
+      chooseRegionText: tr("chooseRegion"),
+      getLocalizedCountryName: CountryPickerHelper.getLocalizedCountryName,
+      translate: (key) => tr(key),
     );
     if (data != null) {
       countryCodeCubit.onUpdateData(data);

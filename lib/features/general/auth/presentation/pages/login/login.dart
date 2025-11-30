@@ -37,6 +37,14 @@ class _LoginState extends State<Login> {
                             BuildLoginTabsView(
                               controller: loginController,
                             ),
+                            if(state.data == 0)
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                SwitchPhoneEmailWidget(controller: loginController),
+                              ],
+                            ),
+                            Gaps.vGap32,
                             AnimatedSwitcher(
                               duration: const Duration(milliseconds: 300),
                               child: _body(state),

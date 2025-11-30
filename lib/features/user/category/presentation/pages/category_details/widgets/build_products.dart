@@ -10,7 +10,7 @@ class BuildProducts extends StatelessWidget {
     bool? haveVipDiscount = context.read<UserCubit>().state.model?.hasValidSubscription;
     return Flexible(
       child: CustomRefreshIndicatorWidget(
-        onRefresh: () => detailsController.getPopularProducts(1),
+        onRefresh: () async => await detailsController.getPopularProducts(1),
         child: PagedGridView<int, Product>(
           padding: Dimens.standardPadding,
           // padding: Dimens.paddingHorizontal15PX,
@@ -24,13 +24,12 @@ class BuildProducts extends StatelessWidget {
           showNewPageProgressIndicatorAsGridChild: false,
           showNewPageErrorIndicatorAsGridChild: true,
           builderDelegate: PagedChildBuilderDelegate<Product>(
-            firstPageProgressIndicatorBuilder: (_) =>
-                const BuildLoadingCatsProducts(),
+            firstPageProgressIndicatorBuilder: (_) => const BuildLoadingCatsProducts(),
             itemBuilder: (_, item, index) => BuildProductItem(
               productModel: item,
               onFavRefresh: () => detailsController.onFavChanged(item),
               showVipDiscount: haveVipDiscount,
-              onRefresh: () => detailsController.getPopularProducts(1),
+              onRefresh: () async => await detailsController.getPopularProducts(detailsController.currentPageKey),
             ),
             noItemsFoundIndicatorBuilder: (cxt) => const BuildEmptyDataView(),
           ),

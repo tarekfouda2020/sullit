@@ -99,13 +99,14 @@ class GiftCardDetailsController {
         if (value.transactionUrl != null) {
           getIt<LoadingHelper>().dismissDialog();
          var result = await AutoRouter.of(ctx).push(PaymentRoute(transactionUrl: value.transactionUrl!));
-          // if(result == true){
-          //   isMyGiftCard = true;
-          //   await  myGiftCardDetails();
-          // }
+          if(result == true){
+            CustomToast.showSnakeBar(tr("giftCardSubscribed"),type: ToastType.success);
+            AutoRouter.of(ctx).pop(true);
+          }
+        }else{
+          CustomToast.showSnakeBar(tr("giftCardSubscribed"),type: ToastType.success);
+          AutoRouter.of(ctx).pop(true);
         }
-        CustomToast.showSnakeBar(tr("giftCardSubscribed"),type: ToastType.success);
-        AutoRouter.of(ctx).pop(true);
       }
       getIt<LoadingHelper>().dismissDialog();
     });

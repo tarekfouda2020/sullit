@@ -114,13 +114,13 @@ void onPressRenew(BuildContext context){
   }
 
   Future<void> subscribeInMembership(BuildContext context) async {
-    String payMethod = payMethodsCubit.state.data.firstWhere((element) => element.isSelected).paymentTypeKey;
-    if(payMethod =="wallet" && isWalletBalanceEnough() == false ){
+    PayTypeEnum payMethod = payMethodsCubit.state.data.firstWhere((element) => element.isSelected).getPaymentType();
+    if(payMethod == PayTypeEnum.wallet && isWalletBalanceEnough() == false ){
       CustomToast.showSimpleToast(msg: tr('walletBalanceEmpty'), type: ToastType.error);
       return ;
     }
     removeSelectedPayMethod();
-    var params = _subscribeParams(payMethod);
+    var params = _subscribeParams(payMethod.name);
     Navigator.pop(context);
     getIt<LoadingHelper>().showLoadingDialog();
     await PayVipSubscription().call(params).then((value) async {
@@ -128,10 +128,11 @@ void onPressRenew(BuildContext context){
         BuildContext ctx = getIt<GlobalContext>().context();
         if (value.transactionUrl != null) {
           disableChangeButtonCubit.onUpdateData(true);
-         await routeToPaymentPage(ctx, value.transactionUrl!);
+          routeToPaymentPage(ctx, value.transactionUrl!);
+        }else{
+          await getCurrentSubscription();
+          CustomToast.showSimpleToast(msg: tr("subscribedSuccess"), type: ToastType.success);
         }
-        await getCurrentSubscription();
-        CustomToast.showSimpleToast(msg: tr("subscribedSuccess"), type: ToastType.success);
       }
       getIt<LoadingHelper>().dismissDialog();
     });
@@ -146,8 +147,12 @@ void onPressRenew(BuildContext context){
 
   Future<void> routeToPaymentPage(BuildContext context,String url)async{
     getIt<LoadingHelper>().dismissDialog();
-     await AutoRouter.of(context).push(PaymentRoute(transactionUrl: url));
+   var result =  await AutoRouter.of(context).push(PaymentRoute(transactionUrl: url));
     // AutoRouter.of(context).pop();
+    if(result == true){
+      await getCurrentSubscription();
+      CustomToast.showSimpleToast(msg: tr("subscribedSuccess"), type: ToastType.success);
+    }
   }
 
   bool isWalletBalanceEnough() {

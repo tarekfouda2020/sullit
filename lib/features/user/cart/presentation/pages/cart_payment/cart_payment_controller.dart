@@ -3,19 +3,21 @@
 part of 'cart_payment_imports.dart';
 
 class CartPaymentController {
+
+  final GlobalKey<FormState> couponFormKey = GlobalKey();
+  final GlobalKey<FormState> additionalFormKey = GlobalKey();
+  final GlobalKey<FormState> giftCardFormKey = GlobalKey();
+
+
   final TextEditingController coupon = TextEditingController();
   final TextEditingController additionalInfo = TextEditingController();
   final TextEditingController giftCardCode = TextEditingController();
-
   final TextEditingController driverTipCtr = TextEditingController();
   final TextEditingController driverNotesCtr = TextEditingController();
 
   final GenericBloc<Shipping?> shippingBloc = GenericBloc<Shipping?>(null);
   final GenericBloc<FessMechanismModel?> feesCubit = GenericBloc<FessMechanismModel?>(null);
   final GenericBloc<GiftCardApllieCartDomainModel?> giftCardBlocBloc = GenericBloc<GiftCardApllieCartDomainModel?>(null);
-  final GlobalKey<FormState> couponFormKey = GlobalKey();
-  final GlobalKey<FormState> additionalFormKey = GlobalKey();
-  final GlobalKey<FormState> giftCardFormKey = GlobalKey();
   final GenericBloc<int> paymentCubit = GenericBloc<int>(0);
   final GenericBloc<bool> conditionsCubit = GenericBloc<bool>(false);
   final GenericBloc<bool> isWalletSelected = GenericBloc<bool>(false);
@@ -23,8 +25,6 @@ class CartPaymentController {
   final GenericBloc<bool> allowReplacementCubit = GenericBloc<bool>(false);
   final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc = GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
   final GenericBloc<List<DeliveryInstructionModel>> instructionsCubit = GenericBloc<List<DeliveryInstructionModel>>([]);
-
-
   final GenericBloc<List<DriverTipsModel>> tipsListCubit = GenericBloc<List<DriverTipsModel>>([]);
 
   String? selectedPayment;
@@ -124,7 +124,9 @@ class CartPaymentController {
     var data = await CreateOrder().call(params);
     if (data != null) {
       if (data.transactionUrl != null) {
-        showOrderCreatedBottomSheet(data.transactionUrl!,ctx);
+        goToPay(data.transactionUrl!, ctx);
+       // showOrderCreatedBottomSheet(data.transactionUrl!,ctx);
+
       } else {
         _confirmOrder(ctx, data);
       }

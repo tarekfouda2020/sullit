@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
                   title: "MCOOP",
                   darkTheme: darkTheme,
                   theme: theme,
-                  supportedLocales: const [Locale('en', 'US'), Locale('ar', 'EG'),Locale('bn', 'BD')],
+                  supportedLocales: const [Locale('en', 'US'), Locale('ar', 'EG'),Locale('bn', 'BD'), Locale('ur', 'PK')],
                   localizationsDelegates: const [
                     SetLocalization.localizationsDelegate,
                     GlobalMaterialLocalizations.delegate,

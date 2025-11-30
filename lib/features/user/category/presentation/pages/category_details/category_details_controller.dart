@@ -14,6 +14,7 @@ class CategoryDetailsController {
   final PagingController<int, Product> pagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 12;
+  int currentPageKey = 1;
 
   BrandDomainModel? brandModel;
   List<BrandDomainModel> brands = [];
@@ -51,7 +52,7 @@ class CategoryDetailsController {
 
   Future<void> getSubCategories(BuildContext context, int id, {bool refresh = true}) async {
     currentCatId = id;
-    var params = _productsParams(1, refresh);
+    var params = productsParams(1, refresh);
     // print(">>>>>${params.toJson()}");
     var result = await GetSubCategories().call(params);
     subCategoriesCubit.onUpdateData(result);
@@ -107,7 +108,7 @@ class CategoryDetailsController {
 
   Future<void> getPopularProducts(int currentPage,
       {bool refresh = true}) async {
-    var params = _productsParams(currentPage, refresh);
+    var params = productsParams(currentPage, refresh);
     var data = await GetCategoryProducts().call(params);
     // print("--------${data.length}");
     final isLastPage = data.length < pageSize;
@@ -120,6 +121,7 @@ class CategoryDetailsController {
       final nextPageKey = currentPage + 1;
       pagingController.appendPage(data, nextPageKey);
     }
+    currentPageKey = currentPage;
   }
 
   // void onSelectSubCategory(
@@ -198,7 +200,7 @@ class CategoryDetailsController {
     specificationsCubit.onUpdateData(specifications);
   }
 
-  SearchProductsParams _productsParams(int page, bool refresh) {
+  SearchProductsParams productsParams(int page, bool refresh) {
     var specifications = specificationsCubit.state.data;
     var colors = specifications?.colors
         .where((element) => element.selected)

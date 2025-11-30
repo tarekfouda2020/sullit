@@ -16,22 +16,21 @@ class _PaymentState extends State<Payment> {
     controller.init(widget.transactionUrl, context);
   }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: DefaultAppBar(
-        title: tr('payment'),
-      ),
-      body: Padding(
-        padding: MediaQuery.of(context).viewInsets,
-        child: WebViewWidget(controller: controller.webController),
+    return PopScope(
+      // canPop: false,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: DefaultAppBar(
+          title: tr('payment'),
+          // onBack: () => controller.showConfirmPopDialog(context),
+        ),
+        body: Padding(
+          padding: MediaQuery.of(context).viewInsets,
+          child: WebViewWidget(controller: controller.webController),
+        ),
       ),
     );
   }
