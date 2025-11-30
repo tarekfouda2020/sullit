@@ -5,24 +5,39 @@ part of 'payment_imports.dart';
 class PaymentController {
   late final WebViewController webController;
 
+  int combinedOrderId = 0;
+
   void init(String initialUrl, BuildContext context) {
     webController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
-        NavigationDelegate(
-          onPageStarted: (url) {
-            handleUrlChange(context, url);
-          },
-        ),
+        _navigationDelegate(context),
       )
       ..loadRequest(Uri.parse(initialUrl));
   }
 
-  void handleUrlChange(BuildContext context, String url) {
+  NavigationDelegate _navigationDelegate(BuildContext context) {
+    if(Platform.isIOS){
+      return NavigationDelegate(
+        onNavigationRequest: (NavigationRequest request) {
+          handleUrlChange(context, request.url);
+          return NavigationDecision.navigate;
+        },
+      );
+    }else{
+      return NavigationDelegate(
+        onPageStarted: (url) {
+          handleUrlChange(context, url);
+        },
+      );
+    }
+  }
+
+  Future<void> handleUrlChange(BuildContext context, String url) async{
     if (url.contains("combined_order_id")) {
-      int id = int.parse(url.split('combined_order_id=').last);
+      combinedOrderId = int.parse(url.split('combined_order_id=').last);
       // AutoRouter.of(context).push(ConfirmationRoute(combinedId: id));
-      AutoRouter.of(context).push(CartConfirmBuyingRoute(combinedId: id));
+      AutoRouter.of(context).push(CartConfirmBuyingRoute(combinedId: combinedOrderId));
     } else if (url.contains('Fail')) {
       CustomToast.showSimpleToast(
         msg: tr("paymentFailed"),
@@ -30,11 +45,16 @@ class PaymentController {
       );
       AutoRouter.of(context).pop();
     } else if (url.contains('success')) {
+      if(Platform.isIOS){
+       await Future.delayed(const Duration(seconds: 3));
+      }
       CustomToast.showSimpleToast(
         msg: tr('paymentDone'),
         type: ToastType.success,
       );
-      AutoRouter.of(context).pop(true);
+      if(combinedOrderId == 0){
+        AutoRouter.of(context).pop(true);
+      }
     }
   }
 

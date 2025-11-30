@@ -50,9 +50,6 @@ class HomeMainController {
 
   void getHome(BuildContext context, {bool refresh = true}) async {
     var result = await GetHome().call(refresh);
-    context
-        .read<CountCubit>()
-        .onUpdateCount(result!.cartCount, result.discountRate);
     // result?.flashSales.add(FlashSale(id: 0, title: tr('coupons'), date: DateTime.now(), banner: ""));
     homeCubit.onUpdateData(result);
   }
