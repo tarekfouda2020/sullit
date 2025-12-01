@@ -130,12 +130,13 @@ class MembershipSubscribeController{
 
 
   Future<void> subscribeInMembership(BuildContext context) async {
-    PayTypeEnum payMethod = payMethodsCubit.state.data.firstWhere((element) => element.isSelected).getPaymentType();
+    var selectedPayMethod = payMethodsCubit.state.data.firstWhere((element) => element.isSelected);
+    PayTypeEnum payMethod = selectedPayMethod.getPaymentType();
     if(payMethod ==PayTypeEnum.wallet && isWalletBalanceEnough() == false ){
       CustomToast.showSimpleToast(msg: tr('walletBalanceEmpty'), type: ToastType.error);
       return ;
     }
-    var params = _subscribeParams(payMethod.name);
+    var params = _subscribeParams(selectedPayMethod.paymentTypeKey);
     Navigator.pop(context);
     Future.delayed(const Duration(milliseconds: 200));
     Navigator.pop(context);

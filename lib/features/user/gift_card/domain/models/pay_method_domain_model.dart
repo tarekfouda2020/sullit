@@ -30,8 +30,8 @@ class PayMethodDomainModel extends BaseDomainModel {
     switch (paymentTypeKey) {
       case "paymob":
         return PayTypeEnum.paymob;
-      case "stripe":
-        return PayTypeEnum.stripe;
+      case "telr":
+        return PayTypeEnum.telr;
       case "wallet":
         return PayTypeEnum.wallet;
       case "cash_on_delivery":
