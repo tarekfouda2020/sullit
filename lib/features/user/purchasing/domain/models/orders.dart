@@ -154,4 +154,10 @@ class Orders extends BaseDomainModel {
   }
 
   bool get isPaymentCash => orderPaymentType() == OrderPaymentType.cash;
+
+  bool get isPaymentOnline => orderPaymentType() != OrderPaymentType.cash && orderPaymentType() != OrderPaymentType.wallet;
+
+  bool get isPaid => paymentStatus;
+
+  bool get isDelivered => getTrackOrderStatus == TrackOrderEnum.delivered;
 }

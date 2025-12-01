@@ -1,13 +1,13 @@
 
 part of 'purchased_orders_imports.dart';
 
-class PurchasedOrdersController{
+class MyOrdersController{
 
   final PagingController<int, Orders> pagingController =
   PagingController(firstPageKey: 1);
   int pageSize = 12;
 
-  PurchasedOrdersController() {
+  MyOrdersController() {
     getPurchasingHistory(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
       getPurchasingHistory(pageKey);
@@ -22,10 +22,9 @@ class PurchasedOrdersController{
       pagingController.itemList = [];
     }
     if (isLastPage) {
-      data.removeWhere((element) => !element.paymentStatus);
+
       pagingController.appendLastPage(data);
     } else {
-      data.removeWhere((element) => !element.paymentStatus);
       final nextPageKey = page + 1;
       pagingController.appendPage(data, nextPageKey);
     }
@@ -46,5 +45,26 @@ class PurchasedOrdersController{
       pageSize: pageSize,
     );
   }
+
+
+
+  void cancelOrder(BuildContext context,Orders model) async {
+    getIt<LoadingHelper>().showLoadingDialog();
+    var result = await CancelOrder().call(model.id);
+    if (result.isNotEmpty) {
+      CustomToast.showSimpleToast(msg: result);
+      model.availableCancelOrder = false;
+    }
+    getIt<LoadingHelper>().dismissDialog();
+  }
+
+  void payOrder(BuildContext context,Orders model) async {
+
+  }
+
+  void reOrder(BuildContext context) async {
+
+  }
+
 
 }

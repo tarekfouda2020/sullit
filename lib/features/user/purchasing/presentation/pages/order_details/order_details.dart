@@ -57,13 +57,36 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                     onTap: () => controller.onPayOrder(context),
                   ),
                 ),
-                Visibility(
-                  visible: state.data!.availableCancelOrder,
-                  child: DefaultButton(
-                    title: tr('cancel'),
-                    onTap: () => controller.cancelOrder(context,widget.order),
-                  ),
+                Row(
+                  spacing: 10,
+                  children: [
+                    Visibility(
+                      visible: state.data!.isPaid == false && state.data!.isPaymentOnline,
+                      child: DefaultButton(
+                        title: "Pay",
+                        onTap: () => controller.payOrder(),
+                        margin: EdgeInsets.zero,
+                        height: Dimens.dp40,
+                        color: context.colors.green,
+                      ),
+                    ),
+                    Visibility(
+                      visible: state.data!.availableCancelOrder,
+                      child: DefaultButton(
+                        title: tr('cancel'),
+                        onTap: () => controller.cancelOrder(context,widget.order),
+                        margin: EdgeInsets.zero,
+                        color: context.colors.gray8,
+                        height: Dimens.dp40,
+                      ),
+                    ),
+                  ],
                 ),
+                if(state.data!.isDelivered)
+                  ReOrderButtonWidget(
+                    onPress: (){},
+                    bgColor: context.colors.primary,
+                  ),
                 Gaps.vGap20,
               ],
             ),

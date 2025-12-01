@@ -151,4 +151,7 @@ class AppLightColors extends AppColors {
 
   @override
   Color get mainGreen => const Color(0xff009900);
+
+  @override
+  Color get harvest => const Color(0xffBD8F03);
 }

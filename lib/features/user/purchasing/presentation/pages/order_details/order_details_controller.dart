@@ -152,7 +152,9 @@ class OrderDetailsPageController {
 
 
 
+  void payOrder(){
 
+  }
 
   GenericParams _params(int id,bool refresh){
     return GenericParams(id: id,refresh:refresh );

@@ -1,3 +1,7 @@
+import 'dart:ui';
+
+import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
+
 enum TrackOrderEnum{
 
 
@@ -27,6 +31,18 @@ enum TrackOrderEnum{
      case onTheWay: return 4;
      case delivered: return 5;
      case cancelled: return 5;
+   }
+ }
+
+
+ Color getOrderStatusColor(){
+   switch(this){
+     case placed: return AppColors.noContextInstance.harvest;
+     case confirmed: return AppColors.noContextInstance.green;
+     case pickedUp: return AppColors.noContextInstance.green;
+     case onTheWay: return AppColors.noContextInstance.green;
+     case delivered: return AppColors.noContextInstance.green;
+     case cancelled: return AppColors.noContextInstance.redAccent;
    }
  }
 

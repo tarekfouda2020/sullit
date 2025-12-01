@@ -889,7 +889,7 @@ class AppRouter extends _i100.RootStackRouter {
     PurchasedOrdersRoute.name: (routeData) {
       return _i100.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i76.PurchasedOrders(),
+        child: const _i76.MyOrders(),
         opaque: true,
       );
     },
@@ -3104,7 +3104,7 @@ class OrderDetailsPageRouteArgs {
 }
 
 /// generated route for
-/// [_i76.PurchasedOrders]
+/// [_i76.MyOrders]
 class PurchasedOrdersRoute extends _i100.PageRouteInfo<void> {
   const PurchasedOrdersRoute()
       : super(

@@ -8,13 +8,19 @@ class HomeController {
   late CurvedAnimation curve;
   final GenericBloc<bool> visibleSearch = GenericBloc(false);
   final TextEditingController searchController = TextEditingController();
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+
+  Orders? _firstUnPaidOrder;
+
   bool showToast = false;
   int index = 0;
   final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
   List<String> tabs = [Res.home, Res.category, "", Res.offers, Res.menuIcon];
 
-
+  HomeController(){
+    getPurchasingHistory();
+  }
 
   Future<void> getCartItems(BuildContext context,{bool refresh = true}) async {
     CartDomainModel result = await getIt<CartHelper>().getCartItems(refresh: refresh);
@@ -134,5 +140,32 @@ class HomeController {
   }
 
 
+  Future<void> getPurchasingHistory({bool refresh = true}) async {
+    BuildContext ctx = getIt<GlobalContext>().context();
+    GenericPaginateParams params = _historyParams(refresh);
+    List<Orders> data = await GetPurchasingHistory().call(params);
+    var unPaidOrder  = data.where((element) => element.isPaid == false);
+    if(unPaidOrder.isNotEmpty){
+      _firstUnPaidOrder = unPaidOrder.first;
+      showUnPaidOrderSheet(ctx);
+    }
+  }
+
+
+
+  void showUnPaidOrderSheet(BuildContext context){
+    showModalBottomSheet(context: context, builder: (context) {
+      return UnPaidOrderSheetWidget(order: _firstUnPaidOrder!, controller: this);
+    },);
+  }
+
+
+  GenericPaginateParams _historyParams( bool refresh) {
+    return GenericPaginateParams(
+      currentPage: 1,
+      refresh: refresh,
+      pageSize: 12,
+    );
+  }
 
 }

@@ -33,6 +33,7 @@ import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/get_order_
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/pay_order.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/send_review.dart';
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/widgets/order_details_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/purchasing/presentation/pages/purchased_orders/widgets/purchased_orders_widgets_imports.dart';
 
 part 'order_details.dart';
 part 'order_details_controller.dart';

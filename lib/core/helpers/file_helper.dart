@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -29,7 +30,7 @@ class FileHelper {
         directory = await getExternalStorageDirectory();
       }
     } catch (err, stack) {
-      print("Cannot get download folder path");
+      log("Cannot get download folder path");
       return "";
     }
     return directory?.path ?? "";

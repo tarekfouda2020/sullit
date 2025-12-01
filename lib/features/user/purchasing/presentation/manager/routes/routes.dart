@@ -14,6 +14,6 @@ const List<AutoRoute> purchasingRoute = [
   AdaptiveRoute(page: TrackOrder),
   AdaptiveRoute(page: RetrieveOrder),
   AdaptiveRoute(page: OrderDetailsPage),
-  AdaptiveRoute(page: PurchasedOrders),
+  AdaptiveRoute(page: MyOrders),
 
 ];
