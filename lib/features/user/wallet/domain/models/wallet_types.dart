@@ -8,6 +8,7 @@ class WalletTypes extends BaseDomainModel{
   String title;
   int offlinePaymentId;
   String details;
+  bool isSelected;
 
   WalletTypes({
     required this.paymentType,
@@ -17,5 +18,6 @@ class WalletTypes extends BaseDomainModel{
     required this.title,
     required this.offlinePaymentId,
     required this.details,
+     this.isSelected = false,
   });
 }

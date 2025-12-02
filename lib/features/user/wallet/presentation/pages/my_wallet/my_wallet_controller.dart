@@ -4,26 +4,25 @@ part of 'my_wallet_imports.dart';
 
 class MyWalletController {
   final GenericBloc<Wallet?> walletBloc = GenericBloc(null);
+  final GenericBloc<List<WalletTypes>> walletPaymentTypes = GenericBloc([]);
   final GlobalKey<FormState> formKey = GlobalKey();
   final TextEditingController amountController = TextEditingController();
   final GlobalKey<DropdownSearchState> walletController = GlobalKey();
   WalletTypes? walletTypeModel;
 
-
   final PagingController<int, WalletTransaction> pagingController =
-  PagingController(firstPageKey: 1);
+      PagingController(firstPageKey: 1);
   int pageSize = 12;
 
   MyWalletController() {
     pagingController.addPageRequestListener((pageKey) {
-      getTransactions(pageKey,refresh: false);
+      getTransactions(pageKey, refresh: false);
       getTransactions(pageKey);
     });
     getWallet(refresh: false);
     getWallet();
+    getWalletTypes();
   }
-
-
 
   Future<void> getTransactions(int page, {bool refresh = true}) async {
     var params = _historyParams(page, refresh);
@@ -47,6 +46,7 @@ class MyWalletController {
 
   Future<List<WalletTypes>> getWalletTypes({bool refresh = true}) async {
     var data = await GetWalletTypes().call(refresh);
+    walletPaymentTypes.onUpdateData(data);
     return data;
   }
 
@@ -104,5 +104,35 @@ class MyWalletController {
     );
   }
 
+  void showPayOptionsSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      enableDrag: false,
+      useRootNavigator: true,
+      builder: (context) {
+        return WalletPayOptionsSheetWidget(controller: this);
+      },
+    );
+  }
 
+  void onSelectPaymentMethod(WalletTypes model, BuildContext context) {
+    var data = walletPaymentTypes.state.data;
+    for (var item in data) {
+      item.isSelected = false;
+    }
+    model.isSelected = true;
+    walletTypeModel = model;
+    walletPaymentTypes.onUpdateData(data);
+    Navigator.pop(context);
+  }
+
+  void unSelectPayMethod(BuildContext context) {
+    var data = walletPaymentTypes.state.data;
+    for (var item in data) {
+      item.isSelected = false;
+    }
+    walletTypeModel = null;
+    walletPaymentTypes.onUpdateData(data);
+  }
 }
