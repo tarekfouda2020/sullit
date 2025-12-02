@@ -4,10 +4,12 @@ part of 'payment_imports.dart';
 
 class PaymentController {
   late final WebViewController webController;
+  late final bool orderPaymentFromHome;
 
   int combinedOrderId = 0;
 
-  void init(String initialUrl, BuildContext context) {
+  void init(String initialUrl, BuildContext context,{bool orderPayFromHome = false}) {
+    orderPaymentFromHome = orderPayFromHome;
     webController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
@@ -37,7 +39,7 @@ class PaymentController {
     if (url.contains("combined_order_id")) {
       combinedOrderId = int.parse(url.split('combined_order_id=').last);
       // AutoRouter.of(context).push(ConfirmationRoute(combinedId: id));
-      AutoRouter.of(context).push(CartConfirmBuyingRoute(combinedId: combinedOrderId));
+      AutoRouter.of(context).push(CartConfirmBuyingRoute(combinedId: combinedOrderId,paymentFromHome: orderPaymentFromHome));
     } else if (url.contains('Fail')) {
       CustomToast.showSimpleToast(
         msg: tr("paymentFailed"),
@@ -64,6 +66,17 @@ class PaymentController {
    showDialog(context: context, builder: (context) {
      return  ConfirmLeavingDialogWidget(controller: this);
    },);
+  }
+
+  void onPressBack(BuildContext context){
+    AutoRouter.of(context).pushAndPopUntil(
+      HomeRoute(index: 0),
+      predicate: (route) => route.settings.name == HomeRoute.name,
+    );
+    CustomToast.showSimpleToast(
+      msg: tr("payment_not_completed"),
+      type: ToastType.error,
+    );
   }
 
 

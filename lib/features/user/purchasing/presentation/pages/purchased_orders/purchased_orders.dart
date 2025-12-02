@@ -18,7 +18,7 @@ class _MyOrdersState extends State<MyOrders> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:const DefaultAppBar(title: "My Orders",),
+      appBar: DefaultAppBar(title: tr("my_orders"),),
       body: CustomRefreshIndicatorWidget(
         onRefresh: () => controller.getPurchasingHistory(1),
         child: PagedListView<int, Orders>(

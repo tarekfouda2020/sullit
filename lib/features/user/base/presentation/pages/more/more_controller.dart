@@ -40,7 +40,7 @@ class MoreController {
         AutoRouter.of(context).push(const DashBoardRoute());
         break;
       case MoreRoutes.purchasedProducts:
-        AutoRouter.of(context).push(const PurchasedOrdersRoute());
+        AutoRouter.of(context).push(const MyOrdersRoute());
         // AutoRouter.of(context).push(const PurchasedHistoryRoute());
         break;
       case MoreRoutes.returnOrders:

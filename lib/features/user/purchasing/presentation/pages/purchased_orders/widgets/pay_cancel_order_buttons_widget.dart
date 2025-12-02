@@ -2,7 +2,7 @@ part of 'purchased_orders_widgets_imports.dart';
 
 
 class PayCancelOrderButtonsWidget extends StatelessWidget {
-  final Orders? order;
+  final Orders order;
   final MyOrdersController controller;
   const PayCancelOrderButtonsWidget({super.key, required this.order, required this.controller});
 
@@ -13,8 +13,7 @@ class PayCancelOrderButtonsWidget extends StatelessWidget {
       children: [
         Expanded(
             child: DefaultButton(
-          // onTap: ()=> controller.payOrder(context, model),
-          onTap: (){},
+          onTap: ()=> controller.onPayOrder(context,order),
           title: "Pay",
           height: Dimens.dp40,
         color: context.colors.white,
@@ -24,9 +23,8 @@ class PayCancelOrderButtonsWidget extends StatelessWidget {
         )),
         Expanded(
             child: DefaultButton(
-          // onTap: ()=> controller.cancelOrder(context, model),
-          onTap: (){},
-          title: "Cancel",
+          onTap: ()=> controller.cancelOrder(context, order),
+          title: tr("cancel"),
           fontSize: Dimens.font_sp16,
           height: Dimens.dp40,
           color: context.colors.white,

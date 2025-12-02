@@ -648,6 +648,7 @@ class AppRouter extends _i100.RootStackRouter {
           key: args.key,
           summary: args.summary,
           combinedId: args.combinedId,
+          paymentFromHome: args.paymentFromHome,
         ),
         opaque: true,
       );
@@ -786,6 +787,7 @@ class AppRouter extends _i100.RootStackRouter {
         child: _i65.Payment(
           key: args.key,
           transactionUrl: args.transactionUrl,
+          orderPaymentFromHome: args.orderPaymentFromHome,
         ),
         opaque: true,
       );
@@ -886,7 +888,7 @@ class AppRouter extends _i100.RootStackRouter {
         opaque: true,
       );
     },
-    PurchasedOrdersRoute.name: (routeData) {
+    MyOrdersRoute.name: (routeData) {
       return _i100.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i76.MyOrders(),
@@ -1409,8 +1411,8 @@ class AppRouter extends _i100.RootStackRouter {
           path: '/order-details-page',
         ),
         _i100.RouteConfig(
-          PurchasedOrdersRoute.name,
-          path: '/purchased-orders',
+          MyOrdersRoute.name,
+          path: '/my-orders',
         ),
         _i100.RouteConfig(
           FlashSaleRoute.name,
@@ -2418,6 +2420,7 @@ class CartConfirmBuyingRoute
     _i103.Key? key,
     _i106.OrderSummary? summary,
     int? combinedId,
+    bool paymentFromHome = false,
   }) : super(
           CartConfirmBuyingRoute.name,
           path: '/cart-confirm-buying',
@@ -2425,6 +2428,7 @@ class CartConfirmBuyingRoute
             key: key,
             summary: summary,
             combinedId: combinedId,
+            paymentFromHome: paymentFromHome,
           ),
         );
 
@@ -2436,6 +2440,7 @@ class CartConfirmBuyingRouteArgs {
     this.key,
     this.summary,
     this.combinedId,
+    this.paymentFromHome = false,
   });
 
   final _i103.Key? key;
@@ -2444,9 +2449,11 @@ class CartConfirmBuyingRouteArgs {
 
   final int? combinedId;
 
+  final bool paymentFromHome;
+
   @override
   String toString() {
-    return 'CartConfirmBuyingRouteArgs{key: $key, summary: $summary, combinedId: $combinedId}';
+    return 'CartConfirmBuyingRouteArgs{key: $key, summary: $summary, combinedId: $combinedId, paymentFromHome: $paymentFromHome}';
   }
 }
 
@@ -2811,12 +2818,14 @@ class PaymentRoute extends _i100.PageRouteInfo<PaymentRouteArgs> {
   PaymentRoute({
     _i103.Key? key,
     required String transactionUrl,
+    bool orderPaymentFromHome = false,
   }) : super(
           PaymentRoute.name,
           path: '/Payment',
           args: PaymentRouteArgs(
             key: key,
             transactionUrl: transactionUrl,
+            orderPaymentFromHome: orderPaymentFromHome,
           ),
         );
 
@@ -2827,15 +2836,18 @@ class PaymentRouteArgs {
   const PaymentRouteArgs({
     this.key,
     required this.transactionUrl,
+    this.orderPaymentFromHome = false,
   });
 
   final _i103.Key? key;
 
   final String transactionUrl;
 
+  final bool orderPaymentFromHome;
+
   @override
   String toString() {
-    return 'PaymentRouteArgs{key: $key, transactionUrl: $transactionUrl}';
+    return 'PaymentRouteArgs{key: $key, transactionUrl: $transactionUrl, orderPaymentFromHome: $orderPaymentFromHome}';
   }
 }
 
@@ -3105,14 +3117,14 @@ class OrderDetailsPageRouteArgs {
 
 /// generated route for
 /// [_i76.MyOrders]
-class PurchasedOrdersRoute extends _i100.PageRouteInfo<void> {
-  const PurchasedOrdersRoute()
+class MyOrdersRoute extends _i100.PageRouteInfo<void> {
+  const MyOrdersRoute()
       : super(
-          PurchasedOrdersRoute.name,
-          path: '/purchased-orders',
+          MyOrdersRoute.name,
+          path: '/my-orders',
         );
 
-  static const String name = 'PurchasedOrdersRoute';
+  static const String name = 'MyOrdersRoute';
 }
 
 /// generated route for

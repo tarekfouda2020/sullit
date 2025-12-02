@@ -1,14 +1,14 @@
 part of 'purchased_orders_widgets_imports.dart';
 
 class MyOrderItemWidget extends StatelessWidget {
-  final Orders? order;
+  final Orders order;
   final MyOrdersController controller;
-  const MyOrderItemWidget({super.key, this.order, required this.controller});
+  const MyOrderItemWidget({super.key, required this.order, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () => controller.routeToOrderDetails(context,order),
+      onTap: () => controller.routeToOrderDetails(context,order),
       child: Container(
         padding: const EdgeInsets.all(20),
          margin: const EdgeInsets.only(bottom: 10),
@@ -33,20 +33,19 @@ class MyOrderItemWidget extends StatelessWidget {
                        children: [
                          Expanded(
                            child: Text(
-                             "${tr("orderNumber")}${order?.code}",
+                             "${tr("orderNumber")}${order.code}",
                              style: AppTextStyle.s14_w600(color: context.colors.black),
                            ),
                          ),
                          Text(
-                           "${order?.getTrackOrderStatus.name}",
-                           style: AppTextStyle.s14_w600(color: order?.getTrackOrderStatus.getOrderStatusColor()??Colors.black),
-                         )
-
+                           _getStatusText(),
+                           style: AppTextStyle.s14_w600(color: _getStatusColor(context)),
+                         ),
                        ],
                      ),
                      Gaps.vGap6,
                      Text(
-                       "DateTimeHelper.getDate(order?.orderDate??"")",
+                       DateTimeHelper.getDate(order.orderDate),
                        style: AppTextStyle.s12_w400(color: context.colors.textColor),
                      ),
                    ],
@@ -54,17 +53,37 @@ class MyOrderItemWidget extends StatelessWidget {
                )
              ],
            ),
-           Gaps.vGap16,
-           if(order?.isPaid == false && order?.isPaymentOnline == true)
-             PayCancelOrderButtonsWidget(order: order, controller: controller),
-           if(order?.isDelivered == true)
-             ReOrderButtonWidget(onPress: () => controller.reOrder(context),),
+           if(order.showUnPaidOnlineOrderActions)
+             Padding(
+               padding: const EdgeInsets.only(top: 16),
+               child: PayCancelOrderButtonsWidget(order: order, controller: controller),
+             ),
+           if(order.isDelivered || order.isCanceled)
+             Padding(
+               padding: const EdgeInsets.only(top: 16),
+               child: ReOrderButtonWidget(onPress: () => controller.reOrder(context),),
+             ),
          ],
        ),
       ),
     );
   }
 
+  String _getStatusText(){
+    if(order.isPaymentOnline && !order.isPaid && !order.isCanceled){
+     return order.paymentStatusText.replaceAll("-", "") ;
+    }else{
+      return order.orderStatus;
+    }
+  }
+
+  Color _getStatusColor(BuildContext context){
+    if(order.isPaymentOnline && !order.isPaid && !order.isCanceled){
+      return context.colors.redAccent ;
+    }else{
+      return order.getTrackOrderStatus.getOrderStatusColor();
+    }
+  }
 
 
 }

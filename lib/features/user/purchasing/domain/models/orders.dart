@@ -126,7 +126,7 @@ class Orders extends BaseDomainModel {
     /// Delivered
     /// Cancelled
 
-    switch (deliveryStatusConst) {
+    switch (deliveryStatus) {
       case "Placed":
         return TrackOrderEnum.placed;
       case "Confirmed":
@@ -136,7 +136,7 @@ class Orders extends BaseDomainModel {
       case "Delivered":
         return TrackOrderEnum.delivered;
       case "Cancelled":
-        return TrackOrderEnum.delivered;
+        return TrackOrderEnum.cancelled;
       default:
         return TrackOrderEnum.placed;
     }
@@ -146,10 +146,9 @@ class Orders extends BaseDomainModel {
   OrderPaymentType orderPaymentType(){
     switch(paymentMethod){
       case "Cash on Delivery" :return OrderPaymentType.cash;
-      case "Stripe": return OrderPaymentType.stripe ;
-      case "Tap" : return OrderPaymentType.tap;
+      case "paymob" : return OrderPaymentType.paymob;
       case "Wallet" :return OrderPaymentType.wallet;
-      default: return OrderPaymentType.tap;
+      default: return OrderPaymentType.paymob;
     }
   }
 
@@ -160,4 +159,8 @@ class Orders extends BaseDomainModel {
   bool get isPaid => paymentStatus;
 
   bool get isDelivered => getTrackOrderStatus == TrackOrderEnum.delivered;
+
+  bool get isCanceled => getTrackOrderStatus == TrackOrderEnum.cancelled;
+
+  bool get showUnPaidOnlineOrderActions => isPaymentOnline && !isPaid && !isCanceled;
 }

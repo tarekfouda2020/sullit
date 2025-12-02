@@ -8,7 +8,7 @@ class UnPaidOrderSheetWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: Dimens.paddingAll15PX,
+      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
       decoration: BoxDecoration(
         color: context.colors.white,
         borderRadius: Dimens.sheetBorderRadius,
@@ -16,18 +16,19 @@ class UnPaidOrderSheetWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const BottomSheetHeaderWidget(title: "Alert"),
+           BottomSheetHeaderWidget(title: tr("alert")),
           Gaps.vGap26,
           SvgPicture.asset(
             Res.confirmationAlertIcon,
-            width: Dimens.dp50,
-            height: Dimens.dp50,
+            width: Dimens.dp65,
+            height: Dimens.dp65,
           ),
           Gaps.vGap26,
           Flexible(
             child: Text(
-              "You have unpaid order #${order.code}",
-              style: AppTextStyle.s20_w600(color: context.colors.black)
+              "${tr("you_have_unpaid_order")} #${order.code}",
+              textAlign: TextAlign.center,
+              style: AppTextStyle.s18_w600(color: context.colors.black)
                   .copyWith(height: 1.5),
             ),
           ),
@@ -37,20 +38,15 @@ class UnPaidOrderSheetWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: PayOrderButtonWidget(
-                  onPressPay: () {},
+                  onPressPay: () => controller.onPayOrder(context),
                 ),
               ),
               Expanded(
-                  child: DefaultButton(
-                onTap: () => AutoRouter.of(context).push(
-                  OrderDetailsPageRoute(
-                    isReturnedOrder: false,
-                    order: order,
-                  ),
-                ),
-                title: "View Details",
+                child: DefaultButton(
+                onTap: () => controller.viewOrderDetails(context),
+                title: tr("view_details"),
                 height: Dimens.dp40,
-                color: context.colors.gray8,
+                color: context.colors.deepGray,
                 margin: EdgeInsets.zero,
                 textColor: context.colors.black,
               )),

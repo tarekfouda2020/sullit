@@ -1,7 +1,8 @@
 part of 'payment_imports.dart';
 class Payment extends StatefulWidget {
   final String transactionUrl ;
-  const Payment({Key? key, required this.transactionUrl}) : super(key: key);
+  final bool orderPaymentFromHome ;
+  const Payment({Key? key, required this.transactionUrl, this.orderPaymentFromHome = false}) : super(key: key);
 
   @override
   State<Payment> createState() => _PaymentState();
@@ -13,19 +14,19 @@ class _PaymentState extends State<Payment> {
   @override
   void initState() {
     super.initState();
-    controller.init(widget.transactionUrl, context);
+    controller.init(widget.transactionUrl, context,orderPayFromHome: widget.orderPaymentFromHome);
   }
 
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      // canPop: false,
+      canPop: false,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: DefaultAppBar(
           title: tr('payment'),
-          // onBack: () => controller.showConfirmPopDialog(context),
+          onBack: () => controller.onPressBack(context),
         ),
         body: Padding(
           padding: MediaQuery.of(context).viewInsets,

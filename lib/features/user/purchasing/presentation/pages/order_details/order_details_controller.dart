@@ -79,7 +79,6 @@ class OrderDetailsPageController {
         PaymentRoute(transactionUrl: result),
       );
       getOrderDetails(orderDetailsBloc.state.data!.id,);
-
     }
   }
 
@@ -152,9 +151,12 @@ class OrderDetailsPageController {
 
 
 
-  void payOrder(){
-
+  Future<void> reOrder(BuildContext context)async{
+    await getIt<Utilities>().popManyTimes(context, 2);
+    AutoRouter.of(context).push(const CartRoute());
   }
+
+
 
   GenericParams _params(int id,bool refresh){
     return GenericParams(id: id,refresh:refresh );

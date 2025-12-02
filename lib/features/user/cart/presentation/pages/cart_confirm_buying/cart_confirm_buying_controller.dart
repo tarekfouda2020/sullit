@@ -107,11 +107,6 @@ class ConfirmBuyingController{
     );
   }
 
-
-
-
-
-
   SendReviewParams _sendReviewParams(OrderDetails model, int rate) {
     return SendReviewParams(
       orderId: model.id ,
@@ -120,6 +115,12 @@ class ConfirmBuyingController{
     );
   }
 
+  void onPressBack(BuildContext context){
+    AutoRouter.of(context).pushAndPopUntil(
+      HomeRoute(index: 0),
+      predicate: (route) => route.settings.name == HomeRoute.name,
+    );
+  }
 
 
 }

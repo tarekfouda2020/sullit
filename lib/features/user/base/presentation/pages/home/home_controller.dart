@@ -144,7 +144,7 @@ class HomeController {
     BuildContext ctx = getIt<GlobalContext>().context();
     GenericPaginateParams params = _historyParams(refresh);
     List<Orders> data = await GetPurchasingHistory().call(params);
-    var unPaidOrder  = data.where((element) => element.isPaid == false);
+    Set<Orders> unPaidOrder  = data.where((element) => element.showUnPaidOnlineOrderActions).toSet();
     if(unPaidOrder.isNotEmpty){
       _firstUnPaidOrder = unPaidOrder.first;
       showUnPaidOrderSheet(ctx);
@@ -154,9 +154,44 @@ class HomeController {
 
 
   void showUnPaidOrderSheet(BuildContext context){
-    showModalBottomSheet(context: context, builder: (context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
       return UnPaidOrderSheetWidget(order: _firstUnPaidOrder!, controller: this);
     },);
+  }
+
+
+  void viewOrderDetails(BuildContext context){
+    Navigator.pop(context);
+    AutoRouter.of(context).push(
+      OrderDetailsPageRoute(
+        isReturnedOrder: false,
+        order: _firstUnPaidOrder!,
+      ),
+    );
+  }
+
+
+
+  void onPayOrder(BuildContext context) async {
+    Navigator.pop(context);
+    BuildContext ctx = getIt<GlobalContext>().context();
+    var result = await PayOrder().call(_firstUnPaidOrder!.id);
+    if (result.isNotEmpty ) {
+      if(_firstUnPaidOrder!.isPaymentOnline){
+         AutoRouter.of(ctx).push(
+          PaymentRoute(transactionUrl: result,orderPaymentFromHome: true),
+        );
+      }else{
+        CustomToast.showSimpleToast(
+          msg: tr('paymentDone'),
+          type: ToastType.success,
+        );
+        AutoRouter.of(ctx).push(OrderDetailsPageRoute(isReturnedOrder: false, order: _firstUnPaidOrder!));
+      }
+
+    }
   }
 
 

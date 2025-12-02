@@ -28,6 +28,7 @@ import 'package:flutter_tdd/features/user/products/presentation/manager/cart_hel
 import 'package:flutter_tdd/features/user/products/presentation/pages/home_main/home_main_imports.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/get_purchasing_history.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/pay_order.dart';
 import 'package:flutter_tdd/features/user/sale/presentation/pages/coupons/coupons_imports.dart';
 import 'package:flutter_tdd/features/user/sale/presentation/pages/on_sale/on_sale_imports.dart';
 import 'package:flutter_tdd/res.dart';

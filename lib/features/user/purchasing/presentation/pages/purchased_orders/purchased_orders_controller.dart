@@ -54,16 +54,27 @@ class MyOrdersController{
     if (result.isNotEmpty) {
       CustomToast.showSimpleToast(msg: result);
       model.availableCancelOrder = false;
+      getIt<LoadingHelper>().dismissDialog();
+      AutoRouter.of(context).pop();
+    }else{
+      CustomToast.showSimpleToast(msg: tr("tryAgain"));
     }
     getIt<LoadingHelper>().dismissDialog();
   }
 
-  void payOrder(BuildContext context,Orders model) async {
 
+  void onPayOrder(BuildContext context,Orders model) async {
+    var result = await PayOrder().call(model.id);
+    if (result.isNotEmpty && model.isPaymentOnline) {
+      await AutoRouter.of(context).push(
+        PaymentRoute(transactionUrl: result),
+      );
+    }
   }
 
-  void reOrder(BuildContext context) async {
-
+  Future<void> reOrder(BuildContext context) async {
+  AutoRouter.of(context).pop();
+  AutoRouter.of(context).push(const CartRoute());
   }
 
 
