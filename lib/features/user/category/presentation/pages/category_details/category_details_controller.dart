@@ -4,9 +4,8 @@ part of 'category_details_imports.dart';
 
 class CategoryDetailsController {
   final GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
-  final GenericBloc<SubCategory?> subCategoriesCubit = GenericBloc(null);
+  final GenericBloc<List<SubCategoryLevel>> subCategoriesCubit = GenericBloc([]);
 
-  // final GenericBloc<List<SubCategory>> subCategoriesCubit = GenericBloc([]);
   final GenericBloc<SubCategory?> specificationsCubit = GenericBloc(null);
   final GenericBloc<PriceRangeParams?> rangeCubit = GenericBloc(null);
   final GenericBloc<String> titleCubit = GenericBloc("");
@@ -21,54 +20,199 @@ class CategoryDetailsController {
   int? brandId;
   List<String> selectedColors = [];
   int currentCatId = 0;
-  RangeValues? _initialRangeValues;
+  Category? initialCategoryModel;
 
   bool isFilterAppliedBefore = false;
 
-  // CategoryDetailsController(BuildContext context, int catId) {
-  //   getSubCategories(context, catId, 0).then((value) {
-  //     getPopularProducts(1, refresh: false);
-  //     pagingController.addPageRequestListener((pageKey) {
-  //       getPopularProducts(pageKey, refresh: true);
-  //     });
-  //   });
-  // }
-
   CategoryDetailsController(BuildContext context, Category categoryModel) {
+    initialCategoryModel = categoryModel;
     titleCubit.onUpdateData(categoryModel.name);
-    getData(context,categoryModel);
-
+    getData(context, categoryModel);
   }
 
 
   Future<void> getData(BuildContext context, Category categoryModel)async{
     await getSubCategories(context, categoryModel.id);
     getPopularProducts(1, refresh: false);
-    getPopularProducts(1, refresh: true);
     pagingController.addPageRequestListener((pageKey) {
       getPopularProducts(pageKey, refresh: true);
     });
   }
 
-  Future<void> getSubCategories(BuildContext context, int id, {bool refresh = true}) async {
+  Future<void> getSubCategories(BuildContext context, int id, {bool refresh = true, bool appendLevel = false}) async {
+    // Temporarily set currentCatId for the API call
+    final previousCatId = currentCatId;
     currentCatId = id;
     var params = productsParams(1, refresh);
+    
     // print(">>>>>${params.toJson()}");
     var result = await GetSubCategories().call(params);
-    subCategoriesCubit.onUpdateData(result);
-    RangeValues rangeValues = RangeValues(double.parse(result!.priceRange.min),
-        double.parse(result.priceRange.max));
-    rangeCubit.onUpdateData(
-        PriceRangeParams(initial: rangeValues, value: rangeValues));
-    specificationsCubit.onUpdateData(result);
+    
+    if (result != null) {
+      // Create a new level with the selected category ID
+      final newLevel = SubCategoryLevel(
+        subCategory: result,
+        selectedCategoryId: id,
+      );
+      
+      if (appendLevel) {
+        // Append new level to existing list only if it has subcategories
+        if (result.subCats.isNotEmpty) {
+          final currentLevels = List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
+          currentLevels.add(newLevel);
+          subCategoriesCubit.onUpdateData(currentLevels);
+          currentCatId = id;
+        }
+        // If no subcategories, keep the original subCategory data visible
+        // and only update selectedCategoryId so user can select another subcategory
+        else {
+          final currentLevels = List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
+          if (currentLevels.isNotEmpty) {
+            // Keep the original subCategory data (with subCats list) so the level remains visible
+            // Only update the selected category ID to show which one is selected
+            currentLevels.last.selectedCategoryId = id;
+            subCategoriesCubit.onUpdateData(currentLevels);
+          }
+          currentCatId = id;
+        }
+      } else {
+        // Replace all levels (initial load)
+        subCategoriesCubit.onUpdateData([newLevel]);
+        currentCatId = id;
+      }
+      
+      // Update specifications and price range from the result
+      RangeValues rangeValues = RangeValues(
+        double.parse(result.priceRange.min),
+        double.parse(result.priceRange.max),
+      );
+      rangeCubit.onUpdateData(
+          PriceRangeParams(initial: rangeValues, value: rangeValues));
+      specificationsCubit.onUpdateData(result);
+    } else {
+      // Restore previous catId if API call failed
+      currentCatId = previousCatId;
+    }
   }
 
-  void onSubCatSelect(BuildContext context, Category selectedCat) {
-    // print("@@@@@@${selectedCat.id}");
-    subCategoriesCubit.onUpdateToInitState(null);
+  Future<void> onSubCatSelect(BuildContext context, Category selectedCat, int levelIndex) async {
+    final currentLevels = List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
+    
+    // Check if the category is already selected - if so, unselect it
+    if (levelIndex < currentLevels.length &&
+        currentLevels[levelIndex].selectedCategoryId == selectedCat.id) {
+       onSubCatUnselect(context, levelIndex);
+      return;
+    }
+    
+    // Normal selection logic
+    // If selecting from a previous level, remove all levels after that level
+    if (levelIndex < currentLevels.length - 1) {
+      currentLevels.removeRange(levelIndex + 1, currentLevels.length);
+      subCategoriesCubit.onUpdateData(currentLevels);
+    }
+    
     titleCubit.onUpdateData(selectedCat.name);
-    getSubCategories(context, selectedCat.id);
+    
+    // Update the selected category ID for the current level
+    if (levelIndex < currentLevels.length) {
+      currentLevels[levelIndex].selectedCategoryId = selectedCat.id;
+      subCategoriesCubit.onUpdateData(currentLevels);
+    }
+    
+    // Update current category ID
+    currentCatId = selectedCat.id;
+    
+    // Fetch subcategories for the selected category
+     getSubCategories(context, selectedCat.id, appendLevel: true);
+
     pagingController.refresh();
+  }
+
+  Future<void> onSubCatUnselect(BuildContext context, int levelIndex) async {
+    final currentLevels = List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
+    
+    if (levelIndex == 0) {
+      // Deselecting from level 1: remove level 2, clear selection, go to initial
+      if (currentLevels.length > 1) {
+        currentLevels.removeRange(1, currentLevels.length);
+      }
+      currentLevels[0].selectedCategoryId = 0;
+      subCategoriesCubit.onUpdateData(currentLevels);
+      
+      if (initialCategoryModel != null) {
+        titleCubit.onUpdateData(initialCategoryModel!.name);
+        currentCatId = initialCategoryModel!.id;
+         getSubCategories(context, initialCategoryModel!.id, appendLevel: false);
+      }
+    } else {
+      // Deselecting from level > 1: remove levels below, clear this selection, 
+      // get products for parent level's selected category
+      if (levelIndex < currentLevels.length - 1) {
+        currentLevels.removeRange(levelIndex + 1, currentLevels.length);
+      }
+      
+      // Clear the selection for this level
+      currentLevels[levelIndex].selectedCategoryId = 0;
+      subCategoriesCubit.onUpdateData(currentLevels);
+      
+      // Get products for parent level's selected category
+      final parentLevel = currentLevels[levelIndex - 1];
+      final parentSelectedId = parentLevel.selectedCategoryId;
+      
+      if (parentSelectedId > 0) {
+        // Find the parent category name
+        final parentCategory = parentLevel.subCategory.subCats.firstWhere(
+          (cat) => cat.id == parentSelectedId,
+          orElse: () => parentLevel.subCategory.category,
+        );
+        
+        titleCubit.onUpdateData(parentCategory.name);
+        currentCatId = parentSelectedId;
+        
+        // Update specifications and price range from parent level's data
+        final parentSubCategory = parentLevel.subCategory;
+        RangeValues rangeValues = RangeValues(
+          double.parse(parentSubCategory.priceRange.min),
+          double.parse(parentSubCategory.priceRange.max),
+        );
+        rangeCubit.onUpdateData(
+            PriceRangeParams(initial: rangeValues, value: rangeValues));
+        specificationsCubit.onUpdateData(parentSubCategory);
+      } else {
+        // Parent has no selection, go to initial
+        if (initialCategoryModel != null) {
+          titleCubit.onUpdateData(initialCategoryModel!.name);
+          currentCatId = initialCategoryModel!.id;
+           getSubCategories(context, initialCategoryModel!.id, appendLevel: false);
+        }
+      }
+    }
+    
+    pagingController.refresh();
+  }
+  
+  void onNavigateBackToLevel(BuildContext context, int levelIndex) {
+    if (levelIndex >= 0 && levelIndex < subCategoriesCubit.state.data.length) {
+      final currentLevels = List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
+      currentLevels.removeRange(levelIndex + 1, currentLevels.length);
+      subCategoriesCubit.onUpdateData(currentLevels);
+      
+      final level = currentLevels[levelIndex];
+      currentCatId = level.selectedCategoryId;
+      titleCubit.onUpdateData(level.subCategory.category.name);
+      specificationsCubit.onUpdateData(level.subCategory);
+      
+      RangeValues rangeValues = RangeValues(
+        double.parse(level.subCategory.priceRange.min),
+        double.parse(level.subCategory.priceRange.max),
+      );
+      rangeCubit.onUpdateData(
+        PriceRangeParams(initial: rangeValues, value: rangeValues),
+      );
+      
+      pagingController.refresh();
+    }
   }
 
   // Future<void> getSubCategories(BuildContext context, int id, int index,
@@ -225,34 +369,9 @@ class CategoryDetailsController {
     );
   }
 
-  SubCategory _insertedSubCat(SubCategory data) {
-    return SubCategory(
-      subCats: data.subCats,
-      selectedId: data.subCats.first.id,
-      category: data.category,
-      priceRange: data.priceRange,
-      attributes: data.attributes,
-      colors: data.colors,
-      brands: data.brands,
-      categories: data.categories,
-    );
-  }
-
-  Category _insertedItem(int parentId) {
-    return Category(
-      id: 0,
-      banner: "",
-      name: "All",
-      parentId: parentId,
-      digital: 0,
-      icon: "",
-      orderLevel: 0,
-      slug: "",
-    );
-  }
 
   void openDrawerFilter() {
-    if(subCategoriesCubit.state is GenericUpdateState || (pagingController.itemList?? [] ).isNotEmpty){
+    if(subCategoriesCubit.state.data.isNotEmpty || (pagingController.itemList?? [] ).isNotEmpty){
       scaffold.currentState?.openDrawer();
     }
   }
@@ -284,12 +403,15 @@ class CategoryDetailsController {
 
 
   void resetFilter(BuildContext context) {
-    // if (hasFiltersApplied() == false) {
-    //   Navigator.pop(context);
-    //   return;
-    // }
-
-    SubCategory data = subCategoriesCubit.state.data!;
+    // Get the current level's subcategory data
+    final currentLevels = subCategoriesCubit.state.data;
+    if (currentLevels.isEmpty) {
+      Navigator.pop(context);
+      return;
+    }
+    
+    final currentLevel = currentLevels.last;
+    final data = currentLevel.subCategory;
     final double minPrice = double.parse(data.priceRange.min);
     final double maxPrice = double.parse(data.priceRange.max);
     RangeValues rangeValues = RangeValues(minPrice, maxPrice);
@@ -298,14 +420,14 @@ class CategoryDetailsController {
     brandModel = null;
     brandId = 0;
     
-    for(var item in subCategoriesCubit.state.data?.attributes ?? <Attributes>[]){
+    for(var item in data.attributes){
       item.opened = false;
       for(var attribute in item.attributeValues){
         attribute.selected = false;
       }
     }
 
-    subCategoriesCubit.onUpdateData(subCategoriesCubit.state.data);
+    specificationsCubit.onUpdateData(data);
     rangeCubit.onUpdateData(PriceRangeParams(initial: rangeValues, value: rangeValues));
     if(isFilterAppliedBefore){
       pagingController.refresh();

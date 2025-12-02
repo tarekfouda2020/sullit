@@ -54,7 +54,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
       body: Column(
         children: [
           Visibility(
-            visible: widget.fromHome,
+            // visible: widget.fromHome,
             replacement: Gaps.vGap15,
             child: BuildAllCategoriesView(detailsController: controller),
           ),

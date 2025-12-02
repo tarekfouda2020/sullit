@@ -27,6 +27,7 @@ import 'package:flutter_tdd/features/user/category/domain/models/attributes.dart
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/color_domain_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/sub_category.dart';
+import 'package:flutter_tdd/features/user/category/domain/models/sub_category_level.dart';
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/category_details_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
