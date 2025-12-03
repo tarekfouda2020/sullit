@@ -13,11 +13,7 @@ class BuildTopCategories extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Gaps.vGap15,
-          // BuildCustomHeaderTitle(
-          //   title: tr("categories"),
-          //   onTap: () => AutoRouter.of(context).push(HomeRoute(index: 1)),
-          // ),
-          const CategoriesHeaderWidget(),
+           CategoriesHeaderWidget(controller: controller),
           Gaps.vGap16,
           SizedBox(
             height: 120,
