@@ -253,6 +253,25 @@ class HomeMainController {
     brandsCubit.onUpdateData(data);
   }
 
+
+  List<Category> firstCategoriesSection(){
+    List<Category> cats = homeCubit.state.data!.categories;
+    if(cats.length >= 10){
+      return cats.take((cats.length/2).toInt()).toList();
+    }else{
+      return cats;
+    }
+  }
+
+  List<Category> secondCategoriesSection(){
+    List<Category> cats = homeCubit.state.data!.categories;
+    if(firstCategoriesSection().length > 5){
+      return cats.sublist((cats.length/2).toInt(), cats.length).toList();
+    }else{
+      return <Category>[];
+    }
+  }
+
   BrandsParams _brandsParams(bool refresh) {
     return BrandsParams(
       paginate: 5,
