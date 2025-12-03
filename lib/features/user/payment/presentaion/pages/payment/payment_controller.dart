@@ -34,6 +34,7 @@ class PaymentController {
   }
 
   Future<void> handleUrlChange(BuildContext context, String url) async{
+    log("====>>>---- $url ----<<<<====");
     if (url.contains("combined_order_id")) {
       combinedOrderId = int.parse(url.split('combined_order_id=').last);
       // AutoRouter.of(context).push(ConfirmationRoute(combinedId: id));
@@ -45,6 +46,7 @@ class PaymentController {
       );
       AutoRouter.of(context).pop();
     } else if (url.contains('success')) {
+      log("====>>>---- $url ----<<<<====");
       if(Platform.isIOS){
        await Future.delayed(const Duration(seconds: 3));
       }

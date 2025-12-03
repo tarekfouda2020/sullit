@@ -143,13 +143,17 @@ class MembershipSubscribeController{
     getIt<LoadingHelper>().showLoadingDialog();
     await PayVipSubscription().call(params).then((value) async {
       if (value != null) {
+        getIt<LoadingHelper>().dismissDialog();
         BuildContext ctx = getIt<GlobalContext>().context();
         if (value.transactionUrl != null) {
-          getIt<LoadingHelper>().dismissDialog();
-           await AutoRouter.of(ctx).push(PaymentRoute(transactionUrl: value.transactionUrl!));
+          var result =  await AutoRouter.of(ctx).push(PaymentRoute(transactionUrl: value.transactionUrl!));
+          if(result == true){
+            CustomToast.showSimpleToast(msg: tr("subscribedSuccess"), type: ToastType.success);
+          }
+        }else{
+          CustomToast.showSimpleToast(msg: tr("subscribedSuccess"), type: ToastType.success);
+          AutoRouter.of(ctx).pop();
         }
-        AutoRouter.of(ctx).pop();
-        CustomToast.showSimpleToast(msg: tr("subscribedSuccess"), type: ToastType.success);
       }
       getIt<LoadingHelper>().dismissDialog();
     });
