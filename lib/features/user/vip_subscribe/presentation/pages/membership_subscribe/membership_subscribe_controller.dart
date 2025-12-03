@@ -3,6 +3,7 @@ part of 'membership_subscribe_imports.dart';
 class MembershipSubscribeController{
 
   double? walletBalance;
+  VipSubscribeDomainModel? currentSubscription;
   final GenericBloc<bool> termCubit = GenericBloc(false);
 
   final PagingController<int, VipSubscribeDomainModel> pagingController = PagingController(firstPageKey: 1);
@@ -16,8 +17,9 @@ class MembershipSubscribeController{
 
 
   MembershipSubscribeController(){
+    getCurrentSubscription();
+    getSubscriptions(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
-      getSubscriptions(pageKey, refresh: false);
       getSubscriptions(pageKey,);
     });
     callWalletData();
@@ -119,12 +121,38 @@ class MembershipSubscribeController{
 
 
   void updateSelectedMemberShip(VipSubscribeDomainModel model){
+    if(model.byInvite == true){
+      showUnAvailablePlanToast();
+      return ;
+    }
+
+    if(currentSubscription != null){
+      if(!checkCurrentPlanValidation(model)){
+        return ;
+      }
+    }
+
     var data = pagingController.value.itemList;
     for(var item in data ?? <VipSubscribeDomainModel>[]){
       item.isSelected = false;
     }
     model.isSelected = true;
     pagingController.itemList = List<VipSubscribeDomainModel>.from(pagingController.itemList!);
+  }
+
+
+  bool checkCurrentPlanValidation(VipSubscribeDomainModel model){
+    double currentPlanPrice = double.parse(currentSubscription!.price);
+    double selectedPlanPrice = double.parse(model.price);
+    if(currentPlanPrice == selectedPlanPrice){
+      CustomToast.showSnakeBar( "You already subscribed in this tier (${model.name})", type: ToastType.info);
+      return false;
+    }
+    if(currentPlanPrice > selectedPlanPrice){
+      CustomToast.showSimpleToast(msg: "You already subscribed in ${currentSubscription!.name} and still have ${currentSubscription!.expiredInDays} Day before ending" );
+      return false;
+    }
+    return true;
   }
 
 
@@ -169,6 +197,22 @@ class MembershipSubscribeController{
       return true;
     }
   }
+
+
+  Future<void> getCurrentSubscription({bool refresh = true}) async {
+    var result = await GetCurrentSubscription().call(refresh);
+    if (result != null) {
+      currentSubscription = result.currentSubscription;
+    }
+  }
+
+
+  void showUnAvailablePlanToast(){
+    CustomToast.showSnakeBar( "This tier is currently not available for subscription. Please choose another tier. Thank you",
+      type: ToastType.info
+    );
+  }
+
 
 
   PaySubscribeParams _subscribeParams(String paymentMethod) {

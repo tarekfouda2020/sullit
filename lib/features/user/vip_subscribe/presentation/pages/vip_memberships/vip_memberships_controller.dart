@@ -99,6 +99,17 @@ void onPressRenew(BuildContext context){
   }
 
   void selectMembership(VipSubscribeDomainModel model){
+    if(model.byInvite == true){
+      showUnAvailablePlanToast();
+      return ;
+    }
+
+    if(_currentSubscription() != null){
+      if(!checkCurrentPlanValidation(model)){
+        return ;
+      }
+    }
+
     if(model.isSelected){
       model.isSelected = false;
       disableChangeButtonCubit.onUpdateData(true);
@@ -112,6 +123,30 @@ void onPressRenew(BuildContext context){
     }
     currentSubscriptionBloc.onUpdateData(currentSubscriptionBloc.state.data);
   }
+
+
+
+  bool checkCurrentPlanValidation(VipSubscribeDomainModel model){
+    double currentPlanPrice = double.parse(_currentSubscription()!.price);
+    double selectedPlanPrice = double.parse(model.price);
+    if(currentPlanPrice == selectedPlanPrice){
+      CustomToast.showSnakeBar( "You already subscribed in this tier (${model.name})", type: ToastType.info);
+      return false;
+    }
+    if(currentPlanPrice > selectedPlanPrice){
+      CustomToast.showSimpleToast(msg: "You already subscribed in ${_currentSubscription()!.name} and still have ${_currentSubscription()!.expiredInDays} Day before ending" );
+      return false;
+    }
+    return true;
+  }
+
+
+  void showUnAvailablePlanToast(){
+    CustomToast.showSnakeBar( "This tier is currently not available for subscription. Please choose another tier. Thank you",
+        type: ToastType.info
+    );
+  }
+
 
   Future<void> subscribeInMembership(BuildContext context) async {
     var selectedPayMethod = payMethodsCubit.state.data.firstWhere((element) => element.isSelected);

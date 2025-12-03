@@ -31,6 +31,7 @@ import 'package:flutter_tdd/features/user/vip_subscribe/domain/use_case/pay_vip_
 import 'package:flutter_tdd/features/user/vip_subscribe/presentation/pages/vip_memberships/widgets/vip_memberships_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/vip_subscribe/presentation/widgets/membership_item_widget.dart';
 import 'package:flutter_tdd/features/user/wallet/domain/use_cases/get_my_wallet.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 part 'vip_memberships.dart';
 part 'vip_memberships_controller.dart';

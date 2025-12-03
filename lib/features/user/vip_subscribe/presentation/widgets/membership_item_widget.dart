@@ -32,9 +32,7 @@ class MembershipItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     String lang = context.read<DeviceCubit>().state.model.locale.languageCode;
     return GestureDetector(
-      onTap: model.byInvite == false
-          ?onSelect
-          :(){},
+      onTap: onSelect,
       child: Stack(
         children: [
           Container(
