@@ -153,11 +153,13 @@ class MembershipSubscribeController {
           type: ToastType.info);
       return false;
     }
-    if (currentPlanPrice > selectedPlanPrice) {
+    if (currentPlanPrice > selectedPlanPrice || currentPlanPrice < selectedPlanPrice) {
       CustomToast.showSimpleToast(
           msg:
-              "${tr('already_subscribed_with_days')} ${currentSubscription!.name} ${tr('and_still_have')} ${currentSubscription!.expiredInDays} ${tr('day_before_ending')}");
-      return false;
+              "${tr('already_subscribed_with_days')} ${currentSubscription!.name} ${tr('and_still_have')} ${currentSubscription!.expiredInDays} ${tr('day_before_ending')}",
+        type: ToastType.info
+      );
+      return true;
     }
     return true;
   }

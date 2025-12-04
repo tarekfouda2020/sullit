@@ -102,7 +102,7 @@ class VipMembershipsController {
       return;
     }
 
-    if (_currentSubscription() != null) {
+    if (_currentSubscription() != null && !model.isSelected) {
       if (!checkCurrentPlanValidation(model)) {
         return;
       }
@@ -131,10 +131,12 @@ class VipMembershipsController {
           type: ToastType.info);
       return false;
     }
-    if (currentPlanPrice > selectedPlanPrice) {
+    if (currentPlanPrice > selectedPlanPrice || currentPlanPrice < selectedPlanPrice)  {
       CustomToast.showSimpleToast(
-          msg: "${tr('already_subscribed_with_days')} ${_currentSubscription()!.name} ${tr('and_still_have')} ${_currentSubscription()!.expiredInDays} ${tr('day_before_ending')}");
-      return false;
+          msg: "${tr('already_subscribed_with_days')} ${_currentSubscription()!.name} ${tr('and_still_have')} ${_currentSubscription()!.expiredInDays} ${tr('day_before_ending')}",
+      type: ToastType.info
+      );
+      return true;
     }
     return true;
   }
