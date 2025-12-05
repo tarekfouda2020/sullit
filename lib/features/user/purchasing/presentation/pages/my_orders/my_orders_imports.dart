@@ -14,11 +14,12 @@ import 'package:flutter_tdd/features/user/category/domain/entities/generic_pagin
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/cancel_order.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/get_purchasing_history.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/order_again.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/pay_order.dart';
 import 'package:flutter_tdd/features/user/purchasing/presentation/widgets/purchasing_widgets_imports.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'widgets/purchased_orders_widgets_imports.dart';
 
-part 'purchased_orders.dart';
-part 'purchased_orders_controller.dart';
+part 'my_orders.dart';
+part 'my_orders_controller.dart';

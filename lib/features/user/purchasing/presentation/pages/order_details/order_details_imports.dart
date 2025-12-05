@@ -31,10 +31,11 @@ import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/cancel_order.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/get_order_details.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/order_again.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/pay_order.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/send_review.dart';
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/widgets/order_details_widgets_imports.dart';
-import 'package:flutter_tdd/features/user/purchasing/presentation/pages/purchased_orders/widgets/purchased_orders_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/purchasing/presentation/pages/my_orders/widgets/purchased_orders_widgets_imports.dart';
 
 part 'order_details.dart';
 part 'order_details_controller.dart';

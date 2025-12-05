@@ -81,7 +81,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 ),
                 if(state.data!.isDelivered || state.data!.isCanceled)
                   ReOrderButtonWidget(
-                    onPress: ()=> controller.reOrder(context),
+                    onPress: ()=> controller.reOrder(context,state.data!.id),
                     bgColor: context.colors.primary,
                     txtColor: context.colors.white,
                     height: Dimens.dp50,

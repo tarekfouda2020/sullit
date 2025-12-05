@@ -61,7 +61,7 @@ class MyOrderItemWidget extends StatelessWidget {
            if(order.isDelivered || order.isCanceled)
              Padding(
                padding: const EdgeInsets.only(top: 16),
-               child: ReOrderButtonWidget(onPress: () => controller.reOrder(context),),
+               child: ReOrderButtonWidget(onPress: () => controller.reOrder(context,order.id)),
              ),
          ],
        ),

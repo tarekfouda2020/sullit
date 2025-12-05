@@ -188,14 +188,14 @@ import 'package:flutter_tdd/features/user/profile/presentation/pages/profile/pro
     as _i69;
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart'
     as _i111;
+import 'package:flutter_tdd/features/user/purchasing/presentation/pages/my_orders/my_orders_imports.dart'
+    as _i76;
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/order_details_imports.dart'
     as _i75;
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_summary/order_summary_imports.dart'
     as _i70;
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/purchased_history/purchased_history_imports.dart'
     as _i71;
-import 'package:flutter_tdd/features/user/purchasing/presentation/pages/purchased_orders/purchased_orders_imports.dart'
-    as _i76;
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/retrieve_order/retrieve_order_imports.dart'
     as _i74;
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/return_orders/return_orders_imports.dart'

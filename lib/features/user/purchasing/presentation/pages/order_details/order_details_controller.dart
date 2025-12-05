@@ -151,9 +151,15 @@ class OrderDetailsPageController {
 
 
 
-  Future<void> reOrder(BuildContext context)async{
-    await getIt<Utilities>().popManyTimes(context, 2);
-    AutoRouter.of(context).push(const CartRoute());
+  Future<void> reOrder(BuildContext context,int orderId)async{
+    String result = await OrderAgain()(orderId);
+    if(result.isNotEmpty){
+      CustomToast.showSimpleToast(msg: result,type: ToastType.success);
+      await getIt<Utilities>().popManyTimes(context, 2);
+      AutoRouter.of(context).push(const CartRoute());
+    }else{
+      CustomToast.showSimpleToast(msg: tr("tryAgain"),type: ToastType.error);
+    }
   }
 
 
