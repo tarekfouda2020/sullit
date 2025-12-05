@@ -76,7 +76,7 @@ class OrderDetailsPageController {
     var result = await PayOrder().call(orderDetailsBloc.state.data!.id);
     if (result.isNotEmpty) {
       await AutoRouter.of(context).push(
-        PaymentRoute(transactionUrl: result),
+        PaymentRoute(transactionUrl: result ),
       );
       getOrderDetails(orderDetailsBloc.state.data!.id,);
     }
