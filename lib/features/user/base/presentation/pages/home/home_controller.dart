@@ -142,12 +142,15 @@ class HomeController {
 
   Future<void> getPurchasingHistory({bool refresh = true}) async {
     BuildContext ctx = getIt<GlobalContext>().context();
-    GenericPaginateParams params = _historyParams(refresh);
-    List<Orders> data = await GetPurchasingHistory().call(params);
-    Set<Orders> unPaidOrder  = data.where((element) => element.showUnPaidOnlineOrderActions).toSet();
-    if(unPaidOrder.isNotEmpty){
-      _firstUnPaidOrder = unPaidOrder.first;
-      showUnPaidOrderSheet(ctx);
+    bool isAuth = ctx.read<DeviceCubit>().state.model.auth;
+    if(isAuth){
+      GenericPaginateParams params = _historyParams(refresh);
+      List<Orders> data = await GetPurchasingHistory().call(params);
+      Set<Orders> unPaidOrder  = data.where((element) => element.showUnPaidOnlineOrderActions).toSet();
+      if(unPaidOrder.isNotEmpty){
+        _firstUnPaidOrder = unPaidOrder.first;
+        showUnPaidOrderSheet(ctx);
+      }
     }
   }
 
