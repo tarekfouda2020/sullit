@@ -93,8 +93,8 @@ class ImplPurchasingDataSources extends PurchasingDataSources {
   @override
   Future<Either<Failure, String>> reOrder(int param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.cancelOrder(param),
-      requestMethod: RequestMethod.get,
+      url: ApiNames.reOrder(param),
+      requestMethod: RequestMethod.post,
       responseType: ResType.type,
       showLoader: true,
       responseKey: (data) => data['msg'],
