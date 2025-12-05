@@ -120,4 +120,6 @@ abstract class AppColors {
   Color get lightGreen;
 
   Color get mainGreen;
+
+  Color get harvest;
 }

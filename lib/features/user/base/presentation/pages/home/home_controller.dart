@@ -8,13 +8,19 @@ class HomeController {
   late CurvedAnimation curve;
   final GenericBloc<bool> visibleSearch = GenericBloc(false);
   final TextEditingController searchController = TextEditingController();
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+
+  Orders? _firstUnPaidOrder;
+
   bool showToast = false;
   int index = 0;
   final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
   List<String> tabs = [Res.home, Res.category, "", Res.offers, Res.menuIcon];
 
-
+  HomeController(){
+    getPurchasingHistory();
+  }
 
   Future<void> getCartItems(BuildContext context,{bool refresh = true}) async {
     CartDomainModel result = await getIt<CartHelper>().getCartItems(refresh: refresh);
@@ -134,5 +140,70 @@ class HomeController {
   }
 
 
+  Future<void> getPurchasingHistory({bool refresh = true}) async {
+    BuildContext ctx = getIt<GlobalContext>().context();
+    bool isAuth = ctx.read<DeviceCubit>().state.model.auth;
+    if(isAuth){
+      GenericPaginateParams params = _historyParams(refresh);
+      List<Orders> data = await GetPurchasingHistory().call(params);
+      Set<Orders> unPaidOrder  = data.where((element) => element.showUnPaidOnlineOrderActions).toSet();
+      if(unPaidOrder.isNotEmpty){
+        _firstUnPaidOrder = unPaidOrder.first;
+        showUnPaidOrderSheet(ctx);
+      }
+    }
+  }
+
+
+
+  void showUnPaidOrderSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+      return UnPaidOrderSheetWidget(order: _firstUnPaidOrder!, controller: this);
+    },);
+  }
+
+
+  void viewOrderDetails(BuildContext context){
+    Navigator.pop(context);
+    AutoRouter.of(context).push(
+      OrderDetailsPageRoute(
+        isReturnedOrder: false,
+        order: _firstUnPaidOrder!,
+      ),
+    );
+  }
+
+
+
+  void onPayOrder(BuildContext context) async {
+    Navigator.pop(context);
+    BuildContext ctx = getIt<GlobalContext>().context();
+    var result = await PayOrder().call(_firstUnPaidOrder!.id);
+    if (result.isNotEmpty ) {
+      if(_firstUnPaidOrder!.isPaymentOnline){
+         AutoRouter.of(ctx).push(
+          PaymentRoute(transactionUrl: result,orderPaymentFromHome: true),
+        );
+      }else{
+        CustomToast.showSimpleToast(
+          msg: tr('paymentDone'),
+          type: ToastType.success,
+        );
+        AutoRouter.of(ctx).push(OrderDetailsPageRoute(isReturnedOrder: false, order: _firstUnPaidOrder!));
+      }
+
+    }
+  }
+
+
+  GenericPaginateParams _historyParams( bool refresh) {
+    return GenericPaginateParams(
+      currentPage: 1,
+      refresh: refresh,
+      pageSize: 12,
+    );
+  }
 
 }

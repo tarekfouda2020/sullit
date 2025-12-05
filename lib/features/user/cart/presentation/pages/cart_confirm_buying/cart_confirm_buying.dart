@@ -3,7 +3,8 @@ part of 'cart_confirm_buying_imports.dart';
 class CartConfirmBuying extends StatefulWidget {
   final OrderSummary? summary;
   final int? combinedId;
-  const CartConfirmBuying({super.key, this.summary, this.combinedId});
+  final bool paymentFromHome;
+  const CartConfirmBuying({super.key, this.summary, this.combinedId,  this.paymentFromHome = false});
 
   @override
   State<CartConfirmBuying> createState() => _CartConfirmBuyingState();
@@ -22,7 +23,7 @@ class _CartConfirmBuyingState extends State<CartConfirmBuying> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async{
-        AutoRouter.of(context).push(HomeRoute(index: 0));
+        controller.onPressBack(context);
         return true;
       },
       child: Scaffold(
@@ -30,7 +31,7 @@ class _CartConfirmBuyingState extends State<CartConfirmBuying> {
         appBar: DefaultAppBar(
             title: tr("cart"),
             bgColor: context.colors.white,
-          onBack: () => AutoRouter.of(context).push(HomeRoute(index: 0)),
+          onBack: () => controller.onPressBack(context),
         ),
         body: BlocBuilder<GenericBloc<OrderSummary?>,
             GenericState<OrderSummary?>>(
@@ -39,6 +40,7 @@ class _CartConfirmBuyingState extends State<CartConfirmBuying> {
             if (state is GenericUpdateState) {
               return Column(
                 children: [
+                  if(!widget.paymentFromHome)
                   const BuildCartStepper(current: 5),
                  Flexible(
                      child: CustomRefreshIndicatorWidget(
