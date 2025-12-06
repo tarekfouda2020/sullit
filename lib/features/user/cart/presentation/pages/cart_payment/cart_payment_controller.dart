@@ -95,14 +95,14 @@ class CartPaymentController {
   }
 
   Future<void> createOrder(BuildContext context) async {
-    if(!_isExistMinimumAmount){
-      CustomToast.showSimpleToast(
-        msg: "${tr("addPurchases")}\n${shippingBloc.state.data?.summary.minimumOrderAmountAmount} ${tr("to_create_order")} ",
-        // msg: "${shippingBloc.state.data?.summary.minimumOrderAmountMsg}",
-        type: ToastType.error,
-      );
-      return ;
-    }
+    // if(!_isExistMinimumAmount){
+    //   CustomToast.showSimpleToast(
+    //     msg: "${tr("addPurchases")}\n${shippingBloc.state.data?.summary.minimumOrderAmountAmount} ${tr("to_create_order")} ",
+    //     // msg: "${shippingBloc.state.data?.summary.minimumOrderAmountMsg}",
+    //     type: ToastType.error,
+    //   );
+    //   return ;
+    // }
     if (conditionsCubit.state.data) {
       // _checkPayMethodSel();
       if (isWalletSelectedAndBalanceEnough()) {
@@ -133,7 +133,7 @@ class CartPaymentController {
     } else {
       var countCubit = ctx.read<CountCubit>().state;
       ctx.read<CountCubit>().onUpdateCount(0, countCubit.discount);
-      // AutoRouter.of(ctx).push(HomeRoute(index: 0));
+      AutoRouter.of(ctx).push(HomeRoute(index: 0));
     }
   }
 
