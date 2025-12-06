@@ -29,8 +29,12 @@ class MyGiftCardsController {
     }
   }
 
-  void routeToCardDetails(BuildContext context,int id){
-    AutoRouter.of(context).push(GiftCardDetailsRoute(isMyGiftCard: true,giftCardId: id));
+  void routeToCardDetails(BuildContext context,GiftCardDomainModel model){
+    if(model.isExpired == true){
+      CustomToast.showSimpleToast(msg: "Your Gift card are expired, Please By another one");
+      return ;
+    }
+    AutoRouter.of(context).push(GiftCardDetailsRoute(isMyGiftCard: true,giftCardId: model.id));
   }
 
   GenericPaginateParams _paginateParams(int page, bool refresh) {

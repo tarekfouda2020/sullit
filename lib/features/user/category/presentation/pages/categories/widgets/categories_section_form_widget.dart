@@ -26,6 +26,7 @@ class CategoriesSectionFormWidget extends StatelessWidget {
               ),
             ),
             Gaps.vGap12,
+            // if(item.subCats?.isNotEmpty ?? true)
             SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               scrollDirection: Axis.horizontal,

@@ -72,14 +72,13 @@ class ShippingSummary extends BaseDomainModel{
   }
 
 
-
   String getTotalVat(){
     var vatOnSubTotal = double.parse(tax);
     var vatOnFees = double.parse(vatFeeAmount);
     return (vatOnSubTotal+vatOnFees).toStringAsFixed(2);
   }
 
-  double get getFeesTotal => double.parse(environmentFees) + double.parse(shipping) + double.parse(serviceFees) + double.parse(technologyFees);
+  double get getFeesTotal => double.parse(environmentFees) + double.parse(shipping) + double.parse(serviceFees) + double.parse(technologyFees) + double.parse(getTotalVat());
 
 
 }

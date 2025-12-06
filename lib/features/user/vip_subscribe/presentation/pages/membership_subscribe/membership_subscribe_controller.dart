@@ -124,8 +124,16 @@ class MembershipSubscribeController {
   }
 
   void updateSelectedMemberShip(VipSubscribeDomainModel model) {
-    if (model.byInvite == true) {
-      showUnAvailablePlanToast();
+    double currentPlanPrice = double.parse(currentSubscription!.price.replaceAll(",", ""));
+    double selectedPlanPrice = double.parse(model.price.replaceAll(",", ""));
+    if (model.byInvite == true ) {
+      if(currentPlanPrice == selectedPlanPrice){
+        CustomToast.showSnakeBar(
+            "${tr('already_subscribed_tier')} (${model.name})",
+            type: ToastType.info);
+      }else{
+        showUnAvailablePlanToast();
+      }
       return;
     }
 
@@ -145,23 +153,20 @@ class MembershipSubscribeController {
   }
 
   bool checkCurrentPlanValidation(VipSubscribeDomainModel model) {
-    double currentPlanPrice = double.parse(currentSubscription!.price);
-    double selectedPlanPrice = double.parse(model.price);
-    if (currentPlanPrice == selectedPlanPrice) {
+    double currentPlanPrice = double.parse(currentSubscription!.price.replaceAll(",", ""));
+    double selectedPlanPrice = double.parse(model.price.replaceAll(",", ""));
+    if (currentPlanPrice == selectedPlanPrice || currentSubscription!.byInvite == true) {
       CustomToast.showSnakeBar(
           "${tr('already_subscribed_tier')} (${model.name})",
           type: ToastType.info);
       return false;
-    }
-    if (currentPlanPrice > selectedPlanPrice || currentPlanPrice < selectedPlanPrice) {
+    }else  {
       CustomToast.showSimpleToast(
-          msg:
-              "${tr('already_subscribed_with_days')} ${currentSubscription!.name} ${tr('and_still_have')} ${currentSubscription!.expiredInDays} ${tr('day_before_ending')}",
-        type: ToastType.info
+          msg: "${tr('already_subscribed_with_days')} ${currentSubscription!.name} ${tr('and_still_have')} ${currentSubscription!.expiredInDays} ${tr('day_before_ending')}",
+          type: ToastType.info
       );
-      return true;
+      return currentPlanPrice < selectedPlanPrice;
     }
-    return true;
   }
 
   Future<void> subscribeInMembership(BuildContext context) async {

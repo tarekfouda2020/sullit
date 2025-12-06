@@ -12,11 +12,18 @@ class CartDomainModel extends BaseDomainModel {
 
   String? currencySymbol;
 
+  String? minimumAmountMsg;
+  double? minimumAmount;
+  bool? minimumStatus;
+
   CartDomainModel({
      this.items,
      this.subTotal,
      this.calculableTotal,
      this.currencySymbol,
+     this.minimumAmountMsg,
+     this.minimumAmount,
+     this.minimumStatus,
   });
 
 

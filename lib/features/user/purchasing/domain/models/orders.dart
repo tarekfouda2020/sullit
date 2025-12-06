@@ -145,7 +145,7 @@ class Orders extends BaseDomainModel {
 
   OrderPaymentType orderPaymentType(){
     switch(paymentMethod){
-      case "Cash on Delivery" :return OrderPaymentType.cash;
+      case "Cash On Delivery" :return OrderPaymentType.cash;
       case "paymob" : return OrderPaymentType.paymob;
       case "Wallet" :return OrderPaymentType.wallet;
       default: return OrderPaymentType.paymob;

@@ -133,7 +133,7 @@ class CartPaymentController {
     } else {
       var countCubit = ctx.read<CountCubit>().state;
       ctx.read<CountCubit>().onUpdateCount(0, countCubit.discount);
-      AutoRouter.of(ctx).push(HomeRoute(index: 0));
+      // AutoRouter.of(ctx).push(HomeRoute(index: 0));
     }
   }
 
@@ -520,6 +520,7 @@ class CartPaymentController {
 
 
   double getTotal(){
+    return double.parse(shippingBloc.state.data!.summary.total);
     ShippingSummary summary = shippingBloc.state.data!.summary;
     double subTotal = double.parse(summary.subTotal);
     double totalFeesAmount = summary.getFeesTotal;
