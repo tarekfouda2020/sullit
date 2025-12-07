@@ -242,16 +242,16 @@ class ProfileController {
     AutoRouter.of(context).pop();
   }
 
-  void onActivePhone(BuildContext context) async {
-    var user = context.read<UserCubit>().state.model;
-    var result = await AutoRouter.of(context)
-        .push(ActiveAccountRoute(phoneOrEmail: user?.fullPhone ?? ""));
-    if (result == true) {
-      user?.isPhoneActive = true;
-      verifyPhoneCubit.onUpdateData(true);
-      context.read<UserCubit>().onUpdateUserData(user!);
-    }
-  }
+  // void onActivePhone(BuildContext context) async {
+  //   var user = context.read<UserCubit>().state.model;
+  //   var result = await AutoRouter.of(context)
+  //       .push(ActiveAccountRoute(phoneOrEmail: user?.fullPhone ?? ""));
+  //   if (result == true) {
+  //     user?.isPhoneActive = true;
+  //     verifyPhoneCubit.onUpdateData(true);
+  //     context.read<UserCubit>().onUpdateUserData(user!);
+  //   }
+  // }
 
   ProfileParams _profileParams(BuildContext context) {
     return ProfileParams(

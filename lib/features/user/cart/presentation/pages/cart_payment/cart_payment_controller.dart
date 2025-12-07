@@ -95,14 +95,14 @@ class CartPaymentController {
   }
 
   Future<void> createOrder(BuildContext context) async {
-    if(!_isExistMinimumAmount){
-      CustomToast.showSimpleToast(
-        msg: "${tr("addPurchases")}\n${shippingBloc.state.data?.summary.minimumOrderAmountAmount} ${tr("to_create_order")} ",
-        // msg: "${shippingBloc.state.data?.summary.minimumOrderAmountMsg}",
-        type: ToastType.error,
-      );
-      return ;
-    }
+    // if(!_isExistMinimumAmount){
+    //   CustomToast.showSimpleToast(
+    //     msg: "${tr("addPurchases")}\n${shippingBloc.state.data?.summary.minimumOrderAmountAmount} ${tr("to_create_order")} ",
+    //     // msg: "${shippingBloc.state.data?.summary.minimumOrderAmountMsg}",
+    //     type: ToastType.error,
+    //   );
+    //   return ;
+    // }
     if (conditionsCubit.state.data) {
       // _checkPayMethodSel();
       if (isWalletSelectedAndBalanceEnough()) {
@@ -520,6 +520,7 @@ class CartPaymentController {
 
 
   double getTotal(){
+    return double.parse(shippingBloc.state.data!.summary.total);
     ShippingSummary summary = shippingBloc.state.data!.summary;
     double subTotal = double.parse(summary.subTotal);
     double totalFeesAmount = summary.getFeesTotal;

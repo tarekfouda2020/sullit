@@ -97,10 +97,19 @@ class VipMembershipsController {
   }
 
   void selectMembership(VipSubscribeDomainModel model) {
-    if (model.byInvite == true) {
-      showUnAvailablePlanToast();
+    double currentPlanPrice = double.parse(_currentSubscription()!.price.replaceAll(",", ""));
+    double selectedPlanPrice = double.parse(model.price.replaceAll(",", ""));
+    if (model.byInvite == true ) {
+      if(currentPlanPrice == selectedPlanPrice){
+        CustomToast.showSnakeBar(
+            "${tr('already_subscribed_tier')} (${model.name})",
+            type: ToastType.info);
+      }else{
+        showUnAvailablePlanToast();
+      }
       return;
     }
+
 
     if (_currentSubscription() != null && !model.isSelected) {
       if (!checkCurrentPlanValidation(model)) {
@@ -123,22 +132,23 @@ class VipMembershipsController {
   }
 
   bool checkCurrentPlanValidation(VipSubscribeDomainModel model) {
-    double currentPlanPrice = double.parse(_currentSubscription()!.price);
-    double selectedPlanPrice = double.parse(model.price);
+    double currentPlanPrice = double.parse(_currentSubscription()!.price.replaceAll(",", ""));
+    double selectedPlanPrice = double.parse(model.price.replaceAll(",", ""));
     if (currentPlanPrice == selectedPlanPrice) {
       CustomToast.showSnakeBar(
           "${tr('already_subscribed_tier')} (${model.name})",
           type: ToastType.info);
       return false;
-    }
-    if (currentPlanPrice > selectedPlanPrice || currentPlanPrice < selectedPlanPrice)  {
+    } else if(model.byInvite == true){
+
+      return false;
+    }else  {
       CustomToast.showSimpleToast(
           msg: "${tr('already_subscribed_with_days')} ${_currentSubscription()!.name} ${tr('and_still_have')} ${_currentSubscription()!.expiredInDays} ${tr('day_before_ending')}",
       type: ToastType.info
       );
-      return true;
+      return currentPlanPrice < selectedPlanPrice;
     }
-    return true;
   }
 
   void showUnAvailablePlanToast() {

@@ -106,6 +106,8 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
                 placeHolder: Center(
                   child: Image.asset(
                     Res.emptyCart,
+                    width: 170,
+                    height: 170,
                     fit: BoxFit.fill,
                   ),
                 ),

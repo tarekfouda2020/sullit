@@ -1,8 +1,7 @@
 enum OrderPaymentType {
-
   cash,
-  stripe,
-  tap,
-  wallet
+  wallet,
+  paymob,
+  telr,
 
 }

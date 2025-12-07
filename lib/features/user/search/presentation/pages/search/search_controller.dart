@@ -3,6 +3,7 @@ part of 'search_imports.dart';
 class SearchController {
   final TextEditingController searchController = TextEditingController();
   final GenericBloc<SearchResults?> resultsCubit = GenericBloc(null);
+  final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
   // final GenericBloc<bool> showCategorySection = GenericBloc<bool>(true);
 
   SearchController(String searchText) {
@@ -46,6 +47,20 @@ class SearchController {
       currentPage: 1,
       pageSize: 12,
     );
+  }
+
+
+  void clearSearchField(){
+    searchController.clear();
+    showClearIcon.onUpdateData(false);
+  }
+
+  void whileWriting(String value){
+    if(value.isNotEmpty){
+      showClearIcon.onUpdateData(true);
+    }else{
+      showClearIcon.onUpdateData(false);
+    }
   }
 
 }

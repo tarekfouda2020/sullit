@@ -91,6 +91,18 @@ class ImplPurchasingDataSources extends PurchasingDataSources {
   }
 
   @override
+  Future<Either<Failure, String>> reOrder(int param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.reOrder(param),
+      requestMethod: RequestMethod.post,
+      responseType: ResType.type,
+      showLoader: true,
+      responseKey: (data) => data['msg'],
+    );
+    return await GenericHttpImpl<String>().call(model);
+  }
+
+  @override
   Future<Either<Failure, List<OrderModel>>> getReturnOrders(
       GenericPaginateParams param) async {
     HttpRequestModel model = HttpRequestModel(

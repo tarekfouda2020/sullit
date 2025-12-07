@@ -16,7 +16,7 @@ class MyGiftCardsListWidget extends StatelessWidget {
             return GiftCardItemWidget(
                 isMyGiftCard: true,
                 model: item,
-              onTap: ()=> controller.routeToCardDetails(context, item.id),
+              onTap: ()=> controller.routeToCardDetails(context, item),
             );
           },
           noItemsFoundIndicatorBuilder: (cxt) {

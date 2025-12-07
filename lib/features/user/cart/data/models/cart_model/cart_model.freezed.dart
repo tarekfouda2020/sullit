@@ -27,6 +27,12 @@ mixin _$CartModel {
   num get calculableTotal => throw _privateConstructorUsedError;
   @JsonKey(name: "currency_symbol")
   String get currencySymbol => throw _privateConstructorUsedError;
+  @JsonKey(name: "minimum_order_amount_msg")
+  String? get minimumAmountMsg => throw _privateConstructorUsedError;
+  @JsonKey(name: "minimum_order_amount")
+  double? get minimumAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: "minimum_order_amount_status")
+  bool? get minimumStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +49,10 @@ abstract class $CartModelCopyWith<$Res> {
       {List<CartItemModel> items,
       @JsonKey(name: "sub_total") String subTotal,
       @JsonKey(name: "calculable_total") num calculableTotal,
-      @JsonKey(name: "currency_symbol") String currencySymbol});
+      @JsonKey(name: "currency_symbol") String currencySymbol,
+      @JsonKey(name: "minimum_order_amount_msg") String? minimumAmountMsg,
+      @JsonKey(name: "minimum_order_amount") double? minimumAmount,
+      @JsonKey(name: "minimum_order_amount_status") bool? minimumStatus});
 }
 
 /// @nodoc
@@ -63,6 +72,9 @@ class _$CartModelCopyWithImpl<$Res, $Val extends CartModel>
     Object? subTotal = null,
     Object? calculableTotal = null,
     Object? currencySymbol = null,
+    Object? minimumAmountMsg = freezed,
+    Object? minimumAmount = freezed,
+    Object? minimumStatus = freezed,
   }) {
     return _then(_value.copyWith(
       items: null == items
@@ -81,6 +93,18 @@ class _$CartModelCopyWithImpl<$Res, $Val extends CartModel>
           ? _value.currencySymbol
           : currencySymbol // ignore: cast_nullable_to_non_nullable
               as String,
+      minimumAmountMsg: freezed == minimumAmountMsg
+          ? _value.minimumAmountMsg
+          : minimumAmountMsg // ignore: cast_nullable_to_non_nullable
+              as String?,
+      minimumAmount: freezed == minimumAmount
+          ? _value.minimumAmount
+          : minimumAmount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      minimumStatus: freezed == minimumStatus
+          ? _value.minimumStatus
+          : minimumStatus // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -96,7 +120,10 @@ abstract class _$$_CartModelCopyWith<$Res> implements $CartModelCopyWith<$Res> {
       {List<CartItemModel> items,
       @JsonKey(name: "sub_total") String subTotal,
       @JsonKey(name: "calculable_total") num calculableTotal,
-      @JsonKey(name: "currency_symbol") String currencySymbol});
+      @JsonKey(name: "currency_symbol") String currencySymbol,
+      @JsonKey(name: "minimum_order_amount_msg") String? minimumAmountMsg,
+      @JsonKey(name: "minimum_order_amount") double? minimumAmount,
+      @JsonKey(name: "minimum_order_amount_status") bool? minimumStatus});
 }
 
 /// @nodoc
@@ -114,6 +141,9 @@ class __$$_CartModelCopyWithImpl<$Res>
     Object? subTotal = null,
     Object? calculableTotal = null,
     Object? currencySymbol = null,
+    Object? minimumAmountMsg = freezed,
+    Object? minimumAmount = freezed,
+    Object? minimumStatus = freezed,
   }) {
     return _then(_$_CartModel(
       items: null == items
@@ -132,6 +162,18 @@ class __$$_CartModelCopyWithImpl<$Res>
           ? _value.currencySymbol
           : currencySymbol // ignore: cast_nullable_to_non_nullable
               as String,
+      minimumAmountMsg: freezed == minimumAmountMsg
+          ? _value.minimumAmountMsg
+          : minimumAmountMsg // ignore: cast_nullable_to_non_nullable
+              as String?,
+      minimumAmount: freezed == minimumAmount
+          ? _value.minimumAmount
+          : minimumAmount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      minimumStatus: freezed == minimumStatus
+          ? _value.minimumStatus
+          : minimumStatus // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -144,7 +186,10 @@ class _$_CartModel extends _CartModel {
       {required final List<CartItemModel> items,
       @JsonKey(name: "sub_total") required this.subTotal,
       @JsonKey(name: "calculable_total") required this.calculableTotal,
-      @JsonKey(name: "currency_symbol") required this.currencySymbol})
+      @JsonKey(name: "currency_symbol") required this.currencySymbol,
+      @JsonKey(name: "minimum_order_amount_msg") this.minimumAmountMsg,
+      @JsonKey(name: "minimum_order_amount") this.minimumAmount,
+      @JsonKey(name: "minimum_order_amount_status") this.minimumStatus})
       : _items = items,
         super._();
 
@@ -168,10 +213,19 @@ class _$_CartModel extends _CartModel {
   @override
   @JsonKey(name: "currency_symbol")
   final String currencySymbol;
+  @override
+  @JsonKey(name: "minimum_order_amount_msg")
+  final String? minimumAmountMsg;
+  @override
+  @JsonKey(name: "minimum_order_amount")
+  final double? minimumAmount;
+  @override
+  @JsonKey(name: "minimum_order_amount_status")
+  final bool? minimumStatus;
 
   @override
   String toString() {
-    return 'CartModel(items: $items, subTotal: $subTotal, calculableTotal: $calculableTotal, currencySymbol: $currencySymbol)';
+    return 'CartModel(items: $items, subTotal: $subTotal, calculableTotal: $calculableTotal, currencySymbol: $currencySymbol, minimumAmountMsg: $minimumAmountMsg, minimumAmount: $minimumAmount, minimumStatus: $minimumStatus)';
   }
 
   @override
@@ -185,7 +239,13 @@ class _$_CartModel extends _CartModel {
             (identical(other.calculableTotal, calculableTotal) ||
                 other.calculableTotal == calculableTotal) &&
             (identical(other.currencySymbol, currencySymbol) ||
-                other.currencySymbol == currencySymbol));
+                other.currencySymbol == currencySymbol) &&
+            (identical(other.minimumAmountMsg, minimumAmountMsg) ||
+                other.minimumAmountMsg == minimumAmountMsg) &&
+            (identical(other.minimumAmount, minimumAmount) ||
+                other.minimumAmount == minimumAmount) &&
+            (identical(other.minimumStatus, minimumStatus) ||
+                other.minimumStatus == minimumStatus));
   }
 
   @JsonKey(ignore: true)
@@ -195,7 +255,10 @@ class _$_CartModel extends _CartModel {
       const DeepCollectionEquality().hash(_items),
       subTotal,
       calculableTotal,
-      currencySymbol);
+      currencySymbol,
+      minimumAmountMsg,
+      minimumAmount,
+      minimumStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -216,8 +279,11 @@ abstract class _CartModel extends CartModel {
       {required final List<CartItemModel> items,
       @JsonKey(name: "sub_total") required final String subTotal,
       @JsonKey(name: "calculable_total") required final num calculableTotal,
-      @JsonKey(name: "currency_symbol")
-      required final String currencySymbol}) = _$_CartModel;
+      @JsonKey(name: "currency_symbol") required final String currencySymbol,
+      @JsonKey(name: "minimum_order_amount_msg") final String? minimumAmountMsg,
+      @JsonKey(name: "minimum_order_amount") final double? minimumAmount,
+      @JsonKey(name: "minimum_order_amount_status")
+      final bool? minimumStatus}) = _$_CartModel;
   const _CartModel._() : super._();
 
   factory _CartModel.fromJson(Map<String, dynamic> json) =
@@ -234,6 +300,15 @@ abstract class _CartModel extends CartModel {
   @override
   @JsonKey(name: "currency_symbol")
   String get currencySymbol;
+  @override
+  @JsonKey(name: "minimum_order_amount_msg")
+  String? get minimumAmountMsg;
+  @override
+  @JsonKey(name: "minimum_order_amount")
+  double? get minimumAmount;
+  @override
+  @JsonKey(name: "minimum_order_amount_status")
+  bool? get minimumStatus;
   @override
   @JsonKey(ignore: true)
   _$$_CartModelCopyWith<_$_CartModel> get copyWith =>

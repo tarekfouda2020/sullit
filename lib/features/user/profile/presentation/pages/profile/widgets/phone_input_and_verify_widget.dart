@@ -38,37 +38,37 @@ class PhoneInputAndVerify extends StatelessWidget {
               },
               ),
             ),
-            Gaps.hGap5,
-            BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-              bloc: controller.verifyPhoneCubit,
-              builder: (context, state) {
-                return Visibility(
-                  visible: user?.fullPhone != "",
-                  child: Visibility(
-                    visible: !state.data,
-                    child: Expanded(
-                      child: InkWell(
-                        onTap: () => controller.onActivePhone(context),
-                        child: Container(
-                          padding: Dimens.paddingVertical15PX,
-                          decoration: BoxDecoration(
-                            borderRadius: Dimens.borderRadius30PX,
-                            color: context.colors.primary,
-                          ),
-                          child: Text(
-                            tr('verifyPhone'),
-                            textAlign: TextAlign.center,
-                            style: AppTextStyle.s12_w500(
-                              color: context.colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
+            // Gaps.hGap5,
+            // BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+            //   bloc: controller.verifyPhoneCubit,
+            //   builder: (context, state) {
+            //     return Visibility(
+            //       visible: user?.fullPhone != "",
+            //       child: Visibility(
+            //         visible: !state.data,
+            //         child: Expanded(
+            //           child: InkWell(
+            //             onTap: () => controller.onActivePhone(context),
+            //             child: Container(
+            //               padding: Dimens.paddingVertical15PX,
+            //               decoration: BoxDecoration(
+            //                 borderRadius: Dimens.borderRadius30PX,
+            //                 color: context.colors.primary,
+            //               ),
+            //               child: Text(
+            //                 tr('verifyPhone'),
+            //                 textAlign: TextAlign.center,
+            //                 style: AppTextStyle.s12_w500(
+            //                   color: context.colors.white,
+            //                 ),
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     );
+            //   },
+            // ),
           ],
         ),
       ],

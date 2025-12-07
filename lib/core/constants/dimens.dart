@@ -8,7 +8,7 @@ class Dimens {
 
   static double iosBottomDp(BuildContext context) => Platform.isIOS
       ?MediaQuery.paddingOf(context).bottom + 13
-      : 8;
+      : 16;
 
   static const double font_sp10 = 10.0;
   static const double font_sp12 = 12.0;
@@ -63,6 +63,7 @@ class Dimens {
   static const double dp55 = 55;
   static const double dp60 = 60;
   static const double dp64 = 64;
+  static const double dp65 = 64;
   static const double dp70 = 70;
   static const double dp80 = 80;
 
@@ -144,6 +145,7 @@ class Dimens {
   static EdgeInsetsDirectional paddingStart20 = EdgeInsetsDirectional.only(start: 20.r);
   static EdgeInsetsDirectional paddingStart19 = EdgeInsetsDirectional.only(start: 19.r);
   static EdgeInsetsDirectional paddingEnd19 = const EdgeInsetsDirectional.only(end: 19);
+  static EdgeInsetsDirectional paddingEnd10 = const EdgeInsetsDirectional.only(end: 10);
 
   static EdgeInsetsDirectional paddingS22T10B10 = const EdgeInsetsDirectional.only(start: 22, top: 10, bottom: 10);
 

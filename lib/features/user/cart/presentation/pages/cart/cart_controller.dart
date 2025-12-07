@@ -3,8 +3,7 @@
 part of 'cart_imports.dart';
 
 class CartController {
-  final GenericBloc<CartDomainModel> cartItemsBloc =
-      GenericBloc(CartDomainModel());
+  final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
 
   CartController() {
     getCartItems();
@@ -78,6 +77,10 @@ class CartController {
   void navigateToShipping(BuildContext context) {
     bool auth = context.read<DeviceCubit>().state.model.auth;
     if (auth) {
+      if(cartItemsBloc.state.data.minimumStatus == false){
+        CustomToast.showSimpleToast(msg: cartItemsBloc.state.data.minimumAmountMsg!);
+        return ;
+      }
       if (cartItemsBloc.state.data.items!.isNotEmpty) {
         AutoRouter.of(context).push(
           // const ReceivingMethodRoute(),
@@ -106,8 +109,6 @@ class CartController {
   }
 
 
-
-
   Future<void> clearCart(BuildContext context) async {
     var params = await _cartParams();
     await ClearCart().call(params).then((value) async {
@@ -121,7 +122,6 @@ class CartController {
       Navigator.pop(context);
     });
   }
-
 
 
   void updateCartCount(BuildContext context){
