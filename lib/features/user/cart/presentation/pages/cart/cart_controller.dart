@@ -21,7 +21,7 @@ class CartController {
     if (data) {
       num newSubTotal = cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
       cartItemsBloc.state.data.calculableTotal = newSubTotal;
-      cartItemsBloc.state.data.items!.remove(cartItem);
+      // cartItemsBloc.state.data.items!.remove(cartItem);
       cartItemsBloc.state.data.minimumStatus = newSubTotal > (cartItemsBloc.state.data.minimumAmount ?? 0);
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
       updateCartCount(context);
