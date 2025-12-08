@@ -16,18 +16,23 @@ class CartController {
 
 
   Future<void> deleteItemFromCart(BuildContext context,CartItem cartItem) async {
+    getIt<LoadingHelper>().showLoadingDialog();
     var data = await getIt<CartHelper>().deleteItemFromCart(context,cartItem);
     if (data) {
-      var newSubTotal =
-          cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
+      num newSubTotal = cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
       cartItemsBloc.state.data.calculableTotal = newSubTotal;
       cartItemsBloc.state.data.items!.remove(cartItem);
+      cartItemsBloc.state.data.minimumStatus = newSubTotal > (cartItemsBloc.state.data.minimumAmount ?? 0);
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
       updateCartCount(context);
+      await getCartItems(refresh: true);
+      getIt<LoadingHelper>().dismissDialog();
       // var cartCount = countCubit.cartCount - 1;
       CustomToast.showSimpleToast(
           msg: tr('itemDeleted'), type: ToastType.success);
       // getCartItems();
+    }else{
+      getIt<LoadingHelper>().dismissDialog();
     }
   }
 

@@ -124,7 +124,6 @@ class ImplCartDataSources extends CartDataSources {
       requestBody: params.toJson(),
       requestMethod: RequestMethod.delete,
       responseType: ResType.type,
-      showLoader: true,
       responseKey: (data)=> data["key"] == "success",
       errorFunc: (data)=> data["msg"],
     );
