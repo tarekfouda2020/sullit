@@ -97,7 +97,7 @@ class VipMembershipsController {
   }
 
   void selectMembership(VipSubscribeDomainModel model) {
-    double currentPlanPrice = double.parse(_currentSubscription()!.price.replaceAll(",", ""));
+    double currentPlanPrice = double.parse(_currentSubscription()?.price.replaceAll(",", "")??"0.0");
     double selectedPlanPrice = double.parse(model.price.replaceAll(",", ""));
     if (model.byInvite == true ) {
       if(currentPlanPrice == selectedPlanPrice){

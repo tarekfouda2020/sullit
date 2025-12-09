@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +13,7 @@ import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/features/user/cart/presentation/manager/helpers/cart_navigate_helper.dart';
 import 'package:flutter_tdd/res.dart';
 
 class BuildCartStepper extends StatelessWidget {
@@ -93,7 +96,14 @@ class BuildCartStepper extends StatelessWidget {
       if(current > index && current != 1 && current!= stepsIconWidget(context).length){
       int pops = current - index;
       getIt<Utilities>().popManyTimes(context, pops-1);
-    }
+    }else{
+        log('=======>>>>>>> current in press  $current ========');
+        int nonActiveStep = index+1;
+      if(nonActiveStep == 2 || nonActiveStep == 3 || nonActiveStep == 4){
+        getIt<CartNavigateHelper>().selectedForwardStep = nonActiveStep;
+        getIt<CartNavigateHelper>().goForward(context);
+      }
+      }
   }
 
 

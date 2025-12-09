@@ -15,7 +15,7 @@ class SummaryModel extends BaseApiModel<Summary> with _$SummaryModel {
   const factory SummaryModel(
       {@JsonKey(name: 'order_date') required String orderDate,
       required String name,
-      required String email,
+      required String? email,
       @JsonKey(name: 'shipping_address') required String shippingAddress,
       @JsonKey(name: 'order_status') required String orderStatus,
       @JsonKey(name: 'total_order_amount') required String totalOrderAmount,
@@ -33,7 +33,7 @@ class SummaryModel extends BaseApiModel<Summary> with _$SummaryModel {
     return Summary(
       orderDate: orderDate,
       name: name,
-      email: email,
+      email: email ?? "",
       shippingAddress: shippingAddress,
       orderStatus: orderStatus,
       totalOrderAmount: totalOrderAmount,

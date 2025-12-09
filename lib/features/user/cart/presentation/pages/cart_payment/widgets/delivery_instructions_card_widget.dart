@@ -71,6 +71,7 @@ class DeliveryInstructionsCardWidget extends StatelessWidget {
             type: TextInputType.multiline,
             action: TextInputAction.done,
             validate: (value) => value?.noValidate(),
+            onChange: (value) => controller.whileEnterDriverNotes(),
             max: 4,
             fillColor: context.colors.customBackground,
             radius: Dimens.borderRadius20PX,

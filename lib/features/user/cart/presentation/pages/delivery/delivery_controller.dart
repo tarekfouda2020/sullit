@@ -9,6 +9,18 @@ class DeliveryController {
   Pickup? nearestPointModel;
   SellerShipping? selectedItem;
 
+
+  DeliveryController(){
+    List<SellerShipping>? savedShippingData = getIt<CartNavigateHelper>().deliveryDetailsData;
+    if(savedShippingData != null){
+      sellerShippingBloc.onUpdateData(savedShippingData);
+    }else{
+      getShippingInfo();
+    }
+  }
+
+
+
   Future<void> getShippingInfo({bool refresh = true}) async {
     return await GetShippingInfo().call(refresh).then(
           (value) => sellerShippingBloc.onUpdateData(value),
@@ -71,6 +83,8 @@ class DeliveryController {
     List<Map<dynamic, dynamic>> params = _setCartStoreParams();
     var data = await SetCartStoreShipping().call(params);
     if (data != null) {
+      getIt<CartNavigateHelper>().deliveryDetailsData = sellerShippingBloc.state.data;
+      getIt<CartNavigateHelper>().cartCheckOutPageData?.orderSummaryCheckOut = data;
       CustomToast.showSimpleToast(msg: tr('shippingAdded'),type: ToastType.success);
       AutoRouter.of(context).push(CartPaymentRoute(shipping: data));
     }

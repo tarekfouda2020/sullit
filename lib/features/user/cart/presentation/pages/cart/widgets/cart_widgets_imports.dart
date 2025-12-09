@@ -42,3 +42,4 @@ part 'disable_layout_widget.dart';
 part 'change_cart_qty_widget.dart';
 part 'cart_fav_icon_widget.dart';
 part 'cart_shimmer_item_widget.dart';
+part 'cart_items_list_widget.dart';

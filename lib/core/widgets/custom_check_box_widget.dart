@@ -5,7 +5,8 @@ import 'package:flutter_tdd/core/widgets/check_box_widget.dart';
 
 class CustomCheckBoxWidget extends StatelessWidget {
   final GenericBloc<bool> changeValueCubit;
-  const CustomCheckBoxWidget({super.key, required this.changeValueCubit});
+  final void Function(bool? value)? onChange;
+  const CustomCheckBoxWidget({super.key, required this.changeValueCubit, this.onChange});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class CustomCheckBoxWidget extends StatelessWidget {
       builder: (context, state) {
         return CheckBoxWidget(
           value: state.data,
-          onChange: (bool? value) =>changeValueCubit.onUpdateData(value!),
+          onChange: onChange ?? (bool? value) =>changeValueCubit.onUpdateData(value!),
         );
       },
     );

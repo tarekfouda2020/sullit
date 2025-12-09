@@ -2,7 +2,7 @@ part of 'product_details_widgets_imports.dart';
 
 class ChangeQtyCartSheetItemWidget extends StatefulWidget {
   final CartItem cartItem;
-  final ProductDetailsController controller;
+  final CartSheetController controller;
   const ChangeQtyCartSheetItemWidget({super.key, required this.cartItem, required this.controller});
 
   @override

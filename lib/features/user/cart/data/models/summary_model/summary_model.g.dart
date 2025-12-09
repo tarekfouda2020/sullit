@@ -10,7 +10,7 @@ _$_SummaryModel _$$_SummaryModelFromJson(Map<String, dynamic> json) =>
     _$_SummaryModel(
       orderDate: json['order_date'] as String,
       name: json['name'] as String,
-      email: json['email'] as String,
+      email: json['email'] as String?,
       shippingAddress: json['shipping_address'] as String,
       orderStatus: json['order_status'] as String,
       totalOrderAmount: json['total_order_amount'] as String,

@@ -284,11 +284,22 @@ class ProfileController {
     if(email == null || email == "") {
       CustomToast.showSimpleToast(
           msg: tr("add_email_to_change_password"),
-          type: ToastType.info,toastGravity: ToastGravity.BOTTOM
+          type: ToastType.info,
+          toastGravity: ToastGravity.BOTTOM
       );
       return ;
     }
     AutoRouter.of(context).push(const ChangePasswordRoute());
   }
+
+
+  void onPressBack(BuildContext context,String? email){
+    if(email == null || email.isEmpty){
+    CustomToast.showSimpleToast(msg: "Please enter a valid email.");
+    return ;
+    }
+    AutoRouter.of(context).pop();
+  }
+
 
 }

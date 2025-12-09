@@ -39,7 +39,6 @@ class BuildTopSellingProducts extends StatelessWidget {
                         padding: Dimens.paddingHorizontal5PX,
                         child: BuildProductItem(
                           productModel: topProducts[index],
-                          afterAddToCart: () => controller.showCartSuccessSheet(context),
                           onFavRefresh: () => controller.onChangeFav(
                             context,
                             topProducts[index],

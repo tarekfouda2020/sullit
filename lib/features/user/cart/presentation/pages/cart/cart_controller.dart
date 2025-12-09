@@ -6,6 +6,7 @@ class CartController {
   final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
 
   CartController() {
+    getIt<CartNavigateHelper>().initData();
     getCartItems();
   }
 
@@ -27,6 +28,10 @@ class CartController {
       updateCartCount(context);
       await getCartItems(refresh: true);
       getIt<LoadingHelper>().dismissDialog();
+      if(cartItemsBloc.state.data.items == null || (cartItemsBloc.state.data.items??[]).isEmpty ){
+        getIt<CartNavigateHelper>().initData();
+      }
+     getIt<CartHelper>().updateCartCountWithCart(context, cartItemsBloc.state.data);
       // var cartCount = countCubit.cartCount - 1;
       CustomToast.showSimpleToast(
           msg: tr('itemDeleted'), type: ToastType.success);
@@ -118,13 +123,12 @@ class CartController {
     var params = await _cartParams();
     await ClearCart().call(params).then((value) async {
       CustomToast.showSimpleToast(msg: value, type: ToastType.success);
+      getIt<CartNavigateHelper>().initData();
       cartItemsBloc.state.data.items!.clear();
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
       var countCubit = context.read<CountCubit>().state;
       context.read<CountCubit>().onUpdateCount(0, countCubit.discount);
-      Navigator.pop(context);
-     await Future.delayed(const Duration(milliseconds: 300));
-      Navigator.pop(context);
+      getIt<Utilities>().popManyTimes(context, 2);
     });
   }
 

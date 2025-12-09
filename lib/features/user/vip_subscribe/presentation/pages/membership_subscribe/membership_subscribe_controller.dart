@@ -124,7 +124,7 @@ class MembershipSubscribeController {
   }
 
   void updateSelectedMemberShip(VipSubscribeDomainModel model) {
-    double currentPlanPrice = double.parse(currentSubscription!.price.replaceAll(",", ""));
+    double currentPlanPrice = double.parse(currentSubscription?.price.replaceAll(",", "")??"0.0");
     double selectedPlanPrice = double.parse(model.price.replaceAll(",", ""));
     if (model.byInvite == true ) {
       if(currentPlanPrice == selectedPlanPrice){

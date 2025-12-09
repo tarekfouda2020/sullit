@@ -28,9 +28,11 @@ class ShippingController {
       pagingController.itemList = [];
     }
     if (isLastPage) {
+      isSelectedAddressExistInList(data);
       pagingController.appendLastPage(data);
     } else {
       final nextPageKey = page + 1;
+      isSelectedAddressExistInList(data);
       pagingController.appendPage(data, nextPageKey);
     }
   }
@@ -77,13 +79,15 @@ class ShippingController {
       CustomToast.showAuthDialog(context);
       return;
     }
-    var selectedList = pagingController.itemList!
+    List<AddressDomainModel> selectedList = pagingController.itemList!
         .where((element) => element.selected == true)
         .toList();
     if (selectedList.isNotEmpty) {
-      var params = _addCartAddressParams(selectedList.first);
-      var data = await AddCartAddress().call(params);
+      AddressDomainModel selectedAddress = selectedList.first;
+      AddCartAddressParams params = _addCartAddressParams(selectedAddress);
+      bool data = await AddCartAddress().call(params);
       if (data) {
+        getIt<CartNavigateHelper>().selectedOrderAddress = selectedAddress ;
         CustomToast.showSimpleToast(
             msg: tr('addressAdded'),type: ToastType.success);
         AutoRouter.of(context).push(const DeliveryRoute());
@@ -93,6 +97,18 @@ class ShippingController {
       return;
     }
   }
+
+
+
+
+  void isSelectedAddressExistInList(List<AddressDomainModel> remoteData){
+    AddressDomainModel? selectedAddress = getIt<CartNavigateHelper>().selectedOrderAddress;
+    if(selectedAddress!=null){
+     remoteData.firstWhere((element) => element.id == selectedAddress.id).selected = true;
+    }
+  }
+
+
 
 
   GenericPaginateParams _paginateParams(int page, bool refresh) {

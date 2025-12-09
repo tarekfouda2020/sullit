@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,8 +5,8 @@ import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
-import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
@@ -224,22 +223,22 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                       ),
                     ),
                     Gaps.vGap10,
-                    GestureDetector(
-                      onTap: () async{
-                       await _buildAddProductToCart(context, state);
-                        AutoRouter.of(context).push(const CartRoute());
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        margin: Dimens.paddingHorizontal5PX,
-                        padding: Dimens.standardPadding,
-                        decoration: BoxDecoration(
-                          color: context.colors.primary,
-                          borderRadius: Dimens.borderRadius5PX,
-                        ),
-                        child: Text(tr('checkout')),
-                      ),
-                    )
+                    // GestureDetector(
+                    //   onTap: () async{
+                    //    await _buildAddProductToCart(context, state);
+                    //     AutoRouter.of(context).push(const CartRoute());
+                    //   },
+                    //   child: Container(
+                    //     alignment: Alignment.center,
+                    //     margin: Dimens.paddingHorizontal5PX,
+                    //     padding: Dimens.standardPadding,
+                    //     decoration: BoxDecoration(
+                    //       color: context.colors.primary,
+                    //       borderRadius: Dimens.borderRadius5PX,
+                    //     ),
+                    //     child: Text(tr('checkout')),
+                    //   ),
+                    // )
                   ],
                 ),
               )
@@ -258,9 +257,14 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
       state.data!.minQty!,
       state.data!.variant?.id,
       onAddCartFunc: () {
-        Navigator.pop(context);
         getIt<CartHelper>().updateCartCount(context, state.data!.minQty! + existCount);
-        widget.afterAddToCart?.call();
+        Navigator.pop(context);
+        BuildContext ctx = getIt<GlobalContext>().context();
+        if (widget.afterAddToCart != null) {
+          widget.afterAddToCart!.call();
+        } else {
+          getIt<CartHelper>().showCartSuccessSheet(ctx);
+        }
       },
     );
   }
@@ -274,23 +278,6 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
     } else {
       return widget.product.hasDiscount!;
     }
-  }
-
-  bool _hasSelectedAttributes() {
-    if (productCubit.state.data?.choiceOptions == null ||
-        productCubit.state.data!.choiceOptions!.isEmpty) {
-      return false; // No attributes to select
-    }
-
-    for (var option in productCubit.state.data!.choiceOptions!) {
-      if (option.options != null && option.options!.isNotEmpty) {
-        if (option.selectedAttribute != null &&
-            option.selectedAttribute!.isNotEmpty) {
-          return true; // At least one attribute is selected
-        }
-      }
-    }
-    return false; // No attributes are selected
   }
 
   String _calculablePrice(Product product) {
