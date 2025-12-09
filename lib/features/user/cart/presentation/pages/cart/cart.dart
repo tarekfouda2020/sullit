@@ -12,45 +12,63 @@ class Cart extends StatefulWidget {
 class _CartState extends State<Cart> {
   late CartController controller;
 
+  final Set<int> _visitedSteps = {CartNavigateHelper.cartStepIndex};
+
   @override
   void initState() {
-    controller = CartController();
     super.initState();
+    controller = CartController();
+    controller.navigateHelper.setStep(CartNavigateHelper.cartStepIndex, force: true);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colors.cartBg,
-      // appBar: const BuildCustomAppBar(),
-      appBar: DefaultAppBar(title: tr("cart"),bgColor: context.colors.white),
-      body: BlocBuilder<GenericBloc<CartDomainModel>,
-          GenericState<CartDomainModel>>(
-        bloc: controller.cartItemsBloc,
-        builder: (context, state) {
-          if (state is GenericUpdateState) {
-            return Column(
-              children: [
-                 const BuildCartStepper(current: 1),
-                Gaps.vGap11,
-                if((state.data.items ?? []).isNotEmpty)
-                  CleaAllWidget(controller: controller,),
-                Gaps.vGap12,
-                BuildCartItems(
-                  controller: controller,
-                  cartItems: state.data.items!,
-                ),
-                BuildCartButtons(
-                  cartModel: state.data,
-                  controller: controller,
-                ),
-              ],
-            );
-          } else {
-            return const BuildCartLoading();
-          }
+    return WillPopScope(
+      onWillPop: () async {
+        return controller.onPressBack();
+      },
+      child: ValueListenableBuilder<int>(
+        valueListenable: controller.navigateHelper.stepNotifier,
+        builder: (context, step, _) {
+          controller.onStepChanged(step);
+          _visitedSteps.add(step);
+          return IndexedStack(
+            index: step,
+            children: [
+              CartItemsListWidget(controller: controller),
+              _visitedSteps.contains(CartNavigateHelper.shippingStepIndex)
+                  ? const shipping_page.Shipping()
+                  : Gaps.empty,
+              _visitedSteps.contains(CartNavigateHelper.deliveryStepIndex)
+                  ? const delivery_page.Delivery()
+                  : Gaps.empty,
+              _visitedSteps.contains(CartNavigateHelper.paymentStepIndex)
+                  ? _buildPaymentStep()
+                  : Gaps.empty,
+              _visitedSteps.contains(CartNavigateHelper.confirmationStepIndex)
+                  ? _buildConfirmationStep()
+                  : Gaps.empty,
+            ],
+          );
         },
       ),
+    );
+  }
+
+  Widget _buildPaymentStep() {
+    final shipping = controller.paymentShipping;
+    if (shipping == null) return const SizedBox.shrink();
+    return CartPayment(
+      key: controller.paymentViewKey,
+      shipping: shipping,
+    );
+  }
+
+  Widget _buildConfirmationStep() {
+    return CartConfirmBuying(
+      key: controller.confirmationViewKey,
+      summary: controller.confirmationSummary,
+      combinedId: controller.confirmationCombinedId,
     );
   }
 }

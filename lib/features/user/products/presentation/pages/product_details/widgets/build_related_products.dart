@@ -39,7 +39,6 @@ final ProductDetailsController controller;
                         padding: Dimens.paddingHorizontal5PX,
                         child: BuildProductItem(
                           productModel: relatedProducts[index],
-                          afterAddToCart: () => controller.showCartSuccessSheet(context),
                           onFavRefresh: () => controller.onChangeFav(
                             context,
                             relatedProducts[index],

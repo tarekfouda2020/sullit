@@ -169,8 +169,10 @@ class MembershipItemWidget extends StatelessWidget {
           if(model.byInvite == true)
           Positioned.fill(
             child: Container(
+              margin: const EdgeInsets.only(bottom: 12),
               decoration: BoxDecoration(
                 color: Colors.white.withAlpha(150),
+                borderRadius: BorderRadius.circular(12),
               ),
             ),
           )

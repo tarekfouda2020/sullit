@@ -42,11 +42,7 @@ class CartPaymentController {
 
 
   CartPaymentController(Shipping shipping) {
-    shipping.paymentOption?.first.selected = true;
-    selectedPayment = shipping.paymentOption?.first.paymentTypeKey;
-   shipping.paymentOption?.first.fakeSelected = true;
-   shipping.paymentOption?.first.selected = true;
-    shippingBloc.onUpdateData(shipping);
+    initData(shipping);
     if (shipping.isAdminDiscount == true) {
       calculateDiscount();
     }
@@ -58,26 +54,64 @@ class CartPaymentController {
     getInstructions();
   }
 
+
+  CartCheckOutSavedData get _pageSavedData => getIt<CartNavigateHelper>().cartCheckOutPageData;
+
+
+
+  Future<void> initData(Shipping shipping)async{
+    bool fromSavedData = _pageSavedData.orderSummaryCheckOut != null;
+    if(fromSavedData){
+      initDataFromLastRoute(_pageSavedData,shipping);
+      shippingBloc.onUpdateData(shipping);
+      await getRemoteData();
+    }else{
+      _initSelectedPayMethod(shipping);
+      shippingBloc.onUpdateData(shipping);
+    }
+
+  }
+
+
+  void initDataFromLastRoute(CartCheckOutSavedData pageSavedData,Shipping shipping){
+    giftCardCode.text = pageSavedData.giftCardCode?? "";
+    coupon.text = pageSavedData.voucherCode ?? "";
+    driverNotesCtr.text = pageSavedData.driverNotes ?? "";
+    allowReplacementCubit.onUpdateData(pageSavedData.allowReplacement ?? false);
+    conditionsCubit.onUpdateData(pageSavedData.termsAccept ?? false);
+    bool noPayOptionsSelected = pageSavedData.orderSummaryCheckOut!.paymentOption!.every((element) => !element.selected,);
+    if(noPayOptionsSelected){
+      _initSelectedPayMethod(shipping);
+    }
+  }
+
+  void _initSelectedPayMethod(Shipping shipping) {
+    shipping.paymentOption?.first.selected = true;
+    selectedPayment = shipping.paymentOption?.first.paymentTypeKey;
+    shipping.paymentOption?.first.fakeSelected = true;
+    shipping.paymentOption?.first.selected = true;
+  }
+
   void calculateDiscount() {
     String subTotal =
-        shippingBloc.state.data!.summary.subTotal.replaceAll("د.إ", "");
+        shippingBloc.state.data!.summary.subTotal.replaceAll("", "");
     String newSubTotal = subTotal.replaceAll(",", "");
     double subTotalVal = double.parse(newSubTotal);
     double discount =
         subTotalVal * (shippingBloc.state.data!.discountRate! / 100);
     shippingBloc.state.data?.discountVal = discount;
     double totalVal = shippingBloc.state.data!.summary.calTotal - discount;
-    shippingBloc.state.data!.summary.total = "${totalVal.toString()}د.إ";
-    shippingBloc.onUpdateData(shippingBloc.state.data);
+    shippingBloc.state.data!.summary.total = totalVal.toString();
+    updateData();
   }
 
   void calcTotalAfterCoupon() {
-    String total = shippingBloc.state.data!.summary.total.replaceAll("د.إ", "");
+    String total = shippingBloc.state.data!.summary.total.replaceAll("", "");
     String newTotal = total.replaceAll(",", "");
     double totalVal = double.parse(newTotal);
     double calTotal = totalVal - shippingBloc.state.data!.discountVal!;
-    shippingBloc.state.data!.summary.total = "${calTotal.toString()}د.إ";
-    shippingBloc.onUpdateData(shippingBloc.state.data);
+    shippingBloc.state.data!.summary.total = calTotal.toString();
+    updateData();
   }
 
   Future<void> applyCoupon() async {
@@ -86,10 +120,11 @@ class CartPaymentController {
       if (data != null) {
         CustomToast.showSimpleToast(msg: data.msg);
         shippingBloc.state.data!.summary = data.shipping.summary;
-        shippingBloc.onUpdateData(shippingBloc.state.data);
+        updateData();
         if (shippingBloc.state.data!.isAdminDiscount == true) {
           calcTotalAfterCoupon();
         }
+        getIt<CartNavigateHelper>().saveVoucherCode(coupon.text);
       }
     }
   }
@@ -128,7 +163,7 @@ class CartPaymentController {
        // showOrderCreatedBottomSheet(data.transactionUrl!,ctx);
 
       } else {
-        _confirmOrder(ctx, data);
+        _confirmOrder(data);
       }
     } else {
       var countCubit = ctx.read<CountCubit>().state;
@@ -162,16 +197,15 @@ class CartPaymentController {
     }
   }
 
-  void _confirmOrder(BuildContext context, OrderSummary data) {
+  void _confirmOrder(OrderSummary data) {
     CustomToast.showSimpleToast(
       msg: tr('thanksForYourOrder'),
       type: ToastType.success,
     );
-    // AutoRouter.of(context).push(
-    //   ConfirmationRoute(summary: data),
-    // );
-    AutoRouter.of(context).push( CartConfirmBuyingRoute(combinedId: data.summary!.combinedOrderId));
+    getIt<CartNavigateHelper>().goToConfirmationStep(
 
+      combinedId: data.summary?.combinedOrderId,
+    );
   }
 
   void onChangePayment(Shipping model, int index) {
@@ -179,7 +213,8 @@ class CartPaymentController {
       e.fakeSelected = false;
     }
     model.paymentOption![index].fakeSelected = true;
-    shippingBloc.onUpdateData(shippingBloc.state.data);
+    getIt<CartNavigateHelper>().updateShippingData(shippingBloc.state.data);
+    updateData();
   }
 
   void switchApplyWalletBalance(){
@@ -191,7 +226,8 @@ class CartPaymentController {
       }else if(isWalletSelectedAndBalanceEnough()){
         selectWalletPayMethod();
       }
-      shippingBloc.onUpdateData(shippingBloc.state.data);
+      getIt<CartNavigateHelper>().updateShippingData(shippingBloc.state.data);
+      updateData();
     }else{
       CustomToast.showSimpleToast(
           msg: tr('walletBalanceEmpty'), type: ToastType.error);
@@ -294,7 +330,7 @@ class CartPaymentController {
      isWalletSelected.onUpdateData(false);
    }
    selectedPayment = selectedMethod.paymentTypeKey;
-   shippingBloc.onUpdateData(shippingBloc.state.data);
+   updateData();
    Navigator.pop(context);
   }
 
@@ -315,7 +351,7 @@ class CartPaymentController {
        if (value != null) {
          applyPointsSwitchCubit.onUpdateData(true);
          shippingBloc.state.data!.summary=value;
-         shippingBloc.onUpdateData(shippingBloc.state.data);
+         updateData();
        }
      });
   }
@@ -325,7 +361,7 @@ class CartPaymentController {
       if (value != null) {
         applyPointsSwitchCubit.onUpdateData(false);
         shippingBloc.state.data!.summary=value;
-        shippingBloc.onUpdateData(shippingBloc.state.data);
+        updateData();
       }
     });
   }
@@ -369,7 +405,8 @@ class CartPaymentController {
           isGiftCardApplied = true;
           shippingBloc.state.data!.summary = value.summary;
           shippingBloc.state.data!.summary.appliedGiftCard = value.appliedGiftCard;
-          shippingBloc.onUpdateData(shippingBloc.state.data);
+          updateData();
+          getIt<CartNavigateHelper>().saveGiftCardCode(giftCardCode.text);
           CustomToast.showSimpleToast(msg: tr("giftCardApplied"));
         }
       });
@@ -380,7 +417,7 @@ class CartPaymentController {
     await RemoveCoupon().call(NoParams()).then((value) {
       if (value != null) {
         shippingBloc.state.data!.summary=value;
-        shippingBloc.onUpdateData(shippingBloc.state.data);
+        updateData();
       }
     });
   }
@@ -505,10 +542,10 @@ class CartPaymentController {
     var data = tipsListCubit.state.data;
     var selected = data.where((element) => element.isSelect && !element.isCustom).toList();
     if(selected.isNotEmpty){
-      shippingBloc.onUpdateData(shippingBloc.state.data);
+      updateData();
       return  double.parse(selected.first.amount);
     }else{
-      shippingBloc.onUpdateData(shippingBloc.state.data);
+      updateData();
 
       return double.parse(driverTipCtr.text.isNotEmpty
           ?driverTipCtr.text
@@ -521,34 +558,46 @@ class CartPaymentController {
 
   double getTotal(){
     return double.parse(shippingBloc.state.data!.summary.total);
-    ShippingSummary summary = shippingBloc.state.data!.summary;
-    double subTotal = double.parse(summary.subTotal);
-    double totalFeesAmount = summary.getFeesTotal;
-
-   if (summary.couponApplied == true ){
-     subTotal = subTotal -  double.parse(summary.couponDiscount);
-    }
-
-    if (summary.loyaltyPointsApplied == true ){
-      subTotal = subTotal -  double.parse(summary.loyaltyPointsValue ?? '0.0');
-    }
-
-    double amount = subTotal+totalFeesAmount;
-   if(amount > 0){
-     return amount;
-   }else{
-     return 0;
-   }
+   //  ShippingSummary summary = shippingBloc.state.data!.summary;
+   //  double subTotal = double.parse(summary.subTotal);
+   //  double totalFeesAmount = summary.getFeesTotal;
+   //
+   // if (summary.couponApplied == true ){
+   //   subTotal = subTotal -  double.parse(summary.couponDiscount);
+   //  }
+   //
+   //  if (summary.loyaltyPointsApplied == true ){
+   //    subTotal = subTotal -  double.parse(summary.loyaltyPointsValue ?? '0.0');
+   //  }
+   //
+   //  double amount = subTotal+totalFeesAmount;
+   // if(amount > 0){
+   //   return amount;
+   // }else{
+   //   return 0;
+   // }
   }
 
   Future<void> getInstructions({bool fromRemote = true})async{
     List<DeliveryInstructionModel> result =  await GetDeliveryInstructions().call(fromRemote);
-
+    List<DeliveryInstructionModel> savedInstructions = getIt<CartNavigateHelper>().cartCheckOutPageData.selectedDriverInstructions ?? [];
+    if(savedInstructions.isNotEmpty){
+      Set<int> savedIds = savedInstructions.map((e) => e.id).toSet();
+      for(var item in result){
+        if(savedIds.contains(item.id)){
+          item.isSelect = true;
+        }
+      }
+    }
     instructionsCubit.onUpdateData(result);
   }
 
   void selectInstructions(DeliveryInstructionModel model){
     model.isSelect = !model.isSelect;
+   getIt<CartNavigateHelper>().updateDriverInstructions(
+     instruction: _selectedInstructions(),
+     driverNotes: driverNotesCtr.text
+   );
     instructionsCubit.onUpdateData(instructionsCubit.state.data);
   }
 
@@ -558,9 +607,43 @@ class CartPaymentController {
     if(newValue){
       showReplacementAlertSheet(context);
     }
-
+    getIt<CartNavigateHelper>().updateReplacementStatus(newValue);
   }
 
+
+  void whileEnterDriverNotes(){
+    getIt<CartNavigateHelper>().updateDriverInstructions(
+      instruction: _selectedInstructions(),
+      driverNotes: driverNotesCtr.text
+    );
+  }
+
+
+  void changeTermsStatus(bool value){
+    conditionsCubit.onUpdateData(value);
+    getIt<CartNavigateHelper>().updateTermsAccept(value);
+  }
+
+
+  void updateData(){
+    getIt<CartNavigateHelper>().updateShippingData(shippingBloc.state.data);
+    shippingBloc.onUpdateData(shippingBloc.state.data);
+  }
+
+  Future<void> getRemoteData()async{
+    var params = getIt<CartNavigateHelper>().checkOutParams;
+    params!.showLoader = false;
+    var data = await SetCartStoreShipping().call(params);
+    if(data!=null){
+      double oldSubTotal = double.parse(_pageSavedData.orderSummaryCheckOut?.summary.subTotal??"0.0");
+      double newSubTotal = double.parse(data.summary.subTotal);
+      if(newSubTotal > oldSubTotal){
+        _initSelectedPayMethod(data);
+        initDataFromLastRoute(_pageSavedData,data);
+        shippingBloc.onUpdateData(data);
+      }
+    }
+  }
 
 
 }

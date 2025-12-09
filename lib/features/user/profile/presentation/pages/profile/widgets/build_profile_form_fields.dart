@@ -33,7 +33,7 @@ class BuildProfileFormFields extends StatelessWidget {
             type: TextInputType.emailAddress,
             action: TextInputAction.next,
             validate: (value) => value?.validateEmail(),
-            hint: "mmm@info.com",
+            hint: "mmm@example.com",
             margin:  Dimens.marginTop5Bottom12,
           ),
           PhoneInputAndVerify(controller: controller)

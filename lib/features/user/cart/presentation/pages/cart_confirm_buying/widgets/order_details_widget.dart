@@ -12,7 +12,7 @@ class CartOrderDetailsWidget extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Container(
-            width: MediaQuery.of(context).size.width-40,
+            width: MediaQuery.sizeOf(context).width-40,
             padding: const EdgeInsets.only(top: 46,bottom: 20,right:21 ,left: 21).r,
             margin: const EdgeInsets.only(top: 43),
             decoration: CustomDecoration(

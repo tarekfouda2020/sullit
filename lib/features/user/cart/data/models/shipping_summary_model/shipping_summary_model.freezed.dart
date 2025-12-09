@@ -71,6 +71,9 @@ mixin _$ShippingSummaryModel {
   int? get loyaltyPoints => throw _privateConstructorUsedError;
   @JsonKey(name: "expected_loyalty_points")
   int get expectedLoyaltyPoints => throw _privateConstructorUsedError;
+  @JsonKey(name: "order_discount")
+  List<OrderDiscountModel>? get orderDiscountTypes =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -113,7 +116,9 @@ abstract class $ShippingSummaryModelCopyWith<$Res> {
       @JsonKey(name: "loyalty_points_value") String? loyaltyPointsValue,
       @JsonKey(name: "loyalty_points_applied") bool? loyaltyPointsApplied,
       @JsonKey(name: "loyalty_points") int? loyaltyPoints,
-      @JsonKey(name: "expected_loyalty_points") int expectedLoyaltyPoints});
+      @JsonKey(name: "expected_loyalty_points") int expectedLoyaltyPoints,
+      @JsonKey(name: "order_discount")
+      List<OrderDiscountModel>? orderDiscountTypes});
 }
 
 /// @nodoc
@@ -158,6 +163,7 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
     Object? loyaltyPointsApplied = freezed,
     Object? loyaltyPoints = freezed,
     Object? expectedLoyaltyPoints = null,
+    Object? orderDiscountTypes = freezed,
   }) {
     return _then(_value.copyWith(
       subtotal: null == subtotal
@@ -272,6 +278,10 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
           ? _value.expectedLoyaltyPoints
           : expectedLoyaltyPoints // ignore: cast_nullable_to_non_nullable
               as int,
+      orderDiscountTypes: freezed == orderDiscountTypes
+          ? _value.orderDiscountTypes
+          : orderDiscountTypes // ignore: cast_nullable_to_non_nullable
+              as List<OrderDiscountModel>?,
     ) as $Val);
   }
 }
@@ -313,7 +323,9 @@ abstract class _$$_ShippingSummaryModelCopyWith<$Res>
       @JsonKey(name: "loyalty_points_value") String? loyaltyPointsValue,
       @JsonKey(name: "loyalty_points_applied") bool? loyaltyPointsApplied,
       @JsonKey(name: "loyalty_points") int? loyaltyPoints,
-      @JsonKey(name: "expected_loyalty_points") int expectedLoyaltyPoints});
+      @JsonKey(name: "expected_loyalty_points") int expectedLoyaltyPoints,
+      @JsonKey(name: "order_discount")
+      List<OrderDiscountModel>? orderDiscountTypes});
 }
 
 /// @nodoc
@@ -355,6 +367,7 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
     Object? loyaltyPointsApplied = freezed,
     Object? loyaltyPoints = freezed,
     Object? expectedLoyaltyPoints = null,
+    Object? orderDiscountTypes = freezed,
   }) {
     return _then(_$_ShippingSummaryModel(
       subtotal: null == subtotal
@@ -469,6 +482,10 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
           ? _value.expectedLoyaltyPoints
           : expectedLoyaltyPoints // ignore: cast_nullable_to_non_nullable
               as int,
+      orderDiscountTypes: freezed == orderDiscountTypes
+          ? _value._orderDiscountTypes
+          : orderDiscountTypes // ignore: cast_nullable_to_non_nullable
+              as List<OrderDiscountModel>?,
     ));
   }
 }
@@ -511,8 +528,11 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
       @JsonKey(name: "loyalty_points_applied") this.loyaltyPointsApplied,
       @JsonKey(name: "loyalty_points") this.loyaltyPoints,
       @JsonKey(name: "expected_loyalty_points")
-      required this.expectedLoyaltyPoints})
+      required this.expectedLoyaltyPoints,
+      @JsonKey(name: "order_discount")
+      final List<OrderDiscountModel>? orderDiscountTypes})
       : _items = items,
+        _orderDiscountTypes = orderDiscountTypes,
         super._();
 
   factory _$_ShippingSummaryModel.fromJson(Map<String, dynamic> json) =>
@@ -603,10 +623,21 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
   @override
   @JsonKey(name: "expected_loyalty_points")
   final int expectedLoyaltyPoints;
+  final List<OrderDiscountModel>? _orderDiscountTypes;
+  @override
+  @JsonKey(name: "order_discount")
+  List<OrderDiscountModel>? get orderDiscountTypes {
+    final value = _orderDiscountTypes;
+    if (value == null) return null;
+    if (_orderDiscountTypes is EqualUnmodifiableListView)
+      return _orderDiscountTypes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'ShippingSummaryModel(subtotal: $subtotal, tax: $tax, shipping: $shipping, couponDiscount: $couponDiscount, calTotal: $calTotal, total: $total, couponCode: $couponCode, couponApplied: $couponApplied, totalItems: $totalItems, bagsCount: $bagsCount, minimumOrderAmountStatus: $minimumOrderAmountStatus, minimumOrderAmountMsg: $minimumOrderAmountMsg, minimumOrderAmountAmount: $minimumOrderAmountAmount, walletSystemActive: $walletSystemActive, walletBalance: $walletBalance, walletBalanceValue: $walletBalanceValue, avilablePayWithWallet: $avilablePayWithWallet, avilableCashOnDelivery: $avilableCashOnDelivery, serviceFee: $serviceFee, technologyFees: $technologyFees, vatPercentage: $vatPercentage, vatFeeAmount: $vatFeeAmount, environmentFees: $environmentFees, items: $items, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, expectedLoyaltyPoints: $expectedLoyaltyPoints)';
+    return 'ShippingSummaryModel(subtotal: $subtotal, tax: $tax, shipping: $shipping, couponDiscount: $couponDiscount, calTotal: $calTotal, total: $total, couponCode: $couponCode, couponApplied: $couponApplied, totalItems: $totalItems, bagsCount: $bagsCount, minimumOrderAmountStatus: $minimumOrderAmountStatus, minimumOrderAmountMsg: $minimumOrderAmountMsg, minimumOrderAmountAmount: $minimumOrderAmountAmount, walletSystemActive: $walletSystemActive, walletBalance: $walletBalance, walletBalanceValue: $walletBalanceValue, avilablePayWithWallet: $avilablePayWithWallet, avilableCashOnDelivery: $avilableCashOnDelivery, serviceFee: $serviceFee, technologyFees: $technologyFees, vatPercentage: $vatPercentage, vatFeeAmount: $vatFeeAmount, environmentFees: $environmentFees, items: $items, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDiscountTypes: $orderDiscountTypes)';
   }
 
   @override
@@ -668,7 +699,9 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
             (identical(other.loyaltyPoints, loyaltyPoints) ||
                 other.loyaltyPoints == loyaltyPoints) &&
             (identical(other.expectedLoyaltyPoints, expectedLoyaltyPoints) ||
-                other.expectedLoyaltyPoints == expectedLoyaltyPoints));
+                other.expectedLoyaltyPoints == expectedLoyaltyPoints) &&
+            const DeepCollectionEquality()
+                .equals(other._orderDiscountTypes, _orderDiscountTypes));
   }
 
   @JsonKey(ignore: true)
@@ -702,7 +735,8 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
         loyaltyPointsValue,
         loyaltyPointsApplied,
         loyaltyPoints,
-        expectedLoyaltyPoints
+        expectedLoyaltyPoints,
+        const DeepCollectionEquality().hash(_orderDiscountTypes)
       ]);
 
   @JsonKey(ignore: true)
@@ -757,7 +791,10 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
       @JsonKey(name: "loyalty_points_applied") final bool? loyaltyPointsApplied,
       @JsonKey(name: "loyalty_points") final int? loyaltyPoints,
       @JsonKey(name: "expected_loyalty_points")
-      required final int expectedLoyaltyPoints}) = _$_ShippingSummaryModel;
+      required final int expectedLoyaltyPoints,
+      @JsonKey(name: "order_discount")
+      final List<OrderDiscountModel>?
+          orderDiscountTypes}) = _$_ShippingSummaryModel;
   const _ShippingSummaryModel._() : super._();
 
   factory _ShippingSummaryModel.fromJson(Map<String, dynamic> json) =
@@ -842,6 +879,9 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
   @override
   @JsonKey(name: "expected_loyalty_points")
   int get expectedLoyaltyPoints;
+  @override
+  @JsonKey(name: "order_discount")
+  List<OrderDiscountModel>? get orderDiscountTypes;
   @override
   @JsonKey(ignore: true)
   _$$_ShippingSummaryModelCopyWith<_$_ShippingSummaryModel> get copyWith =>

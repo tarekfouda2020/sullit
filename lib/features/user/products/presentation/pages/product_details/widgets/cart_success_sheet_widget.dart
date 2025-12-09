@@ -1,7 +1,7 @@
 part of 'product_details_widgets_imports.dart';
 
 class CartSuccessSheetWidget extends StatefulWidget {
-  final ProductDetailsController controller;
+  final CartSheetController controller;
 
   const CartSuccessSheetWidget({super.key, required this.controller});
 
@@ -116,13 +116,13 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                       Gaps.vGap16,
                       BuildShimmerItem(
                         height: 48,
-                        width: MediaQuery.of(context).size.width,
+                        width: MediaQuery.sizeOf(context).width,
                         borderRadius: Dimens.borderRadius30PX,
                       ),
                       Gaps.vGap14,
                       BuildShimmerItem(
                         height: 48,
-                        width: MediaQuery.of(context).size.width,
+                        width: MediaQuery.sizeOf(context).width,
                         borderRadius: Dimens.borderRadius30PX,
                       ),
                       Gaps.vGap10,

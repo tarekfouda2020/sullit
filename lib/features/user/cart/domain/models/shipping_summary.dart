@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/order_discount_domain.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/shipping_item.dart';
 
 class ShippingSummary extends BaseDomainModel{
@@ -24,6 +25,7 @@ class ShippingSummary extends BaseDomainModel{
   bool avilablePayWithWallet;
   bool avilableCashOnDelivery ;
   List<ShippingItem> items ;
+  List<OrderDiscountDomain>? discountTypes ;
   String? loyaltyPointsValue;
   int? loyaltyPoints;
   bool? loyaltyPointsApplied;
@@ -62,6 +64,7 @@ class ShippingSummary extends BaseDomainModel{
     this.loyaltyPoints,
     this.loyaltyPointsApplied,
     this.appliedGiftCard,
+    this.discountTypes,
 });
 
 
