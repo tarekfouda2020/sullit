@@ -38,6 +38,7 @@ import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_delivery_ins
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_order_fees.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/remove_coupon.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/remove_loyalty_points.dart';
+import 'package:flutter_tdd/features/user/cart/domain/use_cases/set_cart_store_shipping.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/manager/helpers/cart_navigate_helper.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/widgets/bezaat_points_summary_widget.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/widgets/build_cart_stepper.dart';

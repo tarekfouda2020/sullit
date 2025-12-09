@@ -26,8 +26,10 @@ class _ProfileState extends State<Profile>with WidgetsBindingObserver  {
   }
   @override
   Widget build(BuildContext context) {
-    String? email = context.read<UserCubit>().state.model?.email;
-    return PopScope(
+    return BlocBuilder<UserCubit, UserState>(
+     builder: (context, state) {
+       String? email = state.model?.email;
+       return PopScope(
       canPop: email != null && email.isNotEmpty,
       onPopInvokedWithResult: (didPop, result) => controller.onPressBack(context, email) ,
       child: GestureDetector(
@@ -53,5 +55,7 @@ class _ProfileState extends State<Profile>with WidgetsBindingObserver  {
         ),
       ),
     );
+  },
+);
   }
 }

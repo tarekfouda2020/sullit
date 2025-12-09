@@ -46,20 +46,20 @@ class ProfileController {
   Future<void> _initializeCountryFromUser(BuildContext context, UserDomainModel? user) async {
     countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
     return ;
-    if (user?.countryCode != null && user!.countryCode!.isNotEmpty) {
-      try {
-        final country = await CountryPickerHelper.getCountryByCallingCode(context, user.countryCode!);
-        if (country != null) {
-          countryCubit.onUpdateData(country);
-        } else {
-          countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
-        }
-      } catch (e) {
-        countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
-      }
-    } else {
-      countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
-    }
+    // if (user?.countryCode != null && user!.countryCode!.isNotEmpty) {
+    //   try {
+    //     final country = await CountryPickerHelper.getCountryByCallingCode(context, user.countryCode!);
+    //     if (country != null) {
+    //       countryCubit.onUpdateData(country);
+    //     } else {
+    //       countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
+    //     }
+    //   } catch (e) {
+    //     countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
+    //   }
+    // } else {
+    //   countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
+    // }
   }
 
   // void showCountryCode(BuildContext context) async {
@@ -205,10 +205,9 @@ class ProfileController {
 
   bool isPhoneValid(){
     if(phoneController.text.isNotEmpty){
-      return((countryCubit.state.data?.callingCode ?? "") + (phoneController.text))
-          .validatePhone() == null;
+      return( (phoneController.text)).isValidUAEPhone(phoneController.text) == null;
     }else{
-      return true;
+      return false;
     }
 
   }
@@ -239,6 +238,7 @@ class ProfileController {
       msg: tr('informationUpdatedSuccessfully'),
       type: ToastType.success,
     );
+    await Future.delayed(const Duration(milliseconds: 300));
     AutoRouter.of(context).pop();
   }
 

@@ -162,7 +162,7 @@ class HomeController {
     if(isAuth){
       String? userEmail = ctx.read<UserCubit>().state.model?.email;
       if(userEmail == null || userEmail.isEmpty || userEmail.validateEmail() != null){
-        CustomToast.showSimpleToast(msg: "Please Enter your email to change your current password",type: ToastType.success);
+        CustomToast.showSimpleToast(msg: "Please Enter your email to change your current password",type: ToastType.error);
         AutoRouter.of(ctx).push(const ProfileRoute());
       }
     }

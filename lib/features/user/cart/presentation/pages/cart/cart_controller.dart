@@ -5,6 +5,12 @@ part of 'cart_imports.dart';
 class CartController {
   final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
 
+  final CartNavigateHelper navigateHelper = getIt<CartNavigateHelper>();
+
+
+  Key paymentViewKey = UniqueKey();
+  Key confirmationViewKey = UniqueKey();
+
   CartController() {
     getIt<CartNavigateHelper>().initData();
     getCartItems();
@@ -91,11 +97,9 @@ class CartController {
         CustomToast.showSimpleToast(msg: cartItemsBloc.state.data.minimumAmountMsg!);
         return ;
       }
-      if (cartItemsBloc.state.data.items!.isNotEmpty) {
-        AutoRouter.of(context).push(
-          // const ReceivingMethodRoute(),
-          const ShippingRoute(),
-        );
+      if ((cartItemsBloc.state.data.items ?? []).isNotEmpty) {
+        getIt<CartNavigateHelper>()
+            .setStep(CartNavigateHelper.shippingStepIndex, force: true);
       } else {
         CustomToast.showSimpleToast(msg: tr('cartIsEmpty'));
         return;
@@ -139,6 +143,33 @@ class CartController {
     context.read<CountCubit>().onUpdateCount(allItemsCount, countCubit.discount);
   }
 
+  void onStepChanged(int step) {
+    print("========>>>${step == CartNavigateHelper.paymentStepIndex}<<<<<<<=====");
+    print("========>>>${step == CartNavigateHelper.confirmationStepIndex}<<<<<<<=====");
+    if (step == CartNavigateHelper.paymentStepIndex) {
+      refreshPaymentView();
+    } else if (step == CartNavigateHelper.confirmationStepIndex) {
+      refreshConfirmationView();
+    }
+  }
+
+  void refreshPaymentView() {
+    paymentViewKey = UniqueKey();
+  }
+
+  void refreshConfirmationView() {
+    confirmationViewKey = UniqueKey();
+  }
+
+  domain_shipping.Shipping? get paymentShipping =>
+      getIt<CartNavigateHelper>().cartCheckOutPageData.orderSummaryCheckOut;
+
+  OrderSummary? get confirmationSummary =>
+      getIt<CartNavigateHelper>().confirmationSummary;
+
+  int? get confirmationCombinedId =>
+      getIt<CartNavigateHelper>().confirmationCombinedId;
+
 
   Future<CartParams> _cartParams() async {
     return CartParams(
@@ -146,6 +177,20 @@ class CartController {
       refresh: false,
     );
   }
+
+
+
+
+  bool onPressBack() {
+    if (navigateHelper.currentStep > CartNavigateHelper.cartStepIndex &&
+        navigateHelper.currentStep <
+            CartNavigateHelper.confirmationStepIndex) {
+      navigateHelper.backOneStep();
+      return false;
+    }
+    return true;
+  }
+
 
 
   Future<UpdateCartItemParams> _updateCartItemParams(int qty, int id) async {

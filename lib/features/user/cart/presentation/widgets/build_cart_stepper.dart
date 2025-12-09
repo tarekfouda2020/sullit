@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +7,6 @@ import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
-import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
@@ -93,17 +90,18 @@ class BuildCartStepper extends StatelessWidget {
   }
 
   void _onTap(int index, BuildContext context) {
-      if(current > index && current != 1 && current!= stepsIconWidget(context).length){
-      int pops = current - index;
-      getIt<Utilities>().popManyTimes(context, pops-1);
-    }else{
-        log('=======>>>>>>> current in press  $current ========');
-        int nonActiveStep = index+1;
-      if(nonActiveStep == 2 || nonActiveStep == 3 || nonActiveStep == 4){
-        getIt<CartNavigateHelper>().selectedForwardStep = nonActiveStep;
-        getIt<CartNavigateHelper>().goForward(context);
-      }
-      }
+    final helper = getIt<CartNavigateHelper>();
+    if (helper.currentStep == CartNavigateHelper.confirmationStepIndex) {
+      return;
+    }
+    final currentIndex = current - 1;
+    final targetStep = index;
+
+    if (currentIndex > targetStep) {
+      helper.setStep(targetStep, force: true);
+    } else {
+      helper.navigateToStep(targetStep);
+    }
   }
 
 

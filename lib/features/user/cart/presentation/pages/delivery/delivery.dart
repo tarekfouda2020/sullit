@@ -18,7 +18,14 @@ class _DeliveryState extends State<Delivery> {
       appBar:   DefaultAppBar(
           // title: tr("delivery"),
           title: tr("cart"),
-          bgColor: context.colors.white),
+          bgColor: context.colors.white,
+          onBack: () {
+            final moved = getIt<CartNavigateHelper>()
+                .setStep(CartNavigateHelper.shippingStepIndex, force: true);
+            if (!moved && Navigator.of(context).canPop()) {
+              Navigator.of(context).maybePop();
+            }
+          }),
       body: Column(
         children: [
           const BuildCartStepper(current: 3),

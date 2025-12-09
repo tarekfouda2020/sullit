@@ -90,7 +90,8 @@ class ShippingController {
         getIt<CartNavigateHelper>().selectedOrderAddress = selectedAddress ;
         CustomToast.showSimpleToast(
             msg: tr('addressAdded'),type: ToastType.success);
-        AutoRouter.of(context).push(const DeliveryRoute());
+        getIt<CartNavigateHelper>()
+            .setStep(CartNavigateHelper.deliveryStepIndex, force: true);
       }
     } else {
       CustomToast.showSimpleToast(msg: tr('pleaseSelAddress'));

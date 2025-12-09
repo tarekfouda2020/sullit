@@ -55,23 +55,34 @@ class CartPaymentController {
   }
 
 
-  void initData(Shipping shipping){
-    CartCheckOutSavedData pageSavedData = getIt<CartNavigateHelper>().cartCheckOutPageData;
-    bool fromSavedData = pageSavedData.orderSummaryCheckOut != null;
+  CartCheckOutSavedData get _pageSavedData => getIt<CartNavigateHelper>().cartCheckOutPageData;
+
+
+
+  Future<void> initData(Shipping shipping)async{
+    bool fromSavedData = _pageSavedData.orderSummaryCheckOut != null;
     if(fromSavedData){
-      giftCardCode.text = pageSavedData.giftCardCode?? "";
-      coupon.text = pageSavedData.voucherCode ?? "";
-     driverNotesCtr.text = pageSavedData.driverNotes ?? "";
-     allowReplacementCubit.onUpdateData(pageSavedData.allowReplacement ?? false);
-     conditionsCubit.onUpdateData(pageSavedData.termsAccept ?? false);
-     bool noPayOptionsSelected = pageSavedData.orderSummaryCheckOut!.paymentOption!.every((element) => !element.selected,);
-     if(noPayOptionsSelected){
-       _initSelectedPayMethod(shipping);
-     }
+      initDataFromLastRoute(_pageSavedData,shipping);
+      shippingBloc.onUpdateData(shipping);
+      await getRemoteData();
     }else{
       _initSelectedPayMethod(shipping);
+      shippingBloc.onUpdateData(shipping);
     }
-    shippingBloc.onUpdateData(shipping);
+
+  }
+
+
+  void initDataFromLastRoute(CartCheckOutSavedData pageSavedData,Shipping shipping){
+    giftCardCode.text = pageSavedData.giftCardCode?? "";
+    coupon.text = pageSavedData.voucherCode ?? "";
+    driverNotesCtr.text = pageSavedData.driverNotes ?? "";
+    allowReplacementCubit.onUpdateData(pageSavedData.allowReplacement ?? false);
+    conditionsCubit.onUpdateData(pageSavedData.termsAccept ?? false);
+    bool noPayOptionsSelected = pageSavedData.orderSummaryCheckOut!.paymentOption!.every((element) => !element.selected,);
+    if(noPayOptionsSelected){
+      _initSelectedPayMethod(shipping);
+    }
   }
 
   void _initSelectedPayMethod(Shipping shipping) {
@@ -152,7 +163,7 @@ class CartPaymentController {
        // showOrderCreatedBottomSheet(data.transactionUrl!,ctx);
 
       } else {
-        _confirmOrder(ctx, data);
+        _confirmOrder(data);
       }
     } else {
       var countCubit = ctx.read<CountCubit>().state;
@@ -186,16 +197,15 @@ class CartPaymentController {
     }
   }
 
-  void _confirmOrder(BuildContext context, OrderSummary data) {
+  void _confirmOrder(OrderSummary data) {
     CustomToast.showSimpleToast(
       msg: tr('thanksForYourOrder'),
       type: ToastType.success,
     );
-    // AutoRouter.of(context).push(
-    //   ConfirmationRoute(summary: data),
-    // );
-    AutoRouter.of(context).push( CartConfirmBuyingRoute(combinedId: data.summary!.combinedOrderId));
+    getIt<CartNavigateHelper>().goToConfirmationStep(
 
+      combinedId: data.summary?.combinedOrderId,
+    );
   }
 
   void onChangePayment(Shipping model, int index) {
@@ -618,6 +628,21 @@ class CartPaymentController {
   void updateData(){
     getIt<CartNavigateHelper>().updateShippingData(shippingBloc.state.data);
     shippingBloc.onUpdateData(shippingBloc.state.data);
+  }
+
+  Future<void> getRemoteData()async{
+    var params = getIt<CartNavigateHelper>().checkOutParams;
+    params!.showLoader = false;
+    var data = await SetCartStoreShipping().call(params);
+    if(data!=null){
+      double oldSubTotal = double.parse(_pageSavedData.orderSummaryCheckOut?.summary.subTotal??"0.0");
+      double newSubTotal = double.parse(data.summary.subTotal);
+      if(newSubTotal > oldSubTotal){
+        _initSelectedPayMethod(data);
+        initDataFromLastRoute(_pageSavedData,data);
+        shippingBloc.onUpdateData(data);
+      }
+    }
   }
 
 

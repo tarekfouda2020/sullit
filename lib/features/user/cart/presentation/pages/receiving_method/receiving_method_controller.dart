@@ -32,7 +32,7 @@ class ReceivingMethodController{
         return ;
       }
     }
-    var params = _setCartStoreParams();
+    var params = _cartShippingParams();
     var data = await SetCartStoreShipping().call(params);
     if (data != null) {
       CustomToast.showSimpleToast(msg: tr('shippingAdded'),type: ToastType.success);
@@ -54,6 +54,10 @@ class ReceivingMethodController{
     return arrangedItems;
   }
 
+
+  StoreCartShippingParams _cartShippingParams(){
+    return StoreCartShippingParams(params: _setCartStoreParams());
+  }
 
   void onSelectPickUp(BuildContext context) {
     var auth = context.read<DeviceCubit>().state.model.auth;

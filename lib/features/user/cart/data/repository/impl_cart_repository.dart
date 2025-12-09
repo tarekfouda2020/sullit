@@ -13,6 +13,7 @@ import 'package:flutter_tdd/features/user/cart/domain/entities/apply_gift_card_p
 import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
+import 'package:flutter_tdd/features/user/cart/domain/entities/store_cart_shipping_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/update_cart_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/coupon_response_model.dart';
@@ -41,7 +42,7 @@ class ImplCartRepository extends CartRepository with ModelToDomain{
   }
 
   @override
-  Future<Either<Failure, Shipping>> cartStoreShipping(List<Map> params)async {
+  Future<Either<Failure, Shipping>> cartStoreShipping(StoreCartShippingParams params)async {
     var result = await dataSource.cartStoreShipping(params);
     return toDomainResult(result);
   }

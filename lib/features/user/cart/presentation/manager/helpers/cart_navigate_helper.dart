@@ -1,10 +1,10 @@
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/cart_check_out_saved_data.dart';
+import 'package:flutter_tdd/features/user/cart/domain/entities/store_cart_shipping_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instruction_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/seller_shipping.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart';
 import 'package:injectable/injectable.dart';
@@ -12,51 +12,79 @@ import 'package:injectable/injectable.dart';
 
 @lazySingleton
 class CartNavigateHelper {
+  static const int cartStepIndex = 0;
+  static const int shippingStepIndex = 1;
+  static const int deliveryStepIndex = 2;
+  static const int paymentStepIndex = 3;
+  static const int confirmationStepIndex = 4;
+
   AddressDomainModel? selectedOrderAddress;
   List<SellerShipping>? deliveryDetailsData;
+  StoreCartShippingParams? checkOutParams;
   // Shipping? orderSummaryCheckOut;
   late CartCheckOutSavedData cartCheckOutPageData;
 
-  int selectedForwardStep = 1 ;
+  final ValueNotifier<int> stepNotifier = ValueNotifier<int>(cartStepIndex);
+
+  OrderSummary? confirmationSummary;
+  int? confirmationCombinedId;
 
 
   void initData(){
-    if(selectedForwardStep != 1){
-      selectedForwardStep = 1;
-    }
+    stepNotifier.value = cartStepIndex;
     selectedOrderAddress = null;
     deliveryDetailsData = null;
     // orderSummaryCheckOut = null;
     cartCheckOutPageData = CartCheckOutSavedData();
+    confirmationSummary = null;
+    confirmationCombinedId = null;
   }
 
-  void goForward(BuildContext context){
-    switch(selectedForwardStep){
-      case 2 : _routeToAddressList(context);
-      case 3 : _routeToDeliveryStep(context);
-      case 4 : _routeToCartCheckOut(context);
+  int get currentStep => stepNotifier.value;
+
+  bool setStep(int step, {bool force = false}) {
+    if (step < cartStepIndex || step > confirmationStepIndex) return false;
+    if (force || _canGoToStep(step)) {
+      stepNotifier.value = step;
+      return true;
+    }
+    return false;
+  }
+
+  bool _canGoToStep(int step) {
+    switch (step) {
+      case shippingStepIndex:
+        return true;
+      case deliveryStepIndex:
+        return selectedOrderAddress != null;
+      case paymentStepIndex:
+        return cartCheckOutPageData.orderSummaryCheckOut != null;
+      case confirmationStepIndex:
+        return confirmationSummary != null || confirmationCombinedId != null;
+      default:
+        return true;
     }
   }
 
+  bool navigateToStep(int step) {
+    if (step < cartStepIndex || step > confirmationStepIndex) return false;
+    if (step <= currentStep) {
+      return setStep(step, force: true);
+    }
+    return setStep(step);
+  }
 
-  void _routeToAddressList(BuildContext context){
-    if(selectedOrderAddress != null){
-      AutoRouter.of(context).push(const ShippingRoute());
+  void backOneStep() {
+    if (currentStep > cartStepIndex) {
+      stepNotifier.value = currentStep - 1;
     }
   }
 
-  void _routeToDeliveryStep(BuildContext context){
-    if(deliveryDetailsData != null){
-      AutoRouter.of(context).push(const DeliveryRoute());
-    }
+  void goToConfirmationStep({OrderSummary? summary, int? combinedId}) {
+    confirmationSummary = summary;
+    confirmationCombinedId = combinedId ?? summary?.summary?.combinedOrderId;
+    navigateToStep(confirmationStepIndex);
   }
-
-  void _routeToCartCheckOut(BuildContext context){
-    if(cartCheckOutPageData.orderSummaryCheckOut != null){
-      AutoRouter.of(context).push( CartPaymentRoute(shipping: cartCheckOutPageData.orderSummaryCheckOut!));
-    }
-  }
-
 
 
   void updateDriverInstructions({String driverNotes = "",List<DeliveryInstructionModel>? instruction}){
