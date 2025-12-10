@@ -92,6 +92,7 @@ class MembershipItemWidget extends StatelessWidget {
                   ],
                 ),
                 Visibility(visible: model.subscription == null, child: Gaps.vGap12),
+                if(model.byInvite == false)
                 Row(
                   children: [
                     DirhamPrice(
