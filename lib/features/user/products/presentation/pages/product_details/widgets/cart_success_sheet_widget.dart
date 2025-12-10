@@ -81,7 +81,7 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                       Gaps.vGap14,
                       DefaultButton(
                         title: "",
-                        onTap: () => AutoRouter.of(context).popAndPush(const CartRoute()),
+                        onTap: () => checkOut(state.data) ,
                         margin: EdgeInsets.zero,
                         customLabel: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -136,4 +136,15 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
       ),
     );
   }
+
+
+  void checkOut(CartDomainModel model){
+    if(model.minimumStatus == false){
+      CustomToast.showSimpleToast(msg: model.minimumAmountMsg!);
+      return ;
+    }
+    AutoRouter.of(context).popAndPush(const CartRoute());
+  }
+
+
 }

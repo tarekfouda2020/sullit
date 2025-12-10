@@ -71,8 +71,8 @@ mixin _$ShippingSummaryModel {
   int? get loyaltyPoints => throw _privateConstructorUsedError;
   @JsonKey(name: "expected_loyalty_points")
   int get expectedLoyaltyPoints => throw _privateConstructorUsedError;
-  @JsonKey(name: "order_discount")
-  List<OrderDiscountModel>? get orderDiscountTypes =>
+  @JsonKey(name: "order_discounts")
+  List<OrderSummaryDiscountModel>? get orderDiscountTypes =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -117,8 +117,8 @@ abstract class $ShippingSummaryModelCopyWith<$Res> {
       @JsonKey(name: "loyalty_points_applied") bool? loyaltyPointsApplied,
       @JsonKey(name: "loyalty_points") int? loyaltyPoints,
       @JsonKey(name: "expected_loyalty_points") int expectedLoyaltyPoints,
-      @JsonKey(name: "order_discount")
-      List<OrderDiscountModel>? orderDiscountTypes});
+      @JsonKey(name: "order_discounts")
+      List<OrderSummaryDiscountModel>? orderDiscountTypes});
 }
 
 /// @nodoc
@@ -281,7 +281,7 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
       orderDiscountTypes: freezed == orderDiscountTypes
           ? _value.orderDiscountTypes
           : orderDiscountTypes // ignore: cast_nullable_to_non_nullable
-              as List<OrderDiscountModel>?,
+              as List<OrderSummaryDiscountModel>?,
     ) as $Val);
   }
 }
@@ -324,8 +324,8 @@ abstract class _$$_ShippingSummaryModelCopyWith<$Res>
       @JsonKey(name: "loyalty_points_applied") bool? loyaltyPointsApplied,
       @JsonKey(name: "loyalty_points") int? loyaltyPoints,
       @JsonKey(name: "expected_loyalty_points") int expectedLoyaltyPoints,
-      @JsonKey(name: "order_discount")
-      List<OrderDiscountModel>? orderDiscountTypes});
+      @JsonKey(name: "order_discounts")
+      List<OrderSummaryDiscountModel>? orderDiscountTypes});
 }
 
 /// @nodoc
@@ -485,7 +485,7 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
       orderDiscountTypes: freezed == orderDiscountTypes
           ? _value._orderDiscountTypes
           : orderDiscountTypes // ignore: cast_nullable_to_non_nullable
-              as List<OrderDiscountModel>?,
+              as List<OrderSummaryDiscountModel>?,
     ));
   }
 }
@@ -529,8 +529,8 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
       @JsonKey(name: "loyalty_points") this.loyaltyPoints,
       @JsonKey(name: "expected_loyalty_points")
       required this.expectedLoyaltyPoints,
-      @JsonKey(name: "order_discount")
-      final List<OrderDiscountModel>? orderDiscountTypes})
+      @JsonKey(name: "order_discounts")
+      final List<OrderSummaryDiscountModel>? orderDiscountTypes})
       : _items = items,
         _orderDiscountTypes = orderDiscountTypes,
         super._();
@@ -623,10 +623,10 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
   @override
   @JsonKey(name: "expected_loyalty_points")
   final int expectedLoyaltyPoints;
-  final List<OrderDiscountModel>? _orderDiscountTypes;
+  final List<OrderSummaryDiscountModel>? _orderDiscountTypes;
   @override
-  @JsonKey(name: "order_discount")
-  List<OrderDiscountModel>? get orderDiscountTypes {
+  @JsonKey(name: "order_discounts")
+  List<OrderSummaryDiscountModel>? get orderDiscountTypes {
     final value = _orderDiscountTypes;
     if (value == null) return null;
     if (_orderDiscountTypes is EqualUnmodifiableListView)
@@ -792,8 +792,8 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
       @JsonKey(name: "loyalty_points") final int? loyaltyPoints,
       @JsonKey(name: "expected_loyalty_points")
       required final int expectedLoyaltyPoints,
-      @JsonKey(name: "order_discount")
-      final List<OrderDiscountModel>?
+      @JsonKey(name: "order_discounts")
+      final List<OrderSummaryDiscountModel>?
           orderDiscountTypes}) = _$_ShippingSummaryModel;
   const _ShippingSummaryModel._() : super._();
 
@@ -880,8 +880,8 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
   @JsonKey(name: "expected_loyalty_points")
   int get expectedLoyaltyPoints;
   @override
-  @JsonKey(name: "order_discount")
-  List<OrderDiscountModel>? get orderDiscountTypes;
+  @JsonKey(name: "order_discounts")
+  List<OrderSummaryDiscountModel>? get orderDiscountTypes;
   @override
   @JsonKey(ignore: true)
   _$$_ShippingSummaryModelCopyWith<_$_ShippingSummaryModel> get copyWith =>

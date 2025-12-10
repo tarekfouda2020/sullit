@@ -3,7 +3,7 @@ part of 'search_imports.dart';
 class SearchController {
   final TextEditingController searchController = TextEditingController();
   final GenericBloc<SearchResults?> resultsCubit = GenericBloc(null);
-  final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
+  final GenericBloc<bool> showClearIcon = GenericBloc<bool>(true);
   // final GenericBloc<bool> showCategorySection = GenericBloc<bool>(true);
 
   SearchController(String searchText) {

@@ -5,6 +5,7 @@ class OrderSummaryItemWidget extends StatelessWidget {
   final String price;
   final Color? priceColor;
   final bool useDirhamPrice;
+  final bool isDiscount;
 
   const OrderSummaryItemWidget({
     super.key,
@@ -12,6 +13,7 @@ class OrderSummaryItemWidget extends StatelessWidget {
     required this.price,
     this.priceColor,
     this.useDirhamPrice = false,
+    this.isDiscount = false,
   });
 
   @override
@@ -24,6 +26,11 @@ class OrderSummaryItemWidget extends StatelessWidget {
             style: AppTextStyle.s14_w400(color: context.colors.black),
           ),
         ),
+        if(isDiscount)
+          Text(
+            " - ",
+            style: AppTextStyle.s14_w600(color: context.colors.primary),
+          ),
         useDirhamPrice
             ? DirhamPrice(
                 amount: price,

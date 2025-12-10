@@ -349,4 +349,5 @@ class ProductDetailsController implements CartSheetController {
       variants: selectedVariants.join(','),
     );
   }
+
 }

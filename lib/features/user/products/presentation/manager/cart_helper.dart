@@ -175,8 +175,7 @@ class CartHelper {
 
   Future<void> showCartSuccessSheet(BuildContext context,
       {CartSheetController? controller}) async {
-    final sheetController =
-        controller ?? _StandaloneCartSheetController(this);
+    final sheetController = controller ?? _StandaloneCartSheetController(this);
 
      sheetController.getCartItems(refresh: false);
      sheetController.getCartItems().then((value) {
@@ -278,16 +277,26 @@ class _StandaloneCartSheetController implements CartSheetController {
   }
 
   @override
-  Future<void> deleteItemFromCart(
-      BuildContext context, CartItem cartItem) async {
+  Future<void> deleteItemFromCart(BuildContext context, CartItem cartItem) async {
     getIt<LoadingHelper>().showLoadingDialog();
     final deleted = await _cartHelper.deleteItemFromCart(context, cartItem);
     if (deleted) {
+      double subTotal = double.parse(cartItemsBloc.state.data.subTotal ?? "0.0" );
+      double removedItemPrice = double.parse(cartItem.total);
+      double newSubTotal = subTotal-removedItemPrice;
+      cartItemsBloc.state.data.subTotal = newSubTotal.toStringAsFixed(2);
       cartItemsBloc.state.data.items?.remove(cartItem);
-      cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
-      getIt<CartHelper>().updateCartCountWithCart(context, cartItemsBloc.state.data);
+      if(cartItemsBloc.state.data.items?.isEmpty == true){
+        cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+        getIt<LoadingHelper>().dismissDialog();
+        getIt<CartHelper>().updateCartCount(context,0);
+        Navigator.pop(context);
+      }else{
+        await getCartItems();
+        cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+        getIt<LoadingHelper>().dismissDialog();
+      }
     }
-    getIt<LoadingHelper>().dismissDialog();
   }
 
   @override

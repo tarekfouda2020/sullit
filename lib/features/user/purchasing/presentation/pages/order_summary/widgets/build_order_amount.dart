@@ -48,7 +48,28 @@ class BuildOrderAmount extends StatelessWidget {
               price: orderModel.couponDiscount,
               priceColor: context.colors.primary,
               useDirhamPrice: true,
+              isDiscount: true,
             ),
+          if (orderModel.loyaltyPointsApplied)
+            OrderSummaryItemWidget(
+              priceType: tr('pointsDiscount'),
+              price: orderModel.loyaltyPointsValue,
+              priceColor: context.colors.primary,
+              useDirhamPrice: true,
+              isDiscount: true,
+            ),
+          if(orderModel.orderDiscounts?.isNotEmpty == true)
+            ...List.generate(orderModel.orderDiscounts?.length ?? 0,(index) {
+              var item = orderModel.orderDiscounts?[index];
+              return OrderSummaryItemWidget(
+                priceType: item?.typeLabel ??"" ,
+                isDiscount: true,
+                // price: order?.getDiscountNumber().toString() ?? '',
+                price: item?.discount ?? '',
+                priceColor: context.colors.primary,
+                useDirhamPrice: true,
+              );
+            }, ),
           Gaps.vGap10,
           Gaps.line(context.colors.softGray, 0),
           Gaps.vGap13,

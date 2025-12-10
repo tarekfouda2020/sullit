@@ -56,7 +56,7 @@ extension Validator on String {
   String? validateName({String? message}) {
     if (trim().isEmpty) {
       return message ?? tr("fillField");
-    } else if (length < 8 || length > 30) {
+    } else if (length < 8 || length > 100) {
       return message ?? tr("validateName");
     }
     return null;

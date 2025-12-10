@@ -31,7 +31,7 @@ class BuildHomeSwiper extends StatelessWidget {
           viewportFraction: 1.0,
           // viewportFraction: 0.98,
           scale: 0.95,
-          autoplay: false,
+          autoplay: true,
         ),
       ),
     );

@@ -4,7 +4,7 @@ class PhoneHelper {
     if (phone.startsWith("0")) {
       return phone.substring(1);
     }
-    return phone;
+    return "0$phone";
   }
 
 }

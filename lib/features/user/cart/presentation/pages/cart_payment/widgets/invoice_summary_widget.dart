@@ -50,13 +50,14 @@ class InvoiceSummaryWidget extends StatelessWidget {
                 useDirhamPrice: true,
                 onPressInfo: () => controller.showDeliveryFeesSheet(context),
               ),
+              Gaps.vGap3,
               BuildSummaryHeader(
                 title: tr('totalVat'),
                 details: shippingSummary.getTotalVat(),
                 useDirhamPrice: true,
                 vMargin: 0,
               ),
-              Gaps.vGap8,
+              Gaps.vGap3,
               Visibility(
                 visible: shippingSummary.couponApplied == true ||
                     shippingSummary.loyaltyPointsApplied == true,
@@ -73,25 +74,23 @@ class InvoiceSummaryWidget extends StatelessWidget {
                   useDirhamPrice: true,
                 ),
               ),
-              // Gaps.vGap8,
-              // Visibility(
-              //   visible: (shippingSummary.couponApplied == false ||
-              //       shippingSummary.loyaltyPointsApplied == false) && (shippingSummary.discountTypes??[]).isNotEmpty,
-              //     child: Column(
-              //       spacing: 16,
-              //       children: List.generate(shippingSummary.discountTypes?.length??0, (index) {
-              //         var item = shippingSummary.discountTypes?[index];
-              //         return BuildSummaryHeader(
-              //           isDiscount: true,
-              //           applyDashSeperate: false,
-              //           title: item?.label ?? "",
-              //           details: item?.discount ?? "",
-              //           detailsColor: context.colors.primary,
-              //           useDirhamPrice: true,
-              //         );
-              //       },),
-              //     )
-              // ),
+              Visibility(
+                visible: shippingSummary.showOrderDiscounts ,
+                  child: Column(
+                    spacing: 16,
+                    children: List.generate(shippingSummary.discountTypes?.length??0, (index) {
+                      var item = shippingSummary.discountTypes?[index];
+                      return BuildSummaryHeader(
+                        isDiscount: true,
+                        applyDashSeperate: false,
+                        title: item?.label ?? "",
+                        details: item?.discount ?? "",
+                        detailsColor: context.colors.primary,
+                        useDirhamPrice: true,
+                      );
+                    },),
+                  )
+              ),
               Visibility(
                 visible: applyGiftCard,
                 child: BuildSummaryHeader(
