@@ -3,6 +3,10 @@
 part of 'category_details_imports.dart';
 
 class CategoryDetailsController {
+
+  final TextEditingController searchFieldCtr = TextEditingController();
+
+
   final GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
   final GenericBloc<List<SubCategoryLevel>> subCategoriesCubit =
       GenericBloc([]);
@@ -11,6 +15,8 @@ class CategoryDetailsController {
   final GenericBloc<PriceRangeParams?> rangeCubit = GenericBloc(null);
   final GenericBloc<String> titleCubit = GenericBloc("");
   final GenericBloc<bool> showBrandsCubit = GenericBloc<bool>(false);
+  final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
+
   final PagingController<int, Product> pagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 12;
@@ -365,6 +371,7 @@ class CategoryDetailsController {
           .map((element) => element.value)
           .toList(),
     );
+    print("keyWoard is ===>>>>>>> ${searchFieldCtr.text} ");
     return SearchProductsParams(
       catId: currentCatId,
       brandId: brandId,
@@ -375,6 +382,7 @@ class CategoryDetailsController {
       refresh: refresh,
       pageSize: pageSize,
       currentPage: page,
+      searchKey: searchFieldCtr.text
     );
   }
 
@@ -504,4 +512,30 @@ class CategoryDetailsController {
 
     return false; // No selections, allow normal pop
   }
+
+
+
+  void onPressSearch(BuildContext context){
+  FocusScope.of(context).unfocus();
+  pagingController.refresh();
+  getPopularProducts(1);
+  }
+
+  void clearSearchField(){
+    searchFieldCtr.clear();
+    showClearIcon.onUpdateData(false);
+    pagingController.refresh();
+    getPopularProducts(1);
+  }
+
+  void whileWriting(String value){
+    if(value.isNotEmpty){
+      showClearIcon.onUpdateData(true);
+    }else{
+      showClearIcon.onUpdateData(false);
+    }
+  }
+
+
+
 }
