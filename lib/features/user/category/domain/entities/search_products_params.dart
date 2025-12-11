@@ -33,7 +33,7 @@ class SearchProductsParams extends BaseDomainModel {
       url = "$url&max_price=$maxPrice";
     }
     if(catId!=null){
-      url = "$url&category_id=$catId";
+      url = "$url?category_id=$catId";
     }
     if(brandId!=null){
       url = "$url&brand_id=$brandId";

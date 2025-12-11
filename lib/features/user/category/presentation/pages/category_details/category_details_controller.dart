@@ -31,6 +31,8 @@ class CategoryDetailsController {
 
   bool isFilterAppliedBefore = false;
 
+  RangeValues? rangeValues;
+
   CategoryDetailsController(BuildContext context, Category categoryModel) {
     initialCategoryModel = categoryModel;
     titleCubit.onUpdateData(categoryModel.name);
@@ -90,13 +92,12 @@ class CategoryDetailsController {
         currentCatId = id;
       }
 
-      // Update specifications and price range from the result
-      RangeValues rangeValues = RangeValues(
+       rangeValues = RangeValues(
         double.parse(result.priceRange.min),
         double.parse(result.priceRange.max),
       );
       rangeCubit.onUpdateData(
-          PriceRangeParams(initial: rangeValues, value: rangeValues));
+          PriceRangeParams(initial: rangeValues!, value: rangeValues!));
       specificationsCubit.onUpdateData(result);
     } else {
       // Restore previous catId if API call failed
@@ -371,16 +372,22 @@ class CategoryDetailsController {
           .map((element) => element.value)
           .toList(),
     );
+    var minPrice = (rangeValues?.start?? 0.0) < (rangeCubit.state.data?.value.start ?? 0.0) == true
+        ? rangeCubit.state.data?.value.start
+        : null;
+    var maxPrice = (rangeValues?.end?? 0.0) < (rangeCubit.state.data?.value.end ?? 0.0) == true
+        ? rangeCubit.state.data?.value.end
+        : null;
     return SearchProductsParams(
       catId: currentCatId,
       brandId: brandId,
       color: colors,
       attributes: attributes?.expand((element) => element).toList(),
-      minPrice: rangeCubit.state.data?.value.start,
-      maxPrice: rangeCubit.state.data?.value.end,
+      minPrice: minPrice,
+      maxPrice: maxPrice,
       refresh: refresh,
-      pageSize: pageSize,
-      currentPage: page,
+      // pageSize: pageSize,
+      // currentPage: page,
       searchKey: searchFieldCtr.text.trim()
     );
   }

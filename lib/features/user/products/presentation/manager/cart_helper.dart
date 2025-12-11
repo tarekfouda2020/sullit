@@ -311,4 +311,17 @@ class _StandaloneCartSheetController implements CartSheetController {
 
   @override
   int? get productId => null;
+
+
+  String  remainToGetMinAmount() {
+    var total = double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
+    var minAmount = cartItemsBloc.state.data.minimumAmount ?? 0.0;
+    var remain = minAmount - total ;
+    return remain.toStringAsFixed(2);
+  }
+
+  @override
+  String get minAmountRemain => remainToGetMinAmount();
+
+
 }

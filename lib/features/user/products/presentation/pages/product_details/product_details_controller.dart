@@ -350,4 +350,14 @@ class ProductDetailsController implements CartSheetController {
     );
   }
 
+  String  remainToGetMinAmount() {
+    var total = double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
+    var minAmount = cartItemsBloc.state.data.minimumAmount ?? 0.0;
+    var remain = total-minAmount;
+    return remain.toStringAsFixed(2);
+  }
+
+  @override
+  String get minAmountRemain => remainToGetMinAmount();
+
 }
