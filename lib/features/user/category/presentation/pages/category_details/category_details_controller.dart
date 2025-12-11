@@ -3,6 +3,10 @@
 part of 'category_details_imports.dart';
 
 class CategoryDetailsController {
+
+  final TextEditingController searchFieldCtr = TextEditingController();
+
+
   final GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
   final GenericBloc<List<SubCategoryLevel>> subCategoriesCubit =
       GenericBloc([]);
@@ -11,6 +15,8 @@ class CategoryDetailsController {
   final GenericBloc<PriceRangeParams?> rangeCubit = GenericBloc(null);
   final GenericBloc<String> titleCubit = GenericBloc("");
   final GenericBloc<bool> showBrandsCubit = GenericBloc<bool>(false);
+  final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
+
   final PagingController<int, Product> pagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 12;
@@ -24,6 +30,8 @@ class CategoryDetailsController {
   Category? initialCategoryModel;
 
   bool isFilterAppliedBefore = false;
+
+  RangeValues? rangeValues;
 
   CategoryDetailsController(BuildContext context, Category categoryModel) {
     initialCategoryModel = categoryModel;
@@ -84,13 +92,12 @@ class CategoryDetailsController {
         currentCatId = id;
       }
 
-      // Update specifications and price range from the result
-      RangeValues rangeValues = RangeValues(
+       rangeValues = RangeValues(
         double.parse(result.priceRange.min),
         double.parse(result.priceRange.max),
       );
       rangeCubit.onUpdateData(
-          PriceRangeParams(initial: rangeValues, value: rangeValues));
+          PriceRangeParams(initial: rangeValues!, value: rangeValues!));
       specificationsCubit.onUpdateData(result);
     } else {
       // Restore previous catId if API call failed
@@ -365,16 +372,23 @@ class CategoryDetailsController {
           .map((element) => element.value)
           .toList(),
     );
+    var minPrice = (rangeValues?.start?? 0.0) < (rangeCubit.state.data?.value.start ?? 0.0) == true
+        ? rangeCubit.state.data?.value.start
+        : null;
+    var maxPrice = (rangeValues?.end?? 0.0) < (rangeCubit.state.data?.value.end ?? 0.0) == true
+        ? rangeCubit.state.data?.value.end
+        : null;
     return SearchProductsParams(
       catId: currentCatId,
       brandId: brandId,
       color: colors,
       attributes: attributes?.expand((element) => element).toList(),
-      minPrice: rangeCubit.state.data?.value.start,
-      maxPrice: rangeCubit.state.data?.value.end,
+      minPrice: minPrice,
+      maxPrice: maxPrice,
       refresh: refresh,
-      pageSize: pageSize,
-      currentPage: page,
+      // pageSize: pageSize,
+      // currentPage: page,
+      searchKey: searchFieldCtr.text.trim()
     );
   }
 
@@ -504,4 +518,30 @@ class CategoryDetailsController {
 
     return false; // No selections, allow normal pop
   }
+
+
+
+  void onPressSearch(BuildContext context){
+  FocusScope.of(context).unfocus();
+  pagingController.refresh();
+  getPopularProducts(1);
+  }
+
+  void clearSearchField(){
+    searchFieldCtr.clear();
+    showClearIcon.onUpdateData(false);
+    pagingController.refresh();
+    getPopularProducts(1);
+  }
+
+  void whileWriting(String value){
+    if(value.isNotEmpty){
+      showClearIcon.onUpdateData(true);
+    }else{
+      showClearIcon.onUpdateData(false);
+    }
+  }
+
+
+
 }

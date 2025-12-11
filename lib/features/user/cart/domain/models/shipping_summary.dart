@@ -1,5 +1,5 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
-import 'package:flutter_tdd/features/user/cart/domain/models/order_discount_domain.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/order_summary_discount_domain.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/shipping_item.dart';
 
 class ShippingSummary extends BaseDomainModel{
@@ -25,7 +25,7 @@ class ShippingSummary extends BaseDomainModel{
   bool avilablePayWithWallet;
   bool avilableCashOnDelivery ;
   List<ShippingItem> items ;
-  List<OrderDiscountDomain>? discountTypes ;
+  List<OrderSummaryDiscountDomain>? discountTypes ;
   String? loyaltyPointsValue;
   int? loyaltyPoints;
   bool? loyaltyPointsApplied;
@@ -80,6 +80,12 @@ class ShippingSummary extends BaseDomainModel{
     var vatOnFees = double.parse(vatFeeAmount);
     return (vatOnSubTotal+vatOnFees).toStringAsFixed(2);
   }
+
+
+
+  // bool get showOrderDiscounts => (couponApplied == false && loyaltyPointsApplied == false) && (discountTypes??[]).isNotEmpty;
+
+  bool get showOrderDiscounts =>  (discountTypes ?? <OrderSummaryDiscountDomain>[]).isNotEmpty;
 
   double get getFeesTotal => double.parse(environmentFees) + double.parse(shipping) + double.parse(serviceFees) + double.parse(technologyFees) + double.parse(getTotalVat());
 

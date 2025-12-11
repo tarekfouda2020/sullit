@@ -44,7 +44,7 @@ class BuildBanners extends StatelessWidget {
             },
             viewportFraction: 0.99,
             scale: 0.95,
-            autoplay: false,
+            autoplay: true,
             itemCount: banners.length,
           ),
         ),

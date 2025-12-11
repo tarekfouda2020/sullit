@@ -49,7 +49,7 @@ class HomeController {
         // tr('explore', context: context),
         tr('cart', context: context),
         tr('offers', context: context),
-        tr("more", context: context),
+        tr("account", context: context),
       ];
 
   void setUserLang(BuildContext context, String lang) async {

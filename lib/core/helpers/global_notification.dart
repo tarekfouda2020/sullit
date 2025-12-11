@@ -48,12 +48,12 @@ class GlobalNotification {
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       messaging.getToken().then((token) {
-        print(token);
+        // print(token);
       });
       messaging.setForegroundNotificationPresentationOptions();
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-        print("_____________________Message data:${message.data}");
-        print("___________________notification:${message.notification?.title}");
+        // print("_____________________Message data:${message.data}");
+        // print("___________________notification:${message.notification?.title}");
         _onMessageStreamController.add(message.data);
         _showLocalNotification(message);
         if (message.data['type'] == NotifyEnum.emailChanged.getValue()) {

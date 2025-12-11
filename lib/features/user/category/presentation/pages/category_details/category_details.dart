@@ -4,8 +4,7 @@ class CategoryDetails extends StatefulWidget {
   final Category categoryModel;
   final bool fromHome;
 
-  const CategoryDetails(
-      {super.key, required this.categoryModel, this.fromHome = false});
+  const CategoryDetails({super.key, required this.categoryModel, this.fromHome = false});
 
   @override
   _CategoryDetailsState createState() => _CategoryDetailsState();
@@ -57,16 +56,20 @@ class _CategoryDetailsState extends State<CategoryDetails> {
           Gaps.hGap20,
         ],
       ),
-      body: Column(
-        children: [
-          Visibility(
-            // visible: widget.fromHome,
-            replacement: Gaps.vGap15,
-            child: BuildAllCategoriesView(detailsController: controller),
-          ),
-          // BuildFilterBar(detailsController: controller),
-          BuildProducts(detailsController: controller),
-        ],
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Column(
+          children: [
+            CategorySearchFiledWidget(controller: controller),
+            Visibility(
+              // visible: widget.fromHome,
+              replacement: Gaps.vGap15,
+              child: BuildAllCategoriesView(detailsController: controller),
+            ),
+            // BuildFilterBar(detailsController: controller),
+            BuildProducts(detailsController: controller),
+          ],
+        ),
       ),
       floatingActionButton: const CartButtonWidget(
         size: 65,

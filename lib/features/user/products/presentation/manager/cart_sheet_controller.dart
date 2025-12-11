@@ -4,7 +4,6 @@ import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart' as bloc;
 
-/// Interface for any controller that can provide cart data to the success sheet.
 abstract class CartSheetController {
   GenericBloc<CartDomainModel> get cartItemsBloc;
 
@@ -23,5 +22,7 @@ abstract class CartSheetController {
   Future<void> refreshProductDetails(BuildContext context);
 
   int? get productId;
+
+  String get minAmountRemain;
 }
 

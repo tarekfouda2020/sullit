@@ -5,6 +5,7 @@ import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/summary.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_details_model/order_details_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_model/order_model.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/order_discount_domain.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 
 class OrderSummary extends BaseDomainModel {
@@ -88,6 +89,11 @@ class OrderSummary extends BaseDomainModel {
   double vatAmount(){
     var different = subTotal - getSubTotalWithoutVat();
     return different;
+  }
+
+
+  List<OrderDiscountDomain> get discountList{
+     return (sectionOrders??<Orders>[]).expand<OrderDiscountDomain>((element) => element.orderDiscounts!).toList();
   }
 
   // double gainedBezatPoints(){
