@@ -4,10 +4,10 @@ publish_to: 'none'
 
 
 #android live
-version: 1.0.25+25
+version: 1.0.26+26
 
 #ios live
-#version: 1.0.21+1
+#version: 1.0.22+1
 
 
 environment:
