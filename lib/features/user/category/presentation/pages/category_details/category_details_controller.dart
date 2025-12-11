@@ -371,7 +371,6 @@ class CategoryDetailsController {
           .map((element) => element.value)
           .toList(),
     );
-    print("keyWoard is ===>>>>>>> ${searchFieldCtr.text} ");
     return SearchProductsParams(
       catId: currentCatId,
       brandId: brandId,
@@ -382,7 +381,7 @@ class CategoryDetailsController {
       refresh: refresh,
       pageSize: pageSize,
       currentPage: page,
-      searchKey: searchFieldCtr.text
+      searchKey: searchFieldCtr.text.trim()
     );
   }
 
