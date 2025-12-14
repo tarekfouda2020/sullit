@@ -18,6 +18,7 @@ import 'package:flutter_tdd/res.dart';
 
 class MembershipItemWidget extends StatelessWidget {
   final bool isBottomSheet;
+  final bool showVip;
   final VipSubscribeDomainModel model;
   final void Function()? onSelect;
 
@@ -26,6 +27,7 @@ class MembershipItemWidget extends StatelessWidget {
     required this.model,
     required this.isBottomSheet,
     this.onSelect,
+    this.showVip = false,
   });
 
   @override
@@ -67,7 +69,7 @@ class MembershipItemWidget extends StatelessWidget {
                     Visibility(
                       visible: isBottomSheet,
                       replacement: Visibility(
-                          visible: model.subscription != null,
+                          visible: model.subscription != null || showVip,
                           child: SvgPicture.asset(
                             Res.redVipMark,
                             width: 30,
