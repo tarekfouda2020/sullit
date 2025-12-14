@@ -1,31 +1,37 @@
 part of 'membership_subscribe_imports.dart';
 
-class MembershipSubscribeController{
-
+class MembershipSubscribeController {
   double? walletBalance;
+  VipSubscribeDomainModel? currentSubscription;
   final GenericBloc<bool> termCubit = GenericBloc(false);
 
-  final PagingController<int, VipSubscribeDomainModel> pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, VipSubscribeDomainModel> pagingController =
+      PagingController(firstPageKey: 1);
   final GenericBloc<bool> isDataLoaded = GenericBloc<bool>(false);
-  final GenericBloc<List<PayMethodDomainModel>> payMethodsCubit = GenericBloc<List<PayMethodDomainModel>>([]);
-  final GenericBloc<SubscribeContentDomainModel?> subscriptionContentBloc = GenericBloc(null);
+  final GenericBloc<List<PayMethodDomainModel>> payMethodsCubit =
+      GenericBloc<List<PayMethodDomainModel>>([]);
+  final GenericBloc<SubscribeContentDomainModel?> subscriptionContentBloc =
+      GenericBloc(null);
   int pageSize = 12;
 
-  VipSubscribeDomainModel get _selectedSubscription => (pagingController.itemList??<VipSubscribeDomainModel>[])
-      .firstWhere((element) =>element.isSelected);
+  VipSubscribeDomainModel get _selectedSubscription =>
+      (pagingController.itemList ?? <VipSubscribeDomainModel>[])
+          .firstWhere((element) => element.isSelected);
 
-
-  MembershipSubscribeController(){
+  MembershipSubscribeController() {
+    getCurrentSubscription();
+    getSubscriptions(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
-      getSubscriptions(pageKey, refresh: false);
-      getSubscriptions(pageKey,);
+      getSubscriptions(
+        pageKey,
+      );
     });
     callWalletData();
     getPayMethods();
     getSubscriptionContent();
   }
 
-  void callWalletData(){
+  void callWalletData() {
     getWalletData(refresh: false);
     getWalletData();
   }
@@ -43,7 +49,6 @@ class MembershipSubscribeController{
       subscriptionContentBloc.onUpdateData(result);
     }
   }
-
 
   Future<void> getSubscriptions(int page, {bool refresh = true}) async {
     var params = _paginateParams(page, refresh);
@@ -65,13 +70,14 @@ class MembershipSubscribeController{
   Future<void> getWalletData({bool refresh = true}) async {
     await GetMyWallet().call(refresh).then((value) {
       if (value != null) {
-        double? balance = getIt<Utilities>().extractFormattedNumberToDouble(value.walletBalance);
+        double? balance = getIt<Utilities>()
+            .extractFormattedNumberToDouble(value.walletBalance);
         walletBalance = balance;
       }
     });
   }
 
-  void showVipPlansBottomSheet(BuildContext context){
+  void showVipPlansBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -82,15 +88,16 @@ class MembershipSubscribeController{
     );
   }
 
-
   void showPayMethodsSheet(BuildContext context) {
-    if(pagingController.itemList!.any((element) => element.isSelected) == false){
-      CustomToast.showSimpleToast(msg: tr("selectMembership"), type: ToastType.info);
-      return ;
+    if (pagingController.itemList!.any((element) => element.isSelected) ==
+        false) {
+      CustomToast.showSimpleToast(
+          msg: tr("selectMembership"), type: ToastType.info);
+      return;
     }
-    if(!termCubit.state.data){
+    if (!termCubit.state.data) {
       CustomToast.showSimpleToast(msg: tr('acceptTerms'), type: ToastType.info);
-      return ;
+      return;
     }
     showModalBottomSheet(
       context: context,
@@ -100,7 +107,7 @@ class MembershipSubscribeController{
       enableDrag: false,
       builder: (context) {
         return PayMethodBottomSheetWidget(
-          onPressProcess: ()=> subscribeInMembership(context),
+          onPressProcess: () => subscribeInMembership(context),
           onSelectItem: (payMethod) => selectPaymentMethod(payMethod),
           payMethodsCubit: payMethodsCubit,
         );
@@ -108,63 +115,118 @@ class MembershipSubscribeController{
     );
   }
 
-  void selectPaymentMethod(PayMethodDomainModel model){
-    for(var item in payMethodsCubit.state.data){
+  void selectPaymentMethod(PayMethodDomainModel model) {
+    for (var item in payMethodsCubit.state.data) {
       item.isSelected = false;
     }
     model.isSelected = true;
     payMethodsCubit.onUpdateData(payMethodsCubit.state.data);
-
   }
 
+  void updateSelectedMemberShip(VipSubscribeDomainModel model) {
+    double currentPlanPrice = double.parse(currentSubscription?.price.replaceAll(",", "")??"0.0");
+    double selectedPlanPrice = double.parse(model.price.replaceAll(",", ""));
+    if (model.byInvite == true ) {
+      if(currentPlanPrice == selectedPlanPrice){
+        CustomToast.showSnakeBar(
+            "${tr('already_subscribed_tier')} (${model.name})",
+            type: ToastType.info);
+      }else{
+        showUnAvailablePlanToast();
+      }
+      return;
+    }
 
-  void updateSelectedMemberShip(VipSubscribeDomainModel model){
+    if (currentSubscription != null) {
+      if (!checkCurrentPlanValidation(model)) {
+        return;
+      }
+    }
+
     var data = pagingController.value.itemList;
-    for(var item in data ?? <VipSubscribeDomainModel>[]){
+    for (var item in data ?? <VipSubscribeDomainModel>[]) {
       item.isSelected = false;
     }
     model.isSelected = true;
-    pagingController.itemList = List<VipSubscribeDomainModel>.from(pagingController.itemList!);
+    pagingController.itemList =
+        List<VipSubscribeDomainModel>.from(pagingController.itemList!);
   }
 
-
+  bool checkCurrentPlanValidation(VipSubscribeDomainModel model) {
+    double currentPlanPrice = double.parse(currentSubscription!.price.replaceAll(",", ""));
+    double selectedPlanPrice = double.parse(model.price.replaceAll(",", ""));
+    if (currentPlanPrice == selectedPlanPrice || currentSubscription!.byInvite == true) {
+      CustomToast.showSnakeBar(
+          "${tr('already_subscribed_tier')} (${model.name})",
+          type: ToastType.info);
+      return false;
+    }else  {
+      CustomToast.showSimpleToast(
+          msg: "${tr('already_subscribed_with_days')} ${currentSubscription!.name} ${tr('and_still_have')} ${currentSubscription!.expiredInDays} ${tr('day_before_ending')}",
+          type: ToastType.info
+      );
+      return currentPlanPrice < selectedPlanPrice;
+    }
+  }
 
   Future<void> subscribeInMembership(BuildContext context) async {
-    PayTypeEnum payMethod = payMethodsCubit.state.data.firstWhere((element) => element.isSelected).getPaymentType();
-    if(payMethod ==PayTypeEnum.wallet && isWalletBalanceEnough() == false ){
-      CustomToast.showSimpleToast(msg: tr('walletBalanceEmpty'), type: ToastType.error);
-      return ;
+    var selectedPayMethod =
+        payMethodsCubit.state.data.firstWhere((element) => element.isSelected);
+    PayTypeEnum payMethod = selectedPayMethod.getPaymentType();
+    if (payMethod == PayTypeEnum.wallet && isWalletBalanceEnough() == false) {
+      CustomToast.showSimpleToast(
+          msg: tr('walletBalanceEmpty'), type: ToastType.error);
+      return;
     }
-    var params = _subscribeParams(payMethod.name);
+    var params = _subscribeParams(selectedPayMethod.paymentTypeKey);
     Navigator.pop(context);
     Future.delayed(const Duration(milliseconds: 200));
     Navigator.pop(context);
     getIt<LoadingHelper>().showLoadingDialog();
     await PayVipSubscription().call(params).then((value) async {
       if (value != null) {
+        getIt<LoadingHelper>().dismissDialog();
         BuildContext ctx = getIt<GlobalContext>().context();
         if (value.transactionUrl != null) {
-          getIt<LoadingHelper>().dismissDialog();
-           await AutoRouter.of(ctx).push(PaymentRoute(transactionUrl: value.transactionUrl!));
+          var result = await AutoRouter.of(ctx)
+              .push(PaymentRoute(transactionUrl: value.transactionUrl!));
+          if (result == true) {
+            CustomToast.showSimpleToast(
+                msg: tr("subscribedSuccess"), type: ToastType.success);
+          }
+        } else {
+          CustomToast.showSimpleToast(
+              msg: tr("subscribedSuccess"), type: ToastType.success);
+          AutoRouter.of(ctx).pop();
         }
-        AutoRouter.of(ctx).pop();
-        CustomToast.showSimpleToast(msg: tr("subscribedSuccess"), type: ToastType.success);
       }
       getIt<LoadingHelper>().dismissDialog();
     });
   }
 
   bool isWalletBalanceEnough() {
-   var cardPrice = _selectedSubscription.price;
-    double? pureNumPrice = getIt<Utilities>().extractFormattedNumberToDouble(cardPrice);
+    var cardPrice = _selectedSubscription.price;
+    double? pureNumPrice =
+        getIt<Utilities>().extractFormattedNumberToDouble(cardPrice);
     if ((pureNumPrice ?? 0.0) > (walletBalance ?? 0.0)) {
-      CustomToast.showSimpleToast(msg: tr('walletBalanceEmpty'), type: ToastType.error);
+      CustomToast.showSimpleToast(
+          msg: tr('walletBalanceEmpty'), type: ToastType.error);
       return false;
-    }else{
+    } else {
       return true;
     }
   }
 
+  Future<void> getCurrentSubscription({bool refresh = true}) async {
+    var result = await GetCurrentSubscription().call(refresh);
+    if (result != null) {
+      currentSubscription = result.currentSubscription;
+    }
+  }
+
+  void showUnAvailablePlanToast() {
+    CustomToast.showSnakeBar(tr('tier_not_available'), type: ToastType.info);
+  }
 
   PaySubscribeParams _subscribeParams(String paymentMethod) {
     var id = _selectedSubscription.id;
@@ -178,7 +240,4 @@ class MembershipSubscribeController{
       pageSize: pageSize,
     );
   }
-
-
-
 }

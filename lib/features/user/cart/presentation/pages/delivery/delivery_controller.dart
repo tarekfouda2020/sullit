@@ -9,6 +9,18 @@ class DeliveryController {
   Pickup? nearestPointModel;
   SellerShipping? selectedItem;
 
+
+  DeliveryController(){
+    List<SellerShipping>? savedShippingData = getIt<CartNavigateHelper>().deliveryDetailsData;
+    if(savedShippingData != null){
+      sellerShippingBloc.onUpdateData(savedShippingData);
+    }else{
+      getShippingInfo();
+    }
+  }
+
+
+
   Future<void> getShippingInfo({bool refresh = true}) async {
     return await GetShippingInfo().call(refresh).then(
           (value) => sellerShippingBloc.onUpdateData(value),
@@ -68,11 +80,15 @@ class DeliveryController {
   }
 
   Future<void> setCartStoreShipping(BuildContext context) async {
-    List<Map<dynamic, dynamic>> params = _setCartStoreParams();
+    StoreCartShippingParams params = _cartShippingParams();
     var data = await SetCartStoreShipping().call(params);
     if (data != null) {
+      getIt<CartNavigateHelper>().deliveryDetailsData = sellerShippingBloc.state.data;
+      getIt<CartNavigateHelper>().cartCheckOutPageData.orderSummaryCheckOut = data;
+      getIt<CartNavigateHelper>().checkOutParams = _cartShippingParams();
       CustomToast.showSimpleToast(msg: tr('shippingAdded'),type: ToastType.success);
-      AutoRouter.of(context).push(CartPaymentRoute(shipping: data));
+      getIt<CartNavigateHelper>()
+          .setStep(CartNavigateHelper.paymentStepIndex, force: true);
     }
   }
 
@@ -97,6 +113,10 @@ class DeliveryController {
     )
         .toList();
     return arrangedItems;
+  }
+
+  StoreCartShippingParams _cartShippingParams(){
+    return StoreCartShippingParams(params: _setCartStoreParams());
   }
 
   Future<void> applyCoupon(String param) async {

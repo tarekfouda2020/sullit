@@ -27,7 +27,17 @@ class _CartPaymentState extends State<CartPayment> {
       child: Scaffold(
         //resizeToAvoidBottomInset: false,
         backgroundColor: context.colors.customBackground,
-        appBar: DefaultAppBar(title: tr("cart"), bgColor: context.colors.white),
+        appBar: DefaultAppBar(
+          title: tr("cart"),
+          bgColor: context.colors.white,
+          onBack: () {
+            final moved = getIt<CartNavigateHelper>()
+                .setStep(CartNavigateHelper.deliveryStepIndex, force: true);
+            if (!moved && context.router.canPop()) {
+              AutoRouter.of(context).pop();
+            }
+          },
+        ),
         body: BlocBuilder<GenericBloc<Shipping?>, GenericState<Shipping?>>(
           bloc: controller.shippingBloc,
           builder: (context, state) {

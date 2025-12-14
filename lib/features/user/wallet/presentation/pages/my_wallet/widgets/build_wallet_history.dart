@@ -10,7 +10,7 @@ class BuildWalletHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: CustomRefreshIndicatorWidget(
-        onRefresh: () async => controller.getTransactions(1),
+        onRefresh: () async => await controller.refresh(),
         child: PagedListView<int, WalletTransaction>(
           padding: Dimens.paddingAll15PX,
           pagingController: controller.pagingController,

@@ -11,7 +11,7 @@ class BuildBanners extends StatelessWidget {
       visible: banners.isNotEmpty,
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
-        height: 108.spMin,
+        height: 165,
         child: Visibility(
           visible: banners.length > 1,
           replacement: InkWell(
@@ -23,7 +23,7 @@ class BuildBanners extends StatelessWidget {
               url: "",
               fit: BoxFit.fill,
               borderRadius: Dimens.borderRadius5PX,
-              height: 108.spMin,
+              height: 165,
               imgMargin: Dimens.paddingHorizontal10PX,
             ),
           ),
@@ -37,14 +37,14 @@ class BuildBanners extends StatelessWidget {
                   url: banners[index].photo,
                   fit: BoxFit.fill,
                   borderRadius: Dimens.borderRadius13PX,
-                  height: 108.spMin,
+                  height: 165,
                   // imgMargin: Dimens.paddingHorizontal20PX,
                 ),
               );
             },
             viewportFraction: 0.99,
             scale: 0.95,
-            autoplay: false,
+            autoplay: true,
             itemCount: banners.length,
           ),
         ),

@@ -46,20 +46,20 @@ class ProfileController {
   Future<void> _initializeCountryFromUser(BuildContext context, UserDomainModel? user) async {
     countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
     return ;
-    if (user?.countryCode != null && user!.countryCode!.isNotEmpty) {
-      try {
-        final country = await CountryPickerHelper.getCountryByCallingCode(context, user.countryCode!);
-        if (country != null) {
-          countryCubit.onUpdateData(country);
-        } else {
-          countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
-        }
-      } catch (e) {
-        countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
-      }
-    } else {
-      countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
-    }
+    // if (user?.countryCode != null && user!.countryCode!.isNotEmpty) {
+    //   try {
+    //     final country = await CountryPickerHelper.getCountryByCallingCode(context, user.countryCode!);
+    //     if (country != null) {
+    //       countryCubit.onUpdateData(country);
+    //     } else {
+    //       countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
+    //     }
+    //   } catch (e) {
+    //     countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
+    //   }
+    // } else {
+    //   countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
+    // }
   }
 
   // void showCountryCode(BuildContext context) async {
@@ -205,10 +205,9 @@ class ProfileController {
 
   bool isPhoneValid(){
     if(phoneController.text.isNotEmpty){
-      return((countryCubit.state.data?.callingCode ?? "") + (phoneController.text))
-          .validatePhone() == null;
+      return( (phoneController.text)).isValidUAEPhone(phoneController.text) == null;
     }else{
-      return true;
+      return false;
     }
 
   }
@@ -239,19 +238,20 @@ class ProfileController {
       msg: tr('informationUpdatedSuccessfully'),
       type: ToastType.success,
     );
+    await Future.delayed(const Duration(milliseconds: 300));
     AutoRouter.of(context).pop();
   }
 
-  void onActivePhone(BuildContext context) async {
-    var user = context.read<UserCubit>().state.model;
-    var result = await AutoRouter.of(context)
-        .push(ActiveAccountRoute(phoneOrEmail: user?.fullPhone ?? ""));
-    if (result == true) {
-      user?.isPhoneActive = true;
-      verifyPhoneCubit.onUpdateData(true);
-      context.read<UserCubit>().onUpdateUserData(user!);
-    }
-  }
+  // void onActivePhone(BuildContext context) async {
+  //   var user = context.read<UserCubit>().state.model;
+  //   var result = await AutoRouter.of(context)
+  //       .push(ActiveAccountRoute(phoneOrEmail: user?.fullPhone ?? ""));
+  //   if (result == true) {
+  //     user?.isPhoneActive = true;
+  //     verifyPhoneCubit.onUpdateData(true);
+  //     context.read<UserCubit>().onUpdateUserData(user!);
+  //   }
+  // }
 
   ProfileParams _profileParams(BuildContext context) {
     return ProfileParams(
@@ -284,11 +284,22 @@ class ProfileController {
     if(email == null || email == "") {
       CustomToast.showSimpleToast(
           msg: tr("add_email_to_change_password"),
-          type: ToastType.info,toastGravity: ToastGravity.BOTTOM
+          type: ToastType.info,
+          toastGravity: ToastGravity.BOTTOM
       );
       return ;
     }
     AutoRouter.of(context).push(const ChangePasswordRoute());
   }
+
+
+  void onPressBack(BuildContext context,String? email){
+    if(email == null || email.isEmpty){
+    CustomToast.showSimpleToast(msg: "Please enter a valid email.");
+    return ;
+    }
+    AutoRouter.of(context).pop();
+  }
+
 
 }

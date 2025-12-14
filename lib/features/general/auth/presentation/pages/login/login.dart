@@ -37,6 +37,7 @@ class _LoginState extends State<Login> {
                             BuildLoginTabsView(
                               controller: loginController,
                             ),
+                            if(state.data == 0)
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [

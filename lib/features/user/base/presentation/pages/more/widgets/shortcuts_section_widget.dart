@@ -49,7 +49,7 @@ class ShortCutSectionWidget extends StatelessWidget {
         onTap: () => controller.checkAuth(context, MoreRoutes.loyaltyPoints),
       ),
       BuildMoreItem(
-        title: tr("purchasedOrders"),
+        title: tr("my_orders"),
         onTap: () => controller.checkAuth(context, MoreRoutes.purchasedProducts),
         image: Res.purchasedHistory,
       ),

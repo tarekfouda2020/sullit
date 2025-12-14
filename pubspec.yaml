@@ -4,10 +4,10 @@ publish_to: 'none'
 
 
 #android live
-#version: 1.0.17+17
+version: 1.0.26+26
 
 #ios live
-version: 1.0.12+1
+#version: 1.0.22+1
 
 
 environment:
@@ -81,7 +81,7 @@ dependencies:
   lottie: ^2.3.2
   flutter_html: ^3.0.0
   drift: ^2.8.0
-  sqlite3_flutter_libs: ^0.5.0
+  sqlite3_flutter_libs: ^0.5.40
   path: ^1.8.2
   flutter_sticky_header: ^0.6.5
   scrollable_list_tab_scroller: ^1.1.0

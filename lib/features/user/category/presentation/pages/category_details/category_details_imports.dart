@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,10 +12,9 @@ import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/widgets/home_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/price_range_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/search_products_params.dart';
-import 'package:flutter_tdd/features/user/category/domain/models/attribute_value.dart';
-import 'package:flutter_tdd/features/user/category/domain/models/attributes.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/sub_category.dart';
+import 'package:flutter_tdd/features/user/category/domain/models/sub_category_level.dart';
 import 'package:flutter_tdd/features/user/category/domain/use_cases/get_category_products.dart';
 import 'package:flutter_tdd/features/user/category/domain/use_cases/get_sub_categories.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';

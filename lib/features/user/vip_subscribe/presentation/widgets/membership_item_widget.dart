@@ -32,9 +32,7 @@ class MembershipItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     String lang = context.read<DeviceCubit>().state.model.locale.languageCode;
     return GestureDetector(
-      onTap: !model.byInvite
-          ?onSelect
-          :(){},
+      onTap: onSelect,
       child: Stack(
         children: [
           Container(
@@ -54,8 +52,8 @@ class MembershipItemWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if(model.byInvite)
-                Text(model.inviteLabel,
+                if(model.byInvite == true)
+                Text(model.inviteLabel ?? "",
                 style: AppTextStyle.s16_w500(color: context.colors.primary),
                 ),
                 Gaps.vGap10,
@@ -94,6 +92,7 @@ class MembershipItemWidget extends StatelessWidget {
                   ],
                 ),
                 Visibility(visible: model.subscription == null, child: Gaps.vGap12),
+                if(model.byInvite == false)
                 Row(
                   children: [
                     DirhamPrice(
@@ -168,11 +167,13 @@ class MembershipItemWidget extends StatelessWidget {
               ],
             ),
           ),
-          if(model.byInvite)
+          if(model.byInvite == true)
           Positioned.fill(
             child: Container(
+              margin: const EdgeInsets.only(bottom: 12),
               decoration: BoxDecoration(
                 color: Colors.white.withAlpha(150),
+                borderRadius: BorderRadius.circular(12),
               ),
             ),
           )

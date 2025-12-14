@@ -4,25 +4,43 @@ part of 'payment_imports.dart';
 
 class PaymentController {
   late final WebViewController webController;
+  late final bool orderPaymentFromHome;
 
-  void init(String initialUrl, BuildContext context) {
+  int combinedOrderId = 0;
+
+  void init(String initialUrl, BuildContext context,{bool orderPayFromHome = false}) {
+    orderPaymentFromHome = orderPayFromHome;
     webController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
-        NavigationDelegate(
-          onPageStarted: (url) {
-            handleUrlChange(context, url);
-          },
-        ),
+        _navigationDelegate(context),
       )
       ..loadRequest(Uri.parse(initialUrl));
   }
 
-  void handleUrlChange(BuildContext context, String url) {
+  NavigationDelegate _navigationDelegate(BuildContext context) {
+    if(Platform.isIOS){
+      return NavigationDelegate(
+        onNavigationRequest: (NavigationRequest request) {
+          handleUrlChange(context, request.url);
+          return NavigationDecision.navigate;
+        },
+      );
+    }else{
+      return NavigationDelegate(
+        onPageStarted: (url) {
+          handleUrlChange(context, url);
+        },
+      );
+    }
+  }
+
+  Future<void> handleUrlChange(BuildContext context, String url) async{
+    log("====>>>---- $url ----<<<<====");
     if (url.contains("combined_order_id")) {
-      int id = int.parse(url.split('combined_order_id=').last);
+      combinedOrderId = int.parse(url.split('combined_order_id=').last);
       // AutoRouter.of(context).push(ConfirmationRoute(combinedId: id));
-      AutoRouter.of(context).push(CartConfirmBuyingRoute(combinedId: id));
+      AutoRouter.of(context).push(CartConfirmBuyingRoute(combinedId: combinedOrderId,paymentFromHome: orderPaymentFromHome));
     } else if (url.contains('Fail')) {
       CustomToast.showSimpleToast(
         msg: tr("paymentFailed"),
@@ -30,15 +48,53 @@ class PaymentController {
       );
       AutoRouter.of(context).pop();
     } else if (url.contains('success')) {
+      log("====>>>---- $url ----<<<<====");
+      if(Platform.isIOS){
+       await Future.delayed(const Duration(seconds: 3));
+      }
       CustomToast.showSimpleToast(
         msg: tr('paymentDone'),
         type: ToastType.success,
       );
-      AutoRouter.of(context).pop(true);
+      if(combinedOrderId == 0){
+        AutoRouter.of(context).pop(true);
+      }
     }
   }
 
-  void dispose() {
-    // No disposal needed for WebView widget
+
+
+  void showConfirmPopDialog(BuildContext context){
+   showDialog(context: context, builder: (context) {
+     return  ConfirmLeavingDialogWidget(controller: this);
+   },);
   }
+
+  void onPressBack(BuildContext context){
+    AutoRouter.of(context).pushAndPopUntil(
+      HomeRoute(index: 0),
+      predicate: (route) => route.settings.name == HomeRoute.name,
+    );
+    CustomToast.showSimpleToast(
+      msg: tr("payment_not_completed"),
+      type: ToastType.error,
+    );
+  }
+
+
+  void onPressStay(BuildContext context){
+    Navigator.pop(context);
+  }
+
+
+
+  void onPressLeave(BuildContext context){
+   AutoRouter.of(context).pushAndPopUntil(
+      HomeRoute(index: 0),
+     predicate: (route) => route.settings.name == HomeRoute.name,
+   );
+  }
+
+
+
 }

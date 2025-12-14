@@ -32,7 +32,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               BuildForgetForm(forgetPasswordController: forgetPasswordController),
               Gaps.vGap8,
               BuildForgetPasswordButton(
-                  forgetPasswordController: forgetPasswordController),
+                  forgetPasswordController: forgetPasswordController
+              ),
               const BuildBackToLogin(),
             ],
           ),

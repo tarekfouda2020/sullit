@@ -26,24 +26,36 @@ class _ProfileState extends State<Profile>with WidgetsBindingObserver  {
   }
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        backgroundColor: context.colors.customBackground,
-        appBar:  DefaultAppBar(title: tr('manageProfile')),
-        body: SingleChildScrollView(
-          padding:const EdgeInsets.only(right: 15, left: 15, bottom: 15),
-          child: Column(
-            children: [
-              BuildProfileImage(controller: controller),
-              BuildProfileFormFields(controller: controller),
-              BuildProfileButton(controller: controller),
-               ChangePasswordWidget(controller: controller),
-            ],
+    return BlocBuilder<UserCubit, UserState>(
+     builder: (context, state) {
+       String? email = state.model?.email;
+       return PopScope(
+      canPop: email != null && email.isNotEmpty,
+      onPopInvokedWithResult: (didPop, result) => controller.onPressBack(context, email) ,
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Scaffold(
+          backgroundColor: context.colors.customBackground,
+          appBar:  DefaultAppBar(
+            title: tr('manageProfile'),
+          onBack: () => controller.onPressBack(context, email),
           ),
+          body: SingleChildScrollView(
+            padding:const EdgeInsets.only(right: 15, left: 15, bottom: 15),
+            child: Column(
+              children: [
+                BuildProfileImage(controller: controller),
+                BuildProfileFormFields(controller: controller),
+                BuildProfileButton(controller: controller),
+                 ChangePasswordWidget(controller: controller),
+              ],
+            ),
+          ),
+          bottomNavigationBar: ManageProfileBottomNavWidget(controller: controller),
         ),
-        bottomNavigationBar: ManageProfileBottomNavWidget(controller: controller),
       ),
     );
+  },
+);
   }
 }

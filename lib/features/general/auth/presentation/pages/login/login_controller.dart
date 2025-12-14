@@ -26,6 +26,7 @@ class LoginController {
   void onSubmit(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       //btnKey.currentState?.animateForward();
+      FocusScope.of(context).unfocus();
       var params = await _setLoginParams();
       var result = await SetLogin().call(params);
       //btnKey.currentState?.animateReverse();

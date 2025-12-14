@@ -50,9 +50,6 @@ class HomeMainController {
 
   void getHome(BuildContext context, {bool refresh = true}) async {
     var result = await GetHome().call(refresh);
-    context
-        .read<CountCubit>()
-        .onUpdateCount(result!.cartCount, result.discountRate);
     // result?.flashSales.add(FlashSale(id: 0, title: tr('coupons'), date: DateTime.now(), banner: ""));
     homeCubit.onUpdateData(result);
   }
@@ -150,12 +147,13 @@ class HomeMainController {
     }
   }
 
-  void routeToSearchPage(BuildContext context) {
-    AutoRouter.of(context).push(
+  Future<void> routeToSearchPage(BuildContext context) async{
+   await AutoRouter.of(context).push(
       SearchRoute(
         searchText: homeController.searchController.text,
       ),
     );
+    homeController.searchController.clear();
   }
 
   // used to get vip offers
@@ -253,6 +251,25 @@ class HomeMainController {
     var params = _brandsParams(refresh);
     var data = await GetBrands().call(params);
     brandsCubit.onUpdateData(data);
+  }
+
+
+  List<Category> firstCategoriesSection(){
+    List<Category> cats = homeCubit.state.data!.categories;
+    if(cats.length >= 10){
+      return cats.take((cats.length/2).toInt()).toList();
+    }else{
+      return cats;
+    }
+  }
+
+  List<Category> secondCategoriesSection(){
+    List<Category> cats = homeCubit.state.data!.categories;
+    if(firstCategoriesSection().length > 5){
+      return cats.sublist((cats.length/2).toInt(), cats.length).toList();
+    }else{
+      return <Category>[];
+    }
   }
 
   BrandsParams _brandsParams(bool refresh) {

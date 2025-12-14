@@ -15,6 +15,7 @@ abstract class PurchasingRepository {
   Future<Either<Failure, Orders>> getOrderDetails (GenericParams param);
   Future<Either<Failure, Reviews>> sendReview (SendReviewParams param);
   Future<Either<Failure, String>> cancelOrder (int param);
+  Future<Either<Failure, String>> reOrder (int param);
   Future<Either<Failure, bool>> returnOrder(ReturnOrderParams param);
   Future<Either<Failure, String>> payOrder(int param);
   Future<Either<Failure, TrackOrderModel>> trackingHistory(int param);

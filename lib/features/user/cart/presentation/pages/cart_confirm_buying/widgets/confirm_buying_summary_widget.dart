@@ -43,6 +43,7 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
               : orderSummary.discounts.toString(),
           detailsColor: context.colors.primary,
           useDirhamPrice: true,
+          isDiscount: true,
         ),
       ),
       BuildSummaryHeader(
@@ -51,6 +52,18 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
         details: orderSummary.totalVat.toString(),
         useDirhamPrice: true,
       ),
+      if(orderSummary.discountList.isNotEmpty)
+        ...List.generate(orderSummary.discountList.length, (index) {
+          var item = orderSummary.discountList[index];
+          return BuildSummaryHeader(
+            title: item.typeLabel,
+            // details: shippingSummary.vatAmount().toStringAsFixed(2),
+            details: item.discount,
+            useDirhamPrice: true,
+            isDiscount: true,
+            detailsColor: context.colors.primary,
+          );
+        },),
       Gaps.line(context.colors.softGray, 15.h),
       Container(
           margin: const EdgeInsets.symmetric(vertical: 8),

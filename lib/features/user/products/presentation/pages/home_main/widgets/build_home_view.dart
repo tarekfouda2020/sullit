@@ -22,7 +22,7 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap25,
             const AdvantagesWidget(),
             //Gaps.vGap12,
-            BuildTopCategories(categories: homeDomainModel.categories),
+            BuildTopCategories(categories: homeDomainModel.categories, controller: controller),
             //Gaps.vGap20,
             VipOffersFormWidget(controller: controller),
             Gaps.vGap16,

@@ -15,7 +15,7 @@ class BottomSheetHeaderWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Gaps.hGap10,
+        Gaps.hGap15,
         Text(
           title,
           style: AppTextStyle.s20_w700(color: context.colors.black),

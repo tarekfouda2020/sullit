@@ -16,7 +16,6 @@ class CouponsController {
   ];
 
   void initBottomNavigation(TickerProvider ticker, int index) {
-    print("==========>>>>>> index inside initBottomNavigation $index<<<<<<<<========");
     tabController = TabController(length: pages().length, vsync: ticker, initialIndex: index);
   }
 

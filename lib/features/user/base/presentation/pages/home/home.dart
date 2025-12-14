@@ -16,13 +16,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     controller.initBottomNavigation(this, widget.index);
-    controller.getCartItems();
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    controller.getCartItems();
+    controller.getCartItems(context);
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/order_summary_discount_model/order_summary_discount_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/shipping_item_model/shipping_item_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/shipping_summary.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -42,6 +43,7 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary> with _$Shipping
     @JsonKey(name: "loyalty_points_applied") bool? loyaltyPointsApplied,
     @JsonKey(name: "loyalty_points") int? loyaltyPoints,
     @JsonKey(name: "expected_loyalty_points") required int expectedLoyaltyPoints,
+    @JsonKey(name: "order_discounts")  List<OrderSummaryDiscountModel>? orderDiscountTypes,
   }) = _ShippingSummaryModel;
 
   factory ShippingSummaryModel.fromJson(Map<String, dynamic> json) => _$ShippingSummaryModelFromJson(json);
@@ -77,6 +79,8 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary> with _$Shipping
       vatPercentage: vatPercentage,
       environmentFees: environmentFees,
       bagsCount: bagsCount,
+      discountTypes: orderDiscountTypes?.map((e) => e.toDomainModel()).toList()
+      // discountTypes:
     );
   }
 }

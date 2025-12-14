@@ -22,6 +22,8 @@ class BuildEmptyDataImage extends StatelessWidget {
             child: Image.asset(
               Res.emptyCart,
               scale: 3,
+              width: 170,
+              height: 170,
             ),
           ),
         ),

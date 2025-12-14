@@ -40,6 +40,10 @@ _$_ShippingSummaryModel _$$_ShippingSummaryModelFromJson(
       loyaltyPointsApplied: json['loyalty_points_applied'] as bool?,
       loyaltyPoints: (json['loyalty_points'] as num?)?.toInt(),
       expectedLoyaltyPoints: (json['expected_loyalty_points'] as num).toInt(),
+      orderDiscountTypes: (json['order_discounts'] as List<dynamic>?)
+          ?.map((e) =>
+              OrderSummaryDiscountModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_ShippingSummaryModelToJson(
@@ -73,4 +77,6 @@ Map<String, dynamic> _$$_ShippingSummaryModelToJson(
       'loyalty_points_applied': instance.loyaltyPointsApplied,
       'loyalty_points': instance.loyaltyPoints,
       'expected_loyalty_points': instance.expectedLoyaltyPoints,
+      'order_discounts':
+          instance.orderDiscountTypes?.map((e) => e.toJson()).toList(),
     };
