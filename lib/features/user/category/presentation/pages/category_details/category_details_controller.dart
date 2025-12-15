@@ -6,25 +6,31 @@ class CategoryDetailsController {
 
   final TextEditingController searchFieldCtr = TextEditingController();
 
+  final TextEditingController brandsSearchCtr = TextEditingController();
+
 
   final GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
   final GenericBloc<List<SubCategoryLevel>> subCategoriesCubit =
       GenericBloc([]);
 
   final GenericBloc<SubCategory?> specificationsCubit = GenericBloc(null);
+  final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
   final GenericBloc<PriceRangeParams?> rangeCubit = GenericBloc(null);
   final GenericBloc<String> titleCubit = GenericBloc("");
   final GenericBloc<bool> showBrandsCubit = GenericBloc<bool>(false);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
 
-  final PagingController<int, Product> pagingController =
-      PagingController(firstPageKey: 1);
+  final PagingController<int, Product> pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, BrandDomainModel> brandsPagingController = PagingController(firstPageKey: 1);
+
+
+  int brandsPageSize = 12;
   int pageSize = 12;
   int currentPageKey = 1;
 
   BrandDomainModel? brandModel;
   List<BrandDomainModel> brands = [];
-  int? brandId;
+  // int? brandId;
   List<String> selectedColors = [];
   int currentCatId = 0;
   Category? initialCategoryModel;
@@ -42,9 +48,15 @@ class CategoryDetailsController {
   Future<void> getData(BuildContext context, Category categoryModel) async {
     await getSubCategories(context, categoryModel.id);
     getPopularProducts(1, refresh: false);
+    getBrands(1);
     pagingController.addPageRequestListener((pageKey) {
       getPopularProducts(pageKey, refresh: true);
     });
+    brandsPagingController.addPageRequestListener(
+          (pageKey) {
+        getBrands(pageKey);
+      },
+    );
   }
 
   Future<void> getSubCategories(BuildContext context, int id,
@@ -137,7 +149,7 @@ class CategoryDetailsController {
 
     // Fetch subcategories for the selected category
     getSubCategories(context, selectedCat.id, appendLevel: true);
-
+    refreshBrands(context);
     pagingController.refresh();
   }
 
@@ -197,12 +209,12 @@ class CategoryDetailsController {
         if (initialCategoryModel != null) {
           titleCubit.onUpdateData(initialCategoryModel!.name);
           currentCatId = initialCategoryModel!.id;
-          getSubCategories(context, initialCategoryModel!.id,
-              appendLevel: false);
+          getSubCategories(context, initialCategoryModel!.id, appendLevel: false);
+          refreshBrands(context);
         }
       }
     }
-
+    refreshBrands(context);
     pagingController.refresh();
   }
 
@@ -321,12 +333,15 @@ class CategoryDetailsController {
   void onChangeBrand(BrandDomainModel? model) {
     if (model == brandModel) {
       brandModel = null;
-      brandId = 0;
+      // brandId = 0;
     } else if (model != null) {
       brandModel = model;
-      brandId = brandModel!.id;
+      // brandId = brandModel!.id;
     }
     specificationsCubit.onUpdateData(specificationsCubit.state.data);
+    brandsPagingController.itemList = [
+      ...?brandsPagingController.itemList
+    ];
     // pagingController.refresh();
   }
 
@@ -380,14 +395,14 @@ class CategoryDetailsController {
         : null;
     return SearchProductsParams(
       catId: currentCatId,
-      brandId: brandId,
+      brandId: brandModel?.id,
       color: colors,
       attributes: attributes?.expand((element) => element).toList(),
       minPrice: minPrice,
       maxPrice: maxPrice,
       refresh: refresh,
-      // pageSize: pageSize,
-      // currentPage: page,
+      pageSize: pageSize,
+      currentPage: page,
       searchKey: searchFieldCtr.text.trim()
     );
   }
@@ -440,7 +455,7 @@ class CategoryDetailsController {
 
     showBrandsCubit.onUpdateData(false);
     brandModel = null;
-    brandId = 0;
+    // brandId = 0;
 
     for (var item in data.attributes) {
       item.opened = false;
@@ -456,6 +471,7 @@ class CategoryDetailsController {
       pagingController.refresh();
       isFilterAppliedBefore = false;
     }
+    searchFieldCtr.clear();
     Navigator.pop(context);
   }
 
@@ -508,6 +524,8 @@ class CategoryDetailsController {
 
         // Reload subcategories for initial category
         getSubCategories(context, initialCategoryModel!.id, appendLevel: false);
+        brandsSearchCtr.clear();
+        refreshBrands(context);
 
         // Refresh products
         pagingController.refresh();
@@ -540,6 +558,60 @@ class CategoryDetailsController {
     }else{
       showClearIcon.onUpdateData(false);
     }
+  }
+
+  void showBrandsSheet(BuildContext context){
+     showModalBottomSheet(context: context,
+       useRootNavigator: true,
+       enableDrag: true,
+       isDismissible: false,
+       isScrollControlled: true,
+       backgroundColor: Colors.transparent,
+       builder: (context) {
+       return BrandsSheetWidget(controller: this,);
+     },);
+  }
+
+
+  Future<void> getBrands(int page ,{bool refresh = true}) async {
+    var params = _brandsParams(brandsPageSize,refresh,page );
+    var data = await GetBrands().call(params);
+    final isLastPage = data.length < brandsPageSize;
+    brandModel?.id = data.firstWhere((element) => element.id == brandModel?.id).id;
+    if (page == 1) {
+      if(data.isNotEmpty){
+        brandsCubit.onUpdateData(data.take(11).toList());
+      } else{
+        brandsCubit.onUpdateData([]);
+      }
+      brandsPagingController.itemList = [];
+      print("====>>>>> data ${brandsCubit.state.data.isNotEmpty}<<<<<<=======");
+      print("====>>>>> data ${brandsCubit.state.data.length}<<<<<<=======");
+    }
+    if (isLastPage) {
+      brandsPagingController.appendLastPage(data);
+    } else {
+      final nextPageKey = page + 1;
+      brandsPagingController.appendPage(data, nextPageKey);
+    }
+  }
+
+
+  void refreshBrands(BuildContext context){
+    brandsCubit.onUpdateToInitState([]);
+    FocusScope.of(context).unfocus();
+    brandsPagingController.refresh();
+    getBrands(1);
+  }
+
+  BrandsParams _brandsParams(int paginate, bool refresh, int page ) {
+    return BrandsParams(
+      paginate: paginate,
+      refresh: refresh,
+      page: page,
+      keyword: brandsSearchCtr.text.trim(),
+      categoryId: currentCatId
+    );
   }
 
 

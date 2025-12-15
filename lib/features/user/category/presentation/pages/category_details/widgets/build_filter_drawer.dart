@@ -14,7 +14,7 @@ class _BuildFilterDrawerState extends State<BuildFilterDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       elevation: 0,
-      backgroundColor: context.colors.white,
+      backgroundColor: context.colors.customBackground,
       child: Padding(
         padding: const EdgeInsets.all(Dimens.dp20),
         child: BlocBuilder<GenericBloc<SubCategory?>, GenericState<SubCategory?>>(
