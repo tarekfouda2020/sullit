@@ -11,7 +11,7 @@ class BrandsSearchFiledWidget extends StatelessWidget {
       child: GenericTextField(
         fieldTypes: FieldTypes.normal,
         controller: controller.brandsSearchCtr,
-        hint: "Search in brands...",
+        hint: tr("search_in_brands"),
         type: TextInputType.text,
         fillColor: context.colors.white,
         action: TextInputAction.search,

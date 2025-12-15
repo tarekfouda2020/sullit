@@ -16,7 +16,7 @@ class BrandsSheetWidget extends StatelessWidget {
       child: Column(
         children: [
           Gaps.vGap10,
-          const BottomSheetHeaderWidget(title: "Brands"),
+           BottomSheetHeaderWidget(title: tr("brands")),
           Gaps.vGap15,
           BrandsSearchFiledWidget(controller: controller),
           Gaps.vGap15,
