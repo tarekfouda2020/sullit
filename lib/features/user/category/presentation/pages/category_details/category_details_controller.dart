@@ -30,7 +30,7 @@ class CategoryDetailsController {
 
   BrandDomainModel? brandModel;
   List<BrandDomainModel> brands = [];
-  int? brandId;
+  // int? brandId;
   List<String> selectedColors = [];
   int currentCatId = 0;
   Category? initialCategoryModel;
@@ -149,7 +149,7 @@ class CategoryDetailsController {
 
     // Fetch subcategories for the selected category
     getSubCategories(context, selectedCat.id, appendLevel: true);
-
+    refreshBrands(context);
     pagingController.refresh();
   }
 
@@ -209,12 +209,12 @@ class CategoryDetailsController {
         if (initialCategoryModel != null) {
           titleCubit.onUpdateData(initialCategoryModel!.name);
           currentCatId = initialCategoryModel!.id;
-          getSubCategories(context, initialCategoryModel!.id,
-              appendLevel: false);
+          getSubCategories(context, initialCategoryModel!.id, appendLevel: false);
+          refreshBrands(context);
         }
       }
     }
-
+    refreshBrands(context);
     pagingController.refresh();
   }
 
@@ -333,10 +333,10 @@ class CategoryDetailsController {
   void onChangeBrand(BrandDomainModel? model) {
     if (model == brandModel) {
       brandModel = null;
-      brandId = 0;
+      // brandId = 0;
     } else if (model != null) {
       brandModel = model;
-      brandId = brandModel!.id;
+      // brandId = brandModel!.id;
     }
     specificationsCubit.onUpdateData(specificationsCubit.state.data);
     brandsPagingController.itemList = [
@@ -395,14 +395,14 @@ class CategoryDetailsController {
         : null;
     return SearchProductsParams(
       catId: currentCatId,
-      brandId: brandId,
+      brandId: brandModel?.id,
       color: colors,
       attributes: attributes?.expand((element) => element).toList(),
       minPrice: minPrice,
       maxPrice: maxPrice,
       refresh: refresh,
-      // pageSize: pageSize,
-      // currentPage: page,
+      pageSize: pageSize,
+      currentPage: page,
       searchKey: searchFieldCtr.text.trim()
     );
   }
@@ -455,7 +455,7 @@ class CategoryDetailsController {
 
     showBrandsCubit.onUpdateData(false);
     brandModel = null;
-    brandId = 0;
+    // brandId = 0;
 
     for (var item in data.attributes) {
       item.opened = false;
@@ -471,6 +471,7 @@ class CategoryDetailsController {
       pagingController.refresh();
       isFilterAppliedBefore = false;
     }
+    searchFieldCtr.clear();
     Navigator.pop(context);
   }
 
@@ -523,6 +524,8 @@ class CategoryDetailsController {
 
         // Reload subcategories for initial category
         getSubCategories(context, initialCategoryModel!.id, appendLevel: false);
+        brandsSearchCtr.clear();
+        refreshBrands(context);
 
         // Refresh products
         pagingController.refresh();
@@ -560,8 +563,9 @@ class CategoryDetailsController {
   void showBrandsSheet(BuildContext context){
      showModalBottomSheet(context: context,
        useRootNavigator: true,
-       enableDrag: false,
+       enableDrag: true,
        isDismissible: false,
+       isScrollControlled: true,
        backgroundColor: Colors.transparent,
        builder: (context) {
        return BrandsSheetWidget(controller: this,);
@@ -573,9 +577,16 @@ class CategoryDetailsController {
     var params = _brandsParams(brandsPageSize,refresh,page );
     var data = await GetBrands().call(params);
     final isLastPage = data.length < brandsPageSize;
+    brandModel?.id = data.firstWhere((element) => element.id == brandModel?.id).id;
     if (page == 1) {
-      brandsCubit.onUpdateData(data.take(11).toList());
+      if(data.isNotEmpty){
+        brandsCubit.onUpdateData(data.take(11).toList());
+      } else{
+        brandsCubit.onUpdateData([]);
+      }
       brandsPagingController.itemList = [];
+      print("====>>>>> data ${brandsCubit.state.data.isNotEmpty}<<<<<<=======");
+      print("====>>>>> data ${brandsCubit.state.data.length}<<<<<<=======");
     }
     if (isLastPage) {
       brandsPagingController.appendLastPage(data);
@@ -586,7 +597,7 @@ class CategoryDetailsController {
   }
 
 
-  void onPressSearchBrand(BuildContext context){
+  void refreshBrands(BuildContext context){
     brandsCubit.onUpdateToInitState([]);
     FocusScope.of(context).unfocus();
     brandsPagingController.refresh();

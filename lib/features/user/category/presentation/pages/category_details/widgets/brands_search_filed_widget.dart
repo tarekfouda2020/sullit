@@ -23,7 +23,7 @@ class BrandsSearchFiledWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               GestureDetector(
-                onTap: () => controller.onPressSearchBrand(context),
+                onTap: () => controller.refreshBrands(context),
                 child: SvgPicture.asset(Res.searchIcon,
                 colorFilter: ColorFilter.mode(
                     context.colors.textColor,
@@ -35,7 +35,7 @@ class BrandsSearchFiledWidget extends StatelessWidget {
             ],
           ),
         ),
-        onSubmit: () => controller.onPressSearchBrand(context),
+        onSubmit: () => controller.refreshBrands(context),
       ),
     );
   }

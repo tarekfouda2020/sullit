@@ -7,6 +7,7 @@ class BrandsSheetWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(top: kToolbarHeight + 20),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: context.colors.white,
@@ -26,7 +27,7 @@ class BrandsSheetWidget extends StatelessWidget {
                 pagingController: controller.brandsPagingController,
                 builderDelegate: PagedChildBuilderDelegate<BrandDomainModel>(
                   itemBuilder: (_, item, index) => GestureDetector(
-                    onTap: () => controller.onChangeBrand(item),
+                    onTap: () => _onTap(item, context),
                     child: Container(
                       padding: const EdgeInsets.all(10),
                       margin: const EdgeInsets.only(bottom: 10),
@@ -86,5 +87,11 @@ class BrandsSheetWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _onTap(BrandDomainModel item, BuildContext context) {
+     controller.onChangeBrand(item);
+    Navigator.pop(context);
+    controller.confirmFilter(context);
   }
 }
