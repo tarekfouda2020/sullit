@@ -29,6 +29,7 @@ class VipPlansBottomSheetWidget extends StatelessWidget {
                       model: item,
                       isBottomSheet: controller.currentSubscription?.price != item.price,
                       showVip: true,
+                      showBlur: controller.currentSubscription?.price != item.price,
                       onSelect: () => controller.updateSelectedMemberShip(item),
                     ),
                     noItemsFoundIndicatorBuilder: (_) => Center(

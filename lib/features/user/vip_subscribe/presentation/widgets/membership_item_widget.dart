@@ -19,6 +19,7 @@ import 'package:flutter_tdd/res.dart';
 class MembershipItemWidget extends StatelessWidget {
   final bool isBottomSheet;
   final bool showVip;
+  final bool showBlur;
   final VipSubscribeDomainModel model;
   final void Function()? onSelect;
 
@@ -28,6 +29,7 @@ class MembershipItemWidget extends StatelessWidget {
     required this.isBottomSheet,
     this.onSelect,
     this.showVip = false,
+    this.showBlur = true,
   });
 
   @override
@@ -169,7 +171,7 @@ class MembershipItemWidget extends StatelessWidget {
               ],
             ),
           ),
-          if(model.byInvite == true)
+          if(showBlur && model.byInvite == true )
           Positioned.fill(
             child: Container(
               margin: const EdgeInsets.only(bottom: 12),

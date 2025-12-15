@@ -6,19 +6,25 @@ class CategoryDetailsController {
 
   final TextEditingController searchFieldCtr = TextEditingController();
 
+  final TextEditingController brandsSearchCtr = TextEditingController();
+
 
   final GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
   final GenericBloc<List<SubCategoryLevel>> subCategoriesCubit =
       GenericBloc([]);
 
   final GenericBloc<SubCategory?> specificationsCubit = GenericBloc(null);
+  final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
   final GenericBloc<PriceRangeParams?> rangeCubit = GenericBloc(null);
   final GenericBloc<String> titleCubit = GenericBloc("");
   final GenericBloc<bool> showBrandsCubit = GenericBloc<bool>(false);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
 
-  final PagingController<int, Product> pagingController =
-      PagingController(firstPageKey: 1);
+  final PagingController<int, Product> pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, BrandDomainModel> brandsPagingController = PagingController(firstPageKey: 1);
+
+
+  int brandsPageSize = 12;
   int pageSize = 12;
   int currentPageKey = 1;
 
@@ -42,9 +48,15 @@ class CategoryDetailsController {
   Future<void> getData(BuildContext context, Category categoryModel) async {
     await getSubCategories(context, categoryModel.id);
     getPopularProducts(1, refresh: false);
+    getBrands(1);
     pagingController.addPageRequestListener((pageKey) {
       getPopularProducts(pageKey, refresh: true);
     });
+    brandsPagingController.addPageRequestListener(
+          (pageKey) {
+        getBrands(pageKey);
+      },
+    );
   }
 
   Future<void> getSubCategories(BuildContext context, int id,
@@ -327,6 +339,9 @@ class CategoryDetailsController {
       brandId = brandModel!.id;
     }
     specificationsCubit.onUpdateData(specificationsCubit.state.data);
+    brandsPagingController.itemList = [
+      ...?brandsPagingController.itemList
+    ];
     // pagingController.refresh();
   }
 
@@ -540,6 +555,52 @@ class CategoryDetailsController {
     }else{
       showClearIcon.onUpdateData(false);
     }
+  }
+
+  void showBrandsSheet(BuildContext context){
+     showModalBottomSheet(context: context,
+       useRootNavigator: true,
+       enableDrag: false,
+       isDismissible: false,
+       backgroundColor: Colors.transparent,
+       builder: (context) {
+       return BrandsSheetWidget(controller: this,);
+     },);
+  }
+
+
+  Future<void> getBrands(int page ,{bool refresh = true}) async {
+    var params = _brandsParams(brandsPageSize,refresh,page );
+    var data = await GetBrands().call(params);
+    final isLastPage = data.length < brandsPageSize;
+    if (page == 1) {
+      brandsCubit.onUpdateData(data.take(11).toList());
+      brandsPagingController.itemList = [];
+    }
+    if (isLastPage) {
+      brandsPagingController.appendLastPage(data);
+    } else {
+      final nextPageKey = page + 1;
+      brandsPagingController.appendPage(data, nextPageKey);
+    }
+  }
+
+
+  void onPressSearchBrand(BuildContext context){
+    brandsCubit.onUpdateToInitState([]);
+    FocusScope.of(context).unfocus();
+    brandsPagingController.refresh();
+    getBrands(1);
+  }
+
+  BrandsParams _brandsParams(int paginate, bool refresh, int page ) {
+    return BrandsParams(
+      paginate: paginate,
+      refresh: refresh,
+      page: page,
+      keyword: brandsSearchCtr.text.trim(),
+      categoryId: currentCatId
+    );
   }
 
 
