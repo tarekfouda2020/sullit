@@ -44,7 +44,7 @@ class BrandsFilterItem extends StatelessWidget {
                     visible: controller.brandsPagingController.itemList?.isNotEmpty == true,
                     replacement: Center(
                       child: Text(
-                        tr('noBrandsHere'),
+                        tr('noBrandsHere' ),
                         style: AppTextStyle.s15_w400(
                           color: context.colors.black,
                         ),
