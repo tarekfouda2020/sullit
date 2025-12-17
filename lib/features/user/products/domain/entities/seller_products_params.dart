@@ -9,6 +9,7 @@ class SellerProductsParams {
   final int? brandId;
   final List<String?>? color;
   final List<String>? attributes;
+  final String? keyword;
 
   SellerProductsParams({
     required this.sellerId,
@@ -17,6 +18,7 @@ class SellerProductsParams {
     this.maxPrice,
     this.brandId,
     this.color,
+    this.keyword,
     this.attributes
   });
 
@@ -33,7 +35,9 @@ class SellerProductsParams {
     if(brandId!=null){
       header = '$header&brand_id=$brandId';
     }
-
+    if(keyword!=null && keyword?.isNotEmpty == true){
+      header = "$header&keyword=$keyword";
+    }
     return header;
   }
 

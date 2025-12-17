@@ -42,57 +42,56 @@ class SellerProductsPageState extends State<SellerProductsPage> {
           Gaps.hGap20,
         ],
       ),
-      body: CustomRefreshIndicatorWidget(
-        onRefresh: () => controller.getProducts(1),
-        child: PagedGridView<int, Product>(
-          pagingController: controller.pagingController,
-          padding: Dimens.paddingAll20PX,
-          gridDelegate: _buildGridDelegate(),
-          builderDelegate: PagedChildBuilderDelegate(
-            itemBuilder: (context, item, index) {
-              return BuildProductItem(
-                productModel: item,
-                onFavRefresh: () => controller.onFavChanged(item),
-              );
-            },
-            firstPageProgressIndicatorBuilder: (context) {
-              return SizedBox(
-                height: MediaQuery.sizeOf(context).height,
-                child: GridView.builder(
-                  gridDelegate: _buildGridDelegate(),
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: 6,
-                  itemBuilder: (context, index) {
-                    return const BuildProductItemShimmer();
+      body: Column(
+        children: [
+          SellerProductsSearchFieldWidget(controller: controller),
+          Gaps.vGap12,
+          Expanded(
+            child: CustomRefreshIndicatorWidget(
+              onRefresh: () => controller.getProducts(1),
+              child: PagedGridView<int, Product>(
+                pagingController: controller.pagingController,
+                padding: Dimens.paddingHorizontal20PX,
+                gridDelegate: _buildGridDelegate(),
+                builderDelegate: PagedChildBuilderDelegate(
+                  itemBuilder: (context, item, index) {
+                    return BuildProductItem(
+                      productModel: item,
+                      onFavRefresh: () => controller.onFavChanged(item),
+                    );
+                  },
+                  firstPageProgressIndicatorBuilder: (context) {
+                    return SizedBox(
+                      height: MediaQuery.sizeOf(context).height,
+                      child: GridView.builder(
+                        gridDelegate: _buildGridDelegate(),
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: 6,
+                        itemBuilder: (context, index) {
+                          return const BuildProductItemShimmer();
+                        },
+                      ),
+                    );
+                  },
+                  noItemsFoundIndicatorBuilder: (cxt) => const BuildEmptyDataView(),
+                  newPageProgressIndicatorBuilder: (context) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: CircularProgressIndicator(
+                            backgroundColor: context.colors.white,
+                          ),
+                        ),
+                      ],
+                    );
                   },
                 ),
-              );
-            },
-            noItemsFoundIndicatorBuilder: (cxt) {
-              return Center(
-                child: Text(
-                  tr('noProductsHere'),
-                  style: AppTextStyle.s12_w400(
-                    color: context.colors.black,
-                  ),
-                ),
-              );
-            },
-            newPageProgressIndicatorBuilder: (context) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(
-                    child: CircularProgressIndicator(
-                      backgroundColor: context.colors.white,
-                    ),
-                  ),
-                ],
-              );
-            },
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

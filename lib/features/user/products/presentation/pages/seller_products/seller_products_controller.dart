@@ -4,8 +4,11 @@ class SellerProductsController {
 
   final TextEditingController brandsSearchCtr = TextEditingController();
 
+  final TextEditingController productSearchCtr = TextEditingController();
+
   final PagingController<int, Product> pagingController = PagingController(firstPageKey: 1);
   final PagingController<int, BrandDomainModel> brandsPagingController = PagingController(firstPageKey: 1);
+  final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
   int pageSize = 12;
   bool isFilterAppliedBefore = false;
 
@@ -150,6 +153,7 @@ class SellerProductsController {
         brandId: selectedBrand?.id,
       minPrice: rangeCubit.state.data?.value.start,
       maxPrice: rangeCubit.state.data?.value.end,
+      keyword: productSearchCtr.text.trim()
     );
   }
 
@@ -183,6 +187,27 @@ class SellerProductsController {
       final nextPageKey = page + 1;
       brandsPagingController.appendPage(data, nextPageKey);
     }
+  }
+
+
+  void clearSearchField(){
+    productSearchCtr.clear();
+    showClearIcon.onUpdateData(false);
+    pagingController.refresh();
+    getProducts(1);
+  }
+  void whileWriting(String value){
+    if(value.isNotEmpty){
+      showClearIcon.onUpdateData(true);
+    }else{
+      showClearIcon.onUpdateData(false);
+    }
+  }
+
+  void onPressSearch(BuildContext context){
+    FocusScope.of(context).unfocus();
+    pagingController.refresh();
+    getProducts(1);
   }
 
   BrandsParams _brandsParams(int paginate, bool refresh, int page ) {
