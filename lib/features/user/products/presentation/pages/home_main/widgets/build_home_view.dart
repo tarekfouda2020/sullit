@@ -50,6 +50,13 @@ class BuildHomeView extends StatelessWidget {
             BuildBanners(banners: homeDomainModel.bannersTwo),
             Gaps.vGap16,
             NewArrivalOffersFormWidget(controller: controller),
+            BuildHeaderTitle(
+              title: "Best Sellers",
+              controller: controller,
+              onTap: () => AutoRouter.of(context).push(const BestSellersPageRoute()),
+            ),
+            Gaps.vGap16,
+            const SellersSectionWidget(),
             // BuildHomeNewProducts(
             //   newestProducts: homeDomainModel.newestProducts,
             //   controller: controller,

@@ -1,35 +1,42 @@
+part of 'widgets_imports.dart';
 
-part of 'seller_products_widgets_imports.dart';
 
-
-class SellerProductsSearchFieldWidget extends StatelessWidget {
-  final SellerProductsController controller;
-  const SellerProductsSearchFieldWidget({super.key, required this.controller});
+class SellerSearchFiledWidget extends StatelessWidget {
+  final BestSellersPageController controller;
+  const SellerSearchFiledWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Gaps.hGap15,
         Expanded(
           child: GenericTextField(
             fieldTypes: FieldTypes.normal,
+            controller: controller.searchTxtController,
+            hint: "Search in sellers...",
             type: TextInputType.text,
-            action: TextInputAction.search,
             fillColor: context.colors.white,
-            controller: controller.productSearchCtr,
+            action: TextInputAction.search,
+            contentPadding: const EdgeInsetsDirectional.only(start: 15),
             validate: (value) => value?.noValidate(),
-            hint: "Search in products...",
-            onSubmit: () => controller.onPressSearch(context),
-            onChange: (value) => controller.whileWriting(value),
-            suffixIcon: GestureDetector(
-              onTap: () => controller.onPressSearch(context),
-              child: Transform.scale(
-                scale: 0.4,
-                child: SvgPicture.asset(Res.searchIcon),
+            suffixIcon: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  GestureDetector(
+                    onTap:(){},
+                    child: SvgPicture.asset(
+                      Res.searchIcon,
+                      colorFilter: ColorFilter.mode(
+                          context.colors.textColor, BlendMode.srcIn),
+                    ),
+                  ),
+                  Gaps.hGap10,
+                ],
               ),
             ),
-            margin: EdgeInsets.zero,
+            onSubmit: (){},
           ),
         ),
         Gaps.hGap15,

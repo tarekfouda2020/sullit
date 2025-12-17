@@ -22,76 +22,84 @@ class SellerProductsPageState extends State<SellerProductsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colors.customBackground,
-      key: controller.scaffoldKey,
-      drawer: SellerProductsDrawerWidget(controller: controller),
-      appBar: DefaultAppBar(
-        title: widget.shopModel.name ?? "",
-        showBack: true,
-        actions: [
-          GestureDetector(
-            onTap: () => controller.openDrawerFilter(),
-            child: Padding(
-              padding: Dimens.paddingAll5PX,
-              child: SvgPicture.asset(
-                Res.filterIcon,
-              ),
-            ),
-          ),
-          Gaps.hGap20,
-        ],
-      ),
-      body: Column(
-        children: [
-          SellerProductsSearchFieldWidget(controller: controller),
-          Gaps.vGap12,
-          Expanded(
-            child: CustomRefreshIndicatorWidget(
-              onRefresh: () => controller.getProducts(1),
-              child: PagedGridView<int, Product>(
-                pagingController: controller.pagingController,
-                padding: Dimens.paddingHorizontal20PX,
-                gridDelegate: _buildGridDelegate(),
-                builderDelegate: PagedChildBuilderDelegate(
-                  itemBuilder: (context, item, index) {
-                    return BuildProductItem(
-                      productModel: item,
-                      onFavRefresh: () => controller.onFavChanged(item),
-                    );
-                  },
-                  firstPageProgressIndicatorBuilder: (context) {
-                    return SizedBox(
-                      height: MediaQuery.sizeOf(context).height,
-                      child: GridView.builder(
-                        gridDelegate: _buildGridDelegate(),
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: 6,
-                        itemBuilder: (context, index) {
-                          return const BuildProductItemShimmer();
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        backgroundColor: context.colors.customBackground,
+        key: controller.scaffoldKey,
+        drawer: SellerProductsDrawerWidget(controller: controller),
+        appBar: DefaultAppBar(
+          title: widget.shopModel.name ?? "",
+          showBack: true,
+          bgColor: context.colors.white,
+          size: 45,
+        ),
+        body: Stack(
+          children: [
+            const SellerPageBackGroundWidget(),
+            Column(
+              children: [
+                Gaps.vGap20,
+                Padding(
+                  padding: Dimens.paddingHorizontal20PX,
+                  child: const SellerCardWidget(),
+                ),
+                Gaps.vGap20,
+                SellerPageProductsSectionWidget(controller: controller),
+                Gaps.vGap12,
+                const SellerPageCategoriesWidget(),
+                Gaps.vGap12,
+                SellerProductsSearchFieldWidget(controller: controller),
+                Gaps.vGap12,
+                Expanded(
+                  child: CustomRefreshIndicatorWidget(
+                    onRefresh: () => controller.getProducts(1),
+                    child: PagedGridView<int, Product>(
+                      pagingController: controller.pagingController,
+                      padding: Dimens.paddingHorizontal20PX,
+                      gridDelegate: _buildGridDelegate(),
+                      builderDelegate: PagedChildBuilderDelegate(
+                        itemBuilder: (context, item, index) {
+                          return BuildProductItem(
+                            productModel: item,
+                            onFavRefresh: () => controller.onFavChanged(item),
+                          );
+                        },
+                        firstPageProgressIndicatorBuilder: (context) {
+                          return SizedBox(
+                            height: MediaQuery.sizeOf(context).height,
+                            child: GridView.builder(
+                              gridDelegate: _buildGridDelegate(),
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: 6,
+                              itemBuilder: (context, index) {
+                                return const BuildProductItemShimmer();
+                              },
+                            ),
+                          );
+                        },
+                        noItemsFoundIndicatorBuilder: (cxt) => const BuildEmptyDataView(),
+                        newPageProgressIndicatorBuilder: (context) {
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Center(
+                                child: CircularProgressIndicator(
+                                  backgroundColor: context.colors.white,
+                                ),
+                              ),
+                            ],
+                          );
                         },
                       ),
-                    );
-                  },
-                  noItemsFoundIndicatorBuilder: (cxt) => const BuildEmptyDataView(),
-                  newPageProgressIndicatorBuilder: (context) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
-                          child: CircularProgressIndicator(
-                            backgroundColor: context.colors.white,
-                          ),
-                        ),
-                      ],
-                    );
-                  },
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
-        ],
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

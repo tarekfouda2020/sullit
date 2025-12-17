@@ -38,3 +38,6 @@ part 'seller_brands_widget.dart';
 part 'all_brands_sheet_widget.dart';
 part 'seller_brand_item_widget.dart';
 part 'seller_products_search_field_widget.dart';
+part 'seller_page_back_ground_widget.dart';
+part 'seller_page_products_section_widget.dart';
+part 'seller_page_categories_widget.dart';
