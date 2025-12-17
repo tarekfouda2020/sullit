@@ -585,8 +585,6 @@ class CategoryDetailsController {
         brandsCubit.onUpdateData([]);
       }
       brandsPagingController.itemList = [];
-      print("====>>>>> data ${brandsCubit.state.data.isNotEmpty}<<<<<<=======");
-      print("====>>>>> data ${brandsCubit.state.data.length}<<<<<<=======");
     }
     if (isLastPage) {
       brandsPagingController.appendLastPage(data);

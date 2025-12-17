@@ -57,7 +57,7 @@ class SellerProductsPageState extends State<SellerProductsPage> {
             },
             firstPageProgressIndicatorBuilder: (context) {
               return SizedBox(
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.sizeOf(context).height,
                 child: GridView.builder(
                   gridDelegate: _buildGridDelegate(),
                   physics: const NeverScrollableScrollPhysics(),

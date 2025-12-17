@@ -2,30 +2,32 @@ part of 'seller_products_imports.dart';
 
 class SellerProductsController {
 
+  final TextEditingController brandsSearchCtr = TextEditingController();
 
   final PagingController<int, Product> pagingController = PagingController(firstPageKey: 1);
   final PagingController<int, BrandDomainModel> brandsPagingController = PagingController(firstPageKey: 1);
-  final GenericBloc<BrandDomainModel?> selectedBrandCubit = GenericBloc<BrandDomainModel?>(null);
   int pageSize = 12;
   bool isFilterAppliedBefore = false;
 
    SellerProductDomainModel? allSellerData;
    late final int shopId;
+  BrandDomainModel? selectedBrand;
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final GenericBloc<bool> showBrandsCubit = GenericBloc<bool>(false);
   final GenericBloc<PriceRangeParams?> rangeCubit = GenericBloc(null);
+  final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
+
 
 
   SellerProductsController(int id){
     shopId = id;
+    getProducts(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
-      getProducts(pageKey, refresh: false);
       getProducts(pageKey);
     });
-
+    getBrands(1, refresh: false);
     brandsPagingController.addPageRequestListener((pageKey) {
-      getBrands(pageKey, refresh: false);
       getBrands(pageKey);
     });
   }
@@ -77,10 +79,8 @@ class SellerProductsController {
 
 
   void showBrandsSheet(BuildContext context){
-    showBrandsCubit.onUpdateData(true);
     showModalBottomSheet(
-      isScrollControlled: false,
-
+      isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(Dimens.dp10),
@@ -95,25 +95,30 @@ class SellerProductsController {
   }
 
 
-  void onSelectBrand(BuildContext context,BrandDomainModel model){
-    Navigator.pop(context);
+  void onSelectBrand(BrandDomainModel model){
     var brands = brandsPagingController.itemList;
     if(model.isSelected){
       model.isSelected = false;
-      selectedBrandCubit.onUpdateData(null);
+      selectedBrand = null;
     }else{
       for(var item in brands ?? <BrandDomainModel>[]){
         item.isSelected = false;
       }
       model.isSelected = true;
-      selectedBrandCubit.onUpdateData(model);
+      selectedBrand =model;
     }
-    brandsPagingController.itemList = [];
-    brandsPagingController.itemList = brands;
-    showBrandsCubit.onUpdateData(false);
+    brandsPagingController.itemList = [
+      ...?brands
+    ];
+    brandsCubit.onUpdateData(brandsCubit.state.data);
   }
 
-
+  void refreshBrands(BuildContext context){
+    brandsCubit.onUpdateToInitState([]);
+    FocusScope.of(context).unfocus();
+    brandsPagingController.refresh();
+    getBrands(1);
+  }
 
   void resetFilter(BuildContext context) {
 
@@ -121,12 +126,13 @@ class SellerProductsController {
     final double maxPrice = double.parse(allSellerData!.priceRange.max);
     RangeValues rangeValues = RangeValues(minPrice, maxPrice);
 
-    selectedBrandCubit.onUpdateData(null);
+    selectedBrand = null;
     rangeCubit.onUpdateData(PriceRangeParams(initial: rangeValues, value: rangeValues));
     if(isFilterAppliedBefore){
       pagingController.refresh();
       isFilterAppliedBefore = false;
     }
+    brandsSearchCtr.clear();
     Navigator.pop(context);
   }
 
@@ -141,7 +147,7 @@ class SellerProductsController {
     return SellerProductsParams(
         sellerId: shopId,
         paginateParams: _paginateParams(page, refresh),
-        brandId: selectedBrandCubit.state.data?.id,
+        brandId: selectedBrand?.id,
       minPrice: rangeCubit.state.data?.value.start,
       maxPrice: rangeCubit.state.data?.value.end,
     );
@@ -164,6 +170,11 @@ class SellerProductsController {
     var data = await GetBrands().call(params);
     final isLastPage = data.length < pageSize;
     if (page == 1) {
+      if(data.isNotEmpty){
+        brandsCubit.onUpdateData(data.take(11).toList());
+      } else{
+        brandsCubit.onUpdateData([]);
+      }
       brandsPagingController.itemList = [];
     }
     if (isLastPage) {
@@ -179,6 +190,7 @@ class SellerProductsController {
       paginate: paginate,
       refresh: refresh,
       page: page,
+      keyword: brandsSearchCtr.text.trim(),
     );
   }
 

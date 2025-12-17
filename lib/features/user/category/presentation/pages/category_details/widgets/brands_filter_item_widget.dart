@@ -37,14 +37,20 @@ class BrandsFilterItem extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (state.data) BrandsSearchFiledWidget(controller: controller),
+                if (state.data)
+                  BrandsSearchFiledWidget(
+                    txtController: controller.brandsSearchCtr,
+                    onPressSearch: () => controller.refreshBrands(context),
+                  ),
                 Gaps.vGap12,
                 if (state.data)
                   Visibility(
-                    visible: controller.brandsPagingController.itemList?.isNotEmpty == true,
+                    visible: controller
+                            .brandsPagingController.itemList?.isNotEmpty ==
+                        true,
                     replacement: Center(
                       child: Text(
-                        tr('noBrandsHere' ),
+                        tr('noBrandsHere'),
                         style: AppTextStyle.s15_w400(
                           color: context.colors.black,
                         ),
@@ -59,7 +65,7 @@ class BrandsFilterItem extends StatelessWidget {
                             visible: state.data.isNotEmpty,
                             replacement: Center(
                               child: Text(
-                                tr('noBrandsHere' ),
+                                tr('noBrandsHere'),
                                 style: AppTextStyle.s15_w400(
                                   color: context.colors.black,
                                 ),
@@ -69,28 +75,31 @@ class BrandsFilterItem extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                if(state.data.length > 10)
-                                GestureDetector(
-                                  onTap: () => controller.showBrandsSheet(context),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 12),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          tr("seeAll"),
-                                          style: AppTextStyle.s13_w400(
-                                              color: context.colors.primary),
-                                        )
-                                      ],
+                                if (state.data.length > 10)
+                                  GestureDetector(
+                                    onTap: () =>
+                                        controller.showBrandsSheet(context),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 12),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            tr("seeAll"),
+                                            style: AppTextStyle.s13_w400(
+                                                color: context.colors.primary),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
                                 ...List.generate(state.data.length, (index) {
                                   var model = state.data[index];
                                   return SubFilterItemWidget(
                                     text: model.name,
-                                    isSelected: model.id == controller.brandModel?.id,
+                                    isSelected:
+                                        model.id == controller.brandModel?.id,
                                     onSelect: (value) =>
                                         controller.onChangeBrand(model),
                                   );

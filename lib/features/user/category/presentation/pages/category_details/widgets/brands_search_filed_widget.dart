@@ -1,8 +1,14 @@
 part of 'category_details_widgets_imports.dart';
 
 class BrandsSearchFiledWidget extends StatelessWidget {
-  final CategoryDetailsController controller;
-  const BrandsSearchFiledWidget({super.key, required this.controller});
+  final TextEditingController txtController;
+  final void Function() onPressSearch;
+
+  const BrandsSearchFiledWidget({
+    super.key,
+    required this.txtController,
+    required this.onPressSearch,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +16,7 @@ class BrandsSearchFiledWidget extends StatelessWidget {
       height: Dimens.dp35,
       child: GenericTextField(
         fieldTypes: FieldTypes.normal,
-        controller: controller.brandsSearchCtr,
+        controller: txtController,
         hint: tr("search_in_brands"),
         type: TextInputType.text,
         fillColor: context.colors.white,
@@ -23,19 +29,18 @@ class BrandsSearchFiledWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               GestureDetector(
-                onTap: () => controller.refreshBrands(context),
-                child: SvgPicture.asset(Res.searchIcon,
-                colorFilter: ColorFilter.mode(
-                    context.colors.textColor,
-                    BlendMode.srcIn
-                ),
+                onTap: onPressSearch,
+                child: SvgPicture.asset(
+                  Res.searchIcon,
+                  colorFilter: ColorFilter.mode(
+                      context.colors.textColor, BlendMode.srcIn),
                 ),
               ),
               Gaps.hGap10,
             ],
           ),
         ),
-        onSubmit: () => controller.refreshBrands(context),
+        onSubmit: onPressSearch,
       ),
     );
   }

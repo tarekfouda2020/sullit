@@ -18,7 +18,10 @@ class BrandsSheetWidget extends StatelessWidget {
           Gaps.vGap10,
            BottomSheetHeaderWidget(title: tr("brands")),
           Gaps.vGap15,
-          BrandsSearchFiledWidget(controller: controller),
+          BrandsSearchFiledWidget(
+            txtController: controller.brandsSearchCtr,
+            onPressSearch: () => controller.refreshBrands(context),
+          ),
           Gaps.vGap15,
           Flexible(
             child: CustomRefreshIndicatorWidget(
@@ -26,59 +29,17 @@ class BrandsSheetWidget extends StatelessWidget {
               child : PagedListView<int, BrandDomainModel>(
                 pagingController: controller.brandsPagingController,
                 builderDelegate: PagedChildBuilderDelegate<BrandDomainModel>(
-                  itemBuilder: (_, item, index) => GestureDetector(
+                  itemBuilder: (_, item, index) => BrandsSheetItemWidget(
                     onTap: () => _onTap(item, context),
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.only(bottom: 10),
-                      decoration: BoxDecoration(
-                          color: context.colors.white,
-                          borderRadius: Dimens.borderRadius12PX,
-                          border: Border.all(
-                              color: controller.brandModel?.id == item.id
-                                  ?context.colors.primary
-                                  :context.colors.gray3
-                          )
-                      ),
-                      child: Row(
-                        children: [
-                          CachedImage(url: item.logo,
-                            width: 30,
-                            height: 30,
-                            boxShape: BoxShape.circle,
-                            haveRadius: false,
-                          ),
-                          Gaps.hGap10,
-                          Text(item.name,
-                            style: AppTextStyle.s15_w500(color: controller.brandModel?.id == item.id
-                                ?context.colors.primary
-                                :context.colors.black
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                    brandModel: item,
+                    isSelected: controller.brandModel?.id == item.id,
                   ),
                   noItemsFoundIndicatorBuilder: (_) => const BuildEmptyDataView(),
-                  firstPageProgressIndicatorBuilder: (_) => Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        color: context.colors.white,
-                        borderRadius: Dimens.borderRadius12PX,
-                    ),
-                    child: Row(
-                      children: [
-                        const BuildShimmerItem(
-                          width: 60,
-                          height: 60,
-                        ),
-                        Gaps.hGap10,
-                        const BuildShimmerItem(
-                          width: 100,
-                          height: 10,
-                        )
-                      ],
-                    ),
+                  firstPageProgressIndicatorBuilder: (_) => Column(
+                    spacing: 10,
+                    children: List.generate(3, (index) {
+                      return const BrandsSheetShimmerWidget();
+                    },),
                   ),
                 ),
               ),
