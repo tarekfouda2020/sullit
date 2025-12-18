@@ -20,7 +20,7 @@ class OnSaleOffersFormWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BuildHeaderTitle(
-                    title: tr('onSale'),
+                    title: tr('promotions'),
                     controller: controller,
                     onTap: () {
                       controller.changeCouponsTab(2);

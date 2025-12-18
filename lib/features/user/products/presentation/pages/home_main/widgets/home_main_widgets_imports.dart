@@ -77,3 +77,4 @@ part 'build_header_title_shimmer_widget.dart';
 part 'build_home_main_offers_shimmer_widget.dart';
 part 'brands_from_widget.dart';
 part 'sellers_section_widget.dart';
+part 'track_seller_order_widget.dart';

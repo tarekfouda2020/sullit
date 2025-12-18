@@ -10,4 +10,22 @@ class OrderSummaryDiscountDomain extends BaseDomainModel {
     required this.type,
     required this.discount,
   });
+
+
+  bool get isShareHolderDiscount => type == "subscription_order_discount";
+
+
+  String getDiscountTitle(){
+    if(isShareHolderDiscount){
+    var remain = label.split(" ");
+    String firstWord = remain.first;
+    remain.removeAt(0);
+    var firstCapWords = remain.map((e) => e[0]).toList().join().toUpperCase();
+   return "$firstWord $firstCapWords";
+    }else{
+      return label ;
+    }
+  }
+
+
 }

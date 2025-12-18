@@ -118,6 +118,10 @@ class Res {
   static const String whats = "assets/images/whats.png";
   static const String vouchers = "assets/images/vouchers.svg";
 
+  static const String addToCartGif = "assets/images/add_cart.gif";
+
+
+
 // ---------------------------Fonts-------------------------------------
   static const String notoSans = "assets/fonts/NotoSans.ttf";
   static const String quicksand = "assets/fonts/Quicksand.ttf";

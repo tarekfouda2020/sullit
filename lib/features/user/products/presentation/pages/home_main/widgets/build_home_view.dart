@@ -17,11 +17,17 @@ class BuildHomeView extends StatelessWidget {
         controller: controller.scrollController,
         padding: Dimens.paddingVertical10PXHorizontal20PX,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             BuildHomeSwiper(slider: homeDomainModel.sliders),
             Gaps.vGap25,
             const AdvantagesWidget(),
-            //Gaps.vGap12,
+            Gaps.vGap20,
+            Text("Track Your Current Orders",
+            style: AppTextStyle.s16_w600(color: context.colors.black),
+            ),
+            Gaps.vGap12,
+            const TrackSellerOrderWidget(),
             BuildTopCategories(categories: homeDomainModel.categories, controller: controller),
             //Gaps.vGap20,
             VipOffersFormWidget(controller: controller),

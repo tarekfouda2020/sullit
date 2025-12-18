@@ -38,7 +38,7 @@ class BuildTabsView extends StatelessWidget {
           ),
           Text(
             textAlign: TextAlign.start,
-            tr("onSale"),
+            tr("promotions"),
           ),
           Text(
             textAlign: TextAlign.start,

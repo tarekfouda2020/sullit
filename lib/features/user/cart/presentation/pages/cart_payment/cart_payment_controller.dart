@@ -634,15 +634,19 @@ class CartPaymentController {
     var params = getIt<CartNavigateHelper>().checkOutParams;
     params!.showLoader = false;
     var data = await SetCartStoreShipping().call(params);
-    if(data!=null){
-      double oldSubTotal = double.parse(_pageSavedData.orderSummaryCheckOut?.summary.subTotal??"0.0");
-      double newSubTotal = double.parse(data.summary.subTotal);
-      if(newSubTotal > oldSubTotal){
-        _initSelectedPayMethod(data);
-        initDataFromLastRoute(_pageSavedData,data);
-        shippingBloc.onUpdateData(data);
-      }
+    if(data != null){
+      _initSelectedPayMethod(data);
+      initDataFromLastRoute(_pageSavedData,data);
+      shippingBloc.onUpdateData(data);
     }
+  }
+
+
+
+  void showTierFullName(BuildContext context){
+    showModalBottomSheet(context: context, builder: (context) {
+      return const TierFullNameSheet();
+    },);
   }
 
 

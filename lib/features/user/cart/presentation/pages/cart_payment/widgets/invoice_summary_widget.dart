@@ -39,10 +39,15 @@ class InvoiceSummaryWidget extends StatelessWidget {
                       return BuildSummaryHeader(
                         isDiscount: true,
                         applyDashSeperate: false,
+                        // title: item?.getDiscountTitle() ?? "",
                         title: item?.label ?? "",
                         details: item?.discount ?? "",
                         detailsColor: context.colors.primary,
                         useDirhamPrice: true,
+                        onPressInfo: item?.isShareHolderDiscount == true
+                            // ?()=> controller.showTierFullName(context)
+                            ?null
+                            :null,
                       );
                     },),
                   )
