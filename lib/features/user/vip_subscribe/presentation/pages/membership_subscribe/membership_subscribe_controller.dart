@@ -65,6 +65,7 @@ class MembershipSubscribeController {
       pagingController.appendPage(data, nextPageKey);
       isDataLoaded.onUpdateData(true);
     }
+    pagingController.itemList?.firstWhere((element) => currentSubscription?.price == element.price).isSelected = true;
   }
 
   Future<void> getWalletData({bool refresh = true}) async {

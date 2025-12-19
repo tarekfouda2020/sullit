@@ -15,6 +15,7 @@ class UserDomainModel extends BaseDomainModel {
   bool? isPhoneActive;
   bool? isEmailActive;
    bool? hasValidSubscription;
+   bool?  isShareHolder;
   AddressDomainModel? address;
 
   UserDomainModel(
@@ -31,6 +32,7 @@ class UserDomainModel extends BaseDomainModel {
       this.isPhoneActive,
       this.isEmailActive,
       this.hasValidSubscription,
+      this.isShareHolder,
       this.address});
 
   UserDomainModel.fromJson(Map<String, dynamic> json) {
@@ -47,6 +49,7 @@ class UserDomainModel extends BaseDomainModel {
     isPhoneActive = json['phone_is_active'];
     isEmailActive=json['email_is_active'];
     hasValidSubscription=json['has_valid_subscription'];
+    isShareHolder = json['is_shareholder'];
     address = json['address'] != null ? AddressDomainModel.fromJson(json['address']) : null;
   }
 
@@ -64,6 +67,7 @@ class UserDomainModel extends BaseDomainModel {
     data['token_type'] = tokenType;
     data['phone_is_active'] = isPhoneActive;
     data['email_is_active']=isEmailActive;
+    data['is_shareholder'] = isShareHolder;
     data['has_valid_subscription']=hasValidSubscription;
     if (address != null) {
       data['address'] = address!.toJson();

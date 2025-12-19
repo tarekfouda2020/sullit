@@ -22,6 +22,7 @@ OrderSummaryDiscountModel _$OrderSummaryDiscountModelFromJson(
 /// @nodoc
 mixin _$OrderSummaryDiscountModel {
   String get type => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
   String get label => throw _privateConstructorUsedError;
   String get discount => throw _privateConstructorUsedError;
 
@@ -37,7 +38,7 @@ abstract class $OrderSummaryDiscountModelCopyWith<$Res> {
           $Res Function(OrderSummaryDiscountModel) then) =
       _$OrderSummaryDiscountModelCopyWithImpl<$Res, OrderSummaryDiscountModel>;
   @useResult
-  $Res call({String type, String label, String discount});
+  $Res call({String type, String description, String label, String discount});
 }
 
 /// @nodoc
@@ -55,6 +56,7 @@ class _$OrderSummaryDiscountModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? type = null,
+    Object? description = null,
     Object? label = null,
     Object? discount = null,
   }) {
@@ -62,6 +64,10 @@ class _$OrderSummaryDiscountModelCopyWithImpl<$Res,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String,
       label: null == label
           ? _value.label
@@ -84,7 +90,7 @@ abstract class _$$_OrderSummaryDiscountModelCopyWith<$Res>
       __$$_OrderSummaryDiscountModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String type, String label, String discount});
+  $Res call({String type, String description, String label, String discount});
 }
 
 /// @nodoc
@@ -101,6 +107,7 @@ class __$$_OrderSummaryDiscountModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? type = null,
+    Object? description = null,
     Object? label = null,
     Object? discount = null,
   }) {
@@ -108,6 +115,10 @@ class __$$_OrderSummaryDiscountModelCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String,
       label: null == label
           ? _value.label
@@ -126,7 +137,10 @@ class __$$_OrderSummaryDiscountModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_OrderSummaryDiscountModel extends _OrderSummaryDiscountModel {
   _$_OrderSummaryDiscountModel(
-      {required this.type, required this.label, required this.discount})
+      {required this.type,
+      required this.description,
+      required this.label,
+      required this.discount})
       : super._();
 
   factory _$_OrderSummaryDiscountModel.fromJson(Map<String, dynamic> json) =>
@@ -135,13 +149,15 @@ class _$_OrderSummaryDiscountModel extends _OrderSummaryDiscountModel {
   @override
   final String type;
   @override
+  final String description;
+  @override
   final String label;
   @override
   final String discount;
 
   @override
   String toString() {
-    return 'OrderSummaryDiscountModel(type: $type, label: $label, discount: $discount)';
+    return 'OrderSummaryDiscountModel(type: $type, description: $description, label: $label, discount: $discount)';
   }
 
   @override
@@ -150,6 +166,8 @@ class _$_OrderSummaryDiscountModel extends _OrderSummaryDiscountModel {
         (other.runtimeType == runtimeType &&
             other is _$_OrderSummaryDiscountModel &&
             (identical(other.type, type) || other.type == type) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             (identical(other.label, label) || other.label == label) &&
             (identical(other.discount, discount) ||
                 other.discount == discount));
@@ -157,7 +175,8 @@ class _$_OrderSummaryDiscountModel extends _OrderSummaryDiscountModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, type, label, discount);
+  int get hashCode =>
+      Object.hash(runtimeType, type, description, label, discount);
 
   @JsonKey(ignore: true)
   @override
@@ -177,6 +196,7 @@ class _$_OrderSummaryDiscountModel extends _OrderSummaryDiscountModel {
 abstract class _OrderSummaryDiscountModel extends OrderSummaryDiscountModel {
   factory _OrderSummaryDiscountModel(
       {required final String type,
+      required final String description,
       required final String label,
       required final String discount}) = _$_OrderSummaryDiscountModel;
   _OrderSummaryDiscountModel._() : super._();
@@ -186,6 +206,8 @@ abstract class _OrderSummaryDiscountModel extends OrderSummaryDiscountModel {
 
   @override
   String get type;
+  @override
+  String get description;
   @override
   String get label;
   @override

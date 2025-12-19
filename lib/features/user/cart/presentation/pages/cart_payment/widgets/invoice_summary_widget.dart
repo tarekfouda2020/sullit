@@ -35,7 +35,7 @@ class InvoiceSummaryWidget extends StatelessWidget {
                   child: Column(
                     spacing: 16,
                     children: List.generate(shippingSummary.discountTypes?.length??0, (index) {
-                      var item = shippingSummary.discountTypes?[index];
+                      OrderSummaryDiscountDomain? item = shippingSummary.discountTypes?[index];
                       return BuildSummaryHeader(
                         isDiscount: true,
                         applyDashSeperate: false,
@@ -43,6 +43,9 @@ class InvoiceSummaryWidget extends StatelessWidget {
                         details: item?.discount ?? "",
                         detailsColor: context.colors.primary,
                         useDirhamPrice: true,
+                        onPressInfo: item?.isTierDiscount == true
+                            ? ()=> controller.showTierFullName(context, item?.description ?? "",item?.label ?? "")
+                            : null,
                       );
                     },),
                   )
