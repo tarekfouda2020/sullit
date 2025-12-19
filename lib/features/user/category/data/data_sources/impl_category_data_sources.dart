@@ -68,11 +68,10 @@ class ImplCategoryDataSources extends CategoryDataSources {
   @override
   Future<Either<Failure, List<ProductModel>>> getBrandProducts(BrandDetailsParams params) async {
     HttpRequestModel model = HttpRequestModel(
-      url: "${ApiNames.brandDetails}${params.brandId}",
+      url: ApiNames.brandDetails+params.url,
       requestMethod: RequestMethod.get,
       refresh: params.refresh,
       responseType: ResType.list,
-      showLoader: true,
       toJsonFunc: (json) => List<ProductModel>.from(
         json.map(
           (e) => ProductModel.fromJson(e),

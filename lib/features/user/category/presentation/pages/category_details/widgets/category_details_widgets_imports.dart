@@ -38,6 +38,7 @@ import 'package:flutter_tdd/features/user/products/presentation/widgets/build_pr
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item_shimmer.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:flutter_tdd/core/widgets/grid_view_pagination.dart';
 
 part 'build_all_categories_view.dart';
 part 'build_color_filter.dart';
