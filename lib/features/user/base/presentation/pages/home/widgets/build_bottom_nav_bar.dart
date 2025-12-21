@@ -8,14 +8,15 @@ class BuildBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.topCenter,
-      clipBehavior: Clip.none,
-      children: [
-        BlocBuilder<GenericBloc<int>, GenericState<int>>(
-          bloc: controller.homeTabCubit,
-          builder: (context, state) {
-            return AnimatedBottomNavigationBar.builder(
+    var isShareHolder = context.read<UserCubit>().state.model?.isShareHolder;
+    return  BlocBuilder<GenericBloc<int>, GenericState<int>>(
+      bloc: controller.homeTabCubit,
+      builder: (context, state) {
+        return Stack(
+          alignment: AlignmentDirectional.topEnd,
+          clipBehavior: Clip.none,
+          children: [
+            AnimatedBottomNavigationBar.builder(
               itemCount: controller.pages().length,
               tabBuilder: (int index, bool isActive) {
                 return BuildTabItem(
@@ -42,10 +43,15 @@ class BuildBottomNavBar extends StatelessWidget {
               rightCornerRadius: 18,
               height: Platform.isIOS ? 75 : 85,
               onTap: (index) => controller.animateTabsPages(index, context),
-            );
-          },
-        ),
-      ],
+            ),
+            if(isShareHolder == true && state.data == controller.tabs.length-1)
+            PositionedDirectional(
+                top: -13,
+                end: 27,
+                child: SvgPicture.asset(Res.crownIcon))
+          ],
+        );
+      },
     );
   }
 }

@@ -18,7 +18,7 @@ class _CouponsState extends State<Coupons> with TickerProviderStateMixin {
     super.initState();
     controller = CouponsController();
     controller.homeController = widget.homeController;
-    controller.initBottomNavigation(this, widget.index);
+    controller.initBottomNavigation(this, widget.index,context);
   }
 
   // @override
@@ -32,6 +32,7 @@ class _CouponsState extends State<Coupons> with TickerProviderStateMixin {
   //     controller.tabController.animateTo(widget.index);
   //   }
   // }
+
 
   @override
   void dispose() {
@@ -57,7 +58,7 @@ class _CouponsState extends State<Coupons> with TickerProviderStateMixin {
             child: TabBarView(
               controller: controller.tabController,
               physics: const NeverScrollableScrollPhysics(),
-              children: controller.pages(),
+              children: controller.pages(context),
             ),
           )
         ],

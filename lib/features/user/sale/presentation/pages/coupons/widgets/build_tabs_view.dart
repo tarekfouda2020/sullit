@@ -7,6 +7,7 @@ class BuildTabsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isShareHolder = context.read<UserCubit>().state.model?.isShareHolder == true;
     return Container(
       color: context.colors.white,
       child: TabBar(
@@ -28,6 +29,7 @@ class BuildTabsView extends StatelessWidget {
         labelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
         indicatorSize: TabBarIndicatorSize.label,
         tabs: [
+          if(!isShareHolder)
           Text(
             textAlign: TextAlign.start,
             tr("vipOffers"),

@@ -16,7 +16,7 @@ class HomeController {
   bool showToast = false;
   int index = 0;
   final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
-  List<String> tabs = [Res.home, Res.category, "", Res.offers, Res.menuIcon];
+  List<String> tabs = [Res.home, Res.category, "", Res.offers, Res.accountGoldIcon];
 
   HomeController(){
     checkIfEmailExist();

@@ -8,15 +8,21 @@ class CouponsController {
 
   int pageSize = 12;
 
-  List<Widget> pages() => [
-    const ProOffers(),
-    const NewArrival(),
-    OnSale(homeController: homeController),
-    const BestRated(),
-  ];
 
-  void initBottomNavigation(TickerProvider ticker, int index) {
-    tabController = TabController(length: pages().length, vsync: ticker, initialIndex: index);
+  List<Widget> pages(BuildContext context) {
+    final isShareHolder = context.read<UserCubit>().state.model?.isShareHolder == true;
+
+    return [
+      if (!isShareHolder) const ProOffers(),
+      const NewArrival(),
+      OnSale(homeController: homeController),
+      const BestRated(),
+    ];
+  }
+
+
+  void initBottomNavigation(TickerProvider ticker, int index,BuildContext context) {
+    tabController = TabController(length: pages(context).length, vsync: ticker, initialIndex: index);
   }
 
   // CouponsController() {

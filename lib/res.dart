@@ -111,6 +111,10 @@ class Res {
   static const String purchasedOrderIcon = "assets/images/purchased_order_icon.png";
   static const String newSplashImage = "assets/images/new_splash_image.png";
   static const String newAuthLogo = "assets/images/new_auth_logo.png";
+  static const String crownHeadIcon = "assets/images/crown_head_icon.svg";
+  static const String crownVipMark = "assets/images/crown_vip_mark.svg";
+  static const String accountGoldIcon = "assets/images/account_icon.svg";
+  static const String crownIcon = "assets/images/crown_icon.svg";
 
   static const String billOffIcon = "assets/images/no_alarm.svg";
   static const String doorIcon = "assets/images/door_icon.svg";

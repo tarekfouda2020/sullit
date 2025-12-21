@@ -20,7 +20,6 @@ class _MoreState extends State<More> {
 
   @override
   Widget build(BuildContext context) {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(title: tr('more'),bgColor: context.colors.white,showBack: false),

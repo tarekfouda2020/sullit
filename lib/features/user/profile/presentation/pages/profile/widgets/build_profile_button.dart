@@ -2,8 +2,8 @@ part of 'profile_widgets_imports.dart';
 
 class BuildProfileButton extends StatelessWidget {
   final ProfileController controller;
-
-  const BuildProfileButton({Key? key, required this.controller})
+  final EdgeInsets? margin;
+  const BuildProfileButton({Key? key, required this.controller, this.margin})
       : super(key: key);
 
   @override
@@ -11,7 +11,7 @@ class BuildProfileButton extends StatelessWidget {
     return DefaultButton(
       title: tr('save'),
       height: 35.h,
-      margin:  Dimens.marginTop31,
+      margin: margin ?? Dimens.marginTop31,
       onTap: () => controller.setEditProfile(context),
     );
   }

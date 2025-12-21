@@ -36,11 +36,16 @@ class _ProfileState extends State<Profile>with WidgetsBindingObserver  {
         onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
           backgroundColor: context.colors.customBackground,
-          appBar:  DefaultAppBar(
+          resizeToAvoidBottomInset: false,
+          appBar: state.model?.isShareHolder == false
+              ?  DefaultAppBar(
             title: tr('manageProfile'),
-          onBack: () => controller.onPressBack(context, email),
-          ),
-          body: SingleChildScrollView(
+            onBack: () => controller.onPressBack(context, email),
+            )
+              :null,
+          body: state.model?.isShareHolder == true
+              ?  ShareHolderView(controller: controller)
+              : SingleChildScrollView(
             padding:const EdgeInsets.only(right: 15, left: 15, bottom: 15),
             child: Column(
               children: [

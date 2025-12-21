@@ -7,11 +7,37 @@ class ShortCutSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var isShareHolder = context.read<UserCubit>().state.model?.isShareHolder;
     return MoreGridViewWidget(title: tr("yourShortcuts"), children: [
-      BuildMoreItem(
-        title: tr('manageProfile'),
-        onTap: () => controller.checkAuth(context, MoreRoutes.profile),
-        image: Res.manageProfile,
+      Stack(
+        alignment: AlignmentDirectional.topStart,
+        clipBehavior: Clip.none,
+        children: [
+          BuildMoreItem(
+            title: isShareHolder == true
+                ?"Shareholder Profile"
+                :tr('manageProfile'),
+            onTap: () => controller.checkAuth(context, MoreRoutes.profile),
+            image: Res.manageProfile,
+          ),
+          if(isShareHolder == true)
+          PositionedDirectional(
+            start: -7,
+            top: -5,
+            child: Container(
+              width: 31,
+              height: 31,
+              padding: const EdgeInsets.all(6),
+              decoration: const BoxDecoration(
+                color: Color(0xffFFF1D9),
+                shape: BoxShape.circle
+              ),
+              child: SvgPicture.asset(
+                  Res.crownIcon
+              ),
+            ),
+          )
+        ],
       ),
       // BuildMoreItem(
       //   title: tr('manageProfile'),
@@ -59,6 +85,7 @@ class ShortCutSectionWidget extends StatelessWidget {
         isSvg: true,
         onTap: () => controller.checkAuth(context, MoreRoutes.addresses),
       ),
+      if(isShareHolder == false)
       BuildMoreItem(
         image: Res.redVipIcon,
         title: tr("vipSubscription"),

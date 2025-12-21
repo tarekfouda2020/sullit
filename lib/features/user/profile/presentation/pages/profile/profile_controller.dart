@@ -8,6 +8,8 @@ class ProfileController {
   final GlobalKey<CustomButtonState> createBtnKey = GlobalKey();
   final GlobalKey<FormState> formKey = GlobalKey();
   final GenericBloc<File?> imageCubit = GenericBloc(null);
+  final GenericBloc<VipCurrentPlanDomainModel?> currentSubscriptionBloc = GenericBloc(null);
+  final GenericBloc<bool> isExpandCubit = GenericBloc<bool>(false);
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController shopNameController = TextEditingController();
@@ -28,6 +30,8 @@ class ProfileController {
 
   ProfileController(BuildContext context) {
     getInitialData(context);
+    getCurrentSubscription(refresh: false);
+    getCurrentSubscription();
   }
 
   Future<void> getInitialData(BuildContext context) async {
@@ -299,6 +303,13 @@ class ProfileController {
     return ;
     }
     AutoRouter.of(context).pop();
+  }
+
+  Future<void> getCurrentSubscription({bool refresh = true}) async {
+    var result = await GetCurrentSubscription().call(refresh);
+    if (result != null) {
+      currentSubscriptionBloc.onUpdateData(result);
+    }
   }
 
 
