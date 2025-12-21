@@ -5,11 +5,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/helpers/custom_toast.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/loading_helper.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/models/domain_models/brand_domain_model.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
+import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/widgets/home_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/brands_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/price_range_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/search_products_params.dart';
@@ -20,6 +27,8 @@ import 'package:flutter_tdd/features/user/category/domain/use_cases/get_brands.d
 import 'package:flutter_tdd/features/user/category/domain/use_cases/get_category_products.dart';
 import 'package:flutter_tdd/features/user/category/domain/use_cases/get_sub_categories.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
+import 'package:flutter_tdd/features/user/products/presentation/manager/cart_sheet_controller.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 

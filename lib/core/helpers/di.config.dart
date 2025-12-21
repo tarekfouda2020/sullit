@@ -263,7 +263,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i22.CartCheckOutSavedData>(
         () => _i22.CartCheckOutSavedData());
     gh.factory<_i23.CartDataSources>(() => _i24.ImplCartDataSources());
-    gh.factory<_i25.CartHelper>(() => _i25.CartHelper());
+    gh.lazySingleton<_i25.CartHelper>(() => _i25.CartHelper());
     gh.lazySingleton<_i26.CartNavigateHelper>(() => _i26.CartNavigateHelper());
     gh.factory<_i27.CartRepository>(() => _i28.ImplCartRepository());
     gh.factory<_i29.CategoryDataSources>(() => _i30.ImplCategoryDataSources());

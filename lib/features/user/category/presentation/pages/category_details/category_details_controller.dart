@@ -2,16 +2,16 @@
 
 part of 'category_details_imports.dart';
 
-class CategoryDetailsController {
+class CategoryDetailsController implements CartSheetController {
 
   final TextEditingController searchFieldCtr = TextEditingController();
 
   final TextEditingController brandsSearchCtr = TextEditingController();
 
-
   final GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
-  final GenericBloc<List<SubCategoryLevel>> subCategoriesCubit =
-      GenericBloc([]);
+
+  final GenericBloc<List<SubCategoryLevel>> subCategoriesCubit = GenericBloc(
+      []);
 
   final GenericBloc<SubCategory?> specificationsCubit = GenericBloc(null);
   final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
@@ -20,8 +20,11 @@ class CategoryDetailsController {
   final GenericBloc<bool> showBrandsCubit = GenericBloc<bool>(false);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
 
-  final PagingController<int, Product> pagingController = PagingController(firstPageKey: 1);
-  final PagingController<int, BrandDomainModel> brandsPagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, Product> pagingController = PagingController(
+      firstPageKey: 1);
+  final PagingController<int,
+      BrandDomainModel> brandsPagingController = PagingController(
+      firstPageKey: 1);
 
 
   int brandsPageSize = 12;
@@ -30,6 +33,7 @@ class CategoryDetailsController {
 
   BrandDomainModel? brandModel;
   List<BrandDomainModel> brands = [];
+
   // int? brandId;
   List<String> selectedColors = [];
   int currentCatId = 0;
@@ -40,6 +44,7 @@ class CategoryDetailsController {
   RangeValues? rangeValues;
 
   CategoryDetailsController(BuildContext context, Category categoryModel) {
+    getCartItems();
     initialCategoryModel = categoryModel;
     titleCubit.onUpdateData(categoryModel.name);
     getData(context, categoryModel);
@@ -58,6 +63,7 @@ class CategoryDetailsController {
       },
     );
   }
+
 
   Future<void> getSubCategories(BuildContext context, int id,
       {bool refresh = true, bool appendLevel = false}) async {
@@ -80,7 +86,7 @@ class CategoryDetailsController {
         // Append new level to existing list only if it has subcategories
         if (result.subCats.isNotEmpty) {
           final currentLevels =
-              List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
+          List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
           currentLevels.add(newLevel);
           subCategoriesCubit.onUpdateData(currentLevels);
           currentCatId = id;
@@ -89,7 +95,7 @@ class CategoryDetailsController {
         // and only update selectedCategoryId so user can select another subcategory
         else {
           final currentLevels =
-              List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
+          List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
           if (currentLevels.isNotEmpty) {
             // Keep the original subCategory data (with subCats list) so the level remains visible
             // Only update the selected category ID to show which one is selected
@@ -104,7 +110,7 @@ class CategoryDetailsController {
         currentCatId = id;
       }
 
-       rangeValues = RangeValues(
+      rangeValues = RangeValues(
         double.parse(result.priceRange.min),
         double.parse(result.priceRange.max),
       );
@@ -117,10 +123,10 @@ class CategoryDetailsController {
     }
   }
 
-  Future<void> onSubCatSelect(
-      BuildContext context, Category selectedCat, int levelIndex) async {
+  Future<void> onSubCatSelect(BuildContext context, Category selectedCat,
+      int levelIndex) async {
     final currentLevels =
-        List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
+    List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
 
     // Check if the category is already selected - if so, unselect it
     if (levelIndex < currentLevels.length &&
@@ -155,7 +161,7 @@ class CategoryDetailsController {
 
   Future<void> onSubCatUnselect(BuildContext context, int levelIndex) async {
     final currentLevels =
-        List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
+    List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
 
     if (levelIndex == 0) {
       // Deselecting from level 1: remove level 2, clear selection, go to initial
@@ -188,7 +194,7 @@ class CategoryDetailsController {
       if (parentSelectedId > 0) {
         // Find the parent category name
         final parentCategory = parentLevel.subCategory.subCats.firstWhere(
-          (cat) => cat.id == parentSelectedId,
+              (cat) => cat.id == parentSelectedId,
           orElse: () => parentLevel.subCategory.category,
         );
 
@@ -209,7 +215,8 @@ class CategoryDetailsController {
         if (initialCategoryModel != null) {
           titleCubit.onUpdateData(initialCategoryModel!.name);
           currentCatId = initialCategoryModel!.id;
-          getSubCategories(context, initialCategoryModel!.id, appendLevel: false);
+          getSubCategories(
+              context, initialCategoryModel!.id, appendLevel: false);
           refreshBrands(context);
         }
       }
@@ -221,7 +228,7 @@ class CategoryDetailsController {
   void onNavigateBackToLevel(BuildContext context, int levelIndex) {
     if (levelIndex >= 0 && levelIndex < subCategoriesCubit.state.data.length) {
       final currentLevels =
-          List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
+      List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
       currentLevels.removeRange(levelIndex + 1, currentLevels.length);
       subCategoriesCubit.onUpdateData(currentLevels);
 
@@ -350,13 +357,13 @@ class CategoryDetailsController {
     // No need to update the entire cubit for open/close state
     var specifications = specificationsCubit.state.data;
     specifications!.attributes[index].opened =
-        !specifications.attributes[index].opened;
+    !specifications.attributes[index].opened;
   }
 
   void onSelectAttributes(int index, int position) {
     var specifications = specificationsCubit.state.data;
     var attributes =
-        specifications!.attributes[index].attributeValues[position];
+    specifications!.attributes[index].attributeValues[position];
     attributes.selected = !attributes.selected;
     specificationsCubit.onUpdateData(specifications);
   }
@@ -364,14 +371,14 @@ class CategoryDetailsController {
   void onOpenColor() {
     var specifications = specificationsCubit.state.data;
     specifications!.isColorAttributeOpened =
-        !specifications.isColorAttributeOpened;
+    !specifications.isColorAttributeOpened;
     specificationsCubit.onUpdateData(specifications);
   }
 
   void onSelectColor(int index) {
     var specifications = specificationsCubit.state.data;
     specifications!.colors[index].selected =
-        !specifications.colors[index].selected;
+    !specifications.colors[index].selected;
     specificationsCubit.onUpdateData(specifications);
   }
 
@@ -382,28 +389,31 @@ class CategoryDetailsController {
         .map((e) => e.code)
         .toList();
     var attributes = specifications?.attributes.map(
-      (e) => e.attributeValues
-          .where((val) => val.selected)
-          .map((element) => element.value)
-          .toList(),
+          (e) =>
+          e.attributeValues
+              .where((val) => val.selected)
+              .map((element) => element.value)
+              .toList(),
     );
-    var minPrice = (rangeValues?.start?? 0.0) < (rangeCubit.state.data?.value.start ?? 0.0) == true
+    var minPrice = (rangeValues?.start ?? 0.0) <
+        (rangeCubit.state.data?.value.start ?? 0.0) == true
         ? rangeCubit.state.data?.value.start
         : null;
-    var maxPrice = (rangeValues?.end?? 0.0) < (rangeCubit.state.data?.value.end ?? 0.0) == true
+    var maxPrice = (rangeValues?.end ?? 0.0) <
+        (rangeCubit.state.data?.value.end ?? 0.0) == true
         ? rangeCubit.state.data?.value.end
         : null;
     return SearchProductsParams(
-      catId: currentCatId,
-      brandId: brandModel?.id,
-      color: colors,
-      attributes: attributes?.expand((element) => element).toList(),
-      minPrice: minPrice,
-      maxPrice: maxPrice,
-      refresh: refresh,
-      pageSize: pageSize,
-      currentPage: page,
-      searchKey: searchFieldCtr.text.trim()
+        catId: currentCatId,
+        brandId: brandModel?.id,
+        color: colors,
+        attributes: attributes?.expand((element) => element).toList(),
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+        refresh: refresh,
+        pageSize: pageSize,
+        currentPage: page,
+        searchKey: searchFieldCtr.text.trim()
     );
   }
 
@@ -512,7 +522,7 @@ class CategoryDetailsController {
       if (initialCategoryModel != null) {
         // Clear all levels except the first one and reset its selection
         final firstLevel =
-            currentLevels.isNotEmpty ? currentLevels.first : null;
+        currentLevels.isNotEmpty ? currentLevels.first : null;
         if (firstLevel != null) {
           firstLevel.selectedCategoryId = initialCategoryModel!.id;
           subCategoriesCubit.onUpdateData([firstLevel]);
@@ -538,50 +548,51 @@ class CategoryDetailsController {
   }
 
 
-
-  void onPressSearch(BuildContext context){
-  FocusScope.of(context).unfocus();
-  pagingController.refresh();
-  getPopularProducts(1);
+  void onPressSearch(BuildContext context) {
+    FocusScope.of(context).unfocus();
+    pagingController.refresh();
+    getPopularProducts(1);
   }
 
-  void clearSearchField(){
+  void clearSearchField() {
     searchFieldCtr.clear();
     showClearIcon.onUpdateData(false);
     pagingController.refresh();
     getPopularProducts(1);
   }
 
-  void whileWriting(String value){
-    if(value.isNotEmpty){
+  void whileWriting(String value) {
+    if (value.isNotEmpty) {
       showClearIcon.onUpdateData(true);
-    }else{
+    } else {
       showClearIcon.onUpdateData(false);
     }
   }
 
-  void showBrandsSheet(BuildContext context){
-     showModalBottomSheet(context: context,
-       useRootNavigator: true,
-       enableDrag: true,
-       isDismissible: false,
-       isScrollControlled: true,
-       backgroundColor: Colors.transparent,
-       builder: (context) {
-       return BrandsSheetWidget(controller: this,);
-     },);
+  void showBrandsSheet(BuildContext context) {
+    showModalBottomSheet(context: context,
+      useRootNavigator: true,
+      enableDrag: true,
+      isDismissible: false,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return BrandsSheetWidget(controller: this,);
+      },);
   }
 
 
-  Future<void> getBrands(int page ,{bool refresh = true}) async {
-    var params = _brandsParams(brandsPageSize,refresh,page );
+  Future<void> getBrands(int page, {bool refresh = true}) async {
+    var params = _brandsParams(brandsPageSize, refresh, page);
     var data = await GetBrands().call(params);
     final isLastPage = data.length < brandsPageSize;
-    brandModel?.id = data.firstWhere((element) => element.id == brandModel?.id).id;
+    brandModel?.id = data
+        .firstWhere((element) => element.id == brandModel?.id)
+        .id;
     if (page == 1) {
-      if(data.isNotEmpty){
+      if (data.isNotEmpty) {
         brandsCubit.onUpdateData(data.take(11).toList());
-      } else{
+      } else {
         brandsCubit.onUpdateData([]);
       }
       brandsPagingController.itemList = [];
@@ -595,23 +606,180 @@ class CategoryDetailsController {
   }
 
 
-  void refreshBrands(BuildContext context){
+  void refreshBrands(BuildContext context) {
     brandsCubit.onUpdateToInitState([]);
     FocusScope.of(context).unfocus();
     brandsPagingController.refresh();
     getBrands(1);
   }
 
-  BrandsParams _brandsParams(int paginate, bool refresh, int page ) {
-    return BrandsParams(
-      paginate: paginate,
-      refresh: refresh,
-      page: page,
-      keyword: brandsSearchCtr.text.trim(),
-      categoryId: currentCatId
-    );
+
+  @override
+  final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
+
+  @override
+  Future<void> getCartItems({bool refresh = true}) async {
+    final value = await getIt<CartHelper>().getCartItems(refresh: refresh);
+    cartItemsBloc.onUpdateData(value);
+  }
+
+  @override
+  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem,
+      GenericBloc<bool> loadingCubit) async {
+    if (cartItem.quantity < cartItem.stockQty) {
+      loadingCubit.onUpdateData(true);
+      final newQty = cartItem.quantity + 1;
+      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+      if (success != null) {
+        loadingCubit.onUpdateData(false);
+        cartItem.quantity = newQty;
+        cartItemsBloc.onUpdateData(success);
+      }
+    } else {
+      CustomToast.showSimpleToast(
+        msg: '${tr("only")} ${cartItem.stockQty} ${tr("availableStock")}',
+      );
+    }
+  }
+
+  @override
+  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem, GenericBloc<bool> loadingCubit , {bool inBottomSheet = true}) async {
+    if (cartItem.quantity > 1) {
+      loadingCubit.onUpdateData(true);
+      final newQty = cartItem.quantity - 1;
+      final success = await getIt<CartHelper>().updateCartItem(
+          newQty, cartItem.id);
+      if (success != null) {
+        loadingCubit.onUpdateData(false);
+        cartItem.quantity = newQty;
+        cartItemsBloc.onUpdateData(success);
+        reduceProductQntWhenReduceFromCart(cartItem);
+      }
+    }
+  }
+
+  @override
+  Future<void> deleteItemFromCart(BuildContext context, CartItem cartItem,{bool enablePop = true}) async {
+    getIt<LoadingHelper>().showLoadingDialog();
+    final deleted = await getIt<CartHelper>().deleteItemFromCart(
+        context, cartItem);
+    if (deleted) {
+      double subTotal = double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
+      double removedItemPrice = double.parse(cartItem.total);
+      double newSubTotal = subTotal - removedItemPrice;
+
+      removeProductCounter(cartItem);
+
+      cartItemsBloc.state.data.subTotal = newSubTotal.toStringAsFixed(2);
+      cartItemsBloc.state.data.items?.remove(cartItem);
+
+      if (cartItemsBloc.state.data.items?.isEmpty == true) {
+        cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+        getIt<LoadingHelper>().dismissDialog();
+        getIt<CartHelper>().updateCartCount(context, 0);
+        if(enablePop){
+          Navigator.pop(context);
+        }
+      } else {
+        await getCartItems();
+        cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+        getIt<LoadingHelper>().dismissDialog();
+      }
+
+
+    }
+  }
+
+  @override
+  void updateFavFromSheet(CartItem cartItem) {
+    cartItem.isWishlist = !cartItem.isWishlist;
+  }
+
+  @override
+  Future<void> refreshProductDetails(BuildContext context) async {
+    // Standalone controller has no product details to refresh.
+  }
+
+  @override
+  int? get productId => null;
+
+
+  String remainToGetMinAmount() {
+    var total = double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
+    var minAmount = cartItemsBloc.state.data.minimumAmount ?? 0.0;
+    var remain = minAmount - total;
+    return remain.toStringAsFixed(2);
+  }
+
+  @override
+  String get minAmountRemain => remainToGetMinAmount();
+
+
+
+  void removeProductCounter(CartItem cartItem){
+    var cartList = cartItemsBloc.state.data.items;
+    if(cartList!=null && cartList.isNotEmpty == true){
+      var productList =  pagingController.itemList!.where((element) => element.id == cartItem.productId);
+     if(productList.isNotEmpty){
+       productList.first.addedQtyToCart = 0;
+       pagingController.itemList = [
+         ...?pagingController.itemList
+       ];
+     }
+    }
   }
 
 
 
+Future<void> deleteProductFromCart(BuildContext context,Product product) async {
+   var cartList = cartItemsBloc.state.data.items;
+   if(cartList!=null && cartList.isNotEmpty == true){
+     var cartItems = cartList.where((element) => element.productId == product.id).toList();
+    if(cartItems.isNotEmpty){
+      deleteItemFromCart(context,cartItems.first,enablePop: false);
+      product.addedQtyToCart = 0;
+      product.showProductCounter = false;
+    }
+   }
+}
+
+
+  Future<void> reduceProductQntInCart(BuildContext context,Product product,GenericBloc<bool> loading) async {
+    var cartList = cartItemsBloc.state.data.items;
+    if(cartList!=null && cartList.isNotEmpty == true){
+      var cartItems = cartList.where((element) => element.productId == product.id);
+      if(cartItems.isNotEmpty){
+        await onDecreaseCart(context,cartItems.first,loading);
+        product.addedQtyToCart = product.addedQtyToCart! -1;
+        var index = pagingController.itemList!.indexOf(product);
+        pagingController.itemList![index] = product;
+        pagingController.itemList = [
+          ...?pagingController.itemList
+        ];
+      }
+    }
+  }
+
+  void reduceProductQntWhenReduceFromCart(CartItem cartItem){
+    var cartItems = pagingController.itemList?.where((element) => element.id == cartItem.productId).toList();
+    if(cartItems?.isNotEmpty == true){
+      var product = cartItems!.first;
+      product.addedQtyToCart = cartItem.quantity;
+      pagingController.itemList = [
+        ...?pagingController.itemList
+      ];
+    }
+  }
+
+
+
+  BrandsParams _brandsParams(int paginate, bool refresh, int page) {
+    return BrandsParams(
+        paginate: paginate,
+        refresh: refresh,
+        page: page,
+        keyword: brandsSearchCtr.text.trim(),
+        categoryId: currentCatId
+    );
+  }
 }

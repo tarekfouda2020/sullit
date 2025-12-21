@@ -60,6 +60,10 @@ class Res {
   static const String search = "assets/images/search.svg";
   static const String compass = "assets/images/compass.svg";
   static const String shopCart = "assets/images/shop_cart_icon.svg";
+  static const String addProductToCart = "assets/images/add_product_to_cart_icon.svg";
+  static const String warningIcon = "assets/images/warning_icon.svg";
+  static const String plusIcon = "assets/images/plus_icon.svg";
+  static const String minusIcon = "assets/images/minus_icon.svg";
   static const String searchIcon = "assets/images/search_icon.svg";
   static const String qrScanIcon = "assets/images/scan_qr_icon.svg";
   static const String truckIcon = "assets/images/truck_icon.svg";

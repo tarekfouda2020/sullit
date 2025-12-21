@@ -55,6 +55,8 @@ class Product extends BaseDomainModel {
   String? brandName;
   bool? isAddedTCompare;
   bool? hasVipOffer;
+  bool? showProductCounter;
+  int? addedQtyToCart;
 
   Product(
       {this.id,
@@ -97,6 +99,8 @@ class Product extends BaseDomainModel {
       this.unit,
       this.isFresh,
       this.loyaltyPoints,
+      this.showProductCounter = false,
+      this.addedQtyToCart = 0,
       this.hasSpecialLoyaltyPoints,
       this.isAddedTCompare = false});
 

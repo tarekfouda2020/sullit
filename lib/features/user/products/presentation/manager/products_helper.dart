@@ -8,10 +8,14 @@ import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/set_toggle_favourite.dart';
+import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -106,4 +110,34 @@ class ProductsHelper {
     return ProductsTableData(
         product: json.encode(product.toJson()), productId: product.id);
   }
+
+
+
+  Future<void> addProductToCart(BuildContext context,Product product,{void Function()? afterAddToCart})async{
+    var existCount = context.read<CountCubit>().state.cartCount;
+      await getIt<CartHelper>().addProductToCart(
+      context,
+       product.minQty!,
+       product.variant?.id,
+      showLoader: false,
+      onAddCartFunc: () {
+        getIt<CartHelper>().updateCartCount(context, product.minQty! + existCount);
+        if (afterAddToCart != null) {
+          afterAddToCart.call();
+        }
+      },
+    );
+  }
+
+
+  void removeProductFromCart(Product product,BuildContext context){
+    var cartList = getIt<CartHelper>().cartItemsBloc.state.data.items;
+    if(cartList?.isNotEmpty == true && cartList!=null){
+      CartItem productInCartList = cartList.where((element) => element.productId == product.id).first;
+      getIt<CartHelper>().deleteItemFromCart(context, productInCartList);
+    }
+    // var cartItem =
+  }
+
+
 }

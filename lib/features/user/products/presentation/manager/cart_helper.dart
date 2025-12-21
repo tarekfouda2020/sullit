@@ -29,9 +29,11 @@ import 'package:flutter_tdd/features/user/products/presentation/manager/cart_she
 import 'package:flutter_tdd/features/user/products/presentation/pages/product_details/widgets/product_details_widgets_imports.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@lazySingleton
 class CartHelper {
   List<String> selectedVariants = [];
+
+  final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
 
   void onSelectAttributes(
       BuildContext context,
@@ -107,18 +109,19 @@ class CartHelper {
   }
 
   Future<void> addProductToCart(BuildContext context, int qty, int? variantId,
-      {required Function() onAddCartFunc}) async {
-    var params = await _addToCartParams(variantId, qty);
+      {required Function() onAddCartFunc, bool showLoader = true}) async {
+    var params = await _addToCartParams(variantId, qty,showLoader: showLoader);
     if (params.variantId == null) {
       CustomToast.showSimpleToast(msg: tr('variantNotFound'));
       return;
     }
     var data = await AddProductToCart().call(params);
-    if (data != '') {
+
+    if (data.isNotEmpty) {
+      onAddCartFunc();
       CustomToast.showSimpleToast(
           msg: tr('productAddedToYourCart'), type: ToastType.success);
     }
-    onAddCartFunc();
   }
 
   void updateCartCount(BuildContext context,int qnt){
@@ -148,7 +151,9 @@ class CartHelper {
   Future<CartDomainModel> getCartItems({bool refresh = true}) async {
     String? token = await getIt<GetDeviceId>().deviceId;
     var params = _cartParams(refresh, token!);
-    return await GetCart().call(params);
+    var data = await GetCart().call(params);
+    cartItemsBloc.onUpdateData(data);
+    return cartItemsBloc.state.data;
   }
 
 
@@ -160,6 +165,9 @@ class CartHelper {
     return result;
   }
 
+
+  /// 1709
+  /// variant_id 29935
 
   Future<bool> deleteItemFromCart(BuildContext context,CartItem cartItem) async {
     var params = await _deleteItemFromCart(cartItem.id);
@@ -199,12 +207,12 @@ class CartHelper {
     );
   }
 
-  Future<AddProductToCartParams> _addToCartParams(
-      int? variantId, int qty) async {
+  Future<AddProductToCartParams> _addToCartParams(int? variantId, int qty,{bool showLoader = true}) async {
     return AddProductToCartParams(
       quantity: qty,
       variantId: variantId,
       macAddress: await getIt<GetDeviceId>().deviceId,
+      showLoader: showLoader
     );
   }
 
