@@ -17,6 +17,7 @@ class OrderDiscount extends BaseApiModel<OrderDiscountDomain>
     required String type,
     required String discount,
     @JsonKey(name: "type_label") required String typeLabel,
+    @JsonKey(name: "type_description") required String typeDescription,
     @JsonKey(name: "discount_value") required String discountValue,
   }) = _OrderDiscount;
 
@@ -31,6 +32,7 @@ class OrderDiscount extends BaseApiModel<OrderDiscountDomain>
       type: type,
       discount: discount,
       discountValue: discountValue,
+      typeDescription: typeDescription
     );
   }
 }

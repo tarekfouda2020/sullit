@@ -450,8 +450,6 @@ class CartPaymentController {
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        // Service fee
-        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
         return FeesSheetWidget(feesCubit: feesCubit,showService: false,showTech: false,);
       },);
   }
@@ -460,8 +458,6 @@ class CartPaymentController {
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        // Service fee
-        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
         return FeesSheetWidget(feesCubit: feesCubit,showService: false, showDelivery: false,);
       },);
   }
@@ -471,8 +467,6 @@ class CartPaymentController {
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        // Service fee
-        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
         return FeesSheetWidget(feesCubit: feesCubit,showService: false, showDelivery: false,showTech: false,showEnv: true,);
       },);
   }
@@ -482,8 +476,6 @@ class CartPaymentController {
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        // Service fee
-        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
         return const ReplacementAlertSheet();
       },);
   }

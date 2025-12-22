@@ -21,4 +21,7 @@ abstract class SaleRepository {
   Future<Either<Failure, List<Product>>> getBestRated(bool param);
 
   Future<Either<Failure, List<Product>>> getVipOffers(bool param);
+
+  Future<Either<Failure, List<Product>>> getShareholderProducts(
+      GenericPaginateParams param);
 }

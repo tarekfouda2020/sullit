@@ -1,0 +1,54 @@
+part of 'shareholder_offers_imports.dart';
+
+class ShareholderOffersController {
+  final PagingController<int, Product> shareholderOffersPagingController =
+      PagingController(firstPageKey: 1);
+  int pageSize = 10;
+
+  ShareholderOffersController() {
+    getShareholderProducts(1,refresh: false);
+    shareholderOffersPagingController.addPageRequestListener((pageKey) {
+      getShareholderProducts(pageKey);
+    });
+  }
+
+  Future<void> getShareholderProducts(int page, {bool refresh = true}) async {
+    var params = _shareholderOffersParams(refresh, page);
+    var result = await GetShareholderProducts().call(params);
+
+    var isLastPage = result.length < pageSize;
+    if (page == 1) {
+      shareholderOffersPagingController.itemList = [];
+    }
+    if (isLastPage) {
+      shareholderOffersPagingController.appendLastPage(result);
+    } else {
+      final nextPageKey = page + 1;
+      shareholderOffersPagingController.appendPage(result, nextPageKey);
+    }
+  }
+
+  GenericPaginateParams _shareholderOffersParams(
+      bool refresh, int currentPage) {
+    return GenericPaginateParams(
+        pageSize: pageSize, refresh: refresh, currentPage: currentPage);
+  }
+
+  void onChangeFav(Product item) {
+    item.isWishlist = !item.isWishlist!;
+    // Refresh to update UI state - though PagingController might need manual list update trigger
+    // Similar to brand_details_controller reference
+    if (shareholderOffersPagingController.itemList != null) {
+      int index = shareholderOffersPagingController.itemList!
+          .indexWhere((e) => e.id == item.id);
+      if (index != -1) {
+        shareholderOffersPagingController.itemList![index] = item;
+        // Trigger generic update if needed or force rebuild logic
+        // For PagingController, rebuilding the item or set state in widget is often needed
+        // Assuming the parent widget handles rebuilding via PagingController or we just update the list reference to force check
+        var data = shareholderOffersPagingController.itemList;
+        shareholderOffersPagingController.itemList = [...?data];
+      }
+    }
+  }
+}

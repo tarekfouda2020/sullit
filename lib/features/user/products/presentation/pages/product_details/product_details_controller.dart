@@ -14,6 +14,7 @@ class ProductDetailsController implements CartSheetController {
   final ScrollController scrollController = ScrollController();
   late bool isResale;
   late bool isFav;
+  double? _minAmount;
 
   // late bool isFav;
   @override
@@ -220,8 +221,9 @@ class ProductDetailsController implements CartSheetController {
   @override
   Future<void> getCartItems({bool refresh = true}) async {
     await getIt<CartHelper>().getCartItems(refresh: refresh).then((value) {
+      _minAmount = value.minimumAmount;
+      cartItemsBloc.onUpdateData(value);
       if (value.items!.isNotEmpty) {
-        cartItemsBloc.onUpdateData(value);
         _updateCartCountFromCart(value);
       } else {
         _updateCartCountFromCart(CartDomainModel(items: []));
@@ -295,7 +297,6 @@ class ProductDetailsController implements CartSheetController {
       if ((cartItemsBloc.state.data.items ?? <CartItem>[]).isEmpty) {
         // context.read<CountCubit>().onUpdateCount(0, countCubit.discount);
         Navigator.pop(context);
-        return;
       }
       getCartItems();
     }else{
@@ -350,10 +351,10 @@ class ProductDetailsController implements CartSheetController {
     );
   }
 
-  String  remainToGetMinAmount() {
+  String remainToGetMinAmount() {
     var total = double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
     var minAmount = cartItemsBloc.state.data.minimumAmount ?? 0.0;
-    var remain = total-minAmount;
+    var remain = minAmount - total;
     return remain.toStringAsFixed(2);
   }
 

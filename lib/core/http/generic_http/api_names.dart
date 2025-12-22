@@ -1,12 +1,11 @@
 // ignore_for_file: constant_identifier_names
 
 class ApiNames {
-
   ///staging
-  // static const String baseUrl = "https://mushrifcoop.com/api/v3/";
+  static const String baseUrl = "https://staging.mushrifcoop.com/api/v3/";
 
   ///production
-  static const String baseUrl = "https://mushrifcoop.com/api/v3/";
+  // static const String baseUrl = "https://mushrifcoop.com/api/v3/";
 
   // auth routes
   static const String login = "login";
@@ -50,11 +49,12 @@ class ApiNames {
 
   static String getVariantPrice(int id) => "products/$id/variant/price";
 
-  static String skuSearch(String sku) => "products/search-by-barcode?barcode=$sku";
+  static String skuSearch(String sku) =>
+      "products/search-by-barcode?barcode=$sku";
 
   static const String getDownloadProducts = "orders/digital-purchase-history";
 
-  static  String shopProducts(int id) => "shops/$id/all-products";
+  static String shopProducts(int id) => "shops/$id/all-products";
 
   static String getProductSections(int page) => "sections?page=$page";
 
@@ -102,6 +102,7 @@ class ApiNames {
   static const String getOnSale = "offers/on-sale";
   static const String vipProducts = "offers/vip-products";
   static const String getBestRated = "offers/best-rated";
+  static const String shareholderProducts = "offers/shareholder-products";
 
   //wallet urls
   static const String getMyWallet = "my-wallet";
@@ -149,7 +150,7 @@ class ApiNames {
   static const String notifications = "notifications";
 
   ///general
- static const String getLanguages = "settings/languages";
+  static const String getLanguages = "settings/languages";
 
   //tickets
   static const String createTicket = "tickets/store";
@@ -175,7 +176,8 @@ class ApiNames {
 
   static String reOrder(int orderId) => "orders/$orderId/reorder";
 
-  static String trackingHistory(int orderId) => "orders/$orderId/tracking-history";
+  static String trackingHistory(int orderId) =>
+      "orders/$orderId/tracking-history";
 
   static String returnOrder(int orderId) =>
       "orders/$orderId/store-return-order";
@@ -222,23 +224,23 @@ class ApiNames {
 
   static const String loyaltyPointsTransactions = "loyalty-points/transactions";
 
-  static  String giftCardSubscriptionDetails(int params) => "gift-card-subscriptions/$params";
+  static String giftCardSubscriptionDetails(int params) =>
+      "gift-card-subscriptions/$params";
 
-  static  String giftCardDetails(int params) => "gift-cards/$params";
+  static String giftCardDetails(int params) => "gift-cards/$params";
 
-  static String payGiftCardSubscribe(int params) => "gift-cards/$params/subscribe";
-
+  static String payGiftCardSubscribe(int params) =>
+      "gift-cards/$params/subscribe";
 
   /// vip subscriptions
-  static const String subscriptionsPaymentMethods = "subscriptions/payment-methods";
+  static const String subscriptionsPaymentMethods =
+      "subscriptions/payment-methods";
 
   static const String subscriptions = "subscriptions";
 
   static const String currentSubscription = "subscriptions/current";
 
-  static  String paySubscription(int param) => "subscriptions/$param/subscribe";
+  static String paySubscription(int param) => "subscriptions/$param/subscribe";
 
   static const String subscriptionPage = "subscription-page";
-
-
 }

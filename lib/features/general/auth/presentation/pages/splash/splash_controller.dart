@@ -36,8 +36,6 @@ class SplashController {
             getCountryLangCode(value ?? LangCodeHelper.langEN),
           ),
         );
-        print(" in splash ====>>>>>>  lang ${context.read<DeviceCubit>().state.model.locale.languageCode}");
-        print(" in splash ====>>>>>> country code ${context.read<DeviceCubit>().state.model.locale.countryCode}");
         if(value == LangCodeHelper.langAR){
           value = LangTypeEnum.arabic.getLangCode();
         }

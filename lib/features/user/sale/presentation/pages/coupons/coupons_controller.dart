@@ -14,6 +14,7 @@ class CouponsController {
 
     return [
       if (!isShareHolder) const ProOffers(),
+      if (isShareHolder) const ShareholderOffers(),
       const NewArrival(),
       OnSale(homeController: homeController),
       const BestRated(),

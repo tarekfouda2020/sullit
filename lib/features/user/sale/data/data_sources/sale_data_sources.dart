@@ -21,4 +21,7 @@ abstract class SaleDataSources {
   Future<Either<Failure, List<ProductModel>>> getBestRated(bool param);
 
   Future<Either<Failure, List<ProductModel>>> getVipOffers(bool param);
+
+  Future<Either<Failure, List<ProductModel>>> getShareholderProducts(
+      GenericPaginateParams param);
 }

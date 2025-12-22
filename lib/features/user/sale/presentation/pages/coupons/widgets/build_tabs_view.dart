@@ -34,6 +34,11 @@ class BuildTabsView extends StatelessWidget {
             textAlign: TextAlign.start,
             tr("vipOffers"),
           ),
+          if(isShareHolder)
+            const Text(
+              textAlign: TextAlign.start,
+              "Shareholder’s Exclusive",
+            ),
           Text(
             textAlign: TextAlign.start,
             tr("newArrival"),

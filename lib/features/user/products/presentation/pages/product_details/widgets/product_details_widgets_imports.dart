@@ -23,6 +23,7 @@ import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
+import 'package:flutter_tdd/core/widgets/cart_min_amount_needed_widget.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/core/widgets/dirham_currency_symbol.dart';
 import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';

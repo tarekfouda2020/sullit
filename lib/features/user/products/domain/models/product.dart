@@ -56,6 +56,7 @@ class Product extends BaseDomainModel {
   bool? isAddedTCompare;
   bool? hasVipOffer;
   bool? showProductCounter;
+  bool? hasShareholderDiscount;
   int? addedQtyToCart;
 
   Product(
@@ -99,6 +100,7 @@ class Product extends BaseDomainModel {
       this.unit,
       this.isFresh,
       this.loyaltyPoints,
+      this.hasShareholderDiscount,
       this.showProductCounter = false,
       this.addedQtyToCart = 0,
       this.hasSpecialLoyaltyPoints,
@@ -157,6 +159,7 @@ class Product extends BaseDomainModel {
     categoryName = json['category_name'];
     brandName = json['brand_name'];
     hasVipOffer = json['has_vip_offer'];
+    hasShareholderDiscount = json['has_shareholder_discount'];
   }
 
   Map<String, dynamic> toJson() {
@@ -201,6 +204,7 @@ class Product extends BaseDomainModel {
     data['category_name'] = categoryName;
     data['brand_name'] = brandName;
     data['has_vip_offer'] = hasVipOffer;
+    data['has_shareholder_discount'] = hasShareholderDiscount;
     return data;
   }
 }

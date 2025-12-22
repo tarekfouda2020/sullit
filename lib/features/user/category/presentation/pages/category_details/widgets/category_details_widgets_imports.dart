@@ -22,6 +22,7 @@ import 'package:flutter_tdd/core/widgets/brands_sheet_item_widget.dart';
 import 'package:flutter_tdd/core/widgets/brands_sheet_shimmer_widget.dart';
 import 'package:flutter_tdd/core/widgets/build_empty_data_view.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
+import 'package:flutter_tdd/core/widgets/cart_min_amount_needed_widget.dart';
 import 'package:flutter_tdd/core/widgets/custom_price_range_widget.dart';
 import 'package:flutter_tdd/core/widgets/custom_refresh_indicator_widget.dart';
 import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';

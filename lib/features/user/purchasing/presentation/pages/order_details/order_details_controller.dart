@@ -163,6 +163,20 @@ class OrderDetailsPageController {
   }
 
 
+  void showTierFullName(BuildContext context,String description, String title){
+    showModalBottomSheet(
+      context: context,
+      useRootNavigator: true,
+      isDismissible: true,
+      isScrollControlled: false,
+      enableDrag: false,
+      builder: (context) {
+        return FullTierNameWidget(description: description,title:title,);
+      },
+    );
+  }
+
+
 
   GenericParams _params(int id,bool refresh){
     return GenericParams(id: id,refresh:refresh );

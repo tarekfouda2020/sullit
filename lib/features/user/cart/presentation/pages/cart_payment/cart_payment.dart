@@ -22,6 +22,7 @@ class _CartPaymentState extends State<CartPayment> {
 
   @override
   Widget build(BuildContext context) {
+    var isShareHolder = context.read<UserCubit>().state.model?.isShareHolder;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -53,7 +54,9 @@ class _CartPaymentState extends State<CartPayment> {
                         Gaps.vGap16,
                         PaymentMethodWidget(controller: controller, shipping: state.data!),
                         Gaps.vGap12,
+                        if(isShareHolder == false)
                         CartDiscountWidget(controller: controller),
+                        if(isShareHolder == false)
                         Gaps.vGap20,
                         DeliveryInstructionsWidget(controller: controller),
                         Gaps.vGap12,
@@ -72,11 +75,13 @@ class _CartPaymentState extends State<CartPayment> {
                         Gaps.vGap13,
                         BuildConditions(controller: controller),
                         Gaps.vGap20,
+                        if(isShareHolder == false)
                         BezatPointsSummaryWidget(
                           redeemedPoints: (state.data!.summary.loyaltyPoints ?? 0).toDouble(),
                          redeemedValue: double.parse((state.data!.summary.loyaltyPointsValue ?? "0.0")),
                          earnedPoints: state.data!.summary.expectedLoyaltyPoints.toDouble(),
                        ),
+                        if(isShareHolder == false)
                         Gaps.vGap25,
                         Center(
                           child: Text(tr("thank_you_for_order"),

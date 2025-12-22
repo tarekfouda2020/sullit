@@ -80,28 +80,8 @@ class ViewCartBottomNavWidget extends StatelessWidget {
                 ],
               ),
               Gaps.vGap10,
-              Row(
-                children: [
-                  if(state.data.minimumStatus == false)
-                    Row(
-                      children: [
-                        SvgPicture.asset(
-                          Res.warningIcon,
-                        width: Dimens.dp17,
-                          height: Dimens.dp17,
-                        ),
-                        Gaps.hGap6,
-                        DirhamPrice(amount: controller.minAmountRemain,
-                        textStyle: AppTextStyle.s16_w500(color: context.colors.primary),
-                        ),
-                        Gaps.hGap2,
-                        Text("needed to reach minimum order",
-                        style: AppTextStyle.s14_w400(color: context.colors.primary),
-                        )
-                      ],
-                    )
-                ],
-              ),
+              if(state.data.minimumStatus == false)
+                CartMinAmountNeededWidget(minAmount: controller.minAmountRemain,),
               Gaps.vGap10,
             ],
           ),

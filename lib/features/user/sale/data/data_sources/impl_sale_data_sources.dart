@@ -71,7 +71,7 @@ class ImplSaleRepository extends SaleDataSources {
   @override
   Future<Either<Failure, List<ProductModel>>> getBestRated(bool param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.getBestRated ,
+      url: ApiNames.getBestRated,
       requestMethod: RequestMethod.get,
       refresh: param,
       responseType: ResType.list,
@@ -87,7 +87,7 @@ class ImplSaleRepository extends SaleDataSources {
   @override
   Future<Either<Failure, List<ProductModel>>> getNewArrival(bool param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.getNewArrival ,
+      url: ApiNames.getNewArrival,
       requestMethod: RequestMethod.get,
       refresh: param,
       responseType: ResType.list,
@@ -122,6 +122,23 @@ class ImplSaleRepository extends SaleDataSources {
       url: ApiNames.vipProducts,
       requestMethod: RequestMethod.get,
       refresh: param,
+      responseType: ResType.list,
+      showLoader: true,
+      toJsonFunc: (json) => List<ProductModel>.from(
+        json.map((e) => ProductModel.fromJson(e)),
+      ),
+      responseKey: (data) => data["data"]["products"],
+    );
+    return await GenericHttpImpl<List<ProductModel>>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, List<ProductModel>>> getShareholderProducts(
+      GenericPaginateParams param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.shareholderProducts + param.paramsToQuery(),
+      requestMethod: RequestMethod.get,
+      refresh: param.refresh,
       responseType: ResType.list,
       showLoader: true,
       toJsonFunc: (json) => List<ProductModel>.from(

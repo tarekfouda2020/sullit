@@ -61,6 +61,7 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
     @JsonKey(name: 'brand_name') required String brandName,
     @JsonKey(name: 'is_fresh') required bool isFresh,
     @JsonKey(name: 'has_special_loyalty_points') required bool hasSpecialLoyaltyPoints,
+    @JsonKey(name: 'has_shareholder_discount') required bool hasShareholderDiscount,
     @JsonKey(name: 'loyalty_points') required int loyaltyPoints,
   }) = _ProductModel;
 

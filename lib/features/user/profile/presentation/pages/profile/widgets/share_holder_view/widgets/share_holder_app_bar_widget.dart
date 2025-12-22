@@ -1,15 +1,20 @@
 part of 'share_holder_view_widgets_imports.dart';
 
-class ShareHolderAppBarWidget extends StatelessWidget
-    implements PreferredSizeWidget {
+class ShareHolderAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final ProfileController controller;
-
   const ShareHolderAppBarWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 6),
+    return Container(
+      padding: const EdgeInsets.only(right: 20,left: 20,top: 28,bottom: 6),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+            colors: [
+          Color(0xffFAC950),
+          Color(0xff654D11),
+        ])
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -64,6 +69,6 @@ class ShareHolderAppBarWidget extends StatelessWidget
   }
 
   @override
-  // TODO: implement preferredSize
-  Size get preferredSize => const Size.fromHeight(65);
+  Size get preferredSize =>  const Size.fromHeight(65);
+
 }

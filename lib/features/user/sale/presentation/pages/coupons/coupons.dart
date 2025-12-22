@@ -21,18 +21,6 @@ class _CouponsState extends State<Coupons> with TickerProviderStateMixin {
     controller.initBottomNavigation(this, widget.index,context);
   }
 
-  // @override
-  // void didUpdateWidget(covariant Coupons oldWidget) {
-  //   super.didUpdateWidget(oldWidget);
-  //   print("==========>>>>>> index inside didUpdateWidget widget.index ${widget.index}<<<<<<<<========");
-  //   print("==========>>>>>> index inside didUpdateWidget oldWidget.index ${oldWidget.index}<<<<<<<<========");
-  //   if (widget.index != oldWidget.index) {
-  //     print("==========>>>>>> index inside didUpdateWidget changed ${widget.index}<<<<<<<<========");
-  //     // Update the tab controller to the new index
-  //     controller.tabController.animateTo(widget.index);
-  //   }
-  // }
-
 
   @override
   void dispose() {

@@ -29,9 +29,6 @@ class ShareHolderBackGroundWidget extends StatelessWidget {
                     Color(0xff654D11),
                   ])),
         ),
-        Container(
-          color: Colors.transparent
-        )
       ],
     );
   }

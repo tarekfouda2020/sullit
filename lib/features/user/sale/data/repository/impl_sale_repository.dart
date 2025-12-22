@@ -36,26 +36,33 @@ class ImplSaleRepository extends SaleRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getBestRated(bool param) async{
+  Future<Either<Failure, List<Product>>> getBestRated(bool param) async {
     var result = await dataSources.getBestRated(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getNewArrival(bool param) async{
+  Future<Either<Failure, List<Product>>> getNewArrival(bool param) async {
     var result = await dataSources.getNewArrival(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getOnSale(bool param) async{
+  Future<Either<Failure, List<Product>>> getOnSale(bool param) async {
     var result = await dataSources.getOnSale(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getVipOffers(bool param) async{
+  Future<Either<Failure, List<Product>>> getVipOffers(bool param) async {
     var result = await dataSources.getVipOffers(param);
+    return toDomainResultList(result);
+  }
+
+  @override
+  Future<Either<Failure, List<Product>>> getShareholderProducts(
+      GenericPaginateParams param) async {
+    var result = await dataSources.getShareholderProducts(param);
     return toDomainResultList(result);
   }
 }

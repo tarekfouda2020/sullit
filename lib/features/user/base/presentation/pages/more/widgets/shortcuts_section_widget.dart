@@ -68,6 +68,7 @@ class ShortCutSectionWidget extends StatelessWidget {
       //   size: 33,
       //   onTap: () => controller.checkAuth(context, MoreRoutes.myVouchers),
       // ),
+      if(isShareHolder != true)
       BuildMoreItem(
         image: Res.loyaltyIcon,
         title: tr("loyaltyPoints"),
@@ -85,7 +86,7 @@ class ShortCutSectionWidget extends StatelessWidget {
         isSvg: true,
         onTap: () => controller.checkAuth(context, MoreRoutes.addresses),
       ),
-      if(isShareHolder == false)
+      if(isShareHolder != true)
       BuildMoreItem(
         image: Res.redVipIcon,
         title: tr("vipSubscription"),
