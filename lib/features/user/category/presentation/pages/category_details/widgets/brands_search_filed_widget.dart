@@ -3,11 +3,12 @@ part of 'category_details_widgets_imports.dart';
 class BrandsSearchFiledWidget extends StatelessWidget {
   final TextEditingController txtController;
   final void Function() onPressSearch;
-
+  final void Function(String value) onChange;
   const BrandsSearchFiledWidget({
     super.key,
     required this.txtController,
     required this.onPressSearch,
+    required this.onChange,
   });
 
   @override
@@ -41,6 +42,7 @@ class BrandsSearchFiledWidget extends StatelessWidget {
           ),
         ),
         onSubmit: onPressSearch,
+        onChange: onChange,
       ),
     );
   }

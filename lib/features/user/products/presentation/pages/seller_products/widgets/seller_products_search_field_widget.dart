@@ -19,11 +19,11 @@ class SellerProductsSearchFieldWidget extends StatelessWidget {
             fillColor: context.colors.white,
             controller: controller.productSearchCtr,
             validate: (value) => value?.noValidate(),
-            hint: "Search in products...",
-            onSubmit: () => controller.onPressSearch(context),
-            onChange: (value) => controller.whileWriting(value),
+            hint: "${tr("searchInProducts")}...",
+            onSubmit: () => controller.searchProducts(context),
+            onChange: (value) => controller.whileWriting(context,value),
             suffixIcon: GestureDetector(
-              onTap: () => controller.onPressSearch(context),
+              onTap: () => controller.searchProducts(context),
               child: Transform.scale(
                 scale: 0.4,
                 child: SvgPicture.asset(Res.searchIcon),

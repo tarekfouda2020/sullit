@@ -313,4 +313,19 @@ class ProfileController {
   }
 
 
+
+
+  void showTierDescription(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      enableDrag: false,
+      builder: (context) {
+      return TierBenefistSheetWidget(controller: this);
+    },);
+  }
+
+
+
 }

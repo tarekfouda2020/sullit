@@ -41,6 +41,7 @@ class BrandsFilterItem extends StatelessWidget {
                   BrandsSearchFiledWidget(
                     txtController: controller.brandsSearchCtr,
                     onPressSearch: () => controller.refreshBrands(context),
+                     onChange: (value) => controller.whileSearch(value),
                   ),
                 Gaps.vGap12,
                 if (state.data)

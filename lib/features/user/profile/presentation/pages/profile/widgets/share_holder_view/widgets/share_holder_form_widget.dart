@@ -21,7 +21,7 @@ class ShareHolderFormWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text("Your Data",
+            Text(tr("your_data"),
             style: AppTextStyle.s16_w700(color: context.colors.black),
             ),
             Gaps.vGap24,

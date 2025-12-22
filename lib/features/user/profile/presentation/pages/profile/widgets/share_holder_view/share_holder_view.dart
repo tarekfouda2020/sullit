@@ -28,10 +28,6 @@ class ShareHolderView extends StatelessWidget {
                        ShareHolderAdvantageWidget(controller: controller),
                       Gaps.vGap20,
                       ShareHolderFormWidget(controller: controller),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.only(end: 10),
-                        child: ChangePasswordWidget(controller: controller),
-                      ),
                     ],
                   ),
                 ),

@@ -33,7 +33,7 @@ class _ProfileState extends State<Profile>with WidgetsBindingObserver  {
       canPop: email != null && email.isNotEmpty,
       onPopInvokedWithResult: (didPop, result) => controller.onPressBack(context, email) ,
       child: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
           backgroundColor: context.colors.customBackground,
           resizeToAvoidBottomInset: false,

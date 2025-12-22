@@ -19,7 +19,7 @@ class ShareHolderAdvantageWidget extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 20),
           height: isExpand.data
               ?null
-              :MediaQuery.sizeOf(context).height*0.3,
+              :MediaQuery.sizeOf(context).height*0.29,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           decoration: BoxDecoration(
               color: context.colors.white.withAlpha(80),
@@ -42,11 +42,10 @@ class ShareHolderAdvantageWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         GestureDetector(
-                          onTap: () => controller.isExpandCubit.onUpdateData(!isExpand.data),
+                          // onTap: () => controller.isExpandCubit.onUpdateData(!isExpand.data),
+                          onTap: () => controller.showTierDescription(context),
                           child: Text(
-                            isExpand.data
-                                ? "See less"
-                                :tr("seeAll"),
+                           tr("seeAll"),
                           style: const AppTextStyle.s15_w500(color: Color(0xff9C5902)),
                           ),
                         )
@@ -78,8 +77,8 @@ class ShareHolderAdvantageWidget extends StatelessWidget {
     return Html(data: getIt<Utilities>().cleanHtml(state.data!.currentSubscription!.description),
                     style: {
                       "body": Style(
-                        color: context.colors.textColor,
-                        fontSize: FontSize(14),
+                        color: context.colors.black,
+                        fontSize: FontSize(15),
                         fontWeight: FontWeight.w500,
                         alignment: lang == LangCodeHelper.langAR ? Alignment.centerLeft : Alignment.centerRight,
                         margin: Margins.all(0),
@@ -88,25 +87,25 @@ class ShareHolderAdvantageWidget extends StatelessWidget {
                       "ul": Style(
                         margin: Margins.all(0),
                         padding: HtmlPaddings.all(0),
-                        color: context.colors.textColor,
-                        fontSize: FontSize(14),
+                        color: context.colors.black,
+                        fontSize: FontSize(15),
                         fontWeight: FontWeight.w500,
                       ),
                       "li": Style(
                         margin: Margins.all(0),
                         padding: HtmlPaddings.all(0),
-                        color: context.colors.textColor,
-                        fontSize: FontSize(14),
+                        color: context.colors.black,
+                        fontSize: FontSize(15),
                         fontWeight: FontWeight.w500,
                       ),
                       "strong": Style(
-                        color: context.colors.textColor,
-                        fontSize: FontSize(14),
+                        color: context.colors.black,
+                        fontSize: FontSize(15),
                         fontWeight: FontWeight.w500,
                       ),
                       "em": Style(
-                        color: context.colors.textColor,
-                        fontSize: FontSize(14),
+                        color: context.colors.black,
+                        fontSize: FontSize(15),
                         fontWeight: FontWeight.w500,
                         fontStyle: FontStyle.normal,
                       ),

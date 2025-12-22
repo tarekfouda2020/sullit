@@ -550,6 +550,10 @@ class CategoryDetailsController implements CartSheetController {
 
   void onPressSearch(BuildContext context) {
     FocusScope.of(context).unfocus();
+    callProductsSearch();
+  }
+
+  void callProductsSearch(){
     pagingController.refresh();
     getPopularProducts(1);
   }
@@ -562,6 +566,11 @@ class CategoryDetailsController implements CartSheetController {
   }
 
   void whileWriting(String value) {
+    DebounceHelper.instance.startSearch(
+      value: value,
+      onSearch: (val) => callProductsSearch(),
+    );
+
     if (value.isNotEmpty) {
       showClearIcon.onUpdateData(true);
     } else {
@@ -607,11 +616,24 @@ class CategoryDetailsController implements CartSheetController {
 
 
   void refreshBrands(BuildContext context) {
-    brandsCubit.onUpdateToInitState([]);
     FocusScope.of(context).unfocus();
+    callBrandsSearch();
+  }
+
+  void callBrandsSearch() {
+    brandsCubit.onUpdateToInitState([]);
     brandsPagingController.refresh();
     getBrands(1);
   }
+
+
+  void whileSearch(String value){
+    DebounceHelper.instance.startSearch(
+        value: value,
+        onSearch: (val) => callBrandsSearch(),
+    );
+  }
+
 
 
   @override

@@ -11,6 +11,7 @@ class BuildProfileButton extends StatelessWidget {
     return DefaultButton(
       title: tr('save'),
       height: 35.h,
+      fontSize: 15,
       margin: margin ?? Dimens.marginTop31,
       onTap: () => controller.setEditProfile(context),
     );

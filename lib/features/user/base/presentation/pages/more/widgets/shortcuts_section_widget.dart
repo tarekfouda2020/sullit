@@ -15,7 +15,7 @@ class ShortCutSectionWidget extends StatelessWidget {
         children: [
           BuildMoreItem(
             title: isShareHolder == true
-                ?"Shareholder Profile"
+                ?tr("shareholder_profile")
                 :tr('manageProfile'),
             onTap: () => controller.checkAuth(context, MoreRoutes.profile),
             image: Res.manageProfile,

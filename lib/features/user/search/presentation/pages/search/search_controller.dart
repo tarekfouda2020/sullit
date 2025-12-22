@@ -34,9 +34,7 @@ class SearchController {
   Future<void> onPressSearch(BuildContext context)async{
     if(searchController.text.trim().isNotEmpty){
       FocusScope.of(context).unfocus();
-      getIt<LoadingHelper>().showLoadingDialog();
-      await getSearchResults();
-      getIt<LoadingHelper>().dismissDialog();
+      callSearch();
     }
   }
 
@@ -56,11 +54,25 @@ class SearchController {
   }
 
   void whileWriting(String value){
+    DebounceHelper.instance.startSearch(
+      value: value,
+      onSearch: (val) => callSearch(),
+    );
+
     if(value.isNotEmpty){
       showClearIcon.onUpdateData(true);
     }else{
       showClearIcon.onUpdateData(false);
     }
   }
+
+
+
+  Future<void> callSearch()async{
+    getIt<LoadingHelper>().showLoadingDialog();
+    await getSearchResults();
+    getIt<LoadingHelper>().dismissDialog();
+  }
+
 
 }

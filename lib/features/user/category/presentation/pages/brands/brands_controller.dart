@@ -33,7 +33,7 @@ class BrandsController {
 
 
   void onPressSearchBrand(BuildContext context){
-    FocusScope.of(context).unfocus();
+    // FocusScope.of(context).unfocus();
     pagingController.refresh();
     getBrands(1);
   }

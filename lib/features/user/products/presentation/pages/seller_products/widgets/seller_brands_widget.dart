@@ -41,6 +41,10 @@ class SellerBrandsWidget extends StatelessWidget {
                     BrandsSearchFiledWidget(
                       txtController: controller.brandsSearchCtr,
                       onPressSearch: () => controller.refreshBrands(context),
+                        onChange: (value) => DebounceHelper.instance.startSearch(
+                          value: value,
+                          onSearch: (val) => controller.refreshBrands(context,disableFocus: false),
+                        )
                     ),
                     Gaps.vGap10,
                     BlocBuilder<GenericBloc<List<BrandDomainModel>>,

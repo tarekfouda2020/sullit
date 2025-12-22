@@ -22,8 +22,10 @@ class BuildProducts extends StatelessWidget {
           onPressDelete: () async => await detailsController.deleteProductFromCart(context, item),
           showVipDiscount: haveVipDiscount,
           afterAddToCart: ()=> detailsController.getCartItems(),
-          onRefresh: () async => await detailsController
-              .getPopularProducts(detailsController.currentPageKey),
+          onRefresh: () async {
+             detailsController.getPopularProducts(detailsController.currentPageKey);
+            detailsController.getCartItems();
+          },
         ),
       ),
     );
