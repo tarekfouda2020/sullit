@@ -15,22 +15,25 @@ class _ShareholderOffersState extends State<ShareholderOffers> {
     var isShareHolder = context.isShareHolder;
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      body: CustomRefreshIndicatorWidget(
-        onRefresh: () async => await controller.getShareholderProducts(1),
-        child: GridViewPagination<Product>(
-          pagingController: controller.shareholderOffersPagingController,
-          onRefresh: () async =>
-              controller.shareholderOffersPagingController.refresh(),
-          firstPageProgressIndicatorBuilder: (_) =>
-              const BuildLoadingCatsProducts(),
-          showNewPageProgressIndicatorAsGridChild: false,
-          noItemsFoundIndicatorBuilder: (context) => const BuildEmptyDataView(),
-          itemBuilder: (_, item, index) => BuildProductItem(
-            productModel: item,
-            showVipDiscount:
-                item.hasShareholderDiscount == true && isShareHolder == true,
-            onFavRefresh: () => controller.onChangeFav(item),
-            onRefresh: () => controller.getShareholderProducts(1),
+      body: Padding(
+        padding: const EdgeInsets.only(bottom: 122),
+        child: CustomRefreshIndicatorWidget(
+          onRefresh: () async => await controller.getShareholderProducts(1),
+          child: GridViewPagination<Product>(
+            pagingController: controller.shareholderOffersPagingController,
+            onRefresh: () async =>
+                controller.shareholderOffersPagingController.refresh(),
+            firstPageProgressIndicatorBuilder: (_) =>
+                const BuildLoadingCatsProducts(),
+            showNewPageProgressIndicatorAsGridChild: false,
+            noItemsFoundIndicatorBuilder: (context) => const BuildEmptyDataView(),
+            itemBuilder: (_, item, index) => BuildProductItem(
+              productModel: item,
+              showVipDiscount:
+                  item.hasShareholderDiscount == true && isShareHolder == true,
+              onFavRefresh: () => controller.onChangeFav(item),
+              onRefresh: () => controller.getShareholderProducts(1),
+            ),
           ),
         ),
       ),
