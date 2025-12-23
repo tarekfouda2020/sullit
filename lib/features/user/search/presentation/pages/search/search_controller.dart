@@ -51,6 +51,7 @@ class SearchController {
   void clearSearchField(){
     searchController.clear();
     showClearIcon.onUpdateData(false);
+    callSearch();
   }
 
   void whileWriting(String value){

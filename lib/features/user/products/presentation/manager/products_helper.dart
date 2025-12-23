@@ -8,7 +8,7 @@ import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/helpers/global_context.dart';
+import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
@@ -60,7 +60,6 @@ class ProductsHelper {
       return 0;
     } else {
       var isAdded = await isAddedToCompared(product);
-      print("======>$isAdded");
       if (isAdded == true) {
         var data = getIt<ComparedProductsDb>().deleteItem(product.id!);
         CustomToast.showSimpleToast(
@@ -111,14 +110,13 @@ class ProductsHelper {
         product: json.encode(product.toJson()), productId: product.id);
   }
 
-
-
-  Future<void> addProductToCart(BuildContext context,Product product,{void Function()? afterAddToCart})async{
+  Future<void> addProductToCart(BuildContext context, Product product,
+      {void Function()? afterAddToCart}) async {
     var existCount = context.read<CountCubit>().state.cartCount;
-      await getIt<CartHelper>().addProductToCart(
+    await getIt<CartHelper>().addProductToCart(
       context,
-       product.minQty!,
-       product.variant?.id,
+      product.minQty!,
+      product.variant?.id,
       showLoader: false,
       onAddCartFunc: () {
         getIt<CartHelper>().updateCartCount(context, product.minQty! + existCount);
@@ -129,15 +127,72 @@ class ProductsHelper {
     );
   }
 
-
-  void removeProductFromCart(Product product,BuildContext context){
+  Future<bool> removeProductFromCart(Product product, BuildContext context) async{
     var cartList = getIt<CartHelper>().cartItemsBloc.state.data.items;
-    if(cartList?.isNotEmpty == true && cartList!=null){
+    if (cartList?.isNotEmpty == true && cartList != null) {
+      getIt<LoadingHelper>().showLoadingDialog();
       CartItem productInCartList = cartList.where((element) => element.productId == product.id).first;
-      getIt<CartHelper>().deleteItemFromCart(context, productInCartList);
+     var result  = await getIt<CartHelper>().deleteItemFromCart(context, productInCartList);
+     if(result){
+       var cartData = getIt<CartHelper>().cartItemsBloc.state.data;
+       getIt<CartHelper>().updateCartCount(context, (cartData.items!.length - cartData.items!.length-1));
+     }
+      getIt<LoadingHelper>().dismissDialog();
+     return result;
+    }else{
+      return false;
     }
-    // var cartItem =
+
   }
 
+  /// Reduces product quantity in cart by 1.
+  /// If current quantity is 1, deletes the item from cart.
+  /// Returns true if operation was successful, false otherwise.
+  Future<bool> reduceProductQntInCart(
+    BuildContext context,
+    Product product,
+  {GenericBloc<bool>? loadingBloc}
+  ) async {
+    var cartList = getIt<CartHelper>().cartItemsBloc.state.data.items;
+    if (cartList == null || cartList.isEmpty) {
+      return false;
+    }
 
+    var cartItems = cartList.where((element) => element.productId == product.id);
+    if (cartItems.isEmpty) {
+      return false;
+    }
+
+    var cartItem = cartItems.first;
+
+
+    if(cartItem.quantity == product.minQty){
+      getIt<LoadingHelper>().showLoadingDialog();
+      final deleted = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
+      getIt<LoadingHelper>().dismissDialog();
+      if (deleted) {
+        var updatedCart = getIt<CartHelper>().cartItemsBloc.state.data;
+        updatedCart.items?.remove(cartItem);
+        product.addedQtyToCart = 0;
+        getIt<CartHelper>().cartItemsBloc.onUpdateData(updatedCart);
+        getIt<CartHelper>().updateCartCountWithCart(context, updatedCart);
+      }
+      return deleted;
+    }
+
+    if (cartItem.quantity > 1) {
+      loadingBloc?.onUpdateData(true);
+      final newQty = cartItem.quantity - 1;
+      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+      loadingBloc?.onUpdateData(false);
+      if (success != null) {
+        cartItem.quantity = newQty;
+        product.addedQtyToCart = newQty;
+        getIt<CartHelper>().cartItemsBloc.onUpdateData(success);
+        getIt<CartHelper>().updateCartCountWithCart(context, success);
+        return true;
+      }
+    }
+    return false;
+  }
 }

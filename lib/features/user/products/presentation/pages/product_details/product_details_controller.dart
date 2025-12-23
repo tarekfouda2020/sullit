@@ -8,9 +8,11 @@ class ProductDetailsController implements CartSheetController {
   final GenericBloc<int> isSelected = GenericBloc(0);
   final GenericBloc<int> selectedColorCubit = GenericBloc(0);
   final GenericBloc<bool> showAppBarTitleCubit = GenericBloc(false);
-  final GenericBloc<ProductDetailsDomainModel?> detailsCubit = GenericBloc(null);
+  final GenericBloc<ProductDetailsDomainModel?> detailsCubit =
+      GenericBloc(null);
   @override
-  final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
+  GenericBloc<CartDomainModel> get cartItemsBloc =>
+      getIt<CartHelper>().cartItemsBloc;
   final ScrollController scrollController = ScrollController();
   late bool isResale;
   late bool isFav;
@@ -22,7 +24,8 @@ class ProductDetailsController implements CartSheetController {
   List<String> selectedVariants = [];
   List<String> basicImage = [];
 
-  ProductDetailsController(BuildContext context,this.productId, this.isResale,this.isFav) {
+  ProductDetailsController(
+      BuildContext context, this.productId, this.isResale, this.isFav) {
     getProductDetails(context, productId, refresh: false);
     getProductDetails(context, productId);
     getCartItems(refresh: false);
@@ -66,7 +69,9 @@ class ProductDetailsController implements CartSheetController {
         e.hasValue = false;
       }
     }).toList();
-    var selectedList = detailsCubit.state.data!.product.choiceOptions!.map((e) => e.selectedAttribute).toList();
+    var selectedList = detailsCubit.state.data!.product.choiceOptions!
+        .map((e) => e.selectedAttribute)
+        .toList();
     selectedVariants = selectedList.expand((element) => element!).toList();
     if (selectedVariants.isNotEmpty) getVariantPrice(context);
   }
@@ -87,7 +92,8 @@ class ProductDetailsController implements CartSheetController {
     getIt<LoadingHelper>().dismissDialog();
   }
 
-  void onSelectAttributes(BuildContext context, List<ProductOptions> model, int index, int position) async {
+  void onSelectAttributes(BuildContext context, List<ProductOptions> model,
+      int index, int position) async {
     getIt<LoadingHelper>().showLoadingDialog();
     List<String> selected = [];
     var optionItem = model[index];
@@ -158,7 +164,9 @@ class ProductDetailsController implements CartSheetController {
         qtyCubit.onUpdateData(newQty);
         detailsCubit.onUpdateData(detailsCubit.state.data);
       } else {
-        CustomToast.showSimpleToast(msg: "${tr('only')} ${variantPrice.currentStock} available in stock");
+        CustomToast.showSimpleToast(
+            msg:
+                "${tr('only')} ${variantPrice.currentStock} available in stock");
         return;
       }
     } else {
@@ -222,7 +230,6 @@ class ProductDetailsController implements CartSheetController {
   Future<void> getCartItems({bool refresh = true}) async {
     await getIt<CartHelper>().getCartItems(refresh: refresh).then((value) {
       _minAmount = value.minimumAmount;
-      cartItemsBloc.onUpdateData(value);
       if (value.items!.isNotEmpty) {
         _updateCartCountFromCart(value);
       } else {
@@ -239,11 +246,13 @@ class ProductDetailsController implements CartSheetController {
   }
 
   @override
-  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem, GenericBloc<bool> loadingCubit) async {
+  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem,
+      GenericBloc<bool> loadingCubit) async {
     if (cartItem.quantity < cartItem.stockQty) {
       loadingCubit.onUpdateData(true);
       final newQty = cartItem.quantity + 1;
-      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+      final success =
+          await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
       if (success != null) {
         loadingCubit.onUpdateData(false);
         cartItem.quantity = newQty;
@@ -264,11 +273,13 @@ class ProductDetailsController implements CartSheetController {
   }
 
   @override
-  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem, GenericBloc<bool> loadingCubit) async {
+  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem,
+      GenericBloc<bool> loadingCubit) async {
     if (cartItem.quantity > 1) {
       loadingCubit.onUpdateData(true);
       final newQty = cartItem.quantity - 1;
-      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+      final success =
+          await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
       if (success != null) {
         loadingCubit.onUpdateData(false);
         cartItem.quantity = newQty;
@@ -283,23 +294,26 @@ class ProductDetailsController implements CartSheetController {
   }
 
   @override
-  Future<void> deleteItemFromCart(BuildContext context, CartItem cartItem) async {
+  Future<void> deleteItemFromCart(
+      BuildContext context, CartItem cartItem) async {
     getIt<LoadingHelper>().showLoadingDialog();
     var data = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
     if (data) {
       getIt<LoadingHelper>().dismissDialog();
-      var newSubTotal = cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
+      var newSubTotal =
+          cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
       cartItemsBloc.state.data.calculableTotal = newSubTotal;
       cartItemsBloc.state.data.items!.remove(cartItem);
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
       _updateCartCountFromCart(cartItemsBloc.state.data);
-      CustomToast.showSimpleToast(msg: tr('itemDeleted'), type: ToastType.success);
+      CustomToast.showSimpleToast(
+          msg: tr('itemDeleted'), type: ToastType.success);
       if ((cartItemsBloc.state.data.items ?? <CartItem>[]).isEmpty) {
         // context.read<CountCubit>().onUpdateCount(0, countCubit.discount);
         Navigator.pop(context);
       }
       getCartItems();
-    }else{
+    } else {
       getIt<LoadingHelper>().dismissDialog();
     }
   }
@@ -360,5 +374,4 @@ class ProductDetailsController implements CartSheetController {
 
   @override
   String get minAmountRemain => remainToGetMinAmount();
-
 }

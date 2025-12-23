@@ -20,22 +20,25 @@ class _NewArrivalState extends State<NewArrival> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      body: GenericListView(
-        type: ListViewType.gridApi,
-        onRefresh: controller.getArrival,
-        cubit: controller.arrivalCubit,
-        runSpacing: 15.r,
-        spacing: 15.r,
-        gridCrossCount: 2,
-        gridItemHeight: 220.spMin,
-        padding: Dimens.paddingAll15PX,
-        itemBuilder: (_, index, item) => BuildProductItem(
-          productModel: item,
-          onFavRefresh: () => controller.onChangeFav(item),
-          onRefresh: () => controller.getArrival(refresh: true),
+      body: Padding(
+        padding: const EdgeInsets.only(bottom: 122),
+        child: GenericListView(
+          type: ListViewType.gridApi,
+          onRefresh: controller.getArrival,
+          cubit: controller.arrivalCubit,
+          runSpacing: 15.r,
+          spacing: 15.r,
+          gridCrossCount: 2,
+          gridItemHeight: 220.spMin,
+          padding: Dimens.paddingAll15PX,
+          itemBuilder: (_, index, item) => BuildProductItem(
+            productModel: item,
+            onFavRefresh: () => controller.onChangeFav(item),
+            onRefresh: () => controller.getArrival(refresh: true),
+          ),
+          loadingWidget: const BuildLoadingProductsGridView(),
+          emptyWidget: const BuildEmptyDataView(),
         ),
-        loadingWidget: const BuildLoadingProductsGridView(),
-        emptyWidget: const BuildEmptyDataView(),
       ),
     );
   }

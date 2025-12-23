@@ -29,27 +29,30 @@ class _OnSaleState extends State<OnSale> {
         builder: (context, state) {
           if (state is GenericUpdateState) {
             if (state.data.isNotEmpty) {
-              return GenericListView<Product>(
-                 type: ListViewType.gridApi,
-                 onRefresh: controller.getOnSale,
-                 cubit: controller.onSaleCubit,
-                 runSpacing: 15.r,
-                 spacing: 15.r,
-                 gridCrossCount: 2,
-                 gridItemHeight: 220.spMin,
-                 padding: Dimens.paddingH20V15,
-                 itemBuilder: (_, index, item) {
-                   item as Product;
-                   return BuildProductItem(
-                     productModel: item,
-                     showVipDiscount: item.hasVipOffer,
-                     onFavRefresh: () => controller.onChangeFav(state.data[index]),
-                     onRefresh: () => controller.getOnSale(refresh: true),
-                   );
-                 },
-                 loadingWidget: const BuildLoadingProductsGridView(),
-                 emptyWidget: const BuildEmptyDataView(),
-               );
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 122),
+                child: GenericListView<Product>(
+                   type: ListViewType.gridApi,
+                   onRefresh: controller.getOnSale,
+                   cubit: controller.onSaleCubit,
+                   runSpacing: 15.r,
+                   spacing: 15.r,
+                   gridCrossCount: 2,
+                   gridItemHeight: 220.spMin,
+                   padding: Dimens.paddingH20V15,
+                   itemBuilder: (_, index, item) {
+                     item as Product;
+                     return BuildProductItem(
+                       productModel: item,
+                       showVipDiscount: item.hasVipOffer,
+                       onFavRefresh: () => controller.onChangeFav(state.data[index]),
+                       onRefresh: () => controller.getOnSale(refresh: true),
+                     );
+                   },
+                   loadingWidget: const BuildLoadingProductsGridView(),
+                   emptyWidget: const BuildEmptyDataView(),
+                 ),
+              );
             } else {
               return const BuildEmptyDataView();
             }

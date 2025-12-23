@@ -18,46 +18,49 @@ class _BrandsState extends State<Brands> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(title: tr('allBrands'), showBack: true),
-      body: Column(
-        children: [
-          Padding(
-            padding: Dimens.paddingAll15PX,
-            child: BrandSearchWidget(controller: controller),
-          ),
-          Expanded(child: PagedGridView<int, BrandDomainModel>(
-            padding: Dimens.paddingAll15PX,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 15.r,
-              mainAxisSpacing: 15.r,
-              childAspectRatio: 10 / 9,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        backgroundColor: context.colors.customBackground,
+        appBar:  DefaultAppBar(title: tr('allBrands'), showBack: true),
+        body: Column(
+          children: [
+            Padding(
+              padding: Dimens.paddingAll15PX,
+              child: BrandSearchWidget(controller: controller),
             ),
-            showNewPageProgressIndicatorAsGridChild: false,
-            showNewPageErrorIndicatorAsGridChild: true,
-            pagingController: controller.pagingController,
-            builderDelegate: PagedChildBuilderDelegate<BrandDomainModel>(
-              firstPageProgressIndicatorBuilder: (context) {
-                return const BuildBrandShimmer();
-              },
-              itemBuilder: (context, item, index) {
-                return BuildBrandItem(brand: item);
-              },
-              noItemsFoundIndicatorBuilder: (cxt) {
-                return Center(
-                  child: Text(
-                    tr('noBrandsHere'),
-                    style: AppTextStyle.s12_w400(
-                      color: context.colors.black,
+            Expanded(child: PagedGridView<int, BrandDomainModel>(
+              padding: Dimens.paddingAll15PX,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 15.r,
+                mainAxisSpacing: 15.r,
+                childAspectRatio: 10 / 9,
+              ),
+              showNewPageProgressIndicatorAsGridChild: false,
+              showNewPageErrorIndicatorAsGridChild: true,
+              pagingController: controller.pagingController,
+              builderDelegate: PagedChildBuilderDelegate<BrandDomainModel>(
+                firstPageProgressIndicatorBuilder: (context) {
+                  return const BuildBrandShimmer();
+                },
+                itemBuilder: (context, item, index) {
+                  return BuildBrandItem(brand: item);
+                },
+                noItemsFoundIndicatorBuilder: (cxt) {
+                  return Center(
+                    child: Text(
+                      tr('noBrandsHere'),
+                      style: AppTextStyle.s12_w400(
+                        color: context.colors.black,
+                      ),
                     ),
-                  ),
-                );
-              },
-            ),
-          ))
-        ],
+                  );
+                },
+              ),
+            ))
+          ],
+        ),
       ),
     );
   }

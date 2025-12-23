@@ -19,16 +19,21 @@ class ManageProfileBottomNavWidget extends StatelessWidget {
             //   padding: const EdgeInsetsDirectional.only(end: 10),
             //   child: ChangePasswordWidget(controller: controller),
             // ),
-            LogoutButtonWidget(controller: controller),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: BuildProfileButton(
+                controller: controller,
+                margin: const EdgeInsets.only(top: 5),
+              ),
+            ),
             Row(
               children: [
                 if (isShareHolder == true)
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsetsDirectional.only(start: 10),
-                      child: BuildProfileButton(
-                        controller: controller,
-                        margin: EdgeInsets.zero,
+                      child: LogoutButtonWidget(controller: controller,
+                          margin: EdgeInsets.zero
                       ),
                     ),
                   ),

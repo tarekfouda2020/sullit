@@ -10,37 +10,46 @@ class HomeController {
   final TextEditingController searchController = TextEditingController();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-
   Orders? _firstUnPaidOrder;
 
   bool showToast = false;
   int index = 0;
-  final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
-  List<String> tabs = [Res.home, Res.category, "", Res.offers, Res.accountGoldIcon];
+  GenericBloc<CartDomainModel> get cartItemsBloc =>
+      getIt<CartHelper>().cartItemsBloc;
+  List<String> tabs = [
+    Res.home,
+    Res.category,
+    "",
+    Res.offers,
+    Res.accountGoldIcon
+  ];
 
-  HomeController(){
+  HomeController() {
     checkIfEmailExist();
     getPurchasingHistory();
   }
 
-  Future<void> getCartItems(BuildContext context,{bool refresh = true}) async {
-    CartDomainModel result = await getIt<CartHelper>().getCartItems(refresh: refresh);
+  Future<void> getCartItems(BuildContext context, {bool refresh = true}) async {
+    CartDomainModel result =
+        await getIt<CartHelper>().getCartItems(refresh: refresh);
     var qntCubitState = context.read<CountCubit>().state;
-    context.read<CountCubit>().onUpdateCount(result.totalQnt, qntCubitState.discount);
-    cartItemsBloc.onUpdateData(result);
+    context
+        .read<CountCubit>()
+        .onUpdateCount(result.totalQnt, qntCubitState.discount);
   }
 
   List<Widget> pages() => [
-    HomeMain(homeController: this),
-    Categories(homeController: this),
-    // Summary(homeController: controller),
-    Gaps.empty,
-    BlocBuilder<GenericBloc<int>, GenericState<int>>(
-      bloc: homeTabCubit,
-      builder: (context, state) => Coupons(homeController: this, index: index),
-    ),
-    More(homeController: this),
-  ];
+        HomeMain(homeController: this),
+        Categories(homeController: this),
+        // Summary(homeController: controller),
+        Gaps.empty,
+        BlocBuilder<GenericBloc<int>, GenericState<int>>(
+          bloc: homeTabCubit,
+          builder: (context, state) =>
+              Coupons(homeController: this, index: index),
+        ),
+        More(homeController: this),
+      ];
 
   List<String> tabsText(BuildContext context) => [
         tr('home', context: context),
@@ -70,7 +79,8 @@ class HomeController {
   // }
 
   void initBottomNavigation(TickerProvider ticker, int index) {
-    tabController = TabController(length: 5, vsync: ticker, initialIndex: index);
+    tabController =
+        TabController(length: 5, vsync: ticker, initialIndex: index);
     tabController.animateTo(index);
     homeTabCubit.onUpdateData(index);
   }
@@ -120,7 +130,6 @@ class HomeController {
     return true;
   }
 
-
   Future<bool> onBack(BuildContext context) async {
     if (tabController.index > 0) {
       tabController.animateTo(0);
@@ -131,7 +140,8 @@ class HomeController {
     if (showToast == false) {
       showToast = true;
       CustomToast.showSnakeBar(tr("PressAgainToExit"));
-      Future.delayed(const Duration(seconds: 6)).then((value) => showToast = false);
+      Future.delayed(const Duration(seconds: 6))
+          .then((value) => showToast = false);
       return false;
     } else {
       SystemNavigator.pop();
@@ -139,45 +149,48 @@ class HomeController {
     }
   }
 
-
   Future<void> getPurchasingHistory({bool refresh = true}) async {
     BuildContext ctx = getIt<GlobalContext>().context();
     bool isAuth = ctx.read<DeviceCubit>().state.model.auth;
-    if(isAuth){
+    if (isAuth) {
       GenericPaginateParams params = _historyParams(refresh);
       List<Orders> data = await GetPurchasingHistory().call(params);
-      Set<Orders> unPaidOrder  = data.where((element) => element.showUnPaidOnlineOrderActions).toSet();
-      if(unPaidOrder.isNotEmpty){
+      Set<Orders> unPaidOrder =
+          data.where((element) => element.showUnPaidOnlineOrderActions).toSet();
+      if (unPaidOrder.isNotEmpty) {
         _firstUnPaidOrder = unPaidOrder.first;
         showUnPaidOrderSheet(ctx);
       }
     }
   }
 
-
-  void checkIfEmailExist(){
+  void checkIfEmailExist() {
     BuildContext ctx = getIt<GlobalContext>().context();
     bool isAuth = ctx.read<DeviceCubit>().state.model.auth;
-    if(isAuth){
+    if (isAuth) {
       String? userEmail = ctx.read<UserCubit>().state.model?.email;
-      if(userEmail == null || userEmail.isEmpty || userEmail.validateEmail() != null){
-        CustomToast.showSimpleToast(msg: "Please Enter your email to change your current password",type: ToastType.error);
+      if (userEmail == null ||
+          userEmail.isEmpty ||
+          userEmail.validateEmail() != null) {
+        CustomToast.showSimpleToast(
+            msg: "Please Enter your email to change your current password",
+            type: ToastType.error);
         AutoRouter.of(ctx).push(const ProfileRoute());
       }
     }
   }
 
-
-  void showUnPaidOrderSheet(BuildContext context){
+  void showUnPaidOrderSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-      return UnPaidOrderSheetWidget(order: _firstUnPaidOrder!, controller: this);
-    },);
+        return UnPaidOrderSheetWidget(
+            order: _firstUnPaidOrder!, controller: this);
+      },
+    );
   }
 
-
-  void viewOrderDetails(BuildContext context){
+  void viewOrderDetails(BuildContext context) {
     Navigator.pop(context);
     AutoRouter.of(context).push(
       OrderDetailsPageRoute(
@@ -187,35 +200,31 @@ class HomeController {
     );
   }
 
-
-
   void onPayOrder(BuildContext context) async {
     Navigator.pop(context);
     BuildContext ctx = getIt<GlobalContext>().context();
     var result = await PayOrder().call(_firstUnPaidOrder!.id);
-    if (result.isNotEmpty ) {
-      if(_firstUnPaidOrder!.isPaymentOnline){
-         AutoRouter.of(ctx).push(
-          PaymentRoute(transactionUrl: result,orderPaymentFromHome: true),
+    if (result.isNotEmpty) {
+      if (_firstUnPaidOrder!.isPaymentOnline) {
+        AutoRouter.of(ctx).push(
+          PaymentRoute(transactionUrl: result, orderPaymentFromHome: true),
         );
-      }else{
+      } else {
         CustomToast.showSimpleToast(
           msg: tr('paymentDone'),
           type: ToastType.success,
         );
-        AutoRouter.of(ctx).push(OrderDetailsPageRoute(isReturnedOrder: false, order: _firstUnPaidOrder!));
+        AutoRouter.of(ctx).push(OrderDetailsPageRoute(
+            isReturnedOrder: false, order: _firstUnPaidOrder!));
       }
-
     }
   }
 
-
-  GenericPaginateParams _historyParams( bool refresh) {
+  GenericPaginateParams _historyParams(bool refresh) {
     return GenericPaginateParams(
       currentPage: 1,
       refresh: refresh,
       pageSize: 12,
     );
   }
-
 }

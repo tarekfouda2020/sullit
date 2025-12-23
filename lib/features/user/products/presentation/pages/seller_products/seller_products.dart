@@ -52,6 +52,8 @@ class SellerProductsPageState extends State<SellerProductsPage> {
               child: PagedGridView<int, Product>(
                 pagingController: controller.pagingController,
                 padding: Dimens.paddingHorizontal20PX,
+                showNewPageProgressIndicatorAsGridChild: false,
+                showNewPageErrorIndicatorAsGridChild: true,
                 gridDelegate: _buildGridDelegate(),
                 builderDelegate: PagedChildBuilderDelegate(
                   itemBuilder: (context, item, index) {
@@ -76,15 +78,18 @@ class SellerProductsPageState extends State<SellerProductsPage> {
                   },
                   noItemsFoundIndicatorBuilder: (cxt) => const BuildEmptyDataView(),
                   newPageProgressIndicatorBuilder: (context) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
-                          child: CircularProgressIndicator(
-                            backgroundColor: context.colors.white,
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: CircularProgressIndicator(
+                              backgroundColor: context.colors.white,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     );
                   },
                 ),

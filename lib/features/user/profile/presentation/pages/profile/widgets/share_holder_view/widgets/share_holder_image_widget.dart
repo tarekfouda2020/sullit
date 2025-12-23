@@ -41,20 +41,20 @@ class ShareHolderImageWidget extends StatelessWidget {
                   ),
                 ),
                 PositionedDirectional(
-                  bottom: 5,
-                  end: 0,
+                  bottom: -1,
+                  end: -4,
                   child: InkWell(
                     onTap: () => controller.removeImage(),
                     child: Container(
                       padding: const EdgeInsets.all(2).r,
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
-                        color: AppColors.snackBarRedError,
+                        color:Color(0xffF4AE00),
                       ),
                       child: Icon(
-                        Icons.close,
+                        Icons.clear_rounded,
                         size: 17.sp,
-                        color: context.colors.white,
+                        color: context.colors.black,
                       ),
                     ),
                   ),

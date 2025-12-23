@@ -55,6 +55,9 @@ class CategoriesController {
 
 
   Future<void> routeToSearch(BuildContext context)async{
+    if(searchController.text.isEmpty){
+      return ;
+    }
    await AutoRouter.of(context).push(
       SearchRoute(
         searchText: searchController.text,

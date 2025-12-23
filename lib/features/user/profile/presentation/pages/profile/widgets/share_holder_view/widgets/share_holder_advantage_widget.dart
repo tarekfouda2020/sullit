@@ -19,7 +19,7 @@ class ShareHolderAdvantageWidget extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 20),
           height: isExpand.data
               ?null
-              :MediaQuery.sizeOf(context).height*0.29,
+              :240,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           decoration: BoxDecoration(
               color: context.colors.white.withAlpha(80),
@@ -42,7 +42,6 @@ class ShareHolderAdvantageWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         GestureDetector(
-                          // onTap: () => controller.isExpandCubit.onUpdateData(!isExpand.data),
                           onTap: () => controller.showTierDescription(context),
                           child: Text(
                            tr("seeAll"),
@@ -57,8 +56,8 @@ class ShareHolderAdvantageWidget extends StatelessWidget {
                 return Column(
                   children: List.generate(5, (index) {
                     return BuildShimmerItem(
-                      width: 100,
-                      height: 20,
+                      width: 250,
+                      height: 10,
                       borderRadius: Dimens.borderRadius20PX,
                     );
                   },),

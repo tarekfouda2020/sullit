@@ -148,6 +148,9 @@ class HomeMainController {
   }
 
   Future<void> routeToSearchPage(BuildContext context) async{
+    if(homeController.searchController.text.isEmpty){
+      return ;
+    }
    await AutoRouter.of(context).push(
       SearchRoute(
         searchText: homeController.searchController.text,

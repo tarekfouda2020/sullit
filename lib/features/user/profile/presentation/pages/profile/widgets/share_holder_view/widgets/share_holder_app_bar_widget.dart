@@ -7,7 +7,7 @@ class ShareHolderAppBarWidget extends StatelessWidget implements PreferredSizeWi
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(right: 20,left: 20,top: 28,bottom: 6),
+      padding: const EdgeInsets.only(right: 20,left: 20,top: 30,bottom: 6),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
             colors: [

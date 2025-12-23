@@ -11,13 +11,6 @@ class DebounceHelper {
 
   StreamSubscription<_DebounceRequest>? _subscription;
 
-  void init() {
-    _subscription ??= _subject
-        .debounceTime(const Duration(milliseconds: 300))
-        .listen((req) {
-      req.onSearch(req.value);
-    });
-  }
 
   void startSearch({
     required String value,
@@ -28,6 +21,14 @@ class DebounceHelper {
 
     // send value and callback
     _subject.add(_DebounceRequest(value, onSearch));
+  }
+
+  void init() {
+    _subscription ??= _subject
+        .debounceTime(const Duration(milliseconds: 300))
+        .listen((req) {
+      req.onSearch(req.value);
+    });
   }
 
   void cancel() {
