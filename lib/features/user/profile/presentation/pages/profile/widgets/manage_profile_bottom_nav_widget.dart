@@ -7,36 +7,32 @@ class ManageProfileBottomNavWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isShareHolder = context.read<UserCubit>().state.model?.isShareHolder;
     return KeyboardVisibilityBuilder(builder: (context, keyboardOpen) {
       return Visibility(
         visible: !keyboardOpen,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (isShareHolder == false)
+            if (!context.isShareHolder)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: LogoutButtonWidget(controller: controller,
-                    margin: EdgeInsets.zero
-                ),
-              ) ,
-            if (isShareHolder == true)
+                child: LogoutButtonWidget(
+                    controller: controller, margin: EdgeInsets.zero),
+              ),
+            if (context.isShareHolder)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: BuildProfileButton(controller: controller,
-                    margin: EdgeInsets.zero
-                ),
+                child: BuildProfileButton(
+                    controller: controller, margin: EdgeInsets.zero),
               ),
             Row(
               children: [
-                if (isShareHolder == true)
+                if (context.isShareHolder)
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsetsDirectional.only(start: 10),
-                      child: LogoutButtonWidget(controller: controller,
-                          margin: EdgeInsets.zero
-                      ),
+                      child: LogoutButtonWidget(
+                          controller: controller, margin: EdgeInsets.zero),
                     ),
                   ),
                 Expanded(

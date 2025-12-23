@@ -154,8 +154,13 @@ class CartPaymentController {
 
 
   Future<void> submitToCreateOrder()async{
+    // getIt<CartNavigateHelper>().goToConfirmationStep(
+    //
+    //   combinedId: 692,
+    // );
     BuildContext ctx = getIt<GlobalContext>().context();
     var params = _orderParams();
+    print("=======>>>>>>>>>>> json data ${params.toJson()} ====>>>");
     var data = await CreateOrder().call(params);
     if (data != null) {
       if (data.transactionUrl != null) {

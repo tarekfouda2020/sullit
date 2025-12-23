@@ -1,16 +1,15 @@
 part of 'coupons_imports.dart';
 
 class CouponsController {
-
   late final HomeController homeController;
   late TabController tabController;
-  final PagingController<int, Coupon> pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, Coupon> pagingController =
+      PagingController(firstPageKey: 1);
 
   int pageSize = 12;
 
-
   List<Widget> pages(BuildContext context) {
-    final isShareHolder = context.read<UserCubit>().state.model?.isShareHolder == true;
+    final isShareHolder = context.isShareHolder;
 
     return [
       if (!isShareHolder) const ProOffers(),
@@ -21,9 +20,10 @@ class CouponsController {
     ];
   }
 
-
-  void initBottomNavigation(TickerProvider ticker, int index,BuildContext context) {
-    tabController = TabController(length: pages(context).length, vsync: ticker, initialIndex: index);
+  void initBottomNavigation(
+      TickerProvider ticker, int index, BuildContext context) {
+    tabController = TabController(
+        length: pages(context).length, vsync: ticker, initialIndex: index);
   }
 
   // CouponsController() {
@@ -33,8 +33,7 @@ class CouponsController {
   //   });
   // }
 
-
-  void changeTab(int index){
+  void changeTab(int index) {
     if (tabController.index != index) {
       tabController.animateTo(index);
     }

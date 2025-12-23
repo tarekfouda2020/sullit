@@ -73,7 +73,7 @@ class ShareHolderAdvantageWidget extends StatelessWidget {
   }
 
   Html _buildHtml(GenericState<VipCurrentPlanDomainModel?> state, BuildContext context, String lang) {
-    return Html(data: getIt<Utilities>().cleanHtml(state.data!.currentSubscription!.description),
+    return Html(data: getIt<Utilities>().cleanHtml(state.data!.currentSubscription?.description ?? ""),
                     style: {
                       "body": Style(
                         color: context.colors.black,

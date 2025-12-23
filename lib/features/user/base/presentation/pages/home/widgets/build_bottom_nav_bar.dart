@@ -8,8 +8,7 @@ class BuildBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isShareHolder = context.read<UserCubit>().state.model?.isShareHolder;
-    return  BlocBuilder<GenericBloc<int>, GenericState<int>>(
+    return BlocBuilder<GenericBloc<int>, GenericState<int>>(
       bloc: controller.homeTabCubit,
       builder: (context, state) {
         return Stack(
@@ -44,11 +43,9 @@ class BuildBottomNavBar extends StatelessWidget {
               height: Platform.isIOS ? 75 : 85,
               onTap: (index) => controller.animateTabsPages(index, context),
             ),
-            if(isShareHolder == true && state.data == controller.tabs.length-1)
-            PositionedDirectional(
-                top: -13,
-                end: 27,
-                child: SvgPicture.asset(Res.crownIcon))
+            if (context.isShareHolder)
+              PositionedDirectional(
+                  top: -13, end: 27, child: SvgPicture.asset(Res.crownIcon)),
           ],
         );
       },

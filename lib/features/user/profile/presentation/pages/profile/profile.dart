@@ -39,16 +39,17 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
             child: Scaffold(
               backgroundColor: context.colors.customBackground,
               resizeToAvoidBottomInset: false,
-              extendBodyBehindAppBar: state.model?.isShareHolder == true,
+              extendBodyBehindAppBar: context.isShareHolder,
               appBar: ProfileAppBarWidget(
                 controller: controller,
                 email: email ?? "",
-                isShareHolder: state.model?.isShareHolder == true,
+                isShareHolder: context.isShareHolder,
               ),
-              body: state.model?.isShareHolder == true
+              body: context.isShareHolder
                   ? ShareHolderView(controller: controller)
                   : SingleChildScrollView(
-                      padding:  const EdgeInsets.only(right: 15, left: 15, bottom: 15),
+                      padding: const EdgeInsets.only(
+                          right: 15, left: 15, bottom: 15),
                       child: Column(
                         children: [
                           BuildProfileImage(controller: controller),

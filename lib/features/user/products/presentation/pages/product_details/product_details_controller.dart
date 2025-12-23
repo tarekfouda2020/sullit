@@ -47,16 +47,19 @@ class ProductDetailsController implements CartSheetController {
       {bool refresh = true, bool resetQty = true}) async {
     var params = _detailsParams(refresh, productId);
     var result = await GetProductDetails().call(params);
-    !refresh ? result?.product.isWishlist = isFav : null;
-    detailsCubit.onUpdateData(result);
-    basicImage = detailsCubit.state.data!.product.images!;
-    if (resetQty) {
-      if ((result?.product.variant?.currentStock ?? 0) > 0) {
-        qtyCubit.onUpdateData(1);
+    if(result!=null){
+      !refresh ? result.product.isWishlist = isFav : null;
+      detailsCubit.onUpdateData(result);
+      basicImage = detailsCubit.state.data!.product.images!;
+      if (resetQty) {
+        if ((result.product.variant?.currentStock ?? 0) > 0) {
+          qtyCubit.onUpdateData(1);
+        }
       }
-    }
-    if (resetQty) {
-      _initVariants(context);
+      // checkIfItemInCart();
+      if (resetQty) {
+        _initVariants(context);
+      }
     }
   }
 
@@ -163,6 +166,8 @@ class ProductDetailsController implements CartSheetController {
         variantPrice.calculablePrice = priceQty.toStringAsFixed(2);
         qtyCubit.onUpdateData(newQty);
         detailsCubit.onUpdateData(detailsCubit.state.data);
+        cartItemsBloc.state.data.subTotal = variantPrice.calculablePrice;
+        cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
       } else {
         CustomToast.showSimpleToast(
             msg:
@@ -183,7 +188,14 @@ class ProductDetailsController implements CartSheetController {
       variantPrice.calculablePrice = priceQty.toStringAsFixed(2);
       qtyCubit.onUpdateData(newQty);
       detailsCubit.onUpdateData(detailsCubit.state.data);
+      cartItemsBloc.state.data.subTotal = variantPrice.calculablePrice;
+      cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
     }
+    // if(qtyCubit.state.data == 1){
+    //   var price = double.parse(variantPrice.calculablePrice!);
+    //   var cartSubTotal = double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
+    //   cartItemsBloc.state.data.subTotal = (cartSubTotal -price).toStringAsFixed(2);
+    // }
   }
 
   void onChangeFav(BuildContext context, Product item) {
@@ -215,6 +227,48 @@ class ProductDetailsController implements CartSheetController {
       ),
     );
   }
+
+
+  void checkIfItemInCart(){
+    var cartProducts = getIt<CartHelper>().cartItemsBloc.state.data.items;
+    var cartProductsIds = cartProducts?.map((e) => e.productId).toList();
+    var product = detailsCubit.state.data!.product;
+    if(cartProductsIds?.contains(product.id) == true){
+      var cartProduct = cartProducts?.firstWhere((element) => element.productId == product.id);
+      product.addedQtyToCart = cartProduct?.quantity;
+      qtyCubit.onUpdateData(cartProduct?.quantity ?? 1);
+    }
+  }
+
+  void updateTheSameItemInTopAndRelated(CartItem cartItem){
+    List<Product> topSelling = detailsCubit.state.data!.topProducts;
+    List<Product> relatedProducts = detailsCubit.state.data!.relatedProducts;
+    List<int> topIds = topSelling.map((e) => e.id!).toList();
+    List<int> relatedIds = relatedProducts.map((e) => e.id!).toList();
+    _updateInProductsList(relatedIds, cartItem, relatedProducts);
+    _updateInProductsList(topIds, cartItem, topSelling);
+  }
+
+  void _updateInProductsList(List<int> topIds, CartItem cartItem, List<Product> relatedProducts) {
+      if(topIds.contains(cartItem.productId)){
+      var productInTopSelling = relatedProducts.firstWhere((element) => element.id == cartItem.productId);
+      productInTopSelling.addedQtyToCart = 0 ;
+      detailsCubit.onUpdateData(detailsCubit.state.data);
+    }
+  }
+
+
+  void updateTheSameProduct(CartItem cartItem,{bool isDelete = false}){
+    if(cartItem.productId == productId){
+      qtyCubit.onUpdateData(
+          isDelete
+              ? 1
+              : cartItem.quantity
+      );
+    }
+  }
+
+
 
   void onAddToCart(BuildContext context) {
     getIt<CartHelper>().addProductToCart(
@@ -258,11 +312,7 @@ class ProductDetailsController implements CartSheetController {
         cartItem.quantity = newQty;
         cartItemsBloc.onUpdateData(success);
         _updateCartCountFromCart(success);
-        if (cartItem.productId == detailsCubit.state.data?.product.id) {
-          // detailsCubit.state.data.product.variant.
-          // await getProductDetails(context, productId);
-          // increaseQty();
-        }
+        updateTheSameProduct(cartItem);
       }
       // getCartItems();
     } else {
@@ -285,31 +335,27 @@ class ProductDetailsController implements CartSheetController {
         cartItem.quantity = newQty;
         cartItemsBloc.onUpdateData(success);
         _updateCartCountFromCart(success);
-        if (cartItem.productId == detailsCubit.state.data?.product.id) {
-          // decreaseQty();
-        }
+        updateTheSameProduct(cartItem);
         getCartItems(refresh: true);
       }
     }
   }
 
   @override
-  Future<void> deleteItemFromCart(
-      BuildContext context, CartItem cartItem) async {
+  Future<void> deleteItemFromCart(BuildContext context, CartItem cartItem) async {
     getIt<LoadingHelper>().showLoadingDialog();
     var data = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
     if (data) {
       getIt<LoadingHelper>().dismissDialog();
-      var newSubTotal =
-          cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
+      var newSubTotal = cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
       cartItemsBloc.state.data.calculableTotal = newSubTotal;
+      updateTheSameItemInTopAndRelated(cartItem);
+      updateTheSameProduct(cartItem,isDelete: true);
       cartItemsBloc.state.data.items!.remove(cartItem);
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
       _updateCartCountFromCart(cartItemsBloc.state.data);
-      CustomToast.showSimpleToast(
-          msg: tr('itemDeleted'), type: ToastType.success);
+      CustomToast.showSimpleToast(msg: tr('itemDeleted'), type: ToastType.success);
       if ((cartItemsBloc.state.data.items ?? <CartItem>[]).isEmpty) {
-        // context.read<CountCubit>().onUpdateCount(0, countCubit.discount);
         Navigator.pop(context);
       }
       getCartItems();

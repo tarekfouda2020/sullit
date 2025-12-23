@@ -123,4 +123,19 @@ class ConfirmBuyingController{
   }
 
 
+
+  void showTierFullName(BuildContext context,String description, String title){
+    showModalBottomSheet(
+      context: context,
+      useRootNavigator: true,
+      isDismissible: true,
+      isScrollControlled: false,
+      enableDrag: false,
+      builder: (context) {
+        return FullTierNameWidget(description: description,title:title,);
+      },
+    );
+  }
+
+
 }
