@@ -12,8 +12,7 @@ class BuildProducts extends StatelessWidget {
       child: GridViewPagination<Product>(
         pagingController: detailsController.pagingController,
         onRefresh: () async => await detailsController.refresh(),
-        firstPageProgressIndicatorBuilder: (_) =>
-            const BuildLoadingCatsProducts(),
+        firstPageProgressIndicatorBuilder: (_) => const BuildLoadingCatsProducts(),
         itemBuilder: (_, item, index) => BuildProductItem(
           productModel: item,
           onFavRefresh: () => detailsController.onFavChanged(item),

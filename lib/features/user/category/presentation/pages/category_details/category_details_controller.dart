@@ -545,6 +545,18 @@ class CategoryDetailsController implements CartSheetController {
     FocusScope.of(context).unfocus();
     callProductsSearch();
   }
+  void whileWriting(String value) {
+    DebounceHelper.instance.startSearch(
+      value: value,
+      onSearch: (val) => callProductsSearch(),
+    );
+
+    if (value.isNotEmpty) {
+      showClearIcon.onUpdateData(true);
+    } else {
+      showClearIcon.onUpdateData(false);
+    }
+  }
 
   void callProductsSearch() {
     pagingController.refresh();
@@ -558,18 +570,7 @@ class CategoryDetailsController implements CartSheetController {
     getPopularProducts(1);
   }
 
-  void whileWriting(String value) {
-    DebounceHelper.instance.startSearch(
-      value: value,
-      onSearch: (val) => callProductsSearch(),
-    );
 
-    if (value.isNotEmpty) {
-      showClearIcon.onUpdateData(true);
-    } else {
-      showClearIcon.onUpdateData(false);
-    }
-  }
 
   void showBrandsSheet(BuildContext context) {
     showModalBottomSheet(

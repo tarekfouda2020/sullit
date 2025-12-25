@@ -2,12 +2,13 @@ part of 'share_holder_view_widgets_imports.dart';
 
 class ShareHolderAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final ProfileController controller;
-  const ShareHolderAppBarWidget({super.key, required this.controller});
+  final String email;
+  const ShareHolderAppBarWidget({super.key, required this.controller, required this.email});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(right: 20,left: 20,top: 30,bottom: 6),
+      padding: const EdgeInsets.only(right: 20,left: 20,top: 25,bottom: 6),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
             colors: [
@@ -21,7 +22,7 @@ class ShareHolderAppBarWidget extends StatelessWidget implements PreferredSizeWi
           Padding(
             padding: const EdgeInsets.only(top: 5),
             child: GestureDetector(
-                onTap: () => Navigator.of(context).pop(),
+                onTap: () => controller.onPressBack(context, email),
                 child: Icon(Icons.arrow_back_outlined, size: 20.sp,color: context.colors.black,)
             ),
           ),

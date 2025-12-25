@@ -15,10 +15,10 @@ class ProfileAppBarWidget extends StatelessWidget implements PreferredSizeWidget
           title: tr('manageProfile'),
           onBack: () => controller.onPressBack(context, email),
         ),
-        child: ShareHolderAppBarWidget(controller: controller,)
+        child: ShareHolderAppBarWidget(controller: controller,email: email,)
     );
   }
 
   @override
-  Size get preferredSize =>  const Size.fromHeight(78);
+  Size get preferredSize =>  const Size.fromHeight(90);
 }

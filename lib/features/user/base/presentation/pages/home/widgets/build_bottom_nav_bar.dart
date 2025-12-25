@@ -45,7 +45,9 @@ class BuildBottomNavBar extends StatelessWidget {
             ),
             if (context.isShareHolder)
               PositionedDirectional(
-                  top: -13, end: 27, child: SvgPicture.asset(Res.crownIcon)),
+                  top: state.data == controller.tabs.length - 1 ? -13 : -8,
+                  end: 28,
+                  child: SvgPicture.asset(Res.crownIcon)),
           ],
         );
       },

@@ -650,6 +650,7 @@ class CartPaymentController {
       isDismissible: true,
       isScrollControlled: false,
       enableDrag: false,
+      backgroundColor: Colors.transparent,
       builder: (context) {
         return FullTierNameWidget(description: description,title:title,);
       },

@@ -14,43 +14,52 @@ class _ProOffersState extends State<ProOffers> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: VipOffersWidget(
-                onTap: () => controller.routeToMembershipSubscribe(context),
-                buttonText: tr("subscribeNow"),
-              ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 8),
+                  child: CustomSearchFiledWidget(
+                    txtController: controller.searchFieldCtr,
+                    onPressSearch: () =>controller.onPressSearch(context),
+                    onChange: (value) => controller.whileWriting(value) ,
+                    height: Dimens.dp50,
+                  ),
+                ),
+                Gaps.vGap10,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: VipOffersWidget(
+                    onTap: () => controller.routeToMembershipSubscribe(context),
+                    buttonText: tr("subscribeNow"),
+                  ),
+                ),
+                Gaps.vGap10,
+                Expanded(
+                  child: GridViewPagination<Product>(
+                    pagingController: controller.vipOffersPagingController,
+                    onRefresh: () async =>
+                        controller.vipOffersPagingController.refresh(),
+                    firstPageProgressIndicatorBuilder: (_) =>
+                        const BuildLoadingProductsGridView(),
+                    showNewPageProgressIndicatorAsGridChild: false,
+                    noItemsFoundIndicatorBuilder: (context) =>
+                        const BuildEmptyDataView(),
+                    itemBuilder: (_, item, index) => BuildProductItem(
+                      productModel: item,
+                      showVipDiscount: item.hasVipOffer,
+                      onFavRefresh: () => controller.onChangeFav(item),
+                      onRefresh: () => controller.getVipOffers(1),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Gaps.vGap10,
-            Expanded(
-              child: GenericListView<Product>(
-                type: ListViewType.gridApi,
-                onRefresh: controller.getArrival,
-                cubit: controller.vipOffersCubit,
-                runSpacing: 15.r,
-                spacing: 15.r,
-                gridCrossCount: 2,
-                gridItemHeight: 220.spMin,
-                padding: Dimens.paddingH20V15,
-                itemBuilder: (_, index, item) {
-                  item as Product;
-                  return BuildProductItem(
-                    productModel: item,
-                    showVipDiscount: item.hasVipOffer,
-                    onFavRefresh: () => controller.onChangeFav(item),
-                    onRefresh: () => controller.getArrival(refresh: true),
-                  );
-                },
-                loadingWidget: const BuildLoadingProductsGridView(),
-                emptyWidget: const BuildEmptyDataView(),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

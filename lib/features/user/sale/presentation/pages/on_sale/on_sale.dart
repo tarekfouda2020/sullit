@@ -23,43 +23,43 @@ class _OnSaleState extends State<OnSale> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       // appBar: BuildHomeAppBar(homeController: widget.homeController),
-      body:
-          BlocBuilder<GenericBloc<List<Product>>, GenericState<List<Product>>>(
-        bloc: controller.onSaleCubit,
-        builder: (context, state) {
-          if (state is GenericUpdateState) {
-            if (state.data.isNotEmpty) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 122),
-                child: GenericListView<Product>(
-                   type: ListViewType.gridApi,
-                   onRefresh: controller.getOnSale,
-                   cubit: controller.onSaleCubit,
-                   runSpacing: 15.r,
-                   spacing: 15.r,
-                   gridCrossCount: 2,
-                   gridItemHeight: 220.spMin,
-                   padding: Dimens.paddingH20V15,
-                   itemBuilder: (_, index, item) {
-                     item as Product;
-                     return BuildProductItem(
-                       productModel: item,
-                       showVipDiscount: item.hasVipOffer,
-                       onFavRefresh: () => controller.onChangeFav(state.data[index]),
-                       onRefresh: () => controller.getOnSale(refresh: true),
-                     );
-                   },
-                   loadingWidget: const BuildLoadingProductsGridView(),
-                   emptyWidget: const BuildEmptyDataView(),
-                 ),
-              );
-            } else {
-              return const BuildEmptyDataView();
-            }
-          } else {
-            return const BuildLoadingProductsGridView();
-          }
-        },
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 8),
+            child: CustomSearchFiledWidget(
+              txtController: controller.searchFieldCtr,
+              onPressSearch: () =>controller.onPressSearch(context),
+              onChange: (value) => controller.whileWriting(value) ,
+              height: Dimens.dp50,
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 122),
+              child: CustomRefreshIndicatorWidget(
+                onRefresh: () async => await controller.getOnSale(1),
+                child: GridViewPagination<Product>(
+                  pagingController: controller.onSalePagingController,
+                  onRefresh: () async =>
+                      controller.onSalePagingController.refresh(),
+                  firstPageProgressIndicatorBuilder: (_) =>
+                  const BuildLoadingProductsGridView(),
+                  showNewPageProgressIndicatorAsGridChild: false,
+                  noItemsFoundIndicatorBuilder: (context) =>
+                  const BuildEmptyDataView(),
+                  itemBuilder: (_, item, index) =>
+                      BuildProductItem(
+                        productModel: item,
+                        showVipDiscount: item.hasVipOffer,
+                        onFavRefresh: () => controller.onChangeFav(item),
+                        onRefresh: () => controller.getOnSale(1),
+                      ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

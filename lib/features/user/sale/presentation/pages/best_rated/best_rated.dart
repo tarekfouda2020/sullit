@@ -20,25 +20,39 @@ class _BestRatedState extends State<BestRated> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      body: Padding(
-        padding: const EdgeInsets.only(bottom: 122),
-        child: GenericListView(
-          type: ListViewType.gridApi,
-          onRefresh: controller.getBestRated,
-          cubit: controller.bestRatedCubit,
-          runSpacing: 15.r,
-          spacing: 15.r,
-          gridCrossCount: 2,
-          gridItemHeight: 220.spMin,
-          padding: Dimens.paddingAll15PX,
-          itemBuilder: (_, index, item) => BuildProductItem(
-            productModel: item,
-            onFavRefresh: () => controller.onChangeFav(item),
-            onRefresh: () => controller.getBestRated(refresh: true),
+      body: Column(
+        children: [
+          Gaps.vGap10,
+          Padding(
+            padding: const EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 8),
+            child: CustomSearchFiledWidget(
+              txtController: controller.searchFieldCtr,
+              onPressSearch: () =>controller.onPressSearch(context),
+              onChange: (value) => controller.whileWriting(value) ,
+              height: Dimens.dp50,
+            ),
           ),
-          loadingWidget: const BuildLoadingProductsGridView(),
-          emptyWidget: const BuildEmptyDataView(),
-        ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 122),
+            child: CustomRefreshIndicatorWidget(
+              onRefresh: () async => await controller.getBestRated(1),
+              child: GridViewPagination<Product>(
+                pagingController: controller.bestRatedPagingController,
+                onRefresh: () async =>
+                    controller.bestRatedPagingController.refresh(),
+                firstPageProgressIndicatorBuilder: (_) => const BuildLoadingProductsGridView(),
+                showNewPageProgressIndicatorAsGridChild: false,
+                noItemsFoundIndicatorBuilder: (context) =>
+                    const BuildEmptyDataView(),
+                itemBuilder: (_, item, index) => BuildProductItem(
+                  productModel: item,
+                  onFavRefresh: () => controller.onChangeFav(item),
+                  onRefresh: () => controller.getBestRated(1),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

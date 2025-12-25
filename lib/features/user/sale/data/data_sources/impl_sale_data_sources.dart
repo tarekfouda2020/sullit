@@ -11,6 +11,7 @@ import 'package:flutter_tdd/features/user/sale/data/data_sources/sale_data_sourc
 import 'package:flutter_tdd/features/user/sale/data/models/coupon_model/coupon_model.dart';
 import 'package:flutter_tdd/features/user/sale/data/models/flash_sale_model/flash_sale_model.dart';
 import 'package:flutter_tdd/features/user/sale/data/models/sale_details_model/sale_details_model.dart';
+import 'package:flutter_tdd/features/user/sale/domain/entities/offers_params_widget.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: SaleDataSources)
@@ -69,59 +70,60 @@ class ImplSaleRepository extends SaleDataSources {
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getBestRated(bool param) async {
+  Future<Either<Failure, List<ProductModel>>> getBestRated(OffersParamsWidget param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.getBestRated,
+      url: ApiNames.getBestRated + param.getUrl(),
       requestMethod: RequestMethod.get,
-      refresh: param,
+      refresh: param.paginateParams.refresh,
       responseType: ResType.list,
       showLoader: true,
       toJsonFunc: (json) => List<ProductModel>.from(
         json.map((e) => ProductModel.fromJson(e)),
       ),
-      responseKey: (data) => data["data"],
+      responseKey: (data) => data["data"]['products'],
     );
     return await GenericHttpImpl<List<ProductModel>>().call(model);
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getNewArrival(bool param) async {
+  Future<Either<Failure, List<ProductModel>>> getNewArrival(OffersParamsWidget param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.getNewArrival,
+      url: ApiNames.getNewArrival + param.getUrl(),
       requestMethod: RequestMethod.get,
-      refresh: param,
+      refresh: param.paginateParams.refresh,
       responseType: ResType.list,
       showLoader: true,
       toJsonFunc: (json) => List<ProductModel>.from(
         json.map((e) => ProductModel.fromJson(e)),
       ),
-      responseKey: (data) => data["data"],
+      responseKey: (data) => data["data"]['products'],
     );
     return await GenericHttpImpl<List<ProductModel>>().call(model);
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getOnSale(bool param) async {
+  Future<Either<Failure, List<ProductModel>>> getOnSale(OffersParamsWidget param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.getOnSale,
+      url: ApiNames.getOnSale + param.getUrl(),
       requestMethod: RequestMethod.get,
-      refresh: param,
+      refresh: param.paginateParams.refresh,
       responseType: ResType.list,
       showLoader: true,
       toJsonFunc: (json) => List<ProductModel>.from(
         json.map((e) => ProductModel.fromJson(e)),
       ),
-      responseKey: (data) => data["data"],
+      responseKey: (data) => data["data"]['products'],
     );
     return await GenericHttpImpl<List<ProductModel>>().call(model);
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getVipOffers(bool param) async {
+  Future<Either<Failure, List<ProductModel>>> getVipOffers(
+      OffersParamsWidget param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.vipProducts,
+      url: ApiNames.vipProducts + param.getUrl(),
       requestMethod: RequestMethod.get,
-      refresh: param,
+      refresh: param.paginateParams.refresh,
       responseType: ResType.list,
       showLoader: true,
       toJsonFunc: (json) => List<ProductModel>.from(
@@ -134,11 +136,11 @@ class ImplSaleRepository extends SaleDataSources {
 
   @override
   Future<Either<Failure, List<ProductModel>>> getShareholderProducts(
-      GenericPaginateParams param) async {
+      OffersParamsWidget param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.shareholderProducts + param.paramsToQuery(),
+      url: ApiNames.shareholderProducts + param.getUrl(),
       requestMethod: RequestMethod.get,
-      refresh: param.refresh,
+      refresh: param.paginateParams.refresh,
       responseType: ResType.list,
       showLoader: true,
       toJsonFunc: (json) => List<ProductModel>.from(

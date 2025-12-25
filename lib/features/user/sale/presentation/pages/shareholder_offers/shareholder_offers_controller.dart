@@ -1,6 +1,9 @@
 part of 'shareholder_offers_imports.dart';
 
 class ShareholderOffersController {
+
+  final TextEditingController searchFieldCtr = TextEditingController();
+
   final PagingController<int, Product> shareholderOffersPagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 10;
@@ -13,7 +16,7 @@ class ShareholderOffersController {
   }
 
   Future<void> getShareholderProducts(int page, {bool refresh = true}) async {
-    var params = _shareholderOffersParams(refresh, page);
+    var params = _shareHolderOffers(refresh, page);
     var result = await GetShareholderProducts().call(params);
 
     var isLastPage = result.length < pageSize;
@@ -31,7 +34,9 @@ class ShareholderOffersController {
   GenericPaginateParams _shareholderOffersParams(
       bool refresh, int currentPage) {
     return GenericPaginateParams(
-        pageSize: pageSize, refresh: refresh, currentPage: currentPage);
+        pageSize: pageSize,
+        refresh: refresh,
+        currentPage: currentPage);
   }
 
   void onChangeFav(Product item) {
@@ -51,4 +56,34 @@ class ShareholderOffersController {
       }
     }
   }
+
+
+  OffersParamsWidget _shareHolderOffers(bool refresh, int currentPage) {
+    return OffersParamsWidget(
+        paginateParams: _shareholderOffersParams(refresh, currentPage),
+      isVipProducts: true,
+    );
+  }
+
+
+
+  void onPressSearch(BuildContext context) {
+    FocusScope.of(context).unfocus();
+    callProductsSearch();
+  }
+
+  void whileWriting(String value) {
+    DebounceHelper.instance.startSearch(
+      value: value,
+      onSearch: (val) => callProductsSearch(),
+    );
+  }
+
+  void callProductsSearch() {
+    shareholderOffersPagingController.refresh();
+    getShareholderProducts(1);
+  }
+
+
+
 }

@@ -18,7 +18,7 @@ class AllBrandsSheetWidget extends StatelessWidget {
         children: [
           BottomSheetHeaderWidget(title: tr("brands")),
           Gaps.vGap15,
-          BrandsSearchFiledWidget(
+          CustomSearchFiledWidget(
             txtController: controller.brandsSearchCtr,
             onPressSearch: () => controller.refreshBrands(context),
             onChange: (value) => DebounceHelper.instance.startSearch(

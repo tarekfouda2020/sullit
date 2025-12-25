@@ -299,7 +299,7 @@ class ProfileController {
 
   void onPressBack(BuildContext context,String? email){
     if(email == null || email.isEmpty){
-    CustomToast.showSimpleToast(msg: "Please enter a valid email.");
+    CustomToast.showSimpleToast(msg: tr("please_enter_valid_email"));
     return ;
     }
     AutoRouter.of(context).pop();

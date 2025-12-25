@@ -12,9 +12,9 @@ class RetrieveOrderController {
 
   RetrieveOrderController(Orders model) {
     orderModel = model;
-    orderModel.orderDetails.forEach((element) {
+    for (var element in orderModel.orderDetails) {
       element.qtyCubit = GenericBloc(element.availableReturnQty);
-    });
+    }
     orderCubit.onUpdateData(orderModel.orderDetails);
   }
 
@@ -28,6 +28,8 @@ class RetrieveOrderController {
     if (qty < model.availableReturnQty) {
       var newQty = qty + 1;
       model.qtyCubit?.onUpdateData(newQty);
+    }else{
+      CustomToast.showSimpleToast(msg: "Only ${model.availableReturnQty} available for return",type: ToastType.info);
     }
   }
 
@@ -79,7 +81,7 @@ class RetrieveOrderController {
         .toList();
     var productQty = selectedProducts
         .map((e) => {
-              "product_id": "${e.product?.id}",
+              "product_id": "${e.id}",
               "quantity": "${e.qtyCubit?.state.data}",
             })
         .toList();

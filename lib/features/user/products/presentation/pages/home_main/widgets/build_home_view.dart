@@ -18,6 +18,19 @@ class BuildHomeView extends StatelessWidget {
         padding: Dimens.paddingVertical10PXHorizontal20PX,
         child: Column(
           children: [
+            TextButton(
+                onPressed: () async{
+                  await FacebookEventsHelper.instance.facebookAppEvents.logEvent(
+                    name: 'button_clicked',
+                    parameters: {
+                      'button_name': 'example_button',
+                      'screen': 'Home',
+                    },
+                  );
+                  print("=========>>>>>> Logged Facebook event! <<<<<<<<<===========");
+                }, child: Text("drfvtgbyhnjmk,l",
+              style: AppTextStyle.s15_w500(color: context.colors.secondary),
+            )),
             BuildHomeSwiper(slider: homeDomainModel.sliders),
             Gaps.vGap25,
             const AdvantagesWidget(),
@@ -72,7 +85,8 @@ class BuildHomeView extends StatelessWidget {
                 flashSales: homeDomainModel.flashSales!,
                 controller: controller,
               ),
-            Gaps.vGap20
+            Gaps.vGap20,
+
           ],
         ),
       ),

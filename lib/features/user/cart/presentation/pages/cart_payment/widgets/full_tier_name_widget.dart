@@ -20,8 +20,19 @@ class FullTierNameWidget extends StatelessWidget {
           Gaps.vGap5,
           BottomSheetHeaderWidget(title: title),
           Gaps.vGap15,
-          Text(description,
-          style: AppTextStyle.s17_w600(color: context.colors.black),
+          Row(
+            children: [
+              Image.asset(Res.shareHolderImage,
+                width: 40,
+                height: 40,
+              ),
+              Gaps.hGap15,
+              Flexible(
+                child: Text(description,
+                style: AppTextStyle.s17_w600(color: context.colors.black),
+                ),
+              ),
+            ],
           ),
           Gaps.vGap30
         ],

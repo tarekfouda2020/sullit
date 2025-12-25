@@ -850,5 +850,7 @@
   "shareholders": "المساهمون",
   "your_data": "بياناتك",
   "shareholders_exclusive": "حصري للمساهمين",
+  "please_enter_valid_email": "الرجاء إدخال بريد إلكتروني صالح.",
+  "enter_email_to_change_password": "الرجاء إدخال بريدك الإلكتروني لتغيير كلمة المرور الحالية.",
   "tier_not_available": "هذه الفئة غير متوفرة حاليًا للاشتراك. يرجى اختيار فئة أخرى. شكرًا لك"
 }

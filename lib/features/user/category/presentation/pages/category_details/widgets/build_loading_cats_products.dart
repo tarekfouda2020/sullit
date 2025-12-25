@@ -6,7 +6,7 @@ class BuildLoadingCatsProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height,
+      height: MediaQuery.sizeOf(context).height,
       child: GridView.builder(
         itemCount: 12,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

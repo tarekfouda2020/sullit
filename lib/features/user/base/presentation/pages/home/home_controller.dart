@@ -173,7 +173,7 @@ class HomeController {
           userEmail.isEmpty ||
           userEmail.validateEmail() != null) {
         CustomToast.showSimpleToast(
-            msg: "Please Enter your email to change your current password",
+            msg: tr("enter_email_to_change_password"),
             type: ToastType.error);
         AutoRouter.of(ctx).push(const ProfileRoute());
       }
