@@ -18,15 +18,15 @@ class _ShareholderOffersState extends State<ShareholderOffers> {
       backgroundColor: context.colors.customBackground,
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 8),
-            child: CustomSearchFiledWidget(
-              txtController: controller.searchFieldCtr,
-              onPressSearch: () =>controller.onPressSearch(context),
-              onChange: (value) => controller.whileWriting(value) ,
-              height: Dimens.dp50,
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 8),
+          //   child: CustomSearchFiledWidget(
+          //     txtController: controller.searchFieldCtr,
+          //     onPressSearch: () =>controller.onPressSearch(context),
+          //     onChange: (value) => controller.whileWriting(value) ,
+          //     height: Dimens.dp50,
+          //   ),
+          // ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 122),
