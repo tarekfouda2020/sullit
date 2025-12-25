@@ -98,6 +98,7 @@ dependencies:
   device_info_plus: ^11.5.0
   barcode_scan2: ^4.3.0
   barcode: ^2.2.9
+  facebook_app_events: ^0.24.0
   timeago:
   timezone:
   country_calling_code_picker:
