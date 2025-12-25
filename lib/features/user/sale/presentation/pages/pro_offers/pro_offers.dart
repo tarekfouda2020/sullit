@@ -18,16 +18,16 @@ class _ProOffersState extends State<ProOffers> {
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 15,right: 15,bottom: 8),
-              child: CustomSearchFiledWidget(
-                txtController: controller.searchFieldCtr,
-                onPressSearch: () =>controller.onPressSearch(context),
-                onChange: (value) => controller.whileWriting(value) ,
-                height: Dimens.dp50,
-              ),
-            ),
-            Gaps.vGap10,
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 15,right: 15,bottom: 8),
+            //   child: CustomSearchFiledWidget(
+            //     txtController: controller.searchFieldCtr,
+            //     onPressSearch: () =>controller.onPressSearch(context),
+            //     onChange: (value) => controller.whileWriting(value) ,
+            //     height: Dimens.dp50,
+            //   ),
+            // ),
+            // Gaps.vGap10,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: VipOffersWidget(
