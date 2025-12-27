@@ -86,7 +86,7 @@ class OrderDetailsPageController {
     getIt<LoadingHelper>().showLoadingDialog();
     var result = await CancelOrder().call(model.id);
     if (result.isNotEmpty) {
-      CustomToast.showSimpleToast(msg: result);
+      CustomToast.showSimpleToast(msg: result,type: ToastType.success);
       model.availableCancelOrder = false;
       AutoRouter.of(context).pop(true);
     }

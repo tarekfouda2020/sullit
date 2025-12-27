@@ -4,15 +4,18 @@ class BuildProductButtons extends StatelessWidget {
   final ProductDetailsController controller;
   final ProductDetailsDomainModel detailsModel;
 
-  const BuildProductButtons({super.key, required this.controller, required this.detailsModel});
+  const BuildProductButtons(
+      {super.key, required this.controller, required this.detailsModel});
 
   @override
   Widget build(BuildContext context) {
     bool hasVariant = detailsModel.product.variant != null;
     return Visibility(
-      visible: hasVariant ? detailsModel.product.variant!.currentStock! > 0 : false,
+      visible:
+          hasVariant ? detailsModel.product.variant!.currentStock! > 0 : false,
       child: Padding(
-        padding: const EdgeInsetsDirectional.only(top: 10,bottom: 18,start: 20,end: 45),
+        padding: const EdgeInsetsDirectional.only(
+            top: 10, bottom: 18, start: 20, end: 45),
         child: SizedBox(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -44,7 +47,8 @@ class BuildProductButtons extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(tr("total"),
+                      Text(
+                        tr("total"),
                         style: AppTextStyle.s12_w400(
                           color: context.colors.textColor,
                         ),
@@ -54,11 +58,11 @@ class BuildProductButtons extends StatelessWidget {
                         bloc: controller.qtyCubit,
                         builder: (context, state) {
                           return DirhamPrice(
-                           amount:  "${detailsModel.product.variant?.calculablePrice}",
+                            amount:
+                                "${detailsModel.product.variant?.calculablePrice}",
                             currencyOffset: -0.5,
                             currencyStyle: AppTextStyle.s18_w400(
                               color: context.colors.primary,
-
                             ),
                             // "${detailsModel.product.variant?.calculablePrice} ${detailsModel.product.currencySymbol}",
                             textStyle: AppTextStyle.s14_w600(
@@ -72,16 +76,17 @@ class BuildProductButtons extends StatelessWidget {
                 ],
               ),
               Gaps.vGap10,
-              BlocBuilder<GenericBloc<CartDomainModel>,GenericState<CartDomainModel>>(
-                bloc: controller.cartItemsBloc,
-                  builder: (context, state) {
-                    return  Visibility(
-                      visible: state.data.minimumStatus == false,
-                      child: CartMinAmountNeededWidget(
-                        minAmount: controller.minAmountRemain,
-                      ),
-                    );
-                  },),
+              BlocBuilder<GenericBloc<String>, GenericState<String>>(
+                bloc: controller.remainingAmountBloc,
+                builder: (context, state) {
+                  return Visibility(
+                    visible: (double.tryParse(state.data) ?? 0) > 0,
+                    child: CartMinAmountNeededWidget(
+                      minAmount: state.data,
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),

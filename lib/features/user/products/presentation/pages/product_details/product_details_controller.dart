@@ -10,13 +10,13 @@ class ProductDetailsController implements CartSheetController {
   final GenericBloc<bool> showAppBarTitleCubit = GenericBloc(false);
   final GenericBloc<ProductDetailsDomainModel?> detailsCubit =
       GenericBloc(null);
+  final GenericBloc<String> remainingAmountBloc = GenericBloc("0.0");
   @override
   GenericBloc<CartDomainModel> get cartItemsBloc =>
       getIt<CartHelper>().cartItemsBloc;
   final ScrollController scrollController = ScrollController();
   late bool isResale;
   late bool isFav;
-  double? _minAmount;
 
   // late bool isFav;
   @override
@@ -28,8 +28,8 @@ class ProductDetailsController implements CartSheetController {
       BuildContext context, this.productId, this.isResale, this.isFav) {
     getProductDetails(context, productId, refresh: false);
     getProductDetails(context, productId);
-    getCartItems(refresh: false);
-    getCartItems();
+    // getCartItems(refresh: false);
+    // getCartItems();
     onScroll();
   }
 
@@ -47,16 +47,20 @@ class ProductDetailsController implements CartSheetController {
       {bool refresh = true, bool resetQty = true}) async {
     var params = _detailsParams(refresh, productId);
     var result = await GetProductDetails().call(params);
-    if(result!=null){
+    if (result != null) {
       !refresh ? result.product.isWishlist = isFav : null;
       detailsCubit.onUpdateData(result);
       basicImage = detailsCubit.state.data!.product.images!;
       if (resetQty) {
         if ((result.product.variant?.currentStock ?? 0) > 0) {
           qtyCubit.onUpdateData(1);
+          if (!refresh) {
+            increaseQty(isInit: !refresh);
+          }
         }
       }
-      // checkIfItemInCart();
+      checkIfItemInCart();
+      _calculateRemainingAmount();
       if (resetQty) {
         _initVariants(context);
       }
@@ -155,19 +159,18 @@ class ProductDetailsController implements CartSheetController {
     }
   }
 
-  void increaseQty() {
+  void increaseQty({bool isInit = false}) {
     var variantPrice = detailsCubit.state.data?.product.variant;
     var price = double.parse(variantPrice!.calculablePrice!);
     price = price / qtyCubit.state.data;
     if (variantPrice.currentStock! >= 1) {
       if (variantPrice.currentStock! > qtyCubit.state.data) {
-        var newQty = qtyCubit.state.data + 1;
+        var newQty = qtyCubit.state.data + (isInit ? 0 : 1);
         var priceQty = newQty * price;
         variantPrice.calculablePrice = priceQty.toStringAsFixed(2);
         qtyCubit.onUpdateData(newQty);
         detailsCubit.onUpdateData(detailsCubit.state.data);
-        cartItemsBloc.state.data.subTotal = variantPrice.calculablePrice;
-        cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+        _calculateRemainingAmount();
       } else {
         CustomToast.showSimpleToast(
             msg:
@@ -188,8 +191,7 @@ class ProductDetailsController implements CartSheetController {
       variantPrice.calculablePrice = priceQty.toStringAsFixed(2);
       qtyCubit.onUpdateData(newQty);
       detailsCubit.onUpdateData(detailsCubit.state.data);
-      cartItemsBloc.state.data.subTotal = variantPrice.calculablePrice;
-      cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+      _calculateRemainingAmount();
     }
     // if(qtyCubit.state.data == 1){
     //   var price = double.parse(variantPrice.calculablePrice!);
@@ -217,30 +219,19 @@ class ProductDetailsController implements CartSheetController {
     onChangeCompare(product);
   }
 
-  void onBuyProduct(BuildContext context) {
-    getIt<CartHelper>().addProductToCart(
-      context,
-      qtyCubit.state.data,
-      detailsCubit.state.data?.product.variant?.id,
-      onAddCartFunc: () => AutoRouter.of(context).push(
-        const CartRoute(),
-      ),
-    );
-  }
-
-
-  void checkIfItemInCart(){
+  void checkIfItemInCart() {
     var cartProducts = getIt<CartHelper>().cartItemsBloc.state.data.items;
     var cartProductsIds = cartProducts?.map((e) => e.productId).toList();
     var product = detailsCubit.state.data!.product;
-    if(cartProductsIds?.contains(product.id) == true){
-      var cartProduct = cartProducts?.firstWhere((element) => element.productId == product.id);
+    if (cartProductsIds?.contains(product.id) == true) {
+      var cartProduct = cartProducts
+          ?.firstWhere((element) => element.productId == product.id);
       product.addedQtyToCart = cartProduct?.quantity;
       qtyCubit.onUpdateData(cartProduct?.quantity ?? 1);
     }
   }
 
-  void updateTheSameItemInTopAndRelated(CartItem cartItem){
+  void updateTheSameItemInTopAndRelated(CartItem cartItem) {
     List<Product> topSelling = detailsCubit.state.data!.topProducts;
     List<Product> relatedProducts = detailsCubit.state.data!.relatedProducts;
     List<int> topIds = topSelling.map((e) => e.id!).toList();
@@ -249,46 +240,39 @@ class ProductDetailsController implements CartSheetController {
     _updateInProductsList(topIds, cartItem, topSelling);
   }
 
-  void _updateInProductsList(List<int> topIds, CartItem cartItem, List<Product> relatedProducts) {
-      if(topIds.contains(cartItem.productId)){
-      var productInTopSelling = relatedProducts.firstWhere((element) => element.id == cartItem.productId);
-      productInTopSelling.addedQtyToCart = 0 ;
+  void _updateInProductsList(
+      List<int> topIds, CartItem cartItem, List<Product> relatedProducts) {
+    if (topIds.contains(cartItem.productId)) {
+      var productInTopSelling = relatedProducts
+          .firstWhere((element) => element.id == cartItem.productId);
+      productInTopSelling.addedQtyToCart = 0;
       detailsCubit.onUpdateData(detailsCubit.state.data);
     }
   }
 
-
-  void updateTheSameProduct(CartItem cartItem,{bool isDelete = false}){
-    if(cartItem.productId == productId){
-      qtyCubit.onUpdateData(
-          isDelete
-              ? 1
-              : cartItem.quantity
-      );
+  void updateTheSameProduct(CartItem cartItem, {bool isDelete = false}) {
+    if (cartItem.productId == productId) {
+      qtyCubit.onUpdateData(isDelete ? 1 : cartItem.quantity);
     }
   }
 
-
-
   void onAddToCart(BuildContext context) {
-    getIt<CartHelper>().addProductToCart(
-      context,
-      qtyCubit.state.data,
-      detailsCubit.state.data?.product.variant?.id,
-      // onAddCartFunc: () => showCartSuccessDialog(context),
-      onAddCartFunc: () => showCartSuccessSheet(context),
-    );
+    getIt<CartHelper>().addProductToCart(context, qtyCubit.state.data,
+        detailsCubit.state.data?.product.variant?.id,
+        // onAddCartFunc: () => showCartSuccessDialog(context),
+        onAddCartFunc: () => showCartSuccessSheet(context),
+        callCartData: false);
   }
 
   @override
   Future<void> getCartItems({bool refresh = true}) async {
     await getIt<CartHelper>().getCartItems(refresh: refresh).then((value) {
-      _minAmount = value.minimumAmount;
       if (value.items!.isNotEmpty) {
         _updateCartCountFromCart(value);
       } else {
         _updateCartCountFromCart(CartDomainModel(items: []));
       }
+      _calculateRemainingAmount();
     });
   }
 
@@ -342,19 +326,22 @@ class ProductDetailsController implements CartSheetController {
   }
 
   @override
-  Future<void> deleteItemFromCart(BuildContext context, CartItem cartItem) async {
+  Future<void> deleteItemFromCart(
+      BuildContext context, CartItem cartItem) async {
     getIt<LoadingHelper>().showLoadingDialog();
     var data = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
     if (data) {
       getIt<LoadingHelper>().dismissDialog();
-      var newSubTotal = cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
+      var newSubTotal =
+          cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
       cartItemsBloc.state.data.calculableTotal = newSubTotal;
       updateTheSameItemInTopAndRelated(cartItem);
-      updateTheSameProduct(cartItem,isDelete: true);
+      updateTheSameProduct(cartItem, isDelete: true);
       cartItemsBloc.state.data.items!.remove(cartItem);
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
       _updateCartCountFromCart(cartItemsBloc.state.data);
-      CustomToast.showSimpleToast(msg: tr('itemDeleted'), type: ToastType.success);
+      CustomToast.showSimpleToast(
+          msg: tr('itemDeleted'), type: ToastType.success);
       if ((cartItemsBloc.state.data.items ?? <CartItem>[]).isEmpty) {
         Navigator.pop(context);
       }
@@ -411,13 +398,34 @@ class ProductDetailsController implements CartSheetController {
     );
   }
 
-  String remainToGetMinAmount() {
-    var total = double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
-    var minAmount = cartItemsBloc.state.data.minimumAmount ?? 0.0;
-    var remain = minAmount - total;
-    return remain.toStringAsFixed(2);
+  void _calculateRemainingAmount() {
+    double cartSubTotal =
+        double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
+    double minAmount = cartItemsBloc.state.data.minimumAmount ?? 0.0;
+
+    double currentItemPriceInCart = 0.0;
+    var cartProducts = cartItemsBloc.state.data.items ?? [];
+    var currentProductId = detailsCubit.state.data?.product.id;
+
+    try {
+      var existingItem = cartProducts.firstWhere(
+        (element) => element.productId == currentProductId,
+      );
+      currentItemPriceInCart = existingItem.calculableTotal.toDouble();
+    } catch (e) {
+      currentItemPriceInCart = 0.0;
+    }
+
+    double currentLocalPrice = double.parse(
+        detailsCubit.state.data?.product.variant?.calculablePrice ?? "0.0");
+
+    double effectiveTotal =
+        (cartSubTotal - currentItemPriceInCart) + currentLocalPrice;
+    double remain = minAmount - effectiveTotal;
+
+    remainingAmountBloc.onUpdateData(remain.toStringAsFixed(2));
   }
 
   @override
-  String get minAmountRemain => remainToGetMinAmount();
+  String get minAmountRemain => remainingAmountBloc.state.data;
 }

@@ -113,7 +113,7 @@ class CartHelper {
   }
 
   Future<void> addProductToCart(BuildContext context, int qty, int? variantId,
-      {required Function() onAddCartFunc, bool showLoader = true}) async {
+      {required Function() onAddCartFunc, bool showLoader = true, bool callCartData = true}) async {
     var params = await _addToCartParams(variantId, qty, showLoader: showLoader);
     if (params.variantId == null) {
       CustomToast.showSimpleToast(msg: tr('variantNotFound'));
@@ -122,7 +122,9 @@ class CartHelper {
     var data = await AddProductToCart().call(params);
 
     if (data.isNotEmpty) {
-     await  getCartItems();
+      if(callCartData){
+        await  getCartItems();
+      }
       onAddCartFunc();
       CustomToast.showSimpleToast(
           msg: tr('productAddedToYourCart'), type: ToastType.success);
