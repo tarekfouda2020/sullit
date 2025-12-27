@@ -63,6 +63,7 @@ class CartController {
         cartItem.quantity = newQty;
         cartItemsBloc.onUpdateData(success);
         updateCartCount(context);
+        FacebookEventsHelper.instance.productAddToCart(id: cartItem.productId, price: cartItem.price);
       }
       // else{
       //   CustomToast.showSimpleToast(

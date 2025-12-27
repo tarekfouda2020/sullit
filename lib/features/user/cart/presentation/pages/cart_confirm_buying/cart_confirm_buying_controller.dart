@@ -12,6 +12,7 @@ class ConfirmBuyingController{
   ConfirmBuyingController (OrderSummary? summary, int? id) {
     if(summary != null){
       orderSummaryBloc.onUpdateData(summary);
+      addCheckOutEvent(summary);
     }else if(id != null){
       getCombinedOrder(id);
     }
@@ -22,7 +23,10 @@ class ConfirmBuyingController{
 
   Future<void> getCombinedOrder (int id) async {
     var data = await GetCombinedOrder().call(id);
-    orderSummaryBloc.onUpdateData(data);
+   if(data!=null){
+     orderSummaryBloc.onUpdateData(data);
+     addCheckOutEvent(data);
+   }
   }
 
   Future<void> getOrderFees({bool fromRemote = true})async{
@@ -134,6 +138,15 @@ class ConfirmBuyingController{
       builder: (context) {
         return FullTierNameWidget(description: description,title:title,);
       },
+    );
+  }
+
+
+  void addCheckOutEvent(OrderSummary summary){
+    FacebookEventsHelper.instance.checkOut(
+        itemsNumber: summary.getTotalItems(),
+        orderPrice: double.parse(summary.summary!.totalOrderAmount),
+        orderId: summary.summary!.combinedOrderId.toString()
     );
   }
 

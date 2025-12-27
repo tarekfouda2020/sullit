@@ -10,7 +10,6 @@ class OrderDetailsPageController {
   final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc = GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
 
 
-
   OrderDetailsPageController(Orders orderModel){
     orderDetailsBloc.onUpdateData(orderModel);
     getOrderDetails(orderModel.id,refresh: false);
@@ -175,7 +174,6 @@ class OrderDetailsPageController {
       },
     );
   }
-
 
 
   GenericParams _params(int id,bool refresh){

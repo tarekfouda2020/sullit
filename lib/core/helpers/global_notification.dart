@@ -52,8 +52,8 @@ class GlobalNotification {
       });
       messaging.setForegroundNotificationPresentationOptions();
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-        // print("_____________________Message data:${message.data}");
-        // print("___________________notification:${message.notification?.title}");
+        log("_____________________Message data:${message.data}");
+        log("___________________notification:${message.notification?.title}");
         _onMessageStreamController.add(message.data);
         _showLocalNotification(message);
         if (message.data['type'] == NotifyEnum.emailChanged.getValue()) {

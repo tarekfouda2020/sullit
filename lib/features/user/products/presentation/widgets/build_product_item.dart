@@ -124,12 +124,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                                     : Res.emptyFavIcon,
                                 changeBgColor: false,
                                 inActiveColor: context.colors.customBackground,
-                                onTap: () => ProductsHelper().toggleFavourite(
-                                  id: widget.productModel.id!,
-                                  context: context,
-                                  loadingBloc: showFavLoading,
-                                  onRefresh: widget.onFavRefresh,
-                                ),
+                                onTap: () => _buildToggleFavourite(context),
                                 checkValue: widget.productModel.isWishlist,
                               ),
                               child: const LoadingIconWidget(),
@@ -151,9 +146,8 @@ class _BuildProductItemState extends State<BuildProductItem> {
                       return PositionedDirectional(
                         end: 3,
                         bottom: 0,
-                        start: widget.productModel.addedQtyToCart! > 0
-                        ?0
-                        :null,
+                        start:
+                            widget.productModel.addedQtyToCart! > 0 ? 0 : null,
                         child: GestureDetector(
                           // onTap: () => getIt<CartHelper>().addToCartDialog(
                           //   context,
@@ -161,8 +155,8 @@ class _BuildProductItemState extends State<BuildProductItem> {
                           //   afterAddToCart: widget.afterAddToCart,
                           // ),
                           onTap: state.data
-                              ?(){}
-                              :() async => await _addToCart(context),
+                              ? () {}
+                              : () async => await _addToCart(context),
                           child: Opacity(
                             opacity: state.data == false ? 1 : 0.5,
                             child: Visibility(
@@ -189,12 +183,14 @@ class _BuildProductItemState extends State<BuildProductItem> {
                                   ),
                                 ),
                               ),
-                              child:  ProductCounterWidget(product: widget.productModel,
-                                  onPressAdd: () async => await _addToCart(context),
-                                onPressDecrease: () async=> await _onPressDescrease(),
-                              ) ,
+                              child: ProductCounterWidget(
+                                product: widget.productModel,
+                                onPressAdd: () async =>
+                                    await _addToCart(context),
+                                onPressDecrease: () async =>
+                                    await _onPressDescrease(),
+                              ),
                             ),
-
                           ),
                         ),
                       );
@@ -333,61 +329,72 @@ class _BuildProductItemState extends State<BuildProductItem> {
     );
   }
 
+  Future<void> _buildToggleFavourite(BuildContext context) async {
+      ProductsHelper().toggleFavourite(
+      id: widget.productModel.id!,
+      context: context,
+      loadingBloc: showFavLoading,
+      price: widget.productModel.priceHighLow,
+      onRefresh: widget.onFavRefresh,
+    );
+  }
+
   Future<void> _onPressDescrease() async {
     enableAddToCartLoading.onUpdateData(true);
-    if(widget.productModel.addedQtyToCart == widget.productModel.minQty){
+    if (widget.productModel.addedQtyToCart == widget.productModel.minQty) {
       await _deleteItemFromCart();
-      }else{
+    } else {
       await _reduceQntFromCart();
-     }
+    }
     enableAddToCartLoading.onUpdateData(false);
   }
 
   Future<void> _reduceQntFromCart() async {
-      var result = await getIt<ProductsHelper>().reduceProductQntInCart(context,widget.productModel);
-    if(result == true){
-      if(widget.onPressDecrease!=null){
-        await  widget.onPressDecrease?.call();
+    var result = await getIt<ProductsHelper>()
+        .reduceProductQntInCart(context, widget.productModel);
+    if (result == true) {
+      if (widget.onPressDecrease != null) {
+        await widget.onPressDecrease?.call();
       }
     }
   }
 
   Future<void> _deleteItemFromCart() async {
-    var deleteResult =  await getIt<ProductsHelper>().reduceProductQntInCart(context,widget.productModel);
-    if( deleteResult){
-      widget.productModel.addedQtyToCart = 0 ;
-      if(widget.onPressDelete != null){
-        await  widget.onPressDelete?.call();
+    var deleteResult = await getIt<ProductsHelper>()
+        .reduceProductQntInCart(context, widget.productModel);
+    if (deleteResult) {
+      widget.productModel.addedQtyToCart = 0;
+      if (widget.onPressDelete != null) {
+        await widget.onPressDelete?.call();
       }
     }
   }
 
   Future<void> _addToCart(BuildContext context) async {
     var currentStockQnt = widget.productModel.variant?.currentStock ?? 0;
-    if((currentStockQnt) == 0  || currentStockQnt == widget.productModel.addedQtyToCart){
-      CustomToast.showSimpleToast(msg: tr("outOfStock"),type: ToastType.error);
-      return ;
+    if ((currentStockQnt) == 0 ||
+        currentStockQnt == widget.productModel.addedQtyToCart) {
+      CustomToast.showSimpleToast(msg: tr("outOfStock"), type: ToastType.error);
+      return;
     }
-     enableAddToCartLoading.onUpdateData(true);
-     await getIt<ProductsHelper>().addProductToCart(
-         context,
-         widget.productModel,
-         afterAddToCart: ()=> _afterAddToCart()
-     );
+    enableAddToCartLoading.onUpdateData(true);
+    await getIt<ProductsHelper>().addProductToCart(context, widget.productModel,
+        afterAddToCart: () => _afterAddToCart());
     enableAddToCartLoading.onUpdateData(false);
   }
 
   void _afterAddToCart() {
-    widget.productModel.addedQtyToCart = widget.productModel.addedQtyToCart! + 1;
+    widget.productModel.addedQtyToCart =
+        widget.productModel.addedQtyToCart! + 1;
     widget.afterAddToCart?.call();
   }
 
-
-  void _checkIfItemInCart(){
+  void _checkIfItemInCart() {
     var cartProducts = getIt<CartHelper>().cartItemsBloc.state.data.items;
     var cartProductsIds = cartProducts?.map((e) => e.productId).toSet();
-    if(cartProductsIds?.contains(widget.productModel.id) == true){
-      var cartProduct = cartProducts?.firstWhere((element) => element.productId == widget.productModel.id);
+    if (cartProductsIds?.contains(widget.productModel.id) == true) {
+      var cartProduct = cartProducts?.firstWhere(
+          (element) => element.productId == widget.productModel.id);
       widget.productModel.addedQtyToCart = cartProduct?.quantity;
     }
   }
