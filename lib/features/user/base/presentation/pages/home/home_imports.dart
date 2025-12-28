@@ -26,6 +26,7 @@ import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/offers_params_widget.dart';
+import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tab_type.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tabs_data.dart';
 import 'package:flutter_tdd/features/user/sale/domain/use_cases/get_best_rated.dart';
 import 'package:flutter_tdd/features/user/sale/domain/use_cases/get_new_arrival.dart';

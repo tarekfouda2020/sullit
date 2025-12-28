@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 part of 'home_main_imports.dart';
 
 class HomeMainController {
@@ -43,9 +41,9 @@ class HomeMainController {
     }
   }
 
-  void changeCouponsTab(int index) {
+  void changeCouponsTab(SaleTabType type, BuildContext context) {
+    int index = homeController.getSaleTabIndex(type, context.isShareHolder);
     homeController.index = index;
-    homeController.homeTabCubit.onUpdateData(index);
   }
 
   void getHome(BuildContext context, {bool refresh = true}) async {
@@ -165,14 +163,13 @@ class HomeMainController {
   }
 
   GenericPaginateParams _vipOffersParams(bool refresh) => GenericPaginateParams(
-    pageSize: pageSize,
-    refresh: refresh,
-    currentPage: 1,
-  );
+        pageSize: pageSize,
+        refresh: refresh,
+        currentPage: 1,
+      );
 
   OffersParamsWidget _vipOffers(bool refresh) {
-    return OffersParamsWidget(
-        paginateParams: _vipOffersParams(refresh));
+    return OffersParamsWidget(paginateParams: _vipOffersParams(refresh));
   }
 
   void _synchronizeFavoriteStatus(Product item) {
@@ -303,15 +300,27 @@ class HomeMainController {
   }
 
 
+
+  void onPressSeeOffers(BuildContext context){
+    context.isShareHolder
+        ? routeToOffersTab(context)
+        : routeToMembershipSubscribe(context);
+  }
+
+
+  void routeToOffersTab(BuildContext context){
+    homeController.animateTabsPages(3, context);
+  }
+
+
   void routeToMembershipSubscribe(BuildContext context) {
     bool isAuth = context.read<DeviceCubit>().state.model.auth;
     if (isAuth) {
-      AutoRouter.of(context).push(const MembershipSubscribeRoute());
+      AutoRouter.of(context).push( MembershipSubscribeRoute());
     } else {
       CustomToast.showAuthDialog(context);
     }
   }
-
 
   BrandsParams _brandsParams(bool refresh) {
     return BrandsParams(

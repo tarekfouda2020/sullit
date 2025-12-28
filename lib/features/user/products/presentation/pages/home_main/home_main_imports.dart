@@ -39,6 +39,8 @@ import '../../../../sale/domain/use_cases/get_new_arrival.dart';
 import '../../../../sale/domain/use_cases/get_on_sale.dart';
 import '../../../../sale/domain/use_cases/get_vip_offers.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/offers_params_widget.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tab_type.dart';
 
 part 'home_main.dart';
 part 'home_main_controller.dart';

@@ -1,4 +1,3 @@
-
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
@@ -37,6 +36,7 @@ import 'package:flutter_tdd/features/user/sale/domain/models/flash_sale.dart';
 import 'package:flutter_tdd/res.dart';
 
 import '../../../../../category/presentation/pages/brands/widgets/brands_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tab_type.dart';
 
 part 'build_best_rated.dart';
 part 'build_new_arrivals.dart';

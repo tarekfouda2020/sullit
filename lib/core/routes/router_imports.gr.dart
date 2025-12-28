@@ -1086,9 +1086,14 @@ class AppRouter extends _i100.RootStackRouter {
       );
     },
     MembershipSubscribeRoute.name: (routeData) {
+      final args = routeData.argsAs<MembershipSubscribeRouteArgs>(
+          orElse: () => const MembershipSubscribeRouteArgs());
       return _i100.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i97.MembershipSubscribe(),
+        child: _i97.MembershipSubscribe(
+          key: args.key,
+          showAppBar: args.showAppBar,
+        ),
         opaque: true,
       );
     },
@@ -3640,14 +3645,37 @@ class GiftCardDetailsRouteArgs {
 
 /// generated route for
 /// [_i97.MembershipSubscribe]
-class MembershipSubscribeRoute extends _i100.PageRouteInfo<void> {
-  const MembershipSubscribeRoute()
-      : super(
+class MembershipSubscribeRoute
+    extends _i100.PageRouteInfo<MembershipSubscribeRouteArgs> {
+  MembershipSubscribeRoute({
+    _i103.Key? key,
+    bool showAppBar = true,
+  }) : super(
           MembershipSubscribeRoute.name,
           path: '/membership-subscribe',
+          args: MembershipSubscribeRouteArgs(
+            key: key,
+            showAppBar: showAppBar,
+          ),
         );
 
   static const String name = 'MembershipSubscribeRoute';
+}
+
+class MembershipSubscribeRouteArgs {
+  const MembershipSubscribeRouteArgs({
+    this.key,
+    this.showAppBar = true,
+  });
+
+  final _i103.Key? key;
+
+  final bool showAppBar;
+
+  @override
+  String toString() {
+    return 'MembershipSubscribeRouteArgs{key: $key, showAppBar: $showAppBar}';
+  }
 }
 
 /// generated route for

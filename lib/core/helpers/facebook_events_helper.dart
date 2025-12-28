@@ -7,11 +7,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 
 class FacebookEventsHelper {
 
-  FacebookEventsHelper._(){
-    // if (!kReleaseMode) {
-    //   return ;
-    // }
-  }
+  FacebookEventsHelper._();
 
   static FacebookEventsHelper instance = FacebookEventsHelper._();
 

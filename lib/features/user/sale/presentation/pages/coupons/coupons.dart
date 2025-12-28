@@ -30,7 +30,8 @@ class _CouponsState extends State<Coupons> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return controller.pages(context).isNotEmpty
+        ? Scaffold(
       backgroundColor: controller.pages(context).isNotEmpty
           ? context.colors.customBackground
           : context.colors.white,
@@ -84,6 +85,19 @@ class _CouponsState extends State<Coupons> with TickerProviderStateMixin {
       //     ),
       //   ),
       // ),
+    )
+        : Visibility(
+      visible: !context.isShareHolder,
+        replacement: Scaffold(
+          appBar: DefaultAppBar(
+            title: tr("offers"),
+            showBack: false,
+            bgColor: context.colors.white,
+            size: 40,
+          ),
+          body: const BuildEmptyDataView(),
+        ),
+        child: const MembershipSubscribe(showAppBar: false)
     );
   }
 }

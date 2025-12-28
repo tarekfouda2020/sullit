@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-
 part of 'home_imports.dart';
 
 class HomeController {
@@ -67,8 +66,6 @@ class HomeController {
     getIt<Utilities>().changeLanguage(lang, context);
     Phoenix.rebirth(context);
   }
-
-
 
   void initBottomNavigation(TickerProvider ticker, int index) {
     tabController =
@@ -205,38 +202,54 @@ class HomeController {
   SaleTabsData saleTabsData = SaleTabsData();
 
   Future<void> fetchSaleTabsData(BuildContext context) async {
-    var params = GenericPaginateParams(currentPage: 1, refresh: true, pageSize: 1);
+    var params =
+        GenericPaginateParams(currentPage: 1, refresh: true, pageSize: 1);
 
-    OffersParamsWidget offersParams({bool isVipProducts = false}) => OffersParamsWidget(
-      paginateParams: params,
-      isVipProducts: isVipProducts,
-    );
+    OffersParamsWidget offersParams({bool isVipProducts = false}) =>
+        OffersParamsWidget(
+          paginateParams: params,
+          isVipProducts: isVipProducts,
+        );
     try {
       List<Future<List<Product>>> futures = [
         !context.isShareHolder
             ? GetVipOffers().call(offersParams(isVipProducts: true))
-            :Future.value([]),
+            : Future.value([]),
         context.isShareHolder
             ? GetShareholderProducts().call(offersParams(isVipProducts: true))
             : Future.value([]),
-
         GetNewArrival().call(offersParams()),
         GetOnSale().call(offersParams()),
         GetBestRated().call(offersParams()),
       ];
 
       var results = await Future.wait(futures);
-      saleTabsData.vipOffers = !context.isShareHolder
-          ?results[0]
-          :[];
-      saleTabsData.shareholderOffers =
-      context.isShareHolder ? results[1] : [];
+      saleTabsData.vipOffers = !context.isShareHolder ? results[0] : [];
+      saleTabsData.shareholderOffers = context.isShareHolder ? results[1] : [];
       saleTabsData.newArrival = results[2];
       saleTabsData.onSale = results[3];
       saleTabsData.bestRated = results[4];
     } catch (e) {
       log("Error fetching sale tabs data: $e");
     }
+  }
+
+  int getSaleTabIndex(SaleTabType type, bool isShareHolder) {
+    List<SaleTabType> visibleTypes = [];
+    bool show(List? list) => list == null || list.isNotEmpty;
+
+    if (!isShareHolder && show(saleTabsData.vipOffers)) {
+      visibleTypes.add(SaleTabType.vipOffers);
+    }
+    if (isShareHolder && show(saleTabsData.shareholderOffers)) {
+      visibleTypes.add(SaleTabType.shareholderOffers);
+    }
+    if (show(saleTabsData.newArrival)) visibleTypes.add(SaleTabType.newArrival);
+    if (show(saleTabsData.onSale)) visibleTypes.add(SaleTabType.onSale);
+    if (show(saleTabsData.bestRated)) visibleTypes.add(SaleTabType.bestRated);
+
+    int index = visibleTypes.indexOf(type);
+    return index != -1 ? index : 0;
   }
 
   GenericPaginateParams _historyParams(bool refresh) {

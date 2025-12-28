@@ -25,8 +25,7 @@ class BuildHomeView extends StatelessWidget {
             VipOffersFormWidget(controller: controller),
             Gaps.vGap16,
             VipOffersWidget(
-              // onTap: () => controller.homeController.animateTabsPages(3, context),
-              onTap: () => controller.routeToMembershipSubscribe(context),
+              onTap: () => controller.onPressSeeOffers(context),
               buttonText: tr("seeOffers"),
               margin: EdgeInsets.zero,
             ),
