@@ -28,29 +28,27 @@ class _ShareholderOffersState extends State<ShareholderOffers> {
           //   ),
           // ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 122),
-              child: CustomRefreshIndicatorWidget(
-                onRefresh: () async => await controller.getShareholderProducts(1),
-                child: GridViewPagination<Product>(
-                  pagingController: controller.shareholderOffersPagingController,
-                  onRefresh: () async =>
-                      controller.shareholderOffersPagingController.refresh(),
-                  firstPageProgressIndicatorBuilder: (_) =>
-                      const BuildLoadingCatsProducts(),
-                  showNewPageProgressIndicatorAsGridChild: false,
-                  noItemsFoundIndicatorBuilder: (context) => const BuildEmptyDataView(),
-                  itemBuilder: (_, item, index) => BuildProductItem(
-                    productModel: item,
-                    showVipDiscount:
-                        item.hasShareholderDiscount == true && isShareHolder == true,
-                    onFavRefresh: () => controller.onChangeFav(item),
-                    onRefresh: () => controller.getShareholderProducts(1),
-                  ),
+            child: CustomRefreshIndicatorWidget(
+              onRefresh: () async => await controller.getShareholderProducts(1),
+              child: GridViewPagination<Product>(
+                pagingController: controller.shareholderOffersPagingController,
+                onRefresh: () async =>
+                    controller.shareholderOffersPagingController.refresh(),
+                firstPageProgressIndicatorBuilder: (_) =>
+                    const BuildLoadingCatsProducts(),
+                showNewPageProgressIndicatorAsGridChild: false,
+                noItemsFoundIndicatorBuilder: (context) => const BuildEmptyDataView(),
+                itemBuilder: (_, item, index) => BuildProductItem(
+                  productModel: item,
+                  showVipDiscount:
+                      item.hasShareholderDiscount == true && isShareHolder == true,
+                  onFavRefresh: () => controller.onChangeFav(item),
+                  onRefresh: () => controller.getShareholderProducts(1),
                 ),
               ),
             ),
           ),
+          Gaps.vGap(120),
         ],
       ),
     );

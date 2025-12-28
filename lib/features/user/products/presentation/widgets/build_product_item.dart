@@ -92,7 +92,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                 children: [
                   CachedImage(
                     ///TODO border color from top will be changed later
-                    fit: BoxFit.fill,
+                    fit: BoxFit.contain,
                     haveRadius: true,
                     bgColor: const Color(0xffededed),
                     borderRadius: const BorderRadius.vertical(
@@ -209,15 +209,8 @@ class _BuildProductItemState extends State<BuildProductItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.productModel.categoryName!,
-                    style: AppTextStyle.s12_w300(
-                      color: context.colors.textColor,
-                    ).copyWith(overflow: TextOverflow.ellipsis, height: 0),
-                  ),
-                  Gaps.vGap3,
-                  Text(
                     widget.productModel.name!,
-                    maxLines: 1,
+                    maxLines: 2,
                     style: AppTextStyle.s14_w600(
                       color: context.colors.black,
                     ).copyWith(overflow: TextOverflow.ellipsis, height: 0),

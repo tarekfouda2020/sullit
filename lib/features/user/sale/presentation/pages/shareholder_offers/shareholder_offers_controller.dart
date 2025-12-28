@@ -1,7 +1,6 @@
 part of 'shareholder_offers_imports.dart';
 
 class ShareholderOffersController {
-
   final TextEditingController searchFieldCtr = TextEditingController();
 
   final PagingController<int, Product> shareholderOffersPagingController =
@@ -9,7 +8,7 @@ class ShareholderOffersController {
   int pageSize = 10;
 
   ShareholderOffersController() {
-    getShareholderProducts(1,refresh: false);
+    getShareholderProducts(1, refresh: false);
     shareholderOffersPagingController.addPageRequestListener((pageKey) {
       getShareholderProducts(pageKey);
     });
@@ -34,9 +33,7 @@ class ShareholderOffersController {
   GenericPaginateParams _shareholderOffersParams(
       bool refresh, int currentPage) {
     return GenericPaginateParams(
-        pageSize: pageSize,
-        refresh: refresh,
-        currentPage: currentPage);
+        pageSize: pageSize, refresh: refresh, currentPage: currentPage);
   }
 
   void onChangeFav(Product item) {
@@ -57,15 +54,12 @@ class ShareholderOffersController {
     }
   }
 
-
   OffersParamsWidget _shareHolderOffers(bool refresh, int currentPage) {
     return OffersParamsWidget(
-        paginateParams: _shareholderOffersParams(refresh, currentPage),
+      paginateParams: _shareholderOffersParams(refresh, currentPage),
       isVipProducts: true,
     );
   }
-
-
 
   void onPressSearch(BuildContext context) {
     FocusScope.of(context).unfocus();
@@ -83,7 +77,4 @@ class ShareholderOffersController {
     shareholderOffersPagingController.refresh();
     getShareholderProducts(1);
   }
-
-
-
 }

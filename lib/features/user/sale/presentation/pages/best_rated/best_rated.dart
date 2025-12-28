@@ -33,27 +33,25 @@ class _BestRatedState extends State<BestRated> {
           //   ),
           // ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 122),
-              child: CustomRefreshIndicatorWidget(
-                onRefresh: () async => await controller.getBestRated(1),
-                child: GridViewPagination<Product>(
-                  pagingController: controller.bestRatedPagingController,
-                  onRefresh: () async =>
-                      controller.bestRatedPagingController.refresh(),
-                  firstPageProgressIndicatorBuilder: (_) => const BuildLoadingProductsGridView(),
-                  showNewPageProgressIndicatorAsGridChild: false,
-                  noItemsFoundIndicatorBuilder: (context) =>
-                      const BuildEmptyDataView(),
-                  itemBuilder: (_, item, index) => BuildProductItem(
-                    productModel: item,
-                    onFavRefresh: () => controller.onChangeFav(item),
-                    onRefresh: () => controller.getBestRated(1),
-                  ),
+            child: CustomRefreshIndicatorWidget(
+              onRefresh: () async => await controller.getBestRated(1),
+              child: GridViewPagination<Product>(
+                pagingController: controller.bestRatedPagingController,
+                onRefresh: () async =>
+                    controller.bestRatedPagingController.refresh(),
+                firstPageProgressIndicatorBuilder: (_) => const BuildLoadingProductsGridView(),
+                showNewPageProgressIndicatorAsGridChild: false,
+                noItemsFoundIndicatorBuilder: (context) =>
+                    const BuildEmptyDataView(),
+                itemBuilder: (_, item, index) => BuildProductItem(
+                  productModel: item,
+                  onFavRefresh: () => controller.onChangeFav(item),
+                  onRefresh: () => controller.getBestRated(1),
                 ),
               ),
             ),
           ),
+          Gaps.vGap(120),
         ],
       ),
     );

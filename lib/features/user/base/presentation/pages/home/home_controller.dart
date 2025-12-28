@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+
 part of 'home_imports.dart';
 
 class HomeController {
@@ -65,18 +68,7 @@ class HomeController {
     Phoenix.rebirth(context);
   }
 
-  // void showLangBottomSheet(BuildContext context, HomeController controller) {
-  //   showModalBottomSheet(
-  //     shape: const RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.only(
-  //             topLeft: Radius.circular(15), topRight: Radius.circular(15))),
-  //     backgroundColor: context.colors.white,
-  //     context: context,
-  //     builder: (context) => BuildLangBottomSheet(
-  //       controller: controller,
-  //     ),
-  //   );
-  // }
+
 
   void initBottomNavigation(TickerProvider ticker, int index) {
     tabController =
@@ -87,11 +79,6 @@ class HomeController {
 
   void animateTabsPages(int index, BuildContext context) {
     Future.delayed(const Duration(milliseconds: 700), () {
-      bool auth = context.read<DeviceCubit>().state.model.auth;
-      // if (index == 2 && !auth) {
-      //   CustomToast.showAuthDialog(context);
-      //   return;
-      // }
       if (index == 2) {
         AutoRouter.of(context).push(const CartRoute());
         return;
@@ -99,10 +86,6 @@ class HomeController {
         homeTabCubit.onUpdateData(index);
         tabController.animateTo(index);
       }
-      // if (index != homeTabCubit.state.data) {
-      //   homeTabCubit.onUpdateData(index);
-      //   tabController.animateTo(index);
-      // }
     });
   }
 
@@ -173,8 +156,7 @@ class HomeController {
           userEmail.isEmpty ||
           userEmail.validateEmail() != null) {
         CustomToast.showSimpleToast(
-            msg: tr("enter_email_to_change_password"),
-            type: ToastType.error);
+            msg: tr("enter_email_to_change_password"), type: ToastType.error);
         AutoRouter.of(ctx).push(const ProfileRoute());
       }
     }
@@ -217,6 +199,43 @@ class HomeController {
         AutoRouter.of(ctx).push(OrderDetailsPageRoute(
             isReturnedOrder: false, order: _firstUnPaidOrder!));
       }
+    }
+  }
+
+  SaleTabsData saleTabsData = SaleTabsData();
+
+  Future<void> fetchSaleTabsData(BuildContext context) async {
+    var params = GenericPaginateParams(currentPage: 1, refresh: true, pageSize: 1);
+
+    OffersParamsWidget offersParams({bool isVipProducts = false}) => OffersParamsWidget(
+      paginateParams: params,
+      isVipProducts: isVipProducts,
+    );
+    try {
+      List<Future<List<Product>>> futures = [
+        !context.isShareHolder
+            ? GetVipOffers().call(offersParams(isVipProducts: true))
+            :Future.value([]),
+        context.isShareHolder
+            ? GetShareholderProducts().call(offersParams(isVipProducts: true))
+            : Future.value([]),
+
+        GetNewArrival().call(offersParams()),
+        GetOnSale().call(offersParams()),
+        GetBestRated().call(offersParams()),
+      ];
+
+      var results = await Future.wait(futures);
+      saleTabsData.vipOffers = !context.isShareHolder
+          ?results[0]
+          :[];
+      saleTabsData.shareholderOffers =
+      context.isShareHolder ? results[1] : [];
+      saleTabsData.newArrival = results[2];
+      saleTabsData.onSale = results[3];
+      saleTabsData.bestRated = results[4];
+    } catch (e) {
+      log("Error fetching sale tabs data: $e");
     }
   }
 

@@ -31,30 +31,40 @@ class BuildTabsView extends StatelessWidget {
         labelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
         indicatorSize: TabBarIndicatorSize.label,
         tabs: [
-          if (!isShareHolder)
+          if (!isShareHolder &&
+              _show(controller.homeController.saleTabsData.vipOffers))
             Text(
               textAlign: TextAlign.start,
               tr("vipOffers"),
             ),
-          if (isShareHolder)
-             Text(
+          if (isShareHolder &&
+              _show(controller.homeController.saleTabsData.shareholderOffers))
+            Text(
               textAlign: TextAlign.start,
               tr("shareholders_exclusive"),
             ),
-          Text(
-            textAlign: TextAlign.start,
-            tr("newArrival"),
-          ),
-          Text(
-            textAlign: TextAlign.start,
-            tr("promotions"),
-          ),
-          Text(
-            textAlign: TextAlign.start,
-            tr("bestRated"),
-          ),
+          if (_show(controller.homeController.saleTabsData.newArrival))
+            Text(
+              textAlign: TextAlign.start,
+              tr("newArrival"),
+            ),
+          if (_show(controller.homeController.saleTabsData.onSale))
+            Text(
+              textAlign: TextAlign.start,
+              tr("promotions"),
+            ),
+          if (_show(controller.homeController.saleTabsData.bestRated))
+            Text(
+              textAlign: TextAlign.start,
+              tr("bestRated"),
+            ),
         ],
       ),
     );
+  }
+
+  bool _show(List? list) {
+    if (list == null) return true;
+    return list.isNotEmpty;
   }
 }

@@ -17,7 +17,9 @@ class CartController {
   }
 
   Future<void> getCartItems({bool refresh = true}) async {
-    cartItemsBloc.onUpdateToInitState(CartDomainModel());
+    if(cartItemsBloc.state.data.items == null){
+      cartItemsBloc.onUpdateToInitState(CartDomainModel());
+    }
     await getIt<CartHelper>().getCartItems(refresh: refresh);
   }
 
@@ -40,8 +42,7 @@ class CartController {
           (cartItemsBloc.state.data.items ?? []).isEmpty) {
         getIt<CartNavigateHelper>().initData();
       }
-      getIt<CartHelper>()
-          .updateCartCountWithCart(context, cartItemsBloc.state.data);
+      getIt<CartHelper>().updateCartCountWithCart(context, cartItemsBloc.state.data);
       // var cartCount = countCubit.cartCount - 1;
       CustomToast.showSimpleToast(
           msg: tr('itemDeleted'), type: ToastType.success);
@@ -78,6 +79,10 @@ class CartController {
 
   Future<void> onDecreaseCart(BuildContext context, CartItem cartItem,
       GenericBloc<bool> loadingCubit) async {
+    if(cartItem.quantity == 1){
+      deleteItemFromCart(context, cartItem);
+      return ;
+    }
     if (cartItem.quantity > 1) {
       loadingCubit.onUpdateData(true);
 
@@ -155,10 +160,6 @@ class CartController {
   }
 
   void onStepChanged(int step) {
-    print(
-        "========>>>${step == CartNavigateHelper.paymentStepIndex}<<<<<<<=====");
-    print(
-        "========>>>${step == CartNavigateHelper.confirmationStepIndex}<<<<<<<=====");
     if (step == CartNavigateHelper.paymentStepIndex) {
       refreshPaymentView();
     } else if (step == CartNavigateHelper.confirmationStepIndex) {

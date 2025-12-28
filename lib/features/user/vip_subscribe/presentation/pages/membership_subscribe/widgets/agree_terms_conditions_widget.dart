@@ -29,7 +29,7 @@ class AgreeTermsConditionsWidget extends StatelessWidget {
                   return Colors.transparent;
                 }),
                 value: state.data,
-                onChanged: (value) => controller.termCubit.onUpdateData(value!),
+                onChanged: (value) => controller.acceptTerms(value!),
                 side: BorderSide(
                   color: context.colors.textColor,
                   width: 1,

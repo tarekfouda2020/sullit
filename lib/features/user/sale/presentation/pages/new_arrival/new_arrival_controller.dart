@@ -1,10 +1,7 @@
 part of 'new_arrival_imports.dart';
 
 class NewArrivalController {
-
   final TextEditingController searchFieldCtr = TextEditingController();
-
-
 
   final PagingController<int, Product> arrivalPagingController =
       PagingController(firstPageKey: 1);
@@ -59,8 +56,6 @@ class NewArrivalController {
     }
   }
 
-
-
   void onPressSearch(BuildContext context) {
     FocusScope.of(context).unfocus();
     callProductsSearch();
@@ -77,6 +72,4 @@ class NewArrivalController {
     arrivalPagingController.refresh();
     getArrival(1);
   }
-
-
 }

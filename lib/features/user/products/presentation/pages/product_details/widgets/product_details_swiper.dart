@@ -96,6 +96,9 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
         background: Swiper(
           autoplay: false,
           itemCount: widget.productModel.images!.length,
+          physics: widget.productModel.images!.length>1
+              ? null
+              :const NeverScrollableScrollPhysics(),
           pagination: const SwiperPagination(),
           itemBuilder: (BuildContext context, int index) {
             return InkWell(

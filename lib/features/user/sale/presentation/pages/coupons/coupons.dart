@@ -4,7 +4,8 @@ class Coupons extends StatefulWidget {
   final HomeController homeController;
   final int index;
 
-  const Coupons({Key? key, required this.homeController, required this.index}) : super(key: key);
+  const Coupons({Key? key, required this.homeController, required this.index})
+      : super(key: key);
 
   @override
   _CouponsState createState() => _CouponsState();
@@ -18,16 +19,14 @@ class _CouponsState extends State<Coupons> with TickerProviderStateMixin {
     super.initState();
     controller = CouponsController();
     controller.homeController = widget.homeController;
-    controller.initBottomNavigation(this, widget.index,context);
+    controller.initBottomNavigation(this, widget.index, context);
   }
-
 
   @override
   void dispose() {
     controller.tabController.dispose();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,8 @@ class _CouponsState extends State<Coupons> with TickerProviderStateMixin {
       appBar: DefaultAppBar(
         title: tr("offers"),
         showBack: false,
-        bgColor: context.colors.white, size: 40,
+        bgColor: context.colors.white,
+        size: 40,
       ),
       body: Column(
         children: [

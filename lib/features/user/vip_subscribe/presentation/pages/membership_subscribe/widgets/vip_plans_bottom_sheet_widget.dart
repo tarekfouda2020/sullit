@@ -25,12 +25,15 @@ class VipPlansBottomSheetWidget extends StatelessWidget {
                 child: PagedListView<int, VipSubscribeDomainModel>(
                   pagingController: controller.pagingController,
                   builderDelegate: PagedChildBuilderDelegate<VipSubscribeDomainModel>(
-                    itemBuilder: (_, item, index) => MembershipItemWidget(
-                      model: item,
-                      isBottomSheet: controller.currentSubscription?.price != item.price,
-                      showVip: true,
-                      showBlur: controller.currentSubscription?.price != item.price,
-                      onSelect: () => controller.updateSelectedMemberShip(item),
+                    itemBuilder: (_, item, index) => Visibility(
+                      visible: item.byInvite == false,
+                      child: MembershipItemWidget(
+                        model: item,
+                        isBottomSheet: controller.currentSubscription?.price != item.price,
+                        showVip: true,
+                        showBlur: controller.currentSubscription?.price != item.price,
+                        onSelect: () => controller.updateSelectedMemberShip(item),
+                      ),
                     ),
                     noItemsFoundIndicatorBuilder: (_) => Center(
                       child: Text(
