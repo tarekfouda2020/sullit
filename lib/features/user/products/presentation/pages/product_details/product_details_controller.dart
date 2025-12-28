@@ -158,7 +158,7 @@ class ProductDetailsController implements CartSheetController {
     }
   }
 
-  void increaseQty() {
+  void increaseQty({bool isInit = false}) {
     var variantPrice = detailsCubit.state.data?.product.variant;
     var price = double.parse(variantPrice!.calculablePrice!);
     price = price / qtyCubit.state.data;
