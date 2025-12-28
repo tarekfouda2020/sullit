@@ -9,6 +9,9 @@ class ConfirmBuyingController{
   final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc = GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
 
 
+
+  bool _checkoutEventLogged = false;
+
   ConfirmBuyingController (OrderSummary? summary, int? id) {
     if(summary != null){
       orderSummaryBloc.onUpdateData(summary);
@@ -21,13 +24,24 @@ class ConfirmBuyingController{
     getLoyaltyPointsBalance();
   }
 
-  Future<void> getCombinedOrder (int id) async {
-    var data = await GetCombinedOrder().call(id);
-   if(data!=null){
-     orderSummaryBloc.onUpdateData(data);
-     addCheckOutEvent(data);
-   }
+  Future<void> getCombinedOrder(int id) async {
+    final data = await GetCombinedOrder().call(id);
+
+    if (data != null) {
+      orderSummaryBloc.onUpdateData(data);
+
+      _logCheckoutOnce(data);
+    }
   }
+
+  void _logCheckoutOnce(OrderSummary summary) {
+    if (!_checkoutEventLogged) {
+      addCheckOutEvent(summary);
+      _checkoutEventLogged = true;
+    }
+  }
+
+
 
   Future<void> getOrderFees({bool fromRemote = true})async{
     await GetOrderFees().call(fromRemote).then((value) {
