@@ -2,6 +2,7 @@ enum NotifyEnum {
   emailChanged,
   emailVerified,
   order,
+  orderDelivered,
 
   message,
 
@@ -16,6 +17,8 @@ enum NotifyEnum {
         return "message";
       case NotifyEnum.order:
         return "order";
+        case NotifyEnum.orderDelivered:
+        return "customer_changed_order_status";
       default:
         return "";
     }

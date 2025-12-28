@@ -9,9 +9,13 @@ class ConfirmBuyingController{
   final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc = GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
 
 
+
+  bool _checkoutEventLogged = false;
+
   ConfirmBuyingController (OrderSummary? summary, int? id) {
     if(summary != null){
       orderSummaryBloc.onUpdateData(summary);
+      addCheckOutEvent(summary);
     }else if(id != null){
       getCombinedOrder(id);
     }
@@ -20,10 +24,24 @@ class ConfirmBuyingController{
     getLoyaltyPointsBalance();
   }
 
-  Future<void> getCombinedOrder (int id) async {
-    var data = await GetCombinedOrder().call(id);
-    orderSummaryBloc.onUpdateData(data);
+  Future<void> getCombinedOrder(int id) async {
+    final data = await GetCombinedOrder().call(id);
+
+    if (data != null) {
+      orderSummaryBloc.onUpdateData(data);
+
+      _logCheckoutOnce(data);
+    }
   }
+
+  void _logCheckoutOnce(OrderSummary summary) {
+    if (!_checkoutEventLogged) {
+      addCheckOutEvent(summary);
+      _checkoutEventLogged = true;
+    }
+  }
+
+
 
   Future<void> getOrderFees({bool fromRemote = true})async{
     await GetOrderFees().call(fromRemote).then((value) {
@@ -134,6 +152,15 @@ class ConfirmBuyingController{
       builder: (context) {
         return FullTierNameWidget(description: description,title:title,);
       },
+    );
+  }
+
+
+  void addCheckOutEvent(OrderSummary summary){
+    FacebookEventsHelper.instance.checkOut(
+        itemsNumber: summary.getTotalItems(),
+        orderPrice: double.parse(summary.summary!.totalOrderAmount),
+        orderId: summary.summary!.combinedOrderId.toString()
     );
   }
 

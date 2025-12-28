@@ -5,6 +5,7 @@ import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
@@ -257,6 +258,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
       state.data!.minQty!,
       state.data!.variant?.id,
       onAddCartFunc: () {
+        FacebookEventsHelper.instance.productAddToCart(id: state.data!.id!, price: state.data!.variant?.calculablePrice??"");
         getIt<CartHelper>().updateCartCount(context, state.data!.minQty! + existCount);
         Navigator.pop(context);
         BuildContext ctx = getIt<GlobalContext>().context();

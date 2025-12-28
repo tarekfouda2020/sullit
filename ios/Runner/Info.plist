@@ -91,5 +91,23 @@
 	<true/>
 	<key>io.flutter.embedded_views_preview</key>
 	<true/>
+	<key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb2781021995568556</string>
+        </array>
+      </dict>
+    </array>
+
+    <key>FacebookAppID</key>
+    <string>2781021995568556</string>
+
+    <key>FacebookClientToken</key>
+    <string>92a0711ff3eb058c9c649af680cda6ec</string>
+
+    <key>FacebookDisplayName</key>
+    <string>AMCOOP</string>
 </dict>
 </plist>

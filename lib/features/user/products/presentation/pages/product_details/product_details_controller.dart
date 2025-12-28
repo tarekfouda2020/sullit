@@ -51,15 +51,14 @@ class ProductDetailsController implements CartSheetController {
       !refresh ? result.product.isWishlist = isFav : null;
       detailsCubit.onUpdateData(result);
       basicImage = detailsCubit.state.data!.product.images!;
+      if(refresh){
+        FacebookEventsHelper.instance.productDetailsOpened(result.product);
+      }
       if (resetQty) {
         if ((result.product.variant?.currentStock ?? 0) > 0) {
           qtyCubit.onUpdateData(1);
-          if (!refresh) {
-            increaseQty(isInit: !refresh);
-          }
         }
       }
-      checkIfItemInCart();
       _calculateRemainingAmount();
       if (resetQty) {
         _initVariants(context);
@@ -159,7 +158,7 @@ class ProductDetailsController implements CartSheetController {
     }
   }
 
-  void increaseQty({bool isInit = false}) {
+  void increaseQty() {
     var variantPrice = detailsCubit.state.data?.product.variant;
     var price = double.parse(variantPrice!.calculablePrice!);
     price = price / qtyCubit.state.data;
@@ -257,11 +256,20 @@ class ProductDetailsController implements CartSheetController {
   }
 
   void onAddToCart(BuildContext context) {
-    getIt<CartHelper>().addProductToCart(context, qtyCubit.state.data,
-        detailsCubit.state.data?.product.variant?.id,
-        // onAddCartFunc: () => showCartSuccessDialog(context),
-        onAddCartFunc: () => showCartSuccessSheet(context),
-        callCartData: false);
+    getIt<CartHelper>().addProductToCart(
+      context,
+      qtyCubit.state.data,
+      detailsCubit.state.data?.product.variant?.id,
+        callCartData: false,
+      // onAddCartFunc: () => showCartSuccessDialog(context),
+      onAddCartFunc: () {
+        FacebookEventsHelper.instance.productAddToCart(
+            id: detailsCubit.state.data!.product.id!,
+            price: detailsCubit.state.data!.product.variant?.calculablePrice ?? ""
+        );
+        showCartSuccessSheet(context);
+      },
+    );
   }
 
   @override
