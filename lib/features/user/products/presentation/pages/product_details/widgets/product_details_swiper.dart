@@ -104,7 +104,7 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
             return InkWell(
               onTap: () => AutoRouter.of(context).push(ImageZoomRoute(image: widget.productModel.images![index])),
               child: CachedImage(
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
                 url: widget.productModel.images![index],
                 placeHolder: Center(
                   child: Image.asset(

@@ -31,7 +31,9 @@ class _CouponsState extends State<Coupons> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.colors.customBackground,
+      backgroundColor: controller.pages(context).isNotEmpty
+          ? context.colors.customBackground
+          : context.colors.white,
       // appBar: BuildHomeAppBar(homeController: widget.homeController),
       appBar: DefaultAppBar(
         title: tr("offers"),
@@ -42,11 +44,23 @@ class _CouponsState extends State<Coupons> with TickerProviderStateMixin {
       body: Column(
         children: [
           BuildTabsView(controller: controller),
-          Flexible(
-            child: TabBarView(
-              controller: controller.tabController,
-              physics: const NeverScrollableScrollPhysics(),
-              children: controller.pages(context),
+          Visibility(
+            visible: controller.pages(context).isNotEmpty,
+            replacement: const Expanded(
+              child: Column(
+                children: [
+                  Spacer(flex: 3,),
+                  BuildEmptyDataView(),
+                  Spacer(flex: 4,),
+                ],
+              ),
+            ) ,
+            child: Flexible(
+              child: TabBarView(
+                controller: controller.tabController,
+                physics: const NeverScrollableScrollPhysics(),
+                children: controller.pages(context),
+              ),
             ),
           )
         ],
