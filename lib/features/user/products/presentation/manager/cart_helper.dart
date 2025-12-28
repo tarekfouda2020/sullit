@@ -274,6 +274,10 @@ class _StandaloneCartSheetController implements CartSheetController {
   @override
   Future<void> onDecreaseCart(BuildContext context, CartItem cartItem,
       GenericBloc<bool> loadingCubit) async {
+    if(cartItem.quantity == 1){
+      deleteItemFromCart(context,cartItem);
+      return ;
+    }
     if (cartItem.quantity > 1) {
       loadingCubit.onUpdateData(true);
       final newQty = cartItem.quantity - 1;

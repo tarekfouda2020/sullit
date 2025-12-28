@@ -662,6 +662,10 @@ class CategoryDetailsController implements CartSheetController {
   Future<void> onDecreaseCart(
       BuildContext context, CartItem cartItem, GenericBloc<bool> loadingCubit,
       {bool inBottomSheet = true}) async {
+    if(cartItem.quantity == 1){
+      deleteItemFromCart(context, cartItem);
+      return ;
+    }
     if (cartItem.quantity > 1) {
       loadingCubit.onUpdateData(true);
       final newQty = cartItem.quantity - 1;
