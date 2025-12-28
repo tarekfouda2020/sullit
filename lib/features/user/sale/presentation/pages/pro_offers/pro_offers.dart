@@ -36,6 +36,11 @@ class _ProOffersState extends State<ProOffers> {
             Expanded(
               child: GridViewPagination<Product>(
                 pagingController: controller.vipOffersPagingController,
+                padding: EdgeInsets.only(
+                    left: 15,
+                    right: 15,
+                    top: 10,
+                    bottom: MediaQuery.paddingOf(context).bottom + 30),
                 onRefresh: () async =>
                     controller.vipOffersPagingController.refresh(),
                 firstPageProgressIndicatorBuilder: (_) =>
@@ -47,11 +52,10 @@ class _ProOffersState extends State<ProOffers> {
                   productModel: item,
                   showVipDiscount: item.hasVipOffer,
                   onFavRefresh: () => controller.onChangeFav(item),
-                  onRefresh: () => controller.getVipOffers(1),
+                  onRefresh: () => controller.getVipOffers(controller.currentPage),
                 ),
               ),
             ),
-            Gaps.vGap(120)
           ],
         ),
       ),

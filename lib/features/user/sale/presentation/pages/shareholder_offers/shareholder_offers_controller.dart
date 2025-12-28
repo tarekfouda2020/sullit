@@ -6,6 +6,7 @@ class ShareholderOffersController {
   final PagingController<int, Product> shareholderOffersPagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 10;
+  int currentPage = 1;
 
   ShareholderOffersController() {
     getShareholderProducts(1, refresh: false);
@@ -26,6 +27,7 @@ class ShareholderOffersController {
       shareholderOffersPagingController.appendLastPage(result);
     } else {
       final nextPageKey = page + 1;
+      currentPage = nextPageKey;
       shareholderOffersPagingController.appendPage(result, nextPageKey);
     }
   }

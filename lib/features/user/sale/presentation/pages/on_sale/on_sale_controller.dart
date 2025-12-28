@@ -6,6 +6,7 @@ class OnSaleController {
   final PagingController<int, Product> onSalePagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 10;
+  int currentPage = 1;
 
   OnSaleController() {
     getOnSale(1, refresh: false);
@@ -26,6 +27,7 @@ class OnSaleController {
       onSalePagingController.appendLastPage(result);
     } else {
       final nextPageKey = page + 1;
+      currentPage = nextPageKey;
       onSalePagingController.appendPage(result, nextPageKey);
     }
   }

@@ -6,6 +6,8 @@ class NewArrivalController {
   final PagingController<int, Product> arrivalPagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 10;
+  int currentPage = 1;
+
 
   NewArrivalController() {
     getArrival(1, refresh: false);
@@ -26,6 +28,7 @@ class NewArrivalController {
       arrivalPagingController.appendLastPage(result);
     } else {
       final nextPageKey = page + 1;
+      currentPage = nextPageKey;
       arrivalPagingController.appendPage(result, nextPageKey);
     }
   }

@@ -8,7 +8,6 @@ class ShareholderOffers extends StatefulWidget {
 }
 
 class _ShareholderOffersState extends State<ShareholderOffers> {
-
   final ShareholderOffersController controller = ShareholderOffersController();
 
   @override
@@ -32,23 +31,28 @@ class _ShareholderOffersState extends State<ShareholderOffers> {
               onRefresh: () async => await controller.getShareholderProducts(1),
               child: GridViewPagination<Product>(
                 pagingController: controller.shareholderOffersPagingController,
+                padding: EdgeInsets.only(
+                    left: 15,
+                    right: 15,
+                    top: 10,
+                    bottom: MediaQuery.paddingOf(context).bottom + 30),
                 onRefresh: () async =>
                     controller.shareholderOffersPagingController.refresh(),
                 firstPageProgressIndicatorBuilder: (_) =>
                     const BuildLoadingCatsProducts(),
                 showNewPageProgressIndicatorAsGridChild: false,
-                noItemsFoundIndicatorBuilder: (context) => const BuildEmptyDataView(),
+                noItemsFoundIndicatorBuilder: (context) =>
+                    const BuildEmptyDataView(),
                 itemBuilder: (_, item, index) => BuildProductItem(
                   productModel: item,
-                  showVipDiscount:
-                      item.hasShareholderDiscount == true && isShareHolder == true,
+                  showVipDiscount: item.hasShareholderDiscount == true &&
+                      isShareHolder == true,
                   onFavRefresh: () => controller.onChangeFav(item),
-                  onRefresh: () => controller.getShareholderProducts(1),
+                  onRefresh: () => controller.getShareholderProducts(controller.currentPage),
                 ),
               ),
             ),
           ),
-          Gaps.vGap(120),
         ],
       ),
     );

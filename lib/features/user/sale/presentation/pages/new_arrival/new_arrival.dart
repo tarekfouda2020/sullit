@@ -36,21 +36,22 @@ class _NewArrivalState extends State<NewArrival> {
               onRefresh: () async => await controller.getArrival(1),
               child: GridViewPagination<Product>(
                 pagingController: controller.arrivalPagingController,
+                padding: EdgeInsets.only(
+                  left: 15, right: 15,  top: 10,
+                    bottom: MediaQuery.paddingOf(context).bottom + 30
+                ),
                 onRefresh: () async => controller.arrivalPagingController.refresh(),
-                firstPageProgressIndicatorBuilder: (_) =>
-                    const BuildLoadingProductsGridView(),
+                firstPageProgressIndicatorBuilder: (_) => const BuildLoadingProductsGridView(),
                 showNewPageProgressIndicatorAsGridChild: false,
-                noItemsFoundIndicatorBuilder: (context) =>
-                    const BuildEmptyDataView(),
+                noItemsFoundIndicatorBuilder: (context) => const BuildEmptyDataView(),
                 itemBuilder: (_, item, index) => BuildProductItem(
                   productModel: item,
                   onFavRefresh: () => controller.onChangeFav(item),
-                  onRefresh: () => controller.getArrival(1),
+                  onRefresh: () => controller.getArrival(controller.currentPage),
                 ),
               ),
             ),
           ),
-          Gaps.vGap(120)
         ],
       ),
     );

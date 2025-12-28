@@ -36,6 +36,10 @@ class _BestRatedState extends State<BestRated> {
             child: CustomRefreshIndicatorWidget(
               onRefresh: () async => await controller.getBestRated(1),
               child: GridViewPagination<Product>(
+                padding: EdgeInsets.only(
+                    left: 15, right: 15, top: 10,
+                    bottom: MediaQuery.paddingOf(context).bottom + 30
+                ),
                 pagingController: controller.bestRatedPagingController,
                 onRefresh: () async =>
                     controller.bestRatedPagingController.refresh(),
@@ -51,7 +55,6 @@ class _BestRatedState extends State<BestRated> {
               ),
             ),
           ),
-          Gaps.vGap(120),
         ],
       ),
     );

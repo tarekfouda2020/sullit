@@ -6,6 +6,8 @@ class ProOffersController {
   final PagingController<int, Product> vipOffersPagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 10;
+  int currentPage = 1;
+
 
   ProOffersController() {
     getVipOffers(1, refresh: false);
@@ -26,6 +28,7 @@ class ProOffersController {
       vipOffersPagingController.appendLastPage(result);
     } else {
       final nextPageKey = page + 1;
+      currentPage = nextPageKey;
       vipOffersPagingController.appendPage(result, nextPageKey);
     }
   }
