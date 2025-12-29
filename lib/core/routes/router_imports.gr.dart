@@ -588,9 +588,14 @@ class AppRouter extends _i100.RootStackRouter {
       );
     },
     CartRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<CartRouteArgs>(orElse: () => const CartRouteArgs());
       return _i100.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i45.Cart(),
+        child: _i45.Cart(
+          key: args.key,
+          initialIndex: args.initialIndex,
+        ),
         opaque: true,
       );
     },
@@ -2298,14 +2303,36 @@ class MoreRouteArgs {
 
 /// generated route for
 /// [_i45.Cart]
-class CartRoute extends _i100.PageRouteInfo<void> {
-  const CartRoute()
-      : super(
+class CartRoute extends _i100.PageRouteInfo<CartRouteArgs> {
+  CartRoute({
+    _i103.Key? key,
+    int? initialIndex,
+  }) : super(
           CartRoute.name,
           path: '/Cart',
+          args: CartRouteArgs(
+            key: key,
+            initialIndex: initialIndex,
+          ),
         );
 
   static const String name = 'CartRoute';
+}
+
+class CartRouteArgs {
+  const CartRouteArgs({
+    this.key,
+    this.initialIndex,
+  });
+
+  final _i103.Key? key;
+
+  final int? initialIndex;
+
+  @override
+  String toString() {
+    return 'CartRouteArgs{key: $key, initialIndex: $initialIndex}';
+  }
 }
 
 /// generated route for

@@ -155,7 +155,7 @@ class OrderDetailsPageController {
     if(result.isNotEmpty){
       CustomToast.showSimpleToast(msg: result,type: ToastType.success);
       await getIt<Utilities>().popManyTimes(context, 2);
-      AutoRouter.of(context).push(const CartRoute());
+      AutoRouter.of(context).push( CartRoute());
     }else{
       CustomToast.showSimpleToast(msg: tr("tryAgain"),type: ToastType.error);
     }

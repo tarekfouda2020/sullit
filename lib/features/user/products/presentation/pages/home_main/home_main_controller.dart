@@ -43,7 +43,7 @@ class HomeMainController {
 
   void changeCouponsTab(SaleTabType type, BuildContext context) {
     int index = homeController.getSaleTabIndex(type, context.isShareHolder);
-    homeController.index = index;
+    homeController.offersTabIndex = index;
   }
 
   void getHome(BuildContext context, {bool refresh = true}) async {
@@ -235,9 +235,9 @@ class HomeMainController {
     _synchronizeFavoriteStatus(item);
   }
 
-  // --------------------------------------------------------
 
-  // used to get on sale offers
+
+
   void getOnSaleOffers({bool refresh = true}) async {
     var params = GenericPaginateParams(
       pageSize: pageSize,

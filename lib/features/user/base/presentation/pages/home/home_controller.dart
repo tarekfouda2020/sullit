@@ -15,7 +15,7 @@ class HomeController {
   Orders? _firstUnPaidOrder;
 
   bool showToast = false;
-  int index = 0;
+  int offersTabIndex = 0;
   GenericBloc<CartDomainModel> get cartItemsBloc =>
       getIt<CartHelper>().cartItemsBloc;
   List<String> tabs = [
@@ -47,8 +47,7 @@ class HomeController {
         Gaps.empty,
         BlocBuilder<GenericBloc<int>, GenericState<int>>(
           bloc: homeTabCubit,
-          builder: (context, state) =>
-              Coupons(homeController: this, index: index),
+          builder: (context, state) => Coupons(homeController: this, index: offersTabIndex),
         ),
         More(homeController: this),
       ];
@@ -77,9 +76,12 @@ class HomeController {
   void animateTabsPages(int index, BuildContext context) {
     Future.delayed(const Duration(milliseconds: 700), () {
       if (index == 2) {
-        AutoRouter.of(context).push(const CartRoute());
+        AutoRouter.of(context).push(CartRoute());
         return;
       } else {
+        if(index == 3 && saleTabsData.onSale?.isNotEmpty == true){
+          offersTabIndex = getSaleTabIndex(SaleTabType.onSale,context.isShareHolder);
+        }
         homeTabCubit.onUpdateData(index);
         tabController.animateTo(index);
       }

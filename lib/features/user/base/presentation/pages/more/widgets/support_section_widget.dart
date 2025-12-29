@@ -12,13 +12,13 @@ class SupportSectionWidget extends StatelessWidget {
       children: [
         BuildMoreItem(
           image: Res.ticketLogo,
-          title: "chat with us",
+          title: tr('chat_with_us'),
           onTap: () =>
               controller.checkAuth(context, MoreRoutes.support),
         ),
         BuildMoreItem(
           image: Res.ticketLogo,
-          title: "orders tickets",
+          title: tr('orders_tickets'),
           onTap: () =>
               controller.checkAuth(context, MoreRoutes.supportTickets),
         ),

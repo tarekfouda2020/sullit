@@ -77,7 +77,7 @@ class MyOrdersController{
     if(result.isNotEmpty){
       CustomToast.showSimpleToast(msg: result,type: ToastType.success);
       AutoRouter.of(context).pop();
-      AutoRouter.of(context).push(const CartRoute());
+      AutoRouter.of(context).push( CartRoute());
     }else{
       CustomToast.showSimpleToast(msg: tr("tryAgain"),type: ToastType.error);
     }
