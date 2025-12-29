@@ -853,6 +853,8 @@
   "please_enter_valid_email": "الرجاء إدخال بريد إلكتروني صالح.",
   "orders_tickets": "تذاكر الطلبات",
   "chat_with_us": "الدردشة معنا",
+  "view_cart": "عرض السلة",
+  "needed_to_reach_minimum_order": "مطلوب للوصول إلى الحد الأدنى للطلب",
   "enter_email_to_change_password": "الرجاء إدخال بريدك الإلكتروني لتغيير كلمة المرور الحالية.",
   "tier_not_available": "هذه الفئة غير متوفرة حاليًا للاشتراك. يرجى اختيار فئة أخرى. شكرًا لك"
 }

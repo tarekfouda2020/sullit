@@ -49,7 +49,7 @@ class ViewCartBottomNavWidget extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Text("View Cart",
+                          Text(tr("view_cart"),
                             style: AppTextStyle.s18_w700(color: context.colors.white),
                           ),
                           Gaps.empty
@@ -82,7 +82,7 @@ class ViewCartBottomNavWidget extends StatelessWidget {
               Gaps.vGap10,
               if(state.data.minimumStatus == false)
                 CartMinAmountNeededWidget(minAmount: controller.minAmountRemain,),
-              Gaps.vGap10,
+              Gaps.vGap12,
             ],
           ),
         );
