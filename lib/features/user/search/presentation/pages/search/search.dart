@@ -50,7 +50,7 @@ class _SearchState extends State<Search> {
                         BuildCategorySuggestItem(
                           categories: cats,
                           controller: controller,
-                          showSeeAll: categories.length>10,
+                          showSeeAll: categories.length > 10,
                           // controller: controller,
                         ),
 

@@ -37,46 +37,14 @@ class _AllProductsSearchState extends State<AllProductsSearch> {
       body: CustomRefreshIndicatorWidget(
         onRefresh: () => controller.getSearchResults(1),
         child: PagedListView<int, dynamic>(
-          padding: Dimens.paddingAll15PX,
+          padding: const EdgeInsets.symmetric(vertical: 15),
           pagingController: controller.pagingController,
           builderDelegate: PagedChildBuilderDelegate<dynamic>(
             firstPageProgressIndicatorBuilder: (_) => const BuildLoadingSuggestions(),
             itemBuilder: (_, item, index) {
               if (widget.showProducts) {
                 final product = item as Product;
-                return InkWell(
-                  onTap: () => AutoRouter.of(context).push(
-                    ProductDetailsRoute(
-                      isFav: product.isWishlist!,
-                      productId: product.id!,
-                      isResale: product.isResale!,
-                    ),
-                  ),
-                  child: Container(
-                    margin: Dimens.cardMargin,
-                    padding: Dimens.paddingVertical8PX,
-                    decoration: const CustomDecoration(),
-                    child: ListTile(
-                      leading: CachedImage(
-                        url: product.images?.first ?? "",
-                        height: 65.r,
-                        width: 65.r,
-                        fit: BoxFit.fill,
-                      ),
-                      title: Text(
-                        product.name ?? "",
-                        style: AppTextStyle.s15_w500(color: context.colors.black),
-                      ),
-                      subtitle: Padding(
-                        padding: const EdgeInsets.only(top: 8),
-                        child: DirhamPrice(
-                          amount: product.priceHighLow ?? "",
-                          textStyle: AppTextStyle.s15_w700(color: context.colors.primary),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
+                return BuildProductSuggestItem(productModel: product);
               } else {
                 final category = item as Category;
                 return GestureDetector(
