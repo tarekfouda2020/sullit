@@ -35,26 +35,27 @@ class _OnSaleState extends State<OnSale> {
           //   ),
           // ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 122),
-              child: CustomRefreshIndicatorWidget(
-                onRefresh: () async => await controller.getOnSale(1),
-                child: GridViewPagination<Product>(
-                  pagingController: controller.onSalePagingController,
-                  onRefresh: () async =>
-                      controller.onSalePagingController.refresh(),
-                  firstPageProgressIndicatorBuilder: (_) =>
-                  const BuildLoadingProductsGridView(),
-                  showNewPageProgressIndicatorAsGridChild: false,
-                  noItemsFoundIndicatorBuilder: (context) =>
-                  const BuildEmptyDataView(),
-                  itemBuilder: (_, item, index) =>
-                      BuildProductItem(
-                        productModel: item,
-                        showVipDiscount: item.hasVipOffer,
-                        onFavRefresh: () => controller.onChangeFav(item),
-                        onRefresh: () => controller.getOnSale(1),
-                      ),
+            child: CustomRefreshIndicatorWidget(
+              onRefresh: () async => await controller.getOnSale(1),
+              child: GridViewPagination<Product>(
+                pagingController: controller.onSalePagingController,
+                padding: EdgeInsets.only(
+                    left: 15,
+                    right: 15,
+                    top: 10,
+                    bottom: MediaQuery.paddingOf(context).bottom + 30),
+                onRefresh: () async =>
+                    controller.onSalePagingController.refresh(),
+                firstPageProgressIndicatorBuilder: (_) =>
+                    const BuildLoadingProductsGridView(),
+                showNewPageProgressIndicatorAsGridChild: false,
+                noItemsFoundIndicatorBuilder: (context) =>
+                    const BuildEmptyDataView(),
+                itemBuilder: (_, item, index) => BuildProductItem(
+                  productModel: item,
+                  showVipDiscount: item.hasVipOffer,
+                  onFavRefresh: () => controller.onChangeFav(item),
+                  onRefresh: () => controller.getOnSale(controller.currentPage),
                 ),
               ),
             ),

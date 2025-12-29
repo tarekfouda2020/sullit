@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
 import 'package:flutter_tdd/core/helpers/get_device_id.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
@@ -113,7 +114,7 @@ class CartHelper {
   }
 
   Future<void> addProductToCart(BuildContext context, int qty, int? variantId,
-      {required Function() onAddCartFunc, bool showLoader = true}) async {
+      {required Function() onAddCartFunc, bool showLoader = true, bool callCartData = true}) async {
     var params = await _addToCartParams(variantId, qty, showLoader: showLoader);
     if (params.variantId == null) {
       CustomToast.showSimpleToast(msg: tr('variantNotFound'));
@@ -122,7 +123,9 @@ class CartHelper {
     var data = await AddProductToCart().call(params);
 
     if (data.isNotEmpty) {
-     await  getCartItems();
+      if(callCartData){
+        await  getCartItems();
+      }
       onAddCartFunc();
       CustomToast.showSimpleToast(
           msg: tr('productAddedToYourCart'), type: ToastType.success);
@@ -271,6 +274,10 @@ class _StandaloneCartSheetController implements CartSheetController {
   @override
   Future<void> onDecreaseCart(BuildContext context, CartItem cartItem,
       GenericBloc<bool> loadingCubit) async {
+    if(cartItem.quantity == 1){
+      deleteItemFromCart(context,cartItem);
+      return ;
+    }
     if (cartItem.quantity > 1) {
       loadingCubit.onUpdateData(true);
       final newQty = cartItem.quantity - 1;

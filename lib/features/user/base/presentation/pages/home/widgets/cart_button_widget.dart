@@ -11,7 +11,7 @@ class CartButtonWidget extends StatelessWidget {
     return BlocBuilder<CountCubit, CountState>(
       builder: (context, state) {
         return GestureDetector(
-          onTap: () => AutoRouter.of(context).push(const CartRoute()),
+          onTap: () => AutoRouter.of(context).push( CartRoute()),
           child: Container(
             width: size,
             height: size,

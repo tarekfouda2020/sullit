@@ -19,6 +19,7 @@ import 'package:flutter_tdd/features/user/sale/presentation/pages/coupons/widget
 import 'package:flutter_tdd/features/user/sale/presentation/pages/new_arrival/new_arrival_imports.dart';
 import 'package:flutter_tdd/features/user/sale/presentation/pages/on_sale/on_sale_imports.dart';
 import 'package:flutter_tdd/features/user/sale/presentation/pages/shareholder_offers/shareholder_offers_imports.dart';
+import 'package:flutter_tdd/features/user/vip_subscribe/presentation/pages/membership_subscribe/membership_subscribe_imports.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../pro_offers/pro_offers_imports.dart';

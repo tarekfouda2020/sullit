@@ -23,7 +23,7 @@ class BestRatedOffersFormWidget extends StatelessWidget {
                     title: tr('bestRated'),
                     controller: controller,
                     onTap: () {
-                      controller.changeCouponsTab(3);
+                      controller.changeCouponsTab(SaleTabType.bestRated, context);
                       controller.homeController.animateTabsPages(3, context);
                     },
                   ),
@@ -34,10 +34,13 @@ class BestRatedOffersFormWidget extends StatelessWidget {
                       itemCount: length,
                       itemBuilder: (context, index) {
                         return BuildProductItem(
-                          margin: EdgeInsetsDirectional.only(end: index == length - 1 ? 0 : 8),
+                          margin: EdgeInsetsDirectional.only(
+                              end: index == length - 1 ? 0 : 8),
                           productModel: state.data[index],
-                          onFavRefresh: () => controller.onChangeBestRatedFav(state.data[index]),
-                          onRefresh: () => controller.getBestRatedOffers(refresh: true),
+                          onFavRefresh: () => controller
+                              .onChangeBestRatedFav(state.data[index]),
+                          onRefresh: () =>
+                              controller.getBestRatedOffers(refresh: true),
                         );
                       },
                     ),

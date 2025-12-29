@@ -33,23 +33,24 @@ class _BestRatedState extends State<BestRated> {
           //   ),
           // ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 122),
-              child: CustomRefreshIndicatorWidget(
-                onRefresh: () async => await controller.getBestRated(1),
-                child: GridViewPagination<Product>(
-                  pagingController: controller.bestRatedPagingController,
-                  onRefresh: () async =>
-                      controller.bestRatedPagingController.refresh(),
-                  firstPageProgressIndicatorBuilder: (_) => const BuildLoadingProductsGridView(),
-                  showNewPageProgressIndicatorAsGridChild: false,
-                  noItemsFoundIndicatorBuilder: (context) =>
-                      const BuildEmptyDataView(),
-                  itemBuilder: (_, item, index) => BuildProductItem(
-                    productModel: item,
-                    onFavRefresh: () => controller.onChangeFav(item),
-                    onRefresh: () => controller.getBestRated(1),
-                  ),
+            child: CustomRefreshIndicatorWidget(
+              onRefresh: () async => await controller.getBestRated(1),
+              child: GridViewPagination<Product>(
+                padding: EdgeInsets.only(
+                    left: 15, right: 15, top: 10,
+                    bottom: MediaQuery.paddingOf(context).bottom + 30
+                ),
+                pagingController: controller.bestRatedPagingController,
+                onRefresh: () async =>
+                    controller.bestRatedPagingController.refresh(),
+                firstPageProgressIndicatorBuilder: (_) => const BuildLoadingProductsGridView(),
+                showNewPageProgressIndicatorAsGridChild: false,
+                noItemsFoundIndicatorBuilder: (context) =>
+                    const BuildEmptyDataView(),
+                itemBuilder: (_, item, index) => BuildProductItem(
+                  productModel: item,
+                  onFavRefresh: () => controller.onChangeFav(item),
+                  onRefresh: () => controller.getBestRated(1),
                 ),
               ),
             ),

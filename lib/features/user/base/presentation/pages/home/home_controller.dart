@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 part of 'home_imports.dart';
 
 class HomeController {
@@ -13,7 +15,7 @@ class HomeController {
   Orders? _firstUnPaidOrder;
 
   bool showToast = false;
-  int index = 0;
+  int offersTabIndex = 0;
   GenericBloc<CartDomainModel> get cartItemsBloc =>
       getIt<CartHelper>().cartItemsBloc;
   List<String> tabs = [
@@ -45,8 +47,7 @@ class HomeController {
         Gaps.empty,
         BlocBuilder<GenericBloc<int>, GenericState<int>>(
           bloc: homeTabCubit,
-          builder: (context, state) =>
-              Coupons(homeController: this, index: index),
+          builder: (context, state) => Coupons(homeController: this, index: offersTabIndex),
         ),
         More(homeController: this),
       ];
@@ -65,19 +66,6 @@ class HomeController {
     Phoenix.rebirth(context);
   }
 
-  // void showLangBottomSheet(BuildContext context, HomeController controller) {
-  //   showModalBottomSheet(
-  //     shape: const RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.only(
-  //             topLeft: Radius.circular(15), topRight: Radius.circular(15))),
-  //     backgroundColor: context.colors.white,
-  //     context: context,
-  //     builder: (context) => BuildLangBottomSheet(
-  //       controller: controller,
-  //     ),
-  //   );
-  // }
-
   void initBottomNavigation(TickerProvider ticker, int index) {
     tabController =
         TabController(length: 5, vsync: ticker, initialIndex: index);
@@ -87,22 +75,16 @@ class HomeController {
 
   void animateTabsPages(int index, BuildContext context) {
     Future.delayed(const Duration(milliseconds: 700), () {
-      bool auth = context.read<DeviceCubit>().state.model.auth;
-      // if (index == 2 && !auth) {
-      //   CustomToast.showAuthDialog(context);
-      //   return;
-      // }
       if (index == 2) {
-        AutoRouter.of(context).push(const CartRoute());
+        AutoRouter.of(context).push(CartRoute());
         return;
       } else {
+        if(index == 3 && saleTabsData.onSale?.isNotEmpty == true){
+          offersTabIndex = getSaleTabIndex(SaleTabType.onSale,context.isShareHolder);
+        }
         homeTabCubit.onUpdateData(index);
         tabController.animateTo(index);
       }
-      // if (index != homeTabCubit.state.data) {
-      //   homeTabCubit.onUpdateData(index);
-      //   tabController.animateTo(index);
-      // }
     });
   }
 
@@ -173,8 +155,7 @@ class HomeController {
           userEmail.isEmpty ||
           userEmail.validateEmail() != null) {
         CustomToast.showSimpleToast(
-            msg: tr("enter_email_to_change_password"),
-            type: ToastType.error);
+            msg: tr("enter_email_to_change_password"), type: ToastType.error);
         AutoRouter.of(ctx).push(const ProfileRoute());
       }
     }
@@ -218,6 +199,59 @@ class HomeController {
             isReturnedOrder: false, order: _firstUnPaidOrder!));
       }
     }
+  }
+
+  SaleTabsData saleTabsData = SaleTabsData();
+
+  Future<void> fetchSaleTabsData(BuildContext context) async {
+    var params =
+        GenericPaginateParams(currentPage: 1, refresh: true, pageSize: 1);
+
+    OffersParamsWidget offersParams({bool isVipProducts = false}) =>
+        OffersParamsWidget(
+          paginateParams: params,
+          isVipProducts: isVipProducts,
+        );
+    try {
+      List<Future<List<Product>>> futures = [
+        !context.isShareHolder
+            ? GetVipOffers().call(offersParams(isVipProducts: true))
+            : Future.value([]),
+        context.isShareHolder
+            ? GetShareholderProducts().call(offersParams(isVipProducts: true))
+            : Future.value([]),
+        GetNewArrival().call(offersParams()),
+        GetOnSale().call(offersParams()),
+        GetBestRated().call(offersParams()),
+      ];
+
+      var results = await Future.wait(futures);
+      saleTabsData.vipOffers = !context.isShareHolder ? results[0] : [];
+      saleTabsData.shareholderOffers = context.isShareHolder ? results[1] : [];
+      saleTabsData.newArrival = results[2];
+      saleTabsData.onSale = results[3];
+      saleTabsData.bestRated = results[4];
+    } catch (e) {
+      log("Error fetching sale tabs data: $e");
+    }
+  }
+
+  int getSaleTabIndex(SaleTabType type, bool isShareHolder) {
+    List<SaleTabType> visibleTypes = [];
+    bool show(List? list) => list == null || list.isNotEmpty;
+
+    if (!isShareHolder && show(saleTabsData.vipOffers)) {
+      visibleTypes.add(SaleTabType.vipOffers);
+    }
+    if (isShareHolder && show(saleTabsData.shareholderOffers)) {
+      visibleTypes.add(SaleTabType.shareholderOffers);
+    }
+    if (show(saleTabsData.newArrival)) visibleTypes.add(SaleTabType.newArrival);
+    if (show(saleTabsData.onSale)) visibleTypes.add(SaleTabType.onSale);
+    if (show(saleTabsData.bestRated)) visibleTypes.add(SaleTabType.bestRated);
+
+    int index = visibleTypes.indexOf(type);
+    return index != -1 ? index : 0;
   }
 
   GenericPaginateParams _historyParams(bool refresh) {

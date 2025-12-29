@@ -1,14 +1,13 @@
 part of 'pro_offers_imports.dart';
 
 class ProOffersController {
-
   final TextEditingController searchFieldCtr = TextEditingController();
-
-
 
   final PagingController<int, Product> vipOffersPagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 10;
+  int currentPage = 1;
+
 
   ProOffersController() {
     getVipOffers(1, refresh: false);
@@ -29,15 +28,14 @@ class ProOffersController {
       vipOffersPagingController.appendLastPage(result);
     } else {
       final nextPageKey = page + 1;
+      currentPage = nextPageKey;
       vipOffersPagingController.appendPage(result, nextPageKey);
     }
   }
 
   GenericPaginateParams _vipOffersParams(bool refresh, int currentPage) {
     return GenericPaginateParams(
-        pageSize: pageSize,
-        refresh: refresh,
-        currentPage: currentPage);
+        pageSize: pageSize, refresh: refresh, currentPage: currentPage);
   }
 
   void onChangeFav(Product item) {
@@ -56,20 +54,18 @@ class ProOffersController {
   void routeToMembershipSubscribe(BuildContext context) {
     bool isAuth = context.read<DeviceCubit>().state.model.auth;
     if (isAuth) {
-      AutoRouter.of(context).push(const MembershipSubscribeRoute());
+      AutoRouter.of(context).push( MembershipSubscribeRoute());
     } else {
       CustomToast.showAuthDialog(context);
     }
   }
 
-
   OffersParamsWidget _vipOffers(bool refresh, int currentPage) {
     return OffersParamsWidget(
-        paginateParams: _vipOffersParams(refresh, currentPage),
+      paginateParams: _vipOffersParams(refresh, currentPage),
       isVipProducts: true,
     );
   }
-
 
   void onPressSearch(BuildContext context) {
     FocusScope.of(context).unfocus();
@@ -87,6 +83,4 @@ class ProOffersController {
     vipOffersPagingController.refresh();
     getVipOffers(1);
   }
-
-
 }

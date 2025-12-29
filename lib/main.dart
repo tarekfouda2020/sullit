@@ -4,18 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
 import 'package:flutter_tdd/core/helpers/global_notification.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
-
 import 'core/helpers/di.dart';
 import 'my_app.dart';
 
+import 'package:facebook_app_events/facebook_app_events.dart';
 
-void main()async{
+void main() async {
   tz.initializeTimeZones();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -24,11 +25,15 @@ void main()async{
   await configureDependencies();
   getIt.registerSingleton(ComparedProductsDb());
   getIt<GlobalNotification>().setupNotification();
+  // FacebookEventsHelper.instance.facebookAppEvents;
+  FacebookEventsHelper.instance.facebookAppEvents.setAutoLogAppEventsEnabled(true);
+  FacebookEventsHelper.instance.facebookAppEvents.setAdvertiserTracking(enabled: true);
+  // FacebookAppEvents();
+
   runApp(
     BlocProvider(
       create: (BuildContext context) => DeviceCubit(),
-      child:  Phoenix(child: const MyApp()),
+      child: Phoenix(child: const MyApp()),
     ),
   );
 }
-

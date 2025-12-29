@@ -41,6 +41,7 @@ class CategoryDetailsController implements CartSheetController {
   RangeValues? rangeValues;
 
   CategoryDetailsController(BuildContext context, Category categoryModel) {
+    FacebookEventsHelper.instance.categoryDetailsOpened(categoryModel);
     getCartItems();
     initialCategoryModel = categoryModel;
     titleCubit.onUpdateData(categoryModel.name);
@@ -50,7 +51,7 @@ class CategoryDetailsController implements CartSheetController {
   Future<void> getData(BuildContext context, Category categoryModel) async {
     await getSubCategories(context, categoryModel.id);
     getPopularProducts(1, refresh: false);
-    getBrands(1);
+    getBrands(1,refresh: false);
     pagingController.addPageRequestListener((pageKey) {
       getPopularProducts(pageKey, refresh: true);
     });
@@ -661,6 +662,10 @@ class CategoryDetailsController implements CartSheetController {
   Future<void> onDecreaseCart(
       BuildContext context, CartItem cartItem, GenericBloc<bool> loadingCubit,
       {bool inBottomSheet = true}) async {
+    if(cartItem.quantity == 1){
+      deleteItemFromCart(context, cartItem);
+      return ;
+    }
     if (cartItem.quantity > 1) {
       loadingCubit.onUpdateData(true);
       final newQty = cartItem.quantity - 1;
@@ -779,8 +784,8 @@ class CategoryDetailsController implements CartSheetController {
     return BrandsParams(
         paginate: paginate,
         refresh: refresh,
-        page: page,
-        keyword: brandsSearchCtr.text.trim(),
-        categoryId: currentCatId);
+        page: page);
+
   }
+
 }

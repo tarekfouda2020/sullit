@@ -10,7 +10,6 @@ class OrderDetailsPageController {
   final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc = GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
 
 
-
   OrderDetailsPageController(Orders orderModel){
     orderDetailsBloc.onUpdateData(orderModel);
     getOrderDetails(orderModel.id,refresh: false);
@@ -86,7 +85,7 @@ class OrderDetailsPageController {
     getIt<LoadingHelper>().showLoadingDialog();
     var result = await CancelOrder().call(model.id);
     if (result.isNotEmpty) {
-      CustomToast.showSimpleToast(msg: result);
+      CustomToast.showSimpleToast(msg: result,type: ToastType.success);
       model.availableCancelOrder = false;
       AutoRouter.of(context).pop(true);
     }
@@ -156,7 +155,7 @@ class OrderDetailsPageController {
     if(result.isNotEmpty){
       CustomToast.showSimpleToast(msg: result,type: ToastType.success);
       await getIt<Utilities>().popManyTimes(context, 2);
-      AutoRouter.of(context).push(const CartRoute());
+      AutoRouter.of(context).push( CartRoute());
     }else{
       CustomToast.showSimpleToast(msg: tr("tryAgain"),type: ToastType.error);
     }
@@ -175,7 +174,6 @@ class OrderDetailsPageController {
       },
     );
   }
-
 
 
   GenericParams _params(int id,bool refresh){

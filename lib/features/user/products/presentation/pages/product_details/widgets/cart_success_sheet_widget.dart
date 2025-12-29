@@ -170,7 +170,7 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
       CustomToast.showSimpleToast(msg: model.minimumAmountMsg!);
       return ;
     }
-    AutoRouter.of(context).popAndPush(const CartRoute());
+    AutoRouter.of(context).popAndPush( CartRoute(initialIndex: CartNavigateHelper.shippingStepIndex));
   }
 
 

@@ -23,7 +23,8 @@ class NewArrivalOffersFormWidget extends StatelessWidget {
                     title: tr('newArrival'),
                     controller: controller,
                     onTap: () {
-                      controller.changeCouponsTab(1);
+                      controller.changeCouponsTab(
+                          SaleTabType.newArrival, context);
                       controller.homeController.animateTabsPages(3, context);
                     },
                   ),
@@ -34,10 +35,13 @@ class NewArrivalOffersFormWidget extends StatelessWidget {
                       itemCount: length,
                       itemBuilder: (context, index) {
                         return BuildProductItem(
-                          margin: EdgeInsetsDirectional.only(end: index == length - 1 ? 0 : 8),
+                          margin: EdgeInsetsDirectional.only(
+                              end: index == length - 1 ? 0 : 8),
                           productModel: state.data[index],
-                          onFavRefresh: () => controller.onChangeArrivalOffersFav(state.data[index]),
-                          onRefresh: () => controller.getNewArrivalOffers(refresh: true),
+                          onFavRefresh: () => controller
+                              .onChangeArrivalOffersFav(state.data[index]),
+                          onRefresh: () =>
+                              controller.getNewArrivalOffers(refresh: true),
                         );
                       },
                     ),

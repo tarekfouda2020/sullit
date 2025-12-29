@@ -8,6 +8,7 @@ import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
@@ -25,6 +26,7 @@ class ProductsHelper {
     required int id,
     required Function() onRefresh,
     GenericBloc<bool>? loadingBloc,
+    String? price,
   }) async {
     bool auth = context.read<DeviceCubit>().state.model.auth;
     if (!auth) {
@@ -43,6 +45,7 @@ class ProductsHelper {
         msg: tr('itemAddedToWishlist'),
         type: ToastType.success,
       );
+      FacebookEventsHelper.instance.wishList(id: id.toString(), price: double.parse(price??"0.0"));
     } else {
       CustomToast.showSimpleToast(
         msg: tr('itemRemovedFromWishlist'),
@@ -119,6 +122,10 @@ class ProductsHelper {
       product.variant?.id,
       showLoader: false,
       onAddCartFunc: () {
+        FacebookEventsHelper.instance.productAddToCart(
+        price:product.variant?.calculablePrice ??"" ,
+          id: product.id!,
+        );
         getIt<CartHelper>().updateCartCount(context, product.minQty! + existCount);
         if (afterAddToCart != null) {
           afterAddToCart.call();

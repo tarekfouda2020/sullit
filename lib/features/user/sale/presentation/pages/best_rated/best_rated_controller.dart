@@ -1,10 +1,7 @@
 part of 'best_rated_imports.dart';
 
 class BestRatedController {
-
   final TextEditingController searchFieldCtr = TextEditingController();
-
-
 
   final PagingController<int, Product> bestRatedPagingController =
       PagingController(firstPageKey: 1);
@@ -33,17 +30,18 @@ class BestRatedController {
     }
   }
 
-  GenericPaginateParams _bestRatedPaginateParams(bool refresh, int currentPage) {
+  GenericPaginateParams _bestRatedPaginateParams(
+      bool refresh, int currentPage) {
     return GenericPaginateParams(
-        pageSize: pageSize,
-        refresh: refresh,
-        currentPage: currentPage,
+      pageSize: pageSize,
+      refresh: refresh,
+      currentPage: currentPage,
     );
   }
 
-
-  OffersParamsWidget _bestRatedOffers(bool refresh , int currentPage){
-    return OffersParamsWidget(paginateParams: _bestRatedPaginateParams(refresh, currentPage));
+  OffersParamsWidget _bestRatedOffers(bool refresh, int currentPage) {
+    return OffersParamsWidget(
+        paginateParams: _bestRatedPaginateParams(refresh, currentPage));
   }
 
   void onChangeFav(Product item) {
@@ -58,7 +56,6 @@ class BestRatedController {
       }
     }
   }
-
 
   void onPressSearch(BuildContext context) {
     FocusScope.of(context).unfocus();
@@ -76,6 +73,4 @@ class BestRatedController {
     bestRatedPagingController.refresh();
     getBestRated(1);
   }
-
-
 }

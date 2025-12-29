@@ -22,6 +22,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   void didChangeDependencies() {
     super.didChangeDependencies();
     controller.getCartItems(context);
+    controller.fetchSaleTabsData(context);
   }
 
   @override

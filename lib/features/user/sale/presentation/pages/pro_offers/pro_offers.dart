@@ -28,17 +28,19 @@ class _ProOffersState extends State<ProOffers> {
             //   ),
             // ),
             // Gaps.vGap10,
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: VipOffersWidget(
-                onTap: () => controller.routeToMembershipSubscribe(context),
-                buttonText: tr("subscribeNow"),
-              ),
+            VipOffersWidget(
+              onTap: () => controller.routeToMembershipSubscribe(context),
+              buttonText: tr("subscribeNow"),
             ),
             Gaps.vGap10,
             Expanded(
               child: GridViewPagination<Product>(
                 pagingController: controller.vipOffersPagingController,
+                padding: EdgeInsets.only(
+                    left: 15,
+                    right: 15,
+                    top: 10,
+                    bottom: MediaQuery.paddingOf(context).bottom + 30),
                 onRefresh: () async =>
                     controller.vipOffersPagingController.refresh(),
                 firstPageProgressIndicatorBuilder: (_) =>

@@ -32,23 +32,22 @@ class _NewArrivalState extends State<NewArrival> {
           //   ),
           // ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 122),
-              child: CustomRefreshIndicatorWidget(
-                onRefresh: () async => await controller.getArrival(1),
-                child: GridViewPagination<Product>(
-                  pagingController: controller.arrivalPagingController,
-                  onRefresh: () async => controller.arrivalPagingController.refresh(),
-                  firstPageProgressIndicatorBuilder: (_) =>
-                      const BuildLoadingProductsGridView(),
-                  showNewPageProgressIndicatorAsGridChild: false,
-                  noItemsFoundIndicatorBuilder: (context) =>
-                      const BuildEmptyDataView(),
-                  itemBuilder: (_, item, index) => BuildProductItem(
-                    productModel: item,
-                    onFavRefresh: () => controller.onChangeFav(item),
-                    onRefresh: () => controller.getArrival(1),
-                  ),
+            child: CustomRefreshIndicatorWidget(
+              onRefresh: () async => await controller.getArrival(1),
+              child: GridViewPagination<Product>(
+                pagingController: controller.arrivalPagingController,
+                padding: EdgeInsets.only(
+                  left: 15, right: 15,  top: 10,
+                    bottom: MediaQuery.paddingOf(context).bottom + 30
+                ),
+                onRefresh: () async => controller.arrivalPagingController.refresh(),
+                firstPageProgressIndicatorBuilder: (_) => const BuildLoadingProductsGridView(),
+                showNewPageProgressIndicatorAsGridChild: false,
+                noItemsFoundIndicatorBuilder: (context) => const BuildEmptyDataView(),
+                itemBuilder: (_, item, index) => BuildProductItem(
+                  productModel: item,
+                  onFavRefresh: () => controller.onChangeFav(item),
+                  onRefresh: () => controller.getArrival(controller.currentPage),
                 ),
               ),
             ),

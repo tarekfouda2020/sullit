@@ -11,12 +11,21 @@ class CouponsController {
   List<Widget> pages(BuildContext context) {
     final isShareHolder = context.isShareHolder;
 
+    final saleData = homeController.saleTabsData;
+
+    bool show(List? list) {
+      if (list == null) {
+        return true;
+      }
+      return list.isNotEmpty;
+    }
+
     return [
-      if (!isShareHolder) const ProOffers(),
-      if (isShareHolder) const ShareholderOffers(),
-      const NewArrival(),
-      OnSale(homeController: homeController),
-      const BestRated(),
+      if (!isShareHolder && show(saleData.vipOffers)) const ProOffers(),
+      if (isShareHolder && show(saleData.shareholderOffers))const ShareholderOffers(),
+      if (show(saleData.newArrival)) const NewArrival(),
+      if (show(saleData.onSale)) OnSale(homeController: homeController),
+      if (show(saleData.bestRated)) const BestRated(),
     ];
   }
 

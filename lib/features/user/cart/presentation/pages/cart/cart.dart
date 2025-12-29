@@ -3,7 +3,8 @@
 part of 'cart_imports.dart';
 
 class Cart extends StatefulWidget {
-  const Cart({Key? key}) : super(key: key);
+  final int? initialIndex;
+  const Cart({Key? key, this.initialIndex}) : super(key: key);
 
   @override
   _CartState createState() => _CartState();
@@ -18,7 +19,8 @@ class _CartState extends State<Cart> {
   void initState() {
     super.initState();
     controller = CartController();
-    controller.navigateHelper.setStep(CartNavigateHelper.cartStepIndex, force: true);
+
+    controller.navigateHelper.setStep(widget.initialIndex ?? CartNavigateHelper.cartStepIndex, force: true);
   }
 
   @override
