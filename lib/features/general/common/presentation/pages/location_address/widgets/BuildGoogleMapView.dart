@@ -12,14 +12,8 @@ class BuildGoogleMapView extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             SizedBox(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width,
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height,
+              width: MediaQuery.sizeOf(context).width,
+              height: MediaQuery.sizeOf(context).height,
               child: GoogleMap(
                   mapType: MapType.normal,
                   // markers: _markers,

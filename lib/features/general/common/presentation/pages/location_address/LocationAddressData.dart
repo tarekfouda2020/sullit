@@ -41,11 +41,11 @@ class LocationAddressData {
         loc = LatLng(model.lat, model.lng);
       }
       context.read<LocationCubit>().onLocationUpdated(locationModel);
+      moveCameraToLocation(context, loc);
       String address = await getIt<Utilities>().getAddress(loc, context);
       locationModel.address = address;
       context.read<LocationCubit>().onLocationUpdated(locationModel);
       titleBloc.onUpdateData(locationModel.address);
-      moveCameraToLocation(context, loc);
     }catch(e){
       AutoRouter.of(context).pop();
     }
