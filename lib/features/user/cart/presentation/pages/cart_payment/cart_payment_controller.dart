@@ -292,7 +292,7 @@ class CartPaymentController {
 
   CreateOrderParams _orderParams() {
     return CreateOrderParams(
-      paymentOption: selectedPayment ?? "",
+      paymentOption: shippingBloc.state.data!.paymentOption!.firstWhere((element) => element.selected).paymentTypeKey,
       additionalInfo: additionalInfo.text,
       giftCardCode: giftCardCode.text.trim(),
       allowReplacement: allowReplacementCubit.state.data ? 1 : 0,
