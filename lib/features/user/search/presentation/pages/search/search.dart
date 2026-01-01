@@ -28,6 +28,7 @@ class _SearchState extends State<Search> {
         body: Column(
           children: [
             BuildSearchField(controller: controller),
+            SearchHistoryWidget(controller: controller),
             Flexible(
               child: BlocBuilder<GenericBloc<SearchResults?>,
                   GenericState<SearchResults?>>(
