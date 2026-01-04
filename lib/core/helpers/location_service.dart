@@ -17,7 +17,7 @@ class LocationService {
 
   static LocationService get instance => GetIt.I<LocationService>();
 
-  static const String _locationIqBaseUrl = 'https://us1.locationiq.com/v1';
+  static const String _locationIqBaseUrl = 'https://eu1.locationiq.com/v1/';
   static const String _apiKey = 'pk.c31b14b4fcf9a796608be0c167065869';
 
   final Dio _dio = Dio();
@@ -39,15 +39,16 @@ class LocationService {
 
   Future<CustomAddressModel?> getFullAddress(LatLng latLng, {bool setCountryName = true}) async {
     try {
-      const url = '$_locationIqBaseUrl/reverse.php';
-      final queryParams = {
-        'key': _apiKey,
-        'lat': latLng.latitude.toString(),
-        'lon': latLng.longitude.toString(),
-        'format': 'json',
-      };
+      // const url = '$_locationIqBaseUrl/reverse?';
+      final url = '${_locationIqBaseUrl}reverse?key=$_apiKey&lat=${latLng.latitude}&lon=${latLng.longitude}&format=json&';
+      // final queryParams = {
+      //   'key': _apiKey,
+      //   'lat': latLng.latitude.toString(),
+      //   'lon': latLng.longitude.toString(),
+      //   'format': 'json',
+      // };
 
-      final response = await _dio.get(url, queryParameters: queryParams);
+      final response = await _dio.get(url);
 
       if (response.statusCode == 200 && response.data != null) {
         final data = response.data as Map<String, dynamic>;
@@ -65,7 +66,8 @@ class LocationService {
       }
       return null;
     } catch (e) {
-      log("=======>>>>>>>>>> error is $e end ============");
+      log("=======>>>>>>>>>> url  ${'${_locationIqBaseUrl}reverse?key=$_apiKey&lat=${latLng.latitude}&lon=${latLng.longitude}&format=json&'} end ============");
+      log("=======>>>>>>>>>> dio error  $e end ============");
       return null;
     }
   }

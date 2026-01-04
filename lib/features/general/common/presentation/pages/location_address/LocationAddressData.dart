@@ -19,7 +19,7 @@ class LocationAddressData {
   Future<void> getLocationAddress(BuildContext context) async {
     LatLng loc = LatLng(locationModel.lat,locationModel.lng);
     context.read<LocationCubit>().onLocationUpdated(locationModel);
-    String address = await getIt<Utilities>().getAddress(loc,context,showCountryName: false);
+    String address = await getIt<LocationService>().getAddress(loc);
     locationModel.address = address;
     titleBloc.onUpdateData(address);
   }
@@ -42,7 +42,7 @@ class LocationAddressData {
       }
       context.read<LocationCubit>().onLocationUpdated(locationModel);
       moveCameraToLocation(context, loc);
-      String address = await getIt<Utilities>().getAddress(loc, context);
+      String address = await getIt<LocationService>().getAddress(loc);
       locationModel.address = address;
       context.read<LocationCubit>().onLocationUpdated(locationModel);
       titleBloc.onUpdateData(locationModel.address);
@@ -58,7 +58,7 @@ class LocationAddressData {
         CameraUpdate.newCameraPosition(
           CameraPosition(
             target: location,
-            zoom: 16.3746,
+            zoom: 17.3746,
           ),
         ),
       );

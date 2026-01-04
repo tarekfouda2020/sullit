@@ -40,6 +40,10 @@ class BuildGoogleMapView extends StatelessWidget {
                     locationAddressData.getLocationAddress(context);
                   },
                   // onTap: (location) async => locationAddressData.onTapOnMap(context, location),
+                  onTap: (location)  {
+                     locationAddressData.onTapOnMap(context, location);
+                    locationAddressData.moveCameraToLocation(context,location);
+                  },
                   onCameraMove: (loc) async => locationAddressData.onTapOnMap(context, loc.target)
               ),
             ),

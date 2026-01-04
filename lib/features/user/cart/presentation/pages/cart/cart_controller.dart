@@ -13,13 +13,14 @@ class CartController {
 
   CartController() {
     getIt<CartNavigateHelper>().initData();
+    cartItemsBloc.onUpdateToInitState(CartDomainModel());
     getCartItems();
   }
 
   Future<void> getCartItems({bool refresh = true}) async {
-    if(cartItemsBloc.state.data.items == null){
-      cartItemsBloc.onUpdateToInitState(CartDomainModel());
-    }
+    // if(cartItemsBloc.state.data.items == null){
+    //
+    // }
     await getIt<CartHelper>().getCartItems(refresh: refresh);
   }
 
