@@ -84,7 +84,7 @@ class LocationAddressData {
     var location = context.read<LocationCubit>().state.model;
     var latLng = LatLng(location?.lat ??0, location?.lng ??0);
     var fullAddress = await getIt<LocationService>().getFullAddress(latLng);
-    if(fullAddress?.countryCode != "AE" ){
+    if((fullAddress?.countryCode??"").toUpperCase() != "AE" ){
       CustomToast.showSimpleToast(msg: tr("countryLocation"));
       return;
     }
