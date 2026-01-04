@@ -1,5 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_tdd/core/helpers/custom_toast.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/cart_check_out_saved_data.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/store_cart_shipping_params.dart';
@@ -7,6 +9,7 @@ import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instructio
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/seller_shipping.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart';
+import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:injectable/injectable.dart';
 
 
@@ -67,6 +70,12 @@ class CartNavigateHelper {
   }
 
   bool navigateToStep(int step) {
+    var cartData = getIt<CartHelper>().cartItemsBloc.state.data;
+    var shippingStep = CartNavigateHelper.shippingStepIndex;
+    if(cartData.minimumStatus == false && step == shippingStep){
+      CustomToast.showSimpleToast(msg: cartData.minimumAmountMsg ?? "");
+      return false;
+    }
     if (step < cartStepIndex || step > confirmationStepIndex) return false;
     if (step <= currentStep) {
       return setStep(step, force: true);

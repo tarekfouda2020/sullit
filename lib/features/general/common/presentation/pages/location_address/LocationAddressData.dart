@@ -19,7 +19,7 @@ class LocationAddressData {
   Future<void> getLocationAddress(BuildContext context) async {
     LatLng loc = LatLng(locationModel.lat,locationModel.lng);
     context.read<LocationCubit>().onLocationUpdated(locationModel);
-    String address = await getIt<Utilities>().getAddress(loc,context,showCountryName: false);
+    String address = await getIt<LocationService>().getAddress(loc);
     locationModel.address = address;
     titleBloc.onUpdateData(address);
   }
@@ -41,11 +41,11 @@ class LocationAddressData {
         loc = LatLng(model.lat, model.lng);
       }
       context.read<LocationCubit>().onLocationUpdated(locationModel);
-      String address = await getIt<Utilities>().getAddress(loc, context);
+      moveCameraToLocation(context, loc);
+      String address = await getIt<LocationService>().getAddress(loc);
       locationModel.address = address;
       context.read<LocationCubit>().onLocationUpdated(locationModel);
       titleBloc.onUpdateData(locationModel.address);
-      moveCameraToLocation(context, loc);
     }catch(e){
       AutoRouter.of(context).pop();
     }
@@ -58,7 +58,7 @@ class LocationAddressData {
         CameraUpdate.newCameraPosition(
           CameraPosition(
             target: location,
-            zoom: 16.3746,
+            zoom: 17.3746,
           ),
         ),
       );
@@ -84,7 +84,7 @@ class LocationAddressData {
     var location = context.read<LocationCubit>().state.model;
     var latLng = LatLng(location?.lat ??0, location?.lng ??0);
     var fullAddress = await getIt<LocationService>().getFullAddress(latLng);
-    if(fullAddress?.countryCode != "AE" ){
+    if((fullAddress?.countryCode??"").toUpperCase() != "AE" ){
       CustomToast.showSimpleToast(msg: tr("countryLocation"));
       return;
     }

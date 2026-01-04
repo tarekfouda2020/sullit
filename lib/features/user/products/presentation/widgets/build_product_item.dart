@@ -245,7 +245,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                                           ?.calculablePrice ??
                                       "0.0",
                                 ),
-                                if (widget.productModel.unit != null)
+                                if (widget.productModel.unit != null && widget.productModel.unit?.isNotEmpty == true)
                                   Flexible(
                                     child: Text(
                                         " / ${widget.productModel.unit}",

@@ -31,6 +31,36 @@ class HomeController {
     getPurchasingHistory();
   }
 
+
+
+  Future<bool> checkForUpdate() async {
+    final NewVersionPlus newVersion = NewVersionPlus(
+      androidId: AppConstants.instance.appId,
+      iOSId: AppConstants.instance.iosAppId ,
+    );
+    final status = await newVersion.getVersionStatus();
+    if (status != null && status.canUpdate) {
+      showUpdateDialog();
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
+  void showUpdateDialog(){
+    BuildContext context = getIt<GlobalContext>().context();
+    showDialog(
+      barrierDismissible: false,
+      useRootNavigator: true,
+      context: context,
+      builder: (context) {
+        return const UpdateDialogWidget();
+      },
+    );
+  }
+
+
   Future<void> getCartItems(BuildContext context, {bool refresh = true}) async {
     CartDomainModel result =
         await getIt<CartHelper>().getCartItems(refresh: refresh);
@@ -134,6 +164,9 @@ class HomeController {
   Future<void> getPurchasingHistory({bool refresh = true}) async {
     BuildContext ctx = getIt<GlobalContext>().context();
     bool isAuth = ctx.read<DeviceCubit>().state.model.auth;
+    if( await checkForUpdate() ){
+      return;
+    }
     if (isAuth) {
       GenericPaginateParams params = _historyParams(refresh);
       List<Orders> data = await GetPurchasingHistory().call(params);
@@ -146,7 +179,7 @@ class HomeController {
     }
   }
 
-  void checkIfEmailExist() {
+  Future<void> checkIfEmailExist() async{
     BuildContext ctx = getIt<GlobalContext>().context();
     bool isAuth = ctx.read<DeviceCubit>().state.model.auth;
     if (isAuth) {
@@ -164,6 +197,7 @@ class HomeController {
   void showUnPaidOrderSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      backgroundColor: Colors.transparent,
       builder: (context) {
         return UnPaidOrderSheetWidget(
             order: _firstUnPaidOrder!, controller: this);

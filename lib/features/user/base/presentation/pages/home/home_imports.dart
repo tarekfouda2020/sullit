@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
@@ -41,6 +42,7 @@ import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/get_purcha
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/pay_order.dart';
 import 'package:flutter_tdd/features/user/sale/presentation/pages/coupons/coupons_imports.dart';
 import 'package:flutter_tdd/res.dart';
+import 'package:new_version_plus/new_version_plus.dart';
 
 part 'home.dart';
 part 'home_controller.dart';

@@ -12,14 +12,8 @@ class BuildGoogleMapView extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             SizedBox(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width,
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height,
+              width: MediaQuery.sizeOf(context).width,
+              height: MediaQuery.sizeOf(context).height,
               child: GoogleMap(
                   mapType: MapType.normal,
                   // markers: _markers,
@@ -46,6 +40,10 @@ class BuildGoogleMapView extends StatelessWidget {
                     locationAddressData.getLocationAddress(context);
                   },
                   // onTap: (location) async => locationAddressData.onTapOnMap(context, location),
+                  onTap: (location)  {
+                     locationAddressData.onTapOnMap(context, location);
+                    locationAddressData.moveCameraToLocation(context,location);
+                  },
                   onCameraMove: (loc) async => locationAddressData.onTapOnMap(context, loc.target)
               ),
             ),
