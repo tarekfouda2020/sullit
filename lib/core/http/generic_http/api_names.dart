@@ -7,6 +7,9 @@ class ApiNames {
   ///production
   static const String baseUrl = "https://mushrifcoop.com/api/v3/";
 
+  static const String iqUrl = "https://us1.locationiq.com/v1/";
+
+
   // auth routes
   static const String login = "login";
   static const String savePublicKey = "users/";
@@ -243,4 +246,11 @@ class ApiNames {
   static String paySubscription(int param) => "subscriptions/$param/subscribe";
 
   static const String subscriptionPage = "subscription-page";
+
+  /// location
+
+  static  const String locationAutoComplete = "autocomplete";
+
+  static  const String locationAddress = "reverse";
+
 }

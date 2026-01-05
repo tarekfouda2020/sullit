@@ -144,7 +144,7 @@ class EditAddressController {
   void updateLocationFiled(BuildContext context)async{
     var model = context.read<LocationCubit>().state.model;
     LatLng loc = LatLng(model!.lat, model.lng);
-    String address = await getIt<LocationService>().getAddress(loc);
+    String address = await getIt<LocationService>().getAddress(loc,setCountryName: false);
     locationController.text =  address;
   }
 
