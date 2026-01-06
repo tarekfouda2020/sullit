@@ -50,7 +50,7 @@ class BuildGoogleMapView extends StatelessWidget {
             PositionedDirectional(
                 top: -8,
                 start: 0,
-                end: 40,
+                end: 0,
                 child: MapSearchFieldWidget(controller: locationAddressData)
             ),
             ImageIcon(
