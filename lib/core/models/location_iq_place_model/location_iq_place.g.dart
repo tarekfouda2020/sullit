@@ -6,9 +6,8 @@ part of 'location_iq_place.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LocationIQPlaceImpl _$$LocationIQPlaceImplFromJson(
-        Map<String, dynamic> json) =>
-    _$LocationIQPlaceImpl(
+_$_LocationIQPlace _$$_LocationIQPlaceFromJson(Map<String, dynamic> json) =>
+    _$_LocationIQPlace(
       placeId: json['place_id'] as String?,
       osmId: json['osm_id'] as String?,
       osmType: json['osm_type'] as String?,
@@ -28,8 +27,7 @@ _$LocationIQPlaceImpl _$$LocationIQPlaceImplFromJson(
           : LocationIQAddress.fromJson(json['address'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$LocationIQPlaceImplToJson(
-        _$LocationIQPlaceImpl instance) =>
+Map<String, dynamic> _$$_LocationIQPlaceToJson(_$_LocationIQPlace instance) =>
     <String, dynamic>{
       'place_id': instance.placeId,
       'osm_id': instance.osmId,
@@ -46,9 +44,8 @@ Map<String, dynamic> _$$LocationIQPlaceImplToJson(
       'address': instance.address,
     };
 
-_$LocationIQAddressImpl _$$LocationIQAddressImplFromJson(
-        Map<String, dynamic> json) =>
-    _$LocationIQAddressImpl(
+_$_LocationIQAddress _$$_LocationIQAddressFromJson(Map<String, dynamic> json) =>
+    _$_LocationIQAddress(
       name: json['name'] as String?,
       houseNumber: json['house_number'] as String?,
       road: json['road'] as String?,
@@ -58,8 +55,8 @@ _$LocationIQAddressImpl _$$LocationIQAddressImplFromJson(
       country: json['country'] as String?,
     );
 
-Map<String, dynamic> _$$LocationIQAddressImplToJson(
-        _$LocationIQAddressImpl instance) =>
+Map<String, dynamic> _$$_LocationIQAddressToJson(
+        _$_LocationIQAddress instance) =>
     <String, dynamic>{
       'name': instance.name,
       'house_number': instance.houseNumber,

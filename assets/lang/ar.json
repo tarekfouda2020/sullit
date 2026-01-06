@@ -565,7 +565,7 @@
   "deleteAccount": "حذف الحساب",
   "wantDeleteAccount": "هل تريد حذف الحساب...؟",
   "defaultAddress": "عنوان الشحن الافتراضي",
- "notDetermined": "لم يتم تحديده بعد!",
+  "notDetermined": "لم يتم تحديده بعد!",
   "inCart": "في سلة التسوق الخاصة بك",
   "inWishlist": "في قائمة أمنياتك",
   "youOrdered": "لقد طلبت",
@@ -857,5 +857,10 @@
   "needed_to_reach_minimum_order": "مطلوب للوصول إلى الحد الأدنى للطلب",
   "force_update_message": "هناك إصدار جديد متاح، يرجى التحديث للاستمرار في استخدام التطبيق",
   "enter_email_to_change_password": "الرجاء إدخال بريدك الإلكتروني لتغيير كلمة المرور الحالية.",
-  "tier_not_available": "هذه الفئة غير متوفرة حاليًا للاشتراك. يرجى اختيار فئة أخرى. شكرًا لك"
+  "tier_not_available": "هذه الفئة غير متوفرة حاليًا للاشتراك. يرجى اختيار فئة أخرى. شكرًا لك",
+  "changePaymentMethod": "تغيير طريقة الدفع",
+  "paymentMethodChanged": "تم تغيير طريقة الدفع بنجاح",
+  "errorChangingPaymentMethod": "خطأ في تغيير طريقة الدفع",
+  "places": "الأماكن",
+  "enter_location_name": "يرجى إدخال اسم الموقع"
 }

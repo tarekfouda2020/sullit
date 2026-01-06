@@ -12,7 +12,7 @@ part of 'location_iq_place.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 LocationIQPlace _$LocationIQPlaceFromJson(Map<String, dynamic> json) {
   return _LocationIQPlace.fromJson(json);
@@ -41,12 +41,8 @@ mixin _$LocationIQPlace {
   String? get displayAddress => throw _privateConstructorUsedError;
   LocationIQAddress? get address => throw _privateConstructorUsedError;
 
-  /// Serializes this LocationIQPlace to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of LocationIQPlace
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $LocationIQPlaceCopyWith<LocationIQPlace> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -85,8 +81,6 @@ class _$LocationIQPlaceCopyWithImpl<$Res, $Val extends LocationIQPlace>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LocationIQPlace
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -160,8 +154,6 @@ class _$LocationIQPlaceCopyWithImpl<$Res, $Val extends LocationIQPlace>
     ) as $Val);
   }
 
-  /// Create a copy of LocationIQPlace
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LocationIQAddressCopyWith<$Res>? get address {
@@ -176,11 +168,11 @@ class _$LocationIQPlaceCopyWithImpl<$Res, $Val extends LocationIQPlace>
 }
 
 /// @nodoc
-abstract class _$$LocationIQPlaceImplCopyWith<$Res>
+abstract class _$$_LocationIQPlaceCopyWith<$Res>
     implements $LocationIQPlaceCopyWith<$Res> {
-  factory _$$LocationIQPlaceImplCopyWith(_$LocationIQPlaceImpl value,
-          $Res Function(_$LocationIQPlaceImpl) then) =
-      __$$LocationIQPlaceImplCopyWithImpl<$Res>;
+  factory _$$_LocationIQPlaceCopyWith(
+          _$_LocationIQPlace value, $Res Function(_$_LocationIQPlace) then) =
+      __$$_LocationIQPlaceCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -203,15 +195,13 @@ abstract class _$$LocationIQPlaceImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$LocationIQPlaceImplCopyWithImpl<$Res>
-    extends _$LocationIQPlaceCopyWithImpl<$Res, _$LocationIQPlaceImpl>
-    implements _$$LocationIQPlaceImplCopyWith<$Res> {
-  __$$LocationIQPlaceImplCopyWithImpl(
-      _$LocationIQPlaceImpl _value, $Res Function(_$LocationIQPlaceImpl) _then)
+class __$$_LocationIQPlaceCopyWithImpl<$Res>
+    extends _$LocationIQPlaceCopyWithImpl<$Res, _$_LocationIQPlace>
+    implements _$$_LocationIQPlaceCopyWith<$Res> {
+  __$$_LocationIQPlaceCopyWithImpl(
+      _$_LocationIQPlace _value, $Res Function(_$_LocationIQPlace) _then)
       : super(_value, _then);
 
-  /// Create a copy of LocationIQPlace
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -229,7 +219,7 @@ class __$$LocationIQPlaceImplCopyWithImpl<$Res>
     Object? displayAddress = freezed,
     Object? address = freezed,
   }) {
-    return _then(_$LocationIQPlaceImpl(
+    return _then(_$_LocationIQPlace(
       placeId: freezed == placeId
           ? _value.placeId
           : placeId // ignore: cast_nullable_to_non_nullable
@@ -288,8 +278,8 @@ class __$$LocationIQPlaceImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$LocationIQPlaceImpl implements _LocationIQPlace {
-  const _$LocationIQPlaceImpl(
+class _$_LocationIQPlace implements _LocationIQPlace {
+  const _$_LocationIQPlace(
       {@JsonKey(name: 'place_id') this.placeId,
       @JsonKey(name: 'osm_id') this.osmId,
       @JsonKey(name: 'osm_type') this.osmType,
@@ -305,8 +295,8 @@ class _$LocationIQPlaceImpl implements _LocationIQPlace {
       this.address})
       : _boundingbox = boundingbox;
 
-  factory _$LocationIQPlaceImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LocationIQPlaceImplFromJson(json);
+  factory _$_LocationIQPlace.fromJson(Map<String, dynamic> json) =>
+      _$$_LocationIQPlaceFromJson(json);
 
   @override
   @JsonKey(name: 'place_id')
@@ -356,10 +346,10 @@ class _$LocationIQPlaceImpl implements _LocationIQPlace {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LocationIQPlaceImpl &&
+            other is _$_LocationIQPlace &&
             (identical(other.placeId, placeId) || other.placeId == placeId) &&
             (identical(other.osmId, osmId) || other.osmId == osmId) &&
             (identical(other.osmType, osmType) || other.osmType == osmType) &&
@@ -380,7 +370,7 @@ class _$LocationIQPlaceImpl implements _LocationIQPlace {
             (identical(other.address, address) || other.address == address));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -398,18 +388,15 @@ class _$LocationIQPlaceImpl implements _LocationIQPlace {
       displayAddress,
       address);
 
-  /// Create a copy of LocationIQPlace
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LocationIQPlaceImplCopyWith<_$LocationIQPlaceImpl> get copyWith =>
-      __$$LocationIQPlaceImplCopyWithImpl<_$LocationIQPlaceImpl>(
-          this, _$identity);
+  _$$_LocationIQPlaceCopyWith<_$_LocationIQPlace> get copyWith =>
+      __$$_LocationIQPlaceCopyWithImpl<_$_LocationIQPlace>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LocationIQPlaceImplToJson(
+    return _$$_LocationIQPlaceToJson(
       this,
     );
   }
@@ -429,10 +416,10 @@ abstract class _LocationIQPlace implements LocationIQPlace {
       @JsonKey(name: 'display_name') final String? displayName,
       @JsonKey(name: 'display_place') final String? displayPlace,
       @JsonKey(name: 'display_address') final String? displayAddress,
-      final LocationIQAddress? address}) = _$LocationIQPlaceImpl;
+      final LocationIQAddress? address}) = _$_LocationIQPlace;
 
   factory _LocationIQPlace.fromJson(Map<String, dynamic> json) =
-      _$LocationIQPlaceImpl.fromJson;
+      _$_LocationIQPlace.fromJson;
 
   @override
   @JsonKey(name: 'place_id')
@@ -467,12 +454,9 @@ abstract class _LocationIQPlace implements LocationIQPlace {
   String? get displayAddress;
   @override
   LocationIQAddress? get address;
-
-  /// Create a copy of LocationIQPlace
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LocationIQPlaceImplCopyWith<_$LocationIQPlaceImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_LocationIQPlaceCopyWith<_$_LocationIQPlace> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -491,12 +475,8 @@ mixin _$LocationIQAddress {
   String? get postcode => throw _privateConstructorUsedError;
   String? get country => throw _privateConstructorUsedError;
 
-  /// Serializes this LocationIQAddress to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of LocationIQAddress
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $LocationIQAddressCopyWith<LocationIQAddress> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -527,8 +507,6 @@ class _$LocationIQAddressCopyWithImpl<$Res, $Val extends LocationIQAddress>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LocationIQAddress
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -574,11 +552,11 @@ class _$LocationIQAddressCopyWithImpl<$Res, $Val extends LocationIQAddress>
 }
 
 /// @nodoc
-abstract class _$$LocationIQAddressImplCopyWith<$Res>
+abstract class _$$_LocationIQAddressCopyWith<$Res>
     implements $LocationIQAddressCopyWith<$Res> {
-  factory _$$LocationIQAddressImplCopyWith(_$LocationIQAddressImpl value,
-          $Res Function(_$LocationIQAddressImpl) then) =
-      __$$LocationIQAddressImplCopyWithImpl<$Res>;
+  factory _$$_LocationIQAddressCopyWith(_$_LocationIQAddress value,
+          $Res Function(_$_LocationIQAddress) then) =
+      __$$_LocationIQAddressCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -592,15 +570,13 @@ abstract class _$$LocationIQAddressImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$LocationIQAddressImplCopyWithImpl<$Res>
-    extends _$LocationIQAddressCopyWithImpl<$Res, _$LocationIQAddressImpl>
-    implements _$$LocationIQAddressImplCopyWith<$Res> {
-  __$$LocationIQAddressImplCopyWithImpl(_$LocationIQAddressImpl _value,
-      $Res Function(_$LocationIQAddressImpl) _then)
+class __$$_LocationIQAddressCopyWithImpl<$Res>
+    extends _$LocationIQAddressCopyWithImpl<$Res, _$_LocationIQAddress>
+    implements _$$_LocationIQAddressCopyWith<$Res> {
+  __$$_LocationIQAddressCopyWithImpl(
+      _$_LocationIQAddress _value, $Res Function(_$_LocationIQAddress) _then)
       : super(_value, _then);
 
-  /// Create a copy of LocationIQAddress
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -612,7 +588,7 @@ class __$$LocationIQAddressImplCopyWithImpl<$Res>
     Object? postcode = freezed,
     Object? country = freezed,
   }) {
-    return _then(_$LocationIQAddressImpl(
+    return _then(_$_LocationIQAddress(
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -647,8 +623,8 @@ class __$$LocationIQAddressImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$LocationIQAddressImpl implements _LocationIQAddress {
-  const _$LocationIQAddressImpl(
+class _$_LocationIQAddress implements _LocationIQAddress {
+  const _$_LocationIQAddress(
       {this.name,
       @JsonKey(name: 'house_number') this.houseNumber,
       this.road,
@@ -657,8 +633,8 @@ class _$LocationIQAddressImpl implements _LocationIQAddress {
       this.postcode,
       this.country});
 
-  factory _$LocationIQAddressImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LocationIQAddressImplFromJson(json);
+  factory _$_LocationIQAddress.fromJson(Map<String, dynamic> json) =>
+      _$$_LocationIQAddressFromJson(json);
 
   @override
   final String? name;
@@ -682,10 +658,10 @@ class _$LocationIQAddressImpl implements _LocationIQAddress {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LocationIQAddressImpl &&
+            other is _$_LocationIQAddress &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.houseNumber, houseNumber) ||
                 other.houseNumber == houseNumber) &&
@@ -697,23 +673,21 @@ class _$LocationIQAddressImpl implements _LocationIQAddress {
             (identical(other.country, country) || other.country == country));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, name, houseNumber, road, city, state, postcode, country);
 
-  /// Create a copy of LocationIQAddress
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LocationIQAddressImplCopyWith<_$LocationIQAddressImpl> get copyWith =>
-      __$$LocationIQAddressImplCopyWithImpl<_$LocationIQAddressImpl>(
+  _$$_LocationIQAddressCopyWith<_$_LocationIQAddress> get copyWith =>
+      __$$_LocationIQAddressCopyWithImpl<_$_LocationIQAddress>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LocationIQAddressImplToJson(
+    return _$$_LocationIQAddressToJson(
       this,
     );
   }
@@ -727,10 +701,10 @@ abstract class _LocationIQAddress implements LocationIQAddress {
       final String? city,
       final String? state,
       final String? postcode,
-      final String? country}) = _$LocationIQAddressImpl;
+      final String? country}) = _$_LocationIQAddress;
 
   factory _LocationIQAddress.fromJson(Map<String, dynamic> json) =
-      _$LocationIQAddressImpl.fromJson;
+      _$_LocationIQAddress.fromJson;
 
   @override
   String? get name;
@@ -747,11 +721,8 @@ abstract class _LocationIQAddress implements LocationIQAddress {
   String? get postcode;
   @override
   String? get country;
-
-  /// Create a copy of LocationIQAddress
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LocationIQAddressImplCopyWith<_$LocationIQAddressImpl> get copyWith =>
+  @JsonKey(ignore: true)
+  _$$_LocationIQAddressCopyWith<_$_LocationIQAddress> get copyWith =>
       throw _privateConstructorUsedError;
 }

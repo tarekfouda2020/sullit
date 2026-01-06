@@ -13,7 +13,7 @@ class PlacesListWidget extends StatelessWidget {
       visible: data.isNotEmpty,
       replacement: Column(
         children: [
-          Text("No places available",
+          Text(tr("enter_location_name"),
             style: AppTextStyle.s15_w500(color: context.colors.black),
           )
         ],

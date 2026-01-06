@@ -166,6 +166,9 @@ class ApiNames {
   //PurchaseHistory
   static const String getPurchaseHistory = "orders/purchase-history";
   static const String getReturnOrders = "orders/return-orders";
+  static const String orderPaymentOptions = "orders/payment-options";
+
+  static String changeOrderPayMethod(int id) => "orders/$id/change-pay";
 
   static String getTrackOrder(String code) => "orders/$code/track-your-order";
 

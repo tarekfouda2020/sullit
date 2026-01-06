@@ -139,7 +139,7 @@ class LocationAddressData {
       //   placesCubit.successState(value);
       // },);
     }else{
-      CustomToast.showSnakeBar("Please enter location's name",type: ToastType.info,toastGravity: ToastGravity.BOTTOM);
+      placesCubit.onUpdateData([]);
     }
   }
 

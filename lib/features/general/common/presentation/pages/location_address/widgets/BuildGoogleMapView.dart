@@ -47,10 +47,10 @@ class BuildGoogleMapView extends StatelessWidget {
                   onCameraMove: (loc) async => locationAddressData.getDataAfterCameraMove(context, loc.target)
               ),
             ),
-            Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
+            PositionedDirectional(
+                top: -8,
+                start: 0,
+                end: 40,
                 child: MapSearchFieldWidget(controller: locationAddressData)
             ),
             ImageIcon(

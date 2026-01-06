@@ -2,7 +2,8 @@ part of 'order_details_widgets_imports.dart';
 
 class OrderDetailsWidget extends StatelessWidget {
   final Orders? order;
-  const OrderDetailsWidget({super.key, this.order});
+  final OrderDetailsPageController controller;
+  const OrderDetailsWidget({super.key, this.order, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,8 @@ class OrderDetailsWidget extends StatelessWidget {
       children: [
         OrderINfoItemWidget(
           title: tr('date'),
-          describe: DateTimeHelper.getDate(order?.orderDate ?? "",formatType: "d MMM yyyy - hh:mm a"),
+          describe: DateTimeHelper.getDate(order?.orderDate ?? "",
+              formatType: "d MMM yyyy - hh:mm a"),
           gaps: Gaps.hGap4,
         ),
         Gaps.vGap12,
@@ -42,7 +44,8 @@ class OrderDetailsWidget extends StatelessWidget {
         Gaps.vGap12,
         OrderINfoItemWidget(
           title: tr('phone'),
-          describe: getIt<Utilities>().handleFullPhone(context, order?.customerPhone ?? ""),
+          describe: getIt<Utilities>()
+              .handleFullPhone(context, order?.customerPhone ?? ""),
           gaps: Gaps.hGap4,
         ),
         Gaps.vGap12,
@@ -51,6 +54,16 @@ class OrderDetailsWidget extends StatelessWidget {
           describe: order?.paymentMethod ?? "",
           gaps: Gaps.hGap4,
         ),
+        Gaps.vGap10,
+        if(controller.showChangePayOption())
+          InkWell(
+            onTap: () => controller.changePaymentMethod(context),
+            child: Text(
+              tr("changePaymentMethod"),
+              style: AppTextStyle.s12_w500(color: context.colors.primary)
+                  .copyWith(decoration: TextDecoration.underline,height: 1.4),
+            ),
+          )
       ],
     );
   }
