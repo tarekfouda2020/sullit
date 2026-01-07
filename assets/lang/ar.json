@@ -862,5 +862,7 @@
   "paymentMethodChanged": "تم تغيير طريقة الدفع بنجاح",
   "errorChangingPaymentMethod": "خطأ في تغيير طريقة الدفع",
   "places": "الأماكن",
-  "enter_location_name": "يرجى إدخال اسم الموقع"
+  "enter_location_name": "يرجى إدخال اسم الموقع",
+  "search_in_offers": "البحث في العروض..."
+
 }

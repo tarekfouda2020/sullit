@@ -862,5 +862,6 @@
   "paymentMethodChanged": "ادائیگی کا طریقہ کامیابی سے تبدیل ہو گیا",
   "errorChangingPaymentMethod": "ادائیگی کا طریقہ تبدیل کرنے میں خرابی",
   "places": "مقامات",
+  "search_in_offers": "آفرز میں تلاش کریں...",
   "enter_location_name": "براہ کرم مقام کا نام درج کریں"
 }

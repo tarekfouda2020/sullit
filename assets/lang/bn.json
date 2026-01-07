@@ -751,5 +751,6 @@
   "paymentMethodChanged": "পেমেন্ট পদ্ধতি সফলভাবে পরিবর্তন হয়েছে",
   "errorChangingPaymentMethod": "পেমেন্ট পদ্ধতি পরিবর্তন করতে ত্রুটি হয়েছে",
   "places": "স্থানসমূহ",
+  "search_in_offers": "প্রস্তাবগুলিতে অনুসন্ধান...",
   "enter_location_name": "অনুগ্রহ করে অবস্থানের নাম লিখুন"
 }

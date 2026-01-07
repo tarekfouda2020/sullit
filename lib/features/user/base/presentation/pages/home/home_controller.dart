@@ -110,7 +110,12 @@ class HomeController {
         return;
       } else {
         if(index == 3 && saleTabsData.onSale?.isNotEmpty == true){
-          offersTabIndex = getSaleTabIndex(SaleTabType.onSale,context.isShareHolder);
+          offersTabIndex = getSaleTabIndex(
+              context.isShareHolder
+                  ? SaleTabType.shareholderOffers
+                  :  SaleTabType.onSale,
+              context.isShareHolder
+          );
         }
         homeTabCubit.onUpdateData(index);
         tabController.animateTo(index);
@@ -237,9 +242,14 @@ class HomeController {
 
   SaleTabsData saleTabsData = SaleTabsData();
 
-  Future<void> fetchSaleTabsData(BuildContext context) async {
-    var params =
-        GenericPaginateParams(currentPage: 1, refresh: true, pageSize: 1);
+
+  void getOffersData(BuildContext context,){
+    fetchSaleTabsData(context,refresh: false);
+    fetchSaleTabsData(context);
+  }
+
+  Future<void> fetchSaleTabsData(BuildContext context,{bool refresh = true}) async {
+    var params = GenericPaginateParams(currentPage: 1, refresh: refresh, pageSize: 1);
 
     OffersParamsWidget offersParams({bool isVipProducts = false}) =>
         OffersParamsWidget(

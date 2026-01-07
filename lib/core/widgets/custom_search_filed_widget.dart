@@ -14,7 +14,7 @@ import 'package:flutter_tdd/res.dart';
 class CustomSearchFiledWidget extends StatefulWidget {
   final TextEditingController txtController;
   final void Function() onPressSearch;
-  final void Function()? onPressClear;
+  final void Function() onPressClear;
   final void Function(String value) onChange;
   final double height;
   final String? hint;
@@ -23,7 +23,7 @@ class CustomSearchFiledWidget extends StatefulWidget {
     required this.txtController,
     required this.onPressSearch,
     required this.onChange,
-     this.onPressClear,
+    required this.onPressClear,
      this.height = Dimens.dp35,
      this.hint,
   });
@@ -80,7 +80,7 @@ class _CustomSearchFiledWidgetState extends State<CustomSearchFiledWidget> {
             return Visibility(
               visible: state.data,
               child: GestureDetector(
-                onTap: widget.onPressClear,
+                onTap: () => _onTap(),
                 child: Container(
                   width: 23,
                   height: 23,
@@ -98,6 +98,12 @@ class _CustomSearchFiledWidgetState extends State<CustomSearchFiledWidget> {
         )
       ],
     );
+  }
+
+  void _onTap() {
+    showClearIconCubit.onUpdateData(false);
+    widget.txtController.clear();
+    widget.onPressClear.call();
   }
 
   void _onChange(String value) {

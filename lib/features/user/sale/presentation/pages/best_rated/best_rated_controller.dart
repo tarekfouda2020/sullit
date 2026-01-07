@@ -41,7 +41,9 @@ class BestRatedController {
 
   OffersParamsWidget _bestRatedOffers(bool refresh, int currentPage) {
     return OffersParamsWidget(
-        paginateParams: _bestRatedPaginateParams(refresh, currentPage));
+        paginateParams: _bestRatedPaginateParams(refresh, currentPage),
+        keyword: searchFieldCtr.text
+    );
   }
 
   void onChangeFav(Product item) {

@@ -17,15 +17,17 @@ class _ShareholderOffersState extends State<ShareholderOffers> {
       backgroundColor: context.colors.customBackground,
       body: Column(
         children: [
-          // Padding(
-          //   padding: const EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 8),
-          //   child: CustomSearchFiledWidget(
-          //     txtController: controller.searchFieldCtr,
-          //     onPressSearch: () =>controller.onPressSearch(context),
-          //     onChange: (value) => controller.whileWriting(value) ,
-          //     height: Dimens.dp50,
-          //   ),
-          // ),
+          Padding(
+            padding: const EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 8),
+            child: CustomSearchFiledWidget(
+              txtController: controller.searchFieldCtr,
+              onPressSearch: () =>controller.onPressSearch(context),
+              onChange: (value) => controller.whileWriting(value) ,
+              onPressClear: () => controller.callProductsSearch(),
+              height: Dimens.dp50,
+              hint: tr("search_in_offers"),
+            ),
+          ),
           Expanded(
             child: CustomRefreshIndicatorWidget(
               onRefresh: () async => await controller.getShareholderProducts(1),

@@ -20,7 +20,7 @@ class OffersParamsWidget {
      url = "$url&with_pagination=$usePagination";
    }
    if(keyword!=null && keyword?.isNotEmpty == true){
-     url = "${url}keyword=$keyword";
+     url = "$url&keyword=$keyword";
    }
     return url;
   }

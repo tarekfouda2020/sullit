@@ -697,5 +697,7 @@
   "paymentMethodChanged": "Payment method changed successfully",
   "errorChangingPaymentMethod": "Error changing payment method",
   "places": "Places",
-  "enter_location_name": "Please enter location's name"
+  "enter_location_name": "Please enter location's name",
+  "search_in_offers": "Search in offers..."
+
 }

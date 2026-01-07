@@ -22,6 +22,7 @@ class BrandsSheetWidget extends StatelessWidget {
             txtController: controller.brandsSearchCtr,
             onPressSearch: () => controller.refreshBrands(context),
             onChange: (value) =>  controller.whileSearch(value),
+            onPressClear: () => controller.getBrands(1),
           ),
           Gaps.vGap15,
           Flexible(

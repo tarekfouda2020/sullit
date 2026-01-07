@@ -43,7 +43,9 @@ class NewArrivalController {
 
   OffersParamsWidget _arrivalOffers(bool refresh, int currentPage) {
     return OffersParamsWidget(
-        paginateParams: _arrivalParams(refresh, currentPage));
+        paginateParams: _arrivalParams(refresh, currentPage),
+        keyword: searchFieldCtr.text
+    );
   }
 
   void onChangeFav(Product item) {

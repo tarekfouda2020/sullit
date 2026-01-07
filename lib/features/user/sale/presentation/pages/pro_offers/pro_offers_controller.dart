@@ -64,6 +64,7 @@ class ProOffersController {
     return OffersParamsWidget(
       paginateParams: _vipOffersParams(refresh, currentPage),
       isVipProducts: true,
+        keyword: searchFieldCtr.text
     );
   }
 

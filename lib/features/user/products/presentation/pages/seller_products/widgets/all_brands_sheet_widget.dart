@@ -21,6 +21,7 @@ class AllBrandsSheetWidget extends StatelessWidget {
           CustomSearchFiledWidget(
             txtController: controller.brandsSearchCtr,
             onPressSearch: () => controller.refreshBrands(context),
+            onPressClear: () => controller.getBrands(1),
             onChange: (value) => DebounceHelper.instance.startSearch(
               value: value,
               onSearch: (val) => controller.refreshBrands(context,disableFocus: false),
