@@ -59,8 +59,8 @@ class OrderDetailsWidget extends StatelessWidget {
           InkWell(
             onTap: () => controller.changePaymentMethod(context),
             child: Text(
-              tr("changePaymentMethod"),
-              style: AppTextStyle.s12_w500(color: context.colors.primary)
+              tr("pay_now"),
+              style: AppTextStyle.s12_w500(color: context.colors.green)
                   .copyWith(decoration: TextDecoration.underline,height: 1.4),
             ),
           )
