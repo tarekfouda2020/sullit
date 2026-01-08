@@ -104,7 +104,7 @@ class HomeController {
   }
 
   void animateTabsPages(int index, BuildContext context) {
-    Future.delayed(const Duration(milliseconds: 700), () {
+    Future.delayed(const Duration(milliseconds: 500), () {
       if (index == 2) {
         AutoRouter.of(context).push(CartRoute());
         return;
