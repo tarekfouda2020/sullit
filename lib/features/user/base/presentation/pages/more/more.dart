@@ -13,8 +13,8 @@ class _MoreState extends State<More> {
   late final MoreController controller;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
     controller = MoreController(context,widget.homeController);
   }
 
