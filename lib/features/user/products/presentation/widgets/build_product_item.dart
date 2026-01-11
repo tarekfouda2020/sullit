@@ -13,15 +13,16 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
-import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/core/widgets/loading_icon_widget.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/widgets/category_details_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/product_counter_widget.dart';
+import 'package:flutter_tdd/features/user/products/presentation/widgets/product_image_widget.dart';
 import 'package:flutter_tdd/res.dart';
 
 class BuildProductItem extends StatefulWidget {
@@ -90,16 +91,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
             Expanded(
               child: Stack(
                 children: [
-                  CachedImage(
-                    ///TODO border color from top will be changed later
-                    fit: BoxFit.contain,
-                    haveRadius: true,
-                    bgColor: const Color(0xffededed),
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(Dimens.dp12),
-                    ),
-                    url: widget.productModel.thumbnailImage!,
-                  ),
+                  ProductImageWidget(url: widget.productModel.thumbnailImage ?? "",),
                   Visibility(
                     visible: widget.productModel.hasDiscount!,
                     replacement: Visibility(
@@ -245,7 +237,9 @@ class _BuildProductItemState extends State<BuildProductItem> {
                                           ?.calculablePrice ??
                                       "0.0",
                                 ),
-                                if (widget.productModel.unit != null && widget.productModel.unit?.isNotEmpty == true)
+                                if (widget.productModel.unit != null &&
+                                    widget.productModel.unit?.isNotEmpty ==
+                                        true)
                                   Flexible(
                                     child: Text(
                                         " / ${widget.productModel.unit}",
@@ -322,8 +316,15 @@ class _BuildProductItemState extends State<BuildProductItem> {
     );
   }
 
+  String safeImageUrl(String? url) {
+    if (url == null || url.trim().isEmpty) return '';
+    print(
+        "=>>>>>>>> items new image url is ${Uri.encodeFull(url.trim())}<<<<<<<<<<<====");
+    return Uri.encodeFull(url.trim());
+  }
+
   Future<void> _buildToggleFavourite(BuildContext context) async {
-      ProductsHelper().toggleFavourite(
+    ProductsHelper().toggleFavourite(
       id: widget.productModel.id!,
       context: context,
       loadingBloc: showFavLoading,
@@ -383,10 +384,12 @@ class _BuildProductItemState extends State<BuildProductItem> {
   }
 
   void _checkIfItemInCart() {
-    var cartProducts = getIt<CartHelper>().cartItemsBloc.state.data.items;
-    var cartProductsIds = cartProducts?.map((e) => e.productId).toSet();
+    final List<CartItem>? cartProducts =
+        getIt<CartHelper>().cartItemsBloc.state.data.items;
+    final Set<int>? cartProductsIds =
+        cartProducts?.map((e) => e.productId).toSet();
     if (cartProductsIds?.contains(widget.productModel.id) == true) {
-      var cartProduct = cartProducts?.firstWhere(
+      CartItem? cartProduct = cartProducts?.firstWhere(
           (element) => element.productId == widget.productModel.id);
       widget.productModel.addedQtyToCart = cartProduct?.quantity;
     }

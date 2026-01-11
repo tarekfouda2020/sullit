@@ -46,7 +46,7 @@ _$_SellerPaginationData _$$_SellerPaginationDataFromJson(
     _$_SellerPaginationData(
       totalItems: (json['total_items'] as num).toInt(),
       countItems: (json['count_items'] as num).toInt(),
-      perPage: json['per_page'] as String,
+      perPage: (json['per_page'] as num).toInt(),
       totalPages: (json['total_pages'] as num).toInt(),
       currentPage: (json['current_page'] as num).toInt(),
       nextPageUrl: json['next_page_url'] as String,

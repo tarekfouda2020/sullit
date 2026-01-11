@@ -13,17 +13,21 @@ class BuildProducts extends StatelessWidget {
         pagingController: detailsController.pagingController,
         onRefresh: () async => await detailsController.refresh(),
         firstPageProgressIndicatorBuilder: (_) => const BuildLoadingCatsProducts(),
-        itemBuilder: (_, item, index) => BuildProductItem(
-          productModel: item,
-          onFavRefresh: () => detailsController.onFavChanged(item),
-          showVipDiscount: haveVipDiscount,
-          afterAddToCart: ()=> detailsController.getCartItems(),
-          onPressDelete: () => detailsController.getCartItems(),
-          onRefresh: () async {
-             detailsController.getPopularProducts(detailsController.currentPageKey);
-            detailsController.getCartItems();
-          },
-        ),
+        itemBuilder: (_, item, index) {
+          print("=>>>>>>>> items is ${item.name}<<<<<<<<<<<====");
+          print("=>>>>>>>> items image is ${item.thumbnailImage}<<<<<<<<<<<====");
+          return BuildProductItem(
+            productModel: item,
+            onFavRefresh: () => detailsController.onFavChanged(item),
+            showVipDiscount: haveVipDiscount,
+            afterAddToCart: ()=> detailsController.getCartItems(),
+            onPressDelete: () => detailsController.getCartItems(),
+            onRefresh: () async {
+              detailsController.getPopularProducts(detailsController.currentPageKey);
+              detailsController.getCartItems();
+            },
+          );
+        },
       ),
     );
   }
