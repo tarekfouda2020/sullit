@@ -27,6 +27,8 @@ class FacebookEventsHelper {
 
   final String categoryOpened = "category_opened";
 
+  final String registerMethod = "email";
+
 
   void productAddToCart({
     required int id,
@@ -34,10 +36,9 @@ class FacebookEventsHelper {
      String? variantId,
      String? variantPrice,
   }) {
-    // if(!kReleaseMode){
-    //   return ;
-    // }
-    log("===========>>>>> facebook event <<<<<========");
+    if(!kReleaseMode){
+      return ;
+    }
      facebookAppEvents.logAddToCart(
         id: id.toString(),
         type: product,
@@ -57,9 +58,9 @@ class FacebookEventsHelper {
     required String id,
     required double price,
   }) {
-    // if(!kReleaseMode){
-    //   return ;
-    // }
+    if(!kReleaseMode){
+      return ;
+    }
     facebookAppEvents.logAddToWishlist(
         id: id,
         type: product,
@@ -77,9 +78,9 @@ class FacebookEventsHelper {
     required double orderPrice,
     required String orderId,
   }) {
-    // if(!kReleaseMode){
-    //   return ;
-    // }
+    if(!kReleaseMode){
+      return ;
+    }
     facebookAppEvents.logInitiatedCheckout(
       currency: currency,
       contentType: order,
@@ -91,9 +92,9 @@ class FacebookEventsHelper {
 
 
   void productDetailsOpened(Product product) {
-    // if(!kReleaseMode){
-    //   return ;
-    // }
+    if(!kReleaseMode){
+      return ;
+    }
     facebookAppEvents.logEvent(
         name: productDetailsOpenedName,
         parameters: {
@@ -107,9 +108,9 @@ class FacebookEventsHelper {
   }
 
   void categoryDetailsOpened(cat.Category category){
-    // if(!kReleaseMode){
-    //   return ;
-    // }
+    if(!kReleaseMode){
+      return ;
+    }
     facebookAppEvents.logEvent(
         name: categoryOpened,
         parameters: {
@@ -123,9 +124,9 @@ class FacebookEventsHelper {
     required double price,
     required String planId,
   }){
-     // if(!kReleaseMode){
-     //   return ;
-     // }
+     if(!kReleaseMode){
+       return ;
+     }
      facebookAppEvents.logSubscribe(
        orderId: planId,
       currency: currency,
@@ -135,9 +136,9 @@ class FacebookEventsHelper {
 
 
   void addUserDataEvent(UserDomainModel? data){
-    // if(!kReleaseMode){
-    //   return ;
-    // }
+    if(!kReleaseMode){
+      return ;
+    }
     facebookAppEvents.setUserData(
       email: data?.email?.toLowerCase(),
       firstName: data?.name?.toLowerCase(),
@@ -148,5 +149,13 @@ class FacebookEventsHelper {
 
 
 
+  void completedRegistration(){
+    if(!kReleaseMode){
+      return ;
+    }
+    facebookAppEvents.logCompletedRegistration(
+        registrationMethod: registerMethod,
+    );
+  }
 
 }
