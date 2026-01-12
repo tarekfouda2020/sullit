@@ -24,6 +24,8 @@ mixin _$OrderModel {
   String get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'order_type')
   String get orderType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'bag_count')
+  int get bagCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'available_return_order')
   bool get availableReturnOrder => throw _privateConstructorUsedError;
   @JsonKey(name: 'show_button_pay')
@@ -124,6 +126,7 @@ abstract class $OrderModelCopyWith<$Res> {
       {int id,
       String code,
       @JsonKey(name: 'order_type') String orderType,
+      @JsonKey(name: 'bag_count') int bagCount,
       @JsonKey(name: 'available_return_order') bool availableReturnOrder,
       @JsonKey(name: 'show_button_pay') bool showButtonPay,
       String subtotal,
@@ -187,6 +190,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? id = null,
     Object? code = null,
     Object? orderType = null,
+    Object? bagCount = null,
     Object? availableReturnOrder = null,
     Object? showButtonPay = null,
     Object? subtotal = null,
@@ -243,6 +247,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.orderType
           : orderType // ignore: cast_nullable_to_non_nullable
               as String,
+      bagCount: null == bagCount
+          ? _value.bagCount
+          : bagCount // ignore: cast_nullable_to_non_nullable
+              as int,
       availableReturnOrder: null == availableReturnOrder
           ? _value.availableReturnOrder
           : availableReturnOrder // ignore: cast_nullable_to_non_nullable
@@ -439,6 +447,7 @@ abstract class _$$_OrderModelCopyWith<$Res>
       {int id,
       String code,
       @JsonKey(name: 'order_type') String orderType,
+      @JsonKey(name: 'bag_count') int bagCount,
       @JsonKey(name: 'available_return_order') bool availableReturnOrder,
       @JsonKey(name: 'show_button_pay') bool showButtonPay,
       String subtotal,
@@ -501,6 +510,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? id = null,
     Object? code = null,
     Object? orderType = null,
+    Object? bagCount = null,
     Object? availableReturnOrder = null,
     Object? showButtonPay = null,
     Object? subtotal = null,
@@ -557,6 +567,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.orderType
           : orderType // ignore: cast_nullable_to_non_nullable
               as String,
+      bagCount: null == bagCount
+          ? _value.bagCount
+          : bagCount // ignore: cast_nullable_to_non_nullable
+              as int,
       availableReturnOrder: null == availableReturnOrder
           ? _value.availableReturnOrder
           : availableReturnOrder // ignore: cast_nullable_to_non_nullable
@@ -737,6 +751,7 @@ class _$_OrderModel extends _OrderModel {
       {required this.id,
       required this.code,
       @JsonKey(name: 'order_type') required this.orderType,
+      @JsonKey(name: 'bag_count') required this.bagCount,
       @JsonKey(name: 'available_return_order')
       required this.availableReturnOrder,
       @JsonKey(name: 'show_button_pay') required this.showButtonPay,
@@ -801,6 +816,9 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'order_type')
   final String orderType;
+  @override
+  @JsonKey(name: 'bag_count')
+  final int bagCount;
   @override
   @JsonKey(name: 'available_return_order')
   final bool availableReturnOrder;
@@ -948,7 +966,7 @@ class _$_OrderModel extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver)';
   }
 
   @override
@@ -960,6 +978,8 @@ class _$_OrderModel extends _OrderModel {
             (identical(other.code, code) || other.code == code) &&
             (identical(other.orderType, orderType) ||
                 other.orderType == orderType) &&
+            (identical(other.bagCount, bagCount) ||
+                other.bagCount == bagCount) &&
             (identical(other.availableReturnOrder, availableReturnOrder) ||
                 other.availableReturnOrder == availableReturnOrder) &&
             (identical(other.showButtonPay, showButtonPay) ||
@@ -1048,6 +1068,7 @@ class _$_OrderModel extends _OrderModel {
         id,
         code,
         orderType,
+        bagCount,
         availableReturnOrder,
         showButtonPay,
         subtotal,
@@ -1111,6 +1132,7 @@ abstract class _OrderModel extends OrderModel {
       {required final int id,
       required final String code,
       @JsonKey(name: 'order_type') required final String orderType,
+      @JsonKey(name: 'bag_count') required final int bagCount,
       @JsonKey(name: 'available_return_order')
       required final bool availableReturnOrder,
       @JsonKey(name: 'show_button_pay') required final bool showButtonPay,
@@ -1176,6 +1198,9 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'order_type')
   String get orderType;
+  @override
+  @JsonKey(name: 'bag_count')
+  int get bagCount;
   @override
   @JsonKey(name: 'available_return_order')
   bool get availableReturnOrder;
