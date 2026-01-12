@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
@@ -32,10 +34,11 @@ class FacebookEventsHelper {
      String? variantId,
      String? variantPrice,
   }) {
-    if(!kReleaseMode){
-      return ;
-    }
-    facebookAppEvents.logAddToCart(
+    // if(!kReleaseMode){
+    //   return ;
+    // }
+    log("===========>>>>> facebook event <<<<<========");
+     facebookAppEvents.logAddToCart(
         id: id.toString(),
         type: product,
         currency: currency,
@@ -54,9 +57,9 @@ class FacebookEventsHelper {
     required String id,
     required double price,
   }) {
-    if(!kReleaseMode){
-      return ;
-    }
+    // if(!kReleaseMode){
+    //   return ;
+    // }
     facebookAppEvents.logAddToWishlist(
         id: id,
         type: product,
@@ -74,9 +77,9 @@ class FacebookEventsHelper {
     required double orderPrice,
     required String orderId,
   }) {
-    if(!kReleaseMode){
-      return ;
-    }
+    // if(!kReleaseMode){
+    //   return ;
+    // }
     facebookAppEvents.logInitiatedCheckout(
       currency: currency,
       contentType: order,
@@ -88,9 +91,9 @@ class FacebookEventsHelper {
 
 
   void productDetailsOpened(Product product) {
-    if(!kReleaseMode){
-      return ;
-    }
+    // if(!kReleaseMode){
+    //   return ;
+    // }
     facebookAppEvents.logEvent(
         name: productDetailsOpenedName,
         parameters: {
@@ -104,9 +107,9 @@ class FacebookEventsHelper {
   }
 
   void categoryDetailsOpened(cat.Category category){
-    if(!kReleaseMode){
-      return ;
-    }
+    // if(!kReleaseMode){
+    //   return ;
+    // }
     facebookAppEvents.logEvent(
         name: categoryOpened,
         parameters: {
@@ -120,9 +123,9 @@ class FacebookEventsHelper {
     required double price,
     required String planId,
   }){
-     if(!kReleaseMode){
-       return ;
-     }
+     // if(!kReleaseMode){
+     //   return ;
+     // }
      facebookAppEvents.logSubscribe(
        orderId: planId,
       currency: currency,
@@ -132,9 +135,9 @@ class FacebookEventsHelper {
 
 
   void addUserDataEvent(UserDomainModel? data){
-    if(!kReleaseMode){
-      return ;
-    }
+    // if(!kReleaseMode){
+    //   return ;
+    // }
     facebookAppEvents.setUserData(
       email: data?.email?.toLowerCase(),
       firstName: data?.name?.toLowerCase(),
