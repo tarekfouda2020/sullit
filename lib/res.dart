@@ -116,6 +116,7 @@ class Res {
   static const String accountGoldIcon = "assets/images/account_icon.svg";
   static const String crownIcon = "assets/images/crown_icon.svg";
   static const String shareHolderImage = "assets/images/shareholder.png";
+  static const String mapIntroImage = "assets/images/map_intro.png";
 
   static const String billOffIcon = "assets/images/no_alarm.svg";
   static const String doorIcon = "assets/images/door_icon.svg";

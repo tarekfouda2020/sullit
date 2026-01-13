@@ -19,11 +19,12 @@ class _SplashState extends State<Splash> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    precacheImage(const AssetImage(Res.newSplashImage), context);
     precacheImage(const AssetImage(Res.logo), context);
     precacheImage(const AssetImage(Res.logoIcon), context);
     precacheImage(const AssetImage(Res.logoPng), context);
-    precacheImage(const AssetImage(Res.newSplashImage), context);
     precacheImage(const AssetImage(Res.dealOfDayBackGround), context);
+    precacheImage(const AssetImage(Res.mapIntroImage), context);
   }
 
   @override
