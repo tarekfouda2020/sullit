@@ -24,8 +24,7 @@ class ProductDetailsController implements CartSheetController {
   List<String> selectedVariants = [];
   List<String> basicImage = [];
 
-  ProductDetailsController(
-      BuildContext context, this.productId, this.isResale, this.isFav) {
+  ProductDetailsController(BuildContext context, this.productId, this.isResale, this.isFav) {
     getProductDetails(context, productId, refresh: false);
     getProductDetails(context, productId);
     // getCartItems(refresh: false);
