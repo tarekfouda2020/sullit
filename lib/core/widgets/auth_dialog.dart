@@ -36,7 +36,8 @@ class BuildAuthDialog extends StatelessWidget {
             ),
             onPressed: () {
               AutoRouter.of(context).push(
-                const LoginRoute(),
+                 const IntroLocationRoute(),
+                // const LoginRoute(),
               );
             },
           ),
