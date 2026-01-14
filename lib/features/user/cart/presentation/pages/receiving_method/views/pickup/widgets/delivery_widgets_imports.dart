@@ -1,0 +1,29 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/helpers/validator.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/core/widgets/CachedImage.dart';
+import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
+import 'package:flutter_tdd/core/widgets/DropdownTextField.dart';
+import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/features/user/cart/data/enum/delivery_type_enum.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/pick_up.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/seller_shipping.dart';
+
+import '../pickup_tab_imports.dart';
+
+part 'build_delivery_buttons.dart';
+part 'build_delivery_item.dart';
+part 'build_delivery_product_item.dart';
+part 'build_delivery_products.dart';
+part 'build_delivery_type.dart';
+part 'build_delivery_type_item.dart';
+part 'seller_name_widget.dart';
+part 'pickup_seller_branch_widget.dart';

@@ -3,8 +3,8 @@ part of 'LocationAddressImports.dart';
 
 class LocationAddress extends StatefulWidget {
   final bool fromEdit;
-
-  const LocationAddress({super.key, required this.fromEdit});
+  final bool fromIntroPage;
+  const LocationAddress({super.key, required this.fromEdit,  this.fromIntroPage = false});
   @override
   State<StatefulWidget> createState() => _LocationAddress();
 }
@@ -37,6 +37,7 @@ class _LocationAddress extends State<LocationAddress> {
       ),
       floatingActionButton: BuildSaveButton(
         locationAddressData: locationAddressData,
+        fromIntro: widget.fromIntroPage,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

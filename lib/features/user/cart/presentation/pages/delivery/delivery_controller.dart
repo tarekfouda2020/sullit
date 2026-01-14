@@ -87,8 +87,7 @@ class DeliveryController {
       getIt<CartNavigateHelper>().cartCheckOutPageData.orderSummaryCheckOut = data;
       getIt<CartNavigateHelper>().checkOutParams = _cartShippingParams();
       CustomToast.showSimpleToast(msg: tr('shippingAdded'),type: ToastType.success);
-      getIt<CartNavigateHelper>()
-          .setStep(CartNavigateHelper.paymentStepIndex, force: true);
+      getIt<CartNavigateHelper>().setStep(CartNavigateHelper.paymentStepIndex, force: true);
     }
   }
 

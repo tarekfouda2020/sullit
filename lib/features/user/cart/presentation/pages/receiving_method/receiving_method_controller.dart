@@ -4,15 +4,16 @@ class ReceivingMethodController{
 
   final GenericBloc<int> changeTabCubit = GenericBloc(0);
 
-  late final ShippingController shippingController;
-  final DeliveryController pickupController = DeliveryController();
+  late final DeliveryTabController shippingController;
+  final PickupTabController pickupController = PickupTabController();
 
   ///  this cubit updated after select address
   List<SellerShipping> get _sellerShippingData => pickupController.sellerShippingBloc.state.data;
 
 
   ReceivingMethodController(BuildContext context) {
-    shippingController = ShippingController();
+    shippingController = DeliveryTabController(context);
+    shippingController.receivingMethodController = this;
   }
 
 
@@ -35,8 +36,12 @@ class ReceivingMethodController{
     var params = _cartShippingParams();
     var data = await SetCartStoreShipping().call(params);
     if (data != null) {
+      getIt<CartNavigateHelper>().deliveryDetailsData = _sellerShippingData;
+      getIt<CartNavigateHelper>().cartCheckOutPageData.orderSummaryCheckOut = data;
+      getIt<CartNavigateHelper>().checkOutParams = _cartShippingParams();
       CustomToast.showSimpleToast(msg: tr('shippingAdded'),type: ToastType.success);
-      AutoRouter.of(context).push(CartPaymentRoute(shipping: data));
+      getIt<CartNavigateHelper>().setStep(CartNavigateHelper.paymentStepIndex, force: true);
+      CustomToast.showSimpleToast(msg: tr('shippingAdded'),type: ToastType.success);
     }
   }
 
@@ -55,10 +60,6 @@ class ReceivingMethodController{
   }
 
 
-  StoreCartShippingParams _cartShippingParams(){
-    return StoreCartShippingParams(params: _setCartStoreParams());
-  }
-
   void onSelectPickUp(BuildContext context) {
     var auth = context.read<DeviceCubit>().state.model.auth;
     if (!auth) {
@@ -76,7 +77,7 @@ class ReceivingMethodController{
 
   bool  isDeliverySupportedInAllSellers() {
     return _sellerShippingData.isNotEmpty
-        ? _sellerShippingData.every((element) => element.activeDelivery)
+        ? _sellerShippingData.every((element) => element.delivery!=null)
         : true;
   }
 
@@ -91,6 +92,10 @@ class ReceivingMethodController{
     return  _sellerShippingData.every((element) => element.pickup.isSelected);
   }
 
+
+  StoreCartShippingParams _cartShippingParams(){
+    return StoreCartShippingParams(params: _setCartStoreParams());
+  }
 
 
 }

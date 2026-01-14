@@ -32,7 +32,7 @@ class _CartPaymentState extends State<CartPayment> {
           bgColor: context.colors.white,
           onBack: () {
             final moved = getIt<CartNavigateHelper>()
-                .setStep(CartNavigateHelper.deliveryStepIndex, force: true);
+                .setStep(CartNavigateHelper.paymentStepIndex, force: true);
             if (!moved && context.router.canPop()) {
               AutoRouter.of(context).pop();
             }
@@ -44,7 +44,7 @@ class _CartPaymentState extends State<CartPayment> {
             if (state is GenericUpdateState) {
               return Column(
                 children: [
-                  const BuildCartStepper(current: 4),
+                  const BuildCartStepper(current: 3),
                   Flexible(
                     child: ListView(
                       cacheExtent: 9999,

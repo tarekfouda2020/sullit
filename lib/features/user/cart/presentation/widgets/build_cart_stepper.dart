@@ -115,12 +115,10 @@ class BuildCartStepper extends StatelessWidget {
       case 0:
         return tr("cart");
       case 1:
-        return tr("shipping");
-        case 2:
-        return tr("delivery");
-      case 3:
+        return tr("Receiving Method");
+      case 2:
         return tr("paymentCheckout");
-      case 4:
+      case 3:
         return tr("success");
       default:
         return "";
@@ -134,23 +132,24 @@ class BuildCartStepper extends StatelessWidget {
       height: 20,
       colorFilter: ColorFilter.mode(iconColor(context, 0), BlendMode.srcIn),
     ),
-    Icon(CupertinoIcons.map,
-      color: iconColor(context, 1),
-    ),
-    Icon(CupertinoIcons.bus,
-      color: iconColor(context,2),
+
+    SvgPicture.asset(
+      Res.receivingMethod,
+      width: 20,
+      height: 20,
+      colorFilter: ColorFilter.mode(iconColor(context, 1), BlendMode.srcIn),
     ),
     SvgPicture.asset(
       Res.payCheckout,
       width: 20,
       height: 20,
-      colorFilter: ColorFilter.mode(iconColor(context, 3), BlendMode.srcIn),
+      colorFilter: ColorFilter.mode(iconColor(context, 2), BlendMode.srcIn),
     ),
     SvgPicture.asset(
       Res.successIcon,
       width: 20,
       height: 20,
-      colorFilter: ColorFilter.mode(iconColor(context, 4), BlendMode.srcIn),
+      colorFilter: ColorFilter.mode(iconColor(context, 3), BlendMode.srcIn),
     ),
 
   ];

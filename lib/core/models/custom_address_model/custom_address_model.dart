@@ -12,5 +12,17 @@ class CustomAddressModel {
     this.streetAddress,
     this.countryCode,
   });
+
+
+  Map<String,dynamic> toJson()=>{
+    "country_name":countryName,
+    "city":city,
+    "region":region,
+    "streetAddress":streetAddress,
+    "countryCode":countryCode,
+  };
+
+
+
 }
 

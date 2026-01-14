@@ -53,7 +53,7 @@ class DefaultButton extends StatelessWidget {
         margin:
             margin ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: ElevatedButton(
-          onPressed: onTap,
+          onPressed: onTap  ,
           style: ElevatedButton.styleFrom(
             backgroundColor: color ?? context.colors.primary,
             shape: RoundedRectangleBorder(

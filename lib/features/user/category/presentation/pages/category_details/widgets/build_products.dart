@@ -14,8 +14,6 @@ class BuildProducts extends StatelessWidget {
         onRefresh: () async => await detailsController.refresh(),
         firstPageProgressIndicatorBuilder: (_) => const BuildLoadingCatsProducts(),
         itemBuilder: (_, item, index) {
-          print("=>>>>>>>> items is ${item.name}<<<<<<<<<<<====");
-          print("=>>>>>>>> items image is ${item.thumbnailImage}<<<<<<<<<<<====");
           return BuildProductItem(
             productModel: item,
             onFavRefresh: () => detailsController.onFavChanged(item),

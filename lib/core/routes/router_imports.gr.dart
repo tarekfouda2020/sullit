@@ -384,6 +384,7 @@ class AppRouter extends _i101.RootStackRouter {
         child: _i18.LocationAddress(
           key: args.key,
           fromEdit: args.fromEdit,
+          fromIntroPage: args.fromIntroPage,
         ),
       );
     },
@@ -1864,12 +1865,14 @@ class LocationAddressRoute
   LocationAddressRoute({
     _i104.Key? key,
     required bool fromEdit,
+    bool fromIntroPage = false,
   }) : super(
           LocationAddressRoute.name,
           path: '/location-address',
           args: LocationAddressRouteArgs(
             key: key,
             fromEdit: fromEdit,
+            fromIntroPage: fromIntroPage,
           ),
         );
 
@@ -1880,15 +1883,18 @@ class LocationAddressRouteArgs {
   const LocationAddressRouteArgs({
     this.key,
     required this.fromEdit,
+    this.fromIntroPage = false,
   });
 
   final _i104.Key? key;
 
   final bool fromEdit;
 
+  final bool fromIntroPage;
+
   @override
   String toString() {
-    return 'LocationAddressRouteArgs{key: $key, fromEdit: $fromEdit}';
+    return 'LocationAddressRouteArgs{key: $key, fromEdit: $fromEdit, fromIntroPage: $fromIntroPage}';
   }
 }
 

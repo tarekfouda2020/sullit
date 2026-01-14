@@ -12,7 +12,6 @@ class ReceivingTypeWidget extends StatelessWidget {
       builder: (context, state) {
         return Row(
           children: [
-            if(controller.isDeliverySupportedInAllSellers())
             Expanded(
                 child: ReceivingTabItemWidget(
                     isSelected: controller.changeTabCubit.state.data == 0,
@@ -20,9 +19,7 @@ class ReceivingTypeWidget extends StatelessWidget {
                     onTap: () => controller.changeTabCubit.onUpdateData(0)
                 )
             ),
-            if(controller.isDeliverySupportedInAllSellers())
             Gaps.hGap12,
-            if(controller.isPickUpInAllSellers())
             Expanded(
                 child: ReceivingTabItemWidget(
                     isSelected: controller.changeTabCubit.state.data == 1,

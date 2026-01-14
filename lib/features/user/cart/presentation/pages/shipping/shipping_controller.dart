@@ -12,8 +12,8 @@ class ShippingController {
 
 
   ShippingController(){
+    getPaginateAddress(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
-      getPaginateAddress(pageKey, refresh: false);
       getPaginateAddress(pageKey);
     });
   }
@@ -91,7 +91,8 @@ class ShippingController {
         CustomToast.showSimpleToast(
             msg: tr('addressAdded'),type: ToastType.success);
         getIt<CartNavigateHelper>()
-            .setStep(CartNavigateHelper.deliveryStepIndex, force: true);
+            // .setStep(CartNavigateHelper.deliveryStepIndex, force: true);
+            .setStep(CartNavigateHelper.shippingStepIndex, force: true);
       }
     } else {
       CustomToast.showSimpleToast(msg: tr('pleaseSelAddress'));
