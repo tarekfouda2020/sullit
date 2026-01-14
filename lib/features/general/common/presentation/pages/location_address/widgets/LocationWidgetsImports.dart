@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
@@ -25,3 +26,5 @@ part 'places_shimmer_widget.dart';
 part 'suggestions_places_sheet.dart';
 part 'suggestions_search_field_widget.dart';
 part 'map_search_field_widget.dart';
+part 'location_icon_widget.dart';
+part 'location_title_widget.dart';

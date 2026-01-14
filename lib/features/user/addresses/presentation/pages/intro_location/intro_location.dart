@@ -18,7 +18,7 @@ class _IntroLocationState extends State<IntroLocation> {
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Column(
           children: [
-            Gaps.vGap(120),
+            Gaps.vGap(kToolbarHeight+60),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 44),
             child: Image.asset(
@@ -31,6 +31,7 @@ class _IntroLocationState extends State<IntroLocation> {
             ),
             Gaps.vGap12,
             Text("to show nearby sellers and provide you\nwith an exceptional experience.",
+              textAlign: TextAlign.center,
             style: AppTextStyle.s16_w400(color: context.colors.textColor).copyWith(
               height: 1.3
             ),
@@ -38,15 +39,15 @@ class _IntroLocationState extends State<IntroLocation> {
             Gaps.vGap32,
             DefaultButton(
               title: "Use My Current Location",
-              onTap: () {},
+              onTap: () => AutoRouter.of(context).push(LocationAddressRoute(fromEdit: false)),
               margin: const EdgeInsets.only(bottom: 16),
             ),
             DefaultButton(
-              title: "Use My Current Location",
+              title: "Pin Location Manually",
               textColor: context.colors.primary,
               borderColor: context.colors.primary,
               color: context.colors.white,
-              onTap: () {},
+              onTap: () => AutoRouter.of(context).push(LocationAddressRoute(fromEdit: false)),
               margin: EdgeInsets.zero,
             ),
           ],

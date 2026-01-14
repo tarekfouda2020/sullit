@@ -16,6 +16,7 @@ class LocationAddressData {
   final GenericBloc<List<LocationIQPlace>> placesCubit = GenericBloc<List<LocationIQPlace>>([]);
 
   late LocationEntity locationModel;
+  LatLng? currentLocation;
   // final apiKey = "AIzaSyDIBH6mfPQ13UnF9aZtmaUQtuu-mQcxxb0";
 
   LocationAddressData() {
@@ -26,7 +27,7 @@ class LocationAddressData {
   Future<void> getLocationAddress(BuildContext context) async {
     LatLng loc = LatLng(locationModel.lat,locationModel.lng);
     context.read<LocationCubit>().onLocationUpdated(locationModel);
-    String address = await getIt<LocationService>().getAddress(loc,setCountryName: false);
+    String address = await getIt<LocationService>().getAddress(loc,setCountryName: false,removeComma: false);
     locationModel.address = address;
     titleBloc.onUpdateData(address);
   }
@@ -36,20 +37,23 @@ class LocationAddressData {
     // Use locationWhenInUse specifically for iOS to avoid opening settings
     Permission locationPermission = Permission.locationWhenInUse;
     bool permissionGranted = await getIt<PermissionServices>().requestPermission(locationPermission, context);
+    if(!permissionGranted){
+      return ;
+    }
     var model = context.read<LocationCubit>().state.model;
     try{
       var currentLocation = await getIt<LocationService>().getCurrentLocation();
       LatLng? loc;
       if(model == null || model.lat == 0.0 || model.lng == 0.0){
         locationModel = LocationEntity(lat: currentLocation!.latitude, lng: currentLocation.longitude);
-        loc = LatLng(locationModel.lat, locationModel.lng);
+        currentLocation = loc = LatLng(locationModel.lat, locationModel.lng);
       }else{
         locationModel = LocationEntity(lat: model.lat, lng: model.lng,address: model.address);
         loc = LatLng(model.lat, model.lng);
       }
       context.read<LocationCubit>().onLocationUpdated(locationModel);
       moveCameraToLocation(context, loc);
-      String address = await getIt<LocationService>().getAddress(loc,setCountryName: false);
+      String address = await getIt<LocationService>().getAddress(loc,setCountryName: false,removeComma: false);
       locationModel.address = address;
       context.read<LocationCubit>().onLocationUpdated(locationModel);
       titleBloc.onUpdateData(locationModel.address);
@@ -191,6 +195,18 @@ class LocationAddressData {
       onTapOnMap(context,location);
     },);
   }
+
+
+
+
+  Future<LatLng> getCurrentLocation()async{
+    if(currentLocation!=null){
+      return currentLocation!;
+    }else{
+      return await getIt<LocationService>().getCurrentLocation() ?? const LatLng(0, 0) ;
+    }
+  }
+
 
 
 }

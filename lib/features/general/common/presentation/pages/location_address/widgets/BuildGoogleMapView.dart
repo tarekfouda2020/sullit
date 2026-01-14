@@ -29,7 +29,7 @@ class BuildGoogleMapView extends StatelessWidget {
                   rotateGesturesEnabled: true,
                   scrollGesturesEnabled: true,
                   trafficEnabled: true,
-                  zoomControlsEnabled: true,
+                  zoomControlsEnabled: false,
                   tiltGesturesEnabled: true,
                   compassEnabled: true,
                   indoorViewEnabled: true,
@@ -53,10 +53,10 @@ class BuildGoogleMapView extends StatelessWidget {
                 end: 0,
                 child: MapSearchFieldWidget(controller: locationAddressData)
             ),
-            ImageIcon(
-              const AssetImage(Res.marker),
-              size: 50,
-              color: context.colors.secondary,
+            SvgPicture.asset(
+              width: 30,
+             height: 40,
+             Res.locationMark
             ),
           ],
         );

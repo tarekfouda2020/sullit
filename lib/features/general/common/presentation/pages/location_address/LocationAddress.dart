@@ -24,18 +24,7 @@ class _LocationAddress extends State<LocationAddress> {
     return Scaffold(
       key: locationAddressData.scaffold,
       appBar: AppBar(
-        leading: GestureDetector(
-            onTap: () => locationAddressData.onPop(context),
-            child: Icon(Icons.arrow_back, color: context.colors.black)),
-        title: BlocBuilder<GenericBloc<String>,GenericState<String>>(
-          bloc: locationAddressData.titleBloc,
-          builder: (context,state){
-            return Text(
-              state.data,
-              style: AppTextStyle.s12_w500(color: context.colors.black),
-            );
-          },
-        ),
+        title:  LocationTitleWidget(controller: locationAddressData,),
         backgroundColor: context.colors.primary,
         automaticallyImplyLeading: false,
         centerTitle: true,

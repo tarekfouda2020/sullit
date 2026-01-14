@@ -43,16 +43,7 @@ class PlacesListWidget extends StatelessWidget {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CircleAvatar(
-                            radius: 20,
-                            backgroundColor:
-                            context.colors.primary.withOpacity(.1),
-                            child: Icon(
-                              Icons.location_on,
-                              color: context.colors.primary,
-                              size: 20,
-                            ),
-                          ),
+                          const LocationIconWidget(),
                           Gaps.hGap12,
                           Expanded(
                             child: Column(

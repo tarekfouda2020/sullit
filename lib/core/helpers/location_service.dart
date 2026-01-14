@@ -20,14 +20,16 @@ class LocationService {
 
 
 
-  Future<String> getAddress(LatLng latLng, {bool setCountryName = true}) async {
+  Future<String> getAddress(LatLng latLng, {bool setCountryName = true, bool removeComma = true}) async {
     try {
       final address = await getFullAddress(latLng, setCountryName: setCountryName);
       if (address == null) {
         return "";
       }
-      var data = " ${setCountryName ? address.countryName ?? "" : ""}  ${address.city ?? ""}  ${address.region ?? ""}  ${address.streetAddress ?? ""}";
-      return data;
+      var data = " ${setCountryName ? "${address.countryName ?? ""}," : ""} ${address.city ?? ""}, ${address.region ?? ""}, ${address.streetAddress ?? ""}";
+      return removeComma
+          ?data.replaceAll(",", "")
+          :data;
     } catch (e) {
       log("=======>>>>>>>>>> error is $e end ============");
       return "";

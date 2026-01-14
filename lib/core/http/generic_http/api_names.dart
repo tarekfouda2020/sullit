@@ -90,8 +90,7 @@ class ApiNames {
   static const String cities = "cities";
   static const String addressTypes = "address-types";
 
-  static String setDefaultAddress(int id) =>
-      "user/addresses/$id/set-default?_method=put";
+  static String setDefaultAddress(int id) => "user/addresses/$id/set-default?_method=put";
 
   static String deleteAddress(int id) => "user/addresses/$id/delete";
 
