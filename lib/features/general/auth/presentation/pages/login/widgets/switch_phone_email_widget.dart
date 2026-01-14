@@ -11,8 +11,11 @@ class SwitchPhoneEmailWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(tr("loginWithEmailOrPhone"),
-        style: AppTextStyle.s14_w400(color: context.colors.textColor),
+        SizedBox(
+          width: 320,
+          child: Text(tr("loginWithEmailOrPhone"),
+          style: AppTextStyle.s13_w400(color: context.colors.textColor),
+          ),
         ),
         Gaps.vGap16,
         BlocBuilder<GenericBloc<int>, GenericState<int>>(
