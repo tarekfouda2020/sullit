@@ -48,14 +48,14 @@ class DefaultButton extends StatelessWidget {
     return IgnorePointer(
       ignoring: disabled ?? false,
       child: Container(
-        width: width ?? MediaQuery.of(context).size.width,
+        width: width ?? MediaQuery.sizeOf(context).width,
         height: height ?? 45,
         margin:
             margin ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: ElevatedButton(
-          onPressed: onTap,
+          onPressed: onTap ?? (){},
           style: ElevatedButton.styleFrom(
-            backgroundColor: color ?? context.colors.primary,
+            backgroundColor: color?? context.colors.primary,
             shape: RoundedRectangleBorder(
               borderRadius: borderRadius ?? BorderRadius.circular(30),
               side: BorderSide(color: borderColor ?? border, width: 1),

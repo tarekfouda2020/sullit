@@ -35,8 +35,7 @@ class HomeMainController {
   }
 
   void scrollListener() {
-    if (scrollController.position.pixels ==
-        scrollController.position.maxScrollExtent) {
+    if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
       getProductSections();
     }
   }
@@ -53,8 +52,7 @@ class HomeMainController {
   }
 
   Future<void> getProductSections() async {
-    if (sectionsCubit.state.data.length / 5 == currentPage - 1 ||
-        sectionsCubit.state.data.isEmpty) {
+    if (sectionsCubit.state.data.length / 5 == currentPage - 1 || sectionsCubit.state.data.isEmpty) {
       var result = await GetProductSections().call(currentPage);
       final isLastPage = result.length < pageSize;
       if (currentPage == 1) {
@@ -108,8 +106,7 @@ class HomeMainController {
     return number.toString().padLeft(2, '0')[index];
   }
 
-  Future<void> getProductWithSkuAndRoute(
-      BuildContext context, String sku) async {
+  Future<void> getProductWithSkuAndRoute(BuildContext context, String sku) async {
     getIt<LoadingHelper>().showLoadingDialog();
     await GetSkuProduct().call(sku).then(
       (value) {
@@ -235,9 +232,6 @@ class HomeMainController {
     _synchronizeFavoriteStatus(item);
   }
 
-
-
-
   void getOnSaleOffers({bool refresh = true}) async {
     var params = GenericPaginateParams(
       pageSize: pageSize,
@@ -299,24 +293,18 @@ class HomeMainController {
     }
   }
 
-
-
-  void onPressSeeOffers(BuildContext context){
-    context.isShareHolder
-        ? routeToOffersTab(context)
-        : routeToMembershipSubscribe(context);
+  void onPressSeeOffers(BuildContext context) {
+    context.isShareHolder ? routeToOffersTab(context) : routeToMembershipSubscribe(context);
   }
 
-
-  void routeToOffersTab(BuildContext context){
+  void routeToOffersTab(BuildContext context) {
     homeController.animateTabsPages(3, context);
   }
-
 
   void routeToMembershipSubscribe(BuildContext context) {
     bool isAuth = context.read<DeviceCubit>().state.model.auth;
     if (isAuth) {
-      AutoRouter.of(context).push( MembershipSubscribeRoute());
+      AutoRouter.of(context).push(MembershipSubscribeRoute());
     } else {
       CustomToast.showAuthDialog(context);
     }
@@ -393,4 +381,12 @@ class HomeMainController {
 //     );
 //   }
 // }
+
+  void showAddressBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return AddressSheetWidget(controller: this);
+        });
+  }
 }
