@@ -2,8 +2,8 @@ part of 'LocationWidgetsImports.dart';
 
 class BuildSaveButton extends StatelessWidget {
   final LocationAddressData locationAddressData;
-
-  const BuildSaveButton({super.key, required this.locationAddressData});
+  final bool fromIntro;
+  const BuildSaveButton({super.key, required this.locationAddressData, required this.fromIntro});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,7 @@ class BuildSaveButton extends StatelessWidget {
               ),
               Gaps.vGap12,
               InkWell(
-                onTap: () => locationAddressData.changeLocation(context),
+                onTap: () => locationAddressData.changeLocation(context,fromIntro),
                 child: Container(
                   height: 45,
                   margin: const EdgeInsetsDirectional.only(start: 16),

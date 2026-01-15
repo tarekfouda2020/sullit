@@ -10,7 +10,7 @@ class ReceivingMethod extends StatefulWidget {
 
 class _ReceivingMethodState extends State<ReceivingMethod> {
 
- late final ReceivingMethodController controller;
+ late  ReceivingMethodController controller;
 
  @override
   void didChangeDependencies() {
@@ -22,7 +22,16 @@ class _ReceivingMethodState extends State<ReceivingMethod> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: DefaultAppBar(title: tr("cart"),bgColor: context.colors.white),
+      appBar: DefaultAppBar(
+          title: tr("cart"),
+          onBack: () {
+            final moved = getIt<CartNavigateHelper>()
+                .setStep(CartNavigateHelper.cartStepIndex, force: true);
+            if (!moved && Navigator.of(context).canPop()) {
+              Navigator.of(context).maybePop();
+            }
+          },
+          bgColor: context.colors.white),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -30,7 +39,7 @@ class _ReceivingMethodState extends State<ReceivingMethod> {
           Gaps.vGap12,
           Padding(
             padding: Dimens.paddingStart20,
-            child: Text(tr("selectReceivingMethod"),
+            child: Text("Select receiving method",
                 style: AppTextStyle.s16_w600(color: context.colors.black)
             ),
           ),
@@ -61,10 +70,10 @@ class _ReceivingMethodState extends State<ReceivingMethod> {
 
   Widget currentTab(int index){
     switch(index){
-      case 0: return  const Shipping();
+      case 0: return  NewShippingPage(shippingController: controller.shippingController);
       case 1 : return  Visibility(
           visible: controller.isPickUpInAllSellers(),
-          child: const Delivery());
+          child: PickupTab(deliveryController: controller.pickupController));
       default: return Gaps.empty;
     }
   }

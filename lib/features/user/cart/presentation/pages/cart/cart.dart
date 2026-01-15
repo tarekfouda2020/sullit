@@ -39,11 +39,11 @@ class _CartState extends State<Cart> {
             children: [
               CartItemsListWidget(controller: controller),
               _visitedSteps.contains(CartNavigateHelper.shippingStepIndex)
-                  ? const shipping_page.Shipping()
+                  ? const ReceivingMethod()
                   : Gaps.empty,
-              _visitedSteps.contains(CartNavigateHelper.deliveryStepIndex)
-                  ? const delivery_page.Delivery()
-                  : Gaps.empty,
+              // _visitedSteps.contains(CartNavigateHelper.deliveryStepIndex)
+              //     ? const delivery_page.Delivery()
+              //     : Gaps.empty,
               _visitedSteps.contains(CartNavigateHelper.paymentStepIndex)
                   ? _buildPaymentStep()
                   : Gaps.empty,

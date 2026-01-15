@@ -1,6 +1,5 @@
 part of 'intro_location_imports.dart';
 
-
 class IntroLocation extends StatefulWidget {
   const IntroLocation({super.key});
 
@@ -14,32 +13,33 @@ class _IntroLocationState extends State<IntroLocation> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(title: tr("location")),
-      body:  SingleChildScrollView(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Column(
           children: [
-            Gaps.vGap(kToolbarHeight+60),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 44),
-            child: Image.asset(
-                Res.mapIntroImage),
-          ),
+            Gaps.vGap(kToolbarHeight + 60),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 44),
+              child: Image.asset(Res.mapIntroImage),
+            ),
             Gaps.vGap32,
-            Text("We need access to your location",
-            textAlign: TextAlign.center,
-            style: AppTextStyle.s22_w700(color: context.colors.black),
+            Text(
+              "We need access to your location",
+              textAlign: TextAlign.center,
+              style: AppTextStyle.s22_w700(color: context.colors.black),
             ),
             Gaps.vGap12,
-            Text("to show nearby sellers and provide you\nwith an exceptional experience.",
+            Text(
+              "to show nearby sellers and provide you\nwith an exceptional experience.",
               textAlign: TextAlign.center,
-            style: AppTextStyle.s16_w400(color: context.colors.textColor).copyWith(
-              height: 1.3
-            ),
+              style: AppTextStyle.s16_w400(color: context.colors.textColor)
+                  .copyWith(height: 1.3),
             ),
             Gaps.vGap32,
             DefaultButton(
               title: "Use My Current Location",
-              onTap: () => AutoRouter.of(context).push(LocationAddressRoute(fromEdit: false)),
+              onTap: () => AutoRouter.of(context).push(
+                  LocationAddressRoute(fromEdit: false, fromIntroPage: true)),
               margin: const EdgeInsets.only(bottom: 16),
             ),
             DefaultButton(
@@ -47,7 +47,8 @@ class _IntroLocationState extends State<IntroLocation> {
               textColor: context.colors.primary,
               borderColor: context.colors.primary,
               color: context.colors.white,
-              onTap: () => AutoRouter.of(context).push(LocationAddressRoute(fromEdit: false)),
+              onTap: () => AutoRouter.of(context).push(
+                  LocationAddressRoute(fromEdit: false, fromIntroPage: true)),
               margin: EdgeInsets.zero,
             ),
           ],

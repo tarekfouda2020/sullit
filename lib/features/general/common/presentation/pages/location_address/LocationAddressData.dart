@@ -87,7 +87,12 @@ class LocationAddressData {
         .asUint8List();
   }
 
-  void changeLocation(BuildContext context) async {
+  void changeLocation(BuildContext context, bool fromIntro) async {
+
+
+
+
+
     if (locationModel.address.isEmpty) {
       CustomToast.showSimpleToast(msg: tr("selectLocationOnMap"));
       return;
@@ -111,7 +116,20 @@ class LocationAddressData {
     //       address: await getIt<LocationService>().getAddress(loc.target),
     //         fullAddress: await getIt<LocationService>().getFullAddress(loc.target)
     //     );
-    AutoRouter.of(context).pop(locationModel);
+    if(fromIntro){
+      saveLocationInSharedAndRouteToHome(context);
+      return ;
+    }else{
+      AutoRouter.of(context).pop(locationModel);
+    }
+
+  }
+
+
+  Future<void> saveLocationInSharedAndRouteToHome(BuildContext context)async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(LocalStorageKeys.userAddress,json.encode(locationModel.toJson()));
+    AutoRouter.of(context).push(HomeRoute(index: 0));
   }
 
 

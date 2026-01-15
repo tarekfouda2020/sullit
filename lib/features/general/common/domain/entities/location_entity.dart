@@ -22,4 +22,14 @@ class LocationEntity {
     );
   }
 
+
+  Map<String,dynamic> toJson()=>{
+    "lat":lat,
+    "lng":lng,
+    "address":address,
+    "full_address" : fullAddress?.toJson()
+  };
+
+
+
 }

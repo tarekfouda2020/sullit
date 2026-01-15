@@ -6,6 +6,11 @@ class SplashController {
   Future<void> manipulateSaveData(BuildContext context) async {
      updateLang(context);
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    var address = prefs.get(LocalStorageKeys.userAddress);
+    if(address == null){
+      AutoRouter.of(context).push(const IntroLocationRoute());
+      return ;
+    }
     var strUser = prefs.get("user");
     if (strUser != null) {
       context.read<DeviceCubit>().updateUserAuth(true);

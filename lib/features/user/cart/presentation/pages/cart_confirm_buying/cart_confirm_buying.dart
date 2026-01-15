@@ -43,7 +43,7 @@ class _CartConfirmBuyingState extends State<CartConfirmBuying> {
               return Column(
                 children: [
                   if (!widget.paymentFromHome)
-                    const BuildCartStepper(current: 5),
+                    const BuildCartStepper(current: 4),
                   Flexible(
                       child: CustomRefreshIndicatorWidget(
                     onRefresh: () async {

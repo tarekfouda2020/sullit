@@ -17,9 +17,9 @@ import 'package:injectable/injectable.dart';
 class CartNavigateHelper {
   static const int cartStepIndex = 0;
   static const int shippingStepIndex = 1;
-  static const int deliveryStepIndex = 2;
-  static const int paymentStepIndex = 3;
-  static const int confirmationStepIndex = 4;
+  // static const int deliveryStepIndex = 2;
+  static const int paymentStepIndex = 2;
+  static const int confirmationStepIndex = 3;
 
   AddressDomainModel? selectedOrderAddress;
   List<SellerShipping>? deliveryDetailsData;
@@ -56,10 +56,11 @@ class CartNavigateHelper {
 
   bool _canGoToStep(int step) {
     switch (step) {
+      // case shippingStepIndex:
+      //   return true;
       case shippingStepIndex:
+        // return selectedOrderAddress != null;
         return true;
-      case deliveryStepIndex:
-        return selectedOrderAddress != null;
       case paymentStepIndex:
         return cartCheckOutPageData.orderSummaryCheckOut != null;
       case confirmationStepIndex:
