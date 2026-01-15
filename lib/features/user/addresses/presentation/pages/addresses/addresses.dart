@@ -28,12 +28,15 @@ class _AddressesState extends State<Addresses> {
           pagingController: controller.pagingController,
           padding: Dimens.paddingHorizontal20PX,
           builderDelegate: PagedChildBuilderDelegate<AddressDomainModel>(
+
             itemBuilder: (_, item, index) {
               return BuildNewAddressItem(
                 address: item,
                 controller: controller,
               );
             },
+
+
             noItemsFoundIndicatorBuilder: (cxt) =>const BuildAddressesEmptyView(),
             firstPageProgressIndicatorBuilder: (_) => const BuildAddressLoading(),
             newPageProgressIndicatorBuilder: (context) =>   SizedBox(

@@ -2,7 +2,6 @@ part of 'home_main_imports.dart';
 
 class HomeMain extends StatefulWidget {
   final HomeController homeController;
-
   const HomeMain({Key? key, required this.homeController}) : super(key: key);
 
   @override
@@ -33,7 +32,6 @@ class _HomeMainState extends State<HomeMain> {
                 bloc: controller.homeCubit,
                 builder: (context, state) {
                   if (state is GenericUpdateState && state.data != null) {
-
                     return BuildHomeView(
                       homeDomainModel: state.data!,
                       controller: controller,

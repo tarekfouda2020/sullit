@@ -12,6 +12,10 @@ class HomeMainController {
   final GenericBloc<List<Product>> onSaleCubit = GenericBloc([]);
   final GenericBloc<List<Product>> bestRatedCubit = GenericBloc([]);
   final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
+  final GenericBloc<bool> refreshCubit = GenericBloc<bool>(true);
+
+  final PagingController<int, AddressDomainModel> pagingController = PagingController(firstPageKey: 1);
+  int addressSize = 12;
 
   List<ProductSections> allSections = [];
   int currentPage = 1;
@@ -32,6 +36,11 @@ class HomeMainController {
     getAllBrands();
     getProductSections();
     scrollController.addListener(scrollListener);
+    getAddress(1, refresh: false);
+    pagingController.addPageRequestListener((pageKey) {
+      getAddress(pageKey);
+    });
+
   }
 
   void scrollListener() {
@@ -384,9 +393,52 @@ class HomeMainController {
 
   void showAddressBottomSheet(BuildContext context) {
     showModalBottomSheet(
+      isScrollControlled: true,
+       backgroundColor: context.colors.transparent,
         context: context,
         builder: (context) {
           return AddressSheetWidget(controller: this);
         });
   }
+  Future<void> getAddress(int page, {bool refresh = true}) async {
+    var params = _paginateParams(page, refresh);
+    var data = await GetAddresses().call(params);
+    final isLastPage = data.length < addressSize;
+    if (page == 1) {
+      pagingController.itemList = [];
+    }
+    if (isLastPage) {
+      pagingController.appendLastPage(data);
+    } else {
+      final nextPageKey = page + 1;
+      pagingController.appendPage(data, nextPageKey);
+    }
+  }
+
+  GenericPaginateParams _paginateParams(int page, bool refresh) {
+    return GenericPaginateParams(
+      currentPage: page,
+      refresh: refresh,
+      pageSize: addressSize,
+    );
+  }
+  void selectAddress(BuildContext context, AddressDomainModel selectedModel) {
+    var list = pagingController.itemList;
+    if (list == null || list.isEmpty) {
+      return;
+    }
+    for (var currentAddress in list) {
+      currentAddress.selected == false ;
+    }
+    selectedModel.selected = true;
+    pagingController.itemList = [
+      ...list
+    ];
+  }
+
+
+
+
+
+
 }

@@ -17,7 +17,7 @@ class AddressesController {
 
   Future<void> getAddress(int page, {bool refresh = true}) async {
     var params = _paginateParams(page, refresh);
-    var data =await GetAddresses().call(params);
+    var data = await GetAddresses().call(params);
     final isLastPage = data.length < pageSize;
     if (page == 1) {
       pagingController.itemList = [];
@@ -30,8 +30,6 @@ class AddressesController {
     }
   }
 
-
-
   GenericPaginateParams _paginateParams(int page, bool refresh) {
     return GenericPaginateParams(
       currentPage: page,
@@ -39,6 +37,8 @@ class AddressesController {
       pageSize: pageSize,
     );
   }
+
+
 
   Future<void> deleteAddress(AddressDomainModel model) async {
     var data = await SetDeleteAddress().call(model.id!);

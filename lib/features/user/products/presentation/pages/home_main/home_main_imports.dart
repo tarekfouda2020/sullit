@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -27,11 +26,12 @@ import 'package:flutter_tdd/features/user/products/domain/use_cases/get_product_
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_sku_product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/home_main/widgets/home_main_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/timer_entity.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../../../core/models/domain_models/brand_domain_model.dart';
 import '../../../../../../core/widgets/my_scaffold.dart';
+import '../../../../addresses/domain/models/address.dart';
+import '../../../../addresses/domain/use_cases/get_addresses.dart';
 import '../../../../category/domain/entities/brands_params.dart';
 import '../../../../category/domain/use_cases/get_brands.dart';
 import '../../../../sale/domain/use_cases/get_best_rated.dart';

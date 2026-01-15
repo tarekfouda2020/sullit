@@ -36,10 +36,9 @@ class _NewShippingPageState extends State<NewShippingPage> {
                   pagingController: controller.pagingController,
                   builderDelegate: PagedChildBuilderDelegate<AddressDomainModel>(
                     itemBuilder: (_, item, index) {
-                      return BuildShippingAddressItem(
-                        address: item,
-                        controller: controller,
-                      );
+                      return AddressItemWidget(onTap: () {
+                        controller.onSelectAddress(context, item);
+                      },address: item,);
                     },
                     noItemsFoundIndicatorBuilder: (cxt) => const BuildAddressesEmptyView(),
                     firstPageProgressIndicatorBuilder: (_) =>

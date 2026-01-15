@@ -25,7 +25,7 @@ class AddressItemWidget extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(12)),
           border: Border.all(
-            color: context.colors.primary,
+            color: address.selected == true ?  context.colors.primary :context.colors.textColor,
             width: 1,
           ),
         ),
@@ -62,7 +62,7 @@ class AddressItemWidget extends StatelessWidget {
               ),
               Visibility(
                 visible: isDelete,
-                replacement: const CustomRadioWidget(selected: true),
+                replacement:  CustomRadioWidget(selected:address.selected==true),
                 child: GestureDetector(onTap: onPressDelete, child: SvgPicture.asset(Res.trashIcon)),
               ),
             ],

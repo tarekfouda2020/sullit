@@ -11,6 +11,7 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/GenericListView.dart';
+import 'package:flutter_tdd/core/widgets/address_item_widget.dart';
 import 'package:flutter_tdd/core/widgets/build_custom_app_bar.dart';
 import 'package:flutter_tdd/core/widgets/custom_refresh_indicator_widget.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
