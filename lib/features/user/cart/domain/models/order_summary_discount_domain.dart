@@ -14,11 +14,11 @@ class OrderSummaryDiscountDomain extends BaseDomainModel {
   });
 
 
-  bool get isShareHolderDiscount => type == "subscription_order_discount";
+  bool get isTierDiscount => type == "subscription_order_discount";
 
 
   String getDiscountTitle(){
-    if(isShareHolderDiscount){
+    if(isTierDiscount){
     var remain = label.split(" ");
     String firstWord = remain.first;
     remain.removeAt(0);

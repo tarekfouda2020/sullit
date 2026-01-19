@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
 
 class Shop extends BaseDomainModel {
    int? id;
@@ -20,6 +21,7 @@ class Shop extends BaseDomainModel {
    String? youtube;
    num? rating;
    bool?follow;
+   List<ShopCategory>? categories;
 
   Shop({
     required this.id,
@@ -39,6 +41,7 @@ class Shop extends BaseDomainModel {
     this.twitter,
     this.instagram,
     this.youtube,
+    this.categories,
     required this.rating,
     required this.follow,
   });
