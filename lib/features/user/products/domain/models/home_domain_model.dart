@@ -1,9 +1,11 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/core/models/domain_models/brand_domain_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
+import 'package:flutter_tdd/features/user/products/data/models/shop_model/shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/banner_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/popular_products_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/slider_domain_model.dart';
 import 'package:flutter_tdd/features/user/sale/domain/models/flash_sale.dart';
 
@@ -13,8 +15,7 @@ class HomeDomainModel extends BaseDomainModel {
   final List<BannerDomainModel> bannersTwo;
   final List<Category> categories;
   final FlashSale? flashSales;
-
-  // final List<PopularProductsDomainModel> mostPopular;
+  final List<Shop> shop;
   // final List<Product> bestSellingProducts;
   // final List<Product> newestProducts;
   // final List<Product> featuredProducts;
@@ -25,12 +26,13 @@ class HomeDomainModel extends BaseDomainModel {
   final bool isAdminDiscount;
   final int discountRate;
 
-  HomeDomainModel({
+  HomeDomainModel( {
     required this.sliders,
     required this.bannersOne,
     required this.bannersTwo,
     required this.categories,
     this.flashSales,
+    required this.shop,
     // required this.mostPopular,
     // required this.bestSellingProducts,
     // required this.newestProducts,

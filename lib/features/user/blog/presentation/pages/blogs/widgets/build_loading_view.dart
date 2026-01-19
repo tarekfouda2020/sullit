@@ -23,9 +23,9 @@ class BuildLoadingView extends StatelessWidget {
                 ),
               ),
               Gaps.hGap12,
-              Column(
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 4.0),
                     child: BuildShimmerItem(

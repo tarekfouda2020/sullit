@@ -20,6 +20,7 @@ import 'package:flutter_tdd/features/user/products/domain/entities/seller_produc
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/seller_product_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_seller_products.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/seller_products/widgets/seller_products_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';

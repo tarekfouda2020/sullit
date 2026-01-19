@@ -62,13 +62,11 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
       twitter: twitter,
       youtube: youtube,
       follow: follow,
-      categories: categories?.map((e) => e.toDomainModel()).toList()
+      categories: categories?.map((e) => e.toDomainModel()).toList(),
+        sliders: sliders
     );
   }
 }
-
-
-
 @freezed
 @immutable
 class ShopCategoryModel extends BaseApiModel<ShopCategory> with _$ShopCategoryModel {

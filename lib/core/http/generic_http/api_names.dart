@@ -30,7 +30,6 @@ class ApiNames {
   static const String deleteAccount = "delete-account";
   static const String verifyEmail = "email/verify";
   static const String changePassword = "update-password?_method=patch";
-
   // profile urls
   static const String updateProfile = "profile/update?_method=put";
   static const String updateProfileEmail = "new-email";
@@ -38,6 +37,7 @@ class ApiNames {
 
 //home urls
   static const String getFollowing = "shops/followings";
+  static const String shopsList = "shops";
 
   //products urls
   static const String getHome = "home";

@@ -61,7 +61,7 @@ class BuildHomeView extends StatelessWidget {
               onTap: () => AutoRouter.of(context).push(const BestSellersPageRoute()),
             ),
             Gaps.vGap16,
-            const SellersSectionWidget(),
+             SellersSectionWidget(controller: controller,),
             // BuildHomeNewProducts(
             //   newestProducts: homeDomainModel.newestProducts,
             //   controller: controller,

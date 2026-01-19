@@ -21,6 +21,7 @@ class Shop extends BaseDomainModel {
    String? youtube;
    num? rating;
    bool?follow;
+   List<String>? sliders;
    List<ShopCategory>? categories;
 
   Shop({
@@ -41,6 +42,7 @@ class Shop extends BaseDomainModel {
     this.twitter,
     this.instagram,
     this.youtube,
+    this.sliders,
     this.categories,
     required this.rating,
     required this.follow,
@@ -65,6 +67,7 @@ class Shop extends BaseDomainModel {
     data['instagram'] = instagram;
     data['youtube'] = youtube;
     data['rating'] = rating;
+    data["sliders"]=sliders;
     data['follow']=follow;
     return data;
   }
@@ -87,6 +90,8 @@ class Shop extends BaseDomainModel {
     instagram = json['instagram'];
     youtube = json['youtube'];
     rating = json['rating'];
+    sliders=json["sliders"];
     follow=json['follow'];
   }
+   List<String> get shopCategoryNames => categories?.map((e) => e.name ?? '').toList() ?? [];
 }

@@ -5,7 +5,6 @@ class SellerProductsController {
   final TextEditingController brandsSearchCtr = TextEditingController();
 
   final TextEditingController productSearchCtr = TextEditingController();
-
   final PagingController<int, Product> pagingController = PagingController(firstPageKey: 1);
   final PagingController<int, BrandDomainModel> brandsPagingController = PagingController(firstPageKey: 1);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
@@ -261,5 +260,17 @@ class SellerProductsController {
   //     currentPage: page,
   //   );
   // }
+
+  final GenericBloc<ShopCategory?> categoryCubit =
+  GenericBloc<ShopCategory?>(null);
+  ShopCategory? selectedCategory;
+  void onSelectCategory(ShopCategory model) {
+    if (categoryCubit.state.data?.id == model.id) {
+      categoryCubit.onUpdateData(null);
+    } else {
+      categoryCubit.onUpdateData(model);
+    }
+  }
+
 
 }
