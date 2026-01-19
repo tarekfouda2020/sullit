@@ -29,7 +29,7 @@ mixin _$ShopModel {
   String get logo => throw _privateConstructorUsedError;
   @JsonKey(name: 'package_invalid_at')
   String get packageInvalidAt => throw _privateConstructorUsedError;
-  int get products => throw _privateConstructorUsedError;
+  int? get products => throw _privateConstructorUsedError;
   int get orders => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
@@ -61,7 +61,7 @@ abstract class $ShopModelCopyWith<$Res> {
       String? description,
       String logo,
       @JsonKey(name: 'package_invalid_at') String packageInvalidAt,
-      int products,
+      int? products,
       int orders,
       String? address,
       String? email,
@@ -95,7 +95,7 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
     Object? description = freezed,
     Object? logo = null,
     Object? packageInvalidAt = null,
-    Object? products = null,
+    Object? products = freezed,
     Object? orders = null,
     Object? address = freezed,
     Object? email = freezed,
@@ -137,10 +137,10 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
           ? _value.packageInvalidAt
           : packageInvalidAt // ignore: cast_nullable_to_non_nullable
               as String,
-      products: null == products
+      products: freezed == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       orders: null == orders
           ? _value.orders
           : orders // ignore: cast_nullable_to_non_nullable
@@ -204,7 +204,7 @@ abstract class _$$_ShopModelCopyWith<$Res> implements $ShopModelCopyWith<$Res> {
       String? description,
       String logo,
       @JsonKey(name: 'package_invalid_at') String packageInvalidAt,
-      int products,
+      int? products,
       int orders,
       String? address,
       String? email,
@@ -236,7 +236,7 @@ class __$$_ShopModelCopyWithImpl<$Res>
     Object? description = freezed,
     Object? logo = null,
     Object? packageInvalidAt = null,
-    Object? products = null,
+    Object? products = freezed,
     Object? orders = null,
     Object? address = freezed,
     Object? email = freezed,
@@ -278,10 +278,10 @@ class __$$_ShopModelCopyWithImpl<$Res>
           ? _value.packageInvalidAt
           : packageInvalidAt // ignore: cast_nullable_to_non_nullable
               as String,
-      products: null == products
+      products: freezed == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       orders: null == orders
           ? _value.orders
           : orders // ignore: cast_nullable_to_non_nullable
@@ -376,7 +376,7 @@ class _$_ShopModel extends _ShopModel {
   @JsonKey(name: 'package_invalid_at')
   final String packageInvalidAt;
   @override
-  final int products;
+  final int? products;
   @override
   final int orders;
   @override
@@ -485,7 +485,7 @@ abstract class _ShopModel extends ShopModel {
       required final String logo,
       @JsonKey(name: 'package_invalid_at')
       required final String packageInvalidAt,
-      required final int products,
+      required final int? products,
       required final int orders,
       final String? address,
       required final String? email,
@@ -519,7 +519,7 @@ abstract class _ShopModel extends ShopModel {
   @JsonKey(name: 'package_invalid_at')
   String get packageInvalidAt;
   @override
-  int get products;
+  int? get products;
   @override
   int get orders;
   @override
