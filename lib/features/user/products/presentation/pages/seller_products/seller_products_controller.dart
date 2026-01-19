@@ -116,9 +116,11 @@ class SellerProductsController {
     brandsCubit.onUpdateData(brandsCubit.state.data);
   }
 
-  void refreshBrands(BuildContext context){
+  void refreshBrands(BuildContext context ,{bool disableFocus = true}){
     brandsCubit.onUpdateToInitState([]);
-    FocusScope.of(context).unfocus();
+    if(disableFocus){
+      FocusScope.of(context).unfocus();
+    }
     brandsPagingController.refresh();
     getBrands(1);
   }
@@ -196,7 +198,10 @@ class SellerProductsController {
     pagingController.refresh();
     getProducts(1);
   }
-  void whileWriting(String value){
+  void whileWriting(BuildContext context,String value){
+    DebounceHelper.instance.startSearch(value: value,
+      onSearch: (val) => searchProducts(context,enableUnFocus: false),
+    );
     if(value.isNotEmpty){
       showClearIcon.onUpdateData(true);
     }else{
@@ -204,10 +209,20 @@ class SellerProductsController {
     }
   }
 
-  void onPressSearch(BuildContext context){
-    FocusScope.of(context).unfocus();
+  void searchProducts(BuildContext context,{bool enableUnFocus = true}){
+    if(enableUnFocus){
+      FocusScope.of(context).unfocus();
+    }
     pagingController.refresh();
     getProducts(1);
+  }
+
+
+  void whileSearch(String value){
+    DebounceHelper.instance.startSearch(
+      value: value,
+      onSearch: (val) => (){},
+    );
   }
 
   BrandsParams _brandsParams(int paginate, bool refresh, int page ) {

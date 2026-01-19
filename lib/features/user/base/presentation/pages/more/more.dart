@@ -13,14 +13,13 @@ class _MoreState extends State<More> {
   late final MoreController controller;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
     controller = MoreController(context,widget.homeController);
   }
 
   @override
   Widget build(BuildContext context) {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(title: tr('more'),bgColor: context.colors.white,showBack: false),

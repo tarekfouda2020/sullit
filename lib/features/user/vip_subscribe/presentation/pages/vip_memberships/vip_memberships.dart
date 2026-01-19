@@ -38,10 +38,13 @@ class _VipMemberShipsState extends State<VipMemberShips> {
                ),
                Gaps.vGap10,
               ...List.generate(state.data!.otherSubscriptions.length, (index) {
-                return  MembershipItemWidget(
-                    model: state.data!.otherSubscriptions[index],
-                    isBottomSheet: false,
-                    onSelect: ()=> controller.selectMembership(state.data!.otherSubscriptions[index]) ,
+                return  Visibility(
+                  visible: state.data!.otherSubscriptions[index].byInvite == false,
+                  child: MembershipItemWidget(
+                      model: state.data!.otherSubscriptions[index],
+                      isBottomSheet: false,
+                      onSelect: ()=> controller.selectMembership(state.data!.otherSubscriptions[index]) ,
+                  ),
                 );
               }),
                ChangePlanButtonWidget(controller: controller)

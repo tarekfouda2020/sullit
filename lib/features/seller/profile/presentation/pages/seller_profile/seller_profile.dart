@@ -13,7 +13,7 @@ class _SellerProfileState extends State<SellerProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(title: "Manage Profile", showBack: true),
+      appBar:  DefaultAppBar(title: tr("manageProfile"), showBack: true),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
         child: SingleChildScrollView(

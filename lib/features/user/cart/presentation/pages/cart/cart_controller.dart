@@ -3,60 +3,69 @@
 part of 'cart_imports.dart';
 
 class CartController {
-  final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
+  GenericBloc<CartDomainModel> get cartItemsBloc =>
+      getIt<CartHelper>().cartItemsBloc;
 
   final CartNavigateHelper navigateHelper = getIt<CartNavigateHelper>();
-
 
   Key paymentViewKey = UniqueKey();
   Key confirmationViewKey = UniqueKey();
 
   CartController() {
     getIt<CartNavigateHelper>().initData();
+    cartItemsBloc.onUpdateToInitState(CartDomainModel());
     getCartItems();
   }
 
   Future<void> getCartItems({bool refresh = true}) async {
-    CartDomainModel result = await getIt<CartHelper>().getCartItems(refresh: refresh);
-    cartItemsBloc.onUpdateData(result);
+    // if(cartItemsBloc.state.data.items == null){
+    //
+    // }
+    await getIt<CartHelper>().getCartItems(refresh: refresh);
   }
 
-
-  Future<void> deleteItemFromCart(BuildContext context,CartItem cartItem) async {
+  Future<void> deleteItemFromCart(
+      BuildContext context, CartItem cartItem) async {
     getIt<LoadingHelper>().showLoadingDialog();
-    var data = await getIt<CartHelper>().deleteItemFromCart(context,cartItem);
+    var data = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
     if (data) {
-      num newSubTotal = cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
+      num newSubTotal =
+          cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
       cartItemsBloc.state.data.calculableTotal = newSubTotal;
       // cartItemsBloc.state.data.items!.remove(cartItem);
-      cartItemsBloc.state.data.minimumStatus = newSubTotal > (cartItemsBloc.state.data.minimumAmount ?? 0);
+      cartItemsBloc.state.data.minimumStatus =
+          newSubTotal > (cartItemsBloc.state.data.minimumAmount ?? 0);
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
       updateCartCount(context);
       await getCartItems(refresh: true);
       getIt<LoadingHelper>().dismissDialog();
-      if(cartItemsBloc.state.data.items == null || (cartItemsBloc.state.data.items??[]).isEmpty ){
+      if (cartItemsBloc.state.data.items == null ||
+          (cartItemsBloc.state.data.items ?? []).isEmpty) {
         getIt<CartNavigateHelper>().initData();
       }
-     getIt<CartHelper>().updateCartCountWithCart(context, cartItemsBloc.state.data);
+      getIt<CartHelper>().updateCartCountWithCart(context, cartItemsBloc.state.data);
       // var cartCount = countCubit.cartCount - 1;
       CustomToast.showSimpleToast(
           msg: tr('itemDeleted'), type: ToastType.success);
       // getCartItems();
-    }else{
+    } else {
       getIt<LoadingHelper>().dismissDialog();
     }
   }
 
-  Future<void> onIncreaseCart(BuildContext context,CartItem cartItem, GenericBloc<bool> loadingCubit) async {
+  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem,
+      GenericBloc<bool> loadingCubit) async {
     if (cartItem.quantity < cartItem.stockQty) {
       loadingCubit.onUpdateData(true);
       final newQty = cartItem.quantity + 1;
-      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+      final success =
+          await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
       loadingCubit.onUpdateData(false);
-      if (success!=null) {
+      if (success != null) {
         cartItem.quantity = newQty;
         cartItemsBloc.onUpdateData(success);
         updateCartCount(context);
+        FacebookEventsHelper.instance.productAddToCart(id: cartItem.productId, price: cartItem.price);
       }
       // else{
       //   CustomToast.showSimpleToast(
@@ -70,14 +79,20 @@ class CartController {
     }
   }
 
-  Future<void> onDecreaseCart(BuildContext context,CartItem cartItem, GenericBloc<bool> loadingCubit) async {
+  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem,
+      GenericBloc<bool> loadingCubit) async {
+    if(cartItem.quantity == 1){
+      deleteItemFromCart(context, cartItem);
+      return ;
+    }
     if (cartItem.quantity > 1) {
       loadingCubit.onUpdateData(true);
 
       final newQty = cartItem.quantity - 1;
-      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+      final success =
+          await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
       loadingCubit.onUpdateData(false);
-      if (success!=null) {
+      if (success != null) {
         cartItem.quantity = newQty;
         cartItemsBloc.onUpdateData(success);
         updateCartCount(context);
@@ -93,9 +108,10 @@ class CartController {
   void navigateToShipping(BuildContext context) {
     bool auth = context.read<DeviceCubit>().state.model.auth;
     if (auth) {
-      if(cartItemsBloc.state.data.minimumStatus == false){
-        CustomToast.showSimpleToast(msg: cartItemsBloc.state.data.minimumAmountMsg!);
-        return ;
+      if (cartItemsBloc.state.data.minimumStatus == false) {
+        CustomToast.showSimpleToast(
+            msg: cartItemsBloc.state.data.minimumAmountMsg!);
+        return;
       }
       if ((cartItemsBloc.state.data.items ?? []).isNotEmpty) {
         getIt<CartNavigateHelper>()
@@ -109,19 +125,17 @@ class CartController {
     }
   }
 
-
-  void showClearDialog(BuildContext context){
+  void showClearDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) {
-        return  BuildDeleteDialog(
+        return BuildDeleteDialog(
           onPressConfirm: () => clearCart(context),
           content: tr("want_to_clear_your_cart"),
         );
       },
     );
   }
-
 
   Future<void> clearCart(BuildContext context) async {
     var params = await _cartParams();
@@ -136,16 +150,18 @@ class CartController {
     });
   }
 
-
-  void updateCartCount(BuildContext context){
-    var allItemsCount = cartItemsBloc.state.data.items!.fold<int>(0, (previousValue, element) => previousValue+element.quantity,);
+  void updateCartCount(BuildContext context) {
+    var allItemsCount = cartItemsBloc.state.data.items!.fold<int>(
+      0,
+      (previousValue, element) => previousValue + element.quantity,
+    );
     var countCubit = context.read<CountCubit>().state;
-    context.read<CountCubit>().onUpdateCount(allItemsCount, countCubit.discount);
+    context
+        .read<CountCubit>()
+        .onUpdateCount(allItemsCount, countCubit.discount);
   }
 
   void onStepChanged(int step) {
-    print("========>>>${step == CartNavigateHelper.paymentStepIndex}<<<<<<<=====");
-    print("========>>>${step == CartNavigateHelper.confirmationStepIndex}<<<<<<<=====");
     if (step == CartNavigateHelper.paymentStepIndex) {
       refreshPaymentView();
     } else if (step == CartNavigateHelper.confirmationStepIndex) {
@@ -170,7 +186,6 @@ class CartController {
   int? get confirmationCombinedId =>
       getIt<CartNavigateHelper>().confirmationCombinedId;
 
-
   Future<CartParams> _cartParams() async {
     return CartParams(
       macAddress: await getIt<GetDeviceId>().deviceId ?? "",
@@ -178,20 +193,14 @@ class CartController {
     );
   }
 
-
-
-
   bool onPressBack() {
     if (navigateHelper.currentStep > CartNavigateHelper.cartStepIndex &&
-        navigateHelper.currentStep <
-            CartNavigateHelper.confirmationStepIndex) {
+        navigateHelper.currentStep < CartNavigateHelper.confirmationStepIndex) {
       navigateHelper.backOneStep();
       return false;
     }
     return true;
   }
-
-
 
   Future<UpdateCartItemParams> _updateCartItemParams(int qty, int id) async {
     return UpdateCartItemParams(

@@ -38,9 +38,14 @@ class SellerBrandsWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    BrandsSearchFiledWidget(
+                    CustomSearchFiledWidget(
                       txtController: controller.brandsSearchCtr,
                       onPressSearch: () => controller.refreshBrands(context),
+                        onPressClear: () => controller.getBrands(1) ,
+                        onChange: (value) => DebounceHelper.instance.startSearch(
+                          value: value,
+                          onSearch: (val) => controller.refreshBrands(context,disableFocus: false),
+                        )
                     ),
                     Gaps.vGap10,
                     BlocBuilder<GenericBloc<List<BrandDomainModel>>,

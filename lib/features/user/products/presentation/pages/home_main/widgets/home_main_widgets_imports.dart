@@ -11,9 +11,7 @@ import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/helper_methods.dart';
-import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/models/domain_models/brand_domain_model.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
@@ -22,6 +20,7 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
+import 'package:flutter_tdd/core/widgets/cutsom_animation_widget.dart';
 import 'package:flutter_tdd/core/widgets/seller_card_widget.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_imports.dart';
@@ -40,6 +39,7 @@ import 'package:flutter_tdd/features/user/sale/domain/models/flash_sale.dart';
 import 'package:flutter_tdd/res.dart';
 
 import '../../../../../category/presentation/pages/brands/widgets/brands_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tab_type.dart';
 
 part 'build_best_rated.dart';
 part 'build_new_arrivals.dart';

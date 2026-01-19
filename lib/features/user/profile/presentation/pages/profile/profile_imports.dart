@@ -26,6 +26,9 @@ import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/
 import 'package:flutter_tdd/features/user/profile/domain/entities/profile_params.dart';
 import 'package:flutter_tdd/features/user/profile/domain/use_cases/get_profile.dart';
 import 'package:flutter_tdd/features/user/profile/domain/use_cases/set_edit_profile.dart';
+import 'package:flutter_tdd/features/user/profile/presentation/pages/profile/widgets/share_holder_view/widgets/share_holder_view_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/vip_subscribe/domain/models/vip_current_plan_domain_model.dart';
+import 'package:flutter_tdd/features/user/vip_subscribe/domain/use_case/get_current_subscription.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

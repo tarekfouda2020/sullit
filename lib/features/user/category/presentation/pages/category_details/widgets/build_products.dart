@@ -9,31 +9,25 @@ class BuildProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     bool? haveVipDiscount = context.read<UserCubit>().state.model?.hasValidSubscription;
     return Flexible(
-      child: CustomRefreshIndicatorWidget(
-        onRefresh: () async => await detailsController.getPopularProducts(1),
-        child: PagedGridView<int, Product>(
-          padding: Dimens.standardPadding,
-          // padding: Dimens.paddingHorizontal15PX,
-          pagingController: detailsController.pagingController,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisSpacing: 15.r,
-            mainAxisSpacing: 15.r,
-            crossAxisCount: 2,
-            childAspectRatio: .71,
-          ),
-          showNewPageProgressIndicatorAsGridChild: false,
-          showNewPageErrorIndicatorAsGridChild: true,
-          builderDelegate: PagedChildBuilderDelegate<Product>(
-            firstPageProgressIndicatorBuilder: (_) => const BuildLoadingCatsProducts(),
-            itemBuilder: (_, item, index) => BuildProductItem(
-              productModel: item,
-              onFavRefresh: () => detailsController.onFavChanged(item),
-              showVipDiscount: haveVipDiscount,
-              onRefresh: () async => await detailsController.getPopularProducts(detailsController.currentPageKey),
-            ),
-            noItemsFoundIndicatorBuilder: (cxt) => const BuildEmptyDataView(),
-          ),
-        ),
+      child: GridViewPagination<Product>(
+        pagingController: detailsController.pagingController,
+        onRefresh: () async => await detailsController.refresh(),
+        firstPageProgressIndicatorBuilder: (_) => const BuildLoadingCatsProducts(),
+        itemBuilder: (_, item, index) {
+          print("=>>>>>>>> items is ${item.name}<<<<<<<<<<<====");
+          print("=>>>>>>>> items image is ${item.thumbnailImage}<<<<<<<<<<<====");
+          return BuildProductItem(
+            productModel: item,
+            onFavRefresh: () => detailsController.onFavChanged(item),
+            showVipDiscount: haveVipDiscount,
+            afterAddToCart: ()=> detailsController.getCartItems(),
+            onPressDelete: () => detailsController.getCartItems(),
+            onRefresh: () async {
+              detailsController.getPopularProducts(detailsController.currentPageKey);
+              detailsController.getCartItems();
+            },
+          );
+        },
       ),
     );
   }

@@ -10,6 +10,8 @@ class PaymentOption extends BaseDomainModel {
 
   String title;
 
+  String? name;
+
   int offlinePaymentId;
 
   String details;
@@ -25,6 +27,7 @@ class PaymentOption extends BaseDomainModel {
     required this.title,
     required this.details,
     required this.offlinePaymentId,
+     this.name,
   });
 
   PayTypeEnum getPaymentType() {
@@ -40,5 +43,32 @@ class PaymentOption extends BaseDomainModel {
       default:
         return PayTypeEnum.paymob;
     }
+  }
+
+
+
+
+
+
+  PaymentOption copyWith({
+    String? paymentType,
+    String? paymentTypeKey,
+    String? image,
+    String? title,
+    int? offlinePaymentId,
+    String? details,
+    bool? selected,
+    bool? fakeSelected,
+  }) {
+    return PaymentOption(
+      paymentType: paymentType ?? this.paymentType,
+      paymentTypeKey: paymentTypeKey ?? this.paymentTypeKey,
+      image: image ?? this.image,
+      title: title ?? this.title,
+      details: details ?? this.details,
+      offlinePaymentId: offlinePaymentId ?? this.offlinePaymentId,
+    )
+      ..selected = selected ?? this.selected
+      ..fakeSelected = fakeSelected ?? this.fakeSelected;
   }
 }

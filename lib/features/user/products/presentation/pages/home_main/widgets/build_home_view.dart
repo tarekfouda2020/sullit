@@ -29,11 +29,10 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap12,
             const TrackSellerOrderWidget(),
             BuildTopCategories(categories: homeDomainModel.categories, controller: controller),
-            //Gaps.vGap20,
             VipOffersFormWidget(controller: controller),
             Gaps.vGap16,
             VipOffersWidget(
-              onTap: () => controller.homeController.animateTabsPages(3, context),
+              onTap: () => controller.onPressSeeOffers(context),
               buttonText: tr("seeOffers"),
               margin: EdgeInsets.zero,
             ),
@@ -85,7 +84,8 @@ class BuildHomeView extends StatelessWidget {
                 flashSales: homeDomainModel.flashSales!,
                 controller: controller,
               ),
-            Gaps.vGap20
+            Gaps.vGap20,
+
           ],
         ),
       ),

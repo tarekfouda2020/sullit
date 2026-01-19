@@ -12,6 +12,7 @@ class BuildIconItem extends StatelessWidget {
   final double? width;
   final double? height;
   final double? radius;
+  final Color? inActiveColor;
 
   // final Color? containerColor;
 
@@ -28,6 +29,7 @@ class BuildIconItem extends StatelessWidget {
     this.width,
     this.height,
     this.radius,
+    this.inActiveColor,
     this.changeBgColor = true,
   });
 
@@ -48,7 +50,7 @@ class BuildIconItem extends StatelessWidget {
           border: Border.all(color: context.colors.gray3,width: .5),
           color: checkValue == true && changeBgColor!
               ? context.colors.primary
-              : context.colors.white,
+              : inActiveColor ?? context.colors.white,
           borderRadius: BorderRadius.circular(radius ?? Dimens.dp4),
         ),
         child: iconData != null

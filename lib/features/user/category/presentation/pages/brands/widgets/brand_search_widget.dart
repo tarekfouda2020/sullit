@@ -15,6 +15,12 @@ class BrandSearchWidget extends StatelessWidget {
       action: TextInputAction.search,
       contentPadding: const EdgeInsetsDirectional.only(start: 15),
       validate: (value) => value?.noValidate(),
+      onChange: (value) {
+        DebounceHelper.instance.startSearch(
+          value: value,
+          onSearch: (val) => controller.onPressSearchBrand(context),
+        );
+      },
       suffixIcon: Padding(
         padding: const EdgeInsets.all(8),
         child: Row(

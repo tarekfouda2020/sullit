@@ -15,7 +15,8 @@ class AdvantagesWidget extends StatelessWidget {
             context,
             title: tr("freeDelivery"),
             icon: Res.truckIcon,
-            subTitle: tr("from200AED"),
+            // subTitle: tr("from200AED"),
+            subTitle: "",
           ),
         ),
         Gaps.hGap12,
@@ -68,7 +69,7 @@ class AdvantagesWidget extends StatelessWidget {
           child: Text(
             textAlign: TextAlign.center,
             subTitle,
-            style: AppTextStyle.s11_w400(color: context.colors.textColor),
+            style: AppTextStyle.s11_w400(color:  context.colors.textColor),
           ),
         ),
       ],

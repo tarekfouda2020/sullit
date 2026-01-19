@@ -21,6 +21,7 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
+import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/core/widgets/phone_filed_prefix_widget.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/helpers/auth_helper.dart';
@@ -29,6 +30,7 @@ import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_inp
 import 'package:flutter_tdd/res.dart';
 
 import '../profile_imports.dart';
+import 'share_holder_view/widgets/share_holder_view_widgets_imports.dart';
 
 part 'build_profile_button.dart';
 part 'build_profile_form_fields.dart';
@@ -39,3 +41,4 @@ part 'phone_input_and_verify_widget.dart';
 part 'logout_button_widget.dart';
 part 'change_password_widget.dart';
 part 'manage_profile_bottom_nav_widget.dart';
+part 'profile_app_bar_widget.dart';

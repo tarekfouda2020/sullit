@@ -164,7 +164,6 @@ class VipMembershipsController {
           msg: tr('walletBalanceEmpty'), type: ToastType.error);
       return;
     }
-    removeSelectedPayMethod();
     var params = _subscribeParams(selectedPayMethod.paymentTypeKey);
     Navigator.pop(context);
     getIt<LoadingHelper>().showLoadingDialog();
@@ -173,14 +172,17 @@ class VipMembershipsController {
         BuildContext ctx = getIt<GlobalContext>().context();
         if (value.transactionUrl != null) {
           disableChangeButtonCubit.onUpdateData(true);
-          routeToPaymentPage(ctx, value.transactionUrl!);
+         await routeToPaymentPage(ctx, value.transactionUrl!);
+          removeSelectedPayMethod();
         } else {
           await getCurrentSubscription();
           CustomToast.showSimpleToast(
               msg: tr("subscribedSuccess"), type: ToastType.success);
+          removeSelectedPayMethod();
         }
       }
       getIt<LoadingHelper>().dismissDialog();
+
     });
   }
 

@@ -38,9 +38,11 @@ class BrandsFilterItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (state.data)
-                  BrandsSearchFiledWidget(
+                  CustomSearchFiledWidget(
                     txtController: controller.brandsSearchCtr,
                     onPressSearch: () => controller.refreshBrands(context),
+                     onChange: (value) => controller.whileSearch(value),
+                    onPressClear: () => controller.getBrands(1),
                   ),
                 Gaps.vGap12,
                 if (state.data)

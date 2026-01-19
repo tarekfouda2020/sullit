@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
@@ -19,12 +22,18 @@ import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubi
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/widgets/home_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/more/more_imports.dart';
-import 'package:flutter_tdd/features/user/base/presentation/pages/summary/summary_imports.dart';
 import 'package:flutter_tdd/features/user/base/presentation/widgets/build_drawer.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
-import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
-import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/sale/domain/entities/offers_params_widget.dart';
+import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tab_type.dart';
+import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tabs_data.dart';
+import 'package:flutter_tdd/features/user/sale/domain/use_cases/get_best_rated.dart';
+import 'package:flutter_tdd/features/user/sale/domain/use_cases/get_new_arrival.dart';
+import 'package:flutter_tdd/features/user/sale/domain/use_cases/get_on_sale.dart';
+import 'package:flutter_tdd/features/user/sale/domain/use_cases/get_shareholder_products.dart';
+import 'package:flutter_tdd/features/user/sale/domain/use_cases/get_vip_offers.dart';
 import 'package:flutter_tdd/features/user/category/presentation/pages/categories/categories_imports.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/home_main/home_main_imports.dart';
@@ -32,8 +41,8 @@ import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/get_purchasing_history.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/pay_order.dart';
 import 'package:flutter_tdd/features/user/sale/presentation/pages/coupons/coupons_imports.dart';
-import 'package:flutter_tdd/features/user/sale/presentation/pages/on_sale/on_sale_imports.dart';
 import 'package:flutter_tdd/res.dart';
+import 'package:new_version_plus/new_version_plus.dart';
 
 part 'home.dart';
 part 'home_controller.dart';

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 part of 'home_imports.dart';
 
 class HomeController {
@@ -10,38 +12,75 @@ class HomeController {
   final TextEditingController searchController = TextEditingController();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-
   Orders? _firstUnPaidOrder;
 
   bool showToast = false;
-  int index = 0;
-  final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
-  List<String> tabs = [Res.home, Res.category, "", Res.offers, Res.menuIcon];
+  int offersTabIndex = 0;
+  GenericBloc<CartDomainModel> get cartItemsBloc =>
+      getIt<CartHelper>().cartItemsBloc;
+  List<String> tabs = [
+    Res.home,
+    Res.category,
+    "",
+    Res.offers,
+    Res.accountGoldIcon
+  ];
 
-  HomeController(){
+  HomeController() {
     checkIfEmailExist();
     getPurchasingHistory();
   }
 
-  Future<void> getCartItems(BuildContext context,{bool refresh = true}) async {
-    CartDomainModel result = await getIt<CartHelper>().getCartItems(refresh: refresh);
-    int qnt = (result.items??<CartItem>[]).fold(0, (previousValue, element) =>previousValue+element.quantity);
+
+
+  Future<bool> checkForUpdate() async {
+    final NewVersionPlus newVersion = NewVersionPlus(
+      androidId: AppConstants.instance.appId,
+      iOSId: AppConstants.instance.iosAppId ,
+    );
+    final status = await newVersion.getVersionStatus();
+    if (status != null && status.canUpdate) {
+      showUpdateDialog();
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
+  void showUpdateDialog(){
+    BuildContext context = getIt<GlobalContext>().context();
+    showDialog(
+      barrierDismissible: false,
+      useRootNavigator: true,
+      context: context,
+      builder: (context) {
+        return const UpdateDialogWidget();
+      },
+    );
+  }
+
+
+  Future<void> getCartItems(BuildContext context, {bool refresh = true}) async {
+    CartDomainModel result =
+        await getIt<CartHelper>().getCartItems(refresh: refresh);
     var qntCubitState = context.read<CountCubit>().state;
-    context.read<CountCubit>().onUpdateCount(qnt, qntCubitState.discount);
-    cartItemsBloc.onUpdateData(result);
+    context
+        .read<CountCubit>()
+        .onUpdateCount(result.totalQnt, qntCubitState.discount);
   }
 
   List<Widget> pages() => [
-    HomeMain(homeController: this),
-    Categories(homeController: this),
-    // Summary(homeController: controller),
-    Gaps.empty,
-    BlocBuilder<GenericBloc<int>, GenericState<int>>(
-      bloc: homeTabCubit,
-      builder: (context, state) => Coupons(homeController: this, index: index),
-    ),
-    More(homeController: this),
-  ];
+        HomeMain(homeController: this),
+        Categories(homeController: this),
+        // Summary(homeController: controller),
+        Gaps.empty,
+        BlocBuilder<GenericBloc<int>, GenericState<int>>(
+          bloc: homeTabCubit,
+          builder: (context, state) => Coupons(homeController: this, index: offersTabIndex),
+        ),
+        More(homeController: this),
+      ];
 
   List<String> tabsText(BuildContext context) => [
         tr('home', context: context),
@@ -57,43 +96,30 @@ class HomeController {
     Phoenix.rebirth(context);
   }
 
-  // void showLangBottomSheet(BuildContext context, HomeController controller) {
-  //   showModalBottomSheet(
-  //     shape: const RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.only(
-  //             topLeft: Radius.circular(15), topRight: Radius.circular(15))),
-  //     backgroundColor: context.colors.white,
-  //     context: context,
-  //     builder: (context) => BuildLangBottomSheet(
-  //       controller: controller,
-  //     ),
-  //   );
-  // }
-
   void initBottomNavigation(TickerProvider ticker, int index) {
-    tabController = TabController(length: 5, vsync: ticker, initialIndex: index);
+    tabController =
+        TabController(length: 5, vsync: ticker, initialIndex: index);
     tabController.animateTo(index);
     homeTabCubit.onUpdateData(index);
   }
 
   void animateTabsPages(int index, BuildContext context) {
-    Future.delayed(const Duration(milliseconds: 700), () {
-      bool auth = context.read<DeviceCubit>().state.model.auth;
-      // if (index == 2 && !auth) {
-      //   CustomToast.showAuthDialog(context);
-      //   return;
-      // }
+    Future.delayed(const Duration(milliseconds: 500), () {
       if (index == 2) {
-        AutoRouter.of(context).push(const CartRoute());
+        AutoRouter.of(context).push(CartRoute());
         return;
       } else {
+        if(index == 3 && saleTabsData.onSale?.isNotEmpty == true){
+          offersTabIndex = getSaleTabIndex(
+              context.isShareHolder
+                  ? SaleTabType.shareholderOffers
+                  :  SaleTabType.onSale,
+              context.isShareHolder
+          );
+        }
         homeTabCubit.onUpdateData(index);
         tabController.animateTo(index);
       }
-      // if (index != homeTabCubit.state.data) {
-      //   homeTabCubit.onUpdateData(index);
-      //   tabController.animateTo(index);
-      // }
     });
   }
 
@@ -121,7 +147,6 @@ class HomeController {
     return true;
   }
 
-
   Future<bool> onBack(BuildContext context) async {
     if (tabController.index > 0) {
       tabController.animateTo(0);
@@ -132,7 +157,8 @@ class HomeController {
     if (showToast == false) {
       showToast = true;
       CustomToast.showSnakeBar(tr("PressAgainToExit"));
-      Future.delayed(const Duration(seconds: 6)).then((value) => showToast = false);
+      Future.delayed(const Duration(seconds: 6))
+          .then((value) => showToast = false);
       return false;
     } else {
       SystemNavigator.pop();
@@ -140,45 +166,51 @@ class HomeController {
     }
   }
 
-
   Future<void> getPurchasingHistory({bool refresh = true}) async {
     BuildContext ctx = getIt<GlobalContext>().context();
     bool isAuth = ctx.read<DeviceCubit>().state.model.auth;
-    if(isAuth){
+    if( await checkForUpdate() ){
+      return;
+    }
+    if (isAuth) {
       GenericPaginateParams params = _historyParams(refresh);
       List<Orders> data = await GetPurchasingHistory().call(params);
-      Set<Orders> unPaidOrder  = data.where((element) => element.showUnPaidOnlineOrderActions).toSet();
-      if(unPaidOrder.isNotEmpty){
+      Set<Orders> unPaidOrder =
+          data.where((element) => element.showUnPaidOnlineOrderActions).toSet();
+      if (unPaidOrder.isNotEmpty) {
         _firstUnPaidOrder = unPaidOrder.first;
         showUnPaidOrderSheet(ctx);
       }
     }
   }
 
-
-  void checkIfEmailExist(){
+  Future<void> checkIfEmailExist() async{
     BuildContext ctx = getIt<GlobalContext>().context();
     bool isAuth = ctx.read<DeviceCubit>().state.model.auth;
-    if(isAuth){
+    if (isAuth) {
       String? userEmail = ctx.read<UserCubit>().state.model?.email;
-      if(userEmail == null || userEmail.isEmpty || userEmail.validateEmail() != null){
-        CustomToast.showSimpleToast(msg: "Please Enter your email to change your current password",type: ToastType.error);
+      if (userEmail == null ||
+          userEmail.isEmpty ||
+          userEmail.validateEmail() != null) {
+        CustomToast.showSimpleToast(
+            msg: tr("enter_email_to_change_password"), type: ToastType.error);
         AutoRouter.of(ctx).push(const ProfileRoute());
       }
     }
   }
 
-
-  void showUnPaidOrderSheet(BuildContext context){
+  void showUnPaidOrderSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      backgroundColor: Colors.transparent,
       builder: (context) {
-      return UnPaidOrderSheetWidget(order: _firstUnPaidOrder!, controller: this);
-    },);
+        return UnPaidOrderSheetWidget(
+            order: _firstUnPaidOrder!, controller: this);
+      },
+    );
   }
 
-
-  void viewOrderDetails(BuildContext context){
+  void viewOrderDetails(BuildContext context) {
     Navigator.pop(context);
     AutoRouter.of(context).push(
       OrderDetailsPageRoute(
@@ -188,35 +220,89 @@ class HomeController {
     );
   }
 
-
-
   void onPayOrder(BuildContext context) async {
     Navigator.pop(context);
     BuildContext ctx = getIt<GlobalContext>().context();
     var result = await PayOrder().call(_firstUnPaidOrder!.id);
-    if (result.isNotEmpty ) {
-      if(_firstUnPaidOrder!.isPaymentOnline){
-         AutoRouter.of(ctx).push(
-          PaymentRoute(transactionUrl: result,orderPaymentFromHome: true),
+    if (result.isNotEmpty) {
+      if (_firstUnPaidOrder!.isPaymentOnline) {
+        AutoRouter.of(ctx).push(
+          PaymentRoute(transactionUrl: result, orderPaymentFromHome: true),
         );
-      }else{
+      } else {
         CustomToast.showSimpleToast(
           msg: tr('paymentDone'),
           type: ToastType.success,
         );
-        AutoRouter.of(ctx).push(OrderDetailsPageRoute(isReturnedOrder: false, order: _firstUnPaidOrder!));
+        AutoRouter.of(ctx).push(OrderDetailsPageRoute(
+            isReturnedOrder: false, order: _firstUnPaidOrder!));
       }
-
     }
   }
 
+  SaleTabsData saleTabsData = SaleTabsData();
 
-  GenericPaginateParams _historyParams( bool refresh) {
+
+  void getOffersData(BuildContext context,){
+    fetchSaleTabsData(context,refresh: false);
+    fetchSaleTabsData(context);
+  }
+
+  Future<void> fetchSaleTabsData(BuildContext context,{bool refresh = true}) async {
+    var params = GenericPaginateParams(currentPage: 1, refresh: refresh, pageSize: 1);
+
+    OffersParamsWidget offersParams({bool isVipProducts = false}) =>
+        OffersParamsWidget(
+          paginateParams: params,
+          isVipProducts: isVipProducts,
+        );
+    try {
+      List<Future<List<Product>>> futures = [
+        !context.isShareHolder
+            ? GetVipOffers().call(offersParams(isVipProducts: true))
+            : Future.value([]),
+        context.isShareHolder
+            ? GetShareholderProducts().call(offersParams(isVipProducts: true))
+            : Future.value([]),
+        GetNewArrival().call(offersParams()),
+        GetOnSale().call(offersParams()),
+        GetBestRated().call(offersParams()),
+      ];
+
+      var results = await Future.wait(futures);
+      saleTabsData.vipOffers = !context.isShareHolder ? results[0] : [];
+      saleTabsData.shareholderOffers = context.isShareHolder ? results[1] : [];
+      saleTabsData.newArrival = results[2];
+      saleTabsData.onSale = results[3];
+      saleTabsData.bestRated = results[4];
+    } catch (e) {
+      log("Error fetching sale tabs data: $e");
+    }
+  }
+
+  int getSaleTabIndex(SaleTabType type, bool isShareHolder) {
+    List<SaleTabType> visibleTypes = [];
+    bool show(List? list) => list == null || list.isNotEmpty;
+
+    if (!isShareHolder && show(saleTabsData.vipOffers)) {
+      visibleTypes.add(SaleTabType.vipOffers);
+    }
+    if (isShareHolder && show(saleTabsData.shareholderOffers)) {
+      visibleTypes.add(SaleTabType.shareholderOffers);
+    }
+    if (show(saleTabsData.newArrival)) visibleTypes.add(SaleTabType.newArrival);
+    if (show(saleTabsData.onSale)) visibleTypes.add(SaleTabType.onSale);
+    if (show(saleTabsData.bestRated)) visibleTypes.add(SaleTabType.bestRated);
+
+    int index = visibleTypes.indexOf(type);
+    return index != -1 ? index : 0;
+  }
+
+  GenericPaginateParams _historyParams(bool refresh) {
     return GenericPaginateParams(
       currentPage: 1,
       refresh: refresh,
       pageSize: 12,
     );
   }
-
 }

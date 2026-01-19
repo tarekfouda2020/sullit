@@ -15,7 +15,7 @@ class BuildLoadingSubCats extends StatelessWidget {
           return BuildShimmerItem(
             height: 35.h,
             margin: Dimens.paddingHorizontal5PX,
-            width: 70.w,
+            width: 35.w,
           );
         },
       ),

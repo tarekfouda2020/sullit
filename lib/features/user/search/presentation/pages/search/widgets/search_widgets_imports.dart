@@ -31,3 +31,4 @@ part 'build_product_suggest_item.dart';
 part 'build_product_suggestions.dart';
 part 'build_search_field.dart';
 part 'build_suggest_header.dart';
+part 'search_history_widget.dart';

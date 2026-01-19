@@ -156,6 +156,7 @@ class MoreController {
 
   void setUserLang(BuildContext context, LangDomainModel model) async {
     String code = model.code;
+    print("========>>>>>>>>>>>>> code is $code  <<<<<<");
     if (code == LangTypeEnum.arabic.getLangCode()) {
       code = LangCodeHelper.langAR;
     }

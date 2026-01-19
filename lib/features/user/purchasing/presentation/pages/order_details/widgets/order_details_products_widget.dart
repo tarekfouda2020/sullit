@@ -53,14 +53,19 @@ class OrderDetailsProductsWidget extends StatelessWidget {
                 onTap:  () => AutoRouter.of(context).push( TrackOrderRoute(orderId: order.id)),
                 child: Row(
                   children: [
-                    Text(
-                      tr("trackShipment"),
-                      style: AppTextStyle.s14_w400(color: context.colors.primary),
-                    ),
-                    Gaps.hGap10,
-                    Icon(
-                      Icons.arrow_forward_rounded,
-                      color: context.colors.primary,
+                    if(!order.isCanceled)
+                    Row(
+                      children: [
+                        Text(
+                          tr("trackShipment"),
+                          style: AppTextStyle.s14_w400(color: context.colors.primary),
+                        ),
+                        Gaps.hGap10,
+                        Icon(
+                          Icons.arrow_forward_rounded,
+                          color: context.colors.primary,
+                        ),
+                      ],
                     ),
                     const Spacer(),
                     Text(

@@ -111,7 +111,7 @@ class ImplCartDataSources extends CartDataSources {
       url: ApiNames.storeProductToCart,
       requestMethod: RequestMethod.post,
       responseType: ResType.type,
-      showLoader: true,
+      showLoader: params.showLoader,
       requestBody: params.toJson(),
       responseKey: (data) => data["msg"],
     );

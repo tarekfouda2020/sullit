@@ -437,7 +437,7 @@ mixin _$SellerPaginationData {
   @JsonKey(name: "count_items")
   int get countItems => throw _privateConstructorUsedError;
   @JsonKey(name: "per_page")
-  String get perPage => throw _privateConstructorUsedError;
+  int get perPage => throw _privateConstructorUsedError;
   @JsonKey(name: "total_pages")
   int get totalPages => throw _privateConstructorUsedError;
   @JsonKey(name: "current_page")
@@ -462,7 +462,7 @@ abstract class $SellerPaginationDataCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "total_items") int totalItems,
       @JsonKey(name: "count_items") int countItems,
-      @JsonKey(name: "per_page") String perPage,
+      @JsonKey(name: "per_page") int perPage,
       @JsonKey(name: "total_pages") int totalPages,
       @JsonKey(name: "current_page") int currentPage,
       @JsonKey(name: "next_page_url") String nextPageUrl,
@@ -503,7 +503,7 @@ class _$SellerPaginationDataCopyWithImpl<$Res,
       perPage: null == perPage
           ? _value.perPage
           : perPage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       totalPages: null == totalPages
           ? _value.totalPages
           : totalPages // ignore: cast_nullable_to_non_nullable
@@ -535,7 +535,7 @@ abstract class _$$_SellerPaginationDataCopyWith<$Res>
   $Res call(
       {@JsonKey(name: "total_items") int totalItems,
       @JsonKey(name: "count_items") int countItems,
-      @JsonKey(name: "per_page") String perPage,
+      @JsonKey(name: "per_page") int perPage,
       @JsonKey(name: "total_pages") int totalPages,
       @JsonKey(name: "current_page") int currentPage,
       @JsonKey(name: "next_page_url") String nextPageUrl,
@@ -573,7 +573,7 @@ class __$$_SellerPaginationDataCopyWithImpl<$Res>
       perPage: null == perPage
           ? _value.perPage
           : perPage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       totalPages: null == totalPages
           ? _value.totalPages
           : totalPages // ignore: cast_nullable_to_non_nullable
@@ -619,7 +619,7 @@ class _$_SellerPaginationData extends _SellerPaginationData {
   final int countItems;
   @override
   @JsonKey(name: "per_page")
-  final String perPage;
+  final int perPage;
   @override
   @JsonKey(name: "total_pages")
   final int totalPages;
@@ -682,7 +682,7 @@ abstract class _SellerPaginationData extends SellerPaginationData {
   factory _SellerPaginationData(
           {@JsonKey(name: "total_items") required final int totalItems,
           @JsonKey(name: "count_items") required final int countItems,
-          @JsonKey(name: "per_page") required final String perPage,
+          @JsonKey(name: "per_page") required final int perPage,
           @JsonKey(name: "total_pages") required final int totalPages,
           @JsonKey(name: "current_page") required final int currentPage,
           @JsonKey(name: "next_page_url") required final String nextPageUrl,
@@ -701,7 +701,7 @@ abstract class _SellerPaginationData extends SellerPaginationData {
   int get countItems;
   @override
   @JsonKey(name: "per_page")
-  String get perPage;
+  int get perPage;
   @override
   @JsonKey(name: "total_pages")
   int get totalPages;

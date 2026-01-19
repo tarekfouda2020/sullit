@@ -1,7 +1,8 @@
 part of 'membership_subscribe_imports.dart';
 
 class MembershipSubscribe extends StatefulWidget {
-  const MembershipSubscribe({super.key});
+  final bool showAppBar;
+  const MembershipSubscribe({super.key,  this.showAppBar = true});
 
   @override
   State<MembershipSubscribe> createState() => _MembershipSubscribeState();
@@ -16,7 +17,9 @@ class _MembershipSubscribeState extends State<MembershipSubscribe> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: '', elevation: 0),
+      appBar:widget.showAppBar
+          ?const DefaultAppBar(title: '', elevation: 0)
+          :null,
       body: BlocBuilder<GenericBloc<SubscribeContentDomainModel?>, GenericState<SubscribeContentDomainModel?>>(
         bloc: controller.subscriptionContentBloc,
         builder: (context, state) {

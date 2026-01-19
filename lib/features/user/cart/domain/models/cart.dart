@@ -40,4 +40,8 @@ class CartDomainModel extends BaseDomainModel {
     return sumAllPrices.toStringAsFixed(2);
   }
 
+  int get totalQnt => (items??<CartItem>[]).fold(0, (previousValue, element) =>previousValue+element.quantity);
+
+
+
 }

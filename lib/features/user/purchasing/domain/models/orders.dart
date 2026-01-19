@@ -21,6 +21,7 @@ class Orders extends BaseDomainModel {
   String couponDiscount;
   String total;
   int totalItems;
+  int bagCount;
   String date;
   String deliveryStatusConst;
   String deliveryStatus;
@@ -64,6 +65,7 @@ class Orders extends BaseDomainModel {
     required this.availableReturnOrder,
     required this.showButtonPay,
     required this.subtotal,
+    required this.bagCount,
     required this.shipping,
     required this.tax,
     required this.couponDiscount,

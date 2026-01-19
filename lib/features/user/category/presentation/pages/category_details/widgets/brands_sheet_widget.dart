@@ -18,9 +18,11 @@ class BrandsSheetWidget extends StatelessWidget {
           Gaps.vGap10,
            BottomSheetHeaderWidget(title: tr("brands")),
           Gaps.vGap15,
-          BrandsSearchFiledWidget(
+          CustomSearchFiledWidget(
             txtController: controller.brandsSearchCtr,
             onPressSearch: () => controller.refreshBrands(context),
+            onChange: (value) =>  controller.whileSearch(value),
+            onPressClear: () => controller.getBrands(1),
           ),
           Gaps.vGap15,
           Flexible(
