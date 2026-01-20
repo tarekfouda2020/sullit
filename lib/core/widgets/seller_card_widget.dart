@@ -10,7 +10,8 @@ import '../../features/user/products/domain/models/shop.dart';
 
 class SellerCardWidget extends StatelessWidget {
   final Shop? shop;
-final void Function()? onTap ;
+  final void Function()? onTap;
+
   const SellerCardWidget({
     super.key,
     this.shop,
@@ -20,7 +21,7 @@ final void Function()? onTap ;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap:onTap??(){},
+      onTap: onTap ?? () {},
       child: SizedBox(
         width: MediaQuery.sizeOf(context).width * 0.9,
         child: Stack(
@@ -29,7 +30,7 @@ final void Function()? onTap ;
             Column(
               children: [
                 CachedImage(
-                  url: shop!.sliders?.first ?? "",
+                  url: shop?.sliders?.first ?? "",
                   height: 106,
                   borderRadius: Dimens.topRadius12Px,
                   fit: BoxFit.fill,
@@ -52,12 +53,12 @@ final void Function()? onTap ;
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            "${shop!.rating}",
+                            "${shop?.rating}",
                             style: AppTextStyle.s14_w400(color: context.colors.textColor),
                           ),
                           Gaps.hGap9,
                           RatingBar.builder(
-                            initialRating: 4,
+                            initialRating: shop?.rating?.toDouble() ?? 0.0,
                             ignoreGestures: true,
                             minRating: 1,
                             direction: Axis.horizontal,
@@ -75,12 +76,12 @@ final void Function()? onTap ;
                       ),
                       Gaps.vGap14,
                       Text(
-                        "${shop!.name}",
+                        "${shop?.name}",
                         style: AppTextStyle.s18_w600(color: context.colors.black),
                       ),
                       Gaps.vGap8,
                       Text(
-                        shop!.shopCategoryNames.join(' - '),
+                        "${shop?.shopCategoryNames.join(' - ')}",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: AppTextStyle.s14_w300(color: context.colors.textColor),
@@ -94,7 +95,7 @@ final void Function()? onTap ;
               start: 10,
               top: 65,
               child: CachedImage(
-                url: shop!.logo!,
+                url: shop?.logo??"",
                 width: Dimens.dp66,
                 height: Dimens.dp66,
                 haveRadius: false,

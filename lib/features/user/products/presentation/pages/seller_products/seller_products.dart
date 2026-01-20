@@ -3,8 +3,6 @@ part of 'seller_products_imports.dart';
 class SellerProductsPage extends StatefulWidget {
   final Shop shopModel;
 
-  // final int shopId;
-  // final String shopName;
   const SellerProductsPage({super.key, required this.shopModel});
 
   @override
@@ -28,55 +26,80 @@ class SellerProductsPageState extends State<SellerProductsPage> {
         backgroundColor: context.colors.customBackground,
         key: controller.scaffoldKey,
         drawer: SellerProductsDrawerWidget(controller: controller),
-        appBar: DefaultAppBar(
-          title: widget.shopModel.name ?? "",
-          showBack: true,
-          bgColor: context.colors.white,
-          size: 45,
-        ),
         body: Stack(
           children: [
             const SellerPageBackGroundWidget(),
-            Column(
-              children: [
-                Gaps.vGap20,
-                Padding(
-                  padding: Dimens.paddingHorizontal20PX,
-                  child:  SellerCardWidget(shop: widget.shopModel,),
-                ),
-                Gaps.vGap20,
-                SellerPageProductsSectionWidget(controller: controller),
-                Gaps.vGap12,
-                 SellerPageCategoriesWidget(category: widget.shopModel.categories!, controller: controller,),
-                Gaps.vGap12,
-                SellerProductsSearchFieldWidget(controller: controller),
-                Gaps.vGap12,
-                Expanded(
-                  child: CustomRefreshIndicatorWidget(
-                    onRefresh: () => controller.getProducts(1),
-                    child: GridViewPagination<Product>(
-                      onRefresh: () async{},
-                      pagingController: controller.pagingController,
+            CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  backgroundColor: context.colors.white,
+                  pinned: true,
+                  elevation: 0,
+                  automaticallyImplyLeading: true,
+                  title: Text(
+                    widget.shopModel.name ?? "",
+                    style: AppTextStyle.s20_w700(color: context.colors.black),
+                  ),
+                  expandedHeight: 450,
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: Padding(
                       padding: EdgeInsets.only(
-                          left: 15,
-                          right: 15,
-                          top: 10,
-                          bottom: MediaQuery.paddingOf(context).bottom + 30),
-                      firstPageProgressIndicatorBuilder: (_) =>
-                      const BuildLoadingProductsGridView(),
-                      showNewPageProgressIndicatorAsGridChild: false,
-                      noItemsFoundIndicatorBuilder: (context) =>
-                      const BuildEmptyDataView(),
-                      itemBuilder: (_, item, index) => BuildProductItem(
-                        productModel: item,
-                        showVipDiscount: item.hasVipOffer,
-                        onFavRefresh: () => controller.onFavChanged(item),
+                          top: MediaQuery.of(context).padding.top + kToolbarHeight, left: 16, right: 16),
+                      child: SellerCardWidget(
+                        shop: widget.shopModel,
+                      ),
+                    ),
+                  ),
+                  bottom: PreferredSize(
+                    preferredSize: const Size.fromHeight(180),
+                    child: Container(
+                      color: context.colors.white,
+                      child: Column(
+                        children: [
+                          Gaps.vGap10,
+                          SellerPageProductsSectionWidget(
+                            controller: controller,
+                          ),
+                          Gaps.vGap12,
+                          SellerPageCategoriesWidget(
+                            category: widget.shopModel.categories!,
+                            controller: controller,
+                          ),
+                          Gaps.vGap12,
+                          SellerProductsSearchFieldWidget(
+                            controller: controller,
+                          ),
+                          Gaps.vGap10,
+                        ],
                       ),
                     ),
                   ),
                 ),
+
+                SliverPadding(
+                  padding: EdgeInsets.only(
+                    left: 15,
+                    right: 15,
+                    top: 10,
+                    bottom: MediaQuery.of(context).padding.bottom + 30,
+                  ),
+                  sliver: SliverGrid(
+                    gridDelegate: _buildGridDelegate(),
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        final item = controller.pagingController.itemList![index];
+                        return BuildProductItem(
+                          productModel: item,
+                          showVipDiscount: item.hasVipOffer,
+                          onFavRefresh: () => controller.onFavChanged(item),
+                        );
+                      },
+                      childCount: controller.pagingController.itemList?.length ?? 0,
+                    ),
+                  ),
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),
