@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/helpers/debounce_helper.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/core/widgets/seller_card_widget.dart';
@@ -15,6 +16,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/home_main/widgets/home_main_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/search/domain/entities/search_result_params.dart';
 import 'package:flutter_tdd/res.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'widgets/widgets_imports.dart';
 
 part 'best_sellers_page.dart';
