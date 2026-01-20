@@ -31,39 +31,11 @@ class _BestSellersPageState extends State<BestSellersPage> {
       ),
       body: Column(
         children: [
+          Gaps.vGap16,
           SellerSearchFiledWidget(controller: controller),
           Gaps.vGap16,
           Expanded(
-            child: BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-              bloc: controller.isLoadingCubit,
-              builder: (context, loadingState) {
-                if (loadingState.data) {
-                  return const CircleAvatar();
-                }
-                return BlocBuilder<GenericBloc<List<Shop>>, GenericState<List<Shop>>>(
-                  bloc: controller.shopsCubit,
-                  builder: (context, shopsState) {
-                    if (shopsState.data.isEmpty) {
-                      return const Center(child: Text("لا توجد متاجر متاحة حالياً."));
-                    }
-
-                    return ListView.builder(
-                      controller: controller.scrollController,
-                      itemCount: shopsState.data.length,
-                      padding: Dimens.paddingHorizontal20PX,
-                      itemBuilder: (context, index) {
-                        final shop = shopsState.data[index];
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 12),
-                          child: SellerCardWidget(shop: shop,onTap:() => AutoRouter.of(context).push( SellerProductsPageRoute( shopModel: shop,)),
-                        ),
-                        );
-                      },
-                    );
-                  },
-                );
-              },
-            ),
+            child: SellersListWidget(controller: controller),
           ),
         ],
       ),

@@ -54,44 +54,23 @@ class SellerProductsPageState extends State<SellerProductsPage> {
                 Expanded(
                   child: CustomRefreshIndicatorWidget(
                     onRefresh: () => controller.getProducts(1),
-                    child: PagedGridView<int, Product>(
+                    child: GridViewPagination<Product>(
+                      onRefresh: () async{},
                       pagingController: controller.pagingController,
-                      padding: Dimens.paddingHorizontal20PX,
-                      gridDelegate: _buildGridDelegate(),
-                      builderDelegate: PagedChildBuilderDelegate(
-                        itemBuilder: (context, item, index) {
-                          return BuildProductItem(
-                            productModel: item,
-                            onFavRefresh: () => controller.onFavChanged(item),
-                          );
-                        },
-                        firstPageProgressIndicatorBuilder: (context) {
-                          return SizedBox(
-                            height: MediaQuery.sizeOf(context).height,
-                            child: GridView.builder(
-                              gridDelegate: _buildGridDelegate(),
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: 6,
-                              itemBuilder: (context, index) {
-                                return const BuildProductItemShimmer();
-                              },
-                            ),
-                          );
-                        },
-                        noItemsFoundIndicatorBuilder: (cxt) => const BuildEmptyDataView(),
-                        newPageProgressIndicatorBuilder: (context) {
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Center(
-                                child: CircularProgressIndicator(
-                                  backgroundColor: context.colors.white,
-                                ),
-                              ),
-                            ],
-                          );
-                        },
+                      padding: EdgeInsets.only(
+                          left: 15,
+                          right: 15,
+                          top: 10,
+                          bottom: MediaQuery.paddingOf(context).bottom + 30),
+                      firstPageProgressIndicatorBuilder: (_) =>
+                      const BuildLoadingProductsGridView(),
+                      showNewPageProgressIndicatorAsGridChild: false,
+                      noItemsFoundIndicatorBuilder: (context) =>
+                      const BuildEmptyDataView(),
+                      itemBuilder: (_, item, index) => BuildProductItem(
+                        productModel: item,
+                        showVipDiscount: item.hasVipOffer,
+                        onFavRefresh: () => controller.onFavChanged(item),
                       ),
                     ),
                   ),

@@ -10,71 +10,97 @@ class BestSellersPageController {
 
   final ScrollController scrollController = ScrollController();
 
-  int _currentPage = 1;
-  final int _pageSize = 10;
-  bool _isFetching = false;
-  bool _hasMoreData = true;
+  final PagingController<int, Shop> pagingController = PagingController(firstPageKey: 1);
+  int pageSize = 12;
+
 
   BestSellersPageController() {
-    getBestSellers(refresh: true);
-    scrollController.addListener(_scrollListener);
+    getBestSellers(1, refresh: false);
+    pagingController.addPageRequestListener((pageKey) {
+      getBestSellers(pageKey);
+    });
   }
+
+
+
+  Future<void> getBestSellers(int page, {bool refresh = true}) async {
+    var params = searchParams(refresh, page);
+    var data = await  GetBestSellers().call(params);
+    final isLastPage = data.length < pageSize;
+    if (page == 1) {
+      pagingController.itemList = [];
+    }
+    if (isLastPage) {
+      pagingController.appendLastPage(data);
+    } else {
+      final nextPageKey = page + 1;
+      pagingController.appendPage(data, nextPageKey);
+    }
+  }
+
 
   void clearSearchField() {
     searchTxtController.clear();
     showClearIcon.onUpdateData(false);
+    getBestSellers(1);
   }
 
   void whileWriting(String value) {
-    if (value.isNotEmpty) {
-      showClearIcon.onUpdateData(true);
-    } else {
-      showClearIcon.onUpdateData(false);
-    }
-  }
-
-  void _scrollListener() {
-    if (scrollController.position.pixels >=
-        scrollController.position.maxScrollExtent * 0.9) {
-      getBestSellers();
-    }
-  }
-
-  Future<void> getBestSellers({bool refresh = false}) async {
-    if (_isFetching || (!_hasMoreData && !refresh)) {
-      return;
-    }
-    _isFetching = true;
-    if (refresh) {
-      isLoadingCubit.onUpdateData(true);
-      _currentPage = 1;
-      _hasMoreData = true;
-    }
-    var params = GenericPaginateParams(
-      currentPage: _currentPage,
-      pageSize: _pageSize,
-      refresh: refresh,
-      // search: searchTxtController.text,
+    showClearIcon.onUpdateData(value.isNotEmpty);
+    DebounceHelper.instance.startSearch(
+        value: value,
+        onSearch: (val) {
+          pagingController.refresh();
+          getBestSellers(1);
+        }
     );
-    SearchResultParams searchParams(){
-      return SearchResultParams(
-          searchTxt: searchTxtController.text,
-          paginateParams: params);
-    }
-    var result = await GetBestSellers().call(searchParams());
-    if (result.length < _pageSize) {
-      _hasMoreData = false;
-    }
-    if (refresh) {
-      shopsCubit.onUpdateData(result);
-    } else {
-      shopsCubit.state.data.addAll(result);
-      shopsCubit.onUpdateData(shopsCubit.state.data);
-    }
-    _currentPage++;
-    isLoadingCubit.onUpdateData(false);
-    _isFetching = false;
   }
+
+  GenericPaginateParams  params(bool refresh,int page) =>  GenericPaginateParams(
+    currentPage: page,
+    refresh: refresh,
+    pageSize: pageSize,
+  );
+
+  SearchResultParams searchParams(bool refresh,int page){
+    return SearchResultParams(
+        searchTxt: searchTxtController.text,
+        paginateParams: params(refresh,page)
+    );
+  }
+
+
+  // Future<void> getBestSellers({bool refresh = false}) async {
+  //   if (refresh) {
+  //     isLoadingCubit.onUpdateData(true);
+  //     _currentPage = 1;
+  //     _hasMoreData = true;
+  //   }
+  //   var params = searchParams(refresh);
+  //   var result = await GetBestSellers().call(params);
+  //   if (result.length < _pageSize) {
+  //     _hasMoreData = false;
+  //   }
+  //   if (refresh) {
+  //     shopsCubit.onUpdateData(result);
+  //   } else {
+  //     shopsCubit.state.data.addAll(result);
+  //     shopsCubit.onUpdateData(shopsCubit.state.data);
+  //   }
+  //   _currentPage++;
+  //   isLoadingCubit.onUpdateData(false);
+  // }
+
+
+
+  // void _scrollListener() {
+  //   if (scrollController.position.pixels >=
+  //       scrollController.position.maxScrollExtent * 0.9) {
+  //     getBestSellers();
+  //   }
+  // }
+
+
 
   // void dispose() {
   //   searchTxtController.dispose();
