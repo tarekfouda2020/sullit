@@ -16,7 +16,7 @@ class _BestSellersPageState extends State<BestSellersPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DefaultAppBar(
-        title: "Best Sellers",
+        title: tr("sellers"),
         actions: [
           GestureDetector(
             onTap: () {},

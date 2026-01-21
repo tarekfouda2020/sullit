@@ -56,7 +56,7 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap16,
             NewArrivalOffersFormWidget(controller: controller),
             BuildHeaderTitle(
-              title: "Best Sellers",
+              title: tr("sellers"),
               controller: controller,
               onTap: () => AutoRouter.of(context).push(const BestSellersPageRoute()),
             ),

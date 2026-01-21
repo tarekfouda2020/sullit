@@ -1,18 +1,20 @@
 part of 'seller_products_imports.dart';
 
 class SellerProductsController {
-
   final TextEditingController brandsSearchCtr = TextEditingController();
 
   final TextEditingController productSearchCtr = TextEditingController();
   final PagingController<int, Product> pagingController = PagingController(firstPageKey: 1);
   final PagingController<int, BrandDomainModel> brandsPagingController = PagingController(firstPageKey: 1);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
+  final GenericBloc<bool> isLoadingNextPage = GenericBloc<bool>(false);
+  final GenericBloc<ShopCategory?> categoryCubit = GenericBloc<ShopCategory?>(null);
+
   int pageSize = 12;
   bool isFilterAppliedBefore = false;
 
-   SellerProductDomainModel? allSellerData;
-   late final int shopId;
+  SellerProductDomainModel? allSellerData;
+  late final int shopId;
   BrandDomainModel? selectedBrand;
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -20,11 +22,10 @@ class SellerProductsController {
   final GenericBloc<PriceRangeParams?> rangeCubit = GenericBloc(null);
   final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
 
-
-
-  SellerProductsController(int id){
+  SellerProductsController(int id) {
     shopId = id;
     getProducts(1, refresh: false);
+
     pagingController.addPageRequestListener((pageKey) {
       getProducts(pageKey);
     });
@@ -34,10 +35,11 @@ class SellerProductsController {
     });
   }
 
-
   Future<void> getProducts(int page, {bool refresh = true}) async {
     var params = _params(page, refresh);
+    isLoadingNextPage.onUpdateData(page > 1);
     var result = await GetSellerProducts().call(params);
+    isLoadingNextPage.onUpdateData(false);
     allSellerData = result;
     updateRangeValue(result);
     final List<Product> data = result?.sectionProductModel.products ?? <Product>[];
@@ -53,21 +55,18 @@ class SellerProductsController {
     }
   }
 
-
-  void updateRangeValue(SellerProductDomainModel? data){
-    RangeValues rangeValues = RangeValues(double.parse(data?.priceRange.min ?? "0.0"),
-        double.parse(data?.priceRange.max??"0.0"));
-    rangeCubit.onUpdateData(
-        PriceRangeParams(initial: rangeValues, value: rangeValues)
-    );
+  void updateRangeValue(SellerProductDomainModel? data) {
+    RangeValues rangeValues =
+        RangeValues(double.parse(data?.priceRange.min ?? "0.0"), double.parse(data?.priceRange.max ?? "0.0"));
+    rangeCubit.onUpdateData(PriceRangeParams(initial: rangeValues, value: rangeValues));
   }
 
-
   void openDrawerFilter() {
-    if(allSellerData != null || pagingController.itemList!.isNotEmpty){
+    if (allSellerData != null || pagingController.itemList!.isNotEmpty) {
       scaffoldKey.currentState?.openDrawer();
     }
   }
+
   void onFavChanged(Product model) {
     model.isWishlist = !model.isWishlist!;
     int index = pagingController.itemList!.indexWhere((e) => e.id == model.id);
@@ -77,10 +76,7 @@ class SellerProductsController {
     pagingController.itemList = data;
   }
 
-
-
-
-  void showBrandsSheet(BuildContext context){
+  void showBrandsSheet(BuildContext context) {
     showModalBottomSheet(
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
@@ -90,34 +86,29 @@ class SellerProductsController {
       ),
       backgroundColor: Colors.transparent,
       context: context,
-      builder: (context) => AllBrandsSheetWidget(
-        controller : this
-      ),
+      builder: (context) => AllBrandsSheetWidget(controller: this),
     );
   }
 
-
-  void onSelectBrand(BrandDomainModel model){
+  void onSelectBrand(BrandDomainModel model) {
     var brands = brandsPagingController.itemList;
-    if(model.isSelected){
+    if (model.isSelected) {
       model.isSelected = false;
       selectedBrand = null;
-    }else{
-      for(var item in brands ?? <BrandDomainModel>[]){
+    } else {
+      for (var item in brands ?? <BrandDomainModel>[]) {
         item.isSelected = false;
       }
       model.isSelected = true;
-      selectedBrand =model;
+      selectedBrand = model;
     }
-    brandsPagingController.itemList = [
-      ...?brands
-    ];
+    brandsPagingController.itemList = [...?brands];
     brandsCubit.onUpdateData(brandsCubit.state.data);
   }
 
-  void refreshBrands(BuildContext context ,{bool disableFocus = true}){
+  void refreshBrands(BuildContext context, {bool disableFocus = true}) {
     brandsCubit.onUpdateToInitState([]);
-    if(disableFocus){
+    if (disableFocus) {
       FocusScope.of(context).unfocus();
     }
     brandsPagingController.refresh();
@@ -125,14 +116,13 @@ class SellerProductsController {
   }
 
   void resetFilter(BuildContext context) {
-
     final double minPrice = double.parse(allSellerData!.priceRange.min);
     final double maxPrice = double.parse(allSellerData!.priceRange.max);
     RangeValues rangeValues = RangeValues(minPrice, maxPrice);
 
     selectedBrand = null;
     rangeCubit.onUpdateData(PriceRangeParams(initial: rangeValues, value: rangeValues));
-    if(isFilterAppliedBefore){
+    if (isFilterAppliedBefore) {
       pagingController.refresh();
       isFilterAppliedBefore = false;
     }
@@ -140,26 +130,25 @@ class SellerProductsController {
     Navigator.pop(context);
   }
 
-
   void confirmFilter(BuildContext context) {
     isFilterAppliedBefore = true;
     Navigator.of(context).pop();
     pagingController.refresh();
   }
 
-  SellerProductsParams _params(int page, bool refresh){
+  SellerProductsParams _params(int page, bool refresh) {
     return SellerProductsParams(
         sellerId: shopId,
         paginateParams: _paginateParams(page, refresh),
         brandId: selectedBrand?.id,
-      minPrice: rangeCubit.state.data?.value.start,
-      maxPrice: rangeCubit.state.data?.value.end,
-      keyword: productSearchCtr.text.trim()
+        minPrice: rangeCubit.state.data?.value.start,
+        maxPrice: rangeCubit.state.data?.value.end,
+        keyword: productSearchCtr.text.trim(),
+       categoryId: categoryCubit.state.data?.id
     );
   }
 
-
-   GenericPaginateParams _paginateParams(int page, bool refresh) {
+  GenericPaginateParams _paginateParams(int page, bool refresh) {
     return GenericPaginateParams(
       currentPage: page,
       refresh: refresh,
@@ -167,17 +156,14 @@ class SellerProductsController {
     );
   }
 
-
-
-
-  Future<void> getBrands(int page ,{bool refresh = true}) async {
-    var params = _brandsParams(pageSize,refresh,page );
+  Future<void> getBrands(int page, {bool refresh = true}) async {
+    var params = _brandsParams(pageSize, refresh, page);
     var data = await GetBrands().call(params);
     final isLastPage = data.length < pageSize;
     if (page == 1) {
-      if(data.isNotEmpty){
+      if (data.isNotEmpty) {
         brandsCubit.onUpdateData(data.take(11).toList());
-      } else{
+      } else {
         brandsCubit.onUpdateData([]);
       }
       brandsPagingController.itemList = [];
@@ -190,41 +176,44 @@ class SellerProductsController {
     }
   }
 
-
-  void clearSearchField(){
+  void clearSearchField() {
     productSearchCtr.clear();
     showClearIcon.onUpdateData(false);
     pagingController.refresh();
     getProducts(1);
   }
-  void whileWriting(BuildContext context,String value){
-    DebounceHelper.instance.startSearch(value: value,
-      onSearch: (val) => searchProducts(context,enableUnFocus: false),
+
+  void whileWriting(BuildContext context, String value) {
+    DebounceHelper.instance.startSearch(
+      value: value,
+      onSearch: (val) {
+        FocusManager.instance.primaryFocus?.unfocus();
+        searchProducts(context, enableUnFocus: false);
+      }
     );
-    if(value.isNotEmpty){
+    if (value.isNotEmpty) {
       showClearIcon.onUpdateData(true);
-    }else{
+    } else {
       showClearIcon.onUpdateData(false);
     }
   }
 
-  void searchProducts(BuildContext context,{bool enableUnFocus = true}){
-    if(enableUnFocus){
+  void searchProducts(BuildContext context, {bool enableUnFocus = true}) {
+    if (enableUnFocus) {
       FocusScope.of(context).unfocus();
     }
     pagingController.refresh();
     getProducts(1);
   }
 
-
-  void whileSearch(String value){
+  void whileSearch(String value) {
     DebounceHelper.instance.startSearch(
       value: value,
-      onSearch: (val) => (){},
+      onSearch: (val) => () {},
     );
   }
 
-  BrandsParams _brandsParams(int paginate, bool refresh, int page ) {
+  BrandsParams _brandsParams(int paginate, bool refresh, int page) {
     return BrandsParams(
       paginate: paginate,
       refresh: refresh,
@@ -232,9 +221,6 @@ class SellerProductsController {
       keyword: brandsSearchCtr.text.trim(),
     );
   }
-
-
-
 
   // SearchProductsParams _productsParams(int page, bool refresh) {
   //   var specifications = specificationsCubit.state.data;
@@ -261,16 +247,14 @@ class SellerProductsController {
   //   );
   // }
 
-  final GenericBloc<ShopCategory?> categoryCubit =
-  GenericBloc<ShopCategory?>(null);
-  ShopCategory? selectedCategory;
+
   void onSelectCategory(ShopCategory model) {
     if (categoryCubit.state.data?.id == model.id) {
       categoryCubit.onUpdateData(null);
     } else {
       categoryCubit.onUpdateData(model);
     }
+    pagingController.refresh();
+    getProducts(1);
   }
-
-
 }
