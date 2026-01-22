@@ -21,8 +21,6 @@ class BestSellersPageController {
     });
   }
 
-
-
   Future<void> getBestSellers(int page, {bool refresh = true}) async {
     var params = searchParams(refresh, page);
     var data = await  GetBestSellers().call(params);
@@ -37,14 +35,11 @@ class BestSellersPageController {
       pagingController.appendPage(data, nextPageKey);
     }
   }
-
-
   void clearSearchField() {
     searchTxtController.clear();
     showClearIcon.onUpdateData(false);
     getBestSellers(1);
   }
-
   void whileWriting(String value) {
     showClearIcon.onUpdateData(value.isNotEmpty);
     DebounceHelper.instance.startSearch(
@@ -55,7 +50,6 @@ class BestSellersPageController {
         }
     );
   }
-
   GenericPaginateParams  params(bool refresh,int page) =>  GenericPaginateParams(
     currentPage: page,
     refresh: refresh,

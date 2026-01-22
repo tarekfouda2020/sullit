@@ -19,16 +19,19 @@ class Shop extends BaseDomainModel {
    String? twitter;
    String? instagram;
    String? youtube;
+   int? sellerId;
    num? rating;
    bool?follow;
    List<String>? sliders;
    List<ShopCategory>? categories;
+    bool isSelect = false;
 
-  Shop({
+  Shop( {
     required this.id,
     required this.userId,
     required this.name,
      this.title,
+    this.sellerId,
      this.description,
     required this.logo,
     required this.packageInvalidAt,
@@ -44,6 +47,7 @@ class Shop extends BaseDomainModel {
     this.youtube,
     this.sliders,
     this.categories,
+    this.isSelect=false,
     required this.rating,
     required this.follow,
   });
@@ -51,6 +55,7 @@ class Shop extends BaseDomainModel {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['user_id'] = userId;
+    data['seller_id'] = sellerId;
     data['name'] = name;
     data['title'] = title;
     data['description'] = description;
@@ -74,6 +79,7 @@ class Shop extends BaseDomainModel {
   Shop.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['user_id'];
+    sellerId = json['seller_id'];
     name = json['name'];
     title = json['title'];
     description = json['description'];

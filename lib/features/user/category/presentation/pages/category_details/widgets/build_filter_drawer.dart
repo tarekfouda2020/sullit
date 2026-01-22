@@ -45,7 +45,7 @@ class _BuildFilterDrawerState extends State<BuildFilterDrawer> {
                 Divider(endIndent: 5, color: context.colors.gray, height: 10),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: state.data!.attributes.length + 2,
+                    itemCount: state.data!.attributes.length + 3,
                     itemBuilder: (context, index) {
                       if (index == 0) {
                         return CustomPriceRangeWidget(
@@ -53,7 +53,10 @@ class _BuildFilterDrawerState extends State<BuildFilterDrawer> {
                         );
                       } else if (index == 1) {
                         return BrandsFilterItem(controller: widget.categoryDetailsController);
-                      } else {
+                      } else if(index==2){
+                        return BuildSellersFilterItem(controller: widget.categoryDetailsController,);
+                      }
+                      else {
                         final attrIndex = index - 2;
                         final attribute = state.data!.attributes[attrIndex];
                         return BuildFilterItem(

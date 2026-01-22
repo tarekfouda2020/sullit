@@ -63,7 +63,7 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
       youtube: youtube,
       follow: follow,
       categories: categories?.map((e) => e.toDomainModel()).toList(),
-        sliders: sliders
+        sliders: sliders,
     );
   }
 }
