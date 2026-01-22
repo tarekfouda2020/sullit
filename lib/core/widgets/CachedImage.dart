@@ -58,7 +58,7 @@ class CachedImage extends StatelessWidget {
       height: height,
       memCacheWidth: memCacheWidth,
       memCacheHeight: memCacheHeight,
-      maxHeightDiskCache:maxHeightDiskCache ,
+      maxHeightDiskCache: maxHeightDiskCache,
       maxWidthDiskCache: maxWidthDiskCache,
       imageBuilder: (context, imageProvider) => Container(
         width: width,
