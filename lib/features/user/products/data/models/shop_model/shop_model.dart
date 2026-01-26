@@ -20,7 +20,7 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
     String? description,
     required String logo,
     @JsonKey(name: 'package_invalid_at') required String packageInvalidAt,
-    required int products,
+    required int? products,
     required int orders,
     String? address,
     required String? email,

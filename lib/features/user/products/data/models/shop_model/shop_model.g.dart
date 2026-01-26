@@ -14,7 +14,7 @@ _$_ShopModel _$$_ShopModelFromJson(Map<String, dynamic> json) => _$_ShopModel(
       description: json['description'] as String?,
       logo: json['logo'] as String,
       packageInvalidAt: json['package_invalid_at'] as String,
-      products: (json['products'] as num).toInt(),
+      products: (json['products'] as num?)?.toInt(),
       orders: (json['orders'] as num).toInt(),
       address: json['address'] as String?,
       email: json['email'] as String?,
