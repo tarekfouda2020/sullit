@@ -638,19 +638,26 @@ class CategoryDetailsController implements CartSheetController {
     await getIt<CartHelper>().getCartItems(refresh: refresh);
   }
 
+
+
+  void onIncreaseCartQnt(BuildContext context, CartItem cartItem, newQty) async {
+    final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+    if (success != null) {
+      cartItem.quantity = newQty;
+      cartItemsBloc.onUpdateData(success);
+    }
+  }
+
   @override
-  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem,
-      GenericBloc<bool> loadingCubit) async {
-    if (cartItem.quantity < cartItem.stockQty) {
-      loadingCubit.onUpdateData(true);
-      final newQty = cartItem.quantity + 1;
-      final success =
-          await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
-      if (success != null) {
-        loadingCubit.onUpdateData(false);
-        cartItem.quantity = newQty;
-        cartItemsBloc.onUpdateData(success);
-      }
+  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem, GenericBloc<int> qntCubit, String value) async {
+    if (qntCubit.state.data < cartItem.stockQty) {
+      var newQty = qntCubit.state.data + 1;
+      qntCubit.onUpdateData(newQty);
+      DebounceHelper.instance.startSearch(
+          value: value,
+          onSearch: (val) {
+            onIncreaseCartQnt(context, cartItem, newQty);
+          });
     } else {
       CustomToast.showSimpleToast(
         msg: '${tr("only")} ${cartItem.stockQty} ${tr("availableStock")}',
@@ -658,27 +665,36 @@ class CategoryDetailsController implements CartSheetController {
     }
   }
 
-  @override
-  Future<void> onDecreaseCart(
-      BuildContext context, CartItem cartItem, GenericBloc<bool> loadingCubit,
-      {bool inBottomSheet = true}) async {
-    if(cartItem.quantity == 1){
+  void onDecreaseCartQnt(BuildContext context, CartItem cartItem, int newQty) async {
+    if (newQty == 1) {
       deleteItemFromCart(context, cartItem);
-      return ;
+      return;
     }
     if (cartItem.quantity > 1) {
-      loadingCubit.onUpdateData(true);
-      final newQty = cartItem.quantity - 1;
-      final success =
-          await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
       if (success != null) {
-        loadingCubit.onUpdateData(false);
         cartItem.quantity = newQty;
         cartItemsBloc.onUpdateData(success);
-        reduceProductQntWhenReduceFromCart(cartItem);
       }
     }
   }
+
+  @override
+  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem, GenericBloc<int> qntCubit, String value) async {
+    if (qntCubit.state.data > 1) {
+      var newQty = qntCubit.state.data - 1;
+      qntCubit.onUpdateData(newQty);
+      DebounceHelper.instance.startSearch(
+          value: value,
+          onSearch: (val) {
+            onDecreaseCartQnt(context, cartItem, newQty);
+          });
+    }else{
+      deleteItemFromCart(context,cartItem);
+
+    }
+  }
+
 
   @override
   Future<void> deleteItemFromCart(BuildContext context, CartItem cartItem,
@@ -719,7 +735,6 @@ class CategoryDetailsController implements CartSheetController {
 
   @override
   Future<void> refreshProductDetails(BuildContext context) async {
-    // Standalone controller has no product details to refresh.
   }
 
   @override
@@ -748,13 +763,13 @@ class CategoryDetailsController implements CartSheetController {
   }
 
   Future<void> reduceProductQntInCart(
-      BuildContext context, Product product, GenericBloc<bool> loading) async {
+      BuildContext context, Product product, GenericBloc<int> loading) async {
     var cartList = cartItemsBloc.state.data.items;
     if (cartList != null && cartList.isNotEmpty == true) {
       var cartItems =
           cartList.where((element) => element.productId == product.id);
       if (cartItems.isNotEmpty) {
-        await onDecreaseCart(context, cartItems.first, loading);
+        await onDecreaseCart(context, cartItems.first, loading,cartItems.first.quantity.toString());
         // var index = pagingController.itemList!.indexOf(product);
         // pagingController.itemList![index] = product;
         // pagingController.itemList = [...?pagingController.itemList];
