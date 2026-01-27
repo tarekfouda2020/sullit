@@ -18,17 +18,17 @@ class _BestSellersPageState extends State<BestSellersPage> {
     return Scaffold(
       appBar: DefaultAppBar(
         title: tr("sellers"),
-        actions: [
-          GestureDetector(
-            onTap: () {},
-            child: Padding(
-              padding: const EdgeInsets.all(Dimens.dp5),
-              child: SvgPicture.asset(
-                Res.filterIcon,
-              ),
-            ),
-          ),
-        ],
+        // actions: [
+        //   GestureDetector(
+        //     onTap: () {},
+        //     child: Padding(
+        //       padding: const EdgeInsets.all(Dimens.dp5),
+        //       child: SvgPicture.asset(
+        //         Res.filterIcon,
+        //       ),
+        //     ),
+        //   ),
+        // ],
       ),
       body: Column(
         children: [

@@ -24,9 +24,7 @@ class SellersListWidget extends StatelessWidget {
             );
           },
           noItemsFoundIndicatorBuilder: (cxt) {
-            return  const Center(
-              child: Text("لا توجد متاجر متاحة حالياً."),
-            );
+            return  const BuildEmptyDataView();
           },
           firstPageProgressIndicatorBuilder: (_) =>  const BestSellersShimmer(),
         ),

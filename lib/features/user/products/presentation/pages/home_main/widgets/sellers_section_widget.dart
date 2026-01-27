@@ -13,7 +13,7 @@ class SellersSectionWidget extends StatelessWidget {
     return SizedBox(
       height: Dimens.dp220,
       child: ListView.builder(
-        itemCount: controller.homeCubit.state.data!.shop.length,
+        itemCount: (controller.homeCubit.state.data?.shop.length) ?? 0,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Padding(

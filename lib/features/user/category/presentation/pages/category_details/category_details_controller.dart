@@ -794,5 +794,3 @@ class CategoryDetailsController implements CartSheetController {
 
   }
 }
-
-}

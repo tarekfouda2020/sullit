@@ -47,25 +47,31 @@ class CartController {
     }
   }
 
-  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem, newQty) async {
+  Future<bool> onIncreaseCart(BuildContext context, CartItem cartItem, int newQty) async {
     final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
     if (success != null) {
       cartItem.quantity = newQty;
       cartItemsBloc.onUpdateData(success);
       updateCartCount(context);
       FacebookEventsHelper.instance.productAddToCart(id: cartItem.productId, price: cartItem.price);
+      return true;
+    } else {
+      return false;
     }
   }
 
-  void whileOnIncreaseCount(BuildContext context, CartItem cartItem, String value,GenericBloc<int> qntCubit) {
-    if (cartItem.quantity < cartItem.stockQty) {
+  void whileOnIncreaseCount(BuildContext context, CartItem cartItem, String value, GenericBloc<int> qntCubit) {
+    if (qntCubit.state.data < cartItem.stockQty) {
       var newQty = qntCubit.state.data + 1;
       qntCubit.onUpdateData(newQty);
       DebounceHelper.instance.startSearch(
           value: value,
-          onSearch: (val) {
-            print("<<<<<<<<<<<<<<newQty<<<  ${qntCubit.state.data}    >>>>>>>>>>>>>>>>");
-            onIncreaseCart(context, cartItem, newQty);
+          onSearch: (val) async {
+            var result = await onIncreaseCart(context, cartItem, newQty);
+            // if(result==false){
+            if (!result) {
+              qntCubit.onUpdateData(cartItem.quantity);
+            }
           });
     } else {
       CustomToast.showSimpleToast(
@@ -74,42 +80,36 @@ class CartController {
     }
   }
 
-  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem, int newQty) async {
-    if (cartItem.quantity == 1) {
-      deleteItemFromCart(context, cartItem);
-      return;
-    }
+  Future<bool> onDecreaseCart(BuildContext context, CartItem cartItem, int newQty) async {
     final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
     if (success != null) {
       cartItem.quantity = newQty;
       cartItemsBloc.onUpdateData(success);
       updateCartCount(context);
+      return true;
     } else {
       CustomToast.showSimpleToast(
-        msg: "can't remove product",
+        msg: "can't reduce product quantity",
       );
+      return false;
     }
   }
 
-  void whileOnDecreaseCount(
-    BuildContext context,
-    CartItem cartItem,
-    String value,
-      GenericBloc<int> qntCubit
-
-  ) {
-    if (cartItem.quantity > 1) {
+  void whileOnDecreaseCount(BuildContext context, CartItem cartItem, String value, GenericBloc<int> qntCubit) {
+    if (qntCubit.state.data > 1) {
       var newQty = qntCubit.state.data - 1;
-      var data = cartItemsBloc.state.data;
       qntCubit.onUpdateData(newQty);
-      var index = data.items!.indexOf(cartItem);
-      cartItemsBloc.state.data.items![index] =  cartItem;
-      cartItemsBloc.onUpdateData(data);
+      if (newQty == 1) {
+        deleteItemFromCart(context, cartItem);
+        return;
+      }
       DebounceHelper.instance.startSearch(
           value: value,
-          onSearch: (val) {
-            print("<<<<<<<<<<<<<<newQty<<<${newQty}>>>>>>>>>>>>>>>>");
-            onDecreaseCart(context, cartItem, newQty);
+          onSearch: (val) async {
+            var result = await onDecreaseCart(context, cartItem, newQty);
+            if (!result) {
+              qntCubit.onUpdateData(cartItem.quantity);
+            }
           });
     }
   }
