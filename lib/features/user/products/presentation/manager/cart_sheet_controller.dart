@@ -9,11 +9,11 @@ abstract class CartSheetController {
 
   Future<void> getCartItems({bool refresh = true});
 
-  Future<void> onIncreaseCart(
-      BuildContext context, CartItem cartItem, bloc.GenericBloc<bool> loadingCubit);
+  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem,
+      bloc.GenericBloc<int> loadingCubit,String value);
 
-  Future<void> onDecreaseCart(
-      BuildContext context, CartItem cartItem, bloc.GenericBloc<bool> loadingCubit);
+  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem,
+      bloc.GenericBloc<int> loadingCubit,String value);
 
   Future<void> deleteItemFromCart(BuildContext context, CartItem cartItem);
 

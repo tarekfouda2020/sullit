@@ -12,46 +12,47 @@ class ChangeQtyCartSheetItemWidget extends StatefulWidget {
 class _ChangeQtyCartSheetItemWidgetState extends State<ChangeQtyCartSheetItemWidget> {
 
 
-  final GenericBloc<bool> loadingCubit = GenericBloc(false);
+  final GenericBloc<int> qntCubit = GenericBloc(0);
 
   @override
+  void initState() {
+    super.initState();
+    qntCubit.onUpdateData(widget.cartItem.quantity);
+  }
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-      bloc: loadingCubit,
-      builder: (context, state) {
-        return Opacity(
-          opacity: state.data? 0.3 : 1 ,
-          child: Row(
-            children: [
-              BuildCustomBounce(
-                onTap: state.data ? (){} : () => widget.controller.onDecreaseCart(context,widget.cartItem,loadingCubit),
-                iconData: CupertinoIcons.minus,
-                margin: Dimens.paddingEnd19,
-                padding: EdgeInsets.zero,
-                size: Dimens.dp29,
-              ),
-              Text(
-                widget.cartItem.quantity.toString(),
+    return Row(
+      children: [
+        BuildCustomBounce(
+          onTap: () => widget.controller.onDecreaseCart(context,widget.cartItem,qntCubit,widget.cartItem.quantity.toString()),
+          iconData: CupertinoIcons.minus,
+          margin: Dimens.paddingEnd19,
+          padding: EdgeInsets.zero,
+          size: Dimens.dp29,
+        ),
+        BlocBuilder<GenericBloc<int>, GenericState<int>>(
+            bloc:qntCubit ,
+            builder: (context, state) {
+              return Text(
+                state.data.toString(),
                 style: AppTextStyle.s18_w600(
                   color: context.colors.black,
                 ),
-              ),
-              BuildCustomBounce(
-                onTap: state.data ? (){} :() => widget.controller.onIncreaseCart(context,widget.cartItem,loadingCubit),
-                iconData: CupertinoIcons.add,
-                margin: Dimens.paddingStart19,
-                padding: EdgeInsets.zero,
-                size: Dimens.dp29,
-              ),
-              const Spacer(),
-              GestureDetector(
-                  onTap: state.data ? (){} : () => widget.controller.deleteItemFromCart(context, widget.cartItem),
-                  child: SvgPicture.asset(Res.trashIcon)
-              ),
-            ],
-          ),
-        );
-      },
+              );
+            }),
+        BuildCustomBounce(
+          onTap:() => widget.controller.onIncreaseCart(context,widget.cartItem,qntCubit,widget.cartItem.quantity.toString()),
+          iconData: CupertinoIcons.add,
+          margin: Dimens.paddingStart19,
+          padding: EdgeInsets.zero,
+          size: Dimens.dp29,
+        ),
+        const Spacer(),
+        GestureDetector(
+            onTap:() => widget.controller.deleteItemFromCart(context, widget.cartItem),
+            child: SvgPicture.asset(Res.trashIcon)
+        ),
+      ],
     );
   }
 }
