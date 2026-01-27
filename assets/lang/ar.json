@@ -864,5 +864,7 @@
   "places": "الأماكن",
   "pay_now": "ادفع الآن",
   "enter_location_name": "يرجى إدخال اسم الموقع",
-  "search_in_offers": "البحث في العروض..."
+  "search_in_offers": "البحث في العروض...",
+  "sellers": "البائعون",
+  "sellersSuggestions": "اقتراحات البائعين"
 }

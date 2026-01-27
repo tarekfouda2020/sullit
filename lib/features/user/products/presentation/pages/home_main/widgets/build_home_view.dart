@@ -23,11 +23,11 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap25,
             const AdvantagesWidget(),
             Gaps.vGap20,
-            Text("Track Your Current Orders",
-            style: AppTextStyle.s16_w600(color: context.colors.black),
-            ),
-            Gaps.vGap12,
-            const TrackSellerOrderWidget(),
+            // Text("Track Your Current Orders",
+            // style: AppTextStyle.s16_w600(color: context.colors.black),
+            // ),
+            // Gaps.vGap12,
+            // const TrackSellerOrderWidget(),
             BuildTopCategories(categories: homeDomainModel.categories, controller: controller),
             VipOffersFormWidget(controller: controller),
             Gaps.vGap16,
@@ -55,12 +55,15 @@ class BuildHomeView extends StatelessWidget {
             BuildBanners(banners: homeDomainModel.bannersTwo),
             Gaps.vGap16,
             NewArrivalOffersFormWidget(controller: controller),
-            BuildHeaderTitle(
-              title: "Best Sellers",
-              controller: controller,
-              onTap: () => AutoRouter.of(context).push(const BestSellersPageRoute()),
+            if(controller.homeCubit.state.data?.shop.isNotEmpty == true)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: BuildHeaderTitle(
+                title: tr("sellers"),
+                controller: controller,
+                onTap: () => AutoRouter.of(context).push(const BestSellersPageRoute()),
+              ),
             ),
-            Gaps.vGap16,
              SellersSectionWidget(controller: controller,),
             // BuildHomeNewProducts(
             //   newestProducts: homeDomainModel.newestProducts,

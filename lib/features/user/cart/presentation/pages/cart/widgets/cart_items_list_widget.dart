@@ -9,8 +9,7 @@ class CartItemsListWidget extends StatelessWidget {
     return Scaffold(
       backgroundColor: context.colors.cartBg,
       appBar: DefaultAppBar(title: tr("cart"), bgColor: context.colors.white),
-      body: BlocBuilder<GenericBloc<CartDomainModel>,
-          GenericState<CartDomainModel>>(
+      body: BlocBuilder<GenericBloc<CartDomainModel>, GenericState<CartDomainModel>>(
         bloc: controller.cartItemsBloc,
         builder: (context, state) {
           if (state is GenericUpdateState) {

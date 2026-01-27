@@ -286,7 +286,7 @@
   "paymentStatus": "Payment Status",
   "sold": "Sold",
   "flashSale": "Flash Sale",
-  "catSuggestions": "Category suggestions",
+  "catSuggestions": "Category Suggestions",
   "noCats": "No Categories Found",
   "productSuggestions": "Product Suggestions",
   "noProductsFound": "No Product Found",
@@ -699,6 +699,8 @@
   "places": "Places",
   "pay_now": "Pay now",
   "enter_location_name": "Please enter location's name",
-  "search_in_offers": "Search in offers..."
+  "search_in_offers": "Search in offers...",
+  "sellers": "Sellers",
+  "sellersSuggestions": "Sellers Suggestions"
 
 }

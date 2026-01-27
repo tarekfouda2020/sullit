@@ -6,7 +6,6 @@ import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
 import 'package:flutter_tdd/features/user/best_sellers/data/data_sources/best_sellers_sources.dart';
-import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 import 'package:flutter_tdd/features/user/products/data/models/shop_model/shop_model.dart';
 import 'package:flutter_tdd/features/user/search/domain/entities/search_result_params.dart';
 import 'package:injectable/injectable.dart';

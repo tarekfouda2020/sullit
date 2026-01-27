@@ -17,13 +17,13 @@ class DebounceHelper {
     required void Function(String val) onSearch,
   }) {
     // ensure listener exists
-    init();
+    _init();
 
     // send value and callback
     _subject.add(_DebounceRequest(value, onSearch));
   }
 
-  void init() {
+  void _init() {
     _subscription ??= _subject
         .debounceTime(const Duration(milliseconds: 300))
         .listen((req) {

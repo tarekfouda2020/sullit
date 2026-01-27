@@ -10,5 +10,13 @@ class SearchResultParams {
     this.refresh = true,
   });
 
-  String paramToQuery() => "?keyword=$searchTxt&${paginateParams.paramsToQuery().replaceAll("?", "")}";
+  String paramToQuery() {
+    String header = paginateParams.paramsToQuery();
+    if(searchTxt.isNotEmpty){
+      header = "?keyword=$searchTxt&${header.replaceAll("?", "")}";
+    }
+   return header;
+}
+
+
 }

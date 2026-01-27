@@ -79,7 +79,10 @@ class BuildCartItem extends StatelessWidget {
                   ],
                 ),
                 Gaps.vGap11,
-                ChangeCartQtyWidget(cartItem: cartItem, controller: controller),
+                ChangeCartQtyWidget(
+                    cartItem: cartItem, controller: controller,
+
+                ),
               ],
             ),
           ),

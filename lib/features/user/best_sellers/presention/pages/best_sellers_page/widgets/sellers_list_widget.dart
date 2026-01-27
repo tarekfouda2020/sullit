@@ -7,14 +7,16 @@ class SellersListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomRefreshIndicatorWidget(
+    return
+      CustomRefreshIndicatorWidget(
       onRefresh: () => controller.getBestSellers(1),
       child: PagedListView<int, Shop>(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         pagingController: controller.pagingController,
         builderDelegate: PagedChildBuilderDelegate<Shop>(
           itemBuilder: (_, item, index) {
-            return Padding(
+            return
+              Padding(
               padding: const EdgeInsets.only(bottom: 12),
               child: SellerCardWidget(shop: item,
                 onTap:() => AutoRouter.of(context).push( SellerProductsPageRoute( shopModel: item,)),
@@ -22,15 +24,9 @@ class SellersListWidget extends StatelessWidget {
             );
           },
           noItemsFoundIndicatorBuilder: (cxt) {
-            return  const Center(
-              child: Text("لا توجد متاجر متاحة حالياً."),
-            );
+            return  const BuildEmptyDataView();
           },
-          firstPageProgressIndicatorBuilder: (_) => const Column(
-            children: [
-              CircleAvatar()
-            ],
-          ),
+          firstPageProgressIndicatorBuilder: (_) =>  const BestSellersShimmer(),
         ),
       ),
     );

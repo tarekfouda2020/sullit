@@ -5,11 +5,13 @@ class ShopCategory extends BaseDomainModel {
   final String name;
   final String icon;
   final String slug;
+   bool isSelect;
 
   ShopCategory({
     required this.id,
     required this.name,
     required this.icon,
     required this.slug,
+     this.isSelect = false,
   });
 }

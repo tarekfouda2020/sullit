@@ -14,20 +14,21 @@ class _BestSellersPageState extends State<BestSellersPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: DefaultAppBar(
-        title: "Best Sellers",
-        actions: [
-          GestureDetector(
-            onTap: () {},
-            child: Padding(
-              padding: const EdgeInsets.all(Dimens.dp5),
-              child: SvgPicture.asset(
-                Res.filterIcon,
-              ),
-            ),
-          ),
-        ],
+        title: tr("sellers"),
+        // actions: [
+        //   GestureDetector(
+        //     onTap: () {},
+        //     child: Padding(
+        //       padding: const EdgeInsets.all(Dimens.dp5),
+        //       child: SvgPicture.asset(
+        //         Res.filterIcon,
+        //       ),
+        //     ),
+        //   ),
+        // ],
       ),
       body: Column(
         children: [
