@@ -23,7 +23,7 @@ mixin _$SummaryModel {
   @JsonKey(name: 'order_date')
   String get orderDate => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
   @JsonKey(name: 'shipping_address')
   String get shippingAddress => throw _privateConstructorUsedError;
   @JsonKey(name: 'order_status')
@@ -54,7 +54,7 @@ abstract class $SummaryModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'order_date') String orderDate,
       String name,
-      String email,
+      String? email,
       @JsonKey(name: 'shipping_address') String shippingAddress,
       @JsonKey(name: 'order_status') String orderStatus,
       @JsonKey(name: 'total_order_amount') String totalOrderAmount,
@@ -79,7 +79,7 @@ class _$SummaryModelCopyWithImpl<$Res, $Val extends SummaryModel>
   $Res call({
     Object? orderDate = null,
     Object? name = null,
-    Object? email = null,
+    Object? email = freezed,
     Object? shippingAddress = null,
     Object? orderStatus = null,
     Object? totalOrderAmount = null,
@@ -97,10 +97,10 @@ class _$SummaryModelCopyWithImpl<$Res, $Val extends SummaryModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       shippingAddress: null == shippingAddress
           ? _value.shippingAddress
           : shippingAddress // ignore: cast_nullable_to_non_nullable
@@ -144,7 +144,7 @@ abstract class _$$_SummaryModelCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'order_date') String orderDate,
       String name,
-      String email,
+      String? email,
       @JsonKey(name: 'shipping_address') String shippingAddress,
       @JsonKey(name: 'order_status') String orderStatus,
       @JsonKey(name: 'total_order_amount') String totalOrderAmount,
@@ -167,7 +167,7 @@ class __$$_SummaryModelCopyWithImpl<$Res>
   $Res call({
     Object? orderDate = null,
     Object? name = null,
-    Object? email = null,
+    Object? email = freezed,
     Object? shippingAddress = null,
     Object? orderStatus = null,
     Object? totalOrderAmount = null,
@@ -185,10 +185,10 @@ class __$$_SummaryModelCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       shippingAddress: null == shippingAddress
           ? _value.shippingAddress
           : shippingAddress // ignore: cast_nullable_to_non_nullable
@@ -247,7 +247,7 @@ class _$_SummaryModel extends _SummaryModel {
   @override
   final String name;
   @override
-  final String email;
+  final String? email;
   @override
   @JsonKey(name: 'shipping_address')
   final String shippingAddress;
@@ -333,7 +333,7 @@ abstract class _SummaryModel extends SummaryModel {
   const factory _SummaryModel(
       {@JsonKey(name: 'order_date') required final String orderDate,
       required final String name,
-      required final String email,
+      required final String? email,
       @JsonKey(name: 'shipping_address') required final String shippingAddress,
       @JsonKey(name: 'order_status') required final String orderStatus,
       @JsonKey(name: 'total_order_amount')
@@ -355,7 +355,7 @@ abstract class _SummaryModel extends SummaryModel {
   @override
   String get name;
   @override
-  String get email;
+  String? get email;
   @override
   @JsonKey(name: 'shipping_address')
   String get shippingAddress;

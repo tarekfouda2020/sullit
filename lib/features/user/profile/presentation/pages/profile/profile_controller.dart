@@ -8,6 +8,8 @@ class ProfileController {
   final GlobalKey<CustomButtonState> createBtnKey = GlobalKey();
   final GlobalKey<FormState> formKey = GlobalKey();
   final GenericBloc<File?> imageCubit = GenericBloc(null);
+  final GenericBloc<VipCurrentPlanDomainModel?> currentSubscriptionBloc = GenericBloc(null);
+  final GenericBloc<bool> isExpandCubit = GenericBloc<bool>(false);
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController shopNameController = TextEditingController();
@@ -28,6 +30,8 @@ class ProfileController {
 
   ProfileController(BuildContext context) {
     getInitialData(context);
+    getCurrentSubscription(refresh: false);
+    getCurrentSubscription();
   }
 
   Future<void> getInitialData(BuildContext context) async {
@@ -46,20 +50,20 @@ class ProfileController {
   Future<void> _initializeCountryFromUser(BuildContext context, UserDomainModel? user) async {
     countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
     return ;
-    if (user?.countryCode != null && user!.countryCode!.isNotEmpty) {
-      try {
-        final country = await CountryPickerHelper.getCountryByCallingCode(context, user.countryCode!);
-        if (country != null) {
-          countryCubit.onUpdateData(country);
-        } else {
-          countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
-        }
-      } catch (e) {
-        countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
-      }
-    } else {
-      countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
-    }
+    // if (user?.countryCode != null && user!.countryCode!.isNotEmpty) {
+    //   try {
+    //     final country = await CountryPickerHelper.getCountryByCallingCode(context, user.countryCode!);
+    //     if (country != null) {
+    //       countryCubit.onUpdateData(country);
+    //     } else {
+    //       countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
+    //     }
+    //   } catch (e) {
+    //     countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
+    //   }
+    // } else {
+    //   countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
+    // }
   }
 
   // void showCountryCode(BuildContext context) async {
@@ -205,10 +209,9 @@ class ProfileController {
 
   bool isPhoneValid(){
     if(phoneController.text.isNotEmpty){
-      return((countryCubit.state.data?.callingCode ?? "") + (phoneController.text))
-          .validatePhone() == null;
+      return( (phoneController.text)).isValidUAEPhone(phoneController.text) == null;
     }else{
-      return true;
+      return false;
     }
 
   }
@@ -239,19 +242,20 @@ class ProfileController {
       msg: tr('informationUpdatedSuccessfully'),
       type: ToastType.success,
     );
+    await Future.delayed(const Duration(milliseconds: 300));
     AutoRouter.of(context).pop();
   }
 
-  void onActivePhone(BuildContext context) async {
-    var user = context.read<UserCubit>().state.model;
-    var result = await AutoRouter.of(context)
-        .push(ActiveAccountRoute(phoneOrEmail: user?.fullPhone ?? ""));
-    if (result == true) {
-      user?.isPhoneActive = true;
-      verifyPhoneCubit.onUpdateData(true);
-      context.read<UserCubit>().onUpdateUserData(user!);
-    }
-  }
+  // void onActivePhone(BuildContext context) async {
+  //   var user = context.read<UserCubit>().state.model;
+  //   var result = await AutoRouter.of(context)
+  //       .push(ActiveAccountRoute(phoneOrEmail: user?.fullPhone ?? ""));
+  //   if (result == true) {
+  //     user?.isPhoneActive = true;
+  //     verifyPhoneCubit.onUpdateData(true);
+  //     context.read<UserCubit>().onUpdateUserData(user!);
+  //   }
+  // }
 
   ProfileParams _profileParams(BuildContext context) {
     return ProfileParams(
@@ -284,11 +288,44 @@ class ProfileController {
     if(email == null || email == "") {
       CustomToast.showSimpleToast(
           msg: tr("add_email_to_change_password"),
-          type: ToastType.info,toastGravity: ToastGravity.BOTTOM
+          type: ToastType.info,
+          toastGravity: ToastGravity.BOTTOM
       );
       return ;
     }
     AutoRouter.of(context).push(const ChangePasswordRoute());
   }
+
+
+  void onPressBack(BuildContext context,String? email){
+    if(email == null || email.isEmpty){
+    CustomToast.showSimpleToast(msg: tr("please_enter_valid_email"));
+    return ;
+    }
+    AutoRouter.of(context).pop();
+  }
+
+  Future<void> getCurrentSubscription({bool refresh = true}) async {
+    var result = await GetCurrentSubscription().call(refresh);
+    if (result != null) {
+      currentSubscriptionBloc.onUpdateData(result);
+    }
+  }
+
+
+
+
+  void showTierDescription(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      enableDrag: false,
+      builder: (context) {
+      return TierBenefistSheetWidget(controller: this);
+    },);
+  }
+
+
 
 }

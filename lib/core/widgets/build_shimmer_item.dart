@@ -27,7 +27,7 @@ class BuildShimmerItem extends StatelessWidget {
       highlightColor: context.colors.white,
       child: child ??
           Container(
-            width: width ?? MediaQuery.of(context).size.width,
+            width: width ?? MediaQuery.sizeOf(context).width,
             height: height,
             margin: margin ?? const EdgeInsets.symmetric(vertical: 5),
             decoration: BoxDecoration(

@@ -9,7 +9,7 @@ class ChangePasswordWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => controller.routeToChangePassword(context),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 30),
+        padding: const EdgeInsets.symmetric(vertical: 30),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

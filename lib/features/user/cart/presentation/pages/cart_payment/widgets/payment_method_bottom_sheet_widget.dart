@@ -25,35 +25,9 @@ class PaymentMethodBottomSheetWidget extends StatelessWidget {
                 PaymentOption payOption = controller.shippingBloc.state.data!.paymentOption![index];
                 return Visibility(
                   visible: payOption.getPaymentType() != PayTypeEnum.wallet,
-                  child: GestureDetector(
-                    onTap: () => controller.onChangePayment(state.data!, index),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 17),
-                      margin: const EdgeInsets.only(bottom: 12),
-                      decoration: CustomDecoration(
-                          myBoxShadow: const [],
-                          boxBorder:
-                          Border.all(
-                              color: payOption.fakeSelected ? context.colors.primary : context.colors.borderColor)),
-                      child: Row(
-                        children: [
-                          CustomRadioWidget(
-                            selected: payOption.fakeSelected,
-                          inActiveColor: context.colors.black,
-                          ),
-                          Gaps.hGap14,
-                          Expanded(
-                            child: Text(payOption.title, style: AppTextStyle.s14_w700(color: context.colors.black)),
-                          ),
-                          CachedImage(
-                            url: payOption.image,
-                            width: 30,
-                            height: 26,
-                            fit: BoxFit.contain,
-                          )
-                        ],
-                      ),
-                    ),
+                  child: PayOptionItemWidget(
+                    onTap: ()=> controller.onChangePayment(state.data!, index),
+                    payOption: payOption,
                   ),
                 );
               }),

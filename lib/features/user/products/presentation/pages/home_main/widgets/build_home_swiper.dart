@@ -8,21 +8,21 @@ class BuildHomeSwiper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery.sizeOf(context).width,
       height: 165,
       child: Visibility(
         visible: slider.length > 1,
         replacement: CachedImage(
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery.sizeOf(context).width,
           borderRadius: BorderRadius.circular(Dimens.dp30),
           url: slider.first.photo,
         ),
         child: Swiper(
           itemBuilder: (BuildContext context, int index) {
             return CachedImage(
-              width: MediaQuery.of(context).size.width,
+              width: MediaQuery.sizeOf(context).width,
               borderRadius: Dimens.borderRadius30PX,
-              fit:  BoxFit.cover,
+              fit:  BoxFit.fill,
               url: slider[index].photo,
             );
           },
@@ -31,7 +31,7 @@ class BuildHomeSwiper extends StatelessWidget {
           viewportFraction: 1.0,
           // viewportFraction: 0.98,
           scale: 0.95,
-          autoplay: false,
+          autoplay: true,
         ),
       ),
     );

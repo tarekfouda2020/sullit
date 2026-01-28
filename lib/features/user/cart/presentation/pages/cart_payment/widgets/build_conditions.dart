@@ -9,7 +9,10 @@ class BuildConditions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CustomCheckBoxWidget(changeValueCubit: controller.conditionsCubit),
+        CustomCheckBoxWidget(
+            changeValueCubit: controller.conditionsCubit,
+         onChange: (value) => controller.changeTermsStatus(value!),
+        ),
         Expanded(
           child: Row(
             children: [

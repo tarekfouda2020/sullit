@@ -62,7 +62,7 @@ class WalletItemWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              Gaps.hGap3,
+              Gaps.hGap15,
               Text(
                 item.createdAt,
                 style: AppTextStyle.s13_w400(

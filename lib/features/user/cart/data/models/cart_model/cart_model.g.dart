@@ -13,6 +13,9 @@ _$_CartModel _$$_CartModelFromJson(Map<String, dynamic> json) => _$_CartModel(
       subTotal: json['sub_total'] as String,
       calculableTotal: json['calculable_total'] as num,
       currencySymbol: json['currency_symbol'] as String,
+      minimumAmountMsg: json['minimum_order_amount_msg'] as String?,
+      minimumAmount: (json['minimum_order_amount'] as num?)?.toDouble(),
+      minimumStatus: json['minimum_order_amount_status'] as bool?,
     );
 
 Map<String, dynamic> _$$_CartModelToJson(_$_CartModel instance) =>
@@ -21,4 +24,7 @@ Map<String, dynamic> _$$_CartModelToJson(_$_CartModel instance) =>
       'sub_total': instance.subTotal,
       'calculable_total': instance.calculableTotal,
       'currency_symbol': instance.currencySymbol,
+      'minimum_order_amount_msg': instance.minimumAmountMsg,
+      'minimum_order_amount': instance.minimumAmount,
+      'minimum_order_amount_status': instance.minimumStatus,
     };

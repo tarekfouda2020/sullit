@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
@@ -16,11 +15,13 @@ import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/fess_mechanism_model/fess_mechanism_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/enum/instruction_type_enum.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/apply_gift_card_params.dart';
 import 'package:flutter_tdd/features/user/cart/data/enum/pay_type_enum.dart';
+import 'package:flutter_tdd/features/user/cart/domain/entities/cart_check_out_saved_data.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instruction_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instruction_model.dart';
@@ -38,6 +39,8 @@ import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_delivery_ins
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_order_fees.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/remove_coupon.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/remove_loyalty_points.dart';
+import 'package:flutter_tdd/features/user/cart/domain/use_cases/set_cart_store_shipping.dart';
+import 'package:flutter_tdd/features/user/cart/presentation/manager/helpers/cart_navigate_helper.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/widgets/bezaat_points_summary_widget.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/widgets/build_cart_stepper.dart';
 import 'package:flutter_tdd/features/user/loyalty_points/domain/models/loyalty_points_balance_domain_model.dart';

@@ -2,7 +2,7 @@ part of 'product_details_widgets_imports.dart';
 
 class CartSheetItemFavoriteWidget extends StatefulWidget {
   final CartItem cartItem;
-  final ProductDetailsController controller;
+  final CartSheetController controller;
 
   const CartSheetItemFavoriteWidget({super.key, required this.cartItem, required this.controller});
 
@@ -56,6 +56,6 @@ class _CartSheetItemFavoriteWidgetState extends State<CartSheetItemFavoriteWidge
     cartBloc.onUpdateData(cartBloc.state.data);
     widget.controller.updateFavFromSheet(widget.cartItem);
     widget.controller.getCartItems();
-    widget.controller.getProductDetails(context, widget.controller.productId, resetQty: false);
+    widget.controller.refreshProductDetails(context);
   }
 }

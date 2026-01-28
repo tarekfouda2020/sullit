@@ -45,6 +45,7 @@ class _CategoriesState extends State<Categories> {
              }
             },
           ),
+          Gaps.vGap10,
           // Gaps.vGap20,
           // Flexible(
           //   child: Padding(

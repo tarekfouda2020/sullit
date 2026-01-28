@@ -17,13 +17,6 @@ class BuildProductInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              productModel.categoryName!,
-              style: AppTextStyle.s14_w400(
-                color: context.colors.textColor,
-              ),
-            ),
-            Gaps.vGap8,
-            Text(
               productModel.name!,
               style: AppTextStyle.s19_w500(
                 color: context.colors.black,

@@ -12,11 +12,18 @@ class CartDomainModel extends BaseDomainModel {
 
   String? currencySymbol;
 
+  String? minimumAmountMsg;
+  double? minimumAmount;
+  bool? minimumStatus;
+
   CartDomainModel({
      this.items,
      this.subTotal,
      this.calculableTotal,
      this.currencySymbol,
+     this.minimumAmountMsg,
+     this.minimumAmount,
+     this.minimumStatus,
   });
 
 
@@ -32,5 +39,9 @@ class CartDomainModel extends BaseDomainModel {
     double sumAllPrices = allPrices.fold(0.0, (sum, item) => sum + item);
     return sumAllPrices.toStringAsFixed(2);
   }
+
+  int get totalQnt => (items??<CartItem>[]).fold(0, (previousValue, element) =>previousValue+element.quantity);
+
+
 
 }

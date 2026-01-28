@@ -7,39 +7,46 @@ class BuildTopCategoriesItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => AutoRouter.of(context).push(CategoryDetailsRoute(categoryModel: categoryModel,fromHome: true)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-             height: 69,
-            padding: const EdgeInsets.all(7),
-            decoration: BoxDecoration(
-              color: context.colors.lightPink,
-              shape:  BoxShape.circle
+    return Padding(
+      padding: const EdgeInsetsDirectional.only(end: 15),
+      child: GestureDetector(
+        onTap: () => AutoRouter.of(context).push(CategoryDetailsRoute(categoryModel: categoryModel,fromHome: true)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+               height: 90,
+              decoration: BoxDecoration(
+                color: context.colors.lightPink,
+                shape:  BoxShape.circle
+              ),
+              child: CachedImage(
+                height: 70,
+                width: 70,
+                bgColor: context.colors.lightPink ,
+                fit: BoxFit.cover,
+                haveRadius: false,
+                url: categoryModel.icon,
+                boxShape: BoxShape.circle,
+              ),
             ),
-            child: CachedImage(
-              height: 45,
-              width: 45,
-              bgColor: context.colors.lightPink ,
-              fit: BoxFit.cover,
-              haveRadius: false,
-              url: categoryModel.icon,
-              boxShape: BoxShape.circle,
+            Gaps.vGap7,
+            Flexible(
+              child: SizedBox(
+                width: 72,
+                child: Text(
+                  categoryModel.name,
+                  textAlign: TextAlign.center,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyle.s12_w700(
+                    color: context.colors.black,
+                  ),
+                ),
+              ),
             ),
-          ),
-          Gaps.vGap7,
-          Text(
-            categoryModel.name,
-            textAlign: TextAlign.center,
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-            style: AppTextStyle.s10_w700(
-              color: context.colors.black,
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

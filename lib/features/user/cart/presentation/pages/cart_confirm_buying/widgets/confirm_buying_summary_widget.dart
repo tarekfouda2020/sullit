@@ -1,10 +1,10 @@
 part of 'cart_confirm_buying_widgets_imports.dart';
 
-
 class ConfirmBuyingSummaryWidget extends StatelessWidget {
   final OrderSummary orderSummary;
   final ConfirmBuyingController controller;
-  const ConfirmBuyingSummaryWidget({super.key, required this.orderSummary, required this.controller});
+  const ConfirmBuyingSummaryWidget(
+      {super.key, required this.orderSummary, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -15,34 +15,57 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
         // details: orderSummary.getSubTotalWithoutVat().toStringAsFixed(2),
         useDirhamPrice: true,
       ),
+      if (orderSummary.discountList.isNotEmpty)
+        ...List.generate(
+          orderSummary.discountList.length,
+          (index) {
+            var item = orderSummary.discountList[index];
+            return BuildSummaryHeader(
+              title: item.typeLabel,
+              // details: shippingSummary.vatAmount().toStringAsFixed(2),
+              details: item.discount,
+              useDirhamPrice: true,
+              isDiscount: true,
+              detailsColor: context.colors.primary,
+              onPressInfo: item.isTierDiscount
+                  ? () => controller.showTierFullName(
+                      context, item.typeDescription, item.typeLabel)
+                  : null,
+            );
+          },
+        ),
       BuildSummaryHeader(
         title: tr('service_fees'),
         details: orderSummary.totalServiceFees.toStringAsFixed(2),
         useDirhamPrice: true,
-        onPressInfo: ()=> controller.showFeesSheet(context),
+        onPressInfo: () => controller.showFeesSheet(context),
       ),
       BuildSummaryHeader(
         title: tr("environmentFee"),
         details: orderSummary.envFees.toStringAsFixed(2),
         useDirhamPrice: true,
-        onPressInfo: ()=> controller.showEnvFeesSheet(context),
+        onPressInfo: () => controller.showEnvFeesSheet(context),
       ),
       BuildSummaryHeader(
         title: tr('shippingFees'),
         details: orderSummary.shippingTotal.toString(),
         useDirhamPrice: true,
-        onPressInfo: ()=>controller.showDeliveryFeesSheet(context),
+        onPressInfo: () => controller.showDeliveryFeesSheet(context),
       ),
       Gaps.vGap8,
       Visibility(
-        visible: orderSummary.loyaltyPointsDiscount > 0 || orderSummary.discounts > 0,
+        visible: orderSummary.loyaltyPointsDiscount > 0 ||
+            orderSummary.discounts > 0,
         child: BuildSummaryHeader(
-          title: orderSummary.loyaltyPointsDiscount > 0 ? tr("pointsDiscount") : tr("voucherDiscount"),
+          title: orderSummary.loyaltyPointsDiscount > 0
+              ? tr("pointsDiscount")
+              : tr("voucherDiscount"),
           details: orderSummary.loyaltyPointsDiscount > 0
               ? orderSummary.loyaltyPointsDiscount.toString()
               : orderSummary.discounts.toString(),
           detailsColor: context.colors.primary,
           useDirhamPrice: true,
+          isDiscount: true,
         ),
       ),
       BuildSummaryHeader(
@@ -67,14 +90,24 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
               ),
             ],
           )),
-      Gaps.line(context.colors.softGray, 15.h),
-      _buildRow(context,tr("gained_bezat_point"),orderSummary.summary!.expectedLoyaltyPoints.toString()),
-      Gaps.vGap8,
-      if(orderSummary.pointsRedeemed > 0)
-        _buildRow(context,tr("bezat_points_redeemed"),orderSummary.pointsRedeemed.toString()),
-      if(orderSummary.pointsRedeemed > 0)
-        Gaps.vGap8,
-      NewPointsBalanceWidget(cubit: controller.loyaltyPointsBalanceBloc,gainedPoints:orderSummary.summary!.expectedLoyaltyPoints ?? 0 ,),
+      if (!context.isShareHolder)
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Gaps.line(context.colors.softGray, 15.h),
+            _buildRow(context, tr("gained_bezat_point"),
+                orderSummary.summary!.expectedLoyaltyPoints.toString()),
+            Gaps.vGap8,
+            if (orderSummary.pointsRedeemed > 0)
+              _buildRow(context, tr("bezat_points_redeemed"),
+                  orderSummary.pointsRedeemed.toString()),
+            if (orderSummary.pointsRedeemed > 0) Gaps.vGap8,
+            NewPointsBalanceWidget(
+              cubit: controller.loyaltyPointsBalanceBloc,
+              gainedPoints: orderSummary.summary!.expectedLoyaltyPoints ?? 0,
+            ),
+          ],
+        )
     ]);
   }
 
@@ -89,7 +122,7 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
         ),
         Text(
           endTitle,
-          style:  AppTextStyle.s14_w800(color: context.colors.black),
+          style: AppTextStyle.s14_w800(color: context.colors.black),
         ),
       ],
     );

@@ -11,6 +11,7 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       code: json['code'] as String,
       orderType: json['order_type'] as String,
+      bagCount: (json['bag_count'] as num).toInt(),
       availableReturnOrder: json['available_return_order'] as bool,
       showButtonPay: json['show_button_pay'] as bool,
       subtotal: json['subtotal'] as String,
@@ -55,6 +56,9 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       deliveryInstructions: (json['delivery_instructions'] as List<dynamic>)
           .map((e) => DeliveryInstruction.fromJson(e as Map<String, dynamic>))
           .toList(),
+      orderDiscounts: (json['order_discounts'] as List<dynamic>?)
+          ?.map((e) => OrderDiscount.fromJson(e as Map<String, dynamic>))
+          .toList(),
       driver: json['driver'] == null
           ? null
           : OrderDriverModel.fromJson(json['driver'] as Map<String, dynamic>),
@@ -65,6 +69,7 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'id': instance.id,
       'code': instance.code,
       'order_type': instance.orderType,
+      'bag_count': instance.bagCount,
       'available_return_order': instance.availableReturnOrder,
       'show_button_pay': instance.showButtonPay,
       'subtotal': instance.subtotal,
@@ -106,5 +111,7 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'driver_notes': instance.driverNotes,
       'delivery_instructions':
           instance.deliveryInstructions.map((e) => e.toJson()).toList(),
+      'order_discounts':
+          instance.orderDiscounts?.map((e) => e.toJson()).toList(),
       'driver': instance.driver?.toJson(),
     };

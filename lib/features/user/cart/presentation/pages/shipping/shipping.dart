@@ -19,7 +19,14 @@ class _ShippingState extends State<Shipping> {
       appBar: DefaultAppBar(
           // title: tr("shipping"),
           title: tr("cart"),
-          bgColor: context.colors.white
+          bgColor: context.colors.white,
+          onBack: () {
+            final moved = getIt<CartNavigateHelper>()
+                .setStep(CartNavigateHelper.cartStepIndex, force: true);
+            if (!moved && Navigator.of(context).canPop()) {
+              Navigator.of(context).maybePop();
+            }
+          }
       ),
       body: Column(
         children: [

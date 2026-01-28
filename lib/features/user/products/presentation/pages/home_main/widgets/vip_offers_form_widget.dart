@@ -24,7 +24,8 @@ class VipOffersFormWidget extends StatelessWidget {
                     title: tr('vipOffers'),
                     controller: controller,
                     onTap: () {
-                      controller.changeCouponsTab(0);
+                      controller.changeCouponsTab(
+                          SaleTabType.vipOffers, context);
                       controller.homeController.animateTabsPages(3, context);
                     },
                   ),
@@ -35,10 +36,13 @@ class VipOffersFormWidget extends StatelessWidget {
                       itemCount: length,
                       itemBuilder: (context, index) {
                         return BuildProductItem(
-                          margin: EdgeInsetsDirectional.only(end: index == length - 1 ? 0 : 8),
+                          margin: EdgeInsetsDirectional.only(
+                              end: index == length - 1 ? 0 : 8),
                           productModel: state.data[index],
-                          onFavRefresh: () => controller.onChangeVipOffersFav(state.data[index]),
-                          onRefresh: () => controller.getVipOffers(refresh: true),
+                          onFavRefresh: () => controller
+                              .onChangeVipOffersFav(state.data[index]),
+                          onRefresh: () =>
+                              controller.getVipOffers(refresh: true),
                         );
                       },
                     ),

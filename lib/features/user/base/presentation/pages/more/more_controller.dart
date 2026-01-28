@@ -40,7 +40,7 @@ class MoreController {
         AutoRouter.of(context).push(const DashBoardRoute());
         break;
       case MoreRoutes.purchasedProducts:
-        AutoRouter.of(context).push(const PurchasedOrdersRoute());
+        AutoRouter.of(context).push(const MyOrdersRoute());
         // AutoRouter.of(context).push(const PurchasedHistoryRoute());
         break;
       case MoreRoutes.returnOrders:
@@ -156,6 +156,7 @@ class MoreController {
 
   void setUserLang(BuildContext context, LangDomainModel model) async {
     String code = model.code;
+    print("========>>>>>>>>>>>>> code is $code  <<<<<<");
     if (code == LangTypeEnum.arabic.getLangCode()) {
       code = LangCodeHelper.langAR;
     }

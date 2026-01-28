@@ -21,13 +21,14 @@ SearchResultsModel _$SearchResultsModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SearchResultsModel {
   @JsonKey(name: 'popular_suggestions')
-  List<String> get suggestions => throw _privateConstructorUsedError;
-  @JsonKey(name: 'products')
-  List<ProductModel> get products => throw _privateConstructorUsedError;
+  List<String>? get suggestions => throw _privateConstructorUsedError;
+  @JsonKey(name: 'section_products')
+  AllProductsSearchResultModel get products =>
+      throw _privateConstructorUsedError;
   @JsonKey(name: 'categories')
   List<CategoryModel> get categories => throw _privateConstructorUsedError;
   @JsonKey(name: 'shops')
-  List<ShopModel> get shops => throw _privateConstructorUsedError;
+  List<ShopModel>? get shops => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,10 +43,12 @@ abstract class $SearchResultsModelCopyWith<$Res> {
       _$SearchResultsModelCopyWithImpl<$Res, SearchResultsModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'popular_suggestions') List<String> suggestions,
-      @JsonKey(name: 'products') List<ProductModel> products,
+      {@JsonKey(name: 'popular_suggestions') List<String>? suggestions,
+      @JsonKey(name: 'section_products') AllProductsSearchResultModel products,
       @JsonKey(name: 'categories') List<CategoryModel> categories,
-      @JsonKey(name: 'shops') List<ShopModel> shops});
+      @JsonKey(name: 'shops') List<ShopModel>? shops});
+
+  $AllProductsSearchResultModelCopyWith<$Res> get products;
 }
 
 /// @nodoc
@@ -61,29 +64,38 @@ class _$SearchResultsModelCopyWithImpl<$Res, $Val extends SearchResultsModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? suggestions = null,
+    Object? suggestions = freezed,
     Object? products = null,
     Object? categories = null,
-    Object? shops = null,
+    Object? shops = freezed,
   }) {
     return _then(_value.copyWith(
-      suggestions: null == suggestions
+      suggestions: freezed == suggestions
           ? _value.suggestions
           : suggestions // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+              as AllProductsSearchResultModel,
       categories: null == categories
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<CategoryModel>,
-      shops: null == shops
+      shops: freezed == shops
           ? _value.shops
           : shops // ignore: cast_nullable_to_non_nullable
-              as List<ShopModel>,
+              as List<ShopModel>?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AllProductsSearchResultModelCopyWith<$Res> get products {
+    return $AllProductsSearchResultModelCopyWith<$Res>(_value.products,
+        (value) {
+      return _then(_value.copyWith(products: value) as $Val);
+    });
   }
 }
 
@@ -96,10 +108,13 @@ abstract class _$$_SearchResultsModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'popular_suggestions') List<String> suggestions,
-      @JsonKey(name: 'products') List<ProductModel> products,
+      {@JsonKey(name: 'popular_suggestions') List<String>? suggestions,
+      @JsonKey(name: 'section_products') AllProductsSearchResultModel products,
       @JsonKey(name: 'categories') List<CategoryModel> categories,
-      @JsonKey(name: 'shops') List<ShopModel> shops});
+      @JsonKey(name: 'shops') List<ShopModel>? shops});
+
+  @override
+  $AllProductsSearchResultModelCopyWith<$Res> get products;
 }
 
 /// @nodoc
@@ -113,28 +128,28 @@ class __$$_SearchResultsModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? suggestions = null,
+    Object? suggestions = freezed,
     Object? products = null,
     Object? categories = null,
-    Object? shops = null,
+    Object? shops = freezed,
   }) {
     return _then(_$_SearchResultsModel(
-      suggestions: null == suggestions
+      suggestions: freezed == suggestions
           ? _value._suggestions
           : suggestions // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       products: null == products
-          ? _value._products
+          ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+              as AllProductsSearchResultModel,
       categories: null == categories
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<CategoryModel>,
-      shops: null == shops
+      shops: freezed == shops
           ? _value._shops
           : shops // ignore: cast_nullable_to_non_nullable
-              as List<ShopModel>,
+              as List<ShopModel>?,
     ));
   }
 }
@@ -144,14 +159,12 @@ class __$$_SearchResultsModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_SearchResultsModel extends _SearchResultsModel {
   const _$_SearchResultsModel(
-      {@JsonKey(name: 'popular_suggestions')
-      required final List<String> suggestions,
-      @JsonKey(name: 'products') required final List<ProductModel> products,
+      {@JsonKey(name: 'popular_suggestions') final List<String>? suggestions,
+      @JsonKey(name: 'section_products') required this.products,
       @JsonKey(name: 'categories')
       required final List<CategoryModel> categories,
-      @JsonKey(name: 'shops') required final List<ShopModel> shops})
+      @JsonKey(name: 'shops') final List<ShopModel>? shops})
       : _suggestions = suggestions,
-        _products = products,
         _categories = categories,
         _shops = shops,
         super._();
@@ -159,24 +172,20 @@ class _$_SearchResultsModel extends _SearchResultsModel {
   factory _$_SearchResultsModel.fromJson(Map<String, dynamic> json) =>
       _$$_SearchResultsModelFromJson(json);
 
-  final List<String> _suggestions;
+  final List<String>? _suggestions;
   @override
   @JsonKey(name: 'popular_suggestions')
-  List<String> get suggestions {
+  List<String>? get suggestions {
+    final value = _suggestions;
+    if (value == null) return null;
     if (_suggestions is EqualUnmodifiableListView) return _suggestions;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_suggestions);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<ProductModel> _products;
   @override
-  @JsonKey(name: 'products')
-  List<ProductModel> get products {
-    if (_products is EqualUnmodifiableListView) return _products;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_products);
-  }
-
+  @JsonKey(name: 'section_products')
+  final AllProductsSearchResultModel products;
   final List<CategoryModel> _categories;
   @override
   @JsonKey(name: 'categories')
@@ -186,13 +195,15 @@ class _$_SearchResultsModel extends _SearchResultsModel {
     return EqualUnmodifiableListView(_categories);
   }
 
-  final List<ShopModel> _shops;
+  final List<ShopModel>? _shops;
   @override
   @JsonKey(name: 'shops')
-  List<ShopModel> get shops {
+  List<ShopModel>? get shops {
+    final value = _shops;
+    if (value == null) return null;
     if (_shops is EqualUnmodifiableListView) return _shops;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_shops);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -207,7 +218,8 @@ class _$_SearchResultsModel extends _SearchResultsModel {
             other is _$_SearchResultsModel &&
             const DeepCollectionEquality()
                 .equals(other._suggestions, _suggestions) &&
-            const DeepCollectionEquality().equals(other._products, _products) &&
+            (identical(other.products, products) ||
+                other.products == products) &&
             const DeepCollectionEquality()
                 .equals(other._categories, _categories) &&
             const DeepCollectionEquality().equals(other._shops, _shops));
@@ -218,7 +230,7 @@ class _$_SearchResultsModel extends _SearchResultsModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_suggestions),
-      const DeepCollectionEquality().hash(_products),
+      products,
       const DeepCollectionEquality().hash(_categories),
       const DeepCollectionEquality().hash(_shops));
 
@@ -239,13 +251,13 @@ class _$_SearchResultsModel extends _SearchResultsModel {
 
 abstract class _SearchResultsModel extends SearchResultsModel {
   const factory _SearchResultsModel(
-          {@JsonKey(name: 'popular_suggestions')
-          required final List<String> suggestions,
-          @JsonKey(name: 'products') required final List<ProductModel> products,
-          @JsonKey(name: 'categories')
-          required final List<CategoryModel> categories,
-          @JsonKey(name: 'shops') required final List<ShopModel> shops}) =
-      _$_SearchResultsModel;
+      {@JsonKey(name: 'popular_suggestions') final List<String>? suggestions,
+      @JsonKey(name: 'section_products')
+      required final AllProductsSearchResultModel products,
+      @JsonKey(name: 'categories')
+      required final List<CategoryModel> categories,
+      @JsonKey(name: 'shops')
+      final List<ShopModel>? shops}) = _$_SearchResultsModel;
   const _SearchResultsModel._() : super._();
 
   factory _SearchResultsModel.fromJson(Map<String, dynamic> json) =
@@ -253,16 +265,16 @@ abstract class _SearchResultsModel extends SearchResultsModel {
 
   @override
   @JsonKey(name: 'popular_suggestions')
-  List<String> get suggestions;
+  List<String>? get suggestions;
   @override
-  @JsonKey(name: 'products')
-  List<ProductModel> get products;
+  @JsonKey(name: 'section_products')
+  AllProductsSearchResultModel get products;
   @override
   @JsonKey(name: 'categories')
   List<CategoryModel> get categories;
   @override
   @JsonKey(name: 'shops')
-  List<ShopModel> get shops;
+  List<ShopModel>? get shops;
   @override
   @JsonKey(ignore: true)
   _$$_SearchResultsModelCopyWith<_$_SearchResultsModel> get copyWith =>

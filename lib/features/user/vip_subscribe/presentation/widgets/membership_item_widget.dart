@@ -18,6 +18,8 @@ import 'package:flutter_tdd/res.dart';
 
 class MembershipItemWidget extends StatelessWidget {
   final bool isBottomSheet;
+  final bool showVip;
+  final bool showBlur;
   final VipSubscribeDomainModel model;
   final void Function()? onSelect;
 
@@ -26,15 +28,15 @@ class MembershipItemWidget extends StatelessWidget {
     required this.model,
     required this.isBottomSheet,
     this.onSelect,
+    this.showVip = false,
+    this.showBlur = true,
   });
 
   @override
   Widget build(BuildContext context) {
     String lang = context.read<DeviceCubit>().state.model.locale.languageCode;
     return GestureDetector(
-      onTap: !model.byInvite
-          ?onSelect
-          :(){},
+      onTap: onSelect,
       child: Stack(
         children: [
           Container(
@@ -54,8 +56,8 @@ class MembershipItemWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if(model.byInvite)
-                Text(model.inviteLabel,
+                if(model.byInvite == true)
+                Text(model.inviteLabel ?? "",
                 style: AppTextStyle.s16_w500(color: context.colors.primary),
                 ),
                 Gaps.vGap10,
@@ -69,7 +71,7 @@ class MembershipItemWidget extends StatelessWidget {
                     Visibility(
                       visible: isBottomSheet,
                       replacement: Visibility(
-                          visible: model.subscription != null,
+                          visible: model.subscription != null || showVip,
                           child: SvgPicture.asset(
                             Res.redVipMark,
                             width: 30,
@@ -94,6 +96,7 @@ class MembershipItemWidget extends StatelessWidget {
                   ],
                 ),
                 Visibility(visible: model.subscription == null, child: Gaps.vGap12),
+                if(model.byInvite == false)
                 Row(
                   children: [
                     DirhamPrice(
@@ -110,15 +113,15 @@ class MembershipItemWidget extends StatelessWidget {
                 Gaps.vGap8,
                 Text(
                   "${tr("benefits")} :",
-                  style: AppTextStyle.s12_w600(color: context.colors.black),
+                  style: AppTextStyle.s14_w600(color: context.colors.black),
                 ),
                 Gaps.vGap6,
                 Html(data: getIt<Utilities>().cleanHtml(model.description),
                   style: {
                     "body": Style(
                       color: context.colors.textColor,
-                      fontSize: FontSize(12),
-                      fontWeight: FontWeight.w400,
+                      fontSize: FontSize(14),
+                      fontWeight: FontWeight.w500,
                       alignment: lang == LangCodeHelper.langAR ? Alignment.centerLeft : Alignment.centerRight,
                       margin: Margins.all(0),
                       padding: HtmlPaddings.all(0),
@@ -127,25 +130,25 @@ class MembershipItemWidget extends StatelessWidget {
                       margin: Margins.all(0),
                       padding: HtmlPaddings.all(0),
                       color: context.colors.textColor,
-                      fontSize: FontSize(12),
-                      fontWeight: FontWeight.w400,
+                      fontSize: FontSize(14),
+                      fontWeight: FontWeight.w500,
                     ),
                     "li": Style(
                       margin: Margins.all(0),
                       padding: HtmlPaddings.all(0),
                       color: context.colors.textColor,
-                      fontSize: FontSize(12),
-                      fontWeight: FontWeight.w400,
+                      fontSize: FontSize(14),
+                      fontWeight: FontWeight.w500,
                     ),
                     "strong": Style(
                       color: context.colors.textColor,
-                      fontSize: FontSize(12),
-                      fontWeight: FontWeight.w400,
+                      fontSize: FontSize(14),
+                      fontWeight: FontWeight.w500,
                     ),
                     "em": Style(
                       color: context.colors.textColor,
-                      fontSize: FontSize(12),
-                      fontWeight: FontWeight.w400,
+                      fontSize: FontSize(14),
+                      fontWeight: FontWeight.w500,
                       fontStyle: FontStyle.normal,
                     ),
                   },
@@ -168,11 +171,13 @@ class MembershipItemWidget extends StatelessWidget {
               ],
             ),
           ),
-          if(model.byInvite)
+          if(showBlur && model.byInvite == true )
           Positioned.fill(
             child: Container(
+              margin: const EdgeInsets.only(bottom: 12),
               decoration: BoxDecoration(
                 color: Colors.white.withAlpha(150),
+                borderRadius: BorderRadius.circular(12),
               ),
             ),
           )

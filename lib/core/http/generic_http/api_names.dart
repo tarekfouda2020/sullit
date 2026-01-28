@@ -1,12 +1,14 @@
 // ignore_for_file: constant_identifier_names
 
 class ApiNames {
-
   ///staging
-  // static const String baseUrl = "https://mushrifcoop.com/api/v3/";
+  static const String baseUrl = "https://staging.mushrifcoop.com/api/v3/";
 
   ///production
-  static const String baseUrl = "https://mushrifcoop.com/api/v3/";
+  // static const String baseUrl = "https://mushrifcoop.com/api/v3/";
+
+  static const String iqUrl = "https://us1.locationiq.com/v1/";
+
 
   // auth routes
   static const String login = "login";
@@ -28,7 +30,6 @@ class ApiNames {
   static const String deleteAccount = "delete-account";
   static const String verifyEmail = "email/verify";
   static const String changePassword = "update-password?_method=patch";
-
   // profile urls
   static const String updateProfile = "profile/update?_method=put";
   static const String updateProfileEmail = "new-email";
@@ -36,6 +37,7 @@ class ApiNames {
 
 //home urls
   static const String getFollowing = "shops/followings";
+  static const String shopsList = "shops";
 
   //products urls
   static const String getHome = "home";
@@ -50,11 +52,12 @@ class ApiNames {
 
   static String getVariantPrice(int id) => "products/$id/variant/price";
 
-  static String skuSearch(String sku) => "products/search-by-barcode?barcode=$sku";
+  static String skuSearch(String sku) =>
+      "products/search-by-barcode?barcode=$sku";
 
   static const String getDownloadProducts = "orders/digital-purchase-history";
 
-  static  String shopProducts(int id) => "shops/$id/all-products";
+  static String shopProducts(int id) => "shops/$id/all-products";
 
   static String getProductSections(int page) => "sections?page=$page";
 
@@ -102,6 +105,7 @@ class ApiNames {
   static const String getOnSale = "offers/on-sale";
   static const String vipProducts = "offers/vip-products";
   static const String getBestRated = "offers/best-rated";
+  static const String shareholderProducts = "offers/shareholder-products";
 
   //wallet urls
   static const String getMyWallet = "my-wallet";
@@ -149,7 +153,7 @@ class ApiNames {
   static const String notifications = "notifications";
 
   ///general
- static const String getLanguages = "settings/languages";
+  static const String getLanguages = "settings/languages";
 
   //tickets
   static const String createTicket = "tickets/store";
@@ -162,6 +166,9 @@ class ApiNames {
   //PurchaseHistory
   static const String getPurchaseHistory = "orders/purchase-history";
   static const String getReturnOrders = "orders/return-orders";
+  static const String orderPaymentOptions = "orders/payment-options";
+
+  static String changeOrderPayMethod(int id) => "orders/$id/change-pay";
 
   static String getTrackOrder(String code) => "orders/$code/track-your-order";
 
@@ -173,7 +180,10 @@ class ApiNames {
 
   static String cancelOrder(int orderId) => "orders/$orderId/cancel-order";
 
-  static String trackingHistory(int orderId) => "orders/$orderId/tracking-history";
+  static String reOrder(int orderId) => "orders/$orderId/reorder";
+
+  static String trackingHistory(int orderId) =>
+      "orders/$orderId/tracking-history";
 
   static String returnOrder(int orderId) =>
       "orders/$orderId/store-return-order";
@@ -220,23 +230,30 @@ class ApiNames {
 
   static const String loyaltyPointsTransactions = "loyalty-points/transactions";
 
-  static  String giftCardSubscriptionDetails(int params) => "gift-card-subscriptions/$params";
+  static String giftCardSubscriptionDetails(int params) =>
+      "gift-card-subscriptions/$params";
 
-  static  String giftCardDetails(int params) => "gift-cards/$params";
+  static String giftCardDetails(int params) => "gift-cards/$params";
 
-  static String payGiftCardSubscribe(int params) => "gift-cards/$params/subscribe";
-
+  static String payGiftCardSubscribe(int params) =>
+      "gift-cards/$params/subscribe";
 
   /// vip subscriptions
-  static const String subscriptionsPaymentMethods = "subscriptions/payment-methods";
+  static const String subscriptionsPaymentMethods =
+      "subscriptions/payment-methods";
 
   static const String subscriptions = "subscriptions";
 
   static const String currentSubscription = "subscriptions/current";
 
-  static  String paySubscription(int param) => "subscriptions/$param/subscribe";
+  static String paySubscription(int param) => "subscriptions/$param/subscribe";
 
   static const String subscriptionPage = "subscription-page";
 
+  /// location
+
+  static  const String locationAutoComplete = "autocomplete";
+
+  static  const String locationAddress = "reverse";
 
 }

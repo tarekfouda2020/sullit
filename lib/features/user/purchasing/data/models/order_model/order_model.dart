@@ -1,6 +1,8 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/delivery_instruction/delivery_instruction.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/order_summary_discount_model/order_summary_discount_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_details_model/order_details_model.dart';
+import 'package:flutter_tdd/features/user/purchasing/data/models/order_discount/order_discount.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_driver_model/order_driver_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,6 +20,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     required int id,
     required String code,
     @JsonKey(name: 'order_type') required String orderType,
+    @JsonKey(name: 'bag_count') required int bagCount,
     @JsonKey(name: 'available_return_order') required bool availableReturnOrder,
     @JsonKey(name: 'show_button_pay') required bool showButtonPay,
     required String subtotal,
@@ -59,6 +62,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'total_fee_amount') required String totalFeeAmount,
     @JsonKey(name: 'driver_notes') required String driverNotes,
     @JsonKey(name: 'delivery_instructions') required List<DeliveryInstruction> deliveryInstructions,
+    @JsonKey(name: 'order_discounts')  List<OrderDiscount>? orderDiscounts,
     @JsonKey(name: 'driver') OrderDriverModel? driver,
   }) = _OrderModel;
 
@@ -69,6 +73,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     return Orders(
       id: id,
       code: code,
+        bagCount : bagCount,
       orderType: orderType,
       availableReturnOrder: availableReturnOrder,
       showButtonPay: showButtonPay,
@@ -111,6 +116,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       environmentFees: environmentFees,
       driverNotes: driverNotes,
       instructions: deliveryInstructions.map((e) => e.toDomainModel()).toList(),
+      orderDiscounts: orderDiscounts?.map((e) => e.toDomainModel()).toList()
     );
   }
 }

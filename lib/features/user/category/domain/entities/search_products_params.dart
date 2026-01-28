@@ -6,6 +6,7 @@ class SearchProductsParams extends BaseDomainModel {
   final num? maxPrice;
   final int? catId;
   final int? brandId;
+  final int? sellerId;
   final List<String?>? color;
   final List<String>? attributes;
   final int currentPage;
@@ -22,7 +23,9 @@ class SearchProductsParams extends BaseDomainModel {
       this.attributes,
       this.currentPage = 1,
       this.pageSize = 12,
-      this.refresh = true});
+      this.refresh = true,
+        this.sellerId,
+      });
 
   String paramsToQuery() {
     var url = "?paginate=$pageSize&page=$currentPage";
@@ -33,13 +36,19 @@ class SearchProductsParams extends BaseDomainModel {
       url = "$url&max_price=$maxPrice";
     }
     if(catId!=null){
-      url = "$url&category_id=$catId";
+      url = "$url?category_id=$catId";
     }
     if(brandId!=null){
       url = "$url&brand_id=$brandId";
     }
+    if(sellerId != null){
+      url="$url&seller_id=$sellerId";
+    }
     if(attributes!=null){
       url = "$url&selected_attribute_values[]=$attributes";
+    }
+    if(searchKey!=null && searchKey?.isNotEmpty == true){
+      url = "$url&keyword=$searchKey";
     }
     return url;
   }
@@ -51,7 +60,9 @@ class SearchProductsParams extends BaseDomainModel {
     if(maxPrice!=null && maxPrice!=0) "max_price": maxPrice,
         "category_id": catId,
     if(brandId!=null) "brand_id": brandId,
+    if(sellerId!=null) "seller_id":sellerId ,
       if(color!=null && color!=[])  "color": color,
        if(attributes!=null && attributes!=[]) "selected_attribute_values[]": attributes,
+       if(searchKey!=null && searchKey?.isNotEmpty == true) "keyword": searchKey,
       };
 }

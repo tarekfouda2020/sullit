@@ -6,8 +6,8 @@ class VipSubscribeDomainModel extends BaseDomainModel {
   final String duration;
   final String price;
   final int days;
-  final bool byInvite;
-  final String inviteLabel;
+  final bool? byInvite;
+  final String? inviteLabel;
   final int? expiredInDays;
   final String description;
   final String? startsAt;
@@ -25,8 +25,8 @@ class VipSubscribeDomainModel extends BaseDomainModel {
     required this.days,
     required this.description,
     required this.subscription,
-    required this.byInvite,
-    required this.inviteLabel,
+     this.byInvite,
+     this.inviteLabel,
     this.isSelected = false,
     this.startsAt,
     this.expiresAt,

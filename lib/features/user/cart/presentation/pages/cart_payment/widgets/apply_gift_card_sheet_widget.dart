@@ -9,7 +9,7 @@ class ApplyGiftCardSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
+        bottom: MediaQuery.viewInsetsOf(context).bottom,
       ),
       child: Container(
         padding: const EdgeInsets.only(top: 29, left: 20, right: 20, bottom: 20),
@@ -33,7 +33,7 @@ class ApplyGiftCardSheet extends StatelessWidget {
               Gaps.vGap12,
               const GiftCardAnnotationWidget(),
               Gaps.vGap17,
-              BlocBuilder < GenericBloc<Shipping?>,
+              BlocBuilder <GenericBloc<Shipping?>,
               GenericState<Shipping?>>(
                 bloc: controller.shippingBloc,
                 builder: (context, state) {

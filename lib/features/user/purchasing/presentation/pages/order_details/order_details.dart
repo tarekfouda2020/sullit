@@ -4,7 +4,8 @@ class OrderDetailsPage extends StatefulWidget {
   final bool isReturnedOrder;
   final Orders order;
 
-  const OrderDetailsPage({super.key, required this.isReturnedOrder, required this.order});
+  const OrderDetailsPage(
+      {super.key, required this.isReturnedOrder, required this.order});
 
   @override
   State<OrderDetailsPage> createState() => _OrderDetailsPageState();
@@ -28,13 +29,16 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
         bloc: controller.orderDetailsBloc,
         builder: (context, state) {
           return CustomRefreshIndicatorWidget(
-            onRefresh: () async => await controller.getOrderDetails(widget.order.id),
-            child: GenericListView(
+            onRefresh: () async =>
+                await controller.getOrderDetails(widget.order.id),
+            child: ListView(
               padding: Dimens.paddingHorizontal20PX,
+              controller: controller.scrollController,
               children: [
                 OrderInfoWidget(
                   isReturned: widget.isReturnedOrder,
                   order: state.data,
+                  controller: controller,
                 ),
                 Gaps.vGap12,
                 OrderDetailsSectionsTitleWidget(title: tr("products")),
@@ -48,22 +52,50 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 Gaps.vGap12,
                 OrderDetailsSectionsTitleWidget(title: tr("invoiceSummary")),
                 Gaps.vGap12,
-                OrderDetailsSummaryWidget(isReturned: widget.isReturnedOrder, order: state.data,controller: controller,),
+                OrderDetailsSummaryWidget(
+                  isReturned: widget.isReturnedOrder,
+                  order: state.data,
+                  controller: controller,
+                ),
                 Gaps.vGap40,
-                Visibility(
-                  visible: state.data!.showButtonPay && state.data!.orderPaymentType()!=OrderPaymentType.cash,
-                  child: DefaultButton(
-                    title: tr('completePayment'),
-                    onTap: () => controller.onPayOrder(context),
-                  ),
+                Row(
+                  spacing: 10,
+                  children: [
+                    Visibility(
+                      visible: state.data!.showButtonPay &&
+                          !state.data!.isPaymentCash,
+                      child: Expanded(
+                        child: DefaultButton(
+                          title: tr("pay"),
+                          onTap: () => controller.onPayOrder(context),
+                          margin: EdgeInsets.zero,
+                          height: Dimens.dp40,
+                          color: context.colors.green,
+                        ),
+                      ),
+                    ),
+                    Visibility(
+                      visible: state.data!.availableCancelOrder,
+                      child: Expanded(
+                        child: DefaultButton(
+                          title: tr('cancel'),
+                          onTap: () =>
+                              controller.cancelOrder(context, widget.order),
+                          margin: EdgeInsets.zero,
+                          color: context.colors.gray8,
+                          height: Dimens.dp40,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                Visibility(
-                  visible: state.data!.availableCancelOrder,
-                  child: DefaultButton(
-                    title: tr('cancel'),
-                    onTap: () => controller.cancelOrder(context,widget.order),
+                if (state.data!.isDelivered || state.data!.isCanceled)
+                  ReOrderButtonWidget(
+                    onPress: () => controller.reOrder(context, state.data!.id),
+                    bgColor: context.colors.primary,
+                    txtColor: context.colors.white,
+                    height: Dimens.dp50,
                   ),
-                ),
                 Gaps.vGap20,
               ],
             ),

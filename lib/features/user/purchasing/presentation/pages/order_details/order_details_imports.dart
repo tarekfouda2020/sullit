@@ -1,6 +1,3 @@
-
-
-
 import 'package:auto_route/auto_route.dart' show AutoRouter;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +6,9 @@ import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
+import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
@@ -24,15 +23,21 @@ import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_payment/w
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/loyalty_points/domain/models/loyalty_points_balance_domain_model.dart';
 import 'package:flutter_tdd/features/user/loyalty_points/domain/use_case/get_loyalty_points_balance.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/entities/change_order_payment_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/send_review_params.dart';
-import 'package:flutter_tdd/features/user/purchasing/domain/enum/order_payment_type.dart';
+
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/cancel_order.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/get_order_details.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/order_again.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/pay_order.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/send_review.dart';
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/widgets/order_details_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/payment_option.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/change_order_pay_method.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/get_payment_options.dart';
+import 'package:flutter_tdd/features/user/purchasing/presentation/pages/my_orders/widgets/purchased_orders_widgets_imports.dart';
 
 part 'order_details.dart';
 part 'order_details_controller.dart';

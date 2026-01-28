@@ -24,6 +24,8 @@ mixin _$OrderModel {
   String get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'order_type')
   String get orderType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'bag_count')
+  int get bagCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'available_return_order')
   bool get availableReturnOrder => throw _privateConstructorUsedError;
   @JsonKey(name: 'show_button_pay')
@@ -103,6 +105,8 @@ mixin _$OrderModel {
   @JsonKey(name: 'delivery_instructions')
   List<DeliveryInstruction> get deliveryInstructions =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_discounts')
+  List<OrderDiscount>? get orderDiscounts => throw _privateConstructorUsedError;
   @JsonKey(name: 'driver')
   OrderDriverModel? get driver => throw _privateConstructorUsedError;
 
@@ -122,6 +126,7 @@ abstract class $OrderModelCopyWith<$Res> {
       {int id,
       String code,
       @JsonKey(name: 'order_type') String orderType,
+      @JsonKey(name: 'bag_count') int bagCount,
       @JsonKey(name: 'available_return_order') bool availableReturnOrder,
       @JsonKey(name: 'show_button_pay') bool showButtonPay,
       String subtotal,
@@ -163,6 +168,7 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'driver_notes') String driverNotes,
       @JsonKey(name: 'delivery_instructions')
       List<DeliveryInstruction> deliveryInstructions,
+      @JsonKey(name: 'order_discounts') List<OrderDiscount>? orderDiscounts,
       @JsonKey(name: 'driver') OrderDriverModel? driver});
 
   $OrderDriverModelCopyWith<$Res>? get driver;
@@ -184,6 +190,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? id = null,
     Object? code = null,
     Object? orderType = null,
+    Object? bagCount = null,
     Object? availableReturnOrder = null,
     Object? showButtonPay = null,
     Object? subtotal = null,
@@ -224,6 +231,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? totalFeeAmount = null,
     Object? driverNotes = null,
     Object? deliveryInstructions = null,
+    Object? orderDiscounts = freezed,
     Object? driver = freezed,
   }) {
     return _then(_value.copyWith(
@@ -239,6 +247,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.orderType
           : orderType // ignore: cast_nullable_to_non_nullable
               as String,
+      bagCount: null == bagCount
+          ? _value.bagCount
+          : bagCount // ignore: cast_nullable_to_non_nullable
+              as int,
       availableReturnOrder: null == availableReturnOrder
           ? _value.availableReturnOrder
           : availableReturnOrder // ignore: cast_nullable_to_non_nullable
@@ -399,6 +411,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.deliveryInstructions
           : deliveryInstructions // ignore: cast_nullable_to_non_nullable
               as List<DeliveryInstruction>,
+      orderDiscounts: freezed == orderDiscounts
+          ? _value.orderDiscounts
+          : orderDiscounts // ignore: cast_nullable_to_non_nullable
+              as List<OrderDiscount>?,
       driver: freezed == driver
           ? _value.driver
           : driver // ignore: cast_nullable_to_non_nullable
@@ -431,6 +447,7 @@ abstract class _$$_OrderModelCopyWith<$Res>
       {int id,
       String code,
       @JsonKey(name: 'order_type') String orderType,
+      @JsonKey(name: 'bag_count') int bagCount,
       @JsonKey(name: 'available_return_order') bool availableReturnOrder,
       @JsonKey(name: 'show_button_pay') bool showButtonPay,
       String subtotal,
@@ -472,6 +489,7 @@ abstract class _$$_OrderModelCopyWith<$Res>
       @JsonKey(name: 'driver_notes') String driverNotes,
       @JsonKey(name: 'delivery_instructions')
       List<DeliveryInstruction> deliveryInstructions,
+      @JsonKey(name: 'order_discounts') List<OrderDiscount>? orderDiscounts,
       @JsonKey(name: 'driver') OrderDriverModel? driver});
 
   @override
@@ -492,6 +510,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? id = null,
     Object? code = null,
     Object? orderType = null,
+    Object? bagCount = null,
     Object? availableReturnOrder = null,
     Object? showButtonPay = null,
     Object? subtotal = null,
@@ -532,6 +551,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? totalFeeAmount = null,
     Object? driverNotes = null,
     Object? deliveryInstructions = null,
+    Object? orderDiscounts = freezed,
     Object? driver = freezed,
   }) {
     return _then(_$_OrderModel(
@@ -547,6 +567,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.orderType
           : orderType // ignore: cast_nullable_to_non_nullable
               as String,
+      bagCount: null == bagCount
+          ? _value.bagCount
+          : bagCount // ignore: cast_nullable_to_non_nullable
+              as int,
       availableReturnOrder: null == availableReturnOrder
           ? _value.availableReturnOrder
           : availableReturnOrder // ignore: cast_nullable_to_non_nullable
@@ -707,6 +731,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value._deliveryInstructions
           : deliveryInstructions // ignore: cast_nullable_to_non_nullable
               as List<DeliveryInstruction>,
+      orderDiscounts: freezed == orderDiscounts
+          ? _value._orderDiscounts
+          : orderDiscounts // ignore: cast_nullable_to_non_nullable
+              as List<OrderDiscount>?,
       driver: freezed == driver
           ? _value.driver
           : driver // ignore: cast_nullable_to_non_nullable
@@ -723,6 +751,7 @@ class _$_OrderModel extends _OrderModel {
       {required this.id,
       required this.code,
       @JsonKey(name: 'order_type') required this.orderType,
+      @JsonKey(name: 'bag_count') required this.bagCount,
       @JsonKey(name: 'available_return_order')
       required this.availableReturnOrder,
       @JsonKey(name: 'show_button_pay') required this.showButtonPay,
@@ -769,9 +798,12 @@ class _$_OrderModel extends _OrderModel {
       @JsonKey(name: 'driver_notes') required this.driverNotes,
       @JsonKey(name: 'delivery_instructions')
       required final List<DeliveryInstruction> deliveryInstructions,
+      @JsonKey(name: 'order_discounts')
+      final List<OrderDiscount>? orderDiscounts,
       @JsonKey(name: 'driver') this.driver})
       : _orderDetails = orderDetails,
         _deliveryInstructions = deliveryInstructions,
+        _orderDiscounts = orderDiscounts,
         super._();
 
   factory _$_OrderModel.fromJson(Map<String, dynamic> json) =>
@@ -784,6 +816,9 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'order_type')
   final String orderType;
+  @override
+  @JsonKey(name: 'bag_count')
+  final int bagCount;
   @override
   @JsonKey(name: 'available_return_order')
   final bool availableReturnOrder;
@@ -914,13 +949,24 @@ class _$_OrderModel extends _OrderModel {
     return EqualUnmodifiableListView(_deliveryInstructions);
   }
 
+  final List<OrderDiscount>? _orderDiscounts;
+  @override
+  @JsonKey(name: 'order_discounts')
+  List<OrderDiscount>? get orderDiscounts {
+    final value = _orderDiscounts;
+    if (value == null) return null;
+    if (_orderDiscounts is EqualUnmodifiableListView) return _orderDiscounts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'driver')
   final OrderDriverModel? driver;
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, deliveryInstructions: $deliveryInstructions, driver: $driver)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver)';
   }
 
   @override
@@ -932,6 +978,8 @@ class _$_OrderModel extends _OrderModel {
             (identical(other.code, code) || other.code == code) &&
             (identical(other.orderType, orderType) ||
                 other.orderType == orderType) &&
+            (identical(other.bagCount, bagCount) ||
+                other.bagCount == bagCount) &&
             (identical(other.availableReturnOrder, availableReturnOrder) ||
                 other.availableReturnOrder == availableReturnOrder) &&
             (identical(other.showButtonPay, showButtonPay) ||
@@ -1008,6 +1056,8 @@ class _$_OrderModel extends _OrderModel {
                 other.driverNotes == driverNotes) &&
             const DeepCollectionEquality()
                 .equals(other._deliveryInstructions, _deliveryInstructions) &&
+            const DeepCollectionEquality()
+                .equals(other._orderDiscounts, _orderDiscounts) &&
             (identical(other.driver, driver) || other.driver == driver));
   }
 
@@ -1018,6 +1068,7 @@ class _$_OrderModel extends _OrderModel {
         id,
         code,
         orderType,
+        bagCount,
         availableReturnOrder,
         showButtonPay,
         subtotal,
@@ -1058,6 +1109,7 @@ class _$_OrderModel extends _OrderModel {
         totalFeeAmount,
         driverNotes,
         const DeepCollectionEquality().hash(_deliveryInstructions),
+        const DeepCollectionEquality().hash(_orderDiscounts),
         driver
       ]);
 
@@ -1080,6 +1132,7 @@ abstract class _OrderModel extends OrderModel {
       {required final int id,
       required final String code,
       @JsonKey(name: 'order_type') required final String orderType,
+      @JsonKey(name: 'bag_count') required final int bagCount,
       @JsonKey(name: 'available_return_order')
       required final bool availableReturnOrder,
       @JsonKey(name: 'show_button_pay') required final bool showButtonPay,
@@ -1130,6 +1183,8 @@ abstract class _OrderModel extends OrderModel {
       @JsonKey(name: 'driver_notes') required final String driverNotes,
       @JsonKey(name: 'delivery_instructions')
       required final List<DeliveryInstruction> deliveryInstructions,
+      @JsonKey(name: 'order_discounts')
+      final List<OrderDiscount>? orderDiscounts,
       @JsonKey(name: 'driver') final OrderDriverModel? driver}) = _$_OrderModel;
   const _OrderModel._() : super._();
 
@@ -1143,6 +1198,9 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'order_type')
   String get orderType;
+  @override
+  @JsonKey(name: 'bag_count')
+  int get bagCount;
   @override
   @JsonKey(name: 'available_return_order')
   bool get availableReturnOrder;
@@ -1260,6 +1318,9 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'delivery_instructions')
   List<DeliveryInstruction> get deliveryInstructions;
+  @override
+  @JsonKey(name: 'order_discounts')
+  List<OrderDiscount>? get orderDiscounts;
   @override
   @JsonKey(name: 'driver')
   OrderDriverModel? get driver;

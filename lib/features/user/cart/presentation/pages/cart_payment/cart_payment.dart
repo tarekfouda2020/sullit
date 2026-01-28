@@ -27,7 +27,17 @@ class _CartPaymentState extends State<CartPayment> {
       child: Scaffold(
         //resizeToAvoidBottomInset: false,
         backgroundColor: context.colors.customBackground,
-        appBar: DefaultAppBar(title: tr("cart"), bgColor: context.colors.white),
+        appBar: DefaultAppBar(
+          title: tr("cart"),
+          bgColor: context.colors.white,
+          onBack: () {
+            final moved = getIt<CartNavigateHelper>()
+                .setStep(CartNavigateHelper.deliveryStepIndex, force: true);
+            if (!moved && context.router.canPop()) {
+              AutoRouter.of(context).pop();
+            }
+          },
+        ),
         body: BlocBuilder<GenericBloc<Shipping?>, GenericState<Shipping?>>(
           bloc: controller.shippingBloc,
           builder: (context, state) {
@@ -41,10 +51,12 @@ class _CartPaymentState extends State<CartPayment> {
                       padding: Dimens.paddingHorizontal15PX,
                       children: [
                         Gaps.vGap16,
-                        PaymentMethodWidget(controller: controller, shipping: state.data!),
+                        PaymentMethodWidget(
+                            controller: controller, shipping: state.data!),
                         Gaps.vGap12,
-                        CartDiscountWidget(controller: controller),
-                        Gaps.vGap20,
+                        if (!context.isShareHolder)
+                          CartDiscountWidget(controller: controller),
+                        if (!context.isShareHolder) Gaps.vGap20,
                         DeliveryInstructionsWidget(controller: controller),
                         Gaps.vGap12,
                         // DriverTipsWidget(controller: controller),
@@ -54,23 +66,36 @@ class _CartPaymentState extends State<CartPayment> {
                         InvoiceSummaryWidget(
                           controller: controller,
                           shippingSummary: state.data!.summary,
-                          giftCardTotal: state.data!.summary.appliedGiftCard != null? state.data!.summary.appliedGiftCard! : '',
-                          applyGiftCard: state.data!.summary.appliedGiftCard != null,
+                          giftCardTotal:
+                              state.data!.summary.appliedGiftCard != null
+                                  ? state.data!.summary.appliedGiftCard!
+                                  : '',
+                          applyGiftCard:
+                              state.data!.summary.appliedGiftCard != null,
                         ),
                         Gaps.vGap20,
                         AllowReplacementWidget(controller: controller),
                         Gaps.vGap13,
                         BuildConditions(controller: controller),
                         Gaps.vGap20,
-                        BezatPointsSummaryWidget(
-                          redeemedPoints: (state.data!.summary.loyaltyPoints ?? 0).toDouble(),
-                         redeemedValue: double.parse((state.data!.summary.loyaltyPointsValue ?? "0.0")),
-                         earnedPoints: state.data!.summary.expectedLoyaltyPoints.toDouble(),
-                       ),
-                        Gaps.vGap25,
+                        if (!context.isShareHolder)
+                          BezatPointsSummaryWidget(
+                            redeemedPoints:
+                                (state.data!.summary.loyaltyPoints ?? 0)
+                                    .toDouble(),
+                            redeemedValue: double.parse(
+                                (state.data!.summary.loyaltyPointsValue ??
+                                    "0.0")),
+                            earnedPoints: state
+                                .data!.summary.expectedLoyaltyPoints
+                                .toDouble(),
+                          ),
+                        if (!context.isShareHolder) Gaps.vGap25,
                         Center(
-                          child: Text(tr("thank_you_for_order"),
-                          style: AppTextStyle.s18_w500(color: context.colors.black),
+                          child: Text(
+                            tr("thank_you_for_order"),
+                            style: AppTextStyle.s18_w500(
+                                color: context.colors.black),
                           ),
                         ),
                         Gaps.vGap25,

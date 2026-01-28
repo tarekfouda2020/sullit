@@ -86,6 +86,8 @@ mixin _$ProductModel {
   bool get isFresh => throw _privateConstructorUsedError;
   @JsonKey(name: 'has_special_loyalty_points')
   bool get hasSpecialLoyaltyPoints => throw _privateConstructorUsedError;
+  @JsonKey(name: 'has_shareholder_discount')
+  bool get hasShareholderDiscount => throw _privateConstructorUsedError;
   @JsonKey(name: 'loyalty_points')
   int get loyaltyPoints => throw _privateConstructorUsedError;
 
@@ -142,6 +144,7 @@ abstract class $ProductModelCopyWith<$Res> {
       @JsonKey(name: 'brand_name') String brandName,
       @JsonKey(name: 'is_fresh') bool isFresh,
       @JsonKey(name: 'has_special_loyalty_points') bool hasSpecialLoyaltyPoints,
+      @JsonKey(name: 'has_shareholder_discount') bool hasShareholderDiscount,
       @JsonKey(name: 'loyalty_points') int loyaltyPoints});
 
   $VariantModelCopyWith<$Res>? get variant;
@@ -203,6 +206,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? brandName = null,
     Object? isFresh = null,
     Object? hasSpecialLoyaltyPoints = null,
+    Object? hasShareholderDiscount = null,
     Object? loyaltyPoints = null,
   }) {
     return _then(_value.copyWith(
@@ -366,6 +370,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.hasSpecialLoyaltyPoints
           : hasSpecialLoyaltyPoints // ignore: cast_nullable_to_non_nullable
               as bool,
+      hasShareholderDiscount: null == hasShareholderDiscount
+          ? _value.hasShareholderDiscount
+          : hasShareholderDiscount // ignore: cast_nullable_to_non_nullable
+              as bool,
       loyaltyPoints: null == loyaltyPoints
           ? _value.loyaltyPoints
           : loyaltyPoints // ignore: cast_nullable_to_non_nullable
@@ -471,6 +479,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
       @JsonKey(name: 'brand_name') String brandName,
       @JsonKey(name: 'is_fresh') bool isFresh,
       @JsonKey(name: 'has_special_loyalty_points') bool hasSpecialLoyaltyPoints,
+      @JsonKey(name: 'has_shareholder_discount') bool hasShareholderDiscount,
       @JsonKey(name: 'loyalty_points') int loyaltyPoints});
 
   @override
@@ -534,6 +543,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? brandName = null,
     Object? isFresh = null,
     Object? hasSpecialLoyaltyPoints = null,
+    Object? hasShareholderDiscount = null,
     Object? loyaltyPoints = null,
   }) {
     return _then(_$_ProductModel(
@@ -697,6 +707,10 @@ class __$$_ProductModelCopyWithImpl<$Res>
           ? _value.hasSpecialLoyaltyPoints
           : hasSpecialLoyaltyPoints // ignore: cast_nullable_to_non_nullable
               as bool,
+      hasShareholderDiscount: null == hasShareholderDiscount
+          ? _value.hasShareholderDiscount
+          : hasShareholderDiscount // ignore: cast_nullable_to_non_nullable
+              as bool,
       loyaltyPoints: null == loyaltyPoints
           ? _value.loyaltyPoints
           : loyaltyPoints // ignore: cast_nullable_to_non_nullable
@@ -753,6 +767,8 @@ class _$_ProductModel extends _ProductModel {
       @JsonKey(name: 'is_fresh') required this.isFresh,
       @JsonKey(name: 'has_special_loyalty_points')
       required this.hasSpecialLoyaltyPoints,
+      @JsonKey(name: 'has_shareholder_discount')
+      required this.hasShareholderDiscount,
       @JsonKey(name: 'loyalty_points') required this.loyaltyPoints})
       : _images = images,
         _choiceOptions = choiceOptions,
@@ -904,12 +920,15 @@ class _$_ProductModel extends _ProductModel {
   @JsonKey(name: 'has_special_loyalty_points')
   final bool hasSpecialLoyaltyPoints;
   @override
+  @JsonKey(name: 'has_shareholder_discount')
+  final bool hasShareholderDiscount;
+  @override
   @JsonKey(name: 'loyalty_points')
   final int loyaltyPoints;
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, name: $name, unit: $unit, thumbnailImage: $thumbnailImage, images: $images, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, choiceOptions: $choiceOptions, colors: $colors, minQty: $minQty, currencySymbol: $currencySymbol, variant: $variant, tags: $tags, countReviews: $countReviews, soldByType: $soldByType, soldByName: $soldByName, hasVipOffer: $hasVipOffer, shop: $shop, reviews: $reviews, isResale: $isResale, resellerId: $resellerId, category: $category, strokedPrice: $strokedPrice, isDigital: $isDigital, isWishlist: $isWishlist, mainPrice: $mainPrice, rating: $rating, sales: $sales, sellerId: $sellerId, brand: $brand, description: $description, videoProvider: $videoProvider, videoLink: $videoLink, categoryName: $categoryName, brandName: $brandName, isFresh: $isFresh, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, loyaltyPoints: $loyaltyPoints)';
+    return 'ProductModel(id: $id, name: $name, unit: $unit, thumbnailImage: $thumbnailImage, images: $images, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, choiceOptions: $choiceOptions, colors: $colors, minQty: $minQty, currencySymbol: $currencySymbol, variant: $variant, tags: $tags, countReviews: $countReviews, soldByType: $soldByType, soldByName: $soldByName, hasVipOffer: $hasVipOffer, shop: $shop, reviews: $reviews, isResale: $isResale, resellerId: $resellerId, category: $category, strokedPrice: $strokedPrice, isDigital: $isDigital, isWishlist: $isWishlist, mainPrice: $mainPrice, rating: $rating, sales: $sales, sellerId: $sellerId, brand: $brand, description: $description, videoProvider: $videoProvider, videoLink: $videoLink, categoryName: $categoryName, brandName: $brandName, isFresh: $isFresh, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, hasShareholderDiscount: $hasShareholderDiscount, loyaltyPoints: $loyaltyPoints)';
   }
 
   @override
@@ -984,6 +1003,8 @@ class _$_ProductModel extends _ProductModel {
             (identical(
                     other.hasSpecialLoyaltyPoints, hasSpecialLoyaltyPoints) ||
                 other.hasSpecialLoyaltyPoints == hasSpecialLoyaltyPoints) &&
+            (identical(other.hasShareholderDiscount, hasShareholderDiscount) ||
+                other.hasShareholderDiscount == hasShareholderDiscount) &&
             (identical(other.loyaltyPoints, loyaltyPoints) ||
                 other.loyaltyPoints == loyaltyPoints));
   }
@@ -1032,6 +1053,7 @@ class _$_ProductModel extends _ProductModel {
         brandName,
         isFresh,
         hasSpecialLoyaltyPoints,
+        hasShareholderDiscount,
         loyaltyPoints
       ]);
 
@@ -1094,6 +1116,8 @@ abstract class _ProductModel extends ProductModel {
       @JsonKey(name: 'is_fresh') required final bool isFresh,
       @JsonKey(name: 'has_special_loyalty_points')
       required final bool hasSpecialLoyaltyPoints,
+      @JsonKey(name: 'has_shareholder_discount')
+      required final bool hasShareholderDiscount,
       @JsonKey(name: 'loyalty_points')
       required final int loyaltyPoints}) = _$_ProductModel;
   const _ProductModel._() : super._();
@@ -1206,6 +1230,9 @@ abstract class _ProductModel extends ProductModel {
   @override
   @JsonKey(name: 'has_special_loyalty_points')
   bool get hasSpecialLoyaltyPoints;
+  @override
+  @JsonKey(name: 'has_shareholder_discount')
+  bool get hasShareholderDiscount;
   @override
   @JsonKey(name: 'loyalty_points')
   int get loyaltyPoints;

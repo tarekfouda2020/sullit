@@ -1,5 +1,10 @@
 part of'brands_imports.dart';
 class BrandsController {
+
+
+  final TextEditingController brandsSearchCtr = TextEditingController();
+
+
   final PagingController<int, BrandDomainModel> pagingController = PagingController(firstPageKey: 1);
   int pageSize = 10;
 
@@ -26,11 +31,19 @@ class BrandsController {
     }
   }
 
+
+  void onPressSearchBrand(BuildContext context){
+    // FocusScope.of(context).unfocus();
+    pagingController.refresh();
+    getBrands(1);
+  }
+
   BrandsParams _brandsParams(int paginate, bool refresh, int page ) {
     return BrandsParams(
       paginate: paginate,
       refresh: refresh,
       page: page,
+      keyword: brandsSearchCtr.text
     );
   }
 }

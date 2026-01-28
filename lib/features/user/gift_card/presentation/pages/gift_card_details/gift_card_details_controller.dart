@@ -85,12 +85,13 @@ class GiftCardDetailsController {
   }
 
   Future<void> byGiftCard(BuildContext context) async {
-    PayTypeEnum payMethod = payMethodsCubit.state.data.firstWhere((element) => element.isSelected).getPaymentType();
+    var selectedPayMethod = payMethodsCubit.state.data.firstWhere((element) => element.isSelected);
+    PayTypeEnum payMethod = selectedPayMethod.getPaymentType();
      if(payMethod == PayTypeEnum.wallet && isWalletBalanceEnough() == false ){
        CustomToast.showSimpleToast(msg: tr('walletBalanceEmpty'), type: ToastType.error);
       return ;
      }
-    var params = _subscribeParams(payMethod.name);
+    var params = _subscribeParams(selectedPayMethod.paymentTypeKey);
     Navigator.pop(context);
     getIt<LoadingHelper>().showLoadingDialog();
     await PayGiftCardSubscribe().call(params).then((value) async {
@@ -99,13 +100,14 @@ class GiftCardDetailsController {
         if (value.transactionUrl != null) {
           getIt<LoadingHelper>().dismissDialog();
          var result = await AutoRouter.of(ctx).push(PaymentRoute(transactionUrl: value.transactionUrl!));
-          // if(result == true){
-          //   isMyGiftCard = true;
-          //   await  myGiftCardDetails();
-          // }
+          if(result == true){
+            CustomToast.showSnakeBar(tr("giftCardSubscribed"),type: ToastType.success);
+            AutoRouter.of(ctx).pop(true);
+          }
+        }else{
+          CustomToast.showSnakeBar(tr("giftCardSubscribed"),type: ToastType.success);
+          AutoRouter.of(ctx).pop(true);
         }
-        CustomToast.showSnakeBar(tr("giftCardSubscribed"),type: ToastType.success);
-        AutoRouter.of(ctx).pop(true);
       }
       getIt<LoadingHelper>().dismissDialog();
     });

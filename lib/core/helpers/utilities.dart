@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
@@ -20,6 +21,7 @@ import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'custom_toast.dart';
 
@@ -33,6 +35,22 @@ class Utilities {
       },
     );
   }
+
+
+  void openAppInStore(){
+    String url = "";
+    if(Platform.isAndroid){
+      String id = AppConstants.instance.appId;
+      url = "https://play.google.com/store/apps/details?id=$id";
+    }
+    if(Platform.isIOS){
+      String id = AppConstants.instance.iosAppId;
+      url = "https://apps.apple.com/us/app/id$id";
+    }
+    var uri = Uri.parse(url);
+    launchUrl(uri);
+  }
+
 
 
 
@@ -245,18 +263,7 @@ class Utilities {
     return storagePath;
   }
 
-  Future<String> getAddress(LatLng latLng, BuildContext context,{bool showCountryName = true}) async {
-    GeoCode geoCode = GeoCode(apiKey: "554640628686038400400x13810");
-    try {
-      var address = await geoCode.reverseGeocoding(
-          latitude: latLng.latitude, longitude: latLng.longitude);
-      var data =
-          "${showCountryName ? address.countryName ?? "" : ""}  ${address.city ?? ""}  ${address.region ?? ""}  ${address.streetAddress ?? ""}";
-      return data;
-    } catch (e) {
-      return "";
-    }
-  }
+
 
   double? extractFormattedNumberToDouble(String text) {
     final RegExp numberRegex = RegExp(r'[\d,]+(\.\d+)?');

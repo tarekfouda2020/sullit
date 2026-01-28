@@ -23,6 +23,7 @@ import 'package:flutter_tdd/features/user/cart/domain/entities/apply_gift_card_p
 import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
+import 'package:flutter_tdd/features/user/cart/domain/entities/store_cart_shipping_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/update_cart_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/add_product_to_cart_params.dart';
 import 'package:injectable/injectable.dart';
@@ -59,14 +60,14 @@ class ImplCartDataSources extends CartDataSources {
   }
 
   @override
-  Future<Either<Failure, ShippingModel>> cartStoreShipping(List<Map> params) async  {
-    var param = json.encode(params);
+  Future<Either<Failure, ShippingModel>> cartStoreShipping(StoreCartShippingParams params) async  {
+    var param = json.encode(params.params);
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.cartStoreShipping,
       requestBody: {"shipping_info": param},
       requestMethod: RequestMethod.post,
       responseType: ResType.model,
-      showLoader: true,
+      showLoader: params.showLoader,
       toJsonFunc: (data) => ShippingModel.fromJson(data),
       responseKey: (data)=> data["data"],
       errorFunc: (data)=> data["msg"],
@@ -110,7 +111,7 @@ class ImplCartDataSources extends CartDataSources {
       url: ApiNames.storeProductToCart,
       requestMethod: RequestMethod.post,
       responseType: ResType.type,
-      showLoader: true,
+      showLoader: params.showLoader,
       requestBody: params.toJson(),
       responseKey: (data) => data["msg"],
     );
@@ -124,7 +125,6 @@ class ImplCartDataSources extends CartDataSources {
       requestBody: params.toJson(),
       requestMethod: RequestMethod.delete,
       responseType: ResType.type,
-      showLoader: true,
       responseKey: (data)=> data["key"] == "success",
       errorFunc: (data)=> data["msg"],
     );

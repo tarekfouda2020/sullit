@@ -49,8 +49,8 @@ class VipOffersWidget extends StatelessWidget {
                   ),
                   Gaps.vGap5,
                   Text(
-                    subTitle ?? tr("vipOffers"),
-                    style: AppTextStyle.s22_w700(color: context.colors.white),
+                    subTitle ?? tr("vipMemberships"),
+                    style: AppTextStyle.s20_w700(color: context.colors.white),
                   ),
                 ],
               ),

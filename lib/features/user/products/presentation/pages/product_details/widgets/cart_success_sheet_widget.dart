@@ -1,7 +1,7 @@
 part of 'product_details_widgets_imports.dart';
 
 class CartSuccessSheetWidget extends StatefulWidget {
-  final ProductDetailsController controller;
+  final CartSheetController controller;
 
   const CartSuccessSheetWidget({super.key, required this.controller});
 
@@ -79,26 +79,53 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                         margin: EdgeInsets.zero,
                       ),
                       Gaps.vGap14,
-                      DefaultButton(
-                        title: "",
-                        onTap: () => AutoRouter.of(context).popAndPush(const CartRoute()),
-                        margin: EdgeInsets.zero,
-                        customLabel: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("${tr('checkout')} : ",
-                            style: AppTextStyle.s18_w700(color: context.colors.white),
-                            ),
-                            Text(state.data.subTotal ?? "",
+                      Opacity(
+                        opacity: state.data.minimumStatus==true
+                            ?1
+                            :0.35,
+                        child: DefaultButton(
+                          title: "",
+                          onTap: state.data.minimumStatus==true
+                              ? () => checkOut(state.data)
+                              : (){},
+                          margin: EdgeInsets.zero,
+                          customLabel: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("${tr('checkout')} : ",
                               style: AppTextStyle.s18_w700(color: context.colors.white),
-                            ).withDirhamSymbol(
-                              symbolStyle: AppTextStyle.s20_w300(color: context.colors.white)
-                            ),
-                          ],
+                              ),
+                              Text(state.data.subTotal ?? "",
+                                style: AppTextStyle.s18_w700(color: context.colors.white),
+                              ).withDirhamSymbol(
+                                symbolStyle: AppTextStyle.s20_w300(color: context.colors.white)
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       Gaps.vGap10,
+                      // Container(
+                      //   padding: const EdgeInsets.all(5),
+                      //   decoration: BoxDecoration(
+                      //     color: context.colors.lightPrimary
+                      //   ),
+                      //   child: Row(
+                      //     children: [
+                      //       SvgPicture.asset(Res.redWarningIcon,width: 10,height: 10,),
+                      //       Gaps.hGap5,
+                      //       DirhamPrice(
+                      //           amount: widget.controller.minAmountRemain,
+                      //         color: context.colors.white,
+                      //       ),
+                      //       Gaps.hGap5,
+                      //       Text("remain to reach minimum order",
+                      //         style: AppTextStyle.s15_w500(color: context.colors.white),
+                      //       )
+                      //     ],
+                      //   ),
+                      // )
                     ],
                   );
                 } else {
@@ -116,13 +143,13 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                       Gaps.vGap16,
                       BuildShimmerItem(
                         height: 48,
-                        width: MediaQuery.of(context).size.width,
+                        width: MediaQuery.sizeOf(context).width,
                         borderRadius: Dimens.borderRadius30PX,
                       ),
                       Gaps.vGap14,
                       BuildShimmerItem(
                         height: 48,
-                        width: MediaQuery.of(context).size.width,
+                        width: MediaQuery.sizeOf(context).width,
                         borderRadius: Dimens.borderRadius30PX,
                       ),
                       Gaps.vGap10,
@@ -136,4 +163,15 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
       ),
     );
   }
+
+
+  void checkOut(CartDomainModel model){
+    if(model.minimumStatus == false){
+      CustomToast.showSimpleToast(msg: model.minimumAmountMsg!);
+      return ;
+    }
+    AutoRouter.of(context).popAndPush( CartRoute(initialIndex: CartNavigateHelper.shippingStepIndex));
+  }
+
+
 }

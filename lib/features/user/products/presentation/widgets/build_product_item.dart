@@ -5,21 +5,26 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/helpers/custom_toast.dart';
+import 'package:flutter_tdd/core/helpers/debounce_helper.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
-import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/core/widgets/loading_icon_widget.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/widgets/category_details_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
+import 'package:flutter_tdd/features/user/products/presentation/widgets/product_counter_widget.dart';
+import 'package:flutter_tdd/features/user/products/presentation/widgets/product_image_widget.dart';
 import 'package:flutter_tdd/res.dart';
 
 import 'product_card_points_widget.dart';
@@ -30,6 +35,8 @@ class BuildProductItem extends StatefulWidget {
   final VoidCallback? onCompareRefresh;
   final VoidCallback? afterAddToCart;
   final VoidCallback? onRefresh;
+  final Future<void> Function()? onPressDecrease;
+  final Future<void> Function()? onPressDelete;
   final bool? showVipDiscount;
   final EdgeInsetsDirectional? margin;
 
@@ -41,6 +48,8 @@ class BuildProductItem extends StatefulWidget {
     this.showVipDiscount,
     this.afterAddToCart,
     this.onRefresh,
+    this.onPressDecrease,
+    this.onPressDelete,
     this.margin,
   });
 
@@ -49,7 +58,23 @@ class BuildProductItem extends StatefulWidget {
 }
 
 class _BuildProductItemState extends State<BuildProductItem> {
-  final GenericBloc<bool> showLoading = GenericBloc<bool>(false);
+  final GenericBloc<bool> showFavLoading = GenericBloc<bool>(false);
+
+  final GenericBloc<bool> enableAddToCartLoading = GenericBloc<bool>(false);
+
+  @override
+  void initState() {
+    super.initState();
+    _checkIfItemInCart();
+  }
+
+  @override
+  void didUpdateWidget(covariant BuildProductItem oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.productModel.id == oldWidget.productModel.id) {
+      _checkIfItemInCart();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,22 +88,15 @@ class _BuildProductItemState extends State<BuildProductItem> {
             color: context.colors.greyWhite,
           )),
       child: InkWell(
-        onTap: () async  => await _routeToDetails(context),
+        onTap: () async => await _routeToDetails(context),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: Stack(
                 children: [
-                  CachedImage(
-                    ///TODO border color from top will be changed later
-                    fit: BoxFit.fill,
-                    haveRadius: true,
-                    bgColor: const Color(0xffededed),
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(Dimens.dp12),
-                    ),
-                    url: widget.productModel.thumbnailImage!,
+                  ProductImageWidget(
+                    url: widget.productModel.thumbnailImage ?? "",
                   ),
                   Visibility(
                     visible:widget.productModel.showSpecialPoints ,
@@ -94,21 +112,20 @@ class _BuildProductItemState extends State<BuildProductItem> {
                   PositionedDirectional(
                     end: 3,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-                          bloc: showLoading,
+                          bloc: showFavLoading,
                           builder: (context, state) {
                             return Visibility(
                               visible: state.data,
                               replacement: BuildIconItem(
-                                icon: widget.productModel.isWishlist! ? Res.favIcon : Res.emptyFavIcon,
+                                icon: widget.productModel.isWishlist!
+                                    ? Res.favIcon
+                                    : Res.emptyFavIcon,
                                 changeBgColor: false,
-                                onTap: () => ProductsHelper().toggleFavourite(
-                                  id: widget.productModel.id!,
-                                  context: context,
-                                  loadingBloc: showLoading,
-                                  onRefresh: widget.onFavRefresh,
-                                ),
+                                inActiveColor: context.colors.customBackground,
+                                onTap: () => _buildToggleFavourite(context),
                                 checkValue: widget.productModel.isWishlist,
                               ),
                               child: const LoadingIconWidget(),
@@ -123,6 +140,61 @@ class _BuildProductItemState extends State<BuildProductItem> {
                         // ),
                       ],
                     ),
+                  ),
+                  BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+                    bloc: enableAddToCartLoading,
+                    builder: (context, state) {
+                      return PositionedDirectional(
+                        end: 3,
+                        bottom: 0,
+                        start:
+                            widget.productModel.addedQtyToCart! > 0 ? 0 : null,
+                        child: GestureDetector(
+                          // onTap: () => getIt<CartHelper>().addToCartDialog(
+                          //   context,
+                          //   widget.productModel,
+                          //   afterAddToCart: widget.afterAddToCart,
+                          // ),
+                          onTap: state.data
+                              ? () {}
+                              : () async => await _addToCart(context),
+                          child: Opacity(
+                            opacity: state.data == false ? 1 : 0.5,
+                            child: Visibility(
+                              visible: widget.productModel.addedQtyToCart! > 0,
+                              replacement: Visibility(
+                                visible: state.data == false,
+                                replacement: const LoadingIconWidget(),
+                                child: Container(
+                                  height: 25,
+                                  width: 25,
+                                  margin: Dimens.paddingAll5PX,
+                                  padding: Dimens.paddingAll5PX,
+                                  decoration: BoxDecoration(
+                                    color: context.colors.customBackground,
+                                    borderRadius:
+                                        BorderRadius.circular(Dimens.dp4),
+                                  ),
+                                  child: SvgPicture.asset(
+                                    Res.addProductToCart,
+                                    width: 14,
+                                    height: 14,
+                                    colorFilter: ColorFilter.mode(
+                                        context.colors.black, BlendMode.srcIn),
+                                  ),
+                                ),
+                              ),
+                              child: ProductCounterWidget(
+                                product: widget.productModel,
+                                onPressAdd: () async =>
+                                    await _addToCart(context),
+                                onPressDecrease: () => _onPressReduce(),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   )
                 ],
               ),
@@ -133,15 +205,8 @@ class _BuildProductItemState extends State<BuildProductItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.productModel.categoryName!,
-                    style: AppTextStyle.s12_w300(
-                      color: context.colors.textColor,
-                    ).copyWith(overflow: TextOverflow.ellipsis, height: 0),
-                  ),
-                  Gaps.vGap3,
-                  Text(
                     widget.productModel.name!,
-                    maxLines: 1,
+                    maxLines: 2,
                     style: AppTextStyle.s14_w600(
                       color: context.colors.black,
                     ).copyWith(overflow: TextOverflow.ellipsis, height: 0),
@@ -176,15 +241,20 @@ class _BuildProductItemState extends State<BuildProductItem> {
                             Row(
                               children: [
                                 DirhamPrice(
-                                  amount: widget.productModel.variant?.calculablePrice ?? "0.0",
+                                  amount: widget.productModel.variant
+                                          ?.calculablePrice ??
+                                      "0.0",
                                 ),
-                                if(widget.productModel.unit!=null)
-                                Flexible(
-                                  child: Text(" / ${widget.productModel.unit}",
-                                  style: AppTextStyle.s16_w400(color: context.colors.textColor),
-                                      overflow: TextOverflow.ellipsis
-                                  ),
-                                )
+                                if (widget.productModel.unit != null &&
+                                    widget.productModel.unit?.isNotEmpty ==
+                                        true)
+                                  Flexible(
+                                    child: Text(
+                                        " / ${widget.productModel.unit}",
+                                        style: AppTextStyle.s16_w400(
+                                            color: context.colors.textColor),
+                                        overflow: TextOverflow.ellipsis),
+                                  )
                               ],
                             ),
                             Gaps.vGap3,
@@ -193,53 +263,37 @@ class _BuildProductItemState extends State<BuildProductItem> {
                               child: Row(
                                 children: [
                                   DirhamPrice(
-                                    amount: widget.productModel.priceHighLow ?? "0.0",
+                                    amount: widget.productModel.priceHighLow ??
+                                        "0.0",
                                     showMinus: true,
                                     currencyOffset: 1,
                                     color: context.colors.textColor,
                                     textStyle: TextStyle(
                                       overflow: TextOverflow.ellipsis,
-                                      decoration:  TextDecoration.lineThrough,
+                                      decoration: TextDecoration.lineThrough,
                                       decorationColor: context.colors.textColor,
                                       decorationThickness: 1.2,
                                     ),
                                   ),
-                                  if(widget.productModel.unit!=null)
+                                  if (widget.productModel.unit != null)
                                     Flexible(
-                                      child: Text(" / ${widget.productModel.unit}",
-                                        style: AppTextStyle.s16_w400(color: context.colors.textColor).copyWith(
-                                          decoration:  TextDecoration.lineThrough,
-                                          decorationColor: context.colors.textColor,
-                                          overflow: TextOverflow.ellipsis
-                                        ),
+                                      child: Text(
+                                        " / ${widget.productModel.unit}",
+                                        style: AppTextStyle.s16_w400(
+                                                color: context.colors.textColor)
+                                            .copyWith(
+                                                decoration:
+                                                    TextDecoration.lineThrough,
+                                                decorationColor:
+                                                    context.colors.textColor,
+                                                overflow:
+                                                    TextOverflow.ellipsis),
                                       ),
                                     )
                                 ],
                               ),
                             ),
                           ],
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () => getIt<CartHelper>().addToCartDialog(
-                          context,
-                          widget.productModel,
-                          afterAddToCart: widget.afterAddToCart,
-                        ),
-                        child: Container(
-                          height: 25,
-                          width: 25,
-                          padding: Dimens.paddingAll5PX,
-                          decoration: BoxDecoration(
-                            color: context.colors.customBackground,
-                            borderRadius: BorderRadius.circular(Dimens.dp4),
-                          ),
-                          child: SvgPicture.asset(
-                            Res.shopCart,
-                            width: 14,
-                            height: 14,
-                            colorFilter: ColorFilter.mode(context.colors.black, BlendMode.srcIn),
-                          ),
                         ),
                       ),
                     ],
@@ -269,6 +323,109 @@ class _BuildProductItemState extends State<BuildProductItem> {
     );
   }
 
+  Future<void> _buildToggleFavourite(BuildContext context) async {
+    ProductsHelper().toggleFavourite(
+      id: widget.productModel.id!,
+      context: context,
+      loadingBloc: showFavLoading,
+      price: widget.productModel.priceHighLow,
+      onRefresh: widget.onFavRefresh,
+    );
+  }
+
+  Future<void> _onPressReduce() async {
+    final String productKey = widget.productModel.id.toString();
+    if (widget.productModel.addedQtyToCart == widget.productModel.minQty) {
+      await _deleteItemFromCart();
+    } else {
+      widget.productModel.addedQtyToCart =
+          widget.productModel.addedQtyToCart! - 1;
+      enableAddToCartLoading.onUpdateData(false);
+      if (widget.productModel.addedQtyToCart == widget.productModel.minQty) {
+        KeyedDebounceHelper.instance.cancel(productKey);
+        await _deleteItemFromCart();
+        return;
+      }
+      KeyedDebounceHelper.instance.start(
+        key: productKey,
+        value: widget.productModel.addedQtyToCart.toString(),
+        milliseconds: AppConstants.instance.debounceTimeInBackGround,
+        onSearch: (val) {
+          _reduceQntFromCart(widget.productModel.addedQtyToCart!);
+        },
+      );
+    }
+  }
+
+  Future<void> _reduceQntFromCart(int qnt) async {
+    var result = await getIt<ProductsHelper>()
+        .reduceProductQntInCart(context, widget.productModel, qnt);
+    if (result == true) {
+      if (widget.onPressDecrease != null) {
+        await widget.onPressDecrease?.call();
+      }
+    }
+  }
+
+  Future<void> _deleteItemFromCart() async {
+    enableAddToCartLoading.onUpdateData(true);
+    var deleteResult = await getIt<ProductsHelper>()
+        .deleteProductInCartFromProductsList(context, widget.productModel);
+    if (deleteResult) {
+      widget.productModel.addedQtyToCart = 0;
+      if (widget.onPressDelete != null) {
+        await widget.onPressDelete?.call();
+      }
+    }
+    enableAddToCartLoading.onUpdateData(false);
+  }
+
+  Future<void> _addToCart(BuildContext context) async {
+    var currentStockQnt = widget.productModel.variant?.currentStock ?? 0;
+    if ((currentStockQnt) == 0 ||
+        currentStockQnt == widget.productModel.addedQtyToCart) {
+      CustomToast.showSimpleToast(msg: tr("outOfStock"), type: ToastType.error);
+      return;
+    }
+    if (widget.productModel.addedQtyToCart == null ||
+        widget.productModel.addedQtyToCart == 0) {
+      enableAddToCartLoading.onUpdateData(true);
+      await getIt<ProductsHelper>().addProductToCart(
+          context, widget.productModel,
+          afterAddToCart: () => _afterAddToCart());
+      enableAddToCartLoading.onUpdateData(false);
+    } else {
+      int qnt = widget.productModel.addedQtyToCart! + 1;
+      widget.productModel.addedQtyToCart = qnt;
+      enableAddToCartLoading.onUpdateData(false);
+      KeyedDebounceHelper.instance.start(
+        key: widget.productModel.id.toString(),
+        value: qnt.toString(),
+        milliseconds: AppConstants.instance.debounceTimeInBackGround,
+        onSearch: (val) => getIt<ProductsHelper>()
+            .increaseProductAddedQntInCart(context, widget.productModel, qnt),
+      );
+    }
+  }
+
+  void _afterAddToCart() {
+    widget.productModel.addedQtyToCart =
+        widget.productModel.addedQtyToCart! + 1;
+    widget.afterAddToCart?.call();
+  }
+
+  void _checkIfItemInCart() {
+    final List<CartItem>? cartProducts =
+        getIt<CartHelper>().cartItemsBloc.state.data.items;
+    final Set<int>? cartProductsIds =
+        cartProducts?.map((e) => e.productId).toSet();
+    if (cartProductsIds?.contains(widget.productModel.id) == true) {
+      CartItem? cartProduct = cartProducts?.firstWhere(
+          (element) => element.productId == widget.productModel.id);
+      widget.productModel.addedQtyToCart = cartProduct?.quantity;
+    }
+  }
+
   Future<void> _routeToDetails(BuildContext context) async {
     await AutoRouter.of(context).push(
       ProductDetailsRoute(
@@ -277,8 +434,6 @@ class _BuildProductItemState extends State<BuildProductItem> {
         isResale: widget.productModel.isResale!,
       ),
     );
-    // Only call onRefresh to fetch fresh data from API
-    // Don't call onFavRefresh as it toggles local state without checking actual API state
     widget.onRefresh?.call();
   }
 

@@ -13,6 +13,7 @@ class SplashController {
       GlobalState.instance.set("token", user.token);
       context.read<UserCubit>().onUpdateUserData(user);
       await Future.delayed(const Duration(seconds: 1));
+      FacebookEventsHelper.instance.addUserDataEvent(user);
       AutoRouter.of(context).push(HomeRoute(index: 0));
     } else {
       context.read<DeviceCubit>().updateUserAuth(false);

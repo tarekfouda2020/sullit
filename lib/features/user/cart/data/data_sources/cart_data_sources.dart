@@ -15,13 +15,14 @@ import 'package:flutter_tdd/features/user/cart/domain/entities/apply_gift_card_p
 import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
+import 'package:flutter_tdd/features/user/cart/domain/entities/store_cart_shipping_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/update_cart_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/add_product_to_cart_params.dart';
 
 abstract class CartDataSources {
  Future<Either<Failure, CartModel>> getCartItems (CartParams params);
  Future<Either<Failure, bool>> addCartAddress (AddCartAddressParams param);
- Future<Either<Failure, ShippingModel>> cartStoreShipping (List<Map> params);
+ Future<Either<Failure, ShippingModel>> cartStoreShipping (StoreCartShippingParams params);
  Future<Either<Failure, CouponResponseModel>> applyCoupon (String param);
  Future<Either<Failure, OrderSummaryModel>> createOrder (CreateOrderParams params);
  Future<Either<Failure, OrderSummaryModel>> getCombinedOrder (int param);

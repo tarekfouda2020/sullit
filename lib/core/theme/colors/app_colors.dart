@@ -121,6 +121,8 @@ abstract class AppColors {
 
   Color get mainGreen;
 
+  Color get harvest;
+
   Color get lightPink2;
 
   Color get shadowPink;

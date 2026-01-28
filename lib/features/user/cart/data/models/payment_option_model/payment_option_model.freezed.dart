@@ -26,6 +26,7 @@ mixin _$PaymentOptionModel {
   String get paymentTypeKey => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: "offline_payment_id")
   int get offlinePaymentId => throw _privateConstructorUsedError;
   String get details => throw _privateConstructorUsedError;
@@ -47,6 +48,7 @@ abstract class $PaymentOptionModelCopyWith<$Res> {
       @JsonKey(name: "payment_type_key") String paymentTypeKey,
       String image,
       String title,
+      String? name,
       @JsonKey(name: "offline_payment_id") int offlinePaymentId,
       String details});
 }
@@ -68,6 +70,7 @@ class _$PaymentOptionModelCopyWithImpl<$Res, $Val extends PaymentOptionModel>
     Object? paymentTypeKey = null,
     Object? image = null,
     Object? title = null,
+    Object? name = freezed,
     Object? offlinePaymentId = null,
     Object? details = null,
   }) {
@@ -88,6 +91,10 @@ class _$PaymentOptionModelCopyWithImpl<$Res, $Val extends PaymentOptionModel>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
       offlinePaymentId: null == offlinePaymentId
           ? _value.offlinePaymentId
           : offlinePaymentId // ignore: cast_nullable_to_non_nullable
@@ -113,6 +120,7 @@ abstract class _$$_PaymentOptionModelCopyWith<$Res>
       @JsonKey(name: "payment_type_key") String paymentTypeKey,
       String image,
       String title,
+      String? name,
       @JsonKey(name: "offline_payment_id") int offlinePaymentId,
       String details});
 }
@@ -132,6 +140,7 @@ class __$$_PaymentOptionModelCopyWithImpl<$Res>
     Object? paymentTypeKey = null,
     Object? image = null,
     Object? title = null,
+    Object? name = freezed,
     Object? offlinePaymentId = null,
     Object? details = null,
   }) {
@@ -152,6 +161,10 @@ class __$$_PaymentOptionModelCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
       offlinePaymentId: null == offlinePaymentId
           ? _value.offlinePaymentId
           : offlinePaymentId // ignore: cast_nullable_to_non_nullable
@@ -173,6 +186,7 @@ class _$_PaymentOptionModel extends _PaymentOptionModel {
       @JsonKey(name: "payment_type_key") required this.paymentTypeKey,
       required this.image,
       required this.title,
+      this.name,
       @JsonKey(name: "offline_payment_id") required this.offlinePaymentId,
       required this.details})
       : super._();
@@ -191,6 +205,8 @@ class _$_PaymentOptionModel extends _PaymentOptionModel {
   @override
   final String title;
   @override
+  final String? name;
+  @override
   @JsonKey(name: "offline_payment_id")
   final int offlinePaymentId;
   @override
@@ -198,7 +214,7 @@ class _$_PaymentOptionModel extends _PaymentOptionModel {
 
   @override
   String toString() {
-    return 'PaymentOptionModel(paymentType: $paymentType, paymentTypeKey: $paymentTypeKey, image: $image, title: $title, offlinePaymentId: $offlinePaymentId, details: $details)';
+    return 'PaymentOptionModel(paymentType: $paymentType, paymentTypeKey: $paymentTypeKey, image: $image, title: $title, name: $name, offlinePaymentId: $offlinePaymentId, details: $details)';
   }
 
   @override
@@ -212,6 +228,7 @@ class _$_PaymentOptionModel extends _PaymentOptionModel {
                 other.paymentTypeKey == paymentTypeKey) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.offlinePaymentId, offlinePaymentId) ||
                 other.offlinePaymentId == offlinePaymentId) &&
             (identical(other.details, details) || other.details == details));
@@ -220,7 +237,7 @@ class _$_PaymentOptionModel extends _PaymentOptionModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, paymentType, paymentTypeKey,
-      image, title, offlinePaymentId, details);
+      image, title, name, offlinePaymentId, details);
 
   @JsonKey(ignore: true)
   @override
@@ -243,6 +260,7 @@ abstract class _PaymentOptionModel extends PaymentOptionModel {
       @JsonKey(name: "payment_type_key") required final String paymentTypeKey,
       required final String image,
       required final String title,
+      final String? name,
       @JsonKey(name: "offline_payment_id") required final int offlinePaymentId,
       required final String details}) = _$_PaymentOptionModel;
   const _PaymentOptionModel._() : super._();
@@ -260,6 +278,8 @@ abstract class _PaymentOptionModel extends PaymentOptionModel {
   String get image;
   @override
   String get title;
+  @override
+  String? get name;
   @override
   @JsonKey(name: "offline_payment_id")
   int get offlinePaymentId;

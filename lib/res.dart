@@ -9,7 +9,7 @@ class Res {
   static const String ar = "assets/lang/ar.json";
   static const String arrow = "assets/images/arrow.svg";
   static const String blog = "assets/images/blog.png";
-  static const String emptyCart = "assets/images/emptyCart.png";
+  static const String emptyCart = "assets/images/empty_cart_state.png";
   static const String en = "assets/lang/en.json";
   static const String facebook = "assets/images/facebook.svg";
   static const String logo = "assets/images/logo.png";
@@ -60,6 +60,10 @@ class Res {
   static const String search = "assets/images/search.svg";
   static const String compass = "assets/images/compass.svg";
   static const String shopCart = "assets/images/shop_cart_icon.svg";
+  static const String addProductToCart = "assets/images/add_product_to_cart_icon.svg";
+  static const String warningIcon = "assets/images/warning_icon.svg";
+  static const String plusIcon = "assets/images/plus_icon.svg";
+  static const String minusIcon = "assets/images/minus_icon.svg";
   static const String searchIcon = "assets/images/search_icon.svg";
   static const String qrScanIcon = "assets/images/scan_qr_icon.svg";
   static const String truckIcon = "assets/images/truck_icon.svg";
@@ -108,6 +112,11 @@ class Res {
   static const String newSplashImage = "assets/images/new_splash_image.png";
   static const String newAuthLogo = "assets/images/new_auth_logo.png";
   static const String pointsPromoIcon = "assets/images/points_promo.svg";
+  static const String crownHeadIcon = "assets/images/crown_head_icon.svg";
+  static const String crownVipMark = "assets/images/crown_vip_mark.svg";
+  static const String accountGoldIcon = "assets/images/account_icon.svg";
+  static const String crownIcon = "assets/images/crown_icon.svg";
+  static const String shareHolderImage = "assets/images/shareholder.png";
 
   static const String billOffIcon = "assets/images/no_alarm.svg";
   static const String doorIcon = "assets/images/door_icon.svg";
@@ -118,6 +127,10 @@ class Res {
   static const String scaffBg2 = "assets/images/scaffBg2.svg";
   static const String whats = "assets/images/whats.png";
   static const String vouchers = "assets/images/vouchers.svg";
+
+  static const String addToCartGif = "assets/images/add_cart.gif";
+
+
 
 // ---------------------------Fonts-------------------------------------
   static const String notoSans = "assets/fonts/NotoSans.ttf";

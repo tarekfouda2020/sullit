@@ -16,13 +16,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     controller.initBottomNavigation(this, widget.index);
-    controller.getCartItems();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    controller.getCartItems();
+    controller.getCartItems(context);
+    controller.getOffersData(context);
   }
 
   @override
@@ -37,7 +32,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           child: Scaffold(
             key: controller.scaffoldKey,
             extendBody: true,
-            drawer: BuildDrawer(controller: controller),
+            // drawer: BuildDrawer(controller: controller),
             body: TabBarView(
               controller: controller.tabController,
               physics: const NeverScrollableScrollPhysics(),

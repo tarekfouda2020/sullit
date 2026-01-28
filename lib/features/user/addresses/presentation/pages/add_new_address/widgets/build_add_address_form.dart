@@ -66,9 +66,8 @@ class BuildAddAddressForm extends StatelessWidget {
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.number,
                 action: TextInputAction.done,
-                validate: (value) =>
-                    ((state.data?.callingCode ?? "") + (value ?? ""))
-                        .validatePhone(),
+                validate: (value) =>value?.isValidUAEPhone(value),
+                onSubmit: () => controller.addNewAddress(context),
                 // validate: (value) => value?.validatePhone(),
                 hint: tr("phoneNumber"),
                 margin: Dimens.paddingVertical10PX,
@@ -84,49 +83,49 @@ class BuildAddAddressForm extends StatelessWidget {
   }
 
 
-  Widget _buildPrefixIcon(BuildContext context, GenericState<package.Country?> state) {
-    return GestureDetector(
-      onTap: () => controller.showCountryCode(context),
-      child: Visibility(
-        visible: state.data != null,
-        replacement: Padding(
-          padding: const EdgeInsetsDirectional.only(start: 23,top: 16,end: 17),
-          child: Text(
-            tr("selectCountry"),
-            style: AppTextStyle.s14_w400(color: context.colors.black),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsetsDirectional.only(start: 23),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if(state.data?.flag != null)
-              Image.asset(
-                state.data!.flag,
-                width: 25,
-                height: 25,
-                package: "country_calling_code_picker",
-              ),
-              Gaps.hGap5,
-              Text(
-                state.data?.callingCode ?? "",
-                style: AppTextStyle.s14_w400(color: context.colors.black),
-              ),
-              if(state.data?.callingCode != null)
-              Gaps.hGap5,
-              if(state.data?.callingCode != null)
-              Icon(
-                Icons.keyboard_arrow_down_rounded,
-                color: context.colors.black,
-              ),
-              Gaps.hGap17,
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget _buildPrefixIcon(BuildContext context, GenericState<package.Country?> state) {
+  //   return GestureDetector(
+  //     onTap: () => controller.showCountryCode(context),
+  //     child: Visibility(
+  //       visible: state.data != null,
+  //       replacement: Padding(
+  //         padding: const EdgeInsetsDirectional.only(start: 23,top: 16,end: 17),
+  //         child: Text(
+  //           tr("selectCountry"),
+  //           style: AppTextStyle.s14_w400(color: context.colors.black),
+  //         ),
+  //       ),
+  //       child: Padding(
+  //         padding: const EdgeInsetsDirectional.only(start: 23),
+  //         child: Row(
+  //           mainAxisSize: MainAxisSize.min,
+  //           children: [
+  //             if(state.data?.flag != null)
+  //             Image.asset(
+  //               state.data!.flag,
+  //               width: 25,
+  //               height: 25,
+  //               package: "country_calling_code_picker",
+  //             ),
+  //             Gaps.hGap5,
+  //             Text(
+  //               state.data?.callingCode ?? "",
+  //               style: AppTextStyle.s14_w400(color: context.colors.black),
+  //             ),
+  //             if(state.data?.callingCode != null)
+  //             Gaps.hGap5,
+  //             if(state.data?.callingCode != null)
+  //             Icon(
+  //               Icons.keyboard_arrow_down_rounded,
+  //               color: context.colors.black,
+  //             ),
+  //             Gaps.hGap17,
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
 
 }

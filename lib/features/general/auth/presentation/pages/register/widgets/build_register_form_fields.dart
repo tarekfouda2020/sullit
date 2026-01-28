@@ -28,7 +28,6 @@ class BuildRegisterFormFields extends StatelessWidget {
             validate: (value) => value?.validateName(),
             margin:
             const EdgeInsets.only(bottom: Dimens.dp12, top: Dimens.dp8),
-            radius: Dimens.borderRadius40PX,
           ),
           BuildInputLabel(label: tr('email')),
           GenericTextField(
@@ -44,7 +43,6 @@ class BuildRegisterFormFields extends StatelessWidget {
             hint: tr('enterYourEmailHint'),
             action: TextInputAction.next,
             validate: (value) => value?.validateEmail(),
-            radius: Dimens.borderRadius40PX,
           ),
           BuildInputLabel(label: tr('password')),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(

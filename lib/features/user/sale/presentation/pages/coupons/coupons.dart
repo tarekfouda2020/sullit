@@ -4,7 +4,8 @@ class Coupons extends StatefulWidget {
   final HomeController homeController;
   final int index;
 
-  const Coupons({Key? key, required this.homeController, required this.index}) : super(key: key);
+  const Coupons({Key? key, required this.homeController, required this.index})
+      : super(key: key);
 
   @override
   _CouponsState createState() => _CouponsState();
@@ -18,20 +19,8 @@ class _CouponsState extends State<Coupons> with TickerProviderStateMixin {
     super.initState();
     controller = CouponsController();
     controller.homeController = widget.homeController;
-    controller.initBottomNavigation(this, widget.index);
+    controller.initBottomNavigation(this, widget.index, context);
   }
-
-  // @override
-  // void didUpdateWidget(covariant Coupons oldWidget) {
-  //   super.didUpdateWidget(oldWidget);
-  //   print("==========>>>>>> index inside didUpdateWidget widget.index ${widget.index}<<<<<<<<========");
-  //   print("==========>>>>>> index inside didUpdateWidget oldWidget.index ${oldWidget.index}<<<<<<<<========");
-  //   if (widget.index != oldWidget.index) {
-  //     print("==========>>>>>> index inside didUpdateWidget changed ${widget.index}<<<<<<<<========");
-  //     // Update the tab controller to the new index
-  //     controller.tabController.animateTo(widget.index);
-  //   }
-  // }
 
   @override
   void dispose() {
@@ -39,25 +28,40 @@ class _CouponsState extends State<Coupons> with TickerProviderStateMixin {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colors.customBackground,
+    return controller.pages(context).isNotEmpty
+        ? Scaffold(
+      backgroundColor: controller.pages(context).isNotEmpty
+          ? context.colors.customBackground
+          : context.colors.white,
       // appBar: BuildHomeAppBar(homeController: widget.homeController),
       appBar: DefaultAppBar(
         title: tr("offers"),
         showBack: false,
-        bgColor: context.colors.white, size: 40,
+        bgColor: context.colors.white,
+        size: 40,
       ),
       body: Column(
         children: [
           BuildTabsView(controller: controller),
-          Flexible(
-            child: TabBarView(
-              controller: controller.tabController,
-              physics: const NeverScrollableScrollPhysics(),
-              children: controller.pages(),
+          Visibility(
+            visible: controller.pages(context).isNotEmpty,
+            replacement: const Expanded(
+              child: Column(
+                children: [
+                  Spacer(flex: 3,),
+                  BuildEmptyDataView(),
+                  Spacer(flex: 4,),
+                ],
+              ),
+            ) ,
+            child: Flexible(
+              child: TabBarView(
+                controller: controller.tabController,
+                physics: const NeverScrollableScrollPhysics(),
+                children: controller.pages(context),
+              ),
             ),
           )
         ],
@@ -81,6 +85,19 @@ class _CouponsState extends State<Coupons> with TickerProviderStateMixin {
       //     ),
       //   ),
       // ),
+    )
+        : Visibility(
+      visible: !context.isShareHolder,
+        replacement: Scaffold(
+          appBar: DefaultAppBar(
+            title: tr("offers"),
+            showBack: false,
+            bgColor: context.colors.white,
+            size: 40,
+          ),
+          body: const BuildEmptyDataView(),
+        ),
+        child: const MembershipSubscribe(showAppBar: false)
     );
   }
 }

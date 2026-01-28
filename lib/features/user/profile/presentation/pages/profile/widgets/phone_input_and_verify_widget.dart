@@ -28,7 +28,7 @@ class PhoneInputAndVerify extends StatelessWidget {
                     action: TextInputAction.done,
                     // contentPadding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                     // contentPadding: const EdgeInsetsDirectional.only(start: 32,end: 0,top:16,bottom: 16 ),
-                    validate: (value) => ((state.data?.callingCode ?? "") + (value ?? "")).validatePhoneOrNull(),
+                    validate: (value) => value?.isValidUAEPhone(value),
                     hint: tr("phone"),
                     margin: Dimens.marginTop5,
                     // prefixIcon: _buildPrefixIcon(context, state),
@@ -38,37 +38,37 @@ class PhoneInputAndVerify extends StatelessWidget {
               },
               ),
             ),
-            Gaps.hGap5,
-            BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-              bloc: controller.verifyPhoneCubit,
-              builder: (context, state) {
-                return Visibility(
-                  visible: user?.fullPhone != "",
-                  child: Visibility(
-                    visible: !state.data,
-                    child: Expanded(
-                      child: InkWell(
-                        onTap: () => controller.onActivePhone(context),
-                        child: Container(
-                          padding: Dimens.paddingVertical15PX,
-                          decoration: BoxDecoration(
-                            borderRadius: Dimens.borderRadius30PX,
-                            color: context.colors.primary,
-                          ),
-                          child: Text(
-                            tr('verifyPhone'),
-                            textAlign: TextAlign.center,
-                            style: AppTextStyle.s12_w500(
-                              color: context.colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
+            // Gaps.hGap5,
+            // BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+            //   bloc: controller.verifyPhoneCubit,
+            //   builder: (context, state) {
+            //     return Visibility(
+            //       visible: user?.fullPhone != "",
+            //       child: Visibility(
+            //         visible: !state.data,
+            //         child: Expanded(
+            //           child: InkWell(
+            //             onTap: () => controller.onActivePhone(context),
+            //             child: Container(
+            //               padding: Dimens.paddingVertical15PX,
+            //               decoration: BoxDecoration(
+            //                 borderRadius: Dimens.borderRadius30PX,
+            //                 color: context.colors.primary,
+            //               ),
+            //               child: Text(
+            //                 tr('verifyPhone'),
+            //                 textAlign: TextAlign.center,
+            //                 style: AppTextStyle.s12_w500(
+            //                   color: context.colors.white,
+            //                 ),
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     );
+            //   },
+            // ),
           ],
         ),
       ],

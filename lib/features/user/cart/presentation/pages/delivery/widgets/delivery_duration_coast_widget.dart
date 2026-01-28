@@ -38,6 +38,7 @@ class DeliveryDurationCoastWidget extends StatelessWidget {
                   ),
                 ),
               ),
+              Gaps.hGap5,
               shipping.delivery?.isShippingFree == true
                   ?Text(
                   shipping.delivery?.shippingCost ?? "",

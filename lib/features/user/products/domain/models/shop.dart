@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
 
 class Shop extends BaseDomainModel {
    int? id;
@@ -18,14 +19,19 @@ class Shop extends BaseDomainModel {
    String? twitter;
    String? instagram;
    String? youtube;
+   int? sellerId;
    num? rating;
    bool?follow;
+   List<String>? sliders;
+   List<ShopCategory>? categories;
+    bool isSelect = false;
 
-  Shop({
+  Shop( {
     required this.id,
     required this.userId,
     required this.name,
      this.title,
+    this.sellerId,
      this.description,
     required this.logo,
     required this.packageInvalidAt,
@@ -39,6 +45,9 @@ class Shop extends BaseDomainModel {
     this.twitter,
     this.instagram,
     this.youtube,
+    this.sliders,
+    this.categories,
+    this.isSelect=false,
     required this.rating,
     required this.follow,
   });
@@ -46,6 +55,7 @@ class Shop extends BaseDomainModel {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['user_id'] = userId;
+    data['seller_id'] = sellerId;
     data['name'] = name;
     data['title'] = title;
     data['description'] = description;
@@ -62,12 +72,14 @@ class Shop extends BaseDomainModel {
     data['instagram'] = instagram;
     data['youtube'] = youtube;
     data['rating'] = rating;
+    data["sliders"]=sliders;
     data['follow']=follow;
     return data;
   }
   Shop.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['user_id'];
+    sellerId = json['seller_id'];
     name = json['name'];
     title = json['title'];
     description = json['description'];
@@ -84,6 +96,8 @@ class Shop extends BaseDomainModel {
     instagram = json['instagram'];
     youtube = json['youtube'];
     rating = json['rating'];
+    sliders=json["sliders"];
     follow=json['follow'];
   }
+   List<String> get shopCategoryNames => categories?.map((e) => e.name ?? '').toList() ?? [];
 }
