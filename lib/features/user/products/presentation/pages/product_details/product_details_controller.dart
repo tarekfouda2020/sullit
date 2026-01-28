@@ -445,6 +445,14 @@ class ProductDetailsController implements CartSheetController {
     remainingAmountBloc.onUpdateData(remain.toStringAsFixed(2));
   }
 
+
+  Future<void> routeToSellerPage(BuildContext context,Shop shopModel)async{
+    await AutoRouter.of(context).push(SellerProductsPageRoute(shopModel: shopModel));
+   _calculateRemainingAmount();
+  }
+
+
+
   @override
   String get minAmountRemain => remainingAmountBloc.state.data;
 }

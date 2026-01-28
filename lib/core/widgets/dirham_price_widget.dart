@@ -19,6 +19,7 @@ class DirhamPrice extends StatelessWidget {
   final TextStyle? textStyle;
   final TextStyle? currencyStyle;
   final TextDirection? textDirection;
+  final CrossAxisAlignment? crossAxisAlignment;
   final double? currencyOffset;
 
   const  DirhamPrice({
@@ -31,6 +32,7 @@ class DirhamPrice extends StatelessWidget {
     this.textStyle,
     this.currencyStyle,
     this.textDirection,
+    this.crossAxisAlignment,
     this.currencyOffset,
     this.showMinus = false,
     this.applySameStyle = true,
@@ -46,6 +48,7 @@ class DirhamPrice extends StatelessWidget {
     return Directionality(
       textDirection: textDirection ?? TextDirection.ltr,
       child: Row(
+        crossAxisAlignment: crossAxisAlignment?? CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
           DirhamCurrencySymbol(

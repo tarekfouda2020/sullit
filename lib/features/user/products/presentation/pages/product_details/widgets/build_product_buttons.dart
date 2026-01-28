@@ -9,13 +9,10 @@ class BuildProductButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool hasVariant = detailsModel.product.variant != null;
     return Visibility(
-      visible:
-          hasVariant ? detailsModel.product.variant!.currentStock! > 0 : false,
+      visible: hasVariant ? detailsModel.product.variant!.currentStock! > 0 : false,
       child: Padding(
-        padding: const EdgeInsetsDirectional.only(
-            top: 10, bottom: 18, start: 20, end: 45),
+        padding: const EdgeInsetsDirectional.only(top: 10, bottom: 18, start: 20, end: 45),
         child: SizedBox(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -58,8 +55,7 @@ class BuildProductButtons extends StatelessWidget {
                         bloc: controller.qtyCubit,
                         builder: (context, state) {
                           return DirhamPrice(
-                            amount:
-                                "${detailsModel.product.variant?.calculablePrice}",
+                            amount: "${detailsModel.product.variant?.calculablePrice}",
                             currencyOffset: -0.5,
                             currencyStyle: AppTextStyle.s18_w400(
                               color: context.colors.primary,
@@ -93,4 +89,8 @@ class BuildProductButtons extends StatelessWidget {
       ),
     );
   }
+
+
+  bool get hasVariant => detailsModel.product.variant != null;
+
 }
