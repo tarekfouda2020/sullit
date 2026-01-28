@@ -10,5 +10,8 @@ class AppConstants {
 
   String iosAppId = "6473451976";
 
+  /// Time in milliseconds
+  final int debounceTimeInBackGround =  300;
+  final int debounceTimeSearch =  500;
 
 }

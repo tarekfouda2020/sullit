@@ -57,7 +57,7 @@ class BuildHomeView extends StatelessWidget {
             NewArrivalOffersFormWidget(controller: controller),
             if(controller.homeCubit.state.data?.shop.isNotEmpty == true)
             Padding(
-              padding: const EdgeInsets.only(bottom: 16),
+              padding: const EdgeInsets.symmetric(vertical: 16),
               child: BuildHeaderTitle(
                 title: tr("sellers"),
                 controller: controller,

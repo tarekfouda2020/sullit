@@ -280,7 +280,7 @@ class ProductDetailsController implements CartSheetController {
     );
   }
 
-  void onIncreaseCartQnt(BuildContext context, CartItem cartItem, int newQty) async {
+  Future<bool> onIncreaseCartQnt(BuildContext context, CartItem cartItem, int newQty) async {
     final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
     if (success != null) {
       cartItem.quantity = newQty;
@@ -288,6 +288,7 @@ class ProductDetailsController implements CartSheetController {
       _updateCartCountFromCart(success);
       updateTheSameProduct(cartItem);
     }
+    return success!=null;
   }
 
   @override
@@ -297,8 +298,12 @@ class ProductDetailsController implements CartSheetController {
       qntCubit.onUpdateData(newQty);
       DebounceHelper.instance.startSearch(
           value: value,
-          onSearch: (val) {
-            onIncreaseCartQnt(context, cartItem, newQty);
+          milliseconds: AppConstants.instance.debounceTimeInBackGround,
+          onSearch: (val) async{
+          var result = await  onIncreaseCartQnt(context, cartItem, newQty);
+          if(result == false){
+            qntCubit.onUpdateData(cartItem.quantity);
+          }
           });
     } else {
       CustomToast.showSimpleToast(
@@ -307,17 +312,22 @@ class ProductDetailsController implements CartSheetController {
     }
   }
 
-  void onDecreaseCartQnt(BuildContext context, CartItem cartItem, int newQty) async {
+  Future<bool?> onDecreaseCartQnt(BuildContext context, CartItem cartItem, int newQty) async {
     if (newQty == 1) {
       deleteItemFromCart(context, cartItem);
-      return;
+      return null;
     }
     if (cartItem.quantity > 1) {
       final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
       if (success != null) {
         cartItem.quantity = newQty;
         cartItemsBloc.onUpdateData(success);
+        return true;
+      }else{
+        return false;
       }
+    }else{
+      return null;
     }
   }
 
@@ -328,8 +338,12 @@ class ProductDetailsController implements CartSheetController {
       qntCubit.onUpdateData(newQty);
       DebounceHelper.instance.startSearch(
           value: value,
-          onSearch: (val) {
-            onDecreaseCartQnt(context, cartItem, newQty);
+          milliseconds: AppConstants.instance.debounceTimeInBackGround,
+          onSearch: (val) async{
+           var result = await onDecreaseCartQnt(context, cartItem, newQty);
+           if(result == false){
+             qntCubit.onUpdateData(cartItem.quantity);
+           }
           });
     }else{
       deleteItemFromCart(context,cartItem);

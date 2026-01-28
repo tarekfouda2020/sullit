@@ -155,12 +155,71 @@ class ProductsHelper {
   /// Reduces product quantity in cart by 1.
   /// If current quantity is 1, deletes the item from cart.
   /// Returns true if operation was successful, false otherwise.
-  Future<bool> reduceProductQntInCart(
-    BuildContext context,
-    Product product,
-  {GenericBloc<bool>? loadingBloc}
-  ) async {
+  Future<bool> reduceProductQntInCart(BuildContext context, Product product, int newQnt, {GenericBloc<bool>? loadingBloc}) async {
+
+      var cartItem = _getSameProductInCart(product);
+      if(cartItem == null){
+        return false;
+      }
+
+    if (cartItem.quantity > 1) {
+      final success = await getIt<CartHelper>().updateCartItem(newQnt, cartItem.id);
+      loadingBloc?.onUpdateData(false);
+      if (success != null) {
+        getIt<CartHelper>().cartItemsBloc.onUpdateData(success);
+        getIt<CartHelper>().updateCartCountWithCart(context, success);
+        return true;
+      }else{
+        product.addedQtyToCart = cartItem.quantity;
+      }
+    }
+    return false;
+  }
+
+  Future<bool> deleteProductInCartFromProductsList(BuildContext context,Product product)async{
+    var cartItem = _getSameProductInCart(product);
+    if(cartItem == null){
+      return false;
+    }
+    getIt<LoadingHelper>().showLoadingDialog();
+    final deleted = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
+    getIt<LoadingHelper>().dismissDialog();
+    if (deleted) {
+      var updatedCart = getIt<CartHelper>().cartItemsBloc.state.data;
+      updatedCart.items?.remove(cartItem);
+      product.addedQtyToCart = 0;
+      getIt<CartHelper>().cartItemsBloc.onUpdateData(updatedCart);
+      getIt<CartHelper>().updateCartCountWithCart(context, updatedCart);
+      return true;
+    }else{
+      return false;
+    }
+
+  }
+
+
+  CartItem? _getSameProductInCart(Product product){
     var cartList = getIt<CartHelper>().cartItemsBloc.state.data.items;
+    if (cartList == null || cartList.isEmpty) {
+      return null;
+    }
+
+    var cartItems = cartList.where((element) => element.productId == product.id);
+    if (cartItems.isEmpty) {
+      return null;
+    }
+
+    var cartItem = cartItems.first;
+    return cartItem;
+  }
+
+  Future<bool> increaseProductAddedQntInCart(
+      BuildContext context,
+      Product product,
+      int qnt
+      ) async {
+    var cartCubit = getIt<CartHelper>().cartItemsBloc;
+    var cartList = cartCubit.state.data.items;
     if (cartList == null || cartList.isEmpty) {
       return false;
     }
@@ -170,36 +229,16 @@ class ProductsHelper {
       return false;
     }
 
-    var cartItem = cartItems.first;
+    CartItem cartItem = cartItems.first;
 
-
-    if(cartItem.quantity == product.minQty){
-      getIt<LoadingHelper>().showLoadingDialog();
-      final deleted = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
-      getIt<LoadingHelper>().dismissDialog();
-      if (deleted) {
-        var updatedCart = getIt<CartHelper>().cartItemsBloc.state.data;
-        updatedCart.items?.remove(cartItem);
-        product.addedQtyToCart = 0;
-        getIt<CartHelper>().cartItemsBloc.onUpdateData(updatedCart);
-        getIt<CartHelper>().updateCartCountWithCart(context, updatedCart);
-      }
-      return deleted;
+    var success = await getIt<CartHelper>().updateCartItem(qnt, cartItem.id);
+    if(success != null){
+      cartCubit.onUpdateData(success);
+      return true;
     }
-
-    if (cartItem.quantity > 1) {
-      loadingBloc?.onUpdateData(true);
-      final newQty = cartItem.quantity - 1;
-      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
-      loadingBloc?.onUpdateData(false);
-      if (success != null) {
-        cartItem.quantity = newQty;
-        product.addedQtyToCart = newQty;
-        getIt<CartHelper>().cartItemsBloc.onUpdateData(success);
-        getIt<CartHelper>().updateCartCountWithCart(context, success);
-        return true;
-      }
-    }
+    product.addedQtyToCart = cartItem.quantity;
     return false;
   }
+
+
 }

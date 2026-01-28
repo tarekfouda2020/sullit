@@ -5,9 +5,11 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
+import 'package:flutter_tdd/core/helpers/debounce_helper.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
@@ -91,7 +93,9 @@ class _BuildProductItemState extends State<BuildProductItem> {
             Expanded(
               child: Stack(
                 children: [
-                  ProductImageWidget(url: widget.productModel.thumbnailImage ?? "",),
+                  ProductImageWidget(
+                    url: widget.productModel.thumbnailImage ?? "",
+                  ),
                   Visibility(
                     visible: widget.productModel.hasDiscount!,
                     replacement: Visibility(
@@ -179,8 +183,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                                 product: widget.productModel,
                                 onPressAdd: () async =>
                                     await _addToCart(context),
-                                onPressDecrease: () async =>
-                                    await _onPressDescrease(),
+                                onPressDecrease: () => _onPressReduce(),
                               ),
                             ),
                           ),
@@ -316,13 +319,6 @@ class _BuildProductItemState extends State<BuildProductItem> {
     );
   }
 
-  String safeImageUrl(String? url) {
-    if (url == null || url.trim().isEmpty) return '';
-    print(
-        "=>>>>>>>> items new image url is ${Uri.encodeFull(url.trim())}<<<<<<<<<<<====");
-    return Uri.encodeFull(url.trim());
-  }
-
   Future<void> _buildToggleFavourite(BuildContext context) async {
     ProductsHelper().toggleFavourite(
       id: widget.productModel.id!,
@@ -333,19 +329,33 @@ class _BuildProductItemState extends State<BuildProductItem> {
     );
   }
 
-  Future<void> _onPressDescrease() async {
-    enableAddToCartLoading.onUpdateData(true);
+  Future<void> _onPressReduce() async {
+    final String productKey = widget.productModel.id.toString();
     if (widget.productModel.addedQtyToCart == widget.productModel.minQty) {
       await _deleteItemFromCart();
     } else {
-      await _reduceQntFromCart();
+      widget.productModel.addedQtyToCart =
+          widget.productModel.addedQtyToCart! - 1;
+      enableAddToCartLoading.onUpdateData(false);
+      if (widget.productModel.addedQtyToCart == widget.productModel.minQty) {
+        KeyedDebounceHelper.instance.cancel(productKey);
+        await _deleteItemFromCart();
+        return;
+      }
+      KeyedDebounceHelper.instance.start(
+        key: productKey,
+        value: widget.productModel.addedQtyToCart.toString(),
+        milliseconds: AppConstants.instance.debounceTimeInBackGround,
+        onSearch: (val) {
+          _reduceQntFromCart(widget.productModel.addedQtyToCart!);
+        },
+      );
     }
-    enableAddToCartLoading.onUpdateData(false);
   }
 
-  Future<void> _reduceQntFromCart() async {
+  Future<void> _reduceQntFromCart(int qnt) async {
     var result = await getIt<ProductsHelper>()
-        .reduceProductQntInCart(context, widget.productModel);
+        .reduceProductQntInCart(context, widget.productModel, qnt);
     if (result == true) {
       if (widget.onPressDecrease != null) {
         await widget.onPressDecrease?.call();
@@ -354,14 +364,16 @@ class _BuildProductItemState extends State<BuildProductItem> {
   }
 
   Future<void> _deleteItemFromCart() async {
+    enableAddToCartLoading.onUpdateData(true);
     var deleteResult = await getIt<ProductsHelper>()
-        .reduceProductQntInCart(context, widget.productModel);
+        .deleteProductInCartFromProductsList(context, widget.productModel);
     if (deleteResult) {
       widget.productModel.addedQtyToCart = 0;
       if (widget.onPressDelete != null) {
         await widget.onPressDelete?.call();
       }
     }
+    enableAddToCartLoading.onUpdateData(false);
   }
 
   Future<void> _addToCart(BuildContext context) async {
@@ -371,10 +383,25 @@ class _BuildProductItemState extends State<BuildProductItem> {
       CustomToast.showSimpleToast(msg: tr("outOfStock"), type: ToastType.error);
       return;
     }
-    enableAddToCartLoading.onUpdateData(true);
-    await getIt<ProductsHelper>().addProductToCart(context, widget.productModel,
-        afterAddToCart: () => _afterAddToCart());
-    enableAddToCartLoading.onUpdateData(false);
+    if (widget.productModel.addedQtyToCart == null ||
+        widget.productModel.addedQtyToCart == 0) {
+      enableAddToCartLoading.onUpdateData(true);
+      await getIt<ProductsHelper>().addProductToCart(
+          context, widget.productModel,
+          afterAddToCart: () => _afterAddToCart());
+      enableAddToCartLoading.onUpdateData(false);
+    } else {
+      int qnt = widget.productModel.addedQtyToCart! + 1;
+      widget.productModel.addedQtyToCart = qnt;
+      enableAddToCartLoading.onUpdateData(false);
+      KeyedDebounceHelper.instance.start(
+        key: widget.productModel.id.toString(),
+        value: qnt.toString(),
+        milliseconds: AppConstants.instance.debounceTimeInBackGround,
+        onSearch: (val) => getIt<ProductsHelper>()
+            .increaseProductAddedQntInCart(context, widget.productModel, qnt),
+      );
+    }
   }
 
   void _afterAddToCart() {

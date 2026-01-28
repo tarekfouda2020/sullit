@@ -66,6 +66,7 @@ class CartController {
       qntCubit.onUpdateData(newQty);
       DebounceHelper.instance.startSearch(
           value: value,
+          milliseconds: AppConstants.instance.debounceTimeInBackGround,
           onSearch: (val) async {
             var result = await onIncreaseCart(context, cartItem, newQty);
             // if(result==false){
@@ -105,6 +106,7 @@ class CartController {
       }
       DebounceHelper.instance.startSearch(
           value: value,
+          milliseconds: AppConstants.instance.debounceTimeInBackGround,
           onSearch: (val) async {
             var result = await onDecreaseCart(context, cartItem, newQty);
             if (!result) {

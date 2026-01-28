@@ -637,12 +637,13 @@ class CategoryDetailsController implements CartSheetController {
 
 
 
-  void onIncreaseCartQnt(BuildContext context, CartItem cartItem, newQty) async {
+  Future<bool> onIncreaseCartQnt(BuildContext context, CartItem cartItem, newQty) async {
     final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
     if (success != null) {
       cartItem.quantity = newQty;
       cartItemsBloc.onUpdateData(success);
     }
+    return success!=null;
   }
 
   @override
@@ -652,8 +653,12 @@ class CategoryDetailsController implements CartSheetController {
       qntCubit.onUpdateData(newQty);
       DebounceHelper.instance.startSearch(
           value: value,
-          onSearch: (val) {
-            onIncreaseCartQnt(context, cartItem, newQty);
+          milliseconds: 300,
+          onSearch: (val) async{
+           var result =  await onIncreaseCartQnt(context, cartItem, newQty);
+           if(result == false){
+             qntCubit.onUpdateData(cartItem.quantity);
+           }
           });
     } else {
       CustomToast.showSimpleToast(
@@ -662,10 +667,10 @@ class CategoryDetailsController implements CartSheetController {
     }
   }
 
-  void onDecreaseCartQnt(BuildContext context, CartItem cartItem, int newQty) async {
+  Future<bool?> onDecreaseCartQnt(BuildContext context, CartItem cartItem, int newQty) async {
     if (newQty == 1) {
       deleteItemFromCart(context, cartItem);
-      return;
+      return null;
     }
     if (cartItem.quantity > 1) {
       final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
@@ -673,6 +678,9 @@ class CategoryDetailsController implements CartSheetController {
         cartItem.quantity = newQty;
         cartItemsBloc.onUpdateData(success);
       }
+      return success != null;
+    }else{
+      return null;
     }
   }
 
@@ -683,8 +691,12 @@ class CategoryDetailsController implements CartSheetController {
       qntCubit.onUpdateData(newQty);
       DebounceHelper.instance.startSearch(
           value: value,
-          onSearch: (val) {
-            onDecreaseCartQnt(context, cartItem, newQty);
+          milliseconds: AppConstants.instance.debounceTimeInBackGround,
+          onSearch: (val) async{
+            var result = await onDecreaseCartQnt(context, cartItem, newQty);
+            if(result == false){
+              qntCubit.onUpdateData(cartItem.quantity);
+            }
           });
     }else{
       deleteItemFromCart(context,cartItem);

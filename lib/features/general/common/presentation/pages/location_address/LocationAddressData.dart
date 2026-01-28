@@ -175,6 +175,7 @@ class LocationAddressData {
     DebounceHelper.instance.startSearch(
       value: value,
       onSearch: (val) => getPlaces(),
+      milliseconds: AppConstants.instance.debounceTimeInBackGround
     );
   }
 
@@ -187,7 +188,10 @@ class LocationAddressData {
 
 
   void getDataAfterCameraMove(BuildContext context,LatLng location){
-    DebounceHelper.instance.startSearch(value: titleBloc.state.data, onSearch: (val) {
+    DebounceHelper.instance.startSearch(
+      value: titleBloc.state.data,
+        milliseconds: AppConstants.instance.debounceTimeInBackGround,
+      onSearch: (val) {
       onTapOnMap(context,location);
     },);
   }
