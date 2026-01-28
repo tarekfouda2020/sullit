@@ -417,7 +417,7 @@ class CategoryDetailsController implements CartSheetController {
         ? rangeCubit.state.data?.value.end
         : null;
     return SearchProductsParams(
-        sellerId: selectedSeller?.id,
+        sellerId: selectedSeller?.userId,
         catId: currentCatId,
         brandId: brandModel?.id,
         color: colors,
