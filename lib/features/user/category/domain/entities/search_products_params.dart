@@ -60,7 +60,7 @@ class SearchProductsParams extends BaseDomainModel {
     if(maxPrice!=null && maxPrice!=0) "max_price": maxPrice,
         "category_id": catId,
     if(brandId!=null) "brand_id": brandId,
-    if(sellerId!=null) "seller_Id":sellerId ,
+    if(sellerId!=null) "seller_id":sellerId ,
       if(color!=null && color!=[])  "color": color,
        if(attributes!=null && attributes!=[]) "selected_attribute_values[]": attributes,
        if(searchKey!=null && searchKey?.isNotEmpty == true) "keyword": searchKey,
