@@ -18,7 +18,7 @@ class BuildHomeView extends StatelessWidget {
         padding: Dimens.paddingVertical10PXHorizontal20PX,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: <Widget>[
             BuildHomeSwiper(slider: homeDomainModel.sliders),
             Gaps.vGap25,
             const AdvantagesWidget(),
@@ -28,6 +28,8 @@ class BuildHomeView extends StatelessWidget {
             // ),
             // Gaps.vGap12,
             // const TrackSellerOrderWidget(),
+            ////////////+++++++++++++++++++++
+            const BuildTopSellers(),
             BuildTopCategories(categories: homeDomainModel.categories, controller: controller),
             VipOffersFormWidget(controller: controller),
             Gaps.vGap16,
