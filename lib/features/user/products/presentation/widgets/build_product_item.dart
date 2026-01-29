@@ -99,16 +99,17 @@ class _BuildProductItemState extends State<BuildProductItem> {
                     url: widget.productModel.thumbnailImage ?? "",
                   ),
                   Visibility(
-                    visible:widget.productModel.showSpecialPoints ,
-                     replacement: Visibility(
-                       visible: widget.productModel.hasDiscount!,
-                       replacement: Visibility(
-                           visible: (widget.showVipDiscount ?? false) && widget.productModel.hasVipOffer!,
-                           child: _discountWidget(context)),
-                       child: _discountWidget(context),
-                     ),
-                      child: ProductCardPointsWidget(productModel: widget.productModel),
+                    // visible:widget.productModel.showSpecialPoints ,
+                    visible:false,
+                    replacement: Visibility(
+                      visible: widget.productModel.hasDiscount!,
+                      replacement: Visibility(
+                          visible: (widget.showVipDiscount ?? false) && widget.productModel.hasVipOffer!,
+                          child: _discountWidget(context)),
+                      child: _discountWidget(context),
                     ),
+                    child: ProductCardPointsWidget(productModel: widget.productModel),
+                  ),
                   PositionedDirectional(
                     end: 3,
                     child: Column(

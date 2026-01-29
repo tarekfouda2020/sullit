@@ -452,7 +452,22 @@ class ProductDetailsController implements CartSheetController {
   }
 
 
-
   @override
   String get minAmountRemain => remainingAmountBloc.state.data;
+
+
+  void showPointsPromoSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+      return PointsPromoSheetWidget(controller: this) ;
+    },);
+  }
+
+
+  void routeToSubscriptions(BuildContext context){
+    AutoRouter.of(context).push(MembershipSubscribeRoute());
+  }
+
+
 }
