@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_alice/alice.dart';
 import 'package:flutter_alice/core/alice_dio_interceptor.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
@@ -12,8 +10,6 @@ class HttpTrackingInterceptor {
 
   Alice? _alice;
   bool _isInitialized = false;
-  bool _isAliceOpened = false;
-
   void init() {
     if (!_isInitialized) {
       _alice = Alice(
