@@ -65,6 +65,7 @@ class MembershipSubscribeController {
       pagingController.appendPage(data, nextPageKey);
       isDataLoaded.onUpdateData(true);
     }
+    pagingController.itemList?.firstWhere((element) => currentSubscription?.price == element.price).isSelected = true;
   }
 
   Future<void> getWalletData({bool refresh = true}) async {
@@ -240,4 +241,21 @@ class MembershipSubscribeController {
       pageSize: pageSize,
     );
   }
+
+
+
+  void acceptTerms(bool value){
+    if(isCurrentSubscriptionSelected){
+      CustomToast.showSimpleToast(
+          msg: tr("selectMembership"), type: ToastType.info);
+      return;
+    }
+    termCubit.onUpdateData(value);
+  }
+
+
+  bool get isCurrentSubscriptionSelected => currentSubscription?.price == _selectedSubscription.price && currentSubscription?.isExpired == false;
+
+
+
 }

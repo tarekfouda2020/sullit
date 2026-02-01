@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 part of 'home_main_imports.dart';
 
 class HomeMainController {
@@ -37,15 +35,14 @@ class HomeMainController {
   }
 
   void scrollListener() {
-    if (scrollController.position.pixels ==
-        scrollController.position.maxScrollExtent) {
+    if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
       getProductSections();
     }
   }
 
-  void changeCouponsTab(int index){
-    homeController.index = index;
-    homeController.homeTabCubit.onUpdateData(index);
+  void changeCouponsTab(SaleTabType type, BuildContext context) {
+    int index = homeController.getSaleTabIndex(type, context.isShareHolder);
+    homeController.offersTabIndex = index;
   }
 
   void getHome(BuildContext context, {bool refresh = true}) async {
@@ -55,8 +52,7 @@ class HomeMainController {
   }
 
   Future<void> getProductSections() async {
-    if (sectionsCubit.state.data.length / 5 == currentPage - 1 ||
-        sectionsCubit.state.data.isEmpty) {
+    if (sectionsCubit.state.data.length / 5 == currentPage - 1 || sectionsCubit.state.data.isEmpty) {
       var result = await GetProductSections().call(currentPage);
       final isLastPage = result.length < pageSize;
       if (currentPage == 1) {
@@ -72,9 +68,9 @@ class HomeMainController {
     }
   }
 
-  void onChangeFav(Product item,BuildContext context) {
+  void onChangeFav(Product item, BuildContext context) {
     var isAuth = context.read<DeviceCubit>().state.model.auth;
-    if(isAuth){
+    if (isAuth) {
       _synchronizeFavoriteStatus(item);
     }
   }
@@ -83,7 +79,6 @@ class HomeMainController {
     var deal = homeCubit.state.data?.flashSales;
     AutoRouter.of(context).push(SaleDetailsRoute(dealId: deal!.id));
   }
-
 
   String getDigit(Duration duration, String unit, int index) {
     int value;
@@ -107,48 +102,49 @@ class HomeMainController {
     return value.toString().padLeft(2, '0')[index];
   }
 
-  String getCountDownSingleNumber(int number,int index){
+  String getCountDownSingleNumber(int number, int index) {
     return number.toString().padLeft(2, '0')[index];
   }
 
-
-
-  Future<void> getProductWithSkuAndRoute(BuildContext context,String sku)async{
+  Future<void> getProductWithSkuAndRoute(BuildContext context, String sku) async {
     getIt<LoadingHelper>().showLoadingDialog();
-    await  GetSkuProduct().call(sku).then((value) {
-      getIt<LoadingHelper>().dismissDialog();
-      if(value!=null){
-        AutoRouter.of(context).push(
-            ProductDetailsRoute(
-              isFav: value.product.isWishlist ?? false,
-              productId: value.product.id ?? 0,
-              isResale: value.product.isResale ?? false,
-            ));
-      }else{
-        CustomToast.showSnakeBar(
-          // "${tr('productScanned')} code: $barcode",
-          tr("productNotFound"),
-          type: ToastType.error,
-        );
-      }
-    },);
-  }
-
-
-  Future<void> scanProduct(BuildContext context)async{
-    String? barcode = await getIt<BarcodeService>().scanBarcode();
-    if(barcode!=null && barcode.isNotEmpty){
-          getProductWithSkuAndRoute(context,barcode);
+    await GetSkuProduct().call(sku).then(
+      (value) {
+        getIt<LoadingHelper>().dismissDialog();
+        if (value != null) {
+          AutoRouter.of(context).push(ProductDetailsRoute(
+            isFav: value.product.isWishlist ?? false,
+            productId: value.product.id ?? 0,
+            isResale: value.product.isResale ?? false,
+          ));
+        } else {
           CustomToast.showSnakeBar(
             // "${tr('productScanned')} code: $barcode",
-            tr('productScanned'),
-            type: ToastType.success,
+            tr("productNotFound"),
+            type: ToastType.error,
           );
+        }
+      },
+    );
+  }
+
+  Future<void> scanProduct(BuildContext context) async {
+    String? barcode = await getIt<BarcodeService>().scanBarcode();
+    if (barcode != null && barcode.isNotEmpty) {
+      getProductWithSkuAndRoute(context, barcode);
+      CustomToast.showSnakeBar(
+        // "${tr('productScanned')} code: $barcode",
+        tr('productScanned'),
+        type: ToastType.success,
+      );
     }
   }
 
-  Future<void> routeToSearchPage(BuildContext context) async{
-   await AutoRouter.of(context).push(
+  Future<void> routeToSearchPage(BuildContext context) async {
+    if (homeController.searchController.text.isEmpty) {
+      return;
+    }
+    await AutoRouter.of(context).push(
       SearchRoute(
         searchText: homeController.searchController.text,
       ),
@@ -158,8 +154,19 @@ class HomeMainController {
 
   // used to get vip offers
   void getVipOffers({bool refresh = true}) async {
-    var result = await GetVipOffers().call(refresh);
+    var params = _vipOffers(refresh);
+    var result = await GetVipOffers().call(params);
     vipOffersCubit.onUpdateData(result);
+  }
+
+  GenericPaginateParams _vipOffersParams(bool refresh) => GenericPaginateParams(
+        pageSize: pageSize,
+        refresh: refresh,
+        currentPage: 1,
+      );
+
+  OffersParamsWidget _vipOffers(bool refresh) {
+    return OffersParamsWidget(paginateParams: _vipOffersParams(refresh));
   }
 
   void _synchronizeFavoriteStatus(Product item) {
@@ -210,7 +217,13 @@ class HomeMainController {
 
   // used to get new arrival offers
   void getNewArrivalOffers({bool refresh = true}) async {
-    var result = await GetNewArrival().call(refresh);
+    var params = GenericPaginateParams(
+      pageSize: pageSize,
+      refresh: refresh,
+      currentPage: 1,
+    );
+    var widgetParams = OffersParamsWidget(paginateParams: params);
+    var result = await GetNewArrival().call(widgetParams);
     arrivalCubit.onUpdateData(result);
   }
 
@@ -219,11 +232,14 @@ class HomeMainController {
     _synchronizeFavoriteStatus(item);
   }
 
-  // --------------------------------------------------------
-
-  // used to get on sale offers
   void getOnSaleOffers({bool refresh = true}) async {
-    var result = await GetOnSale().call(refresh);
+    var params = GenericPaginateParams(
+      pageSize: pageSize,
+      refresh: refresh,
+      currentPage: 1,
+    );
+    var widgetParams = OffersParamsWidget(paginateParams: params);
+    var result = await GetOnSale().call(widgetParams);
     onSaleCubit.onUpdateData(result);
   }
 
@@ -236,7 +252,13 @@ class HomeMainController {
 
   // used to get best rated offers
   void getBestRatedOffers({bool refresh = true}) async {
-    var result = await GetBestRated().call(refresh);
+    var params = GenericPaginateParams(
+      pageSize: pageSize,
+      refresh: refresh,
+      currentPage: 1,
+    );
+    var widgetParams = OffersParamsWidget(paginateParams: params);
+    var result = await GetBestRated().call(widgetParams);
     bestRatedCubit.onUpdateData(result);
   }
 
@@ -253,22 +275,38 @@ class HomeMainController {
     brandsCubit.onUpdateData(data);
   }
 
-
-  List<Category> firstCategoriesSection(){
+  List<Category> firstCategoriesSection() {
     List<Category> cats = homeCubit.state.data!.categories;
-    if(cats.length >= 10){
-      return cats.take((cats.length/2).toInt()).toList();
-    }else{
+    if (cats.length >= 10) {
+      return cats.take((cats.length / 2).toInt()).toList();
+    } else {
       return cats;
     }
   }
 
-  List<Category> secondCategoriesSection(){
+  List<Category> secondCategoriesSection() {
     List<Category> cats = homeCubit.state.data!.categories;
-    if(firstCategoriesSection().length > 5){
-      return cats.sublist((cats.length/2).toInt(), cats.length).toList();
-    }else{
+    if (firstCategoriesSection().length > 5) {
+      return cats.sublist((cats.length / 2).toInt(), cats.length).toList();
+    } else {
       return <Category>[];
+    }
+  }
+
+  void onPressSeeOffers(BuildContext context) {
+    context.isShareHolder ? routeToOffersTab(context) : routeToMembershipSubscribe(context);
+  }
+
+  void routeToOffersTab(BuildContext context) {
+    homeController.animateTabsPages(3, context);
+  }
+
+  void routeToMembershipSubscribe(BuildContext context) {
+    bool isAuth = context.read<DeviceCubit>().state.model.auth;
+    if (isAuth) {
+      AutoRouter.of(context).push(MembershipSubscribeRoute());
+    } else {
+      CustomToast.showAuthDialog(context);
     }
   }
 

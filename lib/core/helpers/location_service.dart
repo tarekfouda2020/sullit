@@ -1,7 +1,7 @@
+import 'dart:developer';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/location_iq_helper.dart';
 import 'package:flutter_tdd/core/helpers/psermission_services.dart';
-import 'package:flutter_tdd/core/localization/localization_methods.dart';
-import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -9,21 +9,41 @@ import 'package:injectable/injectable.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../models/custom_address_model/custom_address_model.dart';
+import '../models/location_iq_place_model/location_iq_place.dart';
+
 @injectable
 class LocationService {
   LocationService();
 
   static LocationService get instance => GetIt.I<LocationService>();
 
-  Future<String> getAddress(LatLng latLng) async {
-    GeoCode geoCode = GeoCode(apiKey: "554640628686038400400x13810");
+
+
+  Future<String> getAddress(LatLng latLng, {bool setCountryName = true}) async {
     try {
-      var address = await geoCode.reverseGeocoding(latitude: latLng.latitude, longitude: latLng.longitude);
-      var data = "${address.countryName??""}  ${address.city??""}  ${address.region??""}  ${address.streetAddress??""}";
+      final address = await getFullAddress(latLng, setCountryName: setCountryName);
+      if (address == null) {
+        return "";
+      }
+      var data = " ${setCountryName ? address.countryName ?? "" : ""}  ${address.city ?? ""}  ${address.region ?? ""}  ${address.streetAddress ?? ""}";
       return data;
     } catch (e) {
+      log("=======>>>>>>>>>> error is $e end ============");
       return "";
     }
+  }
+
+  Future<CustomAddressModel?> getFullAddress(LatLng latLng, {bool setCountryName = true}) async {
+   return LocationIqHelper.instance.getFullAddress(latLng,setCountryName: setCountryName);
+  }
+
+  Future<List<LocationIQPlace>> autoCompletePlaces(String keyword, {bool refresh = true}) async {
+    var result = await LocationIqHelper.instance.getAutoCompleteLocations(keyword);
+    return result.fold(
+      (l) => <LocationIQPlace>[],
+      (r) => r,
+    );
   }
 
   Future<LatLng?> getCurrentLocationWithPermission(BuildContext context)async{
@@ -44,14 +64,6 @@ class LocationService {
     return Geolocator.getCurrentPosition().then((value) => LatLng(value.latitude, value.longitude)) ;
   }
 
-  Future<Address?> getFullAddress(LatLng latLng,) async {
-    GeoCode geoCode = GeoCode(apiKey: "554640628686038400400x13810" );
-    try {
-      var address = await geoCode.reverseGeocoding(latitude: latLng.latitude, longitude: latLng.longitude);
-      return address;
-    } catch (e) {
-      return null;
-    }
-  }
+
 
 }

@@ -8,6 +8,8 @@ class ProfileController {
   final GlobalKey<CustomButtonState> createBtnKey = GlobalKey();
   final GlobalKey<FormState> formKey = GlobalKey();
   final GenericBloc<File?> imageCubit = GenericBloc(null);
+  final GenericBloc<VipCurrentPlanDomainModel?> currentSubscriptionBloc = GenericBloc(null);
+  final GenericBloc<bool> isExpandCubit = GenericBloc<bool>(false);
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController shopNameController = TextEditingController();
@@ -28,6 +30,8 @@ class ProfileController {
 
   ProfileController(BuildContext context) {
     getInitialData(context);
+    getCurrentSubscription(refresh: false);
+    getCurrentSubscription();
   }
 
   Future<void> getInitialData(BuildContext context) async {
@@ -295,11 +299,33 @@ class ProfileController {
 
   void onPressBack(BuildContext context,String? email){
     if(email == null || email.isEmpty){
-    CustomToast.showSimpleToast(msg: "Please enter a valid email.");
+    CustomToast.showSimpleToast(msg: tr("please_enter_valid_email"));
     return ;
     }
     AutoRouter.of(context).pop();
   }
+
+  Future<void> getCurrentSubscription({bool refresh = true}) async {
+    var result = await GetCurrentSubscription().call(refresh);
+    if (result != null) {
+      currentSubscriptionBloc.onUpdateData(result);
+    }
+  }
+
+
+
+
+  void showTierDescription(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      enableDrag: false,
+      builder: (context) {
+      return TierBenefistSheetWidget(controller: this);
+    },);
+  }
+
 
 
 }

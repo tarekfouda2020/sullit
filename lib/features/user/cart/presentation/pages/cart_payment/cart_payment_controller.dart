@@ -287,7 +287,7 @@ class CartPaymentController {
 
   CreateOrderParams _orderParams() {
     return CreateOrderParams(
-      paymentOption: selectedPayment ?? "",
+      paymentOption: shippingBloc.state.data!.paymentOption!.firstWhere((element) => element.selected).paymentTypeKey,
       additionalInfo: additionalInfo.text,
       giftCardCode: giftCardCode.text.trim(),
       allowReplacement: allowReplacementCubit.state.data ? 1 : 0,
@@ -450,8 +450,6 @@ class CartPaymentController {
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        // Service fee
-        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
         return FeesSheetWidget(feesCubit: feesCubit,showService: false,showTech: false,);
       },);
   }
@@ -460,8 +458,6 @@ class CartPaymentController {
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        // Service fee
-        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
         return FeesSheetWidget(feesCubit: feesCubit,showService: false, showDelivery: false,);
       },);
   }
@@ -471,8 +467,6 @@ class CartPaymentController {
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        // Service fee
-        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
         return FeesSheetWidget(feesCubit: feesCubit,showService: false, showDelivery: false,showTech: false,showEnv: true,);
       },);
   }
@@ -482,8 +476,6 @@ class CartPaymentController {
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        // Service fee
-        // This fee contributes to all costs related to servicing your order such as reflecting the assortment on the app, operations, technology development, quality assurance and others
         return const ReplacementAlertSheet();
       },);
   }
@@ -637,12 +629,27 @@ class CartPaymentController {
     if(data!=null){
       double oldSubTotal = double.parse(_pageSavedData.orderSummaryCheckOut?.summary.subTotal??"0.0");
       double newSubTotal = double.parse(data.summary.subTotal);
-      if(newSubTotal > oldSubTotal){
+      if(newSubTotal > oldSubTotal || newSubTotal < oldSubTotal){
         _initSelectedPayMethod(data);
         initDataFromLastRoute(_pageSavedData,data);
         shippingBloc.onUpdateData(data);
       }
     }
+  }
+
+
+  void showTierFullName(BuildContext context,String description, String title){
+    showModalBottomSheet(
+      context: context,
+      useRootNavigator: true,
+      isDismissible: true,
+      isScrollControlled: false,
+      enableDrag: false,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return FullTierNameWidget(description: description,title:title,);
+      },
+    );
   }
 
 

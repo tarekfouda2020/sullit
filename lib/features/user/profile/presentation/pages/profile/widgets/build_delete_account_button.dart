@@ -11,6 +11,7 @@ class BuildDeleteAccountButton extends StatelessWidget {
       title: tr("deleteAccount"),
       height: 35.h,
      color: context.colors.white,
+      fontSize: 15,
       textColor: context.colors.primary,
       margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
       borderColor: context.colors.primary,

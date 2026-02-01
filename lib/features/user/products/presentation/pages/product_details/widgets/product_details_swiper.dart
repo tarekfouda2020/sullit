@@ -21,6 +21,9 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+      bloc: widget.controller.showAppBarTitleCubit,
+  builder: (context, state) {
     return SliverAppBar(
       elevation: widget.innerBoxIsScrolled ? 0.5 : 0,
       forceElevated: true,
@@ -29,26 +32,21 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
       toolbarHeight: 60.h,
       stretch: true,
       expandedHeight: 350.spMin,
-      forceMaterialTransparency: false,
+      forceMaterialTransparency: !state.data,
       automaticallyImplyLeading: false,
       backgroundColor: context.colors.customBackground,
       centerTitle: true,
-      title: BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-        bloc: widget.controller.showAppBarTitleCubit,
-        builder: (context, state) {
-          return AnimatedOpacity(
-            opacity: state.data ? 1 : 0,
-            curve: Curves.bounceIn,
-            duration: const Duration(milliseconds: 100),
-            child: Text(
-              widget.productModel.name!,
-              maxLines: 2,
-              style: AppTextStyle.s16_w700(
-                color: context.colors.black,
-              ),
-            ),
-          );
-        },
+      title: AnimatedOpacity(
+        opacity: state.data ? 1 : 0,
+        curve: Curves.bounceIn,
+        duration: const Duration(milliseconds: 100),
+        child: Text(
+          widget.productModel.name!,
+          maxLines: 2,
+          style: AppTextStyle.s16_w700(
+            color: context.colors.black,
+          ),
+        ),
       ),
       actionsPadding: EdgeInsets.zero,
       actions: [
@@ -96,12 +94,15 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
         background: Swiper(
           autoplay: false,
           itemCount: widget.productModel.images!.length,
+          physics: widget.productModel.images!.length>1
+              ? null
+              :const NeverScrollableScrollPhysics(),
           pagination: const SwiperPagination(),
           itemBuilder: (BuildContext context, int index) {
             return InkWell(
               onTap: () => AutoRouter.of(context).push(ImageZoomRoute(image: widget.productModel.images![index])),
               child: CachedImage(
-                fit: BoxFit.fill,
+                fit: BoxFit.contain,
                 url: widget.productModel.images![index],
                 placeHolder: Center(
                   child: Image.asset(
@@ -117,5 +118,7 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
         ),
       ),
     );
+  },
+);
   }
 }

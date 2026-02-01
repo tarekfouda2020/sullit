@@ -32,8 +32,20 @@ class BuildProductSuggestItem extends StatelessWidget {
           ),
           subtitle: Padding(
             padding: const EdgeInsets.only(top: 8),
-            child : DirhamPrice(amount: productModel.priceHighLow ?? "",
-            textStyle: AppTextStyle.s15_w700(color: context.colors.primary),
+            child: Row(
+              children: [
+                DirhamPrice(amount: productModel.priceHighLowDiscount ?? "",
+                  textStyle: AppTextStyle.s15_w700(color: context.colors.primary),
+                ),
+                Gaps.hGap10,
+                if(productModel.hasDiscount == true)
+                DirhamPrice(amount: productModel.priceHighLow ?? "",
+                textStyle: AppTextStyle.s15_w700(color: context.colors.textColor).copyWith(
+                  decoration: TextDecoration.lineThrough,
+                  decorationColor: context.colors.textColor
+                ),
+                ),
+              ],
             ),
           ),
         ),

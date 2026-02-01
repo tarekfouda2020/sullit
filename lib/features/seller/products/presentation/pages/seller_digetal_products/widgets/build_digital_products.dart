@@ -22,7 +22,7 @@ class BuildDigitalProducts extends StatelessWidget {
                 type: TextInputType.text,
                 action: TextInputAction.search,
                 validate: (value) {},
-                hint: "Search in products",
+                hint: tr("searchInProducts"),
                 hintColor: context.colors.disableGray,
                 // margin: const EdgeInsets.only(top: 20,right: 20,left: 20).r,
               ),

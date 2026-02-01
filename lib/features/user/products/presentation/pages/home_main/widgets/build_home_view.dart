@@ -17,17 +17,24 @@ class BuildHomeView extends StatelessWidget {
         controller: controller.scrollController,
         padding: Dimens.paddingVertical10PXHorizontal20PX,
         child: Column(
-          children: [
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
             BuildHomeSwiper(slider: homeDomainModel.sliders),
             Gaps.vGap25,
             const AdvantagesWidget(),
-            //Gaps.vGap12,
+            Gaps.vGap20,
+            // Text("Track Your Current Orders",
+            // style: AppTextStyle.s16_w600(color: context.colors.black),
+            // ),
+            // Gaps.vGap12,
+            // const TrackSellerOrderWidget(),
+            ////////////+++++++++++++++++++++
+            const BuildTopSellers(),
             BuildTopCategories(categories: homeDomainModel.categories, controller: controller),
-            //Gaps.vGap20,
             VipOffersFormWidget(controller: controller),
             Gaps.vGap16,
             VipOffersWidget(
-              onTap: () => controller.homeController.animateTabsPages(3, context),
+              onTap: () => controller.onPressSeeOffers(context),
               buttonText: tr("seeOffers"),
               margin: EdgeInsets.zero,
             ),
@@ -50,6 +57,16 @@ class BuildHomeView extends StatelessWidget {
             BuildBanners(banners: homeDomainModel.bannersTwo),
             Gaps.vGap16,
             NewArrivalOffersFormWidget(controller: controller),
+            if(controller.homeCubit.state.data?.shop.isNotEmpty == true)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: BuildHeaderTitle(
+                title: tr("sellers"),
+                controller: controller,
+                onTap: () => AutoRouter.of(context).push(const BestSellersPageRoute()),
+              ),
+            ),
+             SellersSectionWidget(controller: controller,),
             // BuildHomeNewProducts(
             //   newestProducts: homeDomainModel.newestProducts,
             //   controller: controller,
@@ -72,7 +89,8 @@ class BuildHomeView extends StatelessWidget {
                 flashSales: homeDomainModel.flashSales!,
                 controller: controller,
               ),
-            Gaps.vGap20
+            Gaps.vGap20,
+
           ],
         ),
       ),

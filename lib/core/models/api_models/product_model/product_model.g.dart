@@ -63,6 +63,7 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       brandName: json['brand_name'] as String,
       isFresh: json['is_fresh'] as bool,
       hasSpecialLoyaltyPoints: json['has_special_loyalty_points'] as bool,
+      hasShareholderDiscount: json['has_shareholder_discount'] as bool,
       loyaltyPoints: (json['loyalty_points'] as num).toInt(),
     );
 
@@ -108,5 +109,6 @@ Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) =>
       'brand_name': instance.brandName,
       'is_fresh': instance.isFresh,
       'has_special_loyalty_points': instance.hasSpecialLoyaltyPoints,
+      'has_shareholder_discount': instance.hasShareholderDiscount,
       'loyalty_points': instance.loyaltyPoints,
     };

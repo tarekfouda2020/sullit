@@ -14,6 +14,7 @@ class BuildTabItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isShareHolder = context.isShareHolder;
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Column(
@@ -21,22 +22,30 @@ class BuildTabItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Visibility(
-            visible: index!=2,
+            visible: index != 2,
             replacement: Gaps.vGap(33),
             child: Container(
-              width: 33, height: 33,
+              width: 33,
+              height: 33,
               padding: const EdgeInsets.all(8),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: isActive
-                      ?context.colors.lightPink
-                      :Colors.transparent
-              ),
+                      ? (isShareHolder == true &&
+                              index == controller.tabs.length - 1
+                          ? const Color(0xffFFB743).withAlpha(90)
+                          : context.colors.lightPink)
+                      : Colors.transparent),
               child: SvgPicture.asset(
                 controller.tabs[index],
                 colorFilter: ColorFilter.mode(
-                    isActive ? context.colors.primary : context.colors.black,
+                    isActive
+                        ? (isShareHolder == true &&
+                                index == controller.tabs.length - 1
+                            ? const Color(0xffF19500)
+                            : context.colors.primary)
+                        : context.colors.black,
                     BlendMode.srcIn),
                 // height: 20,
                 // width: 20,
@@ -47,7 +56,7 @@ class BuildTabItem extends StatelessWidget {
           Text(
             controller.tabsText(context)[index],
             style: AppTextStyle.s12_w700(
-              color: textColor(context),
+              color: textColor(context, isShareHolder),
             ),
           ),
         ],
@@ -55,9 +64,11 @@ class BuildTabItem extends StatelessWidget {
     );
   }
 
-  Color textColor(BuildContext context){
-    return isActive || index==2
-        ? context.colors.primary
+  Color textColor(BuildContext context, bool isShareHolder) {
+    return isActive || index == 2
+        ? (isShareHolder && index == controller.tabs.length - 1
+            ? const Color(0xffF19500)
+            : context.colors.primary)
         : context.colors.black;
   }
 }

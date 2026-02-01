@@ -52,7 +52,7 @@ class MyOrdersController{
     getIt<LoadingHelper>().showLoadingDialog();
     var result = await CancelOrder().call(model.id);
     if (result.isNotEmpty) {
-      CustomToast.showSimpleToast(msg: result);
+      CustomToast.showSimpleToast(msg: result,type: ToastType.success);
       model.availableCancelOrder = false;
       getIt<LoadingHelper>().dismissDialog();
       AutoRouter.of(context).pop();
@@ -77,7 +77,7 @@ class MyOrdersController{
     if(result.isNotEmpty){
       CustomToast.showSimpleToast(msg: result,type: ToastType.success);
       AutoRouter.of(context).pop();
-      AutoRouter.of(context).push(const CartRoute());
+      AutoRouter.of(context).push( CartRoute());
     }else{
       CustomToast.showSimpleToast(msg: tr("tryAgain"),type: ToastType.error);
     }

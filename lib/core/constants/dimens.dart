@@ -58,12 +58,15 @@ class Dimens {
   static const double dp32 = 32;
   static const double dp34 = 34;
   static const double dp35 = 35;
+  static const double dp36 = 36;
   static const double dp50 = 50;
+  static const double dp54 = 54;
   static const double dp40 = 40;
   static const double dp55 = 55;
   static const double dp60 = 60;
   static const double dp64 = 64;
-  static const double dp65 = 64;
+  static const double dp65 = 65;
+  static const double dp66 = 66;
   static const double dp70 = 70;
   static const double dp80 = 80;
 
@@ -74,6 +77,7 @@ class Dimens {
 
   static const double dp200 = 200;
   static const double dp205 = 205;
+  static const double dp215 = 215;
   static const double dp210 = 210;
   static const double dp220 = 220;
 
@@ -84,6 +88,9 @@ class Dimens {
 
   static const BorderRadius sheetBorderRadius = BorderRadius.vertical(top: Radius.circular(30));
 
+
+  static const BorderRadius topRadius12Px = BorderRadius.vertical(top: Radius.circular(12));
+  static const BorderRadius bottomRadius12Px = BorderRadius.vertical(bottom: Radius.circular(12));
   static BorderRadius borderRadius3PX = const BorderRadius.all(Radius.circular(3)).r;
   static BorderRadius borderRadius4PX = const BorderRadius.all(Radius.circular(4)).r;
   static BorderRadius borderRadius5PX = const BorderRadius.all(Radius.circular(5)).r;

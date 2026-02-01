@@ -22,8 +22,8 @@ class BuildDrawer extends StatelessWidget {
     bool auth = context.read<DeviceCubit>().state.model.auth;
 
     return Container(
-      color: context.colors.white,
-      width: MediaQuery.of(context).size.width * .8,
+      color: context.colors.customBackground,
+      width: MediaQuery.sizeOf(context).width * .8,
       child: Column(
         children: [
           const BuildDrawerHeader(),
@@ -77,13 +77,13 @@ class BuildDrawer extends StatelessWidget {
                   onTap: () =>
                       AutoRouter.of(context).push(const PrivacyRoute()),
                 ),
-                BuildDrawerItem(
-                  title: tr("langauge"),
-                  icon: Icons.language,
-                  onTap: () {
-                    // controller.showLangBottomSheet(context, controller);
-                  }
-                ),
+                // BuildDrawerItem(
+                //   title: tr("langauge"),
+                //   icon: Icons.language,
+                //   onTap: () {
+                //     // controller.showLangBottomSheet(context, controller);
+                //   }
+                // ),
                 BuildDrawerItem(
                   title: tr('supportPolicy'),
                   icon: Icons.support_agent,

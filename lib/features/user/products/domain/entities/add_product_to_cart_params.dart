@@ -4,11 +4,12 @@ class AddProductToCartParams {
   int quantity;
 
   String? macAddress;
-
+ final bool showLoader;
   AddProductToCartParams({
     required this.variantId,
     required this.quantity,
     this.macAddress,
+    this.showLoader = true,
   });
 
   Map<String, dynamic> toJson ()=> {

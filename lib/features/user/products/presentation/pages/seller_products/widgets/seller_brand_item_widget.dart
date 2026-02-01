@@ -8,7 +8,7 @@ class SellerBrandItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => controller.onSelectBrand(context,brand),
+      onTap: () => controller.onSelectBrand(brand),
       child: Container(
         padding: Dimens.paddingAll13PX,
         margin: const EdgeInsets.only(bottom: 10),

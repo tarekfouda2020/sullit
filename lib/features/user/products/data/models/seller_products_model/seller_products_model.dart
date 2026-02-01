@@ -61,7 +61,7 @@ class SellerPaginationData extends BaseApiModel<SellerPaginationModel> with _$Se
   factory SellerPaginationData({
     @JsonKey(name: "total_items") required int totalItems,
     @JsonKey(name: "count_items") required int countItems,
-    @JsonKey(name: "per_page") required String perPage,
+    @JsonKey(name: "per_page") required int perPage,
     @JsonKey(name: "total_pages") required int totalPages,
     @JsonKey(name: "current_page") required int currentPage,
     @JsonKey(name: "next_page_url") required String nextPageUrl,

@@ -28,12 +28,17 @@ class _SearchState extends State<Search> {
         body: Column(
           children: [
             BuildSearchField(controller: controller),
+            SearchHistoryWidget(controller: controller),
             Flexible(
               child: BlocBuilder<GenericBloc<SearchResults?>,
                   GenericState<SearchResults?>>(
                 bloc: controller.resultsCubit,
                 builder: (context, state) {
                   if (state is GenericUpdateState) {
+                    List<Shop>? shop = state.data!.shops;
+                    List<Shop>? shops = shop!.length > 10
+                    ? shop.take(10).toList() : shop ;
+
                     List<Category> categories = state.data!.categories;
                     List<Category> cats = categories.length > 10
                         ? categories.take(10).toList()
@@ -47,10 +52,16 @@ class _SearchState extends State<Search> {
                     return ListView(
                       children: [
 
+                        BuildSellersSuggestItem(
+                           showSeeAll: shop.length>10,
+                            shop: shops,
+                           controller:controller
+                         ),
+
                         BuildCategorySuggestItem(
                           categories: cats,
                           controller: controller,
-                          showSeeAll: categories.length>10,
+                          showSeeAll: categories.length > 10,
                           // controller: controller,
                         ),
 

@@ -1,18 +1,18 @@
-import 'package:geocode/geocode.dart';
+import 'package:flutter_tdd/core/models/custom_address_model/custom_address_model.dart';
 
 class LocationEntity {
   double lat;
   double lng;
   String address;
-final Address? fullAddress;
-  LocationEntity({this.lat = 0, this.lng = 0, this.address = "",this.fullAddress});
+  final CustomAddressModel? fullAddress;
+  LocationEntity({this.lat = 0, this.lng = 0, this.address = "", this.fullAddress});
 
 
   LocationEntity copyWith({
     double? lat,
     double? lng,
     String? address,
-    Address? fullAddress,
+    CustomAddressModel? fullAddress,
   }) {
     return LocationEntity(
       lat: lat ?? this.lat,

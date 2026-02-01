@@ -29,10 +29,10 @@ mixin _$HomeModel {
   @JsonKey(name: 'categories')
   List<CategoryModel> get categories => throw _privateConstructorUsedError;
   @JsonKey(name: 'flash_deal')
-  FlashSaleModel? get flashSales =>
-      throw _privateConstructorUsedError; // @JsonKey(name: 'most_populars')
-//     required List<PopularProductModel> mostPopular,
-// @JsonKey(name: 'best_selling_products')
+  FlashSaleModel? get flashSales => throw _privateConstructorUsedError;
+  @JsonKey(name: 'shops')
+  List<ShopModel> get shops =>
+      throw _privateConstructorUsedError; // @JsonKey(name: 'best_selling_products')
 //     required List<ProductModel> bestSellingProducts,
 // @JsonKey(name: 'newest_products')
 //     required List<ProductModel> newestProducts,
@@ -66,6 +66,7 @@ abstract class $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'banners_two') List<BannerModel> bannersTwo,
       @JsonKey(name: 'categories') List<CategoryModel> categories,
       @JsonKey(name: 'flash_deal') FlashSaleModel? flashSales,
+      @JsonKey(name: 'shops') List<ShopModel> shops,
       @JsonKey(name: 'cart_count') int cartCount,
       @JsonKey(name: 'wishlist_count') int favCount,
       @JsonKey(name: 'is_admin_discount') bool isAdminDiscount,
@@ -92,6 +93,7 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
     Object? bannersTwo = null,
     Object? categories = null,
     Object? flashSales = freezed,
+    Object? shops = null,
     Object? cartCount = null,
     Object? favCount = null,
     Object? isAdminDiscount = null,
@@ -118,6 +120,10 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
           ? _value.flashSales
           : flashSales // ignore: cast_nullable_to_non_nullable
               as FlashSaleModel?,
+      shops: null == shops
+          ? _value.shops
+          : shops // ignore: cast_nullable_to_non_nullable
+              as List<ShopModel>,
       cartCount: null == cartCount
           ? _value.cartCount
           : cartCount // ignore: cast_nullable_to_non_nullable
@@ -163,6 +169,7 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'banners_two') List<BannerModel> bannersTwo,
       @JsonKey(name: 'categories') List<CategoryModel> categories,
       @JsonKey(name: 'flash_deal') FlashSaleModel? flashSales,
+      @JsonKey(name: 'shops') List<ShopModel> shops,
       @JsonKey(name: 'cart_count') int cartCount,
       @JsonKey(name: 'wishlist_count') int favCount,
       @JsonKey(name: 'is_admin_discount') bool isAdminDiscount,
@@ -188,6 +195,7 @@ class __$$_HomeModelCopyWithImpl<$Res>
     Object? bannersTwo = null,
     Object? categories = null,
     Object? flashSales = freezed,
+    Object? shops = null,
     Object? cartCount = null,
     Object? favCount = null,
     Object? isAdminDiscount = null,
@@ -214,6 +222,10 @@ class __$$_HomeModelCopyWithImpl<$Res>
           ? _value.flashSales
           : flashSales // ignore: cast_nullable_to_non_nullable
               as FlashSaleModel?,
+      shops: null == shops
+          ? _value._shops
+          : shops // ignore: cast_nullable_to_non_nullable
+              as List<ShopModel>,
       cartCount: null == cartCount
           ? _value.cartCount
           : cartCount // ignore: cast_nullable_to_non_nullable
@@ -245,6 +257,7 @@ class _$_HomeModel extends _HomeModel {
       @JsonKey(name: 'categories')
       required final List<CategoryModel> categories,
       @JsonKey(name: 'flash_deal') required this.flashSales,
+      @JsonKey(name: 'shops') required final List<ShopModel> shops,
       @JsonKey(name: 'cart_count') required this.cartCount,
       @JsonKey(name: 'wishlist_count') required this.favCount,
       @JsonKey(name: 'is_admin_discount') required this.isAdminDiscount,
@@ -253,6 +266,7 @@ class _$_HomeModel extends _HomeModel {
         _bannersOne = bannersOne,
         _bannersTwo = bannersTwo,
         _categories = categories,
+        _shops = shops,
         super._();
 
   factory _$_HomeModel.fromJson(Map<String, dynamic> json) =>
@@ -297,8 +311,15 @@ class _$_HomeModel extends _HomeModel {
   @override
   @JsonKey(name: 'flash_deal')
   final FlashSaleModel? flashSales;
-// @JsonKey(name: 'most_populars')
-//     required List<PopularProductModel> mostPopular,
+  final List<ShopModel> _shops;
+  @override
+  @JsonKey(name: 'shops')
+  List<ShopModel> get shops {
+    if (_shops is EqualUnmodifiableListView) return _shops;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_shops);
+  }
+
 // @JsonKey(name: 'best_selling_products')
 //     required List<ProductModel> bestSellingProducts,
 // @JsonKey(name: 'newest_products')
@@ -322,7 +343,7 @@ class _$_HomeModel extends _HomeModel {
 
   @override
   String toString() {
-    return 'HomeModel(sliders: $sliders, bannersOne: $bannersOne, bannersTwo: $bannersTwo, categories: $categories, flashSales: $flashSales, cartCount: $cartCount, favCount: $favCount, isAdminDiscount: $isAdminDiscount, discountRate: $discountRate)';
+    return 'HomeModel(sliders: $sliders, bannersOne: $bannersOne, bannersTwo: $bannersTwo, categories: $categories, flashSales: $flashSales, shops: $shops, cartCount: $cartCount, favCount: $favCount, isAdminDiscount: $isAdminDiscount, discountRate: $discountRate)';
   }
 
   @override
@@ -339,6 +360,7 @@ class _$_HomeModel extends _HomeModel {
                 .equals(other._categories, _categories) &&
             (identical(other.flashSales, flashSales) ||
                 other.flashSales == flashSales) &&
+            const DeepCollectionEquality().equals(other._shops, _shops) &&
             (identical(other.cartCount, cartCount) ||
                 other.cartCount == cartCount) &&
             (identical(other.favCount, favCount) ||
@@ -358,6 +380,7 @@ class _$_HomeModel extends _HomeModel {
       const DeepCollectionEquality().hash(_bannersTwo),
       const DeepCollectionEquality().hash(_categories),
       flashSales,
+      const DeepCollectionEquality().hash(_shops),
       cartCount,
       favCount,
       isAdminDiscount,
@@ -385,6 +408,7 @@ abstract class _HomeModel extends HomeModel {
       @JsonKey(name: 'categories')
       required final List<CategoryModel> categories,
       @JsonKey(name: 'flash_deal') required final FlashSaleModel? flashSales,
+      @JsonKey(name: 'shops') required final List<ShopModel> shops,
       @JsonKey(name: 'cart_count') required final int cartCount,
       @JsonKey(name: 'wishlist_count') required final int favCount,
       @JsonKey(name: 'is_admin_discount') required final bool isAdminDiscount,
@@ -410,9 +434,10 @@ abstract class _HomeModel extends HomeModel {
   @override
   @JsonKey(name: 'flash_deal')
   FlashSaleModel? get flashSales;
-  @override // @JsonKey(name: 'most_populars')
-//     required List<PopularProductModel> mostPopular,
-// @JsonKey(name: 'best_selling_products')
+  @override
+  @JsonKey(name: 'shops')
+  List<ShopModel> get shops;
+  @override // @JsonKey(name: 'best_selling_products')
 //     required List<ProductModel> bestSellingProducts,
 // @JsonKey(name: 'newest_products')
 //     required List<ProductModel> newestProducts,

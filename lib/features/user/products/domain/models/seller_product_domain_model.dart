@@ -27,7 +27,7 @@ class SellerSectionProductModel extends BaseDomainModel {
 class SellerPaginationModel extends BaseDomainModel {
   final int totalItems;
   final int countItems;
-  final String perPage;
+  final int perPage;
   final int totalPages;
   final int currentPage;
   final String nextPageUrl;

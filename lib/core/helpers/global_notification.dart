@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
+import 'package:flutter_tdd/core/helpers/orders_helper.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
@@ -52,8 +53,8 @@ class GlobalNotification {
       });
       messaging.setForegroundNotificationPresentationOptions();
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-        // print("_____________________Message data:${message.data}");
-        // print("___________________notification:${message.notification?.title}");
+        log("_____________________Message data:${message.data}");
+        log("___________________notification:${message.notification?.title}");
         _onMessageStreamController.add(message.data);
         _showLocalNotification(message);
         if (message.data['type'] == NotifyEnum.emailChanged.getValue()) {
@@ -62,6 +63,15 @@ class GlobalNotification {
         if (message.data['type'] == NotifyEnum.emailVerified.getValue()) {
           var context = getIt<GlobalContext>().context();
           AutoRouter.of(context).push(const LoginRoute());
+        }
+        if(message.data['item_type']!=null &&  message.data['item_type'] ==  NotifyEnum.orderDelivered.getValue()){
+          bool isDelivered = message.data['body'].toString().split(" ").last.replaceAll(".", "") == "delivered";
+          if(isDelivered){
+            var id = int.tryParse(message.data['item_type_id']);
+            if(id!=null){
+              OrdersHelper.instance.addPurchasedEvent(id);
+            }
+          }
         }
       });
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {

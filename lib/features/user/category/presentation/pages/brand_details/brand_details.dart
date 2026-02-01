@@ -4,43 +4,41 @@ class BrandDetails extends StatefulWidget {
   final int brandId;
   final String brandName;
 
-  const BrandDetails({Key? key, required this.brandId, required this.brandName}) : super(key: key);
+  const BrandDetails({Key? key, required this.brandId, required this.brandName})
+      : super(key: key);
 
   @override
   State<BrandDetails> createState() => _BrandDetailsState();
 }
 
 class _BrandDetailsState extends State<BrandDetails> {
-  late BrandDetailsController controller;
+  late final BrandDetailsController controller;
 
   @override
   void initState() {
-    controller = BrandDetailsController();
+    controller = BrandDetailsController(context, widget.brandId);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar(title: "${tr('brand')} ${widget.brandName}", showBack: true),
+      appBar: DefaultAppBar(
+          title: "${tr('brand')} ${widget.brandName}", showBack: true),
       backgroundColor: context.colors.customBackground,
-      body: GenericListView(
-        type: ListViewType.gridApi,
-        onRefresh: controller.getBrandProducts,
-        params: [context, widget.brandId],
-        cubit: controller.productsBloc,
-        runSpacing: 15.r,
-        spacing: 15.r,
-        gridCrossCount: 2,
-        gridItemHeight: 220.spMin,
-        padding: Dimens.paddingAll15PX,
-        itemBuilder: (_, index, item) => BuildProductItem(
-          productModel: item,
-          onFavRefresh: () => controller.onChangeFav(item),
-          onRefresh: () => controller.getBrandProducts(context, widget.brandId),
+      body: CustomRefreshIndicatorWidget(
+        onRefresh: () async => await controller.getBrandProducts(context, widget.brandId, 1) ,
+        child: GridViewPagination<Product>(
+          pagingController: controller.productsPagingController,
+          onRefresh: () async => controller.productsPagingController.refresh(),
+          firstPageProgressIndicatorBuilder: (_) => const BuildLoadingCatsProducts(),
+          showNewPageProgressIndicatorAsGridChild: false,
+          noItemsFoundIndicatorBuilder: (context) =>  const BuildEmptyDataView(),
+          itemBuilder: (_, item, index) => BuildProductItem(
+            productModel: item,
+            onFavRefresh: () => controller.onChangeFav(item),
+          ),
         ),
-        loadingWidget: const BuildLoadingProductsGridView(),
-        emptyWidget: const BuildEmptyDataView(),
       ),
     );
   }

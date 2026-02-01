@@ -30,6 +30,26 @@ class InvoiceSummaryWidget extends StatelessWidget {
                 // details: shippingSummary.getSubTotalWithoutVat().toStringAsFixed(2),
                 useDirhamPrice: true,
               ),
+              Visibility(
+                  visible: shippingSummary.showOrderDiscounts ,
+                  child: Column(
+                    spacing: 16,
+                    children: List.generate(shippingSummary.discountTypes?.length??0, (index) {
+                      OrderSummaryDiscountDomain? item = shippingSummary.discountTypes?[index];
+                      return BuildSummaryHeader(
+                        isDiscount: true,
+                        applyDashSeperate: false,
+                        title: item?.label ?? "",
+                        details: item?.discount ?? "",
+                        detailsColor: context.colors.primary,
+                        useDirhamPrice: true,
+                        onPressInfo: item?.isTierDiscount == true
+                            ? ()=> controller.showTierFullName(context, item?.description ?? "",item?.label ?? "")
+                            : null,
+                      );
+                    },),
+                  )
+              ),
               BuildSummaryHeader(
                 title: tr('service_fees'),
                 details:
@@ -73,23 +93,6 @@ class InvoiceSummaryWidget extends StatelessWidget {
                   detailsColor: context.colors.primary,
                   useDirhamPrice: true,
                 ),
-              ),
-              Visibility(
-                visible: shippingSummary.showOrderDiscounts ,
-                  child: Column(
-                    spacing: 16,
-                    children: List.generate(shippingSummary.discountTypes?.length??0, (index) {
-                      var item = shippingSummary.discountTypes?[index];
-                      return BuildSummaryHeader(
-                        isDiscount: true,
-                        applyDashSeperate: false,
-                        title: item?.label ?? "",
-                        details: item?.discount ?? "",
-                        detailsColor: context.colors.primary,
-                        useDirhamPrice: true,
-                      );
-                    },),
-                  )
               ),
               Visibility(
                 visible: applyGiftCard,

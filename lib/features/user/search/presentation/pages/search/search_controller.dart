@@ -4,12 +4,17 @@ class SearchController {
   final TextEditingController searchController = TextEditingController();
   final GenericBloc<SearchResults?> resultsCubit = GenericBloc(null);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(true);
+  final GenericBloc<bool> refreshSearchHeaderCubit = GenericBloc<bool>(false);
+  final GenericBloc<List<String>> searchHistoryCubit = GenericBloc<List<String>>([]);
+
+
   // final GenericBloc<bool> showCategorySection = GenericBloc<bool>(true);
 
   SearchController(String searchText) {
     searchController.text = searchText;
     getSearchResults(refresh: false);
     getSearchResults();
+    initSearchList();
   }
 
   Future<void> getSearchResults({bool refresh = true}) async {
@@ -34,9 +39,7 @@ class SearchController {
   Future<void> onPressSearch(BuildContext context)async{
     if(searchController.text.trim().isNotEmpty){
       FocusScope.of(context).unfocus();
-      getIt<LoadingHelper>().showLoadingDialog();
-      await getSearchResults();
-      getIt<LoadingHelper>().dismissDialog();
+      callSearch();
     }
   }
 
@@ -53,13 +56,75 @@ class SearchController {
   void clearSearchField(){
     searchController.clear();
     showClearIcon.onUpdateData(false);
+    refreshSearchHeaderCubit.onUpdateData(false);
+    callSearch();
   }
 
   void whileWriting(String value){
-    if(value.isNotEmpty){
-      showClearIcon.onUpdateData(true);
+    DebounceHelper.instance.startSearch(
+      value: value,
+      onSearch: (val) => callSearch(),
+    );
+
+    showClearIcon.onUpdateData(value.isNotEmpty);
+    refreshSearchHeaderCubit.onUpdateData(value.isNotEmpty);
+
+  }
+
+
+
+  Future<void> callSearch()async{
+    getIt<LoadingHelper>().showLoadingDialog();
+    await getSearchResults();
+   var pref =  await SharedPreferences.getInstance();
+    List<String> searchList = await getSearchHistory();
+    updateSearchList(pref,searchList);
+   if(searchList.isEmpty){
+     searchList.add(searchController.text.trim());
+     pref.setStringList(LocalStorageKeys.searchHistory, searchList);
+     searchHistoryCubit.onUpdateData(searchList);
+   }
+    getIt<LoadingHelper>().dismissDialog();
+  }
+
+
+  Future<List<String>> getSearchHistory()async{
+    var pref =  await SharedPreferences.getInstance();
+    var searchList = pref.get(LocalStorageKeys.searchHistory);
+    if(searchList!=null && searchList is List<String>){
+      return searchList;
     }else{
-      showClearIcon.onUpdateData(false);
+      return <String>[];
+    }
+  }
+
+
+  Future<void> initSearchList()async{
+    var pref =  await SharedPreferences.getInstance();
+    List<String> searchList = await getSearchHistory();
+    if(!searchList.contains(searchController.text.trim())){
+      searchList.add(searchController.text);
+      updateSearchList(pref, searchList);
+    }
+    searchHistoryCubit.onUpdateData(searchList);
+  }
+
+
+  Future<void> updateSearchList(SharedPreferences pref, List<String> searchList)async{
+    var pref =  await SharedPreferences.getInstance();
+    List<String> searchList = await getSearchHistory();
+    if(searchList.isNotEmpty && !searchList.contains(searchController.text)){
+      searchList.add(searchController.text.trim());
+      pref.setStringList(LocalStorageKeys.searchHistory, searchList);
+      searchHistoryCubit.onUpdateData(searchList);
+    }
+  }
+
+  void selectSearchHistoryItem(String txt){
+    if(txt.toLowerCase() != searchController.text.toLowerCase().trim()){
+      searchController.text = txt;
+      showClearIcon.onUpdateData(true);
+      callSearch();
     }
   }
 

@@ -13,6 +13,7 @@ _$_PaymentOptionModel _$$_PaymentOptionModelFromJson(
       paymentTypeKey: json['payment_type_key'] as String,
       image: json['image'] as String,
       title: json['title'] as String,
+      name: json['name'] as String?,
       offlinePaymentId: (json['offline_payment_id'] as num).toInt(),
       details: json['details'] as String,
     );
@@ -24,6 +25,7 @@ Map<String, dynamic> _$$_PaymentOptionModelToJson(
       'payment_type_key': instance.paymentTypeKey,
       'image': instance.image,
       'title': instance.title,
+      'name': instance.name,
       'offline_payment_id': instance.offlinePaymentId,
       'details': instance.details,
     };

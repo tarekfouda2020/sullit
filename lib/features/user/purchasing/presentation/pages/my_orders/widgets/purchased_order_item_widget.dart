@@ -37,13 +37,19 @@ class MyOrderItemWidget extends StatelessWidget {
                              style: AppTextStyle.s14_w600(color: context.colors.black),
                            ),
                          ),
+                       ],
+                     ),
+                     Gaps.vGap3,
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.end,
+                       children: [
                          Text(
                            _getStatusText(),
                            style: AppTextStyle.s14_w600(color: _getStatusColor(context)),
                          ),
                        ],
                      ),
-                     Gaps.vGap6,
+                     Gaps.vGap3,
                      Text(
                        DateTimeHelper.getDate(order.orderDate),
                        style: AppTextStyle.s12_w400(color: context.colors.textColor),

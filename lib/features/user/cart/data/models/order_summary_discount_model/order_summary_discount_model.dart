@@ -14,6 +14,7 @@ class OrderSummaryDiscountModel extends BaseApiModel<OrderSummaryDiscountDomain>
   @JsonSerializable(explicitToJson: true)
   factory OrderSummaryDiscountModel({
     required String type,
+    required String description,
     required String label,
     required String discount,
   }) = _OrderSummaryDiscountModel;
@@ -27,6 +28,7 @@ class OrderSummaryDiscountModel extends BaseApiModel<OrderSummaryDiscountDomain>
       type: type,
       label: label,
       discount: discount,
+      description: description
     );
   }
 }
