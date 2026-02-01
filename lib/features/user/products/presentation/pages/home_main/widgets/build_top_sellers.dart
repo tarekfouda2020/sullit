@@ -1,29 +1,36 @@
 part of 'home_main_widgets_imports.dart';
 
 class BuildTopSellers extends StatelessWidget {
-  const BuildTopSellers({super.key});
+  final List<Shop> topSellers;
+
+  const BuildTopSellers({super.key, required this.topSellers});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          tr("Top Seller"),
-          style: AppTextStyle.s16_w700(color: context.colors.black),
-        ),
-        Gaps.vGap8,
-        SizedBox(
-          height: 140,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return const BuildTopSellersItem();
-            },),
-        ),
-      ],
+    return Visibility(
+      visible: topSellers.isNotEmpty,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            tr("Top Seller"),
+            style: AppTextStyle.s16_w700(color: context.colors.black),
+          ),
+          Gaps.vGap8,
+          SizedBox(
+            height: 140,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: topSellers.length,
+              itemBuilder: (context, index) {
+                return InkWell(
+                    onTap: () => AutoRouter.of(context).push(SellerProductsPageRoute(shopModel: topSellers[index])),
+                    child: BuildTopSellersItem(topSellers: topSellers[index]));
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
-

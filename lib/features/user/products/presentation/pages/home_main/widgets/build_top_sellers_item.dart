@@ -1,7 +1,8 @@
 part of 'home_main_widgets_imports.dart';
 
 class BuildTopSellersItem extends StatelessWidget {
-  const BuildTopSellersItem({super.key});
+   final Shop topSellers;
+  const BuildTopSellersItem({super.key, required this.topSellers});
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +16,13 @@ class BuildTopSellersItem extends StatelessWidget {
               color: context.colors.white,
               borderRadius: const BorderRadius.all(Radius.circular(12)),
               border: Border.all(color: const Color(0xffECECEC), width: 1)),
-          child: const Center(
+          child:  Center(
             child: CachedImage(
-              height: 58,
-              width: 58,
-              fit: BoxFit.cover,
+              height: 68,
+              width: 60,
+              fit: BoxFit.contain,
               haveRadius: false,
-              url: Res.recyleIcon,
+              url: "${topSellers.logo}",
               boxShape: BoxShape.circle,
             ),
           ),
@@ -31,7 +32,7 @@ class BuildTopSellersItem extends StatelessWidget {
           width: 93,
           child: Text(
              textAlign: TextAlign.center,
-            "Cinnabon",
+            "${topSellers.name}",
             maxLines: 2,
             style: AppTextStyle.s14_w400(color: context.colors.black),
           ),
