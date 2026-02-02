@@ -124,6 +124,9 @@ class Orders extends BaseDomainModel {
 
   double get totalVat => double.parse(tax) + double.parse(vatFeeAmount ?? "0.0");
 
+
+
+
   TrackOrderEnum get getTrackOrderStatus {
     /// at first its Placed
     ///  Confirmed
@@ -136,9 +139,13 @@ class Orders extends BaseDomainModel {
       case "Placed":
         return TrackOrderEnum.placed;
       case "Confirmed":
-        return TrackOrderEnum.placed;
+        return TrackOrderEnum.confirmed;
+      case "Preparing":
+        return TrackOrderEnum.preparing;
+        case "Ready For Delivery":
+        return TrackOrderEnum.readyForDelivery;
       case "Picked Up":
-        return TrackOrderEnum.placed;
+        return TrackOrderEnum.pickedUp;
       case "Delivered":
         return TrackOrderEnum.delivered;
       case "Cancelled":
@@ -146,6 +153,8 @@ class Orders extends BaseDomainModel {
       default:
         return TrackOrderEnum.placed;
     }
+
+
   }
 
 

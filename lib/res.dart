@@ -128,6 +128,10 @@ class Res {
   static const String vouchers = "assets/images/vouchers.svg";
 
   static const String addToCartGif = "assets/images/add_cart.gif";
+  static const String  onTheWay = "assets/images/delivery.gif";
+  static const String  pickedUp = "assets/images/empty_box.gif";
+  static const String  confirmed = "assets/images/empty_box_2.gif";
+  static const String  delivered = "assets/images/empty_box_3.gif";
 
 
 
