@@ -64,8 +64,10 @@ class GlobalNotification {
           var context = getIt<GlobalContext>().context();
           AutoRouter.of(context).push(const LoginRoute());
         }
+        log("is order updated : ${message.data['item_type'] ==  NotifyEnum.orderDelivered.getValue()}");
         if(message.data['item_type']!=null &&  message.data['item_type'] ==  NotifyEnum.orderDelivered.getValue()){
           bool isDelivered = message.data['body'].toString().split(" ").last.replaceAll(".", "") == "delivered";
+          OrdersHelper.instance.getHome();
           if(isDelivered){
             var id = int.tryParse(message.data['item_type_id']);
             if(id!=null){

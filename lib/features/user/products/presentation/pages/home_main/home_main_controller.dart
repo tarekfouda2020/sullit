@@ -1,7 +1,6 @@
 part of 'home_main_imports.dart';
 
 class HomeMainController {
-  final GenericBloc<HomeDomainModel?> homeCubit = GenericBloc(null);
   final GenericBloc<List<ProductSections>> sectionsCubit = GenericBloc([]);
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final ScrollController scrollController = ScrollController();
@@ -12,6 +11,8 @@ class HomeMainController {
   final GenericBloc<List<Product>> onSaleCubit = GenericBloc([]);
   final GenericBloc<List<Product>> bestRatedCubit = GenericBloc([]);
   final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
+
+  GenericBloc<HomeDomainModel?> get homeCubit => OrdersHelper.instance.homeCubit;
 
   List<ProductSections> allSections = [];
   int currentPage = 1;
