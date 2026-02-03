@@ -23,7 +23,7 @@ class BuildTopSellers extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: topSellers.length,
               itemBuilder: (context, index) {
-                return InkWell(
+                return GestureDetector(
                     onTap: () => AutoRouter.of(context).push(SellerProductsPageRoute(shopModel: topSellers[index])),
                     child: BuildTopSellersItem(topSellers: topSellers[index]));
               },

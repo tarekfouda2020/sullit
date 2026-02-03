@@ -16,9 +16,12 @@ class OrdersHelper {
 
   final GenericBloc<HomeDomainModel?> homeCubit = GenericBloc(null);
 
-  Future<void> getHome() async {
-    var result = await GetHome().call(true);
-    // result?.flashSales.add(FlashSale(id: 0, title: tr('coupons'), date: DateTime.now(), banner: ""));
+
+  Future<void> getHome({bool refresh = true, bool setLoading = true}) async {
+    if(setLoading){
+      homeCubit.onUpdateToInitState(null);
+    }
+    var result = await GetHome().call(refresh);
     homeCubit.onUpdateData(result);
   }
 

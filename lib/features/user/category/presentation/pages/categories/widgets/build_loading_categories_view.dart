@@ -30,10 +30,13 @@ class BuildLoadingCategoriesSectionWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Header title shimmer
-          BuildShimmerItem(
-            height: 20.r,
-            width: 120.r,
-            borderRadius: BorderRadius.circular(4),
+          Padding(
+            padding:  const EdgeInsetsDirectional.only(start: 30 ),
+            child: BuildShimmerItem(
+              height: 20.r,
+              width: 120.r,
+              borderRadius: BorderRadius.circular(4),
+            ),
           ),
           Gaps.vGap12,
           // Horizontal scrollable subcategories shimmer

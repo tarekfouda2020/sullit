@@ -23,7 +23,6 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap25,
             const AdvantagesWidget(),
             Gaps.vGap20,
-
             TrackSellerOrderWidget(currentOrders:homeDomainModel.currentOrders,),
             Gaps.vGap10,
             BuildTopSellers(topSellers: homeDomainModel.topSellers,),

@@ -105,6 +105,10 @@ class HomeController {
 
   void animateTabsPages(int index, BuildContext context) {
     Future.delayed(const Duration(milliseconds: 500), () {
+      if(index == 0 ){
+        // OrdersHelper.instance.getHome(refresh: false);
+        OrdersHelper.instance.getHome();
+      }
       if (index == 2) {
         AutoRouter.of(context).push(CartRoute());
         return;

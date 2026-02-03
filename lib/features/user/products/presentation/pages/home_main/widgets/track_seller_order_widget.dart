@@ -21,7 +21,9 @@ class TrackSellerOrderWidget extends StatelessWidget {
               itemCount: currentOrders.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-              return CurrentOrderWidget(currentOrders: currentOrders[index],);
+              return GestureDetector(
+                  onTap: () => AutoRouter.of(context).push(OrderDetailsPageRoute(isReturnedOrder: false, order: currentOrders[index])),
+                  child: CurrentOrderWidget(currentOrders: currentOrders[index],));
             },),
           ),
         ],
