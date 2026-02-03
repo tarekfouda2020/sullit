@@ -47,13 +47,13 @@ enum TrackOrderEnum {
       case confirmed:
         return AppColors.noContextInstance.green;
       case preparing:
-        return AppColors.noContextInstance.green;
+        return AppColors.noContextInstance.primary;
         case readyForDelivery:
-        return AppColors.noContextInstance.green;
+        return AppColors.noContextInstance.gold;
       case pickedUp:
         return AppColors.noContextInstance.green;
       case onTheWay:
-        return AppColors.noContextInstance.green;
+        return AppColors.noContextInstance.primary;
       case delivered:
         return AppColors.noContextInstance.green;
       case cancelled:

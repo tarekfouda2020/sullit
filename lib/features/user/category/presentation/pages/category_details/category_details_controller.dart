@@ -400,6 +400,7 @@ class CategoryDetailsController implements CartSheetController {
 
   SearchProductsParams productsParams(int page, bool refresh) {
     var specifications = specificationsCubit.state.data;
+    bool isMinRangeSelected = (rangeValues?.start ?? 0.0) < (rangeCubit.state.data?.value.start ?? 0.0) == true;
     var colors = specifications?.colors
         .where((element) => element.selected)
         .map((e) => e.code)
@@ -410,10 +411,10 @@ class CategoryDetailsController implements CartSheetController {
           .map((element) => element.value)
           .toList(),
     );
-    var minPrice = (rangeValues?.start ?? 0.0) < (rangeCubit.state.data?.value.start ?? 0.0) == true
+    var minPrice = isMinRangeSelected
         ? rangeCubit.state.data?.value.start
         : null;
-    var maxPrice = (rangeValues?.end ?? 0.0) < (rangeCubit.state.data?.value.end ?? 0.0) == true
+    var maxPrice = (rangeValues?.end ?? 0.0) < (rangeCubit.state.data?.value.end ?? 0.0) == true || isMinRangeSelected
         ? rangeCubit.state.data?.value.end
         : null;
     return SearchProductsParams(

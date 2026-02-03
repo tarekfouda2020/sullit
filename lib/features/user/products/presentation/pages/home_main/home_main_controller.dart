@@ -47,6 +47,7 @@ class HomeMainController {
   }
 
   void getHome(BuildContext context, {bool refresh = true}) async {
+    homeCubit.onUpdateToInitState(null);
     var result = await GetHome().call(refresh);
     // result?.flashSales.add(FlashSale(id: 0, title: tr('coupons'), date: DateTime.now(), banner: ""));
     homeCubit.onUpdateData(result);
