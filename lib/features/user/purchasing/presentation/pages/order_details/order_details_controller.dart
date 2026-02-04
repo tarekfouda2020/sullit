@@ -87,15 +87,23 @@ class OrderDetailsPageController {
     }
   }
 
-  void cancelOrder(BuildContext context, Orders model) async {
-    getIt<LoadingHelper>().showLoadingDialog();
-    var result = await CancelOrder().call(model.id);
-    if (result.isNotEmpty) {
-      CustomToast.showSimpleToast(msg: result, type: ToastType.success);
-      model.availableCancelOrder = false;
-      AutoRouter.of(context).pop(true);
-    }
-    getIt<LoadingHelper>().dismissDialog();
+  void cancelOrder(BuildContext ctx, Orders model) async {
+    showCupertinoDialog(
+      context: ctx,
+      builder: (context) => ConfirmCancelDialog(
+        onConfirm: () async {
+          Navigator.pop(context);
+          getIt<LoadingHelper>().showLoadingDialog();
+          var result = await CancelOrder().call(model.id);
+          if (result.isNotEmpty) {
+            CustomToast.showSimpleToast(msg: result, type: ToastType.success);
+            model.availableCancelOrder = false;
+            AutoRouter.of(ctx).pop(true);
+          }
+          getIt<LoadingHelper>().dismissDialog();
+        },
+      ),
+    );
   }
 
   Future<void> getOrderFees({bool fromRemote = true}) async {
@@ -209,32 +217,30 @@ class OrderDetailsPageController {
     return GenericParams(id: id, refresh: refresh);
   }
 
-
-
   bool showChangePayOption() {
     var data = orderDetailsBloc.state.data;
-    if(data == null) return false;
+    if (data == null) return false;
     return !data.isPaid && !data.isDelivered && !data.isCanceled;
   }
 
-
   Future<void> fetchPaymentOptions({bool refresh = true}) async {
     var data = orderDetailsBloc.state.data;
-    if(data == null) return;
-    if(showChangePayOption()){
+    if (data == null) return;
+    if (showChangePayOption()) {
       var result = await GetPaymentOptions().call(refresh);
       if (result.isNotEmpty && orderDetailsBloc.state.data != null) {
-        result = result
-            .where((element) {
-              print("===>>>> ${element.paymentTypeKey.replaceAll("_", " ").toLowerCase()}");
-              print("===>>>> ${orderDetailsBloc.state.data!.paymentMethod.toLowerCase()}");
-              return  (element.paymentTypeKey.replaceAll("_", " ").toLowerCase()).toLowerCase() != orderDetailsBloc.state.data!.paymentMethod.toLowerCase();
-        })
-            .toList();
+        result = result.where((element) {
+          print(
+              "===>>>> ${element.paymentTypeKey.replaceAll("_", " ").toLowerCase()}");
+          print(
+              "===>>>> ${orderDetailsBloc.state.data!.paymentMethod.toLowerCase()}");
+          return (element.paymentTypeKey.replaceAll("_", " ").toLowerCase())
+                  .toLowerCase() !=
+              orderDetailsBloc.state.data!.paymentMethod.toLowerCase();
+        }).toList();
       }
       paymentOptionsBloc.onUpdateData(result);
     }
-
   }
 
   void changePaymentMethod(BuildContext context) {
@@ -264,15 +270,15 @@ class OrderDetailsPageController {
     if (result != null) {
       fetchPaymentOptions(refresh: true);
       orderDetailsBloc.onUpdateData(result);
-      CustomToast.showSimpleToast(msg: tr("paymentMethodChanged"), type: ToastType.success);
-      if(orderDetailsBloc.state.data!.isPaymentOnline){
+      CustomToast.showSimpleToast(
+          msg: tr("paymentMethodChanged"), type: ToastType.success);
+      if (orderDetailsBloc.state.data!.isPaymentOnline) {
         scrollController.animateTo(
           scrollController.position.maxScrollExtent,
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeOut,
         );
       }
-
     } else {
       CustomToast.showSimpleToast(
           msg: tr("errorChangingPaymentMethod"), type: ToastType.error);

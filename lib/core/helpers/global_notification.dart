@@ -98,6 +98,7 @@ class GlobalNotification {
 
   Future<void> _showLocalNotification(RemoteMessage? message) async {
     if (message == null) return;
+    if (message.notification == null) return ;
     final android = AndroidNotificationDetails(
       "${DateTime.now()}",
       "Default",

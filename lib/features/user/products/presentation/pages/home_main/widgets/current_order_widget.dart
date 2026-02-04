@@ -24,11 +24,18 @@ class CurrentOrderWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               spacing: 8,
               children: [
-                UnconstrainedBox(
-                  child: Image.asset(
-                    currentOrders.getTrackOrderStatus.imagePath ,
-                    width: 60,
-                    height: 60,
+                Container(
+                  decoration: BoxDecoration(
+                    color: context.colors.lightPink,
+                    shape: BoxShape.circle
+                  ),
+                  child: UnconstrainedBox(
+                    child: Image.asset(
+                      currentOrders.getTrackOrderStatus.imagePath ,
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
                 Flexible(

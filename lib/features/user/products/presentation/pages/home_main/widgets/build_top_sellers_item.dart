@@ -9,7 +9,7 @@ class BuildTopSellersItem extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 84,
+          width: 90,
           height: 84,
           alignment: Alignment.center,
           decoration: BoxDecoration(
@@ -29,7 +29,7 @@ class BuildTopSellersItem extends StatelessWidget {
         ),
         Gaps.vGap8,
         SizedBox(
-          width: 93,
+          width: 95,
           child: Text(
              textAlign: TextAlign.center,
             "${topSellers.name}",

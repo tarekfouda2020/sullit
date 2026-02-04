@@ -244,6 +244,8 @@
   "beASeller": "الإنضمام كتاجر",
   "new": "جديد",
   "cancel": "الغاء",
+  "confirmCancelOrder": "هل أنت متأكد من رغبتك في إلغاء هذا الطلب؟",
+  "yes": "نعم",
   "dashBoard": "لوحة التحكم",
   "classifiedProducts": "منتجاتي",
   "customersProducts": "منتجات العملاء",
@@ -844,9 +846,8 @@
   "bezat_points": "نقاط Bezat",
   "get_tr": "احصل على",
   "read_more": "اقرأ المزيد",
-
   "upgrade_now_to_get_more_bezat": "قم بالترقية الآن للحصول على المزيد من Bezat:",
-  "replacement_info": "نحن نبذل قصارى جهدنا لضمان توفر جميع المنتجات. ولكن في حال كان المنتج غير متوفر أثناء تجهيز الطلب، نحرص على توفير البديل المناسب لك بأسرع وقت ممكن"
+  "replacement_info": "نحن نبذل قصارى جهدنا لضمان توفر جميع المنتجات. ولكن في حال كان المنتج غير متوفر أثناء تجهيز الطلب، نحرص على توفير البديل المناسب لك بأسرع وقت ممكن",
   "view_details": "عرض التفاصيل",
   "already_subscribed_tier": "أنت مشترك بالفعل في هذه الفئة",
   "already_subscribed_with_days": "أنت مشترك بالفعل في",
@@ -876,5 +877,7 @@
   "sellers": "البائعون",
   "sellersSuggestions": "اقتراحات البائعين",
   "top Seller": "الأكثر مبيعًا",
-  "track Your Current Orders": "تتبّع طلباتك الحالية"
+  "track Your Current Orders": "تتبّع طلباتك الحالية",
+  "cancelOrder": "الغاء الطلب"
+
 }

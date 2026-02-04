@@ -80,6 +80,8 @@
   "wishlist": "WishLists",
   "compare": "Compare",
   "cancel": "Cancel",
+  "confirmCancelOrder": "Are you sure you want to cancel this order?",
+  "yes": "Yes",
   "trackOrder": "Track Order",
   "myWallet": "My Wallet",
   "supportTickets": "Support Tickets",
@@ -583,9 +585,9 @@
   "applyGiftCard": "Apply Gift Card",
   "qnt": "Qnt:",
   "emailVerify": "Your email has been verified successfully",
-  "changePassword":"Change Password" ,
-  "confirmChange":"Confirm change ",
-  "currentPassword":"Current Password",
+  "changePassword": "Change Password",
+  "confirmChange": "Confirm change ",
+  "currentPassword": "Current Password",
   "productScanned": "Product Scanned",
   "chargeWallet": "Charge Wallet Balance",
   "enterAmount": "Enter Amount",
@@ -710,6 +712,6 @@
   "sellers": "Sellers",
   "sellersSuggestions": "Sellers Suggestions",
   "top Seller": "Top Seller",
-  "track Your Current Orders": "Track Your Current Orders"
-
+  "track Your Current Orders": "Track Your Current Orders",
+  "cancelOrder": "Cancel Order"
 }

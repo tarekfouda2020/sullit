@@ -144,6 +144,8 @@ class Orders extends BaseDomainModel {
         return TrackOrderEnum.preparing;
         case "Ready For Delivery":
         return TrackOrderEnum.readyForDelivery;
+        case "On The Way":
+        return TrackOrderEnum.onTheWay;
       case "Picked Up":
         return TrackOrderEnum.pickedUp;
       case "Delivered":
