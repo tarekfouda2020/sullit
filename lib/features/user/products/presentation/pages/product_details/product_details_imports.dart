@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
+import 'package:flutter_tdd/core/helpers/debounce_helper.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
@@ -22,6 +24,7 @@ import 'package:flutter_tdd/features/user/products/domain/entities/variant_price
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_details_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_product_details.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_variant_price.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/send_query.dart';
@@ -29,6 +32,7 @@ import 'package:flutter_tdd/features/user/products/domain/use_cases/set_toggle_f
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_sheet_controller.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
+import 'package:flutter_tdd/features/user/vip_subscribe/presentation/pages/membership_subscribe/membership_subscribe_imports.dart';
 import 'widgets/product_details_widgets_imports.dart';
 
 part 'product_details.dart';

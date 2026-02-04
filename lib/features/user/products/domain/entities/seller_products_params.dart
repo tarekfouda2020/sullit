@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
+import 'package:flutter_tdd/features/user/category/presentation/manager/routes/routes.dart';
 
 class SellerProductsParams {
 
@@ -10,6 +11,7 @@ class SellerProductsParams {
   final List<String?>? color;
   final List<String>? attributes;
   final String? keyword;
+  final int? categoryId;
 
   SellerProductsParams({
     required this.sellerId,
@@ -19,7 +21,8 @@ class SellerProductsParams {
     this.brandId,
     this.color,
     this.keyword,
-    this.attributes
+    this.attributes,
+    this.categoryId
   });
 
 
@@ -38,7 +41,11 @@ class SellerProductsParams {
     if(keyword!=null && keyword?.isNotEmpty == true){
       header = "$header&keyword=$keyword";
     }
+    if(categoryId!=null ){
+      header = "$header&category_id=$categoryId";
+    }
     return header;
+
   }
 
 

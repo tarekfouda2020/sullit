@@ -1,7 +1,6 @@
 part of 'home_main_imports.dart';
 
 class HomeMainController {
-  final GenericBloc<HomeDomainModel?> homeCubit = GenericBloc(null);
   final GenericBloc<List<ProductSections>> sectionsCubit = GenericBloc([]);
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final ScrollController scrollController = ScrollController();
@@ -13,6 +12,9 @@ class HomeMainController {
   final GenericBloc<List<Product>> bestRatedCubit = GenericBloc([]);
   final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
 
+  GenericBloc<HomeDomainModel?> get homeCubit =>
+      OrdersHelper.instance.homeCubit;
+
   List<ProductSections> allSections = [];
   int currentPage = 1;
   int pageSize = 5;
@@ -23,8 +25,8 @@ class HomeMainController {
     homeController = controller;
     controller.searchController.clear();
     controller.visibleSearch.onUpdateData(false);
-    // getHome(context, refresh: false);
-    getHome(context);
+    // getHome(refresh: false);
+    getHome();
     getVipOffers();
     getBestRatedOffers();
     getNewArrivalOffers();
@@ -46,10 +48,8 @@ class HomeMainController {
     homeController.offersTabIndex = index;
   }
 
-  void getHome(BuildContext context, {bool refresh = true}) async {
-    var result = await GetHome().call(refresh);
-    // result?.flashSales.add(FlashSale(id: 0, title: tr('coupons'), date: DateTime.now(), banner: ""));
-    homeCubit.onUpdateData(result);
+  void getHome({bool refresh = true}){
+    OrdersHelper.instance.getHome(refresh: refresh);
   }
 
   Future<void> getProductSections() async {
@@ -235,9 +235,6 @@ class HomeMainController {
     _synchronizeFavoriteStatus(item);
   }
 
-
-
-
   void getOnSaleOffers({bool refresh = true}) async {
     var params = GenericPaginateParams(
       pageSize: pageSize,
@@ -299,24 +296,20 @@ class HomeMainController {
     }
   }
 
-
-
-  void onPressSeeOffers(BuildContext context){
+  void onPressSeeOffers(BuildContext context) {
     context.isShareHolder
         ? routeToOffersTab(context)
         : routeToMembershipSubscribe(context);
   }
 
-
-  void routeToOffersTab(BuildContext context){
+  void routeToOffersTab(BuildContext context) {
     homeController.animateTabsPages(3, context);
   }
-
 
   void routeToMembershipSubscribe(BuildContext context) {
     bool isAuth = context.read<DeviceCubit>().state.model.auth;
     if (isAuth) {
-      AutoRouter.of(context).push( MembershipSubscribeRoute());
+      AutoRouter.of(context).push(MembershipSubscribeRoute());
     } else {
       CustomToast.showAuthDialog(context);
     }

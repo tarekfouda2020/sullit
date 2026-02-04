@@ -20,10 +20,9 @@ import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_sheet_header_widget.dart';
 import 'package:flutter_tdd/core/widgets/pay_order_button_widget.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
+import 'package:flutter_tdd/core/widgets/seller_card_widget.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_imports.dart';
-import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
-import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/res.dart';
 
@@ -31,4 +30,5 @@ part 'build_bottom_nav_bar.dart';
 part 'build_taps_item.dart';
 part 'cart_button_widget.dart';
 part 'un_paid_order_sheet_widget.dart';
+
 part 'update_dialog_widget.dart';

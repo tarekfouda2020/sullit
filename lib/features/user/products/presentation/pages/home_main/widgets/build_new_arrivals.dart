@@ -31,7 +31,7 @@ class BuildNewArrivals extends StatelessWidget {
                         onFavRefresh: () => controller.onChangeFav(
                           newArrivals[index],context
                         ),
-                        onRefresh: () => controller.getHome(context, refresh: true),
+                        onRefresh: () => controller.getHome( refresh: true),
                       ),
                     );
                   },

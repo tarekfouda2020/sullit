@@ -111,6 +111,7 @@ class Res {
   static const String purchasedOrderIcon = "assets/images/purchased_order_icon.png";
   static const String newSplashImage = "assets/images/new_splash_image.png";
   static const String newAuthLogo = "assets/images/new_auth_logo.png";
+  static const String pointsPromoIcon = "assets/images/points_promo.svg";
   static const String crownHeadIcon = "assets/images/crown_head_icon.svg";
   static const String crownVipMark = "assets/images/crown_vip_mark.svg";
   static const String accountGoldIcon = "assets/images/account_icon.svg";
@@ -126,6 +127,14 @@ class Res {
   static const String scaffBg2 = "assets/images/scaffBg2.svg";
   static const String whats = "assets/images/whats.png";
   static const String vouchers = "assets/images/vouchers.svg";
+
+  static const String addToCartGif = "assets/images/add_cart.gif";
+  static const String  onTheWay = "assets/images/delivery.gif";
+  static const String  pickedUp = "assets/images/empty_box.gif";
+  static const String  confirmed = "assets/images/empty_box_2.gif";
+  static const String  delivered = "assets/images/empty_box_3.gif";
+
+
 
 // ---------------------------Fonts-------------------------------------
   static const String notoSans = "assets/fonts/NotoSans.ttf";

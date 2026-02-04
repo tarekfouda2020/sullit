@@ -8,6 +8,12 @@ class SplashController {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var strUser = prefs.get("user");
     if (strUser != null) {
+      try{
+        var deviceToken = await getIt<GetDeviceId>().deviceId;
+        GlobalState.instance.set(GlobalStateKeys.deviceToken,deviceToken);
+      }catch(e){
+        log(" error $e");
+      }
       context.read<DeviceCubit>().updateUserAuth(true);
       UserDomainModel user = UserDomainModel.fromJson(json.decode("$strUser"));
       GlobalState.instance.set("token", user.token);

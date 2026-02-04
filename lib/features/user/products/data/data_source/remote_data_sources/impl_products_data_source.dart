@@ -1,7 +1,9 @@
 // ignore_for_file: avoid_dynamic_calls
 
 import 'package:dartz/dartz.dart';
+import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
@@ -23,8 +25,15 @@ import 'package:injectable/injectable.dart';
 class ImplProductsDataSource extends ProductsDataSource {
   @override
   Future<Either<Failure, HomeModel>> getHome(bool param) async {
+    String? deviceId = GlobalState.instance.get(GlobalStateKeys.deviceToken);
+    if(deviceId!=null && deviceId.isNotEmpty){
+      deviceId = "?mac_address=$deviceId";
+    }else{
+      deviceId = "";
+    }
+
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.getHome,
+      url: "${ApiNames.getHome}$deviceId",
       responseType: ResType.model,
       requestMethod: RequestMethod.get,
       responseKey: (data) => data["data"],

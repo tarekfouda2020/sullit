@@ -5,3 +5,8 @@ class LocalStorageKeys {
 
 
 }
+
+
+class GlobalStateKeys {
+  static String deviceToken = "device_token";
+}

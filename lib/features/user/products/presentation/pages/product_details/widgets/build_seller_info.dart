@@ -9,10 +9,10 @@ class BuildSellerInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
+    return GestureDetector(
+      onTap: () async{
         if(shopModel!=null){
-          AutoRouter.of(context).push(SellerProductsPageRoute(shopModel: shopModel!));
+         controller.routeToSellerPage(context,shopModel!);
         }
       },
       child: Container(

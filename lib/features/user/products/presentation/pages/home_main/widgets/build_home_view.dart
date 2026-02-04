@@ -17,10 +17,15 @@ class BuildHomeView extends StatelessWidget {
         controller: controller.scrollController,
         padding: Dimens.paddingVertical10PXHorizontal20PX,
         child: Column(
-          children: [
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
             BuildHomeSwiper(slider: homeDomainModel.sliders),
             Gaps.vGap25,
             const AdvantagesWidget(),
+            Gaps.vGap20,
+            TrackSellerOrderWidget(currentOrders:homeDomainModel.currentOrders,),
+            Gaps.vGap10,
+            BuildTopSellers(topSellers: homeDomainModel.topSellers,),
             BuildTopCategories(categories: homeDomainModel.categories, controller: controller),
             VipOffersFormWidget(controller: controller),
             Gaps.vGap16,
@@ -48,6 +53,16 @@ class BuildHomeView extends StatelessWidget {
             BuildBanners(banners: homeDomainModel.bannersTwo),
             Gaps.vGap16,
             NewArrivalOffersFormWidget(controller: controller),
+            if(controller.homeCubit.state.data?.shop.isNotEmpty == true)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: BuildHeaderTitle(
+                title: tr("sellers"),
+                controller: controller,
+                onTap: () => AutoRouter.of(context).push(const BestSellersPageRoute()),
+              ),
+            ),
+             SellersSectionWidget(controller: controller,),
             // BuildHomeNewProducts(
             //   newestProducts: homeDomainModel.newestProducts,
             //   controller: controller,

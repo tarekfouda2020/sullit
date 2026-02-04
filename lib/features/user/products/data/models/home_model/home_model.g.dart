@@ -19,9 +19,18 @@ _$_HomeModel _$$_HomeModelFromJson(Map<String, dynamic> json) => _$_HomeModel(
       categories: (json['categories'] as List<dynamic>)
           .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      currentOrders: (json['current_orders'] as List<dynamic>)
+          .map((e) => OrderModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       flashSales: json['flash_deal'] == null
           ? null
           : FlashSaleModel.fromJson(json['flash_deal'] as Map<String, dynamic>),
+      shops: (json['shops'] as List<dynamic>)
+          .map((e) => ShopModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      topSellers: (json['top_sellers'] as List<dynamic>)
+          .map((e) => ShopModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       cartCount: (json['cart_count'] as num).toInt(),
       favCount: (json['wishlist_count'] as num).toInt(),
       isAdminDiscount: json['is_admin_discount'] as bool,
@@ -34,7 +43,10 @@ Map<String, dynamic> _$$_HomeModelToJson(_$_HomeModel instance) =>
       'banners_one': instance.bannersOne.map((e) => e.toJson()).toList(),
       'banners_two': instance.bannersTwo.map((e) => e.toJson()).toList(),
       'categories': instance.categories.map((e) => e.toJson()).toList(),
+      'current_orders': instance.currentOrders.map((e) => e.toJson()).toList(),
       'flash_deal': instance.flashSales?.toJson(),
+      'shops': instance.shops.map((e) => e.toJson()).toList(),
+      'top_sellers': instance.topSellers.map((e) => e.toJson()).toList(),
       'cart_count': instance.cartCount,
       'wishlist_count': instance.favCount,
       'is_admin_discount': instance.isAdminDiscount,

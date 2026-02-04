@@ -16,6 +16,7 @@ class CartMinAmountNeededWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Gaps.hGap10,
         SvgPicture.asset(
@@ -25,11 +26,14 @@ class CartMinAmountNeededWidget extends StatelessWidget {
         ),
         Gaps.hGap6,
         DirhamPrice(amount: minAmount,
+          crossAxisAlignment: CrossAxisAlignment.start,
           textStyle: AppTextStyle.s16_w500(color: context.colors.primary),
         ),
-        Gaps.hGap2,
-        Text(tr("needed_to_reach_minimum_order"),
-          style: AppTextStyle.s14_w400(color: context.colors.primary),
+        Gaps.hGap3,
+        Flexible(
+          child: Text(tr("needed_to_reach_minimum_order"),
+            style: AppTextStyle.s14_w400(color: context.colors.primary),
+          ),
         )
       ],
     );

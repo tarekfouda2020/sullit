@@ -48,18 +48,25 @@ class MyOrdersController{
 
 
 
-  void cancelOrder(BuildContext context,Orders model) async {
-    getIt<LoadingHelper>().showLoadingDialog();
-    var result = await CancelOrder().call(model.id);
-    if (result.isNotEmpty) {
-      CustomToast.showSimpleToast(msg: result,type: ToastType.success);
-      model.availableCancelOrder = false;
-      getIt<LoadingHelper>().dismissDialog();
-      AutoRouter.of(context).pop();
-    }else{
-      CustomToast.showSimpleToast(msg: tr("tryAgain"));
-    }
-    getIt<LoadingHelper>().dismissDialog();
+  void cancelOrder(BuildContext ctx, Orders model) async {
+    showCupertinoDialog(
+      context: ctx,
+      builder: (context) => ConfirmCancelDialog(
+        onConfirm: () async {
+          Navigator.pop(context);
+          getIt<LoadingHelper>().showLoadingDialog();
+          var result = await CancelOrder().call(model.id);
+          if (result.isNotEmpty) {
+            CustomToast.showSimpleToast(msg: result, type: ToastType.success);
+            model.availableCancelOrder = false;
+            AutoRouter.of(ctx).pop(true);
+          }else{
+            CustomToast.showSimpleToast(msg: tr("tryAgain"));
+          }
+          getIt<LoadingHelper>().dismissDialog();
+        },
+      ),
+    );
   }
 
 

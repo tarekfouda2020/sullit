@@ -10,7 +10,7 @@ class BuildLoadingView extends StatelessWidget {
         5,
         (index) => Container(
           margin: Dimens.paddingVertical5PX,
-          decoration: CustomDecoration(),
+          decoration: const CustomDecoration(),
           padding: Dimens.paddingAll15PX,
           child: Row(
             children: [
@@ -23,9 +23,9 @@ class BuildLoadingView extends StatelessWidget {
                 ),
               ),
               Gaps.hGap12,
-              Column(
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 4.0),
                     child: BuildShimmerItem(

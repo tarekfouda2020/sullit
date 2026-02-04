@@ -29,7 +29,7 @@ class SellerProductsSearchFieldWidget extends StatelessWidget {
                 child: SvgPicture.asset(Res.searchIcon),
               ),
             ),
-            margin: Dimens.paddingVertical10PX,
+            margin: EdgeInsets.zero,
           ),
         ),
         Gaps.hGap15,

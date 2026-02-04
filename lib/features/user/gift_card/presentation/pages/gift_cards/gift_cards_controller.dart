@@ -7,8 +7,8 @@ class GiftCardsController{
 
 
   GiftCardsController(){
+    getGiftCards(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
-      getGiftCards(pageKey, refresh: false);
       getGiftCards(pageKey);
     });
   }

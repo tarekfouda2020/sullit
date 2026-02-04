@@ -727,6 +727,13 @@
   "you_have_unpaid_order": "আপনার একটি বকেয়া অর্ডার আছে",
   "allow_items_replacement": "আইটেম পরিবর্তনের অনুমতি দিন",
   "add_email_to_change_password": "পাসওয়ার্ড পরিবর্তন করতে দয়া করে আপনার ইমেইল যোগ করুন",
+  "promo": "প্রোমো",
+  "bezat_promo": "Bezat প্রোমো",
+  "upgrade_now": "এখনই আপগ্রেড করুন",
+  "bezat_points": "Bezat পয়েন্টস",
+  "get_tr": "পান",
+  "read_more": "আরও পড়ুন",
+  "upgrade_now_to_get_more_bezat": "আরও Bezat পাওয়ার জন্য এখনই আপগ্রেড করুন:",
   "already_subscribed_tier": "আপনি ইতিমধ্যে এই স্তরে সাবস্ক্রাইব করেছেন",
   "already_subscribed_with_days": "আপনি ইতিমধ্যে সাবস্ক্রাইব করেছেন",
   "and_still_have": "এবং এখনও আছে",
@@ -753,5 +760,9 @@
   "places": "স্থানসমূহ",
   "pay_now": "এখনই পরিশোধ করুন",
   "search_in_offers": "প্রস্তাবগুলিতে অনুসন্ধান...",
-  "enter_location_name": "অনুগ্রহ করে অবস্থানের নাম লিখুন"
+  "enter_location_name": "অনুগ্রহ করে অবস্থানের নাম লিখুন",
+  "sellers": "বিক্রেতারা",
+  "sellersSuggestions": "বিক্রেতাদের প্রস্তাবনা",
+  "top Seller": "সেরা বিক্রেতা",
+  "track Your Current Orders": "আপনার বর্তমান অর্ডারগুলো ট্র্যাক করুন"
 }

@@ -24,12 +24,14 @@ mixin _$ShopModel {
   @JsonKey(name: 'user_id')
   int get userId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  List<String>? get sliders => throw _privateConstructorUsedError;
+  List<ShopCategoryModel>? get categories => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String get logo => throw _privateConstructorUsedError;
   @JsonKey(name: 'package_invalid_at')
   String get packageInvalidAt => throw _privateConstructorUsedError;
-  int get products => throw _privateConstructorUsedError;
+  int? get products => throw _privateConstructorUsedError;
   int get orders => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
@@ -57,11 +59,13 @@ abstract class $ShopModelCopyWith<$Res> {
       {int id,
       @JsonKey(name: 'user_id') int userId,
       String name,
+      List<String>? sliders,
+      List<ShopCategoryModel>? categories,
       String? title,
       String? description,
       String logo,
       @JsonKey(name: 'package_invalid_at') String packageInvalidAt,
-      int products,
+      int? products,
       int orders,
       String? address,
       String? email,
@@ -91,11 +95,13 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
     Object? id = null,
     Object? userId = null,
     Object? name = null,
+    Object? sliders = freezed,
+    Object? categories = freezed,
     Object? title = freezed,
     Object? description = freezed,
     Object? logo = null,
     Object? packageInvalidAt = null,
-    Object? products = null,
+    Object? products = freezed,
     Object? orders = null,
     Object? address = freezed,
     Object? email = freezed,
@@ -121,6 +127,14 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      sliders: freezed == sliders
+          ? _value.sliders
+          : sliders // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      categories: freezed == categories
+          ? _value.categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<ShopCategoryModel>?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -137,10 +151,10 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
           ? _value.packageInvalidAt
           : packageInvalidAt // ignore: cast_nullable_to_non_nullable
               as String,
-      products: null == products
+      products: freezed == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       orders: null == orders
           ? _value.orders
           : orders // ignore: cast_nullable_to_non_nullable
@@ -200,11 +214,13 @@ abstract class _$$_ShopModelCopyWith<$Res> implements $ShopModelCopyWith<$Res> {
       {int id,
       @JsonKey(name: 'user_id') int userId,
       String name,
+      List<String>? sliders,
+      List<ShopCategoryModel>? categories,
       String? title,
       String? description,
       String logo,
       @JsonKey(name: 'package_invalid_at') String packageInvalidAt,
-      int products,
+      int? products,
       int orders,
       String? address,
       String? email,
@@ -232,11 +248,13 @@ class __$$_ShopModelCopyWithImpl<$Res>
     Object? id = null,
     Object? userId = null,
     Object? name = null,
+    Object? sliders = freezed,
+    Object? categories = freezed,
     Object? title = freezed,
     Object? description = freezed,
     Object? logo = null,
     Object? packageInvalidAt = null,
-    Object? products = null,
+    Object? products = freezed,
     Object? orders = null,
     Object? address = freezed,
     Object? email = freezed,
@@ -262,6 +280,14 @@ class __$$_ShopModelCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      sliders: freezed == sliders
+          ? _value._sliders
+          : sliders // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      categories: freezed == categories
+          ? _value._categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<ShopCategoryModel>?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -278,10 +304,10 @@ class __$$_ShopModelCopyWithImpl<$Res>
           ? _value.packageInvalidAt
           : packageInvalidAt // ignore: cast_nullable_to_non_nullable
               as String,
-      products: null == products
+      products: freezed == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       orders: null == orders
           ? _value.orders
           : orders // ignore: cast_nullable_to_non_nullable
@@ -338,6 +364,8 @@ class _$_ShopModel extends _ShopModel {
       {required this.id,
       @JsonKey(name: 'user_id') required this.userId,
       required this.name,
+      final List<String>? sliders,
+      final List<ShopCategoryModel>? categories,
       this.title,
       this.description,
       required this.logo,
@@ -354,7 +382,9 @@ class _$_ShopModel extends _ShopModel {
       required this.youtube,
       required this.rating,
       required this.follow})
-      : super._();
+      : _sliders = sliders,
+        _categories = categories,
+        super._();
 
   factory _$_ShopModel.fromJson(Map<String, dynamic> json) =>
       _$$_ShopModelFromJson(json);
@@ -366,6 +396,26 @@ class _$_ShopModel extends _ShopModel {
   final int userId;
   @override
   final String name;
+  final List<String>? _sliders;
+  @override
+  List<String>? get sliders {
+    final value = _sliders;
+    if (value == null) return null;
+    if (_sliders is EqualUnmodifiableListView) return _sliders;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<ShopCategoryModel>? _categories;
+  @override
+  List<ShopCategoryModel>? get categories {
+    final value = _categories;
+    if (value == null) return null;
+    if (_categories is EqualUnmodifiableListView) return _categories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final String? title;
   @override
@@ -376,7 +426,7 @@ class _$_ShopModel extends _ShopModel {
   @JsonKey(name: 'package_invalid_at')
   final String packageInvalidAt;
   @override
-  final int products;
+  final int? products;
   @override
   final int orders;
   @override
@@ -402,7 +452,7 @@ class _$_ShopModel extends _ShopModel {
 
   @override
   String toString() {
-    return 'ShopModel(id: $id, userId: $userId, name: $name, title: $title, description: $description, logo: $logo, packageInvalidAt: $packageInvalidAt, products: $products, orders: $orders, address: $address, email: $email, phone: $phone, facebook: $facebook, google: $google, twitter: $twitter, instagram: $instagram, youtube: $youtube, rating: $rating, follow: $follow)';
+    return 'ShopModel(id: $id, userId: $userId, name: $name, sliders: $sliders, categories: $categories, title: $title, description: $description, logo: $logo, packageInvalidAt: $packageInvalidAt, products: $products, orders: $orders, address: $address, email: $email, phone: $phone, facebook: $facebook, google: $google, twitter: $twitter, instagram: $instagram, youtube: $youtube, rating: $rating, follow: $follow)';
   }
 
   @override
@@ -413,6 +463,9 @@ class _$_ShopModel extends _ShopModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality().equals(other._sliders, _sliders) &&
+            const DeepCollectionEquality()
+                .equals(other._categories, _categories) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -443,6 +496,8 @@ class _$_ShopModel extends _ShopModel {
         id,
         userId,
         name,
+        const DeepCollectionEquality().hash(_sliders),
+        const DeepCollectionEquality().hash(_categories),
         title,
         description,
         logo,
@@ -480,12 +535,14 @@ abstract class _ShopModel extends ShopModel {
       {required final int id,
       @JsonKey(name: 'user_id') required final int userId,
       required final String name,
+      final List<String>? sliders,
+      final List<ShopCategoryModel>? categories,
       final String? title,
       final String? description,
       required final String logo,
       @JsonKey(name: 'package_invalid_at')
       required final String packageInvalidAt,
-      required final int products,
+      required final int? products,
       required final int orders,
       final String? address,
       required final String? email,
@@ -510,6 +567,10 @@ abstract class _ShopModel extends ShopModel {
   @override
   String get name;
   @override
+  List<String>? get sliders;
+  @override
+  List<ShopCategoryModel>? get categories;
+  @override
   String? get title;
   @override
   String? get description;
@@ -519,7 +580,7 @@ abstract class _ShopModel extends ShopModel {
   @JsonKey(name: 'package_invalid_at')
   String get packageInvalidAt;
   @override
-  int get products;
+  int? get products;
   @override
   int get orders;
   @override
@@ -545,5 +606,201 @@ abstract class _ShopModel extends ShopModel {
   @override
   @JsonKey(ignore: true)
   _$$_ShopModelCopyWith<_$_ShopModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ShopCategoryModel _$ShopCategoryModelFromJson(Map<String, dynamic> json) {
+  return _ShopCategoryModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ShopCategoryModel {
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get icon => throw _privateConstructorUsedError;
+  String get slug => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ShopCategoryModelCopyWith<ShopCategoryModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ShopCategoryModelCopyWith<$Res> {
+  factory $ShopCategoryModelCopyWith(
+          ShopCategoryModel value, $Res Function(ShopCategoryModel) then) =
+      _$ShopCategoryModelCopyWithImpl<$Res, ShopCategoryModel>;
+  @useResult
+  $Res call({int id, String name, String icon, String slug});
+}
+
+/// @nodoc
+class _$ShopCategoryModelCopyWithImpl<$Res, $Val extends ShopCategoryModel>
+    implements $ShopCategoryModelCopyWith<$Res> {
+  _$ShopCategoryModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? icon = null,
+    Object? slug = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ShopCategoryModelCopyWith<$Res>
+    implements $ShopCategoryModelCopyWith<$Res> {
+  factory _$$_ShopCategoryModelCopyWith(_$_ShopCategoryModel value,
+          $Res Function(_$_ShopCategoryModel) then) =
+      __$$_ShopCategoryModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int id, String name, String icon, String slug});
+}
+
+/// @nodoc
+class __$$_ShopCategoryModelCopyWithImpl<$Res>
+    extends _$ShopCategoryModelCopyWithImpl<$Res, _$_ShopCategoryModel>
+    implements _$$_ShopCategoryModelCopyWith<$Res> {
+  __$$_ShopCategoryModelCopyWithImpl(
+      _$_ShopCategoryModel _value, $Res Function(_$_ShopCategoryModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? icon = null,
+    Object? slug = null,
+  }) {
+    return _then(_$_ShopCategoryModel(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_ShopCategoryModel extends _ShopCategoryModel {
+  const _$_ShopCategoryModel(
+      {required this.id,
+      required this.name,
+      required this.icon,
+      required this.slug})
+      : super._();
+
+  factory _$_ShopCategoryModel.fromJson(Map<String, dynamic> json) =>
+      _$$_ShopCategoryModelFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+  @override
+  final String icon;
+  @override
+  final String slug;
+
+  @override
+  String toString() {
+    return 'ShopCategoryModel(id: $id, name: $name, icon: $icon, slug: $slug)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ShopCategoryModel &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.icon, icon) || other.icon == icon) &&
+            (identical(other.slug, slug) || other.slug == slug));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name, icon, slug);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ShopCategoryModelCopyWith<_$_ShopCategoryModel> get copyWith =>
+      __$$_ShopCategoryModelCopyWithImpl<_$_ShopCategoryModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ShopCategoryModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ShopCategoryModel extends ShopCategoryModel {
+  const factory _ShopCategoryModel(
+      {required final int id,
+      required final String name,
+      required final String icon,
+      required final String slug}) = _$_ShopCategoryModel;
+  const _ShopCategoryModel._() : super._();
+
+  factory _ShopCategoryModel.fromJson(Map<String, dynamic> json) =
+      _$_ShopCategoryModel.fromJson;
+
+  @override
+  int get id;
+  @override
+  String get name;
+  @override
+  String get icon;
+  @override
+  String get slug;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ShopCategoryModelCopyWith<_$_ShopCategoryModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

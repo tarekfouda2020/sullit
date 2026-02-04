@@ -10,11 +10,16 @@ _$_ShopModel _$$_ShopModelFromJson(Map<String, dynamic> json) => _$_ShopModel(
       id: (json['id'] as num).toInt(),
       userId: (json['user_id'] as num).toInt(),
       name: json['name'] as String,
+      sliders:
+          (json['sliders'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      categories: (json['categories'] as List<dynamic>?)
+          ?.map((e) => ShopCategoryModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       title: json['title'] as String?,
       description: json['description'] as String?,
       logo: json['logo'] as String,
       packageInvalidAt: json['package_invalid_at'] as String,
-      products: (json['products'] as num).toInt(),
+      products: (json['products'] as num?)?.toInt(),
       orders: (json['orders'] as num).toInt(),
       address: json['address'] as String?,
       email: json['email'] as String?,
@@ -33,6 +38,8 @@ Map<String, dynamic> _$$_ShopModelToJson(_$_ShopModel instance) =>
       'id': instance.id,
       'user_id': instance.userId,
       'name': instance.name,
+      'sliders': instance.sliders,
+      'categories': instance.categories?.map((e) => e.toJson()).toList(),
       'title': instance.title,
       'description': instance.description,
       'logo': instance.logo,
@@ -49,4 +56,21 @@ Map<String, dynamic> _$$_ShopModelToJson(_$_ShopModel instance) =>
       'youtube': instance.youtube,
       'rating': instance.rating,
       'follow': instance.follow,
+    };
+
+_$_ShopCategoryModel _$$_ShopCategoryModelFromJson(Map<String, dynamic> json) =>
+    _$_ShopCategoryModel(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+      icon: json['icon'] as String,
+      slug: json['slug'] as String,
+    );
+
+Map<String, dynamic> _$$_ShopCategoryModelToJson(
+        _$_ShopCategoryModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'icon': instance.icon,
+      'slug': instance.slug,
     };

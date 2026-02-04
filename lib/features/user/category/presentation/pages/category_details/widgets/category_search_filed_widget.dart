@@ -30,7 +30,7 @@ class CategorySearchFiledWidget extends StatelessWidget {
           ),
         ),
         Gaps.hGap15,
-        BlocBuilder<GenericBloc, GenericState>(
+        BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
           bloc: controller.showClearIcon,
           builder: (context, state) {
             return Visibility(

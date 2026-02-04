@@ -30,6 +30,16 @@ class MyOrderItemWidget extends StatelessWidget {
                    crossAxisAlignment: CrossAxisAlignment.start,
                    children: [
                      Row(
+                       mainAxisAlignment: MainAxisAlignment.end,
+                       children: [
+                         Text(
+                           _getStatusText(),
+                           style: AppTextStyle.s14_w600(color: _getStatusColor(context)),
+                         ),
+                       ],
+                     ),
+                     Gaps.vGap5,
+                     Row(
                        children: [
                          Expanded(
                            child: Text(
@@ -37,13 +47,9 @@ class MyOrderItemWidget extends StatelessWidget {
                              style: AppTextStyle.s14_w600(color: context.colors.black),
                            ),
                          ),
-                         Text(
-                           _getStatusText(),
-                           style: AppTextStyle.s14_w600(color: _getStatusColor(context)),
-                         ),
                        ],
                      ),
-                     Gaps.vGap6,
+                     Gaps.vGap8,
                      Text(
                        DateTimeHelper.getDate(order.orderDate),
                        style: AppTextStyle.s12_w400(color: context.colors.textColor),

@@ -65,7 +65,8 @@ class Dimens {
   static const double dp55 = 55;
   static const double dp60 = 60;
   static const double dp64 = 64;
-  static const double dp65 = 64;
+  static const double dp65 = 65;
+  static const double dp66 = 66;
   static const double dp70 = 70;
   static const double dp80 = 80;
 
@@ -76,6 +77,7 @@ class Dimens {
 
   static const double dp200 = 200;
   static const double dp205 = 205;
+  static const double dp215 = 215;
   static const double dp210 = 210;
   static const double dp220 = 220;
 
@@ -86,6 +88,9 @@ class Dimens {
 
   static const BorderRadius sheetBorderRadius = BorderRadius.vertical(top: Radius.circular(30));
 
+
+  static const BorderRadius topRadius12Px = BorderRadius.vertical(top: Radius.circular(12));
+  static const BorderRadius bottomRadius12Px = BorderRadius.vertical(bottom: Radius.circular(12));
   static BorderRadius borderRadius3PX = const BorderRadius.all(Radius.circular(3)).r;
   static BorderRadius borderRadius4PX = const BorderRadius.all(Radius.circular(4)).r;
   static BorderRadius borderRadius5PX = const BorderRadius.all(Radius.circular(5)).r;
@@ -110,6 +115,7 @@ class Dimens {
   static EdgeInsets paddingH10V20 = const EdgeInsets.symmetric(horizontal: dp10, vertical: dp20).r;
   static EdgeInsets paddingH20V10 = const EdgeInsets.symmetric(horizontal: dp20, vertical: dp10).r;
   static EdgeInsets paddingH20V15 = const EdgeInsets.symmetric(horizontal: dp20, vertical: dp15).r;
+  static EdgeInsets paddingH20V25 = const EdgeInsets.symmetric(horizontal: dp20, vertical: dp25).r;
   static EdgeInsets paddingH35V26 = const EdgeInsets.symmetric(horizontal: dp35, vertical: dp26).r;
   static EdgeInsets paddingH50V10 = const EdgeInsets.symmetric(horizontal: dp50, vertical: dp10).r;
   static EdgeInsets paddingH80V10 = const EdgeInsets.symmetric(horizontal: dp80, vertical: dp10).r;
