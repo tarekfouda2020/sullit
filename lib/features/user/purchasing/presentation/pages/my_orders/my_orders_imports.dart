@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
@@ -19,6 +20,7 @@ import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/pay_order.
 import 'package:flutter_tdd/features/user/purchasing/presentation/widgets/purchasing_widgets_imports.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import '../order_details/widgets/order_details_widgets_imports.dart';
 import 'widgets/purchased_orders_widgets_imports.dart';
 
 part 'my_orders.dart';
