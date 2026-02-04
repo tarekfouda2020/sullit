@@ -24,16 +24,19 @@ class BuildLoadingCategoriesSectionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 30),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       color: context.colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Header title shimmer
-          BuildShimmerItem(
-            height: 20.r,
-            width: 120.r,
-            borderRadius: BorderRadius.circular(4),
+          Padding(
+            padding:  const EdgeInsetsDirectional.only(start: 30 ),
+            child: BuildShimmerItem(
+              height: 20.r,
+              width: 120.r,
+              borderRadius: BorderRadius.circular(4),
+            ),
           ),
           Gaps.vGap12,
           // Horizontal scrollable subcategories shimmer
@@ -44,7 +47,7 @@ class BuildLoadingCategoriesSectionWidget extends StatelessWidget {
                 5, // Show 5 shimmer subcategory items
                 (index) {
                   return Padding(
-                    padding: const EdgeInsetsDirectional.only(end: 8),
+                    padding:  EdgeInsetsDirectional.only(end: 8,start: index == 0 ? 30 : 0),
                     child: Column(
                       children: [
                         // Circular image shimmer

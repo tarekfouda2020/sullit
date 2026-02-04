@@ -35,7 +35,7 @@ class _ProductImageWidgetState extends State<ProductImageWidget>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context); // Required for AutomaticKeepAliveClientMixin
+    super.build(context);
 
     return CachedImage(
       fit: BoxFit.contain,

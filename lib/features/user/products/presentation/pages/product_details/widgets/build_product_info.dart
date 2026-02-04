@@ -20,6 +20,8 @@ class BuildProductInfo extends StatelessWidget {
               productModel.name!,
               style: AppTextStyle.s19_w500(
                 color: context.colors.black,
+              ).copyWith(
+                height: 1.15
               ),
             ),
             Gaps.vGap10,

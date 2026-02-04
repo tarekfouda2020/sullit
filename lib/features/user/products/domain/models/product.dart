@@ -113,6 +113,23 @@ class Product extends BaseDomainModel {
     }
   }
 
+
+
+  bool   showPriceDiscount({bool? showVipDiscount}) => ( hasDiscount == true || showVipDiscount == true);
+
+  bool   get showSpecialPoints => hasSpecialLoyaltyPoints == true;
+
+  String getPriceWhenHavePointsAndDiscount(){
+    if(hasSpecialLoyaltyPoints==true){
+      return priceHighLow ?? "";
+    }else{
+      return priceHighLowDiscount ?? "";
+    }
+  }
+
+
+
+
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];

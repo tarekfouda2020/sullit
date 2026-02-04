@@ -1,37 +1,38 @@
 part of 'home_main_widgets_imports.dart';
 
 class BuildTopSellersItem extends StatelessWidget {
-  const BuildTopSellersItem({super.key});
+   final Shop topSellers;
+  const BuildTopSellersItem({super.key, required this.topSellers});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-          width: 84,
+          width: 90,
           height: 84,
           alignment: Alignment.center,
           decoration: BoxDecoration(
               color: context.colors.white,
               borderRadius: const BorderRadius.all(Radius.circular(12)),
               border: Border.all(color: const Color(0xffECECEC), width: 1)),
-          child: const Center(
+          child:  Center(
             child: CachedImage(
-              height: 58,
-              width: 58,
-              fit: BoxFit.cover,
+              height: 68,
+              width: 60,
+              fit: BoxFit.contain,
               haveRadius: false,
-              url: Res.recyleIcon,
+              url: "${topSellers.logo}",
               boxShape: BoxShape.circle,
             ),
           ),
         ),
         Gaps.vGap8,
         SizedBox(
-          width: 93,
+          width: 95,
           child: Text(
              textAlign: TextAlign.center,
-            "Cinnabon",
+            "${topSellers.name}",
             maxLines: 2,
             style: AppTextStyle.s14_w400(color: context.colors.black),
           ),

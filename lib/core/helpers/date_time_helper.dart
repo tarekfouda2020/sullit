@@ -48,7 +48,6 @@ class DateTimeHelper {
         RegExp(r'\b(am|pm)\b', caseSensitive: false),
             (m) => m.group(0)!.toUpperCase(),
       );
-
       String normalizedDate = normalizeAmPm(backendDate.trim());
 
       // --- 🩹 Fix invalid cases like "13:55 PM" or "00:30 AM" ---
@@ -78,11 +77,13 @@ class DateTimeHelper {
         "yyyy-MM-dd hh:mm a",
         "yyyy-MM-dd HH:mm",
         "dd MMMM yyyy hh:mm a",
+        "d MMM yyyy - hh:mm a",
+        formatType
       ];
 
       for (var f in formats) {
         try {
-          parsed = DateFormat(f, locale).parse(normalizedDate);
+          parsed = DateFormat(f, locale).parseStrict(normalizedDate);
           break;
         } catch (_) {}
       }

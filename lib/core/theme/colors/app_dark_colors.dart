@@ -154,4 +154,10 @@ class AppDarkColors extends AppColors {
 
   @override
   Color get harvest => const Color(0xffBD8F03);
+
+  @override
+  Color get lightPink2 => const Color(0xffFFDDDE);
+
+  @override
+  Color get shadowPink => const Color(0xffFFCBCC);
 }

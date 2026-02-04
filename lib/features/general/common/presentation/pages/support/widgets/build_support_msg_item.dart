@@ -114,7 +114,7 @@ class BuildSupportMsgItem extends StatelessWidget {
           ),
           Gaps.vGap10,
           Text(
-            DateTimeHelper.getDate(model.createdAt),
+            DateTimeHelper.getDate(model.createdAt,formatType: "d MMM yyyy - hh:mm a"),
             style: AppTextStyle.s12_w400(color: context.colors.textColor),
           ),
           Container(

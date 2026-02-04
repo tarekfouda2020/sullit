@@ -250,8 +250,7 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
     );
   }
 
-  Future<void> _buildAddProductToCart(
-      BuildContext context, GenericState<Product?> state) {
+  Future<void> _buildAddProductToCart(BuildContext context, GenericState<Product?> state) {
     var existCount = context.read<CountCubit>().state.cartCount;
     return getIt<CartHelper>().addProductToCart(
       context,

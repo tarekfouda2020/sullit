@@ -6,7 +6,9 @@ enum NotifyEnum {
 
   message,
 
-}extension NotifyValue on NotifyEnum {
+}
+
+extension NotifyValue on NotifyEnum {
   String getValue() {
     switch (this) {
       case NotifyEnum.emailChanged:

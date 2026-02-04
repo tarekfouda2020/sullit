@@ -244,6 +244,8 @@
   "beASeller": "الإنضمام كتاجر",
   "new": "جديد",
   "cancel": "الغاء",
+  "confirmCancelOrder": "هل أنت متأكد من رغبتك في إلغاء هذا الطلب؟",
+  "yes": "نعم",
   "dashBoard": "لوحة التحكم",
   "classifiedProducts": "منتجاتي",
   "customersProducts": "منتجات العملاء",
@@ -838,8 +840,15 @@
   "alert": "تنبيه",
   "you_have_unpaid_order": "لديك طلب غير مدفوع",
   "add_email_to_change_password": "يرجى إضافة بريدك الإلكتروني لتغيير كلمة المرور",
-  "view_details": "عرض التفاصيل",
+  "promo": "عرض",
+  "bezat_promo": "عرض Bezat",
+  "upgrade_now": "قم بالترقية الآن",
+  "bezat_points": "نقاط Bezat",
+  "get_tr": "احصل على",
+  "read_more": "اقرأ المزيد",
+  "upgrade_now_to_get_more_bezat": "قم بالترقية الآن للحصول على المزيد من Bezat:",
   "replacement_info": "نحن نبذل قصارى جهدنا لضمان توفر جميع المنتجات. ولكن في حال كان المنتج غير متوفر أثناء تجهيز الطلب، نحرص على توفير البديل المناسب لك بأسرع وقت ممكن",
+  "view_details": "عرض التفاصيل",
   "already_subscribed_tier": "أنت مشترك بالفعل في هذه الفئة",
   "already_subscribed_with_days": "أنت مشترك بالفعل في",
   "and_still_have": "ولا يزال لديك",
@@ -866,5 +875,9 @@
   "enter_location_name": "يرجى إدخال اسم الموقع",
   "search_in_offers": "البحث في العروض...",
   "sellers": "البائعون",
-  "sellersSuggestions": "اقتراحات البائعين"
+  "sellersSuggestions": "اقتراحات البائعين",
+  "top Seller": "الأكثر مبيعًا",
+  "track Your Current Orders": "تتبّع طلباتك الحالية",
+  "cancelOrder": "الغاء الطلب"
+
 }

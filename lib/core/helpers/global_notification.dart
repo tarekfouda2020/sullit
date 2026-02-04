@@ -45,7 +45,7 @@ class GlobalNotification {
     );
     await Firebase.initializeApp();
     final settings = await messaging.requestPermission(provisional: true);
-    print('User granted permission: ${settings.authorizationStatus}');
+    log('User granted permission: ${settings.authorizationStatus}');
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       messaging.getToken().then((token) {
@@ -64,8 +64,10 @@ class GlobalNotification {
           var context = getIt<GlobalContext>().context();
           AutoRouter.of(context).push(const LoginRoute());
         }
+        log("is order updated : ${message.data['item_type'] ==  NotifyEnum.orderDelivered.getValue()}");
         if(message.data['item_type']!=null &&  message.data['item_type'] ==  NotifyEnum.orderDelivered.getValue()){
           bool isDelivered = message.data['body'].toString().split(" ").last.replaceAll(".", "") == "delivered";
+          OrdersHelper.instance.getHome(setLoading: false);
           if(isDelivered){
             var id = int.tryParse(message.data['item_type_id']);
             if(id!=null){
@@ -96,6 +98,7 @@ class GlobalNotification {
 
   Future<void> _showLocalNotification(RemoteMessage? message) async {
     if (message == null) return;
+    if (message.notification == null) return ;
     final android = AndroidNotificationDetails(
       "${DateTime.now()}",
       "Default",

@@ -1,7 +1,6 @@
 part of 'home_main_imports.dart';
 
 class HomeMainController {
-  final GenericBloc<HomeDomainModel?> homeCubit = GenericBloc(null);
   final GenericBloc<List<ProductSections>> sectionsCubit = GenericBloc([]);
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final ScrollController scrollController = ScrollController();
@@ -13,6 +12,9 @@ class HomeMainController {
   final GenericBloc<List<Product>> bestRatedCubit = GenericBloc([]);
   final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
 
+  GenericBloc<HomeDomainModel?> get homeCubit =>
+      OrdersHelper.instance.homeCubit;
+
   List<ProductSections> allSections = [];
   int currentPage = 1;
   int pageSize = 5;
@@ -23,8 +25,8 @@ class HomeMainController {
     homeController = controller;
     controller.searchController.clear();
     controller.visibleSearch.onUpdateData(false);
-    // getHome(context, refresh: false);
-    getHome(context);
+    // getHome(refresh: false);
+    getHome();
     getVipOffers();
     getBestRatedOffers();
     getNewArrivalOffers();
@@ -35,7 +37,8 @@ class HomeMainController {
   }
 
   void scrollListener() {
-    if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
       getProductSections();
     }
   }
@@ -45,14 +48,13 @@ class HomeMainController {
     homeController.offersTabIndex = index;
   }
 
-  void getHome(BuildContext context, {bool refresh = true}) async {
-    var result = await GetHome().call(refresh);
-    // result?.flashSales.add(FlashSale(id: 0, title: tr('coupons'), date: DateTime.now(), banner: ""));
-    homeCubit.onUpdateData(result);
+  void getHome({bool refresh = true}){
+    OrdersHelper.instance.getHome(refresh: refresh);
   }
 
   Future<void> getProductSections() async {
-    if (sectionsCubit.state.data.length / 5 == currentPage - 1 || sectionsCubit.state.data.isEmpty) {
+    if (sectionsCubit.state.data.length / 5 == currentPage - 1 ||
+        sectionsCubit.state.data.isEmpty) {
       var result = await GetProductSections().call(currentPage);
       final isLastPage = result.length < pageSize;
       if (currentPage == 1) {
@@ -106,7 +108,8 @@ class HomeMainController {
     return number.toString().padLeft(2, '0')[index];
   }
 
-  Future<void> getProductWithSkuAndRoute(BuildContext context, String sku) async {
+  Future<void> getProductWithSkuAndRoute(
+      BuildContext context, String sku) async {
     getIt<LoadingHelper>().showLoadingDialog();
     await GetSkuProduct().call(sku).then(
       (value) {
@@ -294,7 +297,9 @@ class HomeMainController {
   }
 
   void onPressSeeOffers(BuildContext context) {
-    context.isShareHolder ? routeToOffersTab(context) : routeToMembershipSubscribe(context);
+    context.isShareHolder
+        ? routeToOffersTab(context)
+        : routeToMembershipSubscribe(context);
   }
 
   void routeToOffersTab(BuildContext context) {

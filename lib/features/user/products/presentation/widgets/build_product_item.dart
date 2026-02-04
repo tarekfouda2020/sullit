@@ -27,6 +27,8 @@ import 'package:flutter_tdd/features/user/products/presentation/widgets/product_
 import 'package:flutter_tdd/features/user/products/presentation/widgets/product_image_widget.dart';
 import 'package:flutter_tdd/res.dart';
 
+import 'product_card_points_widget.dart';
+
 class BuildProductItem extends StatefulWidget {
   final Product productModel;
   final VoidCallback onFavRefresh;
@@ -97,12 +99,16 @@ class _BuildProductItemState extends State<BuildProductItem> {
                     url: widget.productModel.thumbnailImage ?? "",
                   ),
                   Visibility(
-                    visible: widget.productModel.hasDiscount!,
+                    // visible:widget.productModel.showSpecialPoints ,
+                    visible:false,
                     replacement: Visibility(
-                        visible: (widget.showVipDiscount ?? false) &&
-                            widget.productModel.hasVipOffer!,
-                        child: _discountWidget(context)),
-                    child: _discountWidget(context),
+                      visible: widget.productModel.hasDiscount!,
+                      replacement: Visibility(
+                          visible: (widget.showVipDiscount ?? false) && widget.productModel.hasVipOffer!,
+                          child: _discountWidget(context)),
+                      child: _discountWidget(context),
+                    ),
+                    child: ProductCardPointsWidget(productModel: widget.productModel),
                   ),
                   PositionedDirectional(
                     end: 3,
@@ -254,8 +260,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                             ),
                             Gaps.vGap3,
                             Visibility(
-                              visible: widget.productModel.hasDiscount ??
-                                  false || (widget.showVipDiscount ?? false),
+                              visible:widget.productModel.showPriceDiscount(showVipDiscount: widget.showVipDiscount) ,
                               child: Row(
                                 children: [
                                   DirhamPrice(
@@ -439,21 +444,23 @@ class _BuildProductItemState extends State<BuildProductItem> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
         decoration: BoxDecoration(
-          color: context.colors.primary,
+          color: context.colors.lightPink2,
         ),
         child: Row(
           children: [
+            SvgPicture.asset(Res.vouchers,width: Dimens.dp22, ),
+            Gaps.hGap6,
             Text(
               tr('off'),
               style: AppTextStyle.s12_w600(
-                color: context.colors.white,
+                color: context.colors.primary,
               ),
             ),
             Gaps.hGap2,
             Text(
               widget.productModel.discount!,
               style: AppTextStyle.s12_w600(
-                color: context.colors.white,
+                color: context.colors.primary,
               ),
             ),
           ],
@@ -461,4 +468,6 @@ class _BuildProductItemState extends State<BuildProductItem> {
       ),
     );
   }
+
+
 }

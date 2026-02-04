@@ -32,6 +32,7 @@ import 'package:flutter_tdd/features/user/products/domain/use_cases/set_toggle_f
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_sheet_controller.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
+import 'package:flutter_tdd/features/user/vip_subscribe/presentation/pages/membership_subscribe/membership_subscribe_imports.dart';
 import 'widgets/product_details_widgets_imports.dart';
 
 part 'product_details.dart';

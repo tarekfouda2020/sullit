@@ -18,7 +18,7 @@ class Get extends DioHelper {
           queryParameters: params.body,
           options: getIt<DioOptions>()(forceRefresh: params.forceRefresh));
       return getIt<HandleErrors>().statusError(response, params.errorFunc);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       getIt<HandleErrors>()
           .catchError(errorFunc: params.errorFunc, response: e.response);
       return Left(ServerFailure());
