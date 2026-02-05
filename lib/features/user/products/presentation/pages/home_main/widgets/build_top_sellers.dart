@@ -13,7 +13,7 @@ class BuildTopSellers extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            tr("top Seller"),
+            tr("top_Seller"),
             style: AppTextStyle.s16_w700(color: context.colors.black),
           ),
           Gaps.vGap8,
