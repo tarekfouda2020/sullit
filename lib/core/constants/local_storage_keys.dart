@@ -3,6 +3,8 @@ class LocalStorageKeys {
 
   static String searchHistory = "search_history";
 
+  static String iosEnableEvents = "facebook_events_enable";
+
 
 }
 

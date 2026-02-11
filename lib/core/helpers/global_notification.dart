@@ -68,6 +68,10 @@ class GlobalNotification {
         if(message.data['item_type']!=null &&  message.data['item_type'] ==  NotifyEnum.orderDelivered.getValue()){
           bool isDelivered = message.data['body'].toString().split(" ").last.replaceAll(".", "") == "delivered";
           OrdersHelper.instance.getHome(setLoading: false);
+          var orderId = int.tryParse(message.data['item_type_id']);
+          if( orderId != null){
+            OrdersHelper.instance.updateTrackOrderFromFcm(orderId);
+          }
           if(isDelivered){
             var id = int.tryParse(message.data['item_type_id']);
             if(id!=null){

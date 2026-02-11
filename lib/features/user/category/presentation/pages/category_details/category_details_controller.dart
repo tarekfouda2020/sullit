@@ -93,7 +93,6 @@ class CategoryDetailsController implements CartSheetController {
   }
 
   void whileWritingSellers(String value) {
-    showClearIcon.onUpdateData(value.isNotEmpty);
     DebounceHelper.instance.startSearch(
         value: value,
         onSearch: (val) {
@@ -769,10 +768,7 @@ class CategoryDetailsController implements CartSheetController {
   int? get productId => null;
 
   double remainToGetMinAmount() {
-    var total = double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
-    var minAmount = cartItemsBloc.state.data.minimumAmount ?? 0.0;
-    var remain = minAmount - total;
-    return (remain > 0 ? remain : 0.0);
+   return cartItemsBloc.state.data.getRemainAmountToOrder();
   }
 
   @override

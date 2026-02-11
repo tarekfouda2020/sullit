@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +15,9 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 import 'core/helpers/di.dart';
+import 'core/routes/router_imports.gr.dart';
 import 'my_app.dart';
 
-import 'package:facebook_app_events/facebook_app_events.dart';
 
 void main() async {
   tz.initializeTimeZones();
@@ -24,11 +27,8 @@ void main() async {
   getIt.registerSingleton(SharedPreferences.getInstance());
   await configureDependencies();
   getIt.registerSingleton(ComparedProductsDb());
-  getIt<GlobalNotification>().setupNotification();
-  // FacebookEventsHelper.instance.facebookAppEvents;
-  FacebookEventsHelper.instance.facebookAppEvents.setAutoLogAppEventsEnabled(true);
-  FacebookEventsHelper.instance.facebookAppEvents.setAdvertiserTracking(enabled: true);
-  // FacebookAppEvents();
+  await getIt<GlobalNotification>().setupNotification();
+  await FacebookEventsHelper.instance.setFacebookTracking();
 
   runApp(
     BlocProvider(

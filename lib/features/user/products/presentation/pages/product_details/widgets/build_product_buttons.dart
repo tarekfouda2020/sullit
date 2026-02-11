@@ -87,6 +87,7 @@ class BuildProductButtons extends StatelessWidget {
                             controller.remainToGetMinAmount() > 0,
                         child: CartMinAmountNeededWidget(
                           minAmount: state.data,
+                          sellerName: "from '${cartState.data.getRequiredSellerName()}'",
                         ),
                       );
                     },

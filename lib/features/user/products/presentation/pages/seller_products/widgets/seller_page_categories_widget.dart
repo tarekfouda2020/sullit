@@ -26,9 +26,7 @@ class SellerPageCategoriesWidget extends StatelessWidget {
                       selectedCategory.data?.id == subCategory.id;
 
                   return GestureDetector(
-                    onTap: () {
-                      controller.onSelectCategory(subCategory);
-                    },
+                    onTap: () => controller.onSelectCategory(subCategory),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 23, vertical: 12),

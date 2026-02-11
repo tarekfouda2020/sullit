@@ -1,20 +1,21 @@
 part of 'seller_products_imports.dart';
 
 class SellerProductsPage extends StatefulWidget {
-  final Shop shopModel;
-
-  const SellerProductsPage({super.key, required this.shopModel});
+  final Shop? shopModel;
+  final int shopId;
+  const SellerProductsPage({super.key, this.shopModel, required this.shopId});
 
   @override
   SellerProductsPageState createState() => SellerProductsPageState();
 }
 
 class SellerProductsPageState extends State<SellerProductsPage> {
-  late SellerProductsController controller;
+  late final SellerProductsController controller;
 
   @override
   void initState() {
-    controller = SellerProductsController(widget.shopModel.id ?? 0);
+    controller =
+        SellerProductsController(widget.shopId, shopModel: widget.shopModel);
     super.initState();
   }
 
@@ -32,7 +33,6 @@ class SellerProductsPageState extends State<SellerProductsPage> {
             CustomScrollView(
               slivers: [
                 SellerDetailsAppBar(
-                  shopModel: widget.shopModel,
                   controller: controller,
                 ),
                 SellerProducts(

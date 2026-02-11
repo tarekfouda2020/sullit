@@ -20,8 +20,9 @@ import 'package:flutter_tdd/core/helpers/location_service.dart' as _i71;
 import 'package:flutter_tdd/core/helpers/new_version_helper.dart' as _i77;
 import 'package:flutter_tdd/core/helpers/psermission_services.dart' as _i87;
 import 'package:flutter_tdd/core/helpers/rate_app_helper.dart' as _i103;
-import 'package:flutter_tdd/core/helpers/user_service_helper.dart' as _i116;
-import 'package:flutter_tdd/core/helpers/utilities.dart' as _i117;
+import 'package:flutter_tdd/core/helpers/router_helper.dart' as _i104;
+import 'package:flutter_tdd/core/helpers/user_service_helper.dart' as _i117;
+import 'package:flutter_tdd/core/helpers/utilities.dart' as _i118;
 import 'package:flutter_tdd/core/http/dio_helper/actions/delete.dart' as _i53;
 import 'package:flutter_tdd/core/http/dio_helper/actions/download.dart' as _i56;
 import 'package:flutter_tdd/core/http/dio_helper/actions/get.dart' as _i59;
@@ -196,53 +197,53 @@ import 'package:flutter_tdd/features/user/purchasing/data/repository/impl_purcha
 import 'package:flutter_tdd/features/user/purchasing/domain/repository/purchasing_repository.dart'
     as _i100;
 import 'package:flutter_tdd/features/user/sale/data/data_sources/impl_sale_data_sources.dart'
-    as _i105;
-import 'package:flutter_tdd/features/user/sale/data/data_sources/sale_data_sources.dart'
-    as _i104;
-import 'package:flutter_tdd/features/user/sale/data/repository/impl_sale_repository.dart'
-    as _i107;
-import 'package:flutter_tdd/features/user/sale/domain/repository/sale_repository.dart'
     as _i106;
-import 'package:flutter_tdd/features/user/search/data/data_sources/impl_search_data_sources.dart'
-    as _i109;
-import 'package:flutter_tdd/features/user/search/data/data_sources/search_data_sources.dart'
+import 'package:flutter_tdd/features/user/sale/data/data_sources/sale_data_sources.dart'
+    as _i105;
+import 'package:flutter_tdd/features/user/sale/data/repository/impl_sale_repository.dart'
     as _i108;
-import 'package:flutter_tdd/features/user/search/data/repository/impl_search_repository.dart'
-    as _i111;
-import 'package:flutter_tdd/features/user/search/domain/repository/search_repository.dart'
+import 'package:flutter_tdd/features/user/sale/domain/repository/sale_repository.dart'
+    as _i107;
+import 'package:flutter_tdd/features/user/search/data/data_sources/impl_search_data_sources.dart'
     as _i110;
-import 'package:flutter_tdd/features/user/tickets/data/data_sources/impl_tickets_data_sources.dart'
-    as _i113;
-import 'package:flutter_tdd/features/user/tickets/data/data_sources/tickets_data_sources.dart'
+import 'package:flutter_tdd/features/user/search/data/data_sources/search_data_sources.dart'
+    as _i109;
+import 'package:flutter_tdd/features/user/search/data/repository/impl_search_repository.dart'
     as _i112;
-import 'package:flutter_tdd/features/user/tickets/data/repository/impl_tickets_repository.dart'
-    as _i115;
-import 'package:flutter_tdd/features/user/tickets/domain/repository/tickets_repository.dart'
+import 'package:flutter_tdd/features/user/search/domain/repository/search_repository.dart'
+    as _i111;
+import 'package:flutter_tdd/features/user/tickets/data/data_sources/impl_tickets_data_sources.dart'
     as _i114;
+import 'package:flutter_tdd/features/user/tickets/data/data_sources/tickets_data_sources.dart'
+    as _i113;
+import 'package:flutter_tdd/features/user/tickets/data/repository/impl_tickets_repository.dart'
+    as _i116;
+import 'package:flutter_tdd/features/user/tickets/domain/repository/tickets_repository.dart'
+    as _i115;
 import 'package:flutter_tdd/features/user/vip_subscribe/data/data_source/impl_vip_subscribe_data_source.dart'
-    as _i119;
-import 'package:flutter_tdd/features/user/vip_subscribe/data/data_source/vip_subscribe_data_source.dart'
-    as _i118;
-import 'package:flutter_tdd/features/user/vip_subscribe/data/repositories/impl_vip_repositories.dart'
-    as _i121;
-import 'package:flutter_tdd/features/user/vip_subscribe/domain/repositories/vip_repositories.dart'
     as _i120;
-import 'package:flutter_tdd/features/user/wallet/data/data_sources/impl_wallet_data_sources.dart'
-    as _i123;
-import 'package:flutter_tdd/features/user/wallet/data/data_sources/wallet_data_sources.dart'
+import 'package:flutter_tdd/features/user/vip_subscribe/data/data_source/vip_subscribe_data_source.dart'
+    as _i119;
+import 'package:flutter_tdd/features/user/vip_subscribe/data/repositories/impl_vip_repositories.dart'
     as _i122;
-import 'package:flutter_tdd/features/user/wallet/data/repository/impl_wallet_repository.dart'
-    as _i125;
-import 'package:flutter_tdd/features/user/wallet/domain/repository/wallet_repository.dart'
+import 'package:flutter_tdd/features/user/vip_subscribe/domain/repositories/vip_repositories.dart'
+    as _i121;
+import 'package:flutter_tdd/features/user/wallet/data/data_sources/impl_wallet_data_sources.dart'
     as _i124;
-import 'package:flutter_tdd/features/user/wishlist/data/data_sources/impl_wishlist_data_sources.dart'
-    as _i127;
-import 'package:flutter_tdd/features/user/wishlist/data/data_sources/wishlist_data_sources.dart'
+import 'package:flutter_tdd/features/user/wallet/data/data_sources/wallet_data_sources.dart'
+    as _i123;
+import 'package:flutter_tdd/features/user/wallet/data/repository/impl_wallet_repository.dart'
     as _i126;
-import 'package:flutter_tdd/features/user/wishlist/data/repository/impl_wishlist_repository.dart'
-    as _i129;
-import 'package:flutter_tdd/features/user/wishlist/domain/repository/wishlist_repository.dart'
+import 'package:flutter_tdd/features/user/wallet/domain/repository/wallet_repository.dart'
+    as _i125;
+import 'package:flutter_tdd/features/user/wishlist/data/data_sources/impl_wishlist_data_sources.dart'
     as _i128;
+import 'package:flutter_tdd/features/user/wishlist/data/data_sources/wishlist_data_sources.dart'
+    as _i127;
+import 'package:flutter_tdd/features/user/wishlist/data/repository/impl_wishlist_repository.dart'
+    as _i130;
+import 'package:flutter_tdd/features/user/wishlist/domain/repository/wishlist_repository.dart'
+    as _i129;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -339,21 +340,22 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i101.ImplPurchasingRepository());
     gh.lazySingleton<_i102.Put>(() => _i102.Put());
     gh.lazySingleton<_i103.RateAppHelper>(() => _i103.RateAppHelper());
-    gh.factory<_i104.SaleDataSources>(() => _i105.ImplSaleRepository());
-    gh.factory<_i106.SaleRepository>(() => _i107.ImplSaleRepository());
-    gh.factory<_i108.SearchDataSources>(() => _i109.ImplSearchDataSources());
-    gh.factory<_i110.SearchRepository>(() => _i111.ImplSearchRepository());
-    gh.factory<_i112.TicketsDataSources>(() => _i113.ImplTicketsDataSources());
-    gh.factory<_i114.TicketsRepository>(() => _i115.ImplTicketsRepository());
-    gh.lazySingleton<_i116.UserServiceHelper>(() => _i116.UserServiceHelper());
-    gh.lazySingleton<_i117.Utilities>(() => _i117.Utilities());
-    gh.factory<_i118.VipDataSource>(() => _i119.ImplVipSubscribeDataSource());
-    gh.factory<_i120.VipRepositories>(() => _i121.ImplVipSubscribe());
-    gh.factory<_i122.WalletDataSources>(() => _i123.ImplWalletDataSources());
-    gh.factory<_i124.WalletRepository>(() => _i125.ImplWalletRepository());
-    gh.factory<_i126.WishlistDataSources>(
-        () => _i127.ImplWishlistDataSources());
-    gh.factory<_i128.WishlistRepository>(() => _i129.ImplWishlistRepository());
+    gh.lazySingleton<_i104.RouterHelper>(() => _i104.RouterHelper());
+    gh.factory<_i105.SaleDataSources>(() => _i106.ImplSaleRepository());
+    gh.factory<_i107.SaleRepository>(() => _i108.ImplSaleRepository());
+    gh.factory<_i109.SearchDataSources>(() => _i110.ImplSearchDataSources());
+    gh.factory<_i111.SearchRepository>(() => _i112.ImplSearchRepository());
+    gh.factory<_i113.TicketsDataSources>(() => _i114.ImplTicketsDataSources());
+    gh.factory<_i115.TicketsRepository>(() => _i116.ImplTicketsRepository());
+    gh.lazySingleton<_i117.UserServiceHelper>(() => _i117.UserServiceHelper());
+    gh.lazySingleton<_i118.Utilities>(() => _i118.Utilities());
+    gh.factory<_i119.VipDataSource>(() => _i120.ImplVipSubscribeDataSource());
+    gh.factory<_i121.VipRepositories>(() => _i122.ImplVipSubscribe());
+    gh.factory<_i123.WalletDataSources>(() => _i124.ImplWalletDataSources());
+    gh.factory<_i125.WalletRepository>(() => _i126.ImplWalletRepository());
+    gh.factory<_i127.WishlistDataSources>(
+        () => _i128.ImplWishlistDataSources());
+    gh.factory<_i129.WishlistRepository>(() => _i130.ImplWishlistRepository());
     return this;
   }
 }

@@ -878,6 +878,9 @@
   "sellersSuggestions": "اقتراحات البائعين",
   "top_Seller": "الأكثر مبيعًا",
   "track Your Current Orders": "تتبّع طلباتك الحالية",
-  "cancelOrder": "الغاء الطلب"
-
+  "cancelOrder": "الغاء الطلب",
+  "delete_products": "حذف المنتجات",
+  "keep_shopping": "اكمل التسوق",
+  "noSellersFound": "لم يتم العثور على بائعين",
+  "please_remove_products": "من فضلك قم بحذف منتجات {}"
 }

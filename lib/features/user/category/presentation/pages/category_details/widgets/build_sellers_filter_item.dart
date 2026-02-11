@@ -37,6 +37,7 @@ class BuildSellersFilterItem extends StatelessWidget {
               children: [
                 if (state.data)
                   CustomSearchFiledWidget(
+                    hint: "Search in sellers...",
                     txtController: controller.searchSellersController,
                     onPressSearch: () => controller.refreshSellers(context),
                     onChange: (value) => controller.whileWritingSellers(value),

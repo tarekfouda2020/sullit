@@ -202,7 +202,9 @@ class CartHelper {
 
   Future<AddProductToCartParams> _addToCartParams(int? variantId, int qty, {bool showLoader = true}) async {
     return AddProductToCartParams(
-        quantity: qty, variantId: variantId, macAddress: await getIt<GetDeviceId>().deviceId, showLoader: showLoader);
+        quantity: qty, variantId: variantId,
+        macAddress: await getIt<GetDeviceId>().deviceId,
+        showLoader: showLoader);
   }
 
   VariantPriceParams _variantPriceParams(int id) {

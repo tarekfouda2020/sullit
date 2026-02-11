@@ -713,5 +713,9 @@
   "sellersSuggestions": "Sellers Suggestions",
   "top_Seller": "Top Sellers",
   "track Your Current Orders": "Track Your Current Orders",
-  "cancelOrder": "Cancel Order"
+  "cancelOrder": "Cancel Order",
+  "delete_products": "Delete products",
+  "keep_shopping": "Keep shopping",
+  "noSellersFound": "No sellers found",
+  "please_remove_products": "Please remove {} products"
 }

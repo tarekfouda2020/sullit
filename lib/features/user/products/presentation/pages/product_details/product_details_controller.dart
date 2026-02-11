@@ -472,16 +472,16 @@ class ProductDetailsController implements CartSheetController {
 
   Future<void> routeToSellerPage(BuildContext context, Shop shopModel) async {
     await AutoRouter.of(context)
-        .push(SellerProductsPageRoute(shopModel: shopModel));
+        .push(SellerProductsPageRoute(shopModel: shopModel,shopId: shopModel.id!));
     _calculateRemainingAmount();
   }
 
   double remainToGetMinAmount() {
-    return double.tryParse(remainingAmountBloc.state.data) ?? 0.0;
+    return cartItemsBloc.state.data.getRemainAmountToOrder();
   }
 
   @override
-  String get minAmountRemain => remainingAmountBloc.state.data;
+  String get minAmountRemain => remainToGetMinAmount().toStringAsFixed(2);
 
   void showPointsPromoSheet(BuildContext context) {
     showModalBottomSheet(

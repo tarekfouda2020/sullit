@@ -1,11 +1,17 @@
 
 import 'dart:developer';
+import 'dart:io';
 
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart' as cat;
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'di.dart';
 
 class FacebookEventsHelper {
 
@@ -15,19 +21,21 @@ class FacebookEventsHelper {
 
   final FacebookAppEvents facebookAppEvents = FacebookAppEvents();
 
-  final String currency = "AED";
+  bool iosEnableTracking = false;
 
-  final String countryCode = "AE";
+  static const String currency = "AED";
 
-  final String order = "Order";
+  static const String countryCode = "AE";
 
-  final String product = "Product";
+  static const String order = "Order";
 
-  final String productDetailsOpenedName = "Product_details_opened";
+  static const String product = "Product";
 
-  final String categoryOpened = "category_opened";
+  static const String productDetailsOpenedName = "Product_details_opened";
 
-  final String registerMethod = "email";
+  static const String categoryOpened = "category_opened";
+
+  static const String registerMethod = "email";
 
 
   void productAddToCart({
@@ -36,9 +44,9 @@ class FacebookEventsHelper {
      String? variantId,
      String? variantPrice,
   }) {
-    if(!kReleaseMode){
-      return ;
-    }
+    // if(!kReleaseMode){
+    //   return ;
+    // }
      facebookAppEvents.logAddToCart(
         id: id.toString(),
         type: product,
@@ -70,6 +78,9 @@ class FacebookEventsHelper {
   }
 
   void purchaseEvent(double amount) {
+    if(!kReleaseMode){
+      return ;
+    }
     facebookAppEvents.logPurchase(amount: amount, currency: currency);
   }
 
@@ -147,6 +158,13 @@ class FacebookEventsHelper {
     );
   }
 
+  void clearUserData(UserDomainModel? data){
+    if(!kReleaseMode){
+      return ;
+    }
+    facebookAppEvents.clearUserData();
+  }
+
 
 
   void completedRegistration(){
@@ -157,5 +175,37 @@ class FacebookEventsHelper {
         registrationMethod: registerMethod,
     );
   }
+
+
+  Future<void> setFacebookTracking()async{
+    facebookAppEvents.setAutoLogAppEventsEnabled(true);
+    if (Platform.isIOS) {
+      enableIosTracking();
+    } else {
+      facebookAppEvents.setAdvertiserTracking(enabled: true);
+    }
+  }
+
+
+  Future<void> enableIosTracking()async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool? isTrackEnabled = prefs.getBool(LocalStorageKeys.iosEnableEvents);
+    if(isTrackEnabled == true){
+      iosEnableTracking = true;
+      facebookAppEvents.setAdvertiserTracking(
+        enabled: true,
+      );
+      return ;
+    }
+     TrackingStatus status = await AppTrackingTransparency.requestTrackingAuthorization();
+     if(status == TrackingStatus.authorized){
+       prefs.setBool(LocalStorageKeys.iosEnableEvents, true);
+       iosEnableTracking = status == TrackingStatus.authorized;
+       facebookAppEvents.setAdvertiserTracking(
+         enabled: iosEnableTracking,
+       );
+     }
+
+   }
 
 }
