@@ -102,6 +102,7 @@ dependencies:
   facebook_app_events: ^0.24.0
   app_tracking_transparency: ^2.0.6+1
   new_version_plus: ^0.1.0
+  sound_effect: ^0.1.2
   timeago:
   timezone:
   country_calling_code_picker:
@@ -147,6 +148,7 @@ flutter:
     - assets/fonts/
     - assets/fonts/quicksand/
     - assets/images/
+    - assets/sounds/
     - assets/images/vouchers.svg
     - assets/lang/
     - lib/core/package/country_calling_code_picker-2.0.1/flags/

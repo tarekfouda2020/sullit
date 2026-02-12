@@ -44,9 +44,9 @@ class FacebookEventsHelper {
      String? variantId,
      String? variantPrice,
   }) {
-    // if(!kReleaseMode){
-    //   return ;
-    // }
+    if(!kReleaseMode){
+      return ;
+    }
      facebookAppEvents.logAddToCart(
         id: id.toString(),
         type: product,

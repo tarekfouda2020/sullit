@@ -11,7 +11,7 @@ class TrackOrderController {
   TrackOrderController(this.orderId);
 
   Future<void> getTrackOrder() async {
-   OrdersHelper.instance.getTrackOrder(id: orderId);
+  await OrdersHelper.instance.getTrackOrder(id: orderId);
   }
 
   final List<TrackOrderEnum> trackOrderStatus = [

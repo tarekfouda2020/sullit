@@ -243,6 +243,8 @@ PODS:
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - sound_effect (0.1.2):
+    - Flutter
   - sqflite_darwin (0.0.4):
     - Flutter
     - FlutterMacOS
@@ -309,6 +311,7 @@ DEPENDENCIES:
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - rate_my_app (from `.symlinks/plugins/rate_my_app/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - sound_effect (from `.symlinks/plugins/sound_effect/ios`)
   - sqflite_darwin (from `.symlinks/plugins/sqflite_darwin/darwin`)
   - sqlite3_flutter_libs (from `.symlinks/plugins/sqlite3_flutter_libs/darwin`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
@@ -395,6 +398,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/rate_my_app/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+  sound_effect:
+    :path: ".symlinks/plugins/sound_effect/ios"
   sqflite_darwin:
     :path: ".symlinks/plugins/sqflite_darwin/darwin"
   sqlite3_flutter_libs:
@@ -458,6 +463,7 @@ SPEC CHECKSUMS:
   rate_my_app: 65f698abb47b8359fd5de959fa0237208c024aab
   SDWebImage: 1bb6a1b84b6fe87b972a102bdc77dd589df33477
   shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
+  sound_effect: fa0600cdb9ebdc8ca14671fdc20418d7c223e92b
   sqflite_darwin: 20b2a3a3b70e43edae938624ce550a3cbf66a3d0
   sqlite3: 73513155ec6979715d3904ef53a8d68892d4032b
   sqlite3_flutter_libs: 83f8e9f5b6554077f1d93119fe20ebaa5f3a9ef1
