@@ -23,7 +23,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.31</string>
+	<string>1.0.32</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -36,7 +36,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>5</string>
 	<key>FacebookAppID</key>
 	<string>2781021995568556</string>
 	<key>FacebookClientToken</key>
@@ -82,8 +82,6 @@
 	<string>reminders</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>recognize speech</string>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>We use this permission to show you more relevant ads and measure their effectiveness, helping us improve your shopping experience.</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
