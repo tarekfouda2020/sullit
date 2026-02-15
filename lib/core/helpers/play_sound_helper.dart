@@ -17,7 +17,7 @@ class PlaySoundHelper {
 
   Future<void> startSound({required VoidCallback afterSoundEnd,int soundDurationMilliSec = 5500}) async {
     try{
-      _player.play("effect", volume: 2);
+      _player.play("effect", volume: 5);
     }catch(e){
      log("====>>>>>>>. error in play sound $e   ");
     }
@@ -36,7 +36,7 @@ class PlaySoundHelper {
     try {
       await _player.release();
     } catch (e) {
-      log("error while init sound $e ");
+      log("error while stop sound $e ");
     }
   }
 

@@ -178,6 +178,9 @@ class FacebookEventsHelper {
 
 
   Future<void> setFacebookTracking()async{
+    if(!kReleaseMode){
+      return ;
+    }
     facebookAppEvents.setAutoLogAppEventsEnabled(true);
     if (Platform.isIOS) {
       enableIosTracking();
