@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
@@ -25,6 +27,7 @@ import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/core/widgets/loading_icon_widget.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/min_amount_seller_domain.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/update_cart_item.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart/cart_imports.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/widgets/build_cart_stepper.dart';
@@ -46,3 +49,4 @@ part 'change_cart_qty_widget.dart';
 part 'cart_fav_icon_widget.dart';
 part 'cart_shimmer_item_widget.dart';
 part 'cart_items_list_widget.dart';
+part 'min_amount_dialog.dart';

@@ -785,6 +785,7 @@ class AppRouter extends _i102.RootStackRouter {
         child: _i64.SellerProductsPage(
           key: args.key,
           shopModel: args.shopModel,
+          shopId: args.shopId,
         ),
         opaque: true,
       );
@@ -795,7 +796,6 @@ class AppRouter extends _i102.RootStackRouter {
         routeData: routeData,
         child: _i65.SellerDetailsAppBar(
           key: args.key,
-          shopModel: args.shopModel,
           controller: args.controller,
         ),
         opaque: true,
@@ -2846,13 +2846,15 @@ class SellerProductsPageRoute
     extends _i102.PageRouteInfo<SellerProductsPageRouteArgs> {
   SellerProductsPageRoute({
     _i105.Key? key,
-    required _i112.Shop shopModel,
+    _i112.Shop? shopModel,
+    required int shopId,
   }) : super(
           SellerProductsPageRoute.name,
           path: '/seller-products-page',
           args: SellerProductsPageRouteArgs(
             key: key,
             shopModel: shopModel,
+            shopId: shopId,
           ),
         );
 
@@ -2862,16 +2864,19 @@ class SellerProductsPageRoute
 class SellerProductsPageRouteArgs {
   const SellerProductsPageRouteArgs({
     this.key,
-    required this.shopModel,
+    this.shopModel,
+    required this.shopId,
   });
 
   final _i105.Key? key;
 
-  final _i112.Shop shopModel;
+  final _i112.Shop? shopModel;
+
+  final int shopId;
 
   @override
   String toString() {
-    return 'SellerProductsPageRouteArgs{key: $key, shopModel: $shopModel}';
+    return 'SellerProductsPageRouteArgs{key: $key, shopModel: $shopModel, shopId: $shopId}';
   }
 }
 
@@ -2881,14 +2886,12 @@ class SellerDetailsAppBarRoute
     extends _i102.PageRouteInfo<SellerDetailsAppBarRouteArgs> {
   SellerDetailsAppBarRoute({
     _i105.Key? key,
-    required _i112.Shop shopModel,
     required _i64.SellerProductsController controller,
   }) : super(
           SellerDetailsAppBarRoute.name,
           path: '/seller-details-app-bar',
           args: SellerDetailsAppBarRouteArgs(
             key: key,
-            shopModel: shopModel,
             controller: controller,
           ),
         );
@@ -2899,19 +2902,16 @@ class SellerDetailsAppBarRoute
 class SellerDetailsAppBarRouteArgs {
   const SellerDetailsAppBarRouteArgs({
     this.key,
-    required this.shopModel,
     required this.controller,
   });
 
   final _i105.Key? key;
 
-  final _i112.Shop shopModel;
-
   final _i64.SellerProductsController controller;
 
   @override
   String toString() {
-    return 'SellerDetailsAppBarRouteArgs{key: $key, shopModel: $shopModel, controller: $controller}';
+    return 'SellerDetailsAppBarRouteArgs{key: $key, controller: $controller}';
   }
 }
 

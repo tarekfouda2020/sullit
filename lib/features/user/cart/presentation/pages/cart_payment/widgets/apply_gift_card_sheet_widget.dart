@@ -62,6 +62,7 @@ class ApplyGiftCardSheet extends StatelessWidget {
   void _onPressSubmit(BuildContext context) {
       if(controller.isGiftCardApplied){
       controller.createOrder(context);
+      Navigator.pop(context);
     }else{
       CustomToast.showSimpleToast(msg: tr("applyGiftCardFirst"));
     }

@@ -134,6 +134,13 @@ class Res {
   static const String  confirmed = "assets/images/empty_box_2.gif";
   static const String  delivered = "assets/images/empty_box_3.gif";
 
+  static const String  ramadanSplashVideo = "assets/videos/ramadan_splash.mp4";
+  static const String  ramadanSplashGif = "assets/images/ramadan_gif_image.gif";
+  static const String  ramadanSplashImage = "assets/images/ramadan_splash.png";
+  static const String  ramadanSplashSound = "assets/sounds/ramadan_sound.mp3";
+
+
+
 
 
 // ---------------------------Fonts-------------------------------------

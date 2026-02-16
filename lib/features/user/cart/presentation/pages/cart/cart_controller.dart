@@ -3,7 +3,8 @@
 part of 'cart_imports.dart';
 
 class CartController {
-  GenericBloc<CartDomainModel> get cartItemsBloc => getIt<CartHelper>().cartItemsBloc;
+  GenericBloc<CartDomainModel> get cartItemsBloc =>
+      getIt<CartHelper>().cartItemsBloc;
 
   final CartNavigateHelper navigateHelper = getIt<CartNavigateHelper>();
 
@@ -23,44 +24,54 @@ class CartController {
     await getIt<CartHelper>().getCartItems(refresh: refresh);
   }
 
-  Future<void> deleteItemFromCart(BuildContext context, CartItem cartItem) async {
+  Future<void> deleteItemFromCart(
+      BuildContext context, CartItem cartItem) async {
     getIt<LoadingHelper>().showLoadingDialog();
     var data = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
     if (data) {
-      num newSubTotal = cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
+      num newSubTotal =
+          cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
       cartItemsBloc.state.data.calculableTotal = newSubTotal;
       // cartItemsBloc.state.data.items!.remove(cartItem);
-      cartItemsBloc.state.data.minimumStatus = newSubTotal > (cartItemsBloc.state.data.minimumAmount ?? 0);
+      cartItemsBloc.state.data.minimumStatus =
+          newSubTotal > (cartItemsBloc.state.data.minimumAmount ?? 0);
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
       updateCartCount(context);
       await getCartItems(refresh: true);
       getIt<LoadingHelper>().dismissDialog();
-      if (cartItemsBloc.state.data.items == null || (cartItemsBloc.state.data.items ?? []).isEmpty) {
+      if (cartItemsBloc.state.data.items == null ||
+          (cartItemsBloc.state.data.items ?? []).isEmpty) {
         getIt<CartNavigateHelper>().initData();
       }
-      getIt<CartHelper>().updateCartCountWithCart(context, cartItemsBloc.state.data);
+      getIt<CartHelper>()
+          .updateCartCountWithCart(context, cartItemsBloc.state.data);
       // var cartCount = countCubit.cartCount - 1;
-      CustomToast.showSimpleToast(msg: tr('itemDeleted'), type: ToastType.success);
+      CustomToast.showSimpleToast(
+          msg: tr('itemDeleted'), type: ToastType.success);
       // getCartItems();
     } else {
       getIt<LoadingHelper>().dismissDialog();
     }
   }
 
-  Future<bool> onIncreaseCart(BuildContext context, CartItem cartItem, int newQty) async {
-    final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+  Future<bool> onIncreaseCart(
+      BuildContext context, CartItem cartItem, int newQty) async {
+    final success =
+        await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
     if (success != null) {
       cartItem.quantity = newQty;
       cartItemsBloc.onUpdateData(success);
       updateCartCount(context);
-      FacebookEventsHelper.instance.productAddToCart(id: cartItem.productId, price: cartItem.price);
+      FacebookEventsHelper.instance
+          .productAddToCart(id: cartItem.productId, price: cartItem.price);
       return true;
     } else {
       return false;
     }
   }
 
-  void whileOnIncreaseCount(BuildContext context, CartItem cartItem, String value, GenericBloc<int> qntCubit) {
+  void whileOnIncreaseCount(BuildContext context, CartItem cartItem,
+      String value, GenericBloc<int> qntCubit) {
     if (qntCubit.state.data < cartItem.stockQty) {
       var newQty = qntCubit.state.data + 1;
       qntCubit.onUpdateData(newQty);
@@ -81,8 +92,10 @@ class CartController {
     }
   }
 
-  Future<bool> onDecreaseCart(BuildContext context, CartItem cartItem, int newQty) async {
-    final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+  Future<bool> onDecreaseCart(
+      BuildContext context, CartItem cartItem, int newQty) async {
+    final success =
+        await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
     if (success != null) {
       cartItem.quantity = newQty;
       cartItemsBloc.onUpdateData(success);
@@ -96,7 +109,8 @@ class CartController {
     }
   }
 
-  void whileOnDecreaseCount(BuildContext context, CartItem cartItem, String value, GenericBloc<int> qntCubit) {
+  void whileOnDecreaseCount(BuildContext context, CartItem cartItem,
+      String value, GenericBloc<int> qntCubit) {
     if (qntCubit.state.data > 1) {
       var newQty = qntCubit.state.data - 1;
       qntCubit.onUpdateData(newQty);
@@ -119,12 +133,32 @@ class CartController {
   void navigateToShipping(BuildContext context) {
     bool auth = context.read<DeviceCubit>().state.model.auth;
     if (auth) {
-      if (cartItemsBloc.state.data.minimumStatus == false) {
-        CustomToast.showSimpleToast(msg: cartItemsBloc.state.data.minimumAmountMsg!);
+      final cartData = cartItemsBloc.state.data;
+      // if ((cartData.minAmountSellers ?? []).length > 1 == true && cartData.getRequiredSeller() !=null) {
+      //   showDialog(
+      //     context: context,
+      //     builder: (context) => MinAmountDialog(
+      //       controller: this,
+      //       shopId: cartData.getRequiredShopId(),
+      //       seller: cartData.getRequiredSeller()!,
+      //       onDelete: () {
+      //         CustomToast.showSimpleToast(
+      //           msg: tr('please_remove_products')
+      //               .replaceFirst('{}', cartData.minAmountSellers!.first.name),
+      //           type: ToastType.error,
+      //         );
+      //       },
+      //     ),
+      //   );
+      //   return;
+      // }
+      if (cartData.minimumStatus == false) {
+        CustomToast.showSimpleToast(msg: cartData.minimumAmountMsg!);
         return;
       }
-      if ((cartItemsBloc.state.data.items ?? []).isNotEmpty) {
-        getIt<CartNavigateHelper>().setStep(CartNavigateHelper.shippingStepIndex, force: true);
+      if ((cartData.items ?? []).isNotEmpty) {
+        getIt<CartNavigateHelper>()
+            .setStep(CartNavigateHelper.shippingStepIndex, force: true);
       } else {
         CustomToast.showSimpleToast(msg: tr('cartIsEmpty'));
         return;
@@ -165,7 +199,9 @@ class CartController {
       (previousValue, element) => previousValue + element.quantity,
     );
     var countCubit = context.read<CountCubit>().state;
-    context.read<CountCubit>().onUpdateCount(allItemsCount, countCubit.discount);
+    context
+        .read<CountCubit>()
+        .onUpdateCount(allItemsCount, countCubit.discount);
   }
 
   void onStepChanged(int step) {
@@ -187,9 +223,11 @@ class CartController {
   domain_shipping.Shipping? get paymentShipping =>
       getIt<CartNavigateHelper>().cartCheckOutPageData.orderSummaryCheckOut;
 
-  OrderSummary? get confirmationSummary => getIt<CartNavigateHelper>().confirmationSummary;
+  OrderSummary? get confirmationSummary =>
+      getIt<CartNavigateHelper>().confirmationSummary;
 
-  int? get confirmationCombinedId => getIt<CartNavigateHelper>().confirmationCombinedId;
+  int? get confirmationCombinedId =>
+      getIt<CartNavigateHelper>().confirmationCombinedId;
 
   Future<CartParams> _cartParams() async {
     return CartParams(

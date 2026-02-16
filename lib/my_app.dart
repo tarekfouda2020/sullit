@@ -18,6 +18,7 @@ import 'package:flutter_tdd/core/widgets/alice_floating_button.dart';
 
 import 'core/helpers/firebase_analytics_helper.dart';
 import 'core/helpers/general_providers.dart';
+import 'core/helpers/router_helper.dart';
 import 'core/localization/set_localization.dart';
 import 'core/routes/router_imports.gr.dart';
 
@@ -30,7 +31,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _appRouter = AppRouter(getIt<GlobalContext>().navigationKey);
+  // final _appRouter = AppRouter(getIt<GlobalContext>().navigationKey);
+  final _appRouter = getIt<RouterHelper>().appRoute;
 
   @override
   void initState() {

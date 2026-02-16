@@ -12,6 +12,7 @@ class AppConstants {
 
   /// Time in milliseconds
   final int debounceTimeInBackGround =  300;
+  /// Time in milliseconds
   final int debounceTimeSearch =  500;
 
 }

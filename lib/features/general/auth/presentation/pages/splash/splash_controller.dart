@@ -3,6 +3,17 @@
 part of 'splash_imports.dart';
 
 class SplashController {
+
+
+
+  Future<void> initScreen(BuildContext context)async{
+    PlaySoundHelper.instance.startSound(
+        afterSoundEnd: () => manipulateSaveData(context)
+    );
+  }
+
+
+
   Future<void> manipulateSaveData(BuildContext context) async {
      updateLang(context);
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -18,12 +29,12 @@ class SplashController {
       UserDomainModel user = UserDomainModel.fromJson(json.decode("$strUser"));
       GlobalState.instance.set("token", user.token);
       context.read<UserCubit>().onUpdateUserData(user);
-      await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(milliseconds: 300));
       FacebookEventsHelper.instance.addUserDataEvent(user);
       AutoRouter.of(context).push(HomeRoute(index: 0));
     } else {
       context.read<DeviceCubit>().updateUserAuth(false);
-      await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(milliseconds: 300));
       AutoRouter.of(context).push(HomeRoute(index: 0));
     }
   }

@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/cart_item_model/cart_item_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/min_amount_seller/min_amount_seller.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -17,6 +18,7 @@ class CartModel extends BaseApiModel<CartDomainModel> with _$CartModel {
     @JsonKey(name: "sub_total") required String subTotal,
     @JsonKey(name: "calculable_total") required num calculableTotal,
     @JsonKey(name: "currency_symbol") required String currencySymbol,
+    @JsonKey(name: "minimum_order_amount_sellers") required List<MinAmountSeller>? minAmountSeller,
     @JsonKey(name: "minimum_order_amount_msg")  String? minimumAmountMsg,
     @JsonKey(name: "minimum_order_amount")  double? minimumAmount,
     @JsonKey(name: "minimum_order_amount_status")  bool? minimumStatus,
@@ -29,6 +31,7 @@ class CartModel extends BaseApiModel<CartDomainModel> with _$CartModel {
   CartDomainModel toDomainModel() {
     return CartDomainModel(
       items: items.map((e) => e.toDomainModel()).toList(),
+      minAmountSellers:minAmountSeller?.map((e)=>e.toDomainModel()).toList() ,
       subTotal: subTotal,
       calculableTotal: calculableTotal,
       currencySymbol: currencySymbol,

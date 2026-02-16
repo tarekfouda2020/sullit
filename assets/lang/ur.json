@@ -867,6 +867,7 @@
   "enter_location_name": "براہ کرم مقام کا نام درج کریں",
   "sellers": "فروخت کنندگان",
   "sellersSuggestions": "فروخت کنندگان کی تجاویز",
-  "top Seller": "سب سے زیادہ فروخت ہونے والا",
+  "top_Seller": "سب سے زیادہ فروخت ہونے والا",
+  "noSellersFound": "کوئی فروخت کنندہ نہیں ملا",
   "track Your Current Orders": "اپنے موجودہ آرڈرز کو ٹریک کریں"
 }

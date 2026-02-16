@@ -13,7 +13,7 @@ class BuildTopSellers extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            tr("top Seller"),
+            tr("top_Seller"),
             style: AppTextStyle.s16_w700(color: context.colors.black),
           ),
           Gaps.vGap8,
@@ -24,7 +24,10 @@ class BuildTopSellers extends StatelessWidget {
               itemCount: topSellers.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
-                    onTap: () => AutoRouter.of(context).push(SellerProductsPageRoute(shopModel: topSellers[index])),
+                    onTap: () => AutoRouter.of(context).push(
+                        SellerProductsPageRoute(
+                            shopModel: topSellers[index],
+                            shopId: topSellers[index].id!)),
                     child: Padding(
                       padding: const EdgeInsetsDirectional.only(end: 5),
                       child: BuildTopSellersItem(topSellers: topSellers[index]),

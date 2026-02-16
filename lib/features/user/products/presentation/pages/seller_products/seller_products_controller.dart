@@ -4,11 +4,15 @@ class SellerProductsController {
   final TextEditingController brandsSearchCtr = TextEditingController();
 
   final TextEditingController productSearchCtr = TextEditingController();
-  final PagingController<int, Product> pagingController = PagingController(firstPageKey: 1);
-  final PagingController<int, BrandDomainModel> brandsPagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, Product> pagingController =
+      PagingController(firstPageKey: 1);
+  final PagingController<int, BrandDomainModel> brandsPagingController =
+      PagingController(firstPageKey: 1);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
   final GenericBloc<bool> isLoadingNextPage = GenericBloc<bool>(false);
-  final GenericBloc<ShopCategory?> categoryCubit = GenericBloc<ShopCategory?>(null);
+  final GenericBloc<ShopCategory?> categoryCubit =
+      GenericBloc<ShopCategory?>(null);
+  final GenericBloc<Shop?> shopCubit = GenericBloc<Shop?>(null);
 
   int pageSize = 12;
   bool isFilterAppliedBefore = false;
@@ -22,8 +26,11 @@ class SellerProductsController {
   final GenericBloc<PriceRangeParams?> rangeCubit = GenericBloc(null);
   final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
 
-  SellerProductsController(int id) {
+  SellerProductsController(int id, {Shop? shopModel}) {
     shopId = id;
+    if (shopModel != null) {
+      shopCubit.onUpdateData(shopModel);
+    }
     getProducts(1, refresh: false);
 
     pagingController.addPageRequestListener((pageKey) {
@@ -41,8 +48,12 @@ class SellerProductsController {
     var result = await GetSellerProducts().call(params);
     isLoadingNextPage.onUpdateData(false);
     allSellerData = result;
+    if (shopCubit.state.data == null && result != null) {
+      shopCubit.onUpdateData(result.shop);
+    }
     updateRangeValue(result);
-    final List<Product> data = result?.sectionProductModel.products ?? <Product>[];
+    final List<Product> data =
+        result?.sectionProductModel.products ?? <Product>[];
     final isLastPage = (data.length) < pageSize;
     if (page == 1) {
       pagingController.itemList = [];
@@ -56,9 +67,11 @@ class SellerProductsController {
   }
 
   void updateRangeValue(SellerProductDomainModel? data) {
-    RangeValues rangeValues =
-        RangeValues(double.parse(data?.priceRange.min ?? "0.0"), double.parse(data?.priceRange.max ?? "0.0"));
-    rangeCubit.onUpdateData(PriceRangeParams(initial: rangeValues, value: rangeValues));
+    RangeValues rangeValues = RangeValues(
+        double.parse(data?.priceRange.min ?? "0.0"),
+        double.parse(data?.priceRange.max ?? "0.0"));
+    rangeCubit.onUpdateData(
+        PriceRangeParams(initial: rangeValues, value: rangeValues));
   }
 
   void openDrawerFilter() {
@@ -121,7 +134,8 @@ class SellerProductsController {
     RangeValues rangeValues = RangeValues(minPrice, maxPrice);
 
     selectedBrand = null;
-    rangeCubit.onUpdateData(PriceRangeParams(initial: rangeValues, value: rangeValues));
+    rangeCubit.onUpdateData(
+        PriceRangeParams(initial: rangeValues, value: rangeValues));
     if (isFilterAppliedBefore) {
       pagingController.refresh();
       isFilterAppliedBefore = false;
@@ -144,8 +158,7 @@ class SellerProductsController {
         minPrice: rangeCubit.state.data?.value.start,
         maxPrice: rangeCubit.state.data?.value.end,
         keyword: productSearchCtr.text.trim(),
-       categoryId: categoryCubit.state.data?.id
-    );
+        categoryId: categoryCubit.state.data?.id);
   }
 
   GenericPaginateParams _paginateParams(int page, bool refresh) {
@@ -185,12 +198,11 @@ class SellerProductsController {
 
   void whileWriting(BuildContext context, String value) {
     DebounceHelper.instance.startSearch(
-      value: value,
-      onSearch: (val) {
-        FocusManager.instance.primaryFocus?.unfocus();
-        searchProducts(context, enableUnFocus: false);
-      }
-    );
+        value: value,
+        onSearch: (val) {
+          FocusManager.instance.primaryFocus?.unfocus();
+          searchProducts(context, enableUnFocus: false);
+        });
     if (value.isNotEmpty) {
       showClearIcon.onUpdateData(true);
     } else {
@@ -246,7 +258,6 @@ class SellerProductsController {
   //     currentPage: page,
   //   );
   // }
-
 
   void onSelectCategory(ShopCategory model) {
     if (categoryCubit.state.data?.id == model.id) {

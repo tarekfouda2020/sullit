@@ -84,8 +84,11 @@ class ViewCartBottomNavWidget extends StatelessWidget {
                     ],
                   ),
                   Gaps.vGap10,
-                  if(state.data.minimumStatus == false)
-                    CartMinAmountNeededWidget(minAmount: controller.minAmountRemain,),
+                  if(state.data.minimumStatus == false && controller.remainToGetMinAmount() > 0)
+                    CartMinAmountNeededWidget(
+                      minAmount: controller.minAmountRemain,
+                      sellerName: "from '${state.data.getRequiredSellerName()}'",
+                    ),
                   Gaps.vGap12,
                 ],
               ),

@@ -50,7 +50,7 @@ class _NetworkLayerWidgetState extends State<NetworkLayerWidget> {
                 return Visibility(
                   visible: state.data,
                   child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery.sizeOf(context).width,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -61,7 +61,7 @@ class _NetworkLayerWidgetState extends State<NetworkLayerWidget> {
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 20),
                           child: Text(
-                            tr('noInternet'),
+                            tr('noInternet',context: context),
                             style: AppTextStyle.s20_w500(color: context.colors.primary),
                           ),
                         ),
@@ -75,7 +75,7 @@ class _NetworkLayerWidgetState extends State<NetworkLayerWidget> {
                                 borderRadius: BorderRadius.circular(20)),
                             alignment: Alignment.center,
                             child: Text(
-                              tr('tryAgain'),
+                              tr('tryAgain',context: context),
                               style: AppTextStyle.s16_w500(color: context.colors.primary),
                             ),
                           ),

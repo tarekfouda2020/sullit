@@ -52,6 +52,7 @@ class VerifyRegisterController {
       if(value!=null){
         // await getIt<UserServiceHelper>().updateUserdata(context,value);
         CustomToast.showSimpleToast(msg: tr("emailVerify"), type: ToastType.success);
+        FacebookEventsHelper.instance.completedRegistration();
         AutoRouter.of(context).push(const LoginRoute());
       }
       getIt<LoadingHelper>().dismissDialog();

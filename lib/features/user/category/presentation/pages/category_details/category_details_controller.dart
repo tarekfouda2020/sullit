@@ -6,12 +6,14 @@ class CategoryDetailsController implements CartSheetController {
   final TextEditingController searchFieldCtr = TextEditingController();
   final TextEditingController brandsSearchCtr = TextEditingController();
   final GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
-  final GenericBloc<List<SubCategoryLevel>> subCategoriesCubit = GenericBloc([]);
+  final GenericBloc<List<SubCategoryLevel>> subCategoriesCubit =
+      GenericBloc([]);
   final GenericBloc<SubCategory?> specificationsCubit = GenericBloc(null);
   final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
 
   final GenericBloc<List<Shop>> sellersCubit = GenericBloc([]);
-  final PagingController<int, Shop> pagingSellersController = PagingController(firstPageKey: 1);
+  final PagingController<int, Shop> pagingSellersController =
+      PagingController(firstPageKey: 1);
   final TextEditingController searchSellersController = TextEditingController();
   final GenericBloc<bool> showSellersCubit = GenericBloc<bool>(false);
 
@@ -19,8 +21,10 @@ class CategoryDetailsController implements CartSheetController {
   final GenericBloc<String> titleCubit = GenericBloc("");
   final GenericBloc<bool> showBrandsCubit = GenericBloc<bool>(false);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
-  final PagingController<int, Product> pagingController = PagingController(firstPageKey: 1);
-  final PagingController<int, BrandDomainModel> brandsPagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, Product> pagingController =
+      PagingController(firstPageKey: 1);
+  final PagingController<int, BrandDomainModel> brandsPagingController =
+      PagingController(firstPageKey: 1);
 
   int brandsPageSize = 12;
   int pageSize = 12;
@@ -38,7 +42,6 @@ class CategoryDetailsController implements CartSheetController {
 
   RangeValues? rangeValues;
 
-
   CategoryDetailsController(BuildContext context, Category categoryModel) {
     FacebookEventsHelper.instance.categoryDetailsOpened(categoryModel);
     getCartItems();
@@ -50,12 +53,6 @@ class CategoryDetailsController implements CartSheetController {
       getBestSellers(pageKey);
     });
   }
-
-
-
-
-
-
 
   Future<void> getBestSellers(int page, {bool refresh = true}) async {
     var params = searchParams(refresh, page);
@@ -75,7 +72,6 @@ class CategoryDetailsController implements CartSheetController {
       final nextPageKey = page + 1;
       pagingSellersController.appendPage(data, nextPageKey);
     }
-
   }
 
   GenericPaginateParams params(bool refresh, int page) => GenericPaginateParams(
@@ -85,7 +81,9 @@ class CategoryDetailsController implements CartSheetController {
       );
 
   SearchResultParams searchParams(bool refresh, int page) {
-    return SearchResultParams(searchTxt: searchSellersController.text, paginateParams: params(refresh, page));
+    return SearchResultParams(
+        searchTxt: searchSellersController.text,
+        paginateParams: params(refresh, page));
   }
 
   void clearSearchFieldSeller() {
@@ -95,16 +93,13 @@ class CategoryDetailsController implements CartSheetController {
   }
 
   void whileWritingSellers(String value) {
-    showClearIcon.onUpdateData(value.isNotEmpty);
     DebounceHelper.instance.startSearch(
         value: value,
         onSearch: (val) {
-      sellersCubit.onUpdateToInitState([]);
+          sellersCubit.onUpdateToInitState([]);
           getBestSellers(1);
         });
   }
-
-
 
   void refreshSellers(BuildContext context) {
     FocusScope.of(context).unfocus();
@@ -116,7 +111,6 @@ class CategoryDetailsController implements CartSheetController {
     pagingSellersController.refresh();
     getBestSellers(1);
   }
-
 
   void onChangeSellers(Shop? model) {
     if (model == null) return;
@@ -139,7 +133,7 @@ class CategoryDetailsController implements CartSheetController {
   Future<void> getData(BuildContext context, Category categoryModel) async {
     await getSubCategories(context, categoryModel.id);
     getPopularProducts(1, refresh: false);
-    getBrands(1,refresh: false);
+    getBrands(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
       getPopularProducts(pageKey, refresh: true);
     });
@@ -150,7 +144,8 @@ class CategoryDetailsController implements CartSheetController {
     );
   }
 
-  Future<void> getSubCategories(BuildContext context, int id, {bool refresh = true, bool appendLevel = false}) async {
+  Future<void> getSubCategories(BuildContext context, int id,
+      {bool refresh = true, bool appendLevel = false}) async {
     final previousCatId = currentCatId;
     currentCatId = id;
     var params = productsParams(1, refresh);
@@ -165,12 +160,14 @@ class CategoryDetailsController implements CartSheetController {
 
       if (appendLevel) {
         if (result.subCats.isNotEmpty) {
-          final currentLevels = List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
+          final currentLevels =
+              List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
           currentLevels.add(newLevel);
           subCategoriesCubit.onUpdateData(currentLevels);
           currentCatId = id;
         } else {
-          final currentLevels = List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
+          final currentLevels =
+              List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
           if (currentLevels.isNotEmpty) {
             currentLevels.last.selectedCategoryId = id;
             subCategoriesCubit.onUpdateData(currentLevels);
@@ -186,7 +183,8 @@ class CategoryDetailsController implements CartSheetController {
         double.parse(result.priceRange.min),
         double.parse(result.priceRange.max),
       );
-      rangeCubit.onUpdateData(PriceRangeParams(initial: rangeValues!, value: rangeValues!));
+      rangeCubit.onUpdateData(
+          PriceRangeParams(initial: rangeValues!, value: rangeValues!));
       specificationsCubit.onUpdateData(result);
     } else {
       // Restore previous catId if API call failed
@@ -194,9 +192,12 @@ class CategoryDetailsController implements CartSheetController {
     }
   }
 
-  Future<void> onSubCatSelect(BuildContext context, Category selectedCat, int levelIndex) async {
-    final currentLevels = List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
-    if (levelIndex < currentLevels.length && currentLevels[levelIndex].selectedCategoryId == selectedCat.id) {
+  Future<void> onSubCatSelect(
+      BuildContext context, Category selectedCat, int levelIndex) async {
+    final currentLevels =
+        List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
+    if (levelIndex < currentLevels.length &&
+        currentLevels[levelIndex].selectedCategoryId == selectedCat.id) {
       onSubCatUnselect(context, levelIndex);
       return;
     }
@@ -226,7 +227,8 @@ class CategoryDetailsController implements CartSheetController {
   }
 
   Future<void> onSubCatUnselect(BuildContext context, int levelIndex) async {
-    final currentLevels = List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
+    final currentLevels =
+        List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
 
     if (levelIndex == 0) {
       // Deselecting from level 1: remove level 2, clear selection, go to initial
@@ -314,7 +316,8 @@ class CategoryDetailsController implements CartSheetController {
     }
   }
 
-  Future<void> getPopularProducts(int currentPage, {bool refresh = true}) async {
+  Future<void> getPopularProducts(int currentPage,
+      {bool refresh = true}) async {
     var params = productsParams(currentPage, refresh);
     var data = await GetCategoryProducts().call(params);
     // print("--------${data.length}");
@@ -400,8 +403,12 @@ class CategoryDetailsController implements CartSheetController {
 
   SearchProductsParams productsParams(int page, bool refresh) {
     var specifications = specificationsCubit.state.data;
-    bool isMinRangeSelected = (rangeValues?.start ?? 0.0) < (rangeCubit.state.data?.value.start ?? 0.0) == true;
-    bool isMAxRangeSelected = (rangeValues?.end ?? 0.0) > (rangeCubit.state.data?.value.end ?? 0.0) == true;
+    bool isMinRangeSelected = (rangeValues?.start ?? 0.0) <
+            (rangeCubit.state.data?.value.start ?? 0.0) ==
+        true;
+    bool isMAxRangeSelected =
+        (rangeValues?.end ?? 0.0) > (rangeCubit.state.data?.value.end ?? 0.0) ==
+            true;
     var colors = specifications?.colors
         .where((element) => element.selected)
         .map((e) => e.code)
@@ -412,12 +419,15 @@ class CategoryDetailsController implements CartSheetController {
           .map((element) => element.value)
           .toList(),
     );
-    var minPrice = isMinRangeSelected  || isMAxRangeSelected
+    var minPrice = isMinRangeSelected || isMAxRangeSelected
         ? rangeCubit.state.data?.value.start
         : null;
-    var maxPrice = (rangeValues?.end ?? 0.0) > (rangeCubit.state.data?.value.end ?? 0.0) == true || isMinRangeSelected
-        ? rangeCubit.state.data?.value.end
-        : null;
+    var maxPrice =
+        (rangeValues?.end ?? 0.0) > (rangeCubit.state.data?.value.end ?? 0.0) ==
+                    true ||
+                isMinRangeSelected
+            ? rangeCubit.state.data?.value.end
+            : null;
     return SearchProductsParams(
         sellerId: selectedSeller?.userId,
         catId: currentCatId,
@@ -456,7 +466,6 @@ class CategoryDetailsController implements CartSheetController {
     showBrandsCubit.onUpdateData(false);
     showSellersCubit.onUpdateData(false);
 
-
     var sellers = pagingSellersController.itemList;
     if (sellers != null) {
       for (var seller in sellers) {
@@ -474,16 +483,17 @@ class CategoryDetailsController implements CartSheetController {
 
     specificationsCubit.onUpdateData(data);
 
-    rangeCubit.onUpdateData(PriceRangeParams(initial: rangeValues, value: rangeValues));
+    rangeCubit.onUpdateData(
+        PriceRangeParams(initial: rangeValues, value: rangeValues));
     if (isFilterAppliedBefore) {
-      if(brandModel != null){
+      if (brandModel != null) {
         brandsSearchCtr.clear();
         brandModel = null;
         getBrands(1);
       }
-      if(selectedSeller != null){
+      if (selectedSeller != null) {
         searchSellersController.clear();
-        selectedSeller =null ;
+        selectedSeller = null;
         getBestSellers(1);
       }
       pagingController.refresh();
@@ -515,7 +525,8 @@ class CategoryDetailsController implements CartSheetController {
         hasAnySelection = true;
       } else if (currentLevels.length == 1 && initialCategoryModel != null) {
         final firstLevel = currentLevels.first;
-        if (firstLevel.selectedCategoryId > 0 && firstLevel.selectedCategoryId != initialCategoryModel!.id) {
+        if (firstLevel.selectedCategoryId > 0 &&
+            firstLevel.selectedCategoryId != initialCategoryModel!.id) {
           hasAnySelection = true;
         }
       }
@@ -524,7 +535,8 @@ class CategoryDetailsController implements CartSheetController {
     if (hasAnySelection) {
       // Clear all selections and go back to initial category
       if (initialCategoryModel != null) {
-        final firstLevel = currentLevels.isNotEmpty ? currentLevels.first : null;
+        final firstLevel =
+            currentLevels.isNotEmpty ? currentLevels.first : null;
         if (firstLevel != null) {
           firstLevel.selectedCategoryId = initialCategoryModel!.id;
           subCategoriesCubit.onUpdateData([firstLevel]);
@@ -593,7 +605,8 @@ class CategoryDetailsController implements CartSheetController {
     var params = _brandsParams(brandsPageSize, refresh, page);
     var data = await GetBrands().call(params);
     final isLastPage = data.length < brandsPageSize;
-    brandModel?.id = data.firstWhere((element) => element.id == brandModel?.id).id;
+    brandModel?.id =
+        data.firstWhere((element) => element.id == brandModel?.id).id;
     if (page == 1) {
       if (data.isNotEmpty) {
         brandsCubit.onUpdateData(data.take(11).toList());
@@ -637,30 +650,31 @@ class CategoryDetailsController implements CartSheetController {
     await getIt<CartHelper>().getCartItems(refresh: refresh);
   }
 
-
-
-  Future<bool> onIncreaseCartQnt(BuildContext context, CartItem cartItem, newQty) async {
-    final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+  Future<bool> onIncreaseCartQnt(
+      BuildContext context, CartItem cartItem, newQty) async {
+    final success =
+        await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
     if (success != null) {
       cartItem.quantity = newQty;
       cartItemsBloc.onUpdateData(success);
     }
-    return success!=null;
+    return success != null;
   }
 
   @override
-  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem, GenericBloc<int> qntCubit, String value) async {
+  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem,
+      GenericBloc<int> qntCubit, String value) async {
     if (qntCubit.state.data < cartItem.stockQty) {
       var newQty = qntCubit.state.data + 1;
       qntCubit.onUpdateData(newQty);
       DebounceHelper.instance.startSearch(
           value: value,
           milliseconds: 300,
-          onSearch: (val) async{
-           var result =  await onIncreaseCartQnt(context, cartItem, newQty);
-           if(result == false){
-             qntCubit.onUpdateData(cartItem.quantity);
-           }
+          onSearch: (val) async {
+            var result = await onIncreaseCartQnt(context, cartItem, newQty);
+            if (result == false) {
+              qntCubit.onUpdateData(cartItem.quantity);
+            }
           });
     } else {
       CustomToast.showSimpleToast(
@@ -669,50 +683,54 @@ class CategoryDetailsController implements CartSheetController {
     }
   }
 
-  Future<bool?> onDecreaseCartQnt(BuildContext context, CartItem cartItem, int newQty) async {
+  Future<bool?> onDecreaseCartQnt(
+      BuildContext context, CartItem cartItem, int newQty) async {
     if (newQty == 1) {
       deleteItemFromCart(context, cartItem);
       return null;
     }
     if (cartItem.quantity > 1) {
-      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+      final success =
+          await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
       if (success != null) {
         cartItem.quantity = newQty;
         cartItemsBloc.onUpdateData(success);
       }
       return success != null;
-    }else{
+    } else {
       return null;
     }
   }
 
   @override
-  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem, GenericBloc<int> qntCubit, String value) async {
+  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem,
+      GenericBloc<int> qntCubit, String value) async {
     if (qntCubit.state.data > 1) {
       var newQty = qntCubit.state.data - 1;
       qntCubit.onUpdateData(newQty);
       DebounceHelper.instance.startSearch(
           value: value,
           milliseconds: AppConstants.instance.debounceTimeInBackGround,
-          onSearch: (val) async{
+          onSearch: (val) async {
             var result = await onDecreaseCartQnt(context, cartItem, newQty);
-            if(result == false){
+            if (result == false) {
               qntCubit.onUpdateData(cartItem.quantity);
             }
           });
-    }else{
-      deleteItemFromCart(context,cartItem);
-
+    } else {
+      deleteItemFromCart(context, cartItem);
     }
   }
 
-
   @override
-  Future<void> deleteItemFromCart(BuildContext context, CartItem cartItem, {bool enablePop = true}) async {
+  Future<void> deleteItemFromCart(BuildContext context, CartItem cartItem,
+      {bool enablePop = true}) async {
     getIt<LoadingHelper>().showLoadingDialog();
-    final deleted = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
+    final deleted =
+        await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
     if (deleted) {
-      double subTotal = double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
+      double subTotal =
+          double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
       double removedItemPrice = double.parse(cartItem.total);
       double newSubTotal = subTotal - removedItemPrice;
 
@@ -749,15 +767,12 @@ class CategoryDetailsController implements CartSheetController {
   @override
   int? get productId => null;
 
-  String remainToGetMinAmount() {
-    var total = double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
-    var minAmount = cartItemsBloc.state.data.minimumAmount ?? 0.0;
-    var remain = minAmount - total;
-    return remain.toStringAsFixed(2);
+  double remainToGetMinAmount() {
+   return cartItemsBloc.state.data.getRemainAmountToOrder();
   }
 
   @override
-  String get minAmountRemain => remainToGetMinAmount();
+  String get minAmountRemain => remainToGetMinAmount().toStringAsFixed(2);
 
   void removeProductCounter(CartItem cartItem) {
     var cartList = cartItemsBloc.state.data.items;
@@ -775,9 +790,11 @@ class CategoryDetailsController implements CartSheetController {
       BuildContext context, Product product, GenericBloc<int> loading) async {
     var cartList = cartItemsBloc.state.data.items;
     if (cartList != null && cartList.isNotEmpty == true) {
-      var cartItems = cartList.where((element) => element.productId == product.id);
+      var cartItems =
+          cartList.where((element) => element.productId == product.id);
       if (cartItems.isNotEmpty) {
-        await onDecreaseCart(context, cartItems.first, loading,cartItems.first.quantity.toString());
+        await onDecreaseCart(context, cartItems.first, loading,
+            cartItems.first.quantity.toString());
         // var index = pagingController.itemList!.indexOf(product);
         // pagingController.itemList![index] = product;
         // pagingController.itemList = [...?pagingController.itemList];
@@ -786,7 +803,9 @@ class CategoryDetailsController implements CartSheetController {
   }
 
   void reduceProductQntWhenReduceFromCart(CartItem cartItem) {
-    var cartItems = pagingController.itemList?.where((element) => element.id == cartItem.productId).toList();
+    var cartItems = pagingController.itemList
+        ?.where((element) => element.id == cartItem.productId)
+        .toList();
     if (cartItems?.isNotEmpty == true) {
       var product = cartItems!.first;
       product.addedQtyToCart = cartItem.quantity;
@@ -799,12 +818,7 @@ class CategoryDetailsController implements CartSheetController {
     await getPopularProducts(1);
   }
 
-
   BrandsParams _brandsParams(int paginate, bool refresh, int page) {
-    return BrandsParams(
-        paginate: paginate,
-        refresh: refresh,
-        page: page);
-
+    return BrandsParams(paginate: paginate, refresh: refresh, page: page);
   }
 }

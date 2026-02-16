@@ -763,6 +763,7 @@
   "enter_location_name": "অনুগ্রহ করে অবস্থানের নাম লিখুন",
   "sellers": "বিক্রেতারা",
   "sellersSuggestions": "বিক্রেতাদের প্রস্তাবনা",
-  "top Seller": "সেরা বিক্রেতা",
+  "top_Seller": "সেরা বিক্রেতা",
+  "noSellersFound": "কোনো বিক্রেতা পাওয়া যায়নি",
   "track Your Current Orders": "আপনার বর্তমান অর্ডারগুলো ট্র্যাক করুন"
 }

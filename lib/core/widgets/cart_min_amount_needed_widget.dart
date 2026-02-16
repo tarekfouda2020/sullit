@@ -11,7 +11,8 @@ import 'package:flutter_tdd/res.dart';
 
 class CartMinAmountNeededWidget extends StatelessWidget {
   final String minAmount;
-  const CartMinAmountNeededWidget({super.key, required this.minAmount});
+  final String sellerName;
+  const CartMinAmountNeededWidget({super.key, required this.minAmount, this.sellerName = ""});
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +27,15 @@ class CartMinAmountNeededWidget extends StatelessWidget {
         ),
         Gaps.hGap6,
         DirhamPrice(amount: minAmount,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           textStyle: AppTextStyle.s16_w500(color: context.colors.primary),
         ),
         Gaps.hGap3,
         Flexible(
-          child: Text(tr("needed_to_reach_minimum_order"),
-            style: AppTextStyle.s14_w400(color: context.colors.primary),
+          child: Text("${tr("needed_to_reach_minimum_order")} $sellerName",
+            style: AppTextStyle.s14_w400(color: context.colors.primary).copyWith(
+              height: 1.2
+            ),
           ),
         )
       ],

@@ -91,10 +91,7 @@ class HomeController {
         tr("account", context: context),
       ];
 
-  void setUserLang(BuildContext context, String lang) async {
-    getIt<Utilities>().changeLanguage(lang, context);
-    Phoenix.rebirth(context);
-  }
+
 
   void initBottomNavigation(TickerProvider ticker, int index) {
     tabController =
@@ -309,4 +306,13 @@ class HomeController {
       pageSize: 12,
     );
   }
+
+
+  void checkIosTracking(){
+    bool authorizedTrack = FacebookEventsHelper.instance.iosEnableTracking;
+    if(authorizedTrack == false && Platform.isIOS){
+      FacebookEventsHelper.instance.enableIosTracking();
+    }
+  }
+
 }
