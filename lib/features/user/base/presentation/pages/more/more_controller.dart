@@ -1,9 +1,9 @@
 part of 'more_imports.dart';
 
 class MoreController {
-
   final GenericBloc<File?> imageCubit = GenericBloc(null);
-  final GenericBloc<List<LangDomainModel>> languagesCubit = GenericBloc<List<LangDomainModel>>([]);
+  final GenericBloc<List<LangDomainModel>> languagesCubit =
+      GenericBloc<List<LangDomainModel>>([]);
 
   late final HomeController homeController;
 
@@ -115,7 +115,7 @@ class MoreController {
         AutoRouter.of(context).push(const ReturnPolicyRoute());
         break;
       case MoreRoutes.myVouchers:
-        AutoRouter.of(context).push(const  MyVouchersRoute());
+        AutoRouter.of(context).push(const MyVouchersRoute());
         break;
       case MoreRoutes.language:
         showLangBottomSheet(context);
@@ -127,9 +127,9 @@ class MoreController {
   }
 
   bool canBePress(MoreRoutes route) {
-    bool isInShopBySection = route == MoreRoutes.allBrands || route == MoreRoutes.allCategories;
-    bool isOtherSection =
-        route == MoreRoutes.termsAndConditions ||
+    bool isInShopBySection =
+        route == MoreRoutes.allBrands || route == MoreRoutes.allCategories;
+    bool isOtherSection = route == MoreRoutes.termsAndConditions ||
         route == MoreRoutes.privacyPolicy ||
         route == MoreRoutes.supportPolicy ||
         route == MoreRoutes.returnPolicy ||
@@ -145,7 +145,8 @@ class MoreController {
   void showLangBottomSheet(BuildContext context) {
     showModalBottomSheet(
       shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15))),
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15), topRight: Radius.circular(15))),
       backgroundColor: context.colors.white,
       context: context,
       builder: (context) => BuildLangBottomSheet(
@@ -178,6 +179,27 @@ class MoreController {
     await GetLanguages().call(refresh).then((value) {
       languagesCubit.onUpdateData(value);
     });
+  }
+
+  String getNotificationText() {
+    var isEnabled =
+        GlobalState.instance.get(GlobalStateKeys.notificationGranted);
+    if (isEnabled == true) {
+      return tr("notification_active");
+    } else {
+      return tr("notification_not_active");
+    }
+  }
+
+  void openNotificationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => NotificationDialog(controller: this),
+    );
+  }
+
+  void openSettings() {
+    openAppSettings();
   }
 
   // void callLanguages(BuildContext context) {

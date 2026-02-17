@@ -7,8 +7,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/core/helpers/orders_helper.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
@@ -51,6 +53,7 @@ class GlobalNotification {
       messaging.getToken().then((token) {
         // print(token);
       });
+      GlobalState.instance.set(GlobalStateKeys.notificationGranted, true);
       messaging.setForegroundNotificationPresentationOptions();
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
         log("_____________________Message data:${message.data}");
@@ -86,6 +89,8 @@ class GlobalNotification {
       });
       FirebaseMessaging.onBackgroundMessage(
           _firebaseMessagingBackgroundHandler);
+    }else{
+      GlobalState.instance.set(GlobalStateKeys.notificationGranted, false);
     }
   }
 

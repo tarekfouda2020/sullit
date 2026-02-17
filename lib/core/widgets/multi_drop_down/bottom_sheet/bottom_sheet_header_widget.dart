@@ -16,9 +16,12 @@ class BottomSheetHeaderWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Gaps.hGap15,
-        Text(
-          title,
-          style: AppTextStyle.s20_w700(color: context.colors.black),
+        Flexible(
+          child: Text(
+            title,
+            textAlign: TextAlign.center,
+            style: AppTextStyle.s20_w700(color: context.colors.black),
+          ),
         ),
         Visibility(
           visible: showCloseIcon,
@@ -31,7 +34,6 @@ class BottomSheetHeaderWidget extends StatelessWidget {
             ),
           ),
         ),
-
       ],
     );
   }

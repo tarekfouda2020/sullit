@@ -869,5 +869,10 @@
   "sellersSuggestions": "فروخت کنندگان کی تجاویز",
   "top_Seller": "سب سے زیادہ فروخت ہونے والا",
   "noSellersFound": "کوئی فروخت کنندہ نہیں ملا",
-  "track Your Current Orders": "اپنے موجودہ آرڈرز کو ٹریک کریں"
+  "track Your Current Orders": "اپنے موجودہ آرڈرز کو ٹریک کریں",
+  "notification_desc": "ایپ کی اطلاعات کا انتظام کرنے کے لیے، براہ کرم 'AMCOOP' کے لیے ترتیبات > اطلاعات پر جائیں",
+  "notification_active": "اطلاعات فعال ہیں",
+  "notification_not_active": "اطلاعات فعال نہیں ہیں",
+  "increaseCartToReachMin": "کم از کم رقم تک پہنچنے کے لیے اپنی ٹوکری میں اضافہ کریں",
+  "go": "جاؤ"
 }

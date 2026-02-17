@@ -91,6 +91,15 @@ class OtherSectionWidget extends StatelessWidget {
           onTap: () =>
               controller.checkAuth(context, MoreRoutes.returnPolicy),
         ),
+        BuildMoreItem(
+          image: Res.notification,
+          svgColor: ColorFilter.mode(context.colors.primary, BlendMode.srcIn),
+          isSvg: true,
+          size: 30,
+          title:  controller.getNotificationText(),
+          onTap: () =>
+              controller.openNotificationDialog(context),
+        ),
 
       ],
     );
