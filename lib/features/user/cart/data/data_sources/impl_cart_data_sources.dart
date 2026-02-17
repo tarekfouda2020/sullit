@@ -20,6 +20,7 @@ import 'package:flutter_tdd/features/user/cart/data/models/shipping_model/shippi
 import 'package:flutter_tdd/features/user/cart/data/models/shipping_summary_model/shipping_summary_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/add_cart_address_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/apply_gift_card_params.dart';
+import 'package:flutter_tdd/features/user/cart/domain/entities/clear_cart_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
@@ -223,15 +224,15 @@ class ImplCartDataSources extends CartDataSources {
   }
 
   @override
-  Future<Either<Failure, String>> clearCart(CartParams params)async {
+  Future<Either<Failure, String>> clearCart(ClearCartParams params)async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.clearCart,
       requestBody: params.toJson(),
       requestMethod: RequestMethod.post,
       responseType: ResType.type,
       showLoader: true,
-      responseKey: (data)=> data["msg"],
-      errorFunc: (data)=> data["msg"],
+      responseKey: (data)=> data["key"],
+      errorFunc: (data)=> data["key"],
     );
     return await GenericHttpImpl<String>().call(model);
   }

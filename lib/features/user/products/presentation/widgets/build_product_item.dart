@@ -342,11 +342,6 @@ class _BuildProductItemState extends State<BuildProductItem> {
       widget.productModel.addedQtyToCart =
           widget.productModel.addedQtyToCart! - 1;
       enableAddToCartLoading.onUpdateData(false);
-      if (widget.productModel.addedQtyToCart == widget.productModel.minQty) {
-        KeyedDebounceHelper.instance.cancel(productKey);
-        await _deleteItemFromCart();
-        return;
-      }
       KeyedDebounceHelper.instance.start(
         key: productKey,
         value: widget.productModel.addedQtyToCart.toString(),

@@ -3,6 +3,7 @@ import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/add_cart_address_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/apply_gift_card_params.dart';
+import 'package:flutter_tdd/features/user/cart/domain/entities/clear_cart_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
@@ -35,7 +36,7 @@ abstract class CartRepository {
   Future<Either<Failure, ShippingSummary>> applyLoyaltyPoints (NoParams params);
   Future<Either<Failure, ShippingSummary>> removeLoyaltyPoints (NoParams params);
   Future<Either<Failure, GiftCardApllieCartDomainModel>> applyGiftCard (ApplyGiftCardParams params);
-  Future<Either<Failure, String>> clearCart (CartParams params);
+  Future<Either<Failure, String>> clearCart (ClearCartParams params);
   Future<Either<Failure, ShippingSummary>> removeCoupon (NoParams params);
   Future<Either<Failure, FessMechanismModel>> getFees (bool params);
 

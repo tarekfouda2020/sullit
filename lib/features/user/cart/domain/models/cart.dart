@@ -87,4 +87,23 @@ class CartDomainModel extends BaseDomainModel {
   }
 
 
+
+
+
+
+  /// used in seller details page
+
+double getSingleSellerReMainAmount(int shopId){
+    MinAmountSellerDomain? shop = minAmountSellers?.firstWhere((element) => element.id == shopId);
+    List<CartItem>? sellerProductsInCart = items?.where((element) => element.shopId == shopId).toList();
+    double? productsSum = sellerProductsInCart?.fold(0.0, (prev, ele) => ((prev ?? 0 ) + ele.calculableTotal));
+    double remain = (shop?.minOrderAmount ?? 0) - (productsSum ?? 0);
+    return remain;
+}
+
+
+
+
+
+
 }
