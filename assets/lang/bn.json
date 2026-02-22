@@ -765,5 +765,10 @@
   "sellersSuggestions": "বিক্রেতাদের প্রস্তাবনা",
   "top_Seller": "সেরা বিক্রেতা",
   "noSellersFound": "কোনো বিক্রেতা পাওয়া যায়নি",
-  "track Your Current Orders": "আপনার বর্তমান অর্ডারগুলো ট্র্যাক করুন"
+  "track Your Current Orders": "আপনার বর্তমান অর্ডারগুলো ট্র্যাক করুন",
+  "notification_desc": "অ্যাপের বিজ্ঞপ্তিগুলি পরিচালনা করতে, অনুগ্রহ করে 'AMCOOP'-এর জন্য সেটিংস > বিজ্ঞপ্তিতে যান",
+  "notification_active": "বিজ্ঞপ্তি সক্রিয়",
+  "notification_not_active": "বিজ্ঞপ্তি সক্রিয় নয়",
+  "increaseCartToReachMin": "সর্বনিম্ন পরিমাণে পৌঁছাতে আপনার কার্ট বাড়ান",
+  "go": "যান"
 }

@@ -717,5 +717,10 @@
   "delete_products": "Delete products",
   "keep_shopping": "Keep shopping",
   "noSellersFound": "No sellers found",
-  "please_remove_products": "Please remove {} products"
+  "please_remove_products": "Please remove {} products",
+  "notification_desc": "To manage app notifications, please go to Settings > Notifications for 'AMCOOP'",
+  "notification_active": "Notification active",
+  "notification_not_active": "Notification not active",
+  "increaseCartToReachMin": "Increase your cart to reach minimum amounts",
+  "go": "Go"
 }

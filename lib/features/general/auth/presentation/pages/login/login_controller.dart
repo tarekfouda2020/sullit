@@ -27,14 +27,23 @@ class LoginController {
     if (formKey.currentState!.validate()) {
       //btnKey.currentState?.animateForward();
       FocusScope.of(context).unfocus();
-      var params = await _setLoginParams();
-      var result = await SetLogin().call(params);
-      //btnKey.currentState?.animateReverse();
-      if (result?.key == "success") {
-        _cashAndRoute(context, result?.userData, result?.userData?.user);
+      String? deviceId;
+      try{
+        deviceId =  await getIt<GetDeviceId>().deviceId;
+      }catch(e){
+        CustomToast.showSimpleToast(msg: "Something get wrong wile get your device info please check connection and try again later",type: ToastType.error);
+        return ;
       }
-      if (result?.key == "needActive") {
-        _onNeedActive(context);
+      if(deviceId != null){
+        var params = await _setLoginParams(deviceId);
+        var result = await SetLogin().call(params);
+        //btnKey.currentState?.animateReverse();
+        if (result?.key == "success") {
+          _cashAndRoute(context, result?.userData, result?.userData?.user);
+        }
+        if (result?.key == "needActive") {
+          _onNeedActive(context);
+        }
       }
     }
   }
@@ -76,16 +85,15 @@ class LoginController {
     AutoRouter.of(context).push(VerifyRegisterRoute(email: email.text));
   }
 
-  Future<LoginParams> _setLoginParams() async {
-    FirebaseMessaging messaging = FirebaseMessaging.instance;
+  Future<LoginParams> _setLoginParams(String deviceId) async {
     String emailOrPhone = switchEmailPhoneCubit.state.data==0
         ? email.text
         : phone.text;
     return LoginParams(
       emailOrPhone: emailOrPhone,
       password: password.text,
-      macAddress: await getIt<GetDeviceId>().deviceId,
-      deviceToken: await messaging.getToken(),
+      macAddress: deviceId ,
+      deviceToken: deviceId,
     );
   }
 

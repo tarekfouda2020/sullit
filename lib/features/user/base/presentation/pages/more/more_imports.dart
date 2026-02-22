@@ -8,8 +8,12 @@ import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/global_notification.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
+import 'package:flutter_tdd/core/helpers/helper_methods.dart';
 import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
@@ -28,6 +32,7 @@ import 'package:flutter_tdd/features/user/base/presentation/pages/more/widgets/m
 import 'package:flutter_tdd/features/user/base/presentation/widgets/build_home_app_bar.dart';
 import 'package:flutter_tdd/features/user/gift_card/presentation/pages/gift_cards/gift_cards_imports.dart';
 import 'package:flutter_tdd/res.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 part 'more.dart';
 part 'more_controller.dart';

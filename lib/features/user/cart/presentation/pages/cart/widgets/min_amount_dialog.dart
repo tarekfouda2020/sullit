@@ -66,7 +66,8 @@ class MinAmountDialog extends StatelessWidget {
                   ),
                   Gaps.vGap32,
                   DefaultButton(
-                    title: tr('delete_products'),
+                    // title: tr('delete_products'),
+                    title: "Empty “${seller.name}” Cart",
                     height: 50,
                     margin: EdgeInsets.zero,
                     borderRadius: Dimens.borderRadius12PX,
@@ -77,7 +78,8 @@ class MinAmountDialog extends StatelessWidget {
                   ),
                   Gaps.vGap12,
                   DefaultButton(
-                    title: tr('keep_shopping'),
+                    // title: tr('keep_shopping'),
+                    title: "Add more items",
                     textColor: context.colors.primary,
                     height: 50,
                     margin: EdgeInsets.zero,

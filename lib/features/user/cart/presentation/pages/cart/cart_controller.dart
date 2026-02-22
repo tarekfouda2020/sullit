@@ -42,6 +42,12 @@ class CartController {
       if (cartItemsBloc.state.data.items == null ||
           (cartItemsBloc.state.data.items ?? []).isEmpty) {
         getIt<CartNavigateHelper>().initData();
+        getIt<CartHelper>().updateCartCount(context, 0);
+        CustomToast.showSimpleToast(
+            msg: "Your cart has been cleared successfully.",
+            type: ToastType.success);
+        AutoRouter.of(context).pop();
+        return;
       }
       getIt<CartHelper>()
           .updateCartCountWithCart(context, cartItemsBloc.state.data);
@@ -111,13 +117,10 @@ class CartController {
 
   void whileOnDecreaseCount(BuildContext context, CartItem cartItem,
       String value, GenericBloc<int> qntCubit) {
-    if (qntCubit.state.data > 1) {
-      var newQty = qntCubit.state.data - 1;
+    var qnt = qntCubit.state.data;
+    if (qnt > 1) {
+      var newQty = qnt - 1;
       qntCubit.onUpdateData(newQty);
-      if (newQty == 1) {
-        deleteItemFromCart(context, cartItem);
-        return;
-      }
       DebounceHelper.instance.startSearch(
           value: value,
           milliseconds: AppConstants.instance.debounceTimeInBackGround,
@@ -127,6 +130,9 @@ class CartController {
               qntCubit.onUpdateData(cartItem.quantity);
             }
           });
+    } else {
+      deleteItemFromCart(context, cartItem);
+      return;
     }
   }
 
@@ -134,24 +140,18 @@ class CartController {
     bool auth = context.read<DeviceCubit>().state.model.auth;
     if (auth) {
       final cartData = cartItemsBloc.state.data;
-      // if ((cartData.minAmountSellers ?? []).length > 1 == true && cartData.getRequiredSeller() !=null) {
-      //   showDialog(
-      //     context: context,
-      //     builder: (context) => MinAmountDialog(
-      //       controller: this,
-      //       shopId: cartData.getRequiredShopId(),
-      //       seller: cartData.getRequiredSeller()!,
-      //       onDelete: () {
-      //         CustomToast.showSimpleToast(
-      //           msg: tr('please_remove_products')
-      //               .replaceFirst('{}', cartData.minAmountSellers!.first.name),
-      //           type: ToastType.error,
-      //         );
-      //       },
-      //     ),
-      //   );
-      //   return;
-      // }
+      if ((cartData.minAmountSellers ?? []).isNotEmpty) {
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          backgroundColor: Colors.transparent,
+          builder: (ctx) => CartMinAmountBottomSheet(
+            controller: this,
+            minAmountSellers: cartData.minAmountSellers!,
+          ),
+        );
+        return;
+      }
       if (cartData.minimumStatus == false) {
         CustomToast.showSimpleToast(msg: cartData.minimumAmountMsg!);
         return;
@@ -181,9 +181,11 @@ class CartController {
   }
 
   Future<void> clearCart(BuildContext context) async {
-    var params = await _cartParams();
+    var params = await _deleteParams();
     await ClearCart().call(params).then((value) async {
-      CustomToast.showSimpleToast(msg: value, type: ToastType.success);
+      CustomToast.showSimpleToast(
+          msg: "Your cart has been cleared successfully.",
+          type: ToastType.success);
       getIt<CartNavigateHelper>().initData();
       cartItemsBloc.state.data.items!.clear();
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
@@ -229,11 +231,17 @@ class CartController {
   int? get confirmationCombinedId =>
       getIt<CartNavigateHelper>().confirmationCombinedId;
 
-  Future<CartParams> _cartParams() async {
+  Future<CartParams> _cartParams() async { 
     return CartParams(
       macAddress: await getIt<GetDeviceId>().deviceId ?? "",
       refresh: false,
     );
+  }
+
+  Future<ClearCartParams> _deleteParams({int? sellerId}) async {
+    return ClearCartParams(
+        macAddress: await getIt<GetDeviceId>().deviceId ?? "",
+        sellerId: sellerId);
   }
 
   bool onPressBack() {
@@ -243,6 +251,28 @@ class CartController {
       return false;
     }
     return true;
+  }
+
+  Future<void> clearSellerItems(BuildContext context, int sellerId) async {
+    var params = await _deleteParams(sellerId: sellerId);
+    getIt<LoadingHelper>().showLoadingDialog();
+    var result = await ClearCart().call(params);
+    if (result == "success") {
+      await getCartItems(refresh: true);
+      CustomToast.showSimpleToast(
+          msg: "Seller items cleared successfully.", type: ToastType.success);
+    }
+    getIt<LoadingHelper>().dismissDialog();
+
+    if (cartItemsBloc.state.data.items == null ||
+        (cartItemsBloc.state.data.items ?? []).isEmpty) {
+      Navigator.pop(context);
+    }
+  }
+
+  void navigateToSeller(BuildContext context, int shopId) {
+    Navigator.pop(context);
+    AutoRouter.of(context).push(SellerProductsPageRoute(shopId: shopId,fromCart: true));
   }
 
   Future<UpdateCartItemParams> _updateCartItemParams(int qty, int id) async {

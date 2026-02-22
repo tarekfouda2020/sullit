@@ -3,7 +3,6 @@ part of 'best_sellers_page_imports.dart';
 class BestSellersPageController {
   final TextEditingController searchTxtController = TextEditingController();
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
-
   final GenericBloc<List<Shop>> shopsCubit = GenericBloc([]);
 
   final GenericBloc<bool> isLoadingCubit = GenericBloc(false);

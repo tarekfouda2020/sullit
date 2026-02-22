@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -36,6 +39,9 @@ class HelperMethods {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.clear();
   }
+
+
+
 
   String convertDigitsToLatin(String text) {
     var sb = StringBuffer();
