@@ -56,7 +56,7 @@ class CartMinAmountBottomSheet extends StatelessWidget {
                 return CartMinAmountSellerItem(
                   seller: seller,
                   controller: controller,
-                  remainAmount: cartData.getSingleSellerReMainAmount(seller.id),
+                  remainAmount: cartData.getSingleSellerReMainAmount(seller.shopId),
                 );
               },
             ),

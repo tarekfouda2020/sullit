@@ -94,8 +94,8 @@ class CartDomainModel extends BaseDomainModel {
   /// used in seller details page and in sellers ist in cart page that dose not reach th min amount
 
 double getSingleSellerReMainAmount(int shopId){
-    MinAmountSellerDomain? shop = minAmountSellers?.firstWhere((element) => element.id == shopId);
-    List<CartItem>? sellerProductsInCart = items?.where((element) => element.ownerId == shopId).toList();
+    MinAmountSellerDomain? shop = minAmountSellers?.firstWhere((element) => element.shopId == shopId);
+    List<CartItem>? sellerProductsInCart = items?.where((element) => element.shopId == shopId).toList();
     double? productsSum = sellerProductsInCart?.fold(0.0, (prev, ele) => ((prev ?? 0 ) + ele.calculableTotal));
     double remain = (shop?.minOrderAmount ?? 0) - (productsSum ?? 0);
     return remain;

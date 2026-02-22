@@ -2,6 +2,7 @@ part of 'more_imports.dart';
 
 class MoreController {
   final GenericBloc<File?> imageCubit = GenericBloc(null);
+  final GenericBloc<bool> refreshNotifyCubit = GenericBloc(false);
   final GenericBloc<List<LangDomainModel>> languagesCubit =
       GenericBloc<List<LangDomainModel>>([]);
 
@@ -202,7 +203,18 @@ class MoreController {
     openAppSettings();
   }
 
-  // void callLanguages(BuildContext context) {
+  Future<void> refreshNotificationStatus() async {
+    var status = await Permission.notification.status;
+    bool isGranted = status.isGranted || status.isProvisional;
+    GlobalState.instance.set(GlobalStateKeys.notificationGranted, isGranted);
+    refreshNotifyCubit.onUpdateData(true);
+    if(isGranted){
+      getIt<GlobalNotification>().setupNotification();
+    }
+  }
+
+
+// void callLanguages(BuildContext context) {
   //   bool isAuth = context.read<DeviceCubit>().state.model.auth;
   //   if (isAuth) {
   //    _getLanguages(false);

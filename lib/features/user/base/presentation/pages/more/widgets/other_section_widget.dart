@@ -2,6 +2,7 @@ part of 'more_widgets_imports.dart';
 
 class OtherSectionWidget extends StatelessWidget {
   final MoreController controller;
+
   const OtherSectionWidget({super.key, required this.controller});
 
   @override
@@ -91,14 +92,20 @@ class OtherSectionWidget extends StatelessWidget {
           onTap: () =>
               controller.checkAuth(context, MoreRoutes.returnPolicy),
         ),
-        BuildMoreItem(
-          image: Res.notification,
-          svgColor: ColorFilter.mode(context.colors.primary, BlendMode.srcIn),
-          isSvg: true,
-          size: 30,
-          title:  controller.getNotificationText(),
-          onTap: () =>
-              controller.openNotificationDialog(context),
+        BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+          bloc: controller.refreshNotifyCubit,
+          builder: (context, state) {
+            return BuildMoreItem(
+              image: Res.notification,
+              svgColor: ColorFilter.mode(
+                  context.colors.primary, BlendMode.srcIn),
+              isSvg: true,
+              size: 30,
+              title: controller.getNotificationText(),
+              onTap: () =>
+                  controller.openNotificationDialog(context),
+            );
+          },
         ),
 
       ],

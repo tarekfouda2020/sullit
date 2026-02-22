@@ -30,12 +30,12 @@ extension Validator on String {
     String sanitized = phone.replaceAll(RegExp(r'\s+|-|\(|\)'), '');
 
     final regex = RegExp(
-        r'^(?:\+971|0)?' // Optional +971 or 0
+        r'^(?:\+971|0)?'
         r'('
-        r'50|51|52|55|56|57|58|59' // Mobile prefixes
-        r'|2|3|4|6|7'               // Landline prefixes
+        r'50|51|52|55|56|57|58|59'
+        r'|2|3|4|6|7'
         r')'
-        r'\d{7,8}$'                 // 7 or 8 digits after prefix
+        r'\d{7,8}$'
     );
     if(!regex.hasMatch(sanitized)){
       return tr("phoneValidation");

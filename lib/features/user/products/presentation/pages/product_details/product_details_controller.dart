@@ -60,7 +60,7 @@ class ProductDetailsController implements CartSheetController {
           qtyCubit.onUpdateData(1);
         }
       }
-      _calculateRemainingAmount();
+      calculateRemainingAmount();
       if (resetQty) {
         _initVariants(context);
       }
@@ -170,7 +170,7 @@ class ProductDetailsController implements CartSheetController {
         variantPrice.calculablePrice = priceQty.toStringAsFixed(2);
         qtyCubit.onUpdateData(newQty);
         detailsCubit.onUpdateData(detailsCubit.state.data);
-        _calculateRemainingAmount();
+        calculateRemainingAmount();
       } else {
         CustomToast.showSimpleToast(
             msg:
@@ -191,7 +191,7 @@ class ProductDetailsController implements CartSheetController {
       variantPrice.calculablePrice = priceQty.toStringAsFixed(2);
       qtyCubit.onUpdateData(newQty);
       detailsCubit.onUpdateData(detailsCubit.state.data);
-      _calculateRemainingAmount();
+      calculateRemainingAmount();
     }
     // if(qtyCubit.state.data == 1){
     //   var price = double.parse(variantPrice.calculablePrice!);
@@ -281,7 +281,7 @@ class ProductDetailsController implements CartSheetController {
       } else {
         _updateCartCountFromCart(CartDomainModel(items: []));
       }
-      _calculateRemainingAmount();
+      calculateRemainingAmount();
     });
   }
 
@@ -441,7 +441,7 @@ class ProductDetailsController implements CartSheetController {
     );
   }
 
-  void _calculateRemainingAmount() {
+  void calculateRemainingAmount() {
     double cartSubTotal =
         double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
     double minAmount = cartItemsBloc.state.data.minimumAmount ?? 0.0;
@@ -473,7 +473,7 @@ class ProductDetailsController implements CartSheetController {
   Future<void> routeToSellerPage(BuildContext context, Shop shopModel) async {
     await AutoRouter.of(context)
         .push(SellerProductsPageRoute(shopModel: shopModel,shopId: shopModel.id!));
-    _calculateRemainingAmount();
+    calculateRemainingAmount();
   }
 
   double remainToGetMinAmount() {

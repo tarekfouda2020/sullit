@@ -26,6 +26,7 @@ class SellerProducts extends StatelessWidget {
               showVipDiscount: item.hasVipOffer,
               productModel: item,
               onFavRefresh: () => controller.onFavChanged(item),
+              onPressDelete: () async => controller.getCartData(),
             );
           },
           firstPageProgressIndicatorBuilder: (_) => const BuildLoadingProductsGridView(),

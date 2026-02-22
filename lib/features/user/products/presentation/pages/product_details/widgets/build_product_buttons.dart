@@ -82,9 +82,10 @@ class BuildProductButtons extends StatelessWidget {
                   return BlocBuilder<GenericBloc<String>, GenericState<String>>(
                     bloc: controller.remainingAmountBloc,
                     builder: (context, state) {
+                      var remain = double.parse(state.data);
                       return Visibility(
                         visible: (cartState.data.minimumStatus == false) &&
-                            controller.remainToGetMinAmount() > 0,
+                            controller.remainToGetMinAmount() > 0 && remain > 0,
                         child: CartMinAmountNeededWidget(
                           minAmount: state.data,
                           sellerName: "from '${cartState.data.getRequiredSellerName()}'",

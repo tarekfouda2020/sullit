@@ -231,7 +231,7 @@ class CartController {
   int? get confirmationCombinedId =>
       getIt<CartNavigateHelper>().confirmationCombinedId;
 
-  Future<CartParams> _cartParams() async {
+  Future<CartParams> _cartParams() async { 
     return CartParams(
       macAddress: await getIt<GetDeviceId>().deviceId ?? "",
       refresh: false,
@@ -272,7 +272,7 @@ class CartController {
 
   void navigateToSeller(BuildContext context, int shopId) {
     Navigator.pop(context);
-    AutoRouter.of(context).push(SellerProductsPageRoute(shopId: shopId));
+    AutoRouter.of(context).push(SellerProductsPageRoute(shopId: shopId,fromCart: true));
   }
 
   Future<UpdateCartItemParams> _updateCartItemParams(int qty, int id) async {
