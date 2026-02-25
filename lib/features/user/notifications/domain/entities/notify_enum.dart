@@ -2,7 +2,7 @@ enum NotifyEnum {
   emailChanged,
   emailVerified,
   order,
-  orderDelivered,
+  customerChangeOrderStatus,
 
   message,
 
@@ -19,7 +19,7 @@ extension NotifyValue on NotifyEnum {
         return "message";
       case NotifyEnum.order:
         return "order";
-        case NotifyEnum.orderDelivered:
+        case NotifyEnum.customerChangeOrderStatus:
         return "customer_changed_order_status";
       default:
         return "";

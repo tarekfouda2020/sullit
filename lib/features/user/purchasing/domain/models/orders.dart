@@ -111,6 +111,8 @@ class Orders extends BaseDomainModel {
 
   DateTime get getOrderDate => DateTimeHelper.convertToDateTime(strDate: orderDate);
 
+  String get rredate => orderDate;
+
   double getDiscountNumber() {
     var currencySymbol = orderDetails.first.product?.currencySymbol;
     String number = couponDiscount.replaceAll(currencySymbol ?? '', "");

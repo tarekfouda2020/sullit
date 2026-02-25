@@ -116,7 +116,7 @@ class CartHelper {
 
     if (data.isNotEmpty) {
       if (callCartData) {
-        await getCartItems();
+         getCartItems();
       }
       onAddCartFunc();
       CustomToast.showSimpleToast(msg: tr('productAddedToYourCart'), type: ToastType.success);

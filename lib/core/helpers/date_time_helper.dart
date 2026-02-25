@@ -17,9 +17,9 @@ class DateTimeHelper {
   }
 
 
-  static DateTime convertToDateTime({required String strDate,  String? formatType}) {
-    DateTime formatted = DateFormat(formatType ?? "dd-MM-yyyy hh:mm a",).parse(strDate);
-    return formatted;
+  static DateTime convertToDateTime({required String strDate}) {
+    String cleaned = strDate.replaceAll(RegExp(r"\s(AM|PM)$"), "");
+    return DateFormat("dd-MM-yyyy HH:mm").parse(cleaned);
   }
 
   static String getDayOfWeek(DateTime date) {
