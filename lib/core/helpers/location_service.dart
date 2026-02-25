@@ -39,7 +39,7 @@ class LocationService {
   }
 
   Future<List<LocationIQPlace>> autoCompletePlaces(String keyword, {bool refresh = true}) async {
-    var result = await LocationIqHelper.instance.getAutoCompleteLocations(keyword);
+    var result = await LocationIqHelper.instance.getAutoCompleteLocations(keyword,refresh: refresh);
     return result.fold(
       (l) => <LocationIQPlace>[],
       (r) => r,

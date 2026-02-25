@@ -182,11 +182,13 @@ class FacebookEventsHelper {
       return ;
     }
     facebookAppEvents.setAutoLogAppEventsEnabled(true);
-    if (Platform.isIOS) {
-      enableIosTracking();
-    } else {
-      facebookAppEvents.setAdvertiserTracking(enabled: true);
-    }
+    // if (Platform.isIOS) {
+    //   enableIosTracking();
+    // } else {
+    //   facebookAppEvents.setAdvertiserTracking(enabled: true);
+    // }
+    facebookAppEvents.setAdvertiserTracking(enabled: true);
+
   }
 
 
