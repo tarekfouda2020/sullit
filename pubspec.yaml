@@ -4,7 +4,7 @@ publish_to: 'none'
 
 
 #android live
-version: 1.0.38+38
+version: 1.0.39+39
 
 #ios live
 #version: 1.0.33+4
