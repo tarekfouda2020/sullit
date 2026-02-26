@@ -1,10 +1,13 @@
 
+import 'dart:developer';
+
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
 import 'package:flutter_tdd/core/helpers/router_helper.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_home.dart';
+import 'package:flutter_tdd/features/user/products/domain/use_cases/get_product_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/track_order_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/get_order_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/get_tracking_history.dart';
@@ -37,6 +40,39 @@ class OrdersHelper {
       }
     });
   }
+
+
+  Future<void> updateOrderInHomeFromOrderDetails({required int id}) async {
+    await GetOrderDetails().call(_orderDetailsParams(id) ).then((value) {
+      if (value != null) {
+       var homeData =  homeCubit.state.data;
+       if(homeData!=null){
+         if(homeData.currentOrders.isEmpty){
+           return ;
+         }
+         var theSameOrder = homeData.currentOrders.where((element) => element.id == id,).first;
+        try{
+          var index = homeData.currentOrders.indexOf(theSameOrder);
+          if(theSameOrder.isCanceled){
+            homeData.currentOrders.removeAt(index);
+          }else{
+            homeData.currentOrders[index] = value;
+          }
+          homeCubit.onUpdateData(homeData);
+        }catch(e){
+          log("===>>>>>>error is $e  <<<<<====");
+          getHome();
+        }
+       }
+      }
+    });
+  }
+
+
+  GenericParams _orderDetailsParams(int id){
+    return GenericParams(id: id);
+  }
+
 
 
   void updateTrackOrderFromFcm(int orderId){

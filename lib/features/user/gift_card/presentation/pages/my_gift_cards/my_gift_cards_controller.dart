@@ -1,13 +1,11 @@
 part of 'my_gift_cards_imports.dart';
 
 class MyGiftCardsController {
-
-
-  final PagingController<int, GiftCardDomainModel> pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, GiftCardDomainModel> pagingController =
+      PagingController(firstPageKey: 1);
   int pageSize = 12;
 
-
-  MyGiftCardsController(){
+  MyGiftCardsController() {
     pagingController.addPageRequestListener((pageKey) {
       getMyGiftCards(pageKey, refresh: false);
       getMyGiftCards(pageKey);
@@ -29,12 +27,13 @@ class MyGiftCardsController {
     }
   }
 
-  void routeToCardDetails(BuildContext context,GiftCardDomainModel model){
-    if(model.isExpired == true){
-      CustomToast.showSimpleToast(msg: "Your Gift card are expired, Please By another one");
-      return ;
+  void routeToCardDetails(BuildContext context, GiftCardDomainModel model) {
+    if (model.isExpired == true) {
+      CustomToast.showSimpleToast(msg: tr("giftCardExpired"));
+      return;
     }
-    AutoRouter.of(context).push(GiftCardDetailsRoute(isMyGiftCard: true,giftCardId: model.id));
+    AutoRouter.of(context)
+        .push(GiftCardDetailsRoute(isMyGiftCard: true, giftCardId: model.id));
   }
 
   GenericPaginateParams _paginateParams(int page, bool refresh) {
@@ -44,7 +43,4 @@ class MyGiftCardsController {
       pageSize: pageSize,
     );
   }
-
-
-
 }

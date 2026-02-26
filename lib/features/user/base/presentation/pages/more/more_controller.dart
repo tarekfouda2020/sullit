@@ -156,7 +156,7 @@ class MoreController {
     );
   }
 
-  void setUserLang(BuildContext context, LangDomainModel model) async {
+  Future<void> setUserLang(BuildContext context, LangDomainModel model) async {
     String code = model.code;
     if (code == LangTypeEnum.arabic.getLangCode()) {
       code = LangCodeHelper.langAR;
@@ -172,8 +172,11 @@ class MoreController {
     //   item.isDefault = false;
     // }
     // model.isDefault = true;
-    getIt<Utilities>().changeLanguage(code, context);
-    Phoenix.rebirth(context);
+   await getIt<Utilities>().changeLanguage(code, context);
+    if(context.mounted){
+      context.read<DeviceCubit>().updateLanguage(Locale(code));
+      Phoenix.rebirth(context);
+    }
   }
 
   Future<void> _getLanguages(bool refresh) async {

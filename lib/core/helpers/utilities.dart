@@ -200,7 +200,6 @@ class Utilities {
   /// back-end lang code is different from local lang code
 
   Future<void> changeLanguage(String lang, BuildContext context) async {
-    context.read<DeviceCubit>().updateLanguage(Locale(lang));
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(LangCodeHelper.langKey, lang);
     if(lang == LangCodeHelper.langAR){
@@ -208,6 +207,9 @@ class Utilities {
     }
     if(lang == LangCodeHelper.langBN){
       lang = LangTypeEnum.bangladesh.getLangCode();
+    }
+    if(lang == LangCodeHelper.langUR){
+      lang = LangTypeEnum.urdu.getLangCode();
     }
     GlobalState.instance.set(LangCodeHelper.langKey, lang);
   }

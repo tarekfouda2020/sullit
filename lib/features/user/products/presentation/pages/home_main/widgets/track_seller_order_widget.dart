@@ -11,7 +11,8 @@ class TrackSellerOrderWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("track Your Current Orders",
+          Text(
+            tr("track Your Current Orders"),
             style: AppTextStyle.s16_w600(color: context.colors.black),
           ),
           Gaps.vGap12,
@@ -21,10 +22,16 @@ class TrackSellerOrderWidget extends StatelessWidget {
               itemCount: currentOrders.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-              return GestureDetector(
-                  onTap: () => AutoRouter.of(context).push(OrderDetailsPageRoute(isReturnedOrder: false, order: currentOrders[index])),
-                  child: CurrentOrderWidget(currentOrders: currentOrders[index],));
-            },),
+                return GestureDetector(
+                    onTap: () => AutoRouter.of(context).push(
+                        OrderDetailsPageRoute(
+                            isReturnedOrder: false,
+                            order: currentOrders[index])),
+                    child: CurrentOrderWidget(
+                      currentOrders: currentOrders[index],
+                    ));
+              },
+            ),
           ),
         ],
       ),

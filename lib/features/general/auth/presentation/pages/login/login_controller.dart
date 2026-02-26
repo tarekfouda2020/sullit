@@ -28,13 +28,14 @@ class LoginController {
       //btnKey.currentState?.animateForward();
       FocusScope.of(context).unfocus();
       String? deviceId;
-      try{
-        deviceId =  await getIt<GetDeviceId>().deviceId;
-      }catch(e){
-        CustomToast.showSimpleToast(msg: "Something get wrong wile get your device info please check connection and try again later",type: ToastType.error);
-        return ;
+      try {
+        deviceId = await getIt<GetDeviceId>().deviceId;
+      } catch (e) {
+        CustomToast.showSimpleToast(
+            msg: tr("somethingWentWrongDeviceInfo"), type: ToastType.error);
+        return;
       }
-      if(deviceId != null){
+      if (deviceId != null) {
         var params = await _setLoginParams(deviceId);
         var result = await SetLogin().call(params);
         //btnKey.currentState?.animateReverse();
@@ -86,13 +87,12 @@ class LoginController {
   }
 
   Future<LoginParams> _setLoginParams(String deviceId) async {
-    String emailOrPhone = switchEmailPhoneCubit.state.data==0
-        ? email.text
-        : phone.text;
+    String emailOrPhone =
+        switchEmailPhoneCubit.state.data == 0 ? email.text : phone.text;
     return LoginParams(
       emailOrPhone: emailOrPhone,
       password: password.text,
-      macAddress: deviceId ,
+      macAddress: deviceId,
       deviceToken: deviceId,
     );
   }
@@ -105,11 +105,7 @@ class LoginController {
     return true;
   }
 
-
-  void switchEmailAndPhone(int value){
+  void switchEmailAndPhone(int value) {
     switchEmailPhoneCubit.onUpdateData(value);
   }
-
-
-
 }

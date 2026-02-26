@@ -60,6 +60,9 @@ class SplashController {
         if(value == LangCodeHelper.langBN){
           value = LangTypeEnum.bangladesh.getLangCode();
         }
+        if(value == LangCodeHelper.langUR){
+          value = LangTypeEnum.urdu.getLangCode();
+        }
         GlobalState.instance.set(LangCodeHelper.langKey, value ?? LangCodeHelper.langEN);
 
       },

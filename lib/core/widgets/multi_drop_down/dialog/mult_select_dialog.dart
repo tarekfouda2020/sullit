@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../util/multi_select_actions.dart';
 import '../util/multi_select_item.dart';
 import '../util/multi_select_list_type.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 
 /// A dialog containing either a classic checkbox style list, or a chip style list.
 class MultiSelectDialog<V> extends StatefulWidget with MultiSelectActions<V> {
@@ -159,7 +160,8 @@ class _MultiSelectDialogState<V> extends State<MultiSelectDialog<V>> {
         selectedColor:
             widget.colorator != null && widget.colorator!(item.value) != null
                 ? widget.colorator!(item.value)
-                : widget.selectedColor ?? Theme.of(context).primaryColor.withOpacity(0.35),
+                : widget.selectedColor ??
+                    Theme.of(context).primaryColor.withOpacity(0.35),
         label: Text(
           item.label,
           style: _selectedValues.contains(item.value)
@@ -203,49 +205,49 @@ class _MultiSelectDialogState<V> extends State<MultiSelectDialog<V>> {
     return AlertDialog(
       backgroundColor: widget.backgroundColor,
       title: widget.searchable == false
-          ? widget.title ?? const Text("Select")
+          ? widget.title ?? Text(tr("select"))
           : Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              _showSearch
-                  ? Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: TextField(
-                          style: widget.searchTextStyle,
-                          decoration: InputDecoration(
-                            hintStyle: widget.searchHintStyle,
-                            hintText: widget.searchHint ?? "Search",
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: widget.selectedColor ??
-                                    Theme.of(context).primaryColor,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                _showSearch
+                    ? Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: TextField(
+                            style: widget.searchTextStyle,
+                            decoration: InputDecoration(
+                              hintStyle: widget.searchHintStyle,
+                              hintText: widget.searchHint ?? tr("search"),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: widget.selectedColor ??
+                                      Theme.of(context).primaryColor,
+                                ),
                               ),
                             ),
+                            onChanged: (val) {
+                              setState(() {
+                                _items =
+                                    widget.updateSearchQuery(val, widget.items);
+                              });
+                            },
                           ),
-                          onChanged: (val) {
-                            setState(() {
-                              _items = widget.updateSearchQuery(
-                                  val, widget.items);
-                            });
-                          },
                         ),
-                      ),
-                    )
-                  : widget.title ?? Text("Select"),
-              IconButton(
-                icon: _showSearch
-                    ? widget.closeSearchIcon ?? Icon(Icons.close)
-                    : widget.searchIcon ?? Icon(Icons.search),
-                onPressed: () {
-                  setState(() {
-                    _showSearch = !_showSearch;
-                    if (!_showSearch) _items = widget.items;
-                  });
-                },
-              ),
-            ],
-          ),
+                      )
+                    : widget.title ?? Text(tr("select")),
+                IconButton(
+                  icon: _showSearch
+                      ? widget.closeSearchIcon ?? Icon(Icons.close)
+                      : widget.searchIcon ?? Icon(Icons.search),
+                  onPressed: () {
+                    setState(() {
+                      _showSearch = !_showSearch;
+                      if (!_showSearch) _items = widget.items;
+                    });
+                  },
+                ),
+              ],
+            ),
       contentPadding:
           widget.listType == null || widget.listType == MultiSelectListType.LIST
               ? const EdgeInsets.only(top: 12.0)
@@ -271,7 +273,7 @@ class _MultiSelectDialogState<V> extends State<MultiSelectDialog<V>> {
         TextButton(
           child: widget.cancelText ??
               Text(
-                "CANCEL",
+                tr("cancel"),
                 style: TextStyle(
                   color: (widget.selectedColor != null &&
                           widget.selectedColor != Colors.transparent)
@@ -286,7 +288,7 @@ class _MultiSelectDialogState<V> extends State<MultiSelectDialog<V>> {
         TextButton(
           child: widget.confirmText ??
               Text(
-                'OK',
+                tr("ok"),
                 style: TextStyle(
                   color: (widget.selectedColor != null &&
                           widget.selectedColor != Colors.transparent)

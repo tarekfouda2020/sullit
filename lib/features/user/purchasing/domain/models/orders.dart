@@ -137,22 +137,22 @@ class Orders extends BaseDomainModel {
     /// Delivered
     /// Cancelled
 
-    switch (deliveryStatus) {
-      case "Placed":
+    switch (deliveryStatusConst) {
+      case "placed":
         return TrackOrderEnum.placed;
-      case "Confirmed":
+      case "confirmed":
         return TrackOrderEnum.confirmed;
-      case "Preparing":
+      case "preparing":
         return TrackOrderEnum.preparing;
-        case "Ready For Delivery":
+        case "ready_for_delivery":
         return TrackOrderEnum.readyForDelivery;
-        case "On The Way":
+        case "on_the_way":
         return TrackOrderEnum.onTheWay;
-      case "Picked Up":
+      case "picked_up":
         return TrackOrderEnum.pickedUp;
-      case "Delivered":
+      case "delivered":
         return TrackOrderEnum.delivered;
-      case "Cancelled":
+      case "cancelled":
         return TrackOrderEnum.cancelled;
       default:
         return TrackOrderEnum.placed;

@@ -230,10 +230,6 @@ class OrderDetailsPageController {
       var result = await GetPaymentOptions().call(refresh);
       if (result.isNotEmpty && orderDetailsBloc.state.data != null) {
         result = result.where((element) {
-          print(
-              "===>>>> ${element.paymentTypeKey.replaceAll("_", " ").toLowerCase()}");
-          print(
-              "===>>>> ${orderDetailsBloc.state.data!.paymentMethod.toLowerCase()}");
           return (element.paymentTypeKey.replaceAll("_", " ").toLowerCase())
                   .toLowerCase() !=
               orderDetailsBloc.state.data!.paymentMethod.toLowerCase();

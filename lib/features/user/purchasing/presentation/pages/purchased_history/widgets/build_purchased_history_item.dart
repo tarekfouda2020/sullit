@@ -27,16 +27,19 @@ class BuildPurchasedHistoryItem extends StatelessWidget {
                     style: AppTextStyle.s14_w500(color: context.colors.black),
                   ),
                   GestureDetector(
-                    onLongPress: (){
-                      Clipboard.setData( ClipboardData(text: order.code)).then((value){
-                        CustomToast.showSimpleToast(msg: "Copied to clipboard",type: ToastType.success);
-                      });
-                    },
-                      child : Text(
+                      onLongPress: () {
+                        Clipboard.setData(ClipboardData(text: order.code))
+                            .then((value) {
+                          CustomToast.showSimpleToast(
+                              msg: tr("copiedToClipboard"),
+                              type: ToastType.success);
+                        });
+                      },
+                      child: Text(
                         order.code,
-                        style: AppTextStyle.s14_w500(color: context.colors.primary),
-                      )
-                  ),
+                        style: AppTextStyle.s14_w500(
+                            color: context.colors.primary),
+                      )),
                   const Spacer(),
                   InkWell(
                     onTap: () => controller.onOpenHistory(order),

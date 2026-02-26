@@ -20,8 +20,6 @@ import 'package:flutter_tdd/features/user/profile/domain/use_cases/get_profile.d
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'helper_methods.dart';
-
 @lazySingleton
 class GlobalNotification {
   static final StreamController<Map<String, dynamic>>
@@ -67,13 +65,15 @@ class GlobalNotification {
           var context = getIt<GlobalContext>().context();
           AutoRouter.of(context).push(const LoginRoute());
         }
-        log("is order updated : ${message.data['item_type'] ==  NotifyEnum.order.getValue()}");
-        var isOrder = message.data['item_type'] ==  NotifyEnum.order.getValue();
-        if(message.data['item_type']!=null && (isOrder) ){
+        var itemType = message.data['item_type'];
+        var isOrder = itemType ==  NotifyEnum.order.getValue();
+        var updatedFromDashBoard = itemType ==  NotifyEnum.customerChangeOrderStatus.getValue();
+        if(itemType != null && (isOrder || updatedFromDashBoard) ){
           bool isDelivered = message.data['body'].toString().split(" ").last.replaceAll(".", "") == "delivered";
-          OrdersHelper.instance.getHome(setLoading: false);
+          // OrdersHelper.instance.getHome(setLoading: false);
           var orderId = int.tryParse(message.data['item_type_id']);
           if( orderId != null){
+            OrdersHelper.instance.updateOrderInHomeFromOrderDetails(id: orderId);
             OrdersHelper.instance.updateTrackOrderFromFcm(orderId);
           }
           if(isDelivered){

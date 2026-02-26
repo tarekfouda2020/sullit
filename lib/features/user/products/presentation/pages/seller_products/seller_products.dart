@@ -64,13 +64,12 @@ class SellerProductsPageState extends State<SellerProductsPage> {
                 spacing: 12,
                 children: [
                   Opacity(
-                    opacity: controller.cartHaveSellerProduct()
-                        ? 1
-                        :0.5,
+                    opacity: controller.cartHaveSellerProduct() ? 1 : 0.5,
                     child: DefaultButton(
-                      title: "View Cart",
+                      title: tr("view_cart"),
                       margin: EdgeInsets.zero,
-                      onTap:  () => controller.onPressViewCart(context,widget.fromCart!),
+                      onTap: () =>
+                          controller.onPressViewCart(context, widget.fromCart!),
                     ),
                   ),
                   Visibility(
@@ -78,10 +77,10 @@ class SellerProductsPageState extends State<SellerProductsPage> {
                     child: Row(
                       children: [
                         DirhamPrice(
-                        amount: controller.neededAmount().toStringAsFixed(2)
-                        ),
+                            amount:
+                                controller.neededAmount().toStringAsFixed(2)),
                         Text(
-                          " needed to reach min amount",
+                          " ${tr("needed_to_reach_minimum_order")}",
                           style: AppTextStyle.s16_w500(
                               color: context.colors.primary),
                         )
