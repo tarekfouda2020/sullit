@@ -10,9 +10,10 @@ class OrderDetailsWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if(order?.getOrderDate != null)
         OrderINfoItemWidget(
           title: tr('date'),
-          describe: DateTimeHelper.getDate(order?.orderDate ?? "",
+          describe: DateTimeHelper.formatDate(date : order?.getOrderDate ?? DateTime.now(),
               formatType: "d MMM yyyy - hh:mm a"),
           gaps: Gaps.hGap4,
         ),

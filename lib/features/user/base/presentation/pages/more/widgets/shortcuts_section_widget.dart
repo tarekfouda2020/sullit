@@ -7,7 +7,7 @@ class ShortCutSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MoreGridViewWidget(title: tr("yourShortcuts"), children: [
+    return MoreGridViewWidget(title: tr("yourShortcuts",context: context), children: [
       Stack(
         alignment: AlignmentDirectional.topStart,
         clipBehavior: Clip.none,

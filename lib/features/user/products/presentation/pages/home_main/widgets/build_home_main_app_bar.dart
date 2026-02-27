@@ -29,7 +29,7 @@ class BuildHomeMainAppBar extends StatelessWidget {
                   fillColor: context.colors.white,
                   enableBorderColor: context.colors.borderColor,
                   focusBorderColor: context.colors.borderColor,
-                  hint: tr('searchCats'),
+                  hint: tr('searchCats',context: context),
                   minHeight: 48,
                   minWidth: 20,
                   onSubmit: () => homeMainController.routeToSearchPage(context),

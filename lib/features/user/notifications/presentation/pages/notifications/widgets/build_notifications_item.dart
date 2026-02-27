@@ -29,7 +29,7 @@ class BuildNotificationsItem extends StatelessWidget {
                   ),
                   Gaps.vGap7,
                   Text(
-                    DateTimeHelper.getDate(notification.createdAt),
+                    notification.normalizeDate(),
                     style: AppTextStyle.s12_w400(color: context.colors.gray5),
                   ),
                 ],

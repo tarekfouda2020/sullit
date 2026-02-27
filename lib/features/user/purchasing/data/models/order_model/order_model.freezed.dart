@@ -55,6 +55,8 @@ mixin _$OrderModel {
   String get additionalInfo => throw _privateConstructorUsedError;
   @JsonKey(name: 'payment_method')
   String get paymentMethod => throw _privateConstructorUsedError;
+  @JsonKey(name: 'payment_method_key')
+  String get paymentMethodConst => throw _privateConstructorUsedError;
   @JsonKey(name: 'shipping_method')
   String get shippingMethod => throw _privateConstructorUsedError;
   @JsonKey(name: 'order_status')
@@ -144,6 +146,7 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'available_cancel_order') bool availableCancelOrder,
       @JsonKey(name: 'additional_info') String additionalInfo,
       @JsonKey(name: 'payment_method') String paymentMethod,
+      @JsonKey(name: 'payment_method_key') String paymentMethodConst,
       @JsonKey(name: 'shipping_method') String shippingMethod,
       @JsonKey(name: 'order_status') String orderStatus,
       @JsonKey(name: 'order_date') String orderDate,
@@ -208,6 +211,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? availableCancelOrder = null,
     Object? additionalInfo = null,
     Object? paymentMethod = null,
+    Object? paymentMethodConst = null,
     Object? shippingMethod = null,
     Object? orderStatus = null,
     Object? orderDate = null,
@@ -318,6 +322,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
       paymentMethod: null == paymentMethod
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as String,
+      paymentMethodConst: null == paymentMethodConst
+          ? _value.paymentMethodConst
+          : paymentMethodConst // ignore: cast_nullable_to_non_nullable
               as String,
       shippingMethod: null == shippingMethod
           ? _value.shippingMethod
@@ -465,6 +473,7 @@ abstract class _$$_OrderModelCopyWith<$Res>
       @JsonKey(name: 'available_cancel_order') bool availableCancelOrder,
       @JsonKey(name: 'additional_info') String additionalInfo,
       @JsonKey(name: 'payment_method') String paymentMethod,
+      @JsonKey(name: 'payment_method_key') String paymentMethodConst,
       @JsonKey(name: 'shipping_method') String shippingMethod,
       @JsonKey(name: 'order_status') String orderStatus,
       @JsonKey(name: 'order_date') String orderDate,
@@ -528,6 +537,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? availableCancelOrder = null,
     Object? additionalInfo = null,
     Object? paymentMethod = null,
+    Object? paymentMethodConst = null,
     Object? shippingMethod = null,
     Object? orderStatus = null,
     Object? orderDate = null,
@@ -638,6 +648,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
       paymentMethod: null == paymentMethod
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as String,
+      paymentMethodConst: null == paymentMethodConst
+          ? _value.paymentMethodConst
+          : paymentMethodConst // ignore: cast_nullable_to_non_nullable
               as String,
       shippingMethod: null == shippingMethod
           ? _value.shippingMethod
@@ -771,6 +785,7 @@ class _$_OrderModel extends _OrderModel {
       required this.availableCancelOrder,
       @JsonKey(name: 'additional_info') required this.additionalInfo,
       @JsonKey(name: 'payment_method') required this.paymentMethod,
+      @JsonKey(name: 'payment_method_key') required this.paymentMethodConst,
       @JsonKey(name: 'shipping_method') required this.shippingMethod,
       @JsonKey(name: 'order_status') required this.orderStatus,
       @JsonKey(name: 'order_date') required this.orderDate,
@@ -865,6 +880,9 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'payment_method')
   final String paymentMethod;
+  @override
+  @JsonKey(name: 'payment_method_key')
+  final String paymentMethodConst;
   @override
   @JsonKey(name: 'shipping_method')
   final String shippingMethod;
@@ -966,7 +984,7 @@ class _$_OrderModel extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, paymentMethodConst: $paymentMethodConst, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver)';
   }
 
   @override
@@ -1011,6 +1029,8 @@ class _$_OrderModel extends _OrderModel {
                 other.additionalInfo == additionalInfo) &&
             (identical(other.paymentMethod, paymentMethod) ||
                 other.paymentMethod == paymentMethod) &&
+            (identical(other.paymentMethodConst, paymentMethodConst) ||
+                other.paymentMethodConst == paymentMethodConst) &&
             (identical(other.shippingMethod, shippingMethod) ||
                 other.shippingMethod == shippingMethod) &&
             (identical(other.orderStatus, orderStatus) ||
@@ -1086,6 +1106,7 @@ class _$_OrderModel extends _OrderModel {
         availableCancelOrder,
         additionalInfo,
         paymentMethod,
+        paymentMethodConst,
         shippingMethod,
         orderStatus,
         orderDate,
@@ -1155,6 +1176,8 @@ abstract class _OrderModel extends OrderModel {
       required final bool availableCancelOrder,
       @JsonKey(name: 'additional_info') required final String additionalInfo,
       @JsonKey(name: 'payment_method') required final String paymentMethod,
+      @JsonKey(name: 'payment_method_key')
+      required final String paymentMethodConst,
       @JsonKey(name: 'shipping_method') required final String shippingMethod,
       @JsonKey(name: 'order_status') required final String orderStatus,
       @JsonKey(name: 'order_date') required final String orderDate,
@@ -1247,6 +1270,9 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'payment_method')
   String get paymentMethod;
+  @override
+  @JsonKey(name: 'payment_method_key')
+  String get paymentMethodConst;
   @override
   @JsonKey(name: 'shipping_method')
   String get shippingMethod;

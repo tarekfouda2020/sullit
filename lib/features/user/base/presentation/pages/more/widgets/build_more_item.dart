@@ -55,12 +55,16 @@ class BuildMoreItem extends StatelessWidget {
                     height: size,
                 ),
             Gaps.vGap10,
-            Flexible(
-              child: Text(
-                title,
-                textAlign: TextAlign.center,
-                style: AppTextStyle.s14_w500(color: context.colors.black).copyWith(),
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: AppTextStyle.s14_w500(color: context.colors.black).copyWith(),
+                  ),
+                ),
+              ],
             ),
             Gaps.vGap10,
           ],

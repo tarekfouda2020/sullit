@@ -1,7 +1,6 @@
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instruction_model.dart';
-import 'package:flutter_tdd/features/user/cart/domain/models/order_summary_discount_domain.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/enum/track_order_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_discount_domain.dart';
@@ -32,6 +31,7 @@ class Orders extends BaseDomainModel {
   bool availableCancelOrder;
   String additionalInfo;
   String paymentMethod;
+  String paymentMethodConst;
   String shippingMethod;
   String orderStatus;
   String orderDate;
@@ -80,6 +80,7 @@ class Orders extends BaseDomainModel {
     required this.availableCancelOrder,
     required this.additionalInfo,
     required this.paymentMethod,
+    required this.paymentMethodConst,
     required this.shippingMethod,
     required this.orderStatus,
     required this.orderDate,
@@ -110,8 +111,6 @@ class Orders extends BaseDomainModel {
   int totalItemsCount() => orderDetails.fold(0, (previousValue, element) => previousValue + element.quantity);
 
   DateTime get getOrderDate => DateTimeHelper.convertToDateTime(strDate: orderDate);
-
-  String get rredate => orderDate;
 
   double getDiscountNumber() {
     var currencySymbol = orderDetails.first.product?.currencySymbol;
@@ -163,10 +162,10 @@ class Orders extends BaseDomainModel {
 
 
   OrderPaymentType orderPaymentType(){
-    switch(paymentMethod){
-      case "Cash On Delivery" :return OrderPaymentType.cash;
+    switch(paymentMethodConst){
+      case "cash_on_delivery" :return OrderPaymentType.cash;
       case "paymob" : return OrderPaymentType.paymob;
-      case "Wallet" :return OrderPaymentType.wallet;
+      case "wallet" :return OrderPaymentType.wallet;
       default: return OrderPaymentType.paymob;
     }
   }

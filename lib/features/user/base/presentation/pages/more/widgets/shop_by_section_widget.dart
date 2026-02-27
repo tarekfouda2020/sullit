@@ -7,7 +7,7 @@ class ShopByWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MoreGridViewWidget(
-        title: tr("shopBy"),
+        title: tr("shopBy",context: context),
         crossAxisCount: 2,
         children: [
           BuildMoreItem(

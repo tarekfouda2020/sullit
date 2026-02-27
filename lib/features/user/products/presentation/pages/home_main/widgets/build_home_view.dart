@@ -31,7 +31,7 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap16,
             VipOffersWidget(
               onTap: () => controller.onPressSeeOffers(context),
-              buttonText: tr("seeOffers"),
+              buttonText: tr("seeOffers",context: context),
               margin: EdgeInsets.zero,
             ),
             // BuildPopularProducts(

@@ -174,13 +174,17 @@ class MoreController {
     // model.isDefault = true;
     await getIt<Utilities>().changeLanguage(code, context);
     if (context.mounted) {
-      homeController.onBack(context);
       context.read<DeviceCubit>().updateLanguage(
         Locale(
           code,
           _getCountryLangCode(code),
         ),
       );
+      homeController.onBack(context);
+      HomeDomainModel? homeData = OrdersHelper.instance.homeCubit.state.data;
+      if( homeData?.currentOrders.isNotEmpty == true ){
+        OrdersHelper.instance.getHome(setLoading: false);
+      }
     }
   }
 

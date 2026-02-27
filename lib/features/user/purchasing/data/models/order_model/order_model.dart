@@ -38,6 +38,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'available_cancel_order') required bool availableCancelOrder,
     @JsonKey(name: 'additional_info') required String additionalInfo,
     @JsonKey(name: 'payment_method') required String paymentMethod,
+    @JsonKey(name: 'payment_method_key') required String paymentMethodConst,
     @JsonKey(name: 'shipping_method') required String shippingMethod,
     @JsonKey(name: 'order_status') required String orderStatus,
     @JsonKey(name: 'order_date') required String orderDate,
@@ -115,6 +116,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       expectedLoyaltyPoints: expectedLoyaltyPoints,
       environmentFees: environmentFees,
       driverNotes: driverNotes,
+      paymentMethodConst: paymentMethodConst,
       instructions: deliveryInstructions.map((e) => e.toDomainModel()).toList(),
       orderDiscounts: orderDiscounts?.map((e) => e.toDomainModel()).toList()
     );
