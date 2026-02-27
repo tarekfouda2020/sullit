@@ -172,10 +172,15 @@ class MoreController {
     //   item.isDefault = false;
     // }
     // model.isDefault = true;
-   await getIt<Utilities>().changeLanguage(code, context);
-    if(context.mounted){
-      context.read<DeviceCubit>().updateLanguage(Locale(code));
-      Phoenix.rebirth(context);
+    await getIt<Utilities>().changeLanguage(code, context);
+    if (context.mounted) {
+      homeController.onBack(context);
+      context.read<DeviceCubit>().updateLanguage(
+        Locale(
+          code,
+          _getCountryLangCode(code),
+        ),
+      );
     }
   }
 
@@ -215,13 +220,26 @@ class MoreController {
       getIt<GlobalNotification>().setupNotification();
     }
   }
-
-
 // void callLanguages(BuildContext context) {
-  //   bool isAuth = context.read<DeviceCubit>().state.model.auth;
-  //   if (isAuth) {
-  //    _getLanguages(false);
-//       _getLanguages(true);
-  //   }
-  // }
+//   //   bool isAuth = context.read<DeviceCubit>().state.model.auth;
+//   //   if (isAuth) {
+//   //    _getLanguages(false);
+//   //       _getLanguages(true);
+//   //   }
+//   // }
+
+  String _getCountryLangCode(String code) {
+    switch (code) {
+      case LangCodeHelper.langAR:
+        return "SA";
+      case LangCodeHelper.langEN:
+        return "US";
+      case LangCodeHelper.langBN:
+        return "BD";
+      case LangCodeHelper.langUR:
+        return "PK";
+      default:
+        return "US";
+    }
+  }
 }
