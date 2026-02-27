@@ -31,7 +31,7 @@ class BuildOrderInfo extends StatelessWidget {
           ),
           BuildOrderInfoItem(
             title: "${tr('orderDate')} :",
-            subTitle: DateTimeHelper.getDate(orderModel.orderDate),
+            subTitle: DateTimeHelper.formatDate(date: orderModel.getOrderDate, formatType: 'dd MMM yyyy - hh:mm a'),
           ),
           BuildOrderInfoItem(
             title: "${tr('orderStatus')} :",

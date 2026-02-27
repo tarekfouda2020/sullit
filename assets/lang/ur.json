@@ -882,5 +882,6 @@
   "somethingWentWrongDeviceInfo": "آپ کے آلے کی معلومات حاصل کرنے کے دوران کچھ غلط ہوا، براہ کرم کنکشن چیک کریں اور بعد میں دوبارہ کوشش کریں",
   "youSaved": "آپ نے بچایا",
   "amountCharged": "(وصول کی گئی رقم)",
-  "grandTotalShort": "کل مجموعی رقم"
+  "grandTotalShort": "کل مجموعی رقم",
+  "noDataFoundForOrder": "اس آرڈر کے لیے کوئی ڈیٹا نہیں ملا!"
 }

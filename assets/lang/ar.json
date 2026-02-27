@@ -891,5 +891,7 @@
   "somethingWentWrongDeviceInfo": "حدث خطأ ما أثناء الحصول على معلومات جهازك، يرجى التحقق من الاتصال والمحاولة مرة أخرى لاحقًا",
   "youSaved": "لقد وفرت",
   "amountCharged": "(المبلغ المحتسب)",
-  "grandTotalShort": "المبلغ الإجمالي"
+  "grandTotalShort": "المبلغ الإجمالي",
+  "noDataFoundForOrder": "لم يتم العثور على بيانات لهذا الطلب!"
+
 }

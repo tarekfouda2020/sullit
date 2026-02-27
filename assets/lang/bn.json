@@ -778,5 +778,6 @@
   "somethingWentWrongDeviceInfo": "আপনার ডিভাইসের তথ্য পাওয়ার সময় কিছু ভুল হয়েছে, দয়া করে সংযোগ পরীক্ষা করুন এবং পরে আবার চেষ্টা করুন",
   "youSaved": "আপনি সাশ্রয় করেছেন",
   "amountCharged": "(চার্জ করা পরিমাণ)",
-  "grandTotalShort": "সর্বমোট"
+  "grandTotalShort": "সর্বমোট",
+  "noDataFoundForOrder": "এই অর্ডারের জন্য কোনও তথ্য পাওয়া যায়নি।"
 }

@@ -730,5 +730,6 @@
   "somethingWentWrongDeviceInfo": "Something went wrong while getting your device info, please check connection and try again later",
   "youSaved": "You Saved",
   "amountCharged": "(Amount Charged)",
-  "grandTotalShort": "Grand Total"
+  "grandTotalShort": "Grand Total",
+  "noDataFoundForOrder": "no data found for this order!"
 }

@@ -27,6 +27,9 @@ class OrderSummaryController {
         formKey: GlobalKey(),
       ),
     );
+    if(result == null){
+      orderDetailsBloc.onFailedResponse(error: tr("noDataFoundForOrder"));
+    }
     orderDetailsBloc.onUpdateData(result);
   }
 

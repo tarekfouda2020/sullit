@@ -26,6 +26,18 @@ class _OrderSummaryState extends State<OrderSummary> {
       body: BlocBuilder<GenericBloc<Orders?>, GenericState<Orders?>>(
         bloc: controller.orderDetailsBloc,
         builder: (context, state) {
+          if(state is GenericFailedState){
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: Text(tr("noDataFoundForOrder"),
+                  style: AppTextStyle.s18_w600(color: context.colors.black),
+                  ),
+                )
+              ],
+            );
+          }
           if (state is GenericUpdateState && state.data != null) {
             return ListView(
               padding: Dimens.paddingAll15PX,
