@@ -61,6 +61,7 @@ class CategoriesSectionFormWidget extends StatelessWidget {
                                   textAlign: TextAlign.center,
                                   style: AppTextStyle.s12_w700(color: context.colors.black).copyWith(
                                     overflow: TextOverflow.ellipsis,
+                                    height: 1.25
                                   ),
                                 ),
                               ),
