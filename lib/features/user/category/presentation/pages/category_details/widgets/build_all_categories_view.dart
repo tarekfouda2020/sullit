@@ -88,6 +88,8 @@ class BuildAllCategoriesView extends StatelessWidget {
                                           color: isSelected
                                               ? context.colors.primary
                                               : context.colors.black,
+                                        ).copyWith(
+                                        height: 1.25
                                         ),
                                       )
                                     ],
