@@ -25,13 +25,24 @@ class HomeMainController {
     homeController = controller;
     controller.searchController.clear();
     controller.visibleSearch.onUpdateData(false);
-    // getHome(refresh: false);
+    getHome(refresh: false);
     getHome();
+
+    getVipOffers(refresh: false);
     getVipOffers();
+
+    getBestRatedOffers(refresh: false);
     getBestRatedOffers();
+
+    getNewArrivalOffers(refresh: false);
     getNewArrivalOffers();
+
+    getOnSaleOffers(refresh: false);
     getOnSaleOffers();
+
+    getAllBrands(refresh: false);
     getAllBrands();
+
     getProductSections();
     scrollController.addListener(scrollListener);
   }

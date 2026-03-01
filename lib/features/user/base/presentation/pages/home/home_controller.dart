@@ -101,22 +101,25 @@ class HomeController {
   }
 
   void animateTabsPages(int index, BuildContext context) {
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 350), () {
       if(index == 0 ){
-        // OrdersHelper.instance.getHome(refresh: false);
+        OrdersHelper.instance.getHome(refresh: false);
         OrdersHelper.instance.getHome();
+        getOffersData(context);
       }
       if (index == 2) {
         AutoRouter.of(context).push(CartRoute());
         return;
       } else {
-        if(index == 3 && saleTabsData.onSale?.isNotEmpty == true){
-          offersTabIndex = getSaleTabIndex(
-              context.isShareHolder
-                  ? SaleTabType.shareholderOffers
-                  :  SaleTabType.onSale,
-              context.isShareHolder
-          );
+        if(index == 3 ){
+          if(saleTabsData.onSale?.isNotEmpty == true){
+            offersTabIndex = getSaleTabIndex(
+                context.isShareHolder
+                    ? SaleTabType.shareholderOffers
+                    :  SaleTabType.onSale,
+                context.isShareHolder
+            );
+          }
         }
         homeTabCubit.onUpdateData(index);
         tabController.animateTo(index);
@@ -250,7 +253,7 @@ class HomeController {
   }
 
   Future<void> fetchSaleTabsData(BuildContext context,{bool refresh = true}) async {
-    var params = GenericPaginateParams(currentPage: 1, refresh: refresh, pageSize: 1);
+    var params = GenericPaginateParams(currentPage: 1, refresh: refresh, pageSize: 10);
 
     OffersParamsWidget offersParams({bool isVipProducts = false}) =>
         OffersParamsWidget(
