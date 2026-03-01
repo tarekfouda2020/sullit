@@ -7,6 +7,7 @@ class CategoriesController {
   Category? mainCategory;
 
   CategoriesController() {
+    getCategories(refresh: false);
     getCategories();
   }
 
