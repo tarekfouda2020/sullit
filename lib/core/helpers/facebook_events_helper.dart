@@ -1,5 +1,3 @@
-
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
@@ -11,8 +9,6 @@ import 'package:flutter_tdd/features/user/category/domain/models/category.dart' 
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'di.dart';
-
 class FacebookEventsHelper {
 
   FacebookEventsHelper._();
@@ -23,19 +19,19 @@ class FacebookEventsHelper {
 
   bool iosEnableTracking = false;
 
-  static const String currency = "AED";
+  static const String _currency = "AED";
 
-  static const String countryCode = "AE";
+  static const String _countryCode = "AE";
 
-  static const String order = "Order";
+  static const String _order = "Order";
 
-  static const String product = "Product";
+  static const String _product = "Product";
 
-  static const String productDetailsOpenedName = "Product_details_opened";
+  static const String _productDetailsOpenedName = "Product_details_opened";
 
-  static const String categoryOpened = "category_opened";
+  static const String _categoryOpened = "category_opened";
 
-  static const String registerMethod = "email";
+  static const String _registerMethod = "email";
 
 
   void productAddToCart({
@@ -49,8 +45,8 @@ class FacebookEventsHelper {
     }
      facebookAppEvents.logAddToCart(
         id: id.toString(),
-        type: product,
-        currency: currency,
+        type: _product,
+        currency: _currency,
         price: double.parse(price.replaceAll(",", "")),
       content: {
         if(variantId!=null)
@@ -71,8 +67,8 @@ class FacebookEventsHelper {
     }
     facebookAppEvents.logAddToWishlist(
         id: id,
-        type: product,
-        currency: currency,
+        type: _product,
+        currency: _currency,
         price: price
     );
   }
@@ -81,7 +77,7 @@ class FacebookEventsHelper {
     if(!kReleaseMode){
       return ;
     }
-    facebookAppEvents.logPurchase(amount: amount, currency: currency);
+    facebookAppEvents.logPurchase(amount: amount, currency: _currency);
   }
 
   void checkOut({
@@ -93,8 +89,8 @@ class FacebookEventsHelper {
       return ;
     }
     facebookAppEvents.logInitiatedCheckout(
-      currency: currency,
-      contentType: order,
+      currency: _currency,
+      contentType: _order,
       numItems: itemsNumber,
       totalPrice: orderPrice,
       contentId: orderId,
@@ -107,7 +103,7 @@ class FacebookEventsHelper {
       return ;
     }
     facebookAppEvents.logEvent(
-        name: productDetailsOpenedName,
+        name: _productDetailsOpenedName,
         parameters: {
           "product_id": product.id,
           "product_name": product.name,
@@ -123,7 +119,7 @@ class FacebookEventsHelper {
       return ;
     }
     facebookAppEvents.logEvent(
-        name: categoryOpened,
+        name: _categoryOpened,
         parameters: {
           "category_id": category.id,
           "category_name": category.name,
@@ -140,7 +136,7 @@ class FacebookEventsHelper {
      }
      facebookAppEvents.logSubscribe(
        orderId: planId,
-      currency: currency,
+      currency: _currency,
        price: price,
      );
   }
@@ -154,7 +150,7 @@ class FacebookEventsHelper {
       email: data?.email?.toLowerCase(),
       firstName: data?.name?.toLowerCase(),
       phone: data?.fullPhone?.toLowerCase(),
-      country:countryCode,
+      country: _countryCode,
     );
   }
 
@@ -172,7 +168,7 @@ class FacebookEventsHelper {
       return ;
     }
     facebookAppEvents.logCompletedRegistration(
-        registrationMethod: registerMethod,
+        registrationMethod: _registerMethod,
     );
   }
 
@@ -182,11 +178,12 @@ class FacebookEventsHelper {
       return ;
     }
     facebookAppEvents.setAutoLogAppEventsEnabled(true);
-    // if (Platform.isIOS) {
-    //   enableIosTracking();
-    // } else {
-    //   facebookAppEvents.setAdvertiserTracking(enabled: true);
-    // }
+    if (Platform.isIOS) {
+      print("===>>>>>>>>>. platfors ios is ${Platform.isIOS}");
+      enableIosTracking();
+    } else {
+      facebookAppEvents.setAdvertiserTracking(enabled: true);
+    }
     facebookAppEvents.setAdvertiserTracking(enabled: true);
 
   }
@@ -202,8 +199,8 @@ class FacebookEventsHelper {
       );
       return ;
     }
-     TrackingStatus status = await AppTrackingTransparency.requestTrackingAuthorization();
-     if(status == TrackingStatus.authorized){
+    TrackingStatus status = await AppTrackingTransparency.requestTrackingAuthorization();
+    if(status == TrackingStatus.authorized){
        prefs.setBool(LocalStorageKeys.iosEnableEvents, true);
        iosEnableTracking = status == TrackingStatus.authorized;
        facebookAppEvents.setAdvertiserTracking(

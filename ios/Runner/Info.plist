@@ -80,6 +80,8 @@
 	<string>This app needs access to photo library to add user photo and service images.</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>reminders</string>
+	<key>NSUserTrackingUsageDescription</key>
+    <string>This helps us understand how the app is used and improve your experience while keeping your data private and secure.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>recognize speech</string>
 	<key>SKAdNetworkItems</key>

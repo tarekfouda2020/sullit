@@ -35,6 +35,7 @@ target 'Runner' do
   
   # Facebook SDK for iOS - Ensure latest version
   pod 'FBSDKCoreKit', '~> 18.0'
+  pod 'FBSDKLoginKit', '~> 18.0.0'
   
   target 'RunnerTests' do
     inherit! :search_paths

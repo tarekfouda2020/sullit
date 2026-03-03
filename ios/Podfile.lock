@@ -41,12 +41,14 @@ PODS:
   - facebook_app_events (0.24.0):
     - FBSDKCoreKit (~> 18.0)
     - Flutter
-  - FBAEMKit (18.0.2):
-    - FBSDKCoreKit_Basics (= 18.0.2)
-  - FBSDKCoreKit (18.0.2):
-    - FBAEMKit (= 18.0.2)
-    - FBSDKCoreKit_Basics (= 18.0.2)
-  - FBSDKCoreKit_Basics (18.0.2)
+  - FBAEMKit (18.0.3):
+    - FBSDKCoreKit_Basics (= 18.0.3)
+  - FBSDKCoreKit (18.0.3):
+    - FBAEMKit (= 18.0.3)
+    - FBSDKCoreKit_Basics (= 18.0.3)
+  - FBSDKCoreKit_Basics (18.0.3)
+  - FBSDKLoginKit (18.0.3):
+    - FBSDKCoreKit (= 18.0.3)
   - file_picker (0.0.1):
     - DKImagePickerController/PhotoGallery
     - Flutter
@@ -237,9 +239,9 @@ PODS:
     - PromisesObjC (= 2.4.0)
   - rate_my_app (1.1.4):
     - Flutter
-  - SDWebImage (5.21.6):
-    - SDWebImage/Core (= 5.21.6)
-  - SDWebImage/Core (5.21.6)
+  - SDWebImage (5.21.7):
+    - SDWebImage/Core (= 5.21.7)
+  - SDWebImage/Core (5.21.7)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -273,7 +275,7 @@ PODS:
     - sqlite3/perf-threadsafe
     - sqlite3/rtree
     - sqlite3/session
-  - SwiftProtobuf (1.34.1)
+  - SwiftProtobuf (1.35.1)
   - SwiftyGif (5.4.5)
   - url_launcher_ios (0.0.1):
     - Flutter
@@ -292,6 +294,7 @@ DEPENDENCIES:
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - facebook_app_events (from `.symlinks/plugins/facebook_app_events/ios`)
   - FBSDKCoreKit (~> 18.0)
+  - FBSDKLoginKit (~> 18.0.0)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
@@ -326,6 +329,7 @@ SPEC REPOS:
     - FBAEMKit
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
+    - FBSDKLoginKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -420,9 +424,10 @@ SPEC CHECKSUMS:
   DKImagePickerController: 946cec48c7873164274ecc4624d19e3da4c1ef3c
   DKPhotoGallery: b3834fecb755ee09a593d7c9e389d8b5d6deed60
   facebook_app_events: 58a1b62fd50f6009907bd167fc26b3d043e97197
-  FBAEMKit: 56a4f5a9607957b547b6458b17a98c5bb2736367
-  FBSDKCoreKit: 54f1240567e16862ab71c53c33dc347db5c524c5
-  FBSDKCoreKit_Basics: eb530cd6a79030dbb11df460aafb2767bcad9028
+  FBAEMKit: 2a6b529993713c185b02bc36f8c91129bf78dfb0
+  FBSDKCoreKit: 65d7f7a7d6fcc3aa6eb6e093ec737a4184fc6049
+  FBSDKCoreKit_Basics: 7bc9d8fde8f70985fba2ed7c1d07e319f969a991
+  FBSDKLoginKit: 66d20fcb7afcafc0c420477662f96845cd1a5179
   file_picker: a0560bc09d61de87f12d246fc47d2119e6ef37be
   Firebase: d99ac19b909cd2c548339c2241ecd0d1599ab02e
   firebase_analytics: 0e25ca1d4001ccedd40b4e5b74c0ec34e18f6425
@@ -461,19 +466,19 @@ SPEC CHECKSUMS:
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
   rate_my_app: 65f698abb47b8359fd5de959fa0237208c024aab
-  SDWebImage: 1bb6a1b84b6fe87b972a102bdc77dd589df33477
+  SDWebImage: e9fc87c1aab89a8ab1bbd74eba378c6f53be8abf
   shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
   sound_effect: fa0600cdb9ebdc8ca14671fdc20418d7c223e92b
   sqflite_darwin: 20b2a3a3b70e43edae938624ce550a3cbf66a3d0
   sqlite3: 73513155ec6979715d3904ef53a8d68892d4032b
   sqlite3_flutter_libs: 83f8e9f5b6554077f1d93119fe20ebaa5f3a9ef1
-  SwiftProtobuf: c901f00a3e125dc33cac9b16824da85682ee47da
+  SwiftProtobuf: c268fcf9642d613eb6639fed15842ae25d4b975a
   SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
   url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
   video_player_avfoundation: 2cef49524dd1f16c5300b9cd6efd9611ce03639b
   wakelock_plus: e29112ab3ef0b318e58cfa5c32326458be66b556
   webview_flutter_wkwebview: 1821ceac936eba6f7984d89a9f3bcb4dea99ebb2
 
-PODFILE CHECKSUM: 12fd41ca0278036abde90b9458dbdd8bc8b29301
+PODFILE CHECKSUM: 2fb0bb1b5883e7c69a6a63826558ac628d41bf3a
 
 COCOAPODS: 1.16.2

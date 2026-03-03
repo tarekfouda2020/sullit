@@ -27,6 +27,7 @@ class HomeController {
   ];
 
   HomeController() {
+    checkIosTracking();
     checkIfEmailExist();
     getPurchasingHistory();
   }
@@ -312,10 +313,10 @@ class HomeController {
 
 
   void checkIosTracking(){
-    // bool authorizedTrack = FacebookEventsHelper.instance.iosEnableTracking;
-    // if(authorizedTrack == false && Platform.isIOS){
-    //   FacebookEventsHelper.instance.enableIosTracking();
-    // }
+    bool authorizedTrack = FacebookEventsHelper.instance.iosEnableTracking;
+    if(authorizedTrack == false && Platform.isIOS){
+      FacebookEventsHelper.instance.enableIosTracking();
+    }
   }
 
 }
