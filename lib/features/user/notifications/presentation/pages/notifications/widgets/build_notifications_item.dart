@@ -8,7 +8,11 @@ class BuildNotificationsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AutoRouter.of(context).push(OrderSummaryRoute(orderId: notification.orderId)),
+      onTap: () {
+        if(notification.orderId != 0 && notification.orderId!=null){
+          AutoRouter.of(context).push(OrderSummaryRoute(orderId: notification.orderId!));
+        }
+      },
       child: Container(
         margin: Dimens.paddingVertical5PX,
         padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 16),

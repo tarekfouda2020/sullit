@@ -22,7 +22,7 @@ NotificationModel _$NotificationModelFromJson(Map<String, dynamic> json) {
 mixin _$NotificationModel {
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'order_id')
-  int get orderId => throw _privateConstructorUsedError;
+  int? get orderId => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   String get createdAt => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $NotificationModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      @JsonKey(name: 'order_id') int orderId,
+      @JsonKey(name: 'order_id') int? orderId,
       String text,
       @JsonKey(name: 'created_at') String createdAt});
 }
@@ -60,7 +60,7 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
   @override
   $Res call({
     Object? id = null,
-    Object? orderId = null,
+    Object? orderId = freezed,
     Object? text = null,
     Object? createdAt = null,
   }) {
@@ -69,10 +69,10 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      orderId: null == orderId
+      orderId: freezed == orderId
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -95,7 +95,7 @@ abstract class _$$_NotificationModelCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      @JsonKey(name: 'order_id') int orderId,
+      @JsonKey(name: 'order_id') int? orderId,
       String text,
       @JsonKey(name: 'created_at') String createdAt});
 }
@@ -112,7 +112,7 @@ class __$$_NotificationModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? orderId = null,
+    Object? orderId = freezed,
     Object? text = null,
     Object? createdAt = null,
   }) {
@@ -121,10 +121,10 @@ class __$$_NotificationModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      orderId: null == orderId
+      orderId: freezed == orderId
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -143,7 +143,7 @@ class __$$_NotificationModelCopyWithImpl<$Res>
 class _$_NotificationModel extends _NotificationModel {
   const _$_NotificationModel(
       {required this.id,
-      @JsonKey(name: 'order_id') required this.orderId,
+      @JsonKey(name: 'order_id') this.orderId,
       required this.text,
       @JsonKey(name: 'created_at') required this.createdAt})
       : super._();
@@ -155,7 +155,7 @@ class _$_NotificationModel extends _NotificationModel {
   final String id;
   @override
   @JsonKey(name: 'order_id')
-  final int orderId;
+  final int? orderId;
   @override
   final String text;
   @override
@@ -201,7 +201,7 @@ class _$_NotificationModel extends _NotificationModel {
 abstract class _NotificationModel extends NotificationModel {
   const factory _NotificationModel(
           {required final String id,
-          @JsonKey(name: 'order_id') required final int orderId,
+          @JsonKey(name: 'order_id') final int? orderId,
           required final String text,
           @JsonKey(name: 'created_at') required final String createdAt}) =
       _$_NotificationModel;
@@ -214,7 +214,7 @@ abstract class _NotificationModel extends NotificationModel {
   String get id;
   @override
   @JsonKey(name: 'order_id')
-  int get orderId;
+  int? get orderId;
   @override
   String get text;
   @override

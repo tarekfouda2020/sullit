@@ -37,8 +37,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                 )
               ],
             );
-          }
-          if (state is GenericUpdateState && state.data != null) {
+          } else if (state is GenericUpdateState && state.data != null) {
             return ListView(
               padding: Dimens.paddingAll15PX,
               children: [

@@ -9,13 +9,13 @@ import '../../../../../core/helpers/lang_code_helper.dart';
 
 class NotificationDomainModel extends BaseDomainModel {
   String id;
-  int orderId;
+  int? orderId;
   String text;
   String createdAt;
 
   NotificationDomainModel({
     required this.id,
-    required this.orderId,
+     this.orderId,
     required this.text,
     required this.createdAt,
   });

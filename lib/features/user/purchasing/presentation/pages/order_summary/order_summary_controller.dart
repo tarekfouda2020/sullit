@@ -29,6 +29,7 @@ class OrderSummaryController {
     );
     if(result == null){
       orderDetailsBloc.onFailedResponse(error: tr("noDataFoundForOrder"));
+      return ;
     }
     orderDetailsBloc.onUpdateData(result);
   }
