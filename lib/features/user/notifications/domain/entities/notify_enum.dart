@@ -3,8 +3,12 @@ enum NotifyEnum {
   emailVerified,
   order,
   customerChangeOrderStatus,
+  shareholderProducts,
+  offerVipProducts,
+  offerNewArrival,
+  offerOnSale,
 
-  message,
+  message;
 
 }
 
@@ -21,6 +25,14 @@ extension NotifyValue on NotifyEnum {
         return "order";
         case NotifyEnum.customerChangeOrderStatus:
         return "customer_changed_order_status";
+        case NotifyEnum.shareholderProducts:
+        return "offer_shareholder_products";
+        case NotifyEnum.offerVipProducts:
+        return "offer_vip_products";
+        case NotifyEnum.offerNewArrival:
+        return "offer_new_arrival";
+        case NotifyEnum.offerOnSale:
+        return "offer_on_sale";
       default:
         return "";
     }

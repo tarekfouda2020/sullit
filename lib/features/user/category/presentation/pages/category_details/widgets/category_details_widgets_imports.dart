@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -12,7 +11,6 @@ import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/validator.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/models/domain_models/brand_domain_model.dart';
-import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
@@ -39,13 +37,14 @@ import 'package:flutter_tdd/features/user/category/domain/models/sub_category.da
 import 'package:flutter_tdd/features/user/category/domain/models/sub_category_level.dart';
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/category_details_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item_shimmer.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:flutter_tdd/core/widgets/grid_view_pagination.dart';
+
+import '../../../../../products/domain/models/shop.dart';
 
 part 'build_all_categories_view.dart';
 part 'build_color_filter.dart';
@@ -67,3 +66,5 @@ part 'category_search_filed_widget.dart';
 part 'brands_sheet_widget.dart';
 part 'view_cart_bottom_nav_widget.dart';
 part 'build_sellers_filter_item.dart';
+part 'filter_seller_list_widget.dart';
+part 'filter_sellers_shimmer_widget.dart';

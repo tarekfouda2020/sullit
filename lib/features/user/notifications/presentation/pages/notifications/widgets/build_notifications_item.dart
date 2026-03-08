@@ -2,17 +2,13 @@ part of 'notifications_widgets_imports.dart';
 
 class BuildNotificationsItem extends StatelessWidget {
   final NotificationDomainModel notification;
-
-  const BuildNotificationsItem({Key? key, required this.notification}) : super(key: key);
+ final NotificationsController controller;
+  const BuildNotificationsItem({Key? key, required this.notification, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        if(notification.orderId != 0 && notification.orderId!=null){
-          AutoRouter.of(context).push(OrderSummaryRoute(orderId: notification.orderId!));
-        }
-      },
+      onTap: () => controller.onPress(context, notification),
       child: Container(
         margin: Dimens.paddingVertical5PX,
         padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 16),

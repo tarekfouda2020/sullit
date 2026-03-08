@@ -20,14 +20,7 @@ class CartMinAmountSellerItem extends StatelessWidget {
         color: context.colors.white,
         borderRadius: BorderRadius.circular(12.r),
         border:
-            Border.all(color: context.colors.grey.withOpacity(0.1), width: 1),
-        boxShadow: [
-          BoxShadow(
-            color: context.colors.black.withOpacity(0.08),
-            blurRadius: 15,
-            offset: const Offset(0, 8),
-          ),
-        ],
+            Border.all(color: context.colors.grey.withOpacity(0.2), width: 1.3),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,9 +39,17 @@ class CartMinAmountSellerItem extends StatelessWidget {
             ],
           ),
           Gaps.vGap8,
-          Text(
-            "${tr('add')} ${remainAmount.toStringAsFixed(2)} ${tr('more')} ${tr('to_create_order')}",
-            style: AppTextStyle.s14_w400(color: context.colors.grey),
+          Row(
+            children: [
+              Text(
+                remainAmount.toStringAsFixed(2),
+                style: AppTextStyle.s15_w600(color: context.colors.primary),
+              ).withDirhamSymbol(),
+              Text(
+                " more needed to reach minimum order",
+                style: AppTextStyle.s14_w500(color: context.colors.primary),
+              ),
+            ],
           ),
           Gaps.vGap12,
           Column(
@@ -56,8 +57,10 @@ class CartMinAmountSellerItem extends StatelessWidget {
             children: [
               DefaultButton(
                 title: "Add more items",
+                textColor: context.colors.primary,
+                borderColor: context.colors.primary,
                 fontSize: 16,
-                color: context.colors.primary,
+                color: Colors.transparent,
                 onTap: () => controller.navigateToSeller(context, seller.shopId),
                 height: 35.h,
                 margin: EdgeInsets.zero,

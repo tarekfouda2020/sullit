@@ -111,8 +111,11 @@ class HomeMainController {
       default:
         throw ArgumentError('Invalid time unit: $unit');
     }
-
-    return value.toString().padLeft(2, '0')[index];
+    try{
+      return value.toString().padLeft(2, '0')[index];
+    }catch(e){
+     return "";
+    }
   }
 
   String getCountDownSingleNumber(int number, int index) {

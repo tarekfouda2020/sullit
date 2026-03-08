@@ -892,6 +892,7 @@
   "youSaved": "لقد وفرت",
   "amountCharged": "(المبلغ المحتسب)",
   "grandTotalShort": "المبلغ الإجمالي",
-  "noDataFoundForOrder": "لم يتم العثور على بيانات لهذا الطلب!"
+  "noDataFoundForOrder": "لم يتم العثور على بيانات لهذا الطلب!",
+  "search_in_sellers": "ابحث في البائعين..."
 
 }

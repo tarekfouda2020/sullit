@@ -18,7 +18,7 @@ class CartMinAmountBottomSheet extends StatelessWidget {
         left: 20,right: 20
       ),
       decoration: BoxDecoration(
-        color: context.colors.white,
+        color: context.colors.customBackground,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(24.r),
           topRight: Radius.circular(24.r),
@@ -27,21 +27,31 @@ class CartMinAmountBottomSheet extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Gaps.vGap12,
-          Center(
-            child: Container(
-              width: 40.w,
-              height: 4.h,
-              decoration: BoxDecoration(
-                color: context.colors.grey.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(2.r),
-              ),
-            ),
+          Gaps.vGap24,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Gaps.empty,
+              Gaps.empty,
+              Gaps.empty,
+              SvgPicture.asset(Res.confirmationAlertIcon),
+              Gaps.hGap(12),
+              GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Icon(
+                  Icons.close,
+                  color: context.colors.black,
+                  size: 22,
+                ),
+              )
+            ],
           ),
           Gaps.vGap12,
           BottomSheetHeaderWidget(
             title: tr("increaseCartToReachMin"),
-            showCloseIcon: true,
+            showCloseIcon: false,
+            txtHeight: 1.5,
           ),
           Gaps.vGap16,
           Flexible(

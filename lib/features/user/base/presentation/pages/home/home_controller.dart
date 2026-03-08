@@ -128,13 +128,17 @@ class HomeController {
     });
   }
 
-  void goNotification(BuildContext context) {
+  Future<void> goNotification(BuildContext context)async {
     bool auth = context.read<DeviceCubit>().state.model.auth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
       return;
     }
-    AutoRouter.of(context).push(const NotificationsRoute());
+   var result =  await AutoRouter.of(context).push(const NotificationsRoute());
+    if(result == true){
+      showShareHolderOffers = true;
+      animateTabsPages(3,context);
+    }
   }
 
   void checkAuth(BuildContext context) {
@@ -285,6 +289,8 @@ class HomeController {
     }
   }
 
+
+  bool showShareHolderOffers = false;
   int getSaleTabIndex(SaleTabType type, bool isShareHolder) {
     List<SaleTabType> visibleTypes = [];
     bool show(List? list) => list == null || list.isNotEmpty;
@@ -292,7 +298,7 @@ class HomeController {
     if (!isShareHolder && show(saleTabsData.vipOffers)) {
       visibleTypes.add(SaleTabType.vipOffers);
     }
-    if (isShareHolder && show(saleTabsData.shareholderOffers)) {
+    if (isShareHolder && (show(saleTabsData.shareholderOffers) || showShareHolderOffers)) {
       visibleTypes.add(SaleTabType.shareholderOffers);
     }
     if (show(saleTabsData.newArrival)) visibleTypes.add(SaleTabType.newArrival);

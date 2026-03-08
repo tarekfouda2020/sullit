@@ -15,7 +15,7 @@ class FacebookEventsHelper {
 
   static FacebookEventsHelper instance = FacebookEventsHelper._();
 
-  final FacebookAppEvents facebookAppEvents = FacebookAppEvents();
+  final FacebookAppEvents _facebookAppEvents = FacebookAppEvents();
 
   bool iosEnableTracking = false;
 
@@ -34,16 +34,16 @@ class FacebookEventsHelper {
   static const String _registerMethod = "email";
 
 
-  void productAddToCart({
+  Future<void> productAddToCart({
     required int id,
     required String price,
      String? variantId,
      String? variantPrice,
-  }) {
+  }) async{
     if(!kReleaseMode){
       return ;
     }
-     facebookAppEvents.logAddToCart(
+   await _facebookAppEvents.logAddToCart(
         id: id.toString(),
         type: _product,
         currency: _currency,
@@ -58,14 +58,14 @@ class FacebookEventsHelper {
   }
 
 
-  void wishList({
+  Future<void> wishList({
     required String id,
     required double price,
-  }) {
+  }) async{
     if(!kReleaseMode){
       return ;
     }
-    facebookAppEvents.logAddToWishlist(
+   await _facebookAppEvents.logAddToWishlist(
         id: id,
         type: _product,
         currency: _currency,
@@ -77,7 +77,7 @@ class FacebookEventsHelper {
     if(!kReleaseMode){
       return ;
     }
-    facebookAppEvents.logPurchase(amount: amount, currency: _currency);
+    _facebookAppEvents.logPurchase(amount: amount, currency: _currency);
   }
 
   void checkOut({
@@ -88,7 +88,7 @@ class FacebookEventsHelper {
     if(!kReleaseMode){
       return ;
     }
-    facebookAppEvents.logInitiatedCheckout(
+    _facebookAppEvents.logInitiatedCheckout(
       currency: _currency,
       contentType: _order,
       numItems: itemsNumber,
@@ -102,7 +102,7 @@ class FacebookEventsHelper {
     if(!kReleaseMode){
       return ;
     }
-    facebookAppEvents.logEvent(
+    _facebookAppEvents.logEvent(
         name: _productDetailsOpenedName,
         parameters: {
           "product_id": product.id,
@@ -118,7 +118,7 @@ class FacebookEventsHelper {
     if(!kReleaseMode){
       return ;
     }
-    facebookAppEvents.logEvent(
+    _facebookAppEvents.logEvent(
         name: _categoryOpened,
         parameters: {
           "category_id": category.id,
@@ -134,7 +134,7 @@ class FacebookEventsHelper {
      if(!kReleaseMode){
        return ;
      }
-     facebookAppEvents.logSubscribe(
+     _facebookAppEvents.logSubscribe(
        orderId: planId,
       currency: _currency,
        price: price,
@@ -146,7 +146,7 @@ class FacebookEventsHelper {
     if(!kReleaseMode){
       return ;
     }
-    facebookAppEvents.setUserData(
+    _facebookAppEvents.setUserData(
       email: data?.email?.toLowerCase(),
       firstName: data?.name?.toLowerCase(),
       phone: data?.fullPhone?.toLowerCase(),
@@ -158,7 +158,7 @@ class FacebookEventsHelper {
     if(!kReleaseMode){
       return ;
     }
-    facebookAppEvents.clearUserData();
+    _facebookAppEvents.clearUserData();
   }
 
 
@@ -167,7 +167,7 @@ class FacebookEventsHelper {
     if(!kReleaseMode){
       return ;
     }
-    facebookAppEvents.logCompletedRegistration(
+    _facebookAppEvents.logCompletedRegistration(
         registrationMethod: _registerMethod,
     );
   }
@@ -177,14 +177,13 @@ class FacebookEventsHelper {
     if(!kReleaseMode){
       return ;
     }
-    facebookAppEvents.setAutoLogAppEventsEnabled(true);
+    _facebookAppEvents.setAutoLogAppEventsEnabled(true);
     if (Platform.isIOS) {
-      print("===>>>>>>>>>. platfors ios is ${Platform.isIOS}");
       enableIosTracking();
     } else {
-      facebookAppEvents.setAdvertiserTracking(enabled: true);
+      _facebookAppEvents.setAdvertiserTracking(enabled: true);
     }
-    facebookAppEvents.setAdvertiserTracking(enabled: true);
+    _facebookAppEvents.setAdvertiserTracking(enabled: true);
 
   }
 
@@ -194,7 +193,7 @@ class FacebookEventsHelper {
     bool? isTrackEnabled = prefs.getBool(LocalStorageKeys.iosEnableEvents);
     if(isTrackEnabled == true){
       iosEnableTracking = true;
-      facebookAppEvents.setAdvertiserTracking(
+      _facebookAppEvents.setAdvertiserTracking(
         enabled: true,
       );
       return ;
@@ -203,7 +202,7 @@ class FacebookEventsHelper {
     if(status == TrackingStatus.authorized){
        prefs.setBool(LocalStorageKeys.iosEnableEvents, true);
        iosEnableTracking = status == TrackingStatus.authorized;
-       facebookAppEvents.setAdvertiserTracking(
+       _facebookAppEvents.setAdvertiserTracking(
          enabled: iosEnableTracking,
        );
      }

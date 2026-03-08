@@ -16,6 +16,7 @@ class NotificationModel extends BaseApiModel<NotificationDomainModel>
     required String id,
     @JsonKey(name: 'order_id')  int? orderId,
     required String text,
+    required String type,
     @JsonKey(name: 'created_at') required String createdAt,
   }) = _NotificationModel;
 
@@ -29,6 +30,7 @@ class NotificationModel extends BaseApiModel<NotificationDomainModel>
       orderId: orderId,
       text: text,
       createdAt: createdAt,
+      type: type
     );
   }
 }

@@ -6,19 +6,26 @@ import 'package:flutter_tdd/features/user/base/data/enums/lang_type_enum.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../core/helpers/lang_code_helper.dart';
+import '../entities/notify_enum.dart';
 
 class NotificationDomainModel extends BaseDomainModel {
   String id;
   int? orderId;
   String text;
+  String type;
   String createdAt;
 
   NotificationDomainModel({
     required this.id,
      this.orderId,
     required this.text,
+    required this.type,
     required this.createdAt,
   });
+
+
+
+  bool get isShareHolderOffer => type == NotifyEnum.shareholderProducts.getValue();
 
 
   String normalizeDate() {

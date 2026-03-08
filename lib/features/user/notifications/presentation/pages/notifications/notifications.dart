@@ -25,6 +25,7 @@ class _NotificationsState extends State<Notifications> {
             firstPageProgressIndicatorBuilder: (_) => const BuildNotifiesLoading(),
             itemBuilder: (_, item, index) => BuildNotificationsItem(
               notification: item,
+              controller: controller,
             ),
             noItemsFoundIndicatorBuilder: (cxt) {
               return Center(

@@ -134,6 +134,7 @@ class GlobalNotification {
   }
 
   static void onNotifyClick(String type, int id) {
+    var isShareHolderOffer = type == NotifyEnum.shareholderProducts.getValue();
     if (type == NotifyEnum.message.getValue()) {
       var context = getIt<GlobalContext>().context();
       AutoRouter.of(context).push(const SupportRoute());
@@ -143,6 +144,9 @@ class GlobalNotification {
     } else if (type == NotifyEnum.emailVerified.getValue()) {
       var context = getIt<GlobalContext>().context();
       AutoRouter.of(context).push(const LoginRoute());
+    }else if(isShareHolderOffer){
+      var context = getIt<GlobalContext>().context();
+      AutoRouter.of(context).push(HomeRoute(index: 3));
     }
   }
 

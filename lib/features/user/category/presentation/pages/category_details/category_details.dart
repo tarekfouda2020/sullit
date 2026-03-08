@@ -11,7 +11,7 @@ class CategoryDetails extends StatefulWidget {
 }
 
 class _CategoryDetailsState extends State<CategoryDetails> {
-  late CategoryDetailsController controller;
+  late final CategoryDetailsController controller;
 
   @override
   void initState() {

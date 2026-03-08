@@ -43,9 +43,16 @@ class SubFilterItemWidget extends StatelessWidget {
         ),
         GestureDetector(
           onTap:() => onSelect(isSelected),
-          child: Text(
-            text,
-            style: AppTextStyle.s14_w400(color: isSelected ? context.colors.primary : context.colors.black),
+          child: SizedBox(
+            width: 215,
+            child: Text(
+              text,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: AppTextStyle.s14_w400(color: isSelected ? context.colors.primary : context.colors.black).copyWith(
+                height: 1.3
+              ),
+            ),
           ),
         ),
       ],

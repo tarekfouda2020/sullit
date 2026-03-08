@@ -258,9 +258,10 @@ class CartController {
     getIt<LoadingHelper>().showLoadingDialog();
     var result = await ClearCart().call(params);
     if (result == "success") {
-      await getCartItems(refresh: true);
+       getCartItems(refresh: true);
       CustomToast.showSimpleToast(
           msg: "Seller items cleared successfully.", type: ToastType.success);
+      Navigator.pop(context);
     }
     getIt<LoadingHelper>().dismissDialog();
 

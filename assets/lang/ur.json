@@ -883,5 +883,6 @@
   "youSaved": "آپ نے بچایا",
   "amountCharged": "(وصول کی گئی رقم)",
   "grandTotalShort": "کل مجموعی رقم",
-  "noDataFoundForOrder": "اس آرڈر کے لیے کوئی ڈیٹا نہیں ملا!"
+  "noDataFoundForOrder": "اس آرڈر کے لیے کوئی ڈیٹا نہیں ملا!",
+  "search_in_sellers": "بیچنے والوں میں تلاش کریں..."
 }

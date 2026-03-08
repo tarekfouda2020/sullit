@@ -47,6 +47,7 @@ class CategoryDetailsController implements CartSheetController {
     getCartItems();
     initialCategoryModel = categoryModel;
     titleCubit.onUpdateData(categoryModel.name);
+    getData(context, categoryModel,refresh: false);
     getData(context, categoryModel);
     getBestSellers(1, refresh: false);
     pagingSellersController.addPageRequestListener((pageKey) {
@@ -130,8 +131,8 @@ class CategoryDetailsController implements CartSheetController {
     sellersCubit.onUpdateData(sellersCubit.state.data);
   }
 
-  Future<void> getData(BuildContext context, Category categoryModel) async {
-    await getSubCategories(context, categoryModel.id);
+  Future<void> getData(BuildContext context, Category categoryModel,{bool refresh = true}) async {
+    await getSubCategories(context, categoryModel.id,refresh:refresh);
     getPopularProducts(1, refresh: false);
     getBrands(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
@@ -549,10 +550,10 @@ class CategoryDetailsController implements CartSheetController {
         pagingController.refresh();
       }
 
-      return true; // Handled the back action
+      return true;
     }
 
-    return false; // No selections, allow normal pop
+    return false;
   }
 
   void onPressSearch(BuildContext context) {

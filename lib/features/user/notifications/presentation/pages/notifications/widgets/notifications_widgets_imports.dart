@@ -12,6 +12,7 @@ import 'package:flutter_tdd/features/user/notifications/domain/models/notificati
 
 import '../../../../../../../../core/theme/text/app_text_style.dart';
 import '../../../../../../../../res.dart';
+import '../notifications_imports.dart';
 
 part 'build_notifications_item.dart';
 part 'build_notifies_loading.dart';

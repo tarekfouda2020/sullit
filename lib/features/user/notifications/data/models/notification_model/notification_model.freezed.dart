@@ -24,6 +24,7 @@ mixin _$NotificationModel {
   @JsonKey(name: 'order_id')
   int? get orderId => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   String get createdAt => throw _privateConstructorUsedError;
 
@@ -43,6 +44,7 @@ abstract class $NotificationModelCopyWith<$Res> {
       {String id,
       @JsonKey(name: 'order_id') int? orderId,
       String text,
+      String type,
       @JsonKey(name: 'created_at') String createdAt});
 }
 
@@ -62,6 +64,7 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
     Object? id = null,
     Object? orderId = freezed,
     Object? text = null,
+    Object? type = null,
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
@@ -76,6 +79,10 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String,
       createdAt: null == createdAt
           ? _value.createdAt
@@ -97,6 +104,7 @@ abstract class _$$_NotificationModelCopyWith<$Res>
       {String id,
       @JsonKey(name: 'order_id') int? orderId,
       String text,
+      String type,
       @JsonKey(name: 'created_at') String createdAt});
 }
 
@@ -114,6 +122,7 @@ class __$$_NotificationModelCopyWithImpl<$Res>
     Object? id = null,
     Object? orderId = freezed,
     Object? text = null,
+    Object? type = null,
     Object? createdAt = null,
   }) {
     return _then(_$_NotificationModel(
@@ -128,6 +137,10 @@ class __$$_NotificationModelCopyWithImpl<$Res>
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String,
       createdAt: null == createdAt
           ? _value.createdAt
@@ -145,6 +158,7 @@ class _$_NotificationModel extends _NotificationModel {
       {required this.id,
       @JsonKey(name: 'order_id') this.orderId,
       required this.text,
+      required this.type,
       @JsonKey(name: 'created_at') required this.createdAt})
       : super._();
 
@@ -159,12 +173,14 @@ class _$_NotificationModel extends _NotificationModel {
   @override
   final String text;
   @override
+  final String type;
+  @override
   @JsonKey(name: 'created_at')
   final String createdAt;
 
   @override
   String toString() {
-    return 'NotificationModel(id: $id, orderId: $orderId, text: $text, createdAt: $createdAt)';
+    return 'NotificationModel(id: $id, orderId: $orderId, text: $text, type: $type, createdAt: $createdAt)';
   }
 
   @override
@@ -175,13 +191,15 @@ class _$_NotificationModel extends _NotificationModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.orderId, orderId) || other.orderId == orderId) &&
             (identical(other.text, text) || other.text == text) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, orderId, text, createdAt);
+  int get hashCode =>
+      Object.hash(runtimeType, id, orderId, text, type, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -203,6 +221,7 @@ abstract class _NotificationModel extends NotificationModel {
           {required final String id,
           @JsonKey(name: 'order_id') final int? orderId,
           required final String text,
+          required final String type,
           @JsonKey(name: 'created_at') required final String createdAt}) =
       _$_NotificationModel;
   const _NotificationModel._() : super._();
@@ -217,6 +236,8 @@ abstract class _NotificationModel extends NotificationModel {
   int? get orderId;
   @override
   String get text;
+  @override
+  String get type;
   @override
   @JsonKey(name: 'created_at')
   String get createdAt;
