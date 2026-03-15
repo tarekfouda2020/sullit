@@ -76,12 +76,13 @@ class ImplVipSubscribeDataSource extends VipDataSource {
   }
 
   @override
-  Future<Either<Failure, SubscribeContentModel>> getSubscriptionContent() async{
+  Future<Either<Failure, SubscribeContentModel>> getSubscriptionContent(bool param) async{
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.subscriptionPage,
       requestMethod: RequestMethod.get,
       responseType: ResType.model,
       responseKey: (data) => data['data'],
+      refresh: param,
       toJsonFunc: (json) => SubscribeContentModel.fromJson(json),
     );
     return await GenericHttpImpl<SubscribeContentModel>()(model);

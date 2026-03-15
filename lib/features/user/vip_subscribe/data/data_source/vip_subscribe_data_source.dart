@@ -20,6 +20,6 @@ abstract class VipDataSource{
 
   Future<Either<Failure, SubscribePaymentModel>> paySubscription(PaySubscribeParams params);
 
-  Future<Either<Failure, SubscribeContentModel>> getSubscriptionContent();
+  Future<Either<Failure, SubscribeContentModel>> getSubscriptionContent(bool param);
 
 }

@@ -19,6 +19,6 @@ abstract class VipRepositories{
 
   Future<Either<Failure, SubscribePaymentDomainModel>> paySubscription(PaySubscribeParams params);
 
-  Future<Either<Failure, SubscribeContentDomainModel>> getSubscriptionContent();
+  Future<Either<Failure, SubscribeContentDomainModel>> getSubscriptionContent(bool param);
 
 }

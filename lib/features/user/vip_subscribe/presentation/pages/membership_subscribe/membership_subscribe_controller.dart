@@ -19,6 +19,7 @@ class MembershipSubscribeController {
           .firstWhere((element) => element.isSelected);
 
   MembershipSubscribeController() {
+    getCurrentSubscription(refresh: false);
     getCurrentSubscription();
     getSubscriptions(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
@@ -28,6 +29,7 @@ class MembershipSubscribeController {
     });
     callWalletData();
     getPayMethods();
+    getSubscriptionContent(fromRemote: false);
     getSubscriptionContent();
   }
 
@@ -42,9 +44,8 @@ class MembershipSubscribeController {
     payMethodsCubit.onUpdateData(data);
   }
 
-  Future<void> getSubscriptionContent() async {
-    NoParams noParams = NoParams();
-    var result = await GetSubscriptionContent().call(noParams);
+  Future<void> getSubscriptionContent({bool fromRemote = true}) async {
+    var result = await GetSubscriptionContent().call(fromRemote);
     if (result != null) {
       subscriptionContentBloc.onUpdateData(result);
     }

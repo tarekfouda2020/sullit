@@ -49,8 +49,8 @@ class ImplVipSubscribe extends VipRepositories with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, SubscribeContentDomainModel>> getSubscriptionContent() async {
-    var result = await _dataSource.getSubscriptionContent();
+  Future<Either<Failure, SubscribeContentDomainModel>> getSubscriptionContent(bool param) async {
+    var result = await _dataSource.getSubscriptionContent(param);
     return toDomainResult<SubscribeContentDomainModel, SubscribeContentModel>(result);
   }
 
