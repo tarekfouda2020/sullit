@@ -104,6 +104,8 @@ dependencies:
   new_version_plus: ^0.1.0
   sound_effect: ^0.1.2
   socket_io_client: ^3.1.4
+  app_links: ^6.4.1
+  share_plus: ^12.0.1
   timeago:
   timezone:
   country_calling_code_picker:
