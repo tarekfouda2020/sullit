@@ -7,11 +7,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
+import 'package:flutter_tdd/core/services/deep_link_service.dart';
 import 'package:flutter_tdd/core/theme/themes/app_dark_theme.dart';
 import 'package:flutter_tdd/core/theme/themes/app_light_theme.dart';
-import 'package:flutter_tdd/core/services/deep_link_service.dart';
 import 'package:flutter_tdd/core/widgets/network_builder_view.dart';
 
 import 'core/helpers/firebase_analytics_helper.dart';
@@ -33,8 +32,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    getIt<FirebaseAnalyticsHelper>().analytics.setConsent(
-        adStorageConsentGranted: false, analyticsStorageConsentGranted: true);
+    getIt<FirebaseAnalyticsHelper>()
+        .analytics
+        .setConsent(adStorageConsentGranted: false, analyticsStorageConsentGranted: true);
     getIt.get<LoadingHelper>().initConfig();
     getIt<DeepLinkService>().init();
     super.initState();
@@ -78,11 +78,7 @@ class _MyAppState extends State<MyApp> {
                   routerDelegate: _appRouter.delegate(
                       initialRoutes: [const SplashRoute()],
                       navigatorObservers: () {
-                        return [
-                          FirebaseAnalyticsObserver(
-                              analytics:
-                                  getIt<FirebaseAnalyticsHelper>().analytics)
-                        ];
+                        return [FirebaseAnalyticsObserver(analytics: getIt<FirebaseAnalyticsHelper>().analytics)];
                       }),
                   routeInformationParser: _appRouter.defaultRouteParser(),
                   builder: EasyLoading.init(builder: (ctx, child) {
