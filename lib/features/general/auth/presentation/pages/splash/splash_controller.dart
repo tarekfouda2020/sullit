@@ -3,26 +3,19 @@
 part of 'splash_imports.dart';
 
 class SplashController {
-
-
-
-  Future<void> initScreen(BuildContext context)async{
-    PlaySoundHelper.instance.startSound(
-        afterSoundEnd: () => manipulateSaveData(context)
-    );
+  Future<void> initScreen(BuildContext context) async {
+    PlaySoundHelper.instance.startSound(afterSoundEnd: () => manipulateSaveData(context));
   }
 
-
-
   Future<void> manipulateSaveData(BuildContext context) async {
-     updateLang(context);
+    updateLang(context);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var strUser = prefs.get("user");
     if (strUser != null) {
-      try{
+      try {
         var deviceToken = await getIt<GetDeviceId>().deviceId;
-        GlobalState.instance.set(GlobalStateKeys.deviceToken,deviceToken);
-      }catch(e){
+        GlobalState.instance.set(GlobalStateKeys.deviceToken, deviceToken);
+      } catch (e) {
         log(" error $e");
       }
       context.read<DeviceCubit>().updateUserAuth(true);
@@ -32,13 +25,14 @@ class SplashController {
       await Future.delayed(const Duration(milliseconds: 300));
       FacebookEventsHelper.instance.addUserDataEvent(user);
       AutoRouter.of(context).push(HomeRoute(index: 0));
+      getIt<DeepLinkService>().setAppReady();
     } else {
       context.read<DeviceCubit>().updateUserAuth(false);
       await Future.delayed(const Duration(milliseconds: 300));
       AutoRouter.of(context).push(HomeRoute(index: 0));
+      getIt<DeepLinkService>().setAppReady();
     }
   }
-
 
   /// stored lang in sharedPref & DeviceCubit is use for local translates
   /// while stored lang in global state is use for back-end
@@ -46,41 +40,38 @@ class SplashController {
 
   Future<void> updateLang(BuildContext context) async {
     await SharedPreferences.getInstance().then(
-          (lang) {
+      (lang) {
         String? value = lang.getString(LangCodeHelper.langKey);
         context.read<DeviceCubit>().updateLanguage(
-          Locale(
-            value ?? LangCodeHelper.langEN,
-            getCountryLangCode(value ?? LangCodeHelper.langEN),
-          ),
-        );
-        if(value == LangCodeHelper.langAR){
+              Locale(
+                value ?? LangCodeHelper.langEN,
+                getCountryLangCode(value ?? LangCodeHelper.langEN),
+              ),
+            );
+        if (value == LangCodeHelper.langAR) {
           value = LangTypeEnum.arabic.getLangCode();
         }
-        if(value == LangCodeHelper.langBN){
+        if (value == LangCodeHelper.langBN) {
           value = LangTypeEnum.bangladesh.getLangCode();
         }
-        if(value == LangCodeHelper.langUR){
+        if (value == LangCodeHelper.langUR) {
           value = LangTypeEnum.urdu.getLangCode();
         }
         GlobalState.instance.set(LangCodeHelper.langKey, value ?? LangCodeHelper.langEN);
-
       },
     );
   }
 
-
-
-  String getCountryLangCode(String code){
-    switch(code){
-      case LangCodeHelper.langAR: return "SA";
-      case LangCodeHelper.langEN: return "US";
-      case LangCodeHelper.langBN:return "BD" ;
-      default: return "US";
+  String getCountryLangCode(String code) {
+    switch (code) {
+      case LangCodeHelper.langAR:
+        return "SA";
+      case LangCodeHelper.langEN:
+        return "US";
+      case LangCodeHelper.langBN:
+        return "BD";
+      default:
+        return "US";
     }
   }
-
-
-
-
 }

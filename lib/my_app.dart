@@ -11,6 +11,7 @@ import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/theme/themes/app_dark_theme.dart';
 import 'package:flutter_tdd/core/theme/themes/app_light_theme.dart';
+import 'package:flutter_tdd/core/services/deep_link_service.dart';
 import 'package:flutter_tdd/core/widgets/network_builder_view.dart';
 
 import 'core/helpers/firebase_analytics_helper.dart';
@@ -20,7 +21,6 @@ import 'core/localization/set_localization.dart';
 import 'core/routes/router_imports.gr.dart';
 
 class MyApp extends StatefulWidget {
-
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -33,11 +33,17 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    getIt<FirebaseAnalyticsHelper>()
-        .analytics
-        .setConsent(adStorageConsentGranted: false, analyticsStorageConsentGranted: true);
+    getIt<FirebaseAnalyticsHelper>().analytics.setConsent(
+        adStorageConsentGranted: false, analyticsStorageConsentGranted: true);
     getIt.get<LoadingHelper>().initConfig();
+    getIt<DeepLinkService>().init();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    getIt<DeepLinkService>().dispose();
+    super.dispose();
   }
 
   @override
@@ -56,7 +62,12 @@ class _MyAppState extends State<MyApp> {
                   title: "AMCOOP",
                   darkTheme: darkTheme,
                   theme: theme,
-                  supportedLocales: const [Locale('en', 'US'), Locale('ar', 'EG'),Locale('bn', 'BD'), Locale('ur', 'PK')],
+                  supportedLocales: const [
+                    Locale('en', 'US'),
+                    Locale('ar', 'EG'),
+                    Locale('bn', 'BD'),
+                    Locale('ur', 'PK')
+                  ],
                   localizationsDelegates: const [
                     SetLocalization.localizationsDelegate,
                     GlobalMaterialLocalizations.delegate,
@@ -69,7 +80,8 @@ class _MyAppState extends State<MyApp> {
                       navigatorObservers: () {
                         return [
                           FirebaseAnalyticsObserver(
-                              analytics: getIt<FirebaseAnalyticsHelper>().analytics)
+                              analytics:
+                                  getIt<FirebaseAnalyticsHelper>().analytics)
                         ];
                       }),
                   routeInformationParser: _appRouter.defaultRouteParser(),
@@ -78,11 +90,10 @@ class _MyAppState extends State<MyApp> {
                     return MediaQuery(
                       data: _getMediaQueryData(ctx),
                       child: NetworkLayerWidget(
-                      isNetworkConnected: state.model.isNetworkConnected,
-                      child: child!,
+                        isNetworkConnected: state.model.isNetworkConnected,
+                        child: child!,
                       ),
                     );
-
                   }),
                 );
               });
@@ -91,7 +102,6 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-
   MediaQueryData _getMediaQueryData(BuildContext context) {
     final mq = MediaQuery.of(context);
     return mq.copyWith(
@@ -99,5 +109,4 @@ class _MyAppState extends State<MyApp> {
       boldText: false,
     );
   }
-
 }

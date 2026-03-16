@@ -32,6 +32,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb1981210759416763</string>
+				<string>sullit</string>
 			</array>
 		</dict>
 	</array>
@@ -140,7 +141,7 @@
     <!-- Associated Domains for Universal Links -->
     <key>com.apple.developer.associated-domains</key>
     <array>
-        <string>applinks:suliit.com</string>
+        <string>applinks:web.staging.mushrifcoop.com</string>
     </array>
 </dict>
 </plist>

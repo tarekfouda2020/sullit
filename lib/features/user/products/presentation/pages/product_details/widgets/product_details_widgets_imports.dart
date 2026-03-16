@@ -67,7 +67,6 @@ part 'build_product_info.dart';
 part 'build_product_qty.dart';
 part 'build_product_queries.dart';
 part 'build_product_reviews.dart';
-part 'build_product_share.dart';
 part 'build_product_specifications.dart';
 part 'build_products_description.dart';
 part 'build_question_item.dart';
