@@ -35,9 +35,9 @@ class DeepLinkService {
   }
 
   void _handleDeepLink(Uri uri) {
-    // Example: https://suliit.com/shops/123 or suliit://shops/123
-    if (uri.pathSegments.contains('shops')) {
-      final index = uri.pathSegments.indexOf('shops');
+    // Example: https://suliit.com/products/123 or suliit://products/123
+    if (uri.pathSegments.contains('products')) {
+      final index = uri.pathSegments.indexOf('products');
       if (index + 1 < uri.pathSegments.length) {
         final productIdStr = uri.pathSegments[index + 1];
         final productId = int.tryParse(productIdStr);
@@ -77,7 +77,7 @@ class DeepLinkService {
 
   String generateProductLink(int productId) {
     // Return the universal link for sharing
-    return "https://web.staging.mushrifcoop.com/shops/$productId?platform=mobile";
+    return "https://web.staging.mushrifcoop.com/products/$productId?platform=mobile";
   }
 
   void dispose() {
