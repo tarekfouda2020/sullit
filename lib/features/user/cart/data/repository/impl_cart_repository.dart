@@ -127,4 +127,13 @@ class ImplCartRepository extends CartRepository with ModelToDomain{
     return toDomainResultList<DeliveryInstructionModel, DeliveryInstruction>(result);
   }
 
+  @override
+  Future<Either<Failure, String>> shareCart(NoParams params) async {
+    return await dataSource.shareCart(params);
+  }
+
+  @override
+  Future<Either<Failure, bool>> importCart(String token) async {
+    return await dataSource.importCart(token);
+  }
 }

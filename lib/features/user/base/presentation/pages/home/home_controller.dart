@@ -41,7 +41,7 @@ class HomeController {
     );
     final status = await newVersion.getVersionStatus();
     if (status != null && status.canUpdate) {
-      showUpdateDialog();
+      // showUpdateDialog();
       return true;
     }else{
       return false;

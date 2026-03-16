@@ -284,5 +284,30 @@ class ImplCartDataSources extends CartDataSources {
     return await GenericHttpImpl<List<DeliveryInstruction>>().call(model);
   }
 
+  @override
+  Future<Either<Failure, String>> shareCart(NoParams params) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.cartShare,
+      requestMethod: RequestMethod.post,
+      responseType: ResType.type,
+      showLoader: false,
+      responseKey: (data) => data["data"]["token"],
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<String>().call(model);
+  }
 
+  @override
+  Future<Either<Failure, bool>> importCart(String token) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.cartImport,
+      requestMethod: RequestMethod.post,
+      responseType: ResType.type,
+      requestBody: {"token": token},
+      showLoader: false,
+      responseKey: (data) => data["key"] == "success",
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<bool>().call(model);
+  }
 }

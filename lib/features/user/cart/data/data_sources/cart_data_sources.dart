@@ -41,5 +41,7 @@ abstract class CartDataSources {
 
  Future<Either<Failure, List<DeliveryInstruction>>> getInstructions(bool params);
 
+ Future<Either<Failure, String>> shareCart (NoParams params);
+ Future<Either<Failure, bool>> importCart (String token);
 
 }

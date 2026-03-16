@@ -3,8 +3,12 @@ import 'dart:async';
 import 'package:app_links/app_links.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/router_helper.dart';
+import 'package:flutter_tdd/core/helpers/global_context.dart';
+import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:injectable/injectable.dart';
+
+import '../constants/app_constants.dart';
 
 @singleton
 class DeepLinkService {
@@ -46,6 +50,13 @@ class DeepLinkService {
         }
       }
     }
+    // Handle cart share link: https://suliit.com/cart?token=xxxx
+    else if (uri.pathSegments.contains('cart') && uri.queryParameters.containsKey('token')) {
+      final token = uri.queryParameters['token'];
+      if (token != null && token.isNotEmpty) {
+        _importCart(token);
+      }
+    }
     // Also handle query parameters if needed: ?id=123
     else if (uri.queryParameters.containsKey('id')) {
       final productId = int.tryParse(uri.queryParameters['id']!);
@@ -57,12 +68,17 @@ class DeepLinkService {
 
   bool isAppReady = false;
   int? pendingProductId;
+  String? pendingCartToken;
 
   void setAppReady() {
     isAppReady = true;
     if (pendingProductId != null) {
       _navigateToProduct(pendingProductId!);
       pendingProductId = null;
+    }
+    if (pendingCartToken != null) {
+      _importCart(pendingCartToken!);
+      pendingCartToken = null;
     }
   }
 
@@ -75,9 +91,18 @@ class DeepLinkService {
     router.push(ProductDetailsRoute(productId: productId, isResale: false, isFav: false));
   }
 
+  void _importCart(String token) {
+    if (!isAppReady) {
+      pendingCartToken = token;
+      return;
+    }
+    final ctx = getIt<GlobalContext>().context();
+    getIt<CartHelper>().importCart(ctx, token);
+  }
+
   String generateProductLink(int productId) {
     // Return the universal link for sharing
-    return "https://web.staging.mushrifcoop.com/products/$productId?platform=mobile";
+    return "${AppConstants.instance.baseShareLink}/products/$productId?platform=mobile";
   }
 
   void dispose() {

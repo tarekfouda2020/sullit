@@ -11,6 +11,14 @@ class CartController {
   Key paymentViewKey = UniqueKey();
   Key confirmationViewKey = UniqueKey();
 
+  final ValueNotifier<bool> isSharing = ValueNotifier(false);
+
+  Future<void> shareCart(BuildContext context) async {
+    isSharing.value = true;
+    await getIt<CartHelper>().shareCart(context);
+    isSharing.value = false;
+  }
+
   CartController() {
     getIt<CartNavigateHelper>().initData();
     cartItemsBloc.onUpdateToInitState(CartDomainModel());

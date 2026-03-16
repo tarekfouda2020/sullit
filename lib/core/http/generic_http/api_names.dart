@@ -138,6 +138,8 @@ class ApiNames {
   static const String addCartAddress = "cart/add-address";
   static const String cartStoreShipping = "cart/store-shipping-info";
   static const String applyCoupon = "cart/apply-coupon";
+  static const String cartShare = "cart/share";
+  static const String cartImport = "cart/import";
   static const String storeOrders = "orders/store";
   static const String storeProductToCart = "cart/store";
   static const String cartShippingInfo = "cart/shipping-info";
