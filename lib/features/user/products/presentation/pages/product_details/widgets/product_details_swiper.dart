@@ -79,7 +79,6 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
             BuildShareItem(
               onTap: () => widget.controller.onShareProduct(context),
             ),
-
           ],
           leading: GestureDetector(
             onTap: () => widget.controller.onPop(context),
