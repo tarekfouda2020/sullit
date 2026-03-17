@@ -2,6 +2,7 @@ part of 'cart_widgets_imports.dart';
 
 class CartItemsListWidget extends StatelessWidget {
   final CartController controller;
+
   const CartItemsListWidget({super.key, required this.controller});
 
   @override
