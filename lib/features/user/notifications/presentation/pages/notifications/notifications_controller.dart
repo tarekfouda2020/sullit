@@ -30,8 +30,8 @@ class NotificationsController {
 
 
   void onPress(BuildContext context, NotificationDomainModel model){
-    if(model.isShareHolderOffer){
-      AutoRouter.of(context).pop(true);
+    if(model.isOffer){
+      AutoRouter.of(context).pop(model.type);
       return ;
     }
     if(model.orderId != 0 && model.orderId!=null){

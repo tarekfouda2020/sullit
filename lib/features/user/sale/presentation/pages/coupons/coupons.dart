@@ -23,6 +23,24 @@ class _CouponsState extends State<Coupons> with TickerProviderStateMixin {
   }
 
   @override
+  void didUpdateWidget(covariant Coupons oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print("====>>><<< index in copoun ${widget.index}>>>>>>===");
+    if (oldWidget.index == widget.index) return;
+    print("====>>><<< index in copoun ${widget.index}>>>>>>===");
+    final newTabsLength = controller.pages(context).length;
+    if (newTabsLength <= 0) return;
+
+    final clampedIndex = widget.index.clamp(0, newTabsLength - 1);
+    if (controller.tabController.length != newTabsLength) {
+      controller.tabController.dispose();
+      controller.initBottomNavigation(this, clampedIndex, context);
+      return;
+    }
+    controller.changeTab(clampedIndex);
+  }
+
+  @override
   void dispose() {
     controller.tabController.dispose();
     super.dispose();

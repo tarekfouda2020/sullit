@@ -25,7 +25,15 @@ class NotificationDomainModel extends BaseDomainModel {
 
 
 
-  bool get isShareHolderOffer => type == NotifyEnum.shareholderProducts.getValue();
+  bool get _isShareHolderOffer => type == NotifyEnum.shareholderProducts.getValue();
+
+  bool get _isVipOffer => type == NotifyEnum.offerVipProducts.getValue();
+
+  bool get _isOnSaleOffer => type == NotifyEnum.offerOnSale.getValue();
+
+  bool get _isNewArrivalOffer => type == NotifyEnum.offerNewArrival.getValue();
+
+  bool get isOffer => _isShareHolderOffer || _isVipOffer || _isOnSaleOffer || _isNewArrivalOffer;
 
 
   String normalizeDate() {

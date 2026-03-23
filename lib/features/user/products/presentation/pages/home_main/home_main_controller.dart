@@ -55,8 +55,12 @@ class HomeMainController {
   }
 
   void changeCouponsTab(SaleTabType type, BuildContext context) {
+    homeController.showShareHolderOffers = true;
     int index = homeController.getSaleTabIndex(type, context.isShareHolder);
     homeController.offersTabIndex = index;
+    Future.delayed(const Duration(milliseconds: 450), () {
+      homeController.showShareHolderOffers = false;
+    });
   }
 
   void getHome({bool refresh = true}){
@@ -335,6 +339,45 @@ class HomeMainController {
       refresh: refresh,
       page: 1,
     );
+  }
+
+
+
+  Future<void> goNotification(BuildContext context)async {
+    bool auth = context.read<DeviceCubit>().state.model.auth;
+    if (!auth) {
+      CustomToast.showAuthDialog(context);
+      return;
+    }
+    var result =  await AutoRouter.of(context).push(const NotificationsRoute());
+    if(result is String){
+      homeController.showShareHolderOffers = true;
+      if(result == NotifyEnum.shareholderProducts.getValue()){
+        changeCouponsTab(
+            SaleTabType.shareholderOffers,
+            context
+        );
+      }else if(result == NotifyEnum.offerNewArrival.getValue()){
+        changeCouponsTab(
+            SaleTabType.newArrival,
+            context
+        );
+      }else if(result == NotifyEnum.offerOnSale.getValue()){
+        changeCouponsTab(
+            SaleTabType.onSale,
+            context
+        );
+      }else if(result == NotifyEnum.offerVipProducts.getValue()){
+        changeCouponsTab(
+            SaleTabType.vipOffers,
+            context
+        );
+      }
+      homeController.animateTabsPages(3,context);
+      Future.delayed(const Duration(milliseconds: 450), () {
+        homeController.showShareHolderOffers = false;
+      });
+    }
   }
 
 //
