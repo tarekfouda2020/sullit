@@ -133,7 +133,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/app_sulit_new_icon.png"
+  image_path: "assets/images/ramadan_app_sulit_new_icon.png"
 
 dependency_overrides:
   sqflite_android: 2.4.1
