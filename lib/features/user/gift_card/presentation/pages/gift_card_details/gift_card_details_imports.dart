@@ -1,9 +1,9 @@
-
-
-
 import 'dart:developer';
+import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
@@ -28,7 +28,13 @@ import 'package:flutter_tdd/features/user/gift_card/domain/use_case/get_gift_car
 import 'package:flutter_tdd/features/user/gift_card/domain/use_case/get_pay_methods.dart';
 import 'package:flutter_tdd/features/user/gift_card/domain/use_case/pay_gift_card_subscribe.dart';
 import 'package:flutter_tdd/features/user/wallet/domain/use_cases/get_my_wallet.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:screenshot/screenshot.dart';
+import 'package:share_plus/share_plus.dart';
 
+import '../../../../../../core/helpers/psermission_services.dart';
 import 'widgets/gift_card_details_widgets_imports.dart';
 
 part 'gift_card_details.dart';
