@@ -7,9 +7,10 @@ class SplashController {
 
 
   Future<void> initScreen(BuildContext context)async{
-    PlaySoundHelper.instance.startSound(
-        afterSoundEnd: () => manipulateSaveData(context)
-    );
+    manipulateSaveData(context);
+    // PlaySoundHelper.instance.startSound(
+    //     afterSoundEnd: () => manipulateSaveData(context)
+    // );
   }
 
 
