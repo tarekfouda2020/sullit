@@ -549,7 +549,7 @@ class CartPaymentController {
 
 
   double getTotal(){
-    return double.parse(shippingBloc.state.data!.summary.total);
+    return double.parse(shippingBloc.state.data!.summary.total.cleanNumber());
    //  ShippingSummary summary = shippingBloc.state.data!.summary;
    //  double subTotal = double.parse(summary.subTotal);
    //  double totalFeesAmount = summary.getFeesTotal;
@@ -627,8 +627,8 @@ class CartPaymentController {
     params!.showLoader = false;
     var data = await SetCartStoreShipping().call(params);
     if(data!=null){
-      double oldSubTotal = double.parse(_pageSavedData.orderSummaryCheckOut?.summary.subTotal??"0.0");
-      double newSubTotal = double.parse(data.summary.subTotal);
+      double oldSubTotal = double.parse(_pageSavedData.orderSummaryCheckOut?.summary.subTotal.cleanNumber()??"0.0");
+      double newSubTotal = double.parse(data.summary.subTotal.cleanNumber());
       if(newSubTotal > oldSubTotal || newSubTotal < oldSubTotal){
         _initSelectedPayMethod(data);
         initDataFromLastRoute(_pageSavedData,data);

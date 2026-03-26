@@ -164,12 +164,12 @@ class ProductDetailsController implements CartSheetController {
     var price = double.parse(variantPrice!.calculablePrice!);
     price = price / qtyCubit.state.data;
     if (variantPrice.currentStock! >= 1) {
-      if (variantPrice.currentStock! > qtyCubit.state.data) {
+      var isFresh = detailsCubit.state.data?.product.isFresh == true;
+      if (variantPrice.currentStock! > qtyCubit.state.data || isFresh) {
         var newQty = qtyCubit.state.data + (isInit ? 0 : 1);
         var priceQty = newQty * price;
         variantPrice.calculablePrice = priceQty.toStringAsFixed(2);
         qtyCubit.onUpdateData(newQty);
-        detailsCubit.onUpdateData(detailsCubit.state.data);
         calculateRemainingAmount();
       } else {
         CustomToast.showSimpleToast(
@@ -190,7 +190,6 @@ class ProductDetailsController implements CartSheetController {
       var newQty = qtyCubit.state.data - 1;
       variantPrice.calculablePrice = priceQty.toStringAsFixed(2);
       qtyCubit.onUpdateData(newQty);
-      detailsCubit.onUpdateData(detailsCubit.state.data);
       calculateRemainingAmount();
     }
     // if(qtyCubit.state.data == 1){

@@ -84,7 +84,7 @@ class _CartPaymentState extends State<CartPayment> {
                                 (state.data!.summary.loyaltyPoints ?? 0)
                                     .toDouble(),
                             redeemedValue: double.parse(
-                                (state.data!.summary.loyaltyPointsValue ??
+                                (state.data!.summary.loyaltyPointsValue.cleanNumber() ??
                                     "0.0")),
                             earnedPoints: state
                                 .data!.summary.expectedLoyaltyPoints
