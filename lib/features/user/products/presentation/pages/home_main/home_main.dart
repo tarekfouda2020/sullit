@@ -26,9 +26,7 @@ class _HomeMainState extends State<HomeMain> {
         body: SafeArea(
           child: Column(
             children: [
-              BuildHomeMainAppBar(
-                  controller: widget.homeController,
-                  homeMainController: controller),
+              BuildHomeMainAppBar(homeMainController: controller),
               // const BuildDiscountMsg(),
               BlocBuilder<GenericBloc<HomeDomainModel?>,
                   GenericState<HomeDomainModel?>>(

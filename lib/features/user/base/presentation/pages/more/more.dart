@@ -22,7 +22,10 @@ class _MoreState extends State<More> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    if (state == AppLifecycleState.resumed) {
+    if (state == AppLifecycleState.paused) {
+      controller.wasInBackground = true;
+    } else if (state == AppLifecycleState.resumed && controller.wasInBackground) {
+      controller.wasInBackground = false;
       controller.refreshNotificationStatus();
     }
   }

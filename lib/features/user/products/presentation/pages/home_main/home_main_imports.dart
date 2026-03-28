@@ -20,6 +20,7 @@ import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_imports.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
+import 'package:flutter_tdd/features/user/notifications/domain/entities/notify_enum.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/home_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_sections.dart';
