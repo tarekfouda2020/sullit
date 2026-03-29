@@ -26,6 +26,24 @@ class OrderDetailsSummaryWidget extends StatelessWidget {
             // details: shippingSummary.getSubTotalWithoutVat().toStringAsFixed(2),
             useDirhamPrice: true,
           ),
+          if (order?.isCouponApply == true)
+            OrderSummaryItemWidget(
+              priceType: tr('voucherDiscount'),
+              // price: order?.getDiscountNumber().toString() ?? '',
+              price: order?.couponDiscount ?? '',
+              priceColor: context.colors.primary,
+              isDiscount: true,
+              useDirhamPrice: true,
+            ),
+          if (order?.loyaltyPointsApplied == true)
+            OrderSummaryItemWidget(
+              priceType: tr('pointsDiscount'),
+              // price: order?.getDiscountNumber().toString() ?? '',
+              price: order?.loyaltyPointsValue ?? '',
+              priceColor: context.colors.primary,
+              isDiscount: true,
+              useDirhamPrice: true,
+            ),
           if (order?.orderDiscounts?.isNotEmpty == true)
             ...List.generate(
               order?.orderDiscounts?.length ?? 0,
@@ -68,24 +86,6 @@ class OrderDetailsSummaryWidget extends StatelessWidget {
             details: order?.totalVat.toString() ?? "",
             useDirhamPrice: true,
           ),
-          if (order?.isCouponApply == true)
-            OrderSummaryItemWidget(
-              priceType: tr('voucherDiscount'),
-              // price: order?.getDiscountNumber().toString() ?? '',
-              price: order?.couponDiscount ?? '',
-              priceColor: context.colors.primary,
-              isDiscount: true,
-              useDirhamPrice: true,
-            ),
-          if (order?.loyaltyPointsApplied == true)
-            OrderSummaryItemWidget(
-              priceType: tr('pointsDiscount'),
-              // price: order?.getDiscountNumber().toString() ?? '',
-              price: order?.loyaltyPointsValue ?? '',
-              priceColor: context.colors.primary,
-              isDiscount: true,
-              useDirhamPrice: true,
-            ),
           Gaps.vGap10,
           Gaps.line(context.colors.softGray, 0),
           Gaps.vGap13,

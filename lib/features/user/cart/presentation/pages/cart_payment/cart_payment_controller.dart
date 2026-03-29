@@ -118,7 +118,7 @@ class CartPaymentController {
     if (couponFormKey.currentState!.validate()) {
       var data = await ApplyCoupon().call(coupon.text);
       if (data != null) {
-        CustomToast.showSimpleToast(msg: data.msg);
+        CustomToast.showSimpleToast(msg: data.msg,type: ToastType.success);
         shippingBloc.state.data!.summary = data.shipping.summary;
         updateData();
         if (shippingBloc.state.data!.isAdminDiscount == true) {
@@ -158,6 +158,8 @@ class CartPaymentController {
     var params = _orderParams();
     var data = await CreateOrder().call(params);
     if (data != null) {
+      var countCubit = ctx.read<CountCubit>().state;
+      ctx.read<CountCubit>().onUpdateCount(0, countCubit.discount);
       if (data.transactionUrl != null) {
         goToPay(data.transactionUrl!, ctx);
        // showOrderCreatedBottomSheet(data.transactionUrl!,ctx);
