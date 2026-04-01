@@ -28,6 +28,8 @@ mixin _$ProductModel {
   List<String> get images => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_multiple')
   bool get isMultiple => throw _privateConstructorUsedError;
+  @JsonKey(name: 'max_qty')
+  int? get maxQnt => throw _privateConstructorUsedError;
   @JsonKey(name: 'price_high_low_discount')
   String get priceHighLowDiscount => throw _privateConstructorUsedError;
   @JsonKey(name: 'price_high_low')
@@ -110,6 +112,7 @@ abstract class $ProductModelCopyWith<$Res> {
       @JsonKey(name: 'thumbnail_image') String thumbnailImage,
       List<String> images,
       @JsonKey(name: 'is_multiple') bool isMultiple,
+      @JsonKey(name: 'max_qty') int? maxQnt,
       @JsonKey(name: 'price_high_low_discount') String priceHighLowDiscount,
       @JsonKey(name: 'price_high_low') String priceHighLow,
       @JsonKey(name: 'has_discount') bool hasDiscount,
@@ -172,6 +175,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? thumbnailImage = null,
     Object? images = null,
     Object? isMultiple = null,
+    Object? maxQnt = freezed,
     Object? priceHighLowDiscount = null,
     Object? priceHighLow = null,
     Object? hasDiscount = null,
@@ -234,6 +238,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.isMultiple
           : isMultiple // ignore: cast_nullable_to_non_nullable
               as bool,
+      maxQnt: freezed == maxQnt
+          ? _value.maxQnt
+          : maxQnt // ignore: cast_nullable_to_non_nullable
+              as int?,
       priceHighLowDiscount: null == priceHighLowDiscount
           ? _value.priceHighLowDiscount
           : priceHighLowDiscount // ignore: cast_nullable_to_non_nullable
@@ -445,6 +453,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
       @JsonKey(name: 'thumbnail_image') String thumbnailImage,
       List<String> images,
       @JsonKey(name: 'is_multiple') bool isMultiple,
+      @JsonKey(name: 'max_qty') int? maxQnt,
       @JsonKey(name: 'price_high_low_discount') String priceHighLowDiscount,
       @JsonKey(name: 'price_high_low') String priceHighLow,
       @JsonKey(name: 'has_discount') bool hasDiscount,
@@ -509,6 +518,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? thumbnailImage = null,
     Object? images = null,
     Object? isMultiple = null,
+    Object? maxQnt = freezed,
     Object? priceHighLowDiscount = null,
     Object? priceHighLow = null,
     Object? hasDiscount = null,
@@ -571,6 +581,10 @@ class __$$_ProductModelCopyWithImpl<$Res>
           ? _value.isMultiple
           : isMultiple // ignore: cast_nullable_to_non_nullable
               as bool,
+      maxQnt: freezed == maxQnt
+          ? _value.maxQnt
+          : maxQnt // ignore: cast_nullable_to_non_nullable
+              as int?,
       priceHighLowDiscount: null == priceHighLowDiscount
           ? _value.priceHighLowDiscount
           : priceHighLowDiscount // ignore: cast_nullable_to_non_nullable
@@ -730,6 +744,7 @@ class _$_ProductModel extends _ProductModel {
       @JsonKey(name: 'thumbnail_image') required this.thumbnailImage,
       required final List<String> images,
       @JsonKey(name: 'is_multiple') required this.isMultiple,
+      @JsonKey(name: 'max_qty') required this.maxQnt,
       @JsonKey(name: 'price_high_low_discount')
       required this.priceHighLowDiscount,
       @JsonKey(name: 'price_high_low') required this.priceHighLow,
@@ -800,6 +815,9 @@ class _$_ProductModel extends _ProductModel {
   @override
   @JsonKey(name: 'is_multiple')
   final bool isMultiple;
+  @override
+  @JsonKey(name: 'max_qty')
+  final int? maxQnt;
   @override
   @JsonKey(name: 'price_high_low_discount')
   final String priceHighLowDiscount;
@@ -928,7 +946,7 @@ class _$_ProductModel extends _ProductModel {
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, name: $name, unit: $unit, thumbnailImage: $thumbnailImage, images: $images, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, choiceOptions: $choiceOptions, colors: $colors, minQty: $minQty, currencySymbol: $currencySymbol, variant: $variant, tags: $tags, countReviews: $countReviews, soldByType: $soldByType, soldByName: $soldByName, hasVipOffer: $hasVipOffer, shop: $shop, reviews: $reviews, isResale: $isResale, resellerId: $resellerId, category: $category, strokedPrice: $strokedPrice, isDigital: $isDigital, isWishlist: $isWishlist, mainPrice: $mainPrice, rating: $rating, sales: $sales, sellerId: $sellerId, brand: $brand, description: $description, videoProvider: $videoProvider, videoLink: $videoLink, categoryName: $categoryName, brandName: $brandName, isFresh: $isFresh, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, hasShareholderDiscount: $hasShareholderDiscount, loyaltyPoints: $loyaltyPoints)';
+    return 'ProductModel(id: $id, name: $name, unit: $unit, thumbnailImage: $thumbnailImage, images: $images, isMultiple: $isMultiple, maxQnt: $maxQnt, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, choiceOptions: $choiceOptions, colors: $colors, minQty: $minQty, currencySymbol: $currencySymbol, variant: $variant, tags: $tags, countReviews: $countReviews, soldByType: $soldByType, soldByName: $soldByName, hasVipOffer: $hasVipOffer, shop: $shop, reviews: $reviews, isResale: $isResale, resellerId: $resellerId, category: $category, strokedPrice: $strokedPrice, isDigital: $isDigital, isWishlist: $isWishlist, mainPrice: $mainPrice, rating: $rating, sales: $sales, sellerId: $sellerId, brand: $brand, description: $description, videoProvider: $videoProvider, videoLink: $videoLink, categoryName: $categoryName, brandName: $brandName, isFresh: $isFresh, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, hasShareholderDiscount: $hasShareholderDiscount, loyaltyPoints: $loyaltyPoints)';
   }
 
   @override
@@ -944,6 +962,7 @@ class _$_ProductModel extends _ProductModel {
             const DeepCollectionEquality().equals(other._images, _images) &&
             (identical(other.isMultiple, isMultiple) ||
                 other.isMultiple == isMultiple) &&
+            (identical(other.maxQnt, maxQnt) || other.maxQnt == maxQnt) &&
             (identical(other.priceHighLowDiscount, priceHighLowDiscount) ||
                 other.priceHighLowDiscount == priceHighLowDiscount) &&
             (identical(other.priceHighLow, priceHighLow) ||
@@ -1019,6 +1038,7 @@ class _$_ProductModel extends _ProductModel {
         thumbnailImage,
         const DeepCollectionEquality().hash(_images),
         isMultiple,
+        maxQnt,
         priceHighLowDiscount,
         priceHighLow,
         hasDiscount,
@@ -1079,6 +1099,7 @@ abstract class _ProductModel extends ProductModel {
       @JsonKey(name: 'thumbnail_image') required final String thumbnailImage,
       required final List<String> images,
       @JsonKey(name: 'is_multiple') required final bool isMultiple,
+      @JsonKey(name: 'max_qty') required final int? maxQnt,
       @JsonKey(name: 'price_high_low_discount')
       required final String priceHighLowDiscount,
       @JsonKey(name: 'price_high_low') required final String priceHighLow,
@@ -1139,6 +1160,9 @@ abstract class _ProductModel extends ProductModel {
   @override
   @JsonKey(name: 'is_multiple')
   bool get isMultiple;
+  @override
+  @JsonKey(name: 'max_qty')
+  int? get maxQnt;
   @override
   @JsonKey(name: 'price_high_low_discount')
   String get priceHighLowDiscount;

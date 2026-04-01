@@ -7,6 +7,7 @@ enum NotifyEnum {
   offerVipProducts,
   offerNewArrival,
   offerOnSale,
+  newLogin,
 
   message;
 
@@ -33,8 +34,9 @@ extension NotifyValue on NotifyEnum {
         return "offer_new_arrival";
         case NotifyEnum.offerOnSale:
         return "offer_on_sale";
-      default:
-        return "";
-    }
+        case NotifyEnum.newLogin:
+        return "new_login";
+        default: return "";
+      }
   }
 }

@@ -12,6 +12,7 @@ import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/core/helpers/orders_helper.dart';
+import 'package:flutter_tdd/core/helpers/user_service_helper.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
@@ -58,12 +59,17 @@ class GlobalNotification {
         log("___________________notification:${message.notification?.title}");
         _onMessageStreamController.add(message.data);
         _showLocalNotification(message);
-        if (message.data['type'] == NotifyEnum.emailChanged.getValue()) {
+        if (message.data['item_type'] == NotifyEnum.emailChanged.getValue()) {
           onSaveUserData();
         }
-        if (message.data['type'] == NotifyEnum.emailVerified.getValue()) {
+        if (message.data['item_type'] == NotifyEnum.emailVerified.getValue()) {
           var context = getIt<GlobalContext>().context();
           AutoRouter.of(context).push(const LoginRoute());
+        }
+        if (message.data['item_type'] == NotifyEnum.newLogin.getValue()) {
+          var context = getIt<GlobalContext>().context();
+          getIt<UserServiceHelper>().clearUserData(context);
+          AutoRouter.of(context).push(const SplashRoute());
         }
         var itemType = message.data['item_type'];
         var isOrder = itemType ==  NotifyEnum.order.getValue();
@@ -76,12 +82,12 @@ class GlobalNotification {
             OrdersHelper.instance.updateOrderInHomeFromOrderDetails(id: orderId);
             OrdersHelper.instance.updateTrackOrderFromFcm(orderId);
           }
-          if(isDelivered){
-            var id = int.tryParse(message.data['item_type_id']);
-            if(id!=null){
-              OrdersHelper.instance.addPurchasedEvent(id);
-            }
-          }
+          // if(isDelivered){
+          //   var id = int.tryParse(message.data['item_type_id']);
+          //   if(id!=null){
+          //     OrdersHelper.instance.addPurchasedEvent(id);
+          //   }
+          // }
         }
       });
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
@@ -141,7 +147,7 @@ class GlobalNotification {
     } else if (type == NotifyEnum.order.getValue()) {
       var context = getIt<GlobalContext>().context();
       AutoRouter.of(context).push(OrderSummaryRoute(orderId: id));
-    } else if (type == NotifyEnum.emailVerified.getValue()) {
+    } else if (type == NotifyEnum.emailVerified.getValue() || type == NotifyEnum.newLogin.getValue()) {
       var context = getIt<GlobalContext>().context();
       AutoRouter.of(context).push(const LoginRoute());
     }else if(isShareHolderOffer){

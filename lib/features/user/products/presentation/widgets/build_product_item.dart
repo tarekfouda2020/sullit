@@ -392,15 +392,24 @@ class _BuildProductItemState extends State<BuildProductItem> {
       enableAddToCartLoading.onUpdateData(false);
     } else {
       int qnt = widget.productModel.addedQtyToCart! + 1;
-      widget.productModel.addedQtyToCart = qnt;
-      enableAddToCartLoading.onUpdateData(false);
-      KeyedDebounceHelper.instance.start(
-        key: widget.productModel.id.toString(),
-        value: qnt.toString(),
-        milliseconds: AppConstants.instance.debounceTimeInBackGround,
-        onSearch: (val) => getIt<ProductsHelper>()
-            .increaseProductAddedQntInCart(context, widget.productModel, qnt),
-      );
+
+      if(widget.productModel.maxQnt == qnt){
+        enableAddToCartLoading.onUpdateData(false);
+        CustomToast.showSimpleToast(
+            msg: 'You can add up to ${widget.productModel.maxQnt} items only');
+        return ;
+      }
+      if (currentStockQnt > qnt || widget.productModel.isFresh == true) {
+        widget.productModel.addedQtyToCart = qnt;
+        enableAddToCartLoading.onUpdateData(false);
+        KeyedDebounceHelper.instance.start(
+          key: widget.productModel.id.toString(),
+          value: qnt.toString(),
+          milliseconds: AppConstants.instance.debounceTimeInBackGround,
+          onSearch: (val) => getIt<ProductsHelper>()
+              .increaseProductAddedQntInCart(context, widget.productModel, qnt),
+        );
+      }
     }
   }
 

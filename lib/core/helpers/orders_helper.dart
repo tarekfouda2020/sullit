@@ -83,14 +83,14 @@ class OrdersHelper {
   }
 
 
-  void addPurchasedEvent(int id)async{
-    GenericParams params = _params(id, true);
-    await GetOrderDetails()(params).then((value) {
-      if(value != null){
-       FacebookEventsHelper.instance.purchaseEvent(double.parse(value.total));
-      }
-    });
-  }
+  // void addPurchasedEvent(int id)async{
+  //   GenericParams params = _params(id, true);
+  //   await GetOrderDetails()(params).then((value) {
+  //     if(value != null){
+  //      FacebookEventsHelper.instance.purchaseEvent(double.parse(value.total));
+  //     }
+  //   });
+  // }
 
   GenericParams _params(int id,bool refresh){
     return GenericParams(id: id,refresh:refresh );

@@ -12,38 +12,40 @@ class BuildCartButtons extends StatelessWidget {
       visible: cartModel.items!.isNotEmpty,
       child: Container(
         color: context.colors.cartBg,
-        padding:  EdgeInsetsDirectional.only(
+        padding:  const EdgeInsetsDirectional.only(
           start: 15,
           top: 20,
           end: 40,
-          bottom: Platform.isIOS
-              ?40
-              :30,
         ),
-        child: Row(
-          children: [
-            Expanded(
-              child: DefaultButton(
-                margin: EdgeInsets.zero,
-                title: tr("continue"),
-                onTap: () => controller.navigateToShipping(context),
-              ),
-            ),
-            Gaps.hGap11,
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(tr("total"), style: AppTextStyle.s12_w400(color: context.colors.textColor)),
-                Gaps.vGap6,
-                DirhamPrice(
-                  amount: cartModel.calculableTotal?.toStringAsFixed(2) ?? "0.00",
-                  currencyStyle: AppTextStyle.s18_w400(color: context.colors.primary),
-                  textStyle: AppTextStyle.s14_w600(color: context.colors.primary),
-                  currencyOffset: 0,
+        child: SafeArea(
+          top: false,
+          left: false,
+          right: false,
+          child: Row(
+            children: [
+              Expanded(
+                child: DefaultButton(
+                  margin: EdgeInsets.zero,
+                  title: tr("continue"),
+                  onTap: () => controller.navigateToShipping(context),
                 ),
-              ],
-            ),
-          ],
+              ),
+              Gaps.hGap11,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(tr("total"), style: AppTextStyle.s12_w400(color: context.colors.textColor)),
+                  Gaps.vGap6,
+                  DirhamPrice(
+                    amount: cartModel.calculableTotal?.toStringAsFixed(2) ?? "0.00",
+                    currencyStyle: AppTextStyle.s18_w400(color: context.colors.primary),
+                    textStyle: AppTextStyle.s14_w600(color: context.colors.primary),
+                    currencyOffset: 0,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

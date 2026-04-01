@@ -3,15 +3,20 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../errors/failures.dart';
 import '../../../helpers/custom_toast.dart';
+import '../../../helpers/di.dart';
 
 @lazySingleton
 class HandleErrors {
@@ -81,5 +86,6 @@ class HandleErrors {
     prefs.remove("user");
     CustomToast.showSnakeBar(tr('noPermission'));
     // Phoenix.rebirth(getIt<BuildContext>());
+    AutoRouter.of(getIt<GlobalContext>().context()).push(const SplashRoute());
   }
 }

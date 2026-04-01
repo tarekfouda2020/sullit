@@ -58,6 +58,7 @@ class Product extends BaseDomainModel {
   bool? showProductCounter;
   bool? hasShareholderDiscount;
   int? addedQtyToCart;
+  int? maxQnt;
 
   Product(
       {this.id,
@@ -104,6 +105,7 @@ class Product extends BaseDomainModel {
       this.showProductCounter = false,
       this.addedQtyToCart = 0,
       this.hasSpecialLoyaltyPoints,
+      this.maxQnt,
       this.isAddedTCompare = false});
 
   Future<void> isAddedToCompare() async {
@@ -134,6 +136,7 @@ class Product extends BaseDomainModel {
     id = json['id'];
     name = json['name'];
     unit = json['unit'];
+    maxQnt = json['max_qty'];
     thumbnailImage = json['thumbnail_image'];
     images = json['images'].cast<String>();
     isMultiple = json['is_multiple'];
@@ -221,6 +224,7 @@ class Product extends BaseDomainModel {
     data['category_name'] = categoryName;
     data['brand_name'] = brandName;
     data['has_vip_offer'] = hasVipOffer;
+    data['max_qty'] = maxQnt;
     data['has_shareholder_discount'] = hasShareholderDiscount;
     return data;
   }

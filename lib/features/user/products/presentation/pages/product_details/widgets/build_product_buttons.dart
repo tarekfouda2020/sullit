@@ -12,10 +12,13 @@ class BuildProductButtons extends StatelessWidget {
     return Visibility(
       visible:
           hasVariant ? detailsModel.product.variant!.currentStock! > 0 : false,
-      child: Padding(
-        padding: const EdgeInsetsDirectional.only(
-            top: 10, bottom: 18, start: 20, end: 45),
-        child: SizedBox(
+      child: SafeArea(
+        top: false,
+        left: false,
+        right: false,
+        child: Padding(
+          padding: const EdgeInsetsDirectional.only(
+              top: 10, start: 20, end: 45),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

@@ -164,7 +164,13 @@ class ProductDetailsController implements CartSheetController {
     var price = double.parse(variantPrice!.calculablePrice!);
     price = price / qtyCubit.state.data;
     if (variantPrice.currentStock! >= 1) {
-      var isFresh = detailsCubit.state.data?.product.isFresh == true;
+      bool isFresh = detailsCubit.state.data?.product.isFresh == true;
+      int maxQnt = detailsCubit.state.data!.product.maxQnt ??0;
+      if(maxQnt == qtyCubit.state.data){
+        CustomToast.showSimpleToast(
+            msg: 'You can add up to $maxQnt items only');
+        return ;
+      }
       if (variantPrice.currentStock! > qtyCubit.state.data || isFresh) {
         var newQty = qtyCubit.state.data + (isInit ? 0 : 1);
         var priceQty = newQty * price;

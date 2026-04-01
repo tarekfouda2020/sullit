@@ -20,12 +20,7 @@ class AuthHelper {
   Future<void> onLogOut(BuildContext context) async {
     return await SetLogout().call(NoParams()).then(
           (value) async {
-        SharedPreferences pref = await SharedPreferences.getInstance();
-        pref.clear();
-        pref.remove("user");
-        context.read<DeviceCubit>().updateUserAuth(false);
-        context.read<UserCubit>().onUpdateUserData(UserDomainModel());
-        GlobalState.instance.set("token", null);
+
         CustomToast.showSimpleToast(
           msg: tr('successLoggedOut'),
           type: ToastType.success,

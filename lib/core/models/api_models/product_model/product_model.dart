@@ -25,6 +25,7 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
     @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
     required List<String> images,
     @JsonKey(name: 'is_multiple') required bool isMultiple,
+    @JsonKey(name: 'max_qty') required int? maxQnt,
     @JsonKey(name: 'price_high_low_discount')
         required String priceHighLowDiscount,
     @JsonKey(name: 'price_high_low') required String priceHighLow,
