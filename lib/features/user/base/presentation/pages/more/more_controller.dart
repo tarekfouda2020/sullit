@@ -8,6 +8,8 @@ class MoreController {
 
   late final HomeController homeController;
 
+  bool wasInBackground = false;
+
   MoreController(BuildContext context, HomeController controller) {
     // allLanguages(BuildContext context);
     homeController = controller;

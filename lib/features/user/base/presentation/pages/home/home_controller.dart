@@ -113,13 +113,17 @@ class HomeController {
         return;
       } else {
         if(index == 3 ){
-          if(saleTabsData.onSale?.isNotEmpty == true){
-            offersTabIndex = getSaleTabIndex(
-                context.isShareHolder
-                    ? SaleTabType.shareholderOffers
-                    :  SaleTabType.onSale,
-                context.isShareHolder
-            );
+          // If navigation came from a notification we already set offersTabIndex.
+          // In that case, don't override it here.
+          if(showShareHolderOffers == false){
+            if(saleTabsData.onSale?.isNotEmpty == true){
+              offersTabIndex = getSaleTabIndex(
+                  context.isShareHolder
+                      ? SaleTabType.shareholderOffers
+                      :  SaleTabType.onSale,
+                  context.isShareHolder
+              );
+            }
           }
         }
         homeTabCubit.onUpdateData(index);
@@ -128,18 +132,7 @@ class HomeController {
     });
   }
 
-  Future<void> goNotification(BuildContext context)async {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
-    if (!auth) {
-      CustomToast.showAuthDialog(context);
-      return;
-    }
-   var result =  await AutoRouter.of(context).push(const NotificationsRoute());
-    if(result == true){
-      showShareHolderOffers = true;
-      animateTabsPages(3,context);
-    }
-  }
+
 
   void checkAuth(BuildContext context) {
     bool auth = context.read<DeviceCubit>().state.model.auth;
@@ -298,7 +291,7 @@ class HomeController {
     if (!isShareHolder && show(saleTabsData.vipOffers)) {
       visibleTypes.add(SaleTabType.vipOffers);
     }
-    if (isShareHolder && (show(saleTabsData.shareholderOffers) || showShareHolderOffers)) {
+    if (isShareHolder && (show(saleTabsData.shareholderOffers))) {
       visibleTypes.add(SaleTabType.shareholderOffers);
     }
     if (show(saleTabsData.newArrival)) visibleTypes.add(SaleTabType.newArrival);
@@ -306,6 +299,7 @@ class HomeController {
     if (show(saleTabsData.bestRated)) visibleTypes.add(SaleTabType.bestRated);
 
     int index = visibleTypes.indexOf(type);
+    log("index is $index");
     return index != -1 ? index : 0;
   }
 

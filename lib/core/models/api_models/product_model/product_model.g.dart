@@ -15,6 +15,7 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       images:
           (json['images'] as List<dynamic>).map((e) => e as String).toList(),
       isMultiple: json['is_multiple'] as bool,
+      maxQnt: (json['max_qty'] as num?)?.toInt(),
       priceHighLowDiscount: json['price_high_low_discount'] as String,
       priceHighLow: json['price_high_low'] as String,
       hasDiscount: json['has_discount'] as bool,
@@ -75,6 +76,7 @@ Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) =>
       'thumbnail_image': instance.thumbnailImage,
       'images': instance.images,
       'is_multiple': instance.isMultiple,
+      'max_qty': instance.maxQnt,
       'price_high_low_discount': instance.priceHighLowDiscount,
       'price_high_low': instance.priceHighLow,
       'has_discount': instance.hasDiscount,

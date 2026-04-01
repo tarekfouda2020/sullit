@@ -2,13 +2,20 @@ import 'dart:io';
 
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:facebook_app_events/facebook_app_events.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
+import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart'
     as cat;
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:crypto/crypto.dart';
+import 'dart:convert';
 
 class FacebookEventsHelper {
   FacebookEventsHelper._();
@@ -48,6 +55,7 @@ class FacebookEventsHelper {
         currency: _currency,
         price: double.parse(price.replaceAll(",", "")),
         content: {
+          ..._userDataJson(),
           if (variantId != null) "variant_id": variantId,
           if (variantPrice != null) "variant_price": variantPrice
         });
@@ -92,7 +100,9 @@ class FacebookEventsHelper {
     if (!kReleaseMode) {
       return;
     }
-    _facebookAppEvents.logEvent(name: _productDetailsOpenedName, parameters: {
+    _facebookAppEvents.logEvent(
+        name: _productDetailsOpenedName,
+        parameters: {
       "product_id": product.id,
       "product_name": product.name,
       "product_price": product.priceHighLowDiscount,
@@ -125,19 +135,34 @@ class FacebookEventsHelper {
     );
   }
 
+  String _hashData(String data) {
+    return sha256.convert(utf8.encode(data.toLowerCase().trim())).toString();
+  }
+
+
   void addUserDataEvent(UserDomainModel? data) {
     if (!kReleaseMode) {
       return;
     }
-    _facebookAppEvents.setUserData(
-      email: data?.email?.toLowerCase(),
-      firstName: data?.name?.toLowerCase(),
-      phone: data?.fullPhone?.toLowerCase(),
-      country: _countryCode,
-    );
+    if (data != null) {
+      _facebookAppEvents.setUserData(
+        email: data.email,
+        firstName: data.name,
+        phone: data.phone,
+        country: _countryCode,
+      );
+      //  _facebookAppEvents.setUserData(
+      //   email: data.email != null ? _hashData(data.email!) : null,
+      //   firstName: data.name != null ? _hashData(data.name!.split(' ').first) : null,
+      //   lastName: data.name != null && data.name!.split('').length > 1
+      //       ? _hashData(data.name!.split(' ').last)
+      //       : null,
+      //   phone: data.phone != null ? _hashData(data.phone!) : null,
+      // );
+    }
   }
 
-  void clearUserData(UserDomainModel? data) {
+  void clearUserData() {
     if (!kReleaseMode) {
       return;
     }
@@ -187,6 +212,11 @@ class FacebookEventsHelper {
     }
   }
 
+  UserDomainModel? _userData() {
+    BuildContext ctx = getIt<GlobalContext>().context();
+    return ctx.read<UserCubit>().state.model;
+  }
+
   void productShareEvent(
       {required int productId, required String productName}) {
     if (!kReleaseMode) {
@@ -199,5 +229,15 @@ class FacebookEventsHelper {
         'product_name': productName,
       },
     );
+  }
+  Map<String, dynamic> _userDataJson() {
+    UserDomainModel? data = _userData();
+    return data != null
+        ? {
+            "user_name": data.name,
+            "user_id": data.id,
+            "user_email": data.email,
+          }
+        : {};
   }
 }

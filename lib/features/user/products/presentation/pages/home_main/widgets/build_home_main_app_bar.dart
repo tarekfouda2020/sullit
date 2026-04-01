@@ -1,15 +1,14 @@
 part of 'home_main_widgets_imports.dart';
 
 class BuildHomeMainAppBar extends StatelessWidget {
-  final HomeController controller;
   final HomeMainController homeMainController;
-  const BuildHomeMainAppBar({Key? key, required this.controller, required this.homeMainController})
+  const BuildHomeMainAppBar({Key? key, required this.homeMainController})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-      bloc: controller.visibleSearch,
+      bloc: homeMainController.homeController.visibleSearch,
       builder: (context, state) {
         return Container(
           padding: const EdgeInsets.only(top: 10,left: 16,right: 16, bottom: 6),
@@ -21,7 +20,7 @@ class BuildHomeMainAppBar extends StatelessWidget {
                   fieldTypes: FieldTypes.normal,
                   hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
                   type: TextInputType.text,
-                  controller: controller.searchController,
+                  controller: homeMainController.homeController.searchController,
                   action: TextInputAction.search,
                   radius: const BorderRadius.all(Radius.circular(30)),
                   validate: (value) {},
@@ -64,7 +63,7 @@ class BuildHomeMainAppBar extends StatelessWidget {
               //   ),
               // ),
               GestureDetector(
-                onTap: () => controller.goNotification(context),
+                onTap: () => homeMainController.goNotification(context),
                 child: Container(
                   height: 35,
                   width: 35,

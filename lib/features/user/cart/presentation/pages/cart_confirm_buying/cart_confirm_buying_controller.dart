@@ -15,6 +15,7 @@ class ConfirmBuyingController{
   ConfirmBuyingController (OrderSummary? summary, int? id) {
     if(summary != null){
       orderSummaryBloc.onUpdateData(summary);
+      FacebookEventsHelper.instance.purchaseEvent(double.parse(summary.summary!.totalOrderAmount));
       addCheckOutEvent(summary);
     }else if(id != null){
       getCombinedOrder(id);
@@ -29,7 +30,9 @@ class ConfirmBuyingController{
 
     if (data != null) {
       orderSummaryBloc.onUpdateData(data);
-
+      if(data.summary!= null){
+        FacebookEventsHelper.instance.purchaseEvent(double.parse(data.summary!.totalOrderAmount));
+      }
       _logCheckoutOnce(data);
     }
   }

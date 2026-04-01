@@ -158,12 +158,18 @@ class ProductDetailsController implements CartSheetController {
     var price = double.parse(variantPrice!.calculablePrice!);
     price = price / qtyCubit.state.data;
     if (variantPrice.currentStock! >= 1) {
-      if (variantPrice.currentStock! > qtyCubit.state.data) {
+      bool isFresh = detailsCubit.state.data?.product.isFresh == true;
+      int maxQnt = detailsCubit.state.data!.product.maxQnt ??0;
+      if(maxQnt == qtyCubit.state.data){
+        CustomToast.showSimpleToast(
+            msg: 'You can add up to $maxQnt items only');
+        return ;
+      }
+      if (variantPrice.currentStock! > qtyCubit.state.data || isFresh) {
         var newQty = qtyCubit.state.data + (isInit ? 0 : 1);
         var priceQty = newQty * price;
         variantPrice.calculablePrice = priceQty.toStringAsFixed(2);
         qtyCubit.onUpdateData(newQty);
-        detailsCubit.onUpdateData(detailsCubit.state.data);
         calculateRemainingAmount();
       } else {
         CustomToast.showSimpleToast(msg: "${tr('only')} ${variantPrice.currentStock} available in stock");
@@ -182,7 +188,6 @@ class ProductDetailsController implements CartSheetController {
       var newQty = qtyCubit.state.data - 1;
       variantPrice.calculablePrice = priceQty.toStringAsFixed(2);
       qtyCubit.onUpdateData(newQty);
-      detailsCubit.onUpdateData(detailsCubit.state.data);
       calculateRemainingAmount();
     }
     // if(qtyCubit.state.data == 1){
