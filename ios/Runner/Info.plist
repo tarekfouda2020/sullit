@@ -141,7 +141,7 @@
     <!-- Associated Domains for Universal Links -->
     <key>com.apple.developer.associated-domains</key>
     <array>
-        <string>applinks:web.staging.mushrifcoop.com</string>
+        <string>applinks:mushrifcoop.com</string>
     </array>
 </dict>
 </plist>
