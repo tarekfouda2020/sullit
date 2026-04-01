@@ -50,6 +50,7 @@ import 'package:flutter_tdd/features/user/products/presentation/manager/products
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
 import 'package:flutter_tdd/res.dart';
 
+import '../../../../../../../core/widgets/custom_safe_are.dart';
 import '../product_details_imports.dart';
 
 part 'build_attribute_items.dart';

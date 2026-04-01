@@ -15,7 +15,6 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       images:
           (json['images'] as List<dynamic>).map((e) => e as String).toList(),
       isMultiple: json['is_multiple'] as bool,
-      maxQnt: (json['max_qty'] as num?)?.toInt(),
       priceHighLowDiscount: json['price_high_low_discount'] as String,
       priceHighLow: json['price_high_low'] as String,
       hasDiscount: json['has_discount'] as bool,
@@ -54,6 +53,7 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       rating: json['rating'] as num,
       sales: (json['sales'] as num).toInt(),
       sellerId: (json['seller_id'] as num).toInt(),
+      maxQntPerOrder: (json['max_qty'] as num?)?.toInt(),
       brand: json['brand'] == null
           ? null
           : BrandModel.fromJson(json['brand'] as Map<String, dynamic>),
@@ -76,7 +76,6 @@ Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) =>
       'thumbnail_image': instance.thumbnailImage,
       'images': instance.images,
       'is_multiple': instance.isMultiple,
-      'max_qty': instance.maxQnt,
       'price_high_low_discount': instance.priceHighLowDiscount,
       'price_high_low': instance.priceHighLow,
       'has_discount': instance.hasDiscount,
@@ -103,6 +102,7 @@ Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) =>
       'rating': instance.rating,
       'sales': instance.sales,
       'seller_id': instance.sellerId,
+      'max_qty': instance.maxQntPerOrder,
       'brand': instance.brand?.toJson(),
       'description': instance.description,
       'video_provider': instance.videoProvider,

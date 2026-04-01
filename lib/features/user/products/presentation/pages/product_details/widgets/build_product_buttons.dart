@@ -12,10 +12,7 @@ class BuildProductButtons extends StatelessWidget {
     return Visibility(
       visible:
           hasVariant ? detailsModel.product.variant!.currentStock! > 0 : false,
-      child: SafeArea(
-        top: false,
-        left: false,
-        right: false,
+      child: CustomBottomSafeAreaWidget(
         child: Padding(
           padding: const EdgeInsetsDirectional.only(
               top: 10, start: 20, end: 45),
@@ -78,8 +75,7 @@ class BuildProductButtons extends StatelessWidget {
                 ],
               ),
               Gaps.vGap10,
-              BlocBuilder<GenericBloc<CartDomainModel>,
-                  GenericState<CartDomainModel>>(
+              BlocBuilder<GenericBloc<CartDomainModel>, GenericState<CartDomainModel>>(
                 bloc: controller.cartItemsBloc,
                 builder: (context, cartState) {
                   return BlocBuilder<GenericBloc<String>, GenericState<String>>(

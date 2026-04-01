@@ -79,29 +79,32 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                         margin: EdgeInsets.zero,
                       ),
                       Gaps.vGap14,
-                      Opacity(
-                        opacity: state.data.minimumStatus==true
-                            ?1
-                            :0.35,
-                        child: DefaultButton(
-                          title: "",
-                          onTap: state.data.minimumStatus==true
-                              ? () => checkOut(state.data)
-                              : (){},
-                          margin: EdgeInsets.zero,
-                          customLabel: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("${tr('checkout')} : ",
-                              style: AppTextStyle.s18_w700(color: context.colors.white),
-                              ),
-                              Text(state.data.subTotal ?? "",
+                      CustomBottomSafeAreaWidget(
+                        iosPaddingBottom: 10,
+                        child: Opacity(
+                          opacity: state.data.minimumStatus==true
+                              ?1
+                              :0.35,
+                          child: DefaultButton(
+                            title: "",
+                            onTap: state.data.minimumStatus==true
+                                ? () => checkOut(state.data)
+                                : (){},
+                            margin: EdgeInsets.zero,
+                            customLabel: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("${tr('checkout')} : ",
                                 style: AppTextStyle.s18_w700(color: context.colors.white),
-                              ).withDirhamSymbol(
-                                symbolStyle: AppTextStyle.s20_w300(color: context.colors.white)
-                              ),
-                            ],
+                                ),
+                                Text(state.data.subTotal ?? "",
+                                  style: AppTextStyle.s18_w700(color: context.colors.white),
+                                ).withDirhamSymbol(
+                                  symbolStyle: AppTextStyle.s20_w300(color: context.colors.white)
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

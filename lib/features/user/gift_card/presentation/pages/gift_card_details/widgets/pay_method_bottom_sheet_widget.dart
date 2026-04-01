@@ -44,15 +44,18 @@ class PayMethodBottomSheetWidget extends StatelessWidget {
                     ),
                     Gaps.vGap15,
                     if (_isItemSelected(state.data))
-                      DefaultButton(
-                        onTap: onPressProcess,
-                        title: tr("processPayment"),
-                        height: 50,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: context.colors.primary,
-                        textColor: context.colors.white,
-                        margin: EdgeInsets.zero,
+                      CustomBottomSafeAreaWidget(
+                        iosPaddingBottom: 10,
+                        child: DefaultButton(
+                          onTap: onPressProcess,
+                          title: tr("processPayment"),
+                          height: 50,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: context.colors.primary,
+                          textColor: context.colors.white,
+                          margin: EdgeInsets.zero,
+                        ),
                       )
                   ]),
                 );

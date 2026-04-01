@@ -37,7 +37,7 @@ class _WishlistState extends State<Wishlist> {
           productModel: item,
           onFavRefresh: () => controller.onChangeFav(item),
           onRefresh: () => controller.getWishlist(),
-          afterAddToCart:  () => getIt<CartHelper>().showCartSuccessSheet(context),
+          // afterAddToCart:  () => getIt<CartHelper>().showCartSuccessSheet(context),
         ),
         loadingWidget: const BuildLoadingProductsGridView(),
         emptyWidget: const BuildEmptyDataImage(),

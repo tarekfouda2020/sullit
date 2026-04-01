@@ -69,7 +69,7 @@ class KeyedDebounceHelper {
 
   static final KeyedDebounceHelper instance = KeyedDebounceHelper._();
 
-  final Map<String, Timer> _timers = {};
+  final Map<String, Timer> _timers = <String, Timer>{};
 
   /// Starts an action for the given [key].
   void start({

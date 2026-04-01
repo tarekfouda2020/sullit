@@ -8,6 +8,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
+import 'package:flutter_tdd/core/helpers/user_service_helper.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -82,8 +83,7 @@ class HandleErrors {
   }
 
   void _tokenExpired() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove("user");
+    await getIt<UserServiceHelper>().clearUserData(getIt<GlobalContext>().context());
     CustomToast.showSnakeBar(tr('noPermission'));
     // Phoenix.rebirth(getIt<BuildContext>());
     AutoRouter.of(getIt<GlobalContext>().context()).push(const SplashRoute());

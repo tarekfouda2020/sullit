@@ -10,7 +10,7 @@ extension ThemeExtension on BuildContext {
 
   AppColors get colors => AppColors.of(this);
   
-  bool get isShareHolder => ((read<UserCubit>().state.model?.isShareHolder ?? false) && (read<UserCubit>().state.model?.hasValidSubscription ?? false) );
+  bool get isShareHolder => ((read<UserCubit>().state.model?.isShareHolder == true) && (read<UserCubit>().state.model?.hasValidSubscription == true) );
 
-  bool get isVipUser => read<UserCubit>().state.model?.hasValidSubscription ?? false;
+  bool get isVipUser => read<UserCubit>().state.model?.hasValidSubscription  == true;
 }

@@ -44,6 +44,7 @@ import 'package:flutter_tdd/res.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:flutter_tdd/core/widgets/grid_view_pagination.dart';
 
+import '../../../../../../../core/widgets/custom_safe_are.dart';
 import '../../../../../products/domain/models/shop.dart';
 
 part 'build_all_categories_view.dart';

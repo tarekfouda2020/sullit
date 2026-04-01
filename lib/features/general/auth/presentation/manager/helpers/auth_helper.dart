@@ -20,27 +20,33 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthHelper {
   Future<void> onLogOut(BuildContext context) async {
     return await SetLogout().call(NoParams()).then(
-          (value) async {
-
+      (value) async {
+        await clearUserData(context);
         CustomToast.showSimpleToast(
           msg: tr('successLoggedOut'),
           type: ToastType.success,
         );
+
         AutoRouter.of(context).push(
-           HomeRoute(index: 0),
+          HomeRoute(index: 0),
         );
       },
     );
   }
+
+  Future<void> clearUserData(BuildContext context) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.clear();
+    pref.remove("user");
+    context.read<DeviceCubit>().updateUserAuth(false);
+    context.read<UserCubit>().onUpdateUserData(UserDomainModel());
+    GlobalState.instance.set("token", null);
+  }
+
   Future<void> deleteAccount(BuildContext context) async {
     return await SetDeleteAccount().call(NoParams()).then(
-          (value) async {
-        SharedPreferences pref = await SharedPreferences.getInstance();
-        pref.clear();
-        pref.remove("user");
-        context.read<DeviceCubit>().updateUserAuth(false);
-        context.read<UserCubit>().onUpdateUserData(UserDomainModel());
-        GlobalState.instance.set("token", null);
+      (value) async {
+        await clearUserData(context);
         CustomToast.showSimpleToast(
           msg: tr('successDeletedAccount'),
           type: ToastType.success,
@@ -52,5 +58,4 @@ class AuthHelper {
       },
     );
   }
-
 }

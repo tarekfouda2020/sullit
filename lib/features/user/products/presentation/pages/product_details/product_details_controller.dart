@@ -159,7 +159,7 @@ class ProductDetailsController implements CartSheetController {
     price = price / qtyCubit.state.data;
     if (variantPrice.currentStock! >= 1) {
       bool isFresh = detailsCubit.state.data?.product.isFresh == true;
-      int maxQnt = detailsCubit.state.data!.product.maxQnt ??0;
+      int maxQnt = detailsCubit.state.data!.product.maxQnt ?? 0;
       if(maxQnt == qtyCubit.state.data){
         CustomToast.showSimpleToast(
             msg: 'You can add up to $maxQnt items only');

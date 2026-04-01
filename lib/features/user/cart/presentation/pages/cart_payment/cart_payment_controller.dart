@@ -114,7 +114,7 @@ class CartPaymentController {
     updateData();
   }
 
-  Future<void> applyCoupon() async {
+  Future<void> applyCoupon() async { 
     if (couponFormKey.currentState!.validate()) {
       var data = await ApplyCoupon().call(coupon.text);
       if (data != null) {

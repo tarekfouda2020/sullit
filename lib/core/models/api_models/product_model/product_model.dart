@@ -25,7 +25,6 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
     @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
     required List<String> images,
     @JsonKey(name: 'is_multiple') required bool isMultiple,
-    @JsonKey(name: 'max_qty') required int? maxQnt,
     @JsonKey(name: 'price_high_low_discount')
         required String priceHighLowDiscount,
     @JsonKey(name: 'price_high_low') required String priceHighLow,
@@ -54,6 +53,7 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
     required num rating,
     required int sales,
     @JsonKey(name: 'seller_id') required int sellerId,
+    @JsonKey(name: 'max_qty') required int? maxQntPerOrder,
     BrandModel? brand,
     String? description,
     @JsonKey(name: 'video_provider') String? videoProvider,
@@ -113,6 +113,7 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
       loyaltyPoints: loyaltyPoints ,
       hasSpecialLoyaltyPoints:hasSpecialLoyaltyPoints ,
       isFresh: isFresh ,
+      maxQnt: maxQntPerOrder
     );
   }
 }
