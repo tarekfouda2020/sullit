@@ -100,7 +100,9 @@ class FacebookEventsHelper {
     if (!kReleaseMode) {
       return;
     }
-    _facebookAppEvents.logEvent(name: _productDetailsOpenedName, parameters: {
+    _facebookAppEvents.logEvent(
+        name: _productDetailsOpenedName,
+        parameters: {
       "product_id": product.id,
       "product_name": product.name,
       "product_price": product.priceHighLowDiscount,
@@ -143,18 +145,24 @@ class FacebookEventsHelper {
       return;
     }
     if (data != null) {
-       _facebookAppEvents.setUserData(
-        email: data.email != null ? _hashData(data.email!) : null,
-        firstName: data.name != null ? _hashData(data.name!.split(' ').first) : null,
-        lastName: data.name != null && data.name!.split('').length > 1
-            ? _hashData(data.name!.split(' ').last)
-            : null,
-        phone: data.phone != null ? _hashData(data.phone!) : null,
+      _facebookAppEvents.setUserData(
+        email: data.email,
+        firstName: data.name,
+        phone: data.phone,
+        country: _countryCode,
       );
+      //  _facebookAppEvents.setUserData(
+      //   email: data.email != null ? _hashData(data.email!) : null,
+      //   firstName: data.name != null ? _hashData(data.name!.split(' ').first) : null,
+      //   lastName: data.name != null && data.name!.split('').length > 1
+      //       ? _hashData(data.name!.split(' ').last)
+      //       : null,
+      //   phone: data.phone != null ? _hashData(data.phone!) : null,
+      // );
     }
   }
 
-  void clearUserData(UserDomainModel? data) {
+  void clearUserData() {
     if (!kReleaseMode) {
       return;
     }
