@@ -101,6 +101,10 @@ class CartNavigateHelper {
     cartCheckOutPageData.driverNotes = driverNotes;
   }
 
+  void updatePickerNotes({String driverNotes = ""}){
+    cartCheckOutPageData.pickerNotes = driverNotes;
+  }
+
   void updateReplacementStatus( bool allowReplace){
     cartCheckOutPageData.allowReplacement = allowReplace;
   }

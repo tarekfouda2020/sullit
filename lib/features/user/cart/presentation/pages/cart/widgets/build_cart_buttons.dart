@@ -12,15 +12,13 @@ class BuildCartButtons extends StatelessWidget {
       visible: cartModel.items!.isNotEmpty,
       child: Container(
         color: context.colors.cartBg,
+        margin: const EdgeInsets.only(bottom: 10),
         padding:  const EdgeInsetsDirectional.only(
           start: 15,
           top: 20,
           end: 40,
         ),
-        child: SafeArea(
-          top: false,
-          left: false,
-          right: false,
+        child: CustomBottomSafeAreaWidget(
           child: Row(
             children: [
               Expanded(

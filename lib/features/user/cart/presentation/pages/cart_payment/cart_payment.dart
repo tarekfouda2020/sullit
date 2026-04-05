@@ -61,6 +61,9 @@ class _CartPaymentState extends State<CartPayment> {
                         Gaps.vGap12,
                         // DriverTipsWidget(controller: controller),
                         // Gaps.vGap16,
+                        PickerNotesWidget(controller: controller),
+                        Gaps.vGap16,
+                        // Gaps.vGap16,
                         // const NearestVipCartWidget(),
                         // Gaps.vGap12,
                         InvoiceSummaryWidget(

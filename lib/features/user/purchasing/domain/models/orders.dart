@@ -54,6 +54,7 @@ class Orders extends BaseDomainModel {
   int expectedLoyaltyPoints;
   String environmentFees;
   String? driverNotes;
+  String? pickerNotes;
   OrderDriverDomainModel? driverModel;
   List<DeliveryInstructionModel>? instructions;
   List<OrderDiscountDomain>? orderDiscounts;
@@ -106,6 +107,7 @@ class Orders extends BaseDomainModel {
      this.driverNotes,
      this.instructions,
      this.orderDiscounts,
+     this.pickerNotes,
   });
 
   int totalItemsCount() => orderDetails.fold(0, (previousValue, element) => previousValue + element.quantity);

@@ -18,24 +18,26 @@ class BuildShippingButtons extends StatelessWidget {
         ],
       ),
       padding:  const EdgeInsets.all(Dimens.dp15),
-      child : Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          DefaultButton(
-            title: tr('continueToDelivery'),
-            color: context.colors.primary,
-            margin: const EdgeInsets.only(bottom: 20),
-            onTap: () => controller.cartAddAddress(context),
-          ),
-          DefaultButton(
-            title: tr('returnToShop'),
-            borderColor: context.colors.primary,
-            textColor: context.colors.primary,
-            color: context.colors.white,
-            margin: EdgeInsets.zero,
-            onTap: () => AutoRouter.of(context).push(HomeRoute(index: 0)),
-          ),
-        ],
+      child : CustomBottomSafeAreaWidget(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            DefaultButton(
+              title: tr('continueToDelivery'),
+              color: context.colors.primary,
+              margin: const EdgeInsets.only(bottom: 20),
+              onTap: () => controller.cartAddAddress(context),
+            ),
+            DefaultButton(
+              title: tr('returnToShop'),
+              borderColor: context.colors.primary,
+              textColor: context.colors.primary,
+              color: context.colors.white,
+              margin: EdgeInsets.zero,
+              onTap: () => AutoRouter.of(context).push(HomeRoute(index: 0)),
+            ),
+          ],
+        ),
       ),
       // child: Row(
       //   children: [

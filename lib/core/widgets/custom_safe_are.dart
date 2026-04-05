@@ -21,7 +21,7 @@ class CustomBottomSafeAreaWidget extends StatelessWidget {
           padding:  EdgeInsets.only(
               bottom: Platform.isIOS
                   ? iosPaddingBottom ?? 30
-                  :0),
+                  :5),
           child: child,
         )
     );

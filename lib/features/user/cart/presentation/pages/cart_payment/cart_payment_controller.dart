@@ -14,6 +14,7 @@ class CartPaymentController {
   final TextEditingController giftCardCode = TextEditingController();
   final TextEditingController driverTipCtr = TextEditingController();
   final TextEditingController driverNotesCtr = TextEditingController();
+  final TextEditingController pickerNotesCtr = TextEditingController();
 
   final GenericBloc<Shipping?> shippingBloc = GenericBloc<Shipping?>(null);
   final GenericBloc<FessMechanismModel?> feesCubit = GenericBloc<FessMechanismModel?>(null);
@@ -77,6 +78,7 @@ class CartPaymentController {
     giftCardCode.text = pageSavedData.giftCardCode?? "";
     coupon.text = pageSavedData.voucherCode ?? "";
     driverNotesCtr.text = pageSavedData.driverNotes ?? "";
+    pickerNotesCtr.text = pageSavedData.pickerNotes ?? "";
     allowReplacementCubit.onUpdateData(pageSavedData.allowReplacement ?? false);
     conditionsCubit.onUpdateData(pageSavedData.termsAccept ?? false);
     bool noPayOptionsSelected = pageSavedData.orderSummaryCheckOut!.paymentOption!.every((element) => !element.selected,);
@@ -294,7 +296,8 @@ class CartPaymentController {
       giftCardCode: giftCardCode.text.trim(),
       allowReplacement: allowReplacementCubit.state.data ? 1 : 0,
       instructions: _selectedInstructions(),
-      driverNotes: driverNotesCtr.text
+      driverNotes: driverNotesCtr.text,
+      pickerNotes: pickerNotesCtr.text
     );
   }
 
@@ -609,6 +612,12 @@ class CartPaymentController {
     getIt<CartNavigateHelper>().updateDriverInstructions(
       instruction: _selectedInstructions(),
       driverNotes: driverNotesCtr.text
+    );
+  }
+
+  void whileEnterPickerNotes(){
+    getIt<CartNavigateHelper>().updatePickerNotes(
+        driverNotes: pickerNotesCtr.text
     );
   }
 
