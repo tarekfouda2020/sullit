@@ -22,6 +22,10 @@ SliderModel _$SliderModelFromJson(Map<String, dynamic> json) {
 mixin _$SliderModel {
   @JsonKey(name: "photo")
   String get photo => throw _privateConstructorUsedError;
+  @JsonKey(name: "link_type")
+  String get linkType => throw _privateConstructorUsedError;
+  @JsonKey(name: "value", fromJson: valueFromJson, toJson: valueToJson)
+  FlexibleValue? get value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +39,11 @@ abstract class $SliderModelCopyWith<$Res> {
           SliderModel value, $Res Function(SliderModel) then) =
       _$SliderModelCopyWithImpl<$Res, SliderModel>;
   @useResult
-  $Res call({@JsonKey(name: "photo") String photo});
+  $Res call(
+      {@JsonKey(name: "photo") String photo,
+      @JsonKey(name: "link_type") String linkType,
+      @JsonKey(name: "value", fromJson: valueFromJson, toJson: valueToJson)
+      FlexibleValue? value});
 }
 
 /// @nodoc
@@ -52,12 +60,22 @@ class _$SliderModelCopyWithImpl<$Res, $Val extends SliderModel>
   @override
   $Res call({
     Object? photo = null,
+    Object? linkType = null,
+    Object? value = freezed,
   }) {
     return _then(_value.copyWith(
       photo: null == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
               as String,
+      linkType: null == linkType
+          ? _value.linkType
+          : linkType // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: freezed == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as FlexibleValue?,
     ) as $Val);
   }
 }
@@ -70,7 +88,11 @@ abstract class _$$_SliderModelCopyWith<$Res>
       __$$_SliderModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: "photo") String photo});
+  $Res call(
+      {@JsonKey(name: "photo") String photo,
+      @JsonKey(name: "link_type") String linkType,
+      @JsonKey(name: "value", fromJson: valueFromJson, toJson: valueToJson)
+      FlexibleValue? value});
 }
 
 /// @nodoc
@@ -85,12 +107,22 @@ class __$$_SliderModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? photo = null,
+    Object? linkType = null,
+    Object? value = freezed,
   }) {
     return _then(_$_SliderModel(
       photo: null == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
               as String,
+      linkType: null == linkType
+          ? _value.linkType
+          : linkType // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: freezed == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as FlexibleValue?,
     ));
   }
 }
@@ -99,7 +131,11 @@ class __$$_SliderModelCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$_SliderModel extends _SliderModel {
-  const _$_SliderModel({@JsonKey(name: "photo") required this.photo})
+  const _$_SliderModel(
+      {@JsonKey(name: "photo") required this.photo,
+      @JsonKey(name: "link_type") required this.linkType,
+      @JsonKey(name: "value", fromJson: valueFromJson, toJson: valueToJson)
+      required this.value})
       : super._();
 
   factory _$_SliderModel.fromJson(Map<String, dynamic> json) =>
@@ -108,10 +144,16 @@ class _$_SliderModel extends _SliderModel {
   @override
   @JsonKey(name: "photo")
   final String photo;
+  @override
+  @JsonKey(name: "link_type")
+  final String linkType;
+  @override
+  @JsonKey(name: "value", fromJson: valueFromJson, toJson: valueToJson)
+  final FlexibleValue? value;
 
   @override
   String toString() {
-    return 'SliderModel(photo: $photo)';
+    return 'SliderModel(photo: $photo, linkType: $linkType, value: $value)';
   }
 
   @override
@@ -119,12 +161,15 @@ class _$_SliderModel extends _SliderModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SliderModel &&
-            (identical(other.photo, photo) || other.photo == photo));
+            (identical(other.photo, photo) || other.photo == photo) &&
+            (identical(other.linkType, linkType) ||
+                other.linkType == linkType) &&
+            (identical(other.value, value) || other.value == value));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, photo);
+  int get hashCode => Object.hash(runtimeType, photo, linkType, value);
 
   @JsonKey(ignore: true)
   @override
@@ -142,7 +187,10 @@ class _$_SliderModel extends _SliderModel {
 
 abstract class _SliderModel extends SliderModel {
   const factory _SliderModel(
-      {@JsonKey(name: "photo") required final String photo}) = _$_SliderModel;
+      {@JsonKey(name: "photo") required final String photo,
+      @JsonKey(name: "link_type") required final String linkType,
+      @JsonKey(name: "value", fromJson: valueFromJson, toJson: valueToJson)
+      required final FlexibleValue? value}) = _$_SliderModel;
   const _SliderModel._() : super._();
 
   factory _SliderModel.fromJson(Map<String, dynamic> json) =
@@ -151,6 +199,12 @@ abstract class _SliderModel extends SliderModel {
   @override
   @JsonKey(name: "photo")
   String get photo;
+  @override
+  @JsonKey(name: "link_type")
+  String get linkType;
+  @override
+  @JsonKey(name: "value", fromJson: valueFromJson, toJson: valueToJson)
+  FlexibleValue? get value;
   @override
   @JsonKey(ignore: true)
   _$$_SliderModelCopyWith<_$_SliderModel> get copyWith =>

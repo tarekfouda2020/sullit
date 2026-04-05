@@ -1,10 +1,10 @@
 part of 'category_details_imports.dart';
 
 class CategoryDetails extends StatefulWidget {
-  final Category categoryModel;
+  final Category? categoryModel;
   final bool fromHome;
-
-  const CategoryDetails({super.key, required this.categoryModel, this.fromHome = false});
+ final int? catId;
+  const CategoryDetails({super.key,  this.categoryModel, this.fromHome = false, this.catId});
 
   @override
   _CategoryDetailsState createState() => _CategoryDetailsState();
@@ -16,7 +16,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   void initState() {
     super.initState();
-    controller = CategoryDetailsController(context, widget.categoryModel);
+    controller = CategoryDetailsController(context, widget.categoryModel,widget.catId);
   }
 
   @override

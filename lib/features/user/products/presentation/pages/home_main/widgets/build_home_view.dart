@@ -19,7 +19,7 @@ class BuildHomeView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            BuildHomeSwiper(slider: homeDomainModel.sliders),
+            BuildHomeSwiper(slider: homeDomainModel.sliders, controller: controller),
             Gaps.vGap25,
             const AdvantagesWidget(),
             Gaps.vGap20,

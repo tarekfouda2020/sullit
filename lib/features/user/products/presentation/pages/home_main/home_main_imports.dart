@@ -32,6 +32,7 @@ import 'package:flutter_tdd/features/user/sale/domain/entities/timer_entity.dart
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import '../../../../../../core/helpers/helper_methods.dart';
 import '../../../../../../core/models/domain_models/brand_domain_model.dart';
 import '../../../../../../core/widgets/my_scaffold.dart';
 import '../../../../category/domain/entities/brands_params.dart';
@@ -43,6 +44,8 @@ import '../../../../sale/domain/use_cases/get_vip_offers.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/offers_params_widget.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tab_type.dart';
+
+import '../../../domain/models/slider_domain_model.dart';
 
 part 'home_main.dart';
 part 'home_main_controller.dart';

@@ -380,6 +380,43 @@ class HomeMainController {
     }
   }
 
+
+
+
+  void onSwiperTapped(BuildContext context,SliderDomainModel model){
+    if(model.value == null || model.value?.trim().isEmpty == true){
+      return ;
+    }
+    switch(model.getLinkType){
+      case LinkTypeEnum.product:
+        routeTpProductDetails(context, model.value!);
+      case LinkTypeEnum.externalLink:
+        HelperMethods.instance.launchURL(url: model.value!);
+      case LinkTypeEnum.category:
+        routeTpCategoryDetails(context, model.value!);
+    }
+  }
+
+
+  void routeTpProductDetails(BuildContext context,String id){
+    try{
+      var prodId = int.parse(id);
+      AutoRouter.of(context).push(ProductDetailsRoute(productId: prodId, isResale: false, isFav: false));
+    }catch(e){
+      log("error while route to product details");
+    }
+  }
+
+  void routeTpCategoryDetails(BuildContext context,String id){
+    try{
+      var catId = int.parse(id);
+      AutoRouter.of(context).push(CategoryDetailsRoute(catId:catId,fromHome: true));
+    }catch(e){
+      log("error while route to category details");
+    }
+  }
+
+
 //
 // Future<void> scanSkuNumber() async {
 //   try {
