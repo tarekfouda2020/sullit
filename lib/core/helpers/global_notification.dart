@@ -69,7 +69,8 @@ class GlobalNotification {
         if (message.data['item_type'] == NotifyEnum.newLogin.getValue()) {
           var context = getIt<GlobalContext>().context();
           getIt<UserServiceHelper>().clearUserData(context);
-          AutoRouter.of(context).push(const SplashRoute());
+          // AutoRouter.of(context).push(const SplashRoute());
+          AutoRouter.of(context).push(const LoginRoute());
         }
         var itemType = message.data['item_type'];
         var isOrder = itemType ==  NotifyEnum.order.getValue();
