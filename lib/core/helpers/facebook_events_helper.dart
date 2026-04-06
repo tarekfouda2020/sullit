@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
+import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
@@ -48,14 +49,14 @@ class FacebookEventsHelper {
     String? variantId,
     String? variantPrice,
   }) async {
-    // if (!kReleaseMode) {
-    //   return;
-    // }
+    if (!kReleaseMode) {
+      return;
+    }
     await _facebookAppEvents.logAddToCart(
         id: id.toString(),
         type: _product,
         currency: _currency,
-        price: double.parse(price.replaceAll(",", "")),
+        price: double.parse(price.cleanNumber()),
         content: {
           ..._userDataJson(),
           if (variantId != null) "variant_id": variantId,
