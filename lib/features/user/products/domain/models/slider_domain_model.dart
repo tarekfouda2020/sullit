@@ -1,5 +1,7 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 
+import '../../data/enum/banner_link_type_enum.dart';
+
 class SliderDomainModel extends BaseDomainModel {
   final String photo;
   final String linkType;
@@ -23,19 +25,4 @@ class SliderDomainModel extends BaseDomainModel {
         return LinkTypeEnum.externalLink;
     }
   }
-}
-
-enum LinkTypeEnum {
-  product,
-
-  externalLink,
-
-  category;
-
-  bool get isCategory => this == LinkTypeEnum.category;
-
-  bool get isExternal => this == LinkTypeEnum.externalLink;
-
-  bool get isProduct => this == LinkTypeEnum.product;
-
 }

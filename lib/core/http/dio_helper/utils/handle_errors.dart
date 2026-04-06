@@ -21,6 +21,7 @@ import '../../../helpers/di.dart';
 
 @lazySingleton
 class HandleErrors {
+  bool routeToLogin = false;
   void catchError({Response? response, required Function(dynamic) errorFunc}) {
     if (response == null) {
       log("failed response Check Server");
@@ -79,6 +80,7 @@ class HandleErrors {
       );
       return Left(ServerFailure());
     }
+    _updateRouteToLogin();
     return Right(response);
   }
 
@@ -86,6 +88,18 @@ class HandleErrors {
     await getIt<UserServiceHelper>().clearUserData(getIt<GlobalContext>().context());
     CustomToast.showSnakeBar(tr('noPermission'));
     // Phoenix.rebirth(getIt<BuildContext>());
-    AutoRouter.of(getIt<GlobalContext>().context()).push(const SplashRoute());
+    if(routeToLogin == false){
+      AutoRouter.of(getIt<GlobalContext>().context()).push(const LoginRoute());
+      routeToLogin = true;
+    }
+
   }
+
+  void _updateRouteToLogin(){
+    if(routeToLogin){
+      routeToLogin = false;
+    }
+  }
+
+
 }

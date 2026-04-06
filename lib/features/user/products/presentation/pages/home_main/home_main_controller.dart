@@ -381,9 +381,21 @@ class HomeMainController {
   }
 
 
-
-
   void onSwiperTapped(BuildContext context,SliderDomainModel model){
+    if(model.value == null || model.value?.trim().isEmpty == true){
+      return ;
+    }
+    switch(model.getLinkType){
+      case LinkTypeEnum.product:
+        routeTpProductDetails(context, model.value!);
+      case LinkTypeEnum.externalLink:
+        HelperMethods.instance.launchURL(url: model.value!);
+      case LinkTypeEnum.category:
+        routeTpCategoryDetails(context, model.value!);
+    }
+  }
+
+  void onBannerTwoTapped(BuildContext context,BannerDomainModel model){
     if(model.value == null || model.value?.trim().isEmpty == true){
       return ;
     }

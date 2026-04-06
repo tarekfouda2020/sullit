@@ -19,6 +19,8 @@ import 'package:flutter_tdd/features/user/products/domain/use_cases/set_toggle_f
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../cart/domain/models/cart.dart';
+
 @injectable
 class ProductsHelper {
   Future<void> toggleFavourite({
@@ -213,26 +215,24 @@ class ProductsHelper {
     return cartItem;
   }
 
-  Future<bool> increaseProductAddedQntInCart(
-      BuildContext context,
-      Product product,
-      int qnt
-      ) async {
-    var cartCubit = getIt<CartHelper>().cartItemsBloc;
-    var cartList = cartCubit.state.data.items;
+  Future<bool> increaseProductAddedQntInCart(BuildContext context, Product product, int qnt) async {
+    GenericBloc<CartDomainModel> cartCubit = getIt<CartHelper>().cartItemsBloc;
+    List<CartItem>? cartList = cartCubit.state.data.items;
     if (cartList == null || cartList.isEmpty) {
       return false;
     }
 
-    var cartItems = cartList.where((element) => element.productId == product.id);
+    List<CartItem> cartItems = cartList.where((element) => element.productId == product.id).toList();
     if (cartItems.isEmpty) {
       return false;
     }
 
     CartItem cartItem = cartItems.first;
 
-    var success = await getIt<CartHelper>().updateCartItem(qnt, cartItem.id);
+    CartDomainModel? success = await getIt<CartHelper>().updateCartItem(qnt, cartItem.id);
     if(success != null){
+      FacebookEventsHelper.instance
+          .productAddToCart(id: cartItem.productId, price: cartItem.price);
       cartCubit.onUpdateData(success);
       return true;
     }

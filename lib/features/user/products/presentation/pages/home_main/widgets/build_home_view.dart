@@ -50,7 +50,7 @@ class BuildHomeView extends StatelessWidget {
             //   controller: controller,
             // ),
             if (homeDomainModel.bannersTwo.isNotEmpty) Gaps.vGap10,
-            BuildBanners(banners: homeDomainModel.bannersTwo),
+            BuildBanners(banners: homeDomainModel.bannersTwo, controller: controller),
             Gaps.vGap16,
             NewArrivalOffersFormWidget(controller: controller),
             if(controller.homeCubit.state.data?.shop.isNotEmpty == true)
@@ -72,7 +72,7 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap16,
             OnSaleOffersFormWidget(controller: controller),
             Gaps.vGap16,
-            BuildBanners(banners: homeDomainModel.bannersOne),
+            BuildBanners(banners: homeDomainModel.bannersOne, controller: controller),
             Gaps.vGap16,
             BestRatedOffersFormWidget(controller: controller),
             // BuildFeaturedProducts(

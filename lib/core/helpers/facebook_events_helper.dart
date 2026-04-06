@@ -36,6 +36,8 @@ class FacebookEventsHelper {
 
   static const String _productDetailsOpenedName = "Product_details_opened";
 
+  static const String _userInitiateCheckout = "user_initiate_checkout";
+
   static const String _categoryOpened = "category_opened";
 
   static const String _registerMethod = "email";
@@ -46,9 +48,9 @@ class FacebookEventsHelper {
     String? variantId,
     String? variantPrice,
   }) async {
-    if (!kReleaseMode) {
-      return;
-    }
+    // if (!kReleaseMode) {
+    //   return;
+    // }
     await _facebookAppEvents.logAddToCart(
         id: id.toString(),
         type: _product,
@@ -94,7 +96,29 @@ class FacebookEventsHelper {
       totalPrice: orderPrice,
       contentId: orderId,
     );
+    _userInitCheckOut(itemsNumber: itemsNumber, orderPrice: orderPrice, orderId: orderId);
   }
+
+
+  void _userInitCheckOut({
+    required int itemsNumber,
+    required double orderPrice,
+    required String orderId,
+  } ){
+    if (!kReleaseMode) {
+      return;
+    }
+    _facebookAppEvents.logEvent(
+        name: _userInitiateCheckout,
+        parameters: {
+          "items_number" : itemsNumber,
+          "order_price" : orderPrice,
+          "order_id" : orderId,
+         ..._userDataJson()
+        }
+    );
+  }
+
 
   void productDetailsOpened(Product product) {
     if (!kReleaseMode) {

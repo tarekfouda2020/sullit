@@ -45,6 +45,8 @@ import 'package:flutter_tdd/features/user/sale/domain/entities/offers_params_wid
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tab_type.dart';
 
+import '../../../data/enum/banner_link_type_enum.dart';
+import '../../../domain/models/banner_domain_model.dart';
 import '../../../domain/models/slider_domain_model.dart';
 
 part 'home_main.dart';
