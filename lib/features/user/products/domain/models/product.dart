@@ -121,6 +121,11 @@ class Product extends BaseDomainModel {
 
   bool   get showSpecialPoints => hasSpecialLoyaltyPoints == true;
 
+  bool get isOutOfStock => (variant?.currentStock ?? 0) == 0 ;
+  // bool get isOutOfStock => (variant?.currentStock ?? 0) > 0 ;
+
+  bool get sameQntInCart => (variant?.currentStock ?? 0) == addedQtyToCart;
+
   String getPriceWhenHavePointsAndDiscount(){
     if(hasSpecialLoyaltyPoints==true){
       return priceHighLow ?? "";

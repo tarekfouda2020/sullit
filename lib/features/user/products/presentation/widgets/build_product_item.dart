@@ -27,6 +27,7 @@ import 'package:flutter_tdd/features/user/products/presentation/widgets/product_
 import 'package:flutter_tdd/features/user/products/presentation/widgets/product_image_widget.dart';
 import 'package:flutter_tdd/res.dart';
 
+import 'oou_of_stock_glass_widget.dart';
 import 'product_card_points_widget.dart';
 
 class BuildProductItem extends StatefulWidget {
@@ -95,8 +96,19 @@ class _BuildProductItemState extends State<BuildProductItem> {
             Expanded(
               child: Stack(
                 children: [
-                  ProductImageWidget(
-                    url: widget.productModel.thumbnailImage ?? "",
+                  Opacity(
+                    opacity: widget.productModel.isOutOfStock
+                        ?0.5
+                        :1,
+                    child: ProductImageWidget(
+                      url: widget.productModel.thumbnailImage ?? "",
+                    ),
+                  ),
+                  Visibility(
+                      visible: widget.productModel.isOutOfStock,
+                      child: const Align(
+                          alignment: Alignment.center,
+                          child: OutOfStockGlassWidget())
                   ),
                   Visibility(
                     // visible:widget.productModel.showSpecialPoints ,
@@ -156,11 +168,11 @@ class _BuildProductItemState extends State<BuildProductItem> {
                           //   widget.productModel,
                           //   afterAddToCart: widget.afterAddToCart,
                           // ),
-                          onTap: state.data
+                          onTap: state.data || widget.productModel.isOutOfStock
                               ? () {}
                               : () async => await _addToCart(context),
                           child: Opacity(
-                            opacity: state.data == false ? 1 : 0.5,
+                            opacity: state.data == false && widget.productModel.isOutOfStock == false ? 1 : 0.5,
                             child: Visibility(
                               visible: widget.productModel.addedQtyToCart! > 0,
                               replacement: Visibility(
@@ -377,9 +389,8 @@ class _BuildProductItemState extends State<BuildProductItem> {
   }
 
   Future<void> _addToCart(BuildContext context) async {
-    var currentStockQnt = widget.productModel.variant?.currentStock ?? 0;
-    if ((currentStockQnt) == 0 ||
-        currentStockQnt == widget.productModel.addedQtyToCart) {
+
+    if (widget.productModel.isOutOfStock ||widget.productModel.sameQntInCart) {
       CustomToast.showSimpleToast(msg: tr("outOfStock"), type: ToastType.error);
       return;
     }
@@ -391,6 +402,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
           afterAddToCart: () => _afterAddToCart());
       enableAddToCartLoading.onUpdateData(false);
     } else {
+      var currentStockQnt = widget.productModel.variant?.currentStock ?? 0;
       int qnt = widget.productModel.addedQtyToCart! + 1;
 
       if(widget.productModel.maxQnt == qnt){

@@ -18,6 +18,7 @@ import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/core/widgets/custom_radio_widget.dart';
 import 'package:flutter_tdd/core/widgets/custom_refresh_indicator_widget.dart';
+import 'package:flutter_tdd/core/widgets/custom_safe_are.dart';
 import 'package:flutter_tdd/core/widgets/dirham_currency_symbol.dart';
 import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_sheet_header_widget.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_input_label.dart';
@@ -26,6 +27,8 @@ import 'package:flutter_tdd/features/user/wallet/domain/models/wallet_types.dart
 import 'package:flutter_tdd/features/user/wallet/presentation/pages/my_wallet/my_wallet_imports.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+
+import '../../../../domain/models/wallet.dart';
 
 
 

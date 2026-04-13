@@ -8,13 +8,7 @@ class MyWallet extends StatefulWidget {
 }
 
 class _MyWalletState extends State<MyWallet> {
-  late MyWalletController controller;
-
-  @override
-  void initState() {
-    controller = MyWalletController();
-    super.initState();
-  }
+   final MyWalletController controller = MyWalletController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +22,7 @@ class _MyWalletState extends State<MyWallet> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                BuildWalletDetails(walletBalance: state.data?.walletBalance ??"0.0"),
+                BuildWalletDetails(wallet: state.data!),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(start: 20),
                   child: Text(

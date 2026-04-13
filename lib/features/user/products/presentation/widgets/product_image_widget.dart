@@ -4,7 +4,8 @@ import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 
 class ProductImageWidget extends StatefulWidget {
   final String url;
-  const ProductImageWidget({super.key, required this.url});
+  final Widget? child;
+  const ProductImageWidget({super.key, required this.url,  this.child});
 
   @override
   State<ProductImageWidget> createState() => _ProductImageWidgetState();
@@ -47,6 +48,7 @@ class _ProductImageWidgetState extends State<ProductImageWidget>
       url: _safeUrl(),
       memCacheWidth: _memCacheWidth,
       memCacheHeight: _memCacheHeight,
+      child: widget.child,
       // NO maxWidthDiskCache and maxHeightDiskCache specified
       // This prevents downloading and storing full-size images locally
       // Only decoded thumbnails are cached in memory

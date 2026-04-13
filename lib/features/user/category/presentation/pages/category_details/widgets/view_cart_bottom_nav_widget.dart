@@ -12,7 +12,7 @@ class ViewCartBottomNavWidget extends StatelessWidget {
       bloc: controller.cartItemsBloc,
       builder: (context, state) {
         return Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.only(right: 10,left: 10,top: 10),
           child: KeyboardVisibilityBuilder(
             builder: (ctx, isKeyboardVisible) {
             return Visibility(
@@ -91,7 +91,6 @@ class ViewCartBottomNavWidget extends StatelessWidget {
                         minAmount: controller.minAmountRemain,
                         sellerName: "from '${state.data.getRequiredSellerName()}'",
                       ),
-                    Gaps.vGap12,
                   ],
                 ),
               ),

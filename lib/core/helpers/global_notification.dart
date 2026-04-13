@@ -50,7 +50,7 @@ class GlobalNotification {
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       messaging.getToken().then((token) {
-        // print(token);
+        print(token);
       });
       GlobalState.instance.set(GlobalStateKeys.notificationGranted, true);
       messaging.setForegroundNotificationPresentationOptions();

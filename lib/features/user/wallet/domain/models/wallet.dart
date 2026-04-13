@@ -3,10 +3,20 @@ import 'package:flutter_tdd/features/user/wallet/domain/models/wallet_history.da
 
 class Wallet extends BaseDomainModel {
   String walletBalance;
+  String walletCredit;
   WalletRechargeHistory rechargeHistory;
 
   Wallet({
     required this.walletBalance,
+    required this.walletCredit,
     required this.rechargeHistory,
   });
+
+
+
+  bool get haveWalletCredit {
+    double? credit = double.tryParse(walletCredit);
+    return credit!= null && credit > 0.0;
+  }
+
 }
