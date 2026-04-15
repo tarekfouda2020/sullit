@@ -36,8 +36,8 @@ class BuildWalletDetails extends StatelessWidget {
                 Container(
                   width: 1,
                   height: 40,
-                  margin: const EdgeInsetsDirectional.only(end: 20),
-                  color: context.colors.customBackground,
+                  margin: const EdgeInsetsDirectional.only(end: 25),
+                  color: context.colors.drawerColor,
                 ),
                  _buildBalanceItem(
                   context,

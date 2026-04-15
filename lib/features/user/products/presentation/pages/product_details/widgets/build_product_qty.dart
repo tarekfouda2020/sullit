@@ -20,7 +20,7 @@ class BuildProductQty extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Visibility(
-              visible: (productModel.variant?.currentStock ?? 0) > 0,
+              // visible: (productModel.variant?.currentStock ?? 0) > 0,
               child: Text(
                 "${tr("quantity")} : ",
                 style: AppTextStyle.s14_w400(

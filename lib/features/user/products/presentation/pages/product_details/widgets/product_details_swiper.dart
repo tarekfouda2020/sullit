@@ -50,7 +50,7 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
           ),
           actionsPadding: EdgeInsets.zero,
           actions: [
-            BlocBuilder<GenericBloc, GenericState>(
+            BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
               bloc: showLoading,
               builder: (context, state) {
                 return Visibility(
