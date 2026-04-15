@@ -27,6 +27,7 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap10,
             BuildTopSellers(topSellers: homeDomainModel.topSellers,),
             BuildTopCategories(categories: homeDomainModel.categories, controller: controller),
+            PharmacyHomeSectionWidget(controller: controller),
             VipOffersFormWidget(controller: controller),
             Gaps.vGap16,
             VipOffersWidget(
@@ -58,7 +59,6 @@ class BuildHomeView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: BuildHeaderTitle(
                 title: tr("sellers"),
-                controller: controller,
                 onTap: () => AutoRouter.of(context).push(const BestSellersPageRoute()),
               ),
             ),

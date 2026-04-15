@@ -22,7 +22,6 @@ class BrandsFromWidget extends StatelessWidget {
                   Gaps.vGap16,
                   BuildHeaderTitle(
                     title: tr('brands'),
-                    controller: controller,
                     onTap: () => AutoRouter.of(context).push(const BrandsRoute()),
                   ),
                   Gaps.vGap8,

@@ -126,4 +126,6 @@ abstract class AppColors {
   Color get lightPink2;
 
   Color get shadowPink;
+
+  Color get oceanBlue;
 }

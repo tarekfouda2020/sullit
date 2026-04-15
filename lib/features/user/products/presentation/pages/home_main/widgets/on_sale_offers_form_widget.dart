@@ -21,7 +21,6 @@ class OnSaleOffersFormWidget extends StatelessWidget {
                 children: [
                   BuildHeaderTitle(
                     title: tr('promotions'),
-                    controller: controller,
                     onTap: () {
                       controller.changeCouponsTab(SaleTabType.onSale, context);
                       controller.homeController.animateTabsPages(3, context);

@@ -160,4 +160,7 @@ class AppDarkColors extends AppColors {
 
   @override
   Color get shadowPink => const Color(0xffFFCBCC);
+
+  @override
+  Color get oceanBlue => const Color(0xff057599);
 }

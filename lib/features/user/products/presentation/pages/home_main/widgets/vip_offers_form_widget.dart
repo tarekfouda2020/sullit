@@ -22,7 +22,6 @@ class VipOffersFormWidget extends StatelessWidget {
                   Gaps.vGap19,
                   BuildHeaderTitle(
                     title: tr('vipOffers'),
-                    controller: controller,
                     onTap: () {
                       controller.changeCouponsTab(
                           SaleTabType.vipOffers, context);

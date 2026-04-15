@@ -122,11 +122,15 @@ class Res {
   static const String doorIcon = "assets/images/door_icon.svg";
   static const String phoneOffIcon = "assets/images/avoid_call.svg";
   static const String savedAmountIcon = "assets/images/saved_amount_icon.svg";
+  static const String pharmacyImage = "assets/images/pharmcy_image.png";
 
   static const String scaffBg1 = "assets/images/scaffBg1.svg";
   static const String scaffBg2 = "assets/images/scaffBg2.svg";
   static const String whats = "assets/images/whats.png";
   static const String vouchers = "assets/images/vouchers.svg";
+  static const String healthShield = "assets/images/healt_shiled_icon.svg";
+  static const String medicRecipeIcon = "assets/images/medic_recipe_icon.svg";
+  static const String pharmacyDelivery = "assets/images/pharmacy_delivery.svg";
 
   static const String addToCartGif = "assets/images/add_cart.gif";
   static const String  onTheWay = "assets/images/delivery.gif";

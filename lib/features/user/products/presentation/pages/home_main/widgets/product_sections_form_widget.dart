@@ -18,7 +18,6 @@ class ProductSectionsFormWidget extends StatelessWidget {
               children: [
                 BuildHeaderTitle(
                   title: state.data[index].name,
-                  controller: controller,
                   onTap: () {},
                 ),
                 SingleChildScrollView(
