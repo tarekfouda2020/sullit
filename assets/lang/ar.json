@@ -473,6 +473,8 @@
   "videoViewer": "معرض الفيديو",
   "rechargeWallet": "شحن المحفظه",
   "walBalance": "رصيد المحفظه",
+  "walCredit": "رصيد الائتمان",
+  "walCashCredit": "الرصيد النقدي",
   "walRechargeHistory": "تاريخ شحن المحفظه",
   "enterVerifyCode": "أدخل كود التفعيل",
   "verify": "تفعيل",

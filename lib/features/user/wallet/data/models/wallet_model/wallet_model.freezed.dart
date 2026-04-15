@@ -22,6 +22,8 @@ WalletModel _$WalletModelFromJson(Map<String, dynamic> json) {
 mixin _$WalletModel {
   @JsonKey(name: "wallet_balance")
   String get walletBalance => throw _privateConstructorUsedError;
+  @JsonKey(name: "wallet_credit")
+  String get walletCredit => throw _privateConstructorUsedError;
   @JsonKey(name: "wallet_recharge_history")
   WalletRechargeHistoryModel get rechargedHistory =>
       throw _privateConstructorUsedError;
@@ -40,6 +42,7 @@ abstract class $WalletModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "wallet_balance") String walletBalance,
+      @JsonKey(name: "wallet_credit") String walletCredit,
       @JsonKey(name: "wallet_recharge_history")
       WalletRechargeHistoryModel rechargedHistory});
 
@@ -60,12 +63,17 @@ class _$WalletModelCopyWithImpl<$Res, $Val extends WalletModel>
   @override
   $Res call({
     Object? walletBalance = null,
+    Object? walletCredit = null,
     Object? rechargedHistory = null,
   }) {
     return _then(_value.copyWith(
       walletBalance: null == walletBalance
           ? _value.walletBalance
           : walletBalance // ignore: cast_nullable_to_non_nullable
+              as String,
+      walletCredit: null == walletCredit
+          ? _value.walletCredit
+          : walletCredit // ignore: cast_nullable_to_non_nullable
               as String,
       rechargedHistory: null == rechargedHistory
           ? _value.rechargedHistory
@@ -94,6 +102,7 @@ abstract class _$$_WalletModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "wallet_balance") String walletBalance,
+      @JsonKey(name: "wallet_credit") String walletCredit,
       @JsonKey(name: "wallet_recharge_history")
       WalletRechargeHistoryModel rechargedHistory});
 
@@ -113,12 +122,17 @@ class __$$_WalletModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? walletBalance = null,
+    Object? walletCredit = null,
     Object? rechargedHistory = null,
   }) {
     return _then(_$_WalletModel(
       walletBalance: null == walletBalance
           ? _value.walletBalance
           : walletBalance // ignore: cast_nullable_to_non_nullable
+              as String,
+      walletCredit: null == walletCredit
+          ? _value.walletCredit
+          : walletCredit // ignore: cast_nullable_to_non_nullable
               as String,
       rechargedHistory: null == rechargedHistory
           ? _value.rechargedHistory
@@ -134,6 +148,7 @@ class __$$_WalletModelCopyWithImpl<$Res>
 class _$_WalletModel extends _WalletModel {
   const _$_WalletModel(
       {@JsonKey(name: "wallet_balance") required this.walletBalance,
+      @JsonKey(name: "wallet_credit") required this.walletCredit,
       @JsonKey(name: "wallet_recharge_history") required this.rechargedHistory})
       : super._();
 
@@ -144,12 +159,15 @@ class _$_WalletModel extends _WalletModel {
   @JsonKey(name: "wallet_balance")
   final String walletBalance;
   @override
+  @JsonKey(name: "wallet_credit")
+  final String walletCredit;
+  @override
   @JsonKey(name: "wallet_recharge_history")
   final WalletRechargeHistoryModel rechargedHistory;
 
   @override
   String toString() {
-    return 'WalletModel(walletBalance: $walletBalance, rechargedHistory: $rechargedHistory)';
+    return 'WalletModel(walletBalance: $walletBalance, walletCredit: $walletCredit, rechargedHistory: $rechargedHistory)';
   }
 
   @override
@@ -159,13 +177,16 @@ class _$_WalletModel extends _WalletModel {
             other is _$_WalletModel &&
             (identical(other.walletBalance, walletBalance) ||
                 other.walletBalance == walletBalance) &&
+            (identical(other.walletCredit, walletCredit) ||
+                other.walletCredit == walletCredit) &&
             (identical(other.rechargedHistory, rechargedHistory) ||
                 other.rechargedHistory == rechargedHistory));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, walletBalance, rechargedHistory);
+  int get hashCode =>
+      Object.hash(runtimeType, walletBalance, walletCredit, rechargedHistory);
 
   @JsonKey(ignore: true)
   @override
@@ -184,6 +205,7 @@ class _$_WalletModel extends _WalletModel {
 abstract class _WalletModel extends WalletModel {
   const factory _WalletModel(
           {@JsonKey(name: "wallet_balance") required final String walletBalance,
+          @JsonKey(name: "wallet_credit") required final String walletCredit,
           @JsonKey(name: "wallet_recharge_history")
           required final WalletRechargeHistoryModel rechargedHistory}) =
       _$_WalletModel;
@@ -195,6 +217,9 @@ abstract class _WalletModel extends WalletModel {
   @override
   @JsonKey(name: "wallet_balance")
   String get walletBalance;
+  @override
+  @JsonKey(name: "wallet_credit")
+  String get walletCredit;
   @override
   @JsonKey(name: "wallet_recharge_history")
   WalletRechargeHistoryModel get rechargedHistory;

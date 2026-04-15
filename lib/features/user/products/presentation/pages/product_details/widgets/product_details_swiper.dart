@@ -50,7 +50,7 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
           ),
           actionsPadding: EdgeInsets.zero,
           actions: [
-            BlocBuilder<GenericBloc, GenericState>(
+            BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
               bloc: showLoading,
               builder: (context, state) {
                 return Visibility(
@@ -101,17 +101,27 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   onTap: () => AutoRouter.of(context).push(ImageZoomRoute(image: widget.productModel.images![index])),
-                  child: CachedImage(
-                    fit: BoxFit.contain,
-                    url: widget.productModel.images![index],
-                    placeHolder: Center(
-                      child: Image.asset(
-                        Res.emptyCart,
-                        width: 170,
-                        height: 170,
-                        fit: BoxFit.fill,
+                  child: Stack(
+                    alignment: AlignmentDirectional.bottomStart,
+                    children: [
+                      CachedImage(
+                        fit: BoxFit.contain,
+                        url: widget.productModel.images![index],
+                        placeHolder: Center(
+                          child: Image.asset(
+                            Res.emptyCart,
+                            width: 170,
+                            height: 170,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
                       ),
-                    ),
+                      if(widget.productModel.isOutOfStock)
+                      const Padding(
+                        padding: EdgeInsets.all(5),
+                        child: OutOfStockGlassWidget(),
+                      )
+                    ],
                   ),
                 );
               },
