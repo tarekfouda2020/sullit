@@ -86,3 +86,4 @@ part 'change_qty_cart_sheet_item_widget.dart';
 part 'cart_sheet_item_shimmer_widget.dart';
 part 'product_gained_points_widget.dart';
 part 'points_promo_sheet_widget.dart';
+part 'required_prescription_note_widget.dart';

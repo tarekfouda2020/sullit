@@ -16,9 +16,20 @@ class BuildProductInfo extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const RequiredPrescriptionNoteWidget(),
+            Gaps.vGap12,
             Text(
               productModel.name!,
-              style: AppTextStyle.s19_w500(
+              style: AppTextStyle.s14_w400(
+                color: context.colors.textColor,
+              ).copyWith(
+                  height: 1.15
+              ),
+            ),
+            Gaps.vGap12,
+            Text(
+              productModel.name!,
+              style: AppTextStyle.s20_w500(
                 color: context.colors.black,
               ).copyWith(
                 height: 1.15
@@ -148,7 +159,7 @@ class BuildProductInfo extends StatelessWidget {
             ),
             Gaps.vGap8,
             BuildProductDescription(
-              description: productModel.description ?? "",
+              description: getIt<Utilities>().cleanHtml(productModel.description ?? ""),
             ),
           ],
         ),
