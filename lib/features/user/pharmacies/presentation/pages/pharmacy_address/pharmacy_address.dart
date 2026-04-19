@@ -20,53 +20,54 @@ class _PharmacyAddressState extends State<PharmacyAddress> {
        ),
        body: Padding(
          padding: Dimens.paddingAll15PX,
-         child: Column(
-           crossAxisAlignment: CrossAxisAlignment.start,
-           children: [
-             Text(
-               tr("selectAddress"),
-               style: AppTextStyle.s16_w500(
-                 color: context.colors.black,
-               ),
-             ),
-             Gaps.vGap15,
-
-             Container(
-               constraints: BoxConstraints(
-                 maxHeight: MediaQuery.sizeOf(context).height * 0.6,
-                 minHeight: MediaQuery.sizeOf(context).height * 0.25,
-               ),
-               padding: Dimens.paddingAll15PX,
-               decoration: CustomDecoration(
-                 thisColor: context.colors.white,
-                 radius: Dimens.borderRadius10PX,
-                 boxBorder: Border.all(
-                   color: context.colors.borderColor,
+         child: SingleChildScrollView(
+           child: Column(
+             crossAxisAlignment: CrossAxisAlignment.start,
+             children: [
+               Text(
+                 tr("selectAddress"),
+                 style: AppTextStyle.s16_w500(
+                   color: context.colors.black,
                  ),
                ),
-               child: Column(
-                 mainAxisSize: MainAxisSize.min,
-                 children: [
-                   Flexible(
-                     child: PharmacyAddressListWidget(
-                       controller: controller,
+               Gaps.vGap15,
+               Container(
+                 constraints: BoxConstraints(
+                   maxHeight: MediaQuery.sizeOf(context).height * 0.6,
+                   minHeight: MediaQuery.sizeOf(context).height * 0.25,
+                 ),
+                 padding: Dimens.paddingAll15PX,
+                 decoration: CustomDecoration(
+                   thisColor: context.colors.white,
+                   radius: Dimens.borderRadius10PX,
+                   boxBorder: Border.all(
+                     color: context.colors.borderColor,
+                   ),
+                 ),
+                 child: Column(
+                   mainAxisSize: MainAxisSize.min,
+                   children: [
+                     Flexible(
+                       child: PharmacyAddressListWidget(
+                         controller: controller,
+                       ),
                      ),
-                   ),
-                   Gaps.vGap15,
-
-                   DefaultButton(
-                     title: "+ ${tr("addNewAddress")}",
-                     onTap: () => controller.onAddNewAddress(context),
-                     color: context.colors.white,
-                     textColor: context.colors.primary,
-                     borderColor: context.colors.primary,
-                     fontSize: 16,
-                     fontWeight: FontWeight.w600,
-                   ),
-                 ],
+                     Gaps.vGap15,
+                     DefaultButton(
+                       title: "+ ${tr("addNewAddress")}",
+                       onTap: () => controller.onAddNewAddress(context),
+                       color: context.colors.white,
+                       textColor: context.colors.primary,
+                       borderColor: context.colors.primary,
+                       fontSize: 16,
+                       fontWeight: FontWeight.w600,
+                       margin: EdgeInsets.zero,
+                     ),
+                   ],
+                 ),
                ),
-             ),
-           ],
+             ],
+           ),
          ),
        ),
        bottomNavigationBar: PharmacyAddressButtonsWidget(

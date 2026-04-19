@@ -8,16 +8,9 @@ class PharmacyAddressButtonsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: Dimens.dp20, vertical: Dimens.dp15),
+      padding: const EdgeInsets.only(left: 20,right: 20,top: 15),
       decoration: BoxDecoration(
         color: context.colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: context.colors.grey.withOpacity(0.1),
-            blurRadius: 10,
-            offset: const Offset(0, -5),
-          ),
-        ],
       ),
       child: CustomBottomSafeAreaWidget(
         child: DefaultButton(
@@ -26,6 +19,7 @@ class PharmacyAddressButtonsWidget extends StatelessWidget {
           color: context.colors.primary,
           fontSize: 18.sp,
           fontWeight: FontWeight.w700,
+          margin: EdgeInsets.zero,
         ),
       ),
     );

@@ -9,13 +9,7 @@ class AddNewAddress extends StatefulWidget {
 }
 
 class _AddNewAddressState extends State<AddNewAddress> {
-  late AddNewAddressController controller;
-
-  @override
-  void initState() {
-    controller = AddNewAddressController();
-    super.initState();
-  }
+   final AddNewAddressController controller = AddNewAddressController();
 
   @override
   Widget build(BuildContext context) {
