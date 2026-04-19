@@ -63,7 +63,7 @@ class CartItemsListWidget extends StatelessWidget {
                 Gaps.vGap11,
                 if ((state.data.items ?? []).isNotEmpty)
                   CleaAllWidget(
-                    controller: controller,
+                    onPressClear: () => controller.showClearDialog(context),
                   ),
                 Gaps.vGap12,
                 BuildCartItems(

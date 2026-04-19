@@ -7,7 +7,7 @@ class PharmacyCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AutoRouter.of(context).push(const PharmacyDetailsRoute()),
+      onTap: () => AutoRouter.of(context).push( PharmacyDetailsRoute()),
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 6),
         padding: const EdgeInsets.symmetric(vertical: 12),

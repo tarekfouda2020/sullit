@@ -1,8 +1,8 @@
 part of 'cart_widgets_imports.dart';
 
 class CleaAllWidget extends StatelessWidget {
-  final CartController controller;
-  const CleaAllWidget({super.key, required this.controller});
+  final void Function() onPressClear;
+  const CleaAllWidget({super.key, required this.onPressClear});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class CleaAllWidget extends StatelessWidget {
           style: AppTextStyle.s16_w700(color: context.colors.black),
           ),
         GestureDetector(
-          onTap: ()=> controller.showClearDialog(context),
+          onTap: onPressClear,
           child: Row(
             children: [
               SvgPicture.asset(Res.trashIcon,

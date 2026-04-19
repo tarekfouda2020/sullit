@@ -1,0 +1,35 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bounce/flutter_bounce.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/core/widgets/CachedImage.dart';
+import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
+import 'package:flutter_tdd/core/widgets/build_empty_data_image.dart';
+import 'package:flutter_tdd/core/widgets/custom_check_box_widget.dart';
+import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
+import 'package:flutter_tdd/core/widgets/loading_icon_widget.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
+import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/widgets/category_details_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
+
+import '../../../../../../../core/widgets/custom_safe_are.dart';
+import '../../../../../../../res.dart';
+import '../pharmacy_cart_imports.dart';
+
+part 'pharmacy_info_widget.dart';
+part 'pharmacy_cart_items_widget.dart';
+part 'build_pharmacy_cart_item.dart';
+part 'change_pharmacy_cart_qty_widget.dart';
+part 'pharmacy_cart_fav_icon_widget.dart';
+part 'build_custom_bounce.dart';
+part 'pharmacy_bottom_nav_widget.dart';

@@ -150,5 +150,7 @@ class PharmacyDetailsController {
     );
   }
 
-  void onPressViewCart(BuildContext context, bool fromCart) {}
+  void onPressViewCart(BuildContext context, bool fromCart) {
+    AutoRouter.of(context).push(const PharmacyCartRoute());
+  }
 }
