@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,6 +23,7 @@ import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/widgets/category_details_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 
+import '../../../../../../../core/routes/router_imports.gr.dart';
 import '../../../../../../../core/widgets/custom_safe_are.dart';
 import '../../../../../../../res.dart';
 import '../pharmacy_cart_imports.dart';
