@@ -428,6 +428,11 @@ class HomeMainController {
     }
   }
 
+  void routeToPharmaciesList(BuildContext context){
+    AutoRouter.of(context).push(const PharmaciesListRoute());
+
+  }
+
 
 //
 // Future<void> scanSkuNumber() async {

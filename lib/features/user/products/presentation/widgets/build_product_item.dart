@@ -117,7 +117,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                       visible: widget.productModel.hasDiscount!,
                       replacement: Visibility(
                           visible: (widget.showVipDiscount ?? false) && widget.productModel.hasVipOffer!,
-                          child: _discountWidget(context)),
+                          child:  _discountWidget(context)),
                       child: _discountWidget(context),
                     ),
                     child: ProductCardPointsWidget(productModel: widget.productModel),
@@ -161,7 +161,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                         end: 3,
                         bottom: 0,
                         start:
-                            widget.productModel.addedQtyToCart! > 0 ? 0 : null,
+                        (widget.productModel.addedQtyToCart??0) > 0 ? 0 : null,
                         child: GestureDetector(
                           // onTap: () => getIt<CartHelper>().addToCartDialog(
                           //   context,
@@ -174,7 +174,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
                           child: Opacity(
                             opacity: state.data == false && widget.productModel.isOutOfStock == false ? 1 : 0.5,
                             child: Visibility(
-                              visible: widget.productModel.addedQtyToCart! > 0,
+                              visible: (widget.productModel.addedQtyToCart??0) > 0,
                               replacement: Visibility(
                                 visible: state.data == false,
                                 replacement: const LoadingIconWidget(),

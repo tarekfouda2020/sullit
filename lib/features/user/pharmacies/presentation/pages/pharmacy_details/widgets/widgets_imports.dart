@@ -1,0 +1,48 @@
+
+library widgets_imports;
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/helpers/debounce_helper.dart';
+import 'package:flutter_tdd/core/helpers/validator.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/core/widgets/CachedImage.dart';
+import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
+import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
+import 'package:flutter_tdd/core/widgets/build_empty_data_view.dart';
+import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
+import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/core/widgets/seller_card_widget.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
+import 'package:flutter_tdd/features/user/products/presentation/widgets/build_loading_products_grid_view.dart';
+import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
+import 'package:flutter_tdd/res.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+
+import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_sheet_header_widget.dart';
+import 'package:flutter_tdd/features/user/pharmacies/presentation/widgets/widgets_imports.dart';
+import '../../../../domain/models/pharmacy.dart';
+import '../pharmacy_details_imports.dart';
+
+part 'pharmacy_products_search_field_widget.dart';
+part 'pharmacy_page_back_ground_widget.dart';
+part 'pharmacy_page_products_section_widget.dart';
+part 'pharmacy_page_categories_widget.dart';
+part 'pharmacy_details_app_bar.dart';
+part 'pharmacy_products.dart';
+part 'pharmacy_new_products_loading_widget.dart';
+part 'pharmacy_info_widget.dart';
+part 'pharmacy_sticky_header_widget.dart';
+part 'supported_insurance_widget.dart';
+part 'supported_insurance_bottom_sheet_widget.dart';

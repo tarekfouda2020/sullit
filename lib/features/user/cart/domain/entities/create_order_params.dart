@@ -35,7 +35,6 @@ class CreateOrderParams {
     return map;
   }
 
-
   Map<String, dynamic> toJson ()=> {
     "payment_option": paymentOption,
     "allow_replacement": allowReplacement,

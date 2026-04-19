@@ -10,9 +10,7 @@ class HomePharmaciesWidget extends StatelessWidget {
       children: [
         BuildHeaderTitle(
           title: "Pharmacies",
-          onTap: () {
-
-          },
+          onTap: () => controller.routeToPharmaciesList(context) ,
         ),
         SizedBox(
           height: 118,
