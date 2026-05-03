@@ -4,7 +4,7 @@ publish_to: 'none'
 
 
 #android live
-version: 1.0.50+50
+version: 1.0.51+51
 
 #ios live
 #version: 1.0.43+6
@@ -136,7 +136,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/app_sulit_new_icon.jpeg"
+  image_path: "assets/images/app_sulit_new_icon.png"
 
 dependency_overrides:
   sqflite_android: 2.4.1

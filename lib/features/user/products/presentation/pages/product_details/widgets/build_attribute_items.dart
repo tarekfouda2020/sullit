@@ -2,41 +2,66 @@ part of 'product_details_widgets_imports.dart';
 
 class BuildAttributeItems extends StatelessWidget {
   final ProductDetailsController controller;
-  final List<ProductOptions> optionModel;
+  final List<Variant> variants;
   final int index;
-  final int position;
 
   const BuildAttributeItems({
     super.key,
     required this.controller,
-    required this.optionModel,
+    required this.variants,
     required this.index,
-    required this.position,
   });
 
   @override
   Widget build(BuildContext context) {
-    bool current = optionModel[index].selectedAttribute!.contains(optionModel[index].options![position]);
     return InkWell(
-      onTap: () => controller.onSelectAttributes(context, optionModel, index, position),
+      onTap: () => controller.onSelectAttributes(context, variants, index),
       child: Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(horizontal: 22.5),
+        width: 230,
+       alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         decoration: BoxDecoration(
-          color: current ? context.colors.lightPrimary : context.colors.white,
+          color: _isSelected ? context.colors.lightPrimary : context.colors.white,
           border: Border.all(
-            color: current ? context.colors.primary : context.colors.gray3,
+            color: _isSelected ? context.colors.primary : context.colors.gray3,
           ),
           borderRadius: BorderRadius.circular(12),
         ),
-        child: Text(
-          optionModel[index].options![position],
-          style: current
-              ? AppTextStyle.s14_w700(color: context.colors.primary)
-              : AppTextStyle.s14_w400(color: context.colors.gray5),
-          textAlign: TextAlign.center,
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: RichText(
+            textAlign: TextAlign.center,
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: "${_variant.options ?? ''}  -  ",
+                  style: _style( context),
+                ),
+                TextSpan(
+                    text: AppTheme.dirhamIcon,
+                    style: _style( context)
+                        .copyWith(fontFamily: AppTheme.dirhamFontFamily)),
+                TextSpan(
+                  text: (_variant.calculablePrice ?? ''),
+                  style: _style( context),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
+  }
+
+  Variant get _variant => variants[index];
+
+  bool get _isSelected => _variant.isSelected == true;
+
+  AppTextStyle _style(BuildContext context) {
+    return _isSelected
+        ? AppTextStyle.s14_w700(color: context.colors.primary)
+        : AppTextStyle.s14_w400(color: context.colors.gray5);
   }
 }

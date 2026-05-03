@@ -16,5 +16,6 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 - flutter build appbundle --release --no-tree-shake-icons
+- flutter pub run flutter_launcher_icons
 
 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

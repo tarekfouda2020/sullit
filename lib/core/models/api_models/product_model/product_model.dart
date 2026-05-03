@@ -50,6 +50,7 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
     @JsonKey(name: 'is_digital') required bool isDigital,
     @JsonKey(name: 'is_wishlist') required bool isWishlist,
     @JsonKey(name: 'main_price') String? mainPrice,
+    @JsonKey(name: 'variants') List<VariantModel>? variantsList,
     required num rating,
     required int sales,
     @JsonKey(name: 'seller_id') required int sellerId,
@@ -113,7 +114,9 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
       loyaltyPoints: loyaltyPoints ,
       hasSpecialLoyaltyPoints:hasSpecialLoyaltyPoints ,
       isFresh: isFresh ,
-      maxQnt: maxQntPerOrder
+      maxQnt: maxQntPerOrder,
+      variants: variantsList?.map((e) => e.toDomainModel()).toList(),
+
     );
   }
 }

@@ -16,6 +16,7 @@ import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
+import 'package:flutter_tdd/core/helpers/helper_methods.dart';
 import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/helpers/validator.dart';
@@ -45,12 +46,14 @@ import 'package:flutter_tdd/features/user/products/domain/models/product_queries
 import 'package:flutter_tdd/features/user/products/domain/models/queries.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/reviews.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/variant.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_sheet_controller.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/oou_of_stock_glass_widget.dart';
 import 'package:flutter_tdd/res.dart';
 
+import '../../../../../../../core/theme/themes/app_theme.dart';
 import '../../../../../../../core/widgets/custom_safe_are.dart';
 import '../product_details_imports.dart';
 

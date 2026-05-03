@@ -47,6 +47,7 @@ class ProductDetailsController implements CartSheetController {
     var result = await GetProductDetails().call(params);
     if (result != null) {
       !refresh ? result.product.isWishlist = isFav : null;
+      result.product.variants?.sort((first, second) => second.sortOrder!.compareTo(first.sortOrder!));
       detailsCubit.onUpdateData(result);
       basicImage = detailsCubit.state.data!.product.images!;
       if (refresh) {
@@ -64,18 +65,37 @@ class ProductDetailsController implements CartSheetController {
     }
   }
 
+  // void _initVariantsOld(BuildContext context) {
+  //   detailsCubit.state.data?.product.choiceOptions?.map((e) {
+  //     if (e.options != null && e.options!.isNotEmpty) {
+  //       e.selectedAttribute!.add(e.options!.first);
+  //       e.hasValue = true;
+  //     } else {
+  //       e.hasValue = false;
+  //     }
+  //   }).toList();
+  //   var selectedList = detailsCubit.state.data!.product.choiceOptions!.map((e) => e.selectedAttribute).toList();
+  //   selectedVariants = selectedList.expand((element) => element!).toList();
+  //   if (selectedVariants.isNotEmpty) getVariantPrice(context);
+  // }
+
   void _initVariants(BuildContext context) {
-    detailsCubit.state.data?.product.choiceOptions?.map((e) {
-      if (e.options != null && e.options!.isNotEmpty) {
-        e.selectedAttribute!.add(e.options!.first);
-        e.hasValue = true;
-      } else {
-        e.hasValue = false;
+    final product = detailsCubit.state.data?.product;
+    if (product == null) return;
+
+    if (product.isMultiple == true) {
+      final variants = product.variants;
+      if (variants != null && variants.isNotEmpty) {
+        // Mark first variant as selected
+        for (var v in variants) {
+          v.isSelected = false;
+        }
+        variants.first.isSelected = true;
+
+        selectedVariants = [variants.first.options ?? ''];
+        getVariantPrice(context);
       }
-    }).toList();
-    var selectedList = detailsCubit.state.data!.product.choiceOptions!.map((e) => e.selectedAttribute).toList();
-    selectedVariants = selectedList.expand((element) => element!).toList();
-    if (selectedVariants.isNotEmpty) getVariantPrice(context);
+    }
   }
 
   void getVariantPrice(BuildContext context) async {
@@ -94,23 +114,17 @@ class ProductDetailsController implements CartSheetController {
     getIt<LoadingHelper>().dismissDialog();
   }
 
-  void onSelectAttributes(BuildContext context, List<ProductOptions> model, int index, int position) async {
+  void onSelectAttributes(BuildContext context, List<Variant> variants, int selectedIndex) async {
     getIt<LoadingHelper>().showLoadingDialog();
-    List<String> selected = [];
-    var optionItem = model[index];
-    var attributes = optionItem.selectedAttribute;
-    if (optionItem.hasValue == true) {
-      attributes!.clear();
-      attributes.add(optionItem.options![position]);
-    } else {
-      attributes!.add(optionItem.options![position]);
+
+    for (var v in variants) {
+      v.isSelected = false;
     }
-    optionItem.hasValue = true;
-    model.where((element) => element.hasValue == true).map((e) {
-      selected = [...selected, ...e.selectedAttribute!];
-      selectedVariants = selected;
-      return e;
-    }).toList();
+    var currentVariant = variants[selectedIndex];
+    currentVariant.isSelected = true;
+
+    selectedVariants = [currentVariant.options ?? ''];
+
     qtyCubit.onUpdateData(1);
     detailsCubit.onUpdateData(detailsCubit.state.data);
     getVariantPrice(context);
@@ -417,10 +431,10 @@ class ProductDetailsController implements CartSheetController {
   }
 
   VariantPriceParams _variantPriceParams() {
-    var resellerId = detailsCubit.state.data!.product.sellerId;
+    int? resellerId = detailsCubit.state.data!.product.resellerId;
     return VariantPriceParams(
       id: detailsCubit.state.data!.product.id!,
-      resellerId: isResale ? resellerId : 0,
+      resellerId: isResale ? resellerId : null,
       variants: selectedVariants.join(','),
     );
   }

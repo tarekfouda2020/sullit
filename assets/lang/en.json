@@ -734,6 +734,8 @@
   "amountCharged": "(Amount Charged)",
   "grandTotalShort": "Grand Total",
   "noDataFoundForOrder": "no data found for this order!",
-  "search_in_sellers": "Search in sellers..."
+  "search_in_sellers": "Search in sellers...",
+  "select_your_choice": "Select your choice"
+
 
 }

@@ -11,7 +11,7 @@ class SellersSectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Dimens.dp220,
+      height: 260,
       child: ListView.builder(
         itemCount: (controller.homeCubit.state.data?.shop.length) ?? 0,
         scrollDirection: Axis.horizontal,
