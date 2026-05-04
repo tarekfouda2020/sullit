@@ -34,9 +34,12 @@ class BuildAttributeItems extends StatelessWidget {
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
             text: TextSpan(
+              style: _style(context).copyWith(
+                height: 1.2
+              ),
               children: [
                 TextSpan(
-                  text: "${_variant.options ?? ''}  -  ",
+                  text: "${_variant.options ?? ''}  -  ".replaceAll(",", ", "),
                   style: _style( context),
                 ),
                 TextSpan(

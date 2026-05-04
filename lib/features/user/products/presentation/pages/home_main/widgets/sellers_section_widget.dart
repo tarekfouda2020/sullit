@@ -13,11 +13,12 @@ class SellersSectionWidget extends StatelessWidget {
     return SizedBox(
       height: 260,
       child: ListView.builder(
-        itemCount: (controller.homeCubit.state.data?.shop.length) ?? 0,
+        itemCount: _buildLength,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsetsDirectional.only(end: 10),
+            padding:  EdgeInsetsDirectional.only(
+                end: index == _buildLength - 1 ? 0 : 10),
             child: SellerCardWidget(
               shop: controller.homeCubit.state.data!.shop[index],
               onTap: () => AutoRouter.of(context).push(SellerProductsPageRoute(
@@ -30,4 +31,6 @@ class SellersSectionWidget extends StatelessWidget {
       ),
     );
   }
+
+  int get _buildLength => controller.homeCubit.state.data?.shop.length ?? 0;
 }

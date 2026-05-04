@@ -24,16 +24,8 @@ class BuildProductDescription extends StatelessWidget {
               ),
             ),
             Gaps.vGap4,
-            // Text(
-            //   description,
-            //   style: AppTextStyle.s14_w500(
-            //     color: context.colors.black,
-            //   ).copyWith(
-            //     height: 1.3,
-            //   ),
-            // ),
             Html(
-              data: getIt<Utilities>().cleanHtml(description),
+              data: description,
               style: {
                 "body": Style(
                   color: Colors.black,
@@ -56,22 +48,9 @@ class BuildProductDescription extends StatelessWidget {
   }
 
 
-  String normalizeContent(String text) {
-    final hasHtml = RegExp(r'<[^>]+>').hasMatch(text);
-
-    if (hasHtml) return text;
-
-    final escaped = text
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;');
-
-    return escaped
-        .replaceAll('\r\n\r\n', '<br><br>')
-        .replaceAll('\r\n', '<br>')
-        .replaceAll('\n\n', '<br><br>')
-        .replaceAll('\n', '<br>');
+  String parseHtmlString(String htmlString) {
+    final  document = parse(htmlString);
+    return document.body?.text ?? htmlString;
   }
-
 
 }

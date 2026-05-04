@@ -27,6 +27,6 @@ class BuildProductSpecifications extends StatelessWidget {
 
   bool showSection() {
     final variants = productModel.variants ?? [];
-    return variants.isNotEmpty;
+    return variants.isNotEmpty && productModel.isMultiple == true;
   }
 }
