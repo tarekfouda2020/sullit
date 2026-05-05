@@ -37,6 +37,8 @@ mixin _$VariantModel {
   bool? get hasDiscount => throw _privateConstructorUsedError;
   @JsonKey(name: "original_price")
   String? get originalPrice => throw _privateConstructorUsedError;
+  @JsonKey(name: "sort_order")
+  int? get sortOrder => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String get options => throw _privateConstructorUsedError;
 
@@ -63,6 +65,7 @@ abstract class $VariantModelCopyWith<$Res> {
       @JsonKey(name: "currency_symbol") String currencySymbol,
       @JsonKey(name: "has_discount") bool? hasDiscount,
       @JsonKey(name: "original_price") String? originalPrice,
+      @JsonKey(name: "sort_order") int? sortOrder,
       String image,
       String options});
 }
@@ -90,6 +93,7 @@ class _$VariantModelCopyWithImpl<$Res, $Val extends VariantModel>
     Object? currencySymbol = null,
     Object? hasDiscount = freezed,
     Object? originalPrice = freezed,
+    Object? sortOrder = freezed,
     Object? image = null,
     Object? options = null,
   }) {
@@ -134,6 +138,10 @@ class _$VariantModelCopyWithImpl<$Res, $Val extends VariantModel>
           ? _value.originalPrice
           : originalPrice // ignore: cast_nullable_to_non_nullable
               as String?,
+      sortOrder: freezed == sortOrder
+          ? _value.sortOrder
+          : sortOrder // ignore: cast_nullable_to_non_nullable
+              as int?,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -165,6 +173,7 @@ abstract class _$$_VariantModelCopyWith<$Res>
       @JsonKey(name: "currency_symbol") String currencySymbol,
       @JsonKey(name: "has_discount") bool? hasDiscount,
       @JsonKey(name: "original_price") String? originalPrice,
+      @JsonKey(name: "sort_order") int? sortOrder,
       String image,
       String options});
 }
@@ -190,6 +199,7 @@ class __$$_VariantModelCopyWithImpl<$Res>
     Object? currencySymbol = null,
     Object? hasDiscount = freezed,
     Object? originalPrice = freezed,
+    Object? sortOrder = freezed,
     Object? image = null,
     Object? options = null,
   }) {
@@ -234,6 +244,10 @@ class __$$_VariantModelCopyWithImpl<$Res>
           ? _value.originalPrice
           : originalPrice // ignore: cast_nullable_to_non_nullable
               as String?,
+      sortOrder: freezed == sortOrder
+          ? _value.sortOrder
+          : sortOrder // ignore: cast_nullable_to_non_nullable
+              as int?,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -261,6 +275,7 @@ class _$_VariantModel extends _VariantModel {
       @JsonKey(name: "currency_symbol") required this.currencySymbol,
       @JsonKey(name: "has_discount") this.hasDiscount,
       @JsonKey(name: "original_price") this.originalPrice,
+      @JsonKey(name: "sort_order") this.sortOrder,
       required this.image,
       required this.options})
       : super._();
@@ -296,13 +311,16 @@ class _$_VariantModel extends _VariantModel {
   @JsonKey(name: "original_price")
   final String? originalPrice;
   @override
+  @JsonKey(name: "sort_order")
+  final int? sortOrder;
+  @override
   final String image;
   @override
   final String options;
 
   @override
   String toString() {
-    return 'VariantModel(id: $id, name: $name, sku: $sku, strokedPrice: $strokedPrice, calculablePrice: $calculablePrice, mainPrice: $mainPrice, currentStock: $currentStock, currencySymbol: $currencySymbol, hasDiscount: $hasDiscount, originalPrice: $originalPrice, image: $image, options: $options)';
+    return 'VariantModel(id: $id, name: $name, sku: $sku, strokedPrice: $strokedPrice, calculablePrice: $calculablePrice, mainPrice: $mainPrice, currentStock: $currentStock, currencySymbol: $currencySymbol, hasDiscount: $hasDiscount, originalPrice: $originalPrice, sortOrder: $sortOrder, image: $image, options: $options)';
   }
 
   @override
@@ -327,6 +345,8 @@ class _$_VariantModel extends _VariantModel {
                 other.hasDiscount == hasDiscount) &&
             (identical(other.originalPrice, originalPrice) ||
                 other.originalPrice == originalPrice) &&
+            (identical(other.sortOrder, sortOrder) ||
+                other.sortOrder == sortOrder) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.options, options) || other.options == options));
   }
@@ -345,6 +365,7 @@ class _$_VariantModel extends _VariantModel {
       currencySymbol,
       hasDiscount,
       originalPrice,
+      sortOrder,
       image,
       options);
 
@@ -374,6 +395,7 @@ abstract class _VariantModel extends VariantModel {
       @JsonKey(name: "currency_symbol") required final String currencySymbol,
       @JsonKey(name: "has_discount") final bool? hasDiscount,
       @JsonKey(name: "original_price") final String? originalPrice,
+      @JsonKey(name: "sort_order") final int? sortOrder,
       required final String image,
       required final String options}) = _$_VariantModel;
   const _VariantModel._() : super._();
@@ -408,6 +430,9 @@ abstract class _VariantModel extends VariantModel {
   @override
   @JsonKey(name: "original_price")
   String? get originalPrice;
+  @override
+  @JsonKey(name: "sort_order")
+  int? get sortOrder;
   @override
   String get image;
   @override

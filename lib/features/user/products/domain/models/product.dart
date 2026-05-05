@@ -33,6 +33,7 @@ class Product extends BaseDomainModel {
   int? minQty;
   String? currencySymbol;
   Variant? variant;
+  List<Variant>? variants;
   List<String>? tags;
   num? rating;
   int? sales;
@@ -72,6 +73,7 @@ class Product extends BaseDomainModel {
       this.discount,
       this.strokedPrice,
       this.variant,
+      this.variants,
       this.mainPrice,
       this.choiceOptions,
       this.colors,
@@ -142,6 +144,7 @@ class Product extends BaseDomainModel {
     name = json['name'];
     unit = json['unit'];
     maxQnt = json['max_qty'];
+    variants = json['variants'] != null ? List<Variant>.from(json['variants'].map((x) => Variant.fromJson(x))) : null;
     thumbnailImage = json['thumbnail_image'];
     images = json['images'].cast<String>();
     isMultiple = json['is_multiple'];
@@ -218,6 +221,7 @@ class Product extends BaseDomainModel {
     data['count_reviews'] = countReviews;
     data['sold_by_type'] = soldByType;
     data['sold_by_name'] = soldByName;
+    data['variants'] = variants?.map((e) => e.toJson()).toList();
     if (shop != null) {
       data['shop'] = shop!.toJson();
     }

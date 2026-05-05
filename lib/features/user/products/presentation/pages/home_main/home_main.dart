@@ -21,7 +21,7 @@ class _HomeMainState extends State<HomeMain> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () =>  FocusManager.instance.primaryFocus?.unfocus(),
       child: MyScaffold(
         body: SafeArea(
           child: Column(

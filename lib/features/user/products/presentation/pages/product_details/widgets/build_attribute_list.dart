@@ -2,25 +2,22 @@ part of 'product_details_widgets_imports.dart';
 
 class BuildAttributeList extends StatelessWidget {
   final ProductDetailsController controller;
-  final int index;
-  final List<ProductOptions> productOptions;
+  final List<Variant> variants;
 
-  const BuildAttributeList({super.key, required this.controller, required this.index, required this.productOptions});
+  const BuildAttributeList({super.key, required this.controller, required this.variants});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 43,
       child: ListView.separated(
-        padding: Dimens.paddingHorizontal15PX,
         scrollDirection: Axis.horizontal,
-        itemCount: productOptions[index].options!.length,
-        itemBuilder: (context, position) {
+        itemCount: variants.length,
+        itemBuilder: (context, index) {
           return BuildAttributeItems(
             controller: controller,
-            optionModel: productOptions,
+            variants: variants,
             index: index,
-            position: position,
           );
         },
         separatorBuilder: (context, position) => Gaps.hGap10,
