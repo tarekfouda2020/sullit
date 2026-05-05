@@ -29,7 +29,7 @@ class SellerDetailsAppBar extends StatelessWidget {
                   left: 16,
                   right: 16),
               child: shopModel != null
-                  ? SellerCardWidget(shop: shopModel)
+                  ? SellerCardWidget(shop: shopModel, openImage: true)
                   : const BuildShimmerItem(height: 300),
             ),
           ),
