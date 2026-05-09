@@ -23,6 +23,8 @@ mixin _$MinAmountSeller {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
+  @JsonKey(name: "shop_id")
+  int get shopId => throw _privateConstructorUsedError;
   @JsonKey(name: "minimum_order_amount")
   double get minOrderAmount => throw _privateConstructorUsedError;
 
@@ -42,6 +44,7 @@ abstract class $MinAmountSellerCopyWith<$Res> {
       {int id,
       String name,
       String message,
+      @JsonKey(name: "shop_id") int shopId,
       @JsonKey(name: "minimum_order_amount") double minOrderAmount});
 }
 
@@ -61,6 +64,7 @@ class _$MinAmountSellerCopyWithImpl<$Res, $Val extends MinAmountSeller>
     Object? id = null,
     Object? name = null,
     Object? message = null,
+    Object? shopId = null,
     Object? minOrderAmount = null,
   }) {
     return _then(_value.copyWith(
@@ -76,6 +80,10 @@ class _$MinAmountSellerCopyWithImpl<$Res, $Val extends MinAmountSeller>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      shopId: null == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as int,
       minOrderAmount: null == minOrderAmount
           ? _value.minOrderAmount
           : minOrderAmount // ignore: cast_nullable_to_non_nullable
@@ -96,6 +104,7 @@ abstract class _$$_MinAmountSellerCopyWith<$Res>
       {int id,
       String name,
       String message,
+      @JsonKey(name: "shop_id") int shopId,
       @JsonKey(name: "minimum_order_amount") double minOrderAmount});
 }
 
@@ -113,6 +122,7 @@ class __$$_MinAmountSellerCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? message = null,
+    Object? shopId = null,
     Object? minOrderAmount = null,
   }) {
     return _then(_$_MinAmountSeller(
@@ -128,6 +138,10 @@ class __$$_MinAmountSellerCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      shopId: null == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as int,
       minOrderAmount: null == minOrderAmount
           ? _value.minOrderAmount
           : minOrderAmount // ignore: cast_nullable_to_non_nullable
@@ -144,6 +158,7 @@ class _$_MinAmountSeller extends _MinAmountSeller {
       {required this.id,
       required this.name,
       required this.message,
+      @JsonKey(name: "shop_id") required this.shopId,
       @JsonKey(name: "minimum_order_amount") required this.minOrderAmount})
       : super._();
 
@@ -157,12 +172,15 @@ class _$_MinAmountSeller extends _MinAmountSeller {
   @override
   final String message;
   @override
+  @JsonKey(name: "shop_id")
+  final int shopId;
+  @override
   @JsonKey(name: "minimum_order_amount")
   final double minOrderAmount;
 
   @override
   String toString() {
-    return 'MinAmountSeller(id: $id, name: $name, message: $message, minOrderAmount: $minOrderAmount)';
+    return 'MinAmountSeller(id: $id, name: $name, message: $message, shopId: $shopId, minOrderAmount: $minOrderAmount)';
   }
 
   @override
@@ -173,6 +191,7 @@ class _$_MinAmountSeller extends _MinAmountSeller {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.message, message) || other.message == message) &&
+            (identical(other.shopId, shopId) || other.shopId == shopId) &&
             (identical(other.minOrderAmount, minOrderAmount) ||
                 other.minOrderAmount == minOrderAmount));
   }
@@ -180,7 +199,7 @@ class _$_MinAmountSeller extends _MinAmountSeller {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, message, minOrderAmount);
+      Object.hash(runtimeType, id, name, message, shopId, minOrderAmount);
 
   @JsonKey(ignore: true)
   @override
@@ -201,6 +220,7 @@ abstract class _MinAmountSeller extends MinAmountSeller {
       {required final int id,
       required final String name,
       required final String message,
+      @JsonKey(name: "shop_id") required final int shopId,
       @JsonKey(name: "minimum_order_amount")
       required final double minOrderAmount}) = _$_MinAmountSeller;
   _MinAmountSeller._() : super._();
@@ -214,6 +234,9 @@ abstract class _MinAmountSeller extends MinAmountSeller {
   String get name;
   @override
   String get message;
+  @override
+  @JsonKey(name: "shop_id")
+  int get shopId;
   @override
   @JsonKey(name: "minimum_order_amount")
   double get minOrderAmount;

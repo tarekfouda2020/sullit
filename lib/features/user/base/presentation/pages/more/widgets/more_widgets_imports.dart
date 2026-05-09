@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
@@ -32,3 +31,4 @@ part 'shop_by_section_widget.dart';
 part 'support_section_widget.dart';
 part 'other_section_widget.dart';
 part 'build_lang_bottom_sheet.dart';
+part 'notification_dialog.dart';

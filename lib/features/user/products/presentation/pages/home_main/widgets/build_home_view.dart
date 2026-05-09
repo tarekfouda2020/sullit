@@ -19,7 +19,7 @@ class BuildHomeView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            BuildHomeSwiper(slider: homeDomainModel.sliders),
+            BuildHomeSwiper(slider: homeDomainModel.sliders, controller: controller),
             Gaps.vGap25,
             const AdvantagesWidget(),
             Gaps.vGap20,
@@ -31,7 +31,7 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap16,
             VipOffersWidget(
               onTap: () => controller.onPressSeeOffers(context),
-              buttonText: tr("seeOffers"),
+              buttonText: tr("seeOffers",context: context),
               margin: EdgeInsets.zero,
             ),
             // BuildPopularProducts(
@@ -50,7 +50,7 @@ class BuildHomeView extends StatelessWidget {
             //   controller: controller,
             // ),
             if (homeDomainModel.bannersTwo.isNotEmpty) Gaps.vGap10,
-            BuildBanners(banners: homeDomainModel.bannersTwo),
+            BuildBanners(banners: homeDomainModel.bannersTwo, controller: controller),
             Gaps.vGap16,
             NewArrivalOffersFormWidget(controller: controller),
             if(controller.homeCubit.state.data?.shop.isNotEmpty == true)
@@ -72,7 +72,7 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap16,
             OnSaleOffersFormWidget(controller: controller),
             Gaps.vGap16,
-            BuildBanners(banners: homeDomainModel.bannersOne),
+            BuildBanners(banners: homeDomainModel.bannersOne, controller: controller),
             Gaps.vGap16,
             BestRatedOffersFormWidget(controller: controller),
             // BuildFeaturedProducts(

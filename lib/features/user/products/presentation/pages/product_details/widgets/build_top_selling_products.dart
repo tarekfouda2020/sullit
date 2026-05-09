@@ -40,6 +40,7 @@ class BuildTopSellingProducts extends StatelessWidget {
                         child: BuildProductItem(
                           onPressDelete: () => controller.getCartItems(),
                           productModel: topProducts[index],
+                          afterAddToCart: () => controller.calculateRemainingAmount(),
                           onFavRefresh: () => controller.onChangeFav(
                             context,
                             topProducts[index],

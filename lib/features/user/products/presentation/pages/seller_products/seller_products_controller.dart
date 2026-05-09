@@ -14,6 +14,9 @@ class SellerProductsController {
       GenericBloc<ShopCategory?>(null);
   final GenericBloc<Shop?> shopCubit = GenericBloc<Shop?>(null);
 
+  final GenericBloc<String> priceCubit = GenericBloc<String>("0.0");
+
+
   int pageSize = 12;
   bool isFilterAppliedBefore = false;
 
@@ -23,11 +26,45 @@ class SellerProductsController {
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final GenericBloc<bool> showBrandsCubit = GenericBloc<bool>(false);
+  final GenericBloc<String> neededPriceCubit = GenericBloc<String>("");
   final GenericBloc<PriceRangeParams?> rangeCubit = GenericBloc(null);
   final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
 
+  GenericBloc<CartDomainModel> get cartItemsBloc =>
+      getIt<CartHelper>().cartItemsBloc;
+
+
+  void getCartData(){
+    var minShopsRequired = cartItemsBloc.state.data.minAmountSellers;
+    var minShopsIds = minShopsRequired?.map((e) => e.shopId).toList();
+    if(minShopsIds?.contains(shopId) == true){
+      getIt<CartHelper>().getCartItems(refresh: false);
+      getIt<CartHelper>().getCartItems();
+    }
+  }
+
+
+  bool cartHaveSellerProduct(){
+    var products = cartItemsBloc.state.data.items;
+    var productsShopsIds = products?.map((e) => e.shopId).toSet();
+    return productsShopsIds?.contains(shopId) ?? false;
+  }
+
+
+  double neededAmount(){
+    var minShopsRequired = cartItemsBloc.state.data.minAmountSellers;
+    var minShopsIds = minShopsRequired?.map((e) => e.shopId).toList();
+    if(minShopsIds?.contains(shopId) == true){
+      return cartItemsBloc.state.data.getSingleSellerReMainAmount(shopId);
+    }else{
+      return 0.0;
+    }
+  }
+
+
   SellerProductsController(int id, {Shop? shopModel}) {
     shopId = id;
+    getCartData();
     if (shopModel != null) {
       shopCubit.onUpdateData(shopModel);
     }
@@ -64,6 +101,9 @@ class SellerProductsController {
       final nextPageKey = page + 1;
       pagingController.appendPage(data, nextPageKey);
     }
+    final nextPageKey = page + 1;
+    var newPrice = 50 - (nextPageKey + 5);
+    priceCubit.onUpdateData(newPrice.toString());
   }
 
   void updateRangeValue(SellerProductDomainModel? data) {
@@ -268,4 +308,18 @@ class SellerProductsController {
     pagingController.refresh();
     getProducts(1);
   }
+
+
+  void onPressViewCart(BuildContext context, bool fromCart){
+    if(cartHaveSellerProduct() == false){
+      return ;
+    }
+    if (fromCart == true) {
+      AutoRouter.of(context).pop();
+    }else{
+      AutoRouter.of(context).push(CartRoute());
+    }
+  }
+
+
 }

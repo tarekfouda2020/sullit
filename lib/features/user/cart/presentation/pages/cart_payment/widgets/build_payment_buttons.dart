@@ -11,11 +11,13 @@ class BuildPaymentButtons extends StatelessWidget {
       builder: (context,isOpen) {
         return Visibility(
           visible: !isOpen,
-          child: DefaultButton(
-            title: tr("submitOrder"),
-            margin:margin ?? Dimens.paddingAll15PX,
-            onTap: onTap,
-            // onTap: () =>  AutoRouter.of(context).push( CartConfirmBuyingRoute()),
+          child: CustomBottomSafeAreaWidget(
+            child: DefaultButton(
+              title: tr("submitOrder"),
+              margin:margin ?? Dimens.paddingAll15PX,
+              onTap: onTap,
+              // onTap: () =>  AutoRouter.of(context).push( CartConfirmBuyingRoute()),
+            ),
           ),
         );
       }

@@ -9,14 +9,34 @@ class More extends StatefulWidget {
   State<More> createState() => _MoreState();
 }
 
-class _MoreState extends State<More> {
+class _MoreState extends State<More> with WidgetsBindingObserver {
   late final MoreController controller;
 
   @override
   void initState() {
     super.initState();
     controller = MoreController(context,widget.homeController);
+    WidgetsBinding.instance.addObserver(this);
   }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.paused) {
+      controller.wasInBackground = true;
+    } else if (state == AppLifecycleState.resumed && controller.wasInBackground) {
+      controller.wasInBackground = false;
+      controller.refreshNotificationStatus();
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+
 
   @override
   Widget build(BuildContext context) {

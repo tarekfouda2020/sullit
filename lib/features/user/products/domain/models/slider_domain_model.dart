@@ -1,7 +1,28 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 
-class SliderDomainModel extends BaseDomainModel {
- final String photo;
+import '../../data/enum/banner_link_type_enum.dart';
 
-  SliderDomainModel({required this.photo});
+class SliderDomainModel extends BaseDomainModel {
+  final String photo;
+  final String linkType;
+  final String? value;
+
+  SliderDomainModel({
+    required this.photo,
+    required this.linkType,
+    required this.value,
+  });
+
+  LinkTypeEnum get getLinkType {
+    switch (linkType) {
+      case "product":
+        return LinkTypeEnum.product;
+      case "external_link":
+        return LinkTypeEnum.externalLink;
+      case "category":
+        return LinkTypeEnum.category;
+      default:
+        return LinkTypeEnum.externalLink;
+    }
+  }
 }

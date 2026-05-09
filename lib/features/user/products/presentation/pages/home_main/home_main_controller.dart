@@ -25,13 +25,24 @@ class HomeMainController {
     homeController = controller;
     controller.searchController.clear();
     controller.visibleSearch.onUpdateData(false);
-    // getHome(refresh: false);
+    getHome(refresh: false);
     getHome();
+
+    getVipOffers(refresh: false);
     getVipOffers();
+
+    getBestRatedOffers(refresh: false);
     getBestRatedOffers();
+
+    getNewArrivalOffers(refresh: false);
     getNewArrivalOffers();
+
+    getOnSaleOffers(refresh: false);
     getOnSaleOffers();
+
+    getAllBrands(refresh: false);
     getAllBrands();
+
     getProductSections();
     scrollController.addListener(scrollListener);
   }
@@ -44,8 +55,12 @@ class HomeMainController {
   }
 
   void changeCouponsTab(SaleTabType type, BuildContext context) {
+    homeController.showShareHolderOffers = true;
     int index = homeController.getSaleTabIndex(type, context.isShareHolder);
     homeController.offersTabIndex = index;
+    Future.delayed(const Duration(milliseconds: 450), () {
+      homeController.showShareHolderOffers = false;
+    });
   }
 
   void getHome({bool refresh = true}){
@@ -100,8 +115,11 @@ class HomeMainController {
       default:
         throw ArgumentError('Invalid time unit: $unit');
     }
-
-    return value.toString().padLeft(2, '0')[index];
+    try{
+      return value.toString().padLeft(2, '0')[index];
+    }catch(e){
+     return "";
+    }
   }
 
   String getCountDownSingleNumber(int number, int index) {
@@ -322,6 +340,94 @@ class HomeMainController {
       page: 1,
     );
   }
+
+
+
+  Future<void> goNotification(BuildContext context)async {
+    bool auth = context.read<DeviceCubit>().state.model.auth;
+    if (!auth) {
+      CustomToast.showAuthDialog(context);
+      return;
+    }
+    var result =  await AutoRouter.of(context).push(const NotificationsRoute());
+    if(result is String){
+      homeController.showShareHolderOffers = true;
+      if(result == NotifyEnum.shareholderProducts.getValue()){
+        changeCouponsTab(
+            SaleTabType.shareholderOffers,
+            context
+        );
+      }else if(result == NotifyEnum.offerNewArrival.getValue()){
+        changeCouponsTab(
+            SaleTabType.newArrival,
+            context
+        );
+      }else if(result == NotifyEnum.offerOnSale.getValue()){
+        changeCouponsTab(
+            SaleTabType.onSale,
+            context
+        );
+      }else if(result == NotifyEnum.offerVipProducts.getValue()){
+        changeCouponsTab(
+            SaleTabType.vipOffers,
+            context
+        );
+      }
+      homeController.animateTabsPages(3,context);
+      Future.delayed(const Duration(milliseconds: 450), () {
+        homeController.showShareHolderOffers = false;
+      });
+    }
+  }
+
+
+  void onSwiperTapped(BuildContext context,SliderDomainModel model){
+    if(model.value == null || model.value?.trim().isEmpty == true){
+      return ;
+    }
+    switch(model.getLinkType){
+      case LinkTypeEnum.product:
+        routeTpProductDetails(context, model.value!);
+      case LinkTypeEnum.externalLink:
+        HelperMethods.instance.launchURL(url: model.value!);
+      case LinkTypeEnum.category:
+        routeTpCategoryDetails(context, model.value!);
+    }
+  }
+
+  void onBannerTwoTapped(BuildContext context,BannerDomainModel model){
+    if(model.value == null || model.value?.trim().isEmpty == true){
+      return ;
+    }
+    switch(model.getLinkType){
+      case LinkTypeEnum.product:
+        routeTpProductDetails(context, model.value!);
+      case LinkTypeEnum.externalLink:
+        HelperMethods.instance.launchURL(url: model.value!);
+      case LinkTypeEnum.category:
+        routeTpCategoryDetails(context, model.value!);
+    }
+  }
+
+
+  void routeTpProductDetails(BuildContext context,String id){
+    try{
+      var prodId = int.parse(id);
+      AutoRouter.of(context).push(ProductDetailsRoute(productId: prodId, isResale: false, isFav: false));
+    }catch(e){
+      log("error while route to product details");
+    }
+  }
+
+  void routeTpCategoryDetails(BuildContext context,String id){
+    try{
+      var catId = int.parse(id);
+      AutoRouter.of(context).push(CategoryDetailsRoute(catId:catId,fromHome: true));
+    }catch(e){
+      log("error while route to category details");
+    }
+  }
+
 
 //
 // Future<void> scanSkuNumber() async {

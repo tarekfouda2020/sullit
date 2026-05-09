@@ -7,7 +7,6 @@ class BuildProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool? haveVipDiscount = context.read<UserCubit>().state.model?.hasValidSubscription;
     return Flexible(
       child: GridViewPagination<Product>(
         pagingController: detailsController.pagingController,
@@ -17,7 +16,6 @@ class BuildProducts extends StatelessWidget {
           return BuildProductItem(
             productModel: item,
             onFavRefresh: () => detailsController.onFavChanged(item),
-            showVipDiscount: haveVipDiscount,
             afterAddToCart: ()=> detailsController.getCartItems(),
             onPressDelete: () => detailsController.getCartItems(),
             onRefresh: () async {

@@ -15,6 +15,21 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
         // details: orderSummary.getSubTotalWithoutVat().toStringAsFixed(2),
         useDirhamPrice: true,
       ),
+      Visibility(
+        visible: orderSummary.loyaltyPointsDiscount > 0 ||
+            orderSummary.discounts > 0,
+        child: BuildSummaryHeader(
+          title: orderSummary.loyaltyPointsDiscount > 0
+              ? tr("pointsDiscount")
+              : tr("voucherDiscount"),
+          details: orderSummary.loyaltyPointsDiscount > 0
+              ? orderSummary.loyaltyPointsDiscount.toString()
+              : orderSummary.discounts.toString(),
+          detailsColor: context.colors.primary,
+          useDirhamPrice: true,
+          isDiscount: true,
+        ),
+      ),
       if (orderSummary.discountList.isNotEmpty)
         ...List.generate(
           orderSummary.discountList.length,
@@ -53,21 +68,6 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
         onPressInfo: () => controller.showDeliveryFeesSheet(context),
       ),
       Gaps.vGap8,
-      Visibility(
-        visible: orderSummary.loyaltyPointsDiscount > 0 ||
-            orderSummary.discounts > 0,
-        child: BuildSummaryHeader(
-          title: orderSummary.loyaltyPointsDiscount > 0
-              ? tr("pointsDiscount")
-              : tr("voucherDiscount"),
-          details: orderSummary.loyaltyPointsDiscount > 0
-              ? orderSummary.loyaltyPointsDiscount.toString()
-              : orderSummary.discounts.toString(),
-          detailsColor: context.colors.primary,
-          useDirhamPrice: true,
-          isDiscount: true,
-        ),
-      ),
       BuildSummaryHeader(
         title: tr('totalVat'),
         // details: shippingSummary.vatAmount().toStringAsFixed(2),

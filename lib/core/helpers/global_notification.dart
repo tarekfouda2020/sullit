@@ -7,9 +7,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/core/helpers/orders_helper.dart';
+import 'package:flutter_tdd/core/helpers/user_service_helper.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
@@ -17,8 +20,6 @@ import 'package:flutter_tdd/features/user/notifications/domain/entities/notify_e
 import 'package:flutter_tdd/features/user/profile/domain/use_cases/get_profile.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'helper_methods.dart';
 
 @lazySingleton
 class GlobalNotification {
@@ -49,35 +50,45 @@ class GlobalNotification {
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       messaging.getToken().then((token) {
-        // print(token);
+        print(token);
       });
+      GlobalState.instance.set(GlobalStateKeys.notificationGranted, true);
       messaging.setForegroundNotificationPresentationOptions();
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
         log("_____________________Message data:${message.data}");
         log("___________________notification:${message.notification?.title}");
         _onMessageStreamController.add(message.data);
         _showLocalNotification(message);
-        if (message.data['type'] == NotifyEnum.emailChanged.getValue()) {
+        if (message.data['item_type'] == NotifyEnum.emailChanged.getValue()) {
           onSaveUserData();
         }
-        if (message.data['type'] == NotifyEnum.emailVerified.getValue()) {
+        if (message.data['item_type'] == NotifyEnum.emailVerified.getValue()) {
           var context = getIt<GlobalContext>().context();
           AutoRouter.of(context).push(const LoginRoute());
         }
-        log("is order updated : ${message.data['item_type'] ==  NotifyEnum.orderDelivered.getValue()}");
-        if(message.data['item_type']!=null &&  message.data['item_type'] ==  NotifyEnum.orderDelivered.getValue()){
+        if (message.data['item_type'] == NotifyEnum.newLogin.getValue()) {
+          var context = getIt<GlobalContext>().context();
+          getIt<UserServiceHelper>().clearUserData(context);
+          // AutoRouter.of(context).push(const SplashRoute());
+          AutoRouter.of(context).push(const LoginRoute());
+        }
+        var itemType = message.data['item_type'];
+        var isOrder = itemType ==  NotifyEnum.order.getValue();
+        var updatedFromDashBoard = itemType ==  NotifyEnum.customerChangeOrderStatus.getValue();
+        if(itemType != null && (isOrder || updatedFromDashBoard) ){
           bool isDelivered = message.data['body'].toString().split(" ").last.replaceAll(".", "") == "delivered";
-          OrdersHelper.instance.getHome(setLoading: false);
+          // OrdersHelper.instance.getHome(setLoading: false);
           var orderId = int.tryParse(message.data['item_type_id']);
           if( orderId != null){
+            OrdersHelper.instance.updateOrderInHomeFromOrderDetails(id: orderId);
             OrdersHelper.instance.updateTrackOrderFromFcm(orderId);
           }
-          if(isDelivered){
-            var id = int.tryParse(message.data['item_type_id']);
-            if(id!=null){
-              OrdersHelper.instance.addPurchasedEvent(id);
-            }
-          }
+          // if(isDelivered){
+          //   var id = int.tryParse(message.data['item_type_id']);
+          //   if(id!=null){
+          //     OrdersHelper.instance.addPurchasedEvent(id);
+          //   }
+          // }
         }
       });
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
@@ -86,6 +97,8 @@ class GlobalNotification {
       });
       FirebaseMessaging.onBackgroundMessage(
           _firebaseMessagingBackgroundHandler);
+    }else{
+      GlobalState.instance.set(GlobalStateKeys.notificationGranted, false);
     }
   }
 
@@ -128,15 +141,19 @@ class GlobalNotification {
   }
 
   static void onNotifyClick(String type, int id) {
+    var isShareHolderOffer = type == NotifyEnum.shareholderProducts.getValue();
     if (type == NotifyEnum.message.getValue()) {
       var context = getIt<GlobalContext>().context();
       AutoRouter.of(context).push(const SupportRoute());
     } else if (type == NotifyEnum.order.getValue()) {
       var context = getIt<GlobalContext>().context();
       AutoRouter.of(context).push(OrderSummaryRoute(orderId: id));
-    } else if (type == NotifyEnum.emailVerified.getValue()) {
+    } else if (type == NotifyEnum.emailVerified.getValue() || type == NotifyEnum.newLogin.getValue()) {
       var context = getIt<GlobalContext>().context();
       AutoRouter.of(context).push(const LoginRoute());
+    }else if(isShareHolderOffer){
+      var context = getIt<GlobalContext>().context();
+      AutoRouter.of(context).push(HomeRoute(index: 3));
     }
   }
 

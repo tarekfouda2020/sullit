@@ -27,6 +27,7 @@ class HomeController {
   ];
 
   HomeController() {
+    checkIosTracking();
     checkIfEmailExist();
     getPurchasingHistory();
   }
@@ -101,22 +102,29 @@ class HomeController {
   }
 
   void animateTabsPages(int index, BuildContext context) {
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 350), () {
       if(index == 0 ){
-        // OrdersHelper.instance.getHome(refresh: false);
+        OrdersHelper.instance.getHome(refresh: false);
         OrdersHelper.instance.getHome();
+        getOffersData(context);
       }
       if (index == 2) {
         AutoRouter.of(context).push(CartRoute());
         return;
       } else {
-        if(index == 3 && saleTabsData.onSale?.isNotEmpty == true){
-          offersTabIndex = getSaleTabIndex(
-              context.isShareHolder
-                  ? SaleTabType.shareholderOffers
-                  :  SaleTabType.onSale,
-              context.isShareHolder
-          );
+        if(index == 3 ){
+          // If navigation came from a notification we already set offersTabIndex.
+          // In that case, don't override it here.
+          if(showShareHolderOffers == false){
+            if(saleTabsData.onSale?.isNotEmpty == true){
+              offersTabIndex = getSaleTabIndex(
+                  context.isShareHolder
+                      ? SaleTabType.shareholderOffers
+                      :  SaleTabType.onSale,
+                  context.isShareHolder
+              );
+            }
+          }
         }
         homeTabCubit.onUpdateData(index);
         tabController.animateTo(index);
@@ -124,14 +132,7 @@ class HomeController {
     });
   }
 
-  void goNotification(BuildContext context) {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
-    if (!auth) {
-      CustomToast.showAuthDialog(context);
-      return;
-    }
-    AutoRouter.of(context).push(const NotificationsRoute());
-  }
+
 
   void checkAuth(BuildContext context) {
     bool auth = context.read<DeviceCubit>().state.model.auth;
@@ -250,7 +251,7 @@ class HomeController {
   }
 
   Future<void> fetchSaleTabsData(BuildContext context,{bool refresh = true}) async {
-    var params = GenericPaginateParams(currentPage: 1, refresh: refresh, pageSize: 1);
+    var params = GenericPaginateParams(currentPage: 1, refresh: refresh, pageSize: 10);
 
     OffersParamsWidget offersParams({bool isVipProducts = false}) =>
         OffersParamsWidget(
@@ -281,6 +282,8 @@ class HomeController {
     }
   }
 
+
+  bool showShareHolderOffers = false;
   int getSaleTabIndex(SaleTabType type, bool isShareHolder) {
     List<SaleTabType> visibleTypes = [];
     bool show(List? list) => list == null || list.isNotEmpty;
@@ -288,7 +291,7 @@ class HomeController {
     if (!isShareHolder && show(saleTabsData.vipOffers)) {
       visibleTypes.add(SaleTabType.vipOffers);
     }
-    if (isShareHolder && show(saleTabsData.shareholderOffers)) {
+    if (isShareHolder && (show(saleTabsData.shareholderOffers))) {
       visibleTypes.add(SaleTabType.shareholderOffers);
     }
     if (show(saleTabsData.newArrival)) visibleTypes.add(SaleTabType.newArrival);
@@ -296,6 +299,7 @@ class HomeController {
     if (show(saleTabsData.bestRated)) visibleTypes.add(SaleTabType.bestRated);
 
     int index = visibleTypes.indexOf(type);
+    log("index is $index");
     return index != -1 ? index : 0;
   }
 

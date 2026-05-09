@@ -17,4 +17,10 @@ extension StringHelperExtension on String? {
   String  formatAmount({bool applyDashSeperate = true}) {
     return getIt<Utilities>().formatAmount(this ?? "",applyDashSeperate: applyDashSeperate);
   }
+
+
+  String  cleanNumber(){
+    return (this ?? "").replaceAll(",", "");
+  }
+
 }

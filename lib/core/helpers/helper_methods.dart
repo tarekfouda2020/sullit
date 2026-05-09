@@ -1,8 +1,12 @@
 import 'dart:io';
 
+import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../features/general/auth/data/enum/device_type_enum/device_type_enum.dart';
 import 'custom_toast.dart';
 
 class HelperMethods {
@@ -32,10 +36,22 @@ class HelperMethods {
     // launchUrl(url);
   }
 
+  String getDeviceType(){
+    if(Platform.isIOS){
+      return DeviceTypeEnum.ios.getDeviceType();
+    } else{
+      return DeviceTypeEnum.android.getDeviceType();
+    }
+  }
+
+
   void clearSavedData() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.clear();
   }
+
+
+
 
   String convertDigitsToLatin(String text) {
     var sb = StringBuffer();

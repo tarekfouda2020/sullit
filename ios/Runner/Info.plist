@@ -23,7 +23,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.31</string>
+	<string>1.0.43</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -31,16 +31,17 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb2781021995568556</string>
+				<string>fb1981210759416763</string>
+				<string>sullit</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>6</string>
 	<key>FacebookAppID</key>
-	<string>2781021995568556</string>
+	<string>1981210759416763</string>
 	<key>FacebookClientToken</key>
-	<string>92a0711ff3eb058c9c649af680cda6ec</string>
+	<string>f5411f6a11fd6c597c52450c957cf4bb</string>
 	<key>FacebookDisplayName</key>
 	<string>AMCOOP</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -80,10 +81,10 @@
 	<string>This app needs access to photo library to add user photo and service images.</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>reminders</string>
+	<key>NSUserTrackingUsageDescription</key>
+    <string>This helps us understand how the app is used and improve your experience while keeping your data private and secure.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>recognize speech</string>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>We use this permission to show you more relevant ads and measure their effectiveness, helping us improve your shopping experience.</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
@@ -123,5 +124,24 @@
 	<true/>
 	<key>io.flutter.embedded_views_preview</key>
 	<true/>
+	<key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>https</string>
+            </array>
+            <key>CFBundleURLName</key>
+            <string>suliit.ua</string>
+        </dict>
+    </array>
+
+    <!-- Associated Domains for Universal Links -->
+    <key>com.apple.developer.associated-domains</key>
+    <array>
+        <string>applinks:mushrifcoop.com</string>
+    </array>
 </dict>
 </plist>

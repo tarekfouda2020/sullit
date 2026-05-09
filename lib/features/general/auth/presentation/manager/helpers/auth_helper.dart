@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
+import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
@@ -19,36 +20,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthHelper {
   Future<void> onLogOut(BuildContext context) async {
     return await SetLogout().call(NoParams()).then(
-          (value) async {
-        SharedPreferences pref = await SharedPreferences.getInstance();
-        pref.clear();
-        pref.remove("user");
-        context.read<DeviceCubit>().updateUserAuth(false);
-        context.read<UserCubit>().onUpdateUserData(UserDomainModel());
-        GlobalState.instance.set("token", null);
+      (value) async {
+        await clearUserData(context);
         CustomToast.showSimpleToast(
           msg: tr('successLoggedOut'),
           type: ToastType.success,
         );
-        AutoRouter.of(context).push(
-           HomeRoute(index: 0),
-        );
-      },
-    );
-  }
-  Future<void> deleteAccount(BuildContext context) async {
-    return await SetDeleteAccount().call(NoParams()).then(
-          (value) async {
-        SharedPreferences pref = await SharedPreferences.getInstance();
-        pref.clear();
-        pref.remove("user");
-        context.read<DeviceCubit>().updateUserAuth(false);
-        context.read<UserCubit>().onUpdateUserData(UserDomainModel());
-        GlobalState.instance.set("token", null);
-        CustomToast.showSimpleToast(
-          msg: tr('successDeletedAccount'),
-          type: ToastType.success,
-        );
+
         AutoRouter.of(context).push(
           HomeRoute(index: 0),
         );
@@ -56,4 +34,28 @@ class AuthHelper {
     );
   }
 
+  Future<void> clearUserData(BuildContext context) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.clear();
+    pref.remove("user");
+    context.read<DeviceCubit>().updateUserAuth(false);
+    context.read<UserCubit>().onUpdateUserData(UserDomainModel());
+    GlobalState.instance.set("token", null);
+  }
+
+  Future<void> deleteAccount(BuildContext context) async {
+    return await SetDeleteAccount().call(NoParams()).then(
+      (value) async {
+        await clearUserData(context);
+        CustomToast.showSimpleToast(
+          msg: tr('successDeletedAccount'),
+          type: ToastType.success,
+        );
+        FacebookEventsHelper.instance.clearUserData();
+        AutoRouter.of(context).push(
+          HomeRoute(index: 0),
+        );
+      },
+    );
+  }
 }

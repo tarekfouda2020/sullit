@@ -41,4 +41,6 @@ abstract class CartRepository {
   Future<Either<Failure, FessMechanismModel>> getFees (bool params);
 
   Future<Either<Failure, List<DeliveryInstructionModel>>> getInstructions(bool params);
+  Future<Either<Failure, String>> shareCart(NoParams params);
+  Future<Either<Failure, bool>> importCart(String token);
 }

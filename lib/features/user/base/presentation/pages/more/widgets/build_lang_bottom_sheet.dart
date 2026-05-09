@@ -21,7 +21,10 @@ class BuildLangBottomSheet extends StatelessWidget {
                 return Column(
                   children: [
                     InkWell(
-                      onTap: () => controller.setUserLang(context, item),
+                      onTap: () {
+                        Navigator.pop(context);
+                        controller.setUserLang(context, item);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Row(

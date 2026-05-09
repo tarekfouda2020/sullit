@@ -14,17 +14,17 @@ import 'package:flutter_tdd/core/helpers/get_device_id.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
 import 'package:flutter_tdd/core/helpers/play_sound_helper.dart';
+import 'package:flutter_tdd/core/services/deep_link_service.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
-import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/features/user/base/data/enums/lang_type_enum.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'widgets/splash_widgets_imports.dart';
+import 'package:flutter_tdd/core/services/deep_link_service.dart';
+
 
 part 'splash.dart';
 part 'splash_controller.dart';

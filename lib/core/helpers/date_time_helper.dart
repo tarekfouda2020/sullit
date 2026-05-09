@@ -1,26 +1,48 @@
 import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
 import 'package:intl/intl.dart';
+
+import '../../features/user/base/data/enums/lang_type_enum.dart';
 
 class DateTimeHelper {
 
 
   static String formatDate({required DateTime date, required String formatType}) {
-    String formatted = DateFormat(formatType,"en").format(date);
-    return formatted;
+   try{
+    // return  DateFormat(formatType,_getLang()).format(date);
+    return  DateFormat(formatType,"en").format(date);
+   } catch(e){
+     return   DateFormat(formatType,"en").format(date);
+   }
   }
 
 
-  static DateTime convertToDateTime({required String strDate,  String? formatType}) {
-    DateTime formatted = DateFormat(formatType ?? "dd-MM-yyyy hh:mm a",).parse(strDate);
-    return formatted;
+  static DateTime convertToDateTime({required String strDate}) {
+    String cleaned = strDate.replaceAll(RegExp(r"\s(AM|PM)$",caseSensitive: false), "");
+    return DateFormat("dd-MM-yyyy HH:mm").parse(cleaned);
   }
+
+
+  static String _getLang(){
+    var lang = "en";
+    var code = GlobalState.instance.get(LangCodeHelper.langKey);
+    if (code == LangTypeEnum.arabic.getLangCode()) {
+      lang = LangCodeHelper.langAR;
+    }
+    if (code == LangTypeEnum.bangladesh.getLangCode()) {
+      lang = LangCodeHelper.langBN;
+    }
+    if (code == LangTypeEnum.urdu.getLangCode()) {
+      lang = LangCodeHelper.langUR;
+    }
+    return lang;
+  }
+
 
   static String getDayOfWeek(DateTime date) {
     const days = [
@@ -137,45 +159,7 @@ class DateTimeHelper {
     return input;
   }
 
-  /// Convert month abbreviation to month number
-  static int _getMonthFromAbbreviation(String monthAbbr) {
-    const monthMap = {
-      'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
-      'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
-    };
-    
-    String normalized = monthAbbr.substring(0, 3).toLowerCase();
-    for (String key in monthMap.keys) {
-      if (key.toLowerCase() == normalized) {
-        return monthMap[key]!;
-      }
-    }
-    
-    // Fallback: try to parse as number
-    try {
-      return int.parse(monthAbbr);
-    } catch (_) {
-      return 1; // Default to January if parsing fails
-    }
-  }
 
-  /// Convert full month name to month number
-  static int _getMonthFromName(String monthName) {
-    const monthMap = {
-      'January': 1, 'February': 2, 'March': 3, 'April': 4, 'May': 5, 'June': 6,
-      'July': 7, 'August': 8, 'September': 9, 'October': 10, 'November': 11, 'December': 12
-    };
-    
-    String normalized = monthName.toLowerCase();
-    for (String key in monthMap.keys) {
-      if (key.toLowerCase() == normalized) {
-        return monthMap[key]!;
-      }
-    }
-    
-    // Try abbreviation as fallback
-    return _getMonthFromAbbreviation(monthName);
-  }
 
 
 }

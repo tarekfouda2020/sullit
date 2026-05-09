@@ -2,13 +2,13 @@ part of 'notifications_widgets_imports.dart';
 
 class BuildNotificationsItem extends StatelessWidget {
   final NotificationDomainModel notification;
-
-  const BuildNotificationsItem({Key? key, required this.notification}) : super(key: key);
+ final NotificationsController controller;
+  const BuildNotificationsItem({Key? key, required this.notification, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AutoRouter.of(context).push(OrderSummaryRoute(orderId: notification.orderId)),
+      onTap: () => controller.onPress(context, notification),
       child: Container(
         margin: Dimens.paddingVertical5PX,
         padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 16),
@@ -16,7 +16,11 @@ class BuildNotificationsItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(Res.newSplashImage, width: 50, height: 50),
+            Image.asset(
+                Res.newSplashImage,
+                width: 45,
+                height: 45
+            ),
             Gaps.hGap10,
             Expanded(
               child: Column(
@@ -29,7 +33,7 @@ class BuildNotificationsItem extends StatelessWidget {
                   ),
                   Gaps.vGap7,
                   Text(
-                    DateTimeHelper.getDate(notification.createdAt),
+                    notification.normalizeDate(),
                     style: AppTextStyle.s12_w400(color: context.colors.gray5),
                   ),
                 ],

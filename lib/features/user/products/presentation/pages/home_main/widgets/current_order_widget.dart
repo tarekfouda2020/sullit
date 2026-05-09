@@ -8,7 +8,6 @@ class CurrentOrderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // width: MediaQuery.sizeOf(context).width*0.74,
       width: 300,
       padding: const EdgeInsetsDirectional.only(start: 24, top: 22, bottom: 22, end: 5),
       margin: const EdgeInsetsDirectional.only(end: 12),

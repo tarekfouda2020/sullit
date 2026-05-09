@@ -32,15 +32,20 @@ class BuildTicketItem extends StatelessWidget {
           ),
           Gaps.vGap10,
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "${tr("subject")} :",
                 style: AppTextStyle.s14_w400(color: context.colors.black),
               ),
               Gaps.hGap5,
-              Text(
-                ticketModel.subject,
-                style: AppTextStyle.s14_w600(color: context.colors.black),
+              Flexible(
+                child: Text(
+                  ticketModel.subject,
+                  style: AppTextStyle.s14_w600(color: context.colors.black).copyWith(
+                    height: 1.3
+                  ),
+                ),
               ),
             ],
           ),

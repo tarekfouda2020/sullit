@@ -7,8 +7,16 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 class BottomSheetHeaderWidget extends StatelessWidget {
   final String title;
   final void Function()? onClose;
+  final double? txtHeight;
   final bool showCloseIcon;
-  const BottomSheetHeaderWidget({super.key, required this.title, this.onClose,  this.showCloseIcon = true});
+
+  const BottomSheetHeaderWidget({
+    super.key,
+    required this.title,
+    this.onClose,
+    this.showCloseIcon = true,
+    this.txtHeight,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +24,13 @@ class BottomSheetHeaderWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Gaps.hGap15,
-        Text(
-          title,
-          style: AppTextStyle.s20_w700(color: context.colors.black),
+        Flexible(
+          child: Text(
+            title,
+            textAlign: TextAlign.center,
+            style: AppTextStyle.s20_w700(color: context.colors.black)
+                .copyWith(height: txtHeight),
+          ),
         ),
         Visibility(
           visible: showCloseIcon,
@@ -31,7 +43,6 @@ class BottomSheetHeaderWidget extends StatelessWidget {
             ),
           ),
         ),
-
       ],
     );
   }

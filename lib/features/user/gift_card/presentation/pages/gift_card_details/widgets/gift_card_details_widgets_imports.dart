@@ -18,12 +18,15 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
+import 'package:flutter_tdd/core/widgets/custom_safe_are.dart';
 import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/core/widgets/custom_radio_widget.dart';
 import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_sheet_header_widget.dart';
 import 'package:flutter_tdd/features/user/gift_card/domain/models/git_card_domain_model.dart';
 import 'package:flutter_tdd/features/user/gift_card/domain/models/pay_method_domain_model.dart';
+import 'package:flutter_tdd/features/user/gift_card/presentation/pages/gift_cards/gift_cards_imports.dart';
 import 'package:flutter_tdd/res.dart';
+import 'package:screenshot/screenshot.dart';
 
 import '../gift_card_details_imports.dart';
 

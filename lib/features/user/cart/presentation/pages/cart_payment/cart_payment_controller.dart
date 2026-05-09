@@ -14,6 +14,7 @@ class CartPaymentController {
   final TextEditingController giftCardCode = TextEditingController();
   final TextEditingController driverTipCtr = TextEditingController();
   final TextEditingController driverNotesCtr = TextEditingController();
+  final TextEditingController pickerNotesCtr = TextEditingController();
 
   final GenericBloc<Shipping?> shippingBloc = GenericBloc<Shipping?>(null);
   final GenericBloc<FessMechanismModel?> feesCubit = GenericBloc<FessMechanismModel?>(null);
@@ -77,6 +78,7 @@ class CartPaymentController {
     giftCardCode.text = pageSavedData.giftCardCode?? "";
     coupon.text = pageSavedData.voucherCode ?? "";
     driverNotesCtr.text = pageSavedData.driverNotes ?? "";
+    pickerNotesCtr.text = pageSavedData.pickerNotes ?? "";
     allowReplacementCubit.onUpdateData(pageSavedData.allowReplacement ?? false);
     conditionsCubit.onUpdateData(pageSavedData.termsAccept ?? false);
     bool noPayOptionsSelected = pageSavedData.orderSummaryCheckOut!.paymentOption!.every((element) => !element.selected,);
@@ -114,11 +116,11 @@ class CartPaymentController {
     updateData();
   }
 
-  Future<void> applyCoupon() async {
+  Future<void> applyCoupon() async { 
     if (couponFormKey.currentState!.validate()) {
       var data = await ApplyCoupon().call(coupon.text);
       if (data != null) {
-        CustomToast.showSimpleToast(msg: data.msg);
+        CustomToast.showSimpleToast(msg: data.msg,type: ToastType.success);
         shippingBloc.state.data!.summary = data.shipping.summary;
         updateData();
         if (shippingBloc.state.data!.isAdminDiscount == true) {
@@ -158,6 +160,8 @@ class CartPaymentController {
     var params = _orderParams();
     var data = await CreateOrder().call(params);
     if (data != null) {
+      var countCubit = ctx.read<CountCubit>().state;
+      ctx.read<CountCubit>().onUpdateCount(0, countCubit.discount);
       if (data.transactionUrl != null) {
         goToPay(data.transactionUrl!, ctx);
        // showOrderCreatedBottomSheet(data.transactionUrl!,ctx);
@@ -292,7 +296,8 @@ class CartPaymentController {
       giftCardCode: giftCardCode.text.trim(),
       allowReplacement: allowReplacementCubit.state.data ? 1 : 0,
       instructions: _selectedInstructions(),
-      driverNotes: driverNotesCtr.text
+      driverNotes: driverNotesCtr.text,
+      pickerNotes: pickerNotesCtr.text
     );
   }
 
@@ -549,7 +554,7 @@ class CartPaymentController {
 
 
   double getTotal(){
-    return double.parse(shippingBloc.state.data!.summary.total);
+    return double.parse(shippingBloc.state.data!.summary.total.cleanNumber());
    //  ShippingSummary summary = shippingBloc.state.data!.summary;
    //  double subTotal = double.parse(summary.subTotal);
    //  double totalFeesAmount = summary.getFeesTotal;
@@ -610,6 +615,12 @@ class CartPaymentController {
     );
   }
 
+  void whileEnterPickerNotes(){
+    getIt<CartNavigateHelper>().updatePickerNotes(
+        driverNotes: pickerNotesCtr.text
+    );
+  }
+
 
   void changeTermsStatus(bool value){
     conditionsCubit.onUpdateData(value);
@@ -627,8 +638,8 @@ class CartPaymentController {
     params!.showLoader = false;
     var data = await SetCartStoreShipping().call(params);
     if(data!=null){
-      double oldSubTotal = double.parse(_pageSavedData.orderSummaryCheckOut?.summary.subTotal??"0.0");
-      double newSubTotal = double.parse(data.summary.subTotal);
+      double oldSubTotal = double.parse(_pageSavedData.orderSummaryCheckOut?.summary.subTotal.cleanNumber()??"0.0");
+      double newSubTotal = double.parse(data.summary.subTotal.cleanNumber());
       if(newSubTotal > oldSubTotal || newSubTotal < oldSubTotal){
         _initSelectedPayMethod(data);
         initDataFromLastRoute(_pageSavedData,data);

@@ -9,8 +9,9 @@ part of 'notification_model.dart';
 _$_NotificationModel _$$_NotificationModelFromJson(Map<String, dynamic> json) =>
     _$_NotificationModel(
       id: json['id'] as String,
-      orderId: (json['order_id'] as num).toInt(),
+      orderId: (json['order_id'] as num?)?.toInt(),
       text: json['text'] as String,
+      type: json['type'] as String,
       createdAt: json['created_at'] as String,
     );
 
@@ -20,5 +21,6 @@ Map<String, dynamic> _$$_NotificationModelToJson(
       'id': instance.id,
       'order_id': instance.orderId,
       'text': instance.text,
+      'type': instance.type,
       'created_at': instance.createdAt,
     };

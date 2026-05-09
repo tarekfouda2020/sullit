@@ -7,6 +7,7 @@ class BuildMoreItem extends StatelessWidget {
   final bool haveStatus;
   final bool? isSvg;
   final double? size;
+  final ColorFilter? svgColor;
 
   const BuildMoreItem(
       {Key? key,
@@ -15,6 +16,7 @@ class BuildMoreItem extends StatelessWidget {
       required this.onTap,
       this.haveStatus = false,
       this.isSvg = false,
+      this.svgColor,
       this.size = 35})
       : super(key: key);
 
@@ -45,19 +47,24 @@ class BuildMoreItem extends StatelessWidget {
                     image,
                     width: size,
                     height: size,
-                  )
+              colorFilter: svgColor,
+                )
                 : Image.asset(
                     image,
                     width: size,
                     height: size,
-                  ),
+                ),
             Gaps.vGap10,
-            Flexible(
-              child: Text(
-                title,
-                textAlign: TextAlign.center,
-                style: AppTextStyle.s14_w500(color: context.colors.black).copyWith(),
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: AppTextStyle.s14_w500(color: context.colors.black).copyWith(),
+                  ),
+                ),
+              ],
             ),
             Gaps.vGap10,
           ],

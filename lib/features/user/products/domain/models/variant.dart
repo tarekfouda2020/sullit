@@ -13,6 +13,8 @@ class Variant extends BaseDomainModel {
   String? options;
    bool? hasDiscount;
   String? originalPrice;
+  bool? isSelected;
+  int? sortOrder;
 
   Variant({
     required this.id,
@@ -27,6 +29,8 @@ class Variant extends BaseDomainModel {
     required this.sku,
     required this.hasDiscount,
     required this.originalPrice,
+     this.isSelected = false,
+    this.sortOrder,
   });
 
   Variant.fromJson(Map<String, dynamic> json) {
@@ -42,6 +46,8 @@ class Variant extends BaseDomainModel {
     options = json['options'];
     originalPrice = json['original_price'];
     hasDiscount = json['has_discount'];
+    isSelected = json['is_selected'] ?? false;
+    sortOrder = json['sort_order'];
   }
 
   Map<String, dynamic> toJson() {
@@ -58,6 +64,8 @@ class Variant extends BaseDomainModel {
     data['sku'] = sku;
     data['has_discount'] = hasDiscount;
     data['original_price'] = originalPrice;
+    data['is_selected'] = isSelected;
+    data['sort_order'] = sortOrder;
     return data;
   }
 }

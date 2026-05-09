@@ -13,6 +13,7 @@ class CartCheckOutSavedData{
   bool? allowReplacement;
   List<DeliveryInstructionModel>? selectedDriverInstructions;
   String? driverNotes;
+  String? pickerNotes;
   String? voucherCode;
   String? giftCardCode;
 

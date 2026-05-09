@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/app_constants.dart';
+import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
@@ -200,7 +201,6 @@ class Utilities {
   /// back-end lang code is different from local lang code
 
   Future<void> changeLanguage(String lang, BuildContext context) async {
-    context.read<DeviceCubit>().updateLanguage(Locale(lang));
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(LangCodeHelper.langKey, lang);
     if(lang == LangCodeHelper.langAR){
@@ -208,6 +208,9 @@ class Utilities {
     }
     if(lang == LangCodeHelper.langBN){
       lang = LangTypeEnum.bangladesh.getLangCode();
+    }
+    if(lang == LangCodeHelper.langUR){
+      lang = LangTypeEnum.urdu.getLangCode();
     }
     GlobalState.instance.set(LangCodeHelper.langKey, lang);
   }
@@ -308,7 +311,7 @@ class Utilities {
 
   String _formatSingle(String value) {
 
-    final parsed = double.tryParse(value.replaceAll(',', '')) ?? 0 ;
+    final parsed = double.tryParse(value.cleanNumber()) ?? 0 ;
     final intValue = parsed.toStringAsFixed(2);
 
     final formattedInteger = intValue.replaceAllMapped(

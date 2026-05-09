@@ -33,6 +33,7 @@ class CategoryDetailsController implements CartSheetController {
   BrandDomainModel? brandModel;
   Shop? selectedSeller;
   Category? initialCategoryModel;
+  int? catId;
 
   List<BrandDomainModel> brands = [];
   List<String> selectedColors = [];
@@ -42,12 +43,18 @@ class CategoryDetailsController implements CartSheetController {
 
   RangeValues? rangeValues;
 
-  CategoryDetailsController(BuildContext context, Category categoryModel) {
-    FacebookEventsHelper.instance.categoryDetailsOpened(categoryModel);
+  CategoryDetailsController(BuildContext context, Category? categoryModel, this.catId) {
     getCartItems();
-    initialCategoryModel = categoryModel;
-    titleCubit.onUpdateData(categoryModel.name);
-    getData(context, categoryModel);
+    if(categoryModel!= null){
+      FacebookEventsHelper.instance.categoryDetailsOpened(categoryModel);
+      initialCategoryModel = categoryModel;
+      titleCubit.onUpdateData(categoryModel.name);
+      getData(context, categoryModel.id,refresh: false);
+      getData(context, categoryModel.id);
+    }else if(catId != null){
+      getData(context, catId!,refresh: false);
+      getData(context, catId!);
+    }
     getBestSellers(1, refresh: false);
     pagingSellersController.addPageRequestListener((pageKey) {
       getBestSellers(pageKey);
@@ -130,8 +137,8 @@ class CategoryDetailsController implements CartSheetController {
     sellersCubit.onUpdateData(sellersCubit.state.data);
   }
 
-  Future<void> getData(BuildContext context, Category categoryModel) async {
-    await getSubCategories(context, categoryModel.id);
+  Future<void> getData(BuildContext context, int id,{bool refresh = true}) async {
+    await getSubCategories(context, id,refresh:refresh);
     getPopularProducts(1, refresh: false);
     getBrands(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
@@ -153,6 +160,12 @@ class CategoryDetailsController implements CartSheetController {
     var result = await GetSubCategories().call(params);
 
     if (result != null) {
+      initialCategoryModel = result.category;
+      if(catId!= null){
+        FacebookEventsHelper.instance.categoryDetailsOpened(result.category);
+        initialCategoryModel = result.category;
+        titleCubit.onUpdateData(result.category.name);
+      }
       final newLevel = SubCategoryLevel(
         subCategory: result,
         selectedCategoryId: id,
@@ -549,10 +562,10 @@ class CategoryDetailsController implements CartSheetController {
         pagingController.refresh();
       }
 
-      return true; // Handled the back action
+      return true;
     }
 
-    return false; // No selections, allow normal pop
+    return false;
   }
 
   void onPressSearch(BuildContext context) {

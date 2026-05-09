@@ -12,9 +12,10 @@ class WalletModel extends BaseApiModel<Wallet> with _$WalletModel {
   const WalletModel._();
 
   @JsonSerializable(explicitToJson: true)
-  const factory WalletModel(
-      {@JsonKey(name: "wallet_balance")
-          required String walletBalance,
+  const factory WalletModel({
+
+    @JsonKey(name: "wallet_balance") required String walletBalance,
+    @JsonKey(name: "wallet_credit") required String walletCredit,
       @JsonKey(name: "wallet_recharge_history")
           required WalletRechargeHistoryModel rechargedHistory}) = _WalletModel;
 
@@ -25,6 +26,7 @@ class WalletModel extends BaseApiModel<Wallet> with _$WalletModel {
   Wallet toDomainModel() {
     return Wallet(
       walletBalance: walletBalance,
+      walletCredit: walletCredit,
       rechargeHistory: rechargedHistory.toDomainModel(),
     );
   }

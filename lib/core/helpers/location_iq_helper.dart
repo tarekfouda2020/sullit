@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_tdd/core/http/dio_helper/utils/dio_options.dart';
 import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/models/location_iq_params/location_iq_params.dart';
 import 'package:flutter_tdd/core/models/location_iq_place_model/location_iq_place.dart';
@@ -9,6 +10,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../errors/failures.dart';
 import '../models/custom_address_model/custom_address_model.dart';
+import 'di.dart';
 
 class LocationIqHelper {
   LocationIqHelper._();
@@ -32,11 +34,14 @@ class LocationIqHelper {
       logPrint: (data) => log(data.toString(),
       )));
 
-  Future<Either<Failure,List<LocationIQPlace>>> getAutoCompleteLocations(String keyword) async {
+  Future<Either<Failure,List<LocationIQPlace>>> getAutoCompleteLocations(String keyword,{bool refresh = true}) async {
     try {
       LocationIqParams params = _autoCompleteParams(keyword);
       final String url = '$_locationIqBaseUrl${ApiNames.locationAutoComplete}${params.autoCompleteUrl()}';
-      final  Response<dynamic> response = await _dio.get(url);
+       final Response<dynamic> response = await _dio.get(
+        url,
+        options: getIt<DioOptions>()(forceRefresh: refresh)
+      );
       if (response.statusCode == 200 && response.data != null) {
         final List<dynamic> list = response.data as List<dynamic>;
 

@@ -12,10 +12,12 @@ class BuildProductButtons extends StatelessWidget {
     return Visibility(
       visible:
           hasVariant ? detailsModel.product.variant!.currentStock! > 0 : false,
-      child: Padding(
-        padding: const EdgeInsetsDirectional.only(
-            top: 10, bottom: 18, start: 20, end: 45),
-        child: SizedBox(
+      child: CustomBottomSafeAreaWidget(
+        child: Padding(
+          padding:  EdgeInsetsDirectional.only(
+              top: 10, start: 20, end: detailsModel.product.isOutOfStock
+              ?20
+              :45),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -23,17 +25,26 @@ class BuildProductButtons extends StatelessWidget {
                 children: [
                   Expanded(
                     child: GestureDetector(
-                      onTap: () => controller.onAddToCart(context),
+                      onTap: () {
+                        if(detailsModel.product.isOutOfStock){
+                          return ;
+                        }
+                        controller.onAddToCart(context);
+                      },
                       child: Container(
                         alignment: Alignment.center,
                         padding: Dimens.paddingVertical10PX,
                         margin: Dimens.paddingAll5PX,
                         decoration: BoxDecoration(
-                          color: context.colors.primary,
+                          color: detailsModel.product.isOutOfStock
+                              ?context.colors.deepGray
+                              : context.colors.primary,
                           borderRadius: Dimens.borderRadius30PX,
                         ),
                         child: Text(
-                          tr('addToCart'),
+                            detailsModel.product.isOutOfStock
+                                ? tr('outOfStock')
+                                : tr('addToCart'),
                           style: AppTextStyle.s18_w700(
                             color: context.colors.white,
                           ),
@@ -41,59 +52,63 @@ class BuildProductButtons extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Gaps.hGap11,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        tr("total"),
-                        style: AppTextStyle.s12_w400(
-                          color: context.colors.textColor,
+                  if(!detailsModel.product.isOutOfStock)...[
+                    Gaps.hGap11,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          tr("total"),
+                          style: AppTextStyle.s12_w400(
+                            color: context.colors.textColor,
+                          ),
                         ),
-                      ),
-                      Gaps.vGap6,
-                      BlocBuilder<GenericBloc<int>, GenericState<int>>(
-                        bloc: controller.qtyCubit,
-                        builder: (context, state) {
-                          return DirhamPrice(
-                            amount:
-                                "${detailsModel.product.variant?.calculablePrice}",
-                            currencyOffset: -0.5,
-                            currencyStyle: AppTextStyle.s18_w400(
-                              color: context.colors.primary,
-                            ),
-                            // "${detailsModel.product.variant?.calculablePrice} ${detailsModel.product.currencySymbol}",
-                            textStyle: AppTextStyle.s14_w600(
-                              color: context.colors.primary,
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+                        Gaps.vGap6,
+                        BlocBuilder<GenericBloc<int>, GenericState<int>>(
+                          bloc: controller.qtyCubit,
+                          builder: (context, state) {
+                            return DirhamPrice(
+                              amount:
+                              "${detailsModel.product.variant?.calculablePrice}",
+                              currencyOffset: -0.5,
+                              currencyStyle: AppTextStyle.s18_w400(
+                                color: context.colors.primary,
+                              ),
+                              // "${detailsModel.product.variant?.calculablePrice} ${detailsModel.product.currencySymbol}",
+                              textStyle: AppTextStyle.s14_w600(
+                                color: context.colors.primary,
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ]
                 ],
               ),
-              Gaps.vGap10,
-              BlocBuilder<GenericBloc<CartDomainModel>,
-                  GenericState<CartDomainModel>>(
-                bloc: controller.cartItemsBloc,
-                builder: (context, cartState) {
-                  return BlocBuilder<GenericBloc<String>, GenericState<String>>(
-                    bloc: controller.remainingAmountBloc,
-                    builder: (context, state) {
-                      return Visibility(
-                        visible: (cartState.data.minimumStatus == false) &&
-                            controller.remainToGetMinAmount() > 0,
-                        child: CartMinAmountNeededWidget(
-                          minAmount: state.data,
-                          sellerName: "from '${cartState.data.getRequiredSellerName()}'",
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
+              if(!detailsModel.product.isOutOfStock)...[
+                Gaps.vGap10,
+                BlocBuilder<GenericBloc<CartDomainModel>, GenericState<CartDomainModel>>(
+                  bloc: controller.cartItemsBloc,
+                  builder: (context, cartState) {
+                    return BlocBuilder<GenericBloc<String>, GenericState<String>>(
+                      bloc: controller.remainingAmountBloc,
+                      builder: (context, state) {
+                        var remain = double.parse(state.data);
+                        return Visibility(
+                          visible: (cartState.data.minimumStatus == false) &&
+                              controller.remainToGetMinAmount() > 0 && remain > 0,
+                          child: CartMinAmountNeededWidget(
+                            minAmount: state.data,
+                            sellerName: "from '${cartState.data.getRequiredSellerName()}'",
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
+              ]
             ],
           ),
         ),

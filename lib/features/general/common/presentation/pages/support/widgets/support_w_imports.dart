@@ -18,6 +18,7 @@ import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
 import 'package:bubble/bubble.dart';
 import 'package:flutter_tdd/core/helpers/validator.dart';
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
+import 'package:flutter_tdd/core/widgets/custom_safe_are.dart';
 import 'package:flutter_tdd/features/general/common/domain/models/support_msg.dart';
 import 'package:flutter_tdd/features/general/common/presentation/pages/image_zoom/image_zoom.dart';
 import 'package:flutter_tdd/features/general/common/presentation/pages/support/support_imports.dart';

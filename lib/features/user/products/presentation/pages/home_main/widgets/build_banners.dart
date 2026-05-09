@@ -2,8 +2,8 @@ part of 'home_main_widgets_imports.dart';
 
 class BuildBanners extends StatelessWidget {
   final List<BannerDomainModel> banners;
-
-  const BuildBanners({super.key, required this.banners});
+ final HomeMainController controller;
+  const BuildBanners({super.key, required this.banners, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,7 @@ class BuildBanners extends StatelessWidget {
         child: Visibility(
           visible: banners.length > 1,
           replacement: InkWell(
-            onTap: () => HelperMethods.instance.launchURL(
-              url: banners.first.url ?? "",
-            ),
+            onTap: () => controller.onBannerTwoTapped(context, banners.first),
             child: CachedImage(
               // url: "banners.first.photo",
               url: "",
@@ -30,9 +28,7 @@ class BuildBanners extends StatelessWidget {
           child: Swiper(
             itemBuilder: (context, index) {
               return InkWell(
-                onTap: () => HelperMethods.instance.launchURL(
-                  url: banners[index].url ?? "",
-                ),
+                onTap: () => controller.onBannerTwoTapped(context, banners[index]),
                 child: CachedImage(
                   url: banners[index].photo,
                   fit: BoxFit.fill,

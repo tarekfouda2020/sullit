@@ -2,8 +2,8 @@ part of 'home_main_widgets_imports.dart';
 
 class BuildHomeSwiper extends StatelessWidget {
   final List<SliderDomainModel> slider;
-
-  const BuildHomeSwiper({super.key, required this.slider});
+ final HomeMainController controller;
+  const BuildHomeSwiper({super.key, required this.slider, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +19,14 @@ class BuildHomeSwiper extends StatelessWidget {
         ),
         child: Swiper(
           itemBuilder: (BuildContext context, int index) {
-            return CachedImage(
-              width: MediaQuery.sizeOf(context).width,
-              borderRadius: Dimens.borderRadius30PX,
-              fit:  BoxFit.fill,
-              url: slider[index].photo,
+            return GestureDetector(
+              onTap: () => controller.onSwiperTapped(context,slider[index]),
+              child: CachedImage(
+                width: MediaQuery.sizeOf(context).width,
+                borderRadius: Dimens.borderRadius30PX,
+                fit:  BoxFit.fill,
+                url: slider[index].photo,
+              ),
             );
           },
           itemCount: slider.length,

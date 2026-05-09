@@ -55,6 +55,8 @@ mixin _$OrderModel {
   String get additionalInfo => throw _privateConstructorUsedError;
   @JsonKey(name: 'payment_method')
   String get paymentMethod => throw _privateConstructorUsedError;
+  @JsonKey(name: 'payment_method_key')
+  String get paymentMethodConst => throw _privateConstructorUsedError;
   @JsonKey(name: 'shipping_method')
   String get shippingMethod => throw _privateConstructorUsedError;
   @JsonKey(name: 'order_status')
@@ -102,6 +104,8 @@ mixin _$OrderModel {
   String get totalFeeAmount => throw _privateConstructorUsedError;
   @JsonKey(name: 'driver_notes')
   String get driverNotes => throw _privateConstructorUsedError;
+  @JsonKey(name: 'picker_notes')
+  String get pickerNotes => throw _privateConstructorUsedError;
   @JsonKey(name: 'delivery_instructions')
   List<DeliveryInstruction> get deliveryInstructions =>
       throw _privateConstructorUsedError;
@@ -144,6 +148,7 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'available_cancel_order') bool availableCancelOrder,
       @JsonKey(name: 'additional_info') String additionalInfo,
       @JsonKey(name: 'payment_method') String paymentMethod,
+      @JsonKey(name: 'payment_method_key') String paymentMethodConst,
       @JsonKey(name: 'shipping_method') String shippingMethod,
       @JsonKey(name: 'order_status') String orderStatus,
       @JsonKey(name: 'order_date') String orderDate,
@@ -166,6 +171,7 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'vat_fee_amount') String vatFeeAmount,
       @JsonKey(name: 'total_fee_amount') String totalFeeAmount,
       @JsonKey(name: 'driver_notes') String driverNotes,
+      @JsonKey(name: 'picker_notes') String pickerNotes,
       @JsonKey(name: 'delivery_instructions')
       List<DeliveryInstruction> deliveryInstructions,
       @JsonKey(name: 'order_discounts') List<OrderDiscount>? orderDiscounts,
@@ -208,6 +214,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? availableCancelOrder = null,
     Object? additionalInfo = null,
     Object? paymentMethod = null,
+    Object? paymentMethodConst = null,
     Object? shippingMethod = null,
     Object? orderStatus = null,
     Object? orderDate = null,
@@ -230,6 +237,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? vatFeeAmount = null,
     Object? totalFeeAmount = null,
     Object? driverNotes = null,
+    Object? pickerNotes = null,
     Object? deliveryInstructions = null,
     Object? orderDiscounts = freezed,
     Object? driver = freezed,
@@ -319,6 +327,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      paymentMethodConst: null == paymentMethodConst
+          ? _value.paymentMethodConst
+          : paymentMethodConst // ignore: cast_nullable_to_non_nullable
+              as String,
       shippingMethod: null == shippingMethod
           ? _value.shippingMethod
           : shippingMethod // ignore: cast_nullable_to_non_nullable
@@ -407,6 +419,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.driverNotes
           : driverNotes // ignore: cast_nullable_to_non_nullable
               as String,
+      pickerNotes: null == pickerNotes
+          ? _value.pickerNotes
+          : pickerNotes // ignore: cast_nullable_to_non_nullable
+              as String,
       deliveryInstructions: null == deliveryInstructions
           ? _value.deliveryInstructions
           : deliveryInstructions // ignore: cast_nullable_to_non_nullable
@@ -465,6 +481,7 @@ abstract class _$$_OrderModelCopyWith<$Res>
       @JsonKey(name: 'available_cancel_order') bool availableCancelOrder,
       @JsonKey(name: 'additional_info') String additionalInfo,
       @JsonKey(name: 'payment_method') String paymentMethod,
+      @JsonKey(name: 'payment_method_key') String paymentMethodConst,
       @JsonKey(name: 'shipping_method') String shippingMethod,
       @JsonKey(name: 'order_status') String orderStatus,
       @JsonKey(name: 'order_date') String orderDate,
@@ -487,6 +504,7 @@ abstract class _$$_OrderModelCopyWith<$Res>
       @JsonKey(name: 'vat_fee_amount') String vatFeeAmount,
       @JsonKey(name: 'total_fee_amount') String totalFeeAmount,
       @JsonKey(name: 'driver_notes') String driverNotes,
+      @JsonKey(name: 'picker_notes') String pickerNotes,
       @JsonKey(name: 'delivery_instructions')
       List<DeliveryInstruction> deliveryInstructions,
       @JsonKey(name: 'order_discounts') List<OrderDiscount>? orderDiscounts,
@@ -528,6 +546,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? availableCancelOrder = null,
     Object? additionalInfo = null,
     Object? paymentMethod = null,
+    Object? paymentMethodConst = null,
     Object? shippingMethod = null,
     Object? orderStatus = null,
     Object? orderDate = null,
@@ -550,6 +569,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? vatFeeAmount = null,
     Object? totalFeeAmount = null,
     Object? driverNotes = null,
+    Object? pickerNotes = null,
     Object? deliveryInstructions = null,
     Object? orderDiscounts = freezed,
     Object? driver = freezed,
@@ -639,6 +659,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      paymentMethodConst: null == paymentMethodConst
+          ? _value.paymentMethodConst
+          : paymentMethodConst // ignore: cast_nullable_to_non_nullable
+              as String,
       shippingMethod: null == shippingMethod
           ? _value.shippingMethod
           : shippingMethod // ignore: cast_nullable_to_non_nullable
@@ -727,6 +751,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.driverNotes
           : driverNotes // ignore: cast_nullable_to_non_nullable
               as String,
+      pickerNotes: null == pickerNotes
+          ? _value.pickerNotes
+          : pickerNotes // ignore: cast_nullable_to_non_nullable
+              as String,
       deliveryInstructions: null == deliveryInstructions
           ? _value._deliveryInstructions
           : deliveryInstructions // ignore: cast_nullable_to_non_nullable
@@ -771,6 +799,7 @@ class _$_OrderModel extends _OrderModel {
       required this.availableCancelOrder,
       @JsonKey(name: 'additional_info') required this.additionalInfo,
       @JsonKey(name: 'payment_method') required this.paymentMethod,
+      @JsonKey(name: 'payment_method_key') required this.paymentMethodConst,
       @JsonKey(name: 'shipping_method') required this.shippingMethod,
       @JsonKey(name: 'order_status') required this.orderStatus,
       @JsonKey(name: 'order_date') required this.orderDate,
@@ -796,6 +825,7 @@ class _$_OrderModel extends _OrderModel {
       @JsonKey(name: 'vat_fee_amount') required this.vatFeeAmount,
       @JsonKey(name: 'total_fee_amount') required this.totalFeeAmount,
       @JsonKey(name: 'driver_notes') required this.driverNotes,
+      @JsonKey(name: 'picker_notes') required this.pickerNotes,
       @JsonKey(name: 'delivery_instructions')
       required final List<DeliveryInstruction> deliveryInstructions,
       @JsonKey(name: 'order_discounts')
@@ -865,6 +895,9 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'payment_method')
   final String paymentMethod;
+  @override
+  @JsonKey(name: 'payment_method_key')
+  final String paymentMethodConst;
   @override
   @JsonKey(name: 'shipping_method')
   final String shippingMethod;
@@ -939,6 +972,9 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'driver_notes')
   final String driverNotes;
+  @override
+  @JsonKey(name: 'picker_notes')
+  final String pickerNotes;
   final List<DeliveryInstruction> _deliveryInstructions;
   @override
   @JsonKey(name: 'delivery_instructions')
@@ -966,7 +1002,7 @@ class _$_OrderModel extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, paymentMethodConst: $paymentMethodConst, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, pickerNotes: $pickerNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver)';
   }
 
   @override
@@ -1011,6 +1047,8 @@ class _$_OrderModel extends _OrderModel {
                 other.additionalInfo == additionalInfo) &&
             (identical(other.paymentMethod, paymentMethod) ||
                 other.paymentMethod == paymentMethod) &&
+            (identical(other.paymentMethodConst, paymentMethodConst) ||
+                other.paymentMethodConst == paymentMethodConst) &&
             (identical(other.shippingMethod, shippingMethod) ||
                 other.shippingMethod == shippingMethod) &&
             (identical(other.orderStatus, orderStatus) ||
@@ -1054,6 +1092,8 @@ class _$_OrderModel extends _OrderModel {
                 other.totalFeeAmount == totalFeeAmount) &&
             (identical(other.driverNotes, driverNotes) ||
                 other.driverNotes == driverNotes) &&
+            (identical(other.pickerNotes, pickerNotes) ||
+                other.pickerNotes == pickerNotes) &&
             const DeepCollectionEquality()
                 .equals(other._deliveryInstructions, _deliveryInstructions) &&
             const DeepCollectionEquality()
@@ -1086,6 +1126,7 @@ class _$_OrderModel extends _OrderModel {
         availableCancelOrder,
         additionalInfo,
         paymentMethod,
+        paymentMethodConst,
         shippingMethod,
         orderStatus,
         orderDate,
@@ -1108,6 +1149,7 @@ class _$_OrderModel extends _OrderModel {
         vatFeeAmount,
         totalFeeAmount,
         driverNotes,
+        pickerNotes,
         const DeepCollectionEquality().hash(_deliveryInstructions),
         const DeepCollectionEquality().hash(_orderDiscounts),
         driver
@@ -1155,6 +1197,8 @@ abstract class _OrderModel extends OrderModel {
       required final bool availableCancelOrder,
       @JsonKey(name: 'additional_info') required final String additionalInfo,
       @JsonKey(name: 'payment_method') required final String paymentMethod,
+      @JsonKey(name: 'payment_method_key')
+      required final String paymentMethodConst,
       @JsonKey(name: 'shipping_method') required final String shippingMethod,
       @JsonKey(name: 'order_status') required final String orderStatus,
       @JsonKey(name: 'order_date') required final String orderDate,
@@ -1181,6 +1225,7 @@ abstract class _OrderModel extends OrderModel {
       @JsonKey(name: 'vat_fee_amount') required final String vatFeeAmount,
       @JsonKey(name: 'total_fee_amount') required final String totalFeeAmount,
       @JsonKey(name: 'driver_notes') required final String driverNotes,
+      @JsonKey(name: 'picker_notes') required final String pickerNotes,
       @JsonKey(name: 'delivery_instructions')
       required final List<DeliveryInstruction> deliveryInstructions,
       @JsonKey(name: 'order_discounts')
@@ -1247,6 +1292,9 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'payment_method')
   String get paymentMethod;
+  @override
+  @JsonKey(name: 'payment_method_key')
+  String get paymentMethodConst;
   @override
   @JsonKey(name: 'shipping_method')
   String get shippingMethod;
@@ -1315,6 +1363,9 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'driver_notes')
   String get driverNotes;
+  @override
+  @JsonKey(name: 'picker_notes')
+  String get pickerNotes;
   @override
   @JsonKey(name: 'delivery_instructions')
   List<DeliveryInstruction> get deliveryInstructions;

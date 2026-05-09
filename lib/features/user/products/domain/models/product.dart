@@ -33,6 +33,7 @@ class Product extends BaseDomainModel {
   int? minQty;
   String? currencySymbol;
   Variant? variant;
+  List<Variant>? variants;
   List<String>? tags;
   num? rating;
   int? sales;
@@ -58,6 +59,7 @@ class Product extends BaseDomainModel {
   bool? showProductCounter;
   bool? hasShareholderDiscount;
   int? addedQtyToCart;
+  int? maxQnt;
 
   Product(
       {this.id,
@@ -71,6 +73,7 @@ class Product extends BaseDomainModel {
       this.discount,
       this.strokedPrice,
       this.variant,
+      this.variants,
       this.mainPrice,
       this.choiceOptions,
       this.colors,
@@ -104,6 +107,7 @@ class Product extends BaseDomainModel {
       this.showProductCounter = false,
       this.addedQtyToCart = 0,
       this.hasSpecialLoyaltyPoints,
+      this.maxQnt,
       this.isAddedTCompare = false});
 
   Future<void> isAddedToCompare() async {
@@ -118,6 +122,11 @@ class Product extends BaseDomainModel {
   bool   showPriceDiscount({bool? showVipDiscount}) => ( hasDiscount == true || showVipDiscount == true);
 
   bool   get showSpecialPoints => hasSpecialLoyaltyPoints == true;
+
+  bool get isOutOfStock => (variant?.currentStock ?? 0) == 0 ;
+  // bool get isOutOfStock => (variant?.currentStock ?? 0) > 0 ;
+
+  bool get sameQntInCart => (variant?.currentStock ?? 0) == addedQtyToCart;
 
   String getPriceWhenHavePointsAndDiscount(){
     if(hasSpecialLoyaltyPoints==true){
@@ -134,6 +143,8 @@ class Product extends BaseDomainModel {
     id = json['id'];
     name = json['name'];
     unit = json['unit'];
+    maxQnt = json['max_qty'];
+    variants = json['variants'] != null ? List<Variant>.from(json['variants'].map((x) => Variant.fromJson(x))) : null;
     thumbnailImage = json['thumbnail_image'];
     images = json['images'].cast<String>();
     isMultiple = json['is_multiple'];
@@ -210,6 +221,7 @@ class Product extends BaseDomainModel {
     data['count_reviews'] = countReviews;
     data['sold_by_type'] = soldByType;
     data['sold_by_name'] = soldByName;
+    data['variants'] = variants?.map((e) => e.toJson()).toList();
     if (shop != null) {
       data['shop'] = shop!.toJson();
     }
@@ -221,6 +233,7 @@ class Product extends BaseDomainModel {
     data['category_name'] = categoryName;
     data['brand_name'] = brandName;
     data['has_vip_offer'] = hasVipOffer;
+    data['max_qty'] = maxQnt;
     data['has_shareholder_discount'] = hasShareholderDiscount;
     return data;
   }

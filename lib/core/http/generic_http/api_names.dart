@@ -5,7 +5,7 @@ class ApiNames {
   static const String baseUrl = "https://staging.mushrifcoop.com/api/v3/";
 
   ///production
-  // static const String baseUrl = "https://mushrifcoop.com/api/v3/";
+  // static const String baseUrl = "https://admin.mushrifcoop.com/api/v3/";
 
   static const String iqUrl = "https://us1.locationiq.com/v1/";
 
@@ -138,6 +138,8 @@ class ApiNames {
   static const String addCartAddress = "cart/add-address";
   static const String cartStoreShipping = "cart/store-shipping-info";
   static const String applyCoupon = "cart/apply-coupon";
+  static const String cartShare = "cart/share";
+  static const String cartImport = "cart/import";
   static const String storeOrders = "orders/store";
   static const String storeProductToCart = "cart/store";
   static const String cartShippingInfo = "cart/shipping-info";

@@ -31,6 +31,22 @@ class InvoiceSummaryWidget extends StatelessWidget {
                 useDirhamPrice: true,
               ),
               Visibility(
+                visible: shippingSummary.couponApplied == true ||
+                    shippingSummary.loyaltyPointsApplied == true,
+                child: BuildSummaryHeader(
+                  isDiscount: true,
+                  applyDashSeperate: false,
+                  title: shippingSummary.loyaltyPointsApplied == true
+                      ? tr("pointsDiscount")
+                      : tr("voucherDiscount"),
+                  details: shippingSummary.loyaltyPointsApplied == true
+                      ? "-${shippingSummary.loyaltyPointsValue} "
+                      : "-${shippingSummary.couponDiscount}",
+                  detailsColor: context.colors.primary,
+                  useDirhamPrice: true,
+                ),
+              ),
+              Visibility(
                   visible: shippingSummary.showOrderDiscounts ,
                   child: Column(
                     spacing: 16,
@@ -76,23 +92,6 @@ class InvoiceSummaryWidget extends StatelessWidget {
                 details: shippingSummary.getTotalVat(),
                 useDirhamPrice: true,
                 vMargin: 0,
-              ),
-              Gaps.vGap3,
-              Visibility(
-                visible: shippingSummary.couponApplied == true ||
-                    shippingSummary.loyaltyPointsApplied == true,
-                child: BuildSummaryHeader(
-                  isDiscount: true,
-                  applyDashSeperate: false,
-                  title: shippingSummary.loyaltyPointsApplied == true
-                      ? tr("pointsDiscount")
-                      : tr("voucherDiscount"),
-                  details: shippingSummary.loyaltyPointsApplied == true
-                      ? "-${shippingSummary.loyaltyPointsValue} "
-                      : "-${shippingSummary.couponDiscount}",
-                  detailsColor: context.colors.primary,
-                  useDirhamPrice: true,
-                ),
               ),
               Visibility(
                 visible: applyGiftCard,

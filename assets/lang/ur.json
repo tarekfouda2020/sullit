@@ -869,5 +869,22 @@
   "sellersSuggestions": "فروخت کنندگان کی تجاویز",
   "top_Seller": "سب سے زیادہ فروخت ہونے والا",
   "noSellersFound": "کوئی فروخت کنندہ نہیں ملا",
-  "track Your Current Orders": "اپنے موجودہ آرڈرز کو ٹریک کریں"
+  "track Your Current Orders": "اپنے موجودہ آرڈرز کو ٹریک کریں",
+  "notification_desc": "ایپ کی اطلاعات کا انتظام کرنے کے لیے، براہ کرم 'AMCOOP' کے لیے ترتیبات > اطلاعات پر جائیں",
+  "notification_active": "اطلاعات فعال ہیں",
+  "notification_not_active": "اطلاعات فعال نہیں ہیں",
+  "increaseCartToReachMin": "کم از کم رقم تک پہنچنے کے لیے اپنی ٹوکری میں اضافہ کریں",
+  "go": "جاؤ",
+  "giftCardExpired": "آپ کا گفٹ کارڈ ختم ہو چکا ہے، براہ کرم دوسرا خریدیں",
+  "selectSellersBranches": "براہ کرم تمام فروخت کنندگان کی شاخیں منتخب کریں",
+  "onlyAvailableForReturn": "واپسی کے لیے صرف {} دستیاب ہے",
+  "copiedToClipboard": "کلپ بورڈ پر کاپی ہو گیا",
+  "somethingWentWrongDeviceInfo": "آپ کے آلے کی معلومات حاصل کرنے کے دوران کچھ غلط ہوا، براہ کرم کنکشن چیک کریں اور بعد میں دوبارہ کوشش کریں",
+  "youSaved": "آپ نے بچایا",
+  "amountCharged": "(وصول کی گئی رقم)",
+  "grandTotalShort": "کل مجموعی رقم",
+  "noDataFoundForOrder": "اس آرڈر کے لیے کوئی ڈیٹا نہیں ملا!",
+  "search_in_sellers": "بیچنے والوں میں تلاش کریں...",
+  "select_your_choice": "اپنا انتخاب کریں"
+
 }

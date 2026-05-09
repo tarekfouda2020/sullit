@@ -21,7 +21,7 @@ class SellerDetailsAppBar extends StatelessWidget {
             shopModel?.name ?? "",
             style: AppTextStyle.s20_w700(color: context.colors.black),
           ),
-          expandedHeight: 450,
+          expandedHeight: 500,
           flexibleSpace: FlexibleSpaceBar(
             background: Padding(
               padding: EdgeInsets.only(

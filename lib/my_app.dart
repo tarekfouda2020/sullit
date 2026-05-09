@@ -1,6 +1,5 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:firebase_analytics/observer.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -8,8 +7,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
+import 'package:flutter_tdd/core/services/deep_link_service.dart';
 import 'package:flutter_tdd/core/http/dio_helper/utils/http_tracking_interceptor.dart';
 import 'package:flutter_tdd/core/theme/themes/app_dark_theme.dart';
 import 'package:flutter_tdd/core/theme/themes/app_light_theme.dart';
@@ -23,7 +22,6 @@ import 'core/localization/set_localization.dart';
 import 'core/routes/router_imports.gr.dart';
 
 class MyApp extends StatefulWidget {
-
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -40,7 +38,14 @@ class _MyAppState extends State<MyApp> {
         .analytics
         .setConsent(adStorageConsentGranted: false, analyticsStorageConsentGranted: true);
     getIt.get<LoadingHelper>().initConfig();
+    getIt<DeepLinkService>().init();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    getIt<DeepLinkService>().dispose();
+    super.dispose();
   }
 
   @override
@@ -59,7 +64,12 @@ class _MyAppState extends State<MyApp> {
                   title: "AMCOOP",
                   darkTheme: darkTheme,
                   theme: theme,
-                  supportedLocales: const [Locale('en', 'US'), Locale('ar', 'EG'),Locale('bn', 'BD'), Locale('ur', 'PK')],
+                  supportedLocales: const [
+                    Locale('en', 'US'),
+                    Locale('ar', 'EG'),
+                    Locale('bn', 'BD'),
+                    Locale('ur', 'PK')
+                  ],
                   localizationsDelegates: const [
                     SetLocalization.localizationsDelegate,
                     GlobalMaterialLocalizations.delegate,
@@ -70,10 +80,7 @@ class _MyAppState extends State<MyApp> {
                   routerDelegate: _appRouter.delegate(
                       initialRoutes: [const SplashRoute()],
                       navigatorObservers: () {
-                        return [
-                          FirebaseAnalyticsObserver(
-                              analytics: getIt<FirebaseAnalyticsHelper>().analytics)
-                        ];
+                        return [FirebaseAnalyticsObserver(analytics: getIt<FirebaseAnalyticsHelper>().analytics)];
                       }),
                   routeInformationParser: _appRouter.defaultRouteParser(),
                   builder: EasyLoading.init(builder: (ctx, child) {
@@ -91,7 +98,6 @@ class _MyAppState extends State<MyApp> {
                         ],
                       ),
                     );
-
                   }),
                 );
               });
@@ -100,7 +106,6 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-
   MediaQueryData _getMediaQueryData(BuildContext context) {
     final mq = MediaQuery.of(context);
     return mq.copyWith(
@@ -108,5 +113,4 @@ class _MyAppState extends State<MyApp> {
       boldText: false,
     );
   }
-
 }

@@ -1,3 +1,5 @@
+import '../../../../../core/helpers/helper_methods.dart';
+
 class UserRegisterParams {
   String name;
   String email;
@@ -22,5 +24,9 @@ class UserRegisterParams {
         "password_confirmation": password,
         'mac_address': macAddress,
         "device_token": deviceToken,
-      };
+        "device_type": deviceType,
+  };
+
+  String get deviceType => HelperMethods.instance.getDeviceType();
+
 }

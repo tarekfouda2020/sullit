@@ -28,8 +28,11 @@ class RetrieveOrderController {
     if (qty < model.availableReturnQty) {
       var newQty = qty + 1;
       model.qtyCubit?.onUpdateData(newQty);
-    }else{
-      CustomToast.showSimpleToast(msg: "Only ${model.availableReturnQty} available for return",type: ToastType.info);
+    } else {
+      CustomToast.showSimpleToast(
+          msg: tr("onlyAvailableForReturn")
+              .replaceFirst("{}", model.availableReturnQty.toString()),
+          type: ToastType.info);
     }
   }
 
@@ -44,7 +47,8 @@ class RetrieveOrderController {
   }
 
   void navigateToAddresses(BuildContext context) async {
-    var result = await AutoRouter.of(context).push( AddressesRoute(isFromReturn: true));
+    var result =
+        await AutoRouter.of(context).push(AddressesRoute(isFromReturn: true));
     if (result != null) {
       AddressDomainModel addressModel = result as AddressDomainModel;
       addressCubit.onUpdateData(addressModel);
@@ -69,7 +73,8 @@ class RetrieveOrderController {
       }
       var data = await ReturnOrder().call(params);
       if (data) {
-        CustomToast.showSimpleToast(msg: tr('orderReturnedSuccessfully'),type: ToastType.success);
+        CustomToast.showSimpleToast(
+            msg: tr('orderReturnedSuccessfully'), type: ToastType.success);
         AutoRouter.of(context).push(HomeRoute(index: 0));
       }
     }

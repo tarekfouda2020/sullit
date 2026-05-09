@@ -29,6 +29,7 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       availableCancelOrder: json['available_cancel_order'] as bool,
       additionalInfo: json['additional_info'] as String,
       paymentMethod: json['payment_method'] as String,
+      paymentMethodConst: json['payment_method_key'] as String,
       shippingMethod: json['shipping_method'] as String,
       orderStatus: json['order_status'] as String,
       orderDate: json['order_date'] as String,
@@ -53,6 +54,7 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       vatFeeAmount: json['vat_fee_amount'] as String,
       totalFeeAmount: json['total_fee_amount'] as String,
       driverNotes: json['driver_notes'] as String,
+      pickerNotes: json['picker_notes'] as String,
       deliveryInstructions: (json['delivery_instructions'] as List<dynamic>)
           .map((e) => DeliveryInstruction.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -87,6 +89,7 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'available_cancel_order': instance.availableCancelOrder,
       'additional_info': instance.additionalInfo,
       'payment_method': instance.paymentMethod,
+      'payment_method_key': instance.paymentMethodConst,
       'shipping_method': instance.shippingMethod,
       'order_status': instance.orderStatus,
       'order_date': instance.orderDate,
@@ -109,6 +112,7 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'vat_fee_amount': instance.vatFeeAmount,
       'total_fee_amount': instance.totalFeeAmount,
       'driver_notes': instance.driverNotes,
+      'picker_notes': instance.pickerNotes,
       'delivery_instructions':
           instance.deliveryInstructions.map((e) => e.toJson()).toList(),
       'order_discounts':

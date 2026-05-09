@@ -21,14 +21,12 @@ class _HomeMainState extends State<HomeMain> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () =>  FocusManager.instance.primaryFocus?.unfocus(),
       child: MyScaffold(
         body: SafeArea(
           child: Column(
             children: [
-              BuildHomeMainAppBar(
-                  controller: widget.homeController,
-                  homeMainController: controller),
+              BuildHomeMainAppBar(homeMainController: controller),
               // const BuildDiscountMsg(),
               BlocBuilder<GenericBloc<HomeDomainModel?>,
                   GenericState<HomeDomainModel?>>(

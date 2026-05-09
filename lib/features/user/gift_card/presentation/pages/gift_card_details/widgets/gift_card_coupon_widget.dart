@@ -2,7 +2,8 @@ part of 'gift_card_details_widgets_imports.dart';
 
 class GiftCardCouponWidget extends StatelessWidget {
   final GiftCardDomainModel model;
-  const GiftCardCouponWidget({super.key, required this.model});
+  final GiftCardDetailsController controller;
+  const GiftCardCouponWidget({super.key, required this.model, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +32,17 @@ class GiftCardCouponWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: () => getIt<Utilities>().copyToClipBoard(model.code ?? ""),
-                child: SvgPicture.asset(Res.copyIcon),
-              )
+             BlocBuilder<GenericBloc<bool>,GenericState<bool>>(
+               bloc: controller.showCopyIcon,
+               builder: (context, state) {
+               return   Visibility(
+                 visible: state.data,
+                 child: GestureDetector(
+                   onTap: () => getIt<Utilities>().copyToClipBoard(model.code ?? ""),
+                   child: SvgPicture.asset(Res.copyIcon),
+                 ),
+               );
+             },)
 
             ],
           ),

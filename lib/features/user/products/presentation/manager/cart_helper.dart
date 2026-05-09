@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
@@ -7,10 +9,11 @@ import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/debounce_helper.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
 import 'package:flutter_tdd/core/helpers/get_device_id.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
+import 'package:flutter_tdd/core/helpers/router_helper.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
@@ -20,17 +23,19 @@ import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/add_product_to_cart.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/delete_item_from_cart.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_cart_items.dart';
+import 'package:flutter_tdd/features/user/cart/domain/use_cases/import_cart.dart';
+import 'package:flutter_tdd/features/user/cart/domain/use_cases/share_cart.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/update_cart_item.dart';
-import 'package:flutter_tdd/features/user/cart/presentation/pages/cart/cart_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/add_product_to_cart_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/variant_price_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_variant_price.dart';
-import 'package:flutter_tdd/features/user/products/presentation/widgets/build_add_to_cart_dialog.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_sheet_controller.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/product_details/widgets/product_details_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/products/presentation/widgets/build_add_to_cart_dialog.dart';
 import 'package:injectable/injectable.dart';
+import 'package:share_plus/share_plus.dart';
 
 @lazySingleton
 class CartHelper {
@@ -116,7 +121,7 @@ class CartHelper {
 
     if (data.isNotEmpty) {
       if (callCartData) {
-        await getCartItems();
+        getCartItems();
       }
       onAddCartFunc();
       CustomToast.showSimpleToast(msg: tr('productAddedToYourCart'), type: ToastType.success);
@@ -202,9 +207,7 @@ class CartHelper {
 
   Future<AddProductToCartParams> _addToCartParams(int? variantId, int qty, {bool showLoader = true}) async {
     return AddProductToCartParams(
-        quantity: qty, variantId: variantId,
-        macAddress: await getIt<GetDeviceId>().deviceId,
-        showLoader: showLoader);
+        quantity: qty, variantId: variantId, macAddress: await getIt<GetDeviceId>().deviceId, showLoader: showLoader);
   }
 
   VariantPriceParams _variantPriceParams(int id) {
@@ -220,6 +223,27 @@ class CartHelper {
       qty: qty,
       id: id,
     );
+  }
+
+  Future<void> shareCart(BuildContext context) async {
+    final token = await ShareCart().call();
+    if (token != null) {
+      final link = "${AppConstants.instance.baseShareLink}/cart?token=$token";
+      Share.share("Checkout My Cart\n$link", subject: "Shared Cart");
+    } else {
+      CustomToast.showSimpleToast(msg: "Failed to create cart share token");
+    }
+  }
+
+  Future<void> importCart(BuildContext context, String token) async {
+    final success = await ImportCart().call(token);
+    if (success) {
+      CustomToast.showSimpleToast(msg: 'Cart imported successfully', type: ToastType.success);
+      await getCartItems();
+      getIt<RouterHelper>().appRoute.push(CartRoute());
+    } else {
+      CustomToast.showSimpleToast(msg: "Failed to import cart");
+    }
   }
 }
 
@@ -245,8 +269,7 @@ class _StandaloneCartSheetController implements CartSheetController {
   }
 
   @override
-  Future<void> onIncreaseCart(
-      BuildContext context, CartItem cartItem, GenericBloc<int> qntCubit, String value) async {
+  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem, GenericBloc<int> qntCubit, String value) async {
     if (cartItem.quantity < cartItem.stockQty) {
       var newQty = qntCubit.state.data + 1;
       qntCubit.onUpdateData(newQty);
@@ -263,7 +286,7 @@ class _StandaloneCartSheetController implements CartSheetController {
     }
   }
 
-  void onDecreaseCartQnt(BuildContext context, CartItem cartItem, int newQty) async{
+  void onDecreaseCartQnt(BuildContext context, CartItem cartItem, int newQty) async {
     if (cartItem.quantity == 1) {
       deleteItemFromCart(context, cartItem);
       return;
@@ -279,13 +302,13 @@ class _StandaloneCartSheetController implements CartSheetController {
   }
 
   @override
-  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem, GenericBloc<int> qntCubit,String value) async {
+  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem, GenericBloc<int> qntCubit, String value) async {
     if (cartItem.quantity > 1) {
       var newQty = qntCubit.state.data - 1;
       var data = cartItemsBloc.state.data;
       qntCubit.onUpdateData(newQty);
       var index = data.items!.indexOf(cartItem);
-      cartItemsBloc.state.data.items![index] =  cartItem;
+      cartItemsBloc.state.data.items![index] = cartItem;
       cartItemsBloc.onUpdateData(data);
       DebounceHelper.instance.startSearch(
           value: value,

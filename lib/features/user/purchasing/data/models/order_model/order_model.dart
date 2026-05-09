@@ -38,6 +38,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'available_cancel_order') required bool availableCancelOrder,
     @JsonKey(name: 'additional_info') required String additionalInfo,
     @JsonKey(name: 'payment_method') required String paymentMethod,
+    @JsonKey(name: 'payment_method_key') required String paymentMethodConst,
     @JsonKey(name: 'shipping_method') required String shippingMethod,
     @JsonKey(name: 'order_status') required String orderStatus,
     @JsonKey(name: 'order_date') required String orderDate,
@@ -61,6 +62,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     /// total of fees with there *vat => (vatFeeAmount)*
     @JsonKey(name: 'total_fee_amount') required String totalFeeAmount,
     @JsonKey(name: 'driver_notes') required String driverNotes,
+    @JsonKey(name: 'picker_notes') required String pickerNotes,
     @JsonKey(name: 'delivery_instructions') required List<DeliveryInstruction> deliveryInstructions,
     @JsonKey(name: 'order_discounts')  List<OrderDiscount>? orderDiscounts,
     @JsonKey(name: 'driver') OrderDriverModel? driver,
@@ -115,6 +117,8 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       expectedLoyaltyPoints: expectedLoyaltyPoints,
       environmentFees: environmentFees,
       driverNotes: driverNotes,
+      pickerNotes: pickerNotes,
+      paymentMethodConst: paymentMethodConst,
       instructions: deliveryInstructions.map((e) => e.toDomainModel()).toList(),
       orderDiscounts: orderDiscounts?.map((e) => e.toDomainModel()).toList()
     );

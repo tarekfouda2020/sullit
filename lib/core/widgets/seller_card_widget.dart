@@ -20,8 +20,8 @@ class SellerCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap ?? () {},
+    return GestureDetector(
+      onTap: onTap,
       child: SizedBox(
         width: MediaQuery.sizeOf(context).width * 0.9,
         child: Stack(
@@ -31,9 +31,9 @@ class SellerCardWidget extends StatelessWidget {
               children: [
                 CachedImage(
                   url: shop?.sliders?.first ?? "",
-                  height: 106,
+                  height: 150,
                   borderRadius: Dimens.topRadius12Px,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                   border: Border.all(color: context.colors.gray3, width: 1.5),
                 ),
                 Container(
@@ -93,7 +93,7 @@ class SellerCardWidget extends StatelessWidget {
             ),
             PositionedDirectional(
               start: 10,
-              top: 65,
+              top: 120,
               child: CachedImage(
                 url: shop?.logo??"",
                 width: Dimens.dp66,

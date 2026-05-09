@@ -1,9 +1,11 @@
 // ignore_for_file: avoid_dynamic_calls
 
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
+import 'package:flutter_tdd/core/helpers/get_device_id.dart' show GetDeviceId;
 import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
@@ -28,6 +30,8 @@ import 'package:flutter_tdd/features/user/cart/domain/entities/store_cart_shippi
 import 'package:flutter_tdd/features/user/cart/domain/entities/update_cart_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/add_product_to_cart_params.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../../core/helpers/di.dart' show getIt;
 
 @Injectable(as: CartDataSources)
 class ImplCartDataSources extends CartDataSources {
@@ -284,5 +288,32 @@ class ImplCartDataSources extends CartDataSources {
     return await GenericHttpImpl<List<DeliveryInstruction>>().call(model);
   }
 
+  @override
+  Future<Either<Failure, String>> shareCart(NoParams params) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.cartShare,
+      requestMethod: RequestMethod.post,
+      responseType: ResType.type,
+      showLoader: false,
+      responseKey: (data) => data["data"]["token"],
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<String>().call(model);
+  }
 
+  @override
+  Future<Either<Failure, bool>> importCart(String token) async {
+    String? deviceToken = await getIt<GetDeviceId>().deviceId;
+    final macAddress  = "?mac_address=${deviceToken!}";
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.cartImport+macAddress,
+      requestMethod: RequestMethod.post,
+      responseType: ResType.type,
+      requestBody: {"token": token},
+      showLoader: false,
+      responseKey: (data) => data["key"] == "success",
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<bool>().call(model);
+  }
 }

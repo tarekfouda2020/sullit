@@ -25,7 +25,7 @@ class BuildProductDescription extends StatelessWidget {
             ),
             Gaps.vGap4,
             Html(
-              data: getIt<Utilities>().cleanHtml(description),
+              data: description,
               style: {
                 "body": Style(
                   color: Colors.black,
@@ -39,9 +39,6 @@ class BuildProductDescription extends StatelessWidget {
                   margin: Margins.zero,
                   padding: HtmlPaddings.zero,
                 ),
-                "br": Style(
-                  fontSize: FontSize(0), // hides <br>
-                ),
               },
             ),
           ],
@@ -49,4 +46,11 @@ class BuildProductDescription extends StatelessWidget {
       ),
     );
   }
+
+
+  String parseHtmlString(String htmlString) {
+    final  document = parse(htmlString);
+    return document.body?.text ?? htmlString;
+  }
+
 }

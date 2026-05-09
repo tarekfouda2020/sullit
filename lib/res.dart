@@ -5,7 +5,7 @@ class Res {
   static const String apple = "assets/images/apple.svg";
   static const String appLoaderBg = "assets/images/appLoaderBg.png";
   static const String icon = "assets/images/icon.png";
-  static const String loadingLogo = "assets/images/loading_logo.png";
+  static const String loadingLogo = "assets/images/new_splash_image.png";
   static const String ar = "assets/lang/ar.json";
   static const String arrow = "assets/images/arrow.svg";
   static const String blog = "assets/images/blog.png";
@@ -134,7 +134,6 @@ class Res {
   static const String  confirmed = "assets/images/empty_box_2.gif";
   static const String  delivered = "assets/images/empty_box_3.gif";
 
-  static const String  ramadanSplashVideo = "assets/videos/ramadan_splash.mp4";
   static const String  ramadanSplashGif = "assets/images/ramadan_gif_image.gif";
   static const String  ramadanSplashImage = "assets/images/ramadan_splash.png";
   static const String  ramadanSplashSound = "assets/sounds/ramadan_sound.mp3";

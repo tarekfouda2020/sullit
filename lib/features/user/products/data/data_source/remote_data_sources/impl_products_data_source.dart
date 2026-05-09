@@ -107,6 +107,7 @@ class ImplProductsDataSource extends ProductsDataSource {
   @override
   Future<Either<Failure, ProductModel>> getVariantPrice(
       VariantPriceParams param) async {
+    print("json data ${param.toJson()}");
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getVariantPrice(param.id),
       requestMethod: RequestMethod.get,

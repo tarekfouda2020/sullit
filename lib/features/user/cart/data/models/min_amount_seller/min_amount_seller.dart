@@ -16,6 +16,7 @@ class MinAmountSeller extends BaseApiModel<MinAmountSellerDomain>
     required int id,
     required String name,
     required String message,
+    @JsonKey(name: "shop_id") required int shopId,
     @JsonKey(name: "minimum_order_amount") required double minOrderAmount,
   }) = _MinAmountSeller;
 
@@ -29,6 +30,7 @@ class MinAmountSeller extends BaseApiModel<MinAmountSellerDomain>
       name: name,
       message: message,
       minOrderAmount: minOrderAmount,
+      shopId: shopId
     );
   }
 }

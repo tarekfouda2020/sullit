@@ -2,9 +2,14 @@ enum NotifyEnum {
   emailChanged,
   emailVerified,
   order,
-  orderDelivered,
+  customerChangeOrderStatus,
+  shareholderProducts,
+  offerVipProducts,
+  offerNewArrival,
+  offerOnSale,
+  newLogin,
 
-  message,
+  message;
 
 }
 
@@ -19,10 +24,19 @@ extension NotifyValue on NotifyEnum {
         return "message";
       case NotifyEnum.order:
         return "order";
-        case NotifyEnum.orderDelivered:
+        case NotifyEnum.customerChangeOrderStatus:
         return "customer_changed_order_status";
-      default:
-        return "";
-    }
+        case NotifyEnum.shareholderProducts:
+        return "offer_shareholder_products";
+        case NotifyEnum.offerVipProducts:
+        return "offer_vip_products";
+        case NotifyEnum.offerNewArrival:
+        return "offer_new_arrival";
+        case NotifyEnum.offerOnSale:
+        return "offer_on_sale";
+        case NotifyEnum.newLogin:
+        return "new_login";
+        default: return "";
+      }
   }
 }

@@ -681,13 +681,15 @@ class AppRouter extends _i102.RootStackRouter {
       );
     },
     CategoryDetailsRoute.name: (routeData) {
-      final args = routeData.argsAs<CategoryDetailsRouteArgs>();
+      final args = routeData.argsAs<CategoryDetailsRouteArgs>(
+          orElse: () => const CategoryDetailsRouteArgs());
       return _i102.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i54.CategoryDetails(
           key: args.key,
           categoryModel: args.categoryModel,
           fromHome: args.fromHome,
+          catId: args.catId,
         ),
         opaque: true,
       );
@@ -786,6 +788,7 @@ class AppRouter extends _i102.RootStackRouter {
           key: args.key,
           shopModel: args.shopModel,
           shopId: args.shopId,
+          fromCart: args.fromCart,
         ),
         opaque: true,
       );
@@ -2572,8 +2575,9 @@ class CategoryDetailsRoute
     extends _i102.PageRouteInfo<CategoryDetailsRouteArgs> {
   CategoryDetailsRoute({
     _i105.Key? key,
-    required _i109.Category categoryModel,
+    _i109.Category? categoryModel,
     bool fromHome = false,
+    int? catId,
   }) : super(
           CategoryDetailsRoute.name,
           path: '/category-details',
@@ -2581,6 +2585,7 @@ class CategoryDetailsRoute
             key: key,
             categoryModel: categoryModel,
             fromHome: fromHome,
+            catId: catId,
           ),
         );
 
@@ -2590,19 +2595,22 @@ class CategoryDetailsRoute
 class CategoryDetailsRouteArgs {
   const CategoryDetailsRouteArgs({
     this.key,
-    required this.categoryModel,
+    this.categoryModel,
     this.fromHome = false,
+    this.catId,
   });
 
   final _i105.Key? key;
 
-  final _i109.Category categoryModel;
+  final _i109.Category? categoryModel;
 
   final bool fromHome;
 
+  final int? catId;
+
   @override
   String toString() {
-    return 'CategoryDetailsRouteArgs{key: $key, categoryModel: $categoryModel, fromHome: $fromHome}';
+    return 'CategoryDetailsRouteArgs{key: $key, categoryModel: $categoryModel, fromHome: $fromHome, catId: $catId}';
   }
 }
 
@@ -2848,6 +2856,7 @@ class SellerProductsPageRoute
     _i105.Key? key,
     _i112.Shop? shopModel,
     required int shopId,
+    bool? fromCart = false,
   }) : super(
           SellerProductsPageRoute.name,
           path: '/seller-products-page',
@@ -2855,6 +2864,7 @@ class SellerProductsPageRoute
             key: key,
             shopModel: shopModel,
             shopId: shopId,
+            fromCart: fromCart,
           ),
         );
 
@@ -2866,6 +2876,7 @@ class SellerProductsPageRouteArgs {
     this.key,
     this.shopModel,
     required this.shopId,
+    this.fromCart = false,
   });
 
   final _i105.Key? key;
@@ -2874,9 +2885,11 @@ class SellerProductsPageRouteArgs {
 
   final int shopId;
 
+  final bool? fromCart;
+
   @override
   String toString() {
-    return 'SellerProductsPageRouteArgs{key: $key, shopModel: $shopModel, shopId: $shopId}';
+    return 'SellerProductsPageRouteArgs{key: $key, shopModel: $shopModel, shopId: $shopId, fromCart: $fromCart}';
   }
 }
 

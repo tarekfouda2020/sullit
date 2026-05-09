@@ -22,6 +22,22 @@ class BuildOrderAmount extends StatelessWidget {
             details: orderModel.subtotal,
             useDirhamPrice: true,
           ),
+          if (orderModel.isCouponApply)
+            OrderSummaryItemWidget(
+              priceType: tr('voucherDiscount'),
+              price: orderModel.couponDiscount,
+              priceColor: context.colors.primary,
+              useDirhamPrice: true,
+              isDiscount: true,
+            ),
+          if (orderModel.loyaltyPointsApplied)
+            OrderSummaryItemWidget(
+              priceType: tr('pointsDiscount'),
+              price: orderModel.loyaltyPointsValue,
+              priceColor: context.colors.primary,
+              useDirhamPrice: true,
+              isDiscount: true,
+            ),
           if (orderModel.orderDiscounts?.isNotEmpty == true)
             ...List.generate(
               orderModel.orderDiscounts?.length ?? 0,
@@ -62,22 +78,6 @@ class BuildOrderAmount extends StatelessWidget {
             details: orderModel.totalVat.toString(),
             useDirhamPrice: true,
           ),
-          if (orderModel.isCouponApply)
-            OrderSummaryItemWidget(
-              priceType: tr('voucherDiscount'),
-              price: orderModel.couponDiscount,
-              priceColor: context.colors.primary,
-              useDirhamPrice: true,
-              isDiscount: true,
-            ),
-          if (orderModel.loyaltyPointsApplied)
-            OrderSummaryItemWidget(
-              priceType: tr('pointsDiscount'),
-              price: orderModel.loyaltyPointsValue,
-              priceColor: context.colors.primary,
-              useDirhamPrice: true,
-              isDiscount: true,
-            ),
           Gaps.vGap10,
           Gaps.line(context.colors.softGray, 0),
           Gaps.vGap13,

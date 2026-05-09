@@ -7,7 +7,6 @@ import 'package:flutter_tdd/features/user/cart/data/data_sources/cart_data_sourc
 import 'package:flutter_tdd/features/user/cart/data/models/delivery_instruction/delivery_instruction.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/fess_mechanism_model/fess_mechanism_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/seller_shipping_model/seller_shipping_model.dart';
-import 'package:flutter_tdd/features/user/cart/data/models/shipping_summary_model/shipping_summary_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/add_cart_address_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/apply_gift_card_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/clear_cart_params.dart';
@@ -127,4 +126,13 @@ class ImplCartRepository extends CartRepository with ModelToDomain{
     return toDomainResultList<DeliveryInstructionModel, DeliveryInstruction>(result);
   }
 
+  @override
+  Future<Either<Failure, String>> shareCart(NoParams params) async {
+    return await dataSource.shareCart(params);
+  }
+
+  @override
+  Future<Either<Failure, bool>> importCart(String token) async {
+    return await dataSource.importCart(token);
+  }
 }

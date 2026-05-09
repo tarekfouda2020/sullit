@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AMCOOP</string>
-    <string name="facebook_app_id">2781021995568556</string>
-    <string name="facebook_client_token">03c305e1f35285bb7a72926f64d33175</string>
-    <string name="fb_login_protocol_scheme">fb2781021995568556</string>
+    <string name="facebook_app_id">1981210759416763</string>
+    <string name="facebook_client_token">f5411f6a11fd6c597c52450c957cf4bb</string>
+    <string name="fb_login_protocol_scheme">fb1981210759416763</string>
 </resources>

@@ -13,7 +13,7 @@ class AdvantagesWidget extends StatelessWidget {
         Expanded(
           child: _advantageItem(
             context,
-            title: tr("freeDelivery"),
+            title: tr("freeDelivery",context: context),
             icon: Res.truckIcon,
             // subTitle: tr("from200AED"),
             subTitle: "",

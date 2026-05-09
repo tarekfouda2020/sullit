@@ -9,7 +9,7 @@ class CartOrderProductsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 19, right: 19, top: 17, bottom: 20).r,
-      margin: Dimens.paddingHorizontal20PX,
+      margin: Dimens.paddingVertical10PXHorizontal20PX,
       decoration: const CustomDecoration(),
       child: Column(
         children: [

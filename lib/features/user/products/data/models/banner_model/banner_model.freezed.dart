@@ -24,6 +24,10 @@ mixin _$BannerModel {
   String get photo => throw _privateConstructorUsedError;
   @JsonKey(name: "url")
   String? get url => throw _privateConstructorUsedError;
+  @JsonKey(name: "link_type")
+  String get linkType => throw _privateConstructorUsedError;
+  @JsonKey(name: "value", fromJson: valueFromJson, toJson: valueToJson)
+  FlexibleValue? get value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +43,10 @@ abstract class $BannerModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "photo") String photo,
-      @JsonKey(name: "url") String? url});
+      @JsonKey(name: "url") String? url,
+      @JsonKey(name: "link_type") String linkType,
+      @JsonKey(name: "value", fromJson: valueFromJson, toJson: valueToJson)
+      FlexibleValue? value});
 }
 
 /// @nodoc
@@ -57,6 +64,8 @@ class _$BannerModelCopyWithImpl<$Res, $Val extends BannerModel>
   $Res call({
     Object? photo = null,
     Object? url = freezed,
+    Object? linkType = null,
+    Object? value = freezed,
   }) {
     return _then(_value.copyWith(
       photo: null == photo
@@ -67,6 +76,14 @@ class _$BannerModelCopyWithImpl<$Res, $Val extends BannerModel>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
+      linkType: null == linkType
+          ? _value.linkType
+          : linkType // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: freezed == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as FlexibleValue?,
     ) as $Val);
   }
 }
@@ -81,7 +98,10 @@ abstract class _$$_BannerModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "photo") String photo,
-      @JsonKey(name: "url") String? url});
+      @JsonKey(name: "url") String? url,
+      @JsonKey(name: "link_type") String linkType,
+      @JsonKey(name: "value", fromJson: valueFromJson, toJson: valueToJson)
+      FlexibleValue? value});
 }
 
 /// @nodoc
@@ -97,6 +117,8 @@ class __$$_BannerModelCopyWithImpl<$Res>
   $Res call({
     Object? photo = null,
     Object? url = freezed,
+    Object? linkType = null,
+    Object? value = freezed,
   }) {
     return _then(_$_BannerModel(
       photo: null == photo
@@ -107,6 +129,14 @@ class __$$_BannerModelCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
+      linkType: null == linkType
+          ? _value.linkType
+          : linkType // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: freezed == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as FlexibleValue?,
     ));
   }
 }
@@ -117,7 +147,10 @@ class __$$_BannerModelCopyWithImpl<$Res>
 class _$_BannerModel extends _BannerModel {
   const _$_BannerModel(
       {@JsonKey(name: "photo") required this.photo,
-      @JsonKey(name: "url") this.url})
+      @JsonKey(name: "url") this.url,
+      @JsonKey(name: "link_type") required this.linkType,
+      @JsonKey(name: "value", fromJson: valueFromJson, toJson: valueToJson)
+      required this.value})
       : super._();
 
   factory _$_BannerModel.fromJson(Map<String, dynamic> json) =>
@@ -129,10 +162,16 @@ class _$_BannerModel extends _BannerModel {
   @override
   @JsonKey(name: "url")
   final String? url;
+  @override
+  @JsonKey(name: "link_type")
+  final String linkType;
+  @override
+  @JsonKey(name: "value", fromJson: valueFromJson, toJson: valueToJson)
+  final FlexibleValue? value;
 
   @override
   String toString() {
-    return 'BannerModel(photo: $photo, url: $url)';
+    return 'BannerModel(photo: $photo, url: $url, linkType: $linkType, value: $value)';
   }
 
   @override
@@ -141,12 +180,15 @@ class _$_BannerModel extends _BannerModel {
         (other.runtimeType == runtimeType &&
             other is _$_BannerModel &&
             (identical(other.photo, photo) || other.photo == photo) &&
-            (identical(other.url, url) || other.url == url));
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.linkType, linkType) ||
+                other.linkType == linkType) &&
+            (identical(other.value, value) || other.value == value));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, photo, url);
+  int get hashCode => Object.hash(runtimeType, photo, url, linkType, value);
 
   @JsonKey(ignore: true)
   @override
@@ -165,7 +207,10 @@ class _$_BannerModel extends _BannerModel {
 abstract class _BannerModel extends BannerModel {
   const factory _BannerModel(
       {@JsonKey(name: "photo") required final String photo,
-      @JsonKey(name: "url") final String? url}) = _$_BannerModel;
+      @JsonKey(name: "url") final String? url,
+      @JsonKey(name: "link_type") required final String linkType,
+      @JsonKey(name: "value", fromJson: valueFromJson, toJson: valueToJson)
+      required final FlexibleValue? value}) = _$_BannerModel;
   const _BannerModel._() : super._();
 
   factory _BannerModel.fromJson(Map<String, dynamic> json) =
@@ -177,6 +222,12 @@ abstract class _BannerModel extends BannerModel {
   @override
   @JsonKey(name: "url")
   String? get url;
+  @override
+  @JsonKey(name: "link_type")
+  String get linkType;
+  @override
+  @JsonKey(name: "value", fromJson: valueFromJson, toJson: valueToJson)
+  FlexibleValue? get value;
   @override
   @JsonKey(ignore: true)
   _$$_BannerModelCopyWith<_$_BannerModel> get copyWith =>

@@ -10,7 +10,7 @@ class Categories extends StatefulWidget {
 }
 
 class _CategoriesState extends State<Categories> {
-  late CategoriesController categoriesController;
+  late final CategoriesController categoriesController;
 
   @override
   void initState() {

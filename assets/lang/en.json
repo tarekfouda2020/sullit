@@ -308,6 +308,8 @@
   "videoViewer": "Video Viewer",
   "rechargeWallet": "Recharge Wallet",
   "walBalance": "Your Wallet Balance",
+  "walCredit": "Wallet Credit",
+  "walCashCredit": "Cash Credit",
   "walRechargeHistory": "Wallet Recharge History",
   "addToCart": "Add To Cart",
   "enterVerifyCode": "Verification code",
@@ -318,7 +320,7 @@
   "registerNow": "Register Now",
   "skip": "Skip",
   "orLoginWith": "Or Login With",
-  "outOfStock": "Out Of Stock",
+  "outOfStock": "Out of stock",
   "variantNotFound": "Variant not found. !",
   "productAddedToYourCart": "Product added to your cart.",
   "itemAddedToWishlist": "Item added to wishlist",
@@ -717,5 +719,23 @@
   "delete_products": "Delete products",
   "keep_shopping": "Keep shopping",
   "noSellersFound": "No sellers found",
-  "please_remove_products": "Please remove {} products"
+  "please_remove_products": "Please remove {} products",
+  "notification_desc": "To manage app notifications, please go to Settings > Notifications for 'AMCOOP'",
+  "notification_active": "Notification active",
+  "notification_not_active": "Notification not active",
+  "increaseCartToReachMin": "Increase tour cart to reach minimum amount",
+  "go": "Go",
+  "giftCardExpired": "Your Gift card are expired, Please Buy another one",
+  "selectSellersBranches": "Please select all Sellers Branches",
+  "onlyAvailableForReturn": "Only {} available for return",
+  "copiedToClipboard": "Copied to clipboard",
+  "somethingWentWrongDeviceInfo": "Something went wrong while getting your device info, please check connection and try again later",
+  "youSaved": "You Saved",
+  "amountCharged": "(Amount Charged)",
+  "grandTotalShort": "Grand Total",
+  "noDataFoundForOrder": "no data found for this order!",
+  "search_in_sellers": "Search in sellers...",
+  "select_your_choice": "Select your choice"
+
+
 }

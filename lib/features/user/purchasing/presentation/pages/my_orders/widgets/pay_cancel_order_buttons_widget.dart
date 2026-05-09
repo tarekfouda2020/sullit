@@ -14,7 +14,7 @@ class PayCancelOrderButtonsWidget extends StatelessWidget {
         Expanded(
             child: DefaultButton(
           onTap: ()=> controller.onPayOrder(context,order),
-          title: "Pay",
+          title: tr("pay"),
           height: Dimens.dp40,
         color: context.colors.white,
           margin: EdgeInsets.zero,

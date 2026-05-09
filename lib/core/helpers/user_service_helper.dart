@@ -20,4 +20,15 @@ class UserServiceHelper{
     preferences.setString("user", json.encode(data.toJson()));
   }
 
+
+  Future<void> clearUserData(BuildContext context)async{
+    GlobalState.instance.set("token", null);
+    context.read<DeviceCubit>().updateUserAuth(false);
+    context.read<UserCubit>().onUpdateUserData(UserDomainModel());
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.clear();
+    pref.remove("user");
+  }
+
+
 }

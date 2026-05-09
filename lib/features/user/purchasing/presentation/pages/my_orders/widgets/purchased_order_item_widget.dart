@@ -51,7 +51,7 @@ class MyOrderItemWidget extends StatelessWidget {
                      ),
                      Gaps.vGap8,
                      Text(
-                       DateTimeHelper.getDate(order.orderDate),
+                       DateTimeHelper.formatDate(date: order.getOrderDate, formatType: 'dd MMM yyyy - hh:mm a'),
                        style: AppTextStyle.s12_w400(color: context.colors.textColor),
                      ),
                    ],

@@ -61,6 +61,9 @@ class _CartPaymentState extends State<CartPayment> {
                         Gaps.vGap12,
                         // DriverTipsWidget(controller: controller),
                         // Gaps.vGap16,
+                        PickerNotesWidget(controller: controller),
+                        Gaps.vGap16,
+                        // Gaps.vGap16,
                         // const NearestVipCartWidget(),
                         // Gaps.vGap12,
                         InvoiceSummaryWidget(
@@ -84,7 +87,7 @@ class _CartPaymentState extends State<CartPayment> {
                                 (state.data!.summary.loyaltyPoints ?? 0)
                                     .toDouble(),
                             redeemedValue: double.parse(
-                                (state.data!.summary.loyaltyPointsValue ??
+                                (state.data!.summary.loyaltyPointsValue.cleanNumber() ??
                                     "0.0")),
                             earnedPoints: state
                                 .data!.summary.expectedLoyaltyPoints

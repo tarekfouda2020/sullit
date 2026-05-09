@@ -40,6 +40,7 @@ final ProductDetailsController controller;
                         child: BuildProductItem(
                           productModel: relatedProducts[index],
                           onPressDelete: () => controller.getCartItems(),
+                          afterAddToCart: () => controller.calculateRemainingAmount(),
                           onFavRefresh: () => controller.onChangeFav(
                             context,
                             relatedProducts[index],

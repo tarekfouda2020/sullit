@@ -9,6 +9,7 @@ class CreateOrderParams {
   String additionalInfo;
   String giftCardCode;
   String driverNotes;
+  String pickerNotes;
   final int allowReplacement;
   final List<DeliveryInstructionModel>? instructions;
 
@@ -18,6 +19,7 @@ class CreateOrderParams {
     required this.allowReplacement,
     this.giftCardCode = "",
     this.driverNotes = "",
+    this.pickerNotes = "",
     this.instructions,
   });
 
@@ -40,6 +42,7 @@ class CreateOrderParams {
     if(additionalInfo != "")"additional_info": additionalInfo,
     if( giftCardCode.trim().isNotEmpty)"gift_card_code": giftCardCode,
     if( driverNotes.trim().isNotEmpty)"driver_notes": driverNotes,
+    if( pickerNotes.trim().isNotEmpty)"picker_notes": pickerNotes,
     if(_driverInstructions.isNotEmpty) ..._driverInstructions
   };
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 
@@ -20,7 +21,7 @@ class PayOrderButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultButton(
       onTap: onPressPay,
-      title: "Pay",
+      title: tr("pay"),
       height: Dimens.dp40,
       color: bgColor ?? context.colors.green,
       margin: EdgeInsets.zero,
