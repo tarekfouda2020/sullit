@@ -32,6 +32,7 @@ class DeliveryController {
     selectedItem = model;
     if(value.isDelivery){
       nearestPointModel = null;
+      model.pickup?.isSelected = false;
     }
     sellerShippingBloc.onUpdateData(sellerShippingBloc.state.data);
   }
@@ -53,31 +54,37 @@ class DeliveryController {
     }
   }
 
-  bool get deliveryInOne{
-    return sellerShippingBloc.state.data.any((element) => element.delivery!=null,);
+  bool get hasSellerWithUnavailableDelivery {
+    return sellerShippingBloc.state.data.any(
+          (e) => e.deliveryType.isDelivery && e.delivery == null,
+    );
   }
 
-  bool get isPointNotSelectInOne{
-    return sellerShippingBloc.state.data.any((element) => element.pickup.isSelected == false,);
+  bool get hasSellerWithUnselectedPickup {
+    return sellerShippingBloc.state.data.any(
+          (e) => e.deliveryType.isPickUp && (e.pickup == null || e.pickup?.isSelected == false),
+    );
   }
 
-  void onPresContinue(BuildContext context){
-    bool deliverySelectInOne = sellerShippingBloc.state.data.any((element) => element.deliveryType.isDelivery,);
-    bool pickUpSelectInOne = sellerShippingBloc.state.data.any((element) => element.deliveryType.isPickUp,);
-    if(deliverySelectInOne && !deliveryInOne){
-      return  CustomToast.showSimpleToast(msg: tr("un_support_delivery_point"));
-    }
-    if (pickUpSelectInOne && isPointNotSelectInOne) {
+  void onPresContinue(BuildContext context) {
+
+    if (hasSellerWithUnselectedPickup) {
       CustomToast.showSimpleToast(msg: tr("chooseNearestPickupPoint"));
       return;
     }
 
-    if(isHaveDeliveryAndTimeAfterTenPm(context)){
-      return ;
+    if (hasSellerWithUnavailableDelivery) {
+      CustomToast.showSimpleToast(msg: tr("un_support_delivery_point"));
+      return;
+    }
+
+    if (isHaveDeliveryAndTimeAfterTenPm(context)) {
+      return;
     }
 
     setCartStoreShipping(context);
   }
+
 
   Future<void> setCartStoreShipping(BuildContext context) async {
     StoreCartShippingParams params = _cartShippingParams();

@@ -57,14 +57,15 @@ class BuildDeliveryType extends StatelessWidget {
               Visibility(
                 visible: shipping.deliveryType.isPickUp,
                 replacement: DeliveryDurationCoastWidget(shipping: shipping,),
-                child: DropdownTextField<Pickup>(
+                child: DropdownTextField<Pickup?>(
                   title: tr('selectNearestPoint'),
                   hint: tr('selectNearestPoint'),
                   fillColor: context.colors.white,
-                  itemAsString: (u) => u.address,
+                  itemAsString: (u) => u?.address ?? "",
+                  showClearButton: false,
                   margin: const EdgeInsets.symmetric(vertical: Dimens.dp15),
                   validate: (value) => validateDropDown(context),
-                  data: [
+                  data: <Pickup?>[
                     shipping.pickup,
                   ],
                   onChange: (model) => controller.onSelectPoint(model),

@@ -9,7 +9,7 @@ class SellerShipping extends BaseDomainModel {
   List<CartItem> items;
   bool physical;
   bool activePickup;
-  Pickup pickup;
+  Pickup? pickup;
   bool activeDelivery;
   String deliveryMessage;
   Delivery? delivery;
