@@ -269,7 +269,7 @@ class ProductDetailsController implements CartSheetController {
       context,
       qtyCubit.state.data,
       detailsCubit.state.data?.product.variant?.id,
-      callCartData: false,
+      callCartData: true,
       // onAddCartFunc: () => showCartSuccessDialog(context),
       onAddCartFunc: () {
         FacebookEventsHelper.instance.productAddToCart(

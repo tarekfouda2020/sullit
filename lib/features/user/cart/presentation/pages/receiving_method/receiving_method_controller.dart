@@ -88,7 +88,7 @@ class ReceivingMethodController{
   }
 
   bool allPickPointsSelected(){
-    return  _sellerShippingData.every((element) => element.pickup.isSelected);
+    return  _sellerShippingData.every((element) => element.pickup!= null && element.pickup?.isSelected == true);
   }
 
 
