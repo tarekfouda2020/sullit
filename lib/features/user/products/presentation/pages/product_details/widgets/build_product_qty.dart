@@ -29,7 +29,7 @@ class BuildProductQty extends StatelessWidget {
               ),
             ),
             Visibility(
-              visible: (productModel.variant?.currentStock ?? 0) > 0,
+              visible: productModel.isOutOfStock == false,
               replacement: Text(tr("outOfStock"),
                 style: AppTextStyle.s15_w700(color: context.colors.primary),
               ),
