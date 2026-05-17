@@ -15,6 +15,8 @@ import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/features/user/category/presentation/pages/brands/brands_imports.dart';
 import 'package:flutter_tdd/res.dart';
 
+import '../../../../../../../core/localization/localization_methods.dart';
+
 part 'build_brand_item.dart';
 part 'build_brands_shimmer.dart';
 part 'brand_search_widget.dart';

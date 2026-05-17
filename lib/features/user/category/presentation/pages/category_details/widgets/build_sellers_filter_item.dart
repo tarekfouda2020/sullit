@@ -18,7 +18,7 @@ class BuildSellersFilterItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    tr("Sellers"),
+                    tr("sellers"),
                     style: AppTextStyle.s14_w600(color: context.colors.black),
                   ),
                   Icon(

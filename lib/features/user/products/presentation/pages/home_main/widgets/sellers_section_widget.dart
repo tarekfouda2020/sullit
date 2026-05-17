@@ -11,7 +11,7 @@ class SellersSectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 260,
+      height: 265,
       child: ListView.builder(
         itemCount: _buildLength,
         scrollDirection: Axis.horizontal,

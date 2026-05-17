@@ -182,7 +182,7 @@ class MoreController {
           _getCountryLangCode(code),
         ),
       );
-      homeController.onBack(context);
+      homeController.animateTabsPages(0,context);
       HomeDomainModel? homeData = OrdersHelper.instance.homeCubit.state.data;
       if( homeData?.currentOrders.isNotEmpty == true ){
         OrdersHelper.instance.getHome(setLoading: false);

@@ -37,7 +37,7 @@ class BuildTopCategoriesItem extends StatelessWidget {
                 child: Text(
                   categoryModel.name,
                   textAlign: TextAlign.center,
-                  maxLines: 3,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: AppTextStyle.s12_w700(
                     color: context.colors.black,

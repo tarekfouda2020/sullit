@@ -28,7 +28,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         initialIndex: widget.index,
         length: 5,
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () =>  FocusManager.instance.primaryFocus?.unfocus(),
           child: Scaffold(
             key: controller.scaffoldKey,
             extendBody: true,

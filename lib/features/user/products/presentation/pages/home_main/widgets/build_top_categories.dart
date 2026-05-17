@@ -16,7 +16,7 @@ class BuildTopCategories extends StatelessWidget {
            CategoriesHeaderWidget(controller: controller),
           Gaps.vGap16,
           SizedBox(
-            height: 120,
+            height: 130,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: controller.firstCategoriesSection().length,
@@ -30,7 +30,7 @@ class BuildTopCategories extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 25),
             child: SizedBox(
-              height: 120,
+              height: 130,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: controller.secondCategoriesSection().length,
