@@ -1,6 +1,5 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/delivery_instruction/delivery_instruction.dart';
-import 'package:flutter_tdd/features/user/cart/data/models/order_summary_discount_model/order_summary_discount_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_details_model/order_details_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_discount/order_discount.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_driver_model/order_driver_model.dart';
@@ -66,6 +65,9 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'delivery_instructions') required List<DeliveryInstruction> deliveryInstructions,
     @JsonKey(name: 'order_discounts')  List<OrderDiscount>? orderDiscounts,
     @JsonKey(name: 'driver') OrderDriverModel? driver,
+    @JsonKey(name: 'order_source_label') String? orderSourceLabel,
+    @JsonKey(name: 'shipping_provider') String? shippingProvider,
+    @JsonKey(name: 'shipping_provider_label') String? shippingProviderLabel,
   }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);
@@ -120,7 +122,10 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       pickerNotes: pickerNotes,
       paymentMethodConst: paymentMethodConst,
       instructions: deliveryInstructions.map((e) => e.toDomainModel()).toList(),
-      orderDiscounts: orderDiscounts?.map((e) => e.toDomainModel()).toList()
+      orderDiscounts: orderDiscounts?.map((e) => e.toDomainModel()).toList(),
+      orderSourceLabel:orderSourceLabel ,
+       shippingProvider: shippingProvider,
+      shippingProviderLabel:shippingProviderLabel ,
     );
   }
 }
