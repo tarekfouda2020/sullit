@@ -31,6 +31,7 @@ class CategoriesSectionFormWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               scrollDirection: Axis.horizontal,
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 5,
                 children: List.generate(
                   item.subCats?.length ?? 0,
@@ -44,6 +45,7 @@ class CategoriesSectionFormWidget extends StatelessWidget {
                         child: Container(
                           color: Colors.transparent,
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               CachedImage(
                                 url: item.subCats?[index].icon ?? '',

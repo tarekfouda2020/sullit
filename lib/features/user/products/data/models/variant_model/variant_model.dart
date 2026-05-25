@@ -22,6 +22,7 @@ class VariantModel extends BaseApiModel<Variant> with _$VariantModel {
     @JsonKey(name: "currency_symbol") required String currencySymbol,
     @JsonKey(name: "has_discount")  bool? hasDiscount,
     @JsonKey(name: "original_price")  String? originalPrice,
+    @JsonKey(name: "sort_order")  int? sortOrder,
     required String image,
     required String options,
   }) = _VariantModel;
@@ -43,7 +44,8 @@ class VariantModel extends BaseApiModel<Variant> with _$VariantModel {
       options: options,
       sku: sku,
       hasDiscount: hasDiscount,
-      originalPrice: originalPrice
+      originalPrice: originalPrice,
+      sortOrder: sortOrder,
     );
   }
 }

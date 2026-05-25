@@ -50,6 +50,9 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       isDigital: json['is_digital'] as bool,
       isWishlist: json['is_wishlist'] as bool,
       mainPrice: json['main_price'] as String?,
+      variantsList: (json['variants'] as List<dynamic>?)
+          ?.map((e) => VariantModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       rating: json['rating'] as num,
       sales: (json['sales'] as num).toInt(),
       sellerId: (json['seller_id'] as num).toInt(),
@@ -99,6 +102,7 @@ Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) =>
       'is_digital': instance.isDigital,
       'is_wishlist': instance.isWishlist,
       'main_price': instance.mainPrice,
+      'variants': instance.variantsList?.map((e) => e.toJson()).toList(),
       'rating': instance.rating,
       'sales': instance.sales,
       'seller_id': instance.sellerId,

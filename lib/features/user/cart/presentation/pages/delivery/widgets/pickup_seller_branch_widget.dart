@@ -16,10 +16,8 @@ class PickupSellerBranchWidget extends StatelessWidget {
         style: AppTextStyle.s16_w600(color: context.colors.black),
         ),
         Gaps.vGap12,
-        Visibility(
-          visible: shipping.activePickup,
-          replacement: _noBranchesWidget(context) ,
-          child: DropdownTextField<Pickup>(
+        if(shipping.activePickup && shipping.pickup != null)
+          DropdownTextField<Pickup>(
             title: tr('Select Branch'),
             hint: tr('Select Branch'),
             fillColor: context.colors.white,
@@ -28,17 +26,18 @@ class PickupSellerBranchWidget extends StatelessWidget {
             validate: (value) => validateDropDown(context),
             data: [
               Pickup(
-                postalCode: shipping.pickup.postalCode,
-                lang: shipping.pickup.lang,
-                lat: shipping.pickup.lat,
-                phone: shipping.pickup.phone,
-                address: shipping.pickup.address,
-                id: shipping.pickup.id,
+                postalCode: shipping.pickup!.postalCode,
+                lang: shipping.pickup!.lang,
+                lat: shipping.pickup!.lat,
+                phone: shipping.pickup!.phone,
+                address: shipping.pickup!.address,
+                id: shipping.pickup!.id,
               ),
             ],
             onChange: (model) => controller.onSelectPoint(model),
-          ),
-        ),
+          )
+        else
+          _noBranchesWidget(context),
       ],
     );
   }

@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
@@ -11,11 +13,12 @@ import '../../features/user/products/domain/models/shop.dart';
 class SellerCardWidget extends StatelessWidget {
   final Shop? shop;
   final void Function()? onTap;
-
+  final bool openImage;
   const SellerCardWidget({
     super.key,
     this.shop,
     this.onTap,
+    this.openImage = false,
   });
 
   @override
@@ -29,12 +32,20 @@ class SellerCardWidget extends StatelessWidget {
           children: [
             Column(
               children: [
-                CachedImage(
-                  url: shop?.sliders?.first ?? "",
-                  height: 106,
-                  borderRadius: Dimens.topRadius12Px,
-                  fit: BoxFit.cover,
-                  border: Border.all(color: context.colors.gray3, width: 1.5),
+                GestureDetector(
+                  onTap:openImage? () {
+                    var link = shop?.sliders?.first ?? "";
+                    if(link.isNotEmpty){
+                      AutoRouter.of(context).push(ImageZoomRoute(image: link));
+                    }
+                  }:null,
+                  child: CachedImage(
+                    url: shop?.sliders?.first ?? "",
+                    height: 150,
+                    borderRadius: Dimens.topRadius12Px,
+                    fit: BoxFit.cover,
+                    border: Border.all(color: context.colors.gray3, width: 1.5),
+                  ),
                 ),
                 Container(
                   padding: const EdgeInsets.fromLTRB(23, 11, 21, 23),
@@ -93,7 +104,7 @@ class SellerCardWidget extends StatelessWidget {
             ),
             PositionedDirectional(
               start: 10,
-              top: 65,
+              top: 120,
               child: CachedImage(
                 url: shop?.logo??"",
                 width: Dimens.dp66,

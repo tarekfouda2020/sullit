@@ -25,7 +25,7 @@ mixin _$SellerShippingModel {
   bool get physical => throw _privateConstructorUsedError;
   @JsonKey(name: "active_pickup")
   bool get activePickUp => throw _privateConstructorUsedError;
-  PickUpModel get pickup => throw _privateConstructorUsedError;
+  PickUpModel? get pickup => throw _privateConstructorUsedError;
   @JsonKey(name: 'active_delivery')
   bool get activeDelivery => throw _privateConstructorUsedError;
   @JsonKey(name: 'delivery_message')
@@ -51,13 +51,13 @@ abstract class $SellerShippingModelCopyWith<$Res> {
       List<CartItemModel> items,
       bool physical,
       @JsonKey(name: "active_pickup") bool activePickUp,
-      PickUpModel pickup,
+      PickUpModel? pickup,
       @JsonKey(name: 'active_delivery') bool activeDelivery,
       @JsonKey(name: 'delivery_message') String deliveryMessage,
       DeliveryModel? delivery,
       @JsonKey(name: "owner_id") int ownerId});
 
-  $PickUpModelCopyWith<$Res> get pickup;
+  $PickUpModelCopyWith<$Res>? get pickup;
   $DeliveryModelCopyWith<$Res>? get delivery;
 }
 
@@ -78,7 +78,7 @@ class _$SellerShippingModelCopyWithImpl<$Res, $Val extends SellerShippingModel>
     Object? items = null,
     Object? physical = null,
     Object? activePickUp = null,
-    Object? pickup = null,
+    Object? pickup = freezed,
     Object? activeDelivery = null,
     Object? deliveryMessage = null,
     Object? delivery = freezed,
@@ -101,10 +101,10 @@ class _$SellerShippingModelCopyWithImpl<$Res, $Val extends SellerShippingModel>
           ? _value.activePickUp
           : activePickUp // ignore: cast_nullable_to_non_nullable
               as bool,
-      pickup: null == pickup
+      pickup: freezed == pickup
           ? _value.pickup
           : pickup // ignore: cast_nullable_to_non_nullable
-              as PickUpModel,
+              as PickUpModel?,
       activeDelivery: null == activeDelivery
           ? _value.activeDelivery
           : activeDelivery // ignore: cast_nullable_to_non_nullable
@@ -126,8 +126,12 @@ class _$SellerShippingModelCopyWithImpl<$Res, $Val extends SellerShippingModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $PickUpModelCopyWith<$Res> get pickup {
-    return $PickUpModelCopyWith<$Res>(_value.pickup, (value) {
+  $PickUpModelCopyWith<$Res>? get pickup {
+    if (_value.pickup == null) {
+      return null;
+    }
+
+    return $PickUpModelCopyWith<$Res>(_value.pickup!, (value) {
       return _then(_value.copyWith(pickup: value) as $Val);
     });
   }
@@ -158,14 +162,14 @@ abstract class _$$_SellerShippingModelCopyWith<$Res>
       List<CartItemModel> items,
       bool physical,
       @JsonKey(name: "active_pickup") bool activePickUp,
-      PickUpModel pickup,
+      PickUpModel? pickup,
       @JsonKey(name: 'active_delivery') bool activeDelivery,
       @JsonKey(name: 'delivery_message') String deliveryMessage,
       DeliveryModel? delivery,
       @JsonKey(name: "owner_id") int ownerId});
 
   @override
-  $PickUpModelCopyWith<$Res> get pickup;
+  $PickUpModelCopyWith<$Res>? get pickup;
   @override
   $DeliveryModelCopyWith<$Res>? get delivery;
 }
@@ -185,7 +189,7 @@ class __$$_SellerShippingModelCopyWithImpl<$Res>
     Object? items = null,
     Object? physical = null,
     Object? activePickUp = null,
-    Object? pickup = null,
+    Object? pickup = freezed,
     Object? activeDelivery = null,
     Object? deliveryMessage = null,
     Object? delivery = freezed,
@@ -208,10 +212,10 @@ class __$$_SellerShippingModelCopyWithImpl<$Res>
           ? _value.activePickUp
           : activePickUp // ignore: cast_nullable_to_non_nullable
               as bool,
-      pickup: null == pickup
+      pickup: freezed == pickup
           ? _value.pickup
           : pickup // ignore: cast_nullable_to_non_nullable
-              as PickUpModel,
+              as PickUpModel?,
       activeDelivery: null == activeDelivery
           ? _value.activeDelivery
           : activeDelivery // ignore: cast_nullable_to_non_nullable
@@ -268,7 +272,7 @@ class _$_SellerShippingModel extends _SellerShippingModel {
   @JsonKey(name: "active_pickup")
   final bool activePickUp;
   @override
-  final PickUpModel pickup;
+  final PickUpModel? pickup;
   @override
   @JsonKey(name: 'active_delivery')
   final bool activeDelivery;
@@ -342,7 +346,7 @@ abstract class _SellerShippingModel extends SellerShippingModel {
       required final List<CartItemModel> items,
       required final bool physical,
       @JsonKey(name: "active_pickup") required final bool activePickUp,
-      required final PickUpModel pickup,
+      required final PickUpModel? pickup,
       @JsonKey(name: 'active_delivery') required final bool activeDelivery,
       @JsonKey(name: 'delivery_message') required final String deliveryMessage,
       required final DeliveryModel? delivery,
@@ -363,7 +367,7 @@ abstract class _SellerShippingModel extends SellerShippingModel {
   @JsonKey(name: "active_pickup")
   bool get activePickUp;
   @override
-  PickUpModel get pickup;
+  PickUpModel? get pickup;
   @override
   @JsonKey(name: 'active_delivery')
   bool get activeDelivery;

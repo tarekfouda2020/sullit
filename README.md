@@ -15,6 +15,9 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+/// change icon
+- flutter pub run flutter_launcher_icons
+
 /// for build release apk
 - flutter build apk --release --no-tree-shake-icons
 

@@ -555,7 +555,7 @@
   "loginHint": "مرحباً، مرحبًا بك معنا",
   "validateNumber": "من فضلك ادخل ارقام فقط",
   "verifyEmailMsg": "تم إرسال رسالة التحقق إلى البريد الذي قدمته لنا",
-  "newArrival": "وصل حديثا",
+  "newArrival": "حديثاً",
   "onSale": "تخفيضات",
   "bestRated": "الافضل تقييما",
   "available": "متاح",
@@ -903,6 +903,8 @@
   "amountCharged": "(المبلغ المحتسب)",
   "grandTotalShort": "المبلغ الإجمالي",
   "noDataFoundForOrder": "لم يتم العثور على بيانات لهذا الطلب!",
-  "search_in_sellers": "ابحث في البائعين..."
+  "search_in_sellers": "ابحث في البائعين...",
+  "select_your_choice": "حدد خيارك"
+
 
 }

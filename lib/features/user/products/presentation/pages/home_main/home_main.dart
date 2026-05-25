@@ -20,30 +20,27 @@ class _HomeMainState extends State<HomeMain> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: MyScaffold(
-        body: SafeArea(
-          child: Column(
-            children: [
-              BuildHomeMainAppBar(homeMainController: controller),
-              // const BuildDiscountMsg(),
-              BlocBuilder<GenericBloc<HomeDomainModel?>,
-                  GenericState<HomeDomainModel?>>(
-                bloc: controller.homeCubit,
-                builder: (context, state) {
-                  if (state is GenericUpdateState && state.data != null) {
-                    return BuildHomeView(
-                      homeDomainModel: state.data!,
-                      controller: controller,
-                    );
-                  } else {
-                    return const BuildLoadingHomeView();
-                  }
-                },
-              ),
-            ],
-          ),
+    return MyScaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            BuildHomeMainAppBar(homeMainController: controller),
+            // const BuildDiscountMsg(),
+            BlocBuilder<GenericBloc<HomeDomainModel?>,
+                GenericState<HomeDomainModel?>>(
+              bloc: controller.homeCubit,
+              builder: (context, state) {
+                if (state is GenericUpdateState && state.data != null) {
+                  return BuildHomeView(
+                    homeDomainModel: state.data!,
+                    controller: controller,
+                  );
+                } else {
+                  return const BuildLoadingHomeView();
+                }
+              },
+            ),
+          ],
         ),
       ),
     );

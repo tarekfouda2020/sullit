@@ -15,7 +15,9 @@ _$_SellerShippingModel _$$_SellerShippingModelFromJson(
           .toList(),
       physical: json['physical'] as bool,
       activePickUp: json['active_pickup'] as bool,
-      pickup: PickUpModel.fromJson(json['pickup'] as Map<String, dynamic>),
+      pickup: json['pickup'] == null
+          ? null
+          : PickUpModel.fromJson(json['pickup'] as Map<String, dynamic>),
       activeDelivery: json['active_delivery'] as bool,
       deliveryMessage: json['delivery_message'] as String,
       delivery: json['delivery'] == null
@@ -31,7 +33,7 @@ Map<String, dynamic> _$$_SellerShippingModelToJson(
       'items': instance.items.map((e) => e.toJson()).toList(),
       'physical': instance.physical,
       'active_pickup': instance.activePickUp,
-      'pickup': instance.pickup.toJson(),
+      'pickup': instance.pickup?.toJson(),
       'active_delivery': instance.activeDelivery,
       'delivery_message': instance.deliveryMessage,
       'delivery': instance.delivery?.toJson(),

@@ -41,5 +41,8 @@ import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/change_ord
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/get_payment_options.dart';
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/my_orders/widgets/purchased_orders_widgets_imports.dart';
 
+import '../../../../../../core/helpers/change_noon_order.dart';
+import '../../../domain/entities/change_noon_order_params.dart';
+
 part 'order_details.dart';
 part 'order_details_controller.dart';

@@ -55,6 +55,9 @@ class Orders extends BaseDomainModel {
   String environmentFees;
   String? driverNotes;
   String? pickerNotes;
+  String? orderSourceLabel;
+  String? shippingProvider;
+  String? shippingProviderLabel;
   OrderDriverDomainModel? driverModel;
   List<DeliveryInstructionModel>? instructions;
   List<OrderDiscountDomain>? orderDiscounts;
@@ -100,19 +103,24 @@ class Orders extends BaseDomainModel {
     required this.totalFeeAmount,
     required this.expectedLoyaltyPoints,
     required this.environmentFees,
-     this.driverModel,
-     this.serviceFees,
-     this.technologyFees,
-     this.vatFeeAmount,
-     this.driverNotes,
-     this.instructions,
-     this.orderDiscounts,
-     this.pickerNotes,
+    this.driverModel,
+    this.serviceFees,
+    this.technologyFees,
+    this.vatFeeAmount,
+    this.driverNotes,
+    this.instructions,
+    this.orderDiscounts,
+    this.pickerNotes,
+    this.orderSourceLabel,
+    this.shippingProvider,
+    this.shippingProviderLabel,
   });
 
-  int totalItemsCount() => orderDetails.fold(0, (previousValue, element) => previousValue + element.quantity);
+  int totalItemsCount() => orderDetails.fold(
+      0, (previousValue, element) => previousValue + element.quantity);
 
-  DateTime get getOrderDate => DateTimeHelper.convertToDateTime(strDate: orderDate);
+  DateTime get getOrderDate =>
+      DateTimeHelper.convertToDateTime(strDate: orderDate);
 
   double getDiscountNumber() {
     var currencySymbol = orderDetails.first.product?.currencySymbol;
@@ -122,13 +130,13 @@ class Orders extends BaseDomainModel {
   }
 
   bool get isCouponApply => getDiscountNumber() > 0;
-  
-  double get totalServiceFess => double.parse(technologyFees ?? "0.0" ) + double.parse(serviceFees??"0.0");
 
-  double get totalVat => double.parse(tax) + double.parse(vatFeeAmount ?? "0.0");
+  double get totalServiceFess =>
+      double.parse(technologyFees ?? "0.0") +
+      double.parse(serviceFees ?? "0.0");
 
-
-
+  double get totalVat =>
+      double.parse(tax) + double.parse(vatFeeAmount ?? "0.0");
 
   TrackOrderEnum get getTrackOrderStatus {
     /// at first its Placed
@@ -145,9 +153,9 @@ class Orders extends BaseDomainModel {
         return TrackOrderEnum.confirmed;
       case "preparing":
         return TrackOrderEnum.preparing;
-        case "ready_for_delivery":
+      case "ready_for_delivery":
         return TrackOrderEnum.readyForDelivery;
-        case "on_the_way":
+      case "on_the_way":
         return TrackOrderEnum.onTheWay;
       case "picked_up":
         return TrackOrderEnum.pickedUp;
@@ -158,23 +166,26 @@ class Orders extends BaseDomainModel {
       default:
         return TrackOrderEnum.placed;
     }
-
-
   }
 
-
-  OrderPaymentType orderPaymentType(){
-    switch(paymentMethodConst){
-      case "cash_on_delivery" :return OrderPaymentType.cash;
-      case "paymob" : return OrderPaymentType.paymob;
-      case "wallet" :return OrderPaymentType.wallet;
-      default: return OrderPaymentType.paymob;
+  OrderPaymentType orderPaymentType() {
+    switch (paymentMethodConst) {
+      case "cash_on_delivery":
+        return OrderPaymentType.cash;
+      case "paymob":
+        return OrderPaymentType.paymob;
+      case "wallet":
+        return OrderPaymentType.wallet;
+      default:
+        return OrderPaymentType.paymob;
     }
   }
 
   bool get isPaymentCash => orderPaymentType() == OrderPaymentType.cash;
 
-  bool get isPaymentOnline => orderPaymentType() != OrderPaymentType.cash && orderPaymentType() != OrderPaymentType.wallet;
+  bool get isPaymentOnline =>
+      orderPaymentType() != OrderPaymentType.cash &&
+      orderPaymentType() != OrderPaymentType.wallet;
 
   bool get isPaid => paymentStatus;
 
@@ -182,5 +193,6 @@ class Orders extends BaseDomainModel {
 
   bool get isCanceled => getTrackOrderStatus == TrackOrderEnum.cancelled;
 
-  bool get showUnPaidOnlineOrderActions => isPaymentOnline && !isPaid && !isCanceled;
+  bool get showUnPaidOnlineOrderActions =>
+      isPaymentOnline && !isPaid && !isCanceled;
 }

@@ -11,8 +11,8 @@ class BuildProductInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Container(
-        margin: Dimens.standardPadding,
+      child: Padding(
+        padding: Dimens.standardPadding,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -156,6 +156,11 @@ class BuildProductInfo extends StatelessWidget {
             BuildSellerInfo(
               shopModel: productModel.shop,
               controller: controller,
+            ),
+            Gaps.vGap8,
+            BuildProductSpecifications(
+              controller: controller,
+              productModel: productModel,
             ),
             Gaps.vGap8,
             BuildProductDescription(

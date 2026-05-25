@@ -47,6 +47,8 @@ class _SplashState extends State<Splash> {
               children: [
                 Image.asset(
                   Res.newSplashImage,
+                  height: 200,
+                  width: 200,
                 ),
                 Gaps.vGap20,
               ],
