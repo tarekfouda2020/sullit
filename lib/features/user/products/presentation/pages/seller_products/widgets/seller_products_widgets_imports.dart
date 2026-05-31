@@ -30,6 +30,7 @@ import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_she
 import 'package:flutter_tdd/core/widgets/seller_card_widget.dart';
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/widgets/category_details_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_loading_products_grid_view.dart';

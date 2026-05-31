@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/insurance_company_model/insurance_company_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,9 +17,11 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
   const factory ShopModel({
     required int id,
     @JsonKey(name: 'user_id') required int userId,
+    @JsonKey(name: 'type') required String shopType,
     required String name,
      List<String>? sliders,
      List<ShopCategoryModel>? categories,
+    @JsonKey(name: 'insurance_companies') List<InsuranceCompanyModel>? insuranceCompanies,
     String? title,
     String? description,
     required String logo,
@@ -40,10 +43,65 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
   factory ShopModel.fromJson(Map<String, dynamic> json) =>
       _$ShopModelFromJson(json);
 
+  // @override
+  // ShopDomainModel toDomainModel() {
+  //   if (shopType.toLowerCase() == 'pharmacy') {
+  //     return PharmacyModel(
+  //       id: id,
+  //       userId: userId,
+  //       name: name,
+  //       products: products,
+  //       logo: logo,
+  //       rating: rating,
+  //       description: description,
+  //       title: title,
+  //       address: address,
+  //       orders: orders,
+  //       packageInvalidAt: packageInvalidAt,
+  //       email: email,
+  //       phone: phone,
+  //       facebook: facebook,
+  //       google: google,
+  //       instagram: instagram,
+  //       twitter: twitter,
+  //       youtube: youtube,
+  //       follow: follow,
+  //       categories: categories?.map((e) => e.toDomainModel()).toList(),
+  //       sliders: sliders,
+  //     );
+  //   }
+  //
+  //   return MerchantShopModel(
+  //     id: id,
+  //     userId: userId,
+  //     name: name,
+  //     products: products,
+  //     logo: logo,
+  //     rating: rating,
+  //     description: description,
+  //     title: title,
+  //     address: address,
+  //     orders: orders,
+  //     packageInvalidAt: packageInvalidAt,
+  //     email: email,
+  //     phone: phone,
+  //     facebook: facebook,
+  //     google: google,
+  //     instagram: instagram,
+  //     twitter: twitter,
+  //     youtube: youtube,
+  //     follow: follow,
+  //     categories: categories?.map((e) => e.toDomainModel()).toList(),
+  //     sliders: sliders,
+  //   );
+  // }
+
+
   @override
   Shop toDomainModel() {
     return Shop(
       id: id,
+      userId: userId,
       name: name,
       products: products,
       logo: logo,
@@ -51,7 +109,6 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
       description: description,
       title: title,
       address: address,
-      userId: userId,
       orders: orders,
       packageInvalidAt: packageInvalidAt,
       email: email,
@@ -63,10 +120,16 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
       youtube: youtube,
       follow: follow,
       categories: categories?.map((e) => e.toDomainModel()).toList(),
-        sliders: sliders,
+      sliders: sliders,
+      shopType: shopType,
+      insuranceCompanies: insuranceCompanies?.map((e) => e.toDomainModel()).toList(),
     );
   }
 }
+
+
+
+
 @freezed
 @immutable
 class ShopCategoryModel extends BaseApiModel<ShopCategory> with _$ShopCategoryModel {
@@ -78,6 +141,9 @@ class ShopCategoryModel extends BaseApiModel<ShopCategory> with _$ShopCategoryMo
     required String name,
     required String icon,
     required String slug,
+     String? description,
+    @JsonKey(name: "meta_title") String? metaTitle,
+    @JsonKey(name: "meta_description") String? metaDescription,
 
   }) = _ShopCategoryModel;
 
@@ -91,6 +157,9 @@ class ShopCategoryModel extends BaseApiModel<ShopCategory> with _$ShopCategoryMo
       name: name,
       icon: icon,
       slug: slug,
+      description: description ?? "",
+      metaDescription:  metaDescription ?? "",
+      metaTitle: metaTitle ?? "",
     );
   }
 }

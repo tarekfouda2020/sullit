@@ -1,7 +1,7 @@
 part of 'following_imports.dart';
 
 class FollowingController {
-  final GenericBloc<List<Shop>> followingCubit = GenericBloc([]);
+  final GenericBloc<List<MerchantShopModel>> followingCubit = GenericBloc([]);
 
   FollowingController() {
     getFollowing();
@@ -12,7 +12,7 @@ class FollowingController {
     followingCubit.onUpdateData(result);
   }
 
-  void onChangeFollowing(BuildContext context, Shop model) async {
+  void onChangeFollowing(BuildContext context, MerchantShopModel model) async {
     getIt<LoadingHelper>().showLoadingDialog();
     var result = await SetToggleFollowing().call(model.userId!);
     getIt<LoadingHelper>().dismissDialog();

@@ -10,7 +10,7 @@ import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/build_empty_data_image.dart';
 import 'package:flutter_tdd/features/user/base/domain/use_cases/get_following.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/summary/tabs/following/widgets/following_w_imports.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/set_toggle_following.dart';
 part 'following.dart';
 part 'following_controller.dart';

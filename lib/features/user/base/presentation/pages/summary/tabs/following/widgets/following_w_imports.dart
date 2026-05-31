@@ -10,6 +10,6 @@ import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/summary/tabs/following/following_imports.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 part 'build_following_item.dart';
 part 'build_loading_following.dart';

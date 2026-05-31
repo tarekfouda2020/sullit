@@ -1,5 +1,8 @@
+
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
+
 
 class Shop extends BaseDomainModel {
    int? id;
@@ -13,6 +16,7 @@ class Shop extends BaseDomainModel {
    int? orders;
    String? address;
    String? email;
+   String? shopType;
    String? phone;
    String? facebook;
    String? google;
@@ -24,6 +28,7 @@ class Shop extends BaseDomainModel {
    bool?follow;
    List<String>? sliders;
    List<ShopCategory>? categories;
+   List<InsuranceCompany>? insuranceCompanies;
     bool isSelect = false;
 
   Shop( {
@@ -47,11 +52,47 @@ class Shop extends BaseDomainModel {
     this.youtube,
     this.sliders,
     this.categories,
+    this.insuranceCompanies,
+    this.shopType,
     this.isSelect=false,
     required this.rating,
     required this.follow,
   });
-  Map<String, dynamic> toJson() {
+
+
+
+   factory Shop.fromJson(Map<String, dynamic> json) {
+     return Shop(
+       id: json['id'],
+       userId: json['user_id'],
+       sellerId: json['seller_id'],
+       name: json['name'],
+       title: json['title'],
+       description: json['description'],
+       shopType: json['type'],
+       logo: json['logo'],
+       packageInvalidAt: json['package_invalid_at'],
+       email: json['email'],
+       products: json['products'],
+       orders: json['orders'],
+       address: json['address'],
+       phone: json['phone'],
+       facebook: json['facebook'],
+       google: json['google'],
+       twitter: json['twitter'],
+       instagram: json['instagram'],
+       youtube: json['youtube'],
+       rating: json['rating'],
+       follow: json['follow'],
+       sliders: (json['sliders'] as List?)
+           ?.map((e) => e.toString())
+           .toList(),
+     );
+   }
+
+
+
+   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['user_id'] = userId;
@@ -74,30 +115,12 @@ class Shop extends BaseDomainModel {
     data['rating'] = rating;
     data["sliders"]=sliders;
     data['follow']=follow;
+   data['type'] = shopType;
     return data;
   }
-  Shop.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userId = json['user_id'];
-    sellerId = json['seller_id'];
-    name = json['name'];
-    title = json['title'];
-    description = json['description'];
-    logo = json['logo'];
-    packageInvalidAt = json['package_invalid_at'];
-    email = json['email'];
-    products = json['products'];
-    orders = json['orders'];
-    address = json['address'];
-    phone = json['phone'];
-    facebook = json['facebook'];
-    google = json['google'];
-    twitter = json['twitter'];
-    instagram = json['instagram'];
-    youtube = json['youtube'];
-    rating = json['rating'];
-    sliders=json["sliders"];
-    follow=json['follow'];
-  }
-   List<String> get shopCategoryNames => categories?.map((e) => e.name ?? '').toList() ?? [];
+
+
+   List<String> get shopCategoryNames =>
+       categories?.map((e) => e.name).toList() ?? [];
+
 }

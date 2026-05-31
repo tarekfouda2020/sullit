@@ -45,9 +45,9 @@ class PharmacyDetailsController {
     Insurance(name: "Al Buhaira", logo: "https://specialist-pharmacy.com/wp-content/uploads/2021/05/specialist-pharmacy-compounding-pharmacy-mobile.jpg"),
   ];
   final List<ShopCategory> pharmacyCategories = [
-    ShopCategory(id: 1, name: tr("all"), icon: "", slug: ""),
-    ShopCategory(id: 2, name: tr("medicines"), icon: "", slug: ""),
-    ShopCategory(id: 3, name: tr("health_care"), icon: "", slug: ""),
+    ShopCategory(id: 1, name: tr("all"), icon: "", slug: "", description: '', metaTitle: '', metaDescription: ''),
+    ShopCategory(id: 2, name: tr("medicines"), icon: "", slug: "", description: '', metaTitle: '', metaDescription: ''),
+    ShopCategory(id: 3, name: tr("health_care"), icon: "", slug: "", description: '', metaTitle: '', metaDescription: ''),
   ];
 
   GenericBloc<CartDomainModel> get cartItemsBloc => getIt<CartHelper>().cartItemsBloc;

@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/banner_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/slider_domain_model.dart';
 import 'package:flutter_tdd/features/user/sale/domain/models/flash_sale.dart';

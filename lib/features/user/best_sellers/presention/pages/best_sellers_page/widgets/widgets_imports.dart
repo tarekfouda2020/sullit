@@ -15,6 +15,7 @@ import 'package:flutter_tdd/core/widgets/custom_search_filed_widget.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/core/widgets/seller_card_widget.dart';
 import 'package:flutter_tdd/features/user/best_sellers/presention/pages/best_sellers_page/best_sellers_page_imports.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';

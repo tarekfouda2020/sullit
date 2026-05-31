@@ -23,7 +23,7 @@ import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/core/widgets/seller_card_widget.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_loading_products_grid_view.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';

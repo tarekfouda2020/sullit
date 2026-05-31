@@ -15,6 +15,7 @@ import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/services/deep_link_service.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
@@ -26,7 +27,7 @@ import 'package:flutter_tdd/features/user/products/domain/entities/variant_price
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_details_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/variant.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_product_details.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_variant_price.dart';

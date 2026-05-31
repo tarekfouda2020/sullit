@@ -38,6 +38,8 @@ class ApiNames {
 //home urls
   static const String getFollowing = "shops/followings";
   static const String shopsList = "shops";
+  static  String shopCategories(int id) => "shops/$id/categories";
+  static  String shopDetails(int id) => "shops/$id";
 
   //products urls
   static const String getHome = "home";

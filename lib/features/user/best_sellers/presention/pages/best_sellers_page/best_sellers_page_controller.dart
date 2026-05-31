@@ -21,7 +21,7 @@ class BestSellersPageController {
   }
 
   Future<void> getBestSellers(int page, {bool refresh = true}) async {
-    var params = searchParams(refresh, page);
+    var params = _shopsParams(refresh, page);
     var data = await  GetBestSellers().call(params);
     final isLastPage = data.length < pageSize;
     if (page == 1) {
@@ -55,7 +55,13 @@ class BestSellersPageController {
     pageSize: pageSize,
   );
 
-  SearchResultParams searchParams(bool refresh,int page){
+  ShopsParams _shopsParams(bool refresh,int page){
+    var params = _searchParams(refresh,page);
+    return ShopsParams(params: params);
+  }
+
+
+  SearchResultParams _searchParams(bool refresh,int page){
     return SearchResultParams(
         searchTxt: searchTxtController.text,
         paginateParams: params(refresh,page)

@@ -15,6 +15,8 @@ class AppConstants {
   /// Time in milliseconds
   final int debounceTimeSearch =  500;
 
+  final int paginationLimit =  10;
+
   final String baseShareLink =  "https://mushrifcoop.com";
 
 }

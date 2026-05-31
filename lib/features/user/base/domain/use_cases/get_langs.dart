@@ -2,7 +2,7 @@ import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/user/base/domain/models/lang_domain_model.dart';
 import 'package:flutter_tdd/features/user/base/domain/repository/base_repository.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 
 class GetLanguages extends UseCase<List<LangDomainModel>, bool> {
   @override

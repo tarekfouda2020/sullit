@@ -19,4 +19,11 @@ class SearchResultParams {
 }
 
 
+  Map<String,dynamic> toJson() => {
+    ...paginateParams.toJson(),
+   if(searchTxt.trim().isNotEmpty) "keyword" : searchTxt,
+  };
+
+
+
 }

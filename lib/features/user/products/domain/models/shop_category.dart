@@ -5,6 +5,9 @@ class ShopCategory extends BaseDomainModel {
   final String name;
   final String icon;
   final String slug;
+  final String description;
+  final String metaTitle;
+  final String metaDescription;
    bool isSelect;
 
   ShopCategory({
@@ -12,6 +15,9 @@ class ShopCategory extends BaseDomainModel {
     required this.name,
     required this.icon,
     required this.slug,
+    required this.description,
+    required this.metaTitle,
+    required this.metaDescription,
      this.isSelect = false,
   });
 }

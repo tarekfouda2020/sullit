@@ -2,6 +2,7 @@ import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
 import 'package:flutter_tdd/features/user/category/data/models/price_range_model/price_range_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/shop_model/shop_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/seller_product_domain_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

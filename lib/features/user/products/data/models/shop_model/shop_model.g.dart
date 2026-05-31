@@ -9,11 +9,16 @@ part of 'shop_model.dart';
 _$_ShopModel _$$_ShopModelFromJson(Map<String, dynamic> json) => _$_ShopModel(
       id: (json['id'] as num).toInt(),
       userId: (json['user_id'] as num).toInt(),
+      shopType: json['type'] as String,
       name: json['name'] as String,
       sliders:
           (json['sliders'] as List<dynamic>?)?.map((e) => e as String).toList(),
       categories: (json['categories'] as List<dynamic>?)
           ?.map((e) => ShopCategoryModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      insuranceCompanies: (json['insurance_companies'] as List<dynamic>?)
+          ?.map(
+              (e) => InsuranceCompanyModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       title: json['title'] as String?,
       description: json['description'] as String?,
@@ -37,9 +42,12 @@ Map<String, dynamic> _$$_ShopModelToJson(_$_ShopModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'user_id': instance.userId,
+      'type': instance.shopType,
       'name': instance.name,
       'sliders': instance.sliders,
       'categories': instance.categories?.map((e) => e.toJson()).toList(),
+      'insurance_companies':
+          instance.insuranceCompanies?.map((e) => e.toJson()).toList(),
       'title': instance.title,
       'description': instance.description,
       'logo': instance.logo,
@@ -64,6 +72,9 @@ _$_ShopCategoryModel _$$_ShopCategoryModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       icon: json['icon'] as String,
       slug: json['slug'] as String,
+      description: json['description'] as String?,
+      metaTitle: json['meta_title'] as String?,
+      metaDescription: json['meta_description'] as String?,
     );
 
 Map<String, dynamic> _$$_ShopCategoryModelToJson(
@@ -73,4 +84,7 @@ Map<String, dynamic> _$$_ShopCategoryModelToJson(
       'name': instance.name,
       'icon': instance.icon,
       'slug': instance.slug,
+      'description': instance.description,
+      'meta_title': instance.metaTitle,
+      'meta_description': instance.metaDescription,
     };
