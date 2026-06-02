@@ -1167,6 +1167,9 @@ class AppRouter extends _i107.RootStackRouter {
         child: _i103.PharmacyDetails(
           key: args.key,
           fromCart: args.fromCart,
+          pharmacy: args.pharmacy,
+          pharmacyId: args.pharmacyId,
+          selectedCategoryId: args.selectedCategoryId,
         ),
         opaque: true,
       );
@@ -3918,12 +3921,18 @@ class PharmacyDetailsRoute
   PharmacyDetailsRoute({
     _i110.Key? key,
     bool? fromCart = false,
+    _i117.Shop? pharmacy,
+    int? pharmacyId,
+    int? selectedCategoryId,
   }) : super(
           PharmacyDetailsRoute.name,
           path: '/pharmacy-details',
           args: PharmacyDetailsRouteArgs(
             key: key,
             fromCart: fromCart,
+            pharmacy: pharmacy,
+            pharmacyId: pharmacyId,
+            selectedCategoryId: selectedCategoryId,
           ),
         );
 
@@ -3934,15 +3943,24 @@ class PharmacyDetailsRouteArgs {
   const PharmacyDetailsRouteArgs({
     this.key,
     this.fromCart = false,
+    this.pharmacy,
+    this.pharmacyId,
+    this.selectedCategoryId,
   });
 
   final _i110.Key? key;
 
   final bool? fromCart;
 
+  final _i117.Shop? pharmacy;
+
+  final int? pharmacyId;
+
+  final int? selectedCategoryId;
+
   @override
   String toString() {
-    return 'PharmacyDetailsRouteArgs{key: $key, fromCart: $fromCart}';
+    return 'PharmacyDetailsRouteArgs{key: $key, fromCart: $fromCart, pharmacy: $pharmacy, pharmacyId: $pharmacyId, selectedCategoryId: $selectedCategoryId}';
   }
 }
 

@@ -51,7 +51,12 @@ class PharmacyCategoriesController {
   }
 
   void onSelectCategory(BuildContext context, ShopCategory category) {
-    AutoRouter.of(context).push(PharmacyDetailsRoute(fromCart: false));
+    AutoRouter.of(context).push(
+        PharmacyDetailsRoute(
+            fromCart: false,
+          selectedCategoryId:  category.id,
+          pharmacy: shopBloc.state.data,
+        ));
   }
 
   void onPressSupportedInsurance(BuildContext context) {}

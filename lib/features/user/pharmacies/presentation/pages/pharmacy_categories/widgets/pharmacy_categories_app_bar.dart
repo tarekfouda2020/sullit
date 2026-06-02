@@ -10,76 +10,69 @@ class PharmacyCategoriesAppBar extends StatelessWidget {
     return BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
       bloc: controller.shopBloc,
       builder: (context, state) {
-        final shop = state.data;
-        final insuranceList = shop?.insuranceCompanies ?? [];
-
-        return SliverAppBar(
-          backgroundColor: context.colors.white,
-          pinned: true,
-          elevation: 0,
-          automaticallyImplyLeading: true,
-          leading: const BackButton(color: Colors.black),
-          title: Text(
-            shop?.name ?? '',
-            style: AppTextStyle.s20_w700(color: context.colors.black),
-          ),
-          expandedHeight: 350.h,
-          flexibleSpace: FlexibleSpaceBar(
-            background: Padding(
-              padding: EdgeInsets.only(
-                top: MediaQuery.paddingOf(context).top + kToolbarHeight,
-                left: 16,
-                right: 16,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    decoration: CustomDecoration(
-                      radius: Dimens.borderRadius12PX,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CachedImage(
-                          url: shop?.logo ?? '',
-                          height: 150.h,
-                          width: double.infinity,
-                          borderRadius: Dimens.topRadius12Px,
-                          fit: BoxFit.cover,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: context.colors.white,
-                            borderRadius: Dimens.bottomRadius12Px,
+        if( state is GenericUpdateState){
+          var shop = state.data;
+          var insuranceList = shop?.insuranceCompanies ?? [];
+          return SliverAppBar(
+            backgroundColor: context.colors.white,
+            pinned: true,
+            elevation: 0,
+            automaticallyImplyLeading: true,
+            leading: const BackButton(color: Colors.black),
+            title: Text(
+              shop?.name ?? '',
+              style: AppTextStyle.s20_w700(color: context.colors.black),
+            ),
+            expandedHeight: 350.h,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Padding(
+                padding: EdgeInsets.only(
+                  top: MediaQuery.paddingOf(context).top + kToolbarHeight,
+                  left: 16,
+                  right: 16,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      decoration: CustomDecoration(
+                        radius: Dimens.borderRadius12PX,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CachedImage(
+                            url: shop?.logo ?? '',
+                            height: 150.h,
+                            width: double.infinity,
+                            borderRadius: Dimens.topRadius12Px,
+                            fit: BoxFit.cover,
                           ),
-                          child: PharmacyInfoWidget(
-                            pharmacy: Pharmacy(
-                              id: shop?.id ?? 0,
-                              name: shop?.name ?? '',
-                              logo: shop?.logo ?? '',
-                              rating: (shop?.rating ?? 0).toDouble(),
-                              supportedInsurance: insuranceList
-                                  .map((e) => Insurance(
-                                        name: e.displayName,
-                                        logo: e.logoUrl,
-                                      ))
-                                  .toList(),
+                          Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: context.colors.white,
+                              borderRadius: Dimens.bottomRadius12Px,
+                            ),
+                            child: PharmacyInfoWidget(
+                              pharmacy: shop!,
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Gaps.vGap20,
-                  if (insuranceList.isNotEmpty)
-                    _buildInsuranceList(context, insuranceList),
-                ],
+                    Gaps.vGap20,
+                    if (insuranceList.isNotEmpty)
+                      _buildInsuranceList(context, insuranceList),
+                  ],
+                ),
               ),
             ),
-          ),
-        );
+          );
+        } else {
+          return const PharamacyHeaderShimmerWidget();
+        }
+
       },
     );
   }

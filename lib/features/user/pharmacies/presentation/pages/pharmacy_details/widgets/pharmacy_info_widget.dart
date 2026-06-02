@@ -1,7 +1,7 @@
 part of 'widgets_imports.dart';
 
 class PharmacyInfoWidget extends StatelessWidget {
-  final Pharmacy pharmacy;
+  final Shop pharmacy;
 
   const PharmacyInfoWidget({super.key, required this.pharmacy});
 
@@ -11,7 +11,7 @@ class PharmacyInfoWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          pharmacy.name,
+          pharmacy.name ?? "",
           style: AppTextStyle.s18_w700(color: context.colors.black),
         ),
         Gaps.vGap8,
@@ -19,7 +19,7 @@ class PharmacyInfoWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             RatingBar.builder(
-              initialRating: pharmacy.rating,
+              initialRating: (pharmacy.rating ?? 0.0).toDouble(),
               minRating: 1,
               direction: Axis.horizontal,
               allowHalfRating: true,

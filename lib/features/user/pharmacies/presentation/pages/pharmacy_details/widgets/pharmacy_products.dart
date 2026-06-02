@@ -17,7 +17,7 @@ class PharmacyProducts extends StatelessWidget {
         showNewPageProgressIndicatorAsGridChild: false,
         showNoMoreItemsIndicatorAsGridChild: false,
         shrinkWrapFirstPageIndicators: false,
-        pagingController: controller.pagingController,
+        pagingController: controller.productsPagingController,
         gridDelegate: _buildGridDelegate(),
         builderDelegate: PagedChildBuilderDelegate<Product>(
           itemBuilder: (context, item, index) {

@@ -1,7 +1,7 @@
 part of 'widgets_imports.dart';
 
 class SupportedInsuranceWidget extends StatelessWidget {
-  final List<Insurance> insurance;
+  final List<InsuranceCompany> insurance;
   final PharmacyDetailsController controller;
 
   const SupportedInsuranceWidget({
