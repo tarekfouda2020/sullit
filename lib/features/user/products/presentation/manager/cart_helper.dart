@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
-import 'package:flutter_tdd/core/helpers/debounce_helper.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/get_device_id.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
@@ -32,6 +31,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_variant_price.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_sheet_controller.dart';
+import 'package:flutter_tdd/features/user/products/presentation/manager/cart_sheet_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/product_details/widgets/product_details_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_add_to_cart_dialog.dart';
 import 'package:injectable/injectable.dart';
@@ -179,7 +179,7 @@ class CartHelper {
   }
 
   Future<void> showCartSuccessSheet(BuildContext context, {CartSheetController? controller}) async {
-    final sheetController = controller ?? _StandaloneCartSheetController(this);
+    final sheetController = controller ?? StandaloneCartSheetController(this);
 
     sheetController.getCartItems(refresh: false);
     sheetController.getCartItems().then(
@@ -247,121 +247,3 @@ class CartHelper {
   }
 }
 
-class _StandaloneCartSheetController implements CartSheetController {
-  _StandaloneCartSheetController(this._cartHelper);
-
-  final CartHelper _cartHelper;
-
-  @override
-  GenericBloc<CartDomainModel> get cartItemsBloc => _cartHelper.cartItemsBloc;
-
-  @override
-  Future<void> getCartItems({bool refresh = true}) async {
-    await _cartHelper.getCartItems(refresh: refresh);
-  }
-
-  void onIncreaseCartQnt(BuildContext context, CartItem cartItem, newQty) async {
-    final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
-    if (success != null) {
-      cartItem.quantity = newQty;
-      cartItemsBloc.onUpdateData(success);
-    }
-  }
-
-  @override
-  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem, GenericBloc<int> qntCubit, String value) async {
-    if (cartItem.quantity < cartItem.stockQty) {
-      var newQty = qntCubit.state.data + 1;
-      qntCubit.onUpdateData(newQty);
-      DebounceHelper.instance.startSearch(
-          value: value,
-          milliseconds: AppConstants.instance.debounceTimeInBackGround,
-          onSearch: (val) {
-            onIncreaseCartQnt(context, cartItem, newQty);
-          });
-    } else {
-      CustomToast.showSimpleToast(
-        msg: '${tr("only")} ${cartItem.stockQty} ${tr("availableStock")}',
-      );
-    }
-  }
-
-  void onDecreaseCartQnt(BuildContext context, CartItem cartItem, int newQty) async {
-    if (cartItem.quantity == 1) {
-      deleteItemFromCart(context, cartItem);
-      return;
-    }
-    if (cartItem.quantity > 1) {
-      final newQty = cartItem.quantity - 1;
-      final success = await _cartHelper.updateCartItem(newQty, cartItem.id);
-      if (success != null) {
-        cartItem.quantity = newQty;
-        cartItemsBloc.onUpdateData(success);
-      }
-    }
-  }
-
-  @override
-  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem, GenericBloc<int> qntCubit, String value) async {
-    if (cartItem.quantity > 1) {
-      var newQty = qntCubit.state.data - 1;
-      var data = cartItemsBloc.state.data;
-      qntCubit.onUpdateData(newQty);
-      var index = data.items!.indexOf(cartItem);
-      cartItemsBloc.state.data.items![index] = cartItem;
-      cartItemsBloc.onUpdateData(data);
-      DebounceHelper.instance.startSearch(
-          value: value,
-          milliseconds: AppConstants.instance.debounceTimeInBackGround,
-          onSearch: (val) {
-            onDecreaseCartQnt(context, cartItem, newQty);
-          });
-    }
-  }
-
-  @override
-  Future<void> deleteItemFromCart(BuildContext context, CartItem cartItem) async {
-    getIt<LoadingHelper>().showLoadingDialog();
-    final deleted = await _cartHelper.deleteItemFromCart(context, cartItem);
-    if (deleted) {
-      double subTotal = double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
-      double removedItemPrice = double.parse(cartItem.total);
-      double newSubTotal = subTotal - removedItemPrice;
-      cartItemsBloc.state.data.subTotal = newSubTotal.toStringAsFixed(2);
-      cartItemsBloc.state.data.items?.remove(cartItem);
-      if (cartItemsBloc.state.data.items?.isEmpty == true) {
-        cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
-        getIt<LoadingHelper>().dismissDialog();
-        getIt<CartHelper>().updateCartCount(context, 0);
-        Navigator.pop(context);
-      } else {
-        await getCartItems();
-        cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
-        getIt<LoadingHelper>().dismissDialog();
-      }
-    }
-  }
-
-  @override
-  void updateFavFromSheet(CartItem cartItem) {
-    cartItem.isWishlist = !cartItem.isWishlist;
-  }
-
-  @override
-  Future<void> refreshProductDetails(BuildContext context) async {
-    // Standalone controller has no product details to refresh.
-  }
-
-  @override
-  int? get productId => null;
-
-  String remainToGetMinAmount() {
-    var total = double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
-    var minAmount = cartItemsBloc.state.data.minimumAmount ?? 0.0;
-    var remain = minAmount - total;
-    return remain.toStringAsFixed(2);
-  }
-
-  @override
-  String get minAmountRemain => remainToGetMinAmount();
-}

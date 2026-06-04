@@ -1,60 +1,202 @@
+// ignore_for_file: use_build_context_synchronously
+
 part of 'pharmacy_cart_imports.dart';
 
 class PharmacyCartController {
-  final GenericBloc<List<CartItem>> cartItemsBloc = GenericBloc([]);
 
-  final GenericBloc<bool> haveInsurance  = GenericBloc<bool>(false);
 
-  PharmacyCartController() {
-    _getFakeData();
+  final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc<CartDomainModel>(CartDomainModel());
+
+  final GenericBloc<bool> haveInsurance = GenericBloc<bool>(false);
+
+
+
+
+  Future<void> getData()async{
+    getCartItems(refresh: false);
+    getCartItems();
   }
 
-  void _getFakeData() {
-    List<CartItem> fakeData = List.generate(10, (index) {
-      return  CartItem(
-        id: index+1,
-        ownerId: 1,
-        thumbnailImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-O_U-a-m8F_rXY-xX-K8YQ-C-u-q-L-Q&s",
-        name: "Panadol Acute Head Cold Paracetamol Tablets",
-        price: "15.00",
-        tax: "0.00",
-        quantity: 2,
-        isDigital: false,
-        total: "30.00",
-        calculableTotal: 30.0,
-        currencySymbol: "AED",
-        productId: 101,
-        minQty: 1,
-        stockQty: 100,
-        isWishlist: false,
-        soldBy: "Al Manara Pharmacy",
-        soldByType: "Pharmacy",
-        shopId: 1,
-        rating: 4.5,
-        loyaltyPoints: 10,
-        hasSpecialLoyaltyPoints: false,
-      );
+
+  Future<void> getCartItems({bool refresh = true}) async {
+    String? token = await getIt<GetDeviceId>().deviceId;
+    var params = _cartParams(refresh, token!);
+  await GetCart().call(params).then((value) {
+      cartItemsBloc.onUpdateData(value);
     },);
-    cartItemsBloc.onUpdateData(fakeData);
   }
 
-  void whileOnDecreaseCount(BuildContext context, CartItem cartItem, String quantity, GenericBloc<int> qtyCubit) {
-    if (cartItem.quantity > 1) {
-      cartItem.quantity--;
-      qtyCubit.onUpdateData(cartItem.quantity);
-      cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+  CartParams _cartParams(bool refresh, String token) {
+    return CartParams(
+      macAddress: token,
+      refresh: refresh,
+      type: CartTypeEnum.pharmacy,
+    );
+  }
+
+  Future<bool> onIncreaseCart(
+      BuildContext context, CartItem cartItem, int newQty) async {
+    final success =
+        await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+    if (success != null) {
+      cartItem.quantity = newQty;
+      cartItemsBloc.onUpdateData(success);
+      updateCartCount(context);
+      FacebookEventsHelper.instance
+          .productAddToCart(id: cartItem.productId, price: cartItem.price);
+      return true;
+    } else {
+      return false;
     }
   }
 
-  void whileOnIncreaseCount(BuildContext context, CartItem cartItem, String quantity, GenericBloc<int> qtyCubit) {
-    cartItem.quantity++;
-    qtyCubit.onUpdateData(cartItem.quantity);
-    cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+  void whileOnIncreaseCount(BuildContext context, CartItem cartItem,
+      String value, GenericBloc<int> qntCubit) {
+    if (qntCubit.state.data < cartItem.stockQty) {
+      var newQty = qntCubit.state.data + 1;
+      qntCubit.onUpdateData(newQty);
+      DebounceHelper.instance.startSearch(
+          value: value,
+          milliseconds: AppConstants.instance.debounceTimeInBackGround,
+          onSearch: (val) async {
+            var result = await onIncreaseCart(context, cartItem, newQty);
+            if (!result) {
+              qntCubit.onUpdateData(cartItem.quantity);
+            }
+          });
+    } else {
+      CustomToast.showSimpleToast(
+        msg: '${tr("only")} ${cartItem.stockQty} ${tr("availableStock")}',
+      );
+    }
   }
 
-  void deleteItemFromCart(BuildContext context, CartItem cartItem) {
-    List<CartItem> currentItems = List.from(cartItemsBloc.state.data);
-    currentItems.removeWhere((item) => item.id == cartItem.id);
-    cartItemsBloc.onUpdateData(currentItems);
+  Future<bool> onDecreaseCart(
+      BuildContext context, CartItem cartItem, int newQty) async {
+    final success =
+        await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+    if (success != null) {
+      cartItem.quantity = newQty;
+      cartItemsBloc.onUpdateData(success);
+      updateCartCount(context);
+      return true;
+    } else {
+      CustomToast.showSimpleToast(
+        msg: "can't reduce product quantity",
+      );
+      return false;
+    }
+  }
+
+  void whileOnDecreaseCount(BuildContext context, CartItem cartItem,
+      String value, GenericBloc<int> qntCubit) {
+    var qnt = qntCubit.state.data;
+    if (qnt > 1) {
+      var newQty = qnt - 1;
+      qntCubit.onUpdateData(newQty);
+      DebounceHelper.instance.startSearch(
+          value: value,
+          milliseconds: AppConstants.instance.debounceTimeInBackGround,
+          onSearch: (val) async {
+            var result = await onDecreaseCart(context, cartItem, newQty);
+            if (!result) {
+              qntCubit.onUpdateData(cartItem.quantity);
+            }
+          });
+    } else {
+      deleteItemFromCart(context, cartItem);
+      return;
+    }
+  }
+
+  Future<void> deleteItemFromCart(
+      BuildContext context, CartItem cartItem) async {
+    getIt<LoadingHelper>().showLoadingDialog();
+    var data = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
+    getIt<LoadingHelper>().dismissDialog();
+    if (data) {
+      if (cartItemsBloc.state.data.items != null) {
+        cartItemsBloc.state.data.items!.removeWhere((item) => item.id == cartItem.id);
+      }
+      updateCartCount(context);
+      await getCartItems(refresh: true);
+      if (cartItemsBloc.state.data.items == null ||
+          (cartItemsBloc.state.data.items ?? []).isEmpty) {
+        getIt<CartHelper>().updateCartCount(context, 0);
+        CustomToast.showSimpleToast(
+            msg: "Your cart has been cleared successfully.",
+            type: ToastType.success);
+        AutoRouter.of(context).pop();
+        return;
+      }
+      getIt<CartHelper>()
+          .updateCartCountWithCart(context, cartItemsBloc.state.data);
+      CustomToast.showSimpleToast(
+          msg: tr('itemDeleted'), type: ToastType.success);
+    }
+  }
+
+  void updateCartCount(BuildContext context) {
+    var allItemsCount = cartItemsBloc.state.data.items!.fold<int>(
+      0,
+      (previousValue, element) => previousValue + element.quantity,
+    );
+    var countCubit = context.read<CountCubit>().state;
+    context
+        .read<CountCubit>()
+        .onUpdateCount(allItemsCount, countCubit.discount);
+  }
+
+  void showClearDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return BuildDeleteDialog(
+          onPressConfirm: () => clearCart(context),
+          content: tr("want_to_clear_your_cart"),
+        );
+      },
+    );
+  }
+
+  Future<void> clearCart(BuildContext context) async {
+    final token = await getIt<GetDeviceId>().deviceId;
+    final params = ClearCartParams(
+        macAddress: token ?? "",
+      type: CartTypeEnum.pharmacy
+    );
+    await ClearCart().call(params).then((value) async {
+      CustomToast.showSimpleToast(
+          msg: "Your cart has been cleared successfully.",
+          type: ToastType.success);
+      cartItemsBloc.state.data.items?.clear();
+      cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+      Navigator.pop(context);
+      onBack(context);
+    });
+  }
+
+
+  void onBack(BuildContext context){
+    AutoRouter.of(context).pop(cartItemsBloc.state.data);
+  }
+
+  void navigateToShipping(BuildContext context) {
+    bool auth = context.read<DeviceCubit>().state.model.auth;
+    if (auth) {
+      final cartData = cartItemsBloc.state.data;
+      if (cartData.minimumStatus == false) {
+        CustomToast.showSimpleToast(msg: cartData.minimumAmountMsg!);
+        return;
+      }
+      if ((cartData.items ?? []).isNotEmpty) {
+        AutoRouter.of(context).push(const PharmacyAddressRoute());
+      } else {
+        CustomToast.showSimpleToast(msg: tr('cartIsEmpty'));
+        return;
+      }
+    } else {
+      CustomToast.showAuthDialog(context);
+    }
   }
 }

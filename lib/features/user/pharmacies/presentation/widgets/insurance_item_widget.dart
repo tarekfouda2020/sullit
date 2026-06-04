@@ -1,7 +1,8 @@
 part of 'widgets_imports.dart';
 
 class InsuranceItemWidget extends StatelessWidget {
-  final Insurance model;
+   ///Insurance
+  final InsuranceCompany model;
   final bool enableSelect;
   final void Function()? onTap;
   const InsuranceItemWidget({super.key, required this.model,  this.enableSelect = false, this.onTap});
@@ -11,6 +12,7 @@ class InsuranceItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        height: 72,
         margin: const EdgeInsets.only(bottom: Dimens.dp15),
         padding: const EdgeInsets.symmetric(
           horizontal: Dimens.dp15,

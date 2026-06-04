@@ -16,8 +16,10 @@ class BuildProductInfo extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const RequiredPrescriptionNoteWidget(),
-            Gaps.vGap12,
+           if(productModel.prescriptionRequired == true)...[
+             const RequiredPrescriptionNoteWidget(),
+             Gaps.vGap12,
+           ],
             Text(
               productModel.name!,
               style: AppTextStyle.s14_w400(

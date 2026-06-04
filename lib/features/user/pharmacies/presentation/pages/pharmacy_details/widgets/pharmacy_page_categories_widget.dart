@@ -1,12 +1,10 @@
 part of 'widgets_imports.dart';
 
 class PharmacyPageCategoriesWidget extends StatelessWidget {
-  final List<ShopCategory> category;
   final PharmacyDetailsController controller;
 
   const PharmacyPageCategoriesWidget({
     super.key,
-    required this.category,
     required this.controller,
   });
 
@@ -26,7 +24,7 @@ class PharmacyPageCategoriesWidget extends StatelessWidget {
                 alignment: Alignment.center,
                 margin: EdgeInsetsDirectional.only(
                   start: index == 0 ? 20 : 8,
-                  end: index == category.length - 1 ? 20 : 0,
+                  end: index == controller.categoriesPagingController.itemList!.length - 1 ? 20 : 0,
                 ),
                 decoration: BoxDecoration(
                   color: item.isSelect

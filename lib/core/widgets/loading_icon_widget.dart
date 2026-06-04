@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 
 class LoadingIconWidget extends StatelessWidget {
   final double? size;

@@ -69,6 +69,8 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       hasSpecialLoyaltyPoints: json['has_special_loyalty_points'] as bool,
       hasShareholderDiscount: json['has_shareholder_discount'] as bool,
       loyaltyPoints: (json['loyalty_points'] as num).toInt(),
+      prescriptionRequired: json['prescription_required'] as bool,
+      insuranceEligible: json['insurance_eligible'] as bool,
     );
 
 Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) =>
@@ -117,4 +119,6 @@ Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) =>
       'has_special_loyalty_points': instance.hasSpecialLoyaltyPoints,
       'has_shareholder_discount': instance.hasShareholderDiscount,
       'loyalty_points': instance.loyaltyPoints,
+      'prescription_required': instance.prescriptionRequired,
+      'insurance_eligible': instance.insuranceEligible,
     };

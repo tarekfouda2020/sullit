@@ -38,11 +38,11 @@ class ImplCartDataSources extends CartDataSources {
   @override
   Future<Either<Failure, CartModel>> getCartItems(CartParams params) async {
     HttpRequestModel model = HttpRequestModel(
-      url: params.toQuery(),
+      url: ApiNames.cart,
+      requestBody: params.toJson(),
       requestMethod: RequestMethod.get,
       refresh: params.refresh,
       responseType: ResType.model,
-      showLoader: true,
       toJsonFunc: (json) => CartModel.fromJson(json),
       responseKey: (data) => data["data"],
       errorFunc: (data) => data["msg"],

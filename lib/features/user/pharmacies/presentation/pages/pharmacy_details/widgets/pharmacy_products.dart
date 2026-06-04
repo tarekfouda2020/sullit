@@ -21,11 +21,14 @@ class PharmacyProducts extends StatelessWidget {
         gridDelegate: _buildGridDelegate(),
         builderDelegate: PagedChildBuilderDelegate<Product>(
           itemBuilder: (context, item, index) {
-            return BuildProductItem(
+            return PharmacyProductCardWidget(
+              controller: controller,
               showVipDiscount: item.hasVipOffer,
               productModel: item,
               onFavRefresh: () => controller.onFavChanged(item),
-              onPressDelete: () async => controller.getCartData(),
+              onPressDelete: ()  => controller.getCartItems(),
+              afterAddToCart: () => controller.getCartItems(),
+              onPressDecrease: () => controller.getCartItems(),
             );
           },
           firstPageProgressIndicatorBuilder: (_) => const BuildLoadingProductsGridView(),

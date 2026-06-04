@@ -19,6 +19,15 @@ class _ChangePharmacyCartQtyWidgetState extends State<ChangePharmacyCartQtyWidge
     qtyCubit.onUpdateData(widget.cartItem.quantity);
   }
 
+
+  @override
+  void didUpdateWidget(covariant ChangePharmacyCartQtyWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.cartItem.id == widget.cartItem.id) {
+      qtyCubit.onUpdateData(widget.cartItem.quantity);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(

@@ -59,6 +59,8 @@ class Product extends BaseDomainModel {
   bool? hasVipOffer;
   bool? showProductCounter;
   bool? hasShareholderDiscount;
+  bool? prescriptionRequired;
+  bool? insuranceEligible;
   int? addedQtyToCart;
   int? maxQnt;
 
@@ -68,6 +70,8 @@ class Product extends BaseDomainModel {
       this.images,
       this.thumbnailImage,
       this.isMultiple,
+      this.prescriptionRequired,
+      this.insuranceEligible,
       this.priceHighLowDiscount,
       this.priceHighLow,
       this.hasDiscount,
@@ -152,6 +156,8 @@ class Product extends BaseDomainModel {
     images = json['images'].cast<String>();
     isMultiple = json['is_multiple'];
     priceHighLowDiscount = json['price_high_low_discount'];
+    prescriptionRequired = json['prescription_required'];
+    insuranceEligible = json['insurance_eligible'];
     priceHighLow = json['price_high_low'];
     hasDiscount = json['has_discount'];
     discount = json['discount'];
@@ -238,6 +244,8 @@ class Product extends BaseDomainModel {
     data['has_vip_offer'] = hasVipOffer;
     data['max_qty'] = maxQnt;
     data['has_shareholder_discount'] = hasShareholderDiscount;
+     data['prescription_required'] =  prescriptionRequired;
+     data['insurance_eligible'] =  insuranceEligible;
     return data;
   }
 }

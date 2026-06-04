@@ -49,26 +49,44 @@ class _PharmacyDetailsState extends State<PharmacyDetails> {
               builder: (context, isOPen) {
                 return Visibility(
                   visible: !isOPen,
-                  child: Container(
-                    padding: const EdgeInsets.all(20),
+                  child: CustomBottomSafeAreaWidget(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
-                      spacing: 12,
                       children: [
-                        Opacity(
-                          opacity: controller.cartHaveSellerProduct() ? 1 : 0.5,
-                          child: DefaultButton(
-                            title: tr("view_cart"),
-                            margin: EdgeInsets.zero,
-                            onTap: () =>
-                                controller.onPressViewCart(context, widget.fromCart!),
+                        Row(
+                          spacing: 5,
+                          children: [
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Opacity(
+                                opacity: controller.cartHaveSellerProduct() ? 1 : 0.5,
+                                child: DefaultButton(
+                                  title: tr("view_cart"),
+                                  margin: EdgeInsets.zero,
+                                  onTap: () => controller.onPressViewCart(context,),
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            spacing: 7,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(tr("total"),
+                                style: AppTextStyle.s12_w400(color: context.colors.textColor),
+                              ),
+                              DirhamPrice(amount: "${state.data.calculableTotal}")
+                            ],
+                          ),
+                          Gaps.hGap32,
+                        ],),
                         Visibility(
                           visible: controller.neededAmount() > 0,
                           child: Row(
                             children: [
+                              Gaps.hGap32,
                               DirhamPrice(
                                   amount: controller.neededAmount().toStringAsFixed(2)
                               ),

@@ -20,8 +20,8 @@ class BuildPharmacyCartItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CachedImage(
-            url: "https://static.wixstatic.com/media/cf1c5e_6f1836594d7d4c80bc5e5c7075a36328~mv2.png/v1/fill/w_500,h_500,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/cf1c5e_6f1836594d7d4c80bc5e5c7075a36328~mv2.png",
+          CachedImage(
+            url: cartItem.thumbnailImage,
             height: 60,
             width: 60,
             fit: BoxFit.fill,
@@ -35,7 +35,7 @@ class BuildPharmacyCartItem extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        "Panadol Advance 500mg",
+                        cartItem.name,
                         style: AppTextStyle.s14_w600(color: context.colors.black)
                             .copyWith(height: 1.5),
                       ),
@@ -45,7 +45,7 @@ class BuildPharmacyCartItem extends StatelessWidget {
                 ),
                 Gaps.vGap5,
                 RatingBar.builder(
-                  initialRating: 4,
+                  initialRating: cartItem.rating,
                   minRating: 0,
                   direction: Axis.horizontal,
                   allowHalfRating: false,
@@ -61,7 +61,7 @@ class BuildPharmacyCartItem extends StatelessWidget {
                 ),
                 Gaps.vGap5,
                 DirhamPrice(
-                  amount: "15.0",
+                  amount: cartItem.price,
                   currencyStyle: AppTextStyle.s16_w400(color: context.colors.primary),
                   textStyle: AppTextStyle.s14_w600(color: context.colors.primary),
                 ),
@@ -75,7 +75,7 @@ class BuildPharmacyCartItem extends StatelessWidget {
                     ),
                     Gaps.hGap5,
                     Text(
-                      "Al Dawaa Pharmacy",
+                      cartItem.soldBy,
                       style: AppTextStyle.s12_w600(color: context.colors.black),
                     ),
                   ],

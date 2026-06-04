@@ -1,22 +1,8 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_tdd/core/constants/app_constants.dart';
-import 'package:flutter_tdd/core/constants/dimens.dart';
-import 'package:flutter_tdd/core/helpers/debounce_helper.dart';
-import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
-import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
-import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
-import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
+part of 'widgets_imports.dart';
 
-import 'base_product_item.dart';
-import 'product_item_card_widget/product_item_card_widget.dart';
-
-class BuildProductItem extends BaseProductItem {
-
-  const BuildProductItem({
+class PharmacyProductCardWidget extends BaseProductItem {
+ final PharmacyDetailsController controller;
+  const PharmacyProductCardWidget( {
     super.key,
     required super.productModel,
     required super.onFavRefresh,
@@ -27,13 +13,14 @@ class BuildProductItem extends BaseProductItem {
     super.onPressDecrease,
     super.onPressDelete,
     super.margin,
+    required this.controller,
   });
 
   @override
-  State<BuildProductItem> createState() => _BuildProductItemState();
+  State<PharmacyProductCardWidget> createState() => _PharmacyProductCardWidgetState();
 }
 
-class _BuildProductItemState extends BaseProductItemState<BuildProductItem> {
+class _PharmacyProductCardWidgetState extends BaseProductItemState<PharmacyProductCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -87,7 +74,7 @@ class _BuildProductItemState extends BaseProductItemState<BuildProductItem> {
         key: widget.productModel.id.toString(),
         value: qnt.toString(),
         milliseconds: AppConstants.instance.debounceTimeInBackGround,
-        onSearch: (val) => getIt<ProductsHelper>()
+        onSearch: (val) => widget.controller
             .increaseProductAddedQntInCart(context, widget.productModel, qnt),
       );
     }
@@ -114,7 +101,7 @@ class _BuildProductItemState extends BaseProductItemState<BuildProductItem> {
 
   @override
   Future<void> reduceQntFromCart(int qnt) async {
-    var result = await getIt<ProductsHelper>()
+    var result = await widget.controller
         .reduceProductQntInCart(context, widget.productModel, qnt);
     if (result == true) {
       if (widget.onPressDecrease != null) {
@@ -126,7 +113,7 @@ class _BuildProductItemState extends BaseProductItemState<BuildProductItem> {
   @override
   Future<void> deleteItemFromCart() async {
     enableAddToCartLoading.onUpdateData(true);
-    var deleteResult = await getIt<ProductsHelper>()
+    var deleteResult = await widget.controller
         .deleteProductInCartFromProductsList(context, widget.productModel);
     if (deleteResult) {
       widget.productModel.addedQtyToCart = 0;
@@ -140,7 +127,7 @@ class _BuildProductItemState extends BaseProductItemState<BuildProductItem> {
   @override
   void checkIfItemInCart() {
     final List<CartItem>? cartProducts =
-        getIt<CartHelper>().cartItemsBloc.state.data.items;
+        widget.controller.cartItemsBloc.state.data.items;
     final Set<int>? cartProductsIds = cartProducts?.map((e) => e.productId).toSet();
     if (cartProductsIds?.contains(widget.productModel.id) == true) {
       CartItem? cartProduct = cartProducts

@@ -22,7 +22,7 @@ class PharmacyDetailsAppBar extends StatelessWidget {
               shop?.name ?? '',
               style: AppTextStyle.s20_w700(color: context.colors.black),
             ),
-            expandedHeight: 480,
+            expandedHeight: MediaQuery.sizeOf(context).height*0.67,
             flexibleSpace: FlexibleSpaceBar(
               background: Padding(
                 padding: EdgeInsets.only(
@@ -82,7 +82,6 @@ class PharmacyDetailsAppBar extends StatelessWidget {
                     ),
                     Gaps.vGap12,
                     PharmacyPageCategoriesWidget(
-                      category: controller.pharmacyCategories,
                       controller: controller,
                     ),
                     Gaps.vGap12,

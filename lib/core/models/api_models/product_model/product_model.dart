@@ -65,6 +65,8 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
     @JsonKey(name: 'has_special_loyalty_points') required bool hasSpecialLoyaltyPoints,
     @JsonKey(name: 'has_shareholder_discount') required bool hasShareholderDiscount,
     @JsonKey(name: 'loyalty_points') required int loyaltyPoints,
+    @JsonKey(name: 'prescription_required') required bool prescriptionRequired,
+    @JsonKey(name: 'insurance_eligible') required bool insuranceEligible,
   }) = _ProductModel;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
@@ -116,7 +118,8 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
       isFresh: isFresh ,
       maxQnt: maxQntPerOrder,
       variants: variantsList?.map((e) => e.toDomainModel()).toList(),
-
+      insuranceEligible: insuranceEligible,
+      prescriptionRequired: prescriptionRequired ,
     );
   }
 }

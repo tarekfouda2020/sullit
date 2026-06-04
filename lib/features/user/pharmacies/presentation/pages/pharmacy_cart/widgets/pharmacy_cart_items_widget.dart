@@ -12,12 +12,14 @@ class PharmacyCartItemsWidget extends StatelessWidget {
     return Visibility(
       visible: cartItems.isNotEmpty,
       replacement: const BuildEmptyDataImage(),
-      child: ListView.builder(
-        padding: Dimens.paddingVertical10PXHorizontal20PX,
-        itemCount: cartItems.length,
-        itemBuilder: (_, index) => BuildPharmacyCartItem(
-          cartItem: cartItems[index],
-          controller: controller,
+      child: Expanded(
+        child: ListView.builder(
+          padding: Dimens.paddingVertical10PXHorizontal20PX,
+          itemCount: cartItems.length,
+          itemBuilder: (_, index) => BuildPharmacyCartItem(
+            cartItem: cartItems[index],
+            controller: controller,
+          ),
         ),
       ),
     );

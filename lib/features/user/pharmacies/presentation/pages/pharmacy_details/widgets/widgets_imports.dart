@@ -1,6 +1,5 @@
 
-library widgets_imports;
-
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,11 +7,14 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/debounce_helper.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/validator.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
@@ -22,14 +24,19 @@ import 'package:flutter_tdd/core/widgets/build_empty_data_view.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/core/widgets/seller_card_widget.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/widgets/pharamacy_header_shimmer_widget.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
+import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
+import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
+import 'package:flutter_tdd/features/user/products/presentation/widgets/base_product_item.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_loading_products_grid_view.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
+import 'package:flutter_tdd/features/user/products/presentation/widgets/product_item_card_widget/product_item_card_widget.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -49,3 +56,4 @@ part 'pharmacy_info_widget.dart';
 part 'pharmacy_sticky_header_widget.dart';
 part 'supported_insurance_widget.dart';
 part 'supported_insurance_bottom_sheet_widget.dart';
+part 'pharmacy_product_card_widget.dart';

@@ -10,8 +10,6 @@ class BestSellersPage extends StatefulWidget {
 class _BestSellersPageState extends State<BestSellersPage> {
   final BestSellersPageController controller = BestSellersPageController();
 
-
-
   @override
   Widget build(BuildContext context) {
 

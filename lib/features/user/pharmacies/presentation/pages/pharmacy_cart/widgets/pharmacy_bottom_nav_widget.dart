@@ -29,40 +29,49 @@ class PharmacyBottomNavWidget extends StatelessWidget {
               ],
             ),
           ),
-          CustomBottomSafeAreaWidget(
-            child: Row(
-              children: [
-                Expanded(
-                  child: DefaultButton(
-                    margin: EdgeInsets.zero,
-                    color: context.colors.primary,
-                    textColor: context.colors.white,
-                    title: tr("continue"),
-                    onTap: () => AutoRouter.of(context)
-                        .push(const PharmacyAddressRoute()),
+          BlocBuilder<GenericBloc<CartDomainModel>, GenericState<CartDomainModel>>(
+            bloc: controller.cartItemsBloc,
+            builder: (context, state) {
+              final cartData = state.data;
+              final hasItems = cartData.items != null && cartData.items!.isNotEmpty;
+              return Visibility(
+                visible: hasItems,
+                child: CustomBottomSafeAreaWidget(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: DefaultButton(
+                          margin: EdgeInsets.zero,
+                          color: context.colors.primary,
+                          textColor: context.colors.white,
+                          title: tr("continue"),
+                          onTap: () => controller.navigateToShipping(context),
+                        ),
+                      ),
+                      Gaps.hGap11,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(tr("total"),
+                              style: AppTextStyle.s12_w400(
+                                  color: context.colors.textColor)),
+                          Gaps.vGap6,
+                          DirhamPrice(
+                            amount: cartData.calculableTotal?.toStringAsFixed(2) ?? "0.00",
+                            currencyStyle:
+                                AppTextStyle.s18_w400(color: context.colors.primary),
+                            textStyle:
+                                AppTextStyle.s14_w600(color: context.colors.primary),
+                            currencyOffset: 0,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-                Gaps.hGap11,
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(tr("total"),
-                        style: AppTextStyle.s12_w400(
-                            color: context.colors.textColor)),
-                    Gaps.vGap6,
-                    DirhamPrice(
-                      amount: "50.26",
-                      currencyStyle:
-                          AppTextStyle.s18_w400(color: context.colors.primary),
-                      textStyle:
-                          AppTextStyle.s14_w600(color: context.colors.primary),
-                      currencyOffset: 0,
-                    ),
-                  ],
-                ),
-              ],
-            ),
+              );
+            },
           )
         ],
       ),

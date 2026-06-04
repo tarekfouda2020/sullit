@@ -27,15 +27,15 @@ class BuildCartLoading extends StatelessWidget {
             ],
           ),
           padding: const EdgeInsets.all(Dimens.dp15),
-          child: Column(
+          child: const Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const BuildShimmerItem(
+              BuildShimmerItem(
                 height: 10,
                 width: 100,
               ),
               Row(
-                children: const [
+                children: [
                   BuildShimmerItem(height: 10, width: 100),
                   BuildShimmerItem(
                     height: 10,
