@@ -390,7 +390,7 @@ class _BuildProductItemState extends State<BuildProductItem> {
 
   Future<void> _addToCart(BuildContext context) async {
 
-    if ((widget.productModel.isOutOfStock ||widget.productModel.sameQntInCart) && widget.productModel.isFreshProduct == false) {
+    if ((widget.productModel.isOutOfStock || widget.productModel.sameQntInCart) && widget.productModel.isFreshProduct == false) {
       CustomToast.showSimpleToast(msg: tr("outOfStock"), type: ToastType.error);
       return;
     }

@@ -137,9 +137,11 @@ class CategoryDetailsController implements CartSheetController {
 
   Future<void> getData(BuildContext context, int id) async {
     await getSubCategories(context, id,refresh : false);
-    await getSubCategories(context, id,refresh : true);
     getPopularProducts(1, refresh: false);
     getBrands(1, refresh: false);
+
+    /// remote data
+    await getSubCategories(context, id,refresh : true);
     pagingController.addPageRequestListener((pageKey) {
       getPopularProducts(pageKey, refresh: true);
     });
@@ -338,12 +340,10 @@ class CategoryDetailsController implements CartSheetController {
       pagingController.itemList = [];
     }
     if (isLastPage) {
-      print("====>>>>> is last page ====== ");
       pagingController.appendLastPage(data);
     } else {
       final nextPageKey = currentPage + 1;
       pagingController.appendPage(data, nextPageKey);
-      print("====>>>>> not the last page ====== ");
     }
     // final ids = pagingController.itemList
     //     ?.map((e) => e.id)
