@@ -64,6 +64,9 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       driver: json['driver'] == null
           ? null
           : OrderDriverModel.fromJson(json['driver'] as Map<String, dynamic>),
+      orderSourceLabel: json['order_source_label'] as String?,
+      shippingProvider: json['shipping_provider'] as String?,
+      shippingProviderLabel: json['shipping_provider_label'] as String?,
     );
 
 Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
@@ -118,4 +121,7 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'order_discounts':
           instance.orderDiscounts?.map((e) => e.toJson()).toList(),
       'driver': instance.driver?.toJson(),
+      'order_source_label': instance.orderSourceLabel,
+      'shipping_provider': instance.shippingProvider,
+      'shipping_provider_label': instance.shippingProviderLabel,
     };

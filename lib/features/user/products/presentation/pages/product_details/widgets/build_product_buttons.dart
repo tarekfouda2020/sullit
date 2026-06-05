@@ -11,7 +11,7 @@ class BuildProductButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Visibility(
       visible:
-          hasVariant ? detailsModel.product.variant!.currentStock! > 0 : false,
+          hasVariant ? !detailsModel.product.isOutOfStock : false,
       child: CustomBottomSafeAreaWidget(
         child: Padding(
           padding:  EdgeInsetsDirectional.only(

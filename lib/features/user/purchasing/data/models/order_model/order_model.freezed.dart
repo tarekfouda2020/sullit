@@ -113,6 +113,12 @@ mixin _$OrderModel {
   List<OrderDiscount>? get orderDiscounts => throw _privateConstructorUsedError;
   @JsonKey(name: 'driver')
   OrderDriverModel? get driver => throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_source_label')
+  String? get orderSourceLabel => throw _privateConstructorUsedError;
+  @JsonKey(name: 'shipping_provider')
+  String? get shippingProvider => throw _privateConstructorUsedError;
+  @JsonKey(name: 'shipping_provider_label')
+  String? get shippingProviderLabel => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -175,7 +181,10 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'delivery_instructions')
       List<DeliveryInstruction> deliveryInstructions,
       @JsonKey(name: 'order_discounts') List<OrderDiscount>? orderDiscounts,
-      @JsonKey(name: 'driver') OrderDriverModel? driver});
+      @JsonKey(name: 'driver') OrderDriverModel? driver,
+      @JsonKey(name: 'order_source_label') String? orderSourceLabel,
+      @JsonKey(name: 'shipping_provider') String? shippingProvider,
+      @JsonKey(name: 'shipping_provider_label') String? shippingProviderLabel});
 
   $OrderDriverModelCopyWith<$Res>? get driver;
 }
@@ -241,6 +250,9 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? deliveryInstructions = null,
     Object? orderDiscounts = freezed,
     Object? driver = freezed,
+    Object? orderSourceLabel = freezed,
+    Object? shippingProvider = freezed,
+    Object? shippingProviderLabel = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -435,6 +447,18 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.driver
           : driver // ignore: cast_nullable_to_non_nullable
               as OrderDriverModel?,
+      orderSourceLabel: freezed == orderSourceLabel
+          ? _value.orderSourceLabel
+          : orderSourceLabel // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shippingProvider: freezed == shippingProvider
+          ? _value.shippingProvider
+          : shippingProvider // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shippingProviderLabel: freezed == shippingProviderLabel
+          ? _value.shippingProviderLabel
+          : shippingProviderLabel // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -508,7 +532,10 @@ abstract class _$$_OrderModelCopyWith<$Res>
       @JsonKey(name: 'delivery_instructions')
       List<DeliveryInstruction> deliveryInstructions,
       @JsonKey(name: 'order_discounts') List<OrderDiscount>? orderDiscounts,
-      @JsonKey(name: 'driver') OrderDriverModel? driver});
+      @JsonKey(name: 'driver') OrderDriverModel? driver,
+      @JsonKey(name: 'order_source_label') String? orderSourceLabel,
+      @JsonKey(name: 'shipping_provider') String? shippingProvider,
+      @JsonKey(name: 'shipping_provider_label') String? shippingProviderLabel});
 
   @override
   $OrderDriverModelCopyWith<$Res>? get driver;
@@ -573,6 +600,9 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? deliveryInstructions = null,
     Object? orderDiscounts = freezed,
     Object? driver = freezed,
+    Object? orderSourceLabel = freezed,
+    Object? shippingProvider = freezed,
+    Object? shippingProviderLabel = freezed,
   }) {
     return _then(_$_OrderModel(
       id: null == id
@@ -767,6 +797,18 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.driver
           : driver // ignore: cast_nullable_to_non_nullable
               as OrderDriverModel?,
+      orderSourceLabel: freezed == orderSourceLabel
+          ? _value.orderSourceLabel
+          : orderSourceLabel // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shippingProvider: freezed == shippingProvider
+          ? _value.shippingProvider
+          : shippingProvider // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shippingProviderLabel: freezed == shippingProviderLabel
+          ? _value.shippingProviderLabel
+          : shippingProviderLabel // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -830,7 +872,10 @@ class _$_OrderModel extends _OrderModel {
       required final List<DeliveryInstruction> deliveryInstructions,
       @JsonKey(name: 'order_discounts')
       final List<OrderDiscount>? orderDiscounts,
-      @JsonKey(name: 'driver') this.driver})
+      @JsonKey(name: 'driver') this.driver,
+      @JsonKey(name: 'order_source_label') this.orderSourceLabel,
+      @JsonKey(name: 'shipping_provider') this.shippingProvider,
+      @JsonKey(name: 'shipping_provider_label') this.shippingProviderLabel})
       : _orderDetails = orderDetails,
         _deliveryInstructions = deliveryInstructions,
         _orderDiscounts = orderDiscounts,
@@ -999,10 +1044,19 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'driver')
   final OrderDriverModel? driver;
+  @override
+  @JsonKey(name: 'order_source_label')
+  final String? orderSourceLabel;
+  @override
+  @JsonKey(name: 'shipping_provider')
+  final String? shippingProvider;
+  @override
+  @JsonKey(name: 'shipping_provider_label')
+  final String? shippingProviderLabel;
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, paymentMethodConst: $paymentMethodConst, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, pickerNotes: $pickerNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, paymentMethodConst: $paymentMethodConst, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, pickerNotes: $pickerNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver, orderSourceLabel: $orderSourceLabel, shippingProvider: $shippingProvider, shippingProviderLabel: $shippingProviderLabel)';
   }
 
   @override
@@ -1098,7 +1152,12 @@ class _$_OrderModel extends _OrderModel {
                 .equals(other._deliveryInstructions, _deliveryInstructions) &&
             const DeepCollectionEquality()
                 .equals(other._orderDiscounts, _orderDiscounts) &&
-            (identical(other.driver, driver) || other.driver == driver));
+            (identical(other.driver, driver) || other.driver == driver) &&
+            (identical(other.orderSourceLabel, orderSourceLabel) ||
+                other.orderSourceLabel == orderSourceLabel) &&
+            (identical(other.shippingProvider, shippingProvider) ||
+                other.shippingProvider == shippingProvider) &&
+            (identical(other.shippingProviderLabel, shippingProviderLabel) || other.shippingProviderLabel == shippingProviderLabel));
   }
 
   @JsonKey(ignore: true)
@@ -1152,7 +1211,10 @@ class _$_OrderModel extends _OrderModel {
         pickerNotes,
         const DeepCollectionEquality().hash(_deliveryInstructions),
         const DeepCollectionEquality().hash(_orderDiscounts),
-        driver
+        driver,
+        orderSourceLabel,
+        shippingProvider,
+        shippingProviderLabel
       ]);
 
   @JsonKey(ignore: true)
@@ -1230,7 +1292,11 @@ abstract class _OrderModel extends OrderModel {
       required final List<DeliveryInstruction> deliveryInstructions,
       @JsonKey(name: 'order_discounts')
       final List<OrderDiscount>? orderDiscounts,
-      @JsonKey(name: 'driver') final OrderDriverModel? driver}) = _$_OrderModel;
+      @JsonKey(name: 'driver') final OrderDriverModel? driver,
+      @JsonKey(name: 'order_source_label') final String? orderSourceLabel,
+      @JsonKey(name: 'shipping_provider') final String? shippingProvider,
+      @JsonKey(name: 'shipping_provider_label')
+      final String? shippingProviderLabel}) = _$_OrderModel;
   const _OrderModel._() : super._();
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
@@ -1375,6 +1441,15 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'driver')
   OrderDriverModel? get driver;
+  @override
+  @JsonKey(name: 'order_source_label')
+  String? get orderSourceLabel;
+  @override
+  @JsonKey(name: 'shipping_provider')
+  String? get shippingProvider;
+  @override
+  @JsonKey(name: 'shipping_provider_label')
+  String? get shippingProviderLabel;
   @override
   @JsonKey(ignore: true)
   _$$_OrderModelCopyWith<_$_OrderModel> get copyWith =>

@@ -96,6 +96,12 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                     height: Dimens.dp50,
                   ),
                 Gaps.vGap20,
+                // ReOrderButtonWidget(
+                //   onPress: () => controller.changeNoonStatus(),
+                //   bgColor: context.colors.primary,
+                //   txtColor: context.colors.white,
+                //   height: Dimens.dp50,
+                // ),
               ],
             ),
           );
