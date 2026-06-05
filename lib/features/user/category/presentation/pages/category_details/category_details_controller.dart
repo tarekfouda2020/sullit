@@ -49,10 +49,8 @@ class CategoryDetailsController implements CartSheetController {
       FacebookEventsHelper.instance.categoryDetailsOpened(categoryModel);
       initialCategoryModel = categoryModel;
       titleCubit.onUpdateData(categoryModel.name);
-      getData(context, categoryModel.id,refresh: false);
       getData(context, categoryModel.id);
     }else if(catId != null){
-      getData(context, catId!,refresh: false);
       getData(context, catId!);
     }
     getBestSellers(1, refresh: false);
@@ -137,8 +135,9 @@ class CategoryDetailsController implements CartSheetController {
     sellersCubit.onUpdateData(sellersCubit.state.data);
   }
 
-  Future<void> getData(BuildContext context, int id,{bool refresh = true}) async {
-    await getSubCategories(context, id,refresh:refresh);
+  Future<void> getData(BuildContext context, int id) async {
+    await getSubCategories(context, id,refresh : false);
+    await getSubCategories(context, id,refresh : true);
     getPopularProducts(1, refresh: false);
     getBrands(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
@@ -339,12 +338,51 @@ class CategoryDetailsController implements CartSheetController {
       pagingController.itemList = [];
     }
     if (isLastPage) {
+      print("====>>>>> is last page ====== ");
       pagingController.appendLastPage(data);
     } else {
       final nextPageKey = currentPage + 1;
       pagingController.appendPage(data, nextPageKey);
+      print("====>>>>> not the last page ====== ");
     }
-    currentPageKey = currentPage;
+    // final ids = pagingController.itemList
+    //     ?.map((e) => e.id)
+    //     .whereType<int>()
+    //     .toList() ??
+    //     [];
+    // await Future.delayed(const Duration(seconds: 3));
+    // final uniqueIds = ids.toSet();
+    //
+    // log(
+    //   'Total products: ${ids.length}, '
+    //       'Unique products: ${uniqueIds.length}, '
+    //       'Has duplicates: ${ids.length != uniqueIds.length}',
+    // );
+    //
+    //
+    // final seen = <int>{};
+    // final duplicateProducts = <Product>[];
+    //
+    // for (final product in pagingController.itemList ?? <Product>[]) {
+    //   final id = product.id;
+    //
+    //   if (id != null && !seen.add(id)) {
+    //     duplicateProducts.add(product);
+    //   }
+    // }
+    //
+    // if (duplicateProducts.isNotEmpty) {
+    //   for (final product in duplicateProducts) {
+    //     log(
+    //       'Duplicate Product -> '
+    //           'ID: ${product.id}, '
+    //           'Name: ${product.name}',
+    //     );
+    //   }
+    // } else {
+    //   log('No duplicate products found');
+    // }
+    // currentPageKey = currentPage;
   }
 
   void onFavChanged(Product model) {
