@@ -136,14 +136,13 @@ class CategoryDetailsController implements CartSheetController {
   }
 
   Future<void> getData(BuildContext context, int id) async {
-    await getSubCategories(context, id,refresh : false);
+    getSubCategories(context, id,refresh : false);
     getPopularProducts(1, refresh: false);
     getBrands(1, refresh: false);
 
-    /// remote data
-    await getSubCategories(context, id,refresh : true);
+    getSubCategories(context, id);
     pagingController.addPageRequestListener((pageKey) {
-      getPopularProducts(pageKey, refresh: true);
+      getPopularProducts(pageKey);
     });
     brandsPagingController.addPageRequestListener(
       (pageKey) {
@@ -345,6 +344,7 @@ class CategoryDetailsController implements CartSheetController {
       final nextPageKey = currentPage + 1;
       pagingController.appendPage(data, nextPageKey);
     }
+    currentPageKey = currentPage;
     // final ids = pagingController.itemList
     //     ?.map((e) => e.id)
     //     .whereType<int>()
@@ -382,7 +382,6 @@ class CategoryDetailsController implements CartSheetController {
     // } else {
     //   log('No duplicate products found');
     // }
-    // currentPageKey = currentPage;
   }
 
   void onFavChanged(Product model) {
