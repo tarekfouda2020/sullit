@@ -456,7 +456,7 @@ class ProductDetailsController implements CartSheetController {
       currentItemPriceInCart = 0.0;
     }
 
-    double currentLocalPrice = double.parse(detailsCubit.state.data?.product.variant?.calculablePrice ?? "0.0");
+    double currentLocalPrice = double.parse(detailsCubit.state.data?.product.variant?.calculablePrice?.replaceAll(",", "") ?? "0.0");
 
     double effectiveTotal = (cartSubTotal - currentItemPriceInCart) + currentLocalPrice;
     double remain = minAmount - effectiveTotal;
