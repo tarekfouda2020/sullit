@@ -14,48 +14,55 @@ class DeliveryInstructionsCardWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          BlocBuilder<GenericBloc<List<DeliveryInstructionModel>>, GenericState<List<DeliveryInstructionModel>>>(
+          BlocBuilder<GenericBloc<List<DeliveryInstructionModel>>,
+              GenericState<List<DeliveryInstructionModel>>>(
             bloc: controller.instructionsCubit,
             builder: (context, state) {
-            if(state is GenericUpdateState){
-              return Visibility(
-                visible: state.data.isNotEmpty,
-                replacement: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(tr("no_instructions"),
-                    style: AppTextStyle.s15_w500(color: context.colors.primary),
-                    )
-                  ],
-                ),
-                child: SizedBox(
-                  height: 130,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      spacing: 15,
-                      children: List.generate(
-                        state.data.length,
-                            (index) {
-                          return InstructionItemWidget(
-                            model: state.data[index],
-                            controller: controller,
-                          );
-                        },
+              if (state is GenericUpdateState) {
+                return Visibility(
+                  visible: state.data.isNotEmpty,
+                  replacement: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        tr("no_instructions"),
+                        style: AppTextStyle.s15_w500(
+                            color: context.colors.primary),
+                      )
+                    ],
+                  ),
+                  child: SizedBox(
+                    height: 130,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        spacing: 15,
+                        children: List.generate(
+                          state.data.length,
+                          (index) {
+                            return InstructionItemWidget(
+                              model: state.data[index],
+                              controller: controller,
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),
-                ),
-              );
-            }else{
-              return Row(
-                children: List.generate(3, (index) {
-                  return const BuildShimmerItem(
-                    width: 94, height: 106,
-                  );
-                },),
-              );
-            }
+                );
+              } else {
+                return Row(
+                  children: List.generate(
+                    3,
+                    (index) {
+                      return const BuildShimmerItem(
+                        width: 94,
+                        height: 106,
+                      );
+                    },
+                  ),
+                );
+              }
             },
           ),
           Gaps.vGap20,

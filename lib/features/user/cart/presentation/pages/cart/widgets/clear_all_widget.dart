@@ -11,24 +11,28 @@ class CleaAllWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(tr("cartProducts"),
-          style: AppTextStyle.s16_w700(color: context.colors.black),
+          Text(
+            tr("cartProducts"),
+            style: AppTextStyle.s16_w700(color: context.colors.black),
           ),
-        GestureDetector(
-          onTap: onPressClear,
-          child: Row(
-            children: [
-              SvgPicture.asset(Res.trashIcon,
-                width: 13, height: 13,
-                colorFilter: ColorFilter.mode(context.colors.redAccent, BlendMode.srcIn),
-              ),
-              Gaps.hGap4,
-              Text(tr("clearAllCart"),
-                  style: AppTextStyle.s14_w400(color: context.colors.redAccent)
-              )
-            ],
-          ),
-        )
+          GestureDetector(
+            onTap: onPressClear,
+            child: Row(
+              children: [
+                SvgPicture.asset(
+                  Res.trashIcon,
+                  width: 13,
+                  height: 13,
+                  colorFilter: ColorFilter.mode(
+                      context.colors.redAccent, BlendMode.srcIn),
+                ),
+                Gaps.hGap4,
+                Text(tr("clearAllCart"),
+                    style:
+                        AppTextStyle.s14_w400(color: context.colors.redAccent))
+              ],
+            ),
+          )
         ],
       ),
     );

@@ -7,8 +7,8 @@ class GetReturnPolicy implements UseCase<String, NoParams> {
   Future<String> call(NoParams params) async {
     var result = await getIt<CommonRepository>().returnPolicy();
     return result.fold(
-          (l) => "",
-          (r) => r,
+      (l) => "",
+      (r) => r,
     );
   }
 }

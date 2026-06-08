@@ -26,11 +26,10 @@ class MinAmountSeller extends BaseApiModel<MinAmountSellerDomain>
   @override
   MinAmountSellerDomain toDomainModel() {
     return MinAmountSellerDomain(
-      id: id,
-      name: name,
-      message: message,
-      minOrderAmount: minOrderAmount,
-      shopId: shopId
-    );
+        id: id,
+        name: name,
+        message: message,
+        minOrderAmount: minOrderAmount,
+        shopId: shopId);
   }
 }

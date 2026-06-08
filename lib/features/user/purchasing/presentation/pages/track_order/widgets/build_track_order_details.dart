@@ -49,7 +49,6 @@ class BuildTrackOrderDetails extends StatelessWidget {
             title: "${tr('deliveryStatus')} :",
             subTitle: orderModel.deliveryStatus,
           ),
-
           Visibility(
             visible: orderModel.additionalInfo != '',
             child: BuildTrackOrderSummaryItem(

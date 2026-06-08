@@ -3,11 +3,13 @@ part of 'product_details_widgets_imports.dart';
 class ProductGainedPointsWidget extends StatelessWidget {
   final ProductDetailsController controller;
   final Product model;
-  const ProductGainedPointsWidget({super.key, required this.controller, required this.model});
+  const ProductGainedPointsWidget(
+      {super.key, required this.controller, required this.model});
 
   @override
   Widget build(BuildContext context) {
-    String lang = context.select<DeviceCubit, String>((value) => value.state.model.locale.languageCode);
+    String lang = context.select<DeviceCubit, String>(
+        (value) => value.state.model.locale.languageCode);
     return Visibility(
       visible: model.hasSpecialLoyaltyPoints == true,
       child: Padding(
@@ -52,8 +54,8 @@ class ProductGainedPointsWidget extends StatelessWidget {
                   GestureDetector(
                     onTap: () => controller.showPointsPromoSheet(context),
                     child: Container(
-                      padding:
-                          const EdgeInsets.symmetric(vertical: 7, horizontal: 12),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 7, horizontal: 12),
                       decoration: BoxDecoration(
                           color: context.colors.shadowPink,
                           borderRadius: Dimens.borderRadius8PX),
@@ -73,11 +75,16 @@ class ProductGainedPointsWidget extends StatelessWidget {
                           ),
                           Gaps.hGap7,
                           Transform.rotate(
-                              angle: lang == LangCodeHelper.langAR || lang == LangCodeHelper.langUR ? 0 : pi,
-                              child: SvgPicture.asset(Res.arrowBackIcon,
+                              angle: lang == LangCodeHelper.langAR ||
+                                      lang == LangCodeHelper.langUR
+                                  ? 0
+                                  : pi,
+                              child: SvgPicture.asset(
+                                Res.arrowBackIcon,
                                 width: 13,
                                 height: 13,
-                                colorFilter: ColorFilter.mode(context.colors.primary, BlendMode.srcIn),
+                                colorFilter: ColorFilter.mode(
+                                    context.colors.primary, BlendMode.srcIn),
                               ))
                         ],
                       ),
@@ -92,13 +99,19 @@ class ProductGainedPointsWidget extends StatelessWidget {
                 alignment: AlignmentDirectional.center,
                 children: [
                   Transform.rotate(
-                    angle: lang == LangCodeHelper.langAR || lang == LangCodeHelper.langUR ? pi : 0,
-                    child: SvgPicture.asset(Res.pointsPromoIcon,
-                    colorFilter: ColorFilter.mode(context.colors.primary, BlendMode.srcIn),
+                    angle: lang == LangCodeHelper.langAR ||
+                            lang == LangCodeHelper.langUR
+                        ? pi
+                        : 0,
+                    child: SvgPicture.asset(
+                      Res.pointsPromoIcon,
+                      colorFilter: ColorFilter.mode(
+                          context.colors.primary, BlendMode.srcIn),
                     ),
                   ),
-                  Text(tr("promo"),
-                  style: AppTextStyle.s12_w700(color: context.colors.white),
+                  Text(
+                    tr("promo"),
+                    style: AppTextStyle.s12_w700(color: context.colors.white),
                   )
                 ],
               ),

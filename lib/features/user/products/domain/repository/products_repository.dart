@@ -39,6 +39,6 @@ abstract class ProductsRepository {
 
   Future<Either<Failure, ProductDetailsDomainModel>> scanProduct(String param);
 
-  Future<Either<Failure, SellerProductDomainModel>> sellerProducts(SellerProductsParams param);
-
+  Future<Either<Failure, SellerProductDomainModel>> sellerProducts(
+      SellerProductsParams param);
 }

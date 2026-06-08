@@ -14,9 +14,15 @@ class BuildSellerShopFields extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          BuildBasicFields(sellerShopSettingController: sellerShopSettingController,),
-          BuildBannerSetting(sellerShopSettingController: sellerShopSettingController,),
-          BuildSocialMediaLinks(sellerShopSettingController: sellerShopSettingController,)
+          BuildBasicFields(
+            sellerShopSettingController: sellerShopSettingController,
+          ),
+          BuildBannerSetting(
+            sellerShopSettingController: sellerShopSettingController,
+          ),
+          BuildSocialMediaLinks(
+            sellerShopSettingController: sellerShopSettingController,
+          )
         ],
       ),
     );

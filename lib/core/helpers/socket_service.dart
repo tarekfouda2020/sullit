@@ -3,11 +3,9 @@ import 'dart:developer';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
 class SocketService {
-
   SocketService._();
 
   static final SocketService instance = SocketService._();
-
 
   late final io.Socket _socket;
 
@@ -49,7 +47,6 @@ class SocketService {
   void on(String event, void Function(dynamic data) handler) {
     _socket.on(event, (data) => handler(data));
   }
-
 
   void dispose() {
     _socket.dispose();

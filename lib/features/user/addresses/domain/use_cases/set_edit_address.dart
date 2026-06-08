@@ -4,7 +4,8 @@ import 'package:flutter_tdd/features/user/addresses/domain/entities/edit_address
 import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/repository/addresses_repository.dart';
 
-class SetEditAddress implements UseCase<AddressDomainModel?, EditAddressParams> {
+class SetEditAddress
+    implements UseCase<AddressDomainModel?, EditAddressParams> {
   @override
   Future<AddressDomainModel?> call(EditAddressParams params) async {
     var result = await getIt<AddressesRepository>().editAddress(params);

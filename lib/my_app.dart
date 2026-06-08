@@ -32,9 +32,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    getIt<FirebaseAnalyticsHelper>()
-        .analytics
-        .setConsent(adStorageConsentGranted: false, analyticsStorageConsentGranted: true);
+    getIt<FirebaseAnalyticsHelper>().analytics.setConsent(
+        adStorageConsentGranted: false, analyticsStorageConsentGranted: true);
     getIt.get<LoadingHelper>().initConfig();
     getIt<DeepLinkService>().init();
     super.initState();
@@ -78,7 +77,11 @@ class _MyAppState extends State<MyApp> {
                   routerDelegate: _appRouter.delegate(
                       initialRoutes: [const SplashRoute()],
                       navigatorObservers: () {
-                        return [FirebaseAnalyticsObserver(analytics: getIt<FirebaseAnalyticsHelper>().analytics)];
+                        return [
+                          FirebaseAnalyticsObserver(
+                              analytics:
+                                  getIt<FirebaseAnalyticsHelper>().analytics)
+                        ];
                       }),
                   routeInformationParser: _appRouter.defaultRouteParser(),
                   builder: EasyLoading.init(builder: (ctx, child) {

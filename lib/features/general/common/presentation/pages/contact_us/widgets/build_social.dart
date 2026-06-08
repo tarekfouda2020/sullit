@@ -7,10 +7,11 @@ class BuildSocial extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<List<ContactUsSocialModel>>, GenericState<List<ContactUsSocialModel>>>(
+    return BlocBuilder<GenericBloc<List<ContactUsSocialModel>>,
+        GenericState<List<ContactUsSocialModel>>>(
       bloc: controller.contactUsSocialCubit,
       builder: (context, state) {
-        if(state is GenericUpdateState){
+        if (state is GenericUpdateState) {
           return Padding(
             padding: Dimens.paddingVertical15PX,
             child: Row(
@@ -53,13 +54,13 @@ class BuildSocial extends StatelessWidget {
               ],
             ),
           );
-        }else{
+        } else {
           return Padding(
             padding: Dimens.paddingVertical15PX,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(3, (index) {
-                return  const BuildShimmerItem(
+                return const BuildShimmerItem(
                   width: 40,
                   height: 40,
                   borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -68,7 +69,6 @@ class BuildSocial extends StatelessWidget {
             ),
           );
         }
-
       },
     );
   }

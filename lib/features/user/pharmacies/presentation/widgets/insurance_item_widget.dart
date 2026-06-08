@@ -1,11 +1,12 @@
 part of 'widgets_imports.dart';
 
 class InsuranceItemWidget extends StatelessWidget {
-   ///Insurance
+  ///Insurance
   final InsuranceCompany model;
   final bool enableSelect;
   final void Function()? onTap;
-  const InsuranceItemWidget({super.key, required this.model,  this.enableSelect = false, this.onTap});
+  const InsuranceItemWidget(
+      {super.key, required this.model, this.enableSelect = false, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +20,9 @@ class InsuranceItemWidget extends StatelessWidget {
           vertical: 5,
         ),
         decoration: BoxDecoration(
-          color: context.colors.white,
-          borderRadius: Dimens.borderRadius12PX,
-            border: Border.all(color: context.colors.borderColor)
-        ),
+            color: context.colors.white,
+            borderRadius: Dimens.borderRadius12PX,
+            border: Border.all(color: context.colors.borderColor)),
         child: Row(
           children: [
             CachedImage(
@@ -40,8 +40,7 @@ class InsuranceItemWidget extends StatelessWidget {
                 style: AppTextStyle.s16_w700(color: context.colors.black),
               ),
             ),
-            if(enableSelect)
-            CustomRadioWidget(selected: model.isSelected)
+            if (enableSelect) CustomRadioWidget(selected: model.isSelected)
           ],
         ),
       ),

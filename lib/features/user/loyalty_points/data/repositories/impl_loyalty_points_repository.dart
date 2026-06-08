@@ -12,20 +12,25 @@ import 'package:flutter_tdd/features/user/loyalty_points/domain/repositories/loy
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: LoyaltyPointsRepository)
-class ImplLoyaltyPointsRepository extends LoyaltyPointsRepository with ModelToDomain{
+class ImplLoyaltyPointsRepository extends LoyaltyPointsRepository
+    with ModelToDomain {
   var dataSources = getIt<LoyaltyPointsDataSource>();
 
   @override
-  Future<Either<Failure, LoyaltyPointsBalanceDomainModel>> getLoyaltyPointsBalance(bool param)async {
+  Future<Either<Failure, LoyaltyPointsBalanceDomainModel>>
+      getLoyaltyPointsBalance(bool param) async {
     var result = await dataSources.getLoyaltyPointsBalance(param);
-    return toDomainResult<LoyaltyPointsBalanceDomainModel, LoyaltyPointsBalanceModel>(result);
+    return toDomainResult<LoyaltyPointsBalanceDomainModel,
+        LoyaltyPointsBalanceModel>(result);
   }
 
   @override
-  Future<Either<Failure, List<TransactionsDomainModel>>> getTransactions(GenericPaginateParams params)async {
+  Future<Either<Failure, List<TransactionsDomainModel>>> getTransactions(
+      GenericPaginateParams params) async {
     try {
       var result = await dataSources.getTransactions(params);
-      return toDomainResultList<TransactionsDomainModel, TransactionsModel>(result);
+      return toDomainResultList<TransactionsDomainModel, TransactionsModel>(
+          result);
     } catch (e) {
       // Log the error for debugging
       print('Error in getTransactions: $e');

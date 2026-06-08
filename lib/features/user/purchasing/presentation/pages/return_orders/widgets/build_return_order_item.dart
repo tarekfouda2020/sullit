@@ -4,7 +4,8 @@ class BuildReturnOrderItem extends StatelessWidget {
   final Orders order;
   final ReturnOrdersController controller;
 
-  const BuildReturnOrderItem({super.key, required this.order, required this.controller});
+  const BuildReturnOrderItem(
+      {super.key, required this.order, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +18,7 @@ class BuildReturnOrderItem extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(
-                  Res.returnedOrder,
-                  height: 32.r,
-                  width: 32.r
-              ),
+              Image.asset(Res.returnedOrder, height: 32.r, width: 32.r),
               Gaps.hGap16,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,12 +27,14 @@ class BuildReturnOrderItem extends StatelessWidget {
                     children: [
                       Text(
                         tr('order'),
-                        style: AppTextStyle.s14_w400(color: context.colors.black),
+                        style:
+                            AppTextStyle.s14_w400(color: context.colors.black),
                       ),
                       Gaps.hGap6,
                       Text(
                         tr('#${order.code}'),
-                        style: AppTextStyle.s14_w400(color: context.colors.black),
+                        style:
+                            AppTextStyle.s14_w400(color: context.colors.black),
                       ),
                     ],
                   ),
@@ -44,12 +43,14 @@ class BuildReturnOrderItem extends StatelessWidget {
                     children: [
                       Text(
                         "${tr('Seller')}:",
-                        style: AppTextStyle.s14_w400(color: context.colors.black),
+                        style:
+                            AppTextStyle.s14_w400(color: context.colors.black),
                       ),
                       Gaps.hGap6,
                       Text(
-                        sellerName() ,
-                        style: AppTextStyle.s14_w400(color: context.colors.black),
+                        sellerName(),
+                        style:
+                            AppTextStyle.s14_w400(color: context.colors.black),
                       ),
                     ],
                   ),
@@ -58,12 +59,14 @@ class BuildReturnOrderItem extends StatelessWidget {
                     children: [
                       Text(
                         "Returned Date",
-                        style: AppTextStyle.s12_w400(color: context.colors.primary),
+                        style: AppTextStyle.s12_w400(
+                            color: context.colors.primary),
                       ),
                       Gaps.hGap6,
                       Text(
                         ":${order.orderDate.split(' ').first}",
-                        style: AppTextStyle.s14_w400(color: context.colors.textColor),
+                        style: AppTextStyle.s14_w400(
+                            color: context.colors.textColor),
                       ),
                     ],
                   ),
@@ -148,5 +151,11 @@ class BuildReturnOrderItem extends StatelessWidget {
     );
   }
 
-  String sellerName() => order.orderDetails.firstWhere((element) => element.id==order.id).product?.shop?.name ?? "";
+  String sellerName() =>
+      order.orderDetails
+          .firstWhere((element) => element.id == order.id)
+          .product
+          ?.shop
+          ?.name ??
+      "";
 }

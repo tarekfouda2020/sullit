@@ -15,7 +15,7 @@ class BuildProductItemShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: margin?? EdgeInsets.zero,
+      margin: margin ?? EdgeInsets.zero,
       width: 160.w,
       decoration: CustomDecoration(),
       child: Column(

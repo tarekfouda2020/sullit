@@ -29,7 +29,8 @@ class BuildTopSellingProducts extends StatelessWidget {
               ),
               Flexible(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsetsDirectional.only(top: 10, bottom: 10, start: 15, end: 10),
+                  padding: const EdgeInsetsDirectional.only(
+                      top: 10, bottom: 10, start: 15, end: 10),
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -40,12 +41,15 @@ class BuildTopSellingProducts extends StatelessWidget {
                         child: BuildProductItem(
                           onPressDelete: () => controller.getCartItems(),
                           productModel: topProducts[index],
-                          afterAddToCart: () => controller.calculateRemainingAmount(),
+                          afterAddToCart: () =>
+                              controller.calculateRemainingAmount(),
                           onFavRefresh: () => controller.onChangeFav(
                             context,
                             topProducts[index],
                           ),
-                          onRefresh: () => controller.getProductDetails(context, controller.productId, resetQty: false),
+                          onRefresh: () => controller.getProductDetails(
+                              context, controller.productId,
+                              resetQty: false),
                           // onCompareRefresh: () => controller.onChangeCompare(
                           //   topProducts[index],
                           // ),

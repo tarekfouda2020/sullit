@@ -12,7 +12,7 @@ class BuildEditMetaImage extends StatelessWidget {
         GenericState<FileDomainModel?>>(
       bloc: controller.metaImageBloc,
       builder: (context, state) {
-        if (state is GenericUpdateState && state.data?.url!="") {
+        if (state is GenericUpdateState && state.data?.url != "") {
           return GestureDetector(
             onTap: () => controller.showImageDialog(
               context: context,
@@ -29,8 +29,7 @@ class BuildEditMetaImage extends StatelessWidget {
               alignment: Alignment.topLeft,
               borderColor: context.colors.greyWhite,
               child: InkWell(
-                onTap: () =>
-                    controller.metaImageBloc.onUpdateToInitState(null),
+                onTap: () => controller.metaImageBloc.onUpdateToInitState(null),
                 child: Icon(
                   Icons.clear,
                   color: context.colors.primary,

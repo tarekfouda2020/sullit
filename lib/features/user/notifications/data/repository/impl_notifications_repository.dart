@@ -9,7 +9,8 @@ import 'package:flutter_tdd/features/user/notifications/domain/repository/notifi
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: NotificationsRepository)
-class ImplNotificationsRepository extends NotificationsRepository with ModelToDomain {
+class ImplNotificationsRepository extends NotificationsRepository
+    with ModelToDomain {
   var dataSources = getIt<NotificationsDataSources>();
 
   @override

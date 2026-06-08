@@ -46,10 +46,12 @@ class BuildSearchField extends StatelessWidget {
                   margin: Dimens.paddingEnd10,
                   decoration: BoxDecoration(
                       color: context.colors.disableGray,
-                      shape: BoxShape.circle
-                  ),
+                      shape: BoxShape.circle),
                   child: Icon(
-                    Icons.clear, size: 16, color: context.colors.gray8,),
+                    Icons.clear,
+                    size: 16,
+                    color: context.colors.gray8,
+                  ),
                 ),
               ),
             );

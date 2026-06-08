@@ -4,7 +4,8 @@ import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/repository/addresses_repository.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 
-class GetAddresses implements UseCase<List<AddressDomainModel>, GenericPaginateParams> {
+class GetAddresses
+    implements UseCase<List<AddressDomainModel>, GenericPaginateParams> {
   @override
   Future<List<AddressDomainModel>> call(GenericPaginateParams param) async {
     var result = await getIt<AddressesRepository>().getAddress(param);

@@ -15,8 +15,7 @@ part 'home_model.g.dart';
 
 @freezed
 @immutable
-class HomeModel extends BaseApiModel<HomeDomainModel>
-    with _$HomeModel {
+class HomeModel extends BaseApiModel<HomeDomainModel> with _$HomeModel {
   const HomeModel._();
 
   @JsonSerializable(explicitToJson: true)

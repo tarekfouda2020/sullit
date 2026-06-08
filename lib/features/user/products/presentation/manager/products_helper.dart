@@ -12,7 +12,7 @@ import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
-import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/set_toggle_favourite.dart';
@@ -47,7 +47,8 @@ class ProductsHelper {
         msg: tr('itemAddedToWishlist'),
         type: ToastType.success,
       );
-      FacebookEventsHelper.instance.wishList(id: id.toString(), price: double.parse(price??"0.0"));
+      FacebookEventsHelper.instance
+          .wishList(id: id.toString(), price: double.parse(price ?? "0.0"));
     } else {
       CustomToast.showSimpleToast(
         msg: tr('itemRemovedFromWishlist'),
@@ -125,10 +126,11 @@ class ProductsHelper {
       showLoader: false,
       onAddCartFunc: () {
         FacebookEventsHelper.instance.productAddToCart(
-        price:product.variant?.calculablePrice ??"" ,
+          price: product.variant?.calculablePrice ?? "",
           id: product.id!,
         );
-        getIt<CartHelper>().updateCartCount(context, product.minQty! + existCount);
+        getIt<CartHelper>()
+            .updateCartCount(context, product.minQty! + existCount);
         if (afterAddToCart != null) {
           afterAddToCart.call();
         }
@@ -136,55 +138,62 @@ class ProductsHelper {
     );
   }
 
-  Future<bool> removeProductFromCart(Product product, BuildContext context) async{
+  Future<bool> removeProductFromCart(
+      Product product, BuildContext context) async {
     var cartList = getIt<CartHelper>().cartItemsBloc.state.data.items;
     if (cartList?.isNotEmpty == true && cartList != null) {
       getIt<LoadingHelper>().showLoadingDialog();
-      CartItem productInCartList = cartList.where((element) => element.productId == product.id).first;
-     var result  = await getIt<CartHelper>().deleteItemFromCart(context, productInCartList);
-     if(result){
-       var cartData = getIt<CartHelper>().cartItemsBloc.state.data;
-       getIt<CartHelper>().updateCartCount(context, (cartData.items!.length - cartData.items!.length-1));
-     }
+      GeneralCartItem productInCartList =
+          cartList.where((element) => element.productId == product.id).first;
+      var result = await getIt<CartHelper>()
+          .deleteItemFromCart(context, productInCartList);
+      if (result) {
+        var cartData = getIt<CartHelper>().cartItemsBloc.state.data;
+        getIt<CartHelper>().updateCartCount(
+            context, (cartData.items!.length - cartData.items!.length - 1));
+      }
       getIt<LoadingHelper>().dismissDialog();
-     return result;
-    }else{
+      return result;
+    } else {
       return false;
     }
-
   }
 
   /// Reduces product quantity in cart by 1.
   /// If current quantity is 1, deletes the item from cart.
   /// Returns true if operation was successful, false otherwise.
-  Future<bool> reduceProductQntInCart(BuildContext context, Product product, int newQnt, {GenericBloc<bool>? loadingBloc}) async {
-
-      var cartItem = _getSameProductInCart(product);
-      if(cartItem == null){
-        return false;
-      }
+  Future<bool> reduceProductQntInCart(
+      BuildContext context, Product product, int newQnt,
+      {GenericBloc<bool>? loadingBloc}) async {
+    var cartItem = _getSameProductInCart(product);
+    if (cartItem == null) {
+      return false;
+    }
 
     if (cartItem.quantity > 1) {
-      final success = await getIt<CartHelper>().updateCartItem(newQnt, cartItem.id);
+      final success =
+          await getIt<CartHelper>().updateCartItem(newQnt, cartItem.id);
       loadingBloc?.onUpdateData(false);
       if (success != null) {
         getIt<CartHelper>().cartItemsBloc.onUpdateData(success);
         getIt<CartHelper>().updateCartCountWithCart(context, success);
         return true;
-      }else{
+      } else {
         product.addedQtyToCart = cartItem.quantity;
       }
     }
     return false;
   }
 
-  Future<bool> deleteProductInCartFromProductsList(BuildContext context,Product product)async{
+  Future<bool> deleteProductInCartFromProductsList(
+      BuildContext context, Product product) async {
     var cartItem = _getSameProductInCart(product);
-    if(cartItem == null){
+    if (cartItem == null) {
       return false;
     }
     getIt<LoadingHelper>().showLoadingDialog();
-    final deleted = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
+    final deleted =
+        await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
     getIt<LoadingHelper>().dismissDialog();
     if (deleted) {
       var updatedCart = getIt<CartHelper>().cartItemsBloc.state.data;
@@ -193,20 +202,19 @@ class ProductsHelper {
       getIt<CartHelper>().cartItemsBloc.onUpdateData(updatedCart);
       getIt<CartHelper>().updateCartCountWithCart(context, updatedCart);
       return true;
-    }else{
+    } else {
       return false;
     }
-
   }
 
-
-  CartItem? _getSameProductInCart(Product product){
+  GeneralCartItem? _getSameProductInCart(Product product) {
     var cartList = getIt<CartHelper>().cartItemsBloc.state.data.items;
     if (cartList == null || cartList.isEmpty) {
       return null;
     }
 
-    var cartItems = cartList.where((element) => element.productId == product.id);
+    var cartItems =
+        cartList.where((element) => element.productId == product.id);
     if (cartItems.isEmpty) {
       return null;
     }
@@ -215,22 +223,25 @@ class ProductsHelper {
     return cartItem;
   }
 
-  Future<bool> increaseProductAddedQntInCart(BuildContext context, Product product, int qnt) async {
+  Future<bool> increaseProductAddedQntInCart(
+      BuildContext context, Product product, int qnt) async {
     GenericBloc<CartDomainModel> cartCubit = getIt<CartHelper>().cartItemsBloc;
-    List<CartItem>? cartList = cartCubit.state.data.items;
+    List<GeneralCartItem>? cartList = cartCubit.state.data.items;
     if (cartList == null || cartList.isEmpty) {
       return false;
     }
 
-    List<CartItem> cartItems = cartList.where((element) => element.productId == product.id).toList();
+    List<GeneralCartItem> cartItems =
+        cartList.where((element) => element.productId == product.id).toList();
     if (cartItems.isEmpty) {
       return false;
     }
 
-    CartItem cartItem = cartItems.first;
+    GeneralCartItem cartItem = cartItems.first;
 
-    CartDomainModel? success = await getIt<CartHelper>().updateCartItem(qnt, cartItem.id);
-    if(success != null){
+    CartDomainModel? success =
+        await getIt<CartHelper>().updateCartItem(qnt, cartItem.id);
+    if (success != null) {
       FacebookEventsHelper.instance
           .productAddToCart(id: cartItem.productId, price: cartItem.price);
       cartCubit.onUpdateData(success);
@@ -239,6 +250,4 @@ class ProductsHelper {
     product.addedQtyToCart = cartItem.quantity;
     return false;
   }
-
-
 }

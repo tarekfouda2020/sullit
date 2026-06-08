@@ -8,11 +8,13 @@ class BuildPharmacyCartLoading extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
-        children: List.generate(2, (index) {
-          return const CartShimmerItemWidget();
-        },),
+        children: List.generate(
+          2,
+          (index) {
+            return const CartShimmerItemWidget();
+          },
+        ),
       ),
     );
   }
 }
-

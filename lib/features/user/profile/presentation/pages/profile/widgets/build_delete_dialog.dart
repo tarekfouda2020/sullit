@@ -3,7 +3,8 @@ part of 'profile_widgets_imports.dart';
 class BuildDeleteDialog extends StatelessWidget {
   final Function() onPressConfirm;
   final String content;
-  const BuildDeleteDialog({super.key, required this.onPressConfirm, required this.content});
+  const BuildDeleteDialog(
+      {super.key, required this.onPressConfirm, required this.content});
 
   @override
   Widget build(BuildContext context) {

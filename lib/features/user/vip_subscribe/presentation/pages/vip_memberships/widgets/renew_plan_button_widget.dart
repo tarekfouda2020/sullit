@@ -1,6 +1,5 @@
 part of 'vip_memberships_widgets_imports.dart';
 
-
 class RenewPlanButtonWidget extends StatelessWidget {
   final VipMembershipsController controller;
 
@@ -9,9 +8,7 @@ class RenewPlanButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultButton(
-        onTap: _isDisabled()
-            ?() {}
-            :()=> controller.onPressRenew(context),
+        onTap: _isDisabled() ? () {} : () => controller.onPressRenew(context),
         title: tr("renew"),
         disabled: _isDisabled(),
         elevation: 0,
@@ -26,14 +23,12 @@ class RenewPlanButtonWidget extends StatelessWidget {
         fontWeight: FontWeight.w700,
         height: 50,
         borderRadius: Dimens.borderRadius30PX,
-        margin: Dimens.marginTop8Bottom20
-    );
+        margin: Dimens.marginTop8Bottom20);
   }
-
 
   bool _isDisabled() {
-    return controller.currentSubscriptionBloc.state.data!.currentSubscription!.isExpired == false;
+    return controller.currentSubscriptionBloc.state.data!.currentSubscription!
+            .isExpired ==
+        false;
   }
-
-
 }

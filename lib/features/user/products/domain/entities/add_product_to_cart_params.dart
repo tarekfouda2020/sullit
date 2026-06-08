@@ -4,7 +4,7 @@ class AddProductToCartParams {
   int quantity;
 
   String? macAddress;
- final bool showLoader;
+  final bool showLoader;
   AddProductToCartParams({
     required this.variantId,
     required this.quantity,
@@ -12,9 +12,9 @@ class AddProductToCartParams {
     this.showLoader = true,
   });
 
-  Map<String, dynamic> toJson ()=> {
-    'variant_id': variantId,
-    'quantity': quantity,
-    'mac_address': macAddress,
-  };
+  Map<String, dynamic> toJson() => {
+        'variant_id': variantId,
+        'quantity': quantity,
+        'mac_address': macAddress,
+      };
 }

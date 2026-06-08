@@ -20,7 +20,7 @@ class _BlogsState extends State<Blogs> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(title: tr('blogs')),
+      appBar: DefaultAppBar(title: tr('blogs')),
       body: GenericListView(
         padding: Dimens.paddingAll15PX,
         type: ListViewType.api,

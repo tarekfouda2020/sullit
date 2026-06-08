@@ -1,13 +1,13 @@
 part of 'share_holder_view_widgets_imports.dart';
 
-
 class ShareHolderImageWidget extends StatelessWidget {
   final ProfileController controller;
   const ShareHolderImageWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-      var image = context.select<UserCubit,String>((value) => value.state.model?.avatarOriginal ??"");
+    var image = context.select<UserCubit, String>(
+        (value) => value.state.model?.avatarOriginal ?? "");
     return Container(
       alignment: Alignment.center,
       margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -29,9 +29,7 @@ class ShareHolderImageWidget extends StatelessWidget {
                     width: 60,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: const Color(0xffF4AE00),
-                        width: 1.5
-                      ),
+                          color: const Color(0xffF4AE00), width: 1.5),
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         image: FileImage(state.data!),
@@ -49,7 +47,7 @@ class ShareHolderImageWidget extends StatelessWidget {
                       padding: const EdgeInsets.all(2).r,
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
-                        color:Color(0xffF4AE00),
+                        color: Color(0xffF4AE00),
                       ),
                       child: Icon(
                         Icons.clear_rounded,
@@ -66,23 +64,21 @@ class ShareHolderImageWidget extends StatelessWidget {
               clipBehavior: Clip.none,
               children: [
                 InkWell(
-                  onTap: () => AutoRouter.of(context).push(ImageZoomRoute(image: image)),
+                  onTap: () =>
+                      AutoRouter.of(context).push(ImageZoomRoute(image: image)),
                   child: Container(
                     padding: const EdgeInsets.all(1),
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                     ),
                     child: CachedImage(
-                      url: image,
-                      height: 60,
-                      width: 60,
-                      haveRadius: false,
-                      boxShape: BoxShape.circle,
+                        url: image,
+                        height: 60,
+                        width: 60,
+                        haveRadius: false,
+                        boxShape: BoxShape.circle,
                         border: Border.all(
-                            color: const Color(0xffF4AE00),
-                            width: 3
-                        )
-                    ),
+                            color: const Color(0xffF4AE00), width: 3)),
                   ),
                 ),
                 PositionedDirectional(
@@ -93,15 +89,15 @@ class ShareHolderImageWidget extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        // color: context.colors.lightPrimary,
-                        color: Color(0xffFAC950)
-                      ),
+                          shape: BoxShape.circle,
+                          // color: context.colors.lightPrimary,
+                          color: Color(0xffFAC950)),
                       child: SvgPicture.asset(
                         Res.pencilIcon,
                         height: 14,
                         width: 14,
-                        colorFilter: ColorFilter.mode(context.colors.black, BlendMode.srcIn),
+                        colorFilter: ColorFilter.mode(
+                            context.colors.black, BlendMode.srcIn),
                       ),
                     ),
                   ),

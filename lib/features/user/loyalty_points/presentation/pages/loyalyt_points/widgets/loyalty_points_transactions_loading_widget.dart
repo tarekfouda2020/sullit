@@ -1,6 +1,5 @@
 part of 'loyalty_points_widgets_imports.dart';
 
-
 class LoyaltyPointsTransactionsLoadingWidget extends StatelessWidget {
   const LoyaltyPointsTransactionsLoadingWidget({super.key});
 

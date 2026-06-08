@@ -42,8 +42,7 @@ class BuildCartSuccessDialog extends StatelessWidget {
                 Expanded(
                   child: DefaultButton(
                     title: tr('proceedToCheckOut'),
-                    onTap: () =>
-                        AutoRouter.of(context).popAndPush( CartRoute()),
+                    onTap: () => AutoRouter.of(context).popAndPush(CartRoute()),
                     margin: EdgeInsets.zero,
                   ),
                 ),

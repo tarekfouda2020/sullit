@@ -16,26 +16,22 @@ class BuildProductInfo extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           if(productModel.prescriptionRequired == true)...[
-             const RequiredPrescriptionNoteWidget(),
-             Gaps.vGap12,
-           ],
+            if (productModel.prescriptionRequired == true) ...[
+              const RequiredPrescriptionNoteWidget(),
+              Gaps.vGap12,
+            ],
             Text(
               productModel.name!,
               style: AppTextStyle.s14_w400(
                 color: context.colors.textColor,
-              ).copyWith(
-                  height: 1.15
-              ),
+              ).copyWith(height: 1.15),
             ),
             Gaps.vGap12,
             Text(
               productModel.name!,
               style: AppTextStyle.s20_w500(
                 color: context.colors.black,
-              ).copyWith(
-                height: 1.15
-              ),
+              ).copyWith(height: 1.15),
             ),
             Gaps.vGap10,
             Row(
@@ -70,30 +66,37 @@ class BuildProductInfo extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   DirhamPrice(
-                   currencyStyle: AppTextStyle.s28_w400(color: context.colors.primary),
-                   amount: "${productModel.priceHighLowDiscount} ",
-                    textStyle: AppTextStyle.s22_w600(color: context.colors.primary),
+                    currencyStyle:
+                        AppTextStyle.s28_w400(color: context.colors.primary),
+                    amount: "${productModel.priceHighLowDiscount} ",
+                    textStyle:
+                        AppTextStyle.s22_w600(color: context.colors.primary),
                   ),
-                  Text(" / ${productModel.unit}",
-                    style: AppTextStyle.s20_w400(color: context.colors.textColor),
+                  Text(
+                    " / ${productModel.unit}",
+                    style:
+                        AppTextStyle.s20_w400(color: context.colors.textColor),
                   ),
                   Gaps.hGap20,
-                  if(( productModel.hasDiscount!) ||(productModel.variant?.hasDiscount==true))
+                  if ((productModel.hasDiscount!) ||
+                      (productModel.variant?.hasDiscount == true))
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         DirhamPrice(
-                         amount: productModel.priceHighLow ?? "",
+                          amount: productModel.priceHighLow ?? "",
                           // "${productModel.variant!.originalPrice.parseCurrency} ",
                           textStyle: AppTextStyle.s18_w400(
                             color: context.colors.textColor,
                           ).copyWith(
                               decoration: TextDecoration.lineThrough,
-                              decorationColor: context.colors.textColor
-                          ),
+                              decorationColor: context.colors.textColor),
                         ),
-                        Text(" / ${productModel.unit}",
-                          style: AppTextStyle.s20_w400(color: context.colors.textColor).copyWith(
+                        Text(
+                          " / ${productModel.unit}",
+                          style: AppTextStyle.s20_w400(
+                                  color: context.colors.textColor)
+                              .copyWith(
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),
@@ -166,7 +169,8 @@ class BuildProductInfo extends StatelessWidget {
             ),
             Gaps.vGap8,
             BuildProductDescription(
-              description: getIt<Utilities>().cleanHtml(productModel.description ?? ""),
+              description:
+                  getIt<Utilities>().cleanHtml(productModel.description ?? ""),
             ),
           ],
         ),

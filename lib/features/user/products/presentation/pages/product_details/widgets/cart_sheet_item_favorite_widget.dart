@@ -1,16 +1,19 @@
 part of 'product_details_widgets_imports.dart';
 
 class CartSheetItemFavoriteWidget extends StatefulWidget {
-  final CartItem cartItem;
+  final GeneralCartItem cartItem;
   final CartSheetController controller;
 
-  const CartSheetItemFavoriteWidget({super.key, required this.cartItem, required this.controller});
+  const CartSheetItemFavoriteWidget(
+      {super.key, required this.cartItem, required this.controller});
 
   @override
-  State<CartSheetItemFavoriteWidget> createState() => _CartSheetItemFavoriteWidgetState();
+  State<CartSheetItemFavoriteWidget> createState() =>
+      _CartSheetItemFavoriteWidgetState();
 }
 
-class _CartSheetItemFavoriteWidgetState extends State<CartSheetItemFavoriteWidget> {
+class _CartSheetItemFavoriteWidgetState
+    extends State<CartSheetItemFavoriteWidget> {
   final GenericBloc<bool> loadingCubit = GenericBloc<bool>(false);
 
   @override
@@ -29,7 +32,8 @@ class _CartSheetItemFavoriteWidgetState extends State<CartSheetItemFavoriteWidge
                 radius: Dimens.borderRadius5PX,
                 boxBorder: Border.all(color: context.colors.gray3, width: .5),
               ),
-              child: SvgPicture.asset(widget.cartItem.isWishlist ? Res.favIcon : Res.emptyFavIcon),
+              child: SvgPicture.asset(
+                  widget.cartItem.isWishlist ? Res.favIcon : Res.emptyFavIcon),
             ),
             child: LoadingIconWidget(
               margin: Dimens.paddingAll5PX,

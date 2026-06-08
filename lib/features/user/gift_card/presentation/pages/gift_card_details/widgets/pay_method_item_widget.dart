@@ -3,7 +3,8 @@ part of 'gift_card_details_widgets_imports.dart';
 class PayMethodItemWidget extends StatelessWidget {
   final PayMethodDomainModel model;
   final void Function() onTap;
-  const PayMethodItemWidget({super.key, required this.model, required this.onTap});
+  const PayMethodItemWidget(
+      {super.key, required this.model, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +14,14 @@ class PayMethodItemWidget extends StatelessWidget {
         padding: const EdgeInsets.all(15),
         margin: const EdgeInsets.only(bottom: 15),
         decoration: BoxDecoration(
-            color: model.isSelected ? context.colors.primary.withOpacity(0.4) : context.colors.white,
+            color: model.isSelected
+                ? context.colors.primary.withOpacity(0.4)
+                : context.colors.white,
             borderRadius: Dimens.borderRadius20PX,
-            border:
-                Border.all(color: model.isSelected ? context.colors.primary : context.colors.gray4.withOpacity(0.8))),
+            border: Border.all(
+                color: model.isSelected
+                    ? context.colors.primary
+                    : context.colors.gray4.withOpacity(0.8))),
         child: Row(
           children: [
             CachedImage(

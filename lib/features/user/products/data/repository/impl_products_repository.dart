@@ -75,24 +75,27 @@ class ImplProductsRepository extends ProductsRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, List<ProductSections>>> getProductSections(int param) async{
+  Future<Either<Failure, List<ProductSections>>> getProductSections(
+      int param) async {
     var result = await dataSources.getProductSections(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, ProductDetailsDomainModel>> scanProduct(String param) async{
+  Future<Either<Failure, ProductDetailsDomainModel>> scanProduct(
+      String param) async {
     var result = await dataSources.scanProduct(param);
     return toDomainResult(result);
   }
 
   @override
-  Future<Either<Failure, bool>> toggleFollowing(int param) async{
+  Future<Either<Failure, bool>> toggleFollowing(int param) async {
     return dataSources.toggleFollowing(param);
   }
 
   @override
-  Future<Either<Failure, SellerProductDomainModel>> sellerProducts(SellerProductsParams param) async{
+  Future<Either<Failure, SellerProductDomainModel>> sellerProducts(
+      SellerProductsParams param) async {
     var result = await dataSources.sellerProducts(param);
     return toDomainResult(result);
   }

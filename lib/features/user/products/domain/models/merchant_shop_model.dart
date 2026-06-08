@@ -1,6 +1,5 @@
 import 'package:flutter_tdd/features/user/products/domain/models/shop_model/shop_domain_model.dart';
 
-
 class MerchantShopModel extends ShopDomainModel {
   MerchantShopModel({
     required super.id,
@@ -52,9 +51,7 @@ class MerchantShopModel extends ShopDomainModel {
       youtube: json['youtube'],
       rating: json['rating'],
       follow: json['follow'],
-      sliders: (json['sliders'] as List?)
-          ?.map((e) => e.toString())
-          .toList(),
+      sliders: (json['sliders'] as List?)?.map((e) => e.toString()).toList(),
     );
   }
 

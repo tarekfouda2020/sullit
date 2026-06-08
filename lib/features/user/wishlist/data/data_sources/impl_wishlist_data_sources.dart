@@ -10,7 +10,7 @@ import 'package:flutter_tdd/features/user/wishlist/data/data_sources/wishlist_da
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: WishlistDataSources)
-class ImplWishlistDataSources extends WishlistDataSources{
+class ImplWishlistDataSources extends WishlistDataSources {
   @override
   Future<Either<Failure, List<ProductModel>>> getWishlist(bool param) async {
     HttpRequestModel model = HttpRequestModel(
@@ -19,15 +19,14 @@ class ImplWishlistDataSources extends WishlistDataSources{
       refresh: param,
       responseType: ResType.list,
       showLoader: true,
-      toJsonFunc:  (json) => List<ProductModel>.from(
+      toJsonFunc: (json) => List<ProductModel>.from(
         json.map(
-              (e) => ProductModel.fromJson(e),
+          (e) => ProductModel.fromJson(e),
         ),
       ),
       responseKey: (data) => data["data"]["products"],
-      errorFunc: (data)=> data["msg"],
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<List<ProductModel>>().call(model);
   }
-
 }

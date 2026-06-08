@@ -1,4 +1,5 @@
-part of'seller_product_bulk_widgets_imports.dart';
+part of 'seller_product_bulk_widgets_imports.dart';
+
 class BuildCategoryFile extends StatelessWidget {
   const BuildCategoryFile({Key? key}) : super(key: key);
 
@@ -19,36 +20,40 @@ class BuildCategoryFile extends StatelessWidget {
                   spreadRadius: 1)
             ]),
         child: Column(
-          children:  [
+          children: [
             BuildBulkText(
               text: 'Category and brand should be numerical id',
-            ),BuildBulkText(
+            ),
+            BuildBulkText(
               text: 'you can download pdf to get category and brand id',
             ),
-
-           Row(
-             children: [
-               Expanded(child:  DefaultButton(
-                   title: "Download Categories",
-                   width: 120.w,
-                   height: 25.h,
-                   fontSize: 10,
-                   color: context.colors.darkPurple,
-                   borderRadius: BorderRadius.circular(5).r,
-                   margin: const EdgeInsets.symmetric(vertical: 10).r,
-                   onTap: () {}),),
-               Gaps.hGap10,
-               Expanded(child:  DefaultButton(
-                   title: "Download Brands",
-                   width: 120.w,
-                   height: 25.h,
-                   fontSize: 10,
-                   color: context.colors.darkPurple,
-                   borderRadius: BorderRadius.circular(5).r,
-                   margin: const EdgeInsets.symmetric(vertical: 10).r,
-                   onTap: () {}),)
-             ],
-           )
+            Row(
+              children: [
+                Expanded(
+                  child: DefaultButton(
+                      title: "Download Categories",
+                      width: 120.w,
+                      height: 25.h,
+                      fontSize: 10,
+                      color: context.colors.darkPurple,
+                      borderRadius: BorderRadius.circular(5).r,
+                      margin: const EdgeInsets.symmetric(vertical: 10).r,
+                      onTap: () {}),
+                ),
+                Gaps.hGap10,
+                Expanded(
+                  child: DefaultButton(
+                      title: "Download Brands",
+                      width: 120.w,
+                      height: 25.h,
+                      fontSize: 10,
+                      color: context.colors.darkPurple,
+                      borderRadius: BorderRadius.circular(5).r,
+                      margin: const EdgeInsets.symmetric(vertical: 10).r,
+                      onTap: () {}),
+                )
+              ],
+            )
           ],
         ));
   }

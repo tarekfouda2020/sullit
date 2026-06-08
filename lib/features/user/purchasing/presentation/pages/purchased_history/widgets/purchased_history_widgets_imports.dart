@@ -16,4 +16,3 @@ import 'package:flutter_tdd/features/user/purchasing/presentation/widgets/purcha
 import '../purchased_history_imports.dart';
 
 part 'build_purchased_history_item.dart';
-

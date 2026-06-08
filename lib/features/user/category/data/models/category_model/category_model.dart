@@ -7,8 +7,7 @@ part 'category_model.g.dart';
 
 @freezed
 @immutable
-class CategoryModel extends BaseApiModel<Category>
-    with _$CategoryModel {
+class CategoryModel extends BaseApiModel<Category> with _$CategoryModel {
   const CategoryModel._();
 
   @JsonSerializable(explicitToJson: true)
@@ -20,8 +19,7 @@ class CategoryModel extends BaseApiModel<Category>
     @JsonKey(name: 'order_level') required int orderLevel,
     @JsonKey(name: 'digital') required int digital,
     @JsonKey(name: 'slug') required String slug,
-    @JsonKey(name: 'chileds')  List<CategoryModel>? subCats,
-
+    @JsonKey(name: 'chileds') List<CategoryModel>? subCats,
   }) = _CategoryModel;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>

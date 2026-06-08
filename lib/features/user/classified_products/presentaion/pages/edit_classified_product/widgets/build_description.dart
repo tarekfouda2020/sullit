@@ -1,7 +1,9 @@
 part of 'edit_classified_product_w_imports.dart';
+
 class BuildDescription extends StatelessWidget {
-  final EditClassifiedProductController controller ;
-  const BuildDescription({Key? key, required this.controller}) : super(key: key);
+  final EditClassifiedProductController controller;
+  const BuildDescription({Key? key, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class BuildDescription extends StatelessWidget {
           decoration: CustomDecoration(),
           padding: Dimens.paddingAll10PX,
           child: GenericTextField(
-            margin:Dimens.paddingVertical10PX,
+            margin: Dimens.paddingVertical10PX,
             fieldTypes: FieldTypes.rich,
             type: TextInputType.text,
             action: TextInputAction.next,

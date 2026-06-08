@@ -19,7 +19,6 @@ import 'core/helpers/di.dart';
 import 'core/routes/router_imports.gr.dart';
 import 'my_app.dart';
 
-
 void main() async {
   tz.initializeTimeZones();
   WidgetsFlutterBinding.ensureInitialized();

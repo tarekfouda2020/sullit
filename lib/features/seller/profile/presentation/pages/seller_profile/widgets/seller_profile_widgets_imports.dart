@@ -14,6 +14,6 @@ import 'package:flutter_tdd/res.dart';
 
 import '../seller_profile_imports.dart';
 
-part'build_seller_profile_basic_info.dart';
+part 'build_seller_profile_basic_info.dart';
 part 'build_seller_profile_image.dart';
 part 'build_seller_profile_payment_setting.dart';

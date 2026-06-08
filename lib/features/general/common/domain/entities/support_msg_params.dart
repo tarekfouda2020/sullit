@@ -8,8 +8,8 @@ class SupportMsgParams {
     this.text,
     this.image,
   });
-  Map<String,dynamic>toJson()=>{
-    "text":text,
-    "image":image,
-  };
+  Map<String, dynamic> toJson() => {
+        "text": text,
+        "image": image,
+      };
 }

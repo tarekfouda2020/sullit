@@ -37,24 +37,19 @@ class Utilities {
     );
   }
 
-
-  void openAppInStore(){
+  void openAppInStore() {
     String url = "";
-    if(Platform.isAndroid){
+    if (Platform.isAndroid) {
       String id = AppConstants.instance.appId;
       url = "https://play.google.com/store/apps/details?id=$id";
     }
-    if(Platform.isIOS){
+    if (Platform.isIOS) {
       String id = AppConstants.instance.iosAppId;
       url = "https://apps.apple.com/us/app/id$id";
     }
     var uri = Uri.parse(url);
     launchUrl(uri);
   }
-
-
-
-
 
   Future<PermissionStatus> getContactsPermission() async {
     await Permission.contacts.request();
@@ -98,7 +93,8 @@ class Utilities {
       String currencyPart = match.group(1)!.trim();
       String numberPart = match.group(2)!.trim();
 
-      if ((lang == LangCodeHelper.langEN || lang == LangCodeHelper.langBN ) && currencyMap.containsKey(currencyPart)) {
+      if ((lang == LangCodeHelper.langEN || lang == LangCodeHelper.langBN) &&
+          currencyMap.containsKey(currencyPart)) {
         currencyPart = currencyMap[currencyPart]!;
       }
 
@@ -121,7 +117,7 @@ class Utilities {
     if (photos.isNotEmpty) {
       List<File> imagesFile = photos.map((e) => File(e.path)).toList();
       return imagesFile;
-    }else {
+    } else {
       return [];
     }
   }
@@ -158,7 +154,6 @@ class Utilities {
     }
     return currencyPart;
   }
-
 
   String customizePhoneNumber(String phone, String? code) {
     String phoneNumber = "";
@@ -203,26 +198,28 @@ class Utilities {
   Future<void> changeLanguage(String lang, BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(LangCodeHelper.langKey, lang);
-    if(lang == LangCodeHelper.langAR){
+    if (lang == LangCodeHelper.langAR) {
       lang = LangTypeEnum.arabic.getLangCode();
     }
-    if(lang == LangCodeHelper.langBN){
+    if (lang == LangCodeHelper.langBN) {
       lang = LangTypeEnum.bangladesh.getLangCode();
     }
-    if(lang == LangCodeHelper.langUR){
+    if (lang == LangCodeHelper.langUR) {
       lang = LangTypeEnum.urdu.getLangCode();
     }
     GlobalState.instance.set(LangCodeHelper.langKey, lang);
   }
 
-  Future<File?> getAttachmentFile(FileType fileType) async {
+  Future<File?> getAttachmentFile(FileType fileType,
+      {List<String>? allowedExtensions}) async {
     if (fileType == FileType.any) {
       return await getAPdfFile();
     }
     FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: fileType,
-      allowMultiple: false,
-    );
+        type: fileType,
+        allowMultiple: false,
+        allowedExtensions:
+            fileType == FileType.custom ? allowedExtensions : null);
     if (result != null) {
       File imageFile = File(result.files.single.path!);
       return imageFile;
@@ -266,8 +263,6 @@ class Utilities {
     return storagePath;
   }
 
-
-
   double? extractFormattedNumberToDouble(String text) {
     final RegExp numberRegex = RegExp(r'[\d,]+(\.\d+)?');
     final match = numberRegex.firstMatch(text);
@@ -283,21 +278,19 @@ class Utilities {
     return null;
   }
 
-  String handleFullPhone(BuildContext context,String phone){
+  String handleFullPhone(BuildContext context, String phone) {
     var lang = context.read<DeviceCubit>().state.model.locale.languageCode;
-    if(lang == LangCodeHelper.langAR){
+    if (lang == LangCodeHelper.langAR) {
       var split = phone.split("");
       split.removeAt(0);
       var phoneWithoutPlus = split.join();
       return "$phoneWithoutPlus+";
-    }else{
+    } else {
       return phone;
     }
   }
 
-
-
-  String formatAmount(String amount,{bool applyDashSeperate = true}) {
+  String formatAmount(String amount, {bool applyDashSeperate = true}) {
     // Handle range case like "10.00 - 40.00"
     if (amount.contains('-') && applyDashSeperate) {
       final values = amount.split('-').map((e) => e.trim()).toList();
@@ -310,20 +303,16 @@ class Utilities {
   }
 
   String _formatSingle(String value) {
-
-    final parsed = double.tryParse(value.cleanNumber()) ?? 0 ;
+    final parsed = double.tryParse(value.cleanNumber()) ?? 0;
     final intValue = parsed.toStringAsFixed(2);
 
     final formattedInteger = intValue.replaceAllMapped(
       RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-          (match) => '${match.group(1)},',
+      (match) => '${match.group(1)},',
     );
 
     return formattedInteger;
   }
-
-
-
 
   Future<void> popManyTimes(BuildContext context, int times) async {
     for (int i = 0; i < times; i++) {
@@ -335,9 +324,6 @@ class Utilities {
       }
     }
   }
-
-
-
 
   String convertDigitsToLatin(String s) {
     var sb = StringBuffer();

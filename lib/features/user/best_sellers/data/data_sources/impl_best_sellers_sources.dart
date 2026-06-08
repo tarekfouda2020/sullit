@@ -12,25 +12,21 @@ import 'package:flutter_tdd/features/user/search/domain/entities/search_result_p
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: BestSellersSources)
-
-class ImplBestSellersSources extends BestSellersSources{
+class ImplBestSellersSources extends BestSellersSources {
   @override
-  Future<Either<Failure, List<ShopModel>>> getShop(ShopsParams param) async{
-      HttpRequestModel model = HttpRequestModel(
-        url: ApiNames.shopsList,
-        requestBody: param.toJons(),
-        responseType: ResType.list,
-        requestMethod: RequestMethod.get,
-        responseKey: (data) => data["data"]["shops"],
-        showLoader: false,
-        refresh: param.params.refresh,
-        toJsonFunc: (json) => List<ShopModel>.from(json.map((e) => ShopModel.fromJson(e)),
-        ),
-      );
-      return await GenericHttpImpl<List<ShopModel>>()(model);
+  Future<Either<Failure, List<ShopModel>>> getShop(ShopsParams param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.shopsList,
+      requestBody: param.toJons(),
+      responseType: ResType.list,
+      requestMethod: RequestMethod.get,
+      responseKey: (data) => data["data"]["shops"],
+      showLoader: false,
+      refresh: param.params.refresh,
+      toJsonFunc: (json) => List<ShopModel>.from(
+        json.map((e) => ShopModel.fromJson(e)),
+      ),
+    );
+    return await GenericHttpImpl<List<ShopModel>>()(model);
   }
-
-
-
 }
-

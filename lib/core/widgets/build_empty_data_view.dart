@@ -8,7 +8,7 @@ import 'package:flutter_tdd/res.dart';
 
 class BuildEmptyDataView extends StatelessWidget {
   final String? text;
-  const BuildEmptyDataView({Key? key,this.text}) : super(key: key);
+  const BuildEmptyDataView({Key? key, this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class BuildEmptyDataView extends StatelessWidget {
         ),
         Gaps.vGap5,
         Text(
-         text ?? tr("comingSoon"),
+          text ?? tr("comingSoon"),
           style: AppTextStyle.s16_w700(
             color: context.colors.black,
           ),

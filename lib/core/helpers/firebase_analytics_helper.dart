@@ -3,41 +3,33 @@ import 'package:injectable/injectable.dart';
 
 @lazySingleton
 class FirebaseAnalyticsHelper {
-
   FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
-
- Future<void> userLogin(String phone)async{
+  Future<void> userLogin(String phone) async {
     await analytics.logEvent(
-        name: 'user_login_click',
-        parameters: {
-          'user_phone': phone,
-        },
+      name: 'user_login_click',
+      parameters: {
+        'user_phone': phone,
+      },
     );
   }
 
-
-  Future<void> userRegister(String name, String phone)async{
+  Future<void> userRegister(String name, String phone) async {
     await analytics.logEvent(
-        name: 'user_register-click',
-        parameters: {
-          'user_name': name,
-          "user_phone": phone,
-        },
+      name: 'user_register-click',
+      parameters: {
+        'user_name': name,
+        "user_phone": phone,
+      },
     );
   }
 
-
-
-  Future<void> startAVideoCallEvent(String phone)async{
+  Future<void> startAVideoCallEvent(String phone) async {
     await analytics.logEvent(
-        name: 'forget_password_click',
-        parameters: {
-          'user_phone': phone,
-        },
+      name: 'forget_password_click',
+      parameters: {
+        'user_phone': phone,
+      },
     );
   }
-
-
-
 }

@@ -4,5 +4,4 @@ import 'package:flutter_tdd/features/user/dashboard/domain/models/dashboards.dar
 
 abstract class DashboardRepository {
   Future<Either<Failure, Dashboards>> getDashboard(bool param);
-
 }

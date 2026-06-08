@@ -6,7 +6,8 @@ class PharmacyCartInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<CartDomainModel>, GenericState<CartDomainModel>>(
+    return BlocBuilder<GenericBloc<CartDomainModel>,
+        GenericState<CartDomainModel>>(
       bloc: controller.cartItemsBloc,
       builder: (context, state) {
         final cartData = state.data;
@@ -24,9 +25,10 @@ class PharmacyCartInfoWidget extends StatelessWidget {
             spacing: 8,
             children: [
               CachedImage(
-                url: "https://specialist-pharmacy.com/wp-content/uploads/2021/05/specialist-pharmacy-compounding-pharmacy-mobile.jpg",
+                url:
+                    "https://specialist-pharmacy.com/wp-content/uploads/2021/05/specialist-pharmacy-compounding-pharmacy-mobile.jpg",
                 width: 40,
-                height: 33 ,
+                height: 33,
                 borderRadius: Dimens.borderRadius8PX,
               ),
               Expanded(
@@ -40,12 +42,12 @@ class PharmacyCartInfoWidget extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: context.colors.lightPink2,
-                    borderRadius: Dimens.borderRadius10PX
-                  ),
+                      color: context.colors.lightPink2,
+                      borderRadius: Dimens.borderRadius10PX),
                   child: SvgPicture.asset(
                     Res.plusIcon,
-                    colorFilter: ColorFilter.mode(context.colors.primary, BlendMode.srcIn),
+                    colorFilter: ColorFilter.mode(
+                        context.colors.primary, BlendMode.srcIn),
                     width: 14,
                     height: 14,
                   ),

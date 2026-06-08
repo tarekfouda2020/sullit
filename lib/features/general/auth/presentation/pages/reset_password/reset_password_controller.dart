@@ -13,7 +13,6 @@ class ResetPasswordController {
   final GenericBloc<bool> passwordCubit = GenericBloc(false);
   final GenericBloc<bool> confirmPasswordCubit = GenericBloc(false);
 
-
   ResetPasswordController(String resetEmail) {
     email.text = resetEmail;
   }
@@ -27,7 +26,6 @@ class ResetPasswordController {
         AutoRouter.of(context).push(const LoginRoute());
       }
     }
-
   }
 
   void resendCode() async {

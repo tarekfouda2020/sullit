@@ -85,21 +85,19 @@ class HandleErrors {
   }
 
   void _tokenExpired() async {
-    await getIt<UserServiceHelper>().clearUserData(getIt<GlobalContext>().context());
+    await getIt<UserServiceHelper>()
+        .clearUserData(getIt<GlobalContext>().context());
     CustomToast.showSnakeBar(tr('noPermission'));
     // Phoenix.rebirth(getIt<BuildContext>());
-    if(routeToLogin == false){
+    if (routeToLogin == false) {
       AutoRouter.of(getIt<GlobalContext>().context()).push(const LoginRoute());
       routeToLogin = true;
     }
-
   }
 
-  void _updateRouteToLogin(){
-    if(routeToLogin){
+  void _updateRouteToLogin() {
+    if (routeToLogin) {
       routeToLogin = false;
     }
   }
-
-
 }

@@ -1,4 +1,1 @@
-
-
-abstract class PaymentRepository {
-}
+abstract class PaymentRepository {}

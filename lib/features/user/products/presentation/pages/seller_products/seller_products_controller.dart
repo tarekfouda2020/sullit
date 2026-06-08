@@ -16,7 +16,6 @@ class SellerProductsController {
 
   final GenericBloc<String> priceCubit = GenericBloc<String>("0.0");
 
-
   int pageSize = 12;
   bool isFilterAppliedBefore = false;
 
@@ -33,34 +32,30 @@ class SellerProductsController {
   GenericBloc<CartDomainModel> get cartItemsBloc =>
       getIt<CartHelper>().cartItemsBloc;
 
-
-  void getCartData(){
+  void getCartData() {
     var minShopsRequired = cartItemsBloc.state.data.minAmountSellers;
     var minShopsIds = minShopsRequired?.map((e) => e.shopId).toList();
-    if(minShopsIds?.contains(shopId) == true){
+    if (minShopsIds?.contains(shopId) == true) {
       getIt<CartHelper>().getCartItems(refresh: false);
       getIt<CartHelper>().getCartItems();
     }
   }
 
-
-  bool cartHaveSellerProduct(){
+  bool cartHaveSellerProduct() {
     var products = cartItemsBloc.state.data.items;
     var productsShopsIds = products?.map((e) => e.shopId).toSet();
     return productsShopsIds?.contains(shopId) ?? false;
   }
 
-
-  double neededAmount(){
+  double neededAmount() {
     var minShopsRequired = cartItemsBloc.state.data.minAmountSellers;
     var minShopsIds = minShopsRequired?.map((e) => e.shopId).toList();
-    if(minShopsIds?.contains(shopId) == true){
+    if (minShopsIds?.contains(shopId) == true) {
       return cartItemsBloc.state.data.getSingleSellerReMainAmount(shopId);
-    }else{
+    } else {
       return 0.0;
     }
   }
-
 
   SellerProductsController(int id, {Shop? shopModel}) {
     shopId = id;
@@ -309,17 +304,14 @@ class SellerProductsController {
     getProducts(1);
   }
 
-
-  void onPressViewCart(BuildContext context, bool fromCart){
-    if(cartHaveSellerProduct() == false){
-      return ;
+  void onPressViewCart(BuildContext context, bool fromCart) {
+    if (cartHaveSellerProduct() == false) {
+      return;
     }
     if (fromCart == true) {
       AutoRouter.of(context).pop();
-    }else{
+    } else {
       AutoRouter.of(context).push(CartRoute());
     }
   }
-
-
 }

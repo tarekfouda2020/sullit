@@ -5,9 +5,8 @@ import 'package:flutter_tdd/features/user/cart/domain/repository/cart_repository
 
 class ApplyCoupon implements UseCase<CouponResponse?, String> {
   @override
-  Future<CouponResponse?> call(String param)async {
+  Future<CouponResponse?> call(String param) async {
     var result = await getIt<CartRepository>().applyCoupon(param);
     return result.fold((l) => null, (r) => r);
   }
-
 }

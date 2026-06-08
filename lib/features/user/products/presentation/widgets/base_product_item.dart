@@ -31,7 +31,8 @@ abstract class BaseProductItem extends StatefulWidget {
   });
 }
 
-abstract class BaseProductItemState<T extends BaseProductItem> extends State<T> {
+abstract class BaseProductItemState<T extends BaseProductItem>
+    extends State<T> {
   final GenericBloc<bool> showFavLoading = GenericBloc<bool>(false);
   final GenericBloc<bool> enableAddToCartLoading = GenericBloc<bool>(false);
 
@@ -61,7 +62,8 @@ abstract class BaseProductItemState<T extends BaseProductItem> extends State<T> 
 
   @protected
   bool handleOutOfStockGuard() {
-    if ((widget.productModel.isOutOfStock || widget.productModel.sameQntInCart) &&
+    if ((widget.productModel.isOutOfStock ||
+            widget.productModel.sameQntInCart) &&
         widget.productModel.isFreshProduct == false) {
       CustomToast.showSimpleToast(msg: tr("outOfStock"), type: ToastType.error);
       return true;

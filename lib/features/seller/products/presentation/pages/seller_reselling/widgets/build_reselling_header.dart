@@ -1,4 +1,5 @@
-part of'seller_reselling_widgets_imports.dart';
+part of 'seller_reselling_widgets_imports.dart';
+
 class BuildResellingHeader extends StatelessWidget {
   const BuildResellingHeader({Key? key}) : super(key: key);
 
@@ -17,13 +18,13 @@ class BuildResellingHeader extends StatelessWidget {
           style: AppTextStyle.s18_w700(color: context.colors.black),
         ),
         Gaps.vGap20,
-
         Row(
           children: [
             Expanded(
               child: GenericTextField(
                 radius: BorderRadius.circular(7).r,
-                contentPadding: const EdgeInsets.symmetric(vertical: 1,horizontal: 16).r,
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 1, horizontal: 16).r,
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.search,
@@ -33,7 +34,7 @@ class BuildResellingHeader extends StatelessWidget {
                 // margin: const EdgeInsets.only(top: 20,right: 20,left: 20).r,
               ),
             ),
-Gaps.hGap10,
+            Gaps.hGap10,
             PopupMenuButton(
               color: context.colors.white,
               elevation: 20,

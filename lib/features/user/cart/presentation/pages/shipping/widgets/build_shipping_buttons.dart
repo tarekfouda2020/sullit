@@ -1,8 +1,9 @@
 part of 'shipping_widgets_imports.dart';
 
 class BuildShippingButtons extends StatelessWidget {
-  final ShippingController controller ;
-  const BuildShippingButtons({Key? key, required this.controller}) : super(key: key);
+  final ShippingController controller;
+  const BuildShippingButtons({Key? key, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +18,8 @@ class BuildShippingButtons extends StatelessWidget {
           )
         ],
       ),
-      padding:  const EdgeInsets.all(Dimens.dp15),
-      child : CustomBottomSafeAreaWidget(
+      padding: const EdgeInsets.all(Dimens.dp15),
+      child: CustomBottomSafeAreaWidget(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

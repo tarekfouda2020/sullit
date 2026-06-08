@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,7 +20,6 @@ import 'package:flutter_tdd/features/user/loyalty_points/domain/models/transacti
 import 'package:flutter_tdd/features/user/loyalty_points/presentation/pages/loyalyt_points/loyalty_points_imports.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-
 
 part 'loyalty_points_info_widget.dart';
 part 'loyalty_transactions_item_widget.dart';

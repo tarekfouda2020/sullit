@@ -13,7 +13,7 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: BaseDataSources)
 class ImplBaseDataSources extends BaseDataSources {
   @override
-  Future<Either<Failure, bool>> logOut()async {
+  Future<Either<Failure, bool>> logOut() async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.logout,
       requestMethod: RequestMethod.post,
@@ -26,7 +26,7 @@ class ImplBaseDataSources extends BaseDataSources {
   }
 
   @override
-  Future<Either<Failure, List<ShopModel>>> getFollowing(bool params) async{
+  Future<Either<Failure, List<ShopModel>>> getFollowing(bool params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getFollowing,
       requestMethod: RequestMethod.get,
@@ -41,7 +41,7 @@ class ImplBaseDataSources extends BaseDataSources {
   }
 
   @override
-  Future<Either<Failure, List<LangModel>>> getLanguages(bool params)async{
+  Future<Either<Failure, List<LangModel>>> getLanguages(bool params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getLanguages,
       requestMethod: RequestMethod.get,
@@ -53,7 +53,4 @@ class ImplBaseDataSources extends BaseDataSources {
     );
     return await GenericHttpImpl<List<LangModel>>().call(model);
   }
-
-
-
 }

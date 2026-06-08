@@ -16,10 +16,12 @@ class CartItemsListWidget extends StatelessWidget {
         actions: [
           Visibility(
             visible: isAuth,
-            child: BlocBuilder<GenericBloc<CartDomainModel>, GenericState<CartDomainModel>>(
+            child: BlocBuilder<GenericBloc<CartDomainModel>,
+                GenericState<CartDomainModel>>(
               bloc: controller.cartItemsBloc,
               builder: (context, state) {
-                if (state is GenericUpdateState && (state.data.items ?? []).isNotEmpty) {
+                if (state is GenericUpdateState &&
+                    (state.data.items ?? []).isNotEmpty) {
                   return ValueListenableBuilder<bool>(
                     valueListenable: controller.isSharing,
                     builder: (context, isSharing, _) {
@@ -53,7 +55,8 @@ class CartItemsListWidget extends StatelessWidget {
           ),
         ],
       ),
-      body: BlocBuilder<GenericBloc<CartDomainModel>, GenericState<CartDomainModel>>(
+      body: BlocBuilder<GenericBloc<CartDomainModel>,
+          GenericState<CartDomainModel>>(
         bloc: controller.cartItemsBloc,
         builder: (context, state) {
           if (state is GenericUpdateState) {

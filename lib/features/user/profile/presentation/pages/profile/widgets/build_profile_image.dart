@@ -3,7 +3,8 @@ part of 'profile_widgets_imports.dart';
 class BuildProfileImage extends StatelessWidget {
   final ProfileController controller;
 
-  const BuildProfileImage({Key? key, required this.controller}) : super(key: key);
+  const BuildProfileImage({Key? key, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,8 @@ class BuildProfileImage extends StatelessWidget {
             return Stack(
               children: [
                 InkWell(
-                  onTap: () => AutoRouter.of(context).push(ImageZoomRoute(image: user?.avatarOriginal ?? "")),
+                  onTap: () => AutoRouter.of(context)
+                      .push(ImageZoomRoute(image: user?.avatarOriginal ?? "")),
                   child: Container(
                     padding: const EdgeInsets.all(1),
                     decoration: const BoxDecoration(

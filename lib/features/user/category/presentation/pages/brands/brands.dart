@@ -22,14 +22,15 @@ class _BrandsState extends State<Brands> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
-        appBar:  DefaultAppBar(title: tr('allBrands'), showBack: true),
+        appBar: DefaultAppBar(title: tr('allBrands'), showBack: true),
         body: Column(
           children: [
             Padding(
               padding: Dimens.paddingAll15PX,
               child: BrandSearchWidget(controller: controller),
             ),
-            Expanded(child: PagedGridView<int, BrandDomainModel>(
+            Expanded(
+                child: PagedGridView<int, BrandDomainModel>(
               padding: Dimens.paddingAll15PX,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,

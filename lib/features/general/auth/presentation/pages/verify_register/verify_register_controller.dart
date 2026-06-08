@@ -16,7 +16,7 @@ class VerifyRegisterController {
     counterCubit.onUpdateData(120);
     timer = Timer.periodic(
       const Duration(seconds: 1),
-          (timer) => _onEndTimer(timer),
+      (timer) => _onEndTimer(timer),
     );
   }
 
@@ -44,28 +44,22 @@ class VerifyRegisterController {
     return true;
   }
 
-
-  Future<void> verifyEmail(BuildContext context,String code)async{
+  Future<void> verifyEmail(BuildContext context, String code) async {
     var params = _emailCodeVerifyParams(code);
     getIt<LoadingHelper>().showLoadingDialog();
-     await VerifyEmail()(params).then((value) async{
-      if(value!=null){
+    await VerifyEmail()(params).then((value) async {
+      if (value != null) {
         // await getIt<UserServiceHelper>().updateUserdata(context,value);
-        CustomToast.showSimpleToast(msg: tr("emailVerify"), type: ToastType.success);
+        CustomToast.showSimpleToast(
+            msg: tr("emailVerify"), type: ToastType.success);
         FacebookEventsHelper.instance.completedRegistration();
         AutoRouter.of(context).push(const LoginRoute());
       }
       getIt<LoadingHelper>().dismissDialog();
     });
-
   }
 
-  CodeVerifyParams _emailCodeVerifyParams(String code){
-    return CodeVerifyParams(
-        code: code,
-        email: registerEmail
-    );
+  CodeVerifyParams _emailCodeVerifyParams(String code) {
+    return CodeVerifyParams(code: code, email: registerEmail);
   }
-
-
 }

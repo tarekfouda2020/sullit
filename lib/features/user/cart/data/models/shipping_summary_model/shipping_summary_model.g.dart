@@ -39,6 +39,12 @@ _$_ShippingSummaryModel _$$_ShippingSummaryModelFromJson(
       loyaltyPointsValue: json['loyalty_points_value'] as String?,
       loyaltyPointsApplied: json['loyalty_points_applied'] as bool?,
       loyaltyPoints: (json['loyalty_points'] as num?)?.toInt(),
+      prescriptionRequired: json['prescription_required'] as bool?,
+      insuranceEligible: json['insurance_eligible'] as bool?,
+      totalFeeAmount: json['total_fee_amount'] as String?,
+      giftCardApplied: json['gift_card_applied'] as bool?,
+      giftCardValid: json['gift_card_valid'] as bool?,
+      giftCardValue: json['gift_card_value'] as String?,
       expectedLoyaltyPoints: (json['expected_loyalty_points'] as num).toInt(),
       orderDiscountTypes: (json['order_discounts'] as List<dynamic>?)
           ?.map((e) =>
@@ -76,6 +82,12 @@ Map<String, dynamic> _$$_ShippingSummaryModelToJson(
       'loyalty_points_value': instance.loyaltyPointsValue,
       'loyalty_points_applied': instance.loyaltyPointsApplied,
       'loyalty_points': instance.loyaltyPoints,
+      'prescription_required': instance.prescriptionRequired,
+      'insurance_eligible': instance.insuranceEligible,
+      'total_fee_amount': instance.totalFeeAmount,
+      'gift_card_applied': instance.giftCardApplied,
+      'gift_card_valid': instance.giftCardValid,
+      'gift_card_value': instance.giftCardValue,
       'expected_loyalty_points': instance.expectedLoyaltyPoints,
       'order_discounts':
           instance.orderDiscountTypes?.map((e) => e.toJson()).toList(),

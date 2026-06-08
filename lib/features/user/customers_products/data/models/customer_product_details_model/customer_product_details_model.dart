@@ -15,9 +15,9 @@ class CustomerProductDetailsModel extends BaseApiModel<CustomersProductDetails>
   @JsonSerializable(explicitToJson: true)
   const factory CustomerProductDetailsModel({
     @JsonKey(name: "customer_product")
-        required CustomerProductModel customerProduct,
+    required CustomerProductModel customerProduct,
     @JsonKey(name: "related_customer_products")
-        required List<CustomerProductModel> relatedProducts,
+    required List<CustomerProductModel> relatedProducts,
   }) = _CustomerProductDetailsModel;
 
   factory CustomerProductDetailsModel.fromJson(Map<String, dynamic> json) =>

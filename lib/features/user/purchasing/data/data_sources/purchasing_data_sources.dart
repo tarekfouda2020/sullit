@@ -11,13 +11,17 @@ import 'package:flutter_tdd/features/user/purchasing/domain/entities/send_review
 import 'package:flutter_tdd/features/user/cart/data/models/payment_option_model/payment_option_model.dart';
 
 abstract class PurchasingDataSources {
-  Future<Either<Failure, List<PaymentOptionModel>>> getOrderPaymentOptions(bool param);
+  Future<Either<Failure, List<PaymentOptionModel>>> getOrderPaymentOptions(
+      bool param);
 
-  Future<Either<Failure, OrderModel>> changeOrderPaymentMethod(ChangeOrderPaymentParams param);
+  Future<Either<Failure, OrderModel>> changeOrderPaymentMethod(
+      ChangeOrderPaymentParams param);
 
-  Future<Either<Failure, List<OrderModel>>> getPurchaseHistory(GenericPaginateParams param);
+  Future<Either<Failure, List<OrderModel>>> getPurchaseHistory(
+      GenericPaginateParams param);
 
-  Future<Either<Failure, List<OrderModel>>> getReturnOrders(GenericPaginateParams param);
+  Future<Either<Failure, List<OrderModel>>> getReturnOrders(
+      GenericPaginateParams param);
 
   Future<Either<Failure, OrderModel>> trackOrder(String param);
 

@@ -3,7 +3,8 @@ part of 'support_tickets_sheet_widgets_imports.dart';
 class BuildAddTicketsImages extends StatelessWidget {
   final SupportTicketsController controller;
 
-  const BuildAddTicketsImages({Key? key, required this.controller}) : super(key: key);
+  const BuildAddTicketsImages({Key? key, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,9 @@ class BuildAddTicketsImages extends StatelessWidget {
                         height: 100.r,
                         width: 100.r,
                         margin: Dimens.paddingHorizontal5PX,
-                        decoration: BoxDecoration(borderRadius: Dimens.borderRadius10PX, color: context.colors.gray3),
+                        decoration: BoxDecoration(
+                            borderRadius: Dimens.borderRadius10PX,
+                            color: context.colors.gray3),
                         child: Icon(
                           Icons.add,
                           size: 15.sp,
@@ -65,14 +68,19 @@ class BuildAddTicketsImages extends StatelessWidget {
                           Positioned(
                             top: 0,
                             child: GestureDetector(
-                              onTap: () => controller.removeImage(state.data[index]),
+                              onTap: () =>
+                                  controller.removeImage(state.data[index]),
                               child: Container(
-                                width: 20, height: 20,
+                                width: 20,
+                                height: 20,
                                 decoration: BoxDecoration(
-                                  color: context.colors.redAccent,
-                                  shape: BoxShape.circle
+                                    color: context.colors.redAccent,
+                                    shape: BoxShape.circle),
+                                child: Icon(
+                                  Icons.close,
+                                  color: context.colors.white,
+                                  size: 15,
                                 ),
-                                child: Icon(Icons.close,color: context.colors.white,size: 15,),
                               ),
                             ),
                           )

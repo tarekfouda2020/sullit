@@ -19,7 +19,7 @@ class BuildAddAddressForm extends StatelessWidget {
             type: TextInputType.none,
             controller: controller.locationController,
             fieldTypes: FieldTypes.clickable,
-            onTab: ()  => controller.routeToDetectLocation(context),
+            onTab: () => controller.routeToDetectLocation(context),
             action: TextInputAction.done,
             fillColor: context.colors.white,
             validate: (value) => value?.validateEmpty(),
@@ -61,12 +61,12 @@ class BuildAddAddressForm extends StatelessWidget {
               GenericState<package.Country?>>(
             bloc: controller.countryCodeCubit,
             builder: (context, state) {
-              return  GenericTextField(
+              return GenericTextField(
                 controller: controller.phoneController,
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.number,
                 action: TextInputAction.done,
-                validate: (value) =>value?.isValidUAEPhone(value),
+                validate: (value) => value?.isValidUAEPhone(value),
                 onSubmit: () => controller.addNewAddress(context),
                 // validate: (value) => value?.validatePhone(),
                 hint: tr("phoneNumber"),
@@ -81,7 +81,6 @@ class BuildAddAddressForm extends StatelessWidget {
       ),
     );
   }
-
 
   // Widget _buildPrefixIcon(BuildContext context, GenericState<package.Country?> state) {
   //   return GestureDetector(
@@ -126,6 +125,4 @@ class BuildAddAddressForm extends StatelessWidget {
   //     ),
   //   );
   // }
-
-
 }

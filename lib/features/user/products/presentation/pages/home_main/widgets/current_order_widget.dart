@@ -9,7 +9,8 @@ class CurrentOrderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 300,
-      padding: const EdgeInsetsDirectional.only(start: 24, top: 22, bottom: 22, end: 5),
+      padding: const EdgeInsetsDirectional.only(
+          start: 24, top: 22, bottom: 22, end: 5),
       margin: const EdgeInsetsDirectional.only(end: 12),
       decoration: BoxDecoration(
           borderRadius: Dimens.borderRadius12PX,
@@ -25,12 +26,10 @@ class CurrentOrderWidget extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: context.colors.lightPink,
-                    shape: BoxShape.circle
-                  ),
+                      color: context.colors.lightPink, shape: BoxShape.circle),
                   child: UnconstrainedBox(
                     child: Image.asset(
-                      currentOrders.getTrackOrderStatus.imagePath ,
+                      currentOrders.getTrackOrderStatus.imagePath,
                       width: 50,
                       height: 50,
                       fit: BoxFit.contain,
@@ -46,12 +45,14 @@ class CurrentOrderWidget extends StatelessWidget {
                       Text(
                         currentOrders.soldBy,
                         maxLines: 2,
-                        style: AppTextStyle.s18_w600(color: context.colors.black)
-                            .copyWith(overflow: TextOverflow.ellipsis),
+                        style:
+                            AppTextStyle.s18_w600(color: context.colors.black)
+                                .copyWith(overflow: TextOverflow.ellipsis),
                       ),
                       Text(
                         currentOrders.code,
-                        style: AppTextStyle.s11_w400(color: context.colors.textColor),
+                        style: AppTextStyle.s11_w400(
+                            color: context.colors.textColor),
                       ),
                     ],
                   ),
@@ -68,13 +69,16 @@ class CurrentOrderWidget extends StatelessWidget {
                 Text(
                   currentOrders.deliveryStatus,
                   maxLines: 2,
-                  style: AppTextStyle.s20_w700(color: context.colors.primary).copyWith(overflow: TextOverflow.ellipsis),
+                  style: AppTextStyle.s20_w700(color: context.colors.primary)
+                      .copyWith(overflow: TextOverflow.ellipsis),
                 ),
                 Gaps.vGap7,
                 Text(
-                  DateTimeHelper.formatDate(date: currentOrders.getOrderDate, formatType: 'dd MMM yyyy - hh:mm a'),
-                  style:
-                      AppTextStyle.s14_w500(color: context.colors.textColor).copyWith(overflow: TextOverflow.ellipsis),
+                  DateTimeHelper.formatDate(
+                      date: currentOrders.getOrderDate,
+                      formatType: 'dd MMM yyyy - hh:mm a'),
+                  style: AppTextStyle.s14_w500(color: context.colors.textColor)
+                      .copyWith(overflow: TextOverflow.ellipsis),
                 ),
               ],
             ),

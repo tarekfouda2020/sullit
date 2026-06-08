@@ -12,7 +12,6 @@ import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_m
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/variant.dart';
 
-
 class Product extends BaseDomainModel {
   int? id;
   int? loyaltyPoints;
@@ -122,11 +121,10 @@ class Product extends BaseDomainModel {
     }
   }
 
+  bool showPriceDiscount({bool? showVipDiscount}) =>
+      (hasDiscount == true || showVipDiscount == true);
 
-
-  bool   showPriceDiscount({bool? showVipDiscount}) => ( hasDiscount == true || showVipDiscount == true);
-
-  bool   get showSpecialPoints => hasSpecialLoyaltyPoints == true;
+  bool get showSpecialPoints => hasSpecialLoyaltyPoints == true;
 
   bool get isOutOfStock => (variant?.currentStock ?? 0) == 0 && !isFreshProduct;
 
@@ -135,23 +133,22 @@ class Product extends BaseDomainModel {
 
   bool get sameQntInCart => (variant?.currentStock ?? 0) == addedQtyToCart;
 
-  String getPriceWhenHavePointsAndDiscount(){
-    if(hasSpecialLoyaltyPoints==true){
+  String getPriceWhenHavePointsAndDiscount() {
+    if (hasSpecialLoyaltyPoints == true) {
       return priceHighLow ?? "";
-    }else{
+    } else {
       return priceHighLowDiscount ?? "";
     }
   }
-
-
-
 
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     unit = json['unit'];
     maxQnt = json['max_qty'];
-    variants = json['variants'] != null ? List<Variant>.from(json['variants'].map((x) => Variant.fromJson(x))) : null;
+    variants = json['variants'] != null
+        ? List<Variant>.from(json['variants'].map((x) => Variant.fromJson(x)))
+        : null;
     thumbnailImage = json['thumbnail_image'];
     images = json['images'].cast<String>();
     isMultiple = json['is_multiple'];
@@ -244,8 +241,8 @@ class Product extends BaseDomainModel {
     data['has_vip_offer'] = hasVipOffer;
     data['max_qty'] = maxQnt;
     data['has_shareholder_discount'] = hasShareholderDiscount;
-     data['prescription_required'] =  prescriptionRequired;
-     data['insurance_eligible'] =  insuranceEligible;
+    data['prescription_required'] = prescriptionRequired;
+    data['insurance_eligible'] = insuranceEligible;
     return data;
   }
 }

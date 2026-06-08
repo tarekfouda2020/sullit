@@ -1,6 +1,4 @@
-
 part of 'LocationWidgetsImports.dart';
-
 
 class SuggestionsSearchFieldWidget extends StatelessWidget {
   final LocationAddressData controller;
@@ -18,11 +16,16 @@ class SuggestionsSearchFieldWidget extends StatelessWidget {
       onSubmit: () => controller.onSubmitSearch(context),
       validate: (value) => value?.noValidate(),
       hint: "Search...",
-      prefixIcon: const Icon(CupertinoIcons.location_solid,color: CupertinoColors.systemRed,),
+      prefixIcon: const Icon(
+        CupertinoIcons.location_solid,
+        color: CupertinoColors.systemRed,
+      ),
       suffixIcon: GestureDetector(
           onTap: () => controller.onSubmitSearch(context),
-          child: const Icon(CupertinoIcons.search,color: CupertinoColors.inactiveGray,)
-      ),
+          child: const Icon(
+            CupertinoIcons.search,
+            color: CupertinoColors.inactiveGray,
+          )),
     );
   }
 }

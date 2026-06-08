@@ -27,7 +27,7 @@ class HomeDomainModel extends BaseDomainModel {
   final bool isAdminDiscount;
   final int discountRate;
 
-  HomeDomainModel( {
+  HomeDomainModel({
     required this.sliders,
     required this.bannersOne,
     required this.bannersTwo,

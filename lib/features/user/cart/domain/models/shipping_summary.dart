@@ -2,30 +2,30 @@ import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary_discount_domain.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/shipping_item.dart';
 
-class ShippingSummary extends BaseDomainModel{
-  String subTotal ;
-  String tax ;
-  String shipping ;
-  String couponDiscount ;
-  double calTotal ;
+class ShippingSummary extends BaseDomainModel {
+  String subTotal;
+  String tax;
+  String shipping;
+  String couponDiscount;
+  double calTotal;
   String total;
-  String? couponCode ;
-  bool? couponApplied ;
-  int totalItems ;
-  int expectedLoyaltyPoints ;
-  int bagsCount ;
-  bool minimumOrderAmountStatus ;
-  String minimumOrderAmountMsg ;
-  String serviceFees ;
-  String technologyFees ;
-  bool walletSystemActive ;
-  String walletBalance ;
+  String? couponCode;
+  bool? couponApplied;
+  int totalItems;
+  int expectedLoyaltyPoints;
+  int bagsCount;
+  bool minimumOrderAmountStatus;
+  String minimumOrderAmountMsg;
+  String serviceFees;
+  String technologyFees;
+  bool walletSystemActive;
+  String walletBalance;
   double walletBalanceValue;
   double minimumOrderAmountAmount;
   bool avilablePayWithWallet;
-  bool avilableCashOnDelivery ;
-  List<ShippingItem> items ;
-  List<OrderSummaryDiscountDomain>? discountTypes ;
+  bool avilableCashOnDelivery;
+  List<ShippingItem> items;
+  List<OrderSummaryDiscountDomain>? discountTypes;
   String? loyaltyPointsValue;
   int? loyaltyPoints;
   bool? loyaltyPointsApplied;
@@ -33,6 +33,16 @@ class ShippingSummary extends BaseDomainModel{
   String vatPercentage;
   String vatFeeAmount;
   String environmentFees;
+
+  /// in pharmacy order
+  bool? prescriptionRequired;
+  bool? insuranceEligible;
+  String? totalFeeAmount;
+
+  String? giftCardCode;
+  bool? giftCardApplied;
+  bool? giftCardValid;
+  String? giftCardValue;
 
   ShippingSummary({
     required this.subTotal,
@@ -65,29 +75,31 @@ class ShippingSummary extends BaseDomainModel{
     this.loyaltyPointsApplied,
     this.appliedGiftCard,
     this.discountTypes,
-});
+    this.prescriptionRequired,
+    this.insuranceEligible,
+    this.totalFeeAmount,
+    this.giftCardCode,
+    this.giftCardApplied,
+    this.giftCardValid,
+    this.giftCardValue,
+  });
 
-
-  double getTotalServiceAmount(){
+  double getTotalServiceAmount() {
     var service = double.parse(serviceFees);
     var techFees = double.parse(technologyFees);
-    return service+techFees;
+    return service + techFees;
   }
 
-
-  String getTotalVat(){
+  String getTotalVat() {
     var vatOnSubTotal = double.parse(tax);
     var vatOnFees = double.parse(vatFeeAmount);
-    return (vatOnSubTotal+vatOnFees).toStringAsFixed(2);
+    return (vatOnSubTotal + vatOnFees).toStringAsFixed(2);
   }
-
-
 
   // bool get showOrderDiscounts => (couponApplied == false && loyaltyPointsApplied == false) && (discountTypes??[]).isNotEmpty;
 
-  bool get showOrderDiscounts =>  (discountTypes ?? <OrderSummaryDiscountDomain>[]).isNotEmpty;
+  bool get showOrderDiscounts =>
+      (discountTypes ?? <OrderSummaryDiscountDomain>[]).isNotEmpty;
 
   // double get getFeesTotal => double.parse(environmentFees) + double.parse(shipping) + double.parse(serviceFees) + double.parse(technologyFees) + double.parse(getTotalVat());
-
-
 }

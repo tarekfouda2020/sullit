@@ -70,7 +70,8 @@ class ImplSaleRepository extends SaleDataSources {
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getBestRated(OffersParamsWidget param) async {
+  Future<Either<Failure, List<ProductModel>>> getBestRated(
+      OffersParamsWidget param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getBestRated + param.getUrl(),
       requestMethod: RequestMethod.get,
@@ -86,7 +87,8 @@ class ImplSaleRepository extends SaleDataSources {
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getNewArrival(OffersParamsWidget param) async {
+  Future<Either<Failure, List<ProductModel>>> getNewArrival(
+      OffersParamsWidget param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getNewArrival + param.getUrl(),
       requestMethod: RequestMethod.get,
@@ -102,7 +104,8 @@ class ImplSaleRepository extends SaleDataSources {
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getOnSale(OffersParamsWidget param) async {
+  Future<Either<Failure, List<ProductModel>>> getOnSale(
+      OffersParamsWidget param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getOnSale + param.getUrl(),
       requestMethod: RequestMethod.get,

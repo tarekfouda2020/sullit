@@ -1,7 +1,7 @@
 part of 'widgets_imports.dart';
 
 class BuildPharmacyCartItem extends StatelessWidget {
-  final CartItem cartItem;
+  final GeneralCartItem cartItem;
   final PharmacyCartController controller;
 
   const BuildPharmacyCartItem(
@@ -11,7 +11,8 @@ class BuildPharmacyCartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: Dimens.paddingVertical5PX,
-      padding: const EdgeInsetsDirectional.only(end: 16, top: 16, bottom: 16, start: 5),
+      padding: const EdgeInsetsDirectional.only(
+          end: 16, top: 16, bottom: 16, start: 5),
       decoration: CustomDecoration(
         myBoxShadow: const [],
         radius: Dimens.borderRadius12PX,
@@ -36,11 +37,13 @@ class BuildPharmacyCartItem extends StatelessWidget {
                     Expanded(
                       child: Text(
                         cartItem.name,
-                        style: AppTextStyle.s14_w600(color: context.colors.black)
-                            .copyWith(height: 1.5),
+                        style:
+                            AppTextStyle.s14_w600(color: context.colors.black)
+                                .copyWith(height: 1.5),
                       ),
                     ),
-                    PharmacyCartFavIconWidget(cartItem: cartItem, controller: controller),
+                    PharmacyCartFavIconWidget(
+                        cartItem: cartItem, controller: controller),
                   ],
                 ),
                 Gaps.vGap5,
@@ -62,8 +65,10 @@ class BuildPharmacyCartItem extends StatelessWidget {
                 Gaps.vGap5,
                 DirhamPrice(
                   amount: cartItem.price,
-                  currencyStyle: AppTextStyle.s16_w400(color: context.colors.primary),
-                  textStyle: AppTextStyle.s14_w600(color: context.colors.primary),
+                  currencyStyle:
+                      AppTextStyle.s16_w400(color: context.colors.primary),
+                  textStyle:
+                      AppTextStyle.s14_w600(color: context.colors.primary),
                 ),
                 Gaps.vGap6,
                 Row(
@@ -71,7 +76,8 @@ class BuildPharmacyCartItem extends StatelessWidget {
                   children: [
                     Text(
                       "${tr("soldBy")} :",
-                      style: AppTextStyle.s12_w400(color: context.colors.textColor),
+                      style: AppTextStyle.s12_w400(
+                          color: context.colors.textColor),
                     ),
                     Gaps.hGap5,
                     Text(

@@ -11,6 +11,6 @@ class GetDeviceId {
   Future<String?> get deviceId async {
     // var deviceToken = await messaging.getToken();
     // log("deviceTokenhhhhhhhhhhhhhhhhhhh: $deviceToken");
-   return await messaging.getToken();
+    return await messaging.getToken();
   }
 }

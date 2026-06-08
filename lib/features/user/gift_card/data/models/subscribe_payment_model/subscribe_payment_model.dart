@@ -8,7 +8,8 @@ part 'subscribe_payment_model.freezed.dart';
 part 'subscribe_payment_model.g.dart';
 
 @freezed
-class SubscribePaymentModel extends BaseApiModel<SubscribePaymentDomainModel> with _$SubscribePaymentModel {
+class SubscribePaymentModel extends BaseApiModel<SubscribePaymentDomainModel>
+    with _$SubscribePaymentModel {
   const SubscribePaymentModel._();
 
   @JsonSerializable(explicitToJson: true)
@@ -16,12 +17,11 @@ class SubscribePaymentModel extends BaseApiModel<SubscribePaymentDomainModel> wi
     @JsonKey(name: "transaction_url") String? transactionUrl,
   }) = _SubscribePaymentModel;
 
-  factory SubscribePaymentModel.fromJson(Map<String, dynamic> json) => _$SubscribePaymentModelFromJson(json);
+  factory SubscribePaymentModel.fromJson(Map<String, dynamic> json) =>
+      _$SubscribePaymentModelFromJson(json);
 
   @override
   SubscribePaymentDomainModel toDomainModel() {
-   return SubscribePaymentDomainModel(
-     transactionUrl: transactionUrl
-    );
+    return SubscribePaymentDomainModel(transactionUrl: transactionUrl);
   }
 }

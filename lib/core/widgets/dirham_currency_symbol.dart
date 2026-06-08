@@ -14,11 +14,10 @@ import '../theme/colors/app_colors.dart';
 /// - u+e001: Standard Dirham symbol
 /// - u+e002: Alternative Dirham symbol
 class DirhamCurrencySymbol extends StatelessWidget {
-
   final bool useAlternativeSymbol;
 
   final TextStyle? textStyle;
- final double? currencyOffset;
+  final double? currencyOffset;
   const DirhamCurrencySymbol({
     Key? key,
     this.useAlternativeSymbol = false,
@@ -36,7 +35,8 @@ class DirhamCurrencySymbol extends StatelessWidget {
   }) : this(
           key: key,
           useAlternativeSymbol: useAlternativeSymbol,
-          textStyle: AppTextStyle.s12_w400(color: color ?? AppColors.noContextInstance.primary),
+          textStyle: AppTextStyle.s12_w400(
+              color: color ?? AppColors.noContextInstance.primary),
         );
 
   /// Create a medium currency symbol
@@ -49,7 +49,8 @@ class DirhamCurrencySymbol extends StatelessWidget {
   }) : this(
           key: key,
           useAlternativeSymbol: useAlternativeSymbol,
-          textStyle: AppTextStyle.s15_w400(color: color ?? AppColors.noContextInstance.primary),
+          textStyle: AppTextStyle.s15_w400(
+              color: color ?? AppColors.noContextInstance.primary),
         );
 
   /// Create a large currency symbol
@@ -63,19 +64,18 @@ class DirhamCurrencySymbol extends StatelessWidget {
   }) : this(
           key: key,
           useAlternativeSymbol: useAlternativeSymbol,
-          textStyle: AppTextStyle.s24_w400(color: color ?? AppColors.noContextInstance.primary),
+          textStyle: AppTextStyle.s24_w400(
+              color: color ?? AppColors.noContextInstance.primary),
         );
 
   @override
   Widget build(BuildContext context) {
     return Transform.translate(
-      offset:  Offset(0, currencyOffset ?? 1),
+      offset: Offset(0, currencyOffset ?? 1),
       child: Text(
         useAlternativeSymbol ? AppTheme.dirhamIcon2 : AppTheme.dirhamIcon,
         style: (textStyle?.copyWith(
-              fontFamily: AppTheme.dirhamFontFamily,
-          height: 0
-            )) ??
+                fontFamily: AppTheme.dirhamFontFamily, height: 0)) ??
             AppTextStyle.s16_w400(color: context.colors.primary).copyWith(
               fontFamily: AppTheme.dirhamFontFamily,
               height: 1,
@@ -86,7 +86,6 @@ class DirhamCurrencySymbol extends StatelessWidget {
 }
 
 /// A widget that displays a price with the Dirham currency symbol
-
 
 /// Extension to easily add Dirham currency symbol to Text widgets
 extension DirhamTextExtension on Text {
@@ -107,7 +106,7 @@ extension DirhamTextExtension on Text {
           // color: symbolColor ?? AppColors.noContextInstance.primary,
           // fontWeight: symbolWeight ?? style?.fontWeight ?? FontWeight.w400,
           useAlternativeSymbol: useAlternativeSymbol,
-          textStyle: symbolStyle ?? style ,
+          textStyle: symbolStyle ?? style,
           currencyOffset: currencyOffset,
         ),
         Gaps.hGap2,

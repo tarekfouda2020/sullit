@@ -3,38 +3,41 @@ part of 'cart_payment_widgets_imports.dart';
 class VoucherTicketCardWidget extends StatelessWidget {
   final int index;
   final bool isLast;
-  const VoucherTicketCardWidget({super.key, required this.index, required this.isLast});
+  const VoucherTicketCardWidget(
+      {super.key, required this.index, required this.isLast});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsetsDirectional.only(start: index==0?14:0, end: isLast?24:0),
+      padding: EdgeInsetsDirectional.only(
+          start: index == 0 ? 14 : 0, end: isLast ? 24 : 0),
       child: CustomPaint(
         painter: _TicketPainter(context: context),
         child: Container(
           height: 60,
-          padding:  const EdgeInsetsDirectional.fromSTEB(20, 6, 60, 3),
+          padding: const EdgeInsetsDirectional.fromSTEB(20, 6, 60, 3),
           decoration: BoxDecoration(
-            borderRadius:  Dimens.borderRadius30PX,
-            color: Colors.transparent
-            // color: Colors.green
-          ),
+              borderRadius: Dimens.borderRadius30PX, color: Colors.transparent
+              // color: Colors.green
+              ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-               DirhamPrice(amount: "20",
-              currencyStyle: AppTextStyle.s18_w400(color: context.colors.black),
-                 textStyle: AppTextStyle.s16_w600(color: context.colors.black),
+              DirhamPrice(
+                amount: "20",
+                currencyStyle:
+                    AppTextStyle.s18_w400(color: context.colors.black),
+                textStyle: AppTextStyle.s16_w600(color: context.colors.black),
               ),
 
-             Gaps.hGap11,
+              Gaps.hGap11,
               const VerticalDottedLineWidget(
                 height: 55,
-               dotHigh: 10,
+                dotHigh: 10,
               ),
               Gaps.hGap11,
               // Right side (text)
-               Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Gaps.vGap8,

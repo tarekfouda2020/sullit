@@ -16,7 +16,7 @@ class BuildAddTicketReplyImage extends StatelessWidget {
         children: [
           Padding(
             padding: Dimens.paddingVertical8PX,
-            child:  Text(
+            child: Text(
               tr('images'),
               style: const AppTextStyle.s13_w400(color: Colors.black),
             ),

@@ -40,7 +40,8 @@ class SupportedInsuranceWidget extends StatelessWidget {
               width: 100.w,
               padding: Dimens.paddingAll8PX,
               decoration: BoxDecoration(
-                border: Border.all(color: context.colors.disableGray.withOpacity(0.5)),
+                border: Border.all(
+                    color: context.colors.disableGray.withOpacity(0.5)),
                 borderRadius: Dimens.borderRadius8PX,
               ),
               child: CachedImage(

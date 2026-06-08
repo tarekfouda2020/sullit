@@ -28,7 +28,7 @@ class _ActiveAccountState extends State<ActiveAccount> {
     return GestureDetector(
       onTap: FocusScope.of(context).unfocus,
       child: Scaffold(
-        appBar:  const DefaultAppBar(title: '',bgColor: Colors.transparent),
+        appBar: const DefaultAppBar(title: '', bgColor: Colors.transparent),
         body: SingleChildScrollView(
           padding: Dimens.paddingH24V40,
           child: Column(

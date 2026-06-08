@@ -1,4 +1,5 @@
 part of 'routes_imports.dart';
+
 const classifiedProductsRoutes = [
   AdaptiveRoute(page: ClassifiedProducts),
   AdaptiveRoute(page: CustomersPackages),

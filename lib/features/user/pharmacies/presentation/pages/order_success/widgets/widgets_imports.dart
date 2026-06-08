@@ -1,0 +1,26 @@
+library widgets;
+
+import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/core/widgets/CachedImage.dart';
+import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
+import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_confirm_buying/widgets/cart_confirm_buying_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_payment/widgets/cart_payment_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/order_success/order_success_imports.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/order_discount_domain.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
+import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/widgets/order_details_widgets_imports.dart';
+import 'package:flutter_tdd/res.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+part 'order_success_body.dart';
+part 'pharmacy_order_done_widget.dart';
+part 'order_item_card.dart';
+part 'pharmacy_order_invoice_widget.dart';

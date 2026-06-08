@@ -41,7 +41,7 @@ class BuildNewAddressItem extends StatelessWidget {
                     title: tr('address'),
                     desc: address.address!,
                   ),
-                   BuildAddressTitleItem(
+                  BuildAddressTitleItem(
                     title: 'Type',
                     desc: address.addressType!,
                   ),
@@ -53,20 +53,20 @@ class BuildNewAddressItem extends StatelessWidget {
                     title: tr("state"),
                     desc: address.stateName ?? "",
                   ),
-                  if(address.country!=null)
+                  if (address.country != null)
+                    BuildAddressTitleItem(
+                      title: tr('country'),
+                      desc: address.country?.name ?? "",
+                    ),
                   BuildAddressTitleItem(
-                    title: tr('country'),
-                    desc: address.country?.name ?? "",
-                  ),
-                   BuildAddressTitleItem(
                     title: tr("streetName"),
                     desc: address.streetName!,
                   ),
-                   BuildAddressTitleItem(
+                  BuildAddressTitleItem(
                     title: tr("buildingName"),
                     desc: address.buildingName!,
                   ),
-                   BuildAddressTitleItem(
+                  BuildAddressTitleItem(
                     title: tr("flatNo"),
                     desc: address.flatNumber!,
                   ),
@@ -80,7 +80,8 @@ class BuildNewAddressItem extends StatelessWidget {
                       Expanded(
                         child: BuildAddressTitleItem(
                           title: tr('phone'),
-                          desc: getIt<Utilities>().handleFullPhone(context, address.fullPhone ?? ""),
+                          desc: getIt<Utilities>().handleFullPhone(
+                              context, address.fullPhone ?? ""),
                         ),
                       ),
                       // Visibility(
@@ -113,8 +114,7 @@ class BuildNewAddressItem extends StatelessWidget {
               children: [
                 GestureDetector(
                     onTap: () => controller.deleteAddress(address),
-                    child: SvgPicture.asset(Res.trashIcon)
-                ),
+                    child: SvgPicture.asset(Res.trashIcon)),
               ],
             )
           ],

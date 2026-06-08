@@ -23,35 +23,27 @@ class ProductCounterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: context.colors.customBackground,
-      borderRadius: Dimens.borderRadius40PX
-      ),
-      margin: const EdgeInsets.only(left: 8,right: 8),
+      decoration: BoxDecoration(
+          color: context.colors.customBackground,
+          borderRadius: Dimens.borderRadius40PX),
+      margin: const EdgeInsets.only(left: 8, right: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildButton(
-              context,
-              onPressDecrease,
-              product.addedQtyToCart! == 1
-                  ? Res.trashIcon
-                  : Res.minusIcon
-          ),
+          _buildButton(context, onPressDecrease,
+              product.addedQtyToCart! == 1 ? Res.trashIcon : Res.minusIcon),
           Text(
             "${product.addedQtyToCart}",
             style: AppTextStyle.s14_w500(color: context.colors.black),
           ),
-          _buildButton(
-              context,
-              onPressAdd,
-              Res.plusIcon
-          ),
+          _buildButton(context, onPressAdd, Res.plusIcon),
         ],
       ),
     );
   }
 
-  GestureDetector _buildButton(BuildContext context, void Function() onTap, String icon) {
+  GestureDetector _buildButton(
+      BuildContext context, void Function() onTap, String icon) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -59,12 +51,11 @@ class ProductCounterWidget extends StatelessWidget {
         width: Dimens.dp24,
         height: Dimens.dp24,
         padding: const EdgeInsets.all(6),
-        decoration: BoxDecoration(color: context.colors.primary,
-        shape: BoxShape.circle
-        ),
-        child: SvgPicture.asset(
-            icon,
-            colorFilter: ColorFilter.mode(context.colors.white, BlendMode.srcIn)),
+        decoration: BoxDecoration(
+            color: context.colors.primary, shape: BoxShape.circle),
+        child: SvgPicture.asset(icon,
+            colorFilter:
+                ColorFilter.mode(context.colors.white, BlendMode.srcIn)),
       ),
     );
   }

@@ -19,9 +19,10 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
     @JsonKey(name: 'user_id') required int userId,
     @JsonKey(name: 'type') required String shopType,
     required String name,
-     List<String>? sliders,
-     List<ShopCategoryModel>? categories,
-    @JsonKey(name: 'insurance_companies') List<InsuranceCompanyModel>? insuranceCompanies,
+    List<String>? sliders,
+    List<ShopCategoryModel>? categories,
+    @JsonKey(name: 'insurance_companies')
+    List<InsuranceCompanyModel>? insuranceCompanies,
     String? title,
     String? description,
     required String logo,
@@ -96,7 +97,6 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
   //   );
   // }
 
-
   @override
   Shop toDomainModel() {
     return Shop(
@@ -122,17 +122,16 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
       categories: categories?.map((e) => e.toDomainModel()).toList(),
       sliders: sliders,
       shopType: shopType,
-      insuranceCompanies: insuranceCompanies?.map((e) => e.toDomainModel()).toList(),
+      insuranceCompanies:
+          insuranceCompanies?.map((e) => e.toDomainModel()).toList(),
     );
   }
 }
 
-
-
-
 @freezed
 @immutable
-class ShopCategoryModel extends BaseApiModel<ShopCategory> with _$ShopCategoryModel {
+class ShopCategoryModel extends BaseApiModel<ShopCategory>
+    with _$ShopCategoryModel {
   const ShopCategoryModel._();
 
   @JsonSerializable(explicitToJson: true)
@@ -141,10 +140,9 @@ class ShopCategoryModel extends BaseApiModel<ShopCategory> with _$ShopCategoryMo
     required String name,
     required String icon,
     required String slug,
-     String? description,
+    String? description,
     @JsonKey(name: "meta_title") String? metaTitle,
     @JsonKey(name: "meta_description") String? metaDescription,
-
   }) = _ShopCategoryModel;
 
   factory ShopCategoryModel.fromJson(Map<String, dynamic> json) =>
@@ -158,7 +156,7 @@ class ShopCategoryModel extends BaseApiModel<ShopCategory> with _$ShopCategoryMo
       icon: icon,
       slug: slug,
       description: description ?? "",
-      metaDescription:  metaDescription ?? "",
+      metaDescription: metaDescription ?? "",
       metaTitle: metaTitle ?? "",
     );
   }

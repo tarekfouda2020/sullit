@@ -20,7 +20,8 @@ class EditAddressController {
   final GenericBloc<Country?> countryCubit = GenericBloc(null);
   final GenericBloc<StateDomainModel?> stateCubit = GenericBloc(null);
   final GenericBloc<City?> cityCubit = GenericBloc(null);
-  final GenericBloc<package.Country?> countryCodeCubit = GenericBloc(CountryPickerHelper.defaultCountrySync);
+  final GenericBloc<package.Country?> countryCodeCubit =
+      GenericBloc(CountryPickerHelper.defaultCountrySync);
 
   final TextEditingController stateNameCtr = TextEditingController();
   final TextEditingController cityNameCtr = TextEditingController();
@@ -37,10 +38,8 @@ class EditAddressController {
     // cityNameCtr.text = address.city?.name ?? "";
     stateNameCtr.text = address.stateName ?? "";
     cityNameCtr.text = address.cityName ?? "";
-    addressTypeModel =  AddressTypeModel(
-        key: address.addressType ?? "",
-        label: address.addressTypeLabel ?? ""
-    );
+    addressTypeModel = AddressTypeModel(
+        key: address.addressType ?? "", label: address.addressTypeLabel ?? "");
   }
 
   Country? countryModel;
@@ -48,19 +47,16 @@ class EditAddressController {
   City? cityModel;
   AddressTypeModel? addressTypeModel;
 
-
   Future<List<AddressTypeModel>> getAddressTypes({bool refresh = true}) async {
     var data = await GetAddressTypes().call(refresh);
     return data;
   }
-
 
   void onSelectAddressType(AddressTypeModel? model) {
     if (model != null) {
       addressTypeModel = model;
     }
   }
-
 
   void onChangeCountry(Country? model) {
     countryCubit.onUpdateToInitState(null);
@@ -115,7 +111,8 @@ class EditAddressController {
     }
   }
 
-  Future<void> editAddress(BuildContext context, AddressDomainModel address) async {
+  Future<void> editAddress(
+      BuildContext context, AddressDomainModel address) async {
     if (formKey.currentState!.validate()) {
       var params = _addressParams(address);
       var result = await SetEditAddress().call(params);
@@ -129,10 +126,10 @@ class EditAddressController {
     }
   }
 
-
-  void routeToDetectLocation(BuildContext context)async{
-    var result = await AutoRouter.of(context).push( LocationAddressRoute(fromEdit: true));
-    if(result != null && result is LocationEntity){
+  void routeToDetectLocation(BuildContext context) async {
+    var result =
+        await AutoRouter.of(context).push(LocationAddressRoute(fromEdit: true));
+    if (result != null && result is LocationEntity) {
       locationController.text = result.address;
       streetController.text = result.fullAddress?.streetAddress ?? "";
       stateNameCtr.text = result.fullAddress?.region ?? "";
@@ -140,30 +137,29 @@ class EditAddressController {
     }
   }
 
-
-  void updateLocationFiled(BuildContext context)async{
+  void updateLocationFiled(BuildContext context) async {
     var model = context.read<LocationCubit>().state.model;
     LatLng loc = LatLng(model!.lat, model.lng);
-    String address = await getIt<LocationService>().getAddress(loc,setCountryName: false);
-    locationController.text =  address;
+    String address =
+        await getIt<LocationService>().getAddress(loc, setCountryName: false);
+    locationController.text = address;
   }
 
   EditAddressParams _addressParams(AddressDomainModel address) {
     return EditAddressParams(
-      id: address.id ?? 0,
-      address: addressController.text,
-      // postalCode: postalCodeController.text,
-      // countryId: countryModel?.id ?? address.country!.id,
-      stateName: stateNameCtr.text,
-      cityName: cityNameCtr.text,
-      phone: phoneController.text,
-      countryCode: countryCodeCubit.state.data?.callingCode ?? "",
-      lat: locationCubit.state.model!.lat,
-      long: locationCubit.state.model!.lng,
-      buildingName: buildingController.text,
-      flatNumber:flatController.text ,
-      streetName:streetController.text,
-      addressType: addressTypeModel!.key
-    );
+        id: address.id ?? 0,
+        address: addressController.text,
+        // postalCode: postalCodeController.text,
+        // countryId: countryModel?.id ?? address.country!.id,
+        stateName: stateNameCtr.text,
+        cityName: cityNameCtr.text,
+        phone: phoneController.text,
+        countryCode: countryCodeCubit.state.data?.callingCode ?? "",
+        lat: locationCubit.state.model!.lat,
+        long: locationCubit.state.model!.lng,
+        buildingName: buildingController.text,
+        flatNumber: flatController.text,
+        streetName: streetController.text,
+        addressType: addressTypeModel!.key);
   }
 }

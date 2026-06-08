@@ -7,23 +7,21 @@ import '../routes/router_imports.gr.dart';
 
 @lazySingleton
 class RouterHelper {
-
- final AppRouter appRoute = AppRouter(getIt<GlobalContext>().navigationKey);
+  final AppRouter appRoute = AppRouter(getIt<GlobalContext>().navigationKey);
 
   bool trackOrderOpened(int orderId) {
-  try {
-    final RouteData topRoute = appRoute.current;
-    if (topRoute.name == TrackOrderRoute.name) {
-      final TrackOrderRouteArgs args = topRoute.argsAs<TrackOrderRouteArgs>();
-      final int currentId = args.orderId;
-      if (currentId == orderId) {
-        return true;
+    try {
+      final RouteData topRoute = appRoute.current;
+      if (topRoute.name == TrackOrderRoute.name) {
+        final TrackOrderRouteArgs args = topRoute.argsAs<TrackOrderRouteArgs>();
+        final int currentId = args.orderId;
+        if (currentId == orderId) {
+          return true;
+        }
       }
+      return false;
+    } catch (e) {
+      return false;
     }
-    return false;
-  } catch (e) {
-    return false;
   }
-}
-
 }

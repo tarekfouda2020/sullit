@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,4 +49,4 @@ part 'seller_page_products_section_widget.dart';
 part 'seller_page_categories_widget.dart';
 part 'seller_details_app_bar.dart';
 part 'seller_products.dart';
-part'seller_new_products_loading_widget.dart';
+part 'seller_new_products_loading_widget.dart';

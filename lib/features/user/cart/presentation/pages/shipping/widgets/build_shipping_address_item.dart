@@ -15,9 +15,13 @@ class BuildShippingAddressItem extends StatelessWidget {
       onTap: () => controller.onSelectAddress(context, address),
       child: Container(
         margin: Dimens.marginBottom12,
-        padding: EdgeInsetsDirectional.only(top: 14.r, start: 20.r, end: 10.r, bottom: 14.r),
+        padding: EdgeInsetsDirectional.only(
+            top: 14.r, start: 20.r, end: 10.r, bottom: 14.r),
         decoration: CustomDecoration(
-          boxBorder: Border.all(color: address.selected! ? context.colors.primary : context.colors.borderColor),
+          boxBorder: Border.all(
+              color: address.selected!
+                  ? context.colors.primary
+                  : context.colors.borderColor),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,16 +48,16 @@ class BuildShippingAddressItem extends StatelessWidget {
                     title: tr("state"),
                     desc: address.stateName ?? "",
                   ),
-                  if(address.country!=null)
+                  if (address.country != null)
+                    BuildAddressTitleItem(
+                      title: tr('country'),
+                      desc: address.country?.name ?? "",
+                    ),
                   BuildAddressTitleItem(
-                    title: tr('country'),
-                    desc: address.country?.name ?? "",
-                  ),
-                   BuildAddressTitleItem(
                     title: tr("streetName"),
                     desc: address.streetName ?? "",
                   ),
-                   BuildAddressTitleItem(
+                  BuildAddressTitleItem(
                     title: tr("buildingName"),
                     desc: address.buildingName ?? "",
                   ),
@@ -71,7 +75,8 @@ class BuildShippingAddressItem extends StatelessWidget {
                       Expanded(
                         child: BuildAddressTitleItem(
                           title: tr('phone'),
-                          desc: getIt<Utilities>().handleFullPhone(context, address.fullPhone ?? ""),
+                          desc: getIt<Utilities>().handleFullPhone(
+                              context, address.fullPhone ?? ""),
                         ),
                       ),
                       // Visibility(

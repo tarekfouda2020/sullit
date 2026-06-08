@@ -8,19 +8,19 @@ part 'section_products_model.g.dart';
 
 @freezed
 @immutable
-class SectionProductsModel extends BaseApiModel<SectionsProducts> with _$SectionProductsModel{
+class SectionProductsModel extends BaseApiModel<SectionsProducts>
+    with _$SectionProductsModel {
   const SectionProductsModel._();
   @JsonSerializable(explicitToJson: true)
-  const factory SectionProductsModel({
-    required List<CusProductModel> products
-  }) = _SectionProductsModel;
-
+  const factory SectionProductsModel(
+      {required List<CusProductModel> products}) = _SectionProductsModel;
 
   factory SectionProductsModel.fromJson(Map<String, dynamic> json) =>
       _$SectionProductsModelFromJson(json);
 
   @override
   SectionsProducts toDomainModel() {
-    return SectionsProducts(products: products.map((e) => e.toDomainModel()).toList());
+    return SectionsProducts(
+        products: products.map((e) => e.toDomainModel()).toList());
   }
 }

@@ -11,10 +11,10 @@ class GiftCardAnnotationWidget extends StatelessWidget {
         SvgPicture.asset(Res.redWarningIcon),
         Gaps.hGap4,
         Flexible(
-          child: Text(tr("giftCardAnnotation"),
-          style: AppTextStyle.s12_w300(color: context.colors.bloodyRed).copyWith(
-            height: 1.3
-          ),
+          child: Text(
+            tr("giftCardAnnotation"),
+            style: AppTextStyle.s12_w300(color: context.colors.bloodyRed)
+                .copyWith(height: 1.3),
           ),
         )
       ],

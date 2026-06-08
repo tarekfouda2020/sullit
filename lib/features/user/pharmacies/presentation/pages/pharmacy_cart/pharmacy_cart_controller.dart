@@ -3,27 +3,24 @@
 part of 'pharmacy_cart_imports.dart';
 
 class PharmacyCartController {
+  final GenericBloc<CartDomainModel> cartItemsBloc =
+      GenericBloc<CartDomainModel>(CartDomainModel());
 
+  final GenericBloc<bool> haveInsuranceCubit = GenericBloc<bool>(false);
 
-  final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc<CartDomainModel>(CartDomainModel());
-
-  final GenericBloc<bool> haveInsurance = GenericBloc<bool>(false);
-
-
-
-
-  Future<void> getData()async{
+  Future<void> getData() async {
     getCartItems(refresh: false);
     getCartItems();
   }
 
-
   Future<void> getCartItems({bool refresh = true}) async {
     String? token = await getIt<GetDeviceId>().deviceId;
     var params = _cartParams(refresh, token!);
-  await GetCart().call(params).then((value) {
-      cartItemsBloc.onUpdateData(value);
-    },);
+    await GetCart().call(params).then(
+      (value) {
+        cartItemsBloc.onUpdateData(value);
+      },
+    );
   }
 
   CartParams _cartParams(bool refresh, String token) {
@@ -35,7 +32,7 @@ class PharmacyCartController {
   }
 
   Future<bool> onIncreaseCart(
-      BuildContext context, CartItem cartItem, int newQty) async {
+      BuildContext context, GeneralCartItem cartItem, int newQty) async {
     final success =
         await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
     if (success != null) {
@@ -50,7 +47,7 @@ class PharmacyCartController {
     }
   }
 
-  void whileOnIncreaseCount(BuildContext context, CartItem cartItem,
+  void whileOnIncreaseCount(BuildContext context, GeneralCartItem cartItem,
       String value, GenericBloc<int> qntCubit) {
     if (qntCubit.state.data < cartItem.stockQty) {
       var newQty = qntCubit.state.data + 1;
@@ -72,7 +69,7 @@ class PharmacyCartController {
   }
 
   Future<bool> onDecreaseCart(
-      BuildContext context, CartItem cartItem, int newQty) async {
+      BuildContext context, GeneralCartItem cartItem, int newQty) async {
     final success =
         await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
     if (success != null) {
@@ -88,7 +85,7 @@ class PharmacyCartController {
     }
   }
 
-  void whileOnDecreaseCount(BuildContext context, CartItem cartItem,
+  void whileOnDecreaseCount(BuildContext context, GeneralCartItem cartItem,
       String value, GenericBloc<int> qntCubit) {
     var qnt = qntCubit.state.data;
     if (qnt > 1) {
@@ -110,18 +107,19 @@ class PharmacyCartController {
   }
 
   Future<void> deleteItemFromCart(
-      BuildContext context, CartItem cartItem) async {
+      BuildContext context, GeneralCartItem cartItem) async {
     getIt<LoadingHelper>().showLoadingDialog();
     var data = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
     getIt<LoadingHelper>().dismissDialog();
     if (data) {
-      if (cartItemsBloc.state.data.items != null) {
-        cartItemsBloc.state.data.items!.removeWhere((item) => item.id == cartItem.id);
+      if (cartItemsBloc.state.data.pharmacyItems != null) {
+        cartItemsBloc.state.data.pharmacyItems!
+            .removeWhere((item) => item.id == cartItem.id);
       }
       updateCartCount(context);
       await getCartItems(refresh: true);
-      if (cartItemsBloc.state.data.items == null ||
-          (cartItemsBloc.state.data.items ?? []).isEmpty) {
+      if (cartItemsBloc.state.data.pharmacyItems == null ||
+          (cartItemsBloc.state.data.pharmacyItems ?? []).isEmpty) {
         getIt<CartHelper>().updateCartCount(context, 0);
         CustomToast.showSimpleToast(
             msg: "Your cart has been cleared successfully.",
@@ -137,7 +135,7 @@ class PharmacyCartController {
   }
 
   void updateCartCount(BuildContext context) {
-    var allItemsCount = cartItemsBloc.state.data.items!.fold<int>(
+    var allItemsCount = cartItemsBloc.state.data.pharmacyItems!.fold<int>(
       0,
       (previousValue, element) => previousValue + element.quantity,
     );
@@ -161,42 +159,51 @@ class PharmacyCartController {
 
   Future<void> clearCart(BuildContext context) async {
     final token = await getIt<GetDeviceId>().deviceId;
-    final params = ClearCartParams(
-        macAddress: token ?? "",
-      type: CartTypeEnum.pharmacy
-    );
+    final params =
+        ClearCartParams(macAddress: token ?? "", type: CartTypeEnum.pharmacy);
     await ClearCart().call(params).then((value) async {
       CustomToast.showSimpleToast(
           msg: "Your cart has been cleared successfully.",
           type: ToastType.success);
-      cartItemsBloc.state.data.items?.clear();
+      cartItemsBloc.state.data.pharmacyItems?.clear();
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
       Navigator.pop(context);
       onBack(context);
     });
   }
 
-
-  void onBack(BuildContext context){
+  void onBack(BuildContext context) {
     AutoRouter.of(context).pop(cartItemsBloc.state.data);
   }
 
   void navigateToShipping(BuildContext context) {
+    final cartData = cartItemsBloc.state.data;
+    if ((cartData.pharmacyItems ?? []).isEmpty) {
+      return;
+    }
     bool auth = context.read<DeviceCubit>().state.model.auth;
     if (auth) {
-      final cartData = cartItemsBloc.state.data;
       if (cartData.minimumStatus == false) {
         CustomToast.showSimpleToast(msg: cartData.minimumAmountMsg!);
         return;
       }
-      if ((cartData.items ?? []).isNotEmpty) {
-        AutoRouter.of(context).push(const PharmacyAddressRoute());
-      } else {
-        CustomToast.showSimpleToast(msg: tr('cartIsEmpty'));
-        return;
-      }
+      AutoRouter.of(context).push(PharmacyAddressRoute(
+        // haveInsurance: haveInsuranceCubit.state.data || cartItemRequiredInsurance,
+        haveInsurance: true,
+        havePrescription: true,
+      ));
     } else {
       CustomToast.showAuthDialog(context);
     }
   }
+
+  bool get havePrescription =>
+      cartItemsBloc.state.data.pharmacyItems
+          ?.any((element) => element.prescriptionRequired == true) ==
+      true;
+
+  bool get cartItemRequiredInsurance =>
+      cartItemsBloc.state.data.pharmacyItems
+          ?.any((element) => element.insuranceEligible == true) ==
+      true;
 }

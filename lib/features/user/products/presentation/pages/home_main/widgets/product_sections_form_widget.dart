@@ -7,7 +7,8 @@ class ProductSectionsFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<List<ProductSections>>, GenericState<List<ProductSections>>>(
+    return BlocBuilder<GenericBloc<List<ProductSections>>,
+        GenericState<List<ProductSections>>>(
       bloc: controller.sectionsCubit,
       builder: (context, state) {
         return Column(
@@ -32,8 +33,11 @@ class ProductSectionsFormWidget extends StatelessWidget {
                           return Padding(
                             padding: Dimens.paddingHorizontal5PX,
                             child: BuildProductItem(
-                              productModel: state.data[index].products[position],
-                              onFavRefresh: () => controller.onChangeFav(state.data[index].products[position], context),
+                              productModel:
+                                  state.data[index].products[position],
+                              onFavRefresh: () => controller.onChangeFav(
+                                  state.data[index].products[position],
+                                  context),
                               onRefresh: () => controller.getProductSections(),
                             ),
                           );

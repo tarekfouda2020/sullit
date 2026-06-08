@@ -7,15 +7,14 @@ class PayMembershipButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultButton(
-      onTap: ()=> controller.showPayMethodsSheet(context),
-      title: tr("continueToPayment"),
-      height: 50,
-      fontSize: 18,
-      fontWeight: FontWeight.w700,
-      color: context.colors.primary,
-      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-      textColor: context.colors.white,
-      borderRadius: Dimens.borderRadius30PX
-    );
+        onTap: () => controller.showPayMethodsSheet(context),
+        title: tr("continueToPayment"),
+        height: 50,
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+        color: context.colors.primary,
+        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+        textColor: context.colors.white,
+        borderRadius: Dimens.borderRadius30PX);
   }
 }

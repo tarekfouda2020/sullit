@@ -20,4 +20,4 @@ part 'build_basic_fields.dart';
 part 'build_resell_check_box.dart';
 part 'build_seller_shop_fields.dart';
 part 'build_shop_setting_button.dart';
-part'build_social_media_links.dart';
+part 'build_social_media_links.dart';

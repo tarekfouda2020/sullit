@@ -37,7 +37,8 @@ class FileHelper {
   }
 
   Future<File?> downloadFile({required String url}) async {
-    String localFilePath = "${await getDownloadPath()}/${DateTime.now().toIso8601String()}.pdf";
+    String localFilePath =
+        "${await getDownloadPath()}/${DateTime.now().toIso8601String()}.pdf";
     var params = DownloadRequestModel(
       url: url,
       localPath: localFilePath,
@@ -52,15 +53,15 @@ class FileHelper {
     return null;
   }
 
-
-  Future<List<File>?> pickImagesFiles(BuildContext context, {required bool allowMulti}) async {
+  Future<List<File>?> pickImagesFiles(BuildContext context,
+      {required bool allowMulti}) async {
     List<File>? files;
     await showCupertinoModalPopup(
         context: context,
         useRootNavigator: false,
         builder: (context) {
           return CupertinoTheme(
-            data:  CupertinoThemeData(
+            data: CupertinoThemeData(
               brightness: Brightness.light,
               // primaryColor: Colors.teal,
               textTheme: CupertinoTextThemeData(
@@ -87,7 +88,8 @@ class FileHelper {
                 ),
                 CupertinoActionSheetAction(
                   onPressed: () async {
-                    final images = await _pickImageFiles(context, allowMultiple: allowMulti);
+                    final images = await _pickImageFiles(context,
+                        allowMultiple: allowMulti);
                     if (images != null) {
                       files = images;
                     }
@@ -125,19 +127,18 @@ class FileHelper {
       return null;
     } on PlatformException catch (e) {
       if (e.code == "camera_access_denied") {
-        CustomToast.showSnakeBar(e.message,type: ToastType.error);
+        CustomToast.showSnakeBar(e.message, type: ToastType.error);
       }
       return null;
     }
   }
 
-
   Future<List<File>?> _pickImageFiles(
-      BuildContext context, {
-        bool allowMultiple = false,
-      }) async {
-    return getIt<Utilities>().getImagesFiles(context,);
-
-
-}
+    BuildContext context, {
+    bool allowMultiple = false,
+  }) async {
+    return getIt<Utilities>().getImagesFiles(
+      context,
+    );
+  }
 }

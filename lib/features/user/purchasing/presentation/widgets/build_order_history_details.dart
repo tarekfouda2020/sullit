@@ -1,4 +1,5 @@
 part of 'purchasing_widgets_imports.dart';
+
 class BuildOrderHistoryDetails extends StatelessWidget {
   final Orders order;
 

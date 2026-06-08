@@ -1,4 +1,5 @@
 part of 'confirmation_w_imports.dart';
+
 class BuildThanksText extends StatelessWidget {
   const BuildThanksText({Key? key}) : super(key: key);
 
@@ -6,7 +7,7 @@ class BuildThanksText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children:  [
+      children: [
         Text(
           tr('thanksForYourOrder'),
           style: const AppTextStyle.s16_w500(

@@ -70,7 +70,8 @@ class SellerProductItemWidget extends StatelessWidget {
                     child: PositionedDirectional(
                       top: 20.r,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 7, vertical: 4),
                         decoration: BoxDecoration(
                           color: context.colors.primary,
                         ),
@@ -99,7 +100,9 @@ class SellerProductItemWidget extends StatelessWidget {
                     child: Column(
                       children: [
                         BuildIconItem(
-                          icon: productModel.isWishlist ? Res.favIcon : Res.emptyFavIcon,
+                          icon: productModel.isWishlist
+                              ? Res.favIcon
+                              : Res.emptyFavIcon,
                           changeBgColor: false,
                           onTap: () {
                             // Handle favorite toggle
@@ -194,7 +197,8 @@ class SellerProductItemWidget extends StatelessWidget {
                             Res.shopCart,
                             width: 14,
                             height: 14,
-                            colorFilter: ColorFilter.mode(context.colors.black, BlendMode.srcIn),
+                            colorFilter: ColorFilter.mode(
+                                context.colors.black, BlendMode.srcIn),
                           ),
                         ),
                       ),

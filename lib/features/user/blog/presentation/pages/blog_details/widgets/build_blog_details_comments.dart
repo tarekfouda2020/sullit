@@ -7,7 +7,7 @@ class BuildBlogDetailsComments extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       children: [
         Text(
           "0 comments",
@@ -25,8 +25,7 @@ class BuildBlogDetailsComments extends StatelessWidget {
               height: 30,
               child: Text(
                 "Newest",
-                style: AppTextStyle.s9_w400(
-                    color: context.colors.black),
+                style: AppTextStyle.s9_w400(color: context.colors.black),
               ),
             ),
             const PopupMenuItem(

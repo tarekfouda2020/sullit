@@ -7,7 +7,8 @@ class BrandsFromWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<List<BrandDomainModel>>, GenericState<List<BrandDomainModel>>>(
+    return BlocBuilder<GenericBloc<List<BrandDomainModel>>,
+        GenericState<List<BrandDomainModel>>>(
       bloc: controller.brandsCubit,
       builder: (context, state) {
         int length = state.data.take(4).length;
@@ -22,7 +23,8 @@ class BrandsFromWidget extends StatelessWidget {
                   Gaps.vGap16,
                   BuildHeaderTitle(
                     title: tr('brands'),
-                    onTap: () => AutoRouter.of(context).push(const BrandsRoute()),
+                    onTap: () =>
+                        AutoRouter.of(context).push(const BrandsRoute()),
                   ),
                   Gaps.vGap8,
                   Flexible(
@@ -32,7 +34,8 @@ class BrandsFromWidget extends StatelessWidget {
                       itemCount: length,
                       itemBuilder: (context, index) {
                         return BuildBrandItem(
-                          margin: EdgeInsetsDirectional.only(end: index == length - 1 ? 0 : 8),
+                          margin: EdgeInsetsDirectional.only(
+                              end: index == length - 1 ? 0 : 8),
                           height: 84,
                           width: 84,
                           brand: state.data[index],

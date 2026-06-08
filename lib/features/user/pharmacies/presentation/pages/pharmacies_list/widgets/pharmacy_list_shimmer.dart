@@ -34,7 +34,10 @@ class PharmacyItemShimmer extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(8)),
             ),
           ),
-           Divider(color: context.colors.borderColor, thickness: 0.8,),
+          Divider(
+            color: context.colors.borderColor,
+            thickness: 0.8,
+          ),
           const Padding(
             padding: EdgeInsetsDirectional.only(start: 28),
             child: Column(

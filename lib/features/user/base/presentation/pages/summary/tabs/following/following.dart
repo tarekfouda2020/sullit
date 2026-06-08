@@ -20,7 +20,8 @@ class _FollowingState extends State<Following> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      body: BlocBuilder<GenericBloc<List<MerchantShopModel>>, GenericState<List<MerchantShopModel>>>(
+      body: BlocBuilder<GenericBloc<List<MerchantShopModel>>,
+          GenericState<List<MerchantShopModel>>>(
         bloc: controller.followingCubit,
         builder: (context, state) {
           if (state is GenericUpdateState) {

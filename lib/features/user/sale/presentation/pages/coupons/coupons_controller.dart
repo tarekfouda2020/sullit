@@ -22,7 +22,8 @@ class CouponsController {
 
     return [
       if (!isShareHolder && show(saleData.vipOffers)) const ProOffers(),
-      if (isShareHolder && show(saleData.shareholderOffers))const ShareholderOffers(),
+      if (isShareHolder && show(saleData.shareholderOffers))
+        const ShareholderOffers(),
       if (show(saleData.newArrival)) const NewArrival(),
       if (show(saleData.onSale)) OnSale(homeController: homeController),
       if (show(saleData.bestRated)) const BestRated(),

@@ -13,17 +13,19 @@ import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_she
 class ReviewProductSheetWidget extends StatefulWidget {
   final void Function(double) onRateProduct;
   final double? initRate;
-  const ReviewProductSheetWidget({super.key, required this.onRateProduct, this.initRate,});
+  const ReviewProductSheetWidget({
+    super.key,
+    required this.onRateProduct,
+    this.initRate,
+  });
 
   @override
-  State<ReviewProductSheetWidget> createState() => _ReviewProductSheetWidgetState();
+  State<ReviewProductSheetWidget> createState() =>
+      _ReviewProductSheetWidgetState();
 }
 
 class _ReviewProductSheetWidgetState extends State<ReviewProductSheetWidget> {
-
-
   final GenericBloc<double> ratCubit = GenericBloc<double>(1.0);
-
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class _ReviewProductSheetWidgetState extends State<ReviewProductSheetWidget> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-             BottomSheetHeaderWidget(title: tr("review")),
+            BottomSheetHeaderWidget(title: tr("review")),
             Gaps.vGap(32),
             BlocBuilder<GenericBloc<double>, GenericState<double>>(
               bloc: ratCubit,
@@ -52,8 +54,7 @@ class _ReviewProductSheetWidgetState extends State<ReviewProductSheetWidget> {
                   itemSize: 40.sp,
                   unratedColor: context.colors.disableGray,
                   itemPadding: const EdgeInsets.only(bottom: 5).r,
-                  itemBuilder: (context, _) =>
-                  const Icon(
+                  itemBuilder: (context, _) => const Icon(
                     Icons.star,
                     color: Colors.amber,
                   ),

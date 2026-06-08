@@ -9,7 +9,6 @@ class ApiNames {
 
   static const String iqUrl = "https://us1.locationiq.com/v1/";
 
-
   // auth routes
   static const String login = "login";
   static const String savePublicKey = "users/";
@@ -38,8 +37,8 @@ class ApiNames {
 //home urls
   static const String getFollowing = "shops/followings";
   static const String shopsList = "shops";
-  static  String shopCategories(int id) => "shops/$id/categories";
-  static  String shopDetails(int id) => "shops/$id";
+  static String shopCategories(int id) => "shops/$id/categories";
+  static String shopDetails(int id) => "shops/$id";
 
   //products urls
   static const String getHome = "home";
@@ -256,8 +255,13 @@ class ApiNames {
 
   /// location
 
-  static  const String locationAutoComplete = "autocomplete";
+  static const String locationAutoComplete = "autocomplete";
 
-  static  const String locationAddress = "reverse";
+  static const String locationAddress = "reverse";
 
+  // Pharmacy shipping info
+  static const String pharmacyShippingInfo = "cart/pharmacy-shipping-info";
+
+  // Pharmacy cart summary
+  static const String cartSummary = "cart/summary";
 }

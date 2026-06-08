@@ -5,15 +5,15 @@ import 'package:intl/intl.dart';
 class CurrencyHelper {
   /// The standard Dirham symbol (u+e001)
   static const String dirhamSymbol = '\ue001';
-  
+
   /// The alternative Dirham symbol (u+e002)
   static const String dirhamSymbolAlt = '\ue002';
-  
+
   /// The font family for Dirham symbols
   static const String dirhamFontFamily = 'dirhamicon';
 
   /// Format a number as currency with Dirham symbol
-  /// 
+  ///
   /// [amount] - The amount to format
   /// [showDecimals] - Whether to show decimal places
   /// [decimalPlaces] - Number of decimal places to show
@@ -36,7 +36,7 @@ class CurrencyHelper {
   }
 
   /// Format a number as currency with custom symbol
-  /// 
+  ///
   /// [amount] - The amount to format
   /// [symbol] - The currency symbol to use
   /// [showDecimals] - Whether to show decimal places
@@ -58,14 +58,14 @@ class CurrencyHelper {
   }
 
   /// Get the Dirham symbol as a string
-  /// 
+  ///
   /// [useAlternativeSymbol] - Whether to use the alternative symbol
   static String getDirhamSymbol({bool useAlternativeSymbol = false}) {
     return useAlternativeSymbol ? dirhamSymbolAlt : dirhamSymbol;
   }
 
   /// Create a TextStyle for Dirham symbols
-  /// 
+  ///
   /// [size] - Font size
   /// [color] - Text color
   /// [weight] - Font weight
@@ -86,10 +86,11 @@ class CurrencyHelper {
   }
 
   /// Parse a currency string and extract the numeric value
-  /// 
+  ///
   /// [currencyString] - The currency string to parse
   /// [locale] - The locale for parsing
-  static double parseCurrency(String currencyString, {String locale = 'en_AE'}) {
+  static double parseCurrency(String currencyString,
+      {String locale = 'en_AE'}) {
     // Remove currency symbols and parse
     final cleanString = currencyString
         .replaceAll(dirhamSymbol, '')
@@ -98,19 +99,19 @@ class CurrencyHelper {
         .replaceAll('AED', '')
         .replaceAll(',', '')
         .trim();
-    
+
     return double.tryParse(cleanString) ?? 0.0;
   }
 
   /// Check if a string contains Dirham symbols
-  /// 
+  ///
   /// [text] - The text to check
   static bool containsDirhamSymbol(String text) {
     return text.contains(dirhamSymbol) || text.contains(dirhamSymbolAlt);
   }
 
   /// Replace old currency symbols with Dirham symbols
-  /// 
+  ///
   /// [text] - The text to process
   /// [useAlternativeSymbol] - Whether to use the alternative symbol
   static String replaceWithDirhamSymbol(
@@ -118,7 +119,7 @@ class CurrencyHelper {
     bool useAlternativeSymbol = false,
   }) {
     final symbol = useAlternativeSymbol ? dirhamSymbolAlt : dirhamSymbol;
-    
+
     return text
         .replaceAll('د.إ', symbol)
         .replaceAll('AED', symbol)
@@ -178,9 +179,3 @@ extension IntCurrencyFormatting on int {
     );
   }
 }
-
-
-
-
-
-

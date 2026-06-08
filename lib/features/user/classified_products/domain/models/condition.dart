@@ -1,6 +1,6 @@
 class ConditionDomainModel {
-  String name ;
-  String type ;
+  String name;
+  String type;
 
-  ConditionDomainModel({required this.name,required this.type});
+  ConditionDomainModel({required this.name, required this.type});
 }

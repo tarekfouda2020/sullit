@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
@@ -8,7 +6,8 @@ class InvoiceSummaryCard extends StatelessWidget {
   final List<Widget> children;
   final EdgeInsetsGeometry? margin;
   final BorderRadiusGeometry? radius;
-  const InvoiceSummaryCard({super.key, required this.children, this.margin, this.radius});
+  const InvoiceSummaryCard(
+      {super.key, required this.children, this.margin, this.radius});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +17,7 @@ class InvoiceSummaryCard extends StatelessWidget {
       decoration: CustomDecoration(
           myBoxShadow: const [],
           boxBorder: Border.all(color: context.colors.borderColor),
-        radius: radius
-      ),
+          radius: radius),
       child: Column(
         children: children,
       ),

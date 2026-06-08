@@ -4,7 +4,8 @@ import 'package:flutter_tdd/features/user/best_sellers/domain/entity/shop_catego
 import 'package:flutter_tdd/features/user/pharmacies/domain/repository/pharmacies_repository.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
 
-class GetShopCategories extends UseCase<List<ShopCategory>, ShopCategoryParams> {
+class GetShopCategories
+    extends UseCase<List<ShopCategory>, ShopCategoryParams> {
   @override
   Future<List<ShopCategory>> call(ShopCategoryParams params) async {
     var result = await getIt<PharmaciesRepository>().getShopCategories(params);

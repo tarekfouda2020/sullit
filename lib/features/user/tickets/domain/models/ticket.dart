@@ -8,17 +8,16 @@ class Ticket extends BaseDomainModel {
   DateTime sendingDate;
   String subject;
   List<ImageDomainModel> images;
-  bool selected = false ;
-  String status ;
-  List<TicketReply>? replies ;
+  bool selected = false;
+  String status;
+  List<TicketReply>? replies;
 
-  Ticket({
-    required this.id,
-    required this.ticketId,
-    required this.sendingDate,
-    required this.subject,
-    required this.images,
-    required this.status,
-    this.replies
-  });
+  Ticket(
+      {required this.id,
+      required this.ticketId,
+      required this.sendingDate,
+      required this.subject,
+      required this.images,
+      required this.status,
+      this.replies});
 }

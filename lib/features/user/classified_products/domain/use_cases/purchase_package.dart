@@ -4,7 +4,8 @@ import 'package:flutter_tdd/features/user/classified_products/domain/entities/pu
 import 'package:flutter_tdd/features/user/classified_products/domain/models/purchase_package_response.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/repository/classified_products_repository.dart';
 
-class SetPurchasePackage implements UseCase<PurchasePackageResponse?, PurchasePackageParams> {
+class SetPurchasePackage
+    implements UseCase<PurchasePackageResponse?, PurchasePackageParams> {
   @override
   Future<PurchasePackageResponse?> call(PurchasePackageParams params) async {
     var result =

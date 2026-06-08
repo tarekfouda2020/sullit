@@ -46,7 +46,7 @@ class PharmaciesListController {
   }
 
   ShopsParams _buildShopsParams(bool refresh, int page) {
-    SearchResultParams searchParams = _searchParams(page,refresh);
+    SearchResultParams searchParams = _searchParams(page, refresh);
     return ShopsParams(
       params: searchParams,
       type: ShopTypeEnum.pharmacy,
@@ -56,17 +56,17 @@ class PharmaciesListController {
   SearchResultParams _searchParams(int page, bool refresh) {
     var paginateParams = _genericPaginateParams(page, refresh);
     return SearchResultParams(
-    searchTxt: searchController.text,
-    paginateParams: paginateParams,
-  );
+      searchTxt: searchController.text,
+      paginateParams: paginateParams,
+    );
   }
 
   GenericPaginateParams _genericPaginateParams(int page, bool refresh) {
     return GenericPaginateParams(
-    currentPage: page,
-    refresh: refresh,
-    pageSize: AppConstants.instance.paginationLimit,
-  );
+      currentPage: page,
+      refresh: refresh,
+      pageSize: AppConstants.instance.paginationLimit,
+    );
   }
 
   void dispose() {

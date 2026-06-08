@@ -10,7 +10,7 @@ class PharmacyCategoriesAppBar extends StatelessWidget {
     return BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
       bloc: controller.shopBloc,
       builder: (context, state) {
-        if( state is GenericUpdateState){
+        if (state is GenericUpdateState) {
           var shop = state.data;
           var insuranceList = shop?.insuranceCompanies ?? [];
           return SliverAppBar(
@@ -72,12 +72,12 @@ class PharmacyCategoriesAppBar extends StatelessWidget {
         } else {
           return const PharamacyHeaderShimmerWidget();
         }
-
       },
     );
   }
 
-  Widget _buildInsuranceList(BuildContext context, List<InsuranceCompany> insuranceList) {
+  Widget _buildInsuranceList(
+      BuildContext context, List<InsuranceCompany> insuranceList) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,

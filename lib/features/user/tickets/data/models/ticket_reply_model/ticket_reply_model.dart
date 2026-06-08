@@ -18,8 +18,8 @@ class TicketReplyModel extends BaseApiModel<TicketReply>
     required int id,
     @JsonKey(name: "created_at") required DateTime createdAt,
     required String reply,
-    required UserModel user,    required List<ImageModel> images,
-
+    required UserModel user,
+    required List<ImageModel> images,
   }) = _TicketReplyModel;
 
   factory TicketReplyModel.fromJson(Map<String, dynamic> json) =>

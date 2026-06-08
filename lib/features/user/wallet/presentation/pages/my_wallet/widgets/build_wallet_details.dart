@@ -27,7 +27,7 @@ class BuildWalletDetails extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                 _buildBalanceItem(
+                _buildBalanceItem(
                   context,
                   label: tr('walBalance'),
                   value: wallet.walletBalance,
@@ -39,7 +39,7 @@ class BuildWalletDetails extends StatelessWidget {
                   margin: const EdgeInsetsDirectional.only(end: 25),
                   color: context.colors.drawerColor,
                 ),
-                 _buildBalanceItem(
+                _buildBalanceItem(
                   context,
                   label: tr('walCashCredit'),
                   value: wallet.walletCredit,
@@ -52,15 +52,16 @@ class BuildWalletDetails extends StatelessWidget {
               children: [
                 Text(
                   tr('walBalance'),
-                  style: AppTextStyle.s16_w400(color: context.colors.black.withOpacity(0.6)),
+                  style: AppTextStyle.s16_w400(
+                      color: context.colors.black.withOpacity(0.6)),
                 ),
                 Gaps.vGap10,
                 Text(
                   wallet.walletBalance,
                   style: AppTextStyle.s24_w700(color: context.colors.primary),
                 ).withDirhamSymbol(
-                  symbolStyle: AppTextStyle.s26_w400(color: context.colors.primary)
-                ),
+                    symbolStyle:
+                        AppTextStyle.s26_w400(color: context.colors.primary)),
               ],
             ),
         ],
@@ -68,20 +69,20 @@ class BuildWalletDetails extends StatelessWidget {
     );
   }
 
-  Widget _buildBalanceItem(BuildContext context, {required String label, required String value, required Color color}) {
+  Widget _buildBalanceItem(BuildContext context,
+      {required String label, required String value, required Color color}) {
     return Column(
       children: [
         Text(
           label,
-          style: AppTextStyle.s14_w400(color: context.colors.black.withOpacity(0.6)),
+          style: AppTextStyle.s14_w400(
+              color: context.colors.black.withOpacity(0.6)),
         ),
         Gaps.vGap8,
         Text(
           value,
           style: AppTextStyle.s18_w700(color: color),
-        ).withDirhamSymbol(
-          symbolStyle: AppTextStyle.s20_w400(color: color)
-        ),
+        ).withDirhamSymbol(symbolStyle: AppTextStyle.s20_w400(color: color)),
       ],
     );
   }

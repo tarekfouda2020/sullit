@@ -20,7 +20,8 @@ class TrackOrder extends BaseApiModel<TrackOrderModel> with _$TrackOrder {
     required List<OrderStatus> tracking,
   }) = _TrackOrder;
 
-  factory TrackOrder.fromJson(Map<String, dynamic> json) => _$TrackOrderFromJson(json);
+  factory TrackOrder.fromJson(Map<String, dynamic> json) =>
+      _$TrackOrderFromJson(json);
 
   @override
   TrackOrderModel toDomainModel() {
@@ -44,7 +45,8 @@ class OrderStatus extends BaseApiModel<OrderStatusModel> with _$OrderStatus {
     @JsonKey(name: "created_at") required String createdAt,
   }) = _OrderStatus;
 
-  factory OrderStatus.fromJson(Map<String, dynamic> json) => _$OrderStatusFromJson(json);
+  factory OrderStatus.fromJson(Map<String, dynamic> json) =>
+      _$OrderStatusFromJson(json);
 
   @override
   OrderStatusModel toDomainModel() {

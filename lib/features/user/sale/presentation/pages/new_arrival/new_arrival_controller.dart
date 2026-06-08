@@ -8,7 +8,6 @@ class NewArrivalController {
   int pageSize = 10;
   int currentPage = 1;
 
-
   NewArrivalController() {
     getArrival(1, refresh: false);
     arrivalPagingController.addPageRequestListener((pageKey) {
@@ -44,8 +43,7 @@ class NewArrivalController {
   OffersParamsWidget _arrivalOffers(bool refresh, int currentPage) {
     return OffersParamsWidget(
         paginateParams: _arrivalParams(refresh, currentPage),
-        keyword: searchFieldCtr.text
-    );
+        keyword: searchFieldCtr.text);
   }
 
   void onChangeFav(Product item) {

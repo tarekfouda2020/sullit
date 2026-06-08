@@ -47,7 +47,8 @@ class ImplWalletDataSources extends WalletDataSources {
   }
 
   @override
-  Future<Either<Failure, String>> rechargeWallet(RechargeWalletParams param) async {
+  Future<Either<Failure, String>> rechargeWallet(
+      RechargeWalletParams param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.rechargeWallet,
       requestMethod: RequestMethod.post,
@@ -60,14 +61,15 @@ class ImplWalletDataSources extends WalletDataSources {
   }
 
   @override
-  Future<Either<Failure, List<WalletTransactionModel>>> walletTransactions(GenericPaginateParams param) async {
+  Future<Either<Failure, List<WalletTransactionModel>>> walletTransactions(
+      GenericPaginateParams param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.walletTransactions+param.paramsToQuery(),
+      url: ApiNames.walletTransactions + param.paramsToQuery(),
       requestMethod: RequestMethod.get,
       responseType: ResType.list,
       toJsonFunc: (json) => List<WalletTransactionModel>.from(
-          json.map((e) => WalletTransactionModel.fromJson(e)),
-        ),
+        json.map((e) => WalletTransactionModel.fromJson(e)),
+      ),
       responseKey: (data) => data["data"]["transactions"],
     );
     return await GenericHttpImpl<List<WalletTransactionModel>>().call(model);

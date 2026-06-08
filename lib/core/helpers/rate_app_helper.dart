@@ -8,7 +8,6 @@ import 'package:rate_my_app/rate_my_app.dart';
 
 @lazySingleton
 class RateAppHelper {
-
   RateMyApp rateMyApp = RateMyApp(
     preferencesPrefix: 'rateMyApp_',
     minDays: 7,
@@ -19,37 +18,45 @@ class RateAppHelper {
     appStoreIdentifier: '1491556149',
   );
 
-  Future<void> showDialog(BuildContext context)async{
+  Future<void> showDialog(BuildContext context) async {
     setupConfiguration(context);
     rateMyApp.showStarRateDialog(
       context,
       title: 'Rate this app', // The dialog title.
-      message: 'You like this app ? Then take a little bit of your time to leave a rating :', // The dialog message.
+      message:
+          'You like this app ? Then take a little bit of your time to leave a rating :', // The dialog message.
       actionsBuilder: (context, stars) {
         return [
           DefaultButton(
             title: 'OK',
             onTap: () async {
               log('Thanks for the ${stars == null ? '0' : stars.round().toString()} star(s) !');
-              await rateMyApp.callEvent(RateMyAppEventType.rateButtonPressed).then((value) {
-                Navigator.pop<RateMyAppDialogButton>(context, RateMyAppDialogButton.rate);
+              await rateMyApp
+                  .callEvent(RateMyAppEventType.rateButtonPressed)
+                  .then((value) {
+                Navigator.pop<RateMyAppDialogButton>(
+                    context, RateMyAppDialogButton.rate);
               });
             },
           ),
         ];
       },
-      ignoreNativeDialog: Platform.isAndroid, // Set to false if you want to show the Apple's native app rating dialog on iOS or Google's native app rating dialog (depends on the current Platform).
-      dialogStyle: const DialogStyle( // Custom dialog styles.
+      ignoreNativeDialog: Platform
+          .isAndroid, // Set to false if you want to show the Apple's native app rating dialog on iOS or Google's native app rating dialog (depends on the current Platform).
+      dialogStyle: const DialogStyle(
+        // Custom dialog styles.
         titleAlign: TextAlign.center,
         messageAlign: TextAlign.center,
         messagePadding: EdgeInsets.only(bottom: 20),
       ),
-      starRatingOptions: const StarRatingOptions(), // Custom star bar rating options.
-      onDismissed: () => rateMyApp.callEvent(RateMyAppEventType.laterButtonPressed), // Called when the user dismissed the dialog (either by taping outside or by pressing the "back" button).
+      starRatingOptions:
+          const StarRatingOptions(), // Custom star bar rating options.
+      onDismissed: () => rateMyApp.callEvent(RateMyAppEventType
+          .laterButtonPressed), // Called when the user dismissed the dialog (either by taping outside or by pressing the "back" button).
     );
   }
 
-  Future<void> setupConfiguration(BuildContext context)async {
+  Future<void> setupConfiguration(BuildContext context) async {
     await rateMyApp.init().then((_) {
       if (rateMyApp.shouldOpenDialog) {
         rateMyApp.showRateDialog(

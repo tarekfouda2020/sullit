@@ -23,7 +23,7 @@ class DriverTipsWidget extends StatelessWidget {
         Gaps.vGap8,
         Container(
           alignment: Alignment.center,
-          padding: const EdgeInsetsDirectional.only(bottom: 14,top: 16),
+          padding: const EdgeInsetsDirectional.only(bottom: 14, top: 16),
           decoration: BoxDecoration(
               color: context.colors.white,
               borderRadius: Dimens.borderRadius20PX),
@@ -38,7 +38,8 @@ class DriverTipsWidget extends StatelessWidget {
                     padding: const EdgeInsetsDirectional.only(start: 17),
                     child: Text(
                       "Support your rider with a tip ",
-                      style: AppTextStyle.s14_w700(color: context.colors.primary),
+                      style:
+                          AppTextStyle.s14_w700(color: context.colors.primary),
                     ),
                   ),
                   Gaps.vGap15,
@@ -47,9 +48,9 @@ class DriverTipsWidget extends StatelessWidget {
                     child: Row(
                       children: List.generate(
                         state.data.length,
-                            (index) {
+                        (index) {
                           var model = state.data[index];
-                          return _buildGestureDetector(model, context,index);
+                          return _buildGestureDetector(model, context, index);
                         },
                       ),
                     ),
@@ -58,7 +59,8 @@ class DriverTipsWidget extends StatelessWidget {
                   Visibility(
                     visible: controller.showRaiderTipsField(),
                     child: Padding(
-                      padding: const EdgeInsetsDirectional.symmetric(horizontal: 17),
+                      padding:
+                          const EdgeInsetsDirectional.symmetric(horizontal: 17),
                       child: GenericTextField(
                         controller: controller.driverTipCtr,
                         fieldTypes: FieldTypes.normal,
@@ -83,18 +85,18 @@ class DriverTipsWidget extends StatelessWidget {
     );
   }
 
-  GestureDetector _buildGestureDetector(DriverTipsModel model, BuildContext context,int index) {
+  GestureDetector _buildGestureDetector(
+      DriverTipsModel model, BuildContext context, int index) {
     return GestureDetector(
       onTap: () => controller.selectDriverTip(model),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 10),
-        margin:  EdgeInsetsDirectional.only(start: index ==0?17:8),
+        margin: EdgeInsetsDirectional.only(start: index == 0 ? 17 : 8),
         decoration: BoxDecoration(
-          border:Border.all(
-            color:  model.isSelect
-                ?context.colors.primary
-                :Colors.transparent
-          ),
+            border: Border.all(
+                color: model.isSelect
+                    ? context.colors.primary
+                    : Colors.transparent),
             borderRadius: Dimens.borderRadius20PX,
             color: model.isSelect
                 ? context.colors.lightPink
@@ -105,15 +107,14 @@ class DriverTipsWidget extends StatelessWidget {
                 style: AppTextStyle.s16_w500(
                     color: model.isSelect
                         ? context.colors.primary
-                        :  context.colors.gray8),
+                        : context.colors.gray8),
               )
             : DirhamPrice(
                 amount: model.amount,
                 textStyle: AppTextStyle.s16_w500(
                     color: model.isSelect
                         ? context.colors.primary
-                        : context.colors.gray8
-                ),
+                        : context.colors.gray8),
               ),
       ),
     );

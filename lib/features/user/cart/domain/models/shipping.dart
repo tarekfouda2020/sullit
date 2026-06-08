@@ -12,8 +12,8 @@ class Shipping implements BaseDomainModel {
   Shipping({
     required this.summary,
     required this.paymentOption,
-     this.discountRate,
-     this.isAdminDiscount,
+    this.discountRate,
+    this.isAdminDiscount,
     this.discountVal,
   });
 }

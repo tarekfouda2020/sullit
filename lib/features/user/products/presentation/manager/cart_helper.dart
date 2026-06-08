@@ -18,7 +18,7 @@ import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/update_cart_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
-import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/add_product_to_cart.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/delete_item_from_cart.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_cart_items.dart';
@@ -41,10 +41,15 @@ import 'package:share_plus/share_plus.dart';
 class CartHelper {
   List<String> selectedVariants = [];
 
-  final GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc(CartDomainModel());
+  final GenericBloc<CartDomainModel> cartItemsBloc =
+      GenericBloc(CartDomainModel());
 
   void onSelectAttributes(
-      BuildContext context, GenericBloc<Product?> productCubit, List<ProductOptions> model, int index, int position) {
+      BuildContext context,
+      GenericBloc<Product?> productCubit,
+      List<ProductOptions> model,
+      int index,
+      int position) {
     List<String> selected = [];
     var optionItem = model[index];
     List<String> attributes = optionItem.selectedAttribute!;
@@ -66,7 +71,8 @@ class CartHelper {
     getVariantPrice(context, productCubit);
   }
 
-  Future<void> getVariantPrice(BuildContext context, GenericBloc<Product?> productCubit) async {
+  Future<void> getVariantPrice(
+      BuildContext context, GenericBloc<Product?> productCubit) async {
     var params = _variantPriceParams(productCubit.state.data!.id!);
     getIt<LoadingHelper>().showLoadingDialog();
     var result = await GetVariantPrice().call(params);
@@ -79,7 +85,8 @@ class CartHelper {
 
   void onIncreaseQty(GenericBloc<Product?> productCubit) {
     var variantPrice = productCubit.state.data?.variant;
-    var price = double.parse(variantPrice!.calculablePrice!.replaceAll(",", ""));
+    var price =
+        double.parse(variantPrice!.calculablePrice!.replaceAll(",", ""));
     price = price / productCubit.state.data!.minQty!;
     if (variantPrice.currentStock! >= 1) {
       if (variantPrice.currentStock! > productCubit.state.data!.minQty!) {
@@ -90,7 +97,9 @@ class CartHelper {
         variantPrice.calculablePrice = priceQty.toString();
         productCubit.onUpdateData(productCubit.state.data);
       } else {
-        CustomToast.showSimpleToast(msg: "${tr("only")} ${variantPrice.currentStock} ${tr("availableStock")}");
+        CustomToast.showSimpleToast(
+            msg:
+                "${tr("only")} ${variantPrice.currentStock} ${tr("availableStock")}");
         return;
       }
     } else {
@@ -101,7 +110,8 @@ class CartHelper {
 
   void onDecreaseQty(GenericBloc<Product?> productCubit) {
     var variantPrice = productCubit.state.data?.variant;
-    var price = double.parse(variantPrice!.calculablePrice!.replaceAll(",", ""));
+    var price =
+        double.parse(variantPrice!.calculablePrice!.replaceAll(",", ""));
     if (productCubit.state.data!.minQty! > 1) {
       var priceQty = price - (price / productCubit.state.data!.minQty!);
       productCubit.state.data!.minQty = productCubit.state.data!.minQty! - 1;
@@ -111,7 +121,9 @@ class CartHelper {
   }
 
   Future<void> addProductToCart(BuildContext context, int qty, int? variantId,
-      {required Function() onAddCartFunc, bool showLoader = true, bool callCartData = true}) async {
+      {required Function() onAddCartFunc,
+      bool showLoader = true,
+      bool callCartData = true}) async {
     var params = await _addToCartParams(variantId, qty, showLoader: showLoader);
     if (params.variantId == null) {
       CustomToast.showSimpleToast(msg: tr('variantNotFound'));
@@ -124,7 +136,8 @@ class CartHelper {
         getCartItems();
       }
       onAddCartFunc();
-      CustomToast.showSimpleToast(msg: tr('productAddedToYourCart'), type: ToastType.success);
+      CustomToast.showSimpleToast(
+          msg: tr('productAddedToYourCart'), type: ToastType.success);
     }
   }
 
@@ -134,12 +147,14 @@ class CartHelper {
   }
 
   void updateCartCountWithCart(BuildContext context, CartDomainModel cart) {
-    final totalItems = (cart.items ?? <CartItem>[]).fold<int>(0, (sum, item) => sum + item.quantity);
+    final totalItems = (cart.items ?? <GeneralCartItem>[])
+        .fold<int>(0, (sum, item) => sum + item.quantity);
     final countCubit = context.read<CountCubit>().state;
     context.read<CountCubit>().onUpdateCount(totalItems, countCubit.discount);
   }
 
-  void addToCartDialog(BuildContext context, Product product, {void Function()? afterAddToCart}) {
+  void addToCartDialog(BuildContext context, Product product,
+      {void Function()? afterAddToCart}) {
     showDialog(
       context: context,
       builder: (context) => BuildAddToCartDialog(
@@ -166,7 +181,8 @@ class CartHelper {
   /// 1709
   /// variant_id 29935
 
-  Future<bool> deleteItemFromCart(BuildContext context, CartItem cartItem) async {
+  Future<bool> deleteItemFromCart(
+      BuildContext context, GeneralCartItem cartItem) async {
     var params = await _deleteItemFromCart(cartItem.id);
     return await DeleteItemFormCart().call(params);
   }
@@ -178,13 +194,15 @@ class CartHelper {
     );
   }
 
-  Future<void> showCartSuccessSheet(BuildContext context, {CartSheetController? controller}) async {
+  Future<void> showCartSuccessSheet(BuildContext context,
+      {CartSheetController? controller}) async {
     final sheetController = controller ?? StandaloneCartSheetController(this);
 
     sheetController.getCartItems(refresh: false);
     sheetController.getCartItems().then(
       (value) {
-        getIt<CartHelper>().updateCartCountWithCart(context, controller!.cartItemsBloc.state.data);
+        getIt<CartHelper>().updateCartCountWithCart(
+            context, controller!.cartItemsBloc.state.data);
       },
     );
 
@@ -205,9 +223,13 @@ class CartHelper {
     );
   }
 
-  Future<AddProductToCartParams> _addToCartParams(int? variantId, int qty, {bool showLoader = true}) async {
+  Future<AddProductToCartParams> _addToCartParams(int? variantId, int qty,
+      {bool showLoader = true}) async {
     return AddProductToCartParams(
-        quantity: qty, variantId: variantId, macAddress: await getIt<GetDeviceId>().deviceId, showLoader: showLoader);
+        quantity: qty,
+        variantId: variantId,
+        macAddress: await getIt<GetDeviceId>().deviceId,
+        showLoader: showLoader);
   }
 
   VariantPriceParams _variantPriceParams(int id) {
@@ -238,7 +260,8 @@ class CartHelper {
   Future<void> importCart(BuildContext context, String token) async {
     final success = await ImportCart().call(token);
     if (success) {
-      CustomToast.showSimpleToast(msg: 'Cart imported successfully', type: ToastType.success);
+      CustomToast.showSimpleToast(
+          msg: 'Cart imported successfully', type: ToastType.success);
       await getCartItems();
       getIt<RouterHelper>().appRoute.push(CartRoute());
     } else {
@@ -246,4 +269,3 @@ class CartHelper {
     }
   }
 }
-

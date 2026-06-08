@@ -19,5 +19,4 @@ const List<AutoRoute> productsRoute = [
   AdaptiveRoute(page: AllProductPage),
   AdaptiveRoute(page: SellerProductsPage),
   AdaptiveRoute(page: SellerDetailsAppBar),
-
 ];

@@ -1,10 +1,10 @@
 part of 'pharmacy_categories_imports.dart';
 
 class PharmacyCategoriesController {
-
   final int shopId;
 
-  final PagingController<int, ShopCategory> pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, ShopCategory> pagingController =
+      PagingController(firstPageKey: 1);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
   final GenericBloc<Shop?> shopBloc = GenericBloc<Shop?>(null);
 
@@ -51,12 +51,11 @@ class PharmacyCategoriesController {
   }
 
   void onSelectCategory(BuildContext context, ShopCategory category) {
-    AutoRouter.of(context).push(
-        PharmacyDetailsRoute(
-            fromCart: false,
-          selectedCategoryId:  category.id,
-          pharmacy: shopBloc.state.data,
-        ));
+    AutoRouter.of(context).push(PharmacyDetailsRoute(
+      fromCart: false,
+      selectedCategoryId: category.id,
+      pharmacy: shopBloc.state.data,
+    ));
   }
 
   void onPressSupportedInsurance(BuildContext context) {}

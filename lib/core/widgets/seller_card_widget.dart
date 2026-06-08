@@ -33,12 +33,15 @@ class SellerCardWidget extends StatelessWidget {
             Column(
               children: [
                 GestureDetector(
-                  onTap:openImage? () {
-                    var link = shop?.sliders?.first ?? "";
-                    if(link.isNotEmpty){
-                      AutoRouter.of(context).push(ImageZoomRoute(image: link));
-                    }
-                  }:null,
+                  onTap: openImage
+                      ? () {
+                          var link = shop?.sliders?.first ?? "";
+                          if (link.isNotEmpty) {
+                            AutoRouter.of(context)
+                                .push(ImageZoomRoute(image: link));
+                          }
+                        }
+                      : null,
                   child: CachedImage(
                     url: shop?.sliders?.first ?? "",
                     height: 150,
@@ -65,7 +68,8 @@ class SellerCardWidget extends StatelessWidget {
                         children: [
                           Text(
                             "${shop?.rating}",
-                            style: AppTextStyle.s14_w400(color: context.colors.textColor),
+                            style: AppTextStyle.s14_w400(
+                                color: context.colors.textColor),
                           ),
                           Gaps.hGap9,
                           RatingBar.builder(
@@ -88,14 +92,16 @@ class SellerCardWidget extends StatelessWidget {
                       Gaps.vGap14,
                       Text(
                         "${shop?.name}",
-                        style: AppTextStyle.s18_w600(color: context.colors.black),
+                        style:
+                            AppTextStyle.s18_w600(color: context.colors.black),
                       ),
                       Gaps.vGap8,
                       Text(
                         "${shop?.shopCategoryNames.join(' - ')}",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: AppTextStyle.s14_w300(color: context.colors.textColor),
+                        style: AppTextStyle.s14_w300(
+                            color: context.colors.textColor),
                       )
                     ],
                   ),
@@ -106,7 +112,7 @@ class SellerCardWidget extends StatelessWidget {
               start: 10,
               top: 120,
               child: CachedImage(
-                url: shop?.logo??"",
+                url: shop?.logo ?? "",
                 width: Dimens.dp66,
                 height: Dimens.dp66,
                 haveRadius: false,

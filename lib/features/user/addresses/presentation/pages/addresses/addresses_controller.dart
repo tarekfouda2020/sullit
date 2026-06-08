@@ -3,10 +3,11 @@ part of 'addresses_imports.dart';
 class AddressesController {
   final GenericBloc<List<AddressDomainModel>> addressesBloc = GenericBloc([]);
 
-  final PagingController<int, AddressDomainModel> pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, AddressDomainModel> pagingController =
+      PagingController(firstPageKey: 1);
   int pageSize = 12;
 
- late final bool isFromReturn;
+  late final bool isFromReturn;
   AddressesController(bool fromReturn) {
     getAddress(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
@@ -17,7 +18,7 @@ class AddressesController {
 
   Future<void> getAddress(int page, {bool refresh = true}) async {
     var params = _paginateParams(page, refresh);
-    var data =await GetAddresses().call(params);
+    var data = await GetAddresses().call(params);
     final isLastPage = data.length < pageSize;
     if (page == 1) {
       pagingController.itemList = [];
@@ -29,8 +30,6 @@ class AddressesController {
       pagingController.appendPage(data, nextPageKey);
     }
   }
-
-
 
   GenericPaginateParams _paginateParams(int page, bool refresh) {
     return GenericPaginateParams(
@@ -46,12 +45,11 @@ class AddressesController {
       CustomToast.showSimpleToast(
           msg: tr('addressDeleted'), type: ToastType.success);
       pagingController.itemList?.remove(model);
-      pagingController.itemList = [
-        ...?pagingController.itemList
-      ];
+      pagingController.itemList = [...?pagingController.itemList];
       getAddress(1);
     }
   }
+
   void onActiveAddress(BuildContext context, AddressDomainModel address) async {
     var result = await AutoRouter.of(context)
         .push(ActiveAccountRoute(phoneOrEmail: address.fullPhone!));
@@ -71,18 +69,20 @@ class AddressesController {
     getAddress(1);
   }
 
-  void navigateToEditAddress(BuildContext context, AddressDomainModel model) async {
-    if(isFromReturn){
+  void navigateToEditAddress(
+      BuildContext context, AddressDomainModel model) async {
+    if (isFromReturn) {
       AutoRouter.of(context).pop(model);
-      return ;
+      return;
     }
-   await AutoRouter.of(context).push(
+    await AutoRouter.of(context).push(
       EditAddressRoute(address: model),
     );
     getAddress(1);
   }
 
-  void onSelectAddress(BuildContext context, AddressDomainModel address, bool? val) {
+  void onSelectAddress(
+      BuildContext context, AddressDomainModel address, bool? val) {
     for (var e in addressesBloc.state.data) {
       e.selected = false;
     }

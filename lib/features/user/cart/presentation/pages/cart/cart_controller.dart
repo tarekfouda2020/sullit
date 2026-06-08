@@ -33,7 +33,7 @@ class CartController {
   }
 
   Future<void> deleteItemFromCart(
-      BuildContext context, CartItem cartItem) async {
+      BuildContext context, GeneralCartItem cartItem) async {
     getIt<LoadingHelper>().showLoadingDialog();
     var data = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
     if (data) {
@@ -69,7 +69,7 @@ class CartController {
   }
 
   Future<bool> onIncreaseCart(
-      BuildContext context, CartItem cartItem, int newQty) async {
+      BuildContext context, GeneralCartItem cartItem, int newQty) async {
     final success =
         await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
     if (success != null) {
@@ -84,7 +84,7 @@ class CartController {
     }
   }
 
-  void whileOnIncreaseCount(BuildContext context, CartItem cartItem,
+  void whileOnIncreaseCount(BuildContext context, GeneralCartItem cartItem,
       String value, GenericBloc<int> qntCubit) {
     if (qntCubit.state.data < cartItem.stockQty) {
       var newQty = qntCubit.state.data + 1;
@@ -107,7 +107,7 @@ class CartController {
   }
 
   Future<bool> onDecreaseCart(
-      BuildContext context, CartItem cartItem, int newQty) async {
+      BuildContext context, GeneralCartItem cartItem, int newQty) async {
     final success =
         await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
     if (success != null) {
@@ -123,7 +123,7 @@ class CartController {
     }
   }
 
-  void whileOnDecreaseCount(BuildContext context, CartItem cartItem,
+  void whileOnDecreaseCount(BuildContext context, GeneralCartItem cartItem,
       String value, GenericBloc<int> qntCubit) {
     var qnt = qntCubit.state.data;
     if (qnt > 1) {
@@ -239,7 +239,7 @@ class CartController {
   int? get confirmationCombinedId =>
       getIt<CartNavigateHelper>().confirmationCombinedId;
 
-  Future<CartParams> _cartParams() async { 
+  Future<CartParams> _cartParams() async {
     return CartParams(
       macAddress: await getIt<GetDeviceId>().deviceId ?? "",
       refresh: false,
@@ -266,7 +266,7 @@ class CartController {
     getIt<LoadingHelper>().showLoadingDialog();
     var result = await ClearCart().call(params);
     if (result == "success") {
-       getCartItems(refresh: true);
+      getCartItems(refresh: true);
       CustomToast.showSimpleToast(
           msg: "Seller items cleared successfully.", type: ToastType.success);
       Navigator.pop(context);
@@ -281,7 +281,8 @@ class CartController {
 
   void navigateToSeller(BuildContext context, int shopId) {
     Navigator.pop(context);
-    AutoRouter.of(context).push(SellerProductsPageRoute(shopId: shopId,fromCart: true));
+    AutoRouter.of(context)
+        .push(SellerProductsPageRoute(shopId: shopId, fromCart: true));
   }
 
   Future<UpdateCartItemParams> _updateCartItemParams(int qty, int id) async {

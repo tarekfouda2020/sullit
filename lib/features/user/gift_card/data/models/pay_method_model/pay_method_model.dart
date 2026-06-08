@@ -7,7 +7,8 @@ part 'pay_method_model.freezed.dart';
 part 'pay_method_model.g.dart';
 
 @freezed
-class PayMethodModel extends BaseApiModel<PayMethodDomainModel> with _$PayMethodModel {
+class PayMethodModel extends BaseApiModel<PayMethodDomainModel>
+    with _$PayMethodModel {
   const PayMethodModel._();
   @JsonSerializable(explicitToJson: true)
   factory PayMethodModel({
@@ -20,7 +21,8 @@ class PayMethodModel extends BaseApiModel<PayMethodDomainModel> with _$PayMethod
     required String title,
   }) = _PayMethodModel;
 
-  factory PayMethodModel.fromJson(Map<String, dynamic> json) => _$PayMethodModelFromJson(json);
+  factory PayMethodModel.fromJson(Map<String, dynamic> json) =>
+      _$PayMethodModelFromJson(json);
 
   @override
   PayMethodDomainModel toDomainModel() {

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 
@@ -11,8 +10,9 @@ import 'custom_radio_widget.dart';
 
 class PayOptionItemWidget extends StatelessWidget {
   final void Function() onTap;
-  final  PaymentOption payOption;
-  const PayOptionItemWidget({super.key, required this.onTap, required this.payOption});
+  final PaymentOption payOption;
+  const PayOptionItemWidget(
+      {super.key, required this.onTap, required this.payOption});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +23,10 @@ class PayOptionItemWidget extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 12),
         decoration: CustomDecoration(
             myBoxShadow: const [],
-            boxBorder:
-            Border.all(
-                color: payOption.fakeSelected ? context.colors.primary : context.colors.borderColor)),
+            boxBorder: Border.all(
+                color: payOption.fakeSelected
+                    ? context.colors.primary
+                    : context.colors.borderColor)),
         child: Row(
           children: [
             CustomRadioWidget(
@@ -34,7 +35,8 @@ class PayOptionItemWidget extends StatelessWidget {
             ),
             Gaps.hGap14,
             Expanded(
-              child: Text(payOption.title, style: AppTextStyle.s14_w700(color: context.colors.black)),
+              child: Text(payOption.title,
+                  style: AppTextStyle.s14_w700(color: context.colors.black)),
             ),
             CachedImage(
               url: payOption.image,

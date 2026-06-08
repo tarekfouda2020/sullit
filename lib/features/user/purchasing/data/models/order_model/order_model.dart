@@ -52,32 +52,37 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'loyalty_points_applied') required bool loyaltyPointsApplied,
     @JsonKey(name: 'loyalty_points') required int loyaltyPoints,
     @JsonKey(name: 'total_items') required int totalItems,
-    @JsonKey(name: 'expected_loyalty_points') required int expectedLoyaltyPoints,
-    @JsonKey(name: 'order_details') required List<OrderDetailsModel> orderDetails,
+    @JsonKey(name: 'expected_loyalty_points')
+    required int expectedLoyaltyPoints,
+    @JsonKey(name: 'order_details')
+    required List<OrderDetailsModel> orderDetails,
     @JsonKey(name: 'service_fees') required String serviceFees,
     @JsonKey(name: 'technology_fees') required String technologyFees,
     @JsonKey(name: 'environment_fees') required String environmentFees,
     @JsonKey(name: 'vat_fee_amount') required String vatFeeAmount,
+
     /// total of fees with there *vat => (vatFeeAmount)*
     @JsonKey(name: 'total_fee_amount') required String totalFeeAmount,
     @JsonKey(name: 'driver_notes') required String driverNotes,
     @JsonKey(name: 'picker_notes') required String pickerNotes,
-    @JsonKey(name: 'delivery_instructions') required List<DeliveryInstruction> deliveryInstructions,
-    @JsonKey(name: 'order_discounts')  List<OrderDiscount>? orderDiscounts,
+    @JsonKey(name: 'delivery_instructions')
+    required List<DeliveryInstruction> deliveryInstructions,
+    @JsonKey(name: 'order_discounts') List<OrderDiscount>? orderDiscounts,
     @JsonKey(name: 'driver') OrderDriverModel? driver,
     @JsonKey(name: 'order_source_label') String? orderSourceLabel,
     @JsonKey(name: 'shipping_provider') String? shippingProvider,
     @JsonKey(name: 'shipping_provider_label') String? shippingProviderLabel,
   }) = _OrderModel;
 
-  factory OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);
+  factory OrderModel.fromJson(Map<String, dynamic> json) =>
+      _$OrderModelFromJson(json);
 
   @override
   Orders toDomainModel() {
     return Orders(
       id: id,
       code: code,
-        bagCount : bagCount,
+      bagCount: bagCount,
       orderType: orderType,
       availableReturnOrder: availableReturnOrder,
       showButtonPay: showButtonPay,
@@ -123,9 +128,9 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       paymentMethodConst: paymentMethodConst,
       instructions: deliveryInstructions.map((e) => e.toDomainModel()).toList(),
       orderDiscounts: orderDiscounts?.map((e) => e.toDomainModel()).toList(),
-      orderSourceLabel:orderSourceLabel ,
-       shippingProvider: shippingProvider,
-      shippingProviderLabel:shippingProviderLabel ,
+      orderSourceLabel: orderSourceLabel,
+      shippingProvider: shippingProvider,
+      shippingProviderLabel: shippingProviderLabel,
     );
   }
 }

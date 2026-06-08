@@ -12,7 +12,6 @@ class _BestSellersPageState extends State<BestSellersPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: DefaultAppBar(
         title: tr("sellers"),

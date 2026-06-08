@@ -7,14 +7,14 @@ part 'cus_products_cat_model.g.dart';
 
 @freezed
 @immutable
-class CusProductsCatModel extends BaseApiModel<CusProductsCat> with _$CusProductsCatModel{
+class CusProductsCatModel extends BaseApiModel<CusProductsCat>
+    with _$CusProductsCatModel {
   const CusProductsCatModel._();
   @JsonSerializable(explicitToJson: true)
   const factory CusProductsCatModel({
     required int id,
     required String name,
   }) = _CusProductsCatModel;
-
 
   factory CusProductsCatModel.fromJson(Map<String, dynamic> json) =>
       _$CusProductsCatModelFromJson(json);

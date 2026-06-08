@@ -1,16 +1,19 @@
 part of 'widgets_imports.dart';
 
 class ChangePharmacyCartQtyWidget extends StatefulWidget {
-  final CartItem cartItem;
+  final GeneralCartItem cartItem;
   final PharmacyCartController controller;
 
-  const ChangePharmacyCartQtyWidget({super.key, required this.cartItem, required this.controller});
+  const ChangePharmacyCartQtyWidget(
+      {super.key, required this.cartItem, required this.controller});
 
   @override
-  State<ChangePharmacyCartQtyWidget> createState() => _ChangePharmacyCartQtyWidgetState();
+  State<ChangePharmacyCartQtyWidget> createState() =>
+      _ChangePharmacyCartQtyWidgetState();
 }
 
-class _ChangePharmacyCartQtyWidgetState extends State<ChangePharmacyCartQtyWidget> {
+class _ChangePharmacyCartQtyWidgetState
+    extends State<ChangePharmacyCartQtyWidget> {
   final GenericBloc<int> qtyCubit = GenericBloc(0);
 
   @override
@@ -18,7 +21,6 @@ class _ChangePharmacyCartQtyWidgetState extends State<ChangePharmacyCartQtyWidge
     super.initState();
     qtyCubit.onUpdateData(widget.cartItem.quantity);
   }
-
 
   @override
   void didUpdateWidget(covariant ChangePharmacyCartQtyWidget oldWidget) {
@@ -34,7 +36,8 @@ class _ChangePharmacyCartQtyWidgetState extends State<ChangePharmacyCartQtyWidge
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         BuildCustomBounce(
-          onTap: () => widget.controller.whileOnDecreaseCount(context, widget.cartItem, widget.cartItem.quantity.toString(), qtyCubit),
+          onTap: () => widget.controller.whileOnDecreaseCount(context,
+              widget.cartItem, widget.cartItem.quantity.toString(), qtyCubit),
           iconData: CupertinoIcons.minus,
           margin: const EdgeInsetsDirectional.only(end: 19),
           size: 29,
@@ -51,7 +54,8 @@ class _ChangePharmacyCartQtyWidgetState extends State<ChangePharmacyCartQtyWidge
               );
             }),
         BuildCustomBounce(
-          onTap: () => widget.controller.whileOnIncreaseCount(context, widget.cartItem, widget.cartItem.quantity.toString(), qtyCubit),
+          onTap: () => widget.controller.whileOnIncreaseCount(context,
+              widget.cartItem, widget.cartItem.quantity.toString(), qtyCubit),
           iconData: CupertinoIcons.add,
           margin: const EdgeInsetsDirectional.only(start: 19),
           size: 29,
@@ -59,7 +63,8 @@ class _ChangePharmacyCartQtyWidgetState extends State<ChangePharmacyCartQtyWidge
         ),
         const Spacer(),
         GestureDetector(
-            onTap: () => widget.controller.deleteItemFromCart(context, widget.cartItem),
+            onTap: () =>
+                widget.controller.deleteItemFromCart(context, widget.cartItem),
             child: SvgPicture.asset(Res.trashIcon)),
       ],
     );

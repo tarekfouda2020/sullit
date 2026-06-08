@@ -1,10 +1,8 @@
-
 part of 'my_orders_imports.dart';
 
-class MyOrdersController{
-
+class MyOrdersController {
   final PagingController<int, Orders> pagingController =
-  PagingController(firstPageKey: 1);
+      PagingController(firstPageKey: 1);
   int pageSize = 12;
 
   MyOrdersController() {
@@ -22,7 +20,6 @@ class MyOrdersController{
       pagingController.itemList = [];
     }
     if (isLastPage) {
-
       pagingController.appendLastPage(data);
     } else {
       final nextPageKey = page + 1;
@@ -30,10 +27,10 @@ class MyOrdersController{
     }
   }
 
-
-  Future<void> routeToOrderDetails(BuildContext context,Orders order)async{
-    var result = await AutoRouter.of(context).push(OrderDetailsPageRoute(isReturnedOrder: false,order: order));
-    if(result== true){
+  Future<void> routeToOrderDetails(BuildContext context, Orders order) async {
+    var result = await AutoRouter.of(context)
+        .push(OrderDetailsPageRoute(isReturnedOrder: false, order: order));
+    if (result == true) {
       getPurchasingHistory(1);
     }
   }
@@ -45,8 +42,6 @@ class MyOrdersController{
       pageSize: pageSize,
     );
   }
-
-
 
   void cancelOrder(BuildContext ctx, Orders model) async {
     showCupertinoDialog(
@@ -60,7 +55,7 @@ class MyOrdersController{
             CustomToast.showSimpleToast(msg: result, type: ToastType.success);
             model.availableCancelOrder = false;
             AutoRouter.of(ctx).pop(true);
-          }else{
+          } else {
             CustomToast.showSimpleToast(msg: tr("tryAgain"));
           }
           getIt<LoadingHelper>().dismissDialog();
@@ -69,8 +64,7 @@ class MyOrdersController{
     );
   }
 
-
-  void onPayOrder(BuildContext context,Orders model) async {
+  void onPayOrder(BuildContext context, Orders model) async {
     var result = await PayOrder().call(model.id);
     if (result.isNotEmpty && model.isPaymentOnline) {
       await AutoRouter.of(context).push(
@@ -79,17 +73,14 @@ class MyOrdersController{
     }
   }
 
-  Future<void> reOrder(BuildContext context,int orderId) async {
+  Future<void> reOrder(BuildContext context, int orderId) async {
     String result = await OrderAgain()(orderId);
-    if(result.isNotEmpty){
-      CustomToast.showSimpleToast(msg: result,type: ToastType.success);
+    if (result.isNotEmpty) {
+      CustomToast.showSimpleToast(msg: result, type: ToastType.success);
       AutoRouter.of(context).pop();
-      AutoRouter.of(context).push( CartRoute());
-    }else{
-      CustomToast.showSimpleToast(msg: tr("tryAgain"),type: ToastType.error);
+      AutoRouter.of(context).push(CartRoute());
+    } else {
+      CustomToast.showSimpleToast(msg: tr("tryAgain"), type: ToastType.error);
     }
-
   }
-
-
 }

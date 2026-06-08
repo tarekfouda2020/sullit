@@ -11,9 +11,11 @@ import 'package:flutter_tdd/features/user/cart/domain/models/payment_option.dart
 import 'package:flutter_tdd/features/user/purchasing/domain/models/track_order_model.dart';
 
 abstract class PurchasingRepository {
-  Future<Either<Failure, List<Orders>>> getPurchaseHistory(GenericPaginateParams param);
+  Future<Either<Failure, List<Orders>>> getPurchaseHistory(
+      GenericPaginateParams param);
 
-  Future<Either<Failure, List<Orders>>> getReturnOrders(GenericPaginateParams param);
+  Future<Either<Failure, List<Orders>>> getReturnOrders(
+      GenericPaginateParams param);
 
   Future<Either<Failure, Orders>> trackOrder(String param);
 
@@ -31,7 +33,9 @@ abstract class PurchasingRepository {
 
   Future<Either<Failure, TrackOrderModel>> trackingHistory(int param);
 
-  Future<Either<Failure, List<PaymentOption>>> getOrderPaymentOptions(bool param);
+  Future<Either<Failure, List<PaymentOption>>> getOrderPaymentOptions(
+      bool param);
 
-  Future<Either<Failure, Orders>> changeOrderPaymentMethod(ChangeOrderPaymentParams param);
+  Future<Either<Failure, Orders>> changeOrderPaymentMethod(
+      ChangeOrderPaymentParams param);
 }

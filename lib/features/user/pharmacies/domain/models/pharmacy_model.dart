@@ -1,5 +1,3 @@
-
-
 import 'package:flutter_tdd/features/user/products/domain/models/shop_model/shop_domain_model.dart';
 
 class PharmacyModel extends ShopDomainModel {
@@ -53,9 +51,7 @@ class PharmacyModel extends ShopDomainModel {
       youtube: json['youtube'],
       rating: json['rating'],
       follow: json['follow'],
-      sliders: (json['sliders'] as List?)
-          ?.map((e) => e.toString())
-          .toList(),
+      sliders: (json['sliders'] as List?)?.map((e) => e.toString()).toList(),
     );
   }
 

@@ -17,10 +17,11 @@ class SearchResultsModel extends BaseApiModel<SearchResults>
 
   @JsonSerializable(explicitToJson: true)
   const factory SearchResultsModel({
-    @JsonKey(name: 'popular_suggestions')  List<String>? suggestions,
-    @JsonKey(name: 'section_products') required AllProductsSearchResultModel products,
+    @JsonKey(name: 'popular_suggestions') List<String>? suggestions,
+    @JsonKey(name: 'section_products')
+    required AllProductsSearchResultModel products,
     @JsonKey(name: 'categories') required List<CategoryModel> categories,
-    @JsonKey(name: 'shops')  List<ShopModel>? shops,
+    @JsonKey(name: 'shops') List<ShopModel>? shops,
   }) = _SearchResultsModel;
 
   factory SearchResultsModel.fromJson(Map<String, dynamic> json) =>

@@ -1,4 +1,5 @@
-part of  'product_details_widgets_imports.dart';
+part of 'product_details_widgets_imports.dart';
+
 class BuildOwnQuestions extends StatelessWidget {
   final ProductQueries productQueries;
 
@@ -34,7 +35,7 @@ class BuildOwnQuestions extends StatelessWidget {
                     children: [
                       ...List.generate(
                         productQueries.ownProductQueries.length,
-                            (index) {
+                        (index) {
                           return BuildQuestionItem(
                             queryModel: productQueries.ownProductQueries[index],
                           );

@@ -19,13 +19,13 @@ class BuildLoadingSideSubCategories extends StatelessWidget {
                     runSpacing: Dimens.dp15,
                     spacing: Dimens.dp15,
                     children: [
-                       ...List.generate(3, (index) {
-                         return BuildShimmerItem(
-                           height: Dimens.dp70,
-                           width: Dimens.dp70,
-                           borderRadius: Dimens.borderRadius30PX,
-                         );
-                       }),
+                      ...List.generate(3, (index) {
+                        return BuildShimmerItem(
+                          height: Dimens.dp70,
+                          width: Dimens.dp70,
+                          borderRadius: Dimens.borderRadius30PX,
+                        );
+                      }),
                       Gaps.hGap5,
                       BuildShimmerItem(
                         height: Dimens.dp22,

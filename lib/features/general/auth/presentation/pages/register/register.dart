@@ -1,7 +1,6 @@
 part of 'register_imports.dart';
 
 class Register extends StatefulWidget {
-
   const Register({Key? key}) : super(key: key);
 
   @override
@@ -9,13 +8,14 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  late RegisterController controller ;
+  late RegisterController controller;
 
   @override
   void initState() {
     controller = RegisterController();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(

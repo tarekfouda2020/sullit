@@ -17,11 +17,16 @@ class MapSearchFieldWidget extends StatelessWidget {
       onTab: () => controller.showPlacesSheet(context),
       validate: (value) => value?.noValidate(),
       hint: "Search...",
-      prefixIcon: const Icon(CupertinoIcons.location_solid,color: CupertinoColors.systemRed,),
+      prefixIcon: const Icon(
+        CupertinoIcons.location_solid,
+        color: CupertinoColors.systemRed,
+      ),
       suffixIcon: GestureDetector(
           onTap: () => controller.showPlacesSheet(context),
-          child: const Icon(CupertinoIcons.search,color: CupertinoColors.inactiveGray,)
-      ),
+          child: const Icon(
+            CupertinoIcons.search,
+            color: CupertinoColors.inactiveGray,
+          )),
     );
   }
 }

@@ -4,14 +4,12 @@ import 'package:flutter_tdd/features/user/gift_card/domain/models/pay_method_dom
 import 'package:flutter_tdd/features/user/gift_card/domain/repositories/gift_cards_repositories.dart';
 
 class GetPayMethods implements UseCase<List<PayMethodDomainModel>, NoParams> {
-
   @override
   Future<List<PayMethodDomainModel>> call(NoParams param) async {
     var result = await getIt.get<GiftCardsRepositories>().getPayMethods();
     return result.fold(
-          (l) => [],
-          (r) => r,
+      (l) => [],
+      (r) => r,
     );
   }
-
 }

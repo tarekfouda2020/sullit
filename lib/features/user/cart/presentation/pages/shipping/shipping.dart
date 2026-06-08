@@ -9,8 +9,7 @@ class Shipping extends StatefulWidget {
 }
 
 class _ShippingState extends State<Shipping> {
-   final ShippingController controller = ShippingController();
-
+  final ShippingController controller = ShippingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +25,7 @@ class _ShippingState extends State<Shipping> {
             if (!moved && Navigator.of(context).canPop()) {
               Navigator.of(context).maybePop();
             }
-          }
-      ),
+          }),
       body: Column(
         children: [
           const BuildCartStepper(current: 2),

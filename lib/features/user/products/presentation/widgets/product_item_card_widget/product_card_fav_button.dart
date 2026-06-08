@@ -32,7 +32,8 @@ class ProductCardFavButton extends StatelessWidget {
               return Visibility(
                 visible: state.data,
                 replacement: BuildIconItem(
-                  icon: productModel.isWishlist! ? Res.favIcon : Res.emptyFavIcon,
+                  icon:
+                      productModel.isWishlist! ? Res.favIcon : Res.emptyFavIcon,
                   changeBgColor: false,
                   inActiveColor: context.colors.customBackground,
                   onTap: onFavTap,

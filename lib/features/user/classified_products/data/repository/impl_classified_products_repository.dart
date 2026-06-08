@@ -53,8 +53,8 @@ class ImplClassifiedProductsRepository extends ClassifiedProductsRepository
   }
 
   @override
-  Future<Either<Failure, CusProduct>>
-      setAddClassifiedProducts(AddClassifiedProductParams params) async {
+  Future<Either<Failure, CusProduct>> setAddClassifiedProducts(
+      AddClassifiedProductParams params) async {
     var result = await dataSources.setAddClassifiedProduct(params);
     return toDomainResult(result);
   }
@@ -90,7 +90,7 @@ class ImplClassifiedProductsRepository extends ClassifiedProductsRepository
   @override
   Future<Either<Failure, CusProduct>> updateClassifiedProduct(
       EditClassifiedProductParams params) async {
-    var result= await dataSources.editClassifiedProduct(params);
+    var result = await dataSources.editClassifiedProduct(params);
     return toDomainResult(result);
   }
 

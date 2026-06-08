@@ -14,14 +14,13 @@ class CategoriesController {
   void getCategories({bool refresh = true}) async {
     var result = await GetCategories().call(refresh);
     categoriesCubit.onUpdateData(result);
-    if(result.isNotEmpty){
+    if (result.isNotEmpty) {
       result.first.isSelected = true;
-      mainCategory=result.first;
+      mainCategory = result.first;
       // getSideSubCategories(result.first.id, result.first.name);
-    }else{
+    } else {
       sideSubCatsCubit.onUpdateData([]);
     }
-
   }
 
   Future<void> getSideSubCategories(int catId, String catName) async {
@@ -38,7 +37,7 @@ class CategoriesController {
     categoriesCubit.onUpdateData(categoriesCubit.state.data);
     sideSubCatsCubit.onUpdateToInitState([]);
     getSideSubCategories(categoryModel.id, categoryModel.name);
-    mainCategory=categoryModel;
+    mainCategory = categoryModel;
   }
 
   Category _insertedItem(int catId, String catName) {
@@ -54,20 +53,17 @@ class CategoriesController {
     );
   }
 
-
-  Future<void> routeToSearch(BuildContext context)async{
-    if(searchController.text.isEmpty){
-      return ;
+  Future<void> routeToSearch(BuildContext context) async {
+    if (searchController.text.isEmpty) {
+      return;
     }
-   await AutoRouter.of(context).push(
+    await AutoRouter.of(context).push(
       SearchRoute(
         searchText: searchController.text,
       ),
     );
-   searchController.clear();
+    searchController.clear();
   }
-
-
 
 // void onSelectSubCat(Category subCatModel) {
 //   if (selectedSideSubCat == null) {

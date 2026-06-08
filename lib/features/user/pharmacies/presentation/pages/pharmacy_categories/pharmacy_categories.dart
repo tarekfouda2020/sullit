@@ -9,8 +9,7 @@ class PharmacyCategories extends StatefulWidget {
 }
 
 class _PharmacyCategoriesState extends State<PharmacyCategories> {
-late  final PharmacyCategoriesController controller;
-
+  late final PharmacyCategoriesController controller;
 
   @override
   void initState() {
@@ -49,7 +48,8 @@ late  final PharmacyCategoriesController controller;
                   itemBuilder: (context, category, index) {
                     return PharmacyCategoryCardWidget(
                       category: category,
-                      onTap: () => controller.onSelectCategory(context, category),
+                      onTap: () =>
+                          controller.onSelectCategory(context, category),
                     );
                   },
                   firstPageProgressIndicatorBuilder: (context) => const Center(

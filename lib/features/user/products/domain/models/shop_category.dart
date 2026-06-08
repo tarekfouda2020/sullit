@@ -8,7 +8,7 @@ class ShopCategory extends BaseDomainModel {
   final String description;
   final String metaTitle;
   final String metaDescription;
-   bool isSelect;
+  bool isSelect;
 
   ShopCategory({
     required this.id,
@@ -18,6 +18,6 @@ class ShopCategory extends BaseDomainModel {
     required this.description,
     required this.metaTitle,
     required this.metaDescription,
-     this.isSelect = false,
+    this.isSelect = false,
   });
 }

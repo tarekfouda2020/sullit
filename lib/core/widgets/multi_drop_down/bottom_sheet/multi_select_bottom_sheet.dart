@@ -137,7 +137,8 @@ class _MultiSelectBottomSheetState<V> extends State<MultiSelectBottomSheet<V>> {
     return Theme(
       data: ThemeData(
         unselectedWidgetColor: widget.unselectedColor ?? Colors.black54,
-        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: widget.selectedColor ?? Theme.of(context).primaryColor),
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+            secondary: widget.selectedColor ?? Theme.of(context).primaryColor),
       ),
       child: CheckboxListTile(
         checkColor: widget.checkColor,
@@ -167,18 +168,19 @@ class _MultiSelectBottomSheetState<V> extends State<MultiSelectBottomSheet<V>> {
 
   /// Returns a ChoiceChip
   Widget _buildChipItem(MultiSelectItem<V> item) {
-    bool selected = _selectedValues.map((e) => e.toString()).contains(item.label);
+    bool selected =
+        _selectedValues.map((e) => e.toString()).contains(item.label);
     return Container(
       padding: const EdgeInsets.all(2.0),
       child: ChoiceChip(
         backgroundColor: widget.unselectedColor,
         selectedColor: widget.selectedColor,
-        label: Text(
-          item.label,
-          style: const AppTextStyle.s12_w500(color: Colors.black).copyWith(
-            color: selected? widget.selectedTextColor : widget.unSelectedTextColor,
-          )
-        ),
+        label: Text(item.label,
+            style: const AppTextStyle.s12_w500(color: Colors.black).copyWith(
+              color: selected
+                  ? widget.selectedTextColor
+                  : widget.unSelectedTextColor,
+            )),
         selected: _selectedValues.map((e) => e.toString()).contains(item.label),
         onSelected: (checked) {
           setState(() {
@@ -245,7 +247,8 @@ class _MultiSelectBottomSheetState<V> extends State<MultiSelectBottomSheet<V>> {
                     widget.searchable != null && widget.searchable!
                         ? IconButton(
                             icon: _showSearch
-                                ? widget.closeSearchIcon ?? const Icon(Icons.close)
+                                ? widget.closeSearchIcon ??
+                                    const Icon(Icons.close)
                                 : widget.searchIcon ?? const Icon(Icons.search),
                             onPressed: () {
                               setState(() {

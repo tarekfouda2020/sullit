@@ -1,9 +1,12 @@
-part  of 'categories_widgets_imports.dart';
+part of 'categories_widgets_imports.dart';
 
 class SubCategorySideItemReplacementWidget extends StatelessWidget {
   final Category subCategoryModel;
   final CategoriesController categoriesController;
-  const SubCategorySideItemReplacementWidget({super.key, required this.subCategoryModel, required this.categoriesController});
+  const SubCategorySideItemReplacementWidget(
+      {super.key,
+      required this.subCategoryModel,
+      required this.categoriesController});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +18,7 @@ class SubCategorySideItemReplacementWidget extends StatelessWidget {
           child: InkWell(
             onTap: () => AutoRouter.of(context).push(CategoryDetailsRoute(
                 categoryModel:
-                categoriesController.mainCategory ?? subCategoryModel)),
+                    categoriesController.mainCategory ?? subCategoryModel)),
             child: Column(
               children: [
                 CachedImage(
@@ -30,7 +33,8 @@ class SubCategorySideItemReplacementWidget extends StatelessWidget {
                     Res.category,
                     width: Dimens.dp30,
                     height: Dimens.dp30,
-                    colorFilter: ColorFilter.mode(context.colors.primary, BlendMode.srcIn),
+                    colorFilter: ColorFilter.mode(
+                        context.colors.primary, BlendMode.srcIn),
                   ),
                 ),
                 Gaps.vGap10,

@@ -4,7 +4,8 @@ class DealsCountDownWidget extends StatefulWidget {
   final FlashSale flashSales;
   final HomeMainController controller;
 
-  const DealsCountDownWidget({super.key, required this.flashSales, required this.controller});
+  const DealsCountDownWidget(
+      {super.key, required this.flashSales, required this.controller});
 
   @override
   State<DealsCountDownWidget> createState() => _DealsCountDownWidgetState();
@@ -14,9 +15,11 @@ class _DealsCountDownWidgetState extends State<DealsCountDownWidget> {
   @override
   void initState() {
     super.initState();
-    widget.controller.countDownCubit.state.data.initDuration(widget.flashSales.date);
+    widget.controller.countDownCubit.state.data
+        .initDuration(widget.flashSales.date);
     widget.controller.countDownCubit.state.data.startTimer(
-      callback: () => widget.controller.countDownCubit..onUpdateData(widget.controller.countDownCubit.state.data),
+      callback: () => widget.controller.countDownCubit
+        ..onUpdateData(widget.controller.countDownCubit.state.data),
     );
   }
 
@@ -42,27 +45,36 @@ class _DealsCountDownWidgetState extends State<DealsCountDownWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   BuildCustomTimer(
-                    firstTimeNumber: widget.controller.getDigit(state.data.myDuration, 'days', 0),
-                    secondTimeNumber: widget.controller.getDigit(state.data.myDuration, 'days', 1),
-                    threeTimeNumber: widget.controller.getDigit(state.data.myDuration, 'days', 2),
+                    firstTimeNumber: widget.controller
+                        .getDigit(state.data.myDuration, 'days', 0),
+                    secondTimeNumber: widget.controller
+                        .getDigit(state.data.myDuration, 'days', 1),
+                    threeTimeNumber: widget.controller
+                        .getDigit(state.data.myDuration, 'days', 2),
                     text: tr("days"),
                   ),
                   _buildSeparatorText(context),
                   BuildCustomTimer(
-                    firstTimeNumber: widget.controller.getDigit(state.data.myDuration, 'hours', 0),
-                    secondTimeNumber: widget.controller.getDigit(state.data.myDuration, 'hours', 1),
+                    firstTimeNumber: widget.controller
+                        .getDigit(state.data.myDuration, 'hours', 0),
+                    secondTimeNumber: widget.controller
+                        .getDigit(state.data.myDuration, 'hours', 1),
                     text: tr("hours"),
                   ),
                   _buildSeparatorText(context),
                   BuildCustomTimer(
-                    firstTimeNumber: widget.controller.getDigit(state.data.myDuration, 'minutes', 0),
-                    secondTimeNumber: widget.controller.getDigit(state.data.myDuration, 'minutes', 1),
+                    firstTimeNumber: widget.controller
+                        .getDigit(state.data.myDuration, 'minutes', 0),
+                    secondTimeNumber: widget.controller
+                        .getDigit(state.data.myDuration, 'minutes', 1),
                     text: tr("minutes"),
                   ),
                   _buildSeparatorText(context),
                   BuildCustomTimer(
-                    firstTimeNumber: widget.controller.getDigit(state.data.myDuration, 'seconds', 0),
-                    secondTimeNumber: widget.controller.getDigit(state.data.myDuration, 'seconds', 1),
+                    firstTimeNumber: widget.controller
+                        .getDigit(state.data.myDuration, 'seconds', 0),
+                    secondTimeNumber: widget.controller
+                        .getDigit(state.data.myDuration, 'seconds', 1),
                     text: tr("second"),
                   ),
                 ],

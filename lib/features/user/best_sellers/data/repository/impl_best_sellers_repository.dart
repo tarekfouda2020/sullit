@@ -11,7 +11,8 @@ import 'package:flutter_tdd/features/user/search/domain/entities/search_result_p
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: BestSellersRepository)
-class ImplBestSellersRepository extends BestSellersRepository with ModelToDomain{
+class ImplBestSellersRepository extends BestSellersRepository
+    with ModelToDomain {
   var dataSources = getIt<BestSellersSources>();
 
   @override

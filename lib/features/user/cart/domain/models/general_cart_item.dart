@@ -1,31 +1,56 @@
-import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/base_cart_domain_model.dart';
 
-class CartItem extends BaseDomainModel {
+class GeneralCartItem extends BaseCartItemDomainModel {
+  @override
   int id;
+  @override
   int ownerId;
+  @override
   String thumbnailImage;
+  @override
   String name;
+  @override
   String price;
+  @override
   String tax;
+  @override
   int quantity;
+  @override
   bool isDigital;
+  @override
   String total;
+  @override
   num calculableTotal;
+  @override
   String currencySymbol;
+  @override
   int productId;
+  @override
   int loyaltyPoints;
+  @override
   int minQty;
+  @override
   int stockQty;
+  @override
   bool isWishlist;
+  @override
   bool hasSpecialLoyaltyPoints;
+  @override
   String soldByType;
+  @override
   String soldBy;
+  @override
   int? shopId;
+  @override
   double rating;
 
+  final bool? prescriptionRequired;
+  final bool? insuranceEligible;
 
-  CartItem({
+  GeneralCartItem({
     required this.id,
+    this.prescriptionRequired,
+    this.insuranceEligible,
     required this.ownerId,
     required this.thumbnailImage,
     required this.name,
@@ -34,7 +59,7 @@ class CartItem extends BaseDomainModel {
     required this.quantity,
     required this.isDigital,
     required this.total,
-    required this.calculableTotal ,
+    required this.calculableTotal,
     required this.currencySymbol,
     required this.productId,
     required this.minQty,

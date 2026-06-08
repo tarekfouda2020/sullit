@@ -1,7 +1,7 @@
 part of 'widgets_imports.dart';
 
 class PharmacyCartItemsWidget extends StatelessWidget {
-  final List<CartItem> cartItems;
+  final List<GeneralCartItem> cartItems;
   final PharmacyCartController controller;
 
   const PharmacyCartItemsWidget(

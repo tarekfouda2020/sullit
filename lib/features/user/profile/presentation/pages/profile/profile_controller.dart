@@ -8,7 +8,8 @@ class ProfileController {
   final GlobalKey<CustomButtonState> createBtnKey = GlobalKey();
   final GlobalKey<FormState> formKey = GlobalKey();
   final GenericBloc<File?> imageCubit = GenericBloc(null);
-  final GenericBloc<VipCurrentPlanDomainModel?> currentSubscriptionBloc = GenericBloc(null);
+  final GenericBloc<VipCurrentPlanDomainModel?> currentSubscriptionBloc =
+      GenericBloc(null);
   final GenericBloc<bool> isExpandCubit = GenericBloc<bool>(false);
 
   final TextEditingController nameController = TextEditingController();
@@ -21,7 +22,7 @@ class ProfileController {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
-  final GenericBloc<Country?> countryCubit = GenericBloc(null );
+  final GenericBloc<Country?> countryCubit = GenericBloc(null);
   final GenericBloc<bool> verifyPhoneCubit = GenericBloc(false);
 
   // final GenericBloc<bool> verifyEmailCubit = GenericBloc(false);
@@ -47,9 +48,10 @@ class ProfileController {
     }
   }
 
-  Future<void> _initializeCountryFromUser(BuildContext context, UserDomainModel? user) async {
+  Future<void> _initializeCountryFromUser(
+      BuildContext context, UserDomainModel? user) async {
     countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
-    return ;
+    return;
     // if (user?.countryCode != null && user!.countryCode!.isNotEmpty) {
     //   try {
     //     final country = await CountryPickerHelper.getCountryByCallingCode(context, user.countryCode!);
@@ -78,7 +80,7 @@ class ProfileController {
   // }
 
   void navigateToAddresses(BuildContext context) async {
-    var result = await AutoRouter.of(context).push( AddressesRoute());
+    var result = await AutoRouter.of(context).push(AddressesRoute());
     if (result != null) {
       addressModel = result as AddressDomainModel;
       addressController.text = addressModel?.address ?? "";
@@ -89,9 +91,10 @@ class ProfileController {
     showDialog(
       context: context,
       builder: (context) {
-        return  BuildDeleteDialog(
+        return BuildDeleteDialog(
           onPressConfirm: () => getIt<AuthHelper>().deleteAccount(context),
-          content: tr("wantDeleteAccount"),);
+          content: tr("wantDeleteAccount"),
+        );
       },
     );
   }
@@ -134,6 +137,7 @@ class ProfileController {
       return false;
     }
   }
+
   bool isNameChanged(BuildContext context) {
     var user = context.read<UserCubit>().state.model;
     if (nameController.text != user!.name) {
@@ -173,26 +177,28 @@ class ProfileController {
       //     return;
       //   }
       // }
-      if(nameController.text.isNotEmpty && nameController.text.validateName() != null){
+      if (nameController.text.isNotEmpty &&
+          nameController.text.validateName() != null) {
         CustomToast.showSnakeBar(
           tr("validateName"),
           type: ToastType.error,
         );
-        return ;
+        return;
       }
-      if(emailController.text.isNotEmpty && emailController.text.validateEmail() != null){
+      if (emailController.text.isNotEmpty &&
+          emailController.text.validateEmail() != null) {
         CustomToast.showSnakeBar(
           tr("mailValidation"),
           type: ToastType.error,
         );
-        return ;
+        return;
       }
-      if(!isPhoneValid()){
+      if (!isPhoneValid()) {
         CustomToast.showSnakeBar(
-           tr("phoneValidation"),
+          tr("phoneValidation"),
           type: ToastType.error,
         );
-        return ;
+        return;
       }
       var data = await SetEditProfile().call(params);
       if (data != null) {
@@ -206,16 +212,14 @@ class ProfileController {
     }
   }
 
-
-  bool isPhoneValid(){
-    if(phoneController.text.isNotEmpty){
-      return( (phoneController.text)).isValidUAEPhone(phoneController.text) == null;
-    }else{
+  bool isPhoneValid() {
+    if (phoneController.text.isNotEmpty) {
+      return ((phoneController.text)).isValidUAEPhone(phoneController.text) ==
+          null;
+    } else {
       return false;
     }
-
   }
-
 
   void onSaveUserData(BuildContext context) async {
     if (context.mounted) {
@@ -259,48 +263,37 @@ class ProfileController {
 
   ProfileParams _profileParams(BuildContext context) {
     return ProfileParams(
-      name: isNameChanged(context)
-          ?nameController.text
-          :null,
-      countryCode: countryCubit.state.data?.callingCode ,
+      name: isNameChanged(context) ? nameController.text : null,
+      countryCode: countryCubit.state.data?.callingCode,
       phone: isPhoneValid() && phoneController.text.isNotEmpty
           ? phoneController.text
-          :null,
-      image: isImageChanged()
-          ?imageCubit.state.data
-          :null,
-      email: isEmailChanged(context)
-          ?emailController.text
-          :null,
+          : null,
+      image: isImageChanged() ? imageCubit.state.data : null,
+      email: isEmailChanged(context) ? emailController.text : null,
     );
   }
-
 
   void logOut(BuildContext context) {
     context.read<CountCubit>().onUpdateCount(0, 0);
     getIt<AuthHelper>().onLogOut(context);
   }
 
-
-
-  void routeToChangePassword(BuildContext context){
+  void routeToChangePassword(BuildContext context) {
     String? email = context.read<UserCubit>().state.model?.email;
-    if(email == null || email == "") {
+    if (email == null || email == "") {
       CustomToast.showSimpleToast(
           msg: tr("add_email_to_change_password"),
           type: ToastType.info,
-          toastGravity: ToastGravity.BOTTOM
-      );
-      return ;
+          toastGravity: ToastGravity.BOTTOM);
+      return;
     }
     AutoRouter.of(context).push(const ChangePasswordRoute());
   }
 
-
-  void onPressBack(BuildContext context,String? email){
-    if(email == null || email.isEmpty){
-    CustomToast.showSimpleToast(msg: tr("please_enter_valid_email"));
-    return ;
+  void onPressBack(BuildContext context, String? email) {
+    if (email == null || email.isEmpty) {
+      CustomToast.showSimpleToast(msg: tr("please_enter_valid_email"));
+      return;
     }
     AutoRouter.of(context).pop();
   }
@@ -312,20 +305,15 @@ class ProfileController {
     }
   }
 
-
-
-
-  void showTierDescription(BuildContext context){
+  void showTierDescription(BuildContext context) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       enableDrag: false,
       builder: (context) {
-      return TierBenefistSheetWidget(controller: this);
-    },);
+        return TierBenefistSheetWidget(controller: this);
+      },
+    );
   }
-
-
-
 }

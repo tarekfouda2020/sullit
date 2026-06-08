@@ -9,8 +9,8 @@ class SetCodeVerify implements UseCase<String, CodeVerifyParams> {
   Future<String> call(CodeVerifyParams params) async {
     var result = await getIt<AuthRepository>().codeVerify(params);
     return result.fold(
-          (l) => '',
-          (r) => r,
+      (l) => '',
+      (r) => r,
     );
   }
 }

@@ -10,14 +10,11 @@ class PharmacyHomeSectionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Gaps.vGap10,
-        Image.asset(
-          height: 145,
-            Res.pharmacyImage
-        ),
+        Image.asset(height: 145, Res.pharmacyImage),
         Gaps.vGap16,
         const PharmacyAdvantagesWidget(),
         Gaps.vGap24,
-         HomePharmaciesWidget(controller:controller)
+        HomePharmaciesWidget(controller: controller)
       ],
     );
   }

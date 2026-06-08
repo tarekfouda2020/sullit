@@ -3,7 +3,8 @@ part of 'widgets_imports.dart';
 class SupportedInsuranceBottomSheetWidget extends StatelessWidget {
   final List<InsuranceCompany> insurance;
 
-  const SupportedInsuranceBottomSheetWidget({super.key, required this.insurance});
+  const SupportedInsuranceBottomSheetWidget(
+      {super.key, required this.insurance});
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +15,9 @@ class SupportedInsuranceBottomSheetWidget extends StatelessWidget {
       ),
       // margin: const EdgeInsets.only(top: kToolbarHeight+20),
       constraints: BoxConstraints(
-        minHeight: 200,
-        maxHeight: MediaQuery.sizeOf(context).height-(kToolbarHeight + 50)
-      ),
-      decoration:  BoxDecoration(
+          minHeight: 200,
+          maxHeight: MediaQuery.sizeOf(context).height - (kToolbarHeight + 50)),
+      decoration: BoxDecoration(
         color: context.colors.white,
         borderRadius: Dimens.sheetBorderRadius,
       ),

@@ -7,7 +7,8 @@ class AllowReplacementWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsetsDirectional.only(start: 16,top: 15,end: 16,bottom: 9),
+      padding: const EdgeInsetsDirectional.only(
+          start: 16, top: 15, end: 16, bottom: 9),
       decoration: CustomDecoration(
         myBoxShadow: const [],
         thisColor: context.colors.lightPrimary,
@@ -29,14 +30,15 @@ class AllowReplacementWidget extends StatelessWidget {
               Gaps.hGap5,
               SwitchButtonWidget(
                 switchBloc: controller.allowReplacementCubit,
-                onToggle: (value) => controller.switchReplacementAccept(context,value),
+                onToggle: (value) =>
+                    controller.switchReplacementAccept(context, value),
               )
             ],
           ),
-          Text(tr("replacement_info"),
-          style: AppTextStyle.s11_w500(color: context.colors.black).copyWith(
-            height: 1.3
-          ),
+          Text(
+            tr("replacement_info"),
+            style: AppTextStyle.s11_w500(color: context.colors.black)
+                .copyWith(height: 1.3),
           )
         ],
       ),

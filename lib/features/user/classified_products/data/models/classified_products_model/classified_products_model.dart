@@ -9,15 +9,17 @@ part 'classified_products_model.g.dart';
 
 @freezed
 @immutable
-class ClassifiedProductsModel extends BaseApiModel<ClassifiedProductsDomainModel>
+class ClassifiedProductsModel
+    extends BaseApiModel<ClassifiedProductsDomainModel>
     with _$ClassifiedProductsModel {
   const ClassifiedProductsModel._();
 
   @JsonSerializable(explicitToJson: true)
   const factory ClassifiedProductsModel({
     @JsonKey(name: 'remaining_uploads') required int remainingUploads,
-    @JsonKey(name: 'current_package')  CurrentPackageModel? currentPackage,
-    @JsonKey(name: 'section_products') required SectionProductsModel sectionsProducts,
+    @JsonKey(name: 'current_package') CurrentPackageModel? currentPackage,
+    @JsonKey(name: 'section_products')
+    required SectionProductsModel sectionsProducts,
   }) = _ClassifiedProductsModel;
 
   factory ClassifiedProductsModel.fromJson(Map<String, dynamic> json) =>

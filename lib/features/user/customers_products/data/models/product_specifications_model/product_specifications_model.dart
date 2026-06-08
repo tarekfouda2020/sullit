@@ -18,10 +18,11 @@ class ProductSpecificationsModel extends BaseApiModel<ProductSpecifications>
   const factory ProductSpecificationsModel({
     @JsonKey(name: "brands") required List<BrandModel> brands,
     @JsonKey(name: "categories") required List<CategoryModel> categories,
-    @JsonKey(name: "children_categories") required List<CategoryModel> subCategories,
+    @JsonKey(name: "children_categories")
+    required List<CategoryModel> subCategories,
     @JsonKey(name: "sort_by_types") required List<SortTypesModel> sortTypes,
     @JsonKey(name: "sort_by_condition_types")
-        required List<SortTypesModel> sortConditions,
+    required List<SortTypesModel> sortConditions,
   }) = _ProductSpecificationsModel;
 
   factory ProductSpecificationsModel.fromJson(Map<String, dynamic> json) =>
@@ -32,7 +33,7 @@ class ProductSpecificationsModel extends BaseApiModel<ProductSpecifications>
     return ProductSpecifications(
       brands: brands.map((e) => e.toDomainModel()).toList(),
       categories: categories.map((e) => e.toDomainModel()).toList(),
-      subCategories:subCategories.map((e) => e.toDomainModel()).toList() ,
+      subCategories: subCategories.map((e) => e.toDomainModel()).toList(),
       sortConditions: sortConditions.map((e) => e.toDomainModel()).toList(),
       sortTypes: sortTypes.map((e) => e.toDomainModel()).toList(),
     );

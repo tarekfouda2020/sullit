@@ -10,9 +10,9 @@ class SearchResults extends BaseDomainModel {
   final List<Shop>? shops;
 
   SearchResults({
-     this.suggestions,
+    this.suggestions,
     required this.products,
     required this.categories,
-     this.shops,
+    this.shops,
   });
 }

@@ -10,7 +10,7 @@ class BuildOrderSummary extends StatelessWidget {
       children: [
         Padding(
           padding: Dimens.paddingAll15PX,
-          child:  Text(
+          child: Text(
             tr('orderSummary'),
             style: const AppTextStyle.s16_w500(
               color: Colors.black,
@@ -63,7 +63,7 @@ class BuildOrderSummary extends StatelessWidget {
               ),
               BuildSummaryItem(
                 title: "${tr('paymentMethod')} :",
-                value:summary.summary!.paymentMethod,
+                value: summary.summary!.paymentMethod,
                 showDivider: false,
               ),
             ],

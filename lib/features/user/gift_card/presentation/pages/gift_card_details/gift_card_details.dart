@@ -36,10 +36,10 @@ class _GiftCardDetailsState extends State<GiftCardDetails> {
             onBack: () => controller.onPop(context),
             actions: [
               Visibility(
-                visible: widget.isMyGiftCard,
+                  visible: widget.isMyGiftCard,
                   child: IconButton(
                     onPressed: () => controller.shareGiftCard(context),
-                    icon : const Icon(Icons.share_outlined),
+                    icon: const Icon(Icons.share_outlined),
                     color: context.colors.black,
                   ))
             ],

@@ -1,11 +1,10 @@
-part of'brands_imports.dart';
+part of 'brands_imports.dart';
+
 class BrandsController {
-
-
   final TextEditingController brandsSearchCtr = TextEditingController();
 
-
-  final PagingController<int, BrandDomainModel> pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, BrandDomainModel> pagingController =
+      PagingController(firstPageKey: 1);
   int pageSize = 10;
 
   BrandsController() {
@@ -16,8 +15,8 @@ class BrandsController {
     );
   }
 
-  Future<void> getBrands(int page ,{bool refresh = true}) async {
-    var params = _brandsParams(pageSize,refresh,page );
+  Future<void> getBrands(int page, {bool refresh = true}) async {
+    var params = _brandsParams(pageSize, refresh, page);
     var data = await GetBrands().call(params);
     final isLastPage = data.length < pageSize;
     if (page == 1) {
@@ -31,19 +30,17 @@ class BrandsController {
     }
   }
 
-
-  void onPressSearchBrand(BuildContext context){
+  void onPressSearchBrand(BuildContext context) {
     // FocusScope.of(context).unfocus();
     pagingController.refresh();
     getBrands(1);
   }
 
-  BrandsParams _brandsParams(int paginate, bool refresh, int page ) {
+  BrandsParams _brandsParams(int paginate, bool refresh, int page) {
     return BrandsParams(
-      paginate: paginate,
-      refresh: refresh,
-      page: page,
-      keyword: brandsSearchCtr.text
-    );
+        paginate: paginate,
+        refresh: refresh,
+        page: page,
+        keyword: brandsSearchCtr.text);
   }
 }

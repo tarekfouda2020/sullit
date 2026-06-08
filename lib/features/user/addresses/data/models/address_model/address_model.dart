@@ -10,7 +10,8 @@ part 'address_model.g.dart';
 
 @freezed
 @immutable
-class AddressModel extends BaseApiModel<AddressDomainModel> with _$AddressModel {
+class AddressModel extends BaseApiModel<AddressDomainModel>
+    with _$AddressModel {
   const AddressModel._();
 
   @JsonSerializable(explicitToJson: true)
@@ -22,7 +23,7 @@ class AddressModel extends BaseApiModel<AddressDomainModel> with _$AddressModel 
     StateModel? state,
     CityModel? city,
     required String phone,
-  @JsonKey(name: "full_phone") required String fullPhone,
+    @JsonKey(name: "full_phone") required String fullPhone,
     @JsonKey(name: "country_code") required String countryCode,
     @JsonKey(name: "set_default") required bool setDefault,
     required String lat,
@@ -35,7 +36,7 @@ class AddressModel extends BaseApiModel<AddressDomainModel> with _$AddressModel 
     @JsonKey(name: "flat_number") required String flatNumber,
     @JsonKey(name: "state_name") required String stateName,
     @JsonKey(name: "city_name") required String cityName,
-    @JsonKey(name: "selected",defaultValue: false)  bool? selected,
+    @JsonKey(name: "selected", defaultValue: false) bool? selected,
   }) = _AddressModel;
 
   factory AddressModel.fromJson(Map<String, dynamic> json) =>
@@ -44,28 +45,27 @@ class AddressModel extends BaseApiModel<AddressDomainModel> with _$AddressModel 
   @override
   AddressDomainModel toDomainModel() {
     return AddressDomainModel(
-      id: id,
-      userId: userId,
-      address: address,
-      country: country?.toDomainModel(),
-      state: state?.toDomainModel(),
-      city: city?.toDomainModel(),
-      // postalCode: postalCode,
-      phone: phone,
-      fullPhone: fullPhone,
-      countryCode:countryCode,
-      setDefault: setDefault,
-      lat: lat,
-      lang: lang,
-      isActive: isActive,
-      addressType: addressType,
-      addressTypeLabel: addressTypeLabel,
-      streetName: streetName,
-      buildingName: buildingName,
-      flatNumber: flatNumber,
-      selected: selected ?? false,
-      cityName: cityName,
-      stateName: stateName
-    );
+        id: id,
+        userId: userId,
+        address: address,
+        country: country?.toDomainModel(),
+        state: state?.toDomainModel(),
+        city: city?.toDomainModel(),
+        // postalCode: postalCode,
+        phone: phone,
+        fullPhone: fullPhone,
+        countryCode: countryCode,
+        setDefault: setDefault,
+        lat: lat,
+        lang: lang,
+        isActive: isActive,
+        addressType: addressType,
+        addressTypeLabel: addressTypeLabel,
+        streetName: streetName,
+        buildingName: buildingName,
+        flatNumber: flatNumber,
+        selected: selected ?? false,
+        cityName: cityName,
+        stateName: stateName);
   }
 }

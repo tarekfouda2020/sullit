@@ -15,9 +15,9 @@ class ProductQueriesModel extends BaseApiModel<ProductQueries>
   @JsonSerializable(explicitToJson: true)
   const factory ProductQueriesModel({
     @JsonKey(name: 'own_product_queries')
-        required List<QueriesModel> ownProductQueries,
+    required List<QueriesModel> ownProductQueries,
     @JsonKey(name: 'other_product_queries')
-        required List<QueriesModel> otherProductQueries,
+    required List<QueriesModel> otherProductQueries,
     @JsonKey(name: 'total_count') required int totalCount,
     @JsonKey(name: 'queries_offset') required int queriesOffset,
   }) = _ProductQueriesModel;

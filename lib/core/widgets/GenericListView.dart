@@ -156,7 +156,8 @@ class _SeparatedListView<T> extends StatefulWidget {
       this.refreshBg,
       required this.padding,
       this.loadingColor,
-      this.loadingWidget, this.emptyWidget});
+      this.loadingWidget,
+      this.emptyWidget});
 
   @override
   _SeparatedListViewState createState() => _SeparatedListViewState<T>();
@@ -200,7 +201,8 @@ class _SeparatedListViewState<T> extends State<_SeparatedListView> {
               ),
             );
           }
-          return widget.emptyWidget?? _genericListViewEmptyList(widget.emptyStr);
+          return widget.emptyWidget ??
+              _genericListViewEmptyList(widget.emptyStr);
         }
         return _genericListViewLoadingView(widget.loadingColor);
       },
@@ -229,7 +231,8 @@ class _ApiListView<T> extends StatefulWidget {
       this.refreshBg,
       required this.padding,
       this.loadingColor,
-      this.loadingWidget, this.emptyWidget});
+      this.loadingWidget,
+      this.emptyWidget});
 
   @override
   _ApiListViewState createState() => _ApiListViewState<T>();
@@ -268,7 +271,8 @@ class _ApiListViewState<T> extends State<_ApiListView> {
               ),
             );
           }
-          return widget.emptyWidget?? _genericListViewEmptyList(widget.emptyStr);
+          return widget.emptyWidget ??
+              _genericListViewEmptyList(widget.emptyStr);
         }
         return widget.loadingWidget ??
             _genericListViewLoadingView(widget.loadingColor);
@@ -306,7 +310,8 @@ class _GridViewApi<T> extends StatefulWidget {
       required this.gridCrossCount,
       required this.gridItemHeight,
       this.loadingColor,
-      this.loadingWidget, this.emptyWidget});
+      this.loadingWidget,
+      this.emptyWidget});
 
   @override
   _GridViewApiState createState() => _GridViewApiState<T>();
@@ -351,7 +356,8 @@ class _GridViewApiState<T> extends State<_GridViewApi> {
               ),
             );
           }
-          return widget.emptyWidget?? _genericListViewEmptyList(widget.emptyStr);
+          return widget.emptyWidget ??
+              _genericListViewEmptyList(widget.emptyStr);
         }
         return widget.loadingWidget ??
             _genericListViewLoadingView(widget.loadingColor);

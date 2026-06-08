@@ -10,14 +10,14 @@ import 'package:flutter_tdd/features/user/addresses/domain/entities/edit_address
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 
 abstract class AddressesDataSources {
-  Future<Either<Failure, List<AddressModel>>> getAddress (GenericPaginateParams param);
-  Future<Either<Failure, AddressModel>> addNewAddress (AddAddressParams params);
-  Future<Either<Failure, List<CountryModel>>> getCountries (bool param);
-  Future<Either<Failure, List<StateModel>>> getStatesByCountryId (int param);
-  Future<Either<Failure, List<CityModel>>> getCitiesByStateId (int param);
-  Future<Either<Failure, bool>> setDefaultAddress (int param);
-  Future<Either<Failure, bool>> deleteAddress (int param);
-  Future<Either<Failure, AddressModel>> editAddress (EditAddressParams params);
+  Future<Either<Failure, List<AddressModel>>> getAddress(
+      GenericPaginateParams param);
+  Future<Either<Failure, AddressModel>> addNewAddress(AddAddressParams params);
+  Future<Either<Failure, List<CountryModel>>> getCountries(bool param);
+  Future<Either<Failure, List<StateModel>>> getStatesByCountryId(int param);
+  Future<Either<Failure, List<CityModel>>> getCitiesByStateId(int param);
+  Future<Either<Failure, bool>> setDefaultAddress(int param);
+  Future<Either<Failure, bool>> deleteAddress(int param);
+  Future<Either<Failure, AddressModel>> editAddress(EditAddressParams params);
   Future<Either<Failure, List<AddressType>>> addressTypes(bool param);
-
 }

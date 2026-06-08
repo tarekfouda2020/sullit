@@ -25,21 +25,21 @@ class TrackOrderItemWidget extends StatelessWidget {
         Column(
           children: [
             Container(
-              width: 40,height: 40,
-              alignment: Alignment.center,
-              decoration: CustomDecoration(
-                myBoxShadow: const [],
-                boxShape: BoxShape.circle,
-                thisColor:context.colors.primary
-              ),
-              // child: _getCurrentIcon,
-              child: Visibility(
-                // visible: trackStatus.getStepNumber() <= currentStep,
-                  child: SvgPicture.asset(Res.successIcon,
-                  colorFilter: ColorFilter.mode(context.colors.white, BlendMode.srcIn),
-                  )
-              )
-            ),
+                width: 40,
+                height: 40,
+                alignment: Alignment.center,
+                decoration: CustomDecoration(
+                    myBoxShadow: const [],
+                    boxShape: BoxShape.circle,
+                    thisColor: context.colors.primary),
+                // child: _getCurrentIcon,
+                child: Visibility(
+                    // visible: trackStatus.getStepNumber() <= currentStep,
+                    child: SvgPicture.asset(
+                  Res.successIcon,
+                  colorFilter:
+                      ColorFilter.mode(context.colors.white, BlendMode.srcIn),
+                ))),
             if (!isLast)
               Container(
                 width: 3,
@@ -56,15 +56,13 @@ class TrackOrderItemWidget extends StatelessWidget {
             // if(currentStep>=trackStatus.getStepNumber())
             Text(
               statusModel.status.replaceAll("_", " "),
-              style: AppTextStyle.s20_w700(
-                  color: context.colors.black),
+              style: AppTextStyle.s20_w700(color: context.colors.black),
             ),
             Gaps.vGap5,
             // if(currentStep>=trackStatus.getStepNumber())
             Text(
-              DateTimeHelper.getDate(statusModel.createdAt) ,
-              style: AppTextStyle.s16_w400(
-                  color: context.colors.textColor)
+              DateTimeHelper.getDate(statusModel.createdAt),
+              style: AppTextStyle.s16_w400(color: context.colors.textColor)
                   .copyWith(
                 height: 1.2,
               ),
@@ -75,8 +73,6 @@ class TrackOrderItemWidget extends StatelessWidget {
       ],
     );
   }
-
-
 
   // Color _getLineColor(BuildContext context) {
   //   return currentStep >= trackStatus.getStepNumber()
@@ -91,6 +87,4 @@ class TrackOrderItemWidget extends StatelessWidget {
   //     return context.colors.deepGray;
   //   }
   // }
-
-
 }

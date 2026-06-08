@@ -2,8 +2,9 @@ part of 'product_details_widgets_imports.dart';
 
 class BuildRelatedProducts extends StatelessWidget {
   final List<Product> relatedProducts;
-final ProductDetailsController controller;
-  const BuildRelatedProducts({super.key, required this.relatedProducts, required this.controller});
+  final ProductDetailsController controller;
+  const BuildRelatedProducts(
+      {super.key, required this.relatedProducts, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,8 @@ final ProductDetailsController controller;
               ),
               Flexible(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsetsDirectional.only(top: 10,bottom: 10,start: 15),
+                  padding: const EdgeInsetsDirectional.only(
+                      top: 10, bottom: 10, start: 15),
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -40,7 +42,8 @@ final ProductDetailsController controller;
                         child: BuildProductItem(
                           productModel: relatedProducts[index],
                           onPressDelete: () => controller.getCartItems(),
-                          afterAddToCart: () => controller.calculateRemainingAmount(),
+                          afterAddToCart: () =>
+                              controller.calculateRemainingAmount(),
                           onFavRefresh: () => controller.onChangeFav(
                             context,
                             relatedProducts[index],
@@ -48,7 +51,9 @@ final ProductDetailsController controller;
                           onCompareRefresh: () => controller.onChangeCompare(
                             relatedProducts[index],
                           ),
-                          onRefresh: () => controller.getProductDetails(context, controller.productId, resetQty: false),
+                          onRefresh: () => controller.getProductDetails(
+                              context, controller.productId,
+                              resetQty: false),
                         ),
                       ),
                     ),

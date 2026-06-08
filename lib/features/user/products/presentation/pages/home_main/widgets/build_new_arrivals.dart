@@ -28,10 +28,9 @@ class BuildNewArrivals extends StatelessWidget {
                       padding: Dimens.paddingHorizontal5PX,
                       child: BuildProductItem(
                         productModel: newArrivals[index],
-                        onFavRefresh: () => controller.onChangeFav(
-                          newArrivals[index],context
-                        ),
-                        onRefresh: () => controller.getHome( refresh: true),
+                        onFavRefresh: () =>
+                            controller.onChangeFav(newArrivals[index], context),
+                        onRefresh: () => controller.getHome(refresh: true),
                       ),
                     );
                   },

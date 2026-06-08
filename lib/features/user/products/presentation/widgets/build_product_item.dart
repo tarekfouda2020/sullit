@@ -7,7 +7,7 @@ import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
-import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 
@@ -15,7 +15,6 @@ import 'base_product_item.dart';
 import 'product_item_card_widget/product_item_card_widget.dart';
 
 class BuildProductItem extends BaseProductItem {
-
   const BuildProductItem({
     super.key,
     required super.productModel,
@@ -99,7 +98,8 @@ class _BuildProductItemState extends BaseProductItemState<BuildProductItem> {
     if (widget.productModel.addedQtyToCart == widget.productModel.minQty) {
       await deleteItemFromCart();
     } else {
-      widget.productModel.addedQtyToCart = widget.productModel.addedQtyToCart! - 1;
+      widget.productModel.addedQtyToCart =
+          widget.productModel.addedQtyToCart! - 1;
       enableAddToCartLoading.onUpdateData(false);
       KeyedDebounceHelper.instance.start(
         key: productKey,
@@ -139,19 +139,21 @@ class _BuildProductItemState extends BaseProductItemState<BuildProductItem> {
 
   @override
   void checkIfItemInCart() {
-    final List<CartItem>? cartProducts =
+    final List<GeneralCartItem>? cartProducts =
         getIt<CartHelper>().cartItemsBloc.state.data.items;
-    final Set<int>? cartProductsIds = cartProducts?.map((e) => e.productId).toSet();
+    final Set<int>? cartProductsIds =
+        cartProducts?.map((e) => e.productId).toSet();
     if (cartProductsIds?.contains(widget.productModel.id) == true) {
-      CartItem? cartProduct = cartProducts
-          ?.firstWhere((element) => element.productId == widget.productModel.id);
+      GeneralCartItem? cartProduct = cartProducts?.firstWhere(
+          (element) => element.productId == widget.productModel.id);
       widget.productModel.addedQtyToCart = cartProduct?.quantity;
     }
   }
 
   @override
   void afterAddToCartCallback() {
-    widget.productModel.addedQtyToCart = widget.productModel.addedQtyToCart! + 1;
+    widget.productModel.addedQtyToCart =
+        widget.productModel.addedQtyToCart! + 1;
     widget.afterAddToCart?.call();
   }
 }

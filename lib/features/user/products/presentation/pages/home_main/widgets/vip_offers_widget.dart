@@ -32,7 +32,7 @@ class VipOffersWidget extends StatelessWidget {
                 begin: AlignmentDirectional.centerStart,
                 end: AlignmentDirectional.centerEnd,
                 colors: [
-                  context.colors.primary,
+              context.colors.primary,
               context.colors.lightRed,
             ])),
         child: Row(
@@ -43,10 +43,12 @@ class VipOffersWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  customTitle ?? Text(
-                    title ?? tr("saveYourMoneyWith"),
-                    style: AppTextStyle.s12_w400(color: context.colors.white),
-                  ),
+                  customTitle ??
+                      Text(
+                        title ?? tr("saveYourMoneyWith"),
+                        style:
+                            AppTextStyle.s12_w400(color: context.colors.white),
+                      ),
                   Gaps.vGap5,
                   Text(
                     subTitle ?? tr("vipMemberships"),

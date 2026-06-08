@@ -1,6 +1,6 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 
-class FileDomainModel extends BaseDomainModel{
+class FileDomainModel extends BaseDomainModel {
   int? id;
   String fileOriginalName;
   String fileName;
@@ -8,10 +8,10 @@ class FileDomainModel extends BaseDomainModel{
   int fileSize;
   String extension;
   String type;
-  bool selected = false ;
+  bool selected = false;
 
   FileDomainModel({
-     this.id,
+    this.id,
     required this.fileOriginalName,
     required this.fileName,
     required this.url,

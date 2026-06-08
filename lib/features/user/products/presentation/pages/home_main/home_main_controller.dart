@@ -63,7 +63,7 @@ class HomeMainController {
     });
   }
 
-  void getHome({bool refresh = true}){
+  void getHome({bool refresh = true}) {
     OrdersHelper.instance.getHome(refresh: refresh);
   }
 
@@ -115,10 +115,10 @@ class HomeMainController {
       default:
         throw ArgumentError('Invalid time unit: $unit');
     }
-    try{
+    try {
       return value.toString().padLeft(2, '0')[index];
-    }catch(e){
-     return "";
+    } catch (e) {
+      return "";
     }
   }
 
@@ -341,51 +341,36 @@ class HomeMainController {
     );
   }
 
-
-
-  Future<void> goNotification(BuildContext context)async {
+  Future<void> goNotification(BuildContext context) async {
     bool auth = context.read<DeviceCubit>().state.model.auth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
       return;
     }
-    var result =  await AutoRouter.of(context).push(const NotificationsRoute());
-    if(result is String){
+    var result = await AutoRouter.of(context).push(const NotificationsRoute());
+    if (result is String) {
       homeController.showShareHolderOffers = true;
-      if(result == NotifyEnum.shareholderProducts.getValue()){
-        changeCouponsTab(
-            SaleTabType.shareholderOffers,
-            context
-        );
-      }else if(result == NotifyEnum.offerNewArrival.getValue()){
-        changeCouponsTab(
-            SaleTabType.newArrival,
-            context
-        );
-      }else if(result == NotifyEnum.offerOnSale.getValue()){
-        changeCouponsTab(
-            SaleTabType.onSale,
-            context
-        );
-      }else if(result == NotifyEnum.offerVipProducts.getValue()){
-        changeCouponsTab(
-            SaleTabType.vipOffers,
-            context
-        );
+      if (result == NotifyEnum.shareholderProducts.getValue()) {
+        changeCouponsTab(SaleTabType.shareholderOffers, context);
+      } else if (result == NotifyEnum.offerNewArrival.getValue()) {
+        changeCouponsTab(SaleTabType.newArrival, context);
+      } else if (result == NotifyEnum.offerOnSale.getValue()) {
+        changeCouponsTab(SaleTabType.onSale, context);
+      } else if (result == NotifyEnum.offerVipProducts.getValue()) {
+        changeCouponsTab(SaleTabType.vipOffers, context);
       }
-      homeController.animateTabsPages(3,context);
+      homeController.animateTabsPages(3, context);
       Future.delayed(const Duration(milliseconds: 450), () {
         homeController.showShareHolderOffers = false;
       });
     }
   }
 
-
-  void onSwiperTapped(BuildContext context,SliderDomainModel model){
-    if(model.value == null || model.value?.trim().isEmpty == true){
-      return ;
+  void onSwiperTapped(BuildContext context, SliderDomainModel model) {
+    if (model.value == null || model.value?.trim().isEmpty == true) {
+      return;
     }
-    switch(model.getLinkType){
+    switch (model.getLinkType) {
       case LinkTypeEnum.product:
         routeTpProductDetails(context, model.value!);
       case LinkTypeEnum.externalLink:
@@ -395,11 +380,11 @@ class HomeMainController {
     }
   }
 
-  void onBannerTwoTapped(BuildContext context,BannerDomainModel model){
-    if(model.value == null || model.value?.trim().isEmpty == true){
-      return ;
+  void onBannerTwoTapped(BuildContext context, BannerDomainModel model) {
+    if (model.value == null || model.value?.trim().isEmpty == true) {
+      return;
     }
-    switch(model.getLinkType){
+    switch (model.getLinkType) {
       case LinkTypeEnum.product:
         routeTpProductDetails(context, model.value!);
       case LinkTypeEnum.externalLink:
@@ -409,30 +394,29 @@ class HomeMainController {
     }
   }
 
-
-  void routeTpProductDetails(BuildContext context,String id){
-    try{
+  void routeTpProductDetails(BuildContext context, String id) {
+    try {
       var prodId = int.parse(id);
-      AutoRouter.of(context).push(ProductDetailsRoute(productId: prodId, isResale: false, isFav: false));
-    }catch(e){
+      AutoRouter.of(context).push(ProductDetailsRoute(
+          productId: prodId, isResale: false, isFav: false));
+    } catch (e) {
       log("error while route to product details");
     }
   }
 
-  void routeTpCategoryDetails(BuildContext context,String id){
-    try{
+  void routeTpCategoryDetails(BuildContext context, String id) {
+    try {
       var catId = int.parse(id);
-      AutoRouter.of(context).push(CategoryDetailsRoute(catId:catId,fromHome: true));
-    }catch(e){
+      AutoRouter.of(context)
+          .push(CategoryDetailsRoute(catId: catId, fromHome: true));
+    } catch (e) {
       log("error while route to category details");
     }
   }
 
-  void routeToPharmaciesList(BuildContext context){
+  void routeToPharmaciesList(BuildContext context) {
     AutoRouter.of(context).push(const PharmaciesListRoute());
-
   }
-
 
 //
 // Future<void> scanSkuNumber() async {

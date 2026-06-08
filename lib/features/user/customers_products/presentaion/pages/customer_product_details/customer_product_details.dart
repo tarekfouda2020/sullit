@@ -21,7 +21,7 @@ class _CustomerProductDetailsState extends State<CustomerProductDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  DefaultAppBar(title: tr('details')),
+      appBar: DefaultAppBar(title: tr('details')),
       backgroundColor: context.colors.customBackground,
       body: BlocBuilder<GenericBloc<CustomersProductDetails?>,
           GenericState<CustomersProductDetails?>>(

@@ -1,6 +1,5 @@
-
-
-import 'package:flutter_tdd/core/package/country_calling_code_picker-2.0.1/lib/country.dart' as package;
+import 'package:flutter_tdd/core/package/country_calling_code_picker-2.0.1/lib/country.dart'
+    as package;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,4 +21,4 @@ import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/models/address_type_model.dart';
 import 'package:flutter_tdd/features/user/addresses/presentation/pages/edit_address/edit_address_imports.dart';
 
-part  'build_edit_address_form.dart';
+part 'build_edit_address_form.dart';

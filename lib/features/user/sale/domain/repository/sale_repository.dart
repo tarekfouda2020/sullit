@@ -20,11 +20,9 @@ abstract class SaleRepository {
 
   Future<Either<Failure, List<Product>>> getOnSale(OffersParamsWidget param);
 
-  Future<Either<Failure, List<Product>>> getBestRated(
-      OffersParamsWidget param);
+  Future<Either<Failure, List<Product>>> getBestRated(OffersParamsWidget param);
 
-  Future<Either<Failure, List<Product>>> getVipOffers(
-      OffersParamsWidget param);
+  Future<Either<Failure, List<Product>>> getVipOffers(OffersParamsWidget param);
 
   Future<Either<Failure, List<Product>>> getShareholderProducts(
       OffersParamsWidget param);

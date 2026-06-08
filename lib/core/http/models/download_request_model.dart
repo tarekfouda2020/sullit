@@ -1,8 +1,6 @@
-
-class DownloadRequestModel{
+class DownloadRequestModel {
   final String url;
   final String localPath;
-
 
   DownloadRequestModel({
     required this.url,

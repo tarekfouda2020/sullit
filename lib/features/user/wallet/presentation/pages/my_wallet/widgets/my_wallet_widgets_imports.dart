@@ -30,8 +30,6 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../domain/models/wallet.dart';
 
-
-
 part 'build_charge_wallet.dart';
 part 'build_charge_wallet_dialog.dart';
 part 'build_wallet_details.dart';

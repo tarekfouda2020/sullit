@@ -1,5 +1,6 @@
-part of'register_shop_imports.dart';
-class RegisterShopController{
+part of 'register_shop_imports.dart';
+
+class RegisterShopController {
   final GenericBloc<bool> passwordCubit = GenericBloc(false);
   final GenericBloc<bool> confirmpasswordCubit = GenericBloc(false);
   final GenericBloc<bool> termCubit = GenericBloc(false);

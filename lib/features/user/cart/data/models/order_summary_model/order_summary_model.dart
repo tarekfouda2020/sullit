@@ -10,7 +10,8 @@ part 'order_summary_model.g.dart';
 
 @freezed
 @immutable
-class OrderSummaryModel extends BaseApiModel<OrderSummary>  with _$OrderSummaryModel{
+class OrderSummaryModel extends BaseApiModel<OrderSummary>
+    with _$OrderSummaryModel {
   const OrderSummaryModel._();
 
   @JsonSerializable(explicitToJson: true)
@@ -28,7 +29,9 @@ class OrderSummaryModel extends BaseApiModel<OrderSummary>  with _$OrderSummaryM
     return OrderSummary(
       transactionUrl: transactionUrl,
       summary: orderSummary?.toDomainModel(),
-      sectionOrders: (sectionOrders ?? <OrderModel>[]).map((e) => e.toDomainModel()).toList(),
+      sectionOrders: (sectionOrders ?? <OrderModel>[])
+          .map((e) => e.toDomainModel())
+          .toList(),
     );
   }
 }

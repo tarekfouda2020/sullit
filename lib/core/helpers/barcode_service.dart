@@ -8,7 +8,7 @@ import 'package:injectable/injectable.dart';
 class BarcodeService {
   final Barcode code128 = Barcode.code128();
 
-  String generateBarcode(String data,{bool showText = false}){
+  String generateBarcode(String data, {bool showText = false}) {
     final String svg = code128.toSvg(
       data,
       width: 300,
@@ -17,7 +17,6 @@ class BarcodeService {
     );
     return svg;
   }
-
 
   Future<String?> scanBarcode() async {
     try {
@@ -42,6 +41,4 @@ class BarcodeService {
       return null;
     }
   }
-
-
-} 
+}

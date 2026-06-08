@@ -15,13 +15,22 @@ abstract class AppColors {
   static const Color snackBarRedError = Color(0xffBF1C00);
   static const Color snackBarYellowAlert = Color(0xfffea632);
 
-  static AppColors get noContextInstance =>
-      getIt.get<GlobalContext>().context().read<DeviceCubit>().state.model.themeMode == AdaptiveThemeMode.dark
-          ? _dark
-          : _light;
+  static AppColors get noContextInstance => getIt
+              .get<GlobalContext>()
+              .context()
+              .read<DeviceCubit>()
+              .state
+              .model
+              .themeMode ==
+          AdaptiveThemeMode.dark
+      ? _dark
+      : _light;
 
   static AppColors of(BuildContext context) =>
-      context.read<DeviceCubit>().state.model.themeMode == AdaptiveThemeMode.dark ? _dark : _light;
+      context.read<DeviceCubit>().state.model.themeMode ==
+              AdaptiveThemeMode.dark
+          ? _dark
+          : _light;
 
   Color get primary;
 

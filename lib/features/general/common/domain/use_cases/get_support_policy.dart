@@ -4,7 +4,7 @@ import 'package:flutter_tdd/features/general/common/domain/repository/common_rep
 
 class GetSupportPolicy implements UseCase<String, NoParams> {
   @override
-  Future<String> call(NoParams params)async {
+  Future<String> call(NoParams params) async {
     var result = await getIt<CommonRepository>().supportPolicy();
     return result.fold((l) => "", (r) => r);
   }

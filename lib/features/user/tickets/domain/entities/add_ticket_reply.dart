@@ -1,7 +1,7 @@
 import 'dart:io';
 
 class AddTicketReplyParams {
-  int id ;
+  int id;
   String reply;
 
   List<File> images;
@@ -12,8 +12,5 @@ class AddTicketReplyParams {
     required this.images,
   });
 
-  Map<String, dynamic> toJson ()=> {
-    "reply":reply,
-    "images[]": images
-  };
+  Map<String, dynamic> toJson() => {"reply": reply, "images[]": images};
 }

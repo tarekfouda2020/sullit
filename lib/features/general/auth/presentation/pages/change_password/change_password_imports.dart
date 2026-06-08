@@ -1,5 +1,3 @@
-
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +14,6 @@ import 'package:flutter_tdd/features/general/auth/domain/entities/change_passwor
 import 'package:flutter_tdd/features/general/auth/domain/use_cases/set_change_password.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/pages/change_password/widgets/change_password_widgets_imports.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/widgets/build_header_title.dart';
-
 
 part 'change_password.dart';
 part 'change_password_controller.dart';

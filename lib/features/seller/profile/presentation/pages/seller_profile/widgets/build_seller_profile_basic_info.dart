@@ -1,7 +1,10 @@
-part of'seller_profile_widgets_imports.dart';
+part of 'seller_profile_widgets_imports.dart';
+
 class BuildSellerProfileBasicInfo extends StatelessWidget {
-  final  SellerProfileController sellerProfileController;
-  const BuildSellerProfileBasicInfo({Key? key, required this.sellerProfileController}) : super(key: key);
+  final SellerProfileController sellerProfileController;
+  const BuildSellerProfileBasicInfo(
+      {Key? key, required this.sellerProfileController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +31,11 @@ class BuildSellerProfileBasicInfo extends StatelessWidget {
           Gaps.line(context.colors.greyWhite, 20.h),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-
-            ],
+            children: [],
           ),
           GenericTextField(
             contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
             controller: sellerProfileController.nameController,
             fieldTypes: FieldTypes.normal,
             type: TextInputType.text,
@@ -45,9 +46,8 @@ class BuildSellerProfileBasicInfo extends StatelessWidget {
           ),
           GenericTextField(
             controller: sellerProfileController.emailController,
-
             contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
             fieldTypes: FieldTypes.normal,
             type: TextInputType.emailAddress,
             action: TextInputAction.next,
@@ -55,46 +55,57 @@ class BuildSellerProfileBasicInfo extends StatelessWidget {
             label: "E-mail",
             margin: const EdgeInsets.symmetric(vertical: 10).r,
           ),
-          BlocBuilder<GenericBloc<bool>,GenericState<bool>>(
+          BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
               bloc: sellerProfileController.passwordCubit,
               builder: (context, state) {
-                return  GenericTextField(
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16,vertical: 10).r,
+                return GenericTextField(
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10)
+                          .r,
                   controller: sellerProfileController.passwordController,
-                  fieldTypes: !state.data ? FieldTypes.password : FieldTypes.normal,
+                  fieldTypes:
+                      !state.data ? FieldTypes.password : FieldTypes.normal,
                   type: TextInputType.text,
                   action: TextInputAction.done,
                   validate: (value) => value?.validatePassword(),
                   label: "Password",
                   margin: const EdgeInsets.only(top: 10).r,
                   suffixIcon: IconButton(
-                    onPressed: () =>
-                        sellerProfileController.passwordCubit.onUpdateData(!state.data),
+                    onPressed: () => sellerProfileController.passwordCubit
+                        .onUpdateData(!state.data),
                     icon: Icon(
-                      !state.data ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                      !state.data
+                          ? Icons.visibility_outlined
+                          : Icons.visibility_off_outlined,
                       size: 20.sp,
                       color: context.colors.darkPurple,
                     ),
                   ),
                 );
               }),
-          BlocBuilder<GenericBloc<bool>,GenericState<bool>>(
+          BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
               bloc: sellerProfileController.confirmPasswordCubit,
               builder: (context, state) {
-                return  GenericTextField(
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16,vertical: 10).r,
+                return GenericTextField(
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10)
+                          .r,
                   controller: sellerProfileController.confirmPasswordController,
-                  fieldTypes: !state.data ? FieldTypes.password : FieldTypes.normal,
+                  fieldTypes:
+                      !state.data ? FieldTypes.password : FieldTypes.normal,
                   type: TextInputType.text,
                   action: TextInputAction.done,
                   validate: (value) => value?.validatePassword(),
                   label: "Confirm Your Password",
                   margin: const EdgeInsets.only(top: 10).r,
                   suffixIcon: IconButton(
-                    onPressed: () =>
-                        sellerProfileController.confirmPasswordCubit.onUpdateData(!state.data),
+                    onPressed: () => sellerProfileController
+                        .confirmPasswordCubit
+                        .onUpdateData(!state.data),
                     icon: Icon(
-                      !state.data ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                      !state.data
+                          ? Icons.visibility_outlined
+                          : Icons.visibility_off_outlined,
                       size: 20.sp,
                       color: context.colors.darkPurple,
                     ),

@@ -17,7 +17,7 @@ class PaymentOptionModel extends BaseApiModel<PaymentOption>
       @JsonKey(name: "payment_type_key") required String paymentTypeKey,
       required String image,
       required String title,
-       String? name,
+      String? name,
       @JsonKey(name: "offline_payment_id") required int offlinePaymentId,
       required String details}) = _PaymentOptionModel;
 

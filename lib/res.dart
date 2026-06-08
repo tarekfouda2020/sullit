@@ -40,13 +40,15 @@ class Res {
   static const String ticketLogo = "assets/images/support_ticket_logo.png";
   static const String manageProfile = "assets/images/manage_profile.png";
   static const String dashboardLogo = "assets/images/dashboard.png";
-  static const String classifiedProduct = "assets/images/classified_products.png";
+  static const String classifiedProduct =
+      "assets/images/classified_products.png";
   static const String customerProducts = "assets/images/customer_products.png";
   static const String purchasedHistory = "assets/images/purchased_history.png";
   static const String logoIcon = "assets/images/logo_icon.png";
   static const String dealOfDayBackGround = "assets/images/deal_of_day_bg.png";
   static const String redWarningIcon = "assets/images/red_warning_icon.svg";
-  static const String confirmationAlertIcon = "assets/images/confirmation_alert_icon.svg";
+  static const String confirmationAlertIcon =
+      "assets/images/confirmation_alert_icon.svg";
 
   static const String home = "assets/images/home.svg";
   static const String offers = "assets/images/offers.svg";
@@ -60,7 +62,8 @@ class Res {
   static const String search = "assets/images/search.svg";
   static const String compass = "assets/images/compass.svg";
   static const String shopCart = "assets/images/shop_cart_icon.svg";
-  static const String addProductToCart = "assets/images/add_product_to_cart_icon.svg";
+  static const String addProductToCart =
+      "assets/images/add_product_to_cart_icon.svg";
   static const String warningIcon = "assets/images/warning_icon.svg";
   static const String plusIcon = "assets/images/plus_icon.svg";
   static const String minusIcon = "assets/images/minus_icon.svg";
@@ -78,7 +81,8 @@ class Res {
   static const String favIcon = "assets/images/fav_icon.svg";
   static const String arrowBackIcon = "assets/images/arrow_back.svg";
   static const String redVipMark = "assets/images/red_vip_mark.svg";
-  static const String giftCardPlaceholder = "assets/images/gift_card_placeholder.png";
+  static const String giftCardPlaceholder =
+      "assets/images/gift_card_placeholder.png";
   static const String giftCardsLogo = "assets/images/gift_card_logo.svg";
   static const String copyIcon = "assets/images/copy_icon.svg";
   static const String redVipIcon = "assets/images/vip_icon.svg";
@@ -94,21 +98,29 @@ class Res {
   static const String pencilIcon = "assets/images/pencil_icon.svg";
   static const String addAddresses = "assets/images/add_addresses_icon.svg";
   static const String allBrandsIcon = "assets/images/all_brands_icon.svg";
-  static const String allCategoriesIcon = "assets/images/all_categories_icon.svg";
+  static const String allCategoriesIcon =
+      "assets/images/all_categories_icon.svg";
   static const String contactUsIcon = "assets/images/contact_us_icon.svg";
-  static const String termsAndConditions = "assets/images/terms_conditions_icon.svg";
-  static const String privacyPolicyIcon = "assets/images/privacy_policy_icon.svg";
+  static const String termsAndConditions =
+      "assets/images/terms_conditions_icon.svg";
+  static const String privacyPolicyIcon =
+      "assets/images/privacy_policy_icon.svg";
   static const String globalIcon = "assets/images/global_icon.svg";
-  static const String supportPolicyIcon = "assets/images/support_policy_icons.svg";
+  static const String supportPolicyIcon =
+      "assets/images/support_policy_icons.svg";
   static const String returnPolicyIcon = "assets/images/return_policy_icon.svg";
   static const String applePay = "assets/images/apple_pay.svg";
   static const String walletIcon = "assets/images/wallet_icon.svg";
-  static const String loyaltyDiscount = "assets/images/loyalty_discount_icon.svg";
-  static const String receivingMethod = "assets/images/receiiving_method_icon.svg";
+  static const String loyaltyDiscount =
+      "assets/images/loyalty_discount_icon.svg";
+  static const String receivingMethod =
+      "assets/images/receiiving_method_icon.svg";
   static const String payCheckout = "assets/images/pay_checkout_icon.svg";
   static const String successIcon = "assets/images/sucess_icon.svg";
-  static const String orderConfirmImage = "assets/images/order_confirm_image.svg";
-  static const String purchasedOrderIcon = "assets/images/purchased_order_icon.png";
+  static const String orderConfirmImage =
+      "assets/images/order_confirm_image.svg";
+  static const String purchasedOrderIcon =
+      "assets/images/purchased_order_icon.png";
   static const String newSplashImage = "assets/images/new_splash_image.png";
   static const String newAuthLogo = "assets/images/new_auth_logo.png";
   static const String pointsPromoIcon = "assets/images/points_promo.svg";
@@ -133,18 +145,14 @@ class Res {
   static const String pharmacyDelivery = "assets/images/pharmacy_delivery.svg";
 
   static const String addToCartGif = "assets/images/add_cart.gif";
-  static const String  onTheWay = "assets/images/delivery.gif";
-  static const String  pickedUp = "assets/images/empty_box.gif";
-  static const String  confirmed = "assets/images/empty_box_2.gif";
-  static const String  delivered = "assets/images/empty_box_3.gif";
+  static const String onTheWay = "assets/images/delivery.gif";
+  static const String pickedUp = "assets/images/empty_box.gif";
+  static const String confirmed = "assets/images/empty_box_2.gif";
+  static const String delivered = "assets/images/empty_box_3.gif";
 
-  static const String  ramadanSplashGif = "assets/images/ramadan_gif_image.gif";
-  static const String  ramadanSplashImage = "assets/images/ramadan_splash.png";
-  static const String  ramadanSplashSound = "assets/sounds/ramadan_sound.mp3";
-
-
-
-
+  static const String ramadanSplashGif = "assets/images/ramadan_gif_image.gif";
+  static const String ramadanSplashImage = "assets/images/ramadan_splash.png";
+  static const String ramadanSplashSound = "assets/sounds/ramadan_sound.mp3";
 
 // ---------------------------Fonts-------------------------------------
   static const String notoSans = "assets/fonts/NotoSans.ttf";

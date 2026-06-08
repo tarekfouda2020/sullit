@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PriceRangeParams{
+class PriceRangeParams {
   RangeValues initial;
   RangeValues value;
 

@@ -12,7 +12,7 @@ class BuildDeliveryProducts extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 9,horizontal: 22),
+          padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 22),
           margin: Dimens.paddingVertical8PX,
           decoration: BoxDecoration(
             color: context.colors.white,

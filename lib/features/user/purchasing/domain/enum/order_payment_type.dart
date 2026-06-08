@@ -3,5 +3,4 @@ enum OrderPaymentType {
   wallet,
   paymob,
   telr,
-
 }

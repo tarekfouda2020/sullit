@@ -7,22 +7,20 @@ class ShippingController {
 
   final GenericBloc<bool> refreshCubit = GenericBloc<bool>(true);
 
-  final PagingController<int, AddressDomainModel> pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, AddressDomainModel> pagingController =
+      PagingController(firstPageKey: 1);
   int pageSize = 12;
 
-
-  ShippingController(){
+  ShippingController() {
     pagingController.addPageRequestListener((pageKey) {
       getPaginateAddress(pageKey, refresh: false);
       getPaginateAddress(pageKey);
     });
   }
 
-
-
-  Future<void> getPaginateAddress( int page, {bool refresh = true}) async {
+  Future<void> getPaginateAddress(int page, {bool refresh = true}) async {
     var params = _paginateParams(page, refresh);
-    var data =await GetAddresses().call(params);
+    var data = await GetAddresses().call(params);
     final isLastPage = data.length < pageSize;
     if (page == 1) {
       pagingController.itemList = [];
@@ -37,7 +35,10 @@ class ShippingController {
     }
   }
 
-  void onSelectAddress(BuildContext context, AddressDomainModel address,) {
+  void onSelectAddress(
+    BuildContext context,
+    AddressDomainModel address,
+  ) {
     var auth = context.read<DeviceCubit>().state.model.auth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
@@ -49,7 +50,6 @@ class ShippingController {
     address.selected = true;
     // addressesBloc.onUpdateData(addressesBloc.state.data);
     refreshCubit.onUpdateData(true);
-
   }
 
   void onAddNewAddress(BuildContext context) async {
@@ -62,7 +62,8 @@ class ShippingController {
     }
   }
 
-  void onActiveAddress(BuildContext context, AddressDomainModel address,String phone) async {
+  void onActiveAddress(
+      BuildContext context, AddressDomainModel address, String phone) async {
     await SetResendVerifyCode().call(phone);
     var result = await AutoRouter.of(context)
         .push(ActiveAccountRoute(phoneOrEmail: address.fullPhone!));
@@ -87,9 +88,9 @@ class ShippingController {
       AddCartAddressParams params = _addCartAddressParams(selectedAddress);
       bool data = await AddCartAddress().call(params);
       if (data) {
-        getIt<CartNavigateHelper>().selectedOrderAddress = selectedAddress ;
+        getIt<CartNavigateHelper>().selectedOrderAddress = selectedAddress;
         CustomToast.showSimpleToast(
-            msg: tr('addressAdded'),type: ToastType.success);
+            msg: tr('addressAdded'), type: ToastType.success);
         getIt<CartNavigateHelper>()
             .setStep(CartNavigateHelper.deliveryStepIndex, force: true);
       }
@@ -99,18 +100,15 @@ class ShippingController {
     }
   }
 
-
-
-
-  void isSelectedAddressExistInList(List<AddressDomainModel> remoteData){
-    AddressDomainModel? selectedAddress = getIt<CartNavigateHelper>().selectedOrderAddress;
-    if(selectedAddress!=null){
-     remoteData.firstWhere((element) => element.id == selectedAddress.id).selected = true;
+  void isSelectedAddressExistInList(List<AddressDomainModel> remoteData) {
+    AddressDomainModel? selectedAddress =
+        getIt<CartNavigateHelper>().selectedOrderAddress;
+    if (selectedAddress != null) {
+      remoteData
+          .firstWhere((element) => element.id == selectedAddress.id)
+          .selected = true;
     }
   }
-
-
-
 
   GenericPaginateParams _paginateParams(int page, bool refresh) {
     return GenericPaginateParams(
@@ -121,10 +119,6 @@ class ShippingController {
   }
 
   AddCartAddressParams _addCartAddressParams(AddressDomainModel address) {
-    return AddCartAddressParams(
-      addressId: address.id!,
-      showLoader: true
-    );
+    return AddCartAddressParams(addressId: address.id!, showLoader: true);
   }
-
 }

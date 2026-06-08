@@ -6,17 +6,16 @@ class SeeMemberShipsButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultButton(
-        onTap: ()=> AutoRouter.of(context).push( MembershipSubscribeRoute()),
+        onTap: () => AutoRouter.of(context).push(MembershipSubscribeRoute()),
         title: tr("seeMembershipPlans"),
         elevation: 0,
         borderColor: Colors.transparent,
-        color:  context.colors.primary,
-        textColor:  context.colors.white,
+        color: context.colors.primary,
+        textColor: context.colors.white,
         fontSize: 18,
         fontWeight: FontWeight.w700,
         height: 50,
         borderRadius: Dimens.borderRadius30PX,
-        margin: Dimens.marginTop8Bottom20
-    );
+        margin: Dimens.marginTop8Bottom20);
   }
 }

@@ -1,15 +1,15 @@
 part of 'search_widgets_imports.dart';
 
 class BuildSellersSuggestItem extends StatelessWidget {
-   final SearchController controller;
-   final List<Shop> shop;
-   final bool showSeeAll;
-   const BuildSellersSuggestItem({
+  final SearchController controller;
+  final List<Shop> shop;
+  final bool showSeeAll;
+  const BuildSellersSuggestItem({
     super.key,
     required this.controller,
     required this.showSeeAll,
     required this.shop,
-   });
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -33,25 +33,22 @@ class SellerShippingModel extends BaseApiModel<SellerShipping>
   @override
   SellerShipping toDomainModel() {
     return SellerShipping(
-      name: name,
-      items: items.map((e) => e.toDomainModel()).toList(),
-      physical: physical,
-      activePickup: activePickUp,
-      pickup: pickup?.toDomainModel(),
-      activeDelivery: activeDelivery,
-      delivery: getDelivery(),
-      ownerId: ownerId,
-      deliveryMessage: deliveryMessage
-    );
+        name: name,
+        items: items.map((e) => e.toDomainModel()).toList(),
+        physical: physical,
+        activePickup: activePickUp,
+        pickup: pickup?.toDomainModel(),
+        activeDelivery: activeDelivery,
+        delivery: getDelivery(),
+        ownerId: ownerId,
+        deliveryMessage: deliveryMessage);
   }
-
 
   Delivery? getDelivery() {
     if (delivery != null) {
-     return delivery!.toDomainModel();
-    }else{
+      return delivery!.toDomainModel();
+    } else {
       return null;
     }
   }
-
 }

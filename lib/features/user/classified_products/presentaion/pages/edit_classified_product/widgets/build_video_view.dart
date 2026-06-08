@@ -32,7 +32,7 @@ class BuildVideoView extends StatelessWidget {
                 onFind: (data) => controller.getVideoProviders(),
                 selectedItem: controller.videoProvider,
                 onChange: (value) => controller.selectVideoForm(value),
-                validate: (value) =>noValidateDropDown(),
+                validate: (value) => noValidateDropDown(),
               ),
               GenericTextField(
                 controller: controller.videoLink,

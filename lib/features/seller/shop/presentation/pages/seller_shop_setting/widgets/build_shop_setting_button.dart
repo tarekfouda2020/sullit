@@ -1,4 +1,4 @@
-part of'seller_shop_setting_widgets_imports.dart';
+part of 'seller_shop_setting_widgets_imports.dart';
 
 class BuildShopSettingButton extends StatelessWidget {
   const BuildShopSettingButton({Key? key}) : super(key: key);

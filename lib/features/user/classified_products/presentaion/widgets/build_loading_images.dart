@@ -1,5 +1,4 @@
-
-part of  'classified_products_w_imports.dart';
+part of 'classified_products_w_imports.dart';
 
 class BuildLoadingImages extends StatelessWidget {
   const BuildLoadingImages({Key? key}) : super(key: key);

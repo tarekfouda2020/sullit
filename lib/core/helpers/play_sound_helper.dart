@@ -6,31 +6,28 @@ import 'package:flutter_tdd/res.dart';
 import 'package:sound_effect/sound_effect.dart';
 
 class PlaySoundHelper {
-
   PlaySoundHelper._();
 
   static final PlaySoundHelper instance = PlaySoundHelper._();
 
-
   final SoundEffect _player = SoundEffect();
 
-
-  Future<void> startSound({required VoidCallback afterSoundEnd,int soundDurationMilliSec = 5500}) async {
-    try{
+  Future<void> startSound(
+      {required VoidCallback afterSoundEnd,
+      int soundDurationMilliSec = 5500}) async {
+    try {
       _player.play("effect", volume: 5);
-    }catch(e){
-     log("====>>>>>>>. error in play sound $e   ");
+    } catch (e) {
+      log("====>>>>>>>. error in play sound $e   ");
     }
-   await Future.delayed(Duration(milliseconds: soundDurationMilliSec));
-   afterSoundEnd.call();
+    await Future.delayed(Duration(milliseconds: soundDurationMilliSec));
+    afterSoundEnd.call();
   }
 
-
-  Future<void> initSound() async{
+  Future<void> initSound() async {
     await _player.initialize();
     await _player.load("effect", Res.ramadanSplashSound);
   }
-
 
   Future<void> stopSound() async {
     try {
@@ -39,6 +36,4 @@ class PlaySoundHelper {
       log("error while stop sound $e ");
     }
   }
-
-
 }

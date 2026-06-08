@@ -58,10 +58,9 @@ class ShareholderOffersController {
 
   OffersParamsWidget _shareHolderOffers(bool refresh, int currentPage) {
     return OffersParamsWidget(
-      paginateParams: _shareholderOffersParams(refresh, currentPage),
-      isVipProducts: true,
-      keyword: searchFieldCtr.text
-    );
+        paginateParams: _shareholderOffersParams(refresh, currentPage),
+        isVipProducts: true,
+        keyword: searchFieldCtr.text);
   }
 
   void onPressSearch(BuildContext context) {
@@ -80,8 +79,4 @@ class ShareholderOffersController {
     shareholderOffersPagingController.refresh();
     getShareholderProducts(1);
   }
-
-
-
-
 }

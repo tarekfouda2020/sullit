@@ -9,7 +9,7 @@ class TrackOrderNumberWidget extends StatelessWidget {
     return Container(
       padding: Dimens.paddingVertical12PX,
       margin: const EdgeInsets.only(bottom: 17),
-      decoration:  BoxDecoration(
+      decoration: BoxDecoration(
         color: context.colors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: context.colors.gray3),
@@ -17,10 +17,12 @@ class TrackOrderNumberWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("${tr("orderNo")} :",
-          style: AppTextStyle.s18_w300(color: context.colors.textColor),
+          Text(
+            "${tr("orderNo")} :",
+            style: AppTextStyle.s18_w300(color: context.colors.textColor),
           ),
-          Text(" ${model.code}",
+          Text(
+            " ${model.code}",
             style: AppTextStyle.s18_w600(color: context.colors.primary),
           ),
         ],

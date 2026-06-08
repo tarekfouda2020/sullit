@@ -1,4 +1,5 @@
-part of'seller_product_bulk_widgets_imports.dart';
+part of 'seller_product_bulk_widgets_imports.dart';
+
 class BuildUploadCv extends StatelessWidget {
   const BuildUploadCv({Key? key}) : super(key: key);
 

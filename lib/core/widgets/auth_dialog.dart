@@ -17,7 +17,7 @@ class BuildAuthDialog extends StatelessWidget {
             style: TextStyle(color: context.colors.black)),
         actions: [
           CupertinoDialogAction(
-            child:  Text(
+            child: Text(
               tr('comeBack'),
               style: const TextStyle(
                 fontSize: 12,

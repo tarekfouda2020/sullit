@@ -1,6 +1,6 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 
-class WalletTypes extends BaseDomainModel{
+class WalletTypes extends BaseDomainModel {
   String paymentType;
   String paymentTypeKey;
   String image;
@@ -18,6 +18,6 @@ class WalletTypes extends BaseDomainModel{
     required this.title,
     required this.offlinePaymentId,
     required this.details,
-     this.isSelected = false,
+    this.isSelected = false,
   });
 }

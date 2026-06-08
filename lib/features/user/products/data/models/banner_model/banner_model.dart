@@ -31,6 +31,11 @@ class BannerModel extends BaseApiModel<BannerDomainModel> with _$BannerModel {
 
   @override
   BannerDomainModel toDomainModel() {
-    return BannerDomainModel(photo: photo, url: url, linkType: linkType, value: value?.asString,);
+    return BannerDomainModel(
+      photo: photo,
+      url: url,
+      linkType: linkType,
+      value: value?.asString,
+    );
   }
 }

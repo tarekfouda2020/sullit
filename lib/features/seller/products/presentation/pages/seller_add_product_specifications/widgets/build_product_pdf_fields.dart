@@ -55,7 +55,7 @@ class BuildProductPdfFields extends StatelessWidget {
                   width: 90.w,
                   alignment: Alignment.topRight,
                   margin: const EdgeInsets.symmetric(vertical: Dimens.dp5),
-                  decoration:  BoxDecoration(
+                  decoration: BoxDecoration(
                     borderRadius: Dimens.borderRadius5PX,
                     image: DecorationImage(
                       image: AssetImage(Res.pdf),

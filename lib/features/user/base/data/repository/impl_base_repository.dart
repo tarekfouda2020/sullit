@@ -18,13 +18,15 @@ class ImplBaseRepository extends BaseRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, List<MerchantShopModel>>> getFollowing(bool params) async {
+  Future<Either<Failure, List<MerchantShopModel>>> getFollowing(
+      bool params) async {
     var result = await dataSources.getFollowing(params);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, List<LangDomainModel>>> getLanguages(bool params) async {
+  Future<Either<Failure, List<LangDomainModel>>> getLanguages(
+      bool params) async {
     var result = await dataSources.getLanguages(params);
     return toDomainResultList(result);
   }

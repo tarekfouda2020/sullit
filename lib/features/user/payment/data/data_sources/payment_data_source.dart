@@ -1,3 +1,1 @@
-abstract class PaymentDataSources {
-
-}
+abstract class PaymentDataSources {}

@@ -18,6 +18,4 @@ class OrderDriverDomainModel extends BaseDomainModel {
     required this.workType,
     required this.avgRate,
   });
-
-
 }

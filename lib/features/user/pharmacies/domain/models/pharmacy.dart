@@ -20,14 +20,15 @@ class Pharmacy extends BaseDomainModel {
         'name': name,
         'logo': logo,
         'rating': rating,
-        'supportedInsurance': supportedInsurance.map((x) => x.toJson()).toList(),
+        'supportedInsurance':
+            supportedInsurance.map((x) => x.toJson()).toList(),
       };
 }
 
 class Insurance {
   final String name;
   final String logo;
- bool isSelected;
+  bool isSelected;
   Insurance({required this.name, required this.logo, this.isSelected = false});
 
   Map<String, dynamic> toJson() => {

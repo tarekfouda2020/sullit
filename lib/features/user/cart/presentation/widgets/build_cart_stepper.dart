@@ -22,17 +22,21 @@ class BuildCartStepper extends StatelessWidget {
   Widget build(BuildContext context) {
     String lang = context.read<DeviceCubit>().state.model.locale.languageCode;
     return Container(
-      padding: padding ?? const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
+      padding:
+          padding ?? const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
       color: context.colors.white,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children: List.generate(stepsIconWidget(context).length * 2 - 1, (i) {
+            children:
+                List.generate(stepsIconWidget(context).length * 2 - 1, (i) {
               if (i.isEven) {
                 int index = i ~/ 2;
-                var containerColor = current > index ? context.colors.primary : context.colors.gray4;
+                var containerColor = current > index
+                    ? context.colors.primary
+                    : context.colors.gray4;
                 return Row(
                   children: [
                     GestureDetector(
@@ -43,7 +47,8 @@ class BuildCartStepper extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: containerColor,
                           shape: BoxShape.circle,
-                          border: Border.all(color: Colors.transparent, width: 3),
+                          border:
+                              Border.all(color: Colors.transparent, width: 3),
                         ),
                         alignment: Alignment.center, // center the icon
                         child: stepsIconWidget(context)[index],
@@ -53,7 +58,9 @@ class BuildCartStepper extends StatelessWidget {
                 );
               } else {
                 int index = (i - 1) ~/ 2;
-                var lineColor = current > index ? context.colors.primary : context.colors.gray4;
+                var lineColor = current > index
+                    ? context.colors.primary
+                    : context.colors.gray4;
                 return Expanded(
                   child: Container(
                     height: 2.h,
@@ -68,13 +75,16 @@ class BuildCartStepper extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: List.generate(stepsIconWidget(context).length, (index) {
-              var textColor = current > index ? context.colors.primary : context.colors.textColor;
+              var textColor = current > index
+                  ? context.colors.primary
+                  : context.colors.textColor;
               return Flexible(
                 child: Padding(
-                  padding:  EdgeInsetsDirectional.only(
-                      start: index== 1 ? paddingFromStart(lang) : 13.r,
-                      end: index==stepsIconWidget(context).length-1 ? 5.r : 0
-                  ),
+                  padding: EdgeInsetsDirectional.only(
+                      start: index == 1 ? paddingFromStart(lang) : 13.r,
+                      end: index == stepsIconWidget(context).length - 1
+                          ? 5.r
+                          : 0),
                   child: Text(
                     getTitle(index),
                     style: AppTextStyle.s10_w700(color: textColor),
@@ -104,10 +114,8 @@ class BuildCartStepper extends StatelessWidget {
     }
   }
 
-
-
-  double paddingFromStart(String lang){
-    return lang == LangCodeHelper.langAR ? 5.r :23.r;
+  double paddingFromStart(String lang) {
+    return lang == LangCodeHelper.langAR ? 5.r : 23.r;
   }
 
   String getTitle(int index) {
@@ -116,7 +124,7 @@ class BuildCartStepper extends StatelessWidget {
         return tr("cart");
       case 1:
         return tr("shipping");
-        case 2:
+      case 2:
         return tr("delivery");
       case 3:
         return tr("paymentCheckout");
@@ -127,34 +135,34 @@ class BuildCartStepper extends StatelessWidget {
     }
   }
 
-  List<Widget>   stepsIconWidget(BuildContext context) => [
-    SvgPicture.asset(
-      Res.shopCart,
-      width: 20,
-      height: 20,
-      colorFilter: ColorFilter.mode(iconColor(context, 0), BlendMode.srcIn),
-    ),
-    Icon(CupertinoIcons.map,
-      color: iconColor(context, 1),
-    ),
-    Icon(CupertinoIcons.bus,
-      color: iconColor(context,2),
-    ),
-    SvgPicture.asset(
-      Res.payCheckout,
-      width: 20,
-      height: 20,
-      colorFilter: ColorFilter.mode(iconColor(context, 3), BlendMode.srcIn),
-    ),
-    SvgPicture.asset(
-      Res.successIcon,
-      width: 20,
-      height: 20,
-      colorFilter: ColorFilter.mode(iconColor(context, 4), BlendMode.srcIn),
-    ),
-
-  ];
-  Color  iconColor(BuildContext context,int index) => current > index ? context.colors.white : context.colors.black;
-
+  List<Widget> stepsIconWidget(BuildContext context) => [
+        SvgPicture.asset(
+          Res.shopCart,
+          width: 20,
+          height: 20,
+          colorFilter: ColorFilter.mode(iconColor(context, 0), BlendMode.srcIn),
+        ),
+        Icon(
+          CupertinoIcons.map,
+          color: iconColor(context, 1),
+        ),
+        Icon(
+          CupertinoIcons.bus,
+          color: iconColor(context, 2),
+        ),
+        SvgPicture.asset(
+          Res.payCheckout,
+          width: 20,
+          height: 20,
+          colorFilter: ColorFilter.mode(iconColor(context, 3), BlendMode.srcIn),
+        ),
+        SvgPicture.asset(
+          Res.successIcon,
+          width: 20,
+          height: 20,
+          colorFilter: ColorFilter.mode(iconColor(context, 4), BlendMode.srcIn),
+        ),
+      ];
+  Color iconColor(BuildContext context, int index) =>
+      current > index ? context.colors.white : context.colors.black;
 }
-

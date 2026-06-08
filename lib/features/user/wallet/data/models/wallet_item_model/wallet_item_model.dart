@@ -7,17 +7,15 @@ part 'wallet_item_model.g.dart';
 
 @freezed
 @immutable
-class WalletItemModel extends BaseApiModel<WalletItem> with _$WalletItemModel{
+class WalletItemModel extends BaseApiModel<WalletItem> with _$WalletItemModel {
   const WalletItemModel._();
   @JsonSerializable(explicitToJson: true)
-  const factory WalletItemModel({
-    required int id ,
-    required String date,
-    required String dmount ,
-    @JsonKey(name:"payment_method") required String paymentMethod,
-    required String approval
-  }) = _WalletItemModel;
-
+  const factory WalletItemModel(
+      {required int id,
+      required String date,
+      required String dmount,
+      @JsonKey(name: "payment_method") required String paymentMethod,
+      required String approval}) = _WalletItemModel;
 
   factory WalletItemModel.fromJson(Map<String, dynamic> json) =>
       _$WalletItemModelFromJson(json);
@@ -25,11 +23,10 @@ class WalletItemModel extends BaseApiModel<WalletItem> with _$WalletItemModel{
   @override
   WalletItem toDomainModel() {
     return WalletItem(
-      id: id,
-      date: date,
-      dmoun: dmount,
-      approval: approval,
-      paymentMethod: paymentMethod
-    );
+        id: id,
+        date: date,
+        dmoun: dmount,
+        approval: approval,
+        paymentMethod: paymentMethod);
   }
 }

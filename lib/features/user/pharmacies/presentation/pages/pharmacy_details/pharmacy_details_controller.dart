@@ -1,37 +1,36 @@
 part of 'pharmacy_details_imports.dart';
 
 class PharmacyDetailsController {
-
-
   final int? pharmacyId;
- final Shop? pharmacy;
+  final Shop? pharmacy;
 
   ShopCategory? selectedCategory;
 
   final GenericBloc<Shop?> pharmacyBloc = GenericBloc<Shop?>(null);
 
-  final PagingController<int, ShopCategory> categoriesPagingController = PagingController(firstPageKey: 1);
-  final PagingController<int, Product> productsPagingController = PagingController(firstPageKey: 1);
-
-
+  final PagingController<int, ShopCategory> categoriesPagingController =
+      PagingController(firstPageKey: 1);
+  final PagingController<int, Product> productsPagingController =
+      PagingController(firstPageKey: 1);
 
   final TextEditingController productSearchCtr = TextEditingController();
 
   final GenericBloc<Pharmacy?> pharmacyCubit = GenericBloc<Pharmacy?>(null);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
   final GenericBloc<bool> isLoadingNextPage = GenericBloc<bool>(false);
-  GenericBloc<CartDomainModel>  cartItemsBloc =  GenericBloc<CartDomainModel>(CartDomainModel());
+  GenericBloc<CartDomainModel> cartItemsBloc =
+      GenericBloc<CartDomainModel>(CartDomainModel());
 
-
-  PharmacyDetailsController({required this.pharmacyId, required this.pharmacy}){
-    if(pharmacyId!= null){
+  PharmacyDetailsController(
+      {required this.pharmacyId, required this.pharmacy}) {
+    if (pharmacyId != null) {
       getCartItems(refresh: false);
       getCartItems();
       _fetchShopDetails(fromRemote: false);
       _fetchShopDetails();
       _getCategories();
       _getPharmacyProducts();
-    } else if(pharmacy!= null){
+    } else if (pharmacy != null) {
       getCartItems(refresh: false);
       getCartItems();
       pharmacyBloc.onUpdateData(pharmacy!);
@@ -40,9 +39,7 @@ class PharmacyDetailsController {
     }
   }
 
-  int? get getPharmacyId  => pharmacyBloc.state.data?.id ?? pharmacyId;
-
-
+  int? get getPharmacyId => pharmacyBloc.state.data?.id ?? pharmacyId;
 
   // Future<void> getCartAndProductsData()async{
   //   getCartItems(refresh: false);
@@ -51,14 +48,13 @@ class PharmacyDetailsController {
   //   _getPharmacyProducts();
   // }
 
-
-
   void _getCategories() {
-      getShopCategories(1, refresh: false);
+    getShopCategories(1, refresh: false);
     categoriesPagingController.addPageRequestListener((pageKey) {
       getShopCategories(pageKey);
     });
   }
+
   void _getPharmacyProducts() {
     getProducts(1, refresh: false);
     categoriesPagingController.addPageRequestListener((pageKey) {
@@ -66,16 +62,15 @@ class PharmacyDetailsController {
     });
   }
 
-
-
   Future<void> getShopCategories(int page, {bool refresh = true}) async {
-    if(getPharmacyId == null){
-      return ;
+    if (getPharmacyId == null) {
+      return;
     }
 
-    ShopCategoryParams params = _pharamcyCategoryParams(getPharmacyId!, page,refresh);
+    ShopCategoryParams params =
+        _pharamcyCategoryParams(getPharmacyId!, page, refresh);
 
-     List<ShopCategory> data = await GetShopCategories().call(params);
+    List<ShopCategory> data = await GetShopCategories().call(params);
 
     if (page == 1) {
       categoriesPagingController.itemList = [];
@@ -89,9 +84,8 @@ class PharmacyDetailsController {
     }
   }
 
-
   Future<void> getProducts(int page, {bool refresh = true}) async {
-    if(getPharmacyId == null){
+    if (getPharmacyId == null) {
       return;
     }
     var params = _params(page, refresh);
@@ -115,21 +109,20 @@ class PharmacyDetailsController {
     }
   }
 
-
   ShopCategoryParams _pharamcyCategoryParams(int id, int page, bool refresh) {
     var paginateParams = _categoriesPaginateParams(page, refresh);
     return ShopCategoryParams(
-    shopId: id ,
-    paginParams: paginateParams,
-  );
+      shopId: id,
+      paginParams: paginateParams,
+    );
   }
 
   GenericPaginateParams _categoriesPaginateParams(int page, bool refresh) {
     return GenericPaginateParams(
-    currentPage: page,
-    pageSize: AppConstants.instance.paginationLimit,
-    refresh: refresh,
-  );
+      currentPage: page,
+      pageSize: AppConstants.instance.paginationLimit,
+      refresh: refresh,
+    );
   }
 
   GenericPaginateParams _paginateParams(int page, bool refresh) {
@@ -145,12 +138,8 @@ class PharmacyDetailsController {
         sellerId: getPharmacyId!,
         paginateParams: _paginateParams(page, refresh),
         keyword: productSearchCtr.text.trim(),
-        categoryId: selectedCategory?.id
-    );
+        categoryId: selectedCategory?.id);
   }
-
-
-
 
   Future<void> _fetchShopDetails({bool fromRemote = true}) async {
     var data = await GetShopDetails().call(
@@ -159,35 +148,33 @@ class PharmacyDetailsController {
     pharmacyBloc.onUpdateData(data);
   }
 
-
-  bool cartHaveSellerProduct(){
+  bool cartHaveSellerProduct() {
     var shopId = pharmacyBloc.state.data?.id;
     var products = cartItemsBloc.state.data.items;
     var productsShopsIds = products?.map((e) => e.shopId).toSet();
     return productsShopsIds?.contains(shopId) ?? false;
   }
 
-  double neededAmount(){
+  double neededAmount() {
     var shopId = pharmacyBloc.state.data?.id;
-    if(shopId == null){
+    if (shopId == null) {
       return 0.0;
     }
     var minShopsRequired = cartItemsBloc.state.data.minAmountSellers;
     var minShopsIds = minShopsRequired?.map((e) => e.shopId).toList();
-    if(minShopsIds?.contains(shopId) == true){
+    if (minShopsIds?.contains(shopId) == true) {
       return cartItemsBloc.state.data.getSingleSellerReMainAmount(shopId);
-    }else{
+    } else {
       return 0.0;
     }
   }
-
 
   void onFavChanged(Product model) {}
 
   void onSelectCategory(ShopCategory model) {
     selectedCategory = model;
     model.isSelect = !model.isSelect;
-    categoriesPagingController.itemList  = [
+    categoriesPagingController.itemList = [
       ...?categoriesPagingController.itemList
     ];
     productsPagingController.refresh();
@@ -200,21 +187,21 @@ class PharmacyDetailsController {
       isScrollControlled: true,
       enableDrag: false,
       backgroundColor: Colors.transparent,
-      builder: (context) =>  SupportedInsuranceBottomSheetWidget(
-        insurance: pharmacyBloc.state.data?.insuranceCompanies ?? [] ,
+      builder: (context) => SupportedInsuranceBottomSheetWidget(
+        insurance: pharmacyBloc.state.data?.insuranceCompanies ?? [],
       ),
     );
   }
 
-
-
-  Future<bool> deleteProductInCartFromProductsList(BuildContext context,Product product)async{
+  Future<bool> deleteProductInCartFromProductsList(
+      BuildContext context, Product product) async {
     var cartItem = _getSameProductInCart(product);
-    if(cartItem == null){
+    if (cartItem == null) {
       return false;
     }
     getIt<LoadingHelper>().showLoadingDialog();
-    final deleted = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
+    final deleted =
+        await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
     getIt<LoadingHelper>().dismissDialog();
     if (deleted) {
       var updatedCart = cartItemsBloc.state.data;
@@ -222,48 +209,53 @@ class PharmacyDetailsController {
       product.addedQtyToCart = 0;
       cartItemsBloc.onUpdateData(updatedCart);
       return true;
-    }else{
+    } else {
       return false;
     }
   }
 
-
-  Future<bool> reduceProductQntInCart(BuildContext context, Product product, int newQnt, {GenericBloc<bool>? loadingBloc}) async {
-
+  Future<bool> reduceProductQntInCart(
+      BuildContext context, Product product, int newQnt,
+      {GenericBloc<bool>? loadingBloc}) async {
     var cartItem = _getSameProductInCart(product);
-    if(cartItem == null){
+    if (cartItem == null) {
       return false;
     }
 
     if (cartItem.quantity > 1) {
-      final success = await getIt<CartHelper>().updateCartItem(newQnt, cartItem.id);
+      final success =
+          await getIt<CartHelper>().updateCartItem(newQnt, cartItem.id);
       loadingBloc?.onUpdateData(false);
       if (success != null) {
         cartItemsBloc.onUpdateData(success);
         return true;
-      }else{
+      } else {
         product.addedQtyToCart = cartItem.quantity;
       }
     }
     return false;
   }
 
-  Future<bool> increaseProductAddedQntInCart(BuildContext context, Product product, int qnt) async {
-    List<CartItem>? cartList = cartItemsBloc.state.data.items;
+  Future<bool> increaseProductAddedQntInCart(
+      BuildContext context, Product product, int qnt) async {
+    List<GeneralCartItem>? cartList = cartItemsBloc.state.data.items;
     if (cartList == null || cartList.isEmpty) {
       return false;
     }
 
-    List<CartItem> cartItems = cartList.where((element) => element.productId == product.id).toList();
+    List<GeneralCartItem> cartItems =
+        cartList.where((element) => element.productId == product.id).toList();
     if (cartItems.isEmpty) {
       return false;
     }
 
-    CartItem cartItem = cartItems.first;
+    GeneralCartItem cartItem = cartItems.first;
 
-    CartDomainModel? success = await getIt<CartHelper>().updateCartItem(qnt, cartItem.id);
-    if(success != null){
-      FacebookEventsHelper.instance.productAddToCart(id: cartItem.productId, price: cartItem.price);
+    CartDomainModel? success =
+        await getIt<CartHelper>().updateCartItem(qnt, cartItem.id);
+    if (success != null) {
+      FacebookEventsHelper.instance
+          .productAddToCart(id: cartItem.productId, price: cartItem.price);
       cartItemsBloc.onUpdateData(success);
       getCartItems();
       return true;
@@ -272,14 +264,14 @@ class PharmacyDetailsController {
     return false;
   }
 
-
-  CartItem? _getSameProductInCart(Product product){
+  GeneralCartItem? _getSameProductInCart(Product product) {
     var cartList = cartItemsBloc.state.data.items;
     if (cartList == null || cartList.isEmpty) {
       return null;
     }
 
-    var cartItems = cartList.where((element) => element.productId == product.id);
+    var cartItems =
+        cartList.where((element) => element.productId == product.id);
     if (cartItems.isEmpty) {
       return null;
     }
@@ -287,9 +279,6 @@ class PharmacyDetailsController {
     var cartItem = cartItems.first;
     return cartItem;
   }
-
-
-
 
   Future<void> getCartItems({bool refresh = true}) async {
     String? token = await getIt<GetDeviceId>().deviceId;
@@ -305,8 +294,6 @@ class PharmacyDetailsController {
       type: CartTypeEnum.pharmacy,
     );
   }
-
-
 
   void clearSearchField() {
     productSearchCtr.clear();
@@ -337,28 +324,26 @@ class PharmacyDetailsController {
     getProducts(1);
   }
 
-
   Future<void> onPressViewCart(BuildContext context) async {
     if (neededAmount() == 0) {
-     var result =  await AutoRouter.of(context).push(const PharmacyCartRoute());
-      if(result is CartDomainModel){
+      var result = await AutoRouter.of(context).push(const PharmacyCartRoute());
+      if (result is CartDomainModel) {
         cartItemsBloc.onUpdateData(result);
         productsPagingController.itemList = [
           ...?productsPagingController.itemList
         ];
-      }else{
+      } else {
         await getCartItems(refresh: true);
         _syncProductsWithCart();
       }
     }
   }
 
-
   void _syncProductsWithCart() {
     final List<Product>? currentList = productsPagingController.itemList;
     if (currentList == null || currentList.isEmpty) return;
 
-    final cartItems = cartItemsBloc.state.data.items ?? <CartItem>[];
+    final cartItems = cartItemsBloc.state.data.items ?? <GeneralCartItem>[];
 
     final updatedList = currentList.map((product) {
       final matchingCartItems = cartItems.where(

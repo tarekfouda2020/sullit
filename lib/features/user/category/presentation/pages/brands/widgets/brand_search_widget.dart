@@ -28,11 +28,10 @@ class BrandSearchWidget extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () => controller.onPressSearchBrand(context),
-              child: SvgPicture.asset(Res.searchIcon,
-                colorFilter: ColorFilter.mode(
-                    context.colors.textColor,
-                    BlendMode.srcIn
-                ),
+              child: SvgPicture.asset(
+                Res.searchIcon,
+                colorFilter:
+                    ColorFilter.mode(context.colors.textColor, BlendMode.srcIn),
               ),
             ),
             Gaps.hGap10,

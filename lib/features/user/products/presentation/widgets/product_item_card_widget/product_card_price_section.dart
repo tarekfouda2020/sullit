@@ -93,7 +93,8 @@ class _OriginalPrice extends StatelessWidget {
             Flexible(
               child: Text(
                 " / ${productModel.unit}",
-                style: AppTextStyle.s16_w400(color: context.colors.textColor).copyWith(
+                style: AppTextStyle.s16_w400(color: context.colors.textColor)
+                    .copyWith(
                   decoration: TextDecoration.lineThrough,
                   decorationColor: context.colors.textColor,
                   overflow: TextOverflow.ellipsis,

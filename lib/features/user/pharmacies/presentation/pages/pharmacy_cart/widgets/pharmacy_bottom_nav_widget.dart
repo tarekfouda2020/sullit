@@ -21,7 +21,7 @@ class PharmacyBottomNavWidget extends StatelessWidget {
             child: Row(
               children: [
                 CustomCheckBoxWidget(
-                    changeValueCubit: controller.haveInsurance),
+                    changeValueCubit: controller.haveInsuranceCubit),
                 Text(
                   "I’ have a health insurance",
                   style: AppTextStyle.s16_w400(color: context.colors.black),
@@ -29,11 +29,13 @@ class PharmacyBottomNavWidget extends StatelessWidget {
               ],
             ),
           ),
-          BlocBuilder<GenericBloc<CartDomainModel>, GenericState<CartDomainModel>>(
+          BlocBuilder<GenericBloc<CartDomainModel>,
+              GenericState<CartDomainModel>>(
             bloc: controller.cartItemsBloc,
             builder: (context, state) {
               final cartData = state.data;
-              final hasItems = cartData.items != null && cartData.items!.isNotEmpty;
+              final hasItems =
+                  cartData.items != null && cartData.items!.isNotEmpty;
               return Visibility(
                 visible: hasItems,
                 child: CustomBottomSafeAreaWidget(
@@ -58,11 +60,13 @@ class PharmacyBottomNavWidget extends StatelessWidget {
                                   color: context.colors.textColor)),
                           Gaps.vGap6,
                           DirhamPrice(
-                            amount: cartData.calculableTotal?.toStringAsFixed(2) ?? "0.00",
-                            currencyStyle:
-                                AppTextStyle.s18_w400(color: context.colors.primary),
-                            textStyle:
-                                AppTextStyle.s14_w600(color: context.colors.primary),
+                            amount:
+                                cartData.calculableTotal?.toStringAsFixed(2) ??
+                                    "0.00",
+                            currencyStyle: AppTextStyle.s18_w400(
+                                color: context.colors.primary),
+                            textStyle: AppTextStyle.s14_w600(
+                                color: context.colors.primary),
                             currencyOffset: 0,
                           ),
                         ],

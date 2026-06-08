@@ -7,7 +7,8 @@ part 'subscribe_content_model.freezed.dart';
 part 'subscribe_content_model.g.dart';
 
 @freezed
-class SubscribeContentModel extends BaseApiModel<SubscribeContentDomainModel> with _$SubscribeContentModel {
+class SubscribeContentModel extends BaseApiModel<SubscribeContentDomainModel>
+    with _$SubscribeContentModel {
   const SubscribeContentModel._();
 
   @JsonSerializable(explicitToJson: true)
@@ -17,7 +18,8 @@ class SubscribeContentModel extends BaseApiModel<SubscribeContentDomainModel> wi
     required String icon,
   }) = _SubscribeContentModel;
 
-  factory SubscribeContentModel.fromJson(Map<String, dynamic> json) => _$SubscribeContentModelFromJson(json);
+  factory SubscribeContentModel.fromJson(Map<String, dynamic> json) =>
+      _$SubscribeContentModelFromJson(json);
 
   @override
   SubscribeContentDomainModel toDomainModel() {

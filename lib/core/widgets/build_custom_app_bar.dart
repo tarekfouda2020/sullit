@@ -3,8 +3,8 @@ import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/res.dart';
 
 class BuildCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final void Function()? onBack ;
-  const BuildCustomAppBar({Key? key,  this.onBack}) : super(key: key);
+  final void Function()? onBack;
+  const BuildCustomAppBar({Key? key, this.onBack}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,5 +22,5 @@ class BuildCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight+10);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 10);
 }

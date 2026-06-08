@@ -74,18 +74,17 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
                 children: [
                   Flexible(
                     child: Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
+                      TextSpan(children: [
+                        TextSpan(
                             text: state.data!.name!,
-                            style: AppTextStyle.s16_w500(color: context.colors.black).copyWith(height: 1.3)
-                          ),
-                          TextSpan(
-                              text: " / ${state.data!.unit}",
-                            style: AppTextStyle.s16_w500(color: context.colors.textColor)
-                          ),
-                        ]
-                      ),
+                            style: AppTextStyle.s16_w500(
+                                    color: context.colors.black)
+                                .copyWith(height: 1.3)),
+                        TextSpan(
+                            text: " / ${state.data!.unit}",
+                            style: AppTextStyle.s16_w500(
+                                color: context.colors.textColor)),
+                      ]),
                     ),
                   ),
                 ],
@@ -250,15 +249,19 @@ class _BuildAddToCartDialogState extends State<BuildAddToCartDialog> {
     );
   }
 
-  Future<void> _buildAddProductToCart(BuildContext context, GenericState<Product?> state) {
+  Future<void> _buildAddProductToCart(
+      BuildContext context, GenericState<Product?> state) {
     var existCount = context.read<CountCubit>().state.cartCount;
     return getIt<CartHelper>().addProductToCart(
       context,
       state.data!.minQty!,
       state.data!.variant?.id,
       onAddCartFunc: () {
-        FacebookEventsHelper.instance.productAddToCart(id: state.data!.id!, price: state.data!.variant?.calculablePrice??"");
-        getIt<CartHelper>().updateCartCount(context, state.data!.minQty! + existCount);
+        FacebookEventsHelper.instance.productAddToCart(
+            id: state.data!.id!,
+            price: state.data!.variant?.calculablePrice ?? "");
+        getIt<CartHelper>()
+            .updateCartCount(context, state.data!.minQty! + existCount);
         Navigator.pop(context);
         BuildContext ctx = getIt<GlobalContext>().context();
         if (widget.afterAddToCart != null) {

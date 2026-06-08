@@ -27,18 +27,15 @@ class NotificationsController {
     }
   }
 
-
-
-  void onPress(BuildContext context, NotificationDomainModel model){
-    if(model.isOffer){
+  void onPress(BuildContext context, NotificationDomainModel model) {
+    if (model.isOffer) {
       AutoRouter.of(context).pop(model.type);
-      return ;
+      return;
     }
-    if(model.orderId != 0 && model.orderId!=null){
+    if (model.orderId != 0 && model.orderId != null) {
       AutoRouter.of(context).push(OrderSummaryRoute(orderId: model.orderId!));
     }
   }
-
 
   GenericPaginateParams _paginateParams(int page, bool refresh) {
     return GenericPaginateParams(

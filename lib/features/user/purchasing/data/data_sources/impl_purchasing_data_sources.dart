@@ -177,7 +177,8 @@ class ImplPurchasingDataSources extends PurchasingDataSources {
   }
 
   @override
-  Future<Either<Failure, OrderModel>> changeOrderPaymentMethod(ChangeOrderPaymentParams param) async {
+  Future<Either<Failure, OrderModel>> changeOrderPaymentMethod(
+      ChangeOrderPaymentParams param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.changeOrderPayMethod(param.orderId),
       requestMethod: RequestMethod.post,

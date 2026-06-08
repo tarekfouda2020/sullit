@@ -31,7 +31,7 @@ class BuildLogOut extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              auth ?  tr('logout') : tr('login'),
+              auth ? tr('logout') : tr('login'),
               style: AppTextStyle.s16_w500(
                 color: context.colors.white,
               ),

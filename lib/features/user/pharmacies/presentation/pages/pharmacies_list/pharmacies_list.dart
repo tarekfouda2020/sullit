@@ -46,8 +46,10 @@ class _PharmaciesListState extends State<PharmaciesList> {
                   itemBuilder: (_, item, index) {
                     return PharmacyCardWidget(shop: item);
                   },
-                  firstPageProgressIndicatorBuilder: (_) => const PharmacyListShimmer(),
-                  noItemsFoundIndicatorBuilder: (_) => const BuildEmptyDataView(),
+                  firstPageProgressIndicatorBuilder: (_) =>
+                      const PharmacyListShimmer(),
+                  noItemsFoundIndicatorBuilder: (_) =>
+                      const BuildEmptyDataView(),
                 ),
               ),
             ),

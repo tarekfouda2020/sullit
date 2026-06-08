@@ -1,4 +1,5 @@
-part of'product_details_widgets_imports.dart';
+part of 'product_details_widgets_imports.dart';
+
 class BuildTopSellingItem extends StatelessWidget {
   const BuildTopSellingItem({Key? key}) : super(key: key);
 

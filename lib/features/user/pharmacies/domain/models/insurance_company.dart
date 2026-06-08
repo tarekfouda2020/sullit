@@ -12,7 +12,7 @@ class InsuranceCompany extends BaseDomainModel {
     required this.name,
     required this.code,
     required this.logo,
-     this.isSelected = false,
+    this.isSelected = false,
   });
 
   String get displayName => name ?? '';

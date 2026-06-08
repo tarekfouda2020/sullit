@@ -27,8 +27,10 @@ class BuildRetrieveOrderDetailsItem extends StatelessWidget {
             child: useDirhamPrice
                 ? DirhamPrice(
                     amount: details,
-                    textStyle: AppTextStyle.s13_w400(color: context.colors.black),
-                    currencyStyle: AppTextStyle.s15_w400(color: context.colors.black),
+                    textStyle:
+                        AppTextStyle.s13_w400(color: context.colors.black),
+                    currencyStyle:
+                        AppTextStyle.s15_w400(color: context.colors.black),
                     currencyOffset: 0,
                   )
                 : Text(

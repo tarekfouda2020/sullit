@@ -7,7 +7,8 @@ class BuildLangBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<List<LangDomainModel>>, GenericState<List<LangDomainModel>>>(
+    return BlocBuilder<GenericBloc<List<LangDomainModel>>,
+        GenericState<List<LangDomainModel>>>(
       bloc: controller.languagesCubit,
       builder: (context, state) {
         return Padding(
@@ -32,17 +33,19 @@ class BuildLangBottomSheet extends StatelessWidget {
                           children: [
                             Text(
                               item.name,
-                              style: AppTextStyle.s14_w600(color: context.colors.black),),
+                              style: AppTextStyle.s14_w600(
+                                  color: context.colors.black),
+                            ),
                           ],
                         ),
                       ),
                     ),
-                    if(index != state.data.length-1)
+                    if (index != state.data.length - 1)
                       Divider(thickness: 1, color: context.colors.greyWhite)
                   ],
                 );
               }),
-                Gaps.vGap20
+              Gaps.vGap20
             ],
           ),
         );

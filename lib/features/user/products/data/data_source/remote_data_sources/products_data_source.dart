@@ -37,5 +37,6 @@ abstract class ProductsDataSource {
 
   Future<Either<Failure, ProductDetailsModel>> scanProduct(String param);
 
-  Future<Either<Failure, SellerProductsModel>> sellerProducts(SellerProductsParams param);
+  Future<Either<Failure, SellerProductsModel>> sellerProducts(
+      SellerProductsParams param);
 }

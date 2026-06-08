@@ -8,6 +8,10 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/models/shop_id_param
 import 'package:flutter_tdd/features/user/pharmacies/domain/repository/pharmacies_repository.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharamcy_shipping_info_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_shipping_domain_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_check_out_params.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: PharmaciesRepository)
@@ -15,7 +19,8 @@ class ImplPharmaciesRepository extends PharmaciesRepository with ModelToDomain {
   final dataSources = getIt<PharmaciesSources>();
 
   @override
-  Future<Either<Failure, List<ShopCategory>>> getShopCategories(ShopCategoryParams param) async {
+  Future<Either<Failure, List<ShopCategory>>> getShopCategories(
+      ShopCategoryParams param) async {
     var result = await dataSources.getShopCategories(param);
     return toDomainResultList(result);
   }
@@ -23,6 +28,20 @@ class ImplPharmaciesRepository extends PharmaciesRepository with ModelToDomain {
   @override
   Future<Either<Failure, Shop>> getShopDetails(ShopIdParams param) async {
     final result = await dataSources.getShopDetails(param);
+    return toDomainResult(result);
+  }
+
+  @override
+  Future<Either<Failure, List<PharmacyShippingDomainModel>>> getPharmacyShippingInfo(
+      PharamcyShippingInfoParams param) async {
+    final result = await dataSources.getPharmacyShippingInfo(param);
+    return toDomainResultList(result);
+  }
+
+  @override
+  Future<Either<Failure, Shipping>> getCartSummary(
+      PharmacyCheckoutParams param) async {
+    final result = await dataSources.getCartSummary(param);
     return toDomainResult(result);
   }
 }

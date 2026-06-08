@@ -1,6 +1,5 @@
 part of 'cart_confirm_buying_widgets_imports.dart';
 
-
 class CartOrderDetailsWidget extends StatelessWidget {
   final OrderSummary summary;
   const CartOrderDetailsWidget({super.key, required this.summary});
@@ -12,19 +11,26 @@ class CartOrderDetailsWidget extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Container(
-            width: MediaQuery.sizeOf(context).width-40,
-            padding: const EdgeInsets.only(top: 46,bottom: 20,right:21 ,left: 21).r,
+            width: MediaQuery.sizeOf(context).width - 40,
+            padding:
+                const EdgeInsets.only(top: 46, bottom: 20, right: 21, left: 21)
+                    .r,
             margin: const EdgeInsets.only(top: 43),
             decoration: CustomDecoration(
               thisColor: context.colors.white,
             ),
             child: Column(
               children: [
-                Text(tr("thankYouForYourOrder"),
-                style: AppTextStyle.s18_w700(color: context.colors.black),
+                Text(
+                  tr("thankYouForYourOrder"),
+                  style: AppTextStyle.s18_w700(color: context.colors.black),
                 ),
                 Gaps.vGap22,
-                Divider(color:context.colors.softGray , thickness: 0.8,height: 0,),
+                Divider(
+                  color: context.colors.softGray,
+                  thickness: 0.8,
+                  height: 0,
+                ),
                 Gaps.vGap12,
                 FittedBox(
                   child: Row(
@@ -33,24 +39,28 @@ class CartOrderDetailsWidget extends StatelessWidget {
                     children: [
                       Text(
                         "${tr("orderNo")} : ",
-                        style: AppTextStyle.s18_w300(color: context.colors.black),
+                        style:
+                            AppTextStyle.s18_w300(color: context.colors.black),
                       ),
                       Text(
                         // "${summary.summary!.combinedOrderId}",
                         summary.sectionOrders!.first.code,
-                        style: AppTextStyle.s18_w600(color: context.colors.primary),
+                        style: AppTextStyle.s18_w600(
+                            color: context.colors.primary),
                         textAlign: TextAlign.center,
                       ),
                     ],
                   ),
                 ),
                 Gaps.vGap12,
-                Divider(color:context.colors.softGray , thickness: 0.8,height: 0),
+                Divider(
+                    color: context.colors.softGray, thickness: 0.8, height: 0),
                 Gaps.vGap14,
-                CartOrderInfoWidget(orderSummary: summary,),
+                CartOrderInfoWidget(
+                  orderSummary: summary,
+                ),
               ],
-            )
-        ),
+            )),
         SvgPicture.asset(Res.orderConfirmImage),
       ],
     );

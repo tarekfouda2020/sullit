@@ -1,13 +1,15 @@
 part of 'widgets_imports.dart';
 
 class PharmacyCartFavIconWidget extends StatefulWidget {
-  final CartItem cartItem;
+  final GeneralCartItem cartItem;
   final PharmacyCartController controller;
 
-  const PharmacyCartFavIconWidget({super.key, required this.cartItem, required this.controller});
+  const PharmacyCartFavIconWidget(
+      {super.key, required this.cartItem, required this.controller});
 
   @override
-  State<PharmacyCartFavIconWidget> createState() => _PharmacyCartFavIconWidgetState();
+  State<PharmacyCartFavIconWidget> createState() =>
+      _PharmacyCartFavIconWidgetState();
 }
 
 class _PharmacyCartFavIconWidgetState extends State<PharmacyCartFavIconWidget> {
@@ -33,7 +35,8 @@ class _PharmacyCartFavIconWidgetState extends State<PharmacyCartFavIconWidget> {
                 setState(() {
                   widget.cartItem.isWishlist = !widget.cartItem.isWishlist;
                 });
-                widget.controller.cartItemsBloc.onUpdateData(widget.controller.cartItemsBloc.state.data);
+                widget.controller.cartItemsBloc
+                    .onUpdateData(widget.controller.cartItemsBloc.state.data);
               },
             ),
           ),

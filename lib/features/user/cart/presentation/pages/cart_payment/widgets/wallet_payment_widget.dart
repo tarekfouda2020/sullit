@@ -1,18 +1,18 @@
 part of 'cart_payment_widgets_imports.dart';
 
-
 class WalletPaymentWidget extends StatelessWidget {
   final Shipping shipping;
   final CartPaymentController controller;
 
-  const WalletPaymentWidget({super.key, required this.shipping, required this.controller});
+  const WalletPaymentWidget(
+      {super.key, required this.shipping, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SvgPicture.asset(Res.walletIcon,color: context.colors.primary),
+        SvgPicture.asset(Res.walletIcon, color: context.colors.primary),
         Gaps.hGap11,
         Expanded(
           child: Padding(
@@ -23,14 +23,17 @@ class WalletPaymentWidget extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(tr("useWalletBalance"),
+                    Text(
+                      tr("useWalletBalance"),
                       style: AppTextStyle.s14_w400(color: context.colors.black),
                     ),
                     Gaps.vGap6,
                     DirhamPrice(
                       amount: shipping.summary.walletBalance,
-                      textStyle: AppTextStyle.s16_w700(color: context.colors.primary),
-                      currencyStyle: AppTextStyle.s18_w400(color: context.colors.primary),
+                      textStyle:
+                          AppTextStyle.s16_w700(color: context.colors.primary),
+                      currencyStyle:
+                          AppTextStyle.s18_w400(color: context.colors.primary),
                       currencyOffset: 0,
                     ),
                   ],

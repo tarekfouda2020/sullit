@@ -54,7 +54,7 @@ class _BuildFilterItemState extends State<BuildFilterItem>
                     duration: const Duration(milliseconds: 200),
                     child: Icon(
                         isOpened
-                            ?Icons.keyboard_arrow_down
+                            ? Icons.keyboard_arrow_down
                             : Icons.keyboard_arrow_up,
                         color: context.colors.black),
                   ),
@@ -68,21 +68,21 @@ class _BuildFilterItemState extends State<BuildFilterItem>
             curve: Curves.easeInOut,
             child: isOpened
                 ? ListView(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              children: widget.attributesModel.attributeValues
-                  .map(
-                    (attr) => BuildSpecificationItem(
-                  position: widget.attributesModel.attributeValues
-                      .indexOf(attr),
-                  attributeIndex: widget.index,
-                  categoryDetailsController:
-                  widget.categoryDetailsController,
-                  attributeValueModel: attr,
-                ),
-              )
-                  .toList(),
-            )
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    children: widget.attributesModel.attributeValues
+                        .map(
+                          (attr) => BuildSpecificationItem(
+                            position: widget.attributesModel.attributeValues
+                                .indexOf(attr),
+                            attributeIndex: widget.index,
+                            categoryDetailsController:
+                                widget.categoryDetailsController,
+                            attributeValueModel: attr,
+                          ),
+                        )
+                        .toList(),
+                  )
                 : const SizedBox.shrink(),
           ),
         ],
@@ -90,5 +90,3 @@ class _BuildFilterItemState extends State<BuildFilterItem>
     );
   }
 }
-
-

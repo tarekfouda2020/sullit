@@ -7,8 +7,7 @@ part 'price_range_model.g.dart';
 
 @freezed
 @immutable
-class PriceRangeModel extends BaseApiModel<PriceRange>
-    with _$PriceRangeModel {
+class PriceRangeModel extends BaseApiModel<PriceRange> with _$PriceRangeModel {
   const PriceRangeModel._();
 
   @JsonSerializable(explicitToJson: true)

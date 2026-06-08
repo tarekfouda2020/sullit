@@ -5,7 +5,8 @@ class BuildHeaderTitle extends StatelessWidget {
   final String? btnText;
   final Function() onTap;
 
-  const BuildHeaderTitle({Key? key, required this.title, this.btnText, required this.onTap})
+  const BuildHeaderTitle(
+      {Key? key, required this.title, this.btnText, required this.onTap})
       : super(key: key);
 
   @override

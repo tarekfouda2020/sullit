@@ -13,14 +13,11 @@ import '../source/dio_helper.dart';
 
 @lazySingleton
 class Download extends DioHelper {
-
-  Future<Either<ServerFailure, Response>> download(DownloadRequestModel params) async {
+  Future<Either<ServerFailure, Response>> download(
+      DownloadRequestModel params) async {
     getIt<LoadingHelper>().showLoadingDialog();
     try {
-      var response = await dio.download(
-        params.url,
-        params.localPath
-      );
+      var response = await dio.download(params.url, params.localPath);
       getIt<LoadingHelper>().dismissDialog();
       return Right(response);
     } on DioError catch (e) {

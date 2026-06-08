@@ -4,7 +4,8 @@ class BuildAttributeList extends StatelessWidget {
   final ProductDetailsController controller;
   final List<Variant> variants;
 
-  const BuildAttributeList({super.key, required this.controller, required this.variants});
+  const BuildAttributeList(
+      {super.key, required this.controller, required this.variants});
 
   @override
   Widget build(BuildContext context) {

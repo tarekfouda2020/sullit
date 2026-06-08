@@ -20,7 +20,7 @@ class _TermsState extends State<Terms> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(title: tr('termsAndConditions')),
+      appBar: DefaultAppBar(title: tr('termsAndConditions')),
       body: BlocBuilder<GenericBloc<String?>, GenericState<String?>>(
         bloc: controller.termsCubit,
         builder: (context, state) {
@@ -29,7 +29,7 @@ class _TermsState extends State<Terms> {
               padding: Dimens.paddingAll15PX,
               child: Column(
                 children: [
-                  const BuildHeaderLogo(marginBottom: 0,marginTop: 5),
+                  const BuildHeaderLogo(marginBottom: 0, marginTop: 5),
                   CustomHtmlWidget(data: state.data!),
                 ],
               ),

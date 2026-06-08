@@ -12,7 +12,7 @@ class PharmacyPageCategoriesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 40,
-      child: PagedListView<int,ShopCategory>(
+      child: PagedListView<int, ShopCategory>(
         scrollDirection: Axis.horizontal,
         pagingController: controller.categoriesPagingController,
         builderDelegate: PagedChildBuilderDelegate(
@@ -20,11 +20,17 @@ class PharmacyPageCategoriesWidget extends StatelessWidget {
             return GestureDetector(
               onTap: () => controller.onSelectCategory(item),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                 alignment: Alignment.center,
                 margin: EdgeInsetsDirectional.only(
                   start: index == 0 ? 20 : 8,
-                  end: index == controller.categoriesPagingController.itemList!.length - 1 ? 20 : 0,
+                  end: index ==
+                          controller
+                                  .categoriesPagingController.itemList!.length -
+                              1
+                      ? 20
+                      : 0,
                 ),
                 decoration: BoxDecoration(
                   color: item.isSelect
@@ -39,27 +45,29 @@ class PharmacyPageCategoriesWidget extends StatelessWidget {
                     color: item.isSelect
                         ? context.colors.white
                         : context.colors.gray8,
-                  ).copyWith(
-                      height: 1.3
-                  ),
+                  ).copyWith(height: 1.3),
                 ),
               ),
             );
           },
-          firstPageProgressIndicatorBuilder: (context) => Center(child: SizedBox(
-            width: 20,height: 20,
+          firstPageProgressIndicatorBuilder: (context) => Center(
+              child: SizedBox(
+            width: 20,
+            height: 20,
             child: CircularProgressIndicator.adaptive(
               backgroundColor: context.colors.white,
             ),
           )),
-          newPageProgressIndicatorBuilder: (context) => Center(child: SizedBox(
-            width: 20,height: 20,
-            child: CircularProgressIndicator.adaptive(
-              backgroundColor: context.colors.white,
+          newPageProgressIndicatorBuilder: (context) => Center(
+            child: SizedBox(
+              width: 20,
+              height: 20,
+              child: CircularProgressIndicator.adaptive(
+                backgroundColor: context.colors.white,
+              ),
             ),
-          ),),
+          ),
         ),
-
       ),
     );
   }

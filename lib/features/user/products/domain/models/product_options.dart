@@ -13,7 +13,7 @@ class ProductOptions extends BaseDomainModel {
     required this.attributeId,
     required this.title,
     required this.options,
-    this.selectedAttribute ,
+    this.selectedAttribute,
     this.hasValue = false,
   });
 

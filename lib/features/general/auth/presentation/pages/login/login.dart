@@ -31,19 +31,24 @@ class _LoginState extends State<Login> {
                         child: Column(
                           children: [
                             BuildHeaderTitle(
-                              title: state.data == 0 ? tr("login") : tr('register'),
-                              subTitle: state.data == 1 ? tr("registerHint") : tr("loginHint"),
+                              title: state.data == 0
+                                  ? tr("login")
+                                  : tr('register'),
+                              subTitle: state.data == 1
+                                  ? tr("registerHint")
+                                  : tr("loginHint"),
                             ),
                             BuildLoginTabsView(
                               controller: loginController,
                             ),
-                            if(state.data == 0)
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SwitchPhoneEmailWidget(controller: loginController),
-                              ],
-                            ),
+                            if (state.data == 0)
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SwitchPhoneEmailWidget(
+                                      controller: loginController),
+                                ],
+                              ),
                             Gaps.vGap32,
                             AnimatedSwitcher(
                               duration: const Duration(milliseconds: 300),

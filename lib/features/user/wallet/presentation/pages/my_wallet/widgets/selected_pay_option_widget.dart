@@ -1,6 +1,5 @@
 part of 'my_wallet_widgets_imports.dart';
 
-
 class SelectedPayOptionWidget extends StatelessWidget {
   final MyWalletController controller;
 
@@ -8,7 +7,8 @@ class SelectedPayOptionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<List<WalletTypes>>, GenericState<List<WalletTypes>>>(
+    return BlocBuilder<GenericBloc<List<WalletTypes>>,
+        GenericState<List<WalletTypes>>>(
       bloc: controller.walletPaymentTypes,
       builder: (context, state) {
         return GestureDetector(
@@ -23,18 +23,25 @@ class SelectedPayOptionWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    controller.walletTypeModel?.name ?? tr('selectPaymentMethod'),
+                    controller.walletTypeModel?.name ??
+                        tr('selectPaymentMethod'),
                     style: AppTextStyle.s15_w500(color: context.colors.black),
                   ),
                 ),
-                if(controller.walletTypeModel!=null)
-                GestureDetector(
-                    onTap: () => controller.unSelectPayMethod(context),
-                    child: Icon(Icons.close,color: context.colors.black,size: 20,)
-                ),
+                if (controller.walletTypeModel != null)
+                  GestureDetector(
+                      onTap: () => controller.unSelectPayMethod(context),
+                      child: Icon(
+                        Icons.close,
+                        color: context.colors.black,
+                        size: 20,
+                      )),
                 Gaps.hGap10,
-                Icon(Icons.keyboard_arrow_down, color: context.colors.black,
-                  size: 20,)
+                Icon(
+                  Icons.keyboard_arrow_down,
+                  color: context.colors.black,
+                  size: 20,
+                )
               ],
             ),
           ),

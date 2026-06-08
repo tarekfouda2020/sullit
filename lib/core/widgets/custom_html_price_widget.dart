@@ -19,7 +19,7 @@ class CustomHtmlPriceWidget extends StatelessWidget {
   const CustomHtmlPriceWidget({
     super.key,
     required this.price,
-     this.currencyColor,
+    this.currencyColor,
     this.textColor,
     this.fontSize,
     this.currencyFontSize,
@@ -52,7 +52,7 @@ class CustomHtmlPriceWidget extends StatelessWidget {
             builder: (extensionContext) {
               /// Check if this span has the class we want
               if (extensionContext.attributes["class"] == "sicon-aed") {
-                return  Text(
+                return Text(
                   "\u{E900} ",
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -60,16 +60,18 @@ class CustomHtmlPriceWidget extends StatelessWidget {
                     fontFamily: AppTheme.sIconFontFamily,
                     fontSize: currencyFontSize ?? fontSize ?? Dimens.font_sp16,
                     color: currencyColor ?? textColor ?? context.colors.primary,
-                    fontWeight:  currencyFontWeight ?? fontWeight ?? FontWeight.w400,
+                    fontWeight:
+                        currencyFontWeight ?? fontWeight ?? FontWeight.w400,
                   ).copyWithTextStyle(currencyCopyWithStyle),
                 );
               } else {
-                return  Text(price,
-                style: TextStyle(
-                  color: textColor ?? context.colors.primary,
-                  fontSize: fontSize?? Dimens.font_sp16,
-                  fontWeight: fontWeight ?? FontWeight.w400,
-                )..copyWith,
+                return Text(
+                  price,
+                  style: TextStyle(
+                    color: textColor ?? context.colors.primary,
+                    fontSize: fontSize ?? Dimens.font_sp16,
+                    fontWeight: fontWeight ?? FontWeight.w400,
+                  )..copyWith,
                 );
               }
             },
@@ -79,12 +81,6 @@ class CustomHtmlPriceWidget extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
 
 extension TextStyleX on TextStyle {
   TextStyle copyWithTextStyle(TextStyle? other) {
@@ -143,6 +139,3 @@ extension HtmlStyleX on Style {
     );
   }
 }
-
-
-

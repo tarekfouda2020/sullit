@@ -4,7 +4,8 @@ class BuildCartButtons extends StatelessWidget {
   final CartDomainModel cartModel;
   final CartController controller;
 
-  const BuildCartButtons({super.key, required this.cartModel, required this.controller});
+  const BuildCartButtons(
+      {super.key, required this.cartModel, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class BuildCartButtons extends StatelessWidget {
       child: Container(
         color: context.colors.cartBg,
         margin: const EdgeInsets.only(bottom: 10),
-        padding:  const EdgeInsetsDirectional.only(
+        padding: const EdgeInsetsDirectional.only(
           start: 15,
           top: 20,
           end: 40,
@@ -32,12 +33,17 @@ class BuildCartButtons extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(tr("total"), style: AppTextStyle.s12_w400(color: context.colors.textColor)),
+                  Text(tr("total"),
+                      style: AppTextStyle.s12_w400(
+                          color: context.colors.textColor)),
                   Gaps.vGap6,
                   DirhamPrice(
-                    amount: cartModel.calculableTotal?.toStringAsFixed(2) ?? "0.00",
-                    currencyStyle: AppTextStyle.s18_w400(color: context.colors.primary),
-                    textStyle: AppTextStyle.s14_w600(color: context.colors.primary),
+                    amount:
+                        cartModel.calculableTotal?.toStringAsFixed(2) ?? "0.00",
+                    currencyStyle:
+                        AppTextStyle.s18_w400(color: context.colors.primary),
+                    textStyle:
+                        AppTextStyle.s14_w600(color: context.colors.primary),
                     currencyOffset: 0,
                   ),
                 ],

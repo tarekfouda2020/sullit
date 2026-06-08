@@ -8,7 +8,8 @@ class BuildOrderInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsetsDirectional.only(start: 15,top: 15,end: 10,bottom: 15),
+      padding: const EdgeInsetsDirectional.only(
+          start: 15, top: 15, end: 10, bottom: 15),
       margin: Dimens.paddingVertical5PX,
       decoration: const CustomDecoration(),
       child: Column(
@@ -31,7 +32,9 @@ class BuildOrderInfo extends StatelessWidget {
           ),
           BuildOrderInfoItem(
             title: "${tr('orderDate')} :",
-            subTitle: DateTimeHelper.formatDate(date: orderModel.getOrderDate, formatType: 'dd MMM yyyy - hh:mm a'),
+            subTitle: DateTimeHelper.formatDate(
+                date: orderModel.getOrderDate,
+                formatType: 'dd MMM yyyy - hh:mm a'),
           ),
           BuildOrderInfoItem(
             title: "${tr('orderStatus')} :",

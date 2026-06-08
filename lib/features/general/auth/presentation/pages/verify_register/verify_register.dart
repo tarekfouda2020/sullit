@@ -24,8 +24,10 @@ class _VerifyRegisterState extends State<VerifyRegister> {
       onWillPop: () => controller.onBackPressed(context),
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
-        appBar:  DefaultAppBar(title: "",bgColor: Colors.transparent,
-        onBack: () => controller.onBackPressed(context),
+        appBar: DefaultAppBar(
+          title: "",
+          bgColor: Colors.transparent,
+          onBack: () => controller.onBackPressed(context),
         ),
         body: SingleChildScrollView(
           padding: Dimens.paddingH20V10,
@@ -37,7 +39,7 @@ class _VerifyRegisterState extends State<VerifyRegister> {
                 subTitle: tr('verifyRegister'),
               ),
               BuildPinField(
-                onComplete: (code) => controller.verifyEmail(context,code),
+                onComplete: (code) => controller.verifyEmail(context, code),
                 count: 4,
                 alignment: MainAxisAlignment.spaceAround,
               ),

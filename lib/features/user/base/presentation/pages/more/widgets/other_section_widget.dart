@@ -53,8 +53,7 @@ class OtherSectionWidget extends StatelessWidget {
           size: 30,
           title: tr('contactUs'),
           isSvg: true,
-          onTap: () =>
-              controller.checkAuth(context, MoreRoutes.contactUs),
+          onTap: () => controller.checkAuth(context, MoreRoutes.contactUs),
         ),
         BuildMoreItem(
           image: Res.termsAndConditions,
@@ -67,47 +66,41 @@ class OtherSectionWidget extends StatelessWidget {
           image: Res.privacyPolicyIcon,
           isSvg: true,
           title: tr('privacyPolicy'),
-          onTap: () =>
-              controller.checkAuth(context, MoreRoutes.privacyPolicy),
+          onTap: () => controller.checkAuth(context, MoreRoutes.privacyPolicy),
         ),
         BuildMoreItem(
           image: Res.globalIcon,
           isSvg: true,
           title: tr('langauge'),
-          onTap: () =>
-              controller.checkAuth(context, MoreRoutes.language),
+          onTap: () => controller.checkAuth(context, MoreRoutes.language),
         ),
         BuildMoreItem(
           image: Res.supportPolicyIcon,
           isSvg: true,
           title: tr('supportPolicy'),
-          onTap: () =>
-              controller.checkAuth(context, MoreRoutes.supportPolicy),
+          onTap: () => controller.checkAuth(context, MoreRoutes.supportPolicy),
         ),
         BuildMoreItem(
           image: Res.returnPolicyIcon,
           isSvg: true,
           size: 30,
           title: tr('returnPolicy'),
-          onTap: () =>
-              controller.checkAuth(context, MoreRoutes.returnPolicy),
+          onTap: () => controller.checkAuth(context, MoreRoutes.returnPolicy),
         ),
         BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
           bloc: controller.refreshNotifyCubit,
           builder: (context, state) {
             return BuildMoreItem(
               image: Res.notification,
-              svgColor: ColorFilter.mode(
-                  context.colors.primary, BlendMode.srcIn),
+              svgColor:
+                  ColorFilter.mode(context.colors.primary, BlendMode.srcIn),
               isSvg: true,
               size: 30,
               title: controller.getNotificationText(),
-              onTap: () =>
-                  controller.openNotificationDialog(context),
+              onTap: () => controller.openNotificationDialog(context),
             );
           },
         ),
-
       ],
     );
   }

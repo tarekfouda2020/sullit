@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
@@ -11,7 +10,6 @@ import 'package:flutter_tdd/features/user/cart/domain/models/seller_shipping.dar
 import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:injectable/injectable.dart';
-
 
 @lazySingleton
 class CartNavigateHelper {
@@ -32,8 +30,7 @@ class CartNavigateHelper {
   OrderSummary? confirmationSummary;
   int? confirmationCombinedId;
 
-
-  void initData(){
+  void initData() {
     stepNotifier.value = cartStepIndex;
     selectedOrderAddress = null;
     deliveryDetailsData = null;
@@ -72,7 +69,7 @@ class CartNavigateHelper {
   bool navigateToStep(int step) {
     var cartData = getIt<CartHelper>().cartItemsBloc.state.data;
     var shippingStep = CartNavigateHelper.shippingStepIndex;
-    if(cartData.minimumStatus == false && step == shippingStep){
+    if (cartData.minimumStatus == false && step == shippingStep) {
       CustomToast.showSimpleToast(msg: cartData.minimumAmountMsg ?? "");
       return false;
     }
@@ -95,63 +92,33 @@ class CartNavigateHelper {
     navigateToStep(confirmationStepIndex);
   }
 
-
-  void updateDriverInstructions({String driverNotes = "",List<DeliveryInstructionModel>? instruction}){
+  void updateDriverInstructions(
+      {String driverNotes = "", List<DeliveryInstructionModel>? instruction}) {
     cartCheckOutPageData.selectedDriverInstructions = instruction;
     cartCheckOutPageData.driverNotes = driverNotes;
   }
 
-  void updatePickerNotes({String driverNotes = ""}){
+  void updatePickerNotes({String driverNotes = ""}) {
     cartCheckOutPageData.pickerNotes = driverNotes;
   }
 
-  void updateReplacementStatus( bool allowReplace){
+  void updateReplacementStatus(bool allowReplace) {
     cartCheckOutPageData.allowReplacement = allowReplace;
   }
 
-  void updateTermsAccept( bool acceptTerms){
+  void updateTermsAccept(bool acceptTerms) {
     cartCheckOutPageData.termsAccept = acceptTerms;
   }
 
-
-  void updateShippingData( Shipping? newData){
+  void updateShippingData(Shipping? newData) {
     cartCheckOutPageData.orderSummaryCheckOut = newData;
   }
 
-
-  void saveVoucherCode(String code){
+  void saveVoucherCode(String code) {
     cartCheckOutPageData.voucherCode = code;
   }
 
-  void saveGiftCardCode(String code){
+  void saveGiftCardCode(String code) {
     cartCheckOutPageData.giftCardCode = code;
   }
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

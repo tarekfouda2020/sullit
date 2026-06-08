@@ -1,9 +1,12 @@
 part of 'delivery_widgets_imports.dart';
 
 class BuildDeliveryButtons extends StatelessWidget {
-  final DeliveryController controller ;
+  final DeliveryController controller;
 
-  const BuildDeliveryButtons({Key? key, required this.controller,}) : super(key: key);
+  const BuildDeliveryButtons({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +21,15 @@ class BuildDeliveryButtons extends StatelessWidget {
           )
         ],
       ),
-      padding:Dimens.paddingAll15PX,
-      child : CustomBottomSafeAreaWidget(
+      padding: Dimens.paddingAll15PX,
+      child: CustomBottomSafeAreaWidget(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             DefaultButton(
               title: tr('conToPay'),
               color: context.colors.primary,
-              onTap: ()=> controller.onPresContinue(context),
+              onTap: () => controller.onPresContinue(context),
               margin: const EdgeInsets.only(bottom: 15),
             ),
             DefaultButton(

@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:developer';
 
@@ -24,7 +23,6 @@ import 'package:flutter_tdd/res.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter_tdd/core/services/deep_link_service.dart';
-
 
 part 'splash.dart';
 part 'splash_controller.dart';

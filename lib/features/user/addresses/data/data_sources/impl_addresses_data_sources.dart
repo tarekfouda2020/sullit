@@ -19,9 +19,10 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: AddressesDataSources)
 class ImplAddressesDataSources extends AddressesDataSources {
   @override
-  Future<Either<Failure, List<AddressModel>>> getAddress(GenericPaginateParams param) async {
+  Future<Either<Failure, List<AddressModel>>> getAddress(
+      GenericPaginateParams param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.userAddresses+param.paramsToQuery(),
+      url: ApiNames.userAddresses + param.paramsToQuery(),
       requestMethod: RequestMethod.get,
       refresh: param.refresh,
       responseType: ResType.list,
@@ -140,7 +141,8 @@ class ImplAddressesDataSources extends AddressesDataSources {
   }
 
   @override
-  Future<Either<Failure, AddressModel>> editAddress(EditAddressParams params) async {
+  Future<Either<Failure, AddressModel>> editAddress(
+      EditAddressParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.editAddress(params.id),
       requestMethod: RequestMethod.post,
@@ -154,9 +156,8 @@ class ImplAddressesDataSources extends AddressesDataSources {
     return await GenericHttpImpl<AddressModel>().call(model);
   }
 
-
   @override
-  Future<Either<Failure, List<AddressType>>> addressTypes (bool param) async {
+  Future<Either<Failure, List<AddressType>>> addressTypes(bool param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.addressTypes,
       requestMethod: RequestMethod.get,
@@ -165,7 +166,7 @@ class ImplAddressesDataSources extends AddressesDataSources {
       showLoader: true,
       toJsonFunc: (json) => List<AddressType>.from(
         json.map(
-              (e) => AddressType.fromJson(e),
+          (e) => AddressType.fromJson(e),
         ),
       ),
       responseKey: (data) => data["data"],
@@ -173,8 +174,4 @@ class ImplAddressesDataSources extends AddressesDataSources {
     );
     return await GenericHttpImpl<List<AddressType>>().call(model);
   }
-
-
-
-
 }

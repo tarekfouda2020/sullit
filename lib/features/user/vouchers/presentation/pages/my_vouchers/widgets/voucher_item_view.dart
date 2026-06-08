@@ -23,18 +23,22 @@ class VoucherItemView extends StatelessWidget {
               children: [
                 Text(
                   "Monthly Cash credit ",
-                  style: AppTextStyle.s16_w700(color: context.colors.blackTextColor),
+                  style: AppTextStyle.s16_w700(
+                      color: context.colors.blackTextColor),
                 ),
                 Gaps.vGap10,
                 DirhamPrice(
                   amount: "20.00",
-                  currencyStyle: AppTextStyle.s20_w400(color: context.colors.primary),
-                  textStyle: AppTextStyle.s20_w600(color: context.colors.primary),
+                  currencyStyle:
+                      AppTextStyle.s20_w400(color: context.colors.primary),
+                  textStyle:
+                      AppTextStyle.s20_w600(color: context.colors.primary),
                 ),
                 Gaps.vGap10,
                 Text(
                   "Expire in 10 oct 2025",
-                  style: AppTextStyle.s12_w300(color: context.colors.blackTextColor),
+                  style: AppTextStyle.s12_w300(
+                      color: context.colors.blackTextColor),
                 ),
               ],
             ),

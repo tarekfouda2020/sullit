@@ -26,9 +26,9 @@ class ImplProductsDataSource extends ProductsDataSource {
   @override
   Future<Either<Failure, HomeModel>> getHome(bool param) async {
     String? deviceId = GlobalState.instance.get(GlobalStateKeys.deviceToken);
-    if(deviceId!=null && deviceId.isNotEmpty){
+    if (deviceId != null && deviceId.isNotEmpty) {
       deviceId = "?mac_address=$deviceId";
-    }else{
+    } else {
       deviceId = "";
     }
 
@@ -154,7 +154,7 @@ class ImplProductsDataSource extends ProductsDataSource {
   }
 
   @override
-  Future<Either<Failure, bool>> toggleFollowing(int param) async{
+  Future<Either<Failure, bool>> toggleFollowing(int param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.toggleFollowing(param),
       requestMethod: RequestMethod.get,
@@ -166,7 +166,7 @@ class ImplProductsDataSource extends ProductsDataSource {
   }
 
   @override
-  Future<Either<Failure, ProductDetailsModel>> scanProduct(String param) async{
+  Future<Either<Failure, ProductDetailsModel>> scanProduct(String param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.skuSearch(param),
       requestMethod: RequestMethod.get,
@@ -178,15 +178,15 @@ class ImplProductsDataSource extends ProductsDataSource {
   }
 
   @override
-  Future<Either<Failure, SellerProductsModel>> sellerProducts(SellerProductsParams param) async{
+  Future<Either<Failure, SellerProductsModel>> sellerProducts(
+      SellerProductsParams param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.shopProducts(param.sellerId)+param.paramsToQuery(),
-      requestMethod: RequestMethod.get,
-      responseType: ResType.model,
-      responseKey: (data) => data['data'],
-      toJsonFunc: (data) => SellerProductsModel.fromJson(data),
-      refresh: param.paginateParams.refresh
-    );
+        url: ApiNames.shopProducts(param.sellerId) + param.paramsToQuery(),
+        requestMethod: RequestMethod.get,
+        responseType: ResType.model,
+        responseKey: (data) => data['data'],
+        toJsonFunc: (data) => SellerProductsModel.fromJson(data),
+        refresh: param.paginateParams.refresh);
     return await GenericHttpImpl<SellerProductsModel>().call(model);
   }
 }

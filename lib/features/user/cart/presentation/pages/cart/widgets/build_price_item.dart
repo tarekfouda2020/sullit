@@ -3,9 +3,13 @@ part of 'cart_widgets_imports.dart';
 class BuildPriceItem extends StatelessWidget {
   final String title;
   final String price;
-  final String currency ;
+  final String currency;
 
-  const BuildPriceItem({super.key, required this.title, required this.price, required this.currency});
+  const BuildPriceItem(
+      {super.key,
+      required this.title,
+      required this.price,
+      required this.currency});
 
   @override
   Widget build(BuildContext context) {

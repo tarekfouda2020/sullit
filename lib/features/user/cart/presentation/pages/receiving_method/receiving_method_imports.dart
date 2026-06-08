@@ -1,6 +1,3 @@
-
-
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +19,6 @@ import 'package:flutter_tdd/features/user/cart/presentation/pages/delivery/deliv
 import 'package:flutter_tdd/features/user/cart/presentation/pages/receiving_method/widgets/receiving_method_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/shipping/shipping_imports.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/widgets/build_cart_stepper.dart';
-
 
 part 'receiving_method.dart';
 part 'receiving_method_controller.dart';

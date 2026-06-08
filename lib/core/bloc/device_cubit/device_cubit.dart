@@ -27,15 +27,15 @@ class DeviceCubit extends Cubit<DeviceState> {
   void updateSmallPhone(bool isSmallPhone) {
     emit(DeviceUpdateState(state.model.copyWith(isSmallPhone: isSmallPhone)));
   }
+
   void updateThemeMode(AdaptiveThemeMode mode) {
     emit(DeviceUpdateState(state.model.copyWith(themeMode: mode)));
   }
 
   void setNetworkStatus(bool isNetworkConnected) {
     if (state.model.isNetworkConnected != isNetworkConnected) {
-      emit(DeviceUpdateState(state.model.copyWith(isNetworkConnected: isNetworkConnected)));
-
+      emit(DeviceUpdateState(
+          state.model.copyWith(isNetworkConnected: isNetworkConnected)));
     }
   }
-
 }

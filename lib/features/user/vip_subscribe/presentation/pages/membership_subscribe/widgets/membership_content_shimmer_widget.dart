@@ -51,7 +51,7 @@ class MembershipContentShimmerWidget extends StatelessWidget {
                 width: 150,
               ),
               Gaps.vGap21,
-               BuildShimmerItem(
+              BuildShimmerItem(
                 height: 50,
                 width: MediaQuery.of(context).size.width,
                 borderRadius: const BorderRadius.all(Radius.circular(25)),

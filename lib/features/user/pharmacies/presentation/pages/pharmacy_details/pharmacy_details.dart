@@ -5,21 +5,25 @@ class PharmacyDetails extends StatefulWidget {
   final Shop? pharmacy;
   final int? pharmacyId;
   final int? selectedCategoryId;
-  const PharmacyDetails({super.key, this.fromCart = false, this.pharmacy, this.pharmacyId, this.selectedCategoryId});
+  const PharmacyDetails(
+      {super.key,
+      this.fromCart = false,
+      this.pharmacy,
+      this.pharmacyId,
+      this.selectedCategoryId});
 
   @override
   State<PharmacyDetails> createState() => _PharmacyDetailsState();
 }
 
 class _PharmacyDetailsState extends State<PharmacyDetails> {
-
   late final PharmacyDetailsController controller;
-
 
   @override
   void initState() {
     super.initState();
-    controller = PharmacyDetailsController(pharmacy:widget.pharmacy ,pharmacyId: widget.pharmacyId);
+    controller = PharmacyDetailsController(
+        pharmacy: widget.pharmacy, pharmacyId: widget.pharmacyId);
   }
 
   @override
@@ -28,7 +32,7 @@ class _PharmacyDetailsState extends State<PharmacyDetails> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
-        body:  CustomScrollView(
+        body: CustomScrollView(
           slivers: [
             PharmacyDetailsAppBar(
               controller: controller,
@@ -45,26 +49,29 @@ class _PharmacyDetailsState extends State<PharmacyDetails> {
             GenericState<CartDomainModel>>(
           bloc: controller.cartItemsBloc,
           builder: (context, state) {
-            return KeyboardVisibilityBuilder(
-              builder: (context, isOPen) {
-                return Visibility(
-                  visible: !isOPen,
-                  child: CustomBottomSafeAreaWidget(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          spacing: 5,
-                          children: [
+            return KeyboardVisibilityBuilder(builder: (context, isOPen) {
+              return Visibility(
+                visible: !isOPen,
+                child: CustomBottomSafeAreaWidget(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        spacing: 5,
+                        children: [
                           Flexible(
                             child: Padding(
                               padding: const EdgeInsets.all(20),
                               child: Opacity(
-                                opacity: controller.cartHaveSellerProduct() ? 1 : 0.5,
+                                opacity: controller.cartHaveSellerProduct()
+                                    ? 1
+                                    : 0.5,
                                 child: DefaultButton(
                                   title: tr("view_cart"),
                                   margin: EdgeInsets.zero,
-                                  onTap: () => controller.onPressViewCart(context,),
+                                  onTap: () => controller.onPressViewCart(
+                                    context,
+                                  ),
                                 ),
                               ),
                             ),
@@ -74,36 +81,40 @@ class _PharmacyDetailsState extends State<PharmacyDetails> {
                             spacing: 7,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(tr("total"),
-                                style: AppTextStyle.s12_w400(color: context.colors.textColor),
+                              Text(
+                                tr("total"),
+                                style: AppTextStyle.s12_w400(
+                                    color: context.colors.textColor),
                               ),
-                              DirhamPrice(amount: "${state.data.calculableTotal}")
+                              DirhamPrice(
+                                  amount: "${state.data.calculableTotal}")
                             ],
                           ),
                           Gaps.hGap32,
-                        ],),
-                        Visibility(
-                          visible: controller.neededAmount() > 0,
-                          child: Row(
-                            children: [
-                              Gaps.hGap32,
-                              DirhamPrice(
-                                  amount: controller.neededAmount().toStringAsFixed(2)
-                              ),
-                              Text(
-                                " ${tr("needed_to_reach_minimum_order")}",
-                                style: AppTextStyle.s16_w500(
-                                    color: context.colors.primary),
-                              )
-                            ],
-                          ),
+                        ],
+                      ),
+                      Visibility(
+                        visible: controller.neededAmount() > 0,
+                        child: Row(
+                          children: [
+                            Gaps.hGap32,
+                            DirhamPrice(
+                                amount: controller
+                                    .neededAmount()
+                                    .toStringAsFixed(2)),
+                            Text(
+                              " ${tr("needed_to_reach_minimum_order")}",
+                              style: AppTextStyle.s16_w500(
+                                  color: context.colors.primary),
+                            )
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                );
-              }
-            );
+                ),
+              );
+            });
           },
         ),
       ),

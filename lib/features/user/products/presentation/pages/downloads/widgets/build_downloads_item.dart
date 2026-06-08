@@ -2,8 +2,9 @@ part of 'downloads_widgets_imports.dart';
 
 class BuildDownloadsItem extends StatelessWidget {
   final Product productModel;
-final DownloadsController controller;
-  const BuildDownloadsItem({super.key, required this.productModel, required this.controller});
+  final DownloadsController controller;
+  const BuildDownloadsItem(
+      {super.key, required this.productModel, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ final DownloadsController controller;
           ],
         ),
         trailing: BuildOptionItem(
-          onTap: () =>controller.downloadDigitalProduct(productModel.id!),
+          onTap: () => controller.downloadDigitalProduct(productModel.id!),
           iconData: Icons.download,
           customColor: context.colors.blue,
         ),

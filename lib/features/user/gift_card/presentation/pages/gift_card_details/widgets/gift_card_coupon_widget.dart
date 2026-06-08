@@ -3,15 +3,17 @@ part of 'gift_card_details_widgets_imports.dart';
 class GiftCardCouponWidget extends StatelessWidget {
   final GiftCardDomainModel model;
   final GiftCardDetailsController controller;
-  const GiftCardCouponWidget({super.key, required this.model, required this.controller});
+  const GiftCardCouponWidget(
+      {super.key, required this.model, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsetsDirectional.only(top: 13, bottom: 17,end: 16),
-      margin: const EdgeInsetsDirectional.only(start: 35,end: 35,top: 24),
-      decoration:
-          BoxDecoration(color: context.colors.white.withOpacity(0.2), borderRadius: BorderRadius.circular(12)),
+      padding: const EdgeInsetsDirectional.only(top: 13, bottom: 17, end: 16),
+      margin: const EdgeInsetsDirectional.only(start: 35, end: 35, top: 24),
+      decoration: BoxDecoration(
+          color: context.colors.white.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(12)),
       child: Column(
         children: [
           Text(
@@ -32,18 +34,19 @@ class GiftCardCouponWidget extends StatelessWidget {
                   ),
                 ),
               ),
-             BlocBuilder<GenericBloc<bool>,GenericState<bool>>(
-               bloc: controller.showCopyIcon,
-               builder: (context, state) {
-               return   Visibility(
-                 visible: state.data,
-                 child: GestureDetector(
-                   onTap: () => getIt<Utilities>().copyToClipBoard(model.code ?? ""),
-                   child: SvgPicture.asset(Res.copyIcon),
-                 ),
-               );
-             },)
-
+              BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+                bloc: controller.showCopyIcon,
+                builder: (context, state) {
+                  return Visibility(
+                    visible: state.data,
+                    child: GestureDetector(
+                      onTap: () =>
+                          getIt<Utilities>().copyToClipBoard(model.code ?? ""),
+                      child: SvgPicture.asset(Res.copyIcon),
+                    ),
+                  );
+                },
+              )
             ],
           ),
           Gaps.vGap15,

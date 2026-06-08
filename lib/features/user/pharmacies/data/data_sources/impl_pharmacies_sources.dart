@@ -9,12 +9,17 @@ import 'package:flutter_tdd/features/user/best_sellers/domain/entity/shop_catego
 import 'package:flutter_tdd/features/user/pharmacies/data/data_sources/pharmacies_sources.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/shop_id_params.dart';
 import 'package:flutter_tdd/features/user/products/data/models/shop_model/shop_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharamcy_shipping_info_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_shipping_model/pharmacy_shipping_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/shipping_model/shipping_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_check_out_params.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: PharmaciesSources)
 class ImplPharmaciesSources extends PharmaciesSources {
   @override
-  Future<Either<Failure, List<ShopCategoryModel>>> getShopCategories(ShopCategoryParams param) async {
+  Future<Either<Failure, List<ShopCategoryModel>>> getShopCategories(
+      ShopCategoryParams param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.shopCategories(param.shopId),
       requestBody: param.toJson(),
@@ -24,7 +29,8 @@ class ImplPharmaciesSources extends PharmaciesSources {
       showLoader: false,
       refresh: param.paginParams.refresh,
       toJsonFunc: (json) => List<ShopCategoryModel>.from(
-        (json as List).map((e) => ShopCategoryModel.fromJson(e as Map<String, dynamic>)),
+        (json as List)
+            .map((e) => ShopCategoryModel.fromJson(e as Map<String, dynamic>)),
       ),
     );
     return await GenericHttpImpl<List<ShopCategoryModel>>()(model);
@@ -36,11 +42,42 @@ class ImplPharmaciesSources extends PharmaciesSources {
       url: ApiNames.shopDetails(param.shopId),
       requestMethod: RequestMethod.get,
       responseType: ResType.model,
-      responseKey: (data) => data['data']['shop'] ,
+      responseKey: (data) => data['data']['shop'],
       refresh: param.refresh,
       showLoader: false,
       toJsonFunc: (json) => ShopModel.fromJson(json),
     );
     return await GenericHttpImpl<ShopModel>()(model);
+  }
+
+  @override
+  Future<Either<Failure, List<PharmacyShippingModel>>> getPharmacyShippingInfo(
+      PharamcyShippingInfoParams param) async {
+    final model = HttpRequestModel(
+      url: ApiNames.pharmacyShippingInfo,
+      requestMethod: RequestMethod.post,
+      requestBody: param.toJson(),
+      responseType: ResType.list,
+      responseKey: (data) => data['data'],
+      showLoader: true,
+      toJsonFunc: (json) => List<PharmacyShippingModel>.from(json.map((e) => PharmacyShippingModel.fromJson(e),
+      ),
+    ));
+    return await GenericHttpImpl<List<PharmacyShippingModel>>()(model);
+  }
+
+  @override
+  Future<Either<Failure, ShippingModel>> getCartSummary(
+      PharmacyCheckoutParams param) async {
+    final model = HttpRequestModel(
+      url: ApiNames.cartSummary,
+      requestMethod: RequestMethod.post,
+      requestBody: param.toJson(),
+      responseType: ResType.model,
+      responseKey: (data) => data['data'],
+      showLoader: true,
+      toJsonFunc: (json) => ShippingModel.fromJson(json),
+    );
+    return await GenericHttpImpl<ShippingModel>()(model);
   }
 }

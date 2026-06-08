@@ -7,23 +7,25 @@ part 'gift_card_model.freezed.dart';
 part 'gift_card_model.g.dart';
 
 @freezed
-class GiftCardModel extends BaseApiModel<GiftCardDomainModel> with _$GiftCardModel {
+class GiftCardModel extends BaseApiModel<GiftCardDomainModel>
+    with _$GiftCardModel {
   const GiftCardModel._();
 
   @JsonSerializable(explicitToJson: true)
   factory GiftCardModel({
     required int id,
     required String title,
-     String? code,
+    String? code,
     required String price,
     required String value,
     @JsonKey(name: "validity_days") required int validateDays,
-    @JsonKey(name: "expired_at")  String? expiredAt,
-    @JsonKey(name: "expired_in_days")  int? expiredInDays,
-    @JsonKey(name: "is_expired")  bool? isExpired,
+    @JsonKey(name: "expired_at") String? expiredAt,
+    @JsonKey(name: "expired_in_days") int? expiredInDays,
+    @JsonKey(name: "is_expired") bool? isExpired,
   }) = _GiftCardModel;
 
-  factory GiftCardModel.fromJson(Map<String, dynamic> json) => _$GiftCardModelFromJson(json);
+  factory GiftCardModel.fromJson(Map<String, dynamic> json) =>
+      _$GiftCardModelFromJson(json);
 
   @override
   GiftCardDomainModel toDomainModel() {

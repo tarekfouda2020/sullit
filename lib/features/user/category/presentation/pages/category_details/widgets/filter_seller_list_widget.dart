@@ -6,8 +6,7 @@ class FilterSellerListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<List<Shop>>,
-        GenericState<List<Shop>>>(
+    return BlocBuilder<GenericBloc<List<Shop>>, GenericState<List<Shop>>>(
       bloc: controller.sellersCubit,
       builder: (context, state) {
         if (state is GenericUpdateState) {
@@ -32,8 +31,7 @@ class FilterSellerListWidget extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(top: 12),
                       child: Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
                             tr("seeAll"),
@@ -47,11 +45,9 @@ class FilterSellerListWidget extends StatelessWidget {
                 ...List.generate(state.data.length, (index) {
                   var model = state.data[index];
                   return SubFilterItemWidget(
-                    text: model.name??"",
-                    isSelected:
-                    model.id == controller.selectedSeller?.id,
-                    onSelect: (value) =>
-                        controller.onChangeSellers(model),
+                    text: model.name ?? "",
+                    isSelected: model.id == controller.selectedSeller?.id,
+                    onSelect: (value) => controller.onChangeSellers(model),
                   );
                 })
               ],

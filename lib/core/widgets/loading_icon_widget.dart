@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
@@ -10,9 +9,10 @@ class LoadingIconWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       margin: margin ?? Dimens.paddingAll5PX,
-      width: size ?? 18, height: size ?? 18,
+      width: size ?? 18,
+      height: size ?? 18,
       child: const CircularProgressIndicator.adaptive(
         strokeWidth: 2,
       ),

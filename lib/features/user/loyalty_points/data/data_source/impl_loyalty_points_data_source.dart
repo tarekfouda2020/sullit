@@ -12,7 +12,8 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: LoyaltyPointsDataSource)
 class ImplLoyaltyPointsDataSource extends LoyaltyPointsDataSource {
   @override
-  Future<Either<Failure, LoyaltyPointsBalanceModel>> getLoyaltyPointsBalance(bool param)async {
+  Future<Either<Failure, LoyaltyPointsBalanceModel>> getLoyaltyPointsBalance(
+      bool param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.loyaltyPointsBalance,
       requestMethod: RequestMethod.get,
@@ -26,54 +27,57 @@ class ImplLoyaltyPointsDataSource extends LoyaltyPointsDataSource {
   }
 
   @override
-  Future<Either<Failure, List<TransactionsModel>>> getTransactions(GenericPaginateParams params)async {
+  Future<Either<Failure, List<TransactionsModel>>> getTransactions(
+      GenericPaginateParams params) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.loyaltyPointsTransactions+params.paramsToQuery(),
+      url: ApiNames.loyaltyPointsTransactions + params.paramsToQuery(),
       requestMethod: RequestMethod.get,
       responseType: ResType.list,
       refresh: params.refresh,
       responseKey: (data) {
         // Debug: Print the entire response to understand the structure
         print('Loyalty Points API Response: $data');
-        
+
         // Handle potential null values safely
         final transactions = data['data']?['transactions'];
         print('Transactions from response: $transactions');
-        
+
         if (transactions == null) {
           print('Transactions is null, returning empty list');
           return [];
         }
-        
+
         if (transactions is List) {
           print('Transactions is a list with ${transactions.length} items');
         } else {
-          print('Transactions is not a list, type: ${transactions.runtimeType}');
+          print(
+              'Transactions is not a list, type: ${transactions.runtimeType}');
         }
-        
+
         return transactions;
       },
       toJsonFunc: (json) {
         // Debug: Print the json parameter
         print('toJsonFunc called with: $json');
         print('JSON type: ${json.runtimeType}');
-        
+
         // Handle empty or null json safely
         if (json == null) {
           print('JSON is null, returning empty list');
           return <TransactionsModel>[];
         }
-        
+
         if (json.isEmpty) {
           print('JSON is empty, returning empty list');
           return <TransactionsModel>[];
         }
-        
+
         try {
           final result = List<TransactionsModel>.from(
             json.map((e) => TransactionsModel.fromJson(e)),
           );
-          print('Successfully created ${result.length} TransactionsModel instances');
+          print(
+              'Successfully created ${result.length} TransactionsModel instances');
           return result;
         } catch (e) {
           print('Error creating TransactionsModel instances: $e');
@@ -84,5 +88,4 @@ class ImplLoyaltyPointsDataSource extends LoyaltyPointsDataSource {
     );
     return await GenericHttpImpl<List<TransactionsModel>>().call(model);
   }
-
 }

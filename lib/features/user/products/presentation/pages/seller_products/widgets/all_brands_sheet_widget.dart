@@ -1,6 +1,5 @@
 part of 'seller_products_widgets_imports.dart';
 
-
 class AllBrandsSheetWidget extends StatelessWidget {
   final SellerProductsController controller;
   const AllBrandsSheetWidget({super.key, required this.controller});
@@ -9,7 +8,7 @@ class AllBrandsSheetWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-      margin: const EdgeInsets.only(top: kToolbarHeight+20),
+      margin: const EdgeInsets.only(top: kToolbarHeight + 20),
       decoration: BoxDecoration(
         color: context.colors.white,
         borderRadius: Dimens.sheetBorderRadius,
@@ -24,7 +23,8 @@ class AllBrandsSheetWidget extends StatelessWidget {
             onPressClear: () => controller.getBrands(1),
             onChange: (value) => DebounceHelper.instance.startSearch(
               value: value,
-              onSearch: (val) => controller.refreshBrands(context,disableFocus: false),
+              onSearch: (val) =>
+                  controller.refreshBrands(context, disableFocus: false),
             ),
           ),
           Gaps.vGap15,
@@ -40,12 +40,16 @@ class AllBrandsSheetWidget extends StatelessWidget {
                       brandModel: item,
                     );
                   },
-                  noItemsFoundIndicatorBuilder: (_) => const BuildEmptyDataView(),
+                  noItemsFoundIndicatorBuilder: (_) =>
+                      const BuildEmptyDataView(),
                   firstPageProgressIndicatorBuilder: (_) => Column(
                     spacing: 10,
-                    children: List.generate(3, (index) {
-                      return const BrandsSheetShimmerWidget();
-                    },),
+                    children: List.generate(
+                      3,
+                      (index) {
+                        return const BrandsSheetShimmerWidget();
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -60,6 +64,4 @@ class AllBrandsSheetWidget extends StatelessWidget {
     controller.onSelectBrand(item);
     Navigator.pop(context);
   }
-
-
 }

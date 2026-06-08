@@ -7,7 +7,7 @@ import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
-import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_sheet_controller.dart';
 
@@ -24,8 +24,10 @@ class StandaloneCartSheetController implements CartSheetController {
     await _cartHelper.getCartItems(refresh: refresh);
   }
 
-  void onIncreaseCartQnt(BuildContext context, CartItem cartItem, newQty) async {
-    final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+  void onIncreaseCartQnt(
+      BuildContext context, GeneralCartItem cartItem, newQty) async {
+    final success =
+        await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
     if (success != null) {
       cartItem.quantity = newQty;
       cartItemsBloc.onUpdateData(success);
@@ -33,7 +35,8 @@ class StandaloneCartSheetController implements CartSheetController {
   }
 
   @override
-  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem, GenericBloc<int> qntCubit, String value) async {
+  Future<void> onIncreaseCart(BuildContext context, GeneralCartItem cartItem,
+      GenericBloc<int> qntCubit, String value) async {
     if (cartItem.quantity < cartItem.stockQty) {
       var newQty = qntCubit.state.data + 1;
       qntCubit.onUpdateData(newQty);
@@ -50,7 +53,8 @@ class StandaloneCartSheetController implements CartSheetController {
     }
   }
 
-  void onDecreaseCartQnt(BuildContext context, CartItem cartItem, int newQty) async {
+  void onDecreaseCartQnt(
+      BuildContext context, GeneralCartItem cartItem, int newQty) async {
     if (cartItem.quantity == 1) {
       deleteItemFromCart(context, cartItem);
       return;
@@ -66,7 +70,8 @@ class StandaloneCartSheetController implements CartSheetController {
   }
 
   @override
-  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem, GenericBloc<int> qntCubit, String value) async {
+  Future<void> onDecreaseCart(BuildContext context, GeneralCartItem cartItem,
+      GenericBloc<int> qntCubit, String value) async {
     if (cartItem.quantity > 1) {
       var newQty = qntCubit.state.data - 1;
       var data = cartItemsBloc.state.data;
@@ -84,11 +89,13 @@ class StandaloneCartSheetController implements CartSheetController {
   }
 
   @override
-  Future<void> deleteItemFromCart(BuildContext context, CartItem cartItem) async {
+  Future<void> deleteItemFromCart(
+      BuildContext context, GeneralCartItem cartItem) async {
     getIt<LoadingHelper>().showLoadingDialog();
     final deleted = await _cartHelper.deleteItemFromCart(context, cartItem);
     if (deleted) {
-      double subTotal = double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
+      double subTotal =
+          double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
       double removedItemPrice = double.parse(cartItem.total);
       double newSubTotal = subTotal - removedItemPrice;
       cartItemsBloc.state.data.subTotal = newSubTotal.toStringAsFixed(2);
@@ -107,7 +114,7 @@ class StandaloneCartSheetController implements CartSheetController {
   }
 
   @override
-  void updateFavFromSheet(CartItem cartItem) {
+  void updateFavFromSheet(GeneralCartItem cartItem) {
     cartItem.isWishlist = !cartItem.isWishlist;
   }
 

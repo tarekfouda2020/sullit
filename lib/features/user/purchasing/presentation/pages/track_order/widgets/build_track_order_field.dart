@@ -21,7 +21,7 @@ class BuildTrackOrderField extends StatelessWidget {
           margin: Dimens.paddingVertical10PX,
         ),
         DefaultButton(
-          title:  tr('trackOrder'),
+          title: tr('trackOrder'),
           width: 120.w,
           height: 35.h,
           margin: Dimens.paddingVertical20PX,

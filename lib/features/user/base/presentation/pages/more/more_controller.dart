@@ -177,14 +177,14 @@ class MoreController {
     await getIt<Utilities>().changeLanguage(code, context);
     if (context.mounted) {
       context.read<DeviceCubit>().updateLanguage(
-        Locale(
-          code,
-          _getCountryLangCode(code),
-        ),
-      );
-      homeController.animateTabsPages(0,context);
+            Locale(
+              code,
+              _getCountryLangCode(code),
+            ),
+          );
+      homeController.animateTabsPages(0, context);
       HomeDomainModel? homeData = OrdersHelper.instance.homeCubit.state.data;
-      if( homeData?.currentOrders.isNotEmpty == true ){
+      if (homeData?.currentOrders.isNotEmpty == true) {
         OrdersHelper.instance.getHome(setLoading: false);
       }
     }
@@ -222,7 +222,7 @@ class MoreController {
     bool isGranted = status.isGranted || status.isProvisional;
     GlobalState.instance.set(GlobalStateKeys.notificationGranted, isGranted);
     refreshNotifyCubit.onUpdateData(true);
-    if(isGranted){
+    if (isGranted) {
       getIt<GlobalNotification>().setupNotification();
     }
   }

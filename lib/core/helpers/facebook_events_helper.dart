@@ -97,37 +97,31 @@ class FacebookEventsHelper {
       totalPrice: orderPrice,
       contentId: orderId,
     );
-    _userInitCheckOut(itemsNumber: itemsNumber, orderPrice: orderPrice, orderId: orderId);
+    _userInitCheckOut(
+        itemsNumber: itemsNumber, orderPrice: orderPrice, orderId: orderId);
   }
-
 
   void _userInitCheckOut({
     required int itemsNumber,
     required double orderPrice,
     required String orderId,
-  } ){
+  }) {
     if (!kReleaseMode) {
       return;
     }
-    _facebookAppEvents.logEvent(
-        name: _userInitiateCheckout,
-        parameters: {
-          "items_number" : itemsNumber,
-          "order_price" : orderPrice,
-          "order_id" : orderId,
-         ..._userDataJson()
-        }
-    );
+    _facebookAppEvents.logEvent(name: _userInitiateCheckout, parameters: {
+      "items_number": itemsNumber,
+      "order_price": orderPrice,
+      "order_id": orderId,
+      ..._userDataJson()
+    });
   }
-
 
   void productDetailsOpened(Product product) {
     if (!kReleaseMode) {
       return;
     }
-    _facebookAppEvents.logEvent(
-        name: _productDetailsOpenedName,
-        parameters: {
+    _facebookAppEvents.logEvent(name: _productDetailsOpenedName, parameters: {
       "product_id": product.id,
       "product_name": product.name,
       "product_price": product.priceHighLowDiscount,
@@ -163,7 +157,6 @@ class FacebookEventsHelper {
   String _hashData(String data) {
     return sha256.convert(utf8.encode(data.toLowerCase().trim())).toString();
   }
-
 
   void addUserDataEvent(UserDomainModel? data) {
     if (!kReleaseMode) {
@@ -255,6 +248,7 @@ class FacebookEventsHelper {
       },
     );
   }
+
   Map<String, dynamic> _userDataJson() {
     UserDomainModel? data = _userData();
     return data != null

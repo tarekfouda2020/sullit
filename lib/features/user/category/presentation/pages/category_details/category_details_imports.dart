@@ -20,7 +20,7 @@ import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/user/best_sellers/domain/entity/shops_params.dart';
 import 'package:flutter_tdd/features/user/best_sellers/domain/use_cases/get_best_sellers.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
-import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/brands_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/price_range_params.dart';

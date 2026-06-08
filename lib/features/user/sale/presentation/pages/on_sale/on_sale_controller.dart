@@ -43,8 +43,7 @@ class OnSaleController {
   OffersParamsWidget _onSaleOffers(bool refresh, int currentPage) {
     return OffersParamsWidget(
         paginateParams: _onSaleParams(refresh, currentPage),
-        keyword: searchFieldCtr.text
-    );
+        keyword: searchFieldCtr.text);
   }
 
   void onChangeFav(Product item) {

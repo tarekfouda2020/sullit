@@ -5,7 +5,7 @@ import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 class ProductImageWidget extends StatefulWidget {
   final String url;
   final Widget? child;
-  const ProductImageWidget({super.key, required this.url,  this.child});
+  const ProductImageWidget({super.key, required this.url, this.child});
 
   @override
   State<ProductImageWidget> createState() => _ProductImageWidgetState();
@@ -23,7 +23,8 @@ class _ProductImageWidgetState extends State<ProductImageWidget>
   }
 
   void _initializeCacheSettings() {
-    final dpr = WidgetsBinding.instance.platformDispatcher.views.first.devicePixelRatio;
+    final dpr =
+        WidgetsBinding.instance.platformDispatcher.views.first.devicePixelRatio;
 
     // CRITICAL: Small memory cache to prevent OOM crashes
     // NO disk cache to prevent storage bloat with thousands of images

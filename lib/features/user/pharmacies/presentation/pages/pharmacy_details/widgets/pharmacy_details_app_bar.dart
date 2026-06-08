@@ -22,7 +22,7 @@ class PharmacyDetailsAppBar extends StatelessWidget {
               shop?.name ?? '',
               style: AppTextStyle.s20_w700(color: context.colors.black),
             ),
-            expandedHeight: MediaQuery.sizeOf(context).height*0.67,
+            expandedHeight: MediaQuery.sizeOf(context).height * 0.67,
             flexibleSpace: FlexibleSpaceBar(
               background: Padding(
                 padding: EdgeInsets.only(

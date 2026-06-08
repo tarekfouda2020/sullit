@@ -142,7 +142,7 @@ class DropdownTextField<T> extends StatelessWidget {
           padding: contentPadding ??
               const EdgeInsets.symmetric(horizontal: 12, vertical: 10).r,
         ),
-        emptyBuilder: (context, action) =>  Center(
+        emptyBuilder: (context, action) => Center(
           child: Text(
             tr("noDataFound"),
             style: AppTextStyle.s16_w500(color: Colors.black),

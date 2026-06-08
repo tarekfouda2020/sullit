@@ -3,10 +3,7 @@
 part of 'splash_imports.dart';
 
 class SplashController {
-
-
-
-  Future<void> initScreen(BuildContext context)async{
+  Future<void> initScreen(BuildContext context) async {
     manipulateSaveData(context);
     // PlaySoundHelper.instance.startSound(
     //     afterSoundEnd: () => manipulateSaveData(context)
@@ -46,7 +43,7 @@ class SplashController {
 
   Future<void> updateLang(BuildContext context) async {
     await SharedPreferences.getInstance().then(
-          (lang) {
+      (lang) {
         String? value = lang.getString(LangCodeHelper.langKey);
         context.read<DeviceCubit>().updateLanguage(
               Locale(
@@ -63,7 +60,8 @@ class SplashController {
         if (value == LangCodeHelper.langUR) {
           value = LangTypeEnum.urdu.getLangCode();
         }
-        GlobalState.instance.set(LangCodeHelper.langKey, value ?? LangCodeHelper.langEN);
+        GlobalState.instance
+            .set(LangCodeHelper.langKey, value ?? LangCodeHelper.langEN);
       },
     );
   }

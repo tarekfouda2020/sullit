@@ -86,7 +86,8 @@ class ImplPurchasingRepository extends PurchasingRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, Orders>> changeOrderPaymentMethod(ChangeOrderPaymentParams param) async {
+  Future<Either<Failure, Orders>> changeOrderPaymentMethod(
+      ChangeOrderPaymentParams param) async {
     var result = await dataSource.changeOrderPaymentMethod(param);
     return toDomainResult(result);
   }

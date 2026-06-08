@@ -5,7 +5,8 @@ part of 'order_summary_imports.dart';
 class OrderSummaryController {
   final GenericBloc<Orders?> orderDetailsBloc = GenericBloc(null);
   final GenericBloc<FessMechanismModel?> feesCubit = GenericBloc(null);
-  final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc = GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
+  final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc =
+      GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
   late int orderId;
 
   OrderSummaryController(int id) {
@@ -27,9 +28,9 @@ class OrderSummaryController {
         formKey: GlobalKey(),
       ),
     );
-    if(result == null){
+    if (result == null) {
       orderDetailsBloc.onFailedResponse(error: tr("noDataFoundForOrder"));
-      return ;
+      return;
     }
     orderDetailsBloc.onUpdateData(result);
   }
@@ -42,7 +43,8 @@ class OrderSummaryController {
         model.review = result;
         model.isAvailableReview = false;
         orderDetailsBloc.onUpdateData(orderDetailsBloc.state.data);
-        CustomToast.showSimpleToast(msg: tr("reviewSuccess"),type: ToastType.success);
+        CustomToast.showSimpleToast(
+            msg: tr("reviewSuccess"), type: ToastType.success);
       }
       AutoRouter.of(context).pop();
     }
@@ -102,7 +104,8 @@ class OrderSummaryController {
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        return FeesSheetWidget(feesCubit: feesCubit, showDelivery: false, showTech: true);
+        return FeesSheetWidget(
+            feesCubit: feesCubit, showDelivery: false, showTech: true);
       },
     );
   }
@@ -112,7 +115,8 @@ class OrderSummaryController {
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        return FeesSheetWidget(feesCubit: feesCubit, showService: false, showTech: false);
+        return FeesSheetWidget(
+            feesCubit: feesCubit, showService: false, showTech: false);
       },
     );
   }
@@ -122,7 +126,12 @@ class OrderSummaryController {
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        return FeesSheetWidget(feesCubit: feesCubit, showService: false, showDelivery: false, showTech: false, showEnv: true);
+        return FeesSheetWidget(
+            feesCubit: feesCubit,
+            showService: false,
+            showDelivery: false,
+            showTech: false,
+            showEnv: true);
       },
     );
   }
@@ -130,10 +139,11 @@ class OrderSummaryController {
   Future<void> getLoyaltyPointsBalance({bool refresh = true}) async {
     return await GetLoyaltyPointsBalance().call(refresh).then(
           (value) => loyaltyPointsBalanceBloc.onUpdateData(value),
-    );
+        );
   }
 
-  void showTierFullName(BuildContext context,String description, String title){
+  void showTierFullName(
+      BuildContext context, String description, String title) {
     showModalBottomSheet(
       context: context,
       useRootNavigator: true,
@@ -141,10 +151,11 @@ class OrderSummaryController {
       isScrollControlled: false,
       enableDrag: false,
       builder: (context) {
-        return FullTierNameWidget(description: description,title:title,);
+        return FullTierNameWidget(
+          description: description,
+          title: title,
+        );
       },
     );
   }
-
-
 }

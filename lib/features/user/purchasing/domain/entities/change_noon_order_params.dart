@@ -4,10 +4,9 @@
 // arrived_at_delivery
 // delivered
 
-
-enum NoonStatus{
+enum NoonStatus {
   assigned(status: "assigned"),
-  arrivedAtPickupLocation(status:"arrived_at_pickup_location"),
+  arrivedAtPickupLocation(status: "arrived_at_pickup_location"),
   pickedUp(status: "picked_up"),
   arrivedAtDelivery(status: "arrived_at_delivery"),
   delivered(status: "delivered");
@@ -15,11 +14,7 @@ enum NoonStatus{
   final String status;
 
   const NoonStatus({required this.status});
-
 }
-
-
-
 
 class ChangeNoonOrderParams {
   final int id;

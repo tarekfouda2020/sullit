@@ -26,18 +26,20 @@ class PharmacyProducts extends StatelessWidget {
               showVipDiscount: item.hasVipOffer,
               productModel: item,
               onFavRefresh: () => controller.onFavChanged(item),
-              onPressDelete: ()  => controller.getCartItems(),
+              onPressDelete: () => controller.getCartItems(),
               afterAddToCart: () => controller.getCartItems(),
               onPressDecrease: () => controller.getCartItems(),
             );
           },
-          firstPageProgressIndicatorBuilder: (_) => const BuildLoadingProductsGridView(),
-          noItemsFoundIndicatorBuilder: (_) =>  const BuildEmptyDataView(),
+          firstPageProgressIndicatorBuilder: (_) =>
+              const BuildLoadingProductsGridView(),
+          noItemsFoundIndicatorBuilder: (_) => const BuildEmptyDataView(),
           newPageProgressIndicatorBuilder: (context) => Gaps.empty,
         ),
       ),
     );
   }
+
   SliverGridDelegateWithFixedCrossAxisCount _buildGridDelegate() {
     return const SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,

@@ -49,6 +49,10 @@ mixin _$CartItemModel {
   int get stockQty => throw _privateConstructorUsedError;
   @JsonKey(name: "is_wishlist")
   bool get isWishlist => throw _privateConstructorUsedError;
+  @JsonKey(name: "prescription_required")
+  bool? get prescriptionRequired => throw _privateConstructorUsedError;
+  @JsonKey(name: "insurance_eligible")
+  bool? get insuranceEligible => throw _privateConstructorUsedError;
   @JsonKey(name: "sold_by_type")
   String get soldByType => throw _privateConstructorUsedError;
   @JsonKey(name: "sold_by_name")
@@ -87,6 +91,8 @@ abstract class $CartItemModelCopyWith<$Res> {
       @JsonKey(name: "min_qty") int minQty,
       @JsonKey(name: "stock_qty") int stockQty,
       @JsonKey(name: "is_wishlist") bool isWishlist,
+      @JsonKey(name: "prescription_required") bool? prescriptionRequired,
+      @JsonKey(name: "insurance_eligible") bool? insuranceEligible,
       @JsonKey(name: "sold_by_type") String soldByType,
       @JsonKey(name: "sold_by_name") String soldBy,
       @JsonKey(name: "shop_id") int? shopId});
@@ -123,6 +129,8 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
     Object? minQty = null,
     Object? stockQty = null,
     Object? isWishlist = null,
+    Object? prescriptionRequired = freezed,
+    Object? insuranceEligible = freezed,
     Object? soldByType = null,
     Object? soldBy = null,
     Object? shopId = freezed,
@@ -200,6 +208,14 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
           ? _value.isWishlist
           : isWishlist // ignore: cast_nullable_to_non_nullable
               as bool,
+      prescriptionRequired: freezed == prescriptionRequired
+          ? _value.prescriptionRequired
+          : prescriptionRequired // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      insuranceEligible: freezed == insuranceEligible
+          ? _value.insuranceEligible
+          : insuranceEligible // ignore: cast_nullable_to_non_nullable
+              as bool?,
       soldByType: null == soldByType
           ? _value.soldByType
           : soldByType // ignore: cast_nullable_to_non_nullable
@@ -243,6 +259,8 @@ abstract class _$$_CartItemModelCopyWith<$Res>
       @JsonKey(name: "min_qty") int minQty,
       @JsonKey(name: "stock_qty") int stockQty,
       @JsonKey(name: "is_wishlist") bool isWishlist,
+      @JsonKey(name: "prescription_required") bool? prescriptionRequired,
+      @JsonKey(name: "insurance_eligible") bool? insuranceEligible,
       @JsonKey(name: "sold_by_type") String soldByType,
       @JsonKey(name: "sold_by_name") String soldBy,
       @JsonKey(name: "shop_id") int? shopId});
@@ -277,6 +295,8 @@ class __$$_CartItemModelCopyWithImpl<$Res>
     Object? minQty = null,
     Object? stockQty = null,
     Object? isWishlist = null,
+    Object? prescriptionRequired = freezed,
+    Object? insuranceEligible = freezed,
     Object? soldByType = null,
     Object? soldBy = null,
     Object? shopId = freezed,
@@ -354,6 +374,14 @@ class __$$_CartItemModelCopyWithImpl<$Res>
           ? _value.isWishlist
           : isWishlist // ignore: cast_nullable_to_non_nullable
               as bool,
+      prescriptionRequired: freezed == prescriptionRequired
+          ? _value.prescriptionRequired
+          : prescriptionRequired // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      insuranceEligible: freezed == insuranceEligible
+          ? _value.insuranceEligible
+          : insuranceEligible // ignore: cast_nullable_to_non_nullable
+              as bool?,
       soldByType: null == soldByType
           ? _value.soldByType
           : soldByType // ignore: cast_nullable_to_non_nullable
@@ -394,6 +422,8 @@ class _$_CartItemModel extends _CartItemModel {
       @JsonKey(name: "min_qty") required this.minQty,
       @JsonKey(name: "stock_qty") required this.stockQty,
       @JsonKey(name: "is_wishlist") required this.isWishlist,
+      @JsonKey(name: "prescription_required") this.prescriptionRequired,
+      @JsonKey(name: "insurance_eligible") this.insuranceEligible,
       @JsonKey(name: "sold_by_type") required this.soldByType,
       @JsonKey(name: "sold_by_name") required this.soldBy,
       @JsonKey(name: "shop_id") required this.shopId})
@@ -450,6 +480,12 @@ class _$_CartItemModel extends _CartItemModel {
   @JsonKey(name: "is_wishlist")
   final bool isWishlist;
   @override
+  @JsonKey(name: "prescription_required")
+  final bool? prescriptionRequired;
+  @override
+  @JsonKey(name: "insurance_eligible")
+  final bool? insuranceEligible;
+  @override
   @JsonKey(name: "sold_by_type")
   final String soldByType;
   @override
@@ -461,7 +497,7 @@ class _$_CartItemModel extends _CartItemModel {
 
   @override
   String toString() {
-    return 'CartItemModel(id: $id, ownerId: $ownerId, loyaltyPoints: $loyaltyPoints, thumbnailImage: $thumbnailImage, name: $name, price: $price, tax: $tax, quantity: $quantity, rating: $rating, isDigital: $isDigital, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, total: $total, calculableTotal: $calculableTotal, currencySymbol: $currencySymbol, productId: $productId, minQty: $minQty, stockQty: $stockQty, isWishlist: $isWishlist, soldByType: $soldByType, soldBy: $soldBy, shopId: $shopId)';
+    return 'CartItemModel(id: $id, ownerId: $ownerId, loyaltyPoints: $loyaltyPoints, thumbnailImage: $thumbnailImage, name: $name, price: $price, tax: $tax, quantity: $quantity, rating: $rating, isDigital: $isDigital, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, total: $total, calculableTotal: $calculableTotal, currencySymbol: $currencySymbol, productId: $productId, minQty: $minQty, stockQty: $stockQty, isWishlist: $isWishlist, prescriptionRequired: $prescriptionRequired, insuranceEligible: $insuranceEligible, soldByType: $soldByType, soldBy: $soldBy, shopId: $shopId)';
   }
 
   @override
@@ -498,6 +534,10 @@ class _$_CartItemModel extends _CartItemModel {
                 other.stockQty == stockQty) &&
             (identical(other.isWishlist, isWishlist) ||
                 other.isWishlist == isWishlist) &&
+            (identical(other.prescriptionRequired, prescriptionRequired) ||
+                other.prescriptionRequired == prescriptionRequired) &&
+            (identical(other.insuranceEligible, insuranceEligible) ||
+                other.insuranceEligible == insuranceEligible) &&
             (identical(other.soldByType, soldByType) ||
                 other.soldByType == soldByType) &&
             (identical(other.soldBy, soldBy) || other.soldBy == soldBy) &&
@@ -526,6 +566,8 @@ class _$_CartItemModel extends _CartItemModel {
         minQty,
         stockQty,
         isWishlist,
+        prescriptionRequired,
+        insuranceEligible,
         soldByType,
         soldBy,
         shopId
@@ -566,6 +608,8 @@ abstract class _CartItemModel extends CartItemModel {
       @JsonKey(name: "min_qty") required final int minQty,
       @JsonKey(name: "stock_qty") required final int stockQty,
       @JsonKey(name: "is_wishlist") required final bool isWishlist,
+      @JsonKey(name: "prescription_required") final bool? prescriptionRequired,
+      @JsonKey(name: "insurance_eligible") final bool? insuranceEligible,
       @JsonKey(name: "sold_by_type") required final String soldByType,
       @JsonKey(name: "sold_by_name") required final String soldBy,
       @JsonKey(name: "shop_id") required final int? shopId}) = _$_CartItemModel;
@@ -621,6 +665,12 @@ abstract class _CartItemModel extends CartItemModel {
   @override
   @JsonKey(name: "is_wishlist")
   bool get isWishlist;
+  @override
+  @JsonKey(name: "prescription_required")
+  bool? get prescriptionRequired;
+  @override
+  @JsonKey(name: "insurance_eligible")
+  bool? get insuranceEligible;
   @override
   @JsonKey(name: "sold_by_type")
   String get soldByType;

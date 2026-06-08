@@ -73,10 +73,11 @@ class BuildOrdersDetails extends StatelessWidget {
                         children: [
                           CachedImage(
                             url: summary
-                                .sectionOrders![index]
-                                .orderDetails[productsIndex]
-                                .product!
-                                .thumbnailImage??"",
+                                    .sectionOrders![index]
+                                    .orderDetails[productsIndex]
+                                    .product!
+                                    .thumbnailImage ??
+                                "",
                             height: 50.h,
                             width: 50.w,
                             borderRadius: BorderRadius.circular(15),
@@ -89,10 +90,11 @@ class BuildOrdersDetails extends StatelessWidget {
                                   Gaps.hGap10,
                                   Text(
                                     summary
-                                        .sectionOrders![index]
-                                        .orderDetails[productsIndex]
-                                        .product!
-                                        .name ?? "",
+                                            .sectionOrders![index]
+                                            .orderDetails[productsIndex]
+                                            .product!
+                                            .name ??
+                                        "",
                                     style: AppTextStyle.s14_w600(
                                         color: context.colors.black),
                                   ),

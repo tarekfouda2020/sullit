@@ -7,29 +7,32 @@ part 'vip_subscribe_model.freezed.dart';
 part 'vip_subscribe_model.g.dart';
 
 @freezed
-class VipSubscribeModel extends BaseApiModel<VipSubscribeDomainModel> with _$VipSubscribeModel {
+class VipSubscribeModel extends BaseApiModel<VipSubscribeDomainModel>
+    with _$VipSubscribeModel {
   const VipSubscribeModel._();
 
   /// nullable variables return in the current subscription only
   @JsonSerializable(explicitToJson: true)
-  factory VipSubscribeModel(
-      {required int id,
-      required String name,
-      required String duration,
-      required String price,
-      required int days,
-      required String description,
-        @JsonKey(name: "by_invite")  bool? byInvite,
-        @JsonKey(name: "by_invite_label")   String? byInviteLabel,
-        @JsonKey(name: "starts_at")  String? startsAt,
-        @JsonKey(name: "expires_at")  String? expiresAt,
-        @JsonKey(name: "expired_in_days")  int? expiredInDays,
-        @JsonKey(name: "is_expired")  bool? isExpired,
-        @JsonKey(name: "subscription")  VipSubscribeModel? subscription,
-        /// in subscription key the nullable variables dose not return
-      }) = _VipSubscribeModel;
+  factory VipSubscribeModel({
+    required int id,
+    required String name,
+    required String duration,
+    required String price,
+    required int days,
+    required String description,
+    @JsonKey(name: "by_invite") bool? byInvite,
+    @JsonKey(name: "by_invite_label") String? byInviteLabel,
+    @JsonKey(name: "starts_at") String? startsAt,
+    @JsonKey(name: "expires_at") String? expiresAt,
+    @JsonKey(name: "expired_in_days") int? expiredInDays,
+    @JsonKey(name: "is_expired") bool? isExpired,
+    @JsonKey(name: "subscription") VipSubscribeModel? subscription,
 
-  factory VipSubscribeModel.fromJson(Map<String, dynamic> json) => _$VipSubscribeModelFromJson(json);
+    /// in subscription key the nullable variables dose not return
+  }) = _VipSubscribeModel;
+
+  factory VipSubscribeModel.fromJson(Map<String, dynamic> json) =>
+      _$VipSubscribeModelFromJson(json);
 
   @override
   VipSubscribeDomainModel toDomainModel() {
@@ -45,7 +48,7 @@ class VipSubscribeModel extends BaseApiModel<VipSubscribeDomainModel> with _$Vip
       expiresAt: expiresAt,
       isExpired: isExpired,
       startsAt: startsAt,
-      byInvite: byInvite ,
+      byInvite: byInvite,
       inviteLabel: byInviteLabel,
     );
   }

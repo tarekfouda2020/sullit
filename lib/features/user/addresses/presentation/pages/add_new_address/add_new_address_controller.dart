@@ -12,10 +12,8 @@ class AddNewAddressController {
   final TextEditingController buildingNameController = TextEditingController();
   final TextEditingController flatNumberController = TextEditingController();
 
-
   final TextEditingController stateNameCtr = TextEditingController();
   final TextEditingController cityNameCtr = TextEditingController();
-
 
   // final GlobalKey<DropdownSearchState> countryController = GlobalKey();
   final GlobalKey<DropdownSearchState> stateController = GlobalKey();
@@ -23,7 +21,8 @@ class AddNewAddressController {
   final GlobalKey<DropdownSearchState> addressTypeKey = GlobalKey();
   final LocationCubit locationCubit = LocationCubit();
 
-  final GenericBloc<package.Country?> countryCodeCubit = GenericBloc(CountryPickerHelper.defaultCountrySync);
+  final GenericBloc<package.Country?> countryCodeCubit =
+      GenericBloc(CountryPickerHelper.defaultCountrySync);
   final GenericBloc<Country?> countryCubit = GenericBloc(null);
   final GenericBloc<StateDomainModel?> stateCubit = GenericBloc(null);
   final GenericBloc<City?> cityCubit = GenericBloc(null);
@@ -60,7 +59,6 @@ class AddNewAddressController {
     }
   }
 
-
   void onSelectAddressType(AddressTypeModel? model) {
     if (model != null) {
       addressTypeModel = model;
@@ -73,8 +71,8 @@ class AddNewAddressController {
   }
 
   Future<List<AddressTypeModel>> getAddressTypes({bool refresh = true}) async {
-     var data = await GetAddressTypes().call(refresh);
-     return data;
+    var data = await GetAddressTypes().call(refresh);
+    return data;
   }
 
   Future<List<StateDomainModel>> getStateByCountryId(
@@ -87,7 +85,6 @@ class AddNewAddressController {
     var data = await GetCitiesByStateId().call(stateModel!.id);
     return data;
   }
-
 
   void showCountryCode(BuildContext context) async {
     package.Country? data = await showCountryPickerSheet(
@@ -102,7 +99,7 @@ class AddNewAddressController {
               color: context.colors.primary,
               borderRadius: BorderRadius.circular(8),
             ),
-            child:  Text(
+            child: Text(
               tr("cancel"),
               textAlign: TextAlign.center,
               style: const TextStyle(color: Colors.white),
@@ -127,22 +124,22 @@ class AddNewAddressController {
       var params = await _addressParams();
       var result = await SetAddNewAddress().call(params);
       if (result != null) {
-        CustomToast.showSimpleToast(msg: tr("msgInfoAddedSuccess"),type: ToastType.success);
+        CustomToast.showSimpleToast(
+            msg: tr("msgInfoAddedSuccess"), type: ToastType.success);
         AutoRouter.of(context).pop(result);
       }
     }
   }
 
-
   LocationEntity? locationEntity() {
     BuildContext context = getIt<GlobalContext>().context();
-    return context.read<LocationCubit>().state.model ;
+    return context.read<LocationCubit>().state.model;
   }
 
-
-  void routeToDetectLocation(BuildContext context)async{
-    var result = await AutoRouter.of(context).push( LocationAddressRoute(fromEdit: false));
-    if(result != null && result is LocationEntity){
+  void routeToDetectLocation(BuildContext context) async {
+    var result = await AutoRouter.of(context)
+        .push(LocationAddressRoute(fromEdit: false));
+    if (result != null && result is LocationEntity) {
       locationController.text = result.address;
       streetNameController.text = result.fullAddress?.streetAddress ?? "";
       stateNameCtr.text = result.fullAddress?.region ?? "";
@@ -150,9 +147,7 @@ class AddNewAddressController {
     }
   }
 
-
-  Future<AddAddressParams> _addressParams() async{
-
+  Future<AddAddressParams> _addressParams() async {
     return AddAddressParams(
       address: addressController.text,
       addressType: addressTypeModel!.key,
@@ -167,7 +162,7 @@ class AddNewAddressController {
       long: locationEntity()?.lng ?? 0.0,
       streetName: streetNameController.text,
       flatNumber: flatNumberController.text,
-      buildingName:buildingNameController.text ,
+      buildingName: buildingNameController.text,
     );
   }
 }

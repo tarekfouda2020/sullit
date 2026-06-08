@@ -8,10 +8,9 @@ class PharmacyCart extends StatefulWidget {
 }
 
 class _PharmacyCartState extends State<PharmacyCart> {
-
   final PharmacyCartController controller = PharmacyCartController();
 
-@override
+  @override
   void initState() {
     super.initState();
     controller.getData();
@@ -37,7 +36,8 @@ class _PharmacyCartState extends State<PharmacyCart> {
               CleaAllWidget(
                 onPressClear: () => controller.showClearDialog(context),
               ),
-              BlocBuilder<GenericBloc<CartDomainModel>, GenericState<CartDomainModel>>(
+              BlocBuilder<GenericBloc<CartDomainModel>,
+                  GenericState<CartDomainModel>>(
                 bloc: controller.cartItemsBloc,
                 builder: (context, state) {
                   if (state is GenericUpdateState) {

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
@@ -22,7 +21,7 @@ class DirhamPrice extends StatelessWidget {
   final CrossAxisAlignment? crossAxisAlignment;
   final double? currencyOffset;
 
-  const  DirhamPrice({
+  const DirhamPrice({
     Key? key,
     required this.amount,
     this.color,
@@ -41,14 +40,17 @@ class DirhamPrice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle baseTextStyle = AppTextStyle.s16_w400(color: color ?? context.colors.primary).merge(textStyle);
+    final TextStyle baseTextStyle =
+        AppTextStyle.s16_w400(color: color ?? context.colors.primary)
+            .merge(textStyle);
 
-    final TextStyle? finalCurrencyStyle = currencyStyle ?? (applySameStyle! ? baseTextStyle : null);
+    final TextStyle? finalCurrencyStyle =
+        currencyStyle ?? (applySameStyle! ? baseTextStyle : null);
 
     return Directionality(
       textDirection: textDirection ?? TextDirection.ltr,
       child: Row(
-        crossAxisAlignment: crossAxisAlignment?? CrossAxisAlignment.center,
+        crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
           DirhamCurrencySymbol(
@@ -65,8 +67,7 @@ class DirhamPrice extends StatelessWidget {
               showMinus! ? "-${formattedAmount()}" : formattedAmount(),
               style: baseTextStyle.copyWith(
                   // fontFamily: AppTheme.dirhamFontFamily,
-                  height: 0
-              ),
+                  height: 0),
             ),
           ),
         ],

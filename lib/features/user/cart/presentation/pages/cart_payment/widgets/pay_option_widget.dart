@@ -3,7 +3,8 @@ part of 'cart_payment_widgets_imports.dart';
 class PayOptionWidget extends StatelessWidget {
   final CartPaymentController controller;
   final Shipping shipping;
-  const PayOptionWidget({super.key, required this.controller, required this.shipping});
+  const PayOptionWidget(
+      {super.key, required this.controller, required this.shipping});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class PayOptionWidget extends StatelessWidget {
       child: Row(
         children: [
           CachedImage(
-              url: _selectedPaymentOption().image,
+            url: _selectedPaymentOption().image,
             boxShape: BoxShape.circle,
             haveRadius: false,
             fit: BoxFit.contain,
@@ -22,18 +23,17 @@ class PayOptionWidget extends StatelessWidget {
           Gaps.hGap10,
           Expanded(
             child: Text(_selectedPaymentOption().title,
-            style: AppTextStyle.s14_w700(color: context.colors.black)
-            ),
+                style: AppTextStyle.s14_w700(color: context.colors.black)),
           ),
           GestureDetector(
             onTap: () => controller.paymentMethodSheet(context),
             child: Row(
               children: [
                 Text(tr("change"),
-                    style: AppTextStyle.s14_w400(color: context.colors.primary)
-                ),
+                    style:
+                        AppTextStyle.s14_w400(color: context.colors.primary)),
                 Gaps.hGap7,
-                Icon(Icons.arrow_forward,color: context.colors.primary)
+                Icon(Icons.arrow_forward, color: context.colors.primary)
               ],
             ),
           ),
@@ -45,16 +45,12 @@ class PayOptionWidget extends StatelessWidget {
           //     colorFilter: ColorFilter.mode(context.colors.primary, BlendMode.srcIn),
           //   ),
           // )
-
         ],
       ),
     );
   }
 
-
   PaymentOption _selectedPaymentOption() {
     return shipping.paymentOption!.firstWhere((element) => element.selected);
   }
-
-
 }

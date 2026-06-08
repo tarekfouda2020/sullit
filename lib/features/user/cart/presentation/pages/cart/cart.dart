@@ -19,7 +19,9 @@ class _CartState extends State<Cart> {
   void initState() {
     super.initState();
     controller = CartController();
-    controller.navigateHelper.setStep(widget.initialIndex ?? CartNavigateHelper.cartStepIndex, force: true);
+    controller.navigateHelper.setStep(
+        widget.initialIndex ?? CartNavigateHelper.cartStepIndex,
+        force: true);
   }
 
   @override

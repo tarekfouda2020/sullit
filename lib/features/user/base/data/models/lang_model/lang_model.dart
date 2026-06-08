@@ -17,7 +17,8 @@ class LangModel extends BaseApiModel<LangDomainModel> with _$LangModel {
     required String logo,
   }) = _LangModel;
 
-  factory LangModel.fromJson(Map<String, dynamic> json) => _$LangModelFromJson(json);
+  factory LangModel.fromJson(Map<String, dynamic> json) =>
+      _$LangModelFromJson(json);
 
   @override
   LangDomainModel toDomainModel() {

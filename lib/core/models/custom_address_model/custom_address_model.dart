@@ -13,4 +13,3 @@ class CustomAddressModel {
     this.countryCode,
   });
 }
-

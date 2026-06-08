@@ -13,7 +13,6 @@ class Summary extends BaseDomainModel {
   int combinedOrderId;
   int? expectedLoyaltyPoints;
 
-
   Summary({
     required this.orderDate,
     required this.name,
@@ -25,6 +24,6 @@ class Summary extends BaseDomainModel {
     required this.paymentMethod,
     // required this.totalItems,
     required this.combinedOrderId,
-     this.expectedLoyaltyPoints,
+    this.expectedLoyaltyPoints,
   });
 }

@@ -8,8 +8,7 @@ class GetProductDetails
     extends UseCase<ProductDetailsDomainModel?, GenericParams> {
   @override
   Future<ProductDetailsDomainModel?> call(GenericParams params) async {
-    var result =
-        await getIt<ProductsRepository>().getProductDetails(params);
+    var result = await getIt<ProductsRepository>().getProductDetails(params);
     return result.fold((l) => null, (r) => r);
   }
 }

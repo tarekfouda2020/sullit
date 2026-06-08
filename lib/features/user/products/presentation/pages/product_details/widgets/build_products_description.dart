@@ -8,11 +8,9 @@ class BuildProductDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible:description.isNotEmpty,
+      visible: description.isNotEmpty,
       child: Container(
-        decoration:  CustomDecoration(
-            radius: BorderRadius.circular(12)
-        ),
+        decoration: CustomDecoration(radius: BorderRadius.circular(12)),
         padding: Dimens.paddingS22T10B10,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,10 +45,8 @@ class BuildProductDescription extends StatelessWidget {
     );
   }
 
-
   String parseHtmlString(String htmlString) {
-    final  document = parse(htmlString);
+    final document = parse(htmlString);
     return document.body?.text ?? htmlString;
   }
-
 }

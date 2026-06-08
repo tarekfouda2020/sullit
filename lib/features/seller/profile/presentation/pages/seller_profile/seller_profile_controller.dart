@@ -1,7 +1,6 @@
-part of'seller_profile_imports.dart';
+part of 'seller_profile_imports.dart';
 
-
-class SellerProfileController{
+class SellerProfileController {
   final GenericBloc<bool> passwordCubit = GenericBloc(false);
   final GenericBloc<bool> confirmPasswordCubit = GenericBloc(false);
   final GenericBloc<File?> imageCubit = GenericBloc(null);
@@ -17,13 +16,12 @@ class SellerProfileController{
   TextEditingController bankAccountNumberController = TextEditingController();
   TextEditingController bankRoutingNumberController = TextEditingController();
 
-  Future<void> getImage(BuildContext context,) async {
-
+  Future<void> getImage(
+    BuildContext context,
+  ) async {
     var image = await getIt<Utilities>().getImageFile(context);
     if (image != null) {
       imageCubit.onUpdateData(image);
     }
   }
-
-
 }

@@ -8,15 +8,14 @@ part 'order_response_model.g.dart';
 
 @freezed
 @immutable
-class OrderResponseModel extends BaseApiModel<OrderResponse> with _$OrderResponseModel{
+class OrderResponseModel extends BaseApiModel<OrderResponse>
+    with _$OrderResponseModel {
   const OrderResponseModel._();
   @JsonSerializable(explicitToJson: true)
-  const factory OrderResponseModel({
-    required String key ,
-    required String msg ,
-    required  OrderSummaryModel data
-  }) = _OrderResponseModel;
-
+  const factory OrderResponseModel(
+      {required String key,
+      required String msg,
+      required OrderSummaryModel data}) = _OrderResponseModel;
 
   factory OrderResponseModel.fromJson(Map<String, dynamic> json) =>
       _$OrderResponseModelFromJson(json);

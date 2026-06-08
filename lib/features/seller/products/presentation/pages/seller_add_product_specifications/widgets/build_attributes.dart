@@ -1,8 +1,11 @@
 part of 'seller_add_product_specifications_widgets_imports.dart';
-class BuildAttributes extends StatelessWidget {
-  final SellerAddProductSpecificationsController sellerAddProductSpecificationsController;
 
-  const BuildAttributes({super.key, required this.sellerAddProductSpecificationsController});
+class BuildAttributes extends StatelessWidget {
+  final SellerAddProductSpecificationsController
+      sellerAddProductSpecificationsController;
+
+  const BuildAttributes(
+      {super.key, required this.sellerAddProductSpecificationsController});
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +27,8 @@ class BuildAttributes extends StatelessWidget {
             "test2",
             "test3",
           ],
-          onConfirm: (data) =>
-              sellerAddProductSpecificationsController.onAddAttribute(data!.toList()),
+          onConfirm: (data) => sellerAddProductSpecificationsController
+              .onAddAttribute(data!.toList()),
           onItemClick: (item) {},
           buttonsColor: context.colors.white,
         ),
