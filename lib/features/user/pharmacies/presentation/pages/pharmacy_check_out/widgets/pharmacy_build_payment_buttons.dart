@@ -15,7 +15,8 @@ class PharmacyBuildPaymentButtons extends StatelessWidget {
         visible: !isOpen,
         child: CustomBottomSafeAreaWidget(
           child: DefaultButton(
-            title: tr("submitOrder"),
+            title: "Confirm Order",
+            color: context.colors.green,
             margin: margin ?? Dimens.paddingAll15PX,
             onTap: onTap,
             // onTap: () =>  AutoRouter.of(context).push( CartConfirmBuyingRoute()),

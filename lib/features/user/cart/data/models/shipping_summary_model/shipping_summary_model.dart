@@ -54,10 +54,10 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary>
     @JsonKey(name: "gift_card_applied") bool? giftCardApplied,
     @JsonKey(name: "gift_card_valid") bool? giftCardValid,
     @JsonKey(name: "gift_card_value") String? giftCardValue,
-    @JsonKey(name: "expected_loyalty_points")
-    required int expectedLoyaltyPoints,
-    @JsonKey(name: "order_discounts")
-    List<OrderSummaryDiscountModel>? orderDiscountTypes,
+    @JsonKey(name: "applied_gift_card") double? appliedGiftCard,
+    @JsonKey(name: "gift_card_code") String? giftCardCode,
+    @JsonKey(name: "expected_loyalty_points") required int expectedLoyaltyPoints,
+    @JsonKey(name: "order_discounts") List<OrderSummaryDiscountModel>? orderDiscountTypes,
   }) = _ShippingSummaryModel;
 
   factory ShippingSummaryModel.fromJson(Map<String, dynamic> json) =>
@@ -100,6 +100,8 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary>
         giftCardApplied: giftCardApplied,
         giftCardValid: giftCardValid,
         giftCardValue: giftCardValue,
+        appliedGiftCard: (appliedGiftCard ?? 0.0).toString(),
+        giftCardCode: giftCardCode,
         discountTypes:
             orderDiscountTypes?.map((e) => e.toDomainModel()).toList()
         // discountTypes:

@@ -12,6 +12,11 @@ class Summary extends BaseDomainModel {
   // int  totalItems;
   int combinedOrderId;
   int? expectedLoyaltyPoints;
+  bool? isPendingReview;
+  bool? requiresPrescriptionReview;
+  bool? awaitingCustomerCompletion;
+  bool? insuranceApplied;
+  String shopType;
 
   Summary({
     required this.orderDate,
@@ -25,5 +30,10 @@ class Summary extends BaseDomainModel {
     // required this.totalItems,
     required this.combinedOrderId,
     this.expectedLoyaltyPoints,
+    this.isPendingReview,
+    this.requiresPrescriptionReview,
+    this.awaitingCustomerCompletion,
+    this.insuranceApplied,
+    required this.shopType,
   });
 }

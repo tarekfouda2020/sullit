@@ -22,9 +22,12 @@ class PharmacyPaymentOptionsWidget extends StatelessWidget {
           Gaps.vGap8,
           PharmacyWalletPaymentWidget(shipping: shipping, controller: controller),
           Gaps.vGap10,
-          Divider(color: context.colors.softGray),
-          Gaps.vGap7,
-          PharmacyApplyGiftCardWidget(controller: controller),
+          if(shipping.summary.insuranceEligible == false && !context.isShareHolder)...[
+            Divider(color: context.colors.softGray),
+            Gaps.vGap7,
+            PharmacyApplyGiftCardWidget(controller: controller),
+          ]
+
         ],
       ),
     );

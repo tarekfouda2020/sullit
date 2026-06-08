@@ -81,6 +81,10 @@ mixin _$ShippingSummaryModel {
   bool? get giftCardValid => throw _privateConstructorUsedError;
   @JsonKey(name: "gift_card_value")
   String? get giftCardValue => throw _privateConstructorUsedError;
+  @JsonKey(name: "applied_gift_card")
+  double? get appliedGiftCard => throw _privateConstructorUsedError;
+  @JsonKey(name: "gift_card_code")
+  String? get giftCardCode => throw _privateConstructorUsedError;
   @JsonKey(name: "expected_loyalty_points")
   int get expectedLoyaltyPoints => throw _privateConstructorUsedError;
   @JsonKey(name: "order_discounts")
@@ -134,6 +138,8 @@ abstract class $ShippingSummaryModelCopyWith<$Res> {
       @JsonKey(name: "gift_card_applied") bool? giftCardApplied,
       @JsonKey(name: "gift_card_valid") bool? giftCardValid,
       @JsonKey(name: "gift_card_value") String? giftCardValue,
+      @JsonKey(name: "applied_gift_card") double? appliedGiftCard,
+      @JsonKey(name: "gift_card_code") String? giftCardCode,
       @JsonKey(name: "expected_loyalty_points") int expectedLoyaltyPoints,
       @JsonKey(name: "order_discounts")
       List<OrderSummaryDiscountModel>? orderDiscountTypes});
@@ -186,6 +192,8 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
     Object? giftCardApplied = freezed,
     Object? giftCardValid = freezed,
     Object? giftCardValue = freezed,
+    Object? appliedGiftCard = freezed,
+    Object? giftCardCode = freezed,
     Object? expectedLoyaltyPoints = null,
     Object? orderDiscountTypes = freezed,
   }) {
@@ -322,6 +330,14 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
           ? _value.giftCardValue
           : giftCardValue // ignore: cast_nullable_to_non_nullable
               as String?,
+      appliedGiftCard: freezed == appliedGiftCard
+          ? _value.appliedGiftCard
+          : appliedGiftCard // ignore: cast_nullable_to_non_nullable
+              as double?,
+      giftCardCode: freezed == giftCardCode
+          ? _value.giftCardCode
+          : giftCardCode // ignore: cast_nullable_to_non_nullable
+              as String?,
       expectedLoyaltyPoints: null == expectedLoyaltyPoints
           ? _value.expectedLoyaltyPoints
           : expectedLoyaltyPoints // ignore: cast_nullable_to_non_nullable
@@ -377,6 +393,8 @@ abstract class _$$_ShippingSummaryModelCopyWith<$Res>
       @JsonKey(name: "gift_card_applied") bool? giftCardApplied,
       @JsonKey(name: "gift_card_valid") bool? giftCardValid,
       @JsonKey(name: "gift_card_value") String? giftCardValue,
+      @JsonKey(name: "applied_gift_card") double? appliedGiftCard,
+      @JsonKey(name: "gift_card_code") String? giftCardCode,
       @JsonKey(name: "expected_loyalty_points") int expectedLoyaltyPoints,
       @JsonKey(name: "order_discounts")
       List<OrderSummaryDiscountModel>? orderDiscountTypes});
@@ -426,6 +444,8 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
     Object? giftCardApplied = freezed,
     Object? giftCardValid = freezed,
     Object? giftCardValue = freezed,
+    Object? appliedGiftCard = freezed,
+    Object? giftCardCode = freezed,
     Object? expectedLoyaltyPoints = null,
     Object? orderDiscountTypes = freezed,
   }) {
@@ -562,6 +582,14 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
           ? _value.giftCardValue
           : giftCardValue // ignore: cast_nullable_to_non_nullable
               as String?,
+      appliedGiftCard: freezed == appliedGiftCard
+          ? _value.appliedGiftCard
+          : appliedGiftCard // ignore: cast_nullable_to_non_nullable
+              as double?,
+      giftCardCode: freezed == giftCardCode
+          ? _value.giftCardCode
+          : giftCardCode // ignore: cast_nullable_to_non_nullable
+              as String?,
       expectedLoyaltyPoints: null == expectedLoyaltyPoints
           ? _value.expectedLoyaltyPoints
           : expectedLoyaltyPoints // ignore: cast_nullable_to_non_nullable
@@ -617,6 +645,8 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
       @JsonKey(name: "gift_card_applied") this.giftCardApplied,
       @JsonKey(name: "gift_card_valid") this.giftCardValid,
       @JsonKey(name: "gift_card_value") this.giftCardValue,
+      @JsonKey(name: "applied_gift_card") this.appliedGiftCard,
+      @JsonKey(name: "gift_card_code") this.giftCardCode,
       @JsonKey(name: "expected_loyalty_points")
       required this.expectedLoyaltyPoints,
       @JsonKey(name: "order_discounts")
@@ -729,6 +759,12 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
   @JsonKey(name: "gift_card_value")
   final String? giftCardValue;
   @override
+  @JsonKey(name: "applied_gift_card")
+  final double? appliedGiftCard;
+  @override
+  @JsonKey(name: "gift_card_code")
+  final String? giftCardCode;
+  @override
   @JsonKey(name: "expected_loyalty_points")
   final int expectedLoyaltyPoints;
   final List<OrderSummaryDiscountModel>? _orderDiscountTypes;
@@ -745,7 +781,7 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
 
   @override
   String toString() {
-    return 'ShippingSummaryModel(subtotal: $subtotal, tax: $tax, shipping: $shipping, couponDiscount: $couponDiscount, calTotal: $calTotal, total: $total, couponCode: $couponCode, couponApplied: $couponApplied, totalItems: $totalItems, bagsCount: $bagsCount, minimumOrderAmountStatus: $minimumOrderAmountStatus, minimumOrderAmountMsg: $minimumOrderAmountMsg, minimumOrderAmountAmount: $minimumOrderAmountAmount, walletSystemActive: $walletSystemActive, walletBalance: $walletBalance, walletBalanceValue: $walletBalanceValue, avilablePayWithWallet: $avilablePayWithWallet, avilableCashOnDelivery: $avilableCashOnDelivery, serviceFee: $serviceFee, technologyFees: $technologyFees, vatPercentage: $vatPercentage, vatFeeAmount: $vatFeeAmount, environmentFees: $environmentFees, items: $items, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, prescriptionRequired: $prescriptionRequired, insuranceEligible: $insuranceEligible, totalFeeAmount: $totalFeeAmount, giftCardApplied: $giftCardApplied, giftCardValid: $giftCardValid, giftCardValue: $giftCardValue, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDiscountTypes: $orderDiscountTypes)';
+    return 'ShippingSummaryModel(subtotal: $subtotal, tax: $tax, shipping: $shipping, couponDiscount: $couponDiscount, calTotal: $calTotal, total: $total, couponCode: $couponCode, couponApplied: $couponApplied, totalItems: $totalItems, bagsCount: $bagsCount, minimumOrderAmountStatus: $minimumOrderAmountStatus, minimumOrderAmountMsg: $minimumOrderAmountMsg, minimumOrderAmountAmount: $minimumOrderAmountAmount, walletSystemActive: $walletSystemActive, walletBalance: $walletBalance, walletBalanceValue: $walletBalanceValue, avilablePayWithWallet: $avilablePayWithWallet, avilableCashOnDelivery: $avilableCashOnDelivery, serviceFee: $serviceFee, technologyFees: $technologyFees, vatPercentage: $vatPercentage, vatFeeAmount: $vatFeeAmount, environmentFees: $environmentFees, items: $items, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, prescriptionRequired: $prescriptionRequired, insuranceEligible: $insuranceEligible, totalFeeAmount: $totalFeeAmount, giftCardApplied: $giftCardApplied, giftCardValid: $giftCardValid, giftCardValue: $giftCardValue, appliedGiftCard: $appliedGiftCard, giftCardCode: $giftCardCode, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDiscountTypes: $orderDiscountTypes)';
   }
 
   @override
@@ -816,8 +852,10 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
                 other.giftCardValid == giftCardValid) &&
             (identical(other.giftCardValue, giftCardValue) ||
                 other.giftCardValue == giftCardValue) &&
-            (identical(other.expectedLoyaltyPoints, expectedLoyaltyPoints) ||
-                other.expectedLoyaltyPoints == expectedLoyaltyPoints) &&
+            (identical(other.appliedGiftCard, appliedGiftCard) ||
+                other.appliedGiftCard == appliedGiftCard) &&
+            (identical(other.giftCardCode, giftCardCode) || other.giftCardCode == giftCardCode) &&
+            (identical(other.expectedLoyaltyPoints, expectedLoyaltyPoints) || other.expectedLoyaltyPoints == expectedLoyaltyPoints) &&
             const DeepCollectionEquality().equals(other._orderDiscountTypes, _orderDiscountTypes));
   }
 
@@ -858,6 +896,8 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
         giftCardApplied,
         giftCardValid,
         giftCardValue,
+        appliedGiftCard,
+        giftCardCode,
         expectedLoyaltyPoints,
         const DeepCollectionEquality().hash(_orderDiscountTypes)
       ]);
@@ -919,6 +959,8 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
       @JsonKey(name: "gift_card_applied") final bool? giftCardApplied,
       @JsonKey(name: "gift_card_valid") final bool? giftCardValid,
       @JsonKey(name: "gift_card_value") final String? giftCardValue,
+      @JsonKey(name: "applied_gift_card") final double? appliedGiftCard,
+      @JsonKey(name: "gift_card_code") final String? giftCardCode,
       @JsonKey(name: "expected_loyalty_points")
       required final int expectedLoyaltyPoints,
       @JsonKey(name: "order_discounts")
@@ -1023,6 +1065,12 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
   @override
   @JsonKey(name: "gift_card_value")
   String? get giftCardValue;
+  @override
+  @JsonKey(name: "applied_gift_card")
+  double? get appliedGiftCard;
+  @override
+  @JsonKey(name: "gift_card_code")
+  String? get giftCardCode;
   @override
   @JsonKey(name: "expected_loyalty_points")
   int get expectedLoyaltyPoints;

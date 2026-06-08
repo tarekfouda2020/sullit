@@ -1,10 +1,10 @@
-part of 'cart_confirm_buying_widgets_imports.dart';
+part of 'widgets_imports.dart';
 
-class ConfirmBuyingSummaryWidget extends StatelessWidget {
+
+class PharmacyConfirmSummaryWidget extends StatelessWidget {
   final OrderSummaryDomainModel orderSummary;
-  final ConfirmBuyingController controller;
-  const ConfirmBuyingSummaryWidget(
-      {super.key, required this.orderSummary, required this.controller});
+  final OrderSuccessController controller;
+  const PharmacyConfirmSummaryWidget({super.key, required this.orderSummary, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
       if (orderSummary.discountList.isNotEmpty)
         ...List.generate(
           orderSummary.discountList.length,
-          (index) {
+              (index) {
             var item = orderSummary.discountList[index];
             return BuildSummaryHeader(
               title: item.typeLabel,
@@ -44,7 +44,7 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
               detailsColor: context.colors.primary,
               onPressInfo: item.isTierDiscount
                   ? () => controller.showTierFullName(
-                      context, item.typeDescription, item.typeLabel)
+                  context, item.typeDescription, item.typeLabel)
                   : null,
             );
           },

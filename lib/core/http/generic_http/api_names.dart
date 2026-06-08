@@ -264,4 +264,6 @@ class ApiNames {
 
   // Pharmacy cart summary
   static const String cartSummary = "cart/summary";
+
+  static const String createPharmacyOrder = "pharmacy-orders";
 }

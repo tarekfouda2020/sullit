@@ -59,7 +59,7 @@ class OrderSummaryController {
     }
   }
 
-  void _confirmOrder(BuildContext context, OrderSummary data) {
+  void _confirmOrder(BuildContext context, OrderSummaryPage data) {
     CustomToast.showSimpleToast(
       msg: tr('thanksForYourOrder'),
       type: ToastType.success,

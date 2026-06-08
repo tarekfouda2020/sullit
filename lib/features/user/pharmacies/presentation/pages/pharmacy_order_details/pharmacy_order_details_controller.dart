@@ -1,19 +1,17 @@
-part of 'order_success_imports.dart';
+part of 'pharmacy_order_details_imports.dart';
 
-class OrderSuccessController {
+class PharmacyOrderDetailsController {
+  final GenericBloc<Orders?> orderDetailsBloc = GenericBloc(null);
+
   final GenericBloc<FessMechanismModel?> feesCubit = GenericBloc(null);
-
-  final GenericBloc<OrderSummaryDomainModel?> orderSummaryBloc = GenericBloc(null);
-
 
   final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc =
       GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
 
+  final int id;
 
-  final OrderSummaryDomainModel summary;
+  PharmacyOrderDetailsController(this.id) {
 
-  OrderSuccessController(this.summary) {
-    orderSummaryBloc.onUpdateData(summary);
     getOrderFees(fromRemote: false);
     getOrderFees();
     getLoyaltyPointsBalance(refresh: false);
@@ -109,14 +107,10 @@ class OrderSuccessController {
     );
   }
 
-
-  Future<void> refreshData()async{
-    var id = summary.summary?.combinedOrderId;
-    if(id == null){
-      return ;
+  Future<void> refreshData() async {
+    var data = await GetOrderDetails().call(GenericParams(id: id));
+    if (data != null) {
+      orderDetailsBloc.onUpdateData(data);
     }
-    var data = await GetCombinedOrder().call(id);
-    orderSummaryBloc.onUpdateData(data);
   }
-
 }

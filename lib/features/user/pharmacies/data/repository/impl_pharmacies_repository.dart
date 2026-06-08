@@ -3,7 +3,10 @@ import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/models/model_to_domain/model_to_domain.dart';
 import 'package:flutter_tdd/features/user/best_sellers/domain/entity/shop_category_params.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/data_sources/pharmacies_sources.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_create_order_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/shop_id_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/repository/pharmacies_repository.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
@@ -14,9 +17,11 @@ import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_check_out_params.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../purchasing/presentation/pages/order_summary/order_summary_imports.dart';
+
 @Injectable(as: PharmaciesRepository)
 class ImplPharmaciesRepository extends PharmaciesRepository with ModelToDomain {
-  final dataSources = getIt<PharmaciesSources>();
+  final PharmaciesSources dataSources = getIt<PharmaciesSources>();
 
   @override
   Future<Either<Failure, List<ShopCategory>>> getShopCategories(
@@ -44,4 +49,12 @@ class ImplPharmaciesRepository extends PharmaciesRepository with ModelToDomain {
     final result = await dataSources.getCartSummary(param);
     return toDomainResult(result);
   }
+
+
+  @override
+  Future<Either<Failure, OrderSummaryDomainModel>> createOrder(PharmacyCreateOrderParams param) async {
+    var result = await dataSources.createOrder(param);
+    return toDomainResult(result);
+  }
+
 }

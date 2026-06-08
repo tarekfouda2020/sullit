@@ -8,14 +8,14 @@ import 'package:flutter_tdd/features/user/purchasing/data/models/order_model/ord
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_discount_domain.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 
-class OrderSummary extends BaseDomainModel {
+class OrderSummaryDomainModel extends BaseDomainModel {
   Summary? summary;
 
   List<Orders>? sectionOrders;
 
   String? transactionUrl;
 
-  OrderSummary({
+  OrderSummaryDomainModel({
     this.summary,
     this.sectionOrders,
     this.transactionUrl,

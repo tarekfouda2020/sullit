@@ -27,7 +27,7 @@ class CartNavigateHelper {
 
   final ValueNotifier<int> stepNotifier = ValueNotifier<int>(cartStepIndex);
 
-  OrderSummary? confirmationSummary;
+  OrderSummaryDomainModel? confirmationSummary;
   int? confirmationCombinedId;
 
   void initData() {
@@ -86,7 +86,7 @@ class CartNavigateHelper {
     }
   }
 
-  void goToConfirmationStep({OrderSummary? summary, int? combinedId}) {
+  void goToConfirmationStep({OrderSummaryDomainModel? summary, int? combinedId}) {
     confirmationSummary = summary;
     confirmationCombinedId = combinedId ?? summary?.summary?.combinedOrderId;
     navigateToStep(confirmationStepIndex);

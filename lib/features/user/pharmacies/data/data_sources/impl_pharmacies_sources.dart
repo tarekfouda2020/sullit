@@ -6,7 +6,9 @@ import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
 import 'package:flutter_tdd/features/user/best_sellers/domain/entity/shop_category_params.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/data_sources/pharmacies_sources.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_create_order_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/shop_id_params.dart';
 import 'package:flutter_tdd/features/user/products/data/models/shop_model/shop_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharamcy_shipping_info_params.dart';
@@ -80,4 +82,24 @@ class ImplPharmaciesSources extends PharmaciesSources {
     );
     return await GenericHttpImpl<ShippingModel>()(model);
   }
+
+
+
+
+
+  @override
+  Future<Either<Failure, OrderSummaryModel>> createOrder(PharmacyCreateOrderParams param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.createPharmacyOrder,
+      requestBody: param.toJson(),
+      requestMethod: RequestMethod.post,
+      responseType: ResType.model,
+      showLoader: true,
+      toJsonFunc: (data) => OrderSummaryModel.fromJson(data),
+      responseKey: (data) => data['data'],
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<OrderSummaryModel>().call(model);
+  }
+
 }

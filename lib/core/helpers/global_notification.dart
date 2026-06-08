@@ -154,7 +154,7 @@ class GlobalNotification {
       AutoRouter.of(context).push(const SupportRoute());
     } else if (type == NotifyEnum.order.getValue()) {
       var context = getIt<GlobalContext>().context();
-      AutoRouter.of(context).push(OrderSummaryRoute(orderId: id));
+      AutoRouter.of(context).push(OrderSummaryPageRoute(orderId: id));
     } else if (type == NotifyEnum.emailVerified.getValue() ||
         type == NotifyEnum.newLogin.getValue()) {
       var context = getIt<GlobalContext>().context();

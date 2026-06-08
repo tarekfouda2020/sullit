@@ -1,7 +1,7 @@
 part of 'cart_confirm_buying_imports.dart';
 
 class CartConfirmBuying extends StatefulWidget {
-  final OrderSummary? summary;
+  final OrderSummaryDomainModel? summary;
   final int? combinedId;
   final bool paymentFromHome;
 
@@ -35,8 +35,8 @@ class _CartConfirmBuyingState extends State<CartConfirmBuying> {
           bgColor: context.colors.white,
           onBack: () => controller.onPressBack(context),
         ),
-        body: BlocBuilder<GenericBloc<OrderSummary?>,
-            GenericState<OrderSummary?>>(
+        body: BlocBuilder<GenericBloc<OrderSummaryDomainModel?>,
+            GenericState<OrderSummaryDomainModel?>>(
           bloc: controller.orderSummaryBloc,
           builder: (context, state) {
             if (state is GenericUpdateState) {
@@ -48,10 +48,10 @@ class _CartConfirmBuyingState extends State<CartConfirmBuying> {
                       child: CustomRefreshIndicatorWidget(
                     onRefresh: () async {
                       if (widget.summary != null) {
-                        await controller.getCombinedOrder(
+                        await controller.refreshData(
                             widget.summary!.summary!.combinedOrderId);
                       } else {
-                        await controller.getCombinedOrder(widget.combinedId!);
+                        await controller.refreshData(widget.combinedId!);
                       }
                     },
                     child: ListView(

@@ -1,7 +1,7 @@
 part of 'cart_confirm_buying_imports.dart';
 
 class ConfirmBuyingController {
-  final GenericBloc<OrderSummary?> orderSummaryBloc = GenericBloc(null);
+  final GenericBloc<OrderSummaryDomainModel?> orderSummaryBloc = GenericBloc(null);
   final GenericBloc<FessMechanismModel?> feesCubit = GenericBloc(null);
 
   final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc =
@@ -9,7 +9,7 @@ class ConfirmBuyingController {
 
   bool _checkoutEventLogged = false;
 
-  ConfirmBuyingController(OrderSummary? summary, int? id) {
+  ConfirmBuyingController(OrderSummaryDomainModel? summary, int? id) {
     if (summary != null) {
       orderSummaryBloc.onUpdateData(summary);
       FacebookEventsHelper.instance
@@ -22,6 +22,15 @@ class ConfirmBuyingController {
     getOrderFees();
     getLoyaltyPointsBalance();
   }
+
+
+
+
+  Future<void> refreshData(int id)async{
+    var data = await GetCombinedOrder().call(id);
+    orderSummaryBloc.onUpdateData(data);
+  }
+
 
   Future<void> getCombinedOrder(int id) async {
     final data = await GetCombinedOrder().call(id);
@@ -36,7 +45,7 @@ class ConfirmBuyingController {
     }
   }
 
-  void _logCheckoutOnce(OrderSummary summary) {
+  void _logCheckoutOnce(OrderSummaryDomainModel summary) {
     if (!_checkoutEventLogged) {
       addCheckOutEvent(summary);
       _checkoutEventLogged = true;
@@ -175,7 +184,7 @@ class ConfirmBuyingController {
     );
   }
 
-  void addCheckOutEvent(OrderSummary summary) {
+  void addCheckOutEvent(OrderSummaryDomainModel summary) {
     FacebookEventsHelper.instance.checkOut(
         itemsNumber: summary.getTotalItems(),
         orderPrice: double.parse(summary.summary!.totalOrderAmount),

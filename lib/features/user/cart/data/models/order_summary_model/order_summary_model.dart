@@ -10,7 +10,7 @@ part 'order_summary_model.g.dart';
 
 @freezed
 @immutable
-class OrderSummaryModel extends BaseApiModel<OrderSummary>
+class OrderSummaryModel extends BaseApiModel<OrderSummaryDomainModel>
     with _$OrderSummaryModel {
   const OrderSummaryModel._();
 
@@ -25,8 +25,8 @@ class OrderSummaryModel extends BaseApiModel<OrderSummary>
       _$OrderSummaryModelFromJson(json);
 
   @override
-  OrderSummary toDomainModel() {
-    return OrderSummary(
+  OrderSummaryDomainModel toDomainModel() {
+    return OrderSummaryDomainModel(
       transactionUrl: transactionUrl,
       summary: orderSummary?.toDomainModel(),
       sectionOrders: (sectionOrders ?? <OrderModel>[])

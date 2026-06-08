@@ -45,6 +45,8 @@ _$_ShippingSummaryModel _$$_ShippingSummaryModelFromJson(
       giftCardApplied: json['gift_card_applied'] as bool?,
       giftCardValid: json['gift_card_valid'] as bool?,
       giftCardValue: json['gift_card_value'] as String?,
+      appliedGiftCard: (json['applied_gift_card'] as num?)?.toDouble(),
+      giftCardCode: json['gift_card_code'] as String?,
       expectedLoyaltyPoints: (json['expected_loyalty_points'] as num).toInt(),
       orderDiscountTypes: (json['order_discounts'] as List<dynamic>?)
           ?.map((e) =>
@@ -88,6 +90,8 @@ Map<String, dynamic> _$$_ShippingSummaryModelToJson(
       'gift_card_applied': instance.giftCardApplied,
       'gift_card_valid': instance.giftCardValid,
       'gift_card_value': instance.giftCardValue,
+      'applied_gift_card': instance.appliedGiftCard,
+      'gift_card_code': instance.giftCardCode,
       'expected_loyalty_points': instance.expectedLoyaltyPoints,
       'order_discounts':
           instance.orderDiscountTypes?.map((e) => e.toJson()).toList(),

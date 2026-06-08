@@ -40,7 +40,11 @@ class PharmacyApplyGiftCardSheet extends StatelessWidget {
                   return PharmacyInvoiceSummaryWidget(
                     controller: controller,
                     shippingSummary: state.data!.summary,
-                    applyGiftCard: state.data!.summary.appliedGiftCard != null,
+                    applyGiftCard: state.data!.summary.isGiftCardApplied,
+                    giftCardTotal:
+                    state.data!.summary.appliedGiftCard != null
+                        ? state.data!.summary.appliedGiftCard!
+                        : '',
                   );
                 },
               ),

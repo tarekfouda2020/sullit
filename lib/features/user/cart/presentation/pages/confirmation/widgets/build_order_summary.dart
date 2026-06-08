@@ -1,7 +1,7 @@
 part of 'confirmation_w_imports.dart';
 
 class BuildOrderSummary extends StatelessWidget {
-  final OrderSummary summary;
+  final OrderSummaryDomainModel summary;
   const BuildOrderSummary({Key? key, required this.summary}) : super(key: key);
 
   @override

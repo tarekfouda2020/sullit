@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
 
@@ -11,6 +12,14 @@ class PharmacyCheckoutParams {
   String? giftCardCode;
   int? applyInsurance;
 
+
+  /// these fields parsed from "order_success" page after order confirmed and user want to check-out
+  /// will parsed to
+  final List<File>? prescriptionAttachments;
+  final List<File>? insuranceAttachments;
+  final int? insuranceCompanyId;
+
+
   PharmacyCheckoutParams({
     this.type = CartTypeEnum.pharmacy,
     required this.shippingInfo,
@@ -19,6 +28,9 @@ class PharmacyCheckoutParams {
     this.couponCode,
     this.giftCardCode,
     this.applyInsurance,
+    this.prescriptionAttachments,
+    this.insuranceAttachments,
+    this.insuranceCompanyId,
   });
 
   Map<String, dynamic> toJson() {

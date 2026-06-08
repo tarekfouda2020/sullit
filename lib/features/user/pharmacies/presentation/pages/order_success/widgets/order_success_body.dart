@@ -1,40 +1,50 @@
 part of 'widgets_imports.dart';
 
 class OrderSuccessBody extends StatelessWidget {
-  const OrderSuccessBody({super.key});
+  final OrderSuccessController controller;
+  const OrderSuccessBody({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: Dimens.paddingAll20PX,
-      children: [
-        Gaps.vGap10,
-        Stack(
-          alignment: Alignment.topCenter,
-          clipBehavior: Clip.none,
-          children: [
-            const PharmacyOrderDoneWidget(),
-            SvgPicture.asset(Res.orderConfirmImage),
-          ],
-        ),
-        Gaps.vGap20,
-        Text(
-          "Products",
-          style: AppTextStyle.s16_w700(color: context.colors.black),
-        ),
-        Gaps.vGap20,
-        ...List.generate(4, (index) {
-          return  const OrderItemCard(
-            imageUrl: 'https://images.heb.com/is/image/HEBGrocery/001398288',
-            title: 'Omega 3 Fish Oil 1000MG 100 Soft Gel (Now)',
-            rating: 4,
-            price: '31.50',
-            description: '30 Tab Box',
-            quantity: 1,
-          ) ;
-        },),
-        Gaps.vGap20,
-      ],
+    return BlocBuilder<GenericBloc<OrderSummaryDomainModel?>,
+        GenericState<OrderSummaryDomainModel?>>(
+      bloc: controller.orderSummaryBloc,
+      builder: (context, state) {
+       if(state is GenericUpdateState && state.data!= null){
+         return CustomRefreshIndicatorWidget(
+           onRefresh: () async => await controller.refreshData(),
+           child: ListView(
+             padding: Dimens.paddingAll20PX,
+             children: [
+               Gaps.vGap10,
+               Stack(
+                 alignment: Alignment.topCenter,
+                 clipBehavior: Clip.none,
+                 children: [
+                    PharmacyOrderDoneWidget(data: state.data!),
+                   SvgPicture.asset(Res.orderConfirmImage),
+                 ],
+               ),
+               Gaps.vGap20,
+               Text(
+                 "Products",
+                 style: AppTextStyle.s16_w700(color: context.colors.black),
+               ),
+               Gaps.vGap20,
+               ...List.generate(state.data!.sectionOrders!.length, (index) {
+                 return PharmacyOrderProductsWidget(
+                   order: state.data!.sectionOrders![index],
+                 );
+               }),
+               Gaps.vGap20,
+               PharmacyConfirmSummaryWidget(orderSummary: state.data!, controller: controller)
+             ],
+           ),
+         );
+       }else{
+         return Gaps.empty;
+       }
+      },
     );
   }
 }

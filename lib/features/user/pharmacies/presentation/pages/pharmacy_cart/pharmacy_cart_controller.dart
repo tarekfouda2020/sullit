@@ -189,8 +189,8 @@ class PharmacyCartController {
       }
       AutoRouter.of(context).push(PharmacyAddressRoute(
         // haveInsurance: haveInsuranceCubit.state.data || cartItemRequiredInsurance,
-        haveInsurance: true,
-        havePrescription: true,
+        haveInsurance: cartItemRequiredInsurance,
+        havePrescription: havePrescription,
       ));
     } else {
       CustomToast.showAuthDialog(context);
@@ -205,5 +205,5 @@ class PharmacyCartController {
   bool get cartItemRequiredInsurance =>
       cartItemsBloc.state.data.pharmacyItems
           ?.any((element) => element.insuranceEligible == true) ==
-      true;
+      true || haveInsuranceCubit.state.data;
 }

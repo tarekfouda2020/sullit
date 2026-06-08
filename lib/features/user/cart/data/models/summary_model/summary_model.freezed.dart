@@ -38,6 +38,16 @@ mixin _$SummaryModel {
   String get shipping => throw _privateConstructorUsedError;
   @JsonKey(name: "payment_method")
   String get paymentMethod => throw _privateConstructorUsedError;
+  @JsonKey(name: "is_pending_review")
+  bool? get isPendingReview => throw _privateConstructorUsedError;
+  @JsonKey(name: "requires_prescription_review")
+  bool? get requiresPrescriptionReview => throw _privateConstructorUsedError;
+  @JsonKey(name: "awaiting_customer_completion")
+  bool? get awaitingCustomerCompletion => throw _privateConstructorUsedError;
+  @JsonKey(name: "insurance_applied")
+  bool? get insuranceApplied => throw _privateConstructorUsedError;
+  @JsonKey(name: "shop_type")
+  String get shopType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,7 +71,14 @@ abstract class $SummaryModelCopyWith<$Res> {
       @JsonKey(name: 'combined_order_id') int combinedOrderId,
       @JsonKey(name: "expected_loyalty_points") int? expectedLoyaltyPoints,
       String shipping,
-      @JsonKey(name: "payment_method") String paymentMethod});
+      @JsonKey(name: "payment_method") String paymentMethod,
+      @JsonKey(name: "is_pending_review") bool? isPendingReview,
+      @JsonKey(name: "requires_prescription_review")
+      bool? requiresPrescriptionReview,
+      @JsonKey(name: "awaiting_customer_completion")
+      bool? awaitingCustomerCompletion,
+      @JsonKey(name: "insurance_applied") bool? insuranceApplied,
+      @JsonKey(name: "shop_type") String shopType});
 }
 
 /// @nodoc
@@ -87,6 +104,11 @@ class _$SummaryModelCopyWithImpl<$Res, $Val extends SummaryModel>
     Object? expectedLoyaltyPoints = freezed,
     Object? shipping = null,
     Object? paymentMethod = null,
+    Object? isPendingReview = freezed,
+    Object? requiresPrescriptionReview = freezed,
+    Object? awaitingCustomerCompletion = freezed,
+    Object? insuranceApplied = freezed,
+    Object? shopType = null,
   }) {
     return _then(_value.copyWith(
       orderDate: null == orderDate
@@ -129,6 +151,26 @@ class _$SummaryModelCopyWithImpl<$Res, $Val extends SummaryModel>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      isPendingReview: freezed == isPendingReview
+          ? _value.isPendingReview
+          : isPendingReview // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      requiresPrescriptionReview: freezed == requiresPrescriptionReview
+          ? _value.requiresPrescriptionReview
+          : requiresPrescriptionReview // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      awaitingCustomerCompletion: freezed == awaitingCustomerCompletion
+          ? _value.awaitingCustomerCompletion
+          : awaitingCustomerCompletion // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      insuranceApplied: freezed == insuranceApplied
+          ? _value.insuranceApplied
+          : insuranceApplied // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      shopType: null == shopType
+          ? _value.shopType
+          : shopType // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -151,7 +193,14 @@ abstract class _$$_SummaryModelCopyWith<$Res>
       @JsonKey(name: 'combined_order_id') int combinedOrderId,
       @JsonKey(name: "expected_loyalty_points") int? expectedLoyaltyPoints,
       String shipping,
-      @JsonKey(name: "payment_method") String paymentMethod});
+      @JsonKey(name: "payment_method") String paymentMethod,
+      @JsonKey(name: "is_pending_review") bool? isPendingReview,
+      @JsonKey(name: "requires_prescription_review")
+      bool? requiresPrescriptionReview,
+      @JsonKey(name: "awaiting_customer_completion")
+      bool? awaitingCustomerCompletion,
+      @JsonKey(name: "insurance_applied") bool? insuranceApplied,
+      @JsonKey(name: "shop_type") String shopType});
 }
 
 /// @nodoc
@@ -175,6 +224,11 @@ class __$$_SummaryModelCopyWithImpl<$Res>
     Object? expectedLoyaltyPoints = freezed,
     Object? shipping = null,
     Object? paymentMethod = null,
+    Object? isPendingReview = freezed,
+    Object? requiresPrescriptionReview = freezed,
+    Object? awaitingCustomerCompletion = freezed,
+    Object? insuranceApplied = freezed,
+    Object? shopType = null,
   }) {
     return _then(_$_SummaryModel(
       orderDate: null == orderDate
@@ -217,6 +271,26 @@ class __$$_SummaryModelCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      isPendingReview: freezed == isPendingReview
+          ? _value.isPendingReview
+          : isPendingReview // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      requiresPrescriptionReview: freezed == requiresPrescriptionReview
+          ? _value.requiresPrescriptionReview
+          : requiresPrescriptionReview // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      awaitingCustomerCompletion: freezed == awaitingCustomerCompletion
+          ? _value.awaitingCustomerCompletion
+          : awaitingCustomerCompletion // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      insuranceApplied: freezed == insuranceApplied
+          ? _value.insuranceApplied
+          : insuranceApplied // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      shopType: null == shopType
+          ? _value.shopType
+          : shopType // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -235,7 +309,14 @@ class _$_SummaryModel extends _SummaryModel {
       @JsonKey(name: 'combined_order_id') required this.combinedOrderId,
       @JsonKey(name: "expected_loyalty_points") this.expectedLoyaltyPoints,
       required this.shipping,
-      @JsonKey(name: "payment_method") required this.paymentMethod})
+      @JsonKey(name: "payment_method") required this.paymentMethod,
+      @JsonKey(name: "is_pending_review") this.isPendingReview,
+      @JsonKey(name: "requires_prescription_review")
+      this.requiresPrescriptionReview,
+      @JsonKey(name: "awaiting_customer_completion")
+      this.awaitingCustomerCompletion,
+      @JsonKey(name: "insurance_applied") this.insuranceApplied,
+      @JsonKey(name: "shop_type") required this.shopType})
       : super._();
 
   factory _$_SummaryModel.fromJson(Map<String, dynamic> json) =>
@@ -269,10 +350,25 @@ class _$_SummaryModel extends _SummaryModel {
   @override
   @JsonKey(name: "payment_method")
   final String paymentMethod;
+  @override
+  @JsonKey(name: "is_pending_review")
+  final bool? isPendingReview;
+  @override
+  @JsonKey(name: "requires_prescription_review")
+  final bool? requiresPrescriptionReview;
+  @override
+  @JsonKey(name: "awaiting_customer_completion")
+  final bool? awaitingCustomerCompletion;
+  @override
+  @JsonKey(name: "insurance_applied")
+  final bool? insuranceApplied;
+  @override
+  @JsonKey(name: "shop_type")
+  final String shopType;
 
   @override
   String toString() {
-    return 'SummaryModel(orderDate: $orderDate, name: $name, email: $email, shippingAddress: $shippingAddress, orderStatus: $orderStatus, totalOrderAmount: $totalOrderAmount, combinedOrderId: $combinedOrderId, expectedLoyaltyPoints: $expectedLoyaltyPoints, shipping: $shipping, paymentMethod: $paymentMethod)';
+    return 'SummaryModel(orderDate: $orderDate, name: $name, email: $email, shippingAddress: $shippingAddress, orderStatus: $orderStatus, totalOrderAmount: $totalOrderAmount, combinedOrderId: $combinedOrderId, expectedLoyaltyPoints: $expectedLoyaltyPoints, shipping: $shipping, paymentMethod: $paymentMethod, isPendingReview: $isPendingReview, requiresPrescriptionReview: $requiresPrescriptionReview, awaitingCustomerCompletion: $awaitingCustomerCompletion, insuranceApplied: $insuranceApplied, shopType: $shopType)';
   }
 
   @override
@@ -297,7 +393,21 @@ class _$_SummaryModel extends _SummaryModel {
             (identical(other.shipping, shipping) ||
                 other.shipping == shipping) &&
             (identical(other.paymentMethod, paymentMethod) ||
-                other.paymentMethod == paymentMethod));
+                other.paymentMethod == paymentMethod) &&
+            (identical(other.isPendingReview, isPendingReview) ||
+                other.isPendingReview == isPendingReview) &&
+            (identical(other.requiresPrescriptionReview,
+                    requiresPrescriptionReview) ||
+                other.requiresPrescriptionReview ==
+                    requiresPrescriptionReview) &&
+            (identical(other.awaitingCustomerCompletion,
+                    awaitingCustomerCompletion) ||
+                other.awaitingCustomerCompletion ==
+                    awaitingCustomerCompletion) &&
+            (identical(other.insuranceApplied, insuranceApplied) ||
+                other.insuranceApplied == insuranceApplied) &&
+            (identical(other.shopType, shopType) ||
+                other.shopType == shopType));
   }
 
   @JsonKey(ignore: true)
@@ -313,7 +423,12 @@ class _$_SummaryModel extends _SummaryModel {
       combinedOrderId,
       expectedLoyaltyPoints,
       shipping,
-      paymentMethod);
+      paymentMethod,
+      isPendingReview,
+      requiresPrescriptionReview,
+      awaitingCustomerCompletion,
+      insuranceApplied,
+      shopType);
 
   @JsonKey(ignore: true)
   @override
@@ -342,8 +457,15 @@ abstract class _SummaryModel extends SummaryModel {
       @JsonKey(name: "expected_loyalty_points")
       final int? expectedLoyaltyPoints,
       required final String shipping,
-      @JsonKey(name: "payment_method")
-      required final String paymentMethod}) = _$_SummaryModel;
+      @JsonKey(name: "payment_method") required final String paymentMethod,
+      @JsonKey(name: "is_pending_review") final bool? isPendingReview,
+      @JsonKey(name: "requires_prescription_review")
+      final bool? requiresPrescriptionReview,
+      @JsonKey(name: "awaiting_customer_completion")
+      final bool? awaitingCustomerCompletion,
+      @JsonKey(name: "insurance_applied") final bool? insuranceApplied,
+      @JsonKey(name: "shop_type")
+      required final String shopType}) = _$_SummaryModel;
   const _SummaryModel._() : super._();
 
   factory _SummaryModel.fromJson(Map<String, dynamic> json) =
@@ -376,6 +498,21 @@ abstract class _SummaryModel extends SummaryModel {
   @override
   @JsonKey(name: "payment_method")
   String get paymentMethod;
+  @override
+  @JsonKey(name: "is_pending_review")
+  bool? get isPendingReview;
+  @override
+  @JsonKey(name: "requires_prescription_review")
+  bool? get requiresPrescriptionReview;
+  @override
+  @JsonKey(name: "awaiting_customer_completion")
+  bool? get awaitingCustomerCompletion;
+  @override
+  @JsonKey(name: "insurance_applied")
+  bool? get insuranceApplied;
+  @override
+  @JsonKey(name: "shop_type")
+  String get shopType;
   @override
   @JsonKey(ignore: true)
   _$$_SummaryModelCopyWith<_$_SummaryModel> get copyWith =>

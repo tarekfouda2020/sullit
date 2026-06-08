@@ -1,7 +1,7 @@
 part of 'confirmation_imports.dart';
 
 class Confirmation extends StatefulWidget {
-  final OrderSummary? summary;
+  final OrderSummaryDomainModel? summary;
   final int? combinedId;
 
   const Confirmation({Key? key, this.summary, this.combinedId})
@@ -30,8 +30,8 @@ class _ConfirmationState extends State<Confirmation> {
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
         appBar: DefaultAppBar(title: tr("cart"), bgColor: context.colors.white),
-        body: BlocBuilder<GenericBloc<OrderSummary?>,
-            GenericState<OrderSummary?>>(
+        body: BlocBuilder<GenericBloc<OrderSummaryDomainModel?>,
+            GenericState<OrderSummaryDomainModel?>>(
           bloc: controller.orderSummaryBloc,
           builder: (context, state) {
             if (state is GenericUpdateState) {

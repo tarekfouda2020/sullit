@@ -1,15 +1,15 @@
 part of 'order_summary_imports.dart';
 
-class OrderSummary extends StatefulWidget {
+class OrderSummaryPage extends StatefulWidget {
   final int orderId;
 
-  const OrderSummary({super.key, required this.orderId});
+  const OrderSummaryPage({super.key, required this.orderId});
 
   @override
-  State<OrderSummary> createState() => _OrderSummaryState();
+  State<OrderSummaryPage> createState() => _OrderSummaryPageState();
 }
 
-class _OrderSummaryState extends State<OrderSummary> {
+class _OrderSummaryPageState extends State<OrderSummaryPage> {
   late OrderSummaryController controller;
 
   @override

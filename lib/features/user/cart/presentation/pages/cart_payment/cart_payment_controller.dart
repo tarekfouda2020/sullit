@@ -201,7 +201,7 @@ class CartPaymentController {
     }
   }
 
-  void _confirmOrder(OrderSummary data) {
+  void _confirmOrder(OrderSummaryDomainModel data) {
     CustomToast.showSimpleToast(
       msg: tr('thanksForYourOrder'),
       type: ToastType.success,

@@ -1,0 +1,53 @@
+part of 'widgets_imports.dart';
+
+class PharmacyOrderProductsWidget extends StatelessWidget {
+  final Orders order;
+  const PharmacyOrderProductsWidget({super.key, required this.order});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding:
+          const EdgeInsets.only(left: 19, right: 19, top: 17, bottom: 20).r,
+      margin: Dimens.paddingVertical10PXHorizontal20PX,
+      decoration: const CustomDecoration(),
+      child: Column(
+        children: [
+          ...List.generate(order.orderDetails.length, (index) {
+            var item = order.orderDetails[index];
+            return OrderDetailsProductItemWidget(
+              onPressReview: () {},
+              orderDetails: item,
+              hasReview: false,
+            );
+          }),
+          Padding(
+            padding: const EdgeInsets.only(top: 18),
+            child: GestureDetector(
+              onTap: () => AutoRouter.of(context)
+                  .push(TrackOrderRoute(orderId: order.id)),
+              child: Row(
+                children: [
+                  Text(
+                    tr("trackShipment"),
+                    style: AppTextStyle.s14_w400(color: context.colors.primary),
+                  ),
+                  Gaps.hGap10,
+                  Icon(
+                    Icons.arrow_forward_rounded,
+                    color: context.colors.primary,
+                  ),
+                  const Spacer(),
+                  Text(
+                    order.orderStatus,
+                    style: AppTextStyle.s14_w700(color: context.colors.black),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}

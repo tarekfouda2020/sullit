@@ -18,6 +18,11 @@ _$_SummaryModel _$$_SummaryModelFromJson(Map<String, dynamic> json) =>
       expectedLoyaltyPoints: (json['expected_loyalty_points'] as num?)?.toInt(),
       shipping: json['shipping'] as String,
       paymentMethod: json['payment_method'] as String,
+      isPendingReview: json['is_pending_review'] as bool?,
+      requiresPrescriptionReview: json['requires_prescription_review'] as bool?,
+      awaitingCustomerCompletion: json['awaiting_customer_completion'] as bool?,
+      insuranceApplied: json['insurance_applied'] as bool?,
+      shopType: json['shop_type'] as String,
     );
 
 Map<String, dynamic> _$$_SummaryModelToJson(_$_SummaryModel instance) =>
@@ -32,4 +37,9 @@ Map<String, dynamic> _$$_SummaryModelToJson(_$_SummaryModel instance) =>
       'expected_loyalty_points': instance.expectedLoyaltyPoints,
       'shipping': instance.shipping,
       'payment_method': instance.paymentMethod,
+      'is_pending_review': instance.isPendingReview,
+      'requires_prescription_review': instance.requiresPrescriptionReview,
+      'awaiting_customer_completion': instance.awaitingCustomerCompletion,
+      'insurance_applied': instance.insuranceApplied,
+      'shop_type': instance.shopType,
     };

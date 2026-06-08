@@ -1,69 +1,69 @@
-part of 'cart_confirm_buying_widgets_imports.dart';
+part of 'widgets_imports.dart';
 
-class ConfirmBuyingSummaryWidget extends StatelessWidget {
-  final OrderSummaryDomainModel orderSummary;
-  final ConfirmBuyingController controller;
-  const ConfirmBuyingSummaryWidget(
-      {super.key, required this.orderSummary, required this.controller});
+class PharmacyConfirmSummaryWidget extends StatelessWidget {
+  final Orders order;
+  final PharmacyOrderDetailsController controller;
+  const PharmacyConfirmSummaryWidget(
+      {super.key, required this.order, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return InvoiceSummaryCard(margin: Dimens.paddingHorizontal20PX, children: [
       BuildSummaryHeader(
         title: tr('subTotal'),
-        details: orderSummary.subTotal.toString(),
-        // details: orderSummary.getSubTotalWithoutVat().toStringAsFixed(2),
+        details: order.subtotal,
+        // details: order.getSubTotalWithoutVat().toStringAsFixed(2),
         useDirhamPrice: true,
       ),
       Visibility(
-        visible: orderSummary.loyaltyPointsDiscount > 0 ||
-            orderSummary.discounts > 0,
+        visible: (order.loyaltyPoints ?? 0) > 0 ||
+            (order.couponDiscount.isNotEmpty && order.couponDiscount != "0.0"),
         child: BuildSummaryHeader(
-          title: orderSummary.loyaltyPointsDiscount > 0
+          title: (order.loyaltyPoints ?? 0) > 0
               ? tr("pointsDiscount")
               : tr("voucherDiscount"),
-          details: orderSummary.loyaltyPointsDiscount > 0
-              ? orderSummary.loyaltyPointsDiscount.toString()
-              : orderSummary.discounts.toString(),
+          details: (order.loyaltyPoints ?? 0) > 0
+              ? order.loyaltyPointsValue
+              : order.couponDiscount,
           detailsColor: context.colors.primary,
           useDirhamPrice: true,
           isDiscount: true,
         ),
       ),
-      if (orderSummary.discountList.isNotEmpty)
+      if (order.orderDiscounts?.isNotEmpty == true)
         ...List.generate(
-          orderSummary.discountList.length,
+          order.orderDiscounts!.length,
           (index) {
-            var item = orderSummary.discountList[index];
+            var item = order.orderDiscounts![index];
             return BuildSummaryHeader(
-              title: item.typeLabel,
+              title: item.typeLabel ?? "",
               // details: shippingSummary.vatAmount().toStringAsFixed(2),
-              details: item.discount,
+              details: item.discount ?? '',
               useDirhamPrice: true,
               isDiscount: true,
               detailsColor: context.colors.primary,
-              onPressInfo: item.isTierDiscount
+              onPressInfo: item.isTierDiscount == true
                   ? () => controller.showTierFullName(
-                      context, item.typeDescription, item.typeLabel)
+                      context, item.typeDescription ?? "", item.typeLabel ?? "")
                   : null,
             );
           },
         ),
       BuildSummaryHeader(
         title: tr('service_fees'),
-        details: orderSummary.totalServiceFees.toStringAsFixed(2),
+        details: order.totalServiceFess.toStringAsFixed(2),
         useDirhamPrice: true,
         onPressInfo: () => controller.showFeesSheet(context),
       ),
       BuildSummaryHeader(
         title: tr("environmentFee"),
-        details: orderSummary.envFees.toStringAsFixed(2),
+        details: order.environmentFees ?? "0.0",
         useDirhamPrice: true,
         onPressInfo: () => controller.showEnvFeesSheet(context),
       ),
       BuildSummaryHeader(
         title: tr('shippingFees'),
-        details: orderSummary.shippingTotal.toString(),
+        details: order.shipping ?? '',
         useDirhamPrice: true,
         onPressInfo: () => controller.showDeliveryFeesSheet(context),
       ),
@@ -71,7 +71,7 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
       BuildSummaryHeader(
         title: tr('totalVat'),
         // details: shippingSummary.vatAmount().toStringAsFixed(2),
-        details: orderSummary.totalVat.toString(),
+        details: order.totalVat.toString(),
         useDirhamPrice: true,
       ),
       Gaps.line(context.colors.softGray, 15.h),
@@ -85,7 +85,7 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
                 style: AppTextStyle.s14_w400(color: context.colors.black),
               ),
               DirhamPrice(
-                amount: orderSummary.total.toString(),
+                amount: order.total ?? "",
                 textStyle: AppTextStyle.s14_w800(color: context.colors.black),
               ),
             ],
@@ -96,15 +96,15 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
           children: [
             Gaps.line(context.colors.softGray, 15.h),
             _buildRow(context, tr("gained_bezat_point"),
-                orderSummary.summary!.expectedLoyaltyPoints.toString()),
+                order.expectedLoyaltyPoints.toString()),
             Gaps.vGap8,
-            if (orderSummary.pointsRedeemed > 0)
+            if ((order.loyaltyPoints ?? 0) > 0)
               _buildRow(context, tr("bezat_points_redeemed"),
-                  orderSummary.pointsRedeemed.toString()),
-            if (orderSummary.pointsRedeemed > 0) Gaps.vGap8,
+                  order.loyaltyPoints.toString()),
+            if ((order.loyaltyPoints ?? 0) > 0) Gaps.vGap8,
             NewPointsBalanceWidget(
               cubit: controller.loyaltyPointsBalanceBloc,
-              gainedPoints: orderSummary.summary!.expectedLoyaltyPoints ?? 0,
+              gainedPoints: order.expectedLoyaltyPoints ?? 0,
             ),
           ],
         )

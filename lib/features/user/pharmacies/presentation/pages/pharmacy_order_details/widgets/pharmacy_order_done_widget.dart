@@ -1,7 +1,7 @@
 part of 'widgets_imports.dart';
 
 class PharmacyOrderDoneWidget extends StatelessWidget {
-  final OrderSummaryDomainModel data;
+  final Orders data;
   const PharmacyOrderDoneWidget({super.key, required this.data});
 
   @override
@@ -29,7 +29,9 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: data.sectionOrders?.first.orderDetails.first.product?.shop?.name ?? "",
+                  text: data.orderDetails.isNotEmpty
+                      ? data.orderDetails.first.product?.shop?.name ?? ""
+                      : "",
                   style: AppTextStyle.s14_w600(color: context.colors.green),
                 ),
                 TextSpan(
@@ -47,7 +49,7 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
           ),
           Gaps.vGap10,
           Text(
-            "#${data.sectionOrders?.first.code??""}",
+            "#${data.code}",
             style: AppTextStyle.s22_w700(color: context.colors.black),
           ),
           Gaps.vGap20,
@@ -91,9 +93,9 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
           Gaps.vGap20,
           Divider(color: context.colors.greyWhite),
           Gaps.vGap20,
-          _buildRow(context, "Date", data.summary?.orderDate ?? ""),
+          _buildRow(context, "Date", data.orderDate),
           Gaps.vGap10,
-          _buildRow(context, "Total Items", data.getTotalItems().toString()),
+          _buildRow(context, "Total Items", data.totalItemsCount().toString()),
           Gaps.vGap10,
           _buildRow(context, "Insurance Company", "Daman"),
           Gaps.vGap20,

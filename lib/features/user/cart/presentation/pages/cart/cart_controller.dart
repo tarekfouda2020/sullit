@@ -233,7 +233,7 @@ class CartController {
   domain_shipping.Shipping? get paymentShipping =>
       getIt<CartNavigateHelper>().cartCheckOutPageData.orderSummaryCheckOut;
 
-  OrderSummary? get confirmationSummary =>
+  OrderSummaryDomainModel? get confirmationSummary =>
       getIt<CartNavigateHelper>().confirmationSummary;
 
   int? get confirmationCombinedId =>

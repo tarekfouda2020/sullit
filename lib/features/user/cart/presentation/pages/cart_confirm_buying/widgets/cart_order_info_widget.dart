@@ -1,7 +1,7 @@
 part of 'cart_confirm_buying_widgets_imports.dart';
 
 class CartOrderInfoWidget extends StatelessWidget {
-  final OrderSummary orderSummary;
+  final OrderSummaryDomainModel orderSummary;
   const CartOrderInfoWidget({super.key, required this.orderSummary});
 
   @override

@@ -1,9 +1,9 @@
 part of 'confirmation_imports.dart';
 
 class ConfirmationController {
-  final GenericBloc<OrderSummary?> orderSummaryBloc = GenericBloc(null);
+  final GenericBloc<OrderSummaryDomainModel?> orderSummaryBloc = GenericBloc(null);
 
-  ConfirmationController(OrderSummary? summary, int? id) {
+  ConfirmationController(OrderSummaryDomainModel? summary, int? id) {
     if (summary != null) {
       orderSummaryBloc.onUpdateData(summary);
     } else {

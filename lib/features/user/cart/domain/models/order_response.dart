@@ -4,6 +4,6 @@ import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart'
 class OrderResponse extends BaseDomainModel {
   String key;
   String msg;
-  OrderSummary data;
+  OrderSummaryDomainModel data;
   OrderResponse({required this.key, required this.msg, required this.data});
 }

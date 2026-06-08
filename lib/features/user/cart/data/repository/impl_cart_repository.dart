@@ -57,7 +57,7 @@ class ImplCartRepository extends CartRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, OrderSummary>> createOrder(
+  Future<Either<Failure, OrderSummaryDomainModel>> createOrder(
       CreateOrderParams params) async {
     var result = await dataSource.createOrder(params);
     return toDomainResult(result);
@@ -90,7 +90,7 @@ class ImplCartRepository extends CartRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, OrderSummary>> getCombinedOrder(int param) async {
+  Future<Either<Failure, OrderSummaryDomainModel>> getCombinedOrder(int param) async {
     var result = await dataSource.getCombinedOrder(param);
     return toDomainResult(result);
   }

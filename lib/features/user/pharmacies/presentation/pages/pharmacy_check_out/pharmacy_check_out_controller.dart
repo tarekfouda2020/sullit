@@ -146,22 +146,29 @@ class PharmacyCheckOutController {
     }
   }
 
+
+
+
+
+
+
+
+
+
+
+
   Future<void> submitToCreateOrder() async {
     BuildContext ctx = getIt<GlobalContext>().context();
-    var params = _orderParams();
-    var data = await CreateOrder().call(params);
+    PharmacyCreateOrderParams params = _orderParams();
+    OrderSummaryDomainModel? data = await CreatePharmacyOrder().call(params);
     if (data != null) {
-      var countCubit = ctx.read<CountCubit>().state;
-      ctx.read<CountCubit>().onUpdateCount(0, countCubit.discount);
       if (data.transactionUrl != null) {
         goToPay(data.transactionUrl!, ctx);
         // showOrderCreatedBottomSheet(data.transactionUrl!,ctx);
       } else {
-        _confirmOrder(data);
+        _confirmOrder(ctx,data);
       }
     } else {
-      var countCubit = ctx.read<CountCubit>().state;
-      ctx.read<CountCubit>().onUpdateCount(0, countCubit.discount);
       AutoRouter.of(ctx).push(HomeRoute(index: 0));
     }
   }
@@ -194,11 +201,12 @@ class PharmacyCheckOutController {
     }
   }
 
-  void _confirmOrder(OrderSummary data) {
+  void _confirmOrder(BuildContext context,OrderSummaryDomainModel data) {
     CustomToast.showSimpleToast(
       msg: tr('thanksForYourOrder'),
       type: ToastType.success,
     );
+    AutoRouter.of(context).push( OrderSuccessRoute(summary: data));
   }
 
   void onChangePayment(PaymentOption model, int index) {
@@ -229,7 +237,7 @@ class PharmacyCheckOutController {
   void unSelectWalletPayMethod() {
     isWalletSelected.onUpdateData(false);
     List<PaymentOption> paymentOptions =
-    shippingBloc.state.data!.paymentOption!;
+    paymentOptionsBloc.state.data;
     for (PaymentOption item in paymentOptions) {
       item.selected = false;
       item.fakeSelected = false;
@@ -241,7 +249,7 @@ class PharmacyCheckOutController {
   }
 
   void selectWalletPayMethod() {
-    for (PaymentOption item in shippingBloc.state.data!.paymentOption!) {
+    for (PaymentOption item in paymentOptionsBloc.state.data) {
       if (item.paymentTypeKey == PayTypeEnum.wallet.name) {
         item.selected = true;
         item.fakeSelected = true;
@@ -274,17 +282,20 @@ class PharmacyCheckOutController {
     }
   }
 
-  CreateOrderParams _orderParams() {
-    return CreateOrderParams(
-        paymentOption: shippingBloc.state.data!.paymentOption!
+  PharmacyCreateOrderParams _orderParams() {
+    return PharmacyCreateOrderParams(
+        paymentOption: paymentOptionsBloc.state.data
             .firstWhere((element) => element.selected)
             .paymentTypeKey,
-        additionalInfo: additionalInfo.text,
-        giftCardCode: giftCardCode.text.trim(),
-        allowReplacement: allowReplacementCubit.state.data ? 1 : 0,
+        giftCardCode: checkoutParams?.giftCardCode,
+      couponCode: checkoutParams?.couponCode,
+      shippingInfo: checkoutParams?.shippingInfo ?? <PharmacyShippingInfo>[],
+      addressId: checkoutParams?.addressId,
         instructions: _selectedInstructions(),
-        driverNotes: driverNotesCtr.text,
-        pickerNotes: pickerNotesCtr.text);
+        driverNotes: driverNotesCtr.text.trim(),
+        pickerNotes: pickerNotesCtr.text.trim(),
+        applyLoyaltyPoints: applyPointsSwitchCubit.state.data ? 1 : 0,
+    );
   }
 
   List<DeliveryInstructionModel> _selectedInstructions() {
@@ -297,19 +308,19 @@ class PharmacyCheckOutController {
   }
 
   void paymentMethodSheet(BuildContext context) {
-    // showModalBottomSheet(
-    //   context: context,
-    //   backgroundColor: Colors.transparent,
-    //   isScrollControlled: true,
-    //   useRootNavigator: true,
-    //   enableDrag: false,
-    //   builder: (context) => PaymentMethodBottomSheetWidget(controller: this),
-    // );
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      useRootNavigator: true,
+      enableDrag: false,
+      builder: (context) => PharmacyPaymentMethodBottomSheetWidget(controller: this),
+    );
   }
 
   void confirmSelectPayMethod(BuildContext context) {
     List<PaymentOption> paymentOptions =
-    shippingBloc.state.data!.paymentOption!;
+    paymentOptionsBloc.state.data;
     for (var item in paymentOptions) {
       item.selected = item.fakeSelected;
     }
@@ -326,14 +337,14 @@ class PharmacyCheckOutController {
   }
 
   void giftCardSheet(BuildContext context) {
-    // showModalBottomSheet(
-    //   context: context,
-    //   backgroundColor: Colors.transparent,
-    //   isScrollControlled: true,
-    //   useRootNavigator: true,
-    //   enableDrag: false,
-    //   builder: (context) => ApplyGiftCardSheet(controller: this),
-    // );
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      useRootNavigator: true,
+      enableDrag: false,
+      builder: (context) => PharmacyApplyGiftCardSheet(controller: this),
+    );
   }
 
   Future<void> applyLoyaltyPoint() async {
@@ -389,7 +400,9 @@ class PharmacyCheckOutController {
       checkoutParams?.giftCardCode = giftCardCode.text;
       await getRemoteData();
       if (shippingBloc.state.data?.summary.appliedGiftCard != null) {
-        CustomToast.showSimpleToast(msg: tr("giftCardApplied"));
+        CustomToast.showSimpleToast(msg: tr("giftCardApplied",),
+          type: ToastType.success,
+        );
       }
     }
   }
@@ -482,16 +495,16 @@ class PharmacyCheckOutController {
   }
 
   Future<void> showReplacementAlertSheet(BuildContext context) async {
-    // await showModalBottomSheet(
-    //   context: context,
-    //   backgroundColor: Colors.transparent,
-    //   enableDrag: false,
-    //   isDismissible: false,
-    //   useRootNavigator: true,
-    //   builder: (context) {
-    //     return RequestReplaceSheetWidget(controller: this);
-    //   },
-    // );
+    await showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      enableDrag: false,
+      isDismissible: false,
+      useRootNavigator: true,
+      builder: (context) {
+        return PharmacyRequestReplaceSheetWidget(controller: this);
+      },
+    );
   }
 
   void refuseReplacement(BuildContext context) {

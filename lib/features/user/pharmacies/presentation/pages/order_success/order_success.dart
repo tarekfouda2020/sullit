@@ -1,15 +1,22 @@
 part of 'order_success_imports.dart';
 
 class OrderSuccess extends StatefulWidget {
-  const OrderSuccess({super.key});
+  final OrderSummaryDomainModel summary;
+
+  const OrderSuccess({super.key, required this.summary});
 
   @override
   State<OrderSuccess> createState() => _OrderSuccessState();
 }
 
 class _OrderSuccessState extends State<OrderSuccess> {
-  final OrderSuccessController controller = OrderSuccessController();
+  late final OrderSuccessController controller;
 
+  @override
+  void initState() {
+    super.initState();
+    controller = OrderSuccessController(widget.summary);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,21 +26,23 @@ class _OrderSuccessState extends State<OrderSuccess> {
       body: Column(
         spacing: 30,
         children: [
-          const Expanded(child: OrderSuccessBody()),
+          Expanded(
+            child: OrderSuccessBody(controller: controller),
+          ),
           CustomBottomSafeAreaWidget(
               child: Column(
-                spacing: 12,
+            spacing: 12,
             children: [
               DefaultButton(
                 title: "Cancel Order",
-                onTap: (){},
+                onTap: () {},
                 textColor: context.colors.gray8,
                 color: context.colors.white,
                 borderColor: context.colors.borderColor,
               ),
               DefaultButton(
                 title: "Confirm&Pay Now",
-                onTap: (){},
+                onTap: () {},
                 textColor: context.colors.white,
                 color: context.colors.green,
                 borderColor: context.colors.green,

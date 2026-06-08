@@ -23,7 +23,12 @@ class SummaryModel extends BaseApiModel<Summary> with _$SummaryModel {
           // @JsonKey(name: 'total_items') required int totalItems,
           @JsonKey(name: "expected_loyalty_points") int? expectedLoyaltyPoints,
           required String shipping,
-          @JsonKey(name: "payment_method") required String paymentMethod}) =
+          @JsonKey(name: "payment_method") required String paymentMethod,
+          @JsonKey(name: "is_pending_review") bool? isPendingReview,
+          @JsonKey(name: "requires_prescription_review") bool? requiresPrescriptionReview,
+          @JsonKey(name: "awaiting_customer_completion") bool? awaitingCustomerCompletion,
+          @JsonKey(name: "insurance_applied") bool? insuranceApplied,
+          @JsonKey(name: "shop_type") required String shopType}) =
       _SummaryModel;
 
   factory SummaryModel.fromJson(Map<String, dynamic> json) =>
@@ -41,7 +46,12 @@ class SummaryModel extends BaseApiModel<Summary> with _$SummaryModel {
         shipping: shipping,
         paymentMethod: paymentMethod,
         combinedOrderId: combinedOrderId,
-        expectedLoyaltyPoints: expectedLoyaltyPoints
+        expectedLoyaltyPoints: expectedLoyaltyPoints,
+        isPendingReview: isPendingReview,
+        requiresPrescriptionReview: requiresPrescriptionReview,
+        awaitingCustomerCompletion: awaitingCustomerCompletion,
+        insuranceApplied: insuranceApplied,
+        shopType: shopType,
         // totalItems: totalItems,
         );
   }

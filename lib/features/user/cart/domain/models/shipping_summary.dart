@@ -101,5 +101,9 @@ class ShippingSummary extends BaseDomainModel {
   bool get showOrderDiscounts =>
       (discountTypes ?? <OrderSummaryDiscountDomain>[]).isNotEmpty;
 
+
+  bool get isGiftCardApplied => giftCardApplied == true;
+
+
   // double get getFeesTotal => double.parse(environmentFees) + double.parse(shipping) + double.parse(serviceFees) + double.parse(technologyFees) + double.parse(getTotalVat());
 }

@@ -114,7 +114,7 @@ class PharmacyAddressController {
 
     var params = PharamcyShippingInfoParams(addressId: selectedAddress!.id!);
     var result = await GetPharmacyShippingInfo().call(params);
-     bool isAnyDoNotHaveDelivery = result.any((element) => element.activeDelivery = false);
+     bool isAnyDoNotHaveDelivery = result.any((element) => element.activeDelivery == false);
      if(isAnyDoNotHaveDelivery){
        final inactiveItem = result.firstWhere(
              (element) => element.activeDelivery == false,
@@ -141,10 +141,8 @@ class PharmacyAddressController {
   }
 
 
-
   Future<void> getCheckOutSummaryData(BuildContext context, List<PharmacyShippingDomainModel> data) async {
-    var params = checkOutParams(data);
-    print("===>>>>> json data ${params.toJson()}<<<<<");
+    PharmacyCheckoutParams params = checkOutParams(data);
     final result = await GetCartSummary().call(params);
     if (result != null) {
       AutoRouter.of(context).push(PharmacyCheckOutRoute(

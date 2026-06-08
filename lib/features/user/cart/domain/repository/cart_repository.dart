@@ -26,13 +26,13 @@ abstract class CartRepository {
   Future<Either<Failure, Shipping>> cartStoreShipping(
       StoreCartShippingParams params);
   Future<Either<Failure, CouponResponse>> applyCoupon(String param);
-  Future<Either<Failure, OrderSummary>> createOrder(CreateOrderParams params);
+  Future<Either<Failure, OrderSummaryDomainModel>> createOrder(CreateOrderParams params);
   Future<Either<Failure, String>> addToCart(AddProductToCartParams params);
   Future<Either<Failure, bool>> deleteCartItem(DeleteCartItemParams params);
   Future<Either<Failure, CartDomainModel>> updateCartItem(
       UpdateCartItemParams params);
   Future<Either<Failure, List<SellerShipping>>> getShippingInfo(bool param);
-  Future<Either<Failure, OrderSummary>> getCombinedOrder(int param);
+  Future<Either<Failure, OrderSummaryDomainModel>> getCombinedOrder(int param);
   Future<Either<Failure, ShippingSummary>> applyLoyaltyPoints(NoParams params);
   Future<Either<Failure, ShippingSummary>> removeLoyaltyPoints(NoParams params);
   Future<Either<Failure, GiftCardApllieCartDomainModel>> applyGiftCard(

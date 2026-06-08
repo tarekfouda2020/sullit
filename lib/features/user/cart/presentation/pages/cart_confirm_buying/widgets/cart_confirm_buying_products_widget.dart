@@ -2,7 +2,7 @@ part of 'cart_confirm_buying_widgets_imports.dart';
 
 class CartConfirmBuyingProductsWidget extends StatelessWidget {
   final ConfirmBuyingController controller;
-  final OrderSummary orderSummary;
+  final OrderSummaryDomainModel orderSummary;
   const CartConfirmBuyingProductsWidget(
       {super.key, required this.controller, required this.orderSummary});
 

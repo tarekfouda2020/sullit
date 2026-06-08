@@ -39,58 +39,56 @@ class _PharmacyCheckOutState extends State<PharmacyCheckOut> {
           bloc: controller.shippingBloc,
           builder: (context, state) {
             if (state is GenericUpdateState) {
-              return Flexible(
-                child: ListView(
-                  cacheExtent: 9999,
-                  padding: Dimens.paddingHorizontal15PX,
-                  children: [
-                    Gaps.vGap16,
-                    PharmacyPaymentMethodWidget(
-                        controller: controller, shipping: state.data!),
-                    Gaps.vGap12,
-                    if (!context.isShareHolder)
-                      PharmacyCartDiscountWidget(controller: controller),
-                    if (!context.isShareHolder) Gaps.vGap20,
-                    PharmacyDeliveryInstructionsWidget(controller: controller),
-                    Gaps.vGap12,
-                    // PharmacyDriverTipsWidget(controller: controller),
-                    // Gaps.vGap16,
-                    PharmacyPickerNotesWidget(controller: controller),
-                    Gaps.vGap16,
-                    // const PharmacyNearestVipCartWidget(),
-                    // Gaps.vGap12,
-                    PharmacyInvoiceSummaryWidget(
-                      controller: controller,
-                      shippingSummary: state.data!.summary,
-                      giftCardTotal:
-                          state.data!.summary.appliedGiftCard != null
-                              ? state.data!.summary.appliedGiftCard!
-                              : '',
-                      applyGiftCard:
-                          state.data!.summary.appliedGiftCard != null,
+              return ListView(
+                cacheExtent: 9999,
+                padding: Dimens.paddingHorizontal15PX,
+                children: [
+                  Gaps.vGap16,
+                  PharmacyPaymentMethodWidget(
+                      controller: controller, shipping: state.data!),
+                  Gaps.vGap12,
+                  if (!context.isShareHolder && state.data?.summary.insuranceEligible == false)
+                    PharmacyCartDiscountWidget(controller: controller),
+                  if (!context.isShareHolder) Gaps.vGap20,
+                  PharmacyDeliveryInstructionsWidget(controller: controller),
+                  Gaps.vGap12,
+                  // PharmacyDriverTipsWidget(controller: controller),
+                  // Gaps.vGap16,
+                  PharmacyPickerNotesWidget(controller: controller),
+                  Gaps.vGap16,
+                  // const PharmacyNearestVipCartWidget(),
+                  // Gaps.vGap12,
+                  PharmacyInvoiceSummaryWidget(
+                    controller: controller,
+                    shippingSummary: state.data!.summary,
+                    giftCardTotal:
+                        state.data!.summary.appliedGiftCard != null
+                            ? state.data!.summary.appliedGiftCard!
+                            : '',
+                    applyGiftCard:
+                        state.data!.summary.isGiftCardApplied,
+                  ),
+                  Gaps.vGap20,
+                  // PharmacyAllowReplacementWidget(controller: controller),
+                  // Gaps.vGap13,
+                  PharmacyBuildConditions(controller: controller),
+                  Gaps.vGap20,
+                  if (!context.isShareHolder)
+                    BezatPointsSummaryWidget(
+                      redeemedPoints: (state.data!.summary.loyaltyPoints ?? 0).toDouble(),
+                      redeemedValue: double.parse((state.data!.summary.loyaltyPointsValue.cleanNumber() )),
+                      earnedPoints: state.data!.summary.expectedLoyaltyPoints.toDouble(),
                     ),
-                    Gaps.vGap20,
-                    PharmacyAllowReplacementWidget(controller: controller),
-                    Gaps.vGap13,
-                    PharmacyBuildConditions(controller: controller),
-                    Gaps.vGap20,
-                    if (!context.isShareHolder)
-                      BezatPointsSummaryWidget(
-                        redeemedPoints: (state.data!.summary.loyaltyPoints ?? 0).toDouble(),
-                        redeemedValue: double.parse((state.data!.summary.loyaltyPointsValue.cleanNumber() )),
-                        earnedPoints: state.data!.summary.expectedLoyaltyPoints.toDouble(),
-                      ),
-                    if (!context.isShareHolder) Gaps.vGap25,
-                    Center(
-                      child: Text(
-                        tr("thank_you_for_order"),
-                        style: AppTextStyle.s18_w500(
-                            color: context.colors.black),
-                      ),
+                  if (!context.isShareHolder) Gaps.vGap25,
+                  Center(
+                    child: Text(
+                      tr("thank_you_for_order"),
+                      style: AppTextStyle.s18_w500(
+                          color: context.colors.black),
                     ),
-                    Gaps.vGap25,
-                  ],
-                ),
+                  ),
+                  Gaps.vGap25,
+                ],
               );
             } else {
               return Container();
