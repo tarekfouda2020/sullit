@@ -35,6 +35,8 @@ mixin _$OrderModel {
   String get tax => throw _privateConstructorUsedError;
   @JsonKey(name: 'coupon_discount')
   String get couponDiscount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'shop_type')
+  String get shopType => throw _privateConstructorUsedError;
   String get total => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
   @JsonKey(name: 'delivery_status_const')
@@ -119,6 +121,14 @@ mixin _$OrderModel {
   String? get shippingProvider => throw _privateConstructorUsedError;
   @JsonKey(name: 'shipping_provider_label')
   String? get shippingProviderLabel => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_pending_review')
+  bool? get isPendingReview => throw _privateConstructorUsedError;
+  @JsonKey(name: 'awaiting_customer_completion')
+  bool? get awaitingCustomerCompletion => throw _privateConstructorUsedError;
+  @JsonKey(name: 'requires_prescription_review')
+  bool? get requiresPrescriptionReview => throw _privateConstructorUsedError;
+  @JsonKey(name: 'insurance_applied')
+  bool? get insuranceApplied => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -143,6 +153,7 @@ abstract class $OrderModelCopyWith<$Res> {
       String shipping,
       String tax,
       @JsonKey(name: 'coupon_discount') String couponDiscount,
+      @JsonKey(name: 'shop_type') String shopType,
       String total,
       String date,
       @JsonKey(name: 'delivery_status_const') String deliveryStatusConst,
@@ -184,7 +195,13 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'driver') OrderDriverModel? driver,
       @JsonKey(name: 'order_source_label') String? orderSourceLabel,
       @JsonKey(name: 'shipping_provider') String? shippingProvider,
-      @JsonKey(name: 'shipping_provider_label') String? shippingProviderLabel});
+      @JsonKey(name: 'shipping_provider_label') String? shippingProviderLabel,
+      @JsonKey(name: 'is_pending_review') bool? isPendingReview,
+      @JsonKey(name: 'awaiting_customer_completion')
+      bool? awaitingCustomerCompletion,
+      @JsonKey(name: 'requires_prescription_review')
+      bool? requiresPrescriptionReview,
+      @JsonKey(name: 'insurance_applied') bool? insuranceApplied});
 
   $OrderDriverModelCopyWith<$Res>? get driver;
 }
@@ -212,6 +229,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? shipping = null,
     Object? tax = null,
     Object? couponDiscount = null,
+    Object? shopType = null,
     Object? total = null,
     Object? date = null,
     Object? deliveryStatusConst = null,
@@ -253,6 +271,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? orderSourceLabel = freezed,
     Object? shippingProvider = freezed,
     Object? shippingProviderLabel = freezed,
+    Object? isPendingReview = freezed,
+    Object? awaitingCustomerCompletion = freezed,
+    Object? requiresPrescriptionReview = freezed,
+    Object? insuranceApplied = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -294,6 +316,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
       couponDiscount: null == couponDiscount
           ? _value.couponDiscount
           : couponDiscount // ignore: cast_nullable_to_non_nullable
+              as String,
+      shopType: null == shopType
+          ? _value.shopType
+          : shopType // ignore: cast_nullable_to_non_nullable
               as String,
       total: null == total
           ? _value.total
@@ -459,6 +485,22 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.shippingProviderLabel
           : shippingProviderLabel // ignore: cast_nullable_to_non_nullable
               as String?,
+      isPendingReview: freezed == isPendingReview
+          ? _value.isPendingReview
+          : isPendingReview // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      awaitingCustomerCompletion: freezed == awaitingCustomerCompletion
+          ? _value.awaitingCustomerCompletion
+          : awaitingCustomerCompletion // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      requiresPrescriptionReview: freezed == requiresPrescriptionReview
+          ? _value.requiresPrescriptionReview
+          : requiresPrescriptionReview // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      insuranceApplied: freezed == insuranceApplied
+          ? _value.insuranceApplied
+          : insuranceApplied // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 
@@ -494,6 +536,7 @@ abstract class _$$_OrderModelCopyWith<$Res>
       String shipping,
       String tax,
       @JsonKey(name: 'coupon_discount') String couponDiscount,
+      @JsonKey(name: 'shop_type') String shopType,
       String total,
       String date,
       @JsonKey(name: 'delivery_status_const') String deliveryStatusConst,
@@ -535,7 +578,13 @@ abstract class _$$_OrderModelCopyWith<$Res>
       @JsonKey(name: 'driver') OrderDriverModel? driver,
       @JsonKey(name: 'order_source_label') String? orderSourceLabel,
       @JsonKey(name: 'shipping_provider') String? shippingProvider,
-      @JsonKey(name: 'shipping_provider_label') String? shippingProviderLabel});
+      @JsonKey(name: 'shipping_provider_label') String? shippingProviderLabel,
+      @JsonKey(name: 'is_pending_review') bool? isPendingReview,
+      @JsonKey(name: 'awaiting_customer_completion')
+      bool? awaitingCustomerCompletion,
+      @JsonKey(name: 'requires_prescription_review')
+      bool? requiresPrescriptionReview,
+      @JsonKey(name: 'insurance_applied') bool? insuranceApplied});
 
   @override
   $OrderDriverModelCopyWith<$Res>? get driver;
@@ -562,6 +611,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? shipping = null,
     Object? tax = null,
     Object? couponDiscount = null,
+    Object? shopType = null,
     Object? total = null,
     Object? date = null,
     Object? deliveryStatusConst = null,
@@ -603,6 +653,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? orderSourceLabel = freezed,
     Object? shippingProvider = freezed,
     Object? shippingProviderLabel = freezed,
+    Object? isPendingReview = freezed,
+    Object? awaitingCustomerCompletion = freezed,
+    Object? requiresPrescriptionReview = freezed,
+    Object? insuranceApplied = freezed,
   }) {
     return _then(_$_OrderModel(
       id: null == id
@@ -644,6 +698,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
       couponDiscount: null == couponDiscount
           ? _value.couponDiscount
           : couponDiscount // ignore: cast_nullable_to_non_nullable
+              as String,
+      shopType: null == shopType
+          ? _value.shopType
+          : shopType // ignore: cast_nullable_to_non_nullable
               as String,
       total: null == total
           ? _value.total
@@ -809,6 +867,22 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.shippingProviderLabel
           : shippingProviderLabel // ignore: cast_nullable_to_non_nullable
               as String?,
+      isPendingReview: freezed == isPendingReview
+          ? _value.isPendingReview
+          : isPendingReview // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      awaitingCustomerCompletion: freezed == awaitingCustomerCompletion
+          ? _value.awaitingCustomerCompletion
+          : awaitingCustomerCompletion // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      requiresPrescriptionReview: freezed == requiresPrescriptionReview
+          ? _value.requiresPrescriptionReview
+          : requiresPrescriptionReview // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      insuranceApplied: freezed == insuranceApplied
+          ? _value.insuranceApplied
+          : insuranceApplied // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -829,6 +903,7 @@ class _$_OrderModel extends _OrderModel {
       required this.shipping,
       required this.tax,
       @JsonKey(name: 'coupon_discount') required this.couponDiscount,
+      @JsonKey(name: 'shop_type') required this.shopType,
       required this.total,
       required this.date,
       @JsonKey(name: 'delivery_status_const') required this.deliveryStatusConst,
@@ -875,7 +950,13 @@ class _$_OrderModel extends _OrderModel {
       @JsonKey(name: 'driver') this.driver,
       @JsonKey(name: 'order_source_label') this.orderSourceLabel,
       @JsonKey(name: 'shipping_provider') this.shippingProvider,
-      @JsonKey(name: 'shipping_provider_label') this.shippingProviderLabel})
+      @JsonKey(name: 'shipping_provider_label') this.shippingProviderLabel,
+      @JsonKey(name: 'is_pending_review') this.isPendingReview,
+      @JsonKey(name: 'awaiting_customer_completion')
+      this.awaitingCustomerCompletion,
+      @JsonKey(name: 'requires_prescription_review')
+      this.requiresPrescriptionReview,
+      @JsonKey(name: 'insurance_applied') this.insuranceApplied})
       : _orderDetails = orderDetails,
         _deliveryInstructions = deliveryInstructions,
         _orderDiscounts = orderDiscounts,
@@ -909,6 +990,9 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'coupon_discount')
   final String couponDiscount;
+  @override
+  @JsonKey(name: 'shop_type')
+  final String shopType;
   @override
   final String total;
   @override
@@ -1053,10 +1137,22 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'shipping_provider_label')
   final String? shippingProviderLabel;
+  @override
+  @JsonKey(name: 'is_pending_review')
+  final bool? isPendingReview;
+  @override
+  @JsonKey(name: 'awaiting_customer_completion')
+  final bool? awaitingCustomerCompletion;
+  @override
+  @JsonKey(name: 'requires_prescription_review')
+  final bool? requiresPrescriptionReview;
+  @override
+  @JsonKey(name: 'insurance_applied')
+  final bool? insuranceApplied;
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, paymentMethodConst: $paymentMethodConst, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, pickerNotes: $pickerNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver, orderSourceLabel: $orderSourceLabel, shippingProvider: $shippingProvider, shippingProviderLabel: $shippingProviderLabel)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, shopType: $shopType, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, paymentMethodConst: $paymentMethodConst, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, pickerNotes: $pickerNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver, orderSourceLabel: $orderSourceLabel, shippingProvider: $shippingProvider, shippingProviderLabel: $shippingProviderLabel, isPendingReview: $isPendingReview, awaitingCustomerCompletion: $awaitingCustomerCompletion, requiresPrescriptionReview: $requiresPrescriptionReview, insuranceApplied: $insuranceApplied)';
   }
 
   @override
@@ -1081,6 +1177,8 @@ class _$_OrderModel extends _OrderModel {
             (identical(other.tax, tax) || other.tax == tax) &&
             (identical(other.couponDiscount, couponDiscount) ||
                 other.couponDiscount == couponDiscount) &&
+            (identical(other.shopType, shopType) ||
+                other.shopType == shopType) &&
             (identical(other.total, total) || other.total == total) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.deliveryStatusConst, deliveryStatusConst) ||
@@ -1155,9 +1253,12 @@ class _$_OrderModel extends _OrderModel {
             (identical(other.driver, driver) || other.driver == driver) &&
             (identical(other.orderSourceLabel, orderSourceLabel) ||
                 other.orderSourceLabel == orderSourceLabel) &&
-            (identical(other.shippingProvider, shippingProvider) ||
-                other.shippingProvider == shippingProvider) &&
-            (identical(other.shippingProviderLabel, shippingProviderLabel) || other.shippingProviderLabel == shippingProviderLabel));
+            (identical(other.shippingProvider, shippingProvider) || other.shippingProvider == shippingProvider) &&
+            (identical(other.shippingProviderLabel, shippingProviderLabel) || other.shippingProviderLabel == shippingProviderLabel) &&
+            (identical(other.isPendingReview, isPendingReview) || other.isPendingReview == isPendingReview) &&
+            (identical(other.awaitingCustomerCompletion, awaitingCustomerCompletion) || other.awaitingCustomerCompletion == awaitingCustomerCompletion) &&
+            (identical(other.requiresPrescriptionReview, requiresPrescriptionReview) || other.requiresPrescriptionReview == requiresPrescriptionReview) &&
+            (identical(other.insuranceApplied, insuranceApplied) || other.insuranceApplied == insuranceApplied));
   }
 
   @JsonKey(ignore: true)
@@ -1174,6 +1275,7 @@ class _$_OrderModel extends _OrderModel {
         shipping,
         tax,
         couponDiscount,
+        shopType,
         total,
         date,
         deliveryStatusConst,
@@ -1214,7 +1316,11 @@ class _$_OrderModel extends _OrderModel {
         driver,
         orderSourceLabel,
         shippingProvider,
-        shippingProviderLabel
+        shippingProviderLabel,
+        isPendingReview,
+        awaitingCustomerCompletion,
+        requiresPrescriptionReview,
+        insuranceApplied
       ]);
 
   @JsonKey(ignore: true)
@@ -1244,6 +1350,7 @@ abstract class _OrderModel extends OrderModel {
       required final String shipping,
       required final String tax,
       @JsonKey(name: 'coupon_discount') required final String couponDiscount,
+      @JsonKey(name: 'shop_type') required final String shopType,
       required final String total,
       required final String date,
       @JsonKey(name: 'delivery_status_const')
@@ -1296,7 +1403,14 @@ abstract class _OrderModel extends OrderModel {
       @JsonKey(name: 'order_source_label') final String? orderSourceLabel,
       @JsonKey(name: 'shipping_provider') final String? shippingProvider,
       @JsonKey(name: 'shipping_provider_label')
-      final String? shippingProviderLabel}) = _$_OrderModel;
+      final String? shippingProviderLabel,
+      @JsonKey(name: 'is_pending_review') final bool? isPendingReview,
+      @JsonKey(name: 'awaiting_customer_completion')
+      final bool? awaitingCustomerCompletion,
+      @JsonKey(name: 'requires_prescription_review')
+      final bool? requiresPrescriptionReview,
+      @JsonKey(name: 'insurance_applied')
+      final bool? insuranceApplied}) = _$_OrderModel;
   const _OrderModel._() : super._();
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
@@ -1327,6 +1441,9 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'coupon_discount')
   String get couponDiscount;
+  @override
+  @JsonKey(name: 'shop_type')
+  String get shopType;
   @override
   String get total;
   @override
@@ -1450,6 +1567,18 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'shipping_provider_label')
   String? get shippingProviderLabel;
+  @override
+  @JsonKey(name: 'is_pending_review')
+  bool? get isPendingReview;
+  @override
+  @JsonKey(name: 'awaiting_customer_completion')
+  bool? get awaitingCustomerCompletion;
+  @override
+  @JsonKey(name: 'requires_prescription_review')
+  bool? get requiresPrescriptionReview;
+  @override
+  @JsonKey(name: 'insurance_applied')
+  bool? get insuranceApplied;
   @override
   @JsonKey(ignore: true)
   _$$_OrderModelCopyWith<_$_OrderModel> get copyWith =>

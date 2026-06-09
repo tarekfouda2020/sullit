@@ -17,7 +17,7 @@ class BuildPurchasedHistoryItem extends StatelessWidget {
         Container(
           margin: Dimens.paddingVertical5PX,
           padding: Dimens.paddingAll15PX,
-          decoration: CustomDecoration(),
+          decoration: const CustomDecoration(),
           child: Column(
             children: [
               Row(

@@ -1,18 +1,20 @@
 part of 'pharmacy_cart_imports.dart';
 
 class PharmacyCart extends StatefulWidget {
-  const PharmacyCart({super.key});
+  final Shop? pharmacy;
+  const PharmacyCart({super.key, this.pharmacy});
 
   @override
   State<PharmacyCart> createState() => _PharmacyCartState();
 }
 
 class _PharmacyCartState extends State<PharmacyCart> {
-  final PharmacyCartController controller = PharmacyCartController();
+  late final PharmacyCartController controller;
 
   @override
   void initState() {
     super.initState();
+    controller = PharmacyCartController(pharmacy: widget.pharmacy);
     controller.getData();
   }
 

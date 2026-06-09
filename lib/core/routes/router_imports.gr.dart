@@ -931,9 +931,13 @@ class AppRouter extends _i110.RootStackRouter {
       );
     },
     MyOrdersRoute.name: (routeData) {
+      final args = routeData.argsAs<MyOrdersRouteArgs>();
       return _i110.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i77.MyOrders(),
+        child: _i77.MyOrders(
+          key: args.key,
+          isPharmacy: args.isPharmacy,
+        ),
         opaque: true,
       );
     },
@@ -1183,9 +1187,14 @@ class AppRouter extends _i110.RootStackRouter {
       );
     },
     PharmacyCartRoute.name: (routeData) {
+      final args = routeData.argsAs<PharmacyCartRouteArgs>(
+          orElse: () => const PharmacyCartRouteArgs());
       return _i110.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i104.PharmacyCart(),
+        child: _i104.PharmacyCart(
+          key: args.key,
+          pharmacy: args.pharmacy,
+        ),
         opaque: true,
       );
     },
@@ -1198,6 +1207,7 @@ class AppRouter extends _i110.RootStackRouter {
           key: args.key,
           haveInsurance: args.haveInsurance,
           havePrescription: args.havePrescription,
+          pharmacy: args.pharmacy,
         ),
         opaque: true,
       );
@@ -3371,14 +3381,36 @@ class OrderDetailsPageRouteArgs {
 
 /// generated route for
 /// [_i77.MyOrders]
-class MyOrdersRoute extends _i110.PageRouteInfo<void> {
-  const MyOrdersRoute()
-      : super(
+class MyOrdersRoute extends _i110.PageRouteInfo<MyOrdersRouteArgs> {
+  MyOrdersRoute({
+    _i113.Key? key,
+    required bool isPharmacy,
+  }) : super(
           MyOrdersRoute.name,
           path: '/my-orders',
+          args: MyOrdersRouteArgs(
+            key: key,
+            isPharmacy: isPharmacy,
+          ),
         );
 
   static const String name = 'MyOrdersRoute';
+}
+
+class MyOrdersRouteArgs {
+  const MyOrdersRouteArgs({
+    this.key,
+    required this.isPharmacy,
+  });
+
+  final _i113.Key? key;
+
+  final bool isPharmacy;
+
+  @override
+  String toString() {
+    return 'MyOrdersRouteArgs{key: $key, isPharmacy: $isPharmacy}';
+  }
 }
 
 /// generated route for
@@ -4027,14 +4059,36 @@ class PharmacyDetailsRouteArgs {
 
 /// generated route for
 /// [_i104.PharmacyCart]
-class PharmacyCartRoute extends _i110.PageRouteInfo<void> {
-  const PharmacyCartRoute()
-      : super(
+class PharmacyCartRoute extends _i110.PageRouteInfo<PharmacyCartRouteArgs> {
+  PharmacyCartRoute({
+    _i113.Key? key,
+    _i120.Shop? pharmacy,
+  }) : super(
           PharmacyCartRoute.name,
           path: '/pharmacy-cart',
+          args: PharmacyCartRouteArgs(
+            key: key,
+            pharmacy: pharmacy,
+          ),
         );
 
   static const String name = 'PharmacyCartRoute';
+}
+
+class PharmacyCartRouteArgs {
+  const PharmacyCartRouteArgs({
+    this.key,
+    this.pharmacy,
+  });
+
+  final _i113.Key? key;
+
+  final _i120.Shop? pharmacy;
+
+  @override
+  String toString() {
+    return 'PharmacyCartRouteArgs{key: $key, pharmacy: $pharmacy}';
+  }
 }
 
 /// generated route for
@@ -4045,6 +4099,7 @@ class PharmacyAddressRoute
     _i113.Key? key,
     bool haveInsurance = false,
     bool havePrescription = false,
+    _i120.Shop? pharmacy,
   }) : super(
           PharmacyAddressRoute.name,
           path: '/pharmacy-address',
@@ -4052,6 +4107,7 @@ class PharmacyAddressRoute
             key: key,
             haveInsurance: haveInsurance,
             havePrescription: havePrescription,
+            pharmacy: pharmacy,
           ),
         );
 
@@ -4063,6 +4119,7 @@ class PharmacyAddressRouteArgs {
     this.key,
     this.haveInsurance = false,
     this.havePrescription = false,
+    this.pharmacy,
   });
 
   final _i113.Key? key;
@@ -4071,9 +4128,11 @@ class PharmacyAddressRouteArgs {
 
   final bool havePrescription;
 
+  final _i120.Shop? pharmacy;
+
   @override
   String toString() {
-    return 'PharmacyAddressRouteArgs{key: $key, haveInsurance: $haveInsurance, havePrescription: $havePrescription}';
+    return 'PharmacyAddressRouteArgs{key: $key, haveInsurance: $haveInsurance, havePrescription: $havePrescription, pharmacy: $pharmacy}';
   }
 }
 

@@ -38,7 +38,7 @@ class _OrderSuccessState extends State<OrderSuccess> {
                 onTap: () {},
                 textColor: context.colors.gray8,
                 color: context.colors.white,
-                borderColor: context.colors.borderColor,
+                borderColor: context.colors.gray8,
               ),
               DefaultButton(
                 title: "Confirm&Pay Now",

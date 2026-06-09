@@ -7,9 +7,8 @@ class PharmacyOrderProductsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:
-          const EdgeInsets.only(left: 19, right: 19, top: 17, bottom: 20).r,
-      margin: Dimens.paddingVertical10PXHorizontal20PX,
+      padding: const EdgeInsets.only(left: 19, right: 19, top: 17, bottom: 20).r,
+
       decoration: const CustomDecoration(),
       child: Column(
         children: [

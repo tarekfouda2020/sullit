@@ -18,6 +18,7 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       shipping: json['shipping'] as String,
       tax: json['tax'] as String,
       couponDiscount: json['coupon_discount'] as String,
+      shopType: json['shop_type'] as String,
       total: json['total'] as String,
       date: json['date'] as String,
       deliveryStatusConst: json['delivery_status_const'] as String,
@@ -67,6 +68,10 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       orderSourceLabel: json['order_source_label'] as String?,
       shippingProvider: json['shipping_provider'] as String?,
       shippingProviderLabel: json['shipping_provider_label'] as String?,
+      isPendingReview: json['is_pending_review'] as bool?,
+      awaitingCustomerCompletion: json['awaiting_customer_completion'] as bool?,
+      requiresPrescriptionReview: json['requires_prescription_review'] as bool?,
+      insuranceApplied: json['insurance_applied'] as bool?,
     );
 
 Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
@@ -81,6 +86,7 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'shipping': instance.shipping,
       'tax': instance.tax,
       'coupon_discount': instance.couponDiscount,
+      'shop_type': instance.shopType,
       'total': instance.total,
       'date': instance.date,
       'delivery_status_const': instance.deliveryStatusConst,
@@ -124,4 +130,8 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'order_source_label': instance.orderSourceLabel,
       'shipping_provider': instance.shippingProvider,
       'shipping_provider_label': instance.shippingProviderLabel,
+      'is_pending_review': instance.isPendingReview,
+      'awaiting_customer_completion': instance.awaitingCustomerCompletion,
+      'requires_prescription_review': instance.requiresPrescriptionReview,
+      'insurance_applied': instance.insuranceApplied,
     };

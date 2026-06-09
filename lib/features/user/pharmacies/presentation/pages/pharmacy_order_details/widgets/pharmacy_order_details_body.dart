@@ -12,30 +12,59 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
         if (state is GenericUpdateState && state.data != null) {
           return CustomRefreshIndicatorWidget(
             onRefresh: () async => await controller.refreshData(),
-            child: ListView(
-              padding: Dimens.paddingAll20PX,
+            child: Column(
               children: [
-                Gaps.vGap10,
-                Stack(
-                  alignment: Alignment.topCenter,
-                  clipBehavior: Clip.none,
-                  children: [
-                    PharmacyOrderDoneWidget(data: state.data!),
-                    SvgPicture.asset(Res.orderConfirmImage),
-                  ],
+                Expanded(
+                  child: ListView(
+                    padding: Dimens.paddingAll20PX,
+                    children: [
+                      Gaps.vGap10,
+                      Stack(
+                        alignment: Alignment.topCenter,
+                        clipBehavior: Clip.none,
+                        children: [
+                          PharmacyOrderDoneWidget(data: state.data!),
+                          SvgPicture.asset(Res.orderConfirmImage),
+                        ],
+                      ),
+                      Gaps.vGap20,
+                      Text(
+                        "Products",
+                        style: AppTextStyle.s16_w700(color: context.colors.black),
+                      ),
+                      Gaps.vGap20,
+                      PharmacyOrderProductsWidget(
+                        order: state.data!,
+                      ),
+                      Gaps.vGap20,
+                      PharmacyConfirmSummaryWidget(
+                          order: state.data!, controller: controller)
+                    ],
+                  ),
                 ),
-                Gaps.vGap20,
-                Text(
-                  "Products",
-                  style: AppTextStyle.s16_w700(color: context.colors.black),
-                ),
-                Gaps.vGap20,
-                PharmacyOrderProductsWidget(
-                  order: state.data!,
-                ),
-                Gaps.vGap20,
-                PharmacyConfirmSummaryWidget(
-                    order: state.data!, controller: controller)
+                CustomBottomSafeAreaWidget(
+                  child: Column(
+                    spacing: 12,
+                    children: [
+                      if(state.data?.availableCancelOrder == true)
+                      DefaultButton(
+                        title: "Cancel Order",
+                        onTap: () {},
+                        textColor: context.colors.gray8,
+                        color: context.colors.white,
+                        borderColor: context.colors.borderColor,
+                      ),
+                      if(state.data?.awaitingCustomerCompletion == true && state.data?.isPendingReview == false)
+                      DefaultButton(
+                        title: "Confirm&Pay Now",
+                        onTap: () {},
+                        textColor: context.colors.white,
+                        color: context.colors.green,
+                        borderColor: context.colors.green,
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           );

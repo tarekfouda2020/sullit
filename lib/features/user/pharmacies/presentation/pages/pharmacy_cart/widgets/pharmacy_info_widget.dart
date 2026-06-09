@@ -25,11 +25,11 @@ class PharmacyCartInfoWidget extends StatelessWidget {
             spacing: 8,
             children: [
               CachedImage(
-                url:
-                    "https://specialist-pharmacy.com/wp-content/uploads/2021/05/specialist-pharmacy-compounding-pharmacy-mobile.jpg",
+                url: controller.pharmacy?.sliders?.first ?? "" ,
                 width: 40,
                 height: 33,
                 borderRadius: Dimens.borderRadius8PX,
+                fit: BoxFit.fill,
               ),
               Expanded(
                 child: Text(

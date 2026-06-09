@@ -5,7 +5,9 @@ class MyOrdersController {
       PagingController(firstPageKey: 1);
   int pageSize = 12;
 
-  MyOrdersController() {
+  final bool isPharmacy;
+
+  MyOrdersController({this.isPharmacy = false}) {
     getPurchasingHistory(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
       getPurchasingHistory(pageKey);
@@ -13,7 +15,7 @@ class MyOrdersController {
   }
 
   Future<void> getPurchasingHistory(int page, {bool refresh = true}) async {
-    var params = _historyParams(page, refresh);
+    var params = _myOrdersParams(page, refresh);
     var data = await GetPurchasingHistory().call(params);
     final isLastPage = data.length < pageSize;
     if (page == 1) {
@@ -28,12 +30,31 @@ class MyOrdersController {
   }
 
   Future<void> routeToOrderDetails(BuildContext context, Orders order) async {
-    var result = await AutoRouter.of(context)
-        .push(OrderDetailsPageRoute(isReturnedOrder: false, order: order));
-    if (result == true) {
-      getPurchasingHistory(1);
+    if(order.isPharmacy){
+     var   result =  await AutoRouter.of(context).push(PharmacyOrderDetailsRoute(id: order.id));
+     if (result == true) {
+       getPurchasingHistory(1);
+     }
+    }else{
+     var result = await AutoRouter.of(context)
+          .push(OrderDetailsPageRoute(isReturnedOrder: false, order: order));
+     if (result == true) {
+       getPurchasingHistory(1);
+     }
     }
+
   }
+
+
+
+  MyOrdersParams _myOrdersParams(int page, bool refresh){
+    return MyOrdersParams(
+      paginateParams: _historyParams(page, refresh),
+      type: isPharmacy ? OrderTypeEnum.pharmacy : OrderTypeEnum.general,
+    );
+  }
+
+
 
   GenericPaginateParams _historyParams(int page, bool refresh) {
     return GenericPaginateParams(

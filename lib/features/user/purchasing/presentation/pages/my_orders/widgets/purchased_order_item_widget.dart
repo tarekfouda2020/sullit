@@ -62,7 +62,7 @@ class MyOrderItemWidget extends StatelessWidget {
                 )
               ],
             ),
-            if (order.showUnPaidOnlineOrderActions)
+            if (order.showUnPaidOnlineOrderActions && order.isPharmacy == false)
               Padding(
                 padding: const EdgeInsets.only(top: 16),
                 child: PayCancelOrderButtonsWidget(

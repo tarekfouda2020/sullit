@@ -6,6 +6,7 @@ import 'package:flutter_tdd/features/user/category/domain/entities/generic_pagin
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/reviews.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/data_sources/purchasing_data_sources.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/entities/my_orders_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/return_order_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/send_review_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
@@ -22,7 +23,7 @@ class ImplPurchasingRepository extends PurchasingRepository with ModelToDomain {
 
   @override
   Future<Either<Failure, List<Orders>>> getPurchaseHistory(
-      GenericPaginateParams param) async {
+      MyOrdersParams param) async {
     var result = await dataSource.getPurchaseHistory(param);
     return toDomainResultList(result);
   }

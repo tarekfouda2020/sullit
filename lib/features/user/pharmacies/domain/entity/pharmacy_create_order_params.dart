@@ -7,7 +7,7 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_chec
 import '../../../cart/domain/models/delivery_instruction_model.dart';
 
 class PharmacyCreateOrderParams {
-  final String paymentOption;
+  final String? paymentOption;
 
   final List<PharmacyShippingInfo> shippingInfo;
 
@@ -28,7 +28,7 @@ class PharmacyCreateOrderParams {
   final String? pickerNotes;
 
   PharmacyCreateOrderParams({
-    required this.paymentOption,
+     this.paymentOption,
     required this.shippingInfo,
     this.addressId,
     this.applyLoyaltyPoints,
@@ -45,7 +45,7 @@ class PharmacyCreateOrderParams {
 
   Map<String, dynamic> toJson() {
     return {
-      'payment_option': paymentOption,
+      if(paymentOption != null) 'payment_option': paymentOption,
       if(shippingInfo.isNotEmpty)
       'shipping_info': jsonEncode(
         shippingInfo.map((e) => e.toJson()).toList(),

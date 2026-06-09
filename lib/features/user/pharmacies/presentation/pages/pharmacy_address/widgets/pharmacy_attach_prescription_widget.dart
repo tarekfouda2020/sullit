@@ -24,7 +24,7 @@ class PharmacyAttachPrescriptionWidget extends StatelessWidget {
         GestureDetector(
           onTap: () => controller.onPickPrescriptionFile(fileCubit, context),
           child: Container(
-            width: double.infinity,
+            alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(
               vertical: Dimens.dp40,
               horizontal: Dimens.dp20,

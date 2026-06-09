@@ -3,20 +3,29 @@ part of 'pharmacy_address_imports.dart';
 class PharmacyAddress extends StatefulWidget {
   final bool haveInsurance;
   final bool havePrescription;
-  const PharmacyAddress(
-      {super.key, this.haveInsurance = false, this.havePrescription = false});
+  final Shop? pharmacy;
+  const PharmacyAddress({
+    super.key,
+    this.haveInsurance = false,
+    this.havePrescription = false,
+    this.pharmacy,
+  });
 
   @override
   State<PharmacyAddress> createState() => _PharmacyAddressState();
 }
 
 class _PharmacyAddressState extends State<PharmacyAddress> {
- late final PharmacyAddressController controller;
+  late final PharmacyAddressController controller;
 
   @override
   void initState() {
     super.initState();
-    controller  = PharmacyAddressController(haveInsurance: widget.haveInsurance , havePrescription: widget.havePrescription);
+    controller = PharmacyAddressController(
+        haveInsurance: widget.haveInsurance,
+        havePrescription: widget.havePrescription,
+      pharmacy: widget.pharmacy
+    );
   }
 
   @override
@@ -32,6 +41,10 @@ class _PharmacyAddressState extends State<PharmacyAddress> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if(widget.haveInsurance) ...[
+              Gaps.vGap20,
+              SelectInsuranceCompanyWidget(controller: controller)
+            ],
             if (widget.haveInsurance) ...[
               Gaps.vGap20,
               PharmacyAttachPrescriptionWidget(

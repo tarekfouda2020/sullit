@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instruction_model.dart';
+import 'package:flutter_tdd/features/user/purchasing/data/enums/order_type_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/enum/track_order_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_discount_domain.dart';
@@ -51,6 +52,7 @@ class Orders extends BaseDomainModel {
   bool loyaltyPointsApplied;
   int loyaltyPoints;
   String loyaltyPointsValue;
+  String shopType;
   int expectedLoyaltyPoints;
   String environmentFees;
   String? driverNotes;
@@ -61,6 +63,10 @@ class Orders extends BaseDomainModel {
   OrderDriverDomainModel? driverModel;
   List<DeliveryInstructionModel>? instructions;
   List<OrderDiscountDomain>? orderDiscounts;
+  bool? isPendingReview;
+ bool? awaitingCustomerCompletion;
+   bool? requiresPrescriptionReview;
+  bool? insuranceApplied;
 
   Orders({
     required this.id,
@@ -84,6 +90,7 @@ class Orders extends BaseDomainModel {
     required this.availableCancelOrder,
     required this.additionalInfo,
     required this.paymentMethod,
+    required this.shopType,
     required this.paymentMethodConst,
     required this.shippingMethod,
     required this.orderStatus,
@@ -114,6 +121,10 @@ class Orders extends BaseDomainModel {
     this.orderSourceLabel,
     this.shippingProvider,
     this.shippingProviderLabel,
+    this.isPendingReview,
+    this.awaitingCustomerCompletion,
+    this.requiresPrescriptionReview,
+    this.insuranceApplied,
   });
 
   int totalItemsCount() => orderDetails.fold(
@@ -195,4 +206,18 @@ class Orders extends BaseDomainModel {
 
   bool get showUnPaidOnlineOrderActions =>
       isPaymentOnline && !isPaid && !isCanceled;
+
+
+
+   OrderTypeEnum orderTypeEnum() {
+     if(shopType == "pharmacy") {
+       return OrderTypeEnum.pharmacy ;
+     }else{
+       return OrderTypeEnum.general ;
+     }
+   }
+
+   bool get  isPharmacy => orderTypeEnum() == OrderTypeEnum.pharmacy;
+
+
 }

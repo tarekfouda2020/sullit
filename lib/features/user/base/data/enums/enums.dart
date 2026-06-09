@@ -1,6 +1,7 @@
 enum MoreRoutes {
   dashboard,
   purchasedProducts,
+  pharmacyPurchasedProducts,
   returnOrders,
   downloads,
   blogs,

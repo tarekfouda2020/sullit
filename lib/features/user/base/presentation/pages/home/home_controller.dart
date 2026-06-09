@@ -167,7 +167,7 @@ class HomeController {
       return;
     }
     if (isAuth) {
-      GenericPaginateParams params = _historyParams(refresh);
+      MyOrdersParams params = _myOrdersParams(refresh);
       List<Orders> data = await GetPurchasingHistory().call(params);
       Set<Orders> unPaidOrder =
           data.where((element) => element.showUnPaidOnlineOrderActions).toSet();
@@ -297,11 +297,21 @@ class HomeController {
     return index != -1 ? index : 0;
   }
 
+
+
+  MyOrdersParams _myOrdersParams(bool refresh){
+    return MyOrdersParams(
+      paginateParams: _historyParams( refresh),
+      type:  OrderTypeEnum.general,
+    );
+  }
+
+
   GenericPaginateParams _historyParams(bool refresh) {
     return GenericPaginateParams(
       currentPage: 1,
       refresh: refresh,
-      pageSize: 12,
+      pageSize: AppConstants.instance.paginationLimit,
     );
   }
 

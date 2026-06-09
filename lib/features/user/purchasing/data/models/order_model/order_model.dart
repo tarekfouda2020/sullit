@@ -26,6 +26,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     required String shipping,
     required String tax,
     @JsonKey(name: 'coupon_discount') required String couponDiscount,
+    @JsonKey(name: 'shop_type') required String shopType,
     required String total,
     required String date,
     @JsonKey(name: 'delivery_status_const') required String deliveryStatusConst,
@@ -72,6 +73,11 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'order_source_label') String? orderSourceLabel,
     @JsonKey(name: 'shipping_provider') String? shippingProvider,
     @JsonKey(name: 'shipping_provider_label') String? shippingProviderLabel,
+    @JsonKey(name: 'is_pending_review') bool? isPendingReview,
+    @JsonKey(name: 'awaiting_customer_completion') bool? awaitingCustomerCompletion,
+    @JsonKey(name: 'requires_prescription_review') bool? requiresPrescriptionReview,
+    @JsonKey(name: 'insurance_applied') bool? insuranceApplied,
+
   }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) =>
@@ -131,6 +137,11 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       orderSourceLabel: orderSourceLabel,
       shippingProvider: shippingProvider,
       shippingProviderLabel: shippingProviderLabel,
+      shopType: shopType,
+      awaitingCustomerCompletion: awaitingCustomerCompletion,
+      isPendingReview: isPendingReview,
+      requiresPrescriptionReview: requiresPrescriptionReview,
+      insuranceApplied: insuranceApplied,
     );
   }
 }

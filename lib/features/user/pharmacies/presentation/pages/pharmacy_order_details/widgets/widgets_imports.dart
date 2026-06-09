@@ -11,8 +11,10 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
+import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/core/widgets/custom_refresh_indicator_widget.dart';
+import 'package:flutter_tdd/core/widgets/custom_safe_are.dart';
 import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/core/widgets/invoice_summary_card_widget.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
@@ -24,6 +26,7 @@ import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/widgets/order_details_widgets_imports.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:injectable/injectable.dart';
 
 part 'pharmacy_order_details_body.dart';
 part 'pharmacy_order_done_widget.dart';

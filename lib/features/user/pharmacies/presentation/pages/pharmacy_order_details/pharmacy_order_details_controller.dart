@@ -11,11 +11,21 @@ class PharmacyOrderDetailsController {
   final int id;
 
   PharmacyOrderDetailsController(this.id) {
-
+    getOrderDetails(id, refresh: false);
+    getOrderDetails(id);
     getOrderFees(fromRemote: false);
     getOrderFees();
     getLoyaltyPointsBalance(refresh: false);
     getLoyaltyPointsBalance();
+  }
+
+  Future<void> getOrderDetails(int id, {bool refresh = true}) async {
+    GenericParams params = GenericParams(id: id, refresh: refresh);
+    await GetOrderDetails()(params).then((value) {
+      if (value != null) {
+        orderDetailsBloc.onUpdateData(value);
+      }
+    });
   }
 
   Future<void> getOrderFees({bool fromRemote = true}) async {
@@ -108,9 +118,6 @@ class PharmacyOrderDetailsController {
   }
 
   Future<void> refreshData() async {
-    var data = await GetOrderDetails().call(GenericParams(id: id));
-    if (data != null) {
-      orderDetailsBloc.onUpdateData(data);
-    }
+    await getOrderDetails(id);
   }
 }

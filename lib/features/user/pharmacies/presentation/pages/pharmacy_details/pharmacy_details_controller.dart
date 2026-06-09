@@ -326,7 +326,7 @@ class PharmacyDetailsController {
 
   Future<void> onPressViewCart(BuildContext context) async {
     if (neededAmount() == 0) {
-      var result = await AutoRouter.of(context).push(const PharmacyCartRoute());
+      var result = await AutoRouter.of(context).push( PharmacyCartRoute(pharmacy: pharmacyBloc.state.data));
       if (result is CartDomainModel) {
         cartItemsBloc.onUpdateData(result);
         productsPagingController.itemList = [

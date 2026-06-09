@@ -4,14 +4,18 @@ class InsuranceItemWidget extends StatelessWidget {
   ///Insurance
   final InsuranceCompany model;
   final bool enableSelect;
-  final void Function()? onTap;
+  final void Function(InsuranceCompany item)? onTap;
   const InsuranceItemWidget(
       {super.key, required this.model, this.enableSelect = false, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        if(onTap != null){
+          onTap!.call(model);
+        }
+      },
       child: Container(
         height: 72,
         margin: const EdgeInsets.only(bottom: Dimens.dp15),

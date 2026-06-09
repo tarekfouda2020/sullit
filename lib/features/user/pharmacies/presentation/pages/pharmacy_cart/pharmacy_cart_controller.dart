@@ -8,6 +8,11 @@ class PharmacyCartController {
 
   final GenericBloc<bool> haveInsuranceCubit = GenericBloc<bool>(false);
 
+
+  final Shop? pharmacy;
+
+  PharmacyCartController({this.pharmacy});
+
   Future<void> getData() async {
     getCartItems(refresh: false);
     getCartItems();
@@ -188,9 +193,9 @@ class PharmacyCartController {
         return;
       }
       AutoRouter.of(context).push(PharmacyAddressRoute(
-        // haveInsurance: haveInsuranceCubit.state.data || cartItemRequiredInsurance,
-        haveInsurance: cartItemRequiredInsurance,
+        haveInsurance: haveInsuranceCubit.state.data && cartItemRequiredInsurance,
         havePrescription: havePrescription,
+        pharmacy: pharmacy
       ));
     } else {
       CustomToast.showAuthDialog(context);
@@ -205,5 +210,5 @@ class PharmacyCartController {
   bool get cartItemRequiredInsurance =>
       cartItemsBloc.state.data.pharmacyItems
           ?.any((element) => element.insuranceEligible == true) ==
-      true || haveInsuranceCubit.state.data;
+      true && haveInsuranceCubit.state.data;
 }

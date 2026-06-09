@@ -23,35 +23,7 @@ class _PharmacyOrderDetailsState extends State<PharmacyOrderDetails> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: const DefaultAppBar(title: "Order Details"),
-      body: Column(
-        spacing: 30,
-        children: [
-          Expanded(
-            child: PharmacyOrderDetailsBody(controller: controller),
-          ),
-          CustomBottomSafeAreaWidget(
-            child: Column(
-              spacing: 12,
-              children: [
-                DefaultButton(
-                  title: "Cancel Order",
-                  onTap: () {},
-                  textColor: context.colors.gray8,
-                  color: context.colors.white,
-                  borderColor: context.colors.borderColor,
-                ),
-                DefaultButton(
-                  title: "Confirm&Pay Now",
-                  onTap: () {},
-                  textColor: context.colors.white,
-                  color: context.colors.green,
-                  borderColor: context.colors.green,
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
+      body: PharmacyOrderDetailsBody(controller: controller),
     );
   }
 }

@@ -21,6 +21,7 @@ import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.d
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/clear_cart.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_cart_items.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/pharmacy_cart/widgets/widgets_imports.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/profile/presentation/pages/profile/widgets/profile_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 

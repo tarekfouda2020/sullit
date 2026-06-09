@@ -8,7 +8,9 @@ class PharmacyConfirmSummaryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InvoiceSummaryCard(margin: Dimens.paddingHorizontal20PX, children: [
+    return InvoiceSummaryCard(
+
+        children: [
       BuildSummaryHeader(
         title: tr('subTotal'),
         details: orderSummary.subTotal.toString(),
@@ -90,7 +92,7 @@ class PharmacyConfirmSummaryWidget extends StatelessWidget {
               ),
             ],
           )),
-      if (!context.isShareHolder)
+      if (!context.isShareHolder && orderSummary.summary!.expectedLoyaltyPoints!= null)
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

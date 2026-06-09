@@ -113,8 +113,12 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                       ),
                       Gaps.vGap10,
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+                          Expanded(
+                            child: Text(orderDetails.product?.unit ?? "",
+                            style: AppTextStyle.s14_w400(color: context.colors.textColor),
+                            ),
+                          ),
                           Text(
                             tr("total"),
                             style: AppTextStyle.s14_w400(
