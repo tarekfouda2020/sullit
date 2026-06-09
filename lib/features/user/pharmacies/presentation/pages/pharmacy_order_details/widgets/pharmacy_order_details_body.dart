@@ -57,7 +57,7 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
                       if(state.data?.awaitingCustomerCompletion == true && state.data?.isPendingReview == false)
                       DefaultButton(
                         title: "Confirm&Pay Now",
-                        onTap: () {},
+                        onTap: () => controller.routeToCheckout(context),
                         textColor: context.colors.white,
                         color: context.colors.green,
                         borderColor: context.colors.green,

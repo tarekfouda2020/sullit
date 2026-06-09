@@ -24,6 +24,10 @@ mixin _$OrderSummaryModel {
   SummaryModel? get orderSummary => throw _privateConstructorUsedError;
   @JsonKey(name: 'section_orders')
   List<OrderModel>? get sectionOrders => throw _privateConstructorUsedError;
+
+  /// return with pharmacy
+  @JsonKey(name: 'order')
+  OrderModel? get orderDetails => throw _privateConstructorUsedError;
   @JsonKey(name: 'transaction_url')
   String? get transactionUrl => throw _privateConstructorUsedError;
 
@@ -42,9 +46,11 @@ abstract class $OrderSummaryModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'order_summary') SummaryModel? orderSummary,
       @JsonKey(name: 'section_orders') List<OrderModel>? sectionOrders,
+      @JsonKey(name: 'order') OrderModel? orderDetails,
       @JsonKey(name: 'transaction_url') String? transactionUrl});
 
   $SummaryModelCopyWith<$Res>? get orderSummary;
+  $OrderModelCopyWith<$Res>? get orderDetails;
 }
 
 /// @nodoc
@@ -62,6 +68,7 @@ class _$OrderSummaryModelCopyWithImpl<$Res, $Val extends OrderSummaryModel>
   $Res call({
     Object? orderSummary = freezed,
     Object? sectionOrders = freezed,
+    Object? orderDetails = freezed,
     Object? transactionUrl = freezed,
   }) {
     return _then(_value.copyWith(
@@ -73,6 +80,10 @@ class _$OrderSummaryModelCopyWithImpl<$Res, $Val extends OrderSummaryModel>
           ? _value.sectionOrders
           : sectionOrders // ignore: cast_nullable_to_non_nullable
               as List<OrderModel>?,
+      orderDetails: freezed == orderDetails
+          ? _value.orderDetails
+          : orderDetails // ignore: cast_nullable_to_non_nullable
+              as OrderModel?,
       transactionUrl: freezed == transactionUrl
           ? _value.transactionUrl
           : transactionUrl // ignore: cast_nullable_to_non_nullable
@@ -91,6 +102,18 @@ class _$OrderSummaryModelCopyWithImpl<$Res, $Val extends OrderSummaryModel>
       return _then(_value.copyWith(orderSummary: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OrderModelCopyWith<$Res>? get orderDetails {
+    if (_value.orderDetails == null) {
+      return null;
+    }
+
+    return $OrderModelCopyWith<$Res>(_value.orderDetails!, (value) {
+      return _then(_value.copyWith(orderDetails: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -104,10 +127,13 @@ abstract class _$$_OrderSummaryModelCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'order_summary') SummaryModel? orderSummary,
       @JsonKey(name: 'section_orders') List<OrderModel>? sectionOrders,
+      @JsonKey(name: 'order') OrderModel? orderDetails,
       @JsonKey(name: 'transaction_url') String? transactionUrl});
 
   @override
   $SummaryModelCopyWith<$Res>? get orderSummary;
+  @override
+  $OrderModelCopyWith<$Res>? get orderDetails;
 }
 
 /// @nodoc
@@ -123,6 +149,7 @@ class __$$_OrderSummaryModelCopyWithImpl<$Res>
   $Res call({
     Object? orderSummary = freezed,
     Object? sectionOrders = freezed,
+    Object? orderDetails = freezed,
     Object? transactionUrl = freezed,
   }) {
     return _then(_$_OrderSummaryModel(
@@ -134,6 +161,10 @@ class __$$_OrderSummaryModelCopyWithImpl<$Res>
           ? _value._sectionOrders
           : sectionOrders // ignore: cast_nullable_to_non_nullable
               as List<OrderModel>?,
+      orderDetails: freezed == orderDetails
+          ? _value.orderDetails
+          : orderDetails // ignore: cast_nullable_to_non_nullable
+              as OrderModel?,
       transactionUrl: freezed == transactionUrl
           ? _value.transactionUrl
           : transactionUrl // ignore: cast_nullable_to_non_nullable
@@ -149,6 +180,7 @@ class _$_OrderSummaryModel extends _OrderSummaryModel {
   const _$_OrderSummaryModel(
       {@JsonKey(name: 'order_summary') this.orderSummary,
       @JsonKey(name: 'section_orders') final List<OrderModel>? sectionOrders,
+      @JsonKey(name: 'order') this.orderDetails,
       @JsonKey(name: 'transaction_url') this.transactionUrl})
       : _sectionOrders = sectionOrders,
         super._();
@@ -170,13 +202,17 @@ class _$_OrderSummaryModel extends _OrderSummaryModel {
     return EqualUnmodifiableListView(value);
   }
 
+  /// return with pharmacy
+  @override
+  @JsonKey(name: 'order')
+  final OrderModel? orderDetails;
   @override
   @JsonKey(name: 'transaction_url')
   final String? transactionUrl;
 
   @override
   String toString() {
-    return 'OrderSummaryModel(orderSummary: $orderSummary, sectionOrders: $sectionOrders, transactionUrl: $transactionUrl)';
+    return 'OrderSummaryModel(orderSummary: $orderSummary, sectionOrders: $sectionOrders, orderDetails: $orderDetails, transactionUrl: $transactionUrl)';
   }
 
   @override
@@ -188,14 +224,20 @@ class _$_OrderSummaryModel extends _OrderSummaryModel {
                 other.orderSummary == orderSummary) &&
             const DeepCollectionEquality()
                 .equals(other._sectionOrders, _sectionOrders) &&
+            (identical(other.orderDetails, orderDetails) ||
+                other.orderDetails == orderDetails) &&
             (identical(other.transactionUrl, transactionUrl) ||
                 other.transactionUrl == transactionUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, orderSummary,
-      const DeepCollectionEquality().hash(_sectionOrders), transactionUrl);
+  int get hashCode => Object.hash(
+      runtimeType,
+      orderSummary,
+      const DeepCollectionEquality().hash(_sectionOrders),
+      orderDetails,
+      transactionUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -216,6 +258,7 @@ abstract class _OrderSummaryModel extends OrderSummaryModel {
   const factory _OrderSummaryModel(
       {@JsonKey(name: 'order_summary') final SummaryModel? orderSummary,
       @JsonKey(name: 'section_orders') final List<OrderModel>? sectionOrders,
+      @JsonKey(name: 'order') final OrderModel? orderDetails,
       @JsonKey(name: 'transaction_url')
       final String? transactionUrl}) = _$_OrderSummaryModel;
   const _OrderSummaryModel._() : super._();
@@ -229,6 +272,11 @@ abstract class _OrderSummaryModel extends OrderSummaryModel {
   @override
   @JsonKey(name: 'section_orders')
   List<OrderModel>? get sectionOrders;
+  @override
+
+  /// return with pharmacy
+  @JsonKey(name: 'order')
+  OrderModel? get orderDetails;
   @override
   @JsonKey(name: 'transaction_url')
   String? get transactionUrl;

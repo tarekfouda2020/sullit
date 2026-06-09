@@ -1242,6 +1242,7 @@ class AppRouter extends _i110.RootStackRouter {
           key: args.key,
           shipping: args.shipping,
           checkoutParams: args.checkoutParams,
+          confirmOrderId: args.confirmOrderId,
         ),
         opaque: true,
       );
@@ -4211,8 +4212,9 @@ class PharmacyCheckOutRoute
     extends _i110.PageRouteInfo<PharmacyCheckOutRouteArgs> {
   PharmacyCheckOutRoute({
     _i113.Key? key,
-    required _i115.Shipping shipping,
+    required _i115.Shipping? shipping,
     _i124.PharmacyCheckoutParams? checkoutParams,
+    int? confirmOrderId,
   }) : super(
           PharmacyCheckOutRoute.name,
           path: '/pharmacy-check-out',
@@ -4220,6 +4222,7 @@ class PharmacyCheckOutRoute
             key: key,
             shipping: shipping,
             checkoutParams: checkoutParams,
+            confirmOrderId: confirmOrderId,
           ),
         );
 
@@ -4231,17 +4234,20 @@ class PharmacyCheckOutRouteArgs {
     this.key,
     required this.shipping,
     this.checkoutParams,
+    this.confirmOrderId,
   });
 
   final _i113.Key? key;
 
-  final _i115.Shipping shipping;
+  final _i115.Shipping? shipping;
 
   final _i124.PharmacyCheckoutParams? checkoutParams;
 
+  final int? confirmOrderId;
+
   @override
   String toString() {
-    return 'PharmacyCheckOutRouteArgs{key: $key, shipping: $shipping, checkoutParams: $checkoutParams}';
+    return 'PharmacyCheckOutRouteArgs{key: $key, shipping: $shipping, checkoutParams: $checkoutParams, confirmOrderId: $confirmOrderId}';
   }
 }
 

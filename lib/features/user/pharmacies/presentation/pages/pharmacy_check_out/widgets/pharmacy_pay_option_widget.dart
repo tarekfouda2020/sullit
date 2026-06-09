@@ -2,9 +2,7 @@ part of 'pharmacy_check_out_widgets_imports.dart';
 
 class PharmacyPayOptionWidget extends StatelessWidget {
   final PharmacyCheckOutController controller;
-  final Shipping shipping;
-  const PharmacyPayOptionWidget(
-      {super.key, required this.controller, required this.shipping});
+  const PharmacyPayOptionWidget({super.key, required this.controller,});
 
   @override
   Widget build(BuildContext context) {

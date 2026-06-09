@@ -39,6 +39,8 @@ class PharmacyCheckOutController {
 
   final PharmacyCheckoutParams? checkoutParams;
 
+  final int? confirmOrderId;
+
   final List<DriverTipsModel> _tipsList = [
     DriverTipsModel(amount: "2", isSelect: true),
     DriverTipsModel(amount: "3"),
@@ -46,9 +48,9 @@ class PharmacyCheckOutController {
     DriverTipsModel(amount: "custom", isCustom: true),
   ];
 
-  PharmacyCheckOutController(Shipping shipping, this.checkoutParams) {
+  PharmacyCheckOutController(Shipping? shipping, this.checkoutParams, this.confirmOrderId) {
     initData(shipping);
-    if (shipping.isAdminDiscount == true) {
+    if (shipping?.isAdminDiscount == true) {
       calculateDiscount();
     }
     getLoyaltyPointsBalance(refresh: false);
@@ -62,8 +64,35 @@ class PharmacyCheckOutController {
   }
 
 
-  Future<void> initData(Shipping shipping) async {
-    shippingBloc.onUpdateData(shipping);
+  Future<void> initData(Shipping? shipping) async {
+    if(shipping!= null){
+      shippingBloc.onUpdateData(shipping);
+    } else if(confirmOrderId != null){
+      getSummaryData();
+    }
+  }
+
+
+
+  Future<void> getSummaryData()async{
+    var params = _confirmParams(confirmOrderId!);
+    var data = await GetPharmacyConfirmSummary().call(params);
+    if(data!= null){
+      shippingBloc.onUpdateData(
+          Shipping(
+              summary: data.summary,
+              paymentOption: []
+          )
+      );
+    }
+  }
+
+  PharmacyConfirmSummaryParams _confirmParams(int id){
+    return PharmacyConfirmSummaryParams(
+      couponCode: coupon.text ,
+      applyLoyaltyPoints: applyPointsSwitchCubit.state.data ? 1 : 0,
+      id: id
+    );
   }
 
   void initDataFromLastRoute(
@@ -114,10 +143,14 @@ class PharmacyCheckOutController {
 
   Future<void> applyCoupon() async {
     if (couponFormKey.currentState!.validate()) {
-      checkoutParams?.giftCardCode = null;
-      checkoutParams?.applyLoyaltyPoints = null;
-      checkoutParams?.couponCode = coupon.text;
-      await getRemoteData();
+      if (confirmOrderId != null) {
+        await getSummaryData();
+      } else {
+        checkoutParams?.giftCardCode = null;
+        checkoutParams?.applyLoyaltyPoints = null;
+        checkoutParams?.couponCode = coupon.text;
+        await getRemoteData();
+      }
       if (shippingBloc.state.data?.summary.couponApplied == true) {
         CustomToast.showSimpleToast(msg: tr("couponApplied"), type: ToastType.success);
       }
@@ -125,18 +158,13 @@ class PharmacyCheckOutController {
   }
 
   Future<void> createOrder(BuildContext context) async {
-    // if(!_isExistMinimumAmount){
-    //   CustomToast.showSimpleToast(
-    //     msg: "${tr("addPurchases")}\n${shippingBloc.state.data?.summary.minimumOrderAmountAmount} ${tr("to_create_order")} ",
-    //     // msg: "${shippingBloc.state.data?.summary.minimumOrderAmountMsg}",
-    //     type: ToastType.error,
-    //   );
-    //   return ;
-    // }
     if (conditionsCubit.state.data) {
-      // _checkPayMethodSel();
       if (isWalletSelectedAndBalanceEnough()) {
-        submitToCreateOrder();
+        if (confirmOrderId != null) {
+          submitConfirmOrder(context);
+        } else {
+          submitToCreateOrder();
+        }
       }
     } else {
       CustomToast.showSimpleToast(
@@ -144,6 +172,38 @@ class PharmacyCheckOutController {
         type: ToastType.error,
       );
     }
+  }
+
+  Future<void> submitConfirmOrder(BuildContext ctx) async {
+    PharmacyConfirmOrderDomainModel? data =
+        await ConfirmPharmacyOrder().call(_confirmOrderParams());
+    if (data != null) {
+      if (data.transactionUrl != null) {
+        goToPay(data.transactionUrl!, ctx);
+      } else {
+        _onPharmacyOrderConfirmed(ctx, data);
+      }
+    }
+  }
+
+  PharmacyConfirmOrderParams _confirmOrderParams() {
+    return PharmacyConfirmOrderParams(
+      orderId: confirmOrderId!,
+      paymentOption: paymentOptionsBloc.state.data
+          .firstWhere((element) => element.selected)
+          .paymentTypeKey,
+      wallet: isWalletSelected.state.data ? 1 : 0,
+      applyLoyaltyPoints: applyPointsSwitchCubit.state.data ? 1 : 0,
+      couponCode: coupon.text.isNotEmpty ? coupon.text : null,
+      instructions: _selectedInstructions(),
+      driverNotes: driverNotesCtr.text.trim(),
+      pickerNotes: pickerNotesCtr.text.trim(),
+    );
+  }
+
+  void _onPharmacyOrderConfirmed(BuildContext context, PharmacyConfirmOrderDomainModel data) {
+    CustomToast.showSimpleToast(msg: tr('thanksForYourOrder'), type: ToastType.success);
+    AutoRouter.of(context).push(PharmacyOrderDetailsRoute(id: data.id ?? confirmOrderId!));
   }
 
 
@@ -348,15 +408,23 @@ class PharmacyCheckOutController {
   }
 
   Future<void> applyLoyaltyPoint() async {
-    checkoutParams?.couponCode = null;
-    checkoutParams?.giftCardCode = null;
-    checkoutParams?.applyLoyaltyPoints = 1;
-    await getRemoteData();
+    if (confirmOrderId != null) {
+      await getSummaryData();
+    } else {
+      checkoutParams?.couponCode = null;
+      checkoutParams?.giftCardCode = null;
+      checkoutParams?.applyLoyaltyPoints = 1;
+      await getRemoteData();
+    }
   }
 
   Future<void> removeLoyaltyPoint() async {
-    checkoutParams?.applyLoyaltyPoints = null;
-    await getRemoteData();
+    if (confirmOrderId != null) {
+      await getSummaryData();
+    } else {
+      checkoutParams?.applyLoyaltyPoints = null;
+      await getRemoteData();
+    }
   }
 
   Future<void> switchApplyPoints() async {
@@ -395,10 +463,14 @@ class PharmacyCheckOutController {
 
     if (giftCardFormKey.currentState!.validate()) {
       FocusScope.of(context).unfocus();
-      checkoutParams?.couponCode = null;
-      checkoutParams?.applyLoyaltyPoints = null;
-      checkoutParams?.giftCardCode = giftCardCode.text;
-      await getRemoteData();
+      if (confirmOrderId != null) {
+        await getSummaryData();
+      } else {
+        checkoutParams?.couponCode = null;
+        checkoutParams?.applyLoyaltyPoints = null;
+        checkoutParams?.giftCardCode = giftCardCode.text;
+        await getRemoteData();
+      }
       if (shippingBloc.state.data?.summary.appliedGiftCard != null) {
         CustomToast.showSimpleToast(msg: tr("giftCardApplied",),
           type: ToastType.success,
@@ -408,8 +480,12 @@ class PharmacyCheckOutController {
   }
 
   Future<void> removeCoupon() async {
-    checkoutParams?.couponCode = null;
-    await getRemoteData();
+    if (confirmOrderId != null) {
+      await getSummaryData();
+    } else {
+      checkoutParams?.couponCode = null;
+      await getRemoteData();
+    }
   }
 
   void navigateToHome(BuildContext context) =>

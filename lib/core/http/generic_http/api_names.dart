@@ -266,4 +266,8 @@ class ApiNames {
   static const String cartSummary = "cart/summary";
 
   static const String createPharmacyOrder = "pharmacy-orders";
+
+  static String pharmacyConfirmSummary(int id) => "pharmacy-orders/$id/confirm-summary";
+
+  static String pharmacyConfirmOrder(int id) => "pharmacy-orders/$id/confirm";
 }

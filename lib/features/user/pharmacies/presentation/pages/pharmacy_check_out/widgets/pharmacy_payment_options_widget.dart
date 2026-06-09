@@ -16,13 +16,13 @@ class PharmacyPaymentOptionsWidget extends StatelessWidget {
           boxBorder: Border.all(color: context.colors.borderColor)),
       child: Column(
         children: [
-          PharmacyPayOptionWidget(controller: controller, shipping: shipping),
+          PharmacyPayOptionWidget(controller: controller),
           Gaps.vGap5,
           Divider(color: context.colors.softGray),
           Gaps.vGap8,
           PharmacyWalletPaymentWidget(shipping: shipping, controller: controller),
           Gaps.vGap10,
-          if(shipping.summary.insuranceEligible == false && !context.isShareHolder)...[
+          if(shipping.summary.insuranceEligible == false && shipping.summary.prescriptionRequired == false && !context.isShareHolder  )...[
             Divider(color: context.colors.softGray),
             Gaps.vGap7,
             PharmacyApplyGiftCardWidget(controller: controller),

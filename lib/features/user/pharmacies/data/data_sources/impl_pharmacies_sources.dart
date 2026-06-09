@@ -8,6 +8,7 @@ import 'package:flutter_tdd/core/http/models/http_request_model.dart';
 import 'package:flutter_tdd/features/user/best_sellers/domain/entity/shop_category_params.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/data_sources/pharmacies_sources.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_checkout_summary_model/pharmacy_checkout_summary_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_create_order_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/shop_id_params.dart';
 import 'package:flutter_tdd/features/user/products/data/models/shop_model/shop_model.dart';
@@ -15,6 +16,9 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharamcy_ship
 import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_shipping_model/pharmacy_shipping_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/shipping_model/shipping_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_check_out_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_confirm_summary_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_confirm_order_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_confirm_order_model/pharmacy_confirm_order_model.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: PharmaciesSources)
@@ -100,6 +104,36 @@ class ImplPharmaciesSources extends PharmaciesSources {
       errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<OrderSummaryModel>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, PharmacyCheckoutSummaryModel>> getConfirmSummary(
+      PharmacyConfirmSummaryParams param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.pharmacyConfirmSummary(param.id),
+      requestBody: param.toJson(),
+      requestMethod: RequestMethod.post,
+      responseType: ResType.model,
+      showLoader: true,
+      toJsonFunc: (data) => PharmacyCheckoutSummaryModel.fromJson(data),
+      responseKey: (data) => data['data'],
+    );
+    return await GenericHttpImpl<PharmacyCheckoutSummaryModel>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, PharmacyConfirmOrderModel>> confirmOrder(
+      PharmacyConfirmOrderParams param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.pharmacyConfirmOrder(param.orderId),
+      requestBody: param.toJson(),
+      requestMethod: RequestMethod.post,
+      responseType: ResType.model,
+      showLoader: true,
+      toJsonFunc: (data) => PharmacyConfirmOrderModel.fromJson(data),
+      responseKey: (data) => data['data'],
+    );
+    return await GenericHttpImpl<PharmacyConfirmOrderModel>().call(model);
   }
 
 }

@@ -120,4 +120,15 @@ class PharmacyOrderDetailsController {
   Future<void> refreshData() async {
     await getOrderDetails(id);
   }
+
+
+  void routeToCheckout(BuildContext context)async{
+    AutoRouter.of(context).push(
+        PharmacyCheckOutRoute(
+        shipping: null,
+      confirmOrderId: orderDetailsBloc.state.data?.id
+    ));
+  }
+
+
 }

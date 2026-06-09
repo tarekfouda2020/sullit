@@ -14,17 +14,17 @@ class ShippingSummary extends BaseDomainModel {
   int totalItems;
   int expectedLoyaltyPoints;
   int bagsCount;
-  bool minimumOrderAmountStatus;
-  String minimumOrderAmountMsg;
+  bool? minimumOrderAmountStatus;
+  String? minimumOrderAmountMsg;
   String serviceFees;
   String technologyFees;
   bool walletSystemActive;
   String walletBalance;
   double walletBalanceValue;
-  double minimumOrderAmountAmount;
+  double? minimumOrderAmountAmount;
   bool avilablePayWithWallet;
   bool avilableCashOnDelivery;
-  List<ShippingItem> items;
+  List<ShippingItem>? items;
   List<OrderSummaryDiscountDomain>? discountTypes;
   String? loyaltyPointsValue;
   int? loyaltyPoints;
@@ -54,15 +54,13 @@ class ShippingSummary extends BaseDomainModel {
     required this.couponCode,
     required this.couponApplied,
     required this.totalItems,
-    required this.minimumOrderAmountStatus,
-    required this.minimumOrderAmountMsg,
     required this.walletSystemActive,
     required this.walletBalance,
     required this.walletBalanceValue,
     required this.avilablePayWithWallet,
     required this.avilableCashOnDelivery,
-    required this.items,
-    required this.minimumOrderAmountAmount,
+     this.items,
+     this.minimumOrderAmountAmount,
     required this.technologyFees,
     required this.serviceFees,
     required this.expectedLoyaltyPoints,
@@ -82,6 +80,8 @@ class ShippingSummary extends BaseDomainModel {
     this.giftCardApplied,
     this.giftCardValid,
     this.giftCardValue,
+    this.minimumOrderAmountStatus,
+    this.minimumOrderAmountMsg,
   });
 
   double getTotalServiceAmount() {

@@ -3,9 +3,16 @@ part of 'pharmacy_check_out_imports.dart';
 // ignore_for_file: library_private_types_in_public_api
 
 class PharmacyCheckOut extends StatefulWidget {
-  final Shipping shipping;
+  final Shipping? shipping;
   final PharmacyCheckoutParams? checkoutParams;
-  const PharmacyCheckOut({Key? key, required this.shipping, this.checkoutParams}) : super(key: key);
+  final int? confirmOrderId;
+
+  const PharmacyCheckOut({
+    Key? key,
+    required this.shipping,
+    this.checkoutParams,
+    this.confirmOrderId,
+  }) : super(key: key);
 
   @override
   _PharmacyCheckOutState createState() => _PharmacyCheckOutState();
@@ -16,7 +23,11 @@ class _PharmacyCheckOutState extends State<PharmacyCheckOut> {
 
   @override
   void initState() {
-    controller = PharmacyCheckOutController(widget.shipping,widget.checkoutParams);
+    controller = PharmacyCheckOutController(
+      widget.shipping,
+      widget.checkoutParams,
+      widget.confirmOrderId,
+    );
     super.initState();
   }
 
@@ -47,7 +58,8 @@ class _PharmacyCheckOutState extends State<PharmacyCheckOut> {
                   PharmacyPaymentMethodWidget(
                       controller: controller, shipping: state.data!),
                   Gaps.vGap12,
-                  if (!context.isShareHolder && state.data?.summary.insuranceEligible == false)
+                  if (!context.isShareHolder &&
+                      state.data?.summary.insuranceEligible == false)
                     PharmacyCartDiscountWidget(controller: controller),
                   if (!context.isShareHolder) Gaps.vGap20,
                   PharmacyDeliveryInstructionsWidget(controller: controller),
@@ -61,12 +73,10 @@ class _PharmacyCheckOutState extends State<PharmacyCheckOut> {
                   PharmacyInvoiceSummaryWidget(
                     controller: controller,
                     shippingSummary: state.data!.summary,
-                    giftCardTotal:
-                        state.data!.summary.appliedGiftCard != null
-                            ? state.data!.summary.appliedGiftCard!
-                            : '',
-                    applyGiftCard:
-                        state.data!.summary.isGiftCardApplied,
+                    giftCardTotal: state.data!.summary.appliedGiftCard != null
+                        ? state.data!.summary.appliedGiftCard!
+                        : '',
+                    applyGiftCard: state.data!.summary.isGiftCardApplied,
                   ),
                   Gaps.vGap20,
                   // PharmacyAllowReplacementWidget(controller: controller),
@@ -75,16 +85,19 @@ class _PharmacyCheckOutState extends State<PharmacyCheckOut> {
                   Gaps.vGap20,
                   if (!context.isShareHolder)
                     BezatPointsSummaryWidget(
-                      redeemedPoints: (state.data!.summary.loyaltyPoints ?? 0).toDouble(),
-                      redeemedValue: double.parse((state.data!.summary.loyaltyPointsValue.cleanNumber() )),
-                      earnedPoints: state.data!.summary.expectedLoyaltyPoints.toDouble(),
+                      redeemedPoints:
+                          (state.data!.summary.loyaltyPoints ?? 0).toDouble(),
+                      redeemedValue: double.parse((state
+                          .data!.summary.loyaltyPointsValue
+                          .cleanNumber())),
+                      earnedPoints:
+                          state.data!.summary.expectedLoyaltyPoints.toDouble(),
                     ),
                   if (!context.isShareHolder) Gaps.vGap25,
                   Center(
                     child: Text(
                       tr("thank_you_for_order"),
-                      style: AppTextStyle.s18_w500(
-                          color: context.colors.black),
+                      style: AppTextStyle.s18_w500(color: context.colors.black),
                     ),
                   ),
                   Gaps.vGap25,

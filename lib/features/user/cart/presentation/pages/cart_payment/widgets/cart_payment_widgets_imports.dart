@@ -50,7 +50,7 @@ part 'build_coupon.dart';
 part 'build_payment_buttons.dart';
 part 'build_payment_item.dart';
 part 'build_payment_options.dart';
-part 'build_summary.dart';
+// part 'build_summary.dart';
 part 'build_summary_header.dart';
 part 'build_summary_item.dart';
 part 'build_wallet_balance.dart';

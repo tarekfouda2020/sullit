@@ -15,10 +15,13 @@ class OrderSummaryDomainModel extends BaseDomainModel {
 
   String? transactionUrl;
 
+  OrderModel? orderDetails;
+
   OrderSummaryDomainModel({
     this.summary,
     this.sectionOrders,
     this.transactionUrl,
+    this.orderDetails,
   });
 
   double _sumBy(double? Function(Orders e) selector) {

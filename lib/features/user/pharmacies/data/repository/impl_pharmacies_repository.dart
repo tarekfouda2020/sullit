@@ -6,7 +6,9 @@ import 'package:flutter_tdd/features/user/best_sellers/domain/entity/shop_catego
 import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/data_sources/pharmacies_sources.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_checkout_summary_model/pharmacy_checkout_summary_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_create_order_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_checkout_domai_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/shop_id_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/repository/pharmacies_repository.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
@@ -15,6 +17,10 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharamcy_ship
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_shipping_domain_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_check_out_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_confirm_summary_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_confirm_order_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_confirm_order_model/pharmacy_confirm_order_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_confirm_order_domain_model.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../purchasing/presentation/pages/order_summary/order_summary_imports.dart';
@@ -55,6 +61,20 @@ class ImplPharmaciesRepository extends PharmaciesRepository with ModelToDomain {
   Future<Either<Failure, OrderSummaryDomainModel>> createOrder(PharmacyCreateOrderParams param) async {
     var result = await dataSources.createOrder(param);
     return toDomainResult(result);
+  }
+
+  @override
+  Future<Either<Failure, PharmacyCheckoutDomaiModel>> getConfirmSummary(
+      PharmacyConfirmSummaryParams param) async {
+    var result = await dataSources.getConfirmSummary(param);
+    return toDomainResult<PharmacyCheckoutDomaiModel,PharmacyCheckoutSummaryModel>(result);
+  }
+
+  @override
+  Future<Either<Failure, PharmacyConfirmOrderDomainModel>> confirmOrder(
+      PharmacyConfirmOrderParams param) async {
+    var result = await dataSources.confirmOrder(param);
+    return toDomainResult<PharmacyConfirmOrderDomainModel, PharmacyConfirmOrderModel>(result);
   }
 
 }

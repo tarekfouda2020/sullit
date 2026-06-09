@@ -15,6 +15,9 @@ _$_OrderSummaryModel _$$_OrderSummaryModelFromJson(Map<String, dynamic> json) =>
       sectionOrders: (json['section_orders'] as List<dynamic>?)
           ?.map((e) => OrderModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      orderDetails: json['order'] == null
+          ? null
+          : OrderModel.fromJson(json['order'] as Map<String, dynamic>),
       transactionUrl: json['transaction_url'] as String?,
     );
 
@@ -23,5 +26,6 @@ Map<String, dynamic> _$$_OrderSummaryModelToJson(
     <String, dynamic>{
       'order_summary': instance.orderSummary?.toJson(),
       'section_orders': instance.sectionOrders?.map((e) => e.toJson()).toList(),
+      'order': instance.orderDetails?.toJson(),
       'transaction_url': instance.transactionUrl,
     };

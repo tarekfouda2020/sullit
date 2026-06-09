@@ -22,7 +22,7 @@ ShippingSummaryModel _$ShippingSummaryModelFromJson(Map<String, dynamic> json) {
 mixin _$ShippingSummaryModel {
   String get subtotal => throw _privateConstructorUsedError;
   String get tax => throw _privateConstructorUsedError;
-  String get shipping => throw _privateConstructorUsedError;
+  String? get shipping => throw _privateConstructorUsedError;
   @JsonKey(name: "coupon_discount")
   String get couponDiscount => throw _privateConstructorUsedError;
   @JsonKey(name: "calculable_total")
@@ -37,11 +37,11 @@ mixin _$ShippingSummaryModel {
   @JsonKey(name: "bag_count")
   int get bagsCount => throw _privateConstructorUsedError;
   @JsonKey(name: "minimum_order_amount_status")
-  bool get minimumOrderAmountStatus => throw _privateConstructorUsedError;
+  bool? get minimumOrderAmountStatus => throw _privateConstructorUsedError;
   @JsonKey(name: "minimum_order_amount_msg")
-  String get minimumOrderAmountMsg => throw _privateConstructorUsedError;
+  String? get minimumOrderAmountMsg => throw _privateConstructorUsedError;
   @JsonKey(name: "minimum_order_amount")
-  double get minimumOrderAmountAmount => throw _privateConstructorUsedError;
+  double? get minimumOrderAmountAmount => throw _privateConstructorUsedError;
   @JsonKey(name: "wallet_system_active")
   bool get walletSystemActive => throw _privateConstructorUsedError;
   @JsonKey(name: "wallet_balance")
@@ -56,13 +56,14 @@ mixin _$ShippingSummaryModel {
   String get serviceFee => throw _privateConstructorUsedError;
   @JsonKey(name: "technology_fees")
   String get technologyFees => throw _privateConstructorUsedError;
-  @JsonKey(name: "vat_percentage ")
+  @JsonKey(readValue: readVatPercentage)
   String get vatPercentage => throw _privateConstructorUsedError;
   @JsonKey(name: "vat_fee_amount")
   String get vatFeeAmount => throw _privateConstructorUsedError;
   @JsonKey(name: "environment_fees")
   String get environmentFees => throw _privateConstructorUsedError;
-  List<ShippingItemModel> get items => throw _privateConstructorUsedError;
+  @JsonKey(name: "items", defaultValue: [])
+  List<ShippingItemModel>? get items => throw _privateConstructorUsedError;
   @JsonKey(name: "loyalty_points_value")
   String? get loyaltyPointsValue => throw _privateConstructorUsedError;
   @JsonKey(name: "loyalty_points_applied")
@@ -106,7 +107,7 @@ abstract class $ShippingSummaryModelCopyWith<$Res> {
   $Res call(
       {String subtotal,
       String tax,
-      String shipping,
+      String? shipping,
       @JsonKey(name: "coupon_discount") String couponDiscount,
       @JsonKey(name: "calculable_total") double calTotal,
       String total,
@@ -115,9 +116,9 @@ abstract class $ShippingSummaryModelCopyWith<$Res> {
       @JsonKey(name: "total_items") int totalItems,
       @JsonKey(name: "bag_count") int bagsCount,
       @JsonKey(name: "minimum_order_amount_status")
-      bool minimumOrderAmountStatus,
-      @JsonKey(name: "minimum_order_amount_msg") String minimumOrderAmountMsg,
-      @JsonKey(name: "minimum_order_amount") double minimumOrderAmountAmount,
+      bool? minimumOrderAmountStatus,
+      @JsonKey(name: "minimum_order_amount_msg") String? minimumOrderAmountMsg,
+      @JsonKey(name: "minimum_order_amount") double? minimumOrderAmountAmount,
       @JsonKey(name: "wallet_system_active") bool walletSystemActive,
       @JsonKey(name: "wallet_balance") String walletBalance,
       @JsonKey(name: "wallet_balance_value") double walletBalanceValue,
@@ -125,10 +126,10 @@ abstract class $ShippingSummaryModelCopyWith<$Res> {
       @JsonKey(name: "avilable_cash_on_delivery") bool avilableCashOnDelivery,
       @JsonKey(name: "service_fees") String serviceFee,
       @JsonKey(name: "technology_fees") String technologyFees,
-      @JsonKey(name: "vat_percentage ") String vatPercentage,
+      @JsonKey(readValue: readVatPercentage) String vatPercentage,
       @JsonKey(name: "vat_fee_amount") String vatFeeAmount,
       @JsonKey(name: "environment_fees") String environmentFees,
-      List<ShippingItemModel> items,
+      @JsonKey(name: "items", defaultValue: []) List<ShippingItemModel>? items,
       @JsonKey(name: "loyalty_points_value") String? loyaltyPointsValue,
       @JsonKey(name: "loyalty_points_applied") bool? loyaltyPointsApplied,
       @JsonKey(name: "loyalty_points") int? loyaltyPoints,
@@ -161,7 +162,7 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
   $Res call({
     Object? subtotal = null,
     Object? tax = null,
-    Object? shipping = null,
+    Object? shipping = freezed,
     Object? couponDiscount = null,
     Object? calTotal = null,
     Object? total = null,
@@ -169,9 +170,9 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
     Object? couponApplied = freezed,
     Object? totalItems = null,
     Object? bagsCount = null,
-    Object? minimumOrderAmountStatus = null,
-    Object? minimumOrderAmountMsg = null,
-    Object? minimumOrderAmountAmount = null,
+    Object? minimumOrderAmountStatus = freezed,
+    Object? minimumOrderAmountMsg = freezed,
+    Object? minimumOrderAmountAmount = freezed,
     Object? walletSystemActive = null,
     Object? walletBalance = null,
     Object? walletBalanceValue = null,
@@ -182,7 +183,7 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
     Object? vatPercentage = null,
     Object? vatFeeAmount = null,
     Object? environmentFees = null,
-    Object? items = null,
+    Object? items = freezed,
     Object? loyaltyPointsValue = freezed,
     Object? loyaltyPointsApplied = freezed,
     Object? loyaltyPoints = freezed,
@@ -206,10 +207,10 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
           ? _value.tax
           : tax // ignore: cast_nullable_to_non_nullable
               as String,
-      shipping: null == shipping
+      shipping: freezed == shipping
           ? _value.shipping
           : shipping // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       couponDiscount: null == couponDiscount
           ? _value.couponDiscount
           : couponDiscount // ignore: cast_nullable_to_non_nullable
@@ -238,18 +239,18 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
           ? _value.bagsCount
           : bagsCount // ignore: cast_nullable_to_non_nullable
               as int,
-      minimumOrderAmountStatus: null == minimumOrderAmountStatus
+      minimumOrderAmountStatus: freezed == minimumOrderAmountStatus
           ? _value.minimumOrderAmountStatus
           : minimumOrderAmountStatus // ignore: cast_nullable_to_non_nullable
-              as bool,
-      minimumOrderAmountMsg: null == minimumOrderAmountMsg
+              as bool?,
+      minimumOrderAmountMsg: freezed == minimumOrderAmountMsg
           ? _value.minimumOrderAmountMsg
           : minimumOrderAmountMsg // ignore: cast_nullable_to_non_nullable
-              as String,
-      minimumOrderAmountAmount: null == minimumOrderAmountAmount
+              as String?,
+      minimumOrderAmountAmount: freezed == minimumOrderAmountAmount
           ? _value.minimumOrderAmountAmount
           : minimumOrderAmountAmount // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       walletSystemActive: null == walletSystemActive
           ? _value.walletSystemActive
           : walletSystemActive // ignore: cast_nullable_to_non_nullable
@@ -290,10 +291,10 @@ class _$ShippingSummaryModelCopyWithImpl<$Res,
           ? _value.environmentFees
           : environmentFees // ignore: cast_nullable_to_non_nullable
               as String,
-      items: null == items
+      items: freezed == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<ShippingItemModel>,
+              as List<ShippingItemModel>?,
       loyaltyPointsValue: freezed == loyaltyPointsValue
           ? _value.loyaltyPointsValue
           : loyaltyPointsValue // ignore: cast_nullable_to_non_nullable
@@ -361,7 +362,7 @@ abstract class _$$_ShippingSummaryModelCopyWith<$Res>
   $Res call(
       {String subtotal,
       String tax,
-      String shipping,
+      String? shipping,
       @JsonKey(name: "coupon_discount") String couponDiscount,
       @JsonKey(name: "calculable_total") double calTotal,
       String total,
@@ -370,9 +371,9 @@ abstract class _$$_ShippingSummaryModelCopyWith<$Res>
       @JsonKey(name: "total_items") int totalItems,
       @JsonKey(name: "bag_count") int bagsCount,
       @JsonKey(name: "minimum_order_amount_status")
-      bool minimumOrderAmountStatus,
-      @JsonKey(name: "minimum_order_amount_msg") String minimumOrderAmountMsg,
-      @JsonKey(name: "minimum_order_amount") double minimumOrderAmountAmount,
+      bool? minimumOrderAmountStatus,
+      @JsonKey(name: "minimum_order_amount_msg") String? minimumOrderAmountMsg,
+      @JsonKey(name: "minimum_order_amount") double? minimumOrderAmountAmount,
       @JsonKey(name: "wallet_system_active") bool walletSystemActive,
       @JsonKey(name: "wallet_balance") String walletBalance,
       @JsonKey(name: "wallet_balance_value") double walletBalanceValue,
@@ -380,10 +381,10 @@ abstract class _$$_ShippingSummaryModelCopyWith<$Res>
       @JsonKey(name: "avilable_cash_on_delivery") bool avilableCashOnDelivery,
       @JsonKey(name: "service_fees") String serviceFee,
       @JsonKey(name: "technology_fees") String technologyFees,
-      @JsonKey(name: "vat_percentage ") String vatPercentage,
+      @JsonKey(readValue: readVatPercentage) String vatPercentage,
       @JsonKey(name: "vat_fee_amount") String vatFeeAmount,
       @JsonKey(name: "environment_fees") String environmentFees,
-      List<ShippingItemModel> items,
+      @JsonKey(name: "items", defaultValue: []) List<ShippingItemModel>? items,
       @JsonKey(name: "loyalty_points_value") String? loyaltyPointsValue,
       @JsonKey(name: "loyalty_points_applied") bool? loyaltyPointsApplied,
       @JsonKey(name: "loyalty_points") int? loyaltyPoints,
@@ -413,7 +414,7 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
   $Res call({
     Object? subtotal = null,
     Object? tax = null,
-    Object? shipping = null,
+    Object? shipping = freezed,
     Object? couponDiscount = null,
     Object? calTotal = null,
     Object? total = null,
@@ -421,9 +422,9 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
     Object? couponApplied = freezed,
     Object? totalItems = null,
     Object? bagsCount = null,
-    Object? minimumOrderAmountStatus = null,
-    Object? minimumOrderAmountMsg = null,
-    Object? minimumOrderAmountAmount = null,
+    Object? minimumOrderAmountStatus = freezed,
+    Object? minimumOrderAmountMsg = freezed,
+    Object? minimumOrderAmountAmount = freezed,
     Object? walletSystemActive = null,
     Object? walletBalance = null,
     Object? walletBalanceValue = null,
@@ -434,7 +435,7 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
     Object? vatPercentage = null,
     Object? vatFeeAmount = null,
     Object? environmentFees = null,
-    Object? items = null,
+    Object? items = freezed,
     Object? loyaltyPointsValue = freezed,
     Object? loyaltyPointsApplied = freezed,
     Object? loyaltyPoints = freezed,
@@ -458,10 +459,10 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
           ? _value.tax
           : tax // ignore: cast_nullable_to_non_nullable
               as String,
-      shipping: null == shipping
+      shipping: freezed == shipping
           ? _value.shipping
           : shipping // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       couponDiscount: null == couponDiscount
           ? _value.couponDiscount
           : couponDiscount // ignore: cast_nullable_to_non_nullable
@@ -490,18 +491,18 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
           ? _value.bagsCount
           : bagsCount // ignore: cast_nullable_to_non_nullable
               as int,
-      minimumOrderAmountStatus: null == minimumOrderAmountStatus
+      minimumOrderAmountStatus: freezed == minimumOrderAmountStatus
           ? _value.minimumOrderAmountStatus
           : minimumOrderAmountStatus // ignore: cast_nullable_to_non_nullable
-              as bool,
-      minimumOrderAmountMsg: null == minimumOrderAmountMsg
+              as bool?,
+      minimumOrderAmountMsg: freezed == minimumOrderAmountMsg
           ? _value.minimumOrderAmountMsg
           : minimumOrderAmountMsg // ignore: cast_nullable_to_non_nullable
-              as String,
-      minimumOrderAmountAmount: null == minimumOrderAmountAmount
+              as String?,
+      minimumOrderAmountAmount: freezed == minimumOrderAmountAmount
           ? _value.minimumOrderAmountAmount
           : minimumOrderAmountAmount // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       walletSystemActive: null == walletSystemActive
           ? _value.walletSystemActive
           : walletSystemActive // ignore: cast_nullable_to_non_nullable
@@ -542,10 +543,10 @@ class __$$_ShippingSummaryModelCopyWithImpl<$Res>
           ? _value.environmentFees
           : environmentFees // ignore: cast_nullable_to_non_nullable
               as String,
-      items: null == items
+      items: freezed == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<ShippingItemModel>,
+              as List<ShippingItemModel>?,
       loyaltyPointsValue: freezed == loyaltyPointsValue
           ? _value.loyaltyPointsValue
           : loyaltyPointsValue // ignore: cast_nullable_to_non_nullable
@@ -609,7 +610,7 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
   const _$_ShippingSummaryModel(
       {required this.subtotal,
       required this.tax,
-      required this.shipping,
+      this.shipping,
       @JsonKey(name: "coupon_discount") required this.couponDiscount,
       @JsonKey(name: "calculable_total") required this.calTotal,
       required this.total,
@@ -618,11 +619,9 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
       @JsonKey(name: "total_items") required this.totalItems,
       @JsonKey(name: "bag_count") required this.bagsCount,
       @JsonKey(name: "minimum_order_amount_status")
-      required this.minimumOrderAmountStatus,
-      @JsonKey(name: "minimum_order_amount_msg")
-      required this.minimumOrderAmountMsg,
-      @JsonKey(name: "minimum_order_amount")
-      required this.minimumOrderAmountAmount,
+      this.minimumOrderAmountStatus,
+      @JsonKey(name: "minimum_order_amount_msg") this.minimumOrderAmountMsg,
+      @JsonKey(name: "minimum_order_amount") this.minimumOrderAmountAmount,
       @JsonKey(name: "wallet_system_active") required this.walletSystemActive,
       @JsonKey(name: "wallet_balance") required this.walletBalance,
       @JsonKey(name: "wallet_balance_value") required this.walletBalanceValue,
@@ -632,10 +631,11 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
       required this.avilableCashOnDelivery,
       @JsonKey(name: "service_fees") required this.serviceFee,
       @JsonKey(name: "technology_fees") required this.technologyFees,
-      @JsonKey(name: "vat_percentage ") required this.vatPercentage,
+      @JsonKey(readValue: readVatPercentage) required this.vatPercentage,
       @JsonKey(name: "vat_fee_amount") required this.vatFeeAmount,
       @JsonKey(name: "environment_fees") required this.environmentFees,
-      required final List<ShippingItemModel> items,
+      @JsonKey(name: "items", defaultValue: [])
+      final List<ShippingItemModel>? items = const [],
       @JsonKey(name: "loyalty_points_value") this.loyaltyPointsValue,
       @JsonKey(name: "loyalty_points_applied") this.loyaltyPointsApplied,
       @JsonKey(name: "loyalty_points") this.loyaltyPoints,
@@ -663,7 +663,7 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
   @override
   final String tax;
   @override
-  final String shipping;
+  final String? shipping;
   @override
   @JsonKey(name: "coupon_discount")
   final String couponDiscount;
@@ -686,13 +686,13 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
   final int bagsCount;
   @override
   @JsonKey(name: "minimum_order_amount_status")
-  final bool minimumOrderAmountStatus;
+  final bool? minimumOrderAmountStatus;
   @override
   @JsonKey(name: "minimum_order_amount_msg")
-  final String minimumOrderAmountMsg;
+  final String? minimumOrderAmountMsg;
   @override
   @JsonKey(name: "minimum_order_amount")
-  final double minimumOrderAmountAmount;
+  final double? minimumOrderAmountAmount;
   @override
   @JsonKey(name: "wallet_system_active")
   final bool walletSystemActive;
@@ -715,7 +715,7 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
   @JsonKey(name: "technology_fees")
   final String technologyFees;
   @override
-  @JsonKey(name: "vat_percentage ")
+  @JsonKey(readValue: readVatPercentage)
   final String vatPercentage;
   @override
   @JsonKey(name: "vat_fee_amount")
@@ -723,12 +723,15 @@ class _$_ShippingSummaryModel extends _ShippingSummaryModel {
   @override
   @JsonKey(name: "environment_fees")
   final String environmentFees;
-  final List<ShippingItemModel> _items;
+  final List<ShippingItemModel>? _items;
   @override
-  List<ShippingItemModel> get items {
+  @JsonKey(name: "items", defaultValue: [])
+  List<ShippingItemModel>? get items {
+    final value = _items;
+    if (value == null) return null;
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_items);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -921,7 +924,7 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
   const factory _ShippingSummaryModel(
       {required final String subtotal,
       required final String tax,
-      required final String shipping,
+      final String? shipping,
       @JsonKey(name: "coupon_discount") required final String couponDiscount,
       @JsonKey(name: "calculable_total") required final double calTotal,
       required final String total,
@@ -930,11 +933,11 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
       @JsonKey(name: "total_items") required final int totalItems,
       @JsonKey(name: "bag_count") required final int bagsCount,
       @JsonKey(name: "minimum_order_amount_status")
-      required final bool minimumOrderAmountStatus,
+      final bool? minimumOrderAmountStatus,
       @JsonKey(name: "minimum_order_amount_msg")
-      required final String minimumOrderAmountMsg,
+      final String? minimumOrderAmountMsg,
       @JsonKey(name: "minimum_order_amount")
-      required final double minimumOrderAmountAmount,
+      final double? minimumOrderAmountAmount,
       @JsonKey(name: "wallet_system_active")
       required final bool walletSystemActive,
       @JsonKey(name: "wallet_balance") required final String walletBalance,
@@ -946,10 +949,12 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
       required final bool avilableCashOnDelivery,
       @JsonKey(name: "service_fees") required final String serviceFee,
       @JsonKey(name: "technology_fees") required final String technologyFees,
-      @JsonKey(name: "vat_percentage ") required final String vatPercentage,
+      @JsonKey(readValue: readVatPercentage)
+      required final String vatPercentage,
       @JsonKey(name: "vat_fee_amount") required final String vatFeeAmount,
       @JsonKey(name: "environment_fees") required final String environmentFees,
-      required final List<ShippingItemModel> items,
+      @JsonKey(name: "items", defaultValue: [])
+      final List<ShippingItemModel>? items,
       @JsonKey(name: "loyalty_points_value") final String? loyaltyPointsValue,
       @JsonKey(name: "loyalty_points_applied") final bool? loyaltyPointsApplied,
       @JsonKey(name: "loyalty_points") final int? loyaltyPoints,
@@ -976,7 +981,7 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
   @override
   String get tax;
   @override
-  String get shipping;
+  String? get shipping;
   @override
   @JsonKey(name: "coupon_discount")
   String get couponDiscount;
@@ -999,13 +1004,13 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
   int get bagsCount;
   @override
   @JsonKey(name: "minimum_order_amount_status")
-  bool get minimumOrderAmountStatus;
+  bool? get minimumOrderAmountStatus;
   @override
   @JsonKey(name: "minimum_order_amount_msg")
-  String get minimumOrderAmountMsg;
+  String? get minimumOrderAmountMsg;
   @override
   @JsonKey(name: "minimum_order_amount")
-  double get minimumOrderAmountAmount;
+  double? get minimumOrderAmountAmount;
   @override
   @JsonKey(name: "wallet_system_active")
   bool get walletSystemActive;
@@ -1028,7 +1033,7 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
   @JsonKey(name: "technology_fees")
   String get technologyFees;
   @override
-  @JsonKey(name: "vat_percentage ")
+  @JsonKey(readValue: readVatPercentage)
   String get vatPercentage;
   @override
   @JsonKey(name: "vat_fee_amount")
@@ -1037,7 +1042,8 @@ abstract class _ShippingSummaryModel extends ShippingSummaryModel {
   @JsonKey(name: "environment_fees")
   String get environmentFees;
   @override
-  List<ShippingItemModel> get items;
+  @JsonKey(name: "items", defaultValue: [])
+  List<ShippingItemModel>? get items;
   @override
   @JsonKey(name: "loyalty_points_value")
   String? get loyaltyPointsValue;

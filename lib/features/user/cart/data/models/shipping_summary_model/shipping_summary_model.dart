@@ -8,6 +8,14 @@ part 'shipping_summary_model.freezed.dart';
 
 part 'shipping_summary_model.g.dart';
 
+
+ Object? readVatPercentage(
+Map<dynamic, dynamic> json,
+String key,
+) {
+return json['vat_percentage'] ?? json['vat_percentage '];
+}
+
 @freezed
 @immutable
 class ShippingSummaryModel extends BaseApiModel<ShippingSummary>
@@ -18,7 +26,7 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary>
   const factory ShippingSummaryModel({
     required String subtotal,
     required String tax,
-    required String shipping,
+     String? shipping,
     @JsonKey(name: "coupon_discount") required String couponDiscount,
     @JsonKey(name: "calculable_total") required double calTotal,
     required String total,
@@ -26,12 +34,9 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary>
     @JsonKey(name: "coupon_applied") bool? couponApplied,
     @JsonKey(name: "total_items") required int totalItems,
     @JsonKey(name: "bag_count") required int bagsCount,
-    @JsonKey(name: "minimum_order_amount_status")
-    required bool minimumOrderAmountStatus,
-    @JsonKey(name: "minimum_order_amount_msg")
-    required String minimumOrderAmountMsg,
-    @JsonKey(name: "minimum_order_amount")
-    required double minimumOrderAmountAmount,
+    @JsonKey(name: "minimum_order_amount_status")  bool? minimumOrderAmountStatus,
+    @JsonKey(name: "minimum_order_amount_msg")  String? minimumOrderAmountMsg,
+    @JsonKey(name: "minimum_order_amount")  double? minimumOrderAmountAmount,
     @JsonKey(name: "wallet_system_active") required bool walletSystemActive,
     @JsonKey(name: "wallet_balance") required String walletBalance,
     @JsonKey(name: "wallet_balance_value") required double walletBalanceValue,
@@ -41,10 +46,13 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary>
     required bool avilableCashOnDelivery,
     @JsonKey(name: "service_fees") required String serviceFee,
     @JsonKey(name: "technology_fees") required String technologyFees,
-    @JsonKey(name: "vat_percentage ") required String vatPercentage,
+    @JsonKey(
+      readValue: readVatPercentage,
+    )
+    required String vatPercentage,
     @JsonKey(name: "vat_fee_amount") required String vatFeeAmount,
     @JsonKey(name: "environment_fees") required String environmentFees,
-    required List<ShippingItemModel> items,
+    @JsonKey(name: "items",defaultValue: [] )@Default([]) List<ShippingItemModel>? items,
     @JsonKey(name: "loyalty_points_value") String? loyaltyPointsValue,
     @JsonKey(name: "loyalty_points_applied") bool? loyaltyPointsApplied,
     @JsonKey(name: "loyalty_points") int? loyaltyPoints,
@@ -63,12 +71,13 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary>
   factory ShippingSummaryModel.fromJson(Map<String, dynamic> json) =>
       _$ShippingSummaryModelFromJson(json);
 
+
   @override
   ShippingSummary toDomainModel() {
     return ShippingSummary(
         subTotal: subtotal,
         tax: tax,
-        shipping: shipping,
+        shipping: shipping ?? "",
         couponDiscount: couponDiscount,
         calTotal: calTotal,
         total: total,
@@ -82,7 +91,7 @@ class ShippingSummaryModel extends BaseApiModel<ShippingSummary>
         walletBalanceValue: walletBalanceValue,
         avilablePayWithWallet: avilablePayWithWallet,
         avilableCashOnDelivery: avilableCashOnDelivery,
-        items: items.map((e) => e.toDomainModel()).toList(),
+        items: items?.map((e) => e.toDomainModel()).toList(),
         loyaltyPointsValue: loyaltyPointsValue,
         loyaltyPointsApplied: loyaltyPointsApplied,
         loyaltyPoints: loyaltyPoints,
