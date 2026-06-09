@@ -3,10 +3,14 @@ part of 'widgets_imports.dart';
 class PharmacyAttachPrescriptionWidget extends StatelessWidget {
   final PharmacyAddressController controller;
   final GenericBloc<File> fileCubit;
+  final String title;
+  final String hint;
   const PharmacyAttachPrescriptionWidget({
     super.key,
     required this.controller,
     required this.fileCubit,
+    required this.title,
+    required this.hint,
   });
 
   @override
@@ -15,7 +19,7 @@ class PharmacyAttachPrescriptionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          tr("attachPrescription"),
+          title,
           style: AppTextStyle.s16_w500(
             color: context.colors.black,
           ),
@@ -60,9 +64,11 @@ class PharmacyAttachPrescriptionWidget extends StatelessWidget {
             Gaps.hGap8,
             Expanded(
               child: Text(
-                tr("prescriptionReviewNote"),
+                hint,
                 style: AppTextStyle.s13_w400(
                   color: context.colors.redAccent,
+                ).copyWith(
+                  height: 1.3
                 ),
               ),
             ),
@@ -89,7 +95,7 @@ class _UploadPlaceholder extends StatelessWidget {
         ),
         Gaps.vGap12,
         Text(
-          tr("attachPrescriptionDocumentHint"),
+          "Attach Health Insurance Document in PNG / JPG or pdf",
           textAlign: TextAlign.center,
           style: AppTextStyle.s14_w400(
             color: context.colors.textColor,

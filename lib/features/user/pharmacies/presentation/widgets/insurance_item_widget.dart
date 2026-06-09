@@ -24,9 +24,15 @@ class InsuranceItemWidget extends StatelessWidget {
           vertical: 5,
         ),
         decoration: BoxDecoration(
-            color: context.colors.white,
+            color: model.isSelected
+                ?context.colors.lightPrimary
+                :context.colors.white,
             borderRadius: Dimens.borderRadius12PX,
-            border: Border.all(color: context.colors.borderColor)),
+            border: Border.all(color:
+            model.isSelected
+                ?context.colors.primary
+                :   context.colors.borderColor
+            )),
         child: Row(
           children: [
             CachedImage(

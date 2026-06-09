@@ -50,6 +50,8 @@ class _PharmacyAddressState extends State<PharmacyAddress> {
               PharmacyAttachPrescriptionWidget(
                 controller: controller,
                 fileCubit: controller.insuranceFileBloc,
+                hint: "Note that pharmacy will review your health insurance document and back to you with required invoice",
+                title: "Attach Health Insurance Document",
               ),
             ],
             if (widget.havePrescription) ...[
@@ -57,8 +59,11 @@ class _PharmacyAddressState extends State<PharmacyAddress> {
               PharmacyAttachPrescriptionWidget(
                 controller: controller,
                 fileCubit: controller.prescriptionFileBloc,
+                title: "Attach Prescription ",
+                hint: "Note that pharmacy will review your Prescription  document and back to you with confirmation or rejection",
               ),
             ],
+            Gaps.vGap20,
             Text(
               tr("selectAddress"),
               style: AppTextStyle.s16_w500(
