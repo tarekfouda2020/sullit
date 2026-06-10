@@ -207,9 +207,14 @@ class PharmacyCartController {
           ?.any((element) => element.prescriptionRequired == true) ==
       true;
 
-  bool get cartItemRequiredInsurance =>
-      // cartItemsBloc.state.data.pharmacyItems
-      //     ?.any((element) => element.insuranceEligible == true) ==
-      // true &&
-          haveInsuranceCubit.state.data;
+  bool get cartItemRequiredInsurance => insuranceAllowInCart && haveInsuranceCubit.state.data;
+
+
+
+  bool get insuranceAllowInCart => cartItemsBloc.state.data.pharmacyItems
+      ?.any((element) => element.insuranceEligible == true) ==
+      true;
+
+
+
 }

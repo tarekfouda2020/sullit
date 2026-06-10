@@ -159,4 +159,28 @@ class PharmacyOrderDetailsController {
   }
 
 
+  void cancelOrder(BuildContext ctx) async {
+    var model = orderDetailsBloc.state.data;
+    if(model == null){
+      return ;
+    }
+    showCupertinoDialog(
+      context: ctx,
+      builder: (context) => ConfirmCancelDialog(
+        onConfirm: () async {
+          Navigator.pop(context);
+          getIt<LoadingHelper>().showLoadingDialog();
+          var result = await CancelOrder().call(model.id);
+          if (result.isNotEmpty) {
+            CustomToast.showSimpleToast(msg: result, type: ToastType.success);
+            model.availableCancelOrder = false;
+            AutoRouter.of(ctx).pop(true);
+          }
+          getIt<LoadingHelper>().dismissDialog();
+        },
+      ),
+    );
+  }
+
+
 }

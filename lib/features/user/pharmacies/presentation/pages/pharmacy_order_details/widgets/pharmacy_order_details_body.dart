@@ -50,7 +50,7 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
                       if(state.data?.availableCancelOrder == true && state.data?.isPendingReview == false)
                       DefaultButton(
                         title: "Cancel Order",
-                        onTap: () {},
+                        onTap: () => controller.cancelOrder(context),
                         textColor: context.colors.gray8,
                         color: context.colors.white,
                         borderColor: context.colors.borderColor,
@@ -70,7 +70,7 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
             ),
           );
         } else {
-          return Gaps.empty;
+          return const PharmacyOrderDetailsShimmerWidget();
         }
       },
     );

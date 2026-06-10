@@ -91,11 +91,12 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
             Gaps.vGap10,
             _buildRow(context, "Payment Method", data.summary?.paymentMethod ??""),
           ],
-          Gaps.vGap10,
          if(data.summary?.insuranceApplied == true && data.sectionOrders?.first.insuranceCompany != null)...[
+           Gaps.vGap10,
            _buildRow(context, "Insurance Company", data.sectionOrders?.first.insuranceCompany?.name ??""),
          ],
           if(data.pharmOrderWithPrescription == true) ...[
+            Gaps.vGap10,
             PharmacyOrderAttachmentWidget(
               title: "View Prescription Doc.",
               iconPath: Res.fileIcon,

@@ -7,6 +7,7 @@ class HomePharmaciesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         BuildHeaderTitle(
           title: "Pharmacies",
@@ -19,33 +20,36 @@ class HomePharmaciesWidget extends StatelessWidget {
             child: Row(
               spacing: 12,
               children: List.generate(
-                3,
+                controller.homeCubit.state.data!.pharmacyShops.length,
                 (index) {
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Gaps.vGap8,
-                      CachedImage(
-                        height: Dimens.dp72,
-                        width: 185,
-                        borderWidth: 1.5,
-                        borderColor: context.colors.borderColor,
-                        borderRadius: Dimens.borderRadius12PX,
-                        url:
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5nDDXZipLhwI8K5JicQ-1UGxBd_zrcRGgIg&s",
-                      ),
-                      Gaps.vGap4,
-                      SizedBox(
-                        width: 170,
-                        child: Text(
-                          "Al Manara Pharmacy",
-                          maxLines: 2,
-                          textAlign: TextAlign.center,
-                          style: AppTextStyle.s15_w500(
-                              color: context.colors.black),
+                  var item = controller.homeCubit.state.data!.pharmacyShops[index];
+                  return GestureDetector(
+                    onTap: () => AutoRouter.of(context).push(PharmacyDetailsRoute(pharmacyId: item.id)),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Gaps.vGap8,
+                        CachedImage(
+                          height: Dimens.dp72,
+                          width: 185,
+                          borderWidth: 1.5,
+                          borderColor: context.colors.borderColor,
+                          borderRadius: Dimens.borderRadius12PX,
+                          url: item.sliders?.first ?? ""
                         ),
-                      )
-                    ],
+                        Gaps.vGap4,
+                        SizedBox(
+                          width: 170,
+                          child: Text(
+                            item.name ?? "",
+                            maxLines: 2,
+                            textAlign: TextAlign.center,
+                            style: AppTextStyle.s15_w500(
+                                color: context.colors.black),
+                          ),
+                        )
+                      ],
+                    ),
                   );
                 },
               ),

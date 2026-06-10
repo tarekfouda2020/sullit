@@ -17,6 +17,7 @@ class HomeDomainModel extends BaseDomainModel {
   final FlashSale? flashSales;
   final List<Shop> shop;
   final List<Shop> topSellers;
+  final List<Shop> pharmacyShops;
   // final List<Product> bestSellingProducts;
   // final List<Product> newestProducts;
   // final List<Product> featuredProducts;
@@ -46,5 +47,6 @@ class HomeDomainModel extends BaseDomainModel {
     required this.favCount,
     required this.isAdminDiscount,
     required this.discountRate,
+    required this.pharmacyShops,
   });
 }

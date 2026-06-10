@@ -196,7 +196,6 @@ class PharmacyAddressController {
 
   Future<void> createOrderWithInsuranceAndPrescription(BuildContext context, List<PharmacyShippingDomainModel> data) async {
     PharmacyCreateOrderParams params = _createInsurancePrescriptionParams(data);
-    log("params data => ${params.toJson()} ====");
     var result = await CreatePharmacyOrder().call(params);
     if(result != null){
       AutoRouter.of(context).push( OrderSuccessRoute(summary: result));

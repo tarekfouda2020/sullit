@@ -205,23 +205,12 @@ class PharmacyCheckOutController {
 
   void _onPharmacyOrderConfirmed(BuildContext context, PharmacyConfirmOrderDomainModel data) {
     CustomToast.showSimpleToast(msg: tr('thanksForYourOrder'), type: ToastType.success);
-    if(fromOrderDetails){
-      AutoRouter.of(context).pop(true);
-    }else{
-      AutoRouter.of(context).push(PharmacyOrderDetailsRoute(
-          id: data.id ?? confirmOrderId!,
-          fromCheckout: true
-      ));
-    }
+    AutoRouter.of(context).push(PharmacyOrderDetailsRoute(
+        id: data.id ?? confirmOrderId!,
+        fromCheckout: true
+    ));
 
   }
-
-
-
-
-
-
-
 
 
 

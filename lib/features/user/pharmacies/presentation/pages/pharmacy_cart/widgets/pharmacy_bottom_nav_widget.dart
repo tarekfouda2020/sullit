@@ -6,37 +6,41 @@ class PharmacyBottomNavWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-      color: context.colors.white,
-      child: Column(
-        spacing: 14,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
-            decoration: BoxDecoration(
-                color: context.colors.customBackground,
-                borderRadius: Dimens.borderRadius8PX),
-            child: Row(
-              children: [
-                CustomCheckBoxWidget(
-                    changeValueCubit: controller.haveInsuranceCubit),
-                Text(
-                  "I’ have a health insurance",
-                  style: AppTextStyle.s16_w400(color: context.colors.black),
-                )
-              ],
-            ),
-          ),
-          BlocBuilder<GenericBloc<CartDomainModel>,
-              GenericState<CartDomainModel>>(
-            bloc: controller.cartItemsBloc,
-            builder: (context, state) {
-              final cartData = state.data;
-              final hasItems =
-                  cartData.items != null && cartData.items!.isNotEmpty;
-              return Visibility(
+    return BlocBuilder<GenericBloc<CartDomainModel>,
+        GenericState<CartDomainModel>>(
+      bloc: controller.cartItemsBloc,
+      builder: (context, state) {
+        final cartData = state.data;
+        final hasItems =
+            cartData.items != null && cartData.items!.isNotEmpty;
+        return Container(
+          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+          color: context.colors.white,
+          child: Column(
+            spacing: 14,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Visibility(
+                visible: controller.insuranceAllowInCart,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
+                  decoration: BoxDecoration(
+                      color: context.colors.customBackground,
+                      borderRadius: Dimens.borderRadius8PX),
+                  child: Row(
+                    children: [
+                      CustomCheckBoxWidget(
+                          changeValueCubit: controller.haveInsuranceCubit,
+                      ),
+                      Text(
+                        "I’ have a health insurance",
+                        style: AppTextStyle.s16_w400(color: context.colors.black),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Visibility(
                 visible: hasItems,
                 child: CustomBottomSafeAreaWidget(
                   child: Row(
@@ -74,11 +78,11 @@ class PharmacyBottomNavWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-              );
-            },
-          )
-        ],
-      ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }
