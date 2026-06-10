@@ -49,13 +49,15 @@ class _PharmacyProductCardWidgetState
 
   @override
   Future<void> routeToDetails(BuildContext context) async {
-    await AutoRouter.of(context).push(
+   var result =  await AutoRouter.of(context).push(
       ProductDetailsRoute(
         isFav: widget.productModel.isWishlist!,
         productId: widget.productModel.id!,
         isResale: widget.productModel.isResale!,
       ),
     );
+     log("after route data ==>>>>> ${result} ======");
+     widget.controller.refreshDataAfterRoute(result);
     widget.onRefresh?.call();
   }
 
@@ -124,6 +126,7 @@ class _PharmacyProductCardWidgetState
         await widget.onPressDelete?.call();
       }
     }
+    widget.controller.refreshDataAfterRoute(false);
     enableAddToCartLoading.onUpdateData(false);
   }
 

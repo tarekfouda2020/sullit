@@ -11,6 +11,7 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       unit: json['unit'] as String,
+      type: json['type'] as String,
       thumbnailImage: json['thumbnail_image'] as String,
       images:
           (json['images'] as List<dynamic>).map((e) => e as String).toList(),
@@ -78,6 +79,7 @@ Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) =>
       'id': instance.id,
       'name': instance.name,
       'unit': instance.unit,
+      'type': instance.type,
       'thumbnail_image': instance.thumbnailImage,
       'images': instance.images,
       'is_multiple': instance.isMultiple,

@@ -22,6 +22,7 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
     required int id,
     required String name,
     required String unit,
+    required String type,
     @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
     required List<String> images,
     @JsonKey(name: 'is_multiple') required bool isMultiple,
@@ -122,6 +123,7 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
       variants: variantsList?.map((e) => e.toDomainModel()).toList(),
       insuranceEligible: insuranceEligible,
       prescriptionRequired: prescriptionRequired,
+      type: type
     );
   }
 }

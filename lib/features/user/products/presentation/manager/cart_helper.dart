@@ -123,7 +123,9 @@ class CartHelper {
   Future<void> addProductToCart(BuildContext context, int qty, int? variantId,
       {required Function() onAddCartFunc,
       bool showLoader = true,
-      bool callCartData = true}) async {
+      bool callCartData = true,
+        CartTypeEnum type = CartTypeEnum.general
+      }) async {
     var params = await _addToCartParams(variantId, qty, showLoader: showLoader);
     if (params.variantId == null) {
       CustomToast.showSimpleToast(msg: tr('variantNotFound'));
@@ -133,7 +135,7 @@ class CartHelper {
 
     if (data.isNotEmpty) {
       if (callCartData) {
-        getCartItems();
+        getCartItems(type:type );
       }
       onAddCartFunc();
       CustomToast.showSimpleToast(
@@ -164,9 +166,9 @@ class CartHelper {
     );
   }
 
-  Future<CartDomainModel> getCartItems({bool refresh = true}) async {
+  Future<CartDomainModel> getCartItems({bool refresh = true, CartTypeEnum type =  CartTypeEnum.general}) async {
     String? token = await getIt<GetDeviceId>().deviceId;
-    var params = _cartParams(refresh, token!);
+    var params = _cartParams(refresh, token!,type: type);
     var data = await GetCart().call(params);
     cartItemsBloc.onUpdateData(data);
     return cartItemsBloc.state.data;
@@ -194,8 +196,7 @@ class CartHelper {
     );
   }
 
-  Future<void> showCartSuccessSheet(BuildContext context,
-      {CartSheetController? controller}) async {
+  Future<void> showCartSuccessSheet(BuildContext context, {CartSheetController? controller, void Function()? onPressCheck}) async {
     final sheetController = controller ?? StandaloneCartSheetController(this);
 
     sheetController.getCartItems(refresh: false);
@@ -212,14 +213,15 @@ class CartHelper {
       isScrollControlled: true,
       useRootNavigator: true,
       enableDrag: false,
-      builder: (ctx) => CartSuccessSheetWidget(controller: sheetController),
+      builder: (ctx) => CartSuccessSheetWidget(controller: sheetController, onPressCheck: onPressCheck,),
     );
   }
 
-  CartParams _cartParams(bool refresh, String token) {
+  CartParams _cartParams(bool refresh, String token, {CartTypeEnum type =  CartTypeEnum.general}) {
     return CartParams(
       macAddress: token,
       refresh: refresh,
+      type: type
     );
   }
 

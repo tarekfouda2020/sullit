@@ -96,7 +96,7 @@ class BuildProductButtons extends StatelessWidget {
                         GenericState<String>>(
                       bloc: controller.remainingAmountBloc,
                       builder: (context, state) {
-                        var remain = double.parse(state.data);
+                        var remain = double.parse(state.data.cleanNumber());
                         return Visibility(
                           visible: (cartState.data.minimumStatus == false) &&
                               controller.remainToGetMinAmount() > 0 &&

@@ -29,6 +29,7 @@ class PharmacyProducts extends StatelessWidget {
               onPressDelete: () => controller.getCartItems(),
               afterAddToCart: () => controller.getCartItems(),
               onPressDecrease: () => controller.getCartItems(),
+              // onRefresh: () => controller.getProducts(1),
             );
           },
           firstPageProgressIndicatorBuilder: (_) =>

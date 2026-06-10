@@ -45,7 +45,7 @@ class CategoryDetailsController implements CartSheetController {
 
   CategoryDetailsController(
       BuildContext context, Category? categoryModel, this.catId) {
-    getCartItems();
+
     if (categoryModel != null) {
       FacebookEventsHelper.instance.categoryDetailsOpened(categoryModel);
       initialCategoryModel = categoryModel;

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,7 @@ import 'package:flutter_tdd/core/widgets/build_empty_data_view.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/core/widgets/seller_card_widget.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/widgets/pharamacy_header_shimmer_widget.dart';

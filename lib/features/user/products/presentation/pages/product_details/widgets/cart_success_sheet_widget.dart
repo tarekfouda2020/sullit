@@ -2,8 +2,8 @@ part of 'product_details_widgets_imports.dart';
 
 class CartSuccessSheetWidget extends StatefulWidget {
   final CartSheetController controller;
-
-  const CartSuccessSheetWidget({super.key, required this.controller});
+  final void Function()? onPressCheck;
+  const CartSuccessSheetWidget({super.key, required this.controller, this.onPressCheck});
 
   @override
   State<CartSuccessSheetWidget> createState() => _CartSuccessSheetWidgetState();
@@ -179,6 +179,12 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
       CustomToast.showSimpleToast(msg: model.minimumAmountMsg!);
       return;
     }
+
+    if(widget.onPressCheck!= null){
+      widget.onPressCheck!();
+      return;
+    }
+
     AutoRouter.of(context).popAndPush(
         CartRoute(initialIndex: CartNavigateHelper.shippingStepIndex));
   }

@@ -43,7 +43,6 @@ class PharmacyCartController {
     if (success != null) {
       cartItem.quantity = newQty;
       cartItemsBloc.onUpdateData(success);
-      updateCartCount(context);
       FacebookEventsHelper.instance
           .productAddToCart(id: cartItem.productId, price: cartItem.price);
       return true;
@@ -80,7 +79,6 @@ class PharmacyCartController {
     if (success != null) {
       cartItem.quantity = newQty;
       cartItemsBloc.onUpdateData(success);
-      updateCartCount(context);
       return true;
     } else {
       CustomToast.showSimpleToast(
@@ -121,11 +119,9 @@ class PharmacyCartController {
         cartItemsBloc.state.data.pharmacyItems!
             .removeWhere((item) => item.id == cartItem.id);
       }
-      updateCartCount(context);
       await getCartItems(refresh: true);
       if (cartItemsBloc.state.data.pharmacyItems == null ||
           (cartItemsBloc.state.data.pharmacyItems ?? []).isEmpty) {
-        getIt<CartHelper>().updateCartCount(context, 0);
         CustomToast.showSimpleToast(
             msg: "Your cart has been cleared successfully.",
             type: ToastType.success);
@@ -139,16 +135,6 @@ class PharmacyCartController {
     }
   }
 
-  void updateCartCount(BuildContext context) {
-    var allItemsCount = cartItemsBloc.state.data.pharmacyItems!.fold<int>(
-      0,
-      (previousValue, element) => previousValue + element.quantity,
-    );
-    var countCubit = context.read<CountCubit>().state;
-    context
-        .read<CountCubit>()
-        .onUpdateCount(allItemsCount, countCubit.discount);
-  }
 
   void showClearDialog(BuildContext context) {
     showDialog(

@@ -20,9 +20,17 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   void initState() {
+    super.initState();
     controller = ProductDetailsController(
         context, widget.productId, widget.isResale, widget.isFav);
-    super.initState();
+
+
+  }
+
+  @override
+  void dispose() {
+    controller.scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -54,9 +62,5 @@ class _ProductDetailsState extends State<ProductDetails> {
     );
   }
 
-  @override
-  void dispose() {
-    controller.scrollController.dispose();
-    super.dispose();
-  }
+
 }

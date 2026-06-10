@@ -16,6 +16,7 @@ class Product extends BaseDomainModel {
   int? id;
   int? loyaltyPoints;
   String? name;
+  String? type;
   String? unit;
   String? thumbnailImage;
   List<String>? images;
@@ -67,6 +68,7 @@ class Product extends BaseDomainModel {
       {this.id,
       this.name,
       this.images,
+      this.type,
       this.thumbnailImage,
       this.isMultiple,
       this.prescriptionRequired,
@@ -133,6 +135,9 @@ class Product extends BaseDomainModel {
 
   bool get sameQntInCart => (variant?.currentStock ?? 0) == addedQtyToCart;
 
+
+  bool get isPharmProduct => type == "pharmacy";
+
   String getPriceWhenHavePointsAndDiscount() {
     if (hasSpecialLoyaltyPoints == true) {
       return priceHighLow ?? "";
@@ -144,6 +149,7 @@ class Product extends BaseDomainModel {
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    type = json['type'];
     unit = json['unit'];
     maxQnt = json['max_qty'];
     variants = json['variants'] != null
@@ -199,6 +205,7 @@ class Product extends BaseDomainModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
+    data['type'] = type;
     data['name'] = name;
     data['thumbnail_image'] = thumbnailImage;
     data['images'] = images;

@@ -12,9 +12,24 @@ class ProductDetailsController implements CartSheetController {
       GenericBloc(null);
   final GenericBloc<String> remainingAmountBloc = GenericBloc("0.0");
 
+
+  final GenericBloc<CartDomainModel> _pharmacyCartBloc =
+  GenericBloc(CartDomainModel());
+
+  bool get isPharmProduct => detailsCubit.state.data?.product.isPharmProduct == true;
+
+
+  CartTypeEnum get getProductType {
+  return  isPharmProduct
+        ? CartTypeEnum.pharmacy
+        : CartTypeEnum.general;
+  }
+
   @override
-  GenericBloc<CartDomainModel> get cartItemsBloc =>
-      getIt<CartHelper>().cartItemsBloc;
+  GenericBloc<CartDomainModel> get cartItemsBloc => isPharmProduct
+      ? _pharmacyCartBloc
+      :getIt<CartHelper>().cartItemsBloc;
+
   final ScrollController scrollController = ScrollController();
   late bool isResale;
   late bool isFav;
@@ -280,6 +295,7 @@ class ProductDetailsController implements CartSheetController {
       qtyCubit.state.data,
       detailsCubit.state.data?.product.variant?.id,
       callCartData: true,
+      type: getProductType,
       // onAddCartFunc: () => showCartSuccessDialog(context),
       onAddCartFunc: () {
         FacebookEventsHelper.instance.productAddToCart(
@@ -293,11 +309,16 @@ class ProductDetailsController implements CartSheetController {
 
   @override
   Future<void> getCartItems({bool refresh = true}) async {
-    await getIt<CartHelper>().getCartItems(refresh: refresh).then((value) {
-      if (value.items!.isNotEmpty) {
-        _updateCartCountFromCart(value);
-      } else {
-        _updateCartCountFromCart(CartDomainModel(items: []));
+    await getIt<CartHelper>().getCartItems(refresh: refresh, type: getProductType).then((value) {
+      if (isPharmProduct) {
+        _pharmacyCartBloc.onUpdateData(value);
+        calculateRemainingAmount();
+      }else{
+        if (value.items!.isNotEmpty) {
+          _updateCartCountFromCart(value);
+        } else {
+          _updateCartCountFromCart(CartDomainModel(items: []));
+        }
       }
       calculateRemainingAmount();
     });
@@ -413,7 +434,16 @@ class ProductDetailsController implements CartSheetController {
   }
 
   void showCartSuccessSheet(BuildContext context) {
-    getIt<CartHelper>().showCartSuccessSheet(context, controller: this);
+    getIt<CartHelper>().showCartSuccessSheet(
+        context,
+        controller: this,
+      onPressCheck: isPharmProduct
+          ? () {
+          Navigator.pop(context);
+          AutoRouter.of(context).pop( _pharmacyCartBloc);
+      }
+          : null
+    );
   }
 
   @override
@@ -527,4 +557,12 @@ class ProductDetailsController implements CartSheetController {
       subject: productName,
     );
   }
+
+  @override
+  // TODO: implement onPressCheckout
+  VoidCallback? get onPressCheckout => throw UnimplementedError();
+
+
+
+
 }

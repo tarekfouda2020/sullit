@@ -57,7 +57,8 @@ class PharmacyDetailsController {
 
   void _getPharmacyProducts() {
     getProducts(1, refresh: false);
-    categoriesPagingController.addPageRequestListener((pageKey) {
+    // getProducts(1, refresh: true);
+    productsPagingController.addPageRequestListener((pageKey) {
       getProducts(pageKey);
     });
   }
@@ -327,19 +328,27 @@ class PharmacyDetailsController {
   Future<void> onPressViewCart(BuildContext context) async {
     if (neededAmount() == 0) {
       var result = await AutoRouter.of(context).push( PharmacyCartRoute(pharmacy: pharmacyBloc.state.data));
-      if (result is CartDomainModel) {
-        cartItemsBloc.onUpdateData(result);
-        productsPagingController.itemList = [
-          ...?productsPagingController.itemList
-        ];
-      } else {
-        await getCartItems(refresh: true);
-        _syncProductsWithCart();
-      }
+      refreshDataAfterRoute(result);
     }
   }
 
-  void _syncProductsWithCart() {
+
+
+  Future<void> refreshDataAfterRoute(Object? result)async{
+    if (result is CartDomainModel) {
+      cartItemsBloc.onUpdateData(result);
+      productsPagingController.itemList = [
+        ...?productsPagingController.itemList
+      ];
+      syncProductsWithCart();
+    } else {
+      await getCartItems(refresh: true);
+      syncProductsWithCart();
+    }
+  }
+
+
+  void syncProductsWithCart() {
     final List<Product>? currentList = productsPagingController.itemList;
     if (currentList == null || currentList.isEmpty) return;
 
