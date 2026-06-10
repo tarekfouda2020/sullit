@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
@@ -114,4 +116,40 @@ class OrderSummaryDomainModel extends BaseDomainModel {
   //   var different = getSubTotalWithoutVat() * 10;
   //   return different;
   // }
+
+
+ /// for pharmacy
+
+
+  bool get pharmNormalOrder {
+    for (final order in sectionOrders ?? <Orders>[]) {
+      final insuranceCount = order.insuranceAttachments?.length ?? 0;
+      final prescriptionCount = order.prescriptionAttachments?.length ?? 0;
+
+      log(
+        'Order ${order.id}: '
+            'insurance=$insuranceCount, prescription=$prescriptionCount',
+      );
+
+      if (insuranceCount > 0 || prescriptionCount > 0) {
+        log(
+          'Order ${order.id} is NOT a normal pharmacy order',
+        );
+      }
+    }
+
+    return sectionOrders?.every(
+          (element) =>
+      (element.insuranceAttachments ?? []).isEmpty &&
+          (element.prescriptionAttachments ?? []).isEmpty,
+    ) ==
+        true;
+  }
+bool get pharmOrderWithPrescription => sectionOrders?.any((element) => (element.prescriptionAttachments??[]).isNotEmpty) == true;
+
+bool get pharmOrderWithInsurance => sectionOrders?.any((element) => (element.insuranceAttachments??[]).isNotEmpty) == true;
+
+// bool get pharmNormalOrder => true;
+
+
 }

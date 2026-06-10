@@ -143,6 +143,9 @@ class Res {
   static const String healthShield = "assets/images/healt_shiled_icon.svg";
   static const String medicRecipeIcon = "assets/images/medic_recipe_icon.svg";
   static const String pharmacyDelivery = "assets/images/pharmacy_delivery.svg";
+  static const String layersIcon = "assets/images/layers_icon.svg";
+  static const String medicFile = "assets/images/medic_file.svg";
+  static const String fileIcon = "assets/images/file_icon.svg";
 
   static const String addToCartGif = "assets/images/add_cart.gif";
   static const String onTheWay = "assets/images/delivery.gif";

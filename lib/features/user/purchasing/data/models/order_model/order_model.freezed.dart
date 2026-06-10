@@ -129,6 +129,15 @@ mixin _$OrderModel {
   bool? get requiresPrescriptionReview => throw _privateConstructorUsedError;
   @JsonKey(name: 'insurance_applied')
   bool? get insuranceApplied => throw _privateConstructorUsedError;
+  @JsonKey(name: 'insurance_attachments')
+  List<PharmacyAttachmentModel>? get insuranceAttachments =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'prescription_attachments')
+  List<PharmacyAttachmentModel>? get prescriptionAttachments =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'insurance_company')
+  InsuranceCompanyModel? get insuranceCompany =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -201,9 +210,16 @@ abstract class $OrderModelCopyWith<$Res> {
       bool? awaitingCustomerCompletion,
       @JsonKey(name: 'requires_prescription_review')
       bool? requiresPrescriptionReview,
-      @JsonKey(name: 'insurance_applied') bool? insuranceApplied});
+      @JsonKey(name: 'insurance_applied') bool? insuranceApplied,
+      @JsonKey(name: 'insurance_attachments')
+      List<PharmacyAttachmentModel>? insuranceAttachments,
+      @JsonKey(name: 'prescription_attachments')
+      List<PharmacyAttachmentModel>? prescriptionAttachments,
+      @JsonKey(name: 'insurance_company')
+      InsuranceCompanyModel? insuranceCompany});
 
   $OrderDriverModelCopyWith<$Res>? get driver;
+  $InsuranceCompanyModelCopyWith<$Res>? get insuranceCompany;
 }
 
 /// @nodoc
@@ -275,6 +291,9 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? awaitingCustomerCompletion = freezed,
     Object? requiresPrescriptionReview = freezed,
     Object? insuranceApplied = freezed,
+    Object? insuranceAttachments = freezed,
+    Object? prescriptionAttachments = freezed,
+    Object? insuranceCompany = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -501,6 +520,18 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.insuranceApplied
           : insuranceApplied // ignore: cast_nullable_to_non_nullable
               as bool?,
+      insuranceAttachments: freezed == insuranceAttachments
+          ? _value.insuranceAttachments
+          : insuranceAttachments // ignore: cast_nullable_to_non_nullable
+              as List<PharmacyAttachmentModel>?,
+      prescriptionAttachments: freezed == prescriptionAttachments
+          ? _value.prescriptionAttachments
+          : prescriptionAttachments // ignore: cast_nullable_to_non_nullable
+              as List<PharmacyAttachmentModel>?,
+      insuranceCompany: freezed == insuranceCompany
+          ? _value.insuranceCompany
+          : insuranceCompany // ignore: cast_nullable_to_non_nullable
+              as InsuranceCompanyModel?,
     ) as $Val);
   }
 
@@ -513,6 +544,19 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
 
     return $OrderDriverModelCopyWith<$Res>(_value.driver!, (value) {
       return _then(_value.copyWith(driver: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $InsuranceCompanyModelCopyWith<$Res>? get insuranceCompany {
+    if (_value.insuranceCompany == null) {
+      return null;
+    }
+
+    return $InsuranceCompanyModelCopyWith<$Res>(_value.insuranceCompany!,
+        (value) {
+      return _then(_value.copyWith(insuranceCompany: value) as $Val);
     });
   }
 }
@@ -584,10 +628,18 @@ abstract class _$$_OrderModelCopyWith<$Res>
       bool? awaitingCustomerCompletion,
       @JsonKey(name: 'requires_prescription_review')
       bool? requiresPrescriptionReview,
-      @JsonKey(name: 'insurance_applied') bool? insuranceApplied});
+      @JsonKey(name: 'insurance_applied') bool? insuranceApplied,
+      @JsonKey(name: 'insurance_attachments')
+      List<PharmacyAttachmentModel>? insuranceAttachments,
+      @JsonKey(name: 'prescription_attachments')
+      List<PharmacyAttachmentModel>? prescriptionAttachments,
+      @JsonKey(name: 'insurance_company')
+      InsuranceCompanyModel? insuranceCompany});
 
   @override
   $OrderDriverModelCopyWith<$Res>? get driver;
+  @override
+  $InsuranceCompanyModelCopyWith<$Res>? get insuranceCompany;
 }
 
 /// @nodoc
@@ -657,6 +709,9 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? awaitingCustomerCompletion = freezed,
     Object? requiresPrescriptionReview = freezed,
     Object? insuranceApplied = freezed,
+    Object? insuranceAttachments = freezed,
+    Object? prescriptionAttachments = freezed,
+    Object? insuranceCompany = freezed,
   }) {
     return _then(_$_OrderModel(
       id: null == id
@@ -883,6 +938,18 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.insuranceApplied
           : insuranceApplied // ignore: cast_nullable_to_non_nullable
               as bool?,
+      insuranceAttachments: freezed == insuranceAttachments
+          ? _value._insuranceAttachments
+          : insuranceAttachments // ignore: cast_nullable_to_non_nullable
+              as List<PharmacyAttachmentModel>?,
+      prescriptionAttachments: freezed == prescriptionAttachments
+          ? _value._prescriptionAttachments
+          : prescriptionAttachments // ignore: cast_nullable_to_non_nullable
+              as List<PharmacyAttachmentModel>?,
+      insuranceCompany: freezed == insuranceCompany
+          ? _value.insuranceCompany
+          : insuranceCompany // ignore: cast_nullable_to_non_nullable
+              as InsuranceCompanyModel?,
     ));
   }
 }
@@ -956,10 +1023,17 @@ class _$_OrderModel extends _OrderModel {
       this.awaitingCustomerCompletion,
       @JsonKey(name: 'requires_prescription_review')
       this.requiresPrescriptionReview,
-      @JsonKey(name: 'insurance_applied') this.insuranceApplied})
+      @JsonKey(name: 'insurance_applied') this.insuranceApplied,
+      @JsonKey(name: 'insurance_attachments')
+      final List<PharmacyAttachmentModel>? insuranceAttachments,
+      @JsonKey(name: 'prescription_attachments')
+      final List<PharmacyAttachmentModel>? prescriptionAttachments,
+      @JsonKey(name: 'insurance_company') this.insuranceCompany})
       : _orderDetails = orderDetails,
         _deliveryInstructions = deliveryInstructions,
         _orderDiscounts = orderDiscounts,
+        _insuranceAttachments = insuranceAttachments,
+        _prescriptionAttachments = prescriptionAttachments,
         super._();
 
   factory _$_OrderModel.fromJson(Map<String, dynamic> json) =>
@@ -1149,10 +1223,37 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'insurance_applied')
   final bool? insuranceApplied;
+  final List<PharmacyAttachmentModel>? _insuranceAttachments;
+  @override
+  @JsonKey(name: 'insurance_attachments')
+  List<PharmacyAttachmentModel>? get insuranceAttachments {
+    final value = _insuranceAttachments;
+    if (value == null) return null;
+    if (_insuranceAttachments is EqualUnmodifiableListView)
+      return _insuranceAttachments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<PharmacyAttachmentModel>? _prescriptionAttachments;
+  @override
+  @JsonKey(name: 'prescription_attachments')
+  List<PharmacyAttachmentModel>? get prescriptionAttachments {
+    final value = _prescriptionAttachments;
+    if (value == null) return null;
+    if (_prescriptionAttachments is EqualUnmodifiableListView)
+      return _prescriptionAttachments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'insurance_company')
+  final InsuranceCompanyModel? insuranceCompany;
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, shopType: $shopType, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, paymentMethodConst: $paymentMethodConst, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, pickerNotes: $pickerNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver, orderSourceLabel: $orderSourceLabel, shippingProvider: $shippingProvider, shippingProviderLabel: $shippingProviderLabel, isPendingReview: $isPendingReview, awaitingCustomerCompletion: $awaitingCustomerCompletion, requiresPrescriptionReview: $requiresPrescriptionReview, insuranceApplied: $insuranceApplied)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, shopType: $shopType, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, paymentMethodConst: $paymentMethodConst, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, pickerNotes: $pickerNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver, orderSourceLabel: $orderSourceLabel, shippingProvider: $shippingProvider, shippingProviderLabel: $shippingProviderLabel, isPendingReview: $isPendingReview, awaitingCustomerCompletion: $awaitingCustomerCompletion, requiresPrescriptionReview: $requiresPrescriptionReview, insuranceApplied: $insuranceApplied, insuranceAttachments: $insuranceAttachments, prescriptionAttachments: $prescriptionAttachments, insuranceCompany: $insuranceCompany)';
   }
 
   @override
@@ -1258,7 +1359,10 @@ class _$_OrderModel extends _OrderModel {
             (identical(other.isPendingReview, isPendingReview) || other.isPendingReview == isPendingReview) &&
             (identical(other.awaitingCustomerCompletion, awaitingCustomerCompletion) || other.awaitingCustomerCompletion == awaitingCustomerCompletion) &&
             (identical(other.requiresPrescriptionReview, requiresPrescriptionReview) || other.requiresPrescriptionReview == requiresPrescriptionReview) &&
-            (identical(other.insuranceApplied, insuranceApplied) || other.insuranceApplied == insuranceApplied));
+            (identical(other.insuranceApplied, insuranceApplied) || other.insuranceApplied == insuranceApplied) &&
+            const DeepCollectionEquality().equals(other._insuranceAttachments, _insuranceAttachments) &&
+            const DeepCollectionEquality().equals(other._prescriptionAttachments, _prescriptionAttachments) &&
+            (identical(other.insuranceCompany, insuranceCompany) || other.insuranceCompany == insuranceCompany));
   }
 
   @JsonKey(ignore: true)
@@ -1320,7 +1424,10 @@ class _$_OrderModel extends _OrderModel {
         isPendingReview,
         awaitingCustomerCompletion,
         requiresPrescriptionReview,
-        insuranceApplied
+        insuranceApplied,
+        const DeepCollectionEquality().hash(_insuranceAttachments),
+        const DeepCollectionEquality().hash(_prescriptionAttachments),
+        insuranceCompany
       ]);
 
   @JsonKey(ignore: true)
@@ -1409,8 +1516,13 @@ abstract class _OrderModel extends OrderModel {
       final bool? awaitingCustomerCompletion,
       @JsonKey(name: 'requires_prescription_review')
       final bool? requiresPrescriptionReview,
-      @JsonKey(name: 'insurance_applied')
-      final bool? insuranceApplied}) = _$_OrderModel;
+      @JsonKey(name: 'insurance_applied') final bool? insuranceApplied,
+      @JsonKey(name: 'insurance_attachments')
+      final List<PharmacyAttachmentModel>? insuranceAttachments,
+      @JsonKey(name: 'prescription_attachments')
+      final List<PharmacyAttachmentModel>? prescriptionAttachments,
+      @JsonKey(name: 'insurance_company')
+      final InsuranceCompanyModel? insuranceCompany}) = _$_OrderModel;
   const _OrderModel._() : super._();
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
@@ -1579,6 +1691,15 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'insurance_applied')
   bool? get insuranceApplied;
+  @override
+  @JsonKey(name: 'insurance_attachments')
+  List<PharmacyAttachmentModel>? get insuranceAttachments;
+  @override
+  @JsonKey(name: 'prescription_attachments')
+  List<PharmacyAttachmentModel>? get prescriptionAttachments;
+  @override
+  @JsonKey(name: 'insurance_company')
+  InsuranceCompanyModel? get insuranceCompany;
   @override
   @JsonKey(ignore: true)
   _$$_OrderModelCopyWith<_$_OrderModel> get copyWith =>

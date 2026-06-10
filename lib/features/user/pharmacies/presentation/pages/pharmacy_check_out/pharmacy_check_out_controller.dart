@@ -37,6 +37,8 @@ class PharmacyCheckOutController {
 
   bool isGiftCardApplied = false;
 
+  bool fromOrderDetails = false;
+
   final PharmacyCheckoutParams? checkoutParams;
 
   final int? confirmOrderId;
@@ -48,7 +50,7 @@ class PharmacyCheckOutController {
     DriverTipsModel(amount: "custom", isCustom: true),
   ];
 
-  PharmacyCheckOutController(Shipping? shipping, this.checkoutParams, this.confirmOrderId) {
+  PharmacyCheckOutController(Shipping? shipping, this.checkoutParams, this.confirmOrderId, {this.fromOrderDetails = false}) {
     initData(shipping);
     if (shipping?.isAdminDiscount == true) {
       calculateDiscount();
@@ -203,7 +205,15 @@ class PharmacyCheckOutController {
 
   void _onPharmacyOrderConfirmed(BuildContext context, PharmacyConfirmOrderDomainModel data) {
     CustomToast.showSimpleToast(msg: tr('thanksForYourOrder'), type: ToastType.success);
-    AutoRouter.of(context).push(PharmacyOrderDetailsRoute(id: data.id ?? confirmOrderId!));
+    if(fromOrderDetails){
+      AutoRouter.of(context).pop(true);
+    }else{
+      AutoRouter.of(context).push(PharmacyOrderDetailsRoute(
+          id: data.id ?? confirmOrderId!,
+          fromCheckout: true
+      ));
+    }
+
   }
 
 

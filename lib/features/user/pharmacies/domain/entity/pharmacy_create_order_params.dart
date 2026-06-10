@@ -57,11 +57,6 @@ class PharmacyCreateOrderParams {
       if (couponCode != null) 'coupon_code': couponCode,
       if (giftCardCode != null) 'gift_card_code': giftCardCode,
 
-      if (prescriptionAttachments != null && prescriptionAttachments!.isNotEmpty)
-        ..._prescriptionAttachments,
-
-      if (insuranceAttachments != null && insuranceAttachments!.isNotEmpty)
-        ..._insuranceAttachments,
 
       if (insuranceCompanyId != null)
         'insurance_company_id': insuranceCompanyId,
@@ -69,14 +64,21 @@ class PharmacyCreateOrderParams {
       if (applyInsurance != null)
         'apply_insurance': applyInsurance,
 
-      if (instructions != null && instructions!.isNotEmpty)
-        ..._driverInstructions,
 
       if (driverNotes != null && driverNotes!.isNotEmpty)
         'driver_notes': driverNotes,
 
       if (pickerNotes != null && pickerNotes!.isNotEmpty)
         'picker_notes': pickerNotes,
+
+      if (instructions != null && instructions!.isNotEmpty)
+        ..._driverInstructions,
+
+      if (prescriptionAttachments != null && prescriptionAttachments!.isNotEmpty)
+        ..._prescriptionAttachments,
+
+      if (insuranceAttachments != null && insuranceAttachments!.isNotEmpty)
+        ..._insuranceAttachments,
     };
   }
 

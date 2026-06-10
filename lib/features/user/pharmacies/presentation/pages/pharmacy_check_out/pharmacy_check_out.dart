@@ -6,12 +6,13 @@ class PharmacyCheckOut extends StatefulWidget {
   final Shipping? shipping;
   final PharmacyCheckoutParams? checkoutParams;
   final int? confirmOrderId;
-
+  final bool fromOrderDetails;
   const PharmacyCheckOut({
     Key? key,
     required this.shipping,
     this.checkoutParams,
     this.confirmOrderId,
+    this.fromOrderDetails = false,
   }) : super(key: key);
 
   @override
@@ -27,6 +28,7 @@ class _PharmacyCheckOutState extends State<PharmacyCheckOut> {
       widget.shipping,
       widget.checkoutParams,
       widget.confirmOrderId,
+      fromOrderDetails: widget.fromOrderDetails
     );
     super.initState();
   }

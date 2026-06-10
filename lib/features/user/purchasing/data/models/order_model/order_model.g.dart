@@ -72,6 +72,19 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       awaitingCustomerCompletion: json['awaiting_customer_completion'] as bool?,
       requiresPrescriptionReview: json['requires_prescription_review'] as bool?,
       insuranceApplied: json['insurance_applied'] as bool?,
+      insuranceAttachments: (json['insurance_attachments'] as List<dynamic>?)
+          ?.map((e) =>
+              PharmacyAttachmentModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      prescriptionAttachments:
+          (json['prescription_attachments'] as List<dynamic>?)
+              ?.map((e) =>
+                  PharmacyAttachmentModel.fromJson(e as Map<String, dynamic>))
+              .toList(),
+      insuranceCompany: json['insurance_company'] == null
+          ? null
+          : InsuranceCompanyModel.fromJson(
+              json['insurance_company'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
@@ -134,4 +147,9 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'awaiting_customer_completion': instance.awaitingCustomerCompletion,
       'requires_prescription_review': instance.requiresPrescriptionReview,
       'insurance_applied': instance.insuranceApplied,
+      'insurance_attachments':
+          instance.insuranceAttachments?.map((e) => e.toJson()).toList(),
+      'prescription_attachments':
+          instance.prescriptionAttachments?.map((e) => e.toJson()).toList(),
+      'insurance_company': instance.insuranceCompany?.toJson(),
     };

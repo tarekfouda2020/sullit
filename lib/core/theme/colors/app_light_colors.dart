@@ -163,4 +163,16 @@ class AppLightColors extends AppColors {
 
   @override
   Color get oceanBlue => const Color(0xff057599);
+
+  @override
+  Color get orange => const Color(0xffFF6900);
+
+  @override
+  Color get lightOrange => const Color(0xffFFF7ED);
+
+  @override
+  Color get lightGreen2 => const Color(0xffECFDF5);
+
+  @override
+  Color get gray6 => const Color(0xffA1A1A1);
 }

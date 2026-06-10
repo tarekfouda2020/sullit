@@ -16,6 +16,7 @@ class SummaryModel extends BaseApiModel<Summary> with _$SummaryModel {
           {@JsonKey(name: 'order_date') required String orderDate,
           required String name,
           required String? email,
+           // String? phone,
           @JsonKey(name: 'shipping_address') required String shippingAddress,
           @JsonKey(name: 'order_status') required String orderStatus,
           @JsonKey(name: 'total_order_amount') required String totalOrderAmount,
@@ -52,6 +53,7 @@ class SummaryModel extends BaseApiModel<Summary> with _$SummaryModel {
         awaitingCustomerCompletion: awaitingCustomerCompletion,
         insuranceApplied: insuranceApplied,
         shopType: shopType,
+        // phone: phone
         // totalItems: totalItems,
         );
   }

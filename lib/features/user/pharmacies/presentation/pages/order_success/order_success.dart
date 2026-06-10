@@ -20,36 +20,18 @@ class _OrderSuccessState extends State<OrderSuccess> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colors.customBackground,
-      appBar: const DefaultAppBar(title: "Order Details"),
-      body: Column(
-        spacing: 30,
-        children: [
-          Expanded(
-            child: OrderSuccessBody(controller: controller),
-          ),
-          CustomBottomSafeAreaWidget(
-              child: Column(
-            spacing: 12,
-            children: [
-              DefaultButton(
-                title: "Cancel Order",
-                onTap: () {},
-                textColor: context.colors.gray8,
-                color: context.colors.white,
-                borderColor: context.colors.gray8,
-              ),
-              DefaultButton(
-                title: "Confirm&Pay Now",
-                onTap: () {},
-                textColor: context.colors.white,
-                color: context.colors.green,
-                borderColor: context.colors.green,
-              ),
-            ],
-          ))
-        ],
+    return WillPopScope(
+      onWillPop: () async {
+        controller.onPressBack(context);
+        return true;
+      },
+      child: Scaffold(
+        backgroundColor: context.colors.customBackground,
+        appBar:  DefaultAppBar(
+            title: "Order Details",
+          onBack: () => controller.onPressBack(context),
+        ),
+        body: OrderSuccessBody(controller: controller),
       ),
     );
   }

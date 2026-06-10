@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
+import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
+import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/core/widgets/custom_radio_widget.dart';
+import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 
 part 'insurance_item_widget.dart';
+part 'pharmacy_order_product_item_widget.dart';
+part 'after_review_hint_widget.dart';
+part 'pharmacy_order_attachment_widget.dart';

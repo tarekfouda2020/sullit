@@ -50,17 +50,16 @@ class PaymentController {
       );
       AutoRouter.of(context).pop();
     } else if (url.contains('success')) {
-      log("====>>>---- $url ----<<<<====");
+      log("====>>>---- success logic $url ----<<<<====");
       if (Platform.isIOS) {
-        await Future.delayed(const Duration(seconds: 3));
+        await Future.delayed(const Duration(seconds: 2));
       }
       CustomToast.showSimpleToast(
         msg: tr('paymentDone'),
         type: ToastType.success,
       );
-      if (combinedOrderId == 0) {
-        AutoRouter.of(context).pop(true);
-      }
+      AutoRouter.of(context).pop(true);
+
     }
   }
 

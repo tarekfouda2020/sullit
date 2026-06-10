@@ -1243,6 +1243,7 @@ class AppRouter extends _i110.RootStackRouter {
           shipping: args.shipping,
           checkoutParams: args.checkoutParams,
           confirmOrderId: args.confirmOrderId,
+          fromOrderDetails: args.fromOrderDetails,
         ),
         opaque: true,
       );
@@ -1254,6 +1255,7 @@ class AppRouter extends _i110.RootStackRouter {
         child: _i109.PharmacyOrderDetails(
           key: args.key,
           id: args.id,
+          fromCheckout: args.fromCheckout,
         ),
         opaque: true,
       );
@@ -4215,6 +4217,7 @@ class PharmacyCheckOutRoute
     required _i115.Shipping? shipping,
     _i124.PharmacyCheckoutParams? checkoutParams,
     int? confirmOrderId,
+    bool fromOrderDetails = false,
   }) : super(
           PharmacyCheckOutRoute.name,
           path: '/pharmacy-check-out',
@@ -4223,6 +4226,7 @@ class PharmacyCheckOutRoute
             shipping: shipping,
             checkoutParams: checkoutParams,
             confirmOrderId: confirmOrderId,
+            fromOrderDetails: fromOrderDetails,
           ),
         );
 
@@ -4235,6 +4239,7 @@ class PharmacyCheckOutRouteArgs {
     required this.shipping,
     this.checkoutParams,
     this.confirmOrderId,
+    this.fromOrderDetails = false,
   });
 
   final _i113.Key? key;
@@ -4245,9 +4250,11 @@ class PharmacyCheckOutRouteArgs {
 
   final int? confirmOrderId;
 
+  final bool fromOrderDetails;
+
   @override
   String toString() {
-    return 'PharmacyCheckOutRouteArgs{key: $key, shipping: $shipping, checkoutParams: $checkoutParams, confirmOrderId: $confirmOrderId}';
+    return 'PharmacyCheckOutRouteArgs{key: $key, shipping: $shipping, checkoutParams: $checkoutParams, confirmOrderId: $confirmOrderId, fromOrderDetails: $fromOrderDetails}';
   }
 }
 
@@ -4258,12 +4265,14 @@ class PharmacyOrderDetailsRoute
   PharmacyOrderDetailsRoute({
     _i113.Key? key,
     required int id,
+    bool fromCheckout = false,
   }) : super(
           PharmacyOrderDetailsRoute.name,
           path: '/pharmacy-order-details',
           args: PharmacyOrderDetailsRouteArgs(
             key: key,
             id: id,
+            fromCheckout: fromCheckout,
           ),
         );
 
@@ -4274,14 +4283,17 @@ class PharmacyOrderDetailsRouteArgs {
   const PharmacyOrderDetailsRouteArgs({
     this.key,
     required this.id,
+    this.fromCheckout = false,
   });
 
   final _i113.Key? key;
 
   final int id;
 
+  final bool fromCheckout;
+
   @override
   String toString() {
-    return 'PharmacyOrderDetailsRouteArgs{key: $key, id: $id}';
+    return 'PharmacyOrderDetailsRouteArgs{key: $key, id: $id, fromCheckout: $fromCheckout}';
   }
 }

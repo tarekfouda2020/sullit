@@ -73,7 +73,7 @@ class _SupportedInsuranceBottomSheetWidgetState
                   },
                 ),
               ),
-              if (widget.enableSelect) ...[
+              if (widget.enableSelect && widget.insurance.any((element) => element.isSelected) ) ...[
                 Gaps.vGap20,
                 DefaultButton(
                   title: tr("confirm"),

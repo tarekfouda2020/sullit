@@ -33,20 +33,18 @@ class PharmacyAddressController {
   }
 
   Future<void> getPaginateAddress(int page, {bool refresh = true}) async {
-    var params = _paginateParams(page, refresh);
+    GenericPaginateParams params = _paginateParams(page, refresh);
     var data = await GetAddresses().call(params);
     // addressList.addAll(data);
     // data = data.take(3).toList();
-    final isLastPage = data.length < AppConstants.instance.paginationLimit;
+    var isLastPage = data.length < AppConstants.instance.paginationLimit;
     if (page == 1) {
       pagingController.itemList = [];
     }
     if (isLastPage) {
-      isSelectedAddressExistInList(data);
       pagingController.appendLastPage(data);
     } else {
-      final nextPageKey = page + 1;
-      isSelectedAddressExistInList(data);
+      var nextPageKey = page + 1;
       pagingController.appendPage(data, nextPageKey);
     }
   }
@@ -74,19 +72,19 @@ class PharmacyAddressController {
     }
   }
 
-  void isSelectedAddressExistInList(List<AddressDomainModel> remoteData) {
-    AddressDomainModel? selectedAddress =
-        getIt<CartNavigateHelper>().selectedOrderAddress;
-    if (selectedAddress != null) {
-      try {
-        remoteData
-            .firstWhere((element) => element.id == selectedAddress.id)
-            .selected = true;
-      } catch (e) {
-        // Not found in this page
-      }
-    }
-  }
+  // void isSelectedAddressExistInList(List<AddressDomainModel> remoteData) {
+  //   AddressDomainModel? selectedAddress =
+  //       getIt<CartNavigateHelper>().selectedOrderAddress;
+  //   if (selectedAddress != null) {
+  //     try {
+  //       remoteData
+  //           .firstWhere((element) => element.id == selectedAddress.id)
+  //           .selected = true;
+  //     } catch (e) {
+  //       // Not found in this page
+  //     }
+  //   }
+  // }
 
   Future<void> onPickPrescriptionFile(
       GenericBloc<File> fileCubit, BuildContext context) async {
@@ -111,14 +109,17 @@ class PharmacyAddressController {
 
 
   Future<void> onPressProceed(BuildContext context) async {
-
-    if(havePrescription && prescriptionFileBloc.state.data.path.isEmpty){
-      CustomToast.showSimpleToast(msg: "Please upload prescription first");
+    if(haveInsurance && selectedInsuranceCompany.state.data == null){
+      CustomToast.showSimpleToast(msg: "Please select your insurance company first");
+      return ;
+    }
+    if(haveInsurance && insuranceFileBloc.state.data.path.isEmpty){
+      CustomToast.showSimpleToast(msg: "Please upload your insurance Document first");
       return ;
     }
 
-    if(haveInsurance && insuranceFileBloc.state.data.path.isEmpty){
-      CustomToast.showSimpleToast(msg: "Please upload your insurance first");
+    if(havePrescription && prescriptionFileBloc.state.data.path.isEmpty){
+      CustomToast.showSimpleToast(msg: "Please upload prescription Document first");
       return ;
     }
 
@@ -148,7 +149,9 @@ class PharmacyAddressController {
             onContinue: () {
               Navigator.pop(context);
               BuildContext ctx = getIt<GlobalContext>().context();
-              if(haveInsurance){
+              if(haveInsurance && havePrescription){
+                createOrderWithInsuranceAndPrescription(ctx,result);
+              }else if(haveInsurance){
                 createOrderWithInsurance(ctx, result);
               }else if(havePrescription){
                 createOrderWithPrescription(ctx, result);
@@ -191,6 +194,15 @@ class PharmacyAddressController {
     }
   }
 
+  Future<void> createOrderWithInsuranceAndPrescription(BuildContext context, List<PharmacyShippingDomainModel> data) async {
+    PharmacyCreateOrderParams params = _createInsurancePrescriptionParams(data);
+    log("params data => ${params.toJson()} ====");
+    var result = await CreatePharmacyOrder().call(params);
+    if(result != null){
+      AutoRouter.of(context).push( OrderSuccessRoute(summary: result));
+    }
+  }
+
 
   PharmacyCheckoutParams _checkOutParams(List<PharmacyShippingDomainModel> data){
     return PharmacyCheckoutParams(
@@ -215,9 +227,25 @@ class PharmacyAddressController {
     return  PharmacyCreateOrderParams(
         shippingInfo: _shippingData(data),
         addressId: selectedAddress?.id,
+        insuranceCompanyId: selectedInsuranceCompany.state.data?.id,
         applyInsurance: haveInsurance == true ? 1 : 0,
         insuranceAttachments: [
-          prescriptionFileBloc.state.data,
+          insuranceFileBloc.state.data,
+        ],
+    );
+  }
+
+  PharmacyCreateOrderParams _createInsurancePrescriptionParams(List<PharmacyShippingDomainModel> data){
+    return  PharmacyCreateOrderParams(
+        shippingInfo: _shippingData(data),
+        addressId: selectedAddress?.id,
+        applyInsurance: haveInsurance == true ? 1 : 0,
+      insuranceCompanyId: selectedInsuranceCompany.state.data?.id,
+      prescriptionAttachments: [
+        prescriptionFileBloc.state.data,
+      ],
+        insuranceAttachments: [
+          insuranceFileBloc.state.data,
         ],
     );
   }
@@ -235,6 +263,7 @@ class PharmacyAddressController {
 void onPressSelectInsuranceCompany(BuildContext context){
     showModalBottomSheet(
       context: context,
+      backgroundColor: Colors.transparent,
       builder: (context) {
       return SupportedInsuranceBottomSheetWidget(
         insurance: pharmacy?.insuranceCompanies ?? [],

@@ -122,12 +122,40 @@ class PharmacyOrderDetailsController {
   }
 
 
-  void routeToCheckout(BuildContext context)async{
-    AutoRouter.of(context).push(
+  Future<void> routeToCheckout(BuildContext context)async{
+   var result = await AutoRouter.of(context).push(
         PharmacyCheckOutRoute(
         shipping: null,
-      confirmOrderId: orderDetailsBloc.state.data?.id
+      confirmOrderId: orderDetailsBloc.state.data?.id,
+          fromOrderDetails: true
     ));
+   if(result == true){
+     refreshData();
+   }
+  }
+
+
+  void onPressBack(BuildContext context, bool fromCheckout) {
+    if (fromCheckout) {
+      AutoRouter.of(context).pushAndPopUntil(
+        HomeRoute(index: 0),
+        predicate: (route) => route.settings.name == HomeRoute.name,
+      );
+    }else{
+      AutoRouter.of(context).pop();
+    }
+
+  }
+
+
+  void openAttachment( BuildContext context,PharmacyAttachmentDomainModel model){
+    if(model.type == "image" ) {
+      AutoRouter.of(context).push(ImageZoomRoute(image: model.url ?? ""));
+    } else{
+     if(model.url!= null && model.url?.isNotEmpty == true){
+       HelperMethods.instance.launchURL(url: model.url ?? "");
+     }
+    }
   }
 
 

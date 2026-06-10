@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/helpers/helper_methods.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
@@ -16,6 +18,7 @@ import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_order_fees.d
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_payment/widgets/cart_payment_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/loyalty_points/domain/models/loyalty_points_balance_domain_model.dart';
 import 'package:flutter_tdd/features/user/loyalty_points/domain/use_case/get_loyalty_points_balance.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_attachment_domain_model.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:auto_route/auto_route.dart';

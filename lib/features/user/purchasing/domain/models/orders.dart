@@ -1,6 +1,8 @@
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instruction_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_attachment_domain_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/enums/order_type_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/enum/track_order_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
@@ -60,6 +62,7 @@ class Orders extends BaseDomainModel {
   String? orderSourceLabel;
   String? shippingProvider;
   String? shippingProviderLabel;
+  InsuranceCompany? insuranceCompany;
   OrderDriverDomainModel? driverModel;
   List<DeliveryInstructionModel>? instructions;
   List<OrderDiscountDomain>? orderDiscounts;
@@ -67,6 +70,9 @@ class Orders extends BaseDomainModel {
  bool? awaitingCustomerCompletion;
    bool? requiresPrescriptionReview;
   bool? insuranceApplied;
+  List<PharmacyAttachmentDomainModel>? insuranceAttachments;
+  List<PharmacyAttachmentDomainModel>? prescriptionAttachments;
+
 
   Orders({
     required this.id,
@@ -125,6 +131,9 @@ class Orders extends BaseDomainModel {
     this.awaitingCustomerCompletion,
     this.requiresPrescriptionReview,
     this.insuranceApplied,
+    this.insuranceAttachments,
+    this.prescriptionAttachments,
+    this.insuranceCompany,
   });
 
   int totalItemsCount() => orderDetails.fold(
@@ -204,6 +213,10 @@ class Orders extends BaseDomainModel {
 
   bool get isCanceled => getTrackOrderStatus == TrackOrderEnum.cancelled;
 
+  bool get isPlaced => getTrackOrderStatus == TrackOrderEnum.placed;
+
+  bool get isConfirmed => getTrackOrderStatus == TrackOrderEnum.confirmed;
+
   bool get showUnPaidOnlineOrderActions =>
       isPaymentOnline && !isPaid && !isCanceled;
 
@@ -218,6 +231,16 @@ class Orders extends BaseDomainModel {
    }
 
    bool get  isPharmacy => orderTypeEnum() == OrderTypeEnum.pharmacy;
+
+
+  bool get pharmNormalOrder {
+
+    return  (insuranceAttachments ?? []).isEmpty &&
+        (prescriptionAttachments ?? []).isEmpty;
+  }
+  bool get pharmOrderWithPrescription => (prescriptionAttachments ?? []).isNotEmpty;
+
+  bool get pharmOrderWithInsurance => (insuranceAttachments ?? []).isNotEmpty;
 
 
 }

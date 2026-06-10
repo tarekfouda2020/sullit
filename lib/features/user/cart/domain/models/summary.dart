@@ -4,6 +4,7 @@ class Summary extends BaseDomainModel {
   String orderDate;
   String name;
   String email;
+  String? phone;
   String shippingAddress;
   String orderStatus;
   String totalOrderAmount;
@@ -34,6 +35,7 @@ class Summary extends BaseDomainModel {
     this.requiresPrescriptionReview,
     this.awaitingCustomerCompletion,
     this.insuranceApplied,
+    this.phone,
     required this.shopType,
   });
 }

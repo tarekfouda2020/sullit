@@ -137,4 +137,12 @@ abstract class AppColors {
   Color get shadowPink;
 
   Color get oceanBlue;
+
+  Color get orange;
+
+  Color get lightOrange;
+
+  Color get lightGreen2;
+
+  Color get gray6;
 }

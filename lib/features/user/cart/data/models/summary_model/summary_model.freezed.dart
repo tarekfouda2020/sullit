@@ -23,7 +23,7 @@ mixin _$SummaryModel {
   @JsonKey(name: 'order_date')
   String get orderDate => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError; // String? phone,
   @JsonKey(name: 'shipping_address')
   String get shippingAddress => throw _privateConstructorUsedError;
   @JsonKey(name: 'order_status')
@@ -329,6 +329,7 @@ class _$_SummaryModel extends _SummaryModel {
   final String name;
   @override
   final String? email;
+// String? phone,
   @override
   @JsonKey(name: 'shipping_address')
   final String shippingAddress;
@@ -478,7 +479,7 @@ abstract class _SummaryModel extends SummaryModel {
   String get name;
   @override
   String? get email;
-  @override
+  @override // String? phone,
   @JsonKey(name: 'shipping_address')
   String get shippingAddress;
   @override

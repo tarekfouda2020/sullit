@@ -23,7 +23,8 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
                         alignment: Alignment.topCenter,
                         clipBehavior: Clip.none,
                         children: [
-                          PharmacyOrderDoneWidget(data: state.data!),
+                          PharmacyOrderDetailsDoneWidget(data: state.data!, controller: controller),
+                          if(state.data?.pharmNormalOrder == false)
                           SvgPicture.asset(Res.orderConfirmImage),
                         ],
                       ),
@@ -46,7 +47,7 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
                   child: Column(
                     spacing: 12,
                     children: [
-                      if(state.data?.availableCancelOrder == true)
+                      if(state.data?.availableCancelOrder == true && state.data?.isPendingReview == false)
                       DefaultButton(
                         title: "Cancel Order",
                         onTap: () {},

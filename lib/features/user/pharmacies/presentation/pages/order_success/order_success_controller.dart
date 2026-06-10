@@ -119,4 +119,31 @@ class OrderSuccessController {
     orderSummaryBloc.onUpdateData(data);
   }
 
+
+  Future<void> routeToTrackOrder(BuildContext context, int? orderId)async{
+    if(orderId!= null){
+      AutoRouter.of(context).push(TrackOrderRoute(orderId: orderId));
+    }
+
+  }
+
+  void onPressBack(BuildContext context) {
+    AutoRouter.of(context).pushAndPopUntil(
+      HomeRoute(index: 0),
+      predicate: (route) => route.settings.name == HomeRoute.name,
+    );
+  }
+
+
+  void openAttachment( BuildContext context,PharmacyAttachmentDomainModel model){
+    if(model.type == "image" ) {
+      AutoRouter.of(context).push(ImageZoomRoute(image: model.url ?? ""));
+    } else{
+      if(model.url!= null && model.url?.isNotEmpty == true){
+        HelperMethods.instance.launchURL(url: model.url ?? "");
+      }
+    }
+  }
+
+
 }
