@@ -168,9 +168,14 @@ class BuildProductInfo extends StatelessWidget {
               productModel: productModel,
             ),
             Gaps.vGap8,
+            BuildProductQty(
+                controller: controller,
+                productModel: productModel
+            ),
+            Gaps.vGap18,
             BuildProductDescription(
-              description:
-                  getIt<Utilities>().cleanHtml(productModel.description ?? ""),
+              description:productModel.description ?? "",
+              controller: controller,
             ),
           ],
         ),

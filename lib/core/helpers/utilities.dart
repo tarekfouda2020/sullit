@@ -76,6 +76,35 @@ class Utilities {
         .trim();
   }
 
+  bool isHtml(String text) {
+    return text.contains(RegExp(r'<[a-zA-Z][^>]*>'));
+  }
+
+  /// Formats a plain-text product description into structured paragraphs.
+  /// Detects section headers and bullet points, adding proper line breaks.
+  String formatDescription(String text) {
+    if (isHtml(text)) return text;
+
+    // Step 1: put each bullet on its own line
+    String result = text.replaceAll(' • ', '\n• ');
+
+    // Step 2: section headers appear after ". " and immediately before "\n•"
+    // e.g. "...cooking. Product details\n•" → "...cooking.\n\nProduct details\n•"
+    result = result.replaceAllMapped(
+      RegExp(r'\. ([A-Z][^.•\n]+)\n•'),
+      (m) => '.\n\n${m.group(1)}\n•',
+    );
+
+    // Step 3: trailing sentence after the last bullet
+    // e.g. "• Serve hot... Order it now..." → "• Serve hot...\n\nOrder it now..."
+    result = result.replaceAllMapped(
+      RegExp(r'(• [^\n]+)\. ([A-Z][^•\n]+\.)$'),
+      (m) => '${m.group(1)}.\n\n${m.group(2)}',
+    );
+
+    return result.trim();
+  }
+
   String parseCurrency(String text) {
     BuildContext ctx = getIt<GlobalContext>().context();
     String lang = ctx.read<DeviceCubit>().state.model.locale.languageCode;

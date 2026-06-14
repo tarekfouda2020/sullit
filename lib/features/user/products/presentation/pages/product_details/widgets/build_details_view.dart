@@ -27,8 +27,7 @@ class BuildDetailsView extends StatelessWidget {
               controller: controller,
               productModel: detailsModel.product,
             ),
-            BuildProductQty(
-                controller: controller, productModel: detailsModel.product),
+
 
             // SliverToBoxAdapter(
             //   child: Gaps.vGap20,
