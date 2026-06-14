@@ -8,14 +8,20 @@ class PharmacyCartController {
 
   final GenericBloc<bool> haveInsuranceCubit = GenericBloc<bool>(false);
 
+  final GenericBloc<Shop?> pharmacyBloc = GenericBloc<Shop?>(null);
 
-  final Shop? pharmacy;
+  final int? pharmacyId;
 
-  PharmacyCartController({this.pharmacy});
+  bool fromPharmacyDetails = true;
+
+
+  PharmacyCartController({this.pharmacyId, this.fromPharmacyDetails = true});
 
   Future<void> getData() async {
     getCartItems(refresh: false);
     getCartItems();
+    _getPharmacyDetails(fromRemote: false);
+    _getPharmacyDetails();
   }
 
   Future<void> getCartItems({bool refresh = true}) async {
@@ -181,7 +187,7 @@ class PharmacyCartController {
       AutoRouter.of(context).push(PharmacyAddressRoute(
         haveInsurance: haveInsuranceCubit.state.data && cartItemRequiredInsurance,
         havePrescription: havePrescription,
-        pharmacy: pharmacy
+        pharmacy: pharmacyBloc.state.data
       ));
     } else {
       CustomToast.showAuthDialog(context);
@@ -200,6 +206,35 @@ class PharmacyCartController {
   bool get insuranceAllowInCart => cartItemsBloc.state.data.pharmacyItems
       ?.any((element) => element.insuranceEligible == true) ==
       true;
+
+
+  Future<void> _getPharmacyDetails({bool fromRemote = true}) async {
+    var data = await GetShopDetails().call(
+      ShopIdParams(shopId: pharmacyId!, refresh: fromRemote),
+    );
+    if(data!= null){
+      pharmacyBloc.onUpdateData(data);
+    }
+
+  }
+
+
+
+  Future<void> onPressPlus(BuildContext context)async{
+    if(fromPharmacyDetails){
+      AutoRouter.of(context).pop();
+    }else{
+      var result = await AutoRouter.of(context).push(PharmacyDetailsRoute(
+          pharmacyId: pharmacyId,
+          fromCart: true
+      ));
+      if(result == true){
+        getCartItems();
+      }
+    }
+
+
+  }
 
 
 

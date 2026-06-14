@@ -40,7 +40,9 @@ class _PharmacyCheckOutState extends State<PharmacyCheckOut> {
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
         appBar: DefaultAppBar(
-          title: tr("cart"),
+          title: widget.confirmOrderId!= null
+              ? "confirm order"
+              : "Checkout",
           bgColor: context.colors.white,
           onBack: () {
             if (context.router.canPop()) {

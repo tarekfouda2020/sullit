@@ -1,9 +1,7 @@
 part of 'widgets_imports.dart';
 
 class PharmacyPageProductsSectionWidget extends StatelessWidget {
-  final PharmacyDetailsController controller;
-  const PharmacyPageProductsSectionWidget(
-      {super.key, required this.controller});
+  const PharmacyPageProductsSectionWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -56,7 +56,6 @@ class _PharmacyProductCardWidgetState
         isResale: widget.productModel.isResale!,
       ),
     );
-     log("after route data ==>>>>> ${result} ======");
      widget.controller.refreshDataAfterRoute(result);
     widget.onRefresh?.call();
   }

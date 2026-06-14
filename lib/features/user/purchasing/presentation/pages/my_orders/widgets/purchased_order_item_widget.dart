@@ -18,10 +18,18 @@ class MyOrderItemWidget extends StatelessWidget {
           boxBorder: Border.all(color: context.colors.gray3),
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(width: 36, height: 36, Res.purchasedOrderIcon),
+               order.isPharmacy
+                   ? CachedImage(
+                   url: order.orderDetails.first.product?.shop?.logo ?? "",
+                  fit: BoxFit.contain,
+                 width: 36, height: 36,
+               )
+                   : Image.asset(width: 36, height: 36, Res.purchasedOrderIcon),
                 Gaps.hGap13,
                 Flexible(
                   child: Column(
@@ -37,6 +45,17 @@ class MyOrderItemWidget extends StatelessWidget {
                           ),
                         ],
                       ),
+                      Gaps.vGap5,
+                      if(order.isPharmacy)...[
+                        Gaps.vGap5,
+                        Text(
+                          order.orderDetails.first.product?.shop?.name ?? "",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppTextStyle.s16_w600(
+                              color: context.colors.black),
+                        ),
+                      ],
                       Gaps.vGap5,
                       Row(
                         children: [
@@ -72,7 +91,12 @@ class MyOrderItemWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16),
                 child: ReOrderButtonWidget(
-                    onPress: () => controller.reOrder(context, order.id)),
+                    onPress: () => controller.reOrder(
+                        context,
+                        order.id,
+                       order.isPharmacy,
+                      order.orderDetails.first!.product!.shop!.id!
+                    )),
               ),
           ],
         ),

@@ -10,7 +10,8 @@ class PharmacyOrderInvoiceWidget  extends StatelessWidget {
       {super.key,
         required this.isReturned,
         this.order,
-        required this.controller});
+        required this.controller
+      });
 
   @override
   Widget build(BuildContext context) {

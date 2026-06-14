@@ -25,10 +25,7 @@ class PharmacyPageCategoriesWidget extends StatelessWidget {
                 alignment: Alignment.center,
                 margin: EdgeInsetsDirectional.only(
                   start: index == 0 ? 20 : 8,
-                  end: index ==
-                          controller
-                                  .categoriesPagingController.itemList!.length -
-                              1
+                  end: index == controller.categoriesPagingController.itemList!.length - 1
                       ? 20
                       : 0,
                 ),

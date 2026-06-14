@@ -14,7 +14,7 @@ class _PharmacyCategoriesState extends State<PharmacyCategories> {
   @override
   void initState() {
     super.initState();
-    controller = PharmacyCategoriesController(shopId: widget.pharmacyId);
+    controller = PharmacyCategoriesController(pharmacyId: widget.pharmacyId);
   }
 
   @override
@@ -39,10 +39,10 @@ class _PharmacyCategoriesState extends State<PharmacyCategories> {
               sliver: PagedSliverGrid<int, ShopCategory>(
                 pagingController: controller.pagingController,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
+                  crossAxisCount: 3,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
-                  childAspectRatio: 1.1,
+                  childAspectRatio: 90/146,
                 ),
                 builderDelegate: PagedChildBuilderDelegate<ShopCategory>(
                   itemBuilder: (context, category, index) {

@@ -14,15 +14,15 @@ class PharmacyOrderDetailsShimmerWidget extends StatelessWidget {
               padding: Dimens.paddingAll20PX,
               children: [
                 Gaps.vGap10,
-                Stack(
+                const Stack(
                   alignment: Alignment.topCenter,
                   clipBehavior: Clip.none,
                   children: [
-                    const PharmacyOrderDoneShimmerWidget(),
+                    PharmacyOrderDoneShimmerWidget(),
                     BuildShimmerItem(
                       height: 120,
                       width: 120,
-                      boxShape: BoxShape.circle,
+                      borderRadius: BorderRadius.all(Radius.circular(120)),
                     ),
                   ],
                 ),

@@ -15,10 +15,12 @@ class PharmacyAddressButtonsWidget extends StatelessWidget {
       ),
       child: CustomBottomSafeAreaWidget(
         child: DefaultButton(
-          title: tr("proceedToCheckout"),
+          title: controller.haveInsurance || controller.havePrescription
+              ?"Submit Order"
+              : tr("proceedToCheckout"),
           onTap: () => controller.onPressProceed(context),
           color: context.colors.primary,
-          fontSize: 18.sp,
+          fontSize: 18,
           fontWeight: FontWeight.w700,
           margin: EdgeInsets.zero,
         ),

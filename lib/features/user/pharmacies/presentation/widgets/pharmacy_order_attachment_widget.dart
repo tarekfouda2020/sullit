@@ -21,16 +21,16 @@ class PharmacyOrderAttachmentWidget extends StatelessWidget {
         child: Row(
           children: [
           Container(
-            width: 32,
-            height: 32,
+            width: 33,
+            height: 33,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: context.colors.lightGreen2,
-              borderRadius: Dimens.borderRadius10PX
+              borderRadius: Dimens.borderRadius8PX
             ),
             child: SvgPicture.asset(iconPath,
-             width: 16,
-              height: 16,
+             width: 18,
+              height: 18,
             ),
           ),
             Gaps.hGap10,

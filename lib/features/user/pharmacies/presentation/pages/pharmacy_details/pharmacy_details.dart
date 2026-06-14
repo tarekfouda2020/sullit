@@ -1,14 +1,12 @@
 part of 'pharmacy_details_imports.dart';
 
 class PharmacyDetails extends StatefulWidget {
-  final bool? fromCart;
-  final Shop? pharmacy;
+  final bool fromCart;
   final int? pharmacyId;
   final int? selectedCategoryId;
   const PharmacyDetails(
       {super.key,
       this.fromCart = false,
-      this.pharmacy,
       this.pharmacyId,
       this.selectedCategoryId});
 
@@ -22,8 +20,7 @@ class _PharmacyDetailsState extends State<PharmacyDetails> {
   @override
   void initState() {
     super.initState();
-    controller = PharmacyDetailsController(
-        pharmacy: widget.pharmacy, pharmacyId: widget.pharmacyId);
+    controller = PharmacyDetailsController(pharmacyId: widget.pharmacyId,fromCart: widget.fromCart);
   }
 
   @override
@@ -51,7 +48,7 @@ class _PharmacyDetailsState extends State<PharmacyDetails> {
           builder: (context, state) {
             return KeyboardVisibilityBuilder(builder: (context, isOPen) {
               return Visibility(
-                visible: !isOPen,
+                visible: !isOPen && controller.neededAmount() >= 0,
                 child: CustomBottomSafeAreaWidget(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,

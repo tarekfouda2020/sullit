@@ -1179,7 +1179,6 @@ class AppRouter extends _i110.RootStackRouter {
         child: _i103.PharmacyDetails(
           key: args.key,
           fromCart: args.fromCart,
-          pharmacy: args.pharmacy,
           pharmacyId: args.pharmacyId,
           selectedCategoryId: args.selectedCategoryId,
         ),
@@ -1193,7 +1192,8 @@ class AppRouter extends _i110.RootStackRouter {
         routeData: routeData,
         child: _i104.PharmacyCart(
           key: args.key,
-          pharmacy: args.pharmacy,
+          pharmacyId: args.pharmacyId,
+          fromPharmacyDetails: args.fromPharmacyDetails,
         ),
         opaque: true,
       );
@@ -4016,8 +4016,7 @@ class PharmacyDetailsRoute
     extends _i110.PageRouteInfo<PharmacyDetailsRouteArgs> {
   PharmacyDetailsRoute({
     _i113.Key? key,
-    bool? fromCart = false,
-    _i120.Shop? pharmacy,
+    bool fromCart = false,
     int? pharmacyId,
     int? selectedCategoryId,
   }) : super(
@@ -4026,7 +4025,6 @@ class PharmacyDetailsRoute
           args: PharmacyDetailsRouteArgs(
             key: key,
             fromCart: fromCart,
-            pharmacy: pharmacy,
             pharmacyId: pharmacyId,
             selectedCategoryId: selectedCategoryId,
           ),
@@ -4039,16 +4037,13 @@ class PharmacyDetailsRouteArgs {
   const PharmacyDetailsRouteArgs({
     this.key,
     this.fromCart = false,
-    this.pharmacy,
     this.pharmacyId,
     this.selectedCategoryId,
   });
 
   final _i113.Key? key;
 
-  final bool? fromCart;
-
-  final _i120.Shop? pharmacy;
+  final bool fromCart;
 
   final int? pharmacyId;
 
@@ -4056,7 +4051,7 @@ class PharmacyDetailsRouteArgs {
 
   @override
   String toString() {
-    return 'PharmacyDetailsRouteArgs{key: $key, fromCart: $fromCart, pharmacy: $pharmacy, pharmacyId: $pharmacyId, selectedCategoryId: $selectedCategoryId}';
+    return 'PharmacyDetailsRouteArgs{key: $key, fromCart: $fromCart, pharmacyId: $pharmacyId, selectedCategoryId: $selectedCategoryId}';
   }
 }
 
@@ -4065,13 +4060,15 @@ class PharmacyDetailsRouteArgs {
 class PharmacyCartRoute extends _i110.PageRouteInfo<PharmacyCartRouteArgs> {
   PharmacyCartRoute({
     _i113.Key? key,
-    _i120.Shop? pharmacy,
+    int? pharmacyId,
+    bool fromPharmacyDetails = true,
   }) : super(
           PharmacyCartRoute.name,
           path: '/pharmacy-cart',
           args: PharmacyCartRouteArgs(
             key: key,
-            pharmacy: pharmacy,
+            pharmacyId: pharmacyId,
+            fromPharmacyDetails: fromPharmacyDetails,
           ),
         );
 
@@ -4081,16 +4078,19 @@ class PharmacyCartRoute extends _i110.PageRouteInfo<PharmacyCartRouteArgs> {
 class PharmacyCartRouteArgs {
   const PharmacyCartRouteArgs({
     this.key,
-    this.pharmacy,
+    this.pharmacyId,
+    this.fromPharmacyDetails = true,
   });
 
   final _i113.Key? key;
 
-  final _i120.Shop? pharmacy;
+  final int? pharmacyId;
+
+  final bool fromPharmacyDetails;
 
   @override
   String toString() {
-    return 'PharmacyCartRouteArgs{key: $key, pharmacy: $pharmacy}';
+    return 'PharmacyCartRouteArgs{key: $key, pharmacyId: $pharmacyId, fromPharmacyDetails: $fromPharmacyDetails}';
   }
 }
 

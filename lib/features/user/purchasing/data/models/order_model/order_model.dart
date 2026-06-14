@@ -82,6 +82,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'insurance_attachments') List<PharmacyAttachmentModel>? insuranceAttachments,
     @JsonKey(name: 'prescription_attachments') List<PharmacyAttachmentModel>? prescriptionAttachments,
     @JsonKey(name: 'insurance_company') InsuranceCompanyModel? insuranceCompany,
+    @JsonKey(name: 'cancel_reason') String? cancelReason,
 
   }) = _OrderModel;
 
@@ -150,6 +151,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       prescriptionAttachments: prescriptionAttachments?.map((e) => e.toDomainModel()).toList(),
       insuranceAttachments: insuranceAttachments?.map((e) => e.toDomainModel()).toList(),
       insuranceCompany: insuranceCompany?.toDomainModel(),
+      cancelReason: cancelReason
     );
   }
 }

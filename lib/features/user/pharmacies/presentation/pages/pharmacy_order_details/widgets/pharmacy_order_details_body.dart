@@ -2,6 +2,7 @@ part of 'widgets_imports.dart';
 
 class PharmacyOrderDetailsBody extends StatelessWidget {
   final PharmacyOrderDetailsController controller;
+
   const PharmacyOrderDetailsBody({super.key, required this.controller});
 
   @override
@@ -23,23 +24,29 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
                         alignment: Alignment.topCenter,
                         clipBehavior: Clip.none,
                         children: [
-                          PharmacyOrderDetailsDoneWidget(data: state.data!, controller: controller),
-                          if(state.data?.pharmNormalOrder == false)
-                          SvgPicture.asset(Res.orderConfirmImage),
+                          PharmacyOrderDetailsDoneWidget(
+                              data: state.data!, controller: controller),
+                          if (state.data?.pharmNormalOrder == false && state.data?.isCanceled == false )
+                            SvgPicture.asset(Res.orderConfirmImage)
+                          else if(state.data?.isCanceled == true)
+                            SvgPicture.asset(Res.confirmationAlertIcon)
                         ],
                       ),
                       Gaps.vGap20,
                       Text(
                         "Products",
-                        style: AppTextStyle.s16_w700(color: context.colors.black),
+                        style:
+                            AppTextStyle.s16_w700(color: context.colors.black),
                       ),
                       Gaps.vGap20,
                       PharmacyOrderProductsWidget(
                         order: state.data!,
                       ),
                       Gaps.vGap20,
-                      PharmacyConfirmSummaryWidget(
-                          order: state.data!, controller: controller)
+                      if (state.data?.pharmNormalOrder == false &&
+                          state.data?.isPendingReview == false && state.data?.isCanceled == false)
+                        PharmacyConfirmSummaryWidget(
+                            order: state.data!, controller: controller)
                     ],
                   ),
                 ),
@@ -47,22 +54,30 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
                   child: Column(
                     spacing: 12,
                     children: [
-                      if(state.data?.availableCancelOrder == true && state.data?.isPendingReview == false)
-                      DefaultButton(
-                        title: "Cancel Order",
-                        onTap: () => controller.cancelOrder(context),
-                        textColor: context.colors.gray8,
-                        color: context.colors.white,
-                        borderColor: context.colors.borderColor,
-                      ),
-                      if(state.data?.awaitingCustomerCompletion == true && state.data?.isPendingReview == false)
-                      DefaultButton(
-                        title: "Confirm&Pay Now",
-                        onTap: () => controller.routeToCheckout(context),
-                        textColor: context.colors.white,
-                        color: context.colors.green,
-                        borderColor: context.colors.green,
-                      ),
+                      if(state.data?.isCanceled == true)
+                        DefaultButton(
+                          title: "Reorder",
+                          onTap: () => controller.reOrder(context),
+                          textColor: context.colors.white,
+                          color: context.colors.mainGreen,
+                          borderColor: context.colors.mainGreen,
+                        )
+                        else
+                      Visibility(
+                          visible:
+                              state.data!.awaitingCustomerCompletion == true,
+                          replacement: Visibility(
+                            visible: state.data!.isPendingReview == false,
+                            child: DefaultButton(
+                              title: "Track Shipment",
+                              onTap: () =>
+                                  controller.routeToTrackOrder(context),
+                              textColor: context.colors.white,
+                              color: context.colors.mainGreen,
+                              borderColor: context.colors.mainGreen,
+                            ),
+                          ),
+                          child: _buildColumn(state, context))
                     ],
                   ),
                 )
@@ -73,6 +88,32 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
           return const PharmacyOrderDetailsShimmerWidget();
         }
       },
+    );
+  }
+
+  Column _buildColumn(GenericState<Orders?> state, BuildContext context) {
+    return Column(
+      spacing: 12,
+      children: [
+        if (state.data?.availableCancelOrder == true &&
+            state.data?.isPendingReview == false)
+          DefaultButton(
+            title: "Cancel Order",
+            onTap: () => controller.cancelOrder(context),
+            textColor: context.colors.gray8,
+            color: context.colors.white,
+            borderColor: context.colors.borderColor,
+          ),
+        if (state.data?.awaitingCustomerCompletion == true &&
+            state.data?.isPendingReview == false)
+          DefaultButton(
+            title: "Confirm & Pay Now",
+            onTap: () => controller.routeToCheckout(context),
+            textColor: context.colors.white,
+            color: context.colors.mainGreen,
+            borderColor: context.colors.mainGreen,
+          ),
+      ],
     );
   }
 }

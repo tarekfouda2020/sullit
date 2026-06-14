@@ -46,7 +46,8 @@ class SupportedInsuranceWidget extends StatelessWidget {
               ),
               child: CachedImage(
                 url: insurance[index].logo,
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
+                // borderRadius:   Dimens.borderRadius8PX,
               ),
             ),
             separatorBuilder: (context, index) => Gaps.hGap10,

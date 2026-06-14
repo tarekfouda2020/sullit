@@ -17,13 +17,11 @@ class OrderSummaryDomainModel extends BaseDomainModel {
 
   String? transactionUrl;
 
-  OrderModel? orderDetails;
 
   OrderSummaryDomainModel({
     this.summary,
     this.sectionOrders,
     this.transactionUrl,
-    this.orderDetails,
   });
 
   double _sumBy(double? Function(Orders e) selector) {
@@ -122,22 +120,6 @@ class OrderSummaryDomainModel extends BaseDomainModel {
 
 
   bool get pharmNormalOrder {
-    for (final order in sectionOrders ?? <Orders>[]) {
-      final insuranceCount = order.insuranceAttachments?.length ?? 0;
-      final prescriptionCount = order.prescriptionAttachments?.length ?? 0;
-
-      log(
-        'Order ${order.id}: '
-            'insurance=$insuranceCount, prescription=$prescriptionCount',
-      );
-
-      if (insuranceCount > 0 || prescriptionCount > 0) {
-        log(
-          'Order ${order.id} is NOT a normal pharmacy order',
-        );
-      }
-    }
-
     return sectionOrders?.every(
           (element) =>
       (element.insuranceAttachments ?? []).isEmpty &&

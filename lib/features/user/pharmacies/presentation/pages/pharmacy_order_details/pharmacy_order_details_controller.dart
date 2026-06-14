@@ -8,11 +8,11 @@ class PharmacyOrderDetailsController {
   final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc =
       GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
 
-  final int id;
+  final int orderId;
 
-  PharmacyOrderDetailsController(this.id) {
-    getOrderDetails(id, refresh: false);
-    getOrderDetails(id);
+  PharmacyOrderDetailsController(this.orderId) {
+    getOrderDetails(orderId, refresh: false);
+    getOrderDetails(orderId);
     getOrderFees(fromRemote: false);
     getOrderFees();
     getLoyaltyPointsBalance(refresh: false);
@@ -118,7 +118,7 @@ class PharmacyOrderDetailsController {
   }
 
   Future<void> refreshData() async {
-    await getOrderDetails(id);
+    await getOrderDetails(orderId);
   }
 
 
@@ -183,4 +183,24 @@ class PharmacyOrderDetailsController {
   }
 
 
+  Future<void> routeToTrackOrder(BuildContext context)async{
+    AutoRouter.of(context).push(TrackOrderRoute(orderId: orderDetailsBloc.state.data!.id));
+
+  }
+
+
+  Future<void> reOrder(BuildContext context) async {
+    String result = await OrderAgain()(orderId);
+    if (result.isNotEmpty) {
+      CustomToast.showSimpleToast(msg: result, type: ToastType.success);
+      await getIt<Utilities>().popManyTimes(context, 2);
+      BuildContext ctx = getIt<GlobalContext>().context();
+      AutoRouter.of(ctx).push(PharmacyCartRoute(
+          pharmacyId: orderDetailsBloc.state.data!.orderDetails.first.product!.shop!.id,
+          fromPharmacyDetails: false
+      ));
+    } else {
+      CustomToast.showSimpleToast(msg: tr("tryAgain"), type: ToastType.error);
+    }
+  }
 }

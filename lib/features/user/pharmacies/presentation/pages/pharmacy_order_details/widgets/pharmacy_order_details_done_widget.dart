@@ -8,23 +8,23 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: Dimens.paddingAll20PX,
+      padding: const EdgeInsets.all(15),
       margin:  EdgeInsets.only(top: data.pharmNormalOrder == true
           ? 0
           :43 ),
       decoration: BoxDecoration(
         color: context.colors.white,
-        borderRadius: Dimens.borderRadius10PX.copyWith(
-          bottomLeft: Radius.zero,
-          bottomRight: Radius.zero,
-        ),
+        borderRadius: Dimens.borderRadius12PX,
+        border: Border.all(color: context.colors.gray3)
       ),
       child: Column(
         children: [
           Gaps.vGap20,
-         if(data.pharmNormalOrder == false && (data.isConfirmed || data.isPlaced) )...[
+         if(data.pharmNormalOrder == false && (data.isConfirmed || data.isPlaced || data.isCanceled) )...[
            Text(
-             "Thank You For Your Order!",
+             data.isCanceled
+                 ? "Order Rejected"
+                 : "Thank You For Your Order!",
              style: AppTextStyle.s20_w700(color: context.colors.black),
            ),
            Gaps.vGap10,
@@ -36,9 +36,9 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
                  children: [
                    TextSpan(
                      text: data.orderDetails.isNotEmpty
-                         ? data.orderDetails.first.product?.shop?.name ?? ""
+                         ? "${data.orderDetails.first.product?.shop?.name  ?? ""} "
                          : "",
-                     style: AppTextStyle.s14_w600(color: context.colors.green),
+                     style: AppTextStyle.s14_w600(color: context.colors.mainGreen),
                    ),
                    TextSpan(
                      text: _getText(),
@@ -66,17 +66,21 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
           ),
           Gaps.vGap20,
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 13),
+            padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 13),
             decoration: BoxDecoration(
               color: _getReviewStatusColor(context),
               borderRadius: Dimens.borderRadius30PX,
             ),
             child: _reviewStatusWidget(context),
           ),
+          if(data.pharmNormalOrder == false)...[
+            Gaps.vGap20,
+            Divider(color:context.colors.softGray,height: 1,thickness: 0.8,)
+          ],
           Gaps.vGap20,
           if (data.pharmNormalOrder == false &&
               data.isPendingReview == false &&
-              data.awaitingCustomerCompletion == true) ...[
+              data.awaitingCustomerCompletion == true && data.isCanceled == false) ...[
             const AfterReviewHintWidget(
               title: "select payment method to proceed to checkout , You must talk action within 24 hours or order will be automatically cancelled",
             ),
@@ -104,6 +108,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
           Gaps.vGap10,
           if (data.insuranceApplied == true && data.insuranceCompany!= null) ...[
             _buildRow(context, "Insurance Company", data.insuranceCompany?.name ?? ""),
+            Gaps.vGap10,
           ],
           if(data.pharmOrderWithPrescription == true) ...[
             PharmacyOrderAttachmentWidget(
@@ -116,7 +121,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
             Gaps.vGap10,
             PharmacyOrderAttachmentWidget(
               title: "View Health Insurance Doc.",
-              iconPath: Res.fileIcon,
+              iconPath: Res.medicFile,
               onTap: () => controller.openAttachment(context, data.insuranceAttachments!.first) ,
             )
           ]
@@ -147,18 +152,34 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
      bool hasPrescription = data.requiresPrescriptionReview == true;
      bool hasInsurance = data.insuranceApplied == true;
      bool isPendingReview = data.isPendingReview == true;
+     if(data.isCanceled == true){
+       return data.cancelReason ?? "Your Order Have Been Cancelled";
+     }
 
     if (hasPrescription && hasInsurance) {
       return isPendingReview == false
-          ? " accepted your health insurance and Prescription document successfully"
-          : " will review health insurance and your Prescription document and back to you Shortly";
+          ? "accepted your health insurance and Prescription document successfully"
+          : "will review health insurance and your Prescription document and back to you Shortly";
     }
     return isPendingReview == false && hasPrescription
-        ? " accepted your Prescription document successfully"
-        : " will review your prescription documents. We'll get back to you shortly.";
+        ? "accepted your Prescription document successfully"
+        : "will review your prescription documents. We'll get back to you shortly.";
   }
 
   Widget _reviewStatusWidget(BuildContext context) {
+    if(data.isCanceled == true){
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CircleAvatar(radius: 4, backgroundColor: context.colors.bloodyRed),
+          Gaps.hGap5,
+          Text(
+            data.orderStatus,
+            style: AppTextStyle.s16_w600(color: context.colors.primary),
+          ),
+        ],
+      );
+    }
     if (data.pharmNormalOrder) {
       return Row(
         mainAxisSize: MainAxisSize.min,
@@ -167,7 +188,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
           Gaps.hGap5,
           Text(
             data.orderStatus,
-            style: AppTextStyle.s14_w400(color: context.colors.green),
+            style: AppTextStyle.s14_w600(color: context.colors.mainGreen),
           ),
         ],
       );
@@ -179,7 +200,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
           Gaps.hGap5,
           Text(
             "Under Reviewing",
-            style: AppTextStyle.s16_w400(color: context.colors.orange),
+            style: AppTextStyle.s16_w600(color: context.colors.orange),
           ),
         ],
       );
@@ -191,7 +212,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
           Gaps.hGap5,
           Text(
             data.orderStatus,
-            style: AppTextStyle.s16_w400(color: context.colors.green),
+            style: AppTextStyle.s16_w400(color: context.colors.mainGreen),
           ),
         ],
       );
@@ -201,6 +222,9 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
   Color _getReviewStatusColor(BuildContext context) {
     if (data.pharmNormalOrder == false && data.isPendingReview == true) {
       return context.colors.lightOrange;
+    }
+    if(data.isCanceled == true){
+      return const Color(0xffFFE4E5);
     }
     return context.colors.lightGreen;
   }

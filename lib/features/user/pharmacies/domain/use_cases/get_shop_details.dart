@@ -4,22 +4,12 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/models/shop_id_param
 import 'package:flutter_tdd/features/user/pharmacies/domain/repository/pharmacies_repository.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 
-class GetShopDetails extends UseCase<Shop, ShopIdParams> {
+class GetShopDetails extends UseCase<Shop?, ShopIdParams> {
   @override
-  Future<Shop> call(ShopIdParams params) async {
+  Future<Shop?> call(ShopIdParams params) async {
     final result = await getIt<PharmaciesRepository>().getShopDetails(params);
     return result.fold(
-      (l) => Shop(
-        id: null,
-        userId: null,
-        name: null,
-        logo: null,
-        packageInvalidAt: null,
-        products: null,
-        orders: 0,
-        rating: 0,
-        follow: false,
-      ),
+      (l) => null,
       (r) => r,
     );
   }

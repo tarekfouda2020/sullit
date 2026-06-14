@@ -85,6 +85,7 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
           ? null
           : InsuranceCompanyModel.fromJson(
               json['insurance_company'] as Map<String, dynamic>),
+      cancelReason: json['cancel_reason'] as String?,
     );
 
 Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
@@ -152,4 +153,5 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'prescription_attachments':
           instance.prescriptionAttachments?.map((e) => e.toJson()).toList(),
       'insurance_company': instance.insuranceCompany?.toJson(),
+      'cancel_reason': instance.cancelReason,
     };

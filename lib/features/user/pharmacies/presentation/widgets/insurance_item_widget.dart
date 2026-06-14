@@ -17,7 +17,7 @@ class InsuranceItemWidget extends StatelessWidget {
         }
       },
       child: Container(
-        height: 72,
+        height: 68,
         margin: const EdgeInsets.only(bottom: Dimens.dp15),
         padding: const EdgeInsets.symmetric(
           horizontal: Dimens.dp15,
@@ -37,8 +37,8 @@ class InsuranceItemWidget extends StatelessWidget {
           children: [
             CachedImage(
               url: model.logo,
-              width: 80,
-              height: 40,
+              width: 76,
+              height: 36,
               fit: BoxFit.cover,
             ),
             Gaps.hGap20,

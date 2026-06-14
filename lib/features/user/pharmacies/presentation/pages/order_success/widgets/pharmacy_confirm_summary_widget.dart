@@ -78,7 +78,6 @@ class PharmacyConfirmSummaryWidget extends StatelessWidget {
       ),
       Gaps.line(context.colors.softGray, 15.h),
       Container(
-          margin: const EdgeInsets.symmetric(vertical: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

@@ -23,7 +23,7 @@ class PharmacyBottomNavWidget extends StatelessWidget {
               Visibility(
                 visible: controller.insuranceAllowInCart,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                   decoration: BoxDecoration(
                       color: context.colors.customBackground,
                       borderRadius: Dimens.borderRadius8PX),

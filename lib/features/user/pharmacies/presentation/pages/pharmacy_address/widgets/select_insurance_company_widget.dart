@@ -10,7 +10,7 @@ class SelectInsuranceCompanyWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => controller.onPressSelectInsuranceCompany(context),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 10),
         decoration: BoxDecoration(
           color: context.colors.white,
           borderRadius: Dimens.borderRadius30PX
@@ -24,12 +24,15 @@ class SelectInsuranceCompanyWidget extends StatelessWidget {
               child: Text(state.data?.name ?? "Select Insurance Company",
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: AppTextStyle.s14_w400(color: context.colors.textColor),
+              style: state.data?.name!= null
+                  ?AppTextStyle.s15_w500(color: context.colors.black)
+                  : AppTextStyle.s14_w400(color: context.colors.black),
               ),
             ),
+              Gaps.hGap15,
               Icon(Icons.keyboard_arrow_down_rounded,
-                size: 15,
-                color: context.colors.textColor,)
+                size: 25,
+                color: context.colors.black,)
             ],
           );
         },),

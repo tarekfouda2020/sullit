@@ -107,25 +107,22 @@ class PharmacyInvoiceSummaryWidget extends StatelessWidget {
                 ),
               ),
               Gaps.line(context.colors.softGray, 15.h),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      tr("total"),
-                      style: AppTextStyle.s14_w400(color: context.colors.black),
-                    ),
-                    DirhamPrice(
-                      amount: controller.getTotal().toStringAsFixed(2),
-                      textStyle:
-                          AppTextStyle.s14_w800(color: context.colors.black),
-                      currencyStyle:
-                          AppTextStyle.s18_w400(color: context.colors.black),
-                      currencyOffset: 0,
-                    ),
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    tr("total"),
+                    style: AppTextStyle.s14_w400(color: context.colors.black),
+                  ),
+                  DirhamPrice(
+                    amount: controller.getTotal().toStringAsFixed(2),
+                    textStyle:
+                        AppTextStyle.s14_w800(color: context.colors.black),
+                    currencyStyle:
+                        AppTextStyle.s18_w400(color: context.colors.black),
+                    currencyOffset: 0,
+                  ),
+                ],
               ),
             ]),
       ],

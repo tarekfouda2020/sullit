@@ -67,8 +67,12 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
             ),
             child: _reviewStatusWidget(context),
           ),
+          if(data.pharmNormalOrder == false)...[
+            Gaps.vGap20,
+            Divider(color:context.colors.softGray,height: 1,thickness: 0.8,)
+          ],
           Gaps.vGap20,
-          if(data.pharmNormalOrder == false && data.summary?.isPendingReview == false && data.summary?.awaitingCustomerCompletion == true)...[
+          if(data.pharmNormalOrder == false && data.summary?.isPendingReview == false && data.summary?.awaitingCustomerCompletion == true && data.sectionOrders?.first.isCanceled == false)...[
             const AfterReviewHintWidget(title: "select payment method to proceed to checkout , You must talk action within 24 hours or order will be automatically cancelled",),
             Gaps.vGap20,
             Divider(color: context.colors.greyWhite),
@@ -94,6 +98,7 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
          if(data.summary?.insuranceApplied == true && data.sectionOrders?.first.insuranceCompany != null)...[
            Gaps.vGap10,
            _buildRow(context, "Insurance Company", data.sectionOrders?.first.insuranceCompany?.name ??""),
+           Gaps.vGap10,
          ],
           if(data.pharmOrderWithPrescription == true) ...[
             Gaps.vGap10,
@@ -107,7 +112,7 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
             Gaps.vGap10,
             PharmacyOrderAttachmentWidget(
               title: "View Health Insurance Doc.",
-              iconPath: Res.fileIcon,
+              iconPath: Res.medicFile,
               onTap: () => controller.openAttachment(context, (data.sectionOrders??[]).first.insuranceAttachments!.first) ,
             )
           ]
@@ -140,7 +145,9 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
      bool hasPrescription = data.summary?.requiresPrescriptionReview == true;
      bool hasInsurance = data.summary?.insuranceApplied == true;
      bool isPendingReview = data.summary?.isPendingReview == true;
-
+     if(data.sectionOrders?.first.isCanceled == true){
+       return  data.sectionOrders?.first.cancelReason ??"Your Order has been canceled";
+     }
     if (hasPrescription && hasInsurance) {
       return isPendingReview == false
           ? " accepted your health insurance and Prescription document successfully"
@@ -164,7 +171,7 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
           Gaps.hGap5,
           Text(
             data.summary?.orderStatus ??"",
-            style: AppTextStyle.s14_w400(color: context.colors.green),
+            style: AppTextStyle.s14_w600(color: context.colors.green),
           ),
         ],
       );
@@ -180,7 +187,7 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
              Gaps.hGap5,
              Text(
                "Under Reviewing",
-               style: AppTextStyle.s16_w400(color: context.colors.orange),
+               style: AppTextStyle.s16_w600(color: context.colors.orange),
              ),
            ],
          );

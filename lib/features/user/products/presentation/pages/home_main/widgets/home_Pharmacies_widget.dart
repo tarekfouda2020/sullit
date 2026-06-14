@@ -14,7 +14,7 @@ class HomePharmaciesWidget extends StatelessWidget {
           onTap: () => controller.routeToPharmaciesList(context),
         ),
         SizedBox(
-          height: 118,
+          height: 116,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -31,9 +31,13 @@ class HomePharmaciesWidget extends StatelessWidget {
                         Gaps.vGap8,
                         CachedImage(
                           height: Dimens.dp72,
-                          width: 185,
+                          width: 182,
                           borderWidth: 1.5,
-                          borderColor: context.colors.borderColor,
+                          borderColor: context.colors.gray3,
+                          border: Border.all(
+                            color: context.colors.gray3,
+                            width: 1.2
+                          ),
                           borderRadius: Dimens.borderRadius12PX,
                           url: item.sliders?.first ?? ""
                         ),
@@ -42,7 +46,8 @@ class HomePharmaciesWidget extends StatelessWidget {
                           width: 170,
                           child: Text(
                             item.name ?? "",
-                            maxLines: 2,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.center,
                             style: AppTextStyle.s15_w500(
                                 color: context.colors.black),

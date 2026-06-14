@@ -1,8 +1,9 @@
 part of 'pharmacy_cart_imports.dart';
 
 class PharmacyCart extends StatefulWidget {
-  final Shop? pharmacy;
-  const PharmacyCart({super.key, this.pharmacy});
+  final int? pharmacyId;
+  final bool fromPharmacyDetails;
+  const PharmacyCart({super.key, this.pharmacyId, this.fromPharmacyDetails = true});
 
   @override
   State<PharmacyCart> createState() => _PharmacyCartState();
@@ -14,7 +15,7 @@ class _PharmacyCartState extends State<PharmacyCart> {
   @override
   void initState() {
     super.initState();
-    controller = PharmacyCartController(pharmacy: widget.pharmacy);
+    controller = PharmacyCartController(pharmacyId: widget.pharmacyId,fromPharmacyDetails: widget.fromPharmacyDetails);
     controller.getData();
   }
 
@@ -28,6 +29,7 @@ class _PharmacyCartState extends State<PharmacyCart> {
           title: tr('cart'),
           bgColor: context.colors.white,
           onBack: () => controller.onBack(context),
+          size: 55,
         ),
         body: Container(
           decoration: BoxDecoration(color: context.colors.customBackground),

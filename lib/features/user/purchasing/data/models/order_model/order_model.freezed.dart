@@ -138,6 +138,8 @@ mixin _$OrderModel {
   @JsonKey(name: 'insurance_company')
   InsuranceCompanyModel? get insuranceCompany =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'cancel_reason')
+  String? get cancelReason => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -216,7 +218,8 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'prescription_attachments')
       List<PharmacyAttachmentModel>? prescriptionAttachments,
       @JsonKey(name: 'insurance_company')
-      InsuranceCompanyModel? insuranceCompany});
+      InsuranceCompanyModel? insuranceCompany,
+      @JsonKey(name: 'cancel_reason') String? cancelReason});
 
   $OrderDriverModelCopyWith<$Res>? get driver;
   $InsuranceCompanyModelCopyWith<$Res>? get insuranceCompany;
@@ -294,6 +297,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? insuranceAttachments = freezed,
     Object? prescriptionAttachments = freezed,
     Object? insuranceCompany = freezed,
+    Object? cancelReason = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -532,6 +536,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.insuranceCompany
           : insuranceCompany // ignore: cast_nullable_to_non_nullable
               as InsuranceCompanyModel?,
+      cancelReason: freezed == cancelReason
+          ? _value.cancelReason
+          : cancelReason // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -634,7 +642,8 @@ abstract class _$$_OrderModelCopyWith<$Res>
       @JsonKey(name: 'prescription_attachments')
       List<PharmacyAttachmentModel>? prescriptionAttachments,
       @JsonKey(name: 'insurance_company')
-      InsuranceCompanyModel? insuranceCompany});
+      InsuranceCompanyModel? insuranceCompany,
+      @JsonKey(name: 'cancel_reason') String? cancelReason});
 
   @override
   $OrderDriverModelCopyWith<$Res>? get driver;
@@ -712,6 +721,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? insuranceAttachments = freezed,
     Object? prescriptionAttachments = freezed,
     Object? insuranceCompany = freezed,
+    Object? cancelReason = freezed,
   }) {
     return _then(_$_OrderModel(
       id: null == id
@@ -950,6 +960,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.insuranceCompany
           : insuranceCompany // ignore: cast_nullable_to_non_nullable
               as InsuranceCompanyModel?,
+      cancelReason: freezed == cancelReason
+          ? _value.cancelReason
+          : cancelReason // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -1028,7 +1042,8 @@ class _$_OrderModel extends _OrderModel {
       final List<PharmacyAttachmentModel>? insuranceAttachments,
       @JsonKey(name: 'prescription_attachments')
       final List<PharmacyAttachmentModel>? prescriptionAttachments,
-      @JsonKey(name: 'insurance_company') this.insuranceCompany})
+      @JsonKey(name: 'insurance_company') this.insuranceCompany,
+      @JsonKey(name: 'cancel_reason') this.cancelReason})
       : _orderDetails = orderDetails,
         _deliveryInstructions = deliveryInstructions,
         _orderDiscounts = orderDiscounts,
@@ -1250,10 +1265,13 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'insurance_company')
   final InsuranceCompanyModel? insuranceCompany;
+  @override
+  @JsonKey(name: 'cancel_reason')
+  final String? cancelReason;
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, shopType: $shopType, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, paymentMethodConst: $paymentMethodConst, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, pickerNotes: $pickerNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver, orderSourceLabel: $orderSourceLabel, shippingProvider: $shippingProvider, shippingProviderLabel: $shippingProviderLabel, isPendingReview: $isPendingReview, awaitingCustomerCompletion: $awaitingCustomerCompletion, requiresPrescriptionReview: $requiresPrescriptionReview, insuranceApplied: $insuranceApplied, insuranceAttachments: $insuranceAttachments, prescriptionAttachments: $prescriptionAttachments, insuranceCompany: $insuranceCompany)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, shopType: $shopType, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, paymentMethodConst: $paymentMethodConst, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, pickerNotes: $pickerNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver, orderSourceLabel: $orderSourceLabel, shippingProvider: $shippingProvider, shippingProviderLabel: $shippingProviderLabel, isPendingReview: $isPendingReview, awaitingCustomerCompletion: $awaitingCustomerCompletion, requiresPrescriptionReview: $requiresPrescriptionReview, insuranceApplied: $insuranceApplied, insuranceAttachments: $insuranceAttachments, prescriptionAttachments: $prescriptionAttachments, insuranceCompany: $insuranceCompany, cancelReason: $cancelReason)';
   }
 
   @override
@@ -1362,7 +1380,8 @@ class _$_OrderModel extends _OrderModel {
             (identical(other.insuranceApplied, insuranceApplied) || other.insuranceApplied == insuranceApplied) &&
             const DeepCollectionEquality().equals(other._insuranceAttachments, _insuranceAttachments) &&
             const DeepCollectionEquality().equals(other._prescriptionAttachments, _prescriptionAttachments) &&
-            (identical(other.insuranceCompany, insuranceCompany) || other.insuranceCompany == insuranceCompany));
+            (identical(other.insuranceCompany, insuranceCompany) || other.insuranceCompany == insuranceCompany) &&
+            (identical(other.cancelReason, cancelReason) || other.cancelReason == cancelReason));
   }
 
   @JsonKey(ignore: true)
@@ -1427,7 +1446,8 @@ class _$_OrderModel extends _OrderModel {
         insuranceApplied,
         const DeepCollectionEquality().hash(_insuranceAttachments),
         const DeepCollectionEquality().hash(_prescriptionAttachments),
-        insuranceCompany
+        insuranceCompany,
+        cancelReason
       ]);
 
   @JsonKey(ignore: true)
@@ -1522,7 +1542,9 @@ abstract class _OrderModel extends OrderModel {
       @JsonKey(name: 'prescription_attachments')
       final List<PharmacyAttachmentModel>? prescriptionAttachments,
       @JsonKey(name: 'insurance_company')
-      final InsuranceCompanyModel? insuranceCompany}) = _$_OrderModel;
+      final InsuranceCompanyModel? insuranceCompany,
+      @JsonKey(name: 'cancel_reason')
+      final String? cancelReason}) = _$_OrderModel;
   const _OrderModel._() : super._();
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
@@ -1700,6 +1722,9 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'insurance_company')
   InsuranceCompanyModel? get insuranceCompany;
+  @override
+  @JsonKey(name: 'cancel_reason')
+  String? get cancelReason;
   @override
   @JsonKey(ignore: true)
   _$$_OrderModelCopyWith<_$_OrderModel> get copyWith =>

@@ -16,7 +16,7 @@ class BuildHeaderTitle extends StatelessWidget {
         Expanded(
           child: Text(
             title,
-            style: AppTextStyle.s16_w600(
+            style: AppTextStyle.s16_w700(
               color: context.colors.black,
             ).copyWith(height: 0),
           ),
@@ -26,7 +26,7 @@ class BuildHeaderTitle extends StatelessWidget {
           child: Text(
             btnText ?? tr("seeAll"),
             style: AppTextStyle.s12_w400(
-              color: context.colors.primary,
+              color: context.colors.textColor,
             ),
           ),
         )

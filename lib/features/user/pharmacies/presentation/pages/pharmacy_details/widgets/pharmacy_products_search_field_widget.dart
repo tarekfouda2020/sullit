@@ -24,8 +24,13 @@ class PharmacyProductsSearchFieldWidget extends StatelessWidget {
             suffixIcon: GestureDetector(
               onTap: () => controller.searchProducts(context),
               child: Transform.scale(
-                scale: 0.4,
-                child: SvgPicture.asset(Res.searchIcon),
+                scale: 1,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SvgPicture.asset(Res.searchIcon),
+                  ],
+                ),
               ),
             ),
             margin: EdgeInsets.zero,

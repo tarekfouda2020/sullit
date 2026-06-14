@@ -5,12 +5,14 @@ class PharmacyAttachPrescriptionWidget extends StatelessWidget {
   final GenericBloc<File> fileCubit;
   final String title;
   final String hint;
+  final String emptyViewText;
   const PharmacyAttachPrescriptionWidget({
     super.key,
     required this.controller,
     required this.fileCubit,
     required this.title,
     required this.hint,
+    required this.emptyViewText,
   });
 
   @override
@@ -47,7 +49,7 @@ class PharmacyAttachPrescriptionWidget extends StatelessWidget {
                 if (file != null && file.path.isNotEmpty) {
                   return _AttachedFilePreview(filePath: file.path);
                 }
-                return const _UploadPlaceholder();
+                return  _UploadPlaceholder(emptyViewText);
               },
             ),
           ),
@@ -65,7 +67,7 @@ class PharmacyAttachPrescriptionWidget extends StatelessWidget {
             Expanded(
               child: Text(
                 hint,
-                style: AppTextStyle.s13_w400(
+                style: AppTextStyle.s13_w500(
                   color: context.colors.redAccent,
                 ).copyWith(
                   height: 1.3
@@ -80,7 +82,8 @@ class PharmacyAttachPrescriptionWidget extends StatelessWidget {
 }
 
 class _UploadPlaceholder extends StatelessWidget {
-  const _UploadPlaceholder();
+  final String emptyViewText;
+  const _UploadPlaceholder(this.emptyViewText);
 
   @override
   Widget build(BuildContext context) {
@@ -95,10 +98,12 @@ class _UploadPlaceholder extends StatelessWidget {
         ),
         Gaps.vGap12,
         Text(
-          "Attach Health Insurance Document in PNG / JPG or pdf",
+          emptyViewText,
           textAlign: TextAlign.center,
           style: AppTextStyle.s14_w400(
             color: context.colors.textColor,
+          ).copyWith(
+            height: 1.3
           ),
         ),
       ],

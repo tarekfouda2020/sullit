@@ -70,6 +70,7 @@ class Orders extends BaseDomainModel {
  bool? awaitingCustomerCompletion;
    bool? requiresPrescriptionReview;
   bool? insuranceApplied;
+  String? cancelReason;
   List<PharmacyAttachmentDomainModel>? insuranceAttachments;
   List<PharmacyAttachmentDomainModel>? prescriptionAttachments;
 
@@ -134,6 +135,7 @@ class Orders extends BaseDomainModel {
     this.insuranceAttachments,
     this.prescriptionAttachments,
     this.insuranceCompany,
+    this.cancelReason,
   });
 
   int totalItemsCount() => orderDetails.fold(

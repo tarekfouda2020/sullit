@@ -20,7 +20,7 @@ class PharmacyCategoryCardWidget extends StatelessWidget {
         children: [
           Container(
             width: 122,
-            height: 146,
+            height: 122,
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: context.colors.primary.withValues(alpha: 0.06),
@@ -40,7 +40,7 @@ class PharmacyCategoryCardWidget extends StatelessWidget {
               ),
             ),
           ),
-          Gaps.vGap12,
+          // Gaps.vGap6,
           Text(
             category.name,
             maxLines: 2,

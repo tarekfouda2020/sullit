@@ -33,7 +33,9 @@ class _PharmacyAddressState extends State<PharmacyAddress> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(
-        title: tr("deliveryAddress"),
+        title: widget.haveInsurance || widget.havePrescription
+            ? "Checkout"
+            : "Delivery Address",
         bgColor: context.colors.white,
       ),
       body: SingleChildScrollView(
@@ -50,8 +52,10 @@ class _PharmacyAddressState extends State<PharmacyAddress> {
               PharmacyAttachPrescriptionWidget(
                 controller: controller,
                 fileCubit: controller.insuranceFileBloc,
-                hint: "Note that pharmacy will review your health insurance document and back to you with required invoice",
                 title: "Attach Health Insurance Document",
+                emptyViewText: "Attach Health Insurance Document in PNG / JPG or pdf",
+                hint: "Note that pharmacy will review your health insurance document and back to you with required invoice",
+
               ),
             ],
             if (widget.havePrescription) ...[
@@ -60,12 +64,13 @@ class _PharmacyAddressState extends State<PharmacyAddress> {
                 controller: controller,
                 fileCubit: controller.prescriptionFileBloc,
                 title: "Attach Prescription ",
+                emptyViewText: "Attach Prescription Document in PNG / JPG or pdf",
                 hint: "Note that pharmacy will review your Prescription  document and back to you with confirmation or rejection",
               ),
             ],
             Gaps.vGap20,
             Text(
-              tr("selectAddress"),
+              "Select Address",
               style: AppTextStyle.s16_w500(
                 color: context.colors.black,
               ),
@@ -83,6 +88,7 @@ class _PharmacyAddressState extends State<PharmacyAddress> {
                 boxBorder: Border.all(
                   color: context.colors.borderColor,
                 ),
+                myBoxShadow: const [],
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,

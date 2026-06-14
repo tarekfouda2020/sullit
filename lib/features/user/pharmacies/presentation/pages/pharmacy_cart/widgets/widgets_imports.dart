@@ -24,7 +24,9 @@ import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart/widgets/cart_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/widgets/category_details_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
+import 'package:flutter_tdd/features/user/products/presentation/pages/product_details/widgets/product_details_widgets_imports.dart';
 
 import '../../../../../../../core/routes/router_imports.gr.dart';
 import '../../../../../../../core/widgets/custom_safe_are.dart';

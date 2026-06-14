@@ -32,9 +32,12 @@ class PharmacyAddressItemWidget extends StatelessWidget {
           ),
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: Dimens.paddingAll10PX,
+              width: 30,
+              height: 30,
+              alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: context.colors.primary.withOpacity(0.1),
                 shape: BoxShape.circle,
@@ -42,14 +45,16 @@ class PharmacyAddressItemWidget extends StatelessWidget {
               child: Icon(
                 Icons.location_on,
                 color: context.colors.primary,
-                size: 20.r,
+                size: 15,
               ),
             ),
             Gaps.hGap15,
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  Gaps.vGap5,
                   Text(
                     address.addressType ?? tr("home"),
                     style: AppTextStyle.s16_w600(color: context.colors.black),
@@ -57,15 +62,15 @@ class PharmacyAddressItemWidget extends StatelessWidget {
                   Gaps.vGap5,
                   Text(
                     "${address.cityName ?? ''} , ${address.stateName ?? ''}",
-                    style: AppTextStyle.s14_w400(color: context.colors.grey),
+                    style: AppTextStyle.s14_w500(color: context.colors.textColor),
                   ),
                 ],
               ),
             ),
             CustomRadioWidget(
               selected: isSelected,
-              size: 24.r,
-              padding: 4.r,
+              size: 22,
+              padding: 2,
             ),
           ],
         ),

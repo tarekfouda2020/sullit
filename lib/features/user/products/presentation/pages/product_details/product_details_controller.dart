@@ -440,7 +440,8 @@ class ProductDetailsController implements CartSheetController {
       onPressCheck: isPharmProduct
           ? () {
           Navigator.pop(context);
-          AutoRouter.of(context).pop( _pharmacyCartBloc);
+          // AutoRouter.of(context).pop( _pharmacyCartBloc);
+          // AutoRouter.of(context).push();
       }
           : null
     );
@@ -519,9 +520,17 @@ class ProductDetailsController implements CartSheetController {
   }
 
   Future<void> routeToSellerPage(BuildContext context, Shop shopModel) async {
-    await AutoRouter.of(context).push(
-        SellerProductsPageRoute(shopModel: shopModel, shopId: shopModel.id!));
-    calculateRemainingAmount();
+    if(isPharmProduct){
+      await AutoRouter.of(context).push(
+          PharmacyCategoriesRoute(pharmacyId:  shopModel.id!));
+      calculateRemainingAmount();
+    }else{
+      await AutoRouter.of(context).push(
+          SellerProductsPageRoute(shopModel: shopModel, shopId: shopModel.id!));
+      calculateRemainingAmount();
+    }
+
+
   }
 
   double remainToGetMinAmount() {
@@ -558,9 +567,6 @@ class ProductDetailsController implements CartSheetController {
     );
   }
 
-  @override
-  // TODO: implement onPressCheckout
-  VoidCallback? get onPressCheckout => throw UnimplementedError();
 
 
 

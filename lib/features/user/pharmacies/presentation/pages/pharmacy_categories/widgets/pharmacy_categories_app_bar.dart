@@ -8,7 +8,7 @@ class PharmacyCategoriesAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
-      bloc: controller.shopBloc,
+      bloc: controller.pharmacyBloc,
       builder: (context, state) {
         if (state is GenericUpdateState) {
           var shop = state.data;
@@ -23,7 +23,7 @@ class PharmacyCategoriesAppBar extends StatelessWidget {
               shop?.name ?? '',
               style: AppTextStyle.s20_w700(color: context.colors.black),
             ),
-            expandedHeight: 350.h,
+            expandedHeight: 450,
             flexibleSpace: FlexibleSpaceBar(
               background: Padding(
                 padding: EdgeInsets.only(
@@ -34,32 +34,26 @@ class PharmacyCategoriesAppBar extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      decoration: CustomDecoration(
-                        radius: Dimens.borderRadius12PX,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CachedImage(
-                            url: shop?.logo ?? '',
-                            height: 150.h,
-                            width: double.infinity,
-                            borderRadius: Dimens.topRadius12Px,
-                            fit: BoxFit.cover,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CachedImage(
+                          url: shop?.logo ?? '',
+                          height: 150,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: context.colors.white,
+                            borderRadius: Dimens.bottomRadius12Px,
                           ),
-                          Container(
-                            padding: const EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: context.colors.white,
-                              borderRadius: Dimens.bottomRadius12Px,
-                            ),
-                            child: PharmacyInfoWidget(
-                              pharmacy: shop!,
-                            ),
+                          child: PharmacyInfoWidget(
+                            pharmacy: shop!,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     Gaps.vGap20,
                     if (insuranceList.isNotEmpty)

@@ -17,7 +17,7 @@ class PaharmCancelConfirmOrderWidget extends StatelessWidget {
           borderColor: context.colors.gray8,
         ),
         DefaultButton(
-          title: "Confirm&Pay Now",
+          title: "Confirm & Pay Now",
           onTap: () {},
           textColor: context.colors.white,
           color: context.colors.green,

@@ -21,16 +21,16 @@ class DeliveryInstructionsCardWidget extends StatelessWidget {
               if (state is GenericUpdateState) {
                 return Visibility(
                   visible: state.data.isNotEmpty,
-                  replacement: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        tr("no_instructions"),
-                        style: AppTextStyle.s15_w500(
-                            color: context.colors.primary),
-                      )
-                    ],
-                  ),
+                  // replacement: Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Text(
+                  //       tr("no_instructions"),
+                  //       style: AppTextStyle.s15_w500(
+                  //           color: context.colors.primary),
+                  //     )
+                  //   ],
+                  // ),
                   child: SizedBox(
                     height: 130,
                     child: SingleChildScrollView(

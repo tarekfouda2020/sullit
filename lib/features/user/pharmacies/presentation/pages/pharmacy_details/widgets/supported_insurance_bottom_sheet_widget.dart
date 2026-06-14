@@ -4,11 +4,13 @@ class SupportedInsuranceBottomSheetWidget extends StatefulWidget {
   final List<InsuranceCompany> insurance;
   final void Function(InsuranceCompany item)? onPressConfirm;
   final bool enableSelect;
+  final String? title;
   const SupportedInsuranceBottomSheetWidget(
       {super.key,
         required this.insurance,
          this.onPressConfirm,
          this.enableSelect = false,
+         this.title,
       });
 
   @override
@@ -36,10 +38,10 @@ class _SupportedInsuranceBottomSheetWidgetState
         vertical: Dimens.dp20,
       ),
       constraints: BoxConstraints(
-          minHeight: 200,
-          maxHeight: MediaQuery.sizeOf(context).height - (kToolbarHeight + 50)),
+        maxHeight: MediaQuery.sizeOf(context).height - (kToolbarHeight + 160),
+      ),
       decoration: BoxDecoration(
-        color: context.colors.white,
+        color: context.colors.customBackground,
         borderRadius: Dimens.sheetBorderRadius,
       ),
       child: BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
@@ -56,7 +58,7 @@ class _SupportedInsuranceBottomSheetWidgetState
             mainAxisSize: MainAxisSize.min,
             children: [
               BottomSheetHeaderWidget(
-                title: tr("supported_health_insurance"),
+                title: widget.title ?? tr("supported_health_insurance"),
               ),
               Gaps.vGap20,
               Flexible(
@@ -73,7 +75,7 @@ class _SupportedInsuranceBottomSheetWidgetState
                   },
                 ),
               ),
-              if (widget.enableSelect && widget.insurance.any((element) => element.isSelected) ) ...[
+              if (widget.enableSelect && widget.insurance.any((element) => element.isSelected)) ...[
                 Gaps.vGap20,
                 DefaultButton(
                   title: tr("confirm"),
@@ -81,15 +83,15 @@ class _SupportedInsuranceBottomSheetWidgetState
                   onTap: selected == null
                       ? null
                       : () {
-                          Navigator.pop(context);
-                          widget.onPressConfirm?.call(selected!);
-                        },
+                    Navigator.pop(context);
+                    widget.onPressConfirm?.call(selected!);
+                  },
                 ),
               ],
             ],
           );
         },
       ),
-    );
+    );;
   }
 }

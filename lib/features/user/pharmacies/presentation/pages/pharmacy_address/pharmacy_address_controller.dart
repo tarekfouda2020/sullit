@@ -268,6 +268,7 @@ void onPressSelectInsuranceCompany(BuildContext context){
         insurance: pharmacy?.insuranceCompanies ?? [],
         enableSelect: true,
         onPressConfirm: (model) => onSelectInsuranceCompany(context,model),
+        title: "Insurance Companies",
       );
     },);
 }
