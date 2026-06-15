@@ -2,6 +2,8 @@ part of 'pharmacy_details_imports.dart';
 
 class PharmacyDetailsController {
   final int? pharmacyId;
+  final int? selectedCategoryId;
+  final String? selectedCategoryName;
 
   ShopCategory? selectedCategory;
 
@@ -21,10 +23,18 @@ class PharmacyDetailsController {
   final GenericBloc<Pharmacy?> pharmacyCubit = GenericBloc<Pharmacy?>(null);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
   final GenericBloc<bool> isLoadingNextPage = GenericBloc<bool>(false);
+  final GenericBloc<bool> showAppBarTitle = GenericBloc<bool>(false);
   GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc<CartDomainModel>(CartDomainModel());
 
+  final ScrollController scrollController = ScrollController();
+
   PharmacyDetailsController(
-      {required this.pharmacyId, this.fromCart = false}) {
+      {required this.pharmacyId,
+      this.fromCart = false,
+      this.selectedCategoryId,
+      this.selectedCategoryName}) {
+    _setupScrollListener();
+    _injectSelectedCategoryPlaceholder();
     if (pharmacyId != null) {
       getCartItems(refresh: false);
       getCartItems();
@@ -66,6 +76,23 @@ class PharmacyDetailsController {
     });
   }
 
+  void _injectSelectedCategoryPlaceholder() {
+    if (selectedCategoryId == null || selectedCategoryName == null) return;
+    final placeholder = ShopCategory(
+      id: selectedCategoryId!,
+      name: selectedCategoryName!,
+      icon: '',
+      slug: '',
+      description: '',
+      metaTitle: '',
+      metaDescription: '',
+      isSelect: true,
+    );
+    selectedCategory = placeholder;
+    categoriesPagingController.itemList = [placeholder];
+    refreshCategories.onUpdateData(true);
+  }
+
   Future<void> getShopCategories(int page, {bool refresh = true}) async {
     if (getPharmacyId == null) {
       return;
@@ -75,8 +102,16 @@ class PharmacyDetailsController {
         _pharamcyCategoryParams(getPharmacyId!, page, refresh);
 
     List<ShopCategory> data = await GetShopCategories().call(params);
+
+    if (selectedCategoryId != null) {
+      data = data.where((e) => e.id != selectedCategoryId).toList();
+    }
+
     if (page == 1) {
-      categoriesPagingController.itemList = [];
+      final placeholder = categoriesPagingController.itemList
+          ?.where((e) => e.id == selectedCategoryId)
+          .toList() ?? [];
+      categoriesPagingController.itemList = [...placeholder];
       if (data.isNotEmpty) {
         refreshCategories.onUpdateData(true);
       }
@@ -175,7 +210,16 @@ class PharmacyDetailsController {
     }
   }
 
-  void onFavChanged(Product model) {}
+  void onFavChanged(Product model) {
+  model.isWishlist = !model.isWishlist!;
+  int index =
+  productsPagingController.itemList!.indexWhere((e) => e.id == model.id);
+  if (index != -1) {
+    productsPagingController.itemList![index] = model;
+    var data = productsPagingController.itemList;
+    productsPagingController.itemList = [...?data];
+  }
+  }
 
   void onSelectCategory(ShopCategory model) {
     selectedCategory = model;
@@ -379,6 +423,14 @@ class PharmacyDetailsController {
     productsPagingController.itemList = [...updatedList];
   }
 
+  void _setupScrollListener() {
+    scrollController.addListener(
+      () {
+        final isScrollingDown = scrollController.position.pixels > 250;
+        showAppBarTitle.onUpdateData(isScrollingDown);
+      },
+    );
+  }
 
 
 

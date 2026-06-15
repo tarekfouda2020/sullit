@@ -26,6 +26,7 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap20,
             TrackSellerOrderWidget(
               currentOrders: homeDomainModel.currentOrders,
+              controller: controller,
             ),
             Gaps.vGap10,
             BuildTopSellers(

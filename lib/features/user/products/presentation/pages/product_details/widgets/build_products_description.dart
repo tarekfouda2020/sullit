@@ -24,11 +24,16 @@ class BuildProductDescription extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "${tr('description')} : ",
-                  style: AppTextStyle.s12_w400(
-                    color: context.colors.textColor,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "${tr('description')} : ",
+                      style: AppTextStyle.s12_w400(
+                        color: context.colors.textColor,
+                      ),
+                    ),
+                  ],
                 ),
                 Gaps.vGap4,
                 Stack(

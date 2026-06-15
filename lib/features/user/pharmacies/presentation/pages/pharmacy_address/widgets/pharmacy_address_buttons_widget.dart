@@ -14,15 +14,46 @@ class PharmacyAddressButtonsWidget extends StatelessWidget {
         color: context.colors.white,
       ),
       child: CustomBottomSafeAreaWidget(
-        child: DefaultButton(
-          title: controller.haveInsurance || controller.havePrescription
-              ?"Submit Order"
-              : tr("proceedToCheckout"),
-          onTap: () => controller.onPressProceed(context),
-          color: context.colors.primary,
-          fontSize: 18,
-          fontWeight: FontWeight.w700,
-          margin: EdgeInsets.zero,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          spacing: 20,
+          children: [
+            Row(
+              children: [
+                CustomCheckBoxWidget(
+                  changeValueCubit: controller.conditionsCubit,
+                ),
+                Expanded(
+                  child: Row(
+                    children: [
+                      Text(
+                        tr("agreeTo"),
+                        style: AppTextStyle.s14_w400(color: context.colors.textColor),
+                      ),
+                      Gaps.hGap5,
+                      GestureDetector(
+                        onTap: () => AutoRouter.of(context).push(const TermsRoute()),
+                        child: Text(
+                          tr('rulesAndConditions'),
+                          style: AppTextStyle.s14_w700(color: context.colors.black),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            DefaultButton(
+              title: controller.haveInsurance || controller.havePrescription
+                  ?"Submit Order"
+                  : tr("proceedToCheckout"),
+              onTap: () => controller.onPressProceed(context),
+              color: context.colors.primary,
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+              margin: EdgeInsets.zero,
+            ),
+          ],
         ),
       ),
     );

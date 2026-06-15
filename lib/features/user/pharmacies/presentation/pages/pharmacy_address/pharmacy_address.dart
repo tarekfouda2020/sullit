@@ -44,6 +44,10 @@ class _PharmacyAddressState extends State<PharmacyAddress> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if(widget.haveInsurance) ...[
+              Gaps.vGap8,
+              Text("Insurance Company",
+              style: AppTextStyle.s16_w600(color: context.colors.black),
+              ),
               Gaps.vGap20,
               SelectInsuranceCompanyWidget(controller: controller)
             ],

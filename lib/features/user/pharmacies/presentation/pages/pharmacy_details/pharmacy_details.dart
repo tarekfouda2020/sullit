@@ -4,10 +4,12 @@ class PharmacyDetails extends StatefulWidget {
   final bool fromCart;
   final int? pharmacyId;
   final int? selectedCategoryId;
+  final String? selectedCategoryName;
   const PharmacyDetails(
       {super.key,
       this.fromCart = false,
       this.pharmacyId,
+      this.selectedCategoryName,
       this.selectedCategoryId});
 
   @override
@@ -20,7 +22,12 @@ class _PharmacyDetailsState extends State<PharmacyDetails> {
   @override
   void initState() {
     super.initState();
-    controller = PharmacyDetailsController(pharmacyId: widget.pharmacyId,fromCart: widget.fromCart);
+    controller = PharmacyDetailsController(
+      pharmacyId: widget.pharmacyId,
+      fromCart: widget.fromCart,
+      selectedCategoryId: widget.selectedCategoryId,
+      selectedCategoryName: widget.selectedCategoryName,
+    );
   }
 
   @override
@@ -30,6 +37,7 @@ class _PharmacyDetailsState extends State<PharmacyDetails> {
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
         body: CustomScrollView(
+          controller: controller.scrollController,
           slivers: [
             PharmacyDetailsAppBar(
               controller: controller,

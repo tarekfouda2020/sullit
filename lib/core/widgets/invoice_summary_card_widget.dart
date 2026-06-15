@@ -16,7 +16,8 @@ class InvoiceSummaryCard extends StatelessWidget {
       margin: margin,
       decoration: CustomDecoration(
           myBoxShadow: const [],
-          boxBorder: Border.all(color: context.colors.borderColor),
+          boxBorder: Border.all(color: context.colors.borderColor,
+          ),
           radius: radius),
       child: Column(
         children: children,

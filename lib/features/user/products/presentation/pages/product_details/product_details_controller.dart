@@ -34,6 +34,7 @@ class ProductDetailsController implements CartSheetController {
   final ScrollController scrollController = ScrollController();
   late bool isResale;
   late bool isFav;
+   bool fromSellerPage = false;
 
   // late bool isFav;
   @override
@@ -42,7 +43,8 @@ class ProductDetailsController implements CartSheetController {
   List<String> basicImage = [];
 
   ProductDetailsController(
-      BuildContext context, this.productId, this.isResale, this.isFav) {
+      BuildContext context, this.productId, this.isResale, this.isFav, this.fromSellerPage ) {
+
     getProductDetails(context, productId, refresh: false);
     getProductDetails(context, productId);
     // getCartItems(refresh: false);
@@ -521,15 +523,21 @@ class ProductDetailsController implements CartSheetController {
   }
 
   Future<void> routeToSellerPage(BuildContext context, Shop shopModel) async {
-    if(isPharmProduct){
-      await AutoRouter.of(context).push(
-          PharmacyCategoriesRoute(pharmacyId:  shopModel.id!));
-      calculateRemainingAmount();
+    print("from seller page === ${fromSellerPage}");
+    if(fromSellerPage){
+      AutoRouter.of(context).pop(true);
     }else{
-      await AutoRouter.of(context).push(
-          SellerProductsPageRoute(shopModel: shopModel, shopId: shopModel.id!));
-      calculateRemainingAmount();
+      if(isPharmProduct){
+        await AutoRouter.of(context).push(
+            PharmacyCategoriesRoute(pharmacyId:  shopModel.id!));
+        calculateRemainingAmount();
+      }else{
+        await AutoRouter.of(context).push(
+            SellerProductsPageRoute(shopModel: shopModel, shopId: shopModel.id!));
+        calculateRemainingAmount();
+      }
     }
+
 
 
   }

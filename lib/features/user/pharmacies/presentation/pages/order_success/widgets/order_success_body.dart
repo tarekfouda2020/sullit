@@ -20,6 +20,11 @@ class OrderSuccessBody extends StatelessWidget {
                   padding: Dimens.paddingAll20PX,
                   children: [
                     Gaps.vGap10,
+                    OrderPharamCardWidget(
+                      url: state.data!.sectionOrders?.first.orderDetails.first.product?.shop?.logo ?? "",
+                      text: state.data!.sectionOrders?.first.orderDetails.first.product?.shop?.name  ?? "",
+                    ),
+                    Gaps.vGap10,
                     Stack(
                       alignment: Alignment.topCenter,
                       clipBehavior: Clip.none,

@@ -31,7 +31,7 @@ class _PharmacyOrderDetailsState extends State<PharmacyOrderDetails> {
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
         appBar:  DefaultAppBar(
-            title: "Order Details",
+            title: "",
           onBack: () => controller.onPressBack(context, widget.fromCheckout),
         ),
         body: PharmacyOrderDetailsBody(controller: controller),

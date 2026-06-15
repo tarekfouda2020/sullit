@@ -56,12 +56,12 @@ class MyOrderItemWidget extends StatelessWidget {
                               color: context.colors.black),
                         ),
                       ],
-                      Gaps.vGap5,
+                      Gaps.vGap8,
                       Row(
                         children: [
                           Expanded(
                             child: Text(
-                              "${tr("orderNumber")}${order.code}",
+                              "${tr("orderNumber")} : ${order.code}",
                               style: AppTextStyle.s14_w600(
                                   color: context.colors.black),
                             ),

@@ -4,11 +4,12 @@ class ProductDetails extends StatefulWidget {
   final int productId;
   final bool isResale;
   final bool isFav;
-
+  final bool fromSellerPage;
   const ProductDetails(
       {super.key,
       required this.productId,
       required this.isResale,
+       this.fromSellerPage = false,
       required this.isFav});
 
   @override
@@ -21,8 +22,9 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   void initState() {
     super.initState();
+    print("from seller page === ${widget.fromSellerPage}");
     controller = ProductDetailsController(
-        context, widget.productId, widget.isResale, widget.isFav);
+        context, widget.productId, widget.isResale, widget.isFav, widget.fromSellerPage);
 
 
   }

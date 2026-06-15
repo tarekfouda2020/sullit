@@ -28,7 +28,7 @@ class PharmacyCardWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CachedImage(
-                  width: MediaQuery.sizeOf(context).width * 0.8,
+                  width: MediaQuery.sizeOf(context).width * 0.85,
                   height: 80,
                   fit: BoxFit.cover,
                   bgColor: context.colors.white,

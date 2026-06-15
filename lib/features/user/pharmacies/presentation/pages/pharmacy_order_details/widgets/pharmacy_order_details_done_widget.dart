@@ -19,7 +19,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Gaps.vGap20,
+          Gaps.vGap40,
          if(data.pharmNormalOrder == false && (data.isConfirmed || data.isPlaced || data.isCanceled) )...[
            Text(
              data.isCanceled
@@ -106,8 +106,21 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
             _buildRow(context, "Payment Method", data.paymentMethod),
           ],
           Gaps.vGap10,
-          if (data.insuranceApplied == true && data.insuranceCompany!= null) ...[
-            _buildRow(context, "Insurance Company", data.insuranceCompany?.name ?? ""),
+          if (data.insuranceApplied == true && data.insuranceCompany != null) ...[
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: "Insurance Company : ",
+                    style: AppTextStyle.s14_w400(color: context.colors.black),
+                  ),
+                  TextSpan(
+                    text: data.insuranceCompany?.name ?? "",
+                    style: AppTextStyle.s14_w600(color: context.colors.black),
+                  ),
+                ],
+              ),
+            ),
             Gaps.vGap10,
           ],
           if(data.pharmOrderWithPrescription == true) ...[

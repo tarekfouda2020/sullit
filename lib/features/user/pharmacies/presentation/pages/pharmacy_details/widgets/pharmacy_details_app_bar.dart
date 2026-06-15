@@ -15,14 +15,27 @@ class PharmacyDetailsAppBar extends StatelessWidget {
           return BlocBuilder<GenericBloc<bool>,GenericState<bool>>(
             bloc: controller.refreshCategories,
             builder: (context, state) {
-            return SliverAppBar(
-              backgroundColor: context.colors.white,
-              pinned: true,
-              elevation: 0,
-              automaticallyImplyLeading: true,
-              leading:  BackButton(color: context.colors.black),
-              // expandedHeight: MediaQuery.sizeOf(context).height * 0.68,
-              expandedHeight: getExpandedHeight,
+            return BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+              bloc: controller.showAppBarTitle,
+              builder: (context, titleState) {
+                return SliverAppBar(
+                  backgroundColor: context.colors.white,
+                  pinned: true,
+                  elevation: 0,
+                  automaticallyImplyLeading: true,
+                  leading:  BackButton(color: context.colors.black),
+                  title: AnimatedOpacity(
+                    opacity: titleState.data ? 1 : 0,
+                    duration: const Duration(milliseconds: 100),
+                    curve: Curves.bounceIn,
+                    child: Text(
+                      shop?.name ?? '',
+                      maxLines: 1,
+                      style: AppTextStyle.s16_w700(color: context.colors.black),
+                    ),
+                  ),
+                  // expandedHeight: MediaQuery.sizeOf(context).height * 0.68,
+                  expandedHeight: getExpandedHeight,
               flexibleSpace: FlexibleSpaceBar(
                 background: Padding(
                   padding: EdgeInsets.only(
@@ -80,8 +93,11 @@ class PharmacyDetailsAppBar extends StatelessWidget {
                   ),
                 ),
               ),
+                );
+              },
             );
-          },);
+            },
+          );
         } else {
           return const PharamacyHeaderShimmerWidget();
         }
@@ -92,12 +108,12 @@ class PharmacyDetailsAppBar extends StatelessWidget {
 
 
   double get getExpandedHeight => controller.categoriesPagingController.itemList?.isNotEmpty == true
-  ? 570
-  : 500;
+  ? 565
+  : 495;
 
   double get sizeWhileScroll =>  controller.categoriesPagingController.itemList?.isNotEmpty == true
-      ? 170
-      : 93 ;
+      ? 165
+      : 90 ;
 
 
 }

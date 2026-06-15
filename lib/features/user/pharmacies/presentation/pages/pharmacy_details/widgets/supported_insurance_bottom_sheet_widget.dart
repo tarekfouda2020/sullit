@@ -79,6 +79,7 @@ class _SupportedInsuranceBottomSheetWidgetState
                 Gaps.vGap20,
                 DefaultButton(
                   title: tr("confirm"),
+                  margin: EdgeInsets.zero,
                   disabled: selected == null,
                   onTap: selected == null
                       ? null

@@ -20,6 +20,11 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
                     padding: Dimens.paddingAll20PX,
                     children: [
                       Gaps.vGap10,
+                      OrderPharamCardWidget(
+                        url: state.data!.orderDetails.first.product?.shop?.logo ?? "",
+                        text: state.data!.orderDetails.first.product?.shop?.name  ?? "",
+                      ),
+                      Gaps.vGap10,
                       Stack(
                         alignment: Alignment.topCenter,
                         clipBehavior: Clip.none,
@@ -43,7 +48,7 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
                         order: state.data!,
                       ),
                       Gaps.vGap20,
-                      if (state.data?.pharmNormalOrder == false &&
+                      if (state.data?.awaitingCustomerCompletion == false &&
                           state.data?.isPendingReview == false && state.data?.isCanceled == false)
                         PharmacyConfirmSummaryWidget(
                             order: state.data!, controller: controller)

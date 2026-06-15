@@ -2,6 +2,7 @@ part of 'pharmacy_categories_imports.dart';
 
 class PharmacyCategories extends StatefulWidget {
   final int pharmacyId;
+
   const PharmacyCategories({super.key, required this.pharmacyId});
 
   @override
@@ -18,21 +19,25 @@ class _PharmacyCategoriesState extends State<PharmacyCategories> {
   }
 
   @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        backgroundColor: context.colors.white,
+        backgroundColor: context.colors.customBackground,
         body: CustomScrollView(
+          controller: controller.scrollController,
           slivers: [
             PharmacyCategoriesAppBar(
               controller: controller,
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.only(left: 16,right: 16,top: 16),
+              sliver: SliverToBoxAdapter(
+                child: Text(
+                  "Shop By category",
+                  style: AppTextStyle.s16_w600(color: context.colors.black),
+                ),
+              ),
             ),
             SliverPadding(
               padding: const EdgeInsets.all(16),
@@ -42,7 +47,7 @@ class _PharmacyCategoriesState extends State<PharmacyCategories> {
                   crossAxisCount: 3,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
-                  childAspectRatio: 90/146,
+                  childAspectRatio: 90 / 146,
                 ),
                 builderDelegate: PagedChildBuilderDelegate<ShopCategory>(
                   itemBuilder: (context, category, index) {

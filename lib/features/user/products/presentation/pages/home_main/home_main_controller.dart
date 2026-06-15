@@ -418,6 +418,23 @@ class HomeMainController {
     AutoRouter.of(context).push(const PharmaciesListRoute());
   }
 
+
+
+  void openCurrentOrderDetails(BuildContext context, Orders order){
+    if(order.isPharmacy){
+      AutoRouter.of(context).push(
+          PharmacyOrderDetailsRoute(
+              id: order.id));
+    }else{
+      AutoRouter.of(context).push(
+          OrderDetailsPageRoute(
+              isReturnedOrder: false,
+              order: order));
+    }
+
+  }
+
+
 //
 // Future<void> scanSkuNumber() async {
 //   try {

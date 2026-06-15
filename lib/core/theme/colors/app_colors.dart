@@ -145,4 +145,6 @@ abstract class AppColors {
   Color get lightGreen2;
 
   Color get gray6;
+
+  Color get gray7;
 }

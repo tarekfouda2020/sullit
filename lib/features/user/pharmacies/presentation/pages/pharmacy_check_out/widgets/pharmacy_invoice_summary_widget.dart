@@ -19,10 +19,10 @@ class PharmacyInvoiceSummaryWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        PharmacyCartPaymentSectionTitleWidget(title: tr("invoiceSummary")),
+        PharmacyCartPaymentSectionTitleWidget(
+            title: tr("invoiceSummary")),
         Gaps.vGap6,
         InvoiceSummaryCard(
-            radius: const BorderRadius.vertical(top: Radius.circular(12)),
             children: [
               PharmacyBuildSummaryHeader(
                 title: tr('subTotal'),

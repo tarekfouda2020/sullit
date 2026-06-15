@@ -11,6 +11,8 @@ class PharmacyAddressController {
 
   final GenericBloc<File> insuranceFileBloc = GenericBloc<File>(File(""));
 
+  final GenericBloc<bool> conditionsCubit = GenericBloc<bool>(false);
+
   final List<AddressDomainModel> addressList = [];
 
 
@@ -127,6 +129,15 @@ class PharmacyAddressController {
     if (selectedAddress == null) {
       CustomToast.showSimpleToast(msg: "Please select you address first");
       return;
+    }
+
+
+    if(!conditionsCubit.state.data){
+      CustomToast.showSimpleToast(
+        msg: tr('acceptTerms'),
+        type: ToastType.error,
+      );
+      return ;
     }
 
     var params = PharamcyShippingInfoParams(addressId: selectedAddress!.id!);

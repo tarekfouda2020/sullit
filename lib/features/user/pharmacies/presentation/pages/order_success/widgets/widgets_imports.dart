@@ -22,6 +22,7 @@ import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart'
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_confirm_buying/widgets/cart_confirm_buying_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_payment/widgets/cart_payment_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/order_success/order_success_imports.dart';
+import 'package:flutter_tdd/features/user/pharmacies/presentation/widgets/order_pharam_card_widget.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/widgets/widgets_imports.dart' as pharm_widgets;
 import 'package:flutter_tdd/features/user/pharmacies/presentation/widgets/widgets_imports.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_discount_domain.dart';

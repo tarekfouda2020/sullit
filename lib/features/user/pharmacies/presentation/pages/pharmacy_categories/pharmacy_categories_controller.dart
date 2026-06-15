@@ -7,8 +7,11 @@ class PharmacyCategoriesController {
       PagingController(firstPageKey: 1);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
   final GenericBloc<Shop?> pharmacyBloc = GenericBloc<Shop?>(null);
+  final GenericBloc<bool> showAppBarTitle = GenericBloc<bool>(false);
+  final ScrollController scrollController = ScrollController();
 
   PharmacyCategoriesController({required this.pharmacyId}) {
+    _setupScrollListener();
     _fetchShopDetails(fromRemote: false);
     _fetchShopDetails();
     getShopCategories(1, refresh: false);
@@ -54,6 +57,7 @@ class PharmacyCategoriesController {
     AutoRouter.of(context).push(PharmacyDetailsRoute(
       fromCart: false,
       selectedCategoryId: category.id,
+      selectedCategoryName: category.name,
       pharmacyId: pharmacyId,
     ));
   }
@@ -70,10 +74,15 @@ class PharmacyCategoriesController {
     );
   }
 
-  void dispose() {
-    pagingController.dispose();
-    showClearIcon.close();
-    pharmacyBloc.close();
+  void _setupScrollListener() {
+    scrollController.addListener(
+      () {
+        final isScrollingDown = scrollController.position.pixels > 250;
+        showAppBarTitle.onUpdateData(isScrollingDown);
+      },
+    );
   }
+
+
 
 }

@@ -2,6 +2,7 @@ part of 'widgets_imports.dart';
 
 class PharmacyProductCardWidget extends BaseProductItem {
   final PharmacyDetailsController controller;
+  final bool fromPharmPage;
   const PharmacyProductCardWidget({
     super.key,
     required super.productModel,
@@ -14,6 +15,7 @@ class PharmacyProductCardWidget extends BaseProductItem {
     super.onPressDelete,
     super.margin,
     required this.controller,
+     this.fromPharmPage = false,
   });
 
   @override
@@ -49,11 +51,13 @@ class _PharmacyProductCardWidgetState
 
   @override
   Future<void> routeToDetails(BuildContext context) async {
+    print("from fromPharmPage page === ${widget.fromPharmPage}");
    var result =  await AutoRouter.of(context).push(
       ProductDetailsRoute(
         isFav: widget.productModel.isWishlist!,
         productId: widget.productModel.id!,
         isResale: widget.productModel.isResale!,
+        fromSellerPage: widget.fromPharmPage
       ),
     );
      widget.controller.refreshDataAfterRoute(result);

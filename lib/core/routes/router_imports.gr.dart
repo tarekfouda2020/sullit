@@ -771,6 +771,7 @@ class AppRouter extends _i110.RootStackRouter {
           key: args.key,
           productId: args.productId,
           isResale: args.isResale,
+          fromSellerPage: args.fromSellerPage,
           isFav: args.isFav,
         ),
         opaque: true,
@@ -1180,6 +1181,7 @@ class AppRouter extends _i110.RootStackRouter {
           key: args.key,
           fromCart: args.fromCart,
           pharmacyId: args.pharmacyId,
+          selectedCategoryName: args.selectedCategoryName,
           selectedCategoryId: args.selectedCategoryId,
         ),
         opaque: true,
@@ -2892,6 +2894,7 @@ class ProductDetailsRoute extends _i110.PageRouteInfo<ProductDetailsRouteArgs> {
     _i113.Key? key,
     required int productId,
     required bool isResale,
+    bool fromSellerPage = false,
     required bool isFav,
   }) : super(
           ProductDetailsRoute.name,
@@ -2900,6 +2903,7 @@ class ProductDetailsRoute extends _i110.PageRouteInfo<ProductDetailsRouteArgs> {
             key: key,
             productId: productId,
             isResale: isResale,
+            fromSellerPage: fromSellerPage,
             isFav: isFav,
           ),
         );
@@ -2912,6 +2916,7 @@ class ProductDetailsRouteArgs {
     this.key,
     required this.productId,
     required this.isResale,
+    this.fromSellerPage = false,
     required this.isFav,
   });
 
@@ -2921,11 +2926,13 @@ class ProductDetailsRouteArgs {
 
   final bool isResale;
 
+  final bool fromSellerPage;
+
   final bool isFav;
 
   @override
   String toString() {
-    return 'ProductDetailsRouteArgs{key: $key, productId: $productId, isResale: $isResale, isFav: $isFav}';
+    return 'ProductDetailsRouteArgs{key: $key, productId: $productId, isResale: $isResale, fromSellerPage: $fromSellerPage, isFav: $isFav}';
   }
 }
 
@@ -4018,6 +4025,7 @@ class PharmacyDetailsRoute
     _i113.Key? key,
     bool fromCart = false,
     int? pharmacyId,
+    String? selectedCategoryName,
     int? selectedCategoryId,
   }) : super(
           PharmacyDetailsRoute.name,
@@ -4026,6 +4034,7 @@ class PharmacyDetailsRoute
             key: key,
             fromCart: fromCart,
             pharmacyId: pharmacyId,
+            selectedCategoryName: selectedCategoryName,
             selectedCategoryId: selectedCategoryId,
           ),
         );
@@ -4038,6 +4047,7 @@ class PharmacyDetailsRouteArgs {
     this.key,
     this.fromCart = false,
     this.pharmacyId,
+    this.selectedCategoryName,
     this.selectedCategoryId,
   });
 
@@ -4047,11 +4057,13 @@ class PharmacyDetailsRouteArgs {
 
   final int? pharmacyId;
 
+  final String? selectedCategoryName;
+
   final int? selectedCategoryId;
 
   @override
   String toString() {
-    return 'PharmacyDetailsRouteArgs{key: $key, fromCart: $fromCart, pharmacyId: $pharmacyId, selectedCategoryId: $selectedCategoryId}';
+    return 'PharmacyDetailsRouteArgs{key: $key, fromCart: $fromCart, pharmacyId: $pharmacyId, selectedCategoryName: $selectedCategoryName, selectedCategoryId: $selectedCategoryId}';
   }
 }
 
