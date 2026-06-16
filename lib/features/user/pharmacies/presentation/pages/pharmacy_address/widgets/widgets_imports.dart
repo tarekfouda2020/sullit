@@ -20,8 +20,11 @@ import 'package:flutter_tdd/core/widgets/custom_radio_widget.dart';
 import 'package:flutter_tdd/core/widgets/custom_refresh_indicator_widget.dart';
 import 'package:flutter_tdd/core/widgets/custom_safe_are.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart';
+import 'package:flutter_tdd/features/user/cart/data/enum/delivery_type_enum.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_shipping_domain_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/pharmacy_address/pharmacy_address_imports.dart';
+import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_sheet_header_widget.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 part 'pharmacy_address_item_widget.dart';
@@ -30,3 +33,6 @@ part 'pharmacy_address_buttons_widget.dart';
 part 'pharmacy_attach_prescription_widget.dart';
 part 'pharmacy_shipping_dialog.dart';
 part 'select_insurance_company_widget.dart';
+part 'pharmacy_delivery_type_item_widget.dart';
+part 'pharmacy_delivery_type_bottom_sheet.dart';
+part 'pharmacy_delivery_option_widget.dart';

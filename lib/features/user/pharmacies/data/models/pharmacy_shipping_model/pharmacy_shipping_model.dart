@@ -23,6 +23,7 @@ class PharmacyShippingModel extends BaseApiModel<PharmacyShippingDomainModel>
     @JsonKey(name: 'active_pickup') required bool activePickup,
     @JsonKey(name: 'delivery_message') String? deliveryMessage,
     @JsonKey(name: 'delivery') required DeliveryObjectModel? deliveryObject,
+    @JsonKey(name: 'pickup') required PharmacyPickUpModel? pickupModel,
   }) = _PharmacyShippingModel;
 
   factory PharmacyShippingModel.fromJson(Map<String, dynamic> json) =>
@@ -38,6 +39,7 @@ class PharmacyShippingModel extends BaseApiModel<PharmacyShippingDomainModel>
       name: name,
       activePickup: activePickup,
       physical: physical,
+      pickup: pickupModel?.toDomainModel()
     );
   }
 }
@@ -59,5 +61,33 @@ class DeliveryObjectModel extends BaseApiModel<PharmacyShippingDetailsDomainMode
     return PharmacyShippingDetailsDomainModel(
       transitIn: transitIn,
     );
+  }
+}
+
+
+@freezed
+@immutable
+class PharmacyPickUpModel extends BaseApiModel<PharmacyShippingPickupDomainModel> with _$PharmacyPickUpModel {
+  const PharmacyPickUpModel._();
+  @JsonSerializable(explicitToJson: true)
+  const factory PharmacyPickUpModel(
+      {required int id,
+        required String address,
+        @JsonKey(name: 'postal_code') required String postalCode,
+        double? lat,
+        double? lang}) = _PharmacyPickUpModel;
+
+  factory PharmacyPickUpModel.fromJson(Map<String, dynamic> json) =>
+      _$PharmacyPickUpModelFromJson(json);
+
+  @override
+  PharmacyShippingPickupDomainModel toDomainModel() {
+    return PharmacyShippingPickupDomainModel(
+        id: id,
+        address: address,
+        phone: postalCode,
+        lat: lat,
+        lang: lang,
+        postalCode: postalCode);
   }
 }

@@ -19,6 +19,10 @@ _$_PharmacyShippingModel _$$_PharmacyShippingModelFromJson(
           ? null
           : DeliveryObjectModel.fromJson(
               json['delivery'] as Map<String, dynamic>),
+      pickupModel: json['pickup'] == null
+          ? null
+          : PharmacyPickUpModel.fromJson(
+              json['pickup'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_PharmacyShippingModelToJson(
@@ -31,6 +35,7 @@ Map<String, dynamic> _$$_PharmacyShippingModelToJson(
       'active_pickup': instance.activePickup,
       'delivery_message': instance.deliveryMessage,
       'delivery': instance.deliveryObject?.toJson(),
+      'pickup': instance.pickupModel?.toJson(),
     };
 
 _$_DeliveryObjectModel _$$_DeliveryObjectModelFromJson(
@@ -43,4 +48,24 @@ Map<String, dynamic> _$$_DeliveryObjectModelToJson(
         _$_DeliveryObjectModel instance) =>
     <String, dynamic>{
       'transit_in': instance.transitIn,
+    };
+
+_$_PharmacyPickUpModel _$$_PharmacyPickUpModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_PharmacyPickUpModel(
+      id: (json['id'] as num).toInt(),
+      address: json['address'] as String,
+      postalCode: json['postal_code'] as String,
+      lat: (json['lat'] as num?)?.toDouble(),
+      lang: (json['lang'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$$_PharmacyPickUpModelToJson(
+        _$_PharmacyPickUpModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'address': instance.address,
+      'postal_code': instance.postalCode,
+      'lat': instance.lat,
+      'lang': instance.lang,
     };

@@ -13,6 +13,8 @@ class PharmacyAddressController {
 
   final GenericBloc<bool> conditionsCubit = GenericBloc<bool>(false);
 
+  final GenericBloc<List<PharmacyShippingDomainModel>> shippingDataCubit = GenericBloc<List<PharmacyShippingDomainModel>>([]);
+
   final List<AddressDomainModel> addressList = [];
 
 
@@ -142,38 +144,38 @@ class PharmacyAddressController {
 
     var params = PharamcyShippingInfoParams(addressId: selectedAddress!.id!);
     var result = await GetPharmacyShippingInfo().call(params);
-     bool isAnyDoNotHaveDelivery = result.any((element) => element.activeDelivery == false);
-     if(isAnyDoNotHaveDelivery){
-       final inactiveItem = result.firstWhere(
-             (element) => element.activeDelivery == false,
-       );
-       CustomToast.showSimpleToast(
-         msg: inactiveItem.deliveryMessage ?? "",
-       );
-     } else {
-      final transitInMsg = result.isNotEmpty ? (result.first.delivery?.transitIn ?? "") : "";
-      showDialog(
-        context: context,
-        builder: (context) {
-          return PharmacyShippingDialog(
-            message: transitInMsg,
-            onContinue: () {
-              Navigator.pop(context);
-              BuildContext ctx = getIt<GlobalContext>().context();
-              if(haveInsurance && havePrescription){
-                createOrderWithInsuranceAndPrescription(ctx,result);
-              }else if(haveInsurance){
-                createOrderWithInsurance(ctx, result);
-              }else if(havePrescription){
-                createOrderWithPrescription(ctx, result);
-              }else{
-                getCheckOutSummaryData(ctx, result);
-              }
-            },
-          );
-        },
-      );
+    for (var item in result) {
+      if (item.activeDelivery == false && item.activePickup == true) {
+        item.deliveryType = DeliveryTypeEnum.pickUp;
+      }
     }
+    shippingDataCubit.onUpdateData(result);
+
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) => PharmacyDeliveryTypeBottomSheet(
+        shippingDataCubit: shippingDataCubit,
+        canConfirm: canConfirmShipping,
+        onConfirm: () {
+          if(canConfirmShipping()){
+          Navigator.pop(context);
+          BuildContext ctx = getIt<GlobalContext>().context();
+          if (haveInsurance && havePrescription) {
+            createOrderWithInsuranceAndPrescription(ctx, result);
+          } else if (haveInsurance) {
+            createOrderWithInsurance(ctx, result);
+          } else if (havePrescription) {
+            createOrderWithPrescription(ctx, result);
+          } else {
+            getCheckOutSummaryData(ctx, result);
+          }
+          }
+        },
+      ),
+    );
   }
 
 
@@ -261,10 +263,16 @@ class PharmacyAddressController {
   }
 
 
+  bool canConfirmShipping() {
+    return shippingDataCubit.state.data.every(
+      (e) => e.activeDelivery == true || e.activePickup == true,
+    );
+  }
+
   List<PharmacyShippingInfo> _shippingData(List<PharmacyShippingDomainModel> data) {
     return data.map((e) => PharmacyShippingInfo(
         ownerId: e.ownerId ?? 0,
-        shippingType: DeliveryTypeEnum.delivery.getEnumValue(),
+        shippingType: (e.deliveryType ?? DeliveryTypeEnum.delivery).getEnumValue(),
       )).toList();
   }
 

@@ -35,6 +35,8 @@ mixin _$PharmacyShippingModel {
   String? get deliveryMessage => throw _privateConstructorUsedError;
   @JsonKey(name: 'delivery')
   DeliveryObjectModel? get deliveryObject => throw _privateConstructorUsedError;
+  @JsonKey(name: 'pickup')
+  PharmacyPickUpModel? get pickupModel => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,9 +57,11 @@ abstract class $PharmacyShippingModelCopyWith<$Res> {
       @JsonKey(name: 'active_delivery') bool activeDelivery,
       @JsonKey(name: 'active_pickup') bool activePickup,
       @JsonKey(name: 'delivery_message') String? deliveryMessage,
-      @JsonKey(name: 'delivery') DeliveryObjectModel? deliveryObject});
+      @JsonKey(name: 'delivery') DeliveryObjectModel? deliveryObject,
+      @JsonKey(name: 'pickup') PharmacyPickUpModel? pickupModel});
 
   $DeliveryObjectModelCopyWith<$Res>? get deliveryObject;
+  $PharmacyPickUpModelCopyWith<$Res>? get pickupModel;
 }
 
 /// @nodoc
@@ -81,6 +85,7 @@ class _$PharmacyShippingModelCopyWithImpl<$Res,
     Object? activePickup = null,
     Object? deliveryMessage = freezed,
     Object? deliveryObject = freezed,
+    Object? pickupModel = freezed,
   }) {
     return _then(_value.copyWith(
       ownerId: null == ownerId
@@ -111,6 +116,10 @@ class _$PharmacyShippingModelCopyWithImpl<$Res,
           ? _value.deliveryObject
           : deliveryObject // ignore: cast_nullable_to_non_nullable
               as DeliveryObjectModel?,
+      pickupModel: freezed == pickupModel
+          ? _value.pickupModel
+          : pickupModel // ignore: cast_nullable_to_non_nullable
+              as PharmacyPickUpModel?,
     ) as $Val);
   }
 
@@ -123,6 +132,18 @@ class _$PharmacyShippingModelCopyWithImpl<$Res,
 
     return $DeliveryObjectModelCopyWith<$Res>(_value.deliveryObject!, (value) {
       return _then(_value.copyWith(deliveryObject: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PharmacyPickUpModelCopyWith<$Res>? get pickupModel {
+    if (_value.pickupModel == null) {
+      return null;
+    }
+
+    return $PharmacyPickUpModelCopyWith<$Res>(_value.pickupModel!, (value) {
+      return _then(_value.copyWith(pickupModel: value) as $Val);
     });
   }
 }
@@ -142,10 +163,13 @@ abstract class _$$_PharmacyShippingModelCopyWith<$Res>
       @JsonKey(name: 'active_delivery') bool activeDelivery,
       @JsonKey(name: 'active_pickup') bool activePickup,
       @JsonKey(name: 'delivery_message') String? deliveryMessage,
-      @JsonKey(name: 'delivery') DeliveryObjectModel? deliveryObject});
+      @JsonKey(name: 'delivery') DeliveryObjectModel? deliveryObject,
+      @JsonKey(name: 'pickup') PharmacyPickUpModel? pickupModel});
 
   @override
   $DeliveryObjectModelCopyWith<$Res>? get deliveryObject;
+  @override
+  $PharmacyPickUpModelCopyWith<$Res>? get pickupModel;
 }
 
 /// @nodoc
@@ -166,6 +190,7 @@ class __$$_PharmacyShippingModelCopyWithImpl<$Res>
     Object? activePickup = null,
     Object? deliveryMessage = freezed,
     Object? deliveryObject = freezed,
+    Object? pickupModel = freezed,
   }) {
     return _then(_$_PharmacyShippingModel(
       ownerId: null == ownerId
@@ -196,6 +221,10 @@ class __$$_PharmacyShippingModelCopyWithImpl<$Res>
           ? _value.deliveryObject
           : deliveryObject // ignore: cast_nullable_to_non_nullable
               as DeliveryObjectModel?,
+      pickupModel: freezed == pickupModel
+          ? _value.pickupModel
+          : pickupModel // ignore: cast_nullable_to_non_nullable
+              as PharmacyPickUpModel?,
     ));
   }
 }
@@ -211,7 +240,8 @@ class _$_PharmacyShippingModel extends _PharmacyShippingModel {
       @JsonKey(name: 'active_delivery') required this.activeDelivery,
       @JsonKey(name: 'active_pickup') required this.activePickup,
       @JsonKey(name: 'delivery_message') this.deliveryMessage,
-      @JsonKey(name: 'delivery') required this.deliveryObject})
+      @JsonKey(name: 'delivery') required this.deliveryObject,
+      @JsonKey(name: 'pickup') required this.pickupModel})
       : super._();
 
   factory _$_PharmacyShippingModel.fromJson(Map<String, dynamic> json) =>
@@ -238,10 +268,13 @@ class _$_PharmacyShippingModel extends _PharmacyShippingModel {
   @override
   @JsonKey(name: 'delivery')
   final DeliveryObjectModel? deliveryObject;
+  @override
+  @JsonKey(name: 'pickup')
+  final PharmacyPickUpModel? pickupModel;
 
   @override
   String toString() {
-    return 'PharmacyShippingModel(ownerId: $ownerId, name: $name, physical: $physical, activeDelivery: $activeDelivery, activePickup: $activePickup, deliveryMessage: $deliveryMessage, deliveryObject: $deliveryObject)';
+    return 'PharmacyShippingModel(ownerId: $ownerId, name: $name, physical: $physical, activeDelivery: $activeDelivery, activePickup: $activePickup, deliveryMessage: $deliveryMessage, deliveryObject: $deliveryObject, pickupModel: $pickupModel)';
   }
 
   @override
@@ -260,13 +293,23 @@ class _$_PharmacyShippingModel extends _PharmacyShippingModel {
             (identical(other.deliveryMessage, deliveryMessage) ||
                 other.deliveryMessage == deliveryMessage) &&
             (identical(other.deliveryObject, deliveryObject) ||
-                other.deliveryObject == deliveryObject));
+                other.deliveryObject == deliveryObject) &&
+            (identical(other.pickupModel, pickupModel) ||
+                other.pickupModel == pickupModel));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, ownerId, name, physical,
-      activeDelivery, activePickup, deliveryMessage, deliveryObject);
+  int get hashCode => Object.hash(
+      runtimeType,
+      ownerId,
+      name,
+      physical,
+      activeDelivery,
+      activePickup,
+      deliveryMessage,
+      deliveryObject,
+      pickupModel);
 
   @JsonKey(ignore: true)
   @override
@@ -292,7 +335,9 @@ abstract class _PharmacyShippingModel extends PharmacyShippingModel {
           @JsonKey(name: 'active_pickup') required final bool activePickup,
           @JsonKey(name: 'delivery_message') final String? deliveryMessage,
           @JsonKey(name: 'delivery')
-          required final DeliveryObjectModel? deliveryObject}) =
+          required final DeliveryObjectModel? deliveryObject,
+          @JsonKey(name: 'pickup')
+          required final PharmacyPickUpModel? pickupModel}) =
       _$_PharmacyShippingModel;
   const _PharmacyShippingModel._() : super._();
 
@@ -320,6 +365,9 @@ abstract class _PharmacyShippingModel extends PharmacyShippingModel {
   @override
   @JsonKey(name: 'delivery')
   DeliveryObjectModel? get deliveryObject;
+  @override
+  @JsonKey(name: 'pickup')
+  PharmacyPickUpModel? get pickupModel;
   @override
   @JsonKey(ignore: true)
   _$$_PharmacyShippingModelCopyWith<_$_PharmacyShippingModel> get copyWith =>
@@ -469,5 +517,234 @@ abstract class _DeliveryObjectModel extends DeliveryObjectModel {
   @override
   @JsonKey(ignore: true)
   _$$_DeliveryObjectModelCopyWith<_$_DeliveryObjectModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+PharmacyPickUpModel _$PharmacyPickUpModelFromJson(Map<String, dynamic> json) {
+  return _PharmacyPickUpModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PharmacyPickUpModel {
+  int get id => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  @JsonKey(name: 'postal_code')
+  String get postalCode => throw _privateConstructorUsedError;
+  double? get lat => throw _privateConstructorUsedError;
+  double? get lang => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PharmacyPickUpModelCopyWith<PharmacyPickUpModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PharmacyPickUpModelCopyWith<$Res> {
+  factory $PharmacyPickUpModelCopyWith(
+          PharmacyPickUpModel value, $Res Function(PharmacyPickUpModel) then) =
+      _$PharmacyPickUpModelCopyWithImpl<$Res, PharmacyPickUpModel>;
+  @useResult
+  $Res call(
+      {int id,
+      String address,
+      @JsonKey(name: 'postal_code') String postalCode,
+      double? lat,
+      double? lang});
+}
+
+/// @nodoc
+class _$PharmacyPickUpModelCopyWithImpl<$Res, $Val extends PharmacyPickUpModel>
+    implements $PharmacyPickUpModelCopyWith<$Res> {
+  _$PharmacyPickUpModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? address = null,
+    Object? postalCode = null,
+    Object? lat = freezed,
+    Object? lang = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      postalCode: null == postalCode
+          ? _value.postalCode
+          : postalCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      lat: freezed == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as double?,
+      lang: freezed == lang
+          ? _value.lang
+          : lang // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_PharmacyPickUpModelCopyWith<$Res>
+    implements $PharmacyPickUpModelCopyWith<$Res> {
+  factory _$$_PharmacyPickUpModelCopyWith(_$_PharmacyPickUpModel value,
+          $Res Function(_$_PharmacyPickUpModel) then) =
+      __$$_PharmacyPickUpModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      String address,
+      @JsonKey(name: 'postal_code') String postalCode,
+      double? lat,
+      double? lang});
+}
+
+/// @nodoc
+class __$$_PharmacyPickUpModelCopyWithImpl<$Res>
+    extends _$PharmacyPickUpModelCopyWithImpl<$Res, _$_PharmacyPickUpModel>
+    implements _$$_PharmacyPickUpModelCopyWith<$Res> {
+  __$$_PharmacyPickUpModelCopyWithImpl(_$_PharmacyPickUpModel _value,
+      $Res Function(_$_PharmacyPickUpModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? address = null,
+    Object? postalCode = null,
+    Object? lat = freezed,
+    Object? lang = freezed,
+  }) {
+    return _then(_$_PharmacyPickUpModel(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      postalCode: null == postalCode
+          ? _value.postalCode
+          : postalCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      lat: freezed == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as double?,
+      lang: freezed == lang
+          ? _value.lang
+          : lang // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_PharmacyPickUpModel extends _PharmacyPickUpModel {
+  const _$_PharmacyPickUpModel(
+      {required this.id,
+      required this.address,
+      @JsonKey(name: 'postal_code') required this.postalCode,
+      this.lat,
+      this.lang})
+      : super._();
+
+  factory _$_PharmacyPickUpModel.fromJson(Map<String, dynamic> json) =>
+      _$$_PharmacyPickUpModelFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String address;
+  @override
+  @JsonKey(name: 'postal_code')
+  final String postalCode;
+  @override
+  final double? lat;
+  @override
+  final double? lang;
+
+  @override
+  String toString() {
+    return 'PharmacyPickUpModel(id: $id, address: $address, postalCode: $postalCode, lat: $lat, lang: $lang)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PharmacyPickUpModel &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.postalCode, postalCode) ||
+                other.postalCode == postalCode) &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.lang, lang) || other.lang == lang));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, address, postalCode, lat, lang);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PharmacyPickUpModelCopyWith<_$_PharmacyPickUpModel> get copyWith =>
+      __$$_PharmacyPickUpModelCopyWithImpl<_$_PharmacyPickUpModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PharmacyPickUpModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PharmacyPickUpModel extends PharmacyPickUpModel {
+  const factory _PharmacyPickUpModel(
+      {required final int id,
+      required final String address,
+      @JsonKey(name: 'postal_code') required final String postalCode,
+      final double? lat,
+      final double? lang}) = _$_PharmacyPickUpModel;
+  const _PharmacyPickUpModel._() : super._();
+
+  factory _PharmacyPickUpModel.fromJson(Map<String, dynamic> json) =
+      _$_PharmacyPickUpModel.fromJson;
+
+  @override
+  int get id;
+  @override
+  String get address;
+  @override
+  @JsonKey(name: 'postal_code')
+  String get postalCode;
+  @override
+  double? get lat;
+  @override
+  double? get lang;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PharmacyPickUpModelCopyWith<_$_PharmacyPickUpModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
