@@ -33,6 +33,7 @@ class _PharmacyOrderDetailsState extends State<PharmacyOrderDetails> {
         appBar:  DefaultAppBar(
             title: "",
           onBack: () => controller.onPressBack(context, widget.fromCheckout),
+          size: 60,
         ),
         body: PharmacyOrderDetailsBody(controller: controller),
       ),

@@ -116,10 +116,10 @@ class ProductsHelper {
         product: json.encode(product.toJson()), productId: product.id);
   }
 
-  Future<void> addProductToCart(BuildContext context, Product product,
+  Future<bool?> addProductToCart(BuildContext context, Product product,
       {void Function()? afterAddToCart}) async {
     var existCount = context.read<CountCubit>().state.cartCount;
-    await getIt<CartHelper>().addProductToCart(
+    var result = await getIt<CartHelper>().addProductToCart(
       context,
       product.minQty!,
       product.variant?.id,
@@ -129,13 +129,15 @@ class ProductsHelper {
           price: product.variant?.calculablePrice ?? "",
           id: product.id!,
         );
-        getIt<CartHelper>()
-            .updateCartCount(context, product.minQty! + existCount);
+        if(product.isPharmProduct == false){
+          getIt<CartHelper>().updateCartCount(context, product.minQty! + existCount);
+        }
         if (afterAddToCart != null) {
           afterAddToCart.call();
         }
       },
     );
+    return result;
   }
 
   Future<bool> removeProductFromCart(

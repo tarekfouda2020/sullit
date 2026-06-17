@@ -17,7 +17,7 @@ class BuildProductDescription extends StatelessWidget {
       child: BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
         bloc: controller.showAllDescriptionCubit,
         builder: (context, state) {
-           bool isExpanded = state.data;
+          bool isExpanded = state.data;
           return Container(
             decoration: CustomDecoration(radius: BorderRadius.circular(12)),
             padding: Dimens.paddingS22T10B10,
@@ -36,97 +36,111 @@ class BuildProductDescription extends StatelessWidget {
                   ],
                 ),
                 Gaps.vGap4,
-                Stack(
-                  children: [
-                    AnimatedSize(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                      child: ConstrainedBox(
-                        constraints: isExpanded
-                            ? const BoxConstraints()
-                            : const BoxConstraints(maxHeight: 100),
-                        child: isHtml
-                            ? Html(
-                                data: description,
-                                style: {
-                                  "body": Style(
-                                    color: context.colors.black,
-                                    margin: Margins.zero,
-                                    padding: HtmlPaddings.zero,
-                                    fontSize: FontSize(Dimens.font_sp14.sp),
-                                    fontWeight: FontWeight.w400,
-                                    lineHeight: const LineHeight(1.6),
-                                  ),
-                                  "p": Style(
-                                    margin: Margins.only(top: 0, bottom: 10),
-                                    padding: HtmlPaddings.zero,
-                                  ),
-                                  "span": Style(
-                                    color: context.colors.black,
-                                  ),
-                                  "br": Style(
-                                    margin: Margins.only(bottom: 6),
-                                  ),
-                                  "ul": Style(
-                                    margin: Margins.only(left: 12, bottom: 10),
-                                  ),
-                                  "li": Style(
-                                    margin: Margins.only(bottom: 4),
-                                  ),
-                                },
-                              )
-                            : Text(
-                                getIt<Utilities>().formatDescription(description),
-                                style: AppTextStyle.s14_w400(
-                                  color: context.colors.black,
-                                ).copyWith(height: 1.6),
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    var needsExpansion = _needsExpansion(
+                      parseHtmlString(description),
+                      context,
+                      constraints.maxWidth,
+                    );
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Stack(
+                          children: [
+                            AnimatedSize(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                              child: ConstrainedBox(
+                                constraints: isExpanded
+                                    ? const BoxConstraints()
+                                    : const BoxConstraints(maxHeight: 100),
+                                child: isHtml
+                                    ? Html(
+                                  data: description,
+                                  style: {
+                                    "body": Style(
+                                      color: context.colors.black,
+                                      margin: Margins.zero,
+                                      padding: HtmlPaddings.zero,
+                                      fontSize: FontSize(Dimens.font_sp14.sp),
+                                      fontWeight: FontWeight.w400,
+                                      lineHeight: const LineHeight(1.6),
+                                    ),
+                                    "p": Style(
+                                      margin: Margins.only(top: 0, bottom: 10),
+                                      padding: HtmlPaddings.zero,
+                                    ),
+                                    "span": Style(
+                                      color: context.colors.black,
+                                    ),
+                                    "br": Style(
+                                      margin: Margins.only(bottom: 6),
+                                    ),
+                                    "ul": Style(
+                                      margin: Margins.only(left: 12, bottom: 10),
+                                    ),
+                                    "li": Style(
+                                      margin: Margins.only(bottom: 4),
+                                    ),
+                                  },
+                                )
+                                    : Text(
+                                  getIt<Utilities>().formatDescription(description),
+                                  style: textStyle(context),
+                                ),
                               ),
-                      ),
-                    ),
-                    if (!isExpanded)
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: Container(
-                          height: 50,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                context.colors.white.withOpacity(0),
-                                context.colors.white,
+                            ),
+                            if (!isExpanded && needsExpansion)
+                              Positioned(
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child: Container(
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [
+                                        context.colors.white.withOpacity(0),
+                                        context.colors.white,
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                        if (needsExpansion) ...[
+                          Gaps.vGap8,
+                          GestureDetector(
+                            onTap: () => controller.showAllDescriptionCubit
+                                .onUpdateData(!isExpanded),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  isExpanded ? tr('see_less') : tr('see_more'),
+                                  style: AppTextStyle.s14_w500(
+                                    color: context.colors.primary,
+                                  ),
+                                ),
+                                Gaps.hGap4,
+                                Icon(
+                                  isExpanded
+                                      ? Icons.keyboard_arrow_up
+                                      : Icons.keyboard_arrow_down,
+                                  color: context.colors.primary,
+                                  size: 18,
+                                ),
                               ],
                             ),
                           ),
-                        ),
-                      ),
-                  ],
-                ),
-                Gaps.vGap8,
-                GestureDetector(
-                  onTap: () => controller.showAllDescriptionCubit
-                      .onUpdateData(!isExpanded),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        isExpanded ? tr('see_less') : tr('see_more'),
-                        style: AppTextStyle.s14_w500(
-                          color: context.colors.primary,
-                        ),
-                      ),
-                      Gaps.hGap4,
-                      Icon(
-                        isExpanded
-                            ? Icons.keyboard_arrow_up
-                            : Icons.keyboard_arrow_down,
-                        color: context.colors.primary,
-                        size: 18,
-                      ),
-                    ],
-                  ),
+                        ],
+                      ],
+                    );
+                  },
                 ),
               ],
             ),
@@ -136,10 +150,25 @@ class BuildProductDescription extends StatelessWidget {
     );
   }
 
+  bool _needsExpansion(String text, BuildContext context, double maxWidth) {
+    final textPainter = TextPainter(
+      text: TextSpan(text: text, style: textStyle(context)),
+      textDirection: TextDirection.ltr,
+      maxLines: null,
+    );
+    textPainter.layout(maxWidth: maxWidth);
+    return textPainter.height > 100;
+  }
+
   bool get isHtml => getIt<Utilities>().isHtml(description);
 
   String parseHtmlString(String htmlString) {
     final document = parse(htmlString);
     return document.body?.text ?? htmlString;
   }
+
+
+  TextStyle textStyle(BuildContext context) => AppTextStyle.s14_w400(
+  color: context.colors.black,
+  ).copyWith(height: 1.6);
 }

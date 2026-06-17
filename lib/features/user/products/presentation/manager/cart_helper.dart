@@ -120,7 +120,7 @@ class CartHelper {
     }
   }
 
-  Future<void> addProductToCart(BuildContext context, int qty, int? variantId,
+  Future<bool?> addProductToCart(BuildContext context, int qty, int? variantId,
       {required Function() onAddCartFunc,
       bool showLoader = true,
       bool callCartData = true,
@@ -129,9 +129,9 @@ class CartHelper {
     var params = await _addToCartParams(variantId, qty, showLoader: showLoader);
     if (params.variantId == null) {
       CustomToast.showSimpleToast(msg: tr('variantNotFound'));
-      return;
+      return null;
     }
-    var data = await AddProductToCart().call(params);
+    String data = await AddProductToCart().call(params);
 
     if (data.isNotEmpty) {
       if (callCartData) {
@@ -140,6 +140,9 @@ class CartHelper {
       onAddCartFunc();
       CustomToast.showSimpleToast(
           msg: tr('productAddedToYourCart'), type: ToastType.success);
+      return true;
+    }else{
+      return false;
     }
   }
 

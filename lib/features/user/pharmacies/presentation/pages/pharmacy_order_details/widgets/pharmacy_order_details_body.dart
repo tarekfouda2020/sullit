@@ -19,7 +19,6 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
                   child: ListView(
                     padding: Dimens.paddingAll20PX,
                     children: [
-                      Gaps.vGap10,
                       OrderPharamCardWidget(
                         url: state.data!.orderDetails.first.product?.shop?.logo ?? "",
                         text: state.data!.orderDetails.first.product?.shop?.name  ?? "",
@@ -31,10 +30,11 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
                         children: [
                           PharmacyOrderDetailsDoneWidget(
                               data: state.data!, controller: controller),
-                          if (state.data?.pharmNormalOrder == false && state.data?.isCanceled == false )
-                            SvgPicture.asset(Res.orderConfirmImage)
-                          else if(state.data?.isCanceled == true)
+
+                          if(state.data?.isCanceled == true)
                             SvgPicture.asset(Res.confirmationAlertIcon)
+                         else if (state.data?.pharmNormalOrder == false && state.data?.isCanceled == false )
+                            SvgPicture.asset(Res.orderConfirmImage)
                         ],
                       ),
                       Gaps.vGap20,

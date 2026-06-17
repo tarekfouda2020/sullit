@@ -18,14 +18,21 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
         border: Border.all(color: context.colors.gray3)
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Gaps.vGap40,
+          Gaps.vGap20,
          if(data.pharmNormalOrder == false && (data.isConfirmed || data.isPlaced || data.isCanceled) )...[
-           Text(
-             data.isCanceled
-                 ? "Order Rejected"
-                 : "Thank You For Your Order!",
-             style: AppTextStyle.s20_w700(color: context.colors.black),
+           Gaps.vGap20,
+           Row(
+             mainAxisAlignment: MainAxisAlignment.center,
+             children: [
+               Text(
+                 data.isCanceled
+                     ? "Order Rejected"
+                     : "Thank You For Your Order!",
+                 style: AppTextStyle.s20_w700(color: context.colors.black),
+               ),
+             ],
            ),
            Gaps.vGap10,
            Visibility(
@@ -48,30 +55,50 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
                  ],
                ),
              ),
-             child: Text(
-               "Your shipment is being prepared for delivery.",
-               style: AppTextStyle.s14_w400(color: context.colors.textColor),
+             child: Row(
+               mainAxisAlignment: MainAxisAlignment.center,
+               children: [
+                 Text(
+                   "Your shipment is being prepared for delivery.",
+                   style: AppTextStyle.s14_w400(color: context.colors.textColor),
+                 ),
+               ],
              ),
            ),
            Gaps.vGap20,
          ],
-          Text(
-            "ORDER NUMBER",
-            style: AppTextStyle.s14_w400(color: context.colors.textColor),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "ORDER NUMBER",
+                style: AppTextStyle.s14_w400(color: context.colors.textColor),
+              ),
+            ],
           ),
           Gaps.vGap10,
-          Text(
-            "#${data.code}",
-            style: AppTextStyle.s22_w700(color: context.colors.black),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "#${data.code}",
+                style: AppTextStyle.s22_w700(color: context.colors.black),
+              ),
+            ],
           ),
           Gaps.vGap20,
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 13),
-            decoration: BoxDecoration(
-              color: _getReviewStatusColor(context),
-              borderRadius: Dimens.borderRadius30PX,
-            ),
-            child: _reviewStatusWidget(context),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 13),
+                decoration: BoxDecoration(
+                  color: _getReviewStatusColor(context),
+                  borderRadius: Dimens.borderRadius30PX,
+                ),
+                child: _reviewStatusWidget(context),
+              ),
+            ],
           ),
           if(data.pharmNormalOrder == false)...[
             Gaps.vGap20,
@@ -104,8 +131,8 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
             _buildRow(context, "Phone", data.customerPhone),
             Gaps.vGap10,
             _buildRow(context, "Payment Method", data.paymentMethod),
+            Gaps.vGap10,
           ],
-          Gaps.vGap10,
           if (data.insuranceApplied == true && data.insuranceCompany != null) ...[
             RichText(
               text: TextSpan(
@@ -116,7 +143,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
                   ),
                   TextSpan(
                     text: data.insuranceCompany?.name ?? "",
-                    style: AppTextStyle.s14_w600(color: context.colors.black),
+                    style: AppTextStyle.s14_w600(color: context.colors.black).copyWith(height: 1.1),
                   ),
                 ],
               ),

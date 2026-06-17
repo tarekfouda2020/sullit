@@ -76,13 +76,17 @@ abstract class BaseProductItemState<T extends BaseProductItem>
     if (widget.productModel.addedQtyToCart == null ||
         widget.productModel.addedQtyToCart == 0) {
       enableAddToCartLoading.onUpdateData(true);
-      await getIt<ProductsHelper>().addProductToCart(
+     var result = await getIt<ProductsHelper>().addProductToCart(
         context,
         widget.productModel,
         afterAddToCart: afterAddToCartCallback,
       );
       enableAddToCartLoading.onUpdateData(false);
-      return true;
+      if(result == true){
+        return true;
+      }else{
+        return false;
+      }
     }
     return false;
   }

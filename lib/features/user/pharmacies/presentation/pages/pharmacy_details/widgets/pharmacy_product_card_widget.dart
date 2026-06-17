@@ -51,7 +51,6 @@ class _PharmacyProductCardWidgetState
 
   @override
   Future<void> routeToDetails(BuildContext context) async {
-    print("from fromPharmPage page === ${widget.fromPharmPage}");
    var result =  await AutoRouter.of(context).push(
       ProductDetailsRoute(
         isFav: widget.productModel.isWishlist!,
@@ -67,8 +66,15 @@ class _PharmacyProductCardWidgetState
   @override
   Future<void> addToCart(BuildContext context) async {
     if (handleOutOfStockGuard()) return;
-    if (await handleFirstAddToCart(context)) return;
-
+    final isFirstAdd = widget.productModel.addedQtyToCart == null ||
+        widget.productModel.addedQtyToCart == 0;
+    final firstAdd = await handleFirstAddToCart(context);
+    if (firstAdd) return;
+    if (isFirstAdd) {
+      if (!mounted) return;
+      widget.controller.showAddToCartFailedDialog(this.context);
+      return;
+    }
     var currentStockQnt = widget.productModel.variant?.currentStock ?? 0;
     int qnt = widget.productModel.addedQtyToCart! + 1;
 

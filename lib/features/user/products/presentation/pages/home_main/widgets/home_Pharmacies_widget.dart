@@ -24,7 +24,11 @@ class HomePharmaciesWidget extends StatelessWidget {
                 (index) {
                   var item = controller.homeCubit.state.data!.pharmacyShops[index];
                   return GestureDetector(
-                    onTap: () => AutoRouter.of(context).push(PharmacyDetailsRoute(pharmacyId: item.id)),
+                    onTap: () {
+                      if(item.id!= null){
+                        AutoRouter.of(context).push(PharmacyDetailsRoute(pharmacyId: item.id!));
+                      }
+                    },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [

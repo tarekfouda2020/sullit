@@ -60,3 +60,4 @@ part 'supported_insurance_widget.dart';
 part 'supported_insurance_bottom_sheet_widget.dart';
 part 'pharmacy_product_card_widget.dart';
 part 'pharmacy_categories_widgets.dart';
+part 'pharmacy_add_to_cart_failed_dialog.dart';

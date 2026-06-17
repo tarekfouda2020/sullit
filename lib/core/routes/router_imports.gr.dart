@@ -1173,8 +1173,7 @@ class AppRouter extends _i110.RootStackRouter {
       );
     },
     PharmacyDetailsRoute.name: (routeData) {
-      final args = routeData.argsAs<PharmacyDetailsRouteArgs>(
-          orElse: () => const PharmacyDetailsRouteArgs());
+      final args = routeData.argsAs<PharmacyDetailsRouteArgs>();
       return _i110.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i103.PharmacyDetails(
@@ -4024,7 +4023,7 @@ class PharmacyDetailsRoute
   PharmacyDetailsRoute({
     _i113.Key? key,
     bool fromCart = false,
-    int? pharmacyId,
+    required int pharmacyId,
     String? selectedCategoryName,
     int? selectedCategoryId,
   }) : super(
@@ -4046,7 +4045,7 @@ class PharmacyDetailsRouteArgs {
   const PharmacyDetailsRouteArgs({
     this.key,
     this.fromCart = false,
-    this.pharmacyId,
+    required this.pharmacyId,
     this.selectedCategoryName,
     this.selectedCategoryId,
   });
@@ -4055,7 +4054,7 @@ class PharmacyDetailsRouteArgs {
 
   final bool fromCart;
 
-  final int? pharmacyId;
+  final int pharmacyId;
 
   final String? selectedCategoryName;
 

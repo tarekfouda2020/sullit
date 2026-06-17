@@ -2,13 +2,13 @@ part of 'pharmacy_details_imports.dart';
 
 class PharmacyDetails extends StatefulWidget {
   final bool fromCart;
-  final int? pharmacyId;
+  final int pharmacyId;
   final int? selectedCategoryId;
   final String? selectedCategoryName;
   const PharmacyDetails(
       {super.key,
       this.fromCart = false,
-      this.pharmacyId,
+      required this.pharmacyId,
       this.selectedCategoryName,
       this.selectedCategoryId});
 

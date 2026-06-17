@@ -1,7 +1,7 @@
 part of 'pharmacy_details_imports.dart';
 
 class PharmacyDetailsController {
-  final int? pharmacyId;
+   int? pharmacyId;
   final int? selectedCategoryId;
   final String? selectedCategoryName;
 
@@ -36,12 +36,7 @@ class PharmacyDetailsController {
     _setupScrollListener();
     _injectSelectedCategoryPlaceholder();
     if (pharmacyId != null) {
-      getCartItems(refresh: false);
-      getCartItems();
-      _getCategories();
-      _getPharmacyProducts();
-      _fetchShopDetails(fromRemote: false);
-      _fetchShopDetails();
+      initData();
     }
     // else if (pharmacy != null) {
     //   getCartItems(refresh: false);
@@ -51,6 +46,18 @@ class PharmacyDetailsController {
     //   _getPharmacyProducts();
     // }
   }
+
+
+
+  void initData(){
+    getCartItems(refresh: false);
+    getCartItems();
+    _getCategories();
+    _getPharmacyProducts();
+    _fetchShopDetails(fromRemote: false);
+    _fetchShopDetails();
+  }
+
 
   int? get getPharmacyId => pharmacyBloc.state.data?.id ?? pharmacyId;
 
@@ -223,6 +230,9 @@ class PharmacyDetailsController {
 
   void onSelectCategory(ShopCategory model) {
     selectedCategory = model;
+    if(model.isSelect){
+      selectedCategory = null;
+    }
     model.isSelect = !model.isSelect;
     categoriesPagingController.itemList = [
       ...?categoriesPagingController.itemList
@@ -335,8 +345,7 @@ class PharmacyDetailsController {
     var params = _cartParams(refresh, token!);
     var data = await GetCart().call(params);
     var pharmacyProducts = data.items?.where((element) => element.shopId == getPharmacyId).toList();
-    data.items = pharmacyProducts;
-    data.calculableTotal = data.items?.fold<double>(0, (sum, item)=> sum + item.calculableTotal);
+    data.calculableTotal = pharmacyProducts?.fold<double>(0, (sum, item)=> sum + item.calculableTotal);
     cartItemsBloc.onUpdateData(data);
   }
 
@@ -423,6 +432,26 @@ class PharmacyDetailsController {
     productsPagingController.itemList = [...updatedList];
   }
 
+  void showAddToCartFailedDialog(BuildContext pageContext) {
+    final firstItem = cartItemsBloc.state.data.items?.first;
+    final pharmacyName = firstItem?.soldBy ?? "";
+    final shopId = firstItem?.shopId;
+
+    showDialog(
+      context: pageContext,
+      builder: (dialogContext) => PharmacyAddToCartFailedDialog(
+        pharmacyName: pharmacyName,
+        onClearCart: () => clearCart(dialogContext),
+        onGoToPharmacy: () {
+          Navigator.pop(dialogContext);
+          if (shopId != null) {
+            AutoRouter.of(pageContext).push(PharmacyDetailsRoute(pharmacyId: shopId));
+          }
+        },
+      ),
+    );
+  }
+
   void _setupScrollListener() {
     scrollController.addListener(
       () {
@@ -431,6 +460,21 @@ class PharmacyDetailsController {
       },
     );
   }
+
+
+   Future<void> clearCart(BuildContext context) async {
+     final token = await getIt<GetDeviceId>().deviceId;
+     final params =
+     ClearCartParams(macAddress: token ?? "", type: CartTypeEnum.pharmacy);
+     await ClearCart().call(params).then((value) async {
+       CustomToast.showSimpleToast(
+           msg: "Your cart has been cleared successfully.",
+           type: ToastType.success);
+       cartItemsBloc.state.data.pharmacyItems?.clear();
+       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+       Navigator.pop(context);
+     });
+   }
 
 
 

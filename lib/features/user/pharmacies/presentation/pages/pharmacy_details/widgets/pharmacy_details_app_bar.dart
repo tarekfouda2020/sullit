@@ -52,7 +52,6 @@ class PharmacyDetailsAppBar extends StatelessWidget {
                           CachedImage(
                             url: shop?.logo ?? '',
                             height: 110.h,
-                            width: double.infinity,
                             fit: BoxFit.cover,
                             bgColor: context.colors.white,
                           ),

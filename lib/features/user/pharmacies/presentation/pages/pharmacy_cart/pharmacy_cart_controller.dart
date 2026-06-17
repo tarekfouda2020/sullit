@@ -224,13 +224,15 @@ class PharmacyCartController {
     if(fromPharmacyDetails){
       AutoRouter.of(context).pop();
     }else{
-      var result = await AutoRouter.of(context).push(PharmacyDetailsRoute(
-          pharmacyId: pharmacyId,
-          fromCart: true
-      ));
-      if(result == true){
-        getCartItems();
-      }
+     if(pharmacyId!= null){
+       var result = await AutoRouter.of(context).push(PharmacyDetailsRoute(
+           pharmacyId: pharmacyId!,
+           fromCart: true
+       ));
+       if(result == true){
+         getCartItems();
+       }
+     }
     }
 
 
