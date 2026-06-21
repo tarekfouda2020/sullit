@@ -28,6 +28,7 @@ import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_confirm_b
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_payment/widgets/cart_payment_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_discount_domain.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/order_display_item.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/order_details_imports.dart';
 import 'package:injectable/injectable.dart';
@@ -42,6 +43,9 @@ import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 part 'order_info_widget.dart';
 part 'order_details_sections_title_widget.dart';
 part 'order_details_product_item_widget.dart';
+part 'order_details_price_quantity_widget.dart';
+part 'order_details_total_widget.dart';
+part 'order_details_modified_badge_widget.dart';
 part 'order_details_summary_widget.dart';
 part 'order_summary_item_widget.dart';
 part 'returned_order_details_widget.dart';

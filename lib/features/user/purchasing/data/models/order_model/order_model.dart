@@ -6,6 +6,8 @@ import 'package:flutter_tdd/features/user/purchasing/data/models/order_driver_mo
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../order_modification_model/order_modification_model.dart';
+
 part 'order_model.freezed.dart';
 part 'order_model.g.dart';
 
@@ -68,6 +70,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'order_source_label') String? orderSourceLabel,
     @JsonKey(name: 'shipping_provider') String? shippingProvider,
     @JsonKey(name: 'shipping_provider_label') String? shippingProviderLabel,
+    @JsonKey(name: 'order_detail_histories') List<OrderModificationModel>? orderDetailHistories,
   }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);
@@ -125,7 +128,8 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       orderDiscounts: orderDiscounts?.map((e) => e.toDomainModel()).toList(),
       orderSourceLabel:orderSourceLabel ,
        shippingProvider: shippingProvider,
-      shippingProviderLabel:shippingProviderLabel ,
+      shippingProviderLabel:shippingProviderLabel,
+      orderDetailHistories: orderDetailHistories?.map((e) => e.toDomainModel()).toList(),
     );
   }
 }

@@ -4,7 +4,9 @@ import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instructio
 import 'package:flutter_tdd/features/user/purchasing/domain/enum/track_order_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_discount_domain.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/order_display_item.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_driver_domain_model.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/order_modification_domain_model.dart';
 
 import '../enum/order_payment_type.dart';
 
@@ -61,6 +63,8 @@ class Orders extends BaseDomainModel {
   OrderDriverDomainModel? driverModel;
   List<DeliveryInstructionModel>? instructions;
   List<OrderDiscountDomain>? orderDiscounts;
+  List<OrderModificationDomainModel>? orderDetailHistories;
+  List<OrderDisplayItem>? displayItems;
 
   Orders({
     required this.id,
@@ -114,6 +118,7 @@ class Orders extends BaseDomainModel {
     this.orderSourceLabel,
     this.shippingProvider,
     this.shippingProviderLabel,
+    this.orderDetailHistories,
   });
 
   int totalItemsCount() => orderDetails.fold(
