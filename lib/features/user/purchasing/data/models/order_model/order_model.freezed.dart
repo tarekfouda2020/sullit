@@ -119,6 +119,9 @@ mixin _$OrderModel {
   String? get shippingProvider => throw _privateConstructorUsedError;
   @JsonKey(name: 'shipping_provider_label')
   String? get shippingProviderLabel => throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_detail_histories')
+  List<OrderModificationModel>? get orderDetailHistories =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -184,7 +187,9 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'driver') OrderDriverModel? driver,
       @JsonKey(name: 'order_source_label') String? orderSourceLabel,
       @JsonKey(name: 'shipping_provider') String? shippingProvider,
-      @JsonKey(name: 'shipping_provider_label') String? shippingProviderLabel});
+      @JsonKey(name: 'shipping_provider_label') String? shippingProviderLabel,
+      @JsonKey(name: 'order_detail_histories')
+      List<OrderModificationModel>? orderDetailHistories});
 
   $OrderDriverModelCopyWith<$Res>? get driver;
 }
@@ -253,6 +258,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? orderSourceLabel = freezed,
     Object? shippingProvider = freezed,
     Object? shippingProviderLabel = freezed,
+    Object? orderDetailHistories = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -459,6 +465,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.shippingProviderLabel
           : shippingProviderLabel // ignore: cast_nullable_to_non_nullable
               as String?,
+      orderDetailHistories: freezed == orderDetailHistories
+          ? _value.orderDetailHistories
+          : orderDetailHistories // ignore: cast_nullable_to_non_nullable
+              as List<OrderModificationModel>?,
     ) as $Val);
   }
 
@@ -535,7 +545,9 @@ abstract class _$$_OrderModelCopyWith<$Res>
       @JsonKey(name: 'driver') OrderDriverModel? driver,
       @JsonKey(name: 'order_source_label') String? orderSourceLabel,
       @JsonKey(name: 'shipping_provider') String? shippingProvider,
-      @JsonKey(name: 'shipping_provider_label') String? shippingProviderLabel});
+      @JsonKey(name: 'shipping_provider_label') String? shippingProviderLabel,
+      @JsonKey(name: 'order_detail_histories')
+      List<OrderModificationModel>? orderDetailHistories});
 
   @override
   $OrderDriverModelCopyWith<$Res>? get driver;
@@ -603,6 +615,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? orderSourceLabel = freezed,
     Object? shippingProvider = freezed,
     Object? shippingProviderLabel = freezed,
+    Object? orderDetailHistories = freezed,
   }) {
     return _then(_$_OrderModel(
       id: null == id
@@ -809,6 +822,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.shippingProviderLabel
           : shippingProviderLabel // ignore: cast_nullable_to_non_nullable
               as String?,
+      orderDetailHistories: freezed == orderDetailHistories
+          ? _value._orderDetailHistories
+          : orderDetailHistories // ignore: cast_nullable_to_non_nullable
+              as List<OrderModificationModel>?,
     ));
   }
 }
@@ -875,10 +892,13 @@ class _$_OrderModel extends _OrderModel {
       @JsonKey(name: 'driver') this.driver,
       @JsonKey(name: 'order_source_label') this.orderSourceLabel,
       @JsonKey(name: 'shipping_provider') this.shippingProvider,
-      @JsonKey(name: 'shipping_provider_label') this.shippingProviderLabel})
+      @JsonKey(name: 'shipping_provider_label') this.shippingProviderLabel,
+      @JsonKey(name: 'order_detail_histories')
+      final List<OrderModificationModel>? orderDetailHistories})
       : _orderDetails = orderDetails,
         _deliveryInstructions = deliveryInstructions,
         _orderDiscounts = orderDiscounts,
+        _orderDetailHistories = orderDetailHistories,
         super._();
 
   factory _$_OrderModel.fromJson(Map<String, dynamic> json) =>
@@ -1053,10 +1073,21 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'shipping_provider_label')
   final String? shippingProviderLabel;
+  final List<OrderModificationModel>? _orderDetailHistories;
+  @override
+  @JsonKey(name: 'order_detail_histories')
+  List<OrderModificationModel>? get orderDetailHistories {
+    final value = _orderDetailHistories;
+    if (value == null) return null;
+    if (_orderDetailHistories is EqualUnmodifiableListView)
+      return _orderDetailHistories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, paymentMethodConst: $paymentMethodConst, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, pickerNotes: $pickerNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver, orderSourceLabel: $orderSourceLabel, shippingProvider: $shippingProvider, shippingProviderLabel: $shippingProviderLabel)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, paymentMethodConst: $paymentMethodConst, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, pickerNotes: $pickerNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver, orderSourceLabel: $orderSourceLabel, shippingProvider: $shippingProvider, shippingProviderLabel: $shippingProviderLabel, orderDetailHistories: $orderDetailHistories)';
   }
 
   @override
@@ -1157,7 +1188,8 @@ class _$_OrderModel extends _OrderModel {
                 other.orderSourceLabel == orderSourceLabel) &&
             (identical(other.shippingProvider, shippingProvider) ||
                 other.shippingProvider == shippingProvider) &&
-            (identical(other.shippingProviderLabel, shippingProviderLabel) || other.shippingProviderLabel == shippingProviderLabel));
+            (identical(other.shippingProviderLabel, shippingProviderLabel) || other.shippingProviderLabel == shippingProviderLabel) &&
+            const DeepCollectionEquality().equals(other._orderDetailHistories, _orderDetailHistories));
   }
 
   @JsonKey(ignore: true)
@@ -1214,7 +1246,8 @@ class _$_OrderModel extends _OrderModel {
         driver,
         orderSourceLabel,
         shippingProvider,
-        shippingProviderLabel
+        shippingProviderLabel,
+        const DeepCollectionEquality().hash(_orderDetailHistories)
       ]);
 
   @JsonKey(ignore: true)
@@ -1296,7 +1329,10 @@ abstract class _OrderModel extends OrderModel {
       @JsonKey(name: 'order_source_label') final String? orderSourceLabel,
       @JsonKey(name: 'shipping_provider') final String? shippingProvider,
       @JsonKey(name: 'shipping_provider_label')
-      final String? shippingProviderLabel}) = _$_OrderModel;
+      final String? shippingProviderLabel,
+      @JsonKey(name: 'order_detail_histories')
+      final List<OrderModificationModel>?
+          orderDetailHistories}) = _$_OrderModel;
   const _OrderModel._() : super._();
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
@@ -1450,6 +1486,9 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'shipping_provider_label')
   String? get shippingProviderLabel;
+  @override
+  @JsonKey(name: 'order_detail_histories')
+  List<OrderModificationModel>? get orderDetailHistories;
   @override
   @JsonKey(ignore: true)
   _$$_OrderModelCopyWith<_$_OrderModel> get copyWith =>

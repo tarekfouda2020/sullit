@@ -67,6 +67,10 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       orderSourceLabel: json['order_source_label'] as String?,
       shippingProvider: json['shipping_provider'] as String?,
       shippingProviderLabel: json['shipping_provider_label'] as String?,
+      orderDetailHistories: (json['order_detail_histories'] as List<dynamic>?)
+          ?.map(
+              (e) => OrderModificationModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
@@ -124,4 +128,6 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'order_source_label': instance.orderSourceLabel,
       'shipping_provider': instance.shippingProvider,
       'shipping_provider_label': instance.shippingProviderLabel,
+      'order_detail_histories':
+          instance.orderDetailHistories?.map((e) => e.toJson()).toList(),
     };
