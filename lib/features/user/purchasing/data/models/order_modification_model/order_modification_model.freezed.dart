@@ -35,7 +35,7 @@ mixin _$OrderModificationModel {
   @JsonKey(name: 'new_quantity')
   int? get newQuantity => throw _privateConstructorUsedError;
   @JsonKey(name: 'old_product')
-  NewProductModel get oldProduct => throw _privateConstructorUsedError;
+  NewProductModel? get oldProduct => throw _privateConstructorUsedError;
   @JsonKey(name: 'new_product')
   NewProductModel? get newProduct => throw _privateConstructorUsedError;
   @JsonKey(name: 'old_variation')
@@ -66,13 +66,13 @@ abstract class $OrderModificationModelCopyWith<$Res> {
       @JsonKey(name: 'new_price') String? newPrice,
       @JsonKey(name: 'old_quantity') int? oldQuantity,
       @JsonKey(name: 'new_quantity') int? newQuantity,
-      @JsonKey(name: 'old_product') NewProductModel oldProduct,
+      @JsonKey(name: 'old_product') NewProductModel? oldProduct,
       @JsonKey(name: 'new_product') NewProductModel? newProduct,
       @JsonKey(name: 'old_variation') String oldVariation,
       @JsonKey(name: 'new_variation') String newVariation,
       @JsonKey(name: 'created_at') String createdAt});
 
-  $NewProductModelCopyWith<$Res> get oldProduct;
+  $NewProductModelCopyWith<$Res>? get oldProduct;
   $NewProductModelCopyWith<$Res>? get newProduct;
 }
 
@@ -98,7 +98,7 @@ class _$OrderModificationModelCopyWithImpl<$Res,
     Object? newPrice = freezed,
     Object? oldQuantity = freezed,
     Object? newQuantity = freezed,
-    Object? oldProduct = null,
+    Object? oldProduct = freezed,
     Object? newProduct = freezed,
     Object? oldVariation = null,
     Object? newVariation = null,
@@ -137,10 +137,10 @@ class _$OrderModificationModelCopyWithImpl<$Res,
           ? _value.newQuantity
           : newQuantity // ignore: cast_nullable_to_non_nullable
               as int?,
-      oldProduct: null == oldProduct
+      oldProduct: freezed == oldProduct
           ? _value.oldProduct
           : oldProduct // ignore: cast_nullable_to_non_nullable
-              as NewProductModel,
+              as NewProductModel?,
       newProduct: freezed == newProduct
           ? _value.newProduct
           : newProduct // ignore: cast_nullable_to_non_nullable
@@ -162,8 +162,12 @@ class _$OrderModificationModelCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $NewProductModelCopyWith<$Res> get oldProduct {
-    return $NewProductModelCopyWith<$Res>(_value.oldProduct, (value) {
+  $NewProductModelCopyWith<$Res>? get oldProduct {
+    if (_value.oldProduct == null) {
+      return null;
+    }
+
+    return $NewProductModelCopyWith<$Res>(_value.oldProduct!, (value) {
       return _then(_value.copyWith(oldProduct: value) as $Val);
     });
   }
@@ -198,14 +202,14 @@ abstract class _$$_OrderModificationModelCopyWith<$Res>
       @JsonKey(name: 'new_price') String? newPrice,
       @JsonKey(name: 'old_quantity') int? oldQuantity,
       @JsonKey(name: 'new_quantity') int? newQuantity,
-      @JsonKey(name: 'old_product') NewProductModel oldProduct,
+      @JsonKey(name: 'old_product') NewProductModel? oldProduct,
       @JsonKey(name: 'new_product') NewProductModel? newProduct,
       @JsonKey(name: 'old_variation') String oldVariation,
       @JsonKey(name: 'new_variation') String newVariation,
       @JsonKey(name: 'created_at') String createdAt});
 
   @override
-  $NewProductModelCopyWith<$Res> get oldProduct;
+  $NewProductModelCopyWith<$Res>? get oldProduct;
   @override
   $NewProductModelCopyWith<$Res>? get newProduct;
 }
@@ -230,7 +234,7 @@ class __$$_OrderModificationModelCopyWithImpl<$Res>
     Object? newPrice = freezed,
     Object? oldQuantity = freezed,
     Object? newQuantity = freezed,
-    Object? oldProduct = null,
+    Object? oldProduct = freezed,
     Object? newProduct = freezed,
     Object? oldVariation = null,
     Object? newVariation = null,
@@ -269,10 +273,10 @@ class __$$_OrderModificationModelCopyWithImpl<$Res>
           ? _value.newQuantity
           : newQuantity // ignore: cast_nullable_to_non_nullable
               as int?,
-      oldProduct: null == oldProduct
+      oldProduct: freezed == oldProduct
           ? _value.oldProduct
           : oldProduct // ignore: cast_nullable_to_non_nullable
-              as NewProductModel,
+              as NewProductModel?,
       newProduct: freezed == newProduct
           ? _value.newProduct
           : newProduct // ignore: cast_nullable_to_non_nullable
@@ -338,7 +342,7 @@ class _$_OrderModificationModel extends _OrderModificationModel {
   final int? newQuantity;
   @override
   @JsonKey(name: 'old_product')
-  final NewProductModel oldProduct;
+  final NewProductModel? oldProduct;
   @override
   @JsonKey(name: 'new_product')
   final NewProductModel? newProduct;
@@ -430,7 +434,7 @@ abstract class _OrderModificationModel extends OrderModificationModel {
       @JsonKey(name: 'new_price') required final String? newPrice,
       @JsonKey(name: 'old_quantity') required final int? oldQuantity,
       @JsonKey(name: 'new_quantity') required final int? newQuantity,
-      @JsonKey(name: 'old_product') required final NewProductModel oldProduct,
+      @JsonKey(name: 'old_product') required final NewProductModel? oldProduct,
       @JsonKey(name: 'new_product') final NewProductModel? newProduct,
       @JsonKey(name: 'old_variation') required final String oldVariation,
       @JsonKey(name: 'new_variation') required final String newVariation,
@@ -464,7 +468,7 @@ abstract class _OrderModificationModel extends OrderModificationModel {
   int? get newQuantity;
   @override
   @JsonKey(name: 'old_product')
-  NewProductModel get oldProduct;
+  NewProductModel? get oldProduct;
   @override
   @JsonKey(name: 'new_product')
   NewProductModel? get newProduct;

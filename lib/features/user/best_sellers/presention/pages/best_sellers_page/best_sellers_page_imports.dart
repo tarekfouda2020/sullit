@@ -9,7 +9,7 @@ import 'package:flutter_tdd/features/user/category/domain/entities/generic_pagin
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/search/domain/entities/search_result_params.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'widgets/widgets_imports.dart';
+import 'widgets/widgets_imports.dart'; 
 
 part 'best_sellers_page.dart';
 part 'best_sellers_page_controller.dart';

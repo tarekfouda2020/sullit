@@ -16,8 +16,7 @@ class OrderDetailsPriceQuantityWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (displayItem.isModifiedInPlace &&
-                  displayItem.history!.isUpdatePrice)
+              if (_priceChanged())
                 Text(
                   displayItem.history!.oldPrice.formatAmount(),
                   style: AppTextStyle.s12_w400(
@@ -26,7 +25,9 @@ class OrderDetailsPriceQuantityWidget extends StatelessWidget {
                           decoration: TextDecoration.lineThrough),
                 ).withDirhamSymbol(),
               DirhamPrice(
-                amount: displayItem.price.toString().formatAmount(),
+                amount: _priceChanged()
+                    ? displayItem.history!.newPrice.formatAmount()
+                    : displayItem.price.toString().formatAmount(),
                 textStyle: AppTextStyle.s14_w600(
                     color: context.colors.primary),
                 currencyStyle: AppTextStyle.s16_w400(
@@ -51,9 +52,7 @@ class OrderDetailsPriceQuantityWidget extends StatelessWidget {
                                 TextDecoration.lineThrough),
                   ),
                   Text(
-                    displayItem.history!.oldQuantity
-                        .toString()
-                        .formatAmount(),
+                    displayItem.history!.oldQuantity.toString(),
                     style: AppTextStyle.s12_w600(
                             color: context.colors.textColor)
                         .copyWith(
@@ -70,9 +69,7 @@ class OrderDetailsPriceQuantityWidget extends StatelessWidget {
                       color: context.colors.black),
                 ),
                 Text(
-                  displayItem.quantity
-                      .toString()
-                      .formatAmount(),
+                  displayItem.quantity.toString(),
                   style: AppTextStyle.s14_w600(
                       color: context.colors.black),
                 ),
@@ -82,5 +79,10 @@ class OrderDetailsPriceQuantityWidget extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  bool _priceChanged() {
+    return displayItem.isModifiedInPlace &&
+                displayItem.history!.isUpdatePrice;
   }
 }

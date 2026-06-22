@@ -23,7 +23,7 @@ class OrderDetailsTotalWidget extends StatelessWidget {
         ),
         Gaps.hGap5,
         Text(
-          (displayItem.quantity * displayItem.price)
+          (qnt() * price())
               .toStringAsFixed(2)
               .formatAmount(),
           style: AppTextStyle.s14_w600(color: context.colors.primary),
@@ -31,4 +31,24 @@ class OrderDetailsTotalWidget extends StatelessWidget {
       ],
     );
   }
+
+
+  double price() {
+    var priceChanged = displayItem.isModifiedInPlace &&
+        displayItem.history!.isUpdatePrice;
+    if(priceChanged){
+      return double.parse(displayItem.history!.newPrice.cleanNumber());
+    }
+    return displayItem.price;
+  }
+
+  int qnt() {
+    bool qntChanged = displayItem.isModifiedInPlace &&
+        displayItem.history!.isReduce;
+    if(qntChanged){
+      return displayItem.history!.newQuantity!;
+    }
+    return displayItem.quantity;
+  }
+
 }

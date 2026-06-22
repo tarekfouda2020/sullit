@@ -10,7 +10,7 @@ class OrderModificationDomainModel extends BaseDomainModel {
   final String? newPrice;
   final int? oldQuantity;
   final int? newQuantity;
-  final NewProductDomainModel oldProduct;
+  final NewProductDomainModel? oldProduct;
   final NewProductDomainModel? newProduct;
   final String oldVariation;
   final String newVariation;

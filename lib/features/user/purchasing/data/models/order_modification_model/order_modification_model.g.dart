@@ -17,8 +17,10 @@ _$_OrderModificationModel _$$_OrderModificationModelFromJson(
       newPrice: json['new_price'] as String?,
       oldQuantity: (json['old_quantity'] as num?)?.toInt(),
       newQuantity: (json['new_quantity'] as num?)?.toInt(),
-      oldProduct:
-          NewProductModel.fromJson(json['old_product'] as Map<String, dynamic>),
+      oldProduct: json['old_product'] == null
+          ? null
+          : NewProductModel.fromJson(
+              json['old_product'] as Map<String, dynamic>),
       newProduct: json['new_product'] == null
           ? null
           : NewProductModel.fromJson(

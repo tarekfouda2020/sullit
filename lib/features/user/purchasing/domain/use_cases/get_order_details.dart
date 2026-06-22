@@ -24,8 +24,8 @@ class GetOrderDetails extends UseCase<Orders?, GenericParams> {
     };
 
     final historyMap = <int, OrderModificationDomainModel>{
-      for (final h in data.orderDetailHistories ?? <OrderModificationDomainModel>[])
-        h.oldProduct.id: h,
+      for (OrderModificationDomainModel h in data.orderDetailHistories ?? <OrderModificationDomainModel>[])
+       if(h.oldProduct!= null) h.oldProduct!.id: h,
     };
 
     final addedHistoryMap = <int, OrderModificationDomainModel>{

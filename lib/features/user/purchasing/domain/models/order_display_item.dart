@@ -14,8 +14,8 @@ class OrderDisplayItem {
       history != null && !isAdded && !isRemoved && !isReplace;
 
   String get thumbnailImage {
-    if (isRemoved || isReplace) {
-      return history!.oldProduct.thumbnailImage;
+    if (isRemoved || isReplace && history?.oldProduct != null) {
+      return history!.oldProduct!.thumbnailImage;
     }
     if (isAdded) {
       return history?.newProduct?.thumbnailImage ??
@@ -26,8 +26,8 @@ class OrderDisplayItem {
   }
 
   String get name {
-    if (isRemoved || isReplace) {
-      return history!.oldProduct.name;
+    if (isRemoved || isReplace && history?.oldProduct != null) {
+      return history!.oldProduct!.name;
     }
     if (isAdded) {
       return history?.newProduct?.name ?? current?.product?.name ?? "";
