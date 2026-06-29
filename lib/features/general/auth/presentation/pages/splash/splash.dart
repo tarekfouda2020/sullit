@@ -41,17 +41,28 @@ class _SplashState extends State<Splash> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  Res.newSplashImage,
-                  height: 200,
-                  width: 200,
-                ),
-                Gaps.vGap20,
-              ],
+          Container(
+            height: MediaQuery.sizeOf(context).height,
+            width: MediaQuery.sizeOf(context).width,
+            alignment: Alignment.center,
+            decoration: const BoxDecoration(
+              image: DecorationImage(image: AssetImage(
+                Res.splashBackground
+              )),
+            ),
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    Res.newSplashImage,
+                    height: 305,
+                    width: 300,
+                  ),
+                  Gaps.vGap20,
+                ],
+              ),
             ),
           ),
         ],

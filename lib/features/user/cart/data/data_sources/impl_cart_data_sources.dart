@@ -66,7 +66,8 @@ class ImplCartDataSources extends CartDataSources {
 
   @override
   Future<Either<Failure, ShippingModel>> cartStoreShipping(StoreCartShippingParams params) async  {
-    var param = json.encode(params.params);
+    String param = json.encode(params.params);
+    log("====>>>>>> params ${param}  =====");
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.cartStoreShipping,
       requestBody: {"shipping_info": param},
