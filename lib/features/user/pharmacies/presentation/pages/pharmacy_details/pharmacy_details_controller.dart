@@ -1,13 +1,16 @@
 part of 'pharmacy_details_imports.dart';
 
 class PharmacyDetailsController {
-   int? pharmacyId;
+  int? pharmacyId;
   final int? selectedCategoryId;
   final String? selectedCategoryName;
 
   ShopCategory? selectedCategory;
 
-   bool fromCart = false;
+  bool fromCart = false;
+
+  final PagingController<int, PharmacyBranchDomainModel>
+      branchesPagingController = PagingController(firstPageKey: 1);
 
   final GenericBloc<Shop?> pharmacyBloc = GenericBloc<Shop?>(null);
 
@@ -24,9 +27,13 @@ class PharmacyDetailsController {
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
   final GenericBloc<bool> isLoadingNextPage = GenericBloc<bool>(false);
   final GenericBloc<bool> showAppBarTitle = GenericBloc<bool>(false);
-  GenericBloc<CartDomainModel> cartItemsBloc = GenericBloc<CartDomainModel>(CartDomainModel());
+  GenericBloc<CartDomainModel> cartItemsBloc =
+      GenericBloc<CartDomainModel>(CartDomainModel());
 
   final ScrollController scrollController = ScrollController();
+
+
+  LatLng? get savedLocation => GlobalState.instance.get(GlobalStateKeys.userLocation);
 
   PharmacyDetailsController(
       {required this.pharmacyId,
@@ -47,17 +54,15 @@ class PharmacyDetailsController {
     // }
   }
 
-
-
-  void initData(){
+  void initData() {
+    _fetchShopDetails(fromRemote: false);
+    _fetchShopDetails();
+    _getBranches();
     getCartItems(refresh: false);
     getCartItems();
     _getCategories();
     _getPharmacyProducts();
-    _fetchShopDetails(fromRemote: false);
-    _fetchShopDetails();
   }
-
 
   int? get getPharmacyId => pharmacyBloc.state.data?.id ?? pharmacyId;
 
@@ -80,6 +85,17 @@ class PharmacyDetailsController {
     // getProducts(1, refresh: true);
     productsPagingController.addPageRequestListener((pageKey) {
       getProducts(pageKey);
+    });
+  }
+
+
+  void _getBranches(){
+    if(savedLocation == null){
+      return ;
+    }
+    getPharmacyBranches(1,refresh: false);
+    branchesPagingController.addPageRequestListener((pageKey) {
+      getPharmacyBranches(pageKey);
     });
   }
 
@@ -116,8 +132,9 @@ class PharmacyDetailsController {
 
     if (page == 1) {
       final placeholder = categoriesPagingController.itemList
-          ?.where((e) => e.id == selectedCategoryId)
-          .toList() ?? [];
+              ?.where((e) => e.id == selectedCategoryId)
+              .toList() ??
+          [];
       categoriesPagingController.itemList = [...placeholder];
       if (data.isNotEmpty) {
         refreshCategories.onUpdateData(true);
@@ -157,43 +174,27 @@ class PharmacyDetailsController {
     }
   }
 
-  ShopCategoryParams _pharamcyCategoryParams(int id, int page, bool refresh) {
-    var paginateParams = _categoriesPaginateParams(page, refresh);
-    return ShopCategoryParams(
-      shopId: id,
-      paginParams: paginateParams,
-    );
-  }
-
-  GenericPaginateParams _categoriesPaginateParams(int page, bool refresh) {
-    return GenericPaginateParams(
-      currentPage: page,
-      pageSize: AppConstants.instance.paginationLimit,
-      refresh: refresh,
-    );
-  }
-
-  GenericPaginateParams _paginateParams(int page, bool refresh) {
-    return GenericPaginateParams(
-      currentPage: page,
-      pageSize: AppConstants.instance.paginationLimit,
-      refresh: refresh,
-    );
-  }
-
-  SellerProductsParams _params(int page, bool refresh) {
-    return SellerProductsParams(
-        sellerId: getPharmacyId!,
-        paginateParams: _paginateParams(page, refresh),
-        keyword: productSearchCtr.text.trim(),
-        categoryId: selectedCategory?.id);
-  }
-
   Future<void> _fetchShopDetails({bool fromRemote = true}) async {
     var data = await GetShopDetails().call(
       ShopIdParams(shopId: pharmacyId!, refresh: fromRemote),
     );
     pharmacyBloc.onUpdateData(data);
+  }
+
+
+  Future<void> getPharmacyBranches(int page, {bool refresh = true}) async {
+    PharmacyBranchesParams params = _branchesParams(page, refresh);
+    var data = await GetPharmacyBranches().call(params);
+    final isLastPage = data.length < AppConstants.instance.paginationLimit;
+    if (page == 1) {
+      branchesPagingController.itemList = [];
+    }
+    if (isLastPage) {
+      branchesPagingController.appendLastPage(data);
+    } else {
+      final nextPageKey = page + 1;
+      branchesPagingController.appendPage(data, nextPageKey);
+    }
   }
 
   bool cartHaveSellerProduct() {
@@ -218,19 +219,19 @@ class PharmacyDetailsController {
   }
 
   void onFavChanged(Product model) {
-  model.isWishlist = !model.isWishlist!;
-  int index =
-  productsPagingController.itemList!.indexWhere((e) => e.id == model.id);
-  if (index != -1) {
-    productsPagingController.itemList![index] = model;
-    var data = productsPagingController.itemList;
-    productsPagingController.itemList = [...?data];
-  }
+    model.isWishlist = !model.isWishlist!;
+    int index =
+        productsPagingController.itemList!.indexWhere((e) => e.id == model.id);
+    if (index != -1) {
+      productsPagingController.itemList![index] = model;
+      var data = productsPagingController.itemList;
+      productsPagingController.itemList = [...?data];
+    }
   }
 
   void onSelectCategory(ShopCategory model) {
     selectedCategory = model;
-    if(model.isSelect){
+    if (model.isSelect) {
       selectedCategory = null;
     }
     model.isSelect = !model.isSelect;
@@ -344,17 +345,12 @@ class PharmacyDetailsController {
     String? token = await getIt<GetDeviceId>().deviceId;
     var params = _cartParams(refresh, token!);
     var data = await GetCart().call(params);
-    var pharmacyProducts = data.items?.where((element) => element.shopId == getPharmacyId).toList();
-    data.calculableTotal = pharmacyProducts?.fold<double>(0, (sum, item)=> sum + item.calculableTotal);
+    var pharmacyProducts = data.items
+        ?.where((element) => element.shopId == getPharmacyId)
+        .toList();
+    data.calculableTotal = pharmacyProducts?.fold<double>(
+        0, (sum, item) => sum + item.calculableTotal);
     cartItemsBloc.onUpdateData(data);
-  }
-
-  CartParams _cartParams(bool refresh, String token) {
-    return CartParams(
-      macAddress: token,
-      refresh: refresh,
-      type: CartTypeEnum.pharmacy,
-    );
   }
 
   void clearSearchField() {
@@ -388,18 +384,17 @@ class PharmacyDetailsController {
 
   Future<void> onPressViewCart(BuildContext context) async {
     if (neededAmount() == 0) {
-      if(fromCart){
+      if (fromCart) {
         AutoRouter.of(context).pop(true);
-      }else{
-        var result = await AutoRouter.of(context).push( PharmacyCartRoute(pharmacyId: pharmacyBloc.state.data!.id!));
+      } else {
+        var result = await AutoRouter.of(context)
+            .push(PharmacyCartRoute(pharmacyId: pharmacyBloc.state.data!.id!));
         refreshDataAfterRoute(result);
       }
     }
   }
 
-
-
-  Future<void> refreshDataAfterRoute(Object? result)async{
+  Future<void> refreshDataAfterRoute(Object? result) async {
     if (result is CartDomainModel) {
       cartItemsBloc.onUpdateData(result);
       productsPagingController.itemList = [
@@ -411,7 +406,6 @@ class PharmacyDetailsController {
       syncProductsWithCart();
     }
   }
-
 
   void syncProductsWithCart() {
     final List<Product>? currentList = productsPagingController.itemList;
@@ -445,7 +439,8 @@ class PharmacyDetailsController {
         onGoToPharmacy: () {
           Navigator.pop(dialogContext);
           if (shopId != null) {
-            AutoRouter.of(pageContext).push(PharmacyDetailsRoute(pharmacyId: shopId));
+            AutoRouter.of(pageContext)
+                .push(PharmacyDetailsRoute(pharmacyId: shopId));
           }
         },
       ),
@@ -461,21 +456,84 @@ class PharmacyDetailsController {
     );
   }
 
+  Future<void> clearCart(BuildContext context) async {
+    final token = await getIt<GetDeviceId>().deviceId;
+    final params =
+        ClearCartParams(macAddress: token ?? "", type: CartTypeEnum.pharmacy);
+    await ClearCart().call(params).then((value) async {
+      CustomToast.showSimpleToast(
+          msg: "Your cart has been cleared successfully.",
+          type: ToastType.success);
+      cartItemsBloc.state.data.pharmacyItems?.clear();
+      cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+      Navigator.pop(context);
+    });
+  }
 
-   Future<void> clearCart(BuildContext context) async {
-     final token = await getIt<GetDeviceId>().deviceId;
-     final params =
-     ClearCartParams(macAddress: token ?? "", type: CartTypeEnum.pharmacy);
-     await ClearCart().call(params).then((value) async {
-       CustomToast.showSimpleToast(
-           msg: "Your cart has been cleared successfully.",
-           type: ToastType.success);
-       cartItemsBloc.state.data.pharmacyItems?.clear();
-       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
-       Navigator.pop(context);
-     });
-   }
 
+  void showBranchesSheet(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (ctx) {
+      return SelectBranchSheetWidget(controller: this);
+    },);
+  }
+
+
+
+  ShopCategoryParams _pharamcyCategoryParams(int id, int page, bool refresh) {
+    var paginateParams = _categoriesPaginateParams(page, refresh);
+    return ShopCategoryParams(
+      shopId: id,
+      paginParams: paginateParams,
+    );
+  }
+
+  GenericPaginateParams _categoriesPaginateParams(int page, bool refresh) {
+    return GenericPaginateParams(
+      currentPage: page,
+      pageSize: AppConstants.instance.paginationLimit,
+      refresh: refresh,
+    );
+  }
+
+  GenericPaginateParams _paginateParams(int page, bool refresh) {
+    return GenericPaginateParams(
+      currentPage: page,
+      pageSize: AppConstants.instance.paginationLimit,
+      refresh: refresh,
+    );
+  }
+
+  SellerProductsParams _params(int page, bool refresh) {
+    return SellerProductsParams(
+        sellerId: getPharmacyId!,
+        paginateParams: _paginateParams(page, refresh),
+        keyword: productSearchCtr.text.trim(),
+        categoryId: selectedCategory?.id);
+  }
+
+
+  PharmacyBranchesParams _branchesParams(int page, bool refresh) {
+    log("==>>> saved location latitude ${savedLocation!.latitude}");
+    log("==>>> saved location longitude${savedLocation!.longitude}");
+    return PharmacyBranchesParams(
+      latitude: savedLocation!.latitude,
+      longitude: savedLocation!.longitude,
+      pharmacyId: pharmacyId!,
+      formRemote: refresh,
+      paginateParams: _paginateParams(page, refresh),
+    );
+  }
+
+  CartParams _cartParams(bool refresh, String token) {
+    return CartParams(
+      macAddress: token,
+      refresh: refresh,
+      type: CartTypeEnum.pharmacy,
+    );
+  }
 
 
 }

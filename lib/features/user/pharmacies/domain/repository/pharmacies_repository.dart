@@ -3,7 +3,9 @@ import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/features/user/best_sellers/domain/entity/shop_category_params.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_branches_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_create_order_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_checkout_domai_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/shop_id_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
@@ -31,4 +33,7 @@ abstract class PharmaciesRepository {
   Future<Either<Failure, PharmacyCheckoutDomaiModel>> getConfirmSummary(PharmacyConfirmSummaryParams param);
 
   Future<Either<Failure, PharmacyConfirmOrderDomainModel>> confirmOrder(PharmacyConfirmOrderParams param);
+
+  Future<Either<Failure, List<PharmacyBranchDomainModel>>> getPharmacyBranches(PharmacyBranchesParams param);
+
 }

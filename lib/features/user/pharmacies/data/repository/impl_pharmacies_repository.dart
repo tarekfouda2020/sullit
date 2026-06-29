@@ -6,11 +6,15 @@ import 'package:flutter_tdd/features/user/best_sellers/domain/entity/shop_catego
 import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/data_sources/pharmacies_sources.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_branch_model/pharmacy_branch_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_checkout_summary_model/pharmacy_checkout_summary_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_branches_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_create_order_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_checkout_domai_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/shop_id_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/repository/pharmacies_repository.dart';
+import 'package:flutter_tdd/features/user/products/data/models/shop_model/shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharamcy_shipping_info_params.dart';
@@ -33,13 +37,13 @@ class ImplPharmaciesRepository extends PharmaciesRepository with ModelToDomain {
   Future<Either<Failure, List<ShopCategory>>> getShopCategories(
       ShopCategoryParams param) async {
     var result = await dataSources.getShopCategories(param);
-    return toDomainResultList(result);
+    return toDomainResultList<ShopCategory,ShopCategoryModel>(result);
   }
 
   @override
   Future<Either<Failure, Shop>> getShopDetails(ShopIdParams param) async {
     final result = await dataSources.getShopDetails(param);
-    return toDomainResult(result);
+    return toDomainResult<Shop,ShopModel>(result);
   }
 
   @override
@@ -75,6 +79,13 @@ class ImplPharmaciesRepository extends PharmaciesRepository with ModelToDomain {
       PharmacyConfirmOrderParams param) async {
     var result = await dataSources.confirmOrder(param);
     return toDomainResult<PharmacyConfirmOrderDomainModel, PharmacyConfirmOrderModel>(result);
+  }
+
+
+  @override
+  Future<Either<Failure, List<PharmacyBranchDomainModel>>> getPharmacyBranches(PharmacyBranchesParams param) async {
+    var result = await dataSources.getPharmacyBranches(param);
+    return toDomainResultList<PharmacyBranchDomainModel,PharmacyBranchModel>(result);
   }
 
 }

@@ -8,7 +8,9 @@ import 'package:flutter_tdd/core/http/models/http_request_model.dart';
 import 'package:flutter_tdd/features/user/best_sellers/domain/entity/shop_category_params.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/data_sources/pharmacies_sources.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_branch_model/pharmacy_branch_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_checkout_summary_model/pharmacy_checkout_summary_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_branches_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_create_order_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/shop_id_params.dart';
 import 'package:flutter_tdd/features/user/products/data/models/shop_model/shop_model.dart';
@@ -134,6 +136,20 @@ class ImplPharmaciesSources extends PharmaciesSources {
       responseKey: (data) => data['data'],
     );
     return await GenericHttpImpl<PharmacyConfirmOrderModel>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, List<PharmacyBranchModel>>> getPharmacyBranches(PharmacyBranchesParams param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.pharmacyBranches(param.pharmacyId),
+      requestBody: param.toJson(),
+      requestMethod: RequestMethod.get,
+      responseType: ResType.list,
+      refresh: param.formRemote,
+      toJsonFunc: (data) => List<PharmacyBranchModel>.from(data.map((json) => PharmacyBranchModel.fromJson(json))),
+      responseKey: (data) => data['data']['branches'],
+    );
+    return await GenericHttpImpl<List<PharmacyBranchModel>>().call(model);
   }
 
 }

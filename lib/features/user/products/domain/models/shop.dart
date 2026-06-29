@@ -24,6 +24,7 @@ class Shop extends BaseDomainModel {
   int? sellerId;
   num? rating;
   bool? follow;
+  bool? hasBranches;
   List<String>? sliders;
   List<ShopCategory>? categories;
   List<InsuranceCompany>? insuranceCompanies;
@@ -42,6 +43,7 @@ class Shop extends BaseDomainModel {
     required this.orders,
     this.address,
     this.phone,
+    this.hasBranches,
     this.email,
     this.facebook,
     this.google,

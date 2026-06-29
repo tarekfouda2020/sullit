@@ -269,5 +269,7 @@ class ApiNames {
 
   static String pharmacyConfirmSummary(int id) => "pharmacy-orders/$id/confirm-summary";
 
+  static String pharmacyBranches(int id) => "shops/$id/branches";
+
   static String pharmacyConfirmOrder(int id) => "pharmacy-orders/$id/confirm";
 }

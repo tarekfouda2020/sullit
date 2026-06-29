@@ -23,6 +23,8 @@ mixin _$ShopModel {
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_id')
   int get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'has_branches')
+  bool? get hasBranches => throw _privateConstructorUsedError;
   @JsonKey(name: 'type')
   String get shopType => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -63,6 +65,7 @@ abstract class $ShopModelCopyWith<$Res> {
   $Res call(
       {int id,
       @JsonKey(name: 'user_id') int userId,
+      @JsonKey(name: 'has_branches') bool? hasBranches,
       @JsonKey(name: 'type') String shopType,
       String name,
       List<String>? sliders,
@@ -102,6 +105,7 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
   $Res call({
     Object? id = null,
     Object? userId = null,
+    Object? hasBranches = freezed,
     Object? shopType = null,
     Object? name = null,
     Object? sliders = freezed,
@@ -133,6 +137,10 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
+      hasBranches: freezed == hasBranches
+          ? _value.hasBranches
+          : hasBranches // ignore: cast_nullable_to_non_nullable
+              as bool?,
       shopType: null == shopType
           ? _value.shopType
           : shopType // ignore: cast_nullable_to_non_nullable
@@ -231,6 +239,7 @@ abstract class _$$_ShopModelCopyWith<$Res> implements $ShopModelCopyWith<$Res> {
   $Res call(
       {int id,
       @JsonKey(name: 'user_id') int userId,
+      @JsonKey(name: 'has_branches') bool? hasBranches,
       @JsonKey(name: 'type') String shopType,
       String name,
       List<String>? sliders,
@@ -268,6 +277,7 @@ class __$$_ShopModelCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? userId = null,
+    Object? hasBranches = freezed,
     Object? shopType = null,
     Object? name = null,
     Object? sliders = freezed,
@@ -299,6 +309,10 @@ class __$$_ShopModelCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
+      hasBranches: freezed == hasBranches
+          ? _value.hasBranches
+          : hasBranches // ignore: cast_nullable_to_non_nullable
+              as bool?,
       shopType: null == shopType
           ? _value.shopType
           : shopType // ignore: cast_nullable_to_non_nullable
@@ -394,6 +408,7 @@ class _$_ShopModel extends _ShopModel {
   const _$_ShopModel(
       {required this.id,
       @JsonKey(name: 'user_id') required this.userId,
+      @JsonKey(name: 'has_branches') this.hasBranches,
       @JsonKey(name: 'type') required this.shopType,
       required this.name,
       final List<String>? sliders,
@@ -429,6 +444,9 @@ class _$_ShopModel extends _ShopModel {
   @override
   @JsonKey(name: 'user_id')
   final int userId;
+  @override
+  @JsonKey(name: 'has_branches')
+  final bool? hasBranches;
   @override
   @JsonKey(name: 'type')
   final String shopType;
@@ -502,7 +520,7 @@ class _$_ShopModel extends _ShopModel {
 
   @override
   String toString() {
-    return 'ShopModel(id: $id, userId: $userId, shopType: $shopType, name: $name, sliders: $sliders, categories: $categories, insuranceCompanies: $insuranceCompanies, title: $title, description: $description, logo: $logo, packageInvalidAt: $packageInvalidAt, products: $products, orders: $orders, address: $address, email: $email, phone: $phone, facebook: $facebook, google: $google, twitter: $twitter, instagram: $instagram, youtube: $youtube, rating: $rating, follow: $follow)';
+    return 'ShopModel(id: $id, userId: $userId, hasBranches: $hasBranches, shopType: $shopType, name: $name, sliders: $sliders, categories: $categories, insuranceCompanies: $insuranceCompanies, title: $title, description: $description, logo: $logo, packageInvalidAt: $packageInvalidAt, products: $products, orders: $orders, address: $address, email: $email, phone: $phone, facebook: $facebook, google: $google, twitter: $twitter, instagram: $instagram, youtube: $youtube, rating: $rating, follow: $follow)';
   }
 
   @override
@@ -512,6 +530,8 @@ class _$_ShopModel extends _ShopModel {
             other is _$_ShopModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.hasBranches, hasBranches) ||
+                other.hasBranches == hasBranches) &&
             (identical(other.shopType, shopType) ||
                 other.shopType == shopType) &&
             (identical(other.name, name) || other.name == name) &&
@@ -549,6 +569,7 @@ class _$_ShopModel extends _ShopModel {
         runtimeType,
         id,
         userId,
+        hasBranches,
         shopType,
         name,
         const DeepCollectionEquality().hash(_sliders),
@@ -590,6 +611,7 @@ abstract class _ShopModel extends ShopModel {
   const factory _ShopModel(
       {required final int id,
       @JsonKey(name: 'user_id') required final int userId,
+      @JsonKey(name: 'has_branches') final bool? hasBranches,
       @JsonKey(name: 'type') required final String shopType,
       required final String name,
       final List<String>? sliders,
@@ -623,6 +645,9 @@ abstract class _ShopModel extends ShopModel {
   @override
   @JsonKey(name: 'user_id')
   int get userId;
+  @override
+  @JsonKey(name: 'has_branches')
+  bool? get hasBranches;
   @override
   @JsonKey(name: 'type')
   String get shopType;

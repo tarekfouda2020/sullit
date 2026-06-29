@@ -7,4 +7,5 @@ class LocalStorageKeys {
 class GlobalStateKeys {
   static String deviceToken = "device_token";
   static String notificationGranted = "notification_granted";
+  static String userLocation = "user_location";
 }

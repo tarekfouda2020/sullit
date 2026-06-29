@@ -17,6 +17,7 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
   const factory ShopModel({
     required int id,
     @JsonKey(name: 'user_id') required int userId,
+    @JsonKey(name: 'has_branches')  bool? hasBranches,
     @JsonKey(name: 'type') required String shopType,
     required String name,
     List<String>? sliders,
@@ -122,6 +123,7 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
       categories: categories?.map((e) => e.toDomainModel()).toList(),
       sliders: sliders,
       shopType: shopType,
+      hasBranches: hasBranches,
       insuranceCompanies:
           insuranceCompanies?.map((e) => e.toDomainModel()).toList(),
     );

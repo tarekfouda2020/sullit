@@ -9,6 +9,7 @@ part of 'shop_model.dart';
 _$_ShopModel _$$_ShopModelFromJson(Map<String, dynamic> json) => _$_ShopModel(
       id: (json['id'] as num).toInt(),
       userId: (json['user_id'] as num).toInt(),
+      hasBranches: json['has_branches'] as bool?,
       shopType: json['type'] as String,
       name: json['name'] as String,
       sliders:
@@ -42,6 +43,7 @@ Map<String, dynamic> _$$_ShopModelToJson(_$_ShopModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'user_id': instance.userId,
+      'has_branches': instance.hasBranches,
       'type': instance.shopType,
       'name': instance.name,
       'sliders': instance.sliders,

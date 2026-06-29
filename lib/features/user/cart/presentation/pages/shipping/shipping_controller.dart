@@ -12,8 +12,8 @@ class ShippingController {
   int pageSize = 12;
 
   ShippingController() {
+    getPaginateAddress(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
-      getPaginateAddress(pageKey, refresh: false);
       getPaginateAddress(pageKey);
     });
   }
