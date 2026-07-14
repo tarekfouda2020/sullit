@@ -1247,6 +1247,7 @@ class AppRouter extends _i111.RootStackRouter {
         child: _i107.OrderSuccess(
           key: args.key,
           summary: args.summary,
+          havePrescription: args.havePrescription,
         ),
         opaque: true,
       );
@@ -4261,12 +4262,14 @@ class OrderSuccessRoute extends _i111.PageRouteInfo<OrderSuccessRouteArgs> {
   OrderSuccessRoute({
     _i114.Key? key,
     required _i117.OrderSummaryDomainModel summary,
+    bool havePrescription = false,
   }) : super(
           OrderSuccessRoute.name,
           path: '/order-success',
           args: OrderSuccessRouteArgs(
             key: key,
             summary: summary,
+            havePrescription: havePrescription,
           ),
         );
 
@@ -4277,15 +4280,18 @@ class OrderSuccessRouteArgs {
   const OrderSuccessRouteArgs({
     this.key,
     required this.summary,
+    this.havePrescription = false,
   });
 
   final _i114.Key? key;
 
   final _i117.OrderSummaryDomainModel summary;
 
+  final bool havePrescription;
+
   @override
   String toString() {
-    return 'OrderSuccessRouteArgs{key: $key, summary: $summary}';
+    return 'OrderSuccessRouteArgs{key: $key, summary: $summary, havePrescription: $havePrescription}';
   }
 }
 
