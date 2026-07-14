@@ -147,4 +147,6 @@ abstract class AppColors {
   Color get gray6;
 
   Color get gray7;
+
+  Color get pharmSloganDark;
 }

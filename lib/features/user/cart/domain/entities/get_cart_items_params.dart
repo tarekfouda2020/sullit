@@ -7,14 +7,20 @@ class CartParams {
 
   final CartTypeEnum type;
 
+  final int? branchId;
+
   CartParams({
     required this.macAddress,
     required this.refresh,
+     this.branchId,
     this.type = CartTypeEnum.general,
   });
 
   Map<String, dynamic> toJson() =>
-      {"mac_address": macAddress, "type": type.getKey()};
+      {"mac_address": macAddress,
+        "type": type.getKey(),
+       if(branchId!= null) "branch_id": branchId,
+      };
 }
 
 enum CartTypeEnum {

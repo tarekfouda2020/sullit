@@ -29,7 +29,7 @@ abstract class CartDataSources {
   Future<Either<Failure, OrderSummaryModel>> createOrder(
       CreateOrderParams params);
   Future<Either<Failure, OrderSummaryModel>> getCombinedOrder(int param);
-  Future<Either<Failure, String>> addToCart(AddProductToCartParams params);
+  Future<Either<Failure, String>> addToCart(BaseAddProductToCartParams params);
   Future<Either<Failure, bool>> deleteCartItem(DeleteCartItemParams params);
   Future<Either<Failure, CartModel>> updateCartItem(
       UpdateCartItemParams params);

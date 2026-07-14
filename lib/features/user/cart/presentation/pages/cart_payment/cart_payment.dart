@@ -77,7 +77,11 @@ class _CartPaymentState extends State<CartPayment> {
                               state.data!.summary.appliedGiftCard != null,
                         ),
                         Gaps.vGap20,
-                        AllowReplacementWidget(controller: controller),
+                        AllowReplacementWidget(
+                          allowReplacementCubit: controller.allowReplacementCubit,
+                          onToggle: (value) =>
+                              controller.switchReplacementAccept(context, value),
+                        ),
                         Gaps.vGap13,
                         BuildConditions(controller: controller),
                         Gaps.vGap20,

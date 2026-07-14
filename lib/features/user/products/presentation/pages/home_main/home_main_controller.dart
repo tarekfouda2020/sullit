@@ -12,6 +12,12 @@ class HomeMainController {
   final GenericBloc<List<Product>> bestRatedCubit = GenericBloc([]);
   final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
 
+  final GenericBloc<File> prescriptionFileCubit = GenericBloc<File>(File(""));
+  final GenericBloc<SavedPrescriptionModel?> selectedSavedPrescriptionCubit =
+      GenericBloc<SavedPrescriptionModel?>(null);
+  final PagingController<int, SavedPrescriptionModel> savedPrescriptionsPagingController =
+      PagingController(firstPageKey: 1);
+
   GenericBloc<HomeDomainModel?> get homeCubit =>
       OrdersHelper.instance.homeCubit;
 
@@ -45,6 +51,9 @@ class HomeMainController {
 
     getProductSections();
     scrollController.addListener(scrollListener);
+    savedPrescriptionsPagingController.addPageRequestListener((page) {
+      getSavedPrescriptions(page);
+    });
   }
 
   void scrollListener() {
@@ -415,7 +424,15 @@ class HomeMainController {
   }
 
   void routeToPharmaciesList(BuildContext context) {
-    AutoRouter.of(context).push(const PharmaciesListRoute());
+    AutoRouter.of(context).push( PharmaciesListRoute());
+  }
+
+  void routeToPharmaciesListWithPrescriptionOrder(BuildContext context) {
+    AutoRouter.of(context).push( PharmaciesListRoute(
+      makePrescriptionOrder: true,
+      initialPrescriptionFile: prescriptionFileCubit.state.data,
+      initialSavedPrescription: selectedSavedPrescriptionCubit.state.data
+    ));
   }
 
 
@@ -432,6 +449,84 @@ class HomeMainController {
               order: order));
     }
 
+  }
+
+  // Same API-calling pattern as AttachPrescriptionController.getSavedPrescriptions.
+  Future<void> getSavedPrescriptions(int page, {bool refresh = true}) async {
+    var params = GenericPaginateParams(
+      currentPage: page,
+      refresh: refresh,
+      pageSize: AppConstants.instance.paginationLimit,
+    );
+    var result = await GetSavedPrescriptions().call(params);
+    var isLastPage = result.length < AppConstants.instance.paginationLimit;
+    if (page == 1) {
+      savedPrescriptionsPagingController.itemList = [];
+    }
+    if (isLastPage) {
+      savedPrescriptionsPagingController.appendLastPage(result);
+    } else {
+      savedPrescriptionsPagingController.appendPage(result, page + 1);
+    }
+  }
+
+  Future<void> onPickPrescriptionFile() async {
+    var result = await getIt<Utilities>().getAttachmentFile(
+      FileType.image,
+      allowedExtensions: const ['jpg', 'jpeg', 'png'],
+    );
+    if (result != null) {
+      prescriptionFileCubit.onUpdateData(result);
+      selectedSavedPrescriptionCubit.onUpdateData(null);
+    }
+  }
+
+  void onRemovePrescriptionFile() {
+    prescriptionFileCubit.onUpdateData(File(""));
+  }
+
+  void onSelectSavedPrescription(SavedPrescriptionModel model) {
+    selectedSavedPrescriptionCubit.onUpdateData(model);
+    prescriptionFileCubit.onUpdateData(File(""));
+  }
+
+  void onRemoveSelectedSavedPrescription() {
+    selectedSavedPrescriptionCubit.onUpdateData(null);
+  }
+
+  void onPressAttachPrescription(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) {
+        return AttachPrescriptionSheetWidget(controller: this);
+      },
+    );
+  }
+
+  void onPressChooseFromSavedPrescriptions(BuildContext context) {
+    getSavedPrescriptions(1, refresh: false);
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) {
+        return SavedPrescriptionsBottomSheetWidget(controller: this);
+      },
+    );
+  }
+
+  void onPressContinuePrescription(BuildContext context) {
+    if (prescriptionFileCubit.state.data.path.isEmpty &&
+        selectedSavedPrescriptionCubit.state.data == null) {
+      CustomToast.showSimpleToast(
+        msg: "Please attach your prescription first",
+      );
+      return;
+    }
+    Navigator.pop(context);
+    routeToPharmaciesListWithPrescriptionOrder(context);
   }
 
 

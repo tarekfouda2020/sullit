@@ -34,7 +34,8 @@ class VipOffersWidget extends StatelessWidget {
                 colors: [
               context.colors.primary,
               context.colors.lightRed,
-            ])),
+            ])
+        ),
         child: Row(
           children: [
             SvgPicture.asset(Res.vipMark),
@@ -66,7 +67,7 @@ class VipOffersWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: context.colors.white, shape: BoxShape.circle),
                   child: Transform.rotate(
-                    angle: lang == 'ar' ? pi : 0,
+                    angle: lang == LangCodeHelper.langAR ? pi : 0,
                     child: Transform.scale(
                         scale: 0.4, child: SvgPicture.asset(Res.arrowForward)),
                   ),

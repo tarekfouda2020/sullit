@@ -2,16 +2,18 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter_tdd/features/user/cart/data/enum/delivery_type_enum.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_check_out_params.dart';
 
 import '../../../cart/domain/models/delivery_instruction_model.dart';
 
 class PharmacyCreateOrderParams {
+  int? addressId;
+ final int? shopId;
   final String? paymentOption;
 
   final List<PharmacyShippingInfo> shippingInfo;
 
-  final int? addressId;
   final int? applyLoyaltyPoints;
   final String? couponCode;
   final String? giftCardCode;
@@ -20,16 +22,28 @@ class PharmacyCreateOrderParams {
 
   final int? insuranceCompanyId;
   final List<File>? insuranceAttachments;
-  final int? applyInsurance;
+  final bool? applyInsurance;
 
   final List<DeliveryInstructionModel>? instructions;
 
   final String? driverNotes;
   final String? pickerNotes;
 
+  final bool? savedPrescriptions;
+
+  final File? identityDocumentFile;
+
+  final String? additionalInfo;
+  final String? requestedBy;
+  int? shopBranchId;
+  final bool? allowReplacement;
+  final List<int>? prescriptionAttachmentIds;
+  DeliveryTypeEnum? shippingType;
+
   PharmacyCreateOrderParams({
-     this.paymentOption,
+    this.paymentOption,
     required this.shippingInfo,
+     this.shopId,
     this.addressId,
     this.applyLoyaltyPoints,
     this.couponCode,
@@ -41,50 +55,105 @@ class PharmacyCreateOrderParams {
     this.instructions,
     this.driverNotes,
     this.pickerNotes,
+    this.savedPrescriptions,
+    this.identityDocumentFile,
+    this.additionalInfo,
+    this.requestedBy,
+    this.shopBranchId,
+    this.allowReplacement,
+    this.prescriptionAttachmentIds,
+    this.shippingType,
   });
 
   Map<String, dynamic> toJson() {
     return {
-      if(paymentOption != null) 'payment_option': paymentOption,
-      if(shippingInfo.isNotEmpty)
-      'shipping_info': jsonEncode(
-        shippingInfo.map((e) => e.toJson()).toList(),
-      ),
+      if(shopId!= null)
+      'shop_id': shopId,
+      if (paymentOption != null)
+        'payment_option': paymentOption,
 
-      if (addressId != null) 'address_id': addressId,
+      // if (shippingInfo.isNotEmpty)
+      //   'shipping_info': jsonEncode(
+      //     shippingInfo.map((e) => e.toJson()).toList(),
+      //   ),
+
+      if (addressId != null)
+        'address_id': addressId,
+
       if (applyLoyaltyPoints != null)
         'apply_loyalty_points': applyLoyaltyPoints,
-      if (couponCode != null) 'coupon_code': couponCode,
-      if (giftCardCode != null) 'gift_card_code': giftCardCode,
 
+      if (couponCode != null)
+        'coupon_code': couponCode,
+
+      if (giftCardCode != null)
+        'gift_card_code': giftCardCode,
 
       if (insuranceCompanyId != null)
         'insurance_company_id': insuranceCompanyId,
 
       if (applyInsurance != null)
-        'apply_insurance': applyInsurance,
+        'apply_insurance': applyInsurance == true ? 1 : 0,
 
-
-      if (driverNotes != null && driverNotes!.isNotEmpty)
+      if (driverNotes?.isNotEmpty == true)
         'driver_notes': driverNotes,
 
-      if (pickerNotes != null && pickerNotes!.isNotEmpty)
+      if (pickerNotes?.isNotEmpty == true)
         'picker_notes': pickerNotes,
+
+      if (savedPrescriptions != null)
+        'saved_prescriptions': savedPrescriptions == true ? 1 : 0,
+
+      if (identityDocumentFile != null)
+        'identity_document_file': identityDocumentFile,
+
+      if (additionalInfo?.isNotEmpty == true)
+        'additional_info': additionalInfo,
+
+      if (requestedBy?.isNotEmpty == true)
+        'requested_by': requestedBy,
+
+      if (shopBranchId != null)
+        'shop_branch_id': shopBranchId,
+
+      if (allowReplacement != null)
+        'allow_replacement': allowReplacement == true ? 1 : 0,
+
+      if (shippingType != null)
+        'shipping_type': shippingType!.getEnumValue(),
+
+      if (prescriptionAttachmentIds?.isNotEmpty == true)
+       ... _prescriptionAttachmentIds,
 
       if (instructions != null && instructions!.isNotEmpty)
         ..._driverInstructions,
 
-      if (prescriptionAttachments != null && prescriptionAttachments!.isNotEmpty)
+      if (prescriptionAttachments != null &&
+          prescriptionAttachments!.isNotEmpty)
         ..._prescriptionAttachments,
 
-      if (insuranceAttachments != null && insuranceAttachments!.isNotEmpty)
+      if (insuranceAttachments != null &&
+          insuranceAttachments!.isNotEmpty)
         ..._insuranceAttachments,
     };
   }
 
 
+  Map<String, int> get _prescriptionAttachmentIds {
+    final Map<String, int> map = <String, int>{};
 
+    if (prescriptionAttachmentIds == null ||
+        prescriptionAttachmentIds!.isEmpty) {
+      return map;
+    }
 
+    for (int i = 0; i < prescriptionAttachmentIds!.length; i++) {
+      map["prescription_attachment_ids[$i]"] =
+      prescriptionAttachmentIds![i];
+    }
+
+    return map;
+  }
 
   Map<String, File> get _insuranceAttachments {
     final Map<String, File> map = <String, File>{};
@@ -128,6 +197,26 @@ class PharmacyCreateOrderParams {
     }
     return map;
   }
+
+
+  void setShippingInfo(List<PharmacyShippingInfo> value) {
+    shippingInfo
+      ..clear()
+      ..addAll(value);
+  }
+
+  void setAddressId(int id) {
+    addressId = id;
+  }
+
+  void setShippingType(DeliveryTypeEnum type) {
+    shippingType = type;
+  }
+
+  void setShopBranchId(int? id) {
+    shopBranchId = id;
+  }
+
 
 }
 

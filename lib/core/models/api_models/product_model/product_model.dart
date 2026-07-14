@@ -7,6 +7,9 @@ import 'package:flutter_tdd/features/user/products/data/models/reviews_model/rev
 import 'package:flutter_tdd/features/user/products/data/models/shop_model/shop_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/variant_model/variant_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/normal_product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/pharmacy_product.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_branch_model/pharmacy_branch_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'product_model.freezed.dart';
@@ -70,6 +73,7 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
     @JsonKey(name: 'loyalty_points') required int loyaltyPoints,
     @JsonKey(name: 'prescription_required') required bool prescriptionRequired,
     @JsonKey(name: 'insurance_eligible') required bool insuranceEligible,
+    PharmacyBranchModel? branch,
   }) = _ProductModel;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
@@ -77,7 +81,58 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
 
   @override
   Product toDomainModel() {
-    return Product(
+    if (type == 'pharmacy') {
+      return PharmacyProduct(
+        description: description,
+        id: id,
+        rating: rating,
+        name: name,
+        category: category?.toDomainModel(),
+        thumbnailImage: thumbnailImage,
+        images: images,
+        strokedPrice: strokedPrice,
+        sellerId: sellerId,
+        sales: sales,
+        resellerId: resellerId,
+        mainPrice: mainPrice,
+        hasDiscount: hasDiscount,
+        discount: discount,
+        brand: brand?.toDomainModel(),
+        brandName: brandName,
+        categoryName: categoryName,
+        countReviews: countReviews,
+        currencySymbol: currencySymbol,
+        isDigital: isDigital,
+        isMultiple: isMultiple,
+        isResale: isResale,
+        isWishlist: isWishlist,
+        minQty: minQty,
+        priceHighLow: priceHighLow,
+        priceHighLowDiscount: priceHighLowDiscount,
+        shop: shop?.toDomainModel(),
+        soldByName: soldByName,
+        soldByType: soldByType,
+        reviews: reviews?.map((e) => e.toDomainModel()).toList(),
+        choiceOptions: choiceOptions.map((e) => e.toDomainModel()).toList(),
+        colors: colors?.map((e) => e.toDomainModel()).toList(),
+        tags: tags,
+        videoLink: videoLink,
+        videoProvider: videoProvider,
+        variant: variant?.toDomainModel(),
+        hasVipOffer: hasVipOffer,
+        unit: unit,
+        loyaltyPoints: loyaltyPoints,
+        hasSpecialLoyaltyPoints: hasSpecialLoyaltyPoints,
+        isFresh: isFresh,
+        maxQnt: maxQntPerOrder,
+        variants: variantsList?.map((e) => e.toDomainModel()).toList(),
+        insuranceEligible: insuranceEligible,
+        prescriptionRequired: prescriptionRequired,
+        type: type,
+        branch: branch?.toDomainModel(),
+      );
+    }
+    return NormalProduct(
       description: description,
       id: id,
       rating: rating,
@@ -123,7 +178,7 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
       variants: variantsList?.map((e) => e.toDomainModel()).toList(),
       insuranceEligible: insuranceEligible,
       prescriptionRequired: prescriptionRequired,
-      type: type
+      type: type,
     );
   }
 }

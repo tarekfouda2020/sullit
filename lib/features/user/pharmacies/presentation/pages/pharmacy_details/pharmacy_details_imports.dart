@@ -25,6 +25,7 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/core/widgets/custom_safe_are.dart';
 import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
+import 'package:flutter_tdd/core/widgets/pharm_slogan_banner_widget.dart';
 import 'package:flutter_tdd/features/user/best_sellers/data/enums/shop_type_enum.dart';
 import 'package:flutter_tdd/features/user/best_sellers/domain/entity/shop_category_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/clear_cart_params.dart';
@@ -42,6 +43,7 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_pharma
 import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_shop_categories.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_shop_details.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/seller_products_params.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/pharmacy_product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';

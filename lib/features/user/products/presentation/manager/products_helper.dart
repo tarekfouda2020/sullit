@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,11 +15,13 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/pharmacy_product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/set_toggle_favourite.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../cart/domain/entities/get_cart_items_params.dart';
 import '../../../cart/domain/models/cart.dart';
 
 @injectable
@@ -116,9 +119,9 @@ class ProductsHelper {
         product: json.encode(product.toJson()), productId: product.id);
   }
 
-  Future<bool?> addProductToCart(BuildContext context, Product product,
-      {void Function()? afterAddToCart}) async {
+  Future<bool?> addProductToCart(BuildContext context, Product product, {void Function()? afterAddToCart}) async {
     var existCount = context.read<CountCubit>().state.cartCount;
+    log("===>>>>>> wrong one ");
     var result = await getIt<CartHelper>().addProductToCart(
       context,
       product.minQty!,
@@ -140,26 +143,50 @@ class ProductsHelper {
     return result;
   }
 
-  Future<bool> removeProductFromCart(
-      Product product, BuildContext context) async {
-    var cartList = getIt<CartHelper>().cartItemsBloc.state.data.items;
-    if (cartList?.isNotEmpty == true && cartList != null) {
-      getIt<LoadingHelper>().showLoadingDialog();
-      GeneralCartItem productInCartList =
-          cartList.where((element) => element.productId == product.id).first;
-      var result = await getIt<CartHelper>()
-          .deleteItemFromCart(context, productInCartList);
-      if (result) {
-        var cartData = getIt<CartHelper>().cartItemsBloc.state.data;
-        getIt<CartHelper>().updateCartCount(
-            context, (cartData.items!.length - cartData.items!.length - 1));
-      }
-      getIt<LoadingHelper>().dismissDialog();
-      return result;
-    } else {
-      return false;
-    }
+  Future<bool?> addPharmacyProductToCart(
+      BuildContext context, PharmacyProduct product, int? branchId,
+      {void Function()? afterAddToCart}) async {
+    log("===>>>>>> branch id is ${product.branch?.id}");
+    var result = await getIt<CartHelper>().addPharmacyProductToCart(
+      context,
+      product.minQty!,
+      product.variant?.id,
+      branchId,
+      showLoader: false,
+      onAddCartFunc: () {
+        FacebookEventsHelper.instance.productAddToCart(
+          price: product.variant?.calculablePrice ?? "",
+          id: product.id!,
+        );
+        if (afterAddToCart != null) {
+          afterAddToCart.call();
+        }
+      },
+    );
+    return result;
   }
+
+
+  // Future<bool> removeProductFromCart(
+  //     Product product, BuildContext context) async {
+  //   var cartList = getIt<CartHelper>().cartItemsBloc.state.data.items;
+  //   if (cartList?.isNotEmpty == true && cartList != null) {
+  //     getIt<LoadingHelper>().showLoadingDialog();
+  //     GeneralCartItem productInCartList =
+  //         cartList.where((element) => element.productId == product.id).first;
+  //     var result = await getIt<CartHelper>()
+  //         .deleteItemFromCart(context, productInCartList);
+  //     if (result) {
+  //       var cartData = getIt<CartHelper>().cartItemsBloc.state.data;
+  //       getIt<CartHelper>().updateCartCount(
+  //           context, (cartData.items!.length - cartData.items!.length - 1));
+  //     }
+  //     getIt<LoadingHelper>().dismissDialog();
+  //     return result;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   /// Reduces product quantity in cart by 1.
   /// If current quantity is 1, deletes the item from cart.

@@ -24,7 +24,7 @@ import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.dart';
-import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
+import 'package:flutter_tdd/features/user/products/domain/entities/product_details_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/send_query_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/variant_price_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
@@ -44,3 +44,4 @@ import 'widgets/product_details_widgets_imports.dart';
 
 part 'product_details.dart';
 part 'product_details_controller.dart';
+part '../../../domain/entities/product_details_page_params.dart';

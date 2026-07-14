@@ -174,6 +174,7 @@ If a UI section or widget is used (or will be used) in more than one page — ev
 ## 💻 11. Coding Style & Quality
 
 - Dart null-safety is required everywhere — no `!` force-unwraps without justification.
+- `GenericBloc` fields must always declare an explicit type: `final GenericBloc<T> name = GenericBloc<T>(initialValue);` — never rely on type inference (`final name = GenericBloc<T>(...)`).
 - Use `const` constructors wherever possible.
 - Use `async`/`await` (never raw `.then()` chains unless necessary).
 - Add brief comments where logic is non-obvious.

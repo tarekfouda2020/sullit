@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/helpers/barcode_service.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
@@ -15,6 +18,8 @@ import 'package:flutter_tdd/core/helpers/orders_helper.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/saved_prescription_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_saved_prescriptions.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_imports.dart';

@@ -4,12 +4,14 @@ class PharmacyAddToCartFailedDialog extends StatelessWidget {
   final String pharmacyName;
   final VoidCallback onClearCart;
   final VoidCallback onGoToPharmacy;
+  final bool hasBranches;
 
   const PharmacyAddToCartFailedDialog({
     super.key,
     required this.pharmacyName,
     required this.onClearCart,
     required this.onGoToPharmacy,
+    this.hasBranches = true,
   });
 
   @override
@@ -50,7 +52,9 @@ class PharmacyAddToCartFailedDialog extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: "Cart supports one Pharmacy only. Please clear your cart from ",
+                      text: hasBranches
+                          ? "Cart supports one branch only for"
+                          : "Cart supports one Pharmacy only. Please clear your cart from ",
                       style: AppTextStyle.s16_w400(color: context.colors.black)
                           .copyWith(height: 1.6),
                     ),
@@ -60,7 +64,9 @@ class PharmacyAddToCartFailedDialog extends StatelessWidget {
                           .copyWith(height: 1.6),
                     ),
                     TextSpan(
-                      text: " to add products from another pharmacy.",
+                      text: hasBranches
+                          ? ". Please clear your cart to add products from another branch."
+                          : " to add products from another pharmacy.",
                       style: AppTextStyle.s16_w400(color: context.colors.black)
                           .copyWith(height: 1.6),
                     ),
@@ -81,16 +87,17 @@ class PharmacyAddToCartFailedDialog extends StatelessWidget {
                       fontSize: 16,
                     ),
                   ),
-                  Expanded(
-                    child: DefaultButton(
-                      title: "View Pharmacy",
-                      height: 50,
-                      margin: EdgeInsets.zero,
-                      borderRadius: Dimens.borderRadius12PX,
-                      onTap: onGoToPharmacy,
-                      fontSize: 16,
+                  if (!hasBranches)
+                    Expanded(
+                      child: DefaultButton(
+                        title: "View Pharmacy",
+                        height: 50,
+                        margin: EdgeInsets.zero,
+                        borderRadius: Dimens.borderRadius12PX,
+                        onTap: onGoToPharmacy,
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
                 ],
               ),
             ],

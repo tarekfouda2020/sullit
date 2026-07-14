@@ -158,6 +158,10 @@ class PharmacyOrderDetailsController {
     }
   }
 
+  void openIdentityDocument(BuildContext context, String url) {
+    AutoRouter.of(context).push(ImageZoomRoute(image: url));
+  }
+
 
   void cancelOrder(BuildContext ctx) async {
     var model = orderDetailsBloc.state.data;

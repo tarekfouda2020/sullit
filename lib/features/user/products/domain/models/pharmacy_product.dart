@@ -1,0 +1,61 @@
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+
+class PharmacyProduct extends Product {
+  PharmacyBranchDomainModel? branch;
+
+  PharmacyProduct(
+      {super.id,
+      super.name,
+      super.images,
+      super.type,
+      super.thumbnailImage,
+      super.isMultiple,
+      super.prescriptionRequired,
+      super.insuranceEligible,
+      super.priceHighLowDiscount,
+      super.priceHighLow,
+      super.hasDiscount,
+      super.discount,
+      super.strokedPrice,
+      super.variant,
+      super.variants,
+      super.mainPrice,
+      super.choiceOptions,
+      super.colors,
+      super.minQty,
+      super.currencySymbol,
+      super.tags,
+      super.rating,
+      super.sales,
+      super.isDigital,
+      super.isWishlist,
+      super.sellerId,
+      super.countReviews,
+      super.soldByType,
+      super.soldByName,
+      super.shop,
+      super.reviews,
+      super.isResale,
+      super.resellerId,
+      super.category,
+      super.brand,
+      super.description,
+      super.videoProvider,
+      super.videoLink,
+      super.categoryName,
+      super.brandName,
+      super.hasVipOffer,
+      super.unit,
+      super.isFresh,
+      super.loyaltyPoints,
+      super.hasShareholderDiscount,
+      super.showProductCounter = false,
+      super.addedQtyToCart = 0,
+      super.hasSpecialLoyaltyPoints,
+      super.maxQnt,
+      super.isAddedTCompare = false,
+      this.branch});
+
+  PharmacyProduct.fromJson(Map<String, dynamic> json) : super.fromJsonBase(json);
+}

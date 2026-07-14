@@ -11,6 +11,7 @@ class SellerProductsParams {
   final List<String>? attributes;
   final String? keyword;
   final int? categoryId;
+  final int? branchId;
 
   SellerProductsParams(
       {required this.sellerId,
@@ -21,6 +22,7 @@ class SellerProductsParams {
       this.color,
       this.keyword,
       this.attributes,
+      this.branchId,
       this.categoryId});
 
   String paramsToQuery() {
@@ -39,6 +41,9 @@ class SellerProductsParams {
     }
     if (categoryId != null) {
       header = "$header&category_id=$categoryId";
+    }
+    if(branchId!= null){
+      header = "$header&branch_id=$branchId";
     }
     return header;
   }

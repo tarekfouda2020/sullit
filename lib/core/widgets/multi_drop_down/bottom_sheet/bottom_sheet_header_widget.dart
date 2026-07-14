@@ -32,6 +32,7 @@ class BottomSheetHeaderWidget extends StatelessWidget {
                 .copyWith(height: txtHeight),
           ),
         ),
+        Gaps.hGap10,
         Visibility(
           visible: showCloseIcon,
           child: GestureDetector(

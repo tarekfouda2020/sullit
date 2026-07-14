@@ -38,7 +38,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'payment_status') required bool paymentStatus,
     @JsonKey(name: 'payment_status_text') required String paymentStatusText,
     @JsonKey(name: 'available_cancel_order') required bool availableCancelOrder,
-    @JsonKey(name: 'additional_info') required String additionalInfo,
+    @JsonKey(name: 'additional_info') String? additionalInfo,
     @JsonKey(name: 'payment_method') required String paymentMethod,
     @JsonKey(name: 'payment_method_key') required String paymentMethodConst,
     @JsonKey(name: 'shipping_method') required String shippingMethod,
@@ -83,6 +83,10 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'prescription_attachments') List<PharmacyAttachmentModel>? prescriptionAttachments,
     @JsonKey(name: 'insurance_company') InsuranceCompanyModel? insuranceCompany,
     @JsonKey(name: 'cancel_reason') String? cancelReason,
+    @JsonKey(name: 'identity_document_file') String? identityDocumentFile,
+    @JsonKey(name: 'requested_by') String? requestedBy,
+    @JsonKey(name: 'requested_by_label') String? requestedByLabel,
+    @JsonKey(name: 'pharmacy_reply') String? pharmacyReply,
 
   }) = _OrderModel;
 
@@ -151,7 +155,11 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       prescriptionAttachments: prescriptionAttachments?.map((e) => e.toDomainModel()).toList(),
       insuranceAttachments: insuranceAttachments?.map((e) => e.toDomainModel()).toList(),
       insuranceCompany: insuranceCompany?.toDomainModel(),
-      cancelReason: cancelReason
+      cancelReason: cancelReason,
+      identityDocumentFile: identityDocumentFile,
+      requestedBy: requestedBy,
+      requestedByLabel: requestedByLabel,
+      pharmacyReply: pharmacyReply,
     );
   }
 }

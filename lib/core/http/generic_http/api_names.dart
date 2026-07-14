@@ -267,9 +267,17 @@ class ApiNames {
 
   static const String createPharmacyOrder = "pharmacy-orders";
 
+  static const String createPharmacyPrescriptionOrder = "pharmacy-orders/prescription";
+
   static String pharmacyConfirmSummary(int id) => "pharmacy-orders/$id/confirm-summary";
 
   static String pharmacyBranches(int id) => "shops/$id/branches";
 
   static String pharmacyConfirmOrder(int id) => "pharmacy-orders/$id/confirm";
+
+  static const String pharmacyOrderRequestedBy = "pharmacy-order-requested-by";
+
+  static const String prescriptions = "prescriptions";
+
+  static const String pharmacyOrderTerms = "pharmacy-order-terms";
 }

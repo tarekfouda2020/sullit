@@ -11,8 +11,10 @@ import 'package:flutter_tdd/features/user/products/domain/models/reviews.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/variant.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/normal_product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/pharmacy_product.dart';
 
-class Product extends BaseDomainModel {
+abstract class Product extends BaseDomainModel {
   int? id;
   int? loyaltyPoints;
   String? name;
@@ -63,6 +65,7 @@ class Product extends BaseDomainModel {
   bool? insuranceEligible;
   int? addedQtyToCart;
   int? maxQnt;
+
 
   Product(
       {this.id,
@@ -146,7 +149,13 @@ class Product extends BaseDomainModel {
     }
   }
 
-  Product.fromJson(Map<String, dynamic> json) {
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return json['type'] == 'pharmacy'
+        ? PharmacyProduct.fromJson(json)
+        : NormalProduct.fromJson(json);
+  }
+
+  Product.fromJsonBase(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     type = json['type'];

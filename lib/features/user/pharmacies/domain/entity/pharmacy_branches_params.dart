@@ -14,7 +14,7 @@ class PharmacyBranchesParams {
     required this.formRemote,
   });
 
-  Map<String,dynamic> toJson()=>{
+  Map<String,dynamic> toJson() => {
     "latitude": latitude,
     "longitude":  longitude,
     ...paginateParams.toJson()

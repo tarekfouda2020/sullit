@@ -70,7 +70,6 @@ part 'gift_card_code_widget.dart';
 part 'apply_button_widget.dart';
 part 'gift_card_annotation_widget.dart';
 part 'confirm_order_sheet_widget.dart';
-part 'allow_replacement_widget.dart';
 part 'fees_sheet_widget.dart';
 part 'fees_item_widget.dart';
 part 'voucher_ticket_card_widget.dart';

@@ -56,8 +56,8 @@ _$_PharmacyPickUpModel _$$_PharmacyPickUpModelFromJson(
       id: (json['id'] as num).toInt(),
       address: json['address'] as String,
       postalCode: json['postal_code'] as String,
-      lat: (json['lat'] as num?)?.toDouble(),
-      lang: (json['lang'] as num?)?.toDouble(),
+      lat: json['lat'] as String?,
+      lang: json['lang'] as String?,
     );
 
 Map<String, dynamic> _$$_PharmacyPickUpModelToJson(

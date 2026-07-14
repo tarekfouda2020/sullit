@@ -18,7 +18,7 @@ class PharmacyDetailsController {
 
   final PagingController<int, ShopCategory> categoriesPagingController =
       PagingController(firstPageKey: 1);
-  final PagingController<int, Product> productsPagingController =
+  final PagingController<int, PharmacyProduct> productsPagingController =
       PagingController(firstPageKey: 1);
 
   final TextEditingController productSearchCtr = TextEditingController();
@@ -27,6 +27,7 @@ class PharmacyDetailsController {
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
   final GenericBloc<bool> isLoadingNextPage = GenericBloc<bool>(false);
   final GenericBloc<bool> showAppBarTitle = GenericBloc<bool>(false);
+  final GenericBloc<PharmacyBranchDomainModel?> selectedBranchCubit = GenericBloc<PharmacyBranchDomainModel?>(null);
   GenericBloc<CartDomainModel> cartItemsBloc =
       GenericBloc<CartDomainModel>(CartDomainModel());
 
@@ -57,9 +58,6 @@ class PharmacyDetailsController {
   void initData() {
     _fetchShopDetails(fromRemote: false);
     _fetchShopDetails();
-    _getBranches();
-    getCartItems(refresh: false);
-    getCartItems();
     _getCategories();
     _getPharmacyProducts();
   }
@@ -160,8 +158,10 @@ class PharmacyDetailsController {
     if (pharmacyBloc.state.data == null && result != null) {
       pharmacyBloc.onUpdateData(result.shop);
     }
-    final List<Product> data =
-        result?.sectionProductModel.products ?? <Product>[];
+    final List<PharmacyProduct> data =
+    List<PharmacyProduct>.from(
+      result?.sectionProductModel.products ?? <PharmacyProduct>[],
+    );
     final isLastPage = (data.length) < AppConstants.instance.paginationLimit;
     if (page == 1) {
       productsPagingController.itemList = [];
@@ -178,6 +178,13 @@ class PharmacyDetailsController {
     var data = await GetShopDetails().call(
       ShopIdParams(shopId: pharmacyId!, refresh: fromRemote),
     );
+    if(data?.hasBranches == true){
+      _getBranches();
+    }else{
+      getCartItems(refresh: false);
+      getCartItems();
+      _getPharmacyProducts();
+    }
     pharmacyBloc.onUpdateData(data);
   }
 
@@ -218,7 +225,7 @@ class PharmacyDetailsController {
     }
   }
 
-  void onFavChanged(Product model) {
+  void onFavChanged(PharmacyProduct model) {
     model.isWishlist = !model.isWishlist!;
     int index =
         productsPagingController.itemList!.indexWhere((e) => e.id == model.id);
@@ -343,7 +350,7 @@ class PharmacyDetailsController {
 
   Future<void> getCartItems({bool refresh = true}) async {
     String? token = await getIt<GetDeviceId>().deviceId;
-    var params = _cartParams(refresh, token!);
+    CartParams params = _cartParams(refresh, token!);
     var data = await GetCart().call(params);
     var pharmacyProducts = data.items
         ?.where((element) => element.shopId == getPharmacyId)
@@ -408,12 +415,12 @@ class PharmacyDetailsController {
   }
 
   void syncProductsWithCart() {
-    final List<Product>? currentList = productsPagingController.itemList;
+    final List<PharmacyProduct>? currentList = productsPagingController.itemList;
     if (currentList == null || currentList.isEmpty) return;
 
     final cartItems = cartItemsBloc.state.data.items ?? <GeneralCartItem>[];
 
-    final updatedList = currentList.map((product) {
+    List<PharmacyProduct> updatedList = currentList.map((product) {
       final matchingCartItems = cartItems.where(
         (item) => item.productId == product.id,
       );
@@ -427,14 +434,18 @@ class PharmacyDetailsController {
   }
 
   void showAddToCartFailedDialog(BuildContext pageContext) {
-    final firstItem = cartItemsBloc.state.data.items?.first;
-    final pharmacyName = firstItem?.soldBy ?? "";
-    final shopId = firstItem?.shopId;
+    GeneralCartItem? firstItem = cartItemsBloc.state.data.items?.firstOrNull;
+    if(firstItem == null){
+      return;
+    }
+    String pharmacyName = firstItem.soldBy;
+    int? shopId = firstItem.shopId;
 
     showDialog(
       context: pageContext,
       builder: (dialogContext) => PharmacyAddToCartFailedDialog(
         pharmacyName: pharmacyName,
+        hasBranches: pharmacyBloc.state.data?.hasBranches == true,
         onClearCart: () => clearCart(dialogContext),
         onGoToPharmacy: () {
           Navigator.pop(dialogContext);
@@ -482,6 +493,21 @@ class PharmacyDetailsController {
 
 
 
+  void selectBranch( BuildContext context,PharmacyBranchDomainModel model){
+    branchesPagingController.itemList = [...?branchesPagingController.itemList];
+    for(PharmacyBranchDomainModel item in branchesPagingController.itemList ?? <PharmacyBranchDomainModel>[]){
+      item.isSelected = false;
+    }
+    model.isSelected = true;
+    selectedBranchCubit.onUpdateData(model);
+    Navigator.pop(context);
+    productsPagingController.refresh();
+    _getPharmacyProducts();
+    getCartItems(refresh: true);
+  }
+
+
+
   ShopCategoryParams _pharamcyCategoryParams(int id, int page, bool refresh) {
     var paginateParams = _categoriesPaginateParams(page, refresh);
     return ShopCategoryParams(
@@ -511,13 +537,13 @@ class PharmacyDetailsController {
         sellerId: getPharmacyId!,
         paginateParams: _paginateParams(page, refresh),
         keyword: productSearchCtr.text.trim(),
-        categoryId: selectedCategory?.id);
+        categoryId: selectedCategory?.id,
+        branchId: selectedBranchCubit.state.data?.id
+    );
   }
 
 
   PharmacyBranchesParams _branchesParams(int page, bool refresh) {
-    log("==>>> saved location latitude ${savedLocation!.latitude}");
-    log("==>>> saved location longitude${savedLocation!.longitude}");
     return PharmacyBranchesParams(
       latitude: savedLocation!.latitude,
       longitude: savedLocation!.longitude,
@@ -531,9 +557,16 @@ class PharmacyDetailsController {
     return CartParams(
       macAddress: token,
       refresh: refresh,
+      branchId: selectedBranchCubit.state.data?.id,
       type: CartTypeEnum.pharmacy,
     );
   }
+
+
+  void routeToPrescription(BuildContext context){
+    AutoRouter.of(context).push(AttachPrescriptionRoute(pharmacy: pharmacyBloc.state.data!));
+  }
+
 
 
 }

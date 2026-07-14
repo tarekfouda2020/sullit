@@ -35,6 +35,13 @@ class BuildHomeView extends StatelessWidget {
             BuildTopCategories(
                 categories: homeDomainModel.categories, controller: controller),
             PharmacyHomeSectionWidget(controller: controller),
+            Gaps.vGap16,
+            PharmSloganBannerWidget(
+              firstText: 'Have a prescription?  Get Started',
+              secondText: 'Upload Now  ',
+              onTap: () => controller.onPressAttachPrescription(context),
+            ),
+            Gaps.vGap16,
             VipOffersFormWidget(controller: controller),
             Gaps.vGap16,
             VipOffersWidget(

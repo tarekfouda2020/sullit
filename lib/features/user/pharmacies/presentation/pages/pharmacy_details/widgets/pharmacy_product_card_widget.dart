@@ -50,13 +50,41 @@ class _PharmacyProductCardWidgetState
   }
 
   @override
+  Future<bool> handleFirstAddToCart(BuildContext context) async {
+    final product = widget.productModel;
+    if (product is! PharmacyProduct) {
+      return super.handleFirstAddToCart(context);
+    }
+
+    if ((product.addedQtyToCart ?? 0) > 0) {
+      return false;
+    }
+
+    enableAddToCartLoading.onUpdateData(true);
+
+    try {
+      return await getIt<ProductsHelper>().addPharmacyProductToCart(
+            context,
+            product,
+           widget.controller.selectedBranchCubit.state.data?.id,
+            afterAddToCart: afterAddToCartCallback,
+          ) ??
+          false;
+    } finally {
+      enableAddToCartLoading.onUpdateData(false);
+    }
+  }
+
+  @override
   Future<void> routeToDetails(BuildContext context) async {
+    final product = widget.productModel;
    var result =  await AutoRouter.of(context).push(
       ProductDetailsRoute(
-        isFav: widget.productModel.isWishlist!,
-        productId: widget.productModel.id!,
-        isResale: widget.productModel.isResale!,
-        fromSellerPage: widget.fromPharmPage
+        isFav: product.isWishlist!,
+        productId: product.id!,
+        isResale: product.isResale!,
+        fromSellerPage: widget.fromPharmPage,
+        branchId: product is PharmacyProduct ? product.branch?.id : null,
       ),
     );
      widget.controller.refreshDataAfterRoute(result);
@@ -68,8 +96,8 @@ class _PharmacyProductCardWidgetState
     if (handleOutOfStockGuard()) return;
     final isFirstAdd = widget.productModel.addedQtyToCart == null ||
         widget.productModel.addedQtyToCart == 0;
-    final firstAdd = await handleFirstAddToCart(context);
-    if (firstAdd) return;
+    final addedToCart = await handleFirstAddToCart(context);
+    if (addedToCart) return;
     if (isFirstAdd) {
       if (!mounted) return;
       widget.controller.showAddToCartFailedDialog(this.context);

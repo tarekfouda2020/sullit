@@ -2,14 +2,17 @@ part of 'product_details_imports.dart';
 
 class ProductDetails extends StatefulWidget {
   final int productId;
+  final int? branchId;
   final bool isResale;
   final bool isFav;
   final bool fromSellerPage;
+
   const ProductDetails(
       {super.key,
       required this.productId,
       required this.isResale,
-       this.fromSellerPage = false,
+      this.branchId,
+      this.fromSellerPage = false,
       required this.isFav});
 
   @override
@@ -22,11 +25,16 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   void initState() {
     super.initState();
-    print("from seller page === ${widget.fromSellerPage}");
     controller = ProductDetailsController(
-        context, widget.productId, widget.isResale, widget.isFav, widget.fromSellerPage);
-
-
+      context,
+      ProductDetailsPageParams(
+        productId: widget.productId,
+        isResale: widget.isResale,
+        isFav: widget.isFav,
+        fromSellerPage: widget.fromSellerPage,
+        branchId: widget.branchId,
+      ),
+    );
   }
 
   @override
@@ -63,6 +71,4 @@ class _ProductDetailsState extends State<ProductDetails> {
       ),
     );
   }
-
-
 }

@@ -1,0 +1,30 @@
+library order_success;
+
+import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/helpers/helper_methods.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
+import 'package:flutter_tdd/core/widgets/custom_safe_are.dart';
+import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/fess_mechanism_model/fess_mechanism_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
+import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_combinedOrder.dart';
+import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_order_fees.dart';
+import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_payment/widgets/cart_payment_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/loyalty_points/domain/models/loyalty_points_balance_domain_model.dart';
+import 'package:flutter_tdd/features/user/loyalty_points/domain/use_case/get_loyalty_points_balance.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_attachment_domain_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/prescription_order_step_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescription_order/views/order_success/widgets/widgets_imports.dart';
+import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescription_order/widgets/build_prescription_order_stepper.dart';
+import 'package:flutter_tdd/res.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:auto_route/auto_route.dart';
+
+part 'order_success.dart';
+part 'order_success_controller.dart';

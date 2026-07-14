@@ -115,7 +115,7 @@ class ImplCartDataSources extends CartDataSources {
 
   @override
   Future<Either<Failure, String>> addToCart(
-      AddProductToCartParams params) async {
+      BaseAddProductToCartParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.storeProductToCart,
       requestMethod: RequestMethod.post,

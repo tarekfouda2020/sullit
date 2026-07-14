@@ -54,7 +54,7 @@ mixin _$OrderModel {
   @JsonKey(name: 'available_cancel_order')
   bool get availableCancelOrder => throw _privateConstructorUsedError;
   @JsonKey(name: 'additional_info')
-  String get additionalInfo => throw _privateConstructorUsedError;
+  String? get additionalInfo => throw _privateConstructorUsedError;
   @JsonKey(name: 'payment_method')
   String get paymentMethod => throw _privateConstructorUsedError;
   @JsonKey(name: 'payment_method_key')
@@ -140,6 +140,14 @@ mixin _$OrderModel {
       throw _privateConstructorUsedError;
   @JsonKey(name: 'cancel_reason')
   String? get cancelReason => throw _privateConstructorUsedError;
+  @JsonKey(name: 'identity_document_file')
+  String? get identityDocumentFile => throw _privateConstructorUsedError;
+  @JsonKey(name: 'requested_by')
+  String? get requestedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'requested_by_label')
+  String? get requestedByLabel => throw _privateConstructorUsedError;
+  @JsonKey(name: 'pharmacy_reply')
+  String? get pharmacyReply => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -174,7 +182,7 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'payment_status') bool paymentStatus,
       @JsonKey(name: 'payment_status_text') String paymentStatusText,
       @JsonKey(name: 'available_cancel_order') bool availableCancelOrder,
-      @JsonKey(name: 'additional_info') String additionalInfo,
+      @JsonKey(name: 'additional_info') String? additionalInfo,
       @JsonKey(name: 'payment_method') String paymentMethod,
       @JsonKey(name: 'payment_method_key') String paymentMethodConst,
       @JsonKey(name: 'shipping_method') String shippingMethod,
@@ -219,7 +227,11 @@ abstract class $OrderModelCopyWith<$Res> {
       List<PharmacyAttachmentModel>? prescriptionAttachments,
       @JsonKey(name: 'insurance_company')
       InsuranceCompanyModel? insuranceCompany,
-      @JsonKey(name: 'cancel_reason') String? cancelReason});
+      @JsonKey(name: 'cancel_reason') String? cancelReason,
+      @JsonKey(name: 'identity_document_file') String? identityDocumentFile,
+      @JsonKey(name: 'requested_by') String? requestedBy,
+      @JsonKey(name: 'requested_by_label') String? requestedByLabel,
+      @JsonKey(name: 'pharmacy_reply') String? pharmacyReply});
 
   $OrderDriverModelCopyWith<$Res>? get driver;
   $InsuranceCompanyModelCopyWith<$Res>? get insuranceCompany;
@@ -258,7 +270,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? paymentStatus = null,
     Object? paymentStatusText = null,
     Object? availableCancelOrder = null,
-    Object? additionalInfo = null,
+    Object? additionalInfo = freezed,
     Object? paymentMethod = null,
     Object? paymentMethodConst = null,
     Object? shippingMethod = null,
@@ -298,6 +310,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? prescriptionAttachments = freezed,
     Object? insuranceCompany = freezed,
     Object? cancelReason = freezed,
+    Object? identityDocumentFile = freezed,
+    Object? requestedBy = freezed,
+    Object? requestedByLabel = freezed,
+    Object? pharmacyReply = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -380,10 +396,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.availableCancelOrder
           : availableCancelOrder // ignore: cast_nullable_to_non_nullable
               as bool,
-      additionalInfo: null == additionalInfo
+      additionalInfo: freezed == additionalInfo
           ? _value.additionalInfo
           : additionalInfo // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       paymentMethod: null == paymentMethod
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
@@ -540,6 +556,22 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.cancelReason
           : cancelReason // ignore: cast_nullable_to_non_nullable
               as String?,
+      identityDocumentFile: freezed == identityDocumentFile
+          ? _value.identityDocumentFile
+          : identityDocumentFile // ignore: cast_nullable_to_non_nullable
+              as String?,
+      requestedBy: freezed == requestedBy
+          ? _value.requestedBy
+          : requestedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      requestedByLabel: freezed == requestedByLabel
+          ? _value.requestedByLabel
+          : requestedByLabel // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pharmacyReply: freezed == pharmacyReply
+          ? _value.pharmacyReply
+          : pharmacyReply // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -598,7 +630,7 @@ abstract class _$$_OrderModelCopyWith<$Res>
       @JsonKey(name: 'payment_status') bool paymentStatus,
       @JsonKey(name: 'payment_status_text') String paymentStatusText,
       @JsonKey(name: 'available_cancel_order') bool availableCancelOrder,
-      @JsonKey(name: 'additional_info') String additionalInfo,
+      @JsonKey(name: 'additional_info') String? additionalInfo,
       @JsonKey(name: 'payment_method') String paymentMethod,
       @JsonKey(name: 'payment_method_key') String paymentMethodConst,
       @JsonKey(name: 'shipping_method') String shippingMethod,
@@ -643,7 +675,11 @@ abstract class _$$_OrderModelCopyWith<$Res>
       List<PharmacyAttachmentModel>? prescriptionAttachments,
       @JsonKey(name: 'insurance_company')
       InsuranceCompanyModel? insuranceCompany,
-      @JsonKey(name: 'cancel_reason') String? cancelReason});
+      @JsonKey(name: 'cancel_reason') String? cancelReason,
+      @JsonKey(name: 'identity_document_file') String? identityDocumentFile,
+      @JsonKey(name: 'requested_by') String? requestedBy,
+      @JsonKey(name: 'requested_by_label') String? requestedByLabel,
+      @JsonKey(name: 'pharmacy_reply') String? pharmacyReply});
 
   @override
   $OrderDriverModelCopyWith<$Res>? get driver;
@@ -682,7 +718,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? paymentStatus = null,
     Object? paymentStatusText = null,
     Object? availableCancelOrder = null,
-    Object? additionalInfo = null,
+    Object? additionalInfo = freezed,
     Object? paymentMethod = null,
     Object? paymentMethodConst = null,
     Object? shippingMethod = null,
@@ -722,6 +758,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? prescriptionAttachments = freezed,
     Object? insuranceCompany = freezed,
     Object? cancelReason = freezed,
+    Object? identityDocumentFile = freezed,
+    Object? requestedBy = freezed,
+    Object? requestedByLabel = freezed,
+    Object? pharmacyReply = freezed,
   }) {
     return _then(_$_OrderModel(
       id: null == id
@@ -804,10 +844,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.availableCancelOrder
           : availableCancelOrder // ignore: cast_nullable_to_non_nullable
               as bool,
-      additionalInfo: null == additionalInfo
+      additionalInfo: freezed == additionalInfo
           ? _value.additionalInfo
           : additionalInfo // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       paymentMethod: null == paymentMethod
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
@@ -964,6 +1004,22 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.cancelReason
           : cancelReason // ignore: cast_nullable_to_non_nullable
               as String?,
+      identityDocumentFile: freezed == identityDocumentFile
+          ? _value.identityDocumentFile
+          : identityDocumentFile // ignore: cast_nullable_to_non_nullable
+              as String?,
+      requestedBy: freezed == requestedBy
+          ? _value.requestedBy
+          : requestedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      requestedByLabel: freezed == requestedByLabel
+          ? _value.requestedByLabel
+          : requestedByLabel // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pharmacyReply: freezed == pharmacyReply
+          ? _value.pharmacyReply
+          : pharmacyReply // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -995,7 +1051,7 @@ class _$_OrderModel extends _OrderModel {
       @JsonKey(name: 'payment_status_text') required this.paymentStatusText,
       @JsonKey(name: 'available_cancel_order')
       required this.availableCancelOrder,
-      @JsonKey(name: 'additional_info') required this.additionalInfo,
+      @JsonKey(name: 'additional_info') this.additionalInfo,
       @JsonKey(name: 'payment_method') required this.paymentMethod,
       @JsonKey(name: 'payment_method_key') required this.paymentMethodConst,
       @JsonKey(name: 'shipping_method') required this.shippingMethod,
@@ -1043,7 +1099,11 @@ class _$_OrderModel extends _OrderModel {
       @JsonKey(name: 'prescription_attachments')
       final List<PharmacyAttachmentModel>? prescriptionAttachments,
       @JsonKey(name: 'insurance_company') this.insuranceCompany,
-      @JsonKey(name: 'cancel_reason') this.cancelReason})
+      @JsonKey(name: 'cancel_reason') this.cancelReason,
+      @JsonKey(name: 'identity_document_file') this.identityDocumentFile,
+      @JsonKey(name: 'requested_by') this.requestedBy,
+      @JsonKey(name: 'requested_by_label') this.requestedByLabel,
+      @JsonKey(name: 'pharmacy_reply') this.pharmacyReply})
       : _orderDetails = orderDetails,
         _deliveryInstructions = deliveryInstructions,
         _orderDiscounts = orderDiscounts,
@@ -1109,7 +1169,7 @@ class _$_OrderModel extends _OrderModel {
   final bool availableCancelOrder;
   @override
   @JsonKey(name: 'additional_info')
-  final String additionalInfo;
+  final String? additionalInfo;
   @override
   @JsonKey(name: 'payment_method')
   final String paymentMethod;
@@ -1268,10 +1328,22 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'cancel_reason')
   final String? cancelReason;
+  @override
+  @JsonKey(name: 'identity_document_file')
+  final String? identityDocumentFile;
+  @override
+  @JsonKey(name: 'requested_by')
+  final String? requestedBy;
+  @override
+  @JsonKey(name: 'requested_by_label')
+  final String? requestedByLabel;
+  @override
+  @JsonKey(name: 'pharmacy_reply')
+  final String? pharmacyReply;
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, shopType: $shopType, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, paymentMethodConst: $paymentMethodConst, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, pickerNotes: $pickerNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver, orderSourceLabel: $orderSourceLabel, shippingProvider: $shippingProvider, shippingProviderLabel: $shippingProviderLabel, isPendingReview: $isPendingReview, awaitingCustomerCompletion: $awaitingCustomerCompletion, requiresPrescriptionReview: $requiresPrescriptionReview, insuranceApplied: $insuranceApplied, insuranceAttachments: $insuranceAttachments, prescriptionAttachments: $prescriptionAttachments, insuranceCompany: $insuranceCompany, cancelReason: $cancelReason)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, shopType: $shopType, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, paymentMethodConst: $paymentMethodConst, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, pickerNotes: $pickerNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver, orderSourceLabel: $orderSourceLabel, shippingProvider: $shippingProvider, shippingProviderLabel: $shippingProviderLabel, isPendingReview: $isPendingReview, awaitingCustomerCompletion: $awaitingCustomerCompletion, requiresPrescriptionReview: $requiresPrescriptionReview, insuranceApplied: $insuranceApplied, insuranceAttachments: $insuranceAttachments, prescriptionAttachments: $prescriptionAttachments, insuranceCompany: $insuranceCompany, cancelReason: $cancelReason, identityDocumentFile: $identityDocumentFile, requestedBy: $requestedBy, requestedByLabel: $requestedByLabel, pharmacyReply: $pharmacyReply)';
   }
 
   @override
@@ -1381,7 +1453,11 @@ class _$_OrderModel extends _OrderModel {
             const DeepCollectionEquality().equals(other._insuranceAttachments, _insuranceAttachments) &&
             const DeepCollectionEquality().equals(other._prescriptionAttachments, _prescriptionAttachments) &&
             (identical(other.insuranceCompany, insuranceCompany) || other.insuranceCompany == insuranceCompany) &&
-            (identical(other.cancelReason, cancelReason) || other.cancelReason == cancelReason));
+            (identical(other.cancelReason, cancelReason) || other.cancelReason == cancelReason) &&
+            (identical(other.identityDocumentFile, identityDocumentFile) || other.identityDocumentFile == identityDocumentFile) &&
+            (identical(other.requestedBy, requestedBy) || other.requestedBy == requestedBy) &&
+            (identical(other.requestedByLabel, requestedByLabel) || other.requestedByLabel == requestedByLabel) &&
+            (identical(other.pharmacyReply, pharmacyReply) || other.pharmacyReply == pharmacyReply));
   }
 
   @JsonKey(ignore: true)
@@ -1447,7 +1523,11 @@ class _$_OrderModel extends _OrderModel {
         const DeepCollectionEquality().hash(_insuranceAttachments),
         const DeepCollectionEquality().hash(_prescriptionAttachments),
         insuranceCompany,
-        cancelReason
+        cancelReason,
+        identityDocumentFile,
+        requestedBy,
+        requestedByLabel,
+        pharmacyReply
       ]);
 
   @JsonKey(ignore: true)
@@ -1491,7 +1571,7 @@ abstract class _OrderModel extends OrderModel {
       required final String paymentStatusText,
       @JsonKey(name: 'available_cancel_order')
       required final bool availableCancelOrder,
-      @JsonKey(name: 'additional_info') required final String additionalInfo,
+      @JsonKey(name: 'additional_info') final String? additionalInfo,
       @JsonKey(name: 'payment_method') required final String paymentMethod,
       @JsonKey(name: 'payment_method_key')
       required final String paymentMethodConst,
@@ -1543,8 +1623,13 @@ abstract class _OrderModel extends OrderModel {
       final List<PharmacyAttachmentModel>? prescriptionAttachments,
       @JsonKey(name: 'insurance_company')
       final InsuranceCompanyModel? insuranceCompany,
-      @JsonKey(name: 'cancel_reason')
-      final String? cancelReason}) = _$_OrderModel;
+      @JsonKey(name: 'cancel_reason') final String? cancelReason,
+      @JsonKey(name: 'identity_document_file')
+      final String? identityDocumentFile,
+      @JsonKey(name: 'requested_by') final String? requestedBy,
+      @JsonKey(name: 'requested_by_label') final String? requestedByLabel,
+      @JsonKey(name: 'pharmacy_reply')
+      final String? pharmacyReply}) = _$_OrderModel;
   const _OrderModel._() : super._();
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
@@ -1605,7 +1690,7 @@ abstract class _OrderModel extends OrderModel {
   bool get availableCancelOrder;
   @override
   @JsonKey(name: 'additional_info')
-  String get additionalInfo;
+  String? get additionalInfo;
   @override
   @JsonKey(name: 'payment_method')
   String get paymentMethod;
@@ -1725,6 +1810,18 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'cancel_reason')
   String? get cancelReason;
+  @override
+  @JsonKey(name: 'identity_document_file')
+  String? get identityDocumentFile;
+  @override
+  @JsonKey(name: 'requested_by')
+  String? get requestedBy;
+  @override
+  @JsonKey(name: 'requested_by_label')
+  String? get requestedByLabel;
+  @override
+  @JsonKey(name: 'pharmacy_reply')
+  String? get pharmacyReply;
   @override
   @JsonKey(ignore: true)
   _$$_OrderModelCopyWith<_$_OrderModel> get copyWith =>

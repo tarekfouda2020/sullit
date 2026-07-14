@@ -25,6 +25,13 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_conf
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_confirm_order_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_confirm_order_model/pharmacy_confirm_order_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_confirm_order_domain_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_order_requested_by_model/pharmacy_order_requested_by_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_order_requested_by_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_order_terms_model/pharmacy_order_terms_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_order_terms_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/saved_prescription_model/saved_prescription_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/saved_prescription_model.dart';
+import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../purchasing/presentation/pages/order_summary/order_summary_imports.dart';
@@ -68,6 +75,12 @@ class ImplPharmaciesRepository extends PharmaciesRepository with ModelToDomain {
   }
 
   @override
+  Future<Either<Failure, OrderSummaryDomainModel>> createPrescriptionOrder(PharmacyCreateOrderParams param) async {
+    var result = await dataSources.createPrescriptionOrder(param);
+    return toDomainResult(result);
+  }
+
+  @override
   Future<Either<Failure, PharmacyCheckoutDomaiModel>> getConfirmSummary(
       PharmacyConfirmSummaryParams param) async {
     var result = await dataSources.getConfirmSummary(param);
@@ -86,6 +99,25 @@ class ImplPharmaciesRepository extends PharmaciesRepository with ModelToDomain {
   Future<Either<Failure, List<PharmacyBranchDomainModel>>> getPharmacyBranches(PharmacyBranchesParams param) async {
     var result = await dataSources.getPharmacyBranches(param);
     return toDomainResultList<PharmacyBranchDomainModel,PharmacyBranchModel>(result);
+  }
+
+  @override
+  Future<Either<Failure, List<PharmacyOrderRequestedByModel>>> getPharmacyOrderRequestedBy() async {
+    var result = await dataSources.getPharmacyOrderRequestedBy();
+    return toDomainResultList<PharmacyOrderRequestedByModel, PharmacyOrderRequestedBy>(result);
+  }
+
+  @override
+  Future<Either<Failure, PharmacyOrderTermsModel>> getPharmacyOrderTerms() async {
+    var result = await dataSources.getPharmacyOrderTerms();
+    return toDomainResult<PharmacyOrderTermsModel, PharmacyOrderTerms>(result);
+  }
+
+  @override
+  Future<Either<Failure, List<SavedPrescriptionModel>>> getSavedPrescriptions(
+      GenericPaginateParams param) async {
+    var result = await dataSources.getSavedPrescriptions(param);
+    return toDomainResultList<SavedPrescriptionModel, SavedPrescriptionApiModel>(result);
   }
 
 }

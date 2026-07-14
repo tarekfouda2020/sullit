@@ -146,6 +146,8 @@ class Res {
   static const String layersIcon = "assets/images/layers_icon.svg";
   static const String medicFile = "assets/images/medic_file.svg";
   static const String fileIcon = "assets/images/file_icon.svg";
+  static const String pharmSlogan = "assets/images/pharm_slogan.svg";
+  static const String pdfIcon = "assets/images/pdf_icon.svg";
 
   static const String addToCartGif = "assets/images/add_cart.gif";
   static const String onTheWay = "assets/images/delivery.gif";

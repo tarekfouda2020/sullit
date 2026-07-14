@@ -16,6 +16,10 @@ import '../../domain/entity/pharmacy_create_order_params.dart';
 import '../../domain/entity/pharmacy_confirm_summary_params.dart';
 import '../../domain/entity/pharmacy_confirm_order_params.dart';
 import '../models/pharmacy_confirm_order_model/pharmacy_confirm_order_model.dart';
+import '../models/pharmacy_order_requested_by_model/pharmacy_order_requested_by_model.dart';
+import '../models/pharmacy_order_terms_model/pharmacy_order_terms_model.dart';
+import '../models/saved_prescription_model/saved_prescription_model.dart';
+import '../../../category/domain/entities/generic_paginate_params.dart';
 
 abstract class PharmaciesSources {
   Future<Either<Failure, List<ShopCategoryModel>>> getShopCategories(
@@ -29,9 +33,18 @@ abstract class PharmaciesSources {
 
   Future<Either<Failure, OrderSummaryModel>> createOrder(PharmacyCreateOrderParams param);
 
+  Future<Either<Failure, OrderSummaryModel>> createPrescriptionOrder(PharmacyCreateOrderParams param);
+
   Future<Either<Failure, PharmacyCheckoutSummaryModel>> getConfirmSummary(PharmacyConfirmSummaryParams param);
 
   Future<Either<Failure, PharmacyConfirmOrderModel>> confirmOrder(PharmacyConfirmOrderParams param);
 
   Future<Either<Failure, List<PharmacyBranchModel>>> getPharmacyBranches(PharmacyBranchesParams param);
+
+  Future<Either<Failure, List<PharmacyOrderRequestedBy>>> getPharmacyOrderRequestedBy();
+
+  Future<Either<Failure, PharmacyOrderTerms>> getPharmacyOrderTerms();
+
+  Future<Either<Failure, List<SavedPrescriptionApiModel>>> getSavedPrescriptions(
+      GenericPaginateParams param);
 }

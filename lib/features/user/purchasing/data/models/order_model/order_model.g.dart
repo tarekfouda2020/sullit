@@ -28,7 +28,7 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       paymentStatus: json['payment_status'] as bool,
       paymentStatusText: json['payment_status_text'] as String,
       availableCancelOrder: json['available_cancel_order'] as bool,
-      additionalInfo: json['additional_info'] as String,
+      additionalInfo: json['additional_info'] as String?,
       paymentMethod: json['payment_method'] as String,
       paymentMethodConst: json['payment_method_key'] as String,
       shippingMethod: json['shipping_method'] as String,
@@ -86,6 +86,10 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
           : InsuranceCompanyModel.fromJson(
               json['insurance_company'] as Map<String, dynamic>),
       cancelReason: json['cancel_reason'] as String?,
+      identityDocumentFile: json['identity_document_file'] as String?,
+      requestedBy: json['requested_by'] as String?,
+      requestedByLabel: json['requested_by_label'] as String?,
+      pharmacyReply: json['pharmacy_reply'] as String?,
     );
 
 Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
@@ -154,4 +158,8 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
           instance.prescriptionAttachments?.map((e) => e.toJson()).toList(),
       'insurance_company': instance.insuranceCompany?.toJson(),
       'cancel_reason': instance.cancelReason,
+      'identity_document_file': instance.identityDocumentFile,
+      'requested_by': instance.requestedBy,
+      'requested_by_label': instance.requestedByLabel,
+      'pharmacy_reply': instance.pharmacyReply,
     };

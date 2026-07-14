@@ -35,6 +35,7 @@ class ProductDetailsController implements CartSheetController {
   late bool isResale;
   late bool isFav;
    bool fromSellerPage = false;
+   int? branchId;
 
   // late bool isFav;
   @override
@@ -42,8 +43,12 @@ class ProductDetailsController implements CartSheetController {
   List<String> selectedVariants = [];
   List<String> basicImage = [];
 
-  ProductDetailsController(
-      BuildContext context, this.productId, this.isResale, this.isFav, this.fromSellerPage ) {
+  ProductDetailsController(BuildContext context, ProductDetailsPageParams params) {
+    productId = params.productId;
+    isResale = params.isResale;
+    isFav = params.isFav;
+    fromSellerPage = params.fromSellerPage;
+    branchId = params.branchId;
 
     getProductDetails(context, productId, refresh: false);
     getProductDetails(context, productId);
@@ -473,8 +478,8 @@ class ProductDetailsController implements CartSheetController {
     getIt<CartHelper>().updateCartCountWithCart(ctx, cart);
   }
 
-  GenericParams _detailsParams(bool refresh, int productId) {
-    return GenericParams(refresh: refresh, id: productId);
+  ProductDetailsParams _detailsParams(bool refresh, int productId) {
+    return ProductDetailsParams(refresh: refresh, id: productId, branchId: branchId);
   }
 
   SendQueryParams _sendQueryParams() {
@@ -490,6 +495,7 @@ class ProductDetailsController implements CartSheetController {
       id: detailsCubit.state.data!.product.id!,
       resellerId: isResale ? resellerId : null,
       variants: selectedVariants.join(','),
+      branchId: branchId
     );
   }
 

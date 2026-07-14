@@ -1,0 +1,248 @@
+// ignore_for_file: use_build_context_synchronously
+
+part of 'pharmacy_address_imports.dart';
+
+class PharmacyAddressController {
+  final GenericBloc<bool> refreshCubit = GenericBloc<bool>(true);
+  final GenericBloc<bool> conditionsCubit = GenericBloc<bool>(false);
+
+  final GenericBloc<List<PharmacyShippingDomainModel>> shippingDataCubit = GenericBloc<List<PharmacyShippingDomainModel>>([]);
+
+  final PagingController<int, AddressDomainModel> pagingController =
+      PagingController(firstPageKey: 1);
+
+  final PagingController<int, PharmacyBranchDomainModel> branchesPagingController =
+      PagingController(firstPageKey: 1);
+
+  final bool havePrescription;
+
+  final Shop? pharmacy;
+
+  AddressDomainModel? selectedAddress;
+
+  final PharmacyCreateOrderParams? createOrderParams;
+
+  PharmacyAddressController({ required this.havePrescription, this.pharmacy, this.createOrderParams}) {
+    if(pharmacy?.hasBranches == true){
+      getPharmacyBranches(1, refresh: false);
+      branchesPagingController.addPageRequestListener((pageKey) {
+        getPharmacyBranches(pageKey);
+      });
+    }
+    getPaginateAddress(1, refresh: false);
+    pagingController.addPageRequestListener((pageKey) {
+      getPaginateAddress(pageKey);
+    });
+  }
+
+  Future<void> getPaginateAddress(int page, {bool refresh = true}) async {
+    GenericPaginateParams params = _paginateParams(page, refresh);
+    var data = await GetAddresses().call(params);
+    var isLastPage = data.length < AppConstants.instance.paginationLimit;
+    if (page == 1) {
+      pagingController.itemList = [];
+    }
+    if (isLastPage) {
+      pagingController.appendLastPage(data);
+    } else {
+      var nextPageKey = page + 1;
+      pagingController.appendPage(data, nextPageKey);
+    }
+  }
+
+  void onSelectAddress(BuildContext context, AddressDomainModel address) {
+    var auth = context.read<DeviceCubit>().state.model.auth;
+    if (!auth) {
+      CustomToast.showAuthDialog(context);
+      return;
+    }
+    for (var e in pagingController.itemList!) {
+      e.selected = false;
+    }
+    address.selected = true;
+    selectedAddress = address;
+    createOrderParams?.setAddressId(address.id!);
+    refreshCubit.onUpdateData(true);
+  }
+
+  void onAddNewAddress(BuildContext context) async {
+    var result = await AutoRouter.of(context).push(const AddNewAddressRoute());
+    if (result != null) {
+      AddressDomainModel model = result as AddressDomainModel;
+      pagingController.itemList!.add(model);
+      refreshCubit.onUpdateData(true);
+    }
+  }
+
+
+
+
+  int getSelectedAddressId(){
+    return selectedAddress!.id!;
+  }
+
+  Future<void> onPressProceed(BuildContext context) async {
+
+    if (selectedAddress == null) {
+      CustomToast.showSimpleToast(msg: "Please select you address first");
+      return;
+    }
+
+
+    var params = PharamcyShippingInfoParams(addressId: selectedAddress!.id!);
+    var result = await GetPharmacyShippingInfo().call(params);
+    for (var item in result) {
+      if (item.activeDelivery == false && item.activePickup == true) {
+        item.deliveryType = DeliveryTypeEnum.pickUp;
+      }
+    }
+    shippingDataCubit.onUpdateData(result);
+
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) => PharmacyDeliveryTypeBottomSheet(
+        controller: this,
+        onConfirm: () {
+          if(canConfirmShipping()){
+          Navigator.pop(context);
+          BuildContext ctx = getIt<GlobalContext>().context();
+          if (havePrescription) {
+            createPrescriptionOrder(ctx, result);
+          } else {
+            getCheckOutSummaryData(ctx, result);
+          }
+          }
+        },
+      ),
+    );
+  }
+
+
+  Future<void> getCheckOutSummaryData(BuildContext context, List<PharmacyShippingDomainModel> data) async {
+    PharmacyCheckoutParams params = _checkOutParams(data);
+    final result = await GetCartSummary().call(params);
+    if (result != null) {
+      AutoRouter.of(context).push(PharmacyCheckOutRoute(
+        shipping: result,
+        checkoutParams: params,
+      ));
+    }
+  }
+
+  Future<void> createPrescriptionOrder(BuildContext context, List<PharmacyShippingDomainModel> data) async {
+    PharmacyCreateOrderParams params = _createInsurancePrescriptionParams(data);
+    var result = await CreatePharmacyPrescriptionOrder().call(params);
+    if(result != null){
+      AutoRouter.of(context).push( OrderSuccessRoute(summary: result, havePrescription: true));
+    }
+  }
+
+
+  PharmacyCheckoutParams _checkOutParams(List<PharmacyShippingDomainModel> data){
+    return PharmacyCheckoutParams(
+        shippingInfo: _shippingData(data),
+        addressId: selectedAddress!.id!,
+    );
+  }
+
+
+
+  PharmacyCreateOrderParams _createInsurancePrescriptionParams(List<PharmacyShippingDomainModel> data){
+    // createOrderParams!.setShippingInfo(_shippingData(data));
+    createOrderParams!.setAddressId(selectedAddress!.id!);
+    createOrderParams!.setShippingType(data.first.deliveryType);
+    createOrderParams!.setShopBranchId(selectedBranch?.id);
+    return createOrderParams!;
+  }
+
+
+  Future<void> getPharmacyBranches(int page,  {bool refresh = true}) async {
+    PharmacyBranchesParams params = _branchesParams(page, refresh);
+    var data = await GetPharmacyBranches().call(params);
+    for (PharmacyBranchDomainModel branch in data) {
+      branch.isSelected = branch.isDefault;
+    }
+    var isLastPage = data.length < AppConstants.instance.paginationLimit;
+    if (page == 1) {
+      branchesPagingController.itemList = [];
+    }
+    if (isLastPage) {
+      branchesPagingController.appendLastPage(data);
+    } else {
+      var nextPageKey = page + 1;
+      branchesPagingController.appendPage(data, nextPageKey);
+    }
+  }
+
+  PharmacyBranchesParams _branchesParams(int page, bool refresh) {
+    return PharmacyBranchesParams(
+      latitude: double.tryParse(selectedAddress?.lat ?? "") ?? 0,
+      longitude: double.tryParse(selectedAddress?.lang ?? "") ?? 0,
+      pharmacyId: pharmacy!.id!,
+      formRemote: refresh,
+      paginateParams: _paginateParams(page, refresh),
+    );
+  }
+
+  void onPressSelectBranch(BuildContext context, PharmacyShippingDomainModel item) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return BranchesBottomSheetWidget(
+          pagingController: branchesPagingController,
+          onSelect: (branch) => onSelectBranch(context, item, branch),
+        );
+      },
+    );
+  }
+
+  void onSelectBranch(
+      BuildContext context, PharmacyShippingDomainModel item, PharmacyBranchDomainModel branch) {
+    for (PharmacyBranchDomainModel b in _branchesItemList ?? <PharmacyBranchDomainModel>[]) {
+      b.isSelected = false;
+    }
+    item.selectedBranch = branch;
+    branch.isSelected = true;
+    Navigator.pop(context);
+    branchesPagingController.itemList = [...?_branchesItemList];
+    shippingDataCubit.onUpdateData(shippingDataCubit.state.data);
+  }
+
+  List<PharmacyBranchDomainModel>? get _branchesItemList => branchesPagingController.itemList;
+
+  PharmacyBranchDomainModel?  get selectedBranch {
+    if((_branchesItemList ?? []).every((element) => !element.isSelected)) {
+      return null;
+    }else{
+      return _branchesItemList!.firstWhere((element) => element.isSelected);
+    }
+
+  }
+
+  bool canConfirmShipping() {
+    return shippingDataCubit.state.data.every(
+      (e) => e.activeDelivery == true || e.activePickup == true,
+    );
+  }
+
+  List<PharmacyShippingInfo> _shippingData(List<PharmacyShippingDomainModel> data) {
+    return data.map((e) => PharmacyShippingInfo(
+        ownerId: e.ownerId ?? 0,
+        shippingType: (e.deliveryType).getEnumValue(),
+      )).toList();
+  }
+
+
+
+  GenericPaginateParams _paginateParams(int page, bool refresh) {
+    return GenericPaginateParams(
+      currentPage: page,
+      refresh: refresh,
+      pageSize: AppConstants.instance.paginationLimit,
+    );
+  }
+}

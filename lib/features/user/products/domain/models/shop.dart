@@ -29,6 +29,7 @@ class Shop extends BaseDomainModel {
   List<ShopCategory>? categories;
   List<InsuranceCompany>? insuranceCompanies;
   bool isSelect = false;
+  bool isSelected = false;
 
   Shop({
     required this.id,

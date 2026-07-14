@@ -164,6 +164,14 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
               iconPath: Res.medicFile,
               onTap: () => controller.openAttachment(context, data.insuranceAttachments!.first) ,
             )
+          ],
+          if(data.identityDocumentFile?.isNotEmpty == true) ...[
+            Gaps.vGap10,
+            PharmacyOrderAttachmentWidget(
+              title: "View National ID",
+              iconPath: Res.fileIcon,
+              onTap: () => controller.openIdentityDocument(context, data.identityDocumentFile!),
+            )
           ]
         ],
       ),

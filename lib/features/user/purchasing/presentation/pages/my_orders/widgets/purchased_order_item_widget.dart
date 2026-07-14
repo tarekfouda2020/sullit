@@ -23,13 +23,7 @@ class MyOrderItemWidget extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-               order.isPharmacy
-                   ? CachedImage(
-                   url: order.orderDetails.first.product?.shop?.logo ?? "",
-                  fit: BoxFit.contain,
-                 width: 36, height: 36,
-               )
-                   : Image.asset(width: 36, height: 36, Res.purchasedOrderIcon),
+                Image.asset(width: 36, height: 36, Res.purchasedOrderIcon),
                 Gaps.hGap13,
                 Flexible(
                   child: Column(
@@ -46,16 +40,16 @@ class MyOrderItemWidget extends StatelessWidget {
                         ],
                       ),
                       Gaps.vGap5,
-                      if(order.isPharmacy)...[
-                        Gaps.vGap5,
-                        Text(
-                          order.orderDetails.first.product?.shop?.name ?? "",
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppTextStyle.s16_w600(
-                              color: context.colors.black),
-                        ),
-                      ],
+                      // if(order.isPharmacy)...[
+                      //   Gaps.vGap5,
+                      //   Text(
+                      //     order.orderDetails.first.product?.shop?.name ?? "",
+                      //     maxLines: 1,
+                      //     overflow: TextOverflow.ellipsis,
+                      //     style: AppTextStyle.s16_w600(
+                      //         color: context.colors.black),
+                      //   ),
+                      // ],
                       Gaps.vGap8,
                       Row(
                         children: [

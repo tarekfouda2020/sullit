@@ -73,22 +73,24 @@ abstract class BaseProductItemState<T extends BaseProductItem>
 
   @protected
   Future<bool> handleFirstAddToCart(BuildContext context) async {
-    if (widget.productModel.addedQtyToCart == null ||
-        widget.productModel.addedQtyToCart == 0) {
-      enableAddToCartLoading.onUpdateData(true);
-     var result = await getIt<ProductsHelper>().addProductToCart(
-        context,
-        widget.productModel,
-        afterAddToCart: afterAddToCartCallback,
-      );
-      enableAddToCartLoading.onUpdateData(false);
-      if(result == true){
-        return true;
-      }else{
-        return false;
-      }
+    Product product = widget.productModel;
+
+    if ((product.addedQtyToCart ?? 0) > 0) {
+      return false;
     }
-    return false;
+
+    enableAddToCartLoading.onUpdateData(true);
+
+    try {
+      return await getIt<ProductsHelper>().addProductToCart(
+            context,
+            product,
+            afterAddToCart: afterAddToCartCallback,
+          ) ??
+          false;
+    } finally {
+      enableAddToCartLoading.onUpdateData(false);
+    }
   }
 
   @protected

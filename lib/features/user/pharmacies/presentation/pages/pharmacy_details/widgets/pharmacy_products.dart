@@ -12,14 +12,14 @@ class PharmacyProducts extends StatelessWidget {
         right: 15,
         top: 10,
       ),
-      sliver: PagedSliverGrid<int, Product>(
+      sliver: PagedSliverGrid<int, PharmacyProduct>(
         showNewPageErrorIndicatorAsGridChild: false,
         showNewPageProgressIndicatorAsGridChild: false,
         showNoMoreItemsIndicatorAsGridChild: false,
         shrinkWrapFirstPageIndicators: false,
         pagingController: controller.productsPagingController,
         gridDelegate: _buildGridDelegate(),
-        builderDelegate: PagedChildBuilderDelegate<Product>(
+        builderDelegate: PagedChildBuilderDelegate<PharmacyProduct>(
           itemBuilder: (context, item, index) {
             return PharmacyProductCardWidget(
               controller: controller,

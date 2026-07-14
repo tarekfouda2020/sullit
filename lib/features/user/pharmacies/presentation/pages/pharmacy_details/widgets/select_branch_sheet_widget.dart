@@ -25,6 +25,7 @@ class SelectBranchSheetWidget extends StatelessWidget {
                   itemBuilder: (_, item, index) {
                     return PharmacyBranchItemWidget(
                       model: item,
+                      controller: controller,
                     );
                   },
                   noItemsFoundIndicatorBuilder: (cxt) =>

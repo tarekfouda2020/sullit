@@ -18,7 +18,7 @@ class PharmacyBranchModel extends BaseApiModel<PharmacyBranchDomainModel> with _
     required String longitude,
     @JsonKey(name: 'map_desc') required String mapDescription,
     @JsonKey(name: 'is_default') required bool isDefault,
-    @JsonKey(name: 'distance_km') required double distanceKm,
+    @JsonKey(name: 'distance_km') double? distanceKm,
     required PharmacyBranchLocationModel state,
     required PharmacyBranchLocationModel city,
   }) = _PharmacyBranchModel;

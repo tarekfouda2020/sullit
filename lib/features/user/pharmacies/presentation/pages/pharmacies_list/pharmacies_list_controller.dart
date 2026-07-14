@@ -6,7 +6,15 @@ class PharmaciesListController {
   final PagingController<int, Shop> pagingController =
       PagingController(firstPageKey: 1);
 
-  PharmaciesListController() {
+  final bool makePrescriptionOrder;
+  final File? initialPrescriptionFile;
+  final SavedPrescriptionModel? initialSavedPrescription;
+
+  PharmaciesListController({
+    this.makePrescriptionOrder = false,
+    this.initialPrescriptionFile,
+    this.initialSavedPrescription,
+  }) {
     getPharmacies(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
       getPharmacies(pageKey);
@@ -25,6 +33,26 @@ class PharmaciesListController {
     } else {
       pagingController.appendPage(data, page + 1);
     }
+  }
+
+  void onPressPharmacy(BuildContext context, Shop shop) {
+    if (!makePrescriptionOrder) {
+      if (shop.id != null) {
+        AutoRouter.of(context)
+            .push(PharmacyCategoriesRoute(pharmacyId: shop.id!));
+      }
+      return;
+    }
+    for (var item in pagingController.itemList ?? <Shop>[]) {
+      item.isSelected = false;
+    }
+    shop.isSelected = true;
+    pagingController.itemList = [...?pagingController.itemList];
+    AutoRouter.of(context).push(AttachPrescriptionRoute(
+      pharmacy: shop,
+      initialPrescriptionFile: initialPrescriptionFile,
+      initialSavedPrescription: initialSavedPrescription,
+    ));
   }
 
   void clearSearchField() {

@@ -27,7 +27,7 @@ abstract class CartRepository {
       StoreCartShippingParams params);
   Future<Either<Failure, CouponResponse>> applyCoupon(String param);
   Future<Either<Failure, OrderSummaryDomainModel>> createOrder(CreateOrderParams params);
-  Future<Either<Failure, String>> addToCart(AddProductToCartParams params);
+  Future<Either<Failure, String>> addToCart(BaseAddProductToCartParams params);
   Future<Either<Failure, bool>> deleteCartItem(DeleteCartItemParams params);
   Future<Either<Failure, CartDomainModel>> updateCartItem(
       UpdateCartItemParams params);

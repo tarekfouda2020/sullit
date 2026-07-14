@@ -1,0 +1,45 @@
+
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/core/widgets/CachedImage.dart';
+import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
+import 'package:flutter_tdd/core/widgets/DropdownTextField.dart';
+import 'package:flutter_tdd/core/widgets/custom_check_box_widget.dart';
+import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/core/widgets/custom_radio_widget.dart';
+import 'package:flutter_tdd/core/widgets/custom_refresh_indicator_widget.dart';
+import 'package:flutter_tdd/core/extensions/file_extension.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_order_requested_by_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_order_terms_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/saved_prescription_model.dart';
+import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_sheet_header_widget.dart';
+import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescription_order/views/attach_prescription/attach_prescription_imports.dart';
+import 'package:flutter_tdd/res.dart';
+
+part 'prescription_file_card_widget.dart';
+part 'save_for_later_widget.dart';
+part 'emirates_id_upload_widget.dart';
+part 'health_insurance_widget.dart';
+part 'requested_by_dropdown_widget.dart';
+part 'select_insurance_company_widget.dart';
+part 'attach_health_insurance_document_widget.dart';
+part 'terms_and_conditions_widget.dart';
+part 'picked_image_preview_widget.dart';
+part 'picked_pdf_preview_widget.dart';
+part 'create_prescription_order_button_widget.dart';
+part 'pharmacy_order_terms_bottom_sheet_widget.dart';
+part 'prescription_picked_file_widget.dart';
+part 'choose_from_saved_prescriptions_button_widget.dart';
+part 'saved_prescription_item_widget.dart';
+part 'saved_prescriptions_bottom_sheet_widget.dart';
+part 'saved_prescription_picked_file_widget.dart';

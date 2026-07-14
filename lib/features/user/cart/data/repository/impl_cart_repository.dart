@@ -65,7 +65,7 @@ class ImplCartRepository extends CartRepository with ModelToDomain {
 
   @override
   Future<Either<Failure, String>> addToCart(
-      AddProductToCartParams params) async {
+      BaseAddProductToCartParams params) async {
     return await dataSource.addToCart(params);
   }
 

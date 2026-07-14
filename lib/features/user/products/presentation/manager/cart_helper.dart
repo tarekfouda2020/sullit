@@ -127,6 +127,27 @@ class CartHelper {
         CartTypeEnum type = CartTypeEnum.general
       }) async {
     var params = await _addToCartParams(variantId, qty, showLoader: showLoader);
+    return _sendToCart(params,
+        onAddCartFunc: onAddCartFunc, callCartData: callCartData, type: type);
+  }
+
+  Future<bool?> addPharmacyProductToCart(
+      BuildContext context, int qty, int? variantId, int? branchId,
+      {required Function() onAddCartFunc,
+      bool showLoader = true,
+      bool callCartData = true}) async {
+    PharmacyCartParams params = await _addPharmacyCartParams(variantId, qty, branchId,
+        showLoader: showLoader);
+    log("====>>>>> json is before send method ${params.toJson()} ===== ");
+    return _sendToCart(params,
+        onAddCartFunc: onAddCartFunc, callCartData: callCartData, type: CartTypeEnum.pharmacy);
+  }
+
+  Future<bool?> _sendToCart(BaseAddProductToCartParams params,
+      {required Function() onAddCartFunc,
+      bool callCartData = true,
+      CartTypeEnum type = CartTypeEnum.general}) async {
+    log("====>>>>> json is ${params.toJson()} ===== ");
     if (params.variantId == null) {
       CustomToast.showSimpleToast(msg: tr('variantNotFound'));
       return null;
@@ -235,6 +256,17 @@ class CartHelper {
         variantId: variantId,
         macAddress: await getIt<GetDeviceId>().deviceId,
         showLoader: showLoader);
+  }
+
+  Future<PharmacyCartParams> _addPharmacyCartParams(
+      int? variantId, int qty, int? branchId,
+      {bool showLoader = true}) async {
+    return PharmacyCartParams(
+        quantity: qty,
+        variantId: variantId,
+        macAddress: await getIt<GetDeviceId>().deviceId,
+        showLoader: showLoader,
+        branchId: branchId);
   }
 
   VariantPriceParams _variantPriceParams(int id) {

@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/enum/delivery_type_enum.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
 
 class PharmacyShippingDomainModel extends BaseDomainModel {
   String? name;
@@ -11,6 +12,7 @@ class PharmacyShippingDomainModel extends BaseDomainModel {
   String? deliveryMessage;
   int? ownerId;
   DeliveryTypeEnum deliveryType;
+  PharmacyBranchDomainModel? selectedBranch;
 
   PharmacyShippingDomainModel({
     this.name,
@@ -22,6 +24,7 @@ class PharmacyShippingDomainModel extends BaseDomainModel {
     this.deliveryMessage,
     this.ownerId,
     this.deliveryType = DeliveryTypeEnum.delivery,
+    this.selectedBranch,
   });
 
 
@@ -50,8 +53,8 @@ class PharmacyShippingPickupDomainModel extends BaseDomainModel {
   String address;
   String postalCode;
   String phone;
-  double? lat;
-  double? lang;
+  String? lat;
+  String? lang;
   bool isSelected;
 
   // PharmacyShippingPickup(

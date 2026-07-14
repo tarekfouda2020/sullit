@@ -11,7 +11,7 @@ class PharmacyBranchDomainModel extends BaseDomainModel {
   final String latitude;
   final String longitude;
   final bool isDefault;
-  final double distanceKm;
+  final double? distanceKm;
   bool isSelected;
 
    PharmacyBranchDomainModel({
@@ -25,7 +25,7 @@ class PharmacyBranchDomainModel extends BaseDomainModel {
     required this.latitude,
     required this.longitude,
     required this.isDefault,
-    required this.distanceKm,
+    this.distanceKm,
      this.isSelected = false,
   });
 }

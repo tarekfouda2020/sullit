@@ -54,10 +54,10 @@ class BuildOrderInfo extends StatelessWidget {
             subTitle: orderModel.paymentMethod,
           ),
           Visibility(
-            visible: orderModel.additionalInfo != '',
+            visible: orderModel.additionalInfo?.isNotEmpty == true,
             child: BuildOrderInfoItem(
               title: "${tr('additionalInfo')} :",
-              subTitle: orderModel.additionalInfo,
+              subTitle: orderModel.additionalInfo ?? "",
             ),
           ),
         ],

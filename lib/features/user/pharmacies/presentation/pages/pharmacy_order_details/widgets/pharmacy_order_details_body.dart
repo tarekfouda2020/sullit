@@ -19,6 +19,7 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
                   child: ListView(
                     padding: Dimens.paddingAll20PX,
                     children: [
+                      if(state.data!.orderDetails.isNotEmpty == true)
                       OrderPharamCardWidget(
                         url: state.data!.orderDetails.first.product?.shop?.logo ?? "",
                         text: state.data!.orderDetails.first.product?.shop?.name  ?? "",
@@ -47,6 +48,13 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
                       PharmacyOrderProductsWidget(
                         order: state.data!,
                       ),
+                      if ((state.data?.additionalInfo ?? "").isNotEmpty) ...[
+                        Gaps.vGap20,
+                        AdditionalNotesWidget(
+                          additionalInfo: state.data!.additionalInfo!,
+                          pharmacyReply: state.data!.pharmacyReply,
+                        ),
+                      ],
                       Gaps.vGap20,
                       if (state.data?.awaitingCustomerCompletion == false &&
                           state.data?.isPendingReview == false && state.data?.isCanceled == false)

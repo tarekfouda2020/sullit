@@ -32,7 +32,7 @@ class Orders extends BaseDomainModel {
   bool paymentStatus;
   String paymentStatusText;
   bool availableCancelOrder;
-  String additionalInfo;
+  String? additionalInfo;
   String paymentMethod;
   String paymentMethodConst;
   String shippingMethod;
@@ -73,6 +73,10 @@ class Orders extends BaseDomainModel {
   String? cancelReason;
   List<PharmacyAttachmentDomainModel>? insuranceAttachments;
   List<PharmacyAttachmentDomainModel>? prescriptionAttachments;
+  String? identityDocumentFile;
+  String? requestedBy;
+  String? requestedByLabel;
+  String? pharmacyReply;
 
 
   Orders({
@@ -95,7 +99,7 @@ class Orders extends BaseDomainModel {
     required this.paymentStatus,
     required this.paymentStatusText,
     required this.availableCancelOrder,
-    required this.additionalInfo,
+    this.additionalInfo,
     required this.paymentMethod,
     required this.shopType,
     required this.paymentMethodConst,
@@ -136,6 +140,10 @@ class Orders extends BaseDomainModel {
     this.prescriptionAttachments,
     this.insuranceCompany,
     this.cancelReason,
+    this.identityDocumentFile,
+    this.requestedBy,
+    this.requestedByLabel,
+    this.pharmacyReply,
   });
 
   int totalItemsCount() => orderDetails.fold(

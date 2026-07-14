@@ -21,6 +21,10 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_chec
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_confirm_summary_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_confirm_order_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_confirm_order_model/pharmacy_confirm_order_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_order_requested_by_model/pharmacy_order_requested_by_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_order_terms_model/pharmacy_order_terms_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/saved_prescription_model/saved_prescription_model.dart';
+import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: PharmaciesSources)
@@ -91,12 +95,25 @@ class ImplPharmaciesSources extends PharmaciesSources {
 
 
 
-
-
   @override
   Future<Either<Failure, OrderSummaryModel>> createOrder(PharmacyCreateOrderParams param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.createPharmacyOrder,
+      requestBody: param.toJson(),
+      requestMethod: RequestMethod.post,
+      responseType: ResType.model,
+      showLoader: true,
+      toJsonFunc: (data) => OrderSummaryModel.fromJson(data),
+      responseKey: (data) => data['data'],
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<OrderSummaryModel>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, OrderSummaryModel>> createPrescriptionOrder(PharmacyCreateOrderParams param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.createPharmacyPrescriptionOrder,
       requestBody: param.toJson(),
       requestMethod: RequestMethod.post,
       responseType: ResType.model,
@@ -150,6 +167,51 @@ class ImplPharmaciesSources extends PharmaciesSources {
       responseKey: (data) => data['data']['branches'],
     );
     return await GenericHttpImpl<List<PharmacyBranchModel>>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, List<PharmacyOrderRequestedBy>>> getPharmacyOrderRequestedBy() async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.pharmacyOrderRequestedBy,
+      requestMethod: RequestMethod.get,
+      responseType: ResType.list,
+      showLoader: false,
+      toJsonFunc: (json) => List<PharmacyOrderRequestedBy>.from(
+        json.map((e) => PharmacyOrderRequestedBy.fromJson(e)),
+      ),
+      responseKey: (data) => data['data'],
+    );
+    return await GenericHttpImpl<List<PharmacyOrderRequestedBy>>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, PharmacyOrderTerms>> getPharmacyOrderTerms() async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.pharmacyOrderTerms,
+      requestMethod: RequestMethod.get,
+      responseType: ResType.model,
+      showLoader: false,
+      toJsonFunc: (json) => PharmacyOrderTerms.fromJson(json),
+      responseKey: (data) => data['data'],
+    );
+    return await GenericHttpImpl<PharmacyOrderTerms>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, List<SavedPrescriptionApiModel>>> getSavedPrescriptions(
+      GenericPaginateParams param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.prescriptions + param.paramsToQuery(),
+      requestMethod: RequestMethod.get,
+      responseType: ResType.list,
+      refresh: param.refresh,
+      showLoader: false,
+      toJsonFunc: (json) => List<SavedPrescriptionApiModel>.from(
+        json.map((e) => SavedPrescriptionApiModel.fromJson(e)),
+      ),
+      responseKey: (data) => data['data']['prescriptions'],
+    );
+    return await GenericHttpImpl<List<SavedPrescriptionApiModel>>().call(model);
   }
 
 }

@@ -178,4 +178,7 @@ class AppDarkColors extends AppColors {
 
   @override
   Color get gray7 => const Color(0xffF0F0F0);
+
+  @override
+  Color get pharmSloganDark => const Color(0xff033748);
 }

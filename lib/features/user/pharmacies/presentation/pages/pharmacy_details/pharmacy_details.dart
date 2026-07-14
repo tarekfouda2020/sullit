@@ -5,6 +5,7 @@ class PharmacyDetails extends StatefulWidget {
   final int pharmacyId;
   final int? selectedCategoryId;
   final String? selectedCategoryName;
+
   const PharmacyDetails(
       {super.key,
       this.fromCart = false,

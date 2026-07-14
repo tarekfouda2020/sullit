@@ -21,7 +21,8 @@ class OrderSummaryModel extends BaseApiModel<OrderSummaryDomainModel>
           @JsonKey(name: 'section_orders') List<OrderModel>? sectionOrders,
             /// return with pharmacy
           @JsonKey(name: 'order') OrderModel? orderDetails,
-          @JsonKey(name: 'transaction_url') String? transactionUrl}) =
+          @JsonKey(name: 'transaction_url') String? transactionUrl
+          }) =
       _OrderSummaryModel;
 
   factory OrderSummaryModel.fromJson(Map<String, dynamic> json) =>
