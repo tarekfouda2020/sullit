@@ -55,6 +55,7 @@ import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tab_type.dar
 import '../../../data/enum/banner_link_type_enum.dart';
 import '../../../domain/models/banner_domain_model.dart';
 import '../../../domain/models/slider_domain_model.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 part 'home_main.dart';
 part 'home_main_controller.dart';

@@ -56,8 +56,7 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
                         ),
                       ],
                       Gaps.vGap20,
-                      if (state.data?.awaitingCustomerCompletion == false &&
-                          state.data?.isPendingReview == false && state.data?.isCanceled == false)
+                      if (state.data?.isPendingReview == false && state.data?.isCanceled == false)
                         PharmacyConfirmSummaryWidget(
                             order: state.data!, controller: controller)
                     ],

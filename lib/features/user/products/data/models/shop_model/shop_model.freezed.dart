@@ -50,6 +50,7 @@ mixin _$ShopModel {
   String? get youtube => throw _privateConstructorUsedError;
   num get rating => throw _privateConstructorUsedError;
   bool get follow => throw _privateConstructorUsedError;
+  ShopPickupModel? get pickup => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -87,7 +88,10 @@ abstract class $ShopModelCopyWith<$Res> {
       String? instagram,
       String? youtube,
       num rating,
-      bool follow});
+      bool follow,
+      ShopPickupModel? pickup});
+
+  $ShopPickupModelCopyWith<$Res>? get pickup;
 }
 
 /// @nodoc
@@ -127,6 +131,7 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
     Object? youtube = freezed,
     Object? rating = null,
     Object? follow = null,
+    Object? pickup = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -225,7 +230,23 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
           ? _value.follow
           : follow // ignore: cast_nullable_to_non_nullable
               as bool,
+      pickup: freezed == pickup
+          ? _value.pickup
+          : pickup // ignore: cast_nullable_to_non_nullable
+              as ShopPickupModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ShopPickupModelCopyWith<$Res>? get pickup {
+    if (_value.pickup == null) {
+      return null;
+    }
+
+    return $ShopPickupModelCopyWith<$Res>(_value.pickup!, (value) {
+      return _then(_value.copyWith(pickup: value) as $Val);
+    });
   }
 }
 
@@ -261,7 +282,11 @@ abstract class _$$_ShopModelCopyWith<$Res> implements $ShopModelCopyWith<$Res> {
       String? instagram,
       String? youtube,
       num rating,
-      bool follow});
+      bool follow,
+      ShopPickupModel? pickup});
+
+  @override
+  $ShopPickupModelCopyWith<$Res>? get pickup;
 }
 
 /// @nodoc
@@ -299,6 +324,7 @@ class __$$_ShopModelCopyWithImpl<$Res>
     Object? youtube = freezed,
     Object? rating = null,
     Object? follow = null,
+    Object? pickup = freezed,
   }) {
     return _then(_$_ShopModel(
       id: null == id
@@ -397,6 +423,10 @@ class __$$_ShopModelCopyWithImpl<$Res>
           ? _value.follow
           : follow // ignore: cast_nullable_to_non_nullable
               as bool,
+      pickup: freezed == pickup
+          ? _value.pickup
+          : pickup // ignore: cast_nullable_to_non_nullable
+              as ShopPickupModel?,
     ));
   }
 }
@@ -430,7 +460,8 @@ class _$_ShopModel extends _ShopModel {
       required this.instagram,
       required this.youtube,
       required this.rating,
-      required this.follow})
+      required this.follow,
+      this.pickup})
       : _sliders = sliders,
         _categories = categories,
         _insuranceCompanies = insuranceCompanies,
@@ -517,10 +548,12 @@ class _$_ShopModel extends _ShopModel {
   final num rating;
   @override
   final bool follow;
+  @override
+  final ShopPickupModel? pickup;
 
   @override
   String toString() {
-    return 'ShopModel(id: $id, userId: $userId, hasBranches: $hasBranches, shopType: $shopType, name: $name, sliders: $sliders, categories: $categories, insuranceCompanies: $insuranceCompanies, title: $title, description: $description, logo: $logo, packageInvalidAt: $packageInvalidAt, products: $products, orders: $orders, address: $address, email: $email, phone: $phone, facebook: $facebook, google: $google, twitter: $twitter, instagram: $instagram, youtube: $youtube, rating: $rating, follow: $follow)';
+    return 'ShopModel(id: $id, userId: $userId, hasBranches: $hasBranches, shopType: $shopType, name: $name, sliders: $sliders, categories: $categories, insuranceCompanies: $insuranceCompanies, title: $title, description: $description, logo: $logo, packageInvalidAt: $packageInvalidAt, products: $products, orders: $orders, address: $address, email: $email, phone: $phone, facebook: $facebook, google: $google, twitter: $twitter, instagram: $instagram, youtube: $youtube, rating: $rating, follow: $follow, pickup: $pickup)';
   }
 
   @override
@@ -560,7 +593,8 @@ class _$_ShopModel extends _ShopModel {
                 other.instagram == instagram) &&
             (identical(other.youtube, youtube) || other.youtube == youtube) &&
             (identical(other.rating, rating) || other.rating == rating) &&
-            (identical(other.follow, follow) || other.follow == follow));
+            (identical(other.follow, follow) || other.follow == follow) &&
+            (identical(other.pickup, pickup) || other.pickup == pickup));
   }
 
   @JsonKey(ignore: true)
@@ -590,7 +624,8 @@ class _$_ShopModel extends _ShopModel {
         instagram,
         youtube,
         rating,
-        follow
+        follow,
+        pickup
       ]);
 
   @JsonKey(ignore: true)
@@ -634,7 +669,8 @@ abstract class _ShopModel extends ShopModel {
       required final String? instagram,
       required final String? youtube,
       required final num rating,
-      required final bool follow}) = _$_ShopModel;
+      required final bool follow,
+      final ShopPickupModel? pickup}) = _$_ShopModel;
   const _ShopModel._() : super._();
 
   factory _ShopModel.fromJson(Map<String, dynamic> json) =
@@ -694,8 +730,258 @@ abstract class _ShopModel extends ShopModel {
   @override
   bool get follow;
   @override
+  ShopPickupModel? get pickup;
+  @override
   @JsonKey(ignore: true)
   _$$_ShopModelCopyWith<_$_ShopModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ShopPickupModel _$ShopPickupModelFromJson(Map<String, dynamic> json) {
+  return _ShopPickupModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ShopPickupModel {
+  int get id => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  @JsonKey(name: 'postal_code')
+  String get postalCode => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
+  double get lat => throw _privateConstructorUsedError;
+  double get lang => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ShopPickupModelCopyWith<ShopPickupModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ShopPickupModelCopyWith<$Res> {
+  factory $ShopPickupModelCopyWith(
+          ShopPickupModel value, $Res Function(ShopPickupModel) then) =
+      _$ShopPickupModelCopyWithImpl<$Res, ShopPickupModel>;
+  @useResult
+  $Res call(
+      {int id,
+      String address,
+      @JsonKey(name: 'postal_code') String postalCode,
+      String phone,
+      double lat,
+      double lang});
+}
+
+/// @nodoc
+class _$ShopPickupModelCopyWithImpl<$Res, $Val extends ShopPickupModel>
+    implements $ShopPickupModelCopyWith<$Res> {
+  _$ShopPickupModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? address = null,
+    Object? postalCode = null,
+    Object? phone = null,
+    Object? lat = null,
+    Object? lang = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      postalCode: null == postalCode
+          ? _value.postalCode
+          : postalCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      lat: null == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as double,
+      lang: null == lang
+          ? _value.lang
+          : lang // ignore: cast_nullable_to_non_nullable
+              as double,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ShopPickupModelCopyWith<$Res>
+    implements $ShopPickupModelCopyWith<$Res> {
+  factory _$$_ShopPickupModelCopyWith(
+          _$_ShopPickupModel value, $Res Function(_$_ShopPickupModel) then) =
+      __$$_ShopPickupModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      String address,
+      @JsonKey(name: 'postal_code') String postalCode,
+      String phone,
+      double lat,
+      double lang});
+}
+
+/// @nodoc
+class __$$_ShopPickupModelCopyWithImpl<$Res>
+    extends _$ShopPickupModelCopyWithImpl<$Res, _$_ShopPickupModel>
+    implements _$$_ShopPickupModelCopyWith<$Res> {
+  __$$_ShopPickupModelCopyWithImpl(
+      _$_ShopPickupModel _value, $Res Function(_$_ShopPickupModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? address = null,
+    Object? postalCode = null,
+    Object? phone = null,
+    Object? lat = null,
+    Object? lang = null,
+  }) {
+    return _then(_$_ShopPickupModel(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      postalCode: null == postalCode
+          ? _value.postalCode
+          : postalCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      lat: null == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as double,
+      lang: null == lang
+          ? _value.lang
+          : lang // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_ShopPickupModel extends _ShopPickupModel {
+  const _$_ShopPickupModel(
+      {required this.id,
+      required this.address,
+      @JsonKey(name: 'postal_code') required this.postalCode,
+      required this.phone,
+      required this.lat,
+      required this.lang})
+      : super._();
+
+  factory _$_ShopPickupModel.fromJson(Map<String, dynamic> json) =>
+      _$$_ShopPickupModelFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String address;
+  @override
+  @JsonKey(name: 'postal_code')
+  final String postalCode;
+  @override
+  final String phone;
+  @override
+  final double lat;
+  @override
+  final double lang;
+
+  @override
+  String toString() {
+    return 'ShopPickupModel(id: $id, address: $address, postalCode: $postalCode, phone: $phone, lat: $lat, lang: $lang)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ShopPickupModel &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.postalCode, postalCode) ||
+                other.postalCode == postalCode) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.lang, lang) || other.lang == lang));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, address, postalCode, phone, lat, lang);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ShopPickupModelCopyWith<_$_ShopPickupModel> get copyWith =>
+      __$$_ShopPickupModelCopyWithImpl<_$_ShopPickupModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ShopPickupModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ShopPickupModel extends ShopPickupModel {
+  const factory _ShopPickupModel(
+      {required final int id,
+      required final String address,
+      @JsonKey(name: 'postal_code') required final String postalCode,
+      required final String phone,
+      required final double lat,
+      required final double lang}) = _$_ShopPickupModel;
+  const _ShopPickupModel._() : super._();
+
+  factory _ShopPickupModel.fromJson(Map<String, dynamic> json) =
+      _$_ShopPickupModel.fromJson;
+
+  @override
+  int get id;
+  @override
+  String get address;
+  @override
+  @JsonKey(name: 'postal_code')
+  String get postalCode;
+  @override
+  String get phone;
+  @override
+  double get lat;
+  @override
+  double get lang;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ShopPickupModelCopyWith<_$_ShopPickupModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

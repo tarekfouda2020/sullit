@@ -56,6 +56,7 @@ class _MoreState extends State<More> with WidgetsBindingObserver {
           // ),
           Gaps.vGap16,
           ShortCutSectionWidget(controller: controller),
+          MyHealthDashboardSectionWidget(controller: controller),
           ShopByWidget(controller: controller),
           SupportSectionWidget(controller: controller),
           OtherSectionWidget(controller: controller),

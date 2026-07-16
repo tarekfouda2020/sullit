@@ -21,6 +21,7 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_orde
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_order_terms_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/saved_prescription_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/upload_prescription_params.dart';
 
 import '../../../purchasing/presentation/pages/order_summary/order_summary_imports.dart';
 
@@ -48,5 +49,10 @@ abstract class PharmaciesRepository {
 
   Future<Either<Failure, List<SavedPrescriptionModel>>> getSavedPrescriptions(
       GenericPaginateParams param);
+
+  Future<Either<Failure, bool>> deleteSavedPrescription(int param);
+
+  Future<Either<Failure, SavedPrescriptionModel>> uploadPrescription(
+      UploadPrescriptionParams param);
 
 }

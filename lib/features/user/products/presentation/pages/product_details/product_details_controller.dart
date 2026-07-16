@@ -171,7 +171,7 @@ class ProductDetailsController implements CartSheetController {
   }
 
   void onChangeFollowing(BuildContext context, int shopId) async {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
+    bool auth = context.isAuth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
       return;
@@ -298,21 +298,39 @@ class ProductDetailsController implements CartSheetController {
   }
 
   void onAddToCart(BuildContext context) {
-    getIt<CartHelper>().addProductToCart(
-      context,
-      qtyCubit.state.data,
-      detailsCubit.state.data?.product.variant?.id,
-      callCartData: true,
-      type: getProductType,
-      // onAddCartFunc: () => showCartSuccessDialog(context),
-      onAddCartFunc: () {
-        FacebookEventsHelper.instance.productAddToCart(
-            id: detailsCubit.state.data!.product.id!,
-            price: detailsCubit.state.data!.product.variant?.calculablePrice ??
-                "");
-        showCartSuccessSheet(context);
-      },
-    );
+   if(isPharmProduct){
+     getIt<CartHelper>().addPharmacyProductToCart(
+       context,
+       qtyCubit.state.data,
+       detailsCubit.state.data?.product.variant?.id,
+       branchId,
+       // onAddCartFunc: () => showCartSuccessDialog(context),
+       onAddCartFunc: () {
+         FacebookEventsHelper.instance.productAddToCart(
+             id: detailsCubit.state.data!.product.id!,
+             price: detailsCubit.state.data!.product.variant?.calculablePrice ??
+                 "");
+         showCartSuccessSheet(context);
+       },
+     );
+   }else{
+     getIt<CartHelper>().addProductToCart(
+       context,
+       qtyCubit.state.data,
+       detailsCubit.state.data?.product.variant?.id,
+       callCartData: true,
+       type: getProductType,
+       // onAddCartFunc: () => showCartSuccessDialog(context),
+       onAddCartFunc: () {
+         FacebookEventsHelper.instance.productAddToCart(
+             id: detailsCubit.state.data!.product.id!,
+             price: detailsCubit.state.data!.product.variant?.calculablePrice ??
+                 "");
+         showCartSuccessSheet(context);
+       },
+     );
+   }
+
   }
 
   @override
@@ -442,6 +460,11 @@ class ProductDetailsController implements CartSheetController {
   }
 
   void showCartSuccessSheet(BuildContext context) {
+    if(isPharmProduct){
+      getIt<CartHelper>().getCartItems(refresh: true, type: CartTypeEnum.pharmacy);
+    }else{
+      getIt<CartHelper>().getCartItems(refresh: true, type: CartTypeEnum.general);
+    }
     getIt<CartHelper>().showCartSuccessSheet(
         context,
         controller: this,

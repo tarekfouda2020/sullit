@@ -36,6 +36,13 @@ class PharmacyDetailsController {
 
   LatLng? get savedLocation => GlobalState.instance.get(GlobalStateKeys.userLocation);
 
+  bool get haveBranches => pharmacyBloc.state.data?.hasBranches == true;
+
+  int? get selectedBranchId => selectedBranchCubit.state.data?.id;
+
+  int? get getPharmacyId => pharmacyBloc.state.data?.id ?? pharmacyId;
+
+
   PharmacyDetailsController(
       {required this.pharmacyId,
       this.fromCart = false,
@@ -62,7 +69,6 @@ class PharmacyDetailsController {
     _getPharmacyProducts();
   }
 
-  int? get getPharmacyId => pharmacyBloc.state.data?.id ?? pharmacyId;
 
   // Future<void> getCartAndProductsData()async{
   //   getCartItems(refresh: false);
@@ -191,8 +197,10 @@ class PharmacyDetailsController {
 
   Future<void> getPharmacyBranches(int page, {bool refresh = true}) async {
     PharmacyBranchesParams params = _branchesParams(page, refresh);
-    var data = await GetPharmacyBranches().call(params);
-    final isLastPage = data.length < AppConstants.instance.paginationLimit;
+    List<PharmacyBranchDomainModel> data = await GetPharmacyBranches().call(params);
+    PharmacyBranchDomainModel? defaultBranch = data.firstWhereOrNull((branch) => branch.isDefault);
+    selectedBranchCubit.onUpdateData(defaultBranch);
+    bool isLastPage = data.length < AppConstants.instance.paginationLimit;
     if (page == 1) {
       branchesPagingController.itemList = [];
     }
@@ -355,6 +363,9 @@ class PharmacyDetailsController {
     var pharmacyProducts = data.items
         ?.where((element) => element.shopId == getPharmacyId)
         .toList();
+     if(haveBranches){
+       pharmacyProducts = data.items?.where((element) => element.branchId == selectedBranchId).toList();
+     }
     data.calculableTotal = pharmacyProducts?.fold<double>(
         0, (sum, item) => sum + item.calculableTotal);
     cartItemsBloc.onUpdateData(data);
@@ -494,18 +505,45 @@ class PharmacyDetailsController {
 
 
   void selectBranch( BuildContext context,PharmacyBranchDomainModel model){
+    if(model.isSelected){
+      return ;
+    }
+
+    List<GeneralCartItem> cartData = cartItemsBloc.state.data.items ?? [];
+    if(cartData.isEmpty){
+      _updateSelectedBranch(context, model);
+      return ;
+    }
+    _showChangeBranchDialog(context,model);
+  }
+
+  void _showChangeBranchDialog(BuildContext pageContext, PharmacyBranchDomainModel model) {
+    showDialog(
+      context: pageContext,
+      builder: (dialogContext) => ChangeBranchDialogWidget(
+        pharmacyName: pharmacyBloc.state.data?.name ?? "",
+        onClearCart: () async{
+          await clearCart(dialogContext);
+          _updateSelectedBranch(pageContext, model);
+        },
+      ),
+    );
+  }
+
+  void _updateSelectedBranch( BuildContext context,PharmacyBranchDomainModel model){
     branchesPagingController.itemList = [...?branchesPagingController.itemList];
     for(PharmacyBranchDomainModel item in branchesPagingController.itemList ?? <PharmacyBranchDomainModel>[]){
       item.isSelected = false;
     }
     model.isSelected = true;
     selectedBranchCubit.onUpdateData(model);
-    Navigator.pop(context);
     productsPagingController.refresh();
-    _getPharmacyProducts();
+    getProducts(1,refresh: false);
+    getProducts(1);
+    var cartData = cartItemsBloc.state.data.items ??[];
     getCartItems(refresh: true);
+    Navigator.pop(context);
   }
-
 
 
   ShopCategoryParams _pharamcyCategoryParams(int id, int page, bool refresh) {

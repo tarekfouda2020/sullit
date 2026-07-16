@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -9,7 +8,7 @@ import '../../../cart/domain/models/delivery_instruction_model.dart';
 
 class PharmacyCreateOrderParams {
   int? addressId;
- final int? shopId;
+  final int? shopId;
   final String? paymentOption;
 
   final List<PharmacyShippingInfo> shippingInfo;
@@ -43,7 +42,7 @@ class PharmacyCreateOrderParams {
   PharmacyCreateOrderParams({
     this.paymentOption,
     required this.shippingInfo,
-     this.shopId,
+    this.shopId,
     this.addressId,
     this.applyLoyaltyPoints,
     this.couponCode,
@@ -67,77 +66,44 @@ class PharmacyCreateOrderParams {
 
   Map<String, dynamic> toJson() {
     return {
-      if(shopId!= null)
-      'shop_id': shopId,
-      if (paymentOption != null)
-        'payment_option': paymentOption,
-
-      // if (shippingInfo.isNotEmpty)
-      //   'shipping_info': jsonEncode(
-      //     shippingInfo.map((e) => e.toJson()).toList(),
-      //   ),
-
-      if (addressId != null)
-        'address_id': addressId,
-
+      if (shopId != null) 'shop_id': shopId,
+      if (paymentOption != null) 'payment_option': paymentOption,
+      if (shippingInfo.isNotEmpty)
+        'shipping_info': jsonEncode(
+          shippingInfo.map((e) => e.toJson()).toList(),
+        ),
+      if (addressId != null) 'address_id': addressId,
       if (applyLoyaltyPoints != null)
         'apply_loyalty_points': applyLoyaltyPoints,
-
-      if (couponCode != null)
-        'coupon_code': couponCode,
-
-      if (giftCardCode != null)
-        'gift_card_code': giftCardCode,
-
+      if (couponCode != null) 'coupon_code': couponCode,
+      if (giftCardCode != null) 'gift_card_code': giftCardCode,
       if (insuranceCompanyId != null)
         'insurance_company_id': insuranceCompanyId,
-
       if (applyInsurance != null)
         'apply_insurance': applyInsurance == true ? 1 : 0,
-
-      if (driverNotes?.isNotEmpty == true)
-        'driver_notes': driverNotes,
-
-      if (pickerNotes?.isNotEmpty == true)
-        'picker_notes': pickerNotes,
-
+      if (driverNotes?.isNotEmpty == true) 'driver_notes': driverNotes,
+      if (pickerNotes?.isNotEmpty == true) 'picker_notes': pickerNotes,
       if (savedPrescriptions != null)
         'saved_prescriptions': savedPrescriptions == true ? 1 : 0,
-
       if (identityDocumentFile != null)
         'identity_document_file': identityDocumentFile,
-
-      if (additionalInfo?.isNotEmpty == true)
-        'additional_info': additionalInfo,
-
-      if (requestedBy?.isNotEmpty == true)
-        'requested_by': requestedBy,
-
-      if (shopBranchId != null)
-        'shop_branch_id': shopBranchId,
-
+      if (additionalInfo?.isNotEmpty == true) 'additional_info': additionalInfo,
+      if (requestedBy?.isNotEmpty == true) 'requested_by': requestedBy,
+      if (shopBranchId != null) 'shop_branch_id': shopBranchId,
       if (allowReplacement != null)
         'allow_replacement': allowReplacement == true ? 1 : 0,
-
-      if (shippingType != null)
-        'shipping_type': shippingType!.getEnumValue(),
-
+      if (shippingType != null) 'shipping_type': shippingType!.getEnumValue(),
       if (prescriptionAttachmentIds?.isNotEmpty == true)
-       ... _prescriptionAttachmentIds,
-
+        ..._prescriptionAttachmentIds,
       if (instructions != null && instructions!.isNotEmpty)
         ..._driverInstructions,
-
       if (prescriptionAttachments != null &&
           prescriptionAttachments!.isNotEmpty)
         ..._prescriptionAttachments,
-
-      if (insuranceAttachments != null &&
-          insuranceAttachments!.isNotEmpty)
+      if (insuranceAttachments != null && insuranceAttachments!.isNotEmpty)
         ..._insuranceAttachments,
     };
   }
-
 
   Map<String, int> get _prescriptionAttachmentIds {
     final Map<String, int> map = <String, int>{};
@@ -148,8 +114,7 @@ class PharmacyCreateOrderParams {
     }
 
     for (int i = 0; i < prescriptionAttachmentIds!.length; i++) {
-      map["prescription_attachment_ids[$i]"] =
-      prescriptionAttachmentIds![i];
+      map["prescription_attachment_ids[$i]"] = prescriptionAttachmentIds![i];
     }
 
     return map;
@@ -183,7 +148,6 @@ class PharmacyCreateOrderParams {
     return map;
   }
 
-
   Map<String, int> get _driverInstructions {
     final Map<String, int> map = <String, int>{};
 
@@ -198,14 +162,13 @@ class PharmacyCreateOrderParams {
     return map;
   }
 
-
   void setShippingInfo(List<PharmacyShippingInfo> value) {
     shippingInfo
       ..clear()
       ..addAll(value);
   }
 
-  void setAddressId(int id) {
+  void setAddressId(int? id) {
     addressId = id;
   }
 
@@ -217,6 +180,35 @@ class PharmacyCreateOrderParams {
     shopBranchId = id;
   }
 
-
+  Map<String, dynamic> toPrescriptionOrderJson() {
+    return {
+      if (shopId != null) 'shop_id': shopId,
+      if (addressId != null) 'address_id': addressId,
+      if (shippingType != null) 'shipping_type': shippingType!.getEnumValue(),
+      if (shopBranchId != null) 'shop_branch_id': shopBranchId,
+      if (shippingInfo.isNotEmpty)
+        'shipping_info': jsonEncode(
+          shippingInfo.map((e) => e.toJson()).toList(),
+        ),
+      if (insuranceCompanyId != null)
+        'insurance_company_id': insuranceCompanyId,
+      if (applyInsurance != null)
+        'apply_insurance': applyInsurance == true ? 1 : 0,
+      if (additionalInfo?.isNotEmpty == true) 'additional_info': additionalInfo,
+      if (identityDocumentFile != null)
+        'identity_document_file': identityDocumentFile,
+      if (savedPrescriptions != null)
+        'saved_prescriptions': savedPrescriptions == true ? 1 : 0,
+      if (allowReplacement != null)
+        'allow_replacement': allowReplacement == true ? 1 : 0,
+      if (requestedBy?.isNotEmpty == true) 'requested_by': requestedBy,
+      if (insuranceAttachments != null && insuranceAttachments!.isNotEmpty)
+        ..._insuranceAttachments,
+      if (prescriptionAttachments != null &&
+          prescriptionAttachments!.isNotEmpty)
+        ..._prescriptionAttachments,
+      if (prescriptionAttachmentIds?.isNotEmpty == true)
+        ..._prescriptionAttachmentIds,
+    };
+  }
 }
-

@@ -8,6 +8,7 @@ import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescrip
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescription_order/views/pharmacy_address/pharmacy_address_imports.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescription_order/views/pharmacy_cart/pharmacy_cart_imports.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescription_order/views/pharmacy_check_out/pharmacy_check_out_imports.dart';
+import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/saved_prescriptions/saved_prescriptions_imports.dart';
 
 
 
@@ -21,4 +22,5 @@ const List<AutoRoute> pharmaciesRoute = [
   AdaptiveRoute(page: PharmacyCheckOut),
   AdaptiveRoute(page: PharmacyOrderDetails),
   AdaptiveRoute(page: AttachPrescription),
+  AdaptiveRoute(page: SavedPrescriptions),
 ];

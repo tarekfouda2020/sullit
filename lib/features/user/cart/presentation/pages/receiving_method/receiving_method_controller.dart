@@ -58,7 +58,7 @@ class ReceivingMethodController {
   }
 
   void onSelectPickUp(BuildContext context) {
-    var auth = context.read<DeviceCubit>().state.model.auth;
+    var auth = context.isAuth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
       return;

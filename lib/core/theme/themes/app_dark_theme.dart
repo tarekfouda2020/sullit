@@ -90,8 +90,8 @@ class AppDarkTheme extends AppTheme {
         onError: _colorsDark.white,
         background: _colorsDark.background,
         onBackground: _colorsDark.black,
-        surface: _colorsDark.primary,
-        onSurface: _colorsDark.white,
+        surface: _colorsDark.background,
+        onSurface: _colorsDark.black,
         brightness: Brightness.dark,
       );
 }

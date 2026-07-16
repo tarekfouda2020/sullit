@@ -42,7 +42,7 @@ class ApiNames {
 
   //products urls
   static const String getHome = "home";
-  static const String getProductDetails = "products";
+  static  String getProductDetails(int id) => "products/$id";
   static const String getPopularProducts = "mostpopulars";
 
   static String toggleWishlist(int id) => "products/$id/wishlist/toggle";
@@ -278,6 +278,10 @@ class ApiNames {
   static const String pharmacyOrderRequestedBy = "pharmacy-order-requested-by";
 
   static const String prescriptions = "prescriptions";
+
+  static const String uploadPrescription = "prescriptions";
+
+  static String deleteSavedPrescription(int id) => "prescriptions/$id/delete";
 
   static const String pharmacyOrderTerms = "pharmacy-order-terms";
 }

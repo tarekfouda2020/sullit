@@ -51,6 +51,7 @@ class _AttachPrescriptionState extends State<AttachPrescription> {
               current: 1,
               steps: PrescriptionOrderStepModel.prescriptionFlowSteps,
             ),
+            PharmacyInfoRowWidget(pharmacy: widget.pharmacy),
             Expanded(
               child: SingleChildScrollView(
                 padding: Dimens.paddingAll20PX,
@@ -80,12 +81,12 @@ class _AttachPrescriptionState extends State<AttachPrescription> {
                           children: [
                             Gaps.vGap15,
                             SelectInsuranceCompanyWidget(controller: controller),
+                            Gaps.vGap20,
+                            AttachHealthInsuranceDocumentWidget(controller: controller),
                           ],
                         );
                       },
                     ),
-                    Gaps.vGap20,
-                    AttachHealthInsuranceDocumentWidget(controller: controller),
                     Gaps.vGap20,
                     Text(
                       "Requested by",

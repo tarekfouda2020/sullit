@@ -20,26 +20,26 @@ class PharmacyBottomNavWidget extends StatelessWidget {
             spacing: 14,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Visibility(
-                visible: controller.insuranceAllowInCart,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-                  decoration: BoxDecoration(
-                      color: context.colors.customBackground,
-                      borderRadius: Dimens.borderRadius8PX),
-                  child: Row(
-                    children: [
-                      CustomCheckBoxWidget(
-                          changeValueCubit: controller.haveInsuranceCubit,
-                      ),
-                      Text(
-                        "I’ have a health insurance",
-                        style: AppTextStyle.s16_w400(color: context.colors.black),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+              // Visibility(
+              //   visible: controller.insuranceAllowInCart,
+              //   child: Container(
+              //     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+              //     decoration: BoxDecoration(
+              //         color: context.colors.customBackground,
+              //         borderRadius: Dimens.borderRadius8PX),
+              //     child: Row(
+              //       children: [
+              //         CustomCheckBoxWidget(
+              //             changeValueCubit: controller.haveInsuranceCubit,
+              //         ),
+              //         Text(
+              //           "I’ have a health insurance",
+              //           style: AppTextStyle.s16_w400(color: context.colors.black),
+              //         )
+              //       ],
+              //     ),
+              //   ),
+              // ),
               Visibility(
                 visible: hasItems,
                 child: CustomBottomSafeAreaWidget(

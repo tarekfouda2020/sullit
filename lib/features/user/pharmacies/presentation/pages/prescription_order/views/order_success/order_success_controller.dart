@@ -12,6 +12,12 @@ class OrderSuccessController {
 
   final OrderSummaryDomainModel summary;
 
+  Orders? get firstSectionOrder =>
+      orderSummaryBloc.state.data?.sectionOrders?.firstOrNull;
+
+  Shop? get pharmacy =>
+      firstSectionOrder?.orderDetails.firstOrNull?.product?.shop;
+
   OrderSuccessController(this.summary) {
     orderSummaryBloc.onUpdateData(summary);
     getOrderFees(fromRemote: false);

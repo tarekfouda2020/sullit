@@ -60,7 +60,7 @@ class AddressesController {
   }
 
   void checkAddAddress(BuildContext context) async {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
+    bool auth = context.isAuth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
       return;

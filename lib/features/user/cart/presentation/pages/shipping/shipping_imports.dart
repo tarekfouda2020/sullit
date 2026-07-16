@@ -21,6 +21,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../../general/auth/domain/use_cases/set_resend_verify_code.dart';
 import 'widgets/shipping_widgets_imports.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 part 'shipping.dart';
 part 'shipping_controller.dart';

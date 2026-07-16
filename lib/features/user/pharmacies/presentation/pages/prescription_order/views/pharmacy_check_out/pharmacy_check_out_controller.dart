@@ -219,6 +219,7 @@ class PharmacyCheckOutController {
   Future<void> submitToCreateOrder() async {
     BuildContext ctx = getIt<GlobalContext>().context();
     PharmacyCreateOrderParams params = _orderParams();
+    // log("====>>>>>> params is ${params.toJson()} =====");
     OrderSummaryDomainModel? data = await CreatePharmacyOrder().call(params);
     if (data != null) {
       if (data.transactionUrl != null) {

@@ -127,7 +127,7 @@ class HomeController {
   }
 
   void checkAuth(BuildContext context) {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
+    bool auth = context.isAuth;
     if (auth) {
       context.read<CountCubit>().onUpdateCount(0, 0);
       getIt<AuthHelper>().onLogOut(context);

@@ -33,8 +33,8 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: (data.sectionOrders?.first.orderDetails.isNotEmpty == true
-                            ? data.sectionOrders?.first.orderDetails.first.product?.shop?.name
+                    text: (controller.firstSectionOrder?.orderDetails.isNotEmpty == true
+                            ? controller.firstSectionOrder?.orderDetails.first.product?.shop?.name
                             : null) ??
                         "",
                     style: AppTextStyle.s14_w600(color: context.colors.green),
@@ -59,7 +59,7 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
           ),
           Gaps.vGap10,
           Text(
-            "#${data.sectionOrders?.first.code??""}",
+            "#${controller.firstSectionOrder?.code??""}",
             style: AppTextStyle.s22_w700(color: context.colors.black),
           ),
           Gaps.vGap20,
@@ -76,7 +76,7 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
             Divider(color:context.colors.softGray,height: 1,thickness: 0.8,)
           ],
           Gaps.vGap20,
-          if(data.pharmNormalOrder == false && data.summary?.isPendingReview == false && data.summary?.awaitingCustomerCompletion == true && data.sectionOrders?.first.isCanceled == false)...[
+          if(data.pharmNormalOrder == false && data.summary?.isPendingReview == false && data.summary?.awaitingCustomerCompletion == true && controller.firstSectionOrder?.isCanceled == false)...[
             const AfterReviewHintWidget(title: "select payment method to proceed to checkout , You must talk action within 24 hours or order will be automatically cancelled",),
             Gaps.vGap20,
             Divider(color: context.colors.greyWhite),
@@ -84,7 +84,7 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
           ],
           _buildRow(context, "Date", data.summary?.orderDate ?? ""),
           Gaps.vGap10,
-          _buildRow(context, "Requested By ", (data.sectionOrders??[]).first.requestedByLabel ?? ""),
+          _buildRow(context, "Requested By ", controller.firstSectionOrder?.requestedByLabel ?? ""),
           Gaps.vGap10,
           _buildRow(context, "Address", data.summary?.shippingAddress ??""),
           Gaps.vGap10,
@@ -101,7 +101,7 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
             Gaps.vGap10,
             _buildRow(context, "Payment Method", data.summary?.paymentMethod ??""),
           ],
-          if (data.summary?.insuranceApplied == true && data.sectionOrders?.first.insuranceCompany != null) ...[
+          if (data.summary?.insuranceApplied == true && controller.firstSectionOrder?.insuranceCompany != null) ...[
             Gaps.vGap10,
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -115,7 +115,7 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
                         style: AppTextStyle.s14_w400(color: context.colors.black),
                       ),
                       TextSpan(
-                        text: data.sectionOrders?.first.insuranceCompany?.name ?? "",
+                        text: controller.firstSectionOrder?.insuranceCompany?.name ?? "",
                         style: AppTextStyle.s14_w600(color: context.colors.black),
                       ),
                     ],
@@ -130,7 +130,7 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
             PharmacyOrderAttachmentWidget(
               title: "View Prescription Doc.",
               iconPath: Res.fileIcon,
-              onTap: () => controller.openAttachment(context, (data.sectionOrders??[]).first.prescriptionAttachments!.first) ,
+              onTap: () => controller.openAttachment(context, controller.firstSectionOrder!.prescriptionAttachments!.first) ,
             )
           ],
           if(data.pharmOrderWithInsurance == true) ...[
@@ -138,16 +138,16 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
             PharmacyOrderAttachmentWidget(
               title: "View Health Insurance Doc.",
               iconPath: Res.medicFile,
-              onTap: () => controller.openAttachment(context, (data.sectionOrders??[]).first.insuranceAttachments!.first) ,
+              onTap: () => controller.openAttachment(context, controller.firstSectionOrder!.insuranceAttachments!.first) ,
             )
           ],
-          if((data.sectionOrders??[]).first.identityDocumentFile?.isNotEmpty == true) ...[
+          if(controller.firstSectionOrder?.identityDocumentFile?.isNotEmpty == true) ...[
             Gaps.vGap10,
             PharmacyOrderAttachmentWidget(
               title: "View National ID",
               iconPath: Res.fileIcon,
               onTap: () => controller.openIdentityDocument(
-                  context, (data.sectionOrders??[]).first.identityDocumentFile!),
+                  context, controller.firstSectionOrder!.identityDocumentFile!),
             )
           ]
         ],
@@ -180,8 +180,8 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
      bool hasPrescription = data.summary?.requiresPrescriptionReview == true;
      bool hasInsurance = data.summary?.insuranceApplied == true;
      bool isPendingReview = data.summary?.isPendingReview == true;
-     if(data.sectionOrders?.first.isCanceled == true){
-       return  data.sectionOrders?.first.cancelReason ??"Your Order has been canceled";
+     if(controller.firstSectionOrder?.isCanceled == true){
+       return  controller.firstSectionOrder?.cancelReason ??"Your Order has been canceled";
      }
     if (hasPrescription && hasInsurance) {
       return isPendingReview == false

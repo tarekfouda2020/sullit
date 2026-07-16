@@ -110,6 +110,7 @@ dependencies:
   screenshot: ^3.0.0
   app_links: ^6.4.1
   share_plus: ^12.0.1
+  collection: ^1.19.1
   timeago:
   timezone:
   country_calling_code_picker:

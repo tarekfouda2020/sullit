@@ -84,7 +84,7 @@ class _PharmacyProductCardWidgetState
         productId: product.id!,
         isResale: product.isResale!,
         fromSellerPage: widget.fromPharmPage,
-        branchId: product is PharmacyProduct ? product.branch?.id : null,
+        branchId: widget.controller.selectedBranchId,
       ),
     );
      widget.controller.refreshDataAfterRoute(result);

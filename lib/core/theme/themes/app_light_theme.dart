@@ -90,8 +90,8 @@ class AppLightTheme extends AppTheme {
         onError: _colorsLight.white,
         background: _colorsLight.background,
         onBackground: _colorsLight.black,
-        surface: _colorsLight.primary,
-        onSurface: _colorsLight.white,
+        surface: _colorsLight.background,
+        onSurface: _colorsLight.black,
         brightness: Brightness.light,
       );
 }

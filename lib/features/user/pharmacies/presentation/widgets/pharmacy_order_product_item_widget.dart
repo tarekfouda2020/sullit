@@ -8,6 +8,9 @@ class PharmacyOrderProductItemWidget extends StatelessWidget {
     required this.orderDetails,
   });
 
+  PharmacyProduct? get pharmacyProduct =>
+      orderDetails.product as PharmacyProduct?;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,7 +25,7 @@ class PharmacyOrderProductItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CachedImage(
-                url: orderDetails.product?.thumbnailImage ?? "",
+                url: pharmacyProduct?.thumbnailImage ?? "",
                 width: 46,
                 height: 46,
                 bgColor: Colors.transparent,
@@ -36,13 +39,14 @@ class PharmacyOrderProductItemWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        orderDetails.product?.name ?? "",
-                        style: AppTextStyle.s14_w600(color: context.colors.black),
+                        pharmacyProduct?.name ?? "",
+                        style:
+                            AppTextStyle.s14_w600(color: context.colors.black),
                       ),
                       Gaps.vGap5,
                       RatingBar.builder(
                         initialRating: (orderDetails.review?.rate ??
-                                orderDetails.product?.rating ??
+                                pharmacyProduct?.rating ??
                                 0.0)
                             .toDouble(),
                         minRating: 0,
@@ -59,21 +63,31 @@ class PharmacyOrderProductItemWidget extends StatelessWidget {
                         onRatingUpdate: (rating) {},
                       ),
                       Gaps.vGap7,
-                      DirhamPrice(
-                        amount: orderDetails.getPrice
-                            .toString()
-                            .formatAmount(),
-                        textStyle: AppTextStyle.s14_w600(
-                            color: context.colors.primary),
-                        currencyStyle: AppTextStyle.s16_w400(
-                            color: context.colors.primary),
+                      Row(
+                        children: [
+                          DirhamPrice(
+                            amount:
+                                orderDetails.getPrice.toString().formatAmount(),
+                            textStyle: AppTextStyle.s14_w600(
+                                color: context.colors.primary),
+                            currencyStyle: AppTextStyle.s16_w400(
+                                color: context.colors.primary),
+                          ),
+                          if (_haveDiscount()) ...[
+                            Gaps.hGap8,
+                            InsuranceCoverageBadgeWidget(
+                              percentage:
+                                  orderDetails.insuranceCoveragePercentage!,
+                            ),
+                          ],
+                        ],
                       ),
                       Gaps.vGap10,
                       Row(
                         children: [
                           Expanded(
                             child: Text(
-                              orderDetails.product?.unit ?? "",
+                              pharmacyProduct?.unit ?? "",
                               style: AppTextStyle.s14_w400(
                                   color: context.colors.textColor),
                             ),
@@ -102,8 +116,20 @@ class PharmacyOrderProductItemWidget extends StatelessWidget {
               )
             ],
           ),
+          if (orderDetails.instructions?.isNotEmpty == true) ...[
+            Gaps.vGap10,
+            PharmacyProductInstructionsWidget(
+              instructions: orderDetails.instructions!,
+            ),
+          ],
         ],
       ),
     );
+  }
+
+  bool _haveDiscount() {
+    var percentage = orderDetails.insuranceCoveragePercentage;
+    return percentage?.isNotEmpty == true
+        && (double.tryParse(percentage ?? "0.0") ??0) > 0;
   }
 }

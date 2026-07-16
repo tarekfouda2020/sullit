@@ -95,7 +95,7 @@ class HomeMainController {
   }
 
   void onChangeFav(Product item, BuildContext context) {
-    var isAuth = context.read<DeviceCubit>().state.model.auth;
+    var isAuth = context.isAuth;
     if (isAuth) {
       _synchronizeFavoriteStatus(item);
     }
@@ -334,7 +334,7 @@ class HomeMainController {
   }
 
   void routeToMembershipSubscribe(BuildContext context) {
-    bool isAuth = context.read<DeviceCubit>().state.model.auth;
+    bool isAuth = context.isAuth;
     if (isAuth) {
       AutoRouter.of(context).push(MembershipSubscribeRoute());
     } else {
@@ -351,7 +351,7 @@ class HomeMainController {
   }
 
   Future<void> goNotification(BuildContext context) async {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
+    bool auth = context.isAuth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
       return;

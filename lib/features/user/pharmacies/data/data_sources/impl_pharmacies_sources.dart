@@ -25,6 +25,7 @@ import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_order_
 import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_order_terms_model/pharmacy_order_terms_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/models/saved_prescription_model/saved_prescription_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/upload_prescription_params.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: PharmaciesSources)
@@ -114,7 +115,7 @@ class ImplPharmaciesSources extends PharmaciesSources {
   Future<Either<Failure, OrderSummaryModel>> createPrescriptionOrder(PharmacyCreateOrderParams param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.createPharmacyPrescriptionOrder,
-      requestBody: param.toJson(),
+      requestBody: param.toPrescriptionOrderJson(),
       requestMethod: RequestMethod.post,
       responseType: ResType.model,
       showLoader: true,
@@ -212,6 +213,35 @@ class ImplPharmaciesSources extends PharmaciesSources {
       responseKey: (data) => data['data']['prescriptions'],
     );
     return await GenericHttpImpl<List<SavedPrescriptionApiModel>>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, bool>> deleteSavedPrescription(int param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.deleteSavedPrescription(param),
+      requestMethod: RequestMethod.delete,
+      responseType: ResType.type,
+      showLoader: true,
+      responseKey: (data) => data["key"] == "success",
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<bool>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, SavedPrescriptionApiModel>> uploadPrescription(
+      UploadPrescriptionParams param) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.uploadPrescription,
+      requestBody: param.toJson(),
+      requestMethod: RequestMethod.post,
+      responseType: ResType.model,
+      showLoader: true,
+      toJsonFunc: (json) => SavedPrescriptionApiModel.fromJson(json),
+      responseKey: (data) => data['data'],
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<SavedPrescriptionApiModel>().call(model);
   }
 
 }

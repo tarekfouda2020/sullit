@@ -46,11 +46,13 @@ class GeneralCartItem extends BaseCartItemDomainModel {
 
   final bool? prescriptionRequired;
   final bool? insuranceEligible;
+  final int? branchId;
 
   GeneralCartItem({
     required this.id,
     this.prescriptionRequired,
     this.insuranceEligible,
+    this.branchId,
     required this.ownerId,
     required this.thumbnailImage,
     required this.name,
@@ -72,4 +74,6 @@ class GeneralCartItem extends BaseCartItemDomainModel {
     required this.loyaltyPoints,
     required this.hasSpecialLoyaltyPoints,
   });
+
+
 }

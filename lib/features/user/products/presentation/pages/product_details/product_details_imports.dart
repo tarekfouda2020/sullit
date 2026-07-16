@@ -41,6 +41,7 @@ import 'package:flutter_tdd/features/user/products/presentation/manager/cart_she
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 import 'package:flutter_tdd/features/user/vip_subscribe/presentation/pages/membership_subscribe/membership_subscribe_imports.dart';
 import 'widgets/product_details_widgets_imports.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 part 'product_details.dart';
 part 'product_details_controller.dart';

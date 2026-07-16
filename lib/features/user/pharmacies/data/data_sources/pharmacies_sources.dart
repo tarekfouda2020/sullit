@@ -20,6 +20,7 @@ import '../models/pharmacy_order_requested_by_model/pharmacy_order_requested_by_
 import '../models/pharmacy_order_terms_model/pharmacy_order_terms_model.dart';
 import '../models/saved_prescription_model/saved_prescription_model.dart';
 import '../../../category/domain/entities/generic_paginate_params.dart';
+import '../../domain/entity/upload_prescription_params.dart';
 
 abstract class PharmaciesSources {
   Future<Either<Failure, List<ShopCategoryModel>>> getShopCategories(
@@ -47,4 +48,9 @@ abstract class PharmaciesSources {
 
   Future<Either<Failure, List<SavedPrescriptionApiModel>>> getSavedPrescriptions(
       GenericPaginateParams param);
+
+  Future<Either<Failure, bool>> deleteSavedPrescription(int param);
+
+  Future<Either<Failure, SavedPrescriptionApiModel>> uploadPrescription(
+      UploadPrescriptionParams param);
 }

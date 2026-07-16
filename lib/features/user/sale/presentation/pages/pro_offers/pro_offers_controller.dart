@@ -51,7 +51,7 @@ class ProOffersController {
   }
 
   void routeToMembershipSubscribe(BuildContext context) {
-    bool isAuth = context.read<DeviceCubit>().state.model.auth;
+    bool isAuth = context.isAuth;
     if (isAuth) {
       AutoRouter.of(context).push(MembershipSubscribeRoute());
     } else {

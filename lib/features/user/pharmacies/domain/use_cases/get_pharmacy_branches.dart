@@ -13,7 +13,7 @@ class GetPharmacyBranches extends UseCase<List<PharmacyBranchDomainModel>, Pharm
     return result.fold(
             (l) => [],
             (branches) {
-              for(var item in branches){
+              for(PharmacyBranchDomainModel item in branches){
                 item.isSelected = item.isDefault;
               }
               return branches;

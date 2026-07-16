@@ -37,6 +37,9 @@ _$_ShopModel _$$_ShopModelFromJson(Map<String, dynamic> json) => _$_ShopModel(
       youtube: json['youtube'] as String?,
       rating: json['rating'] as num,
       follow: json['follow'] as bool,
+      pickup: json['pickup'] == null
+          ? null
+          : ShopPickupModel.fromJson(json['pickup'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ShopModelToJson(_$_ShopModel instance) =>
@@ -66,6 +69,27 @@ Map<String, dynamic> _$$_ShopModelToJson(_$_ShopModel instance) =>
       'youtube': instance.youtube,
       'rating': instance.rating,
       'follow': instance.follow,
+      'pickup': instance.pickup?.toJson(),
+    };
+
+_$_ShopPickupModel _$$_ShopPickupModelFromJson(Map<String, dynamic> json) =>
+    _$_ShopPickupModel(
+      id: (json['id'] as num).toInt(),
+      address: json['address'] as String,
+      postalCode: json['postal_code'] as String,
+      phone: json['phone'] as String,
+      lat: (json['lat'] as num).toDouble(),
+      lang: (json['lang'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$$_ShopPickupModelToJson(_$_ShopPickupModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'address': instance.address,
+      'postal_code': instance.postalCode,
+      'phone': instance.phone,
+      'lat': instance.lat,
+      'lang': instance.lang,
     };
 
 _$_ShopCategoryModel _$$_ShopCategoryModelFromJson(Map<String, dynamic> json) =>

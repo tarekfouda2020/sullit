@@ -20,10 +20,10 @@ class OrderSuccessBody extends StatelessWidget {
                   padding: Dimens.paddingAll20PX,
                   children: [
                     Gaps.vGap10,
-                    if(state.data!.sectionOrders?.first.orderDetails.isNotEmpty == true)
+                    if(controller.firstSectionOrder?.orderDetails.isNotEmpty == true)
                     OrderPharamCardWidget(
-                      url: state.data!.sectionOrders?.first.orderDetails.first.product?.shop?.logo ?? "",
-                      text: state.data!.sectionOrders?.first.orderDetails.first.product?.shop?.name  ?? "",
+                      url: controller.firstSectionOrder?.orderDetails.first.product?.shop?.logo ?? "",
+                      text: controller.firstSectionOrder?.orderDetails.first.product?.shop?.name  ?? "",
                     ),
                     Gaps.vGap10,
                     Stack(
@@ -34,13 +34,13 @@ class OrderSuccessBody extends StatelessWidget {
                             data: state.data!, controller: controller),
                         if (state.data?.pharmNormalOrder == false)
                           SvgPicture.asset(Res.orderConfirmImage)
-                        else if (state.data?.sectionOrders?.first.isCanceled ==
+                        else if (controller.firstSectionOrder?.isCanceled ==
                             true)
                           SvgPicture.asset(Res.confirmationAlertIcon)
                       ],
                     ),
                     Gaps.vGap20,
-                    if(state.data!.sectionOrders!.first.orderDetails.isNotEmpty)...[
+                    if(controller.firstSectionOrder?.orderDetails.isNotEmpty == true)...[
                       Text(
                         "Products",
                         style: AppTextStyle.s16_w700(color: context.colors.black),
@@ -53,12 +53,12 @@ class OrderSuccessBody extends StatelessWidget {
                         order: state.data!.sectionOrders![index],
                       );
                     }),
-                    if ((state.data!.sectionOrders?.first.additionalInfo ?? "")
+                    if ((controller.firstSectionOrder?.additionalInfo ?? "")
                         .isNotEmpty) ...[
                       Gaps.vGap20,
                       AdditionalNotesWidget(
-                        additionalInfo: state.data!.sectionOrders!.first.additionalInfo!,
-                        pharmacyReply: state.data!.sectionOrders!.first.pharmacyReply,
+                        additionalInfo: controller.firstSectionOrder!.additionalInfo!,
+                        pharmacyReply: controller.firstSectionOrder!.pharmacyReply,
                       ),
                     ],
                     Gaps.vGap20,
@@ -81,7 +81,7 @@ class OrderSuccessBody extends StatelessWidget {
                           child: DefaultButton(
                             title: "Track Shipment",
                             onTap: () => controller.routeToTrackOrder(
-                                context, state.data!.sectionOrders?.first.id),
+                                context, controller.firstSectionOrder?.id),
                             textColor: context.colors.white,
                             color: context.colors.green,
                             borderColor: context.colors.green,
@@ -99,5 +99,5 @@ class OrderSuccessBody extends StatelessWidget {
   bool _showOrderInvoice(GenericState<OrderSummaryDomainModel?> state) =>
       state.data?.pharmNormalOrder == false &&
       state.data?.summary?.isPendingReview == false &&
-      state.data?.sectionOrders?.first.isCanceled == false;
+      controller.firstSectionOrder?.isCanceled == false;
 }

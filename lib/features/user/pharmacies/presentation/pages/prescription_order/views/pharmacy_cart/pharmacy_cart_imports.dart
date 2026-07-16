@@ -30,6 +30,7 @@ import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescrip
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/profile/presentation/pages/profile/widgets/profile_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 
 part 'pharmacy_cart.dart';

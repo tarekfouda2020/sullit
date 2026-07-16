@@ -9,6 +9,11 @@ class ProductDetailsParams {
     this.branchId,
   });
 
+
+  Map<String,dynamic> toJson() =>{
+    if(branchId!= null) "branch_id" : branchId,
+  };
+
   String paramToQuery() {
     var query = "/$id";
     if (branchId != null) {

@@ -41,6 +41,11 @@ mixin _$OrderDetailsModel {
   @JsonKey(name: 'sold_by_name')
   String get soldBy => throw _privateConstructorUsedError;
   ReviewsModel? get review => throw _privateConstructorUsedError;
+  @JsonKey(name: 'picker_notes')
+  String? get pickerNotes => throw _privateConstructorUsedError;
+  String? get instructions => throw _privateConstructorUsedError;
+  @JsonKey(name: 'insurance_coverage_percentage')
+  String? get insuranceCoveragePercentage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -68,7 +73,11 @@ abstract class $OrderDetailsModelCopyWith<$Res> {
       @JsonKey(name: 'shipped_by') String? shippedBy,
       @JsonKey(name: 'sold_by_type') String soldByType,
       @JsonKey(name: 'sold_by_name') String soldBy,
-      ReviewsModel? review});
+      ReviewsModel? review,
+      @JsonKey(name: 'picker_notes') String? pickerNotes,
+      String? instructions,
+      @JsonKey(name: 'insurance_coverage_percentage')
+      String? insuranceCoveragePercentage});
 
   $ProductModelCopyWith<$Res>? get product;
   $ReviewsModelCopyWith<$Res>? get review;
@@ -101,6 +110,9 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
     Object? soldByType = null,
     Object? soldBy = null,
     Object? review = freezed,
+    Object? pickerNotes = freezed,
+    Object? instructions = freezed,
+    Object? insuranceCoveragePercentage = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -159,6 +171,18 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
           ? _value.review
           : review // ignore: cast_nullable_to_non_nullable
               as ReviewsModel?,
+      pickerNotes: freezed == pickerNotes
+          ? _value.pickerNotes
+          : pickerNotes // ignore: cast_nullable_to_non_nullable
+              as String?,
+      instructions: freezed == instructions
+          ? _value.instructions
+          : instructions // ignore: cast_nullable_to_non_nullable
+              as String?,
+      insuranceCoveragePercentage: freezed == insuranceCoveragePercentage
+          ? _value.insuranceCoveragePercentage
+          : insuranceCoveragePercentage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -209,7 +233,11 @@ abstract class _$$_OrderDetailsModelCopyWith<$Res>
       @JsonKey(name: 'shipped_by') String? shippedBy,
       @JsonKey(name: 'sold_by_type') String soldByType,
       @JsonKey(name: 'sold_by_name') String soldBy,
-      ReviewsModel? review});
+      ReviewsModel? review,
+      @JsonKey(name: 'picker_notes') String? pickerNotes,
+      String? instructions,
+      @JsonKey(name: 'insurance_coverage_percentage')
+      String? insuranceCoveragePercentage});
 
   @override
   $ProductModelCopyWith<$Res>? get product;
@@ -242,6 +270,9 @@ class __$$_OrderDetailsModelCopyWithImpl<$Res>
     Object? soldByType = null,
     Object? soldBy = null,
     Object? review = freezed,
+    Object? pickerNotes = freezed,
+    Object? instructions = freezed,
+    Object? insuranceCoveragePercentage = freezed,
   }) {
     return _then(_$_OrderDetailsModel(
       id: null == id
@@ -300,6 +331,18 @@ class __$$_OrderDetailsModelCopyWithImpl<$Res>
           ? _value.review
           : review // ignore: cast_nullable_to_non_nullable
               as ReviewsModel?,
+      pickerNotes: freezed == pickerNotes
+          ? _value.pickerNotes
+          : pickerNotes // ignore: cast_nullable_to_non_nullable
+              as String?,
+      instructions: freezed == instructions
+          ? _value.instructions
+          : instructions // ignore: cast_nullable_to_non_nullable
+              as String?,
+      insuranceCoveragePercentage: freezed == insuranceCoveragePercentage
+          ? _value.insuranceCoveragePercentage
+          : insuranceCoveragePercentage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -322,7 +365,11 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
       @JsonKey(name: 'shipped_by') this.shippedBy,
       @JsonKey(name: 'sold_by_type') required this.soldByType,
       @JsonKey(name: 'sold_by_name') required this.soldBy,
-      this.review})
+      this.review,
+      @JsonKey(name: 'picker_notes') this.pickerNotes,
+      this.instructions,
+      @JsonKey(name: 'insurance_coverage_percentage')
+      this.insuranceCoveragePercentage})
       : super._();
 
   factory _$_OrderDetailsModel.fromJson(Map<String, dynamic> json) =>
@@ -363,10 +410,18 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
   final String soldBy;
   @override
   final ReviewsModel? review;
+  @override
+  @JsonKey(name: 'picker_notes')
+  final String? pickerNotes;
+  @override
+  final String? instructions;
+  @override
+  @JsonKey(name: 'insurance_coverage_percentage')
+  final String? insuranceCoveragePercentage;
 
   @override
   String toString() {
-    return 'OrderDetailsModel(id: $id, product: $product, variation: $variation, quantity: $quantity, availableReturnQty: $availableReturnQty, deliveryType: $deliveryType, price: $price, tax: $tax, isAvailableReview: $isAvailableReview, msgCantReview: $msgCantReview, shippedBy: $shippedBy, soldByType: $soldByType, soldBy: $soldBy, review: $review)';
+    return 'OrderDetailsModel(id: $id, product: $product, variation: $variation, quantity: $quantity, availableReturnQty: $availableReturnQty, deliveryType: $deliveryType, price: $price, tax: $tax, isAvailableReview: $isAvailableReview, msgCantReview: $msgCantReview, shippedBy: $shippedBy, soldByType: $soldByType, soldBy: $soldBy, review: $review, pickerNotes: $pickerNotes, instructions: $instructions, insuranceCoveragePercentage: $insuranceCoveragePercentage)';
   }
 
   @override
@@ -395,7 +450,15 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
             (identical(other.soldByType, soldByType) ||
                 other.soldByType == soldByType) &&
             (identical(other.soldBy, soldBy) || other.soldBy == soldBy) &&
-            (identical(other.review, review) || other.review == review));
+            (identical(other.review, review) || other.review == review) &&
+            (identical(other.pickerNotes, pickerNotes) ||
+                other.pickerNotes == pickerNotes) &&
+            (identical(other.instructions, instructions) ||
+                other.instructions == instructions) &&
+            (identical(other.insuranceCoveragePercentage,
+                    insuranceCoveragePercentage) ||
+                other.insuranceCoveragePercentage ==
+                    insuranceCoveragePercentage));
   }
 
   @JsonKey(ignore: true)
@@ -415,7 +478,10 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
       shippedBy,
       soldByType,
       soldBy,
-      review);
+      review,
+      pickerNotes,
+      instructions,
+      insuranceCoveragePercentage);
 
   @JsonKey(ignore: true)
   @override
@@ -449,7 +515,11 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
       @JsonKey(name: 'shipped_by') final String? shippedBy,
       @JsonKey(name: 'sold_by_type') required final String soldByType,
       @JsonKey(name: 'sold_by_name') required final String soldBy,
-      final ReviewsModel? review}) = _$_OrderDetailsModel;
+      final ReviewsModel? review,
+      @JsonKey(name: 'picker_notes') final String? pickerNotes,
+      final String? instructions,
+      @JsonKey(name: 'insurance_coverage_percentage')
+      final String? insuranceCoveragePercentage}) = _$_OrderDetailsModel;
   const _OrderDetailsModel._() : super._();
 
   factory _OrderDetailsModel.fromJson(Map<String, dynamic> json) =
@@ -490,6 +560,14 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
   String get soldBy;
   @override
   ReviewsModel? get review;
+  @override
+  @JsonKey(name: 'picker_notes')
+  String? get pickerNotes;
+  @override
+  String? get instructions;
+  @override
+  @JsonKey(name: 'insurance_coverage_percentage')
+  String? get insuranceCoveragePercentage;
   @override
   @JsonKey(ignore: true)
   _$$_OrderDetailsModelCopyWith<_$_OrderDetailsModel> get copyWith =>

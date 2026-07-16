@@ -18,6 +18,8 @@ import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_she
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/pharmacy_product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 
 part 'insurance_item_widget.dart';
@@ -27,3 +29,6 @@ part 'pharmacy_order_attachment_widget.dart';
 part 'pick_branch_button_widget.dart';
 part 'branch_item_widget.dart';
 part 'branches_bottom_sheet_widget.dart';
+part 'pharmacy_info_row_widget.dart';
+part 'pharmacy_product_instructions_widget.dart';
+part 'insurance_coverage_badge_widget.dart';

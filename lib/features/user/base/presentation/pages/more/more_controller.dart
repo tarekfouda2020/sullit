@@ -24,11 +24,19 @@ class MoreController {
     }
   }
 
+  void onPressMyHealthPharmacyOrders(BuildContext context) {
+    checkAuth(context, MoreRoutes.myHealthPharmacyOrders);
+  }
+
+  void onPressSavedPrescriptions(BuildContext context) {
+    checkAuth(context, MoreRoutes.savedPrescriptions);
+  }
+
   void checkAuth(BuildContext context, MoreRoutes route) {
     if (canBePress(route)) {
       _getMoreItemRoute(route, context);
     } else {
-      bool auth = context.read<DeviceCubit>().state.model.auth;
+      bool auth = context.isAuth;
       if (auth) {
         _getMoreItemRoute(route, context);
       } else {
@@ -45,9 +53,12 @@ class MoreController {
       case MoreRoutes.purchasedProducts:
         AutoRouter.of(context).push( MyOrdersRoute(isPharmacy: false));
 
-        case MoreRoutes.pharmacyPurchasedProducts:
-        AutoRouter.of(context).push( MyOrdersRoute(isPharmacy: true));
-        // AutoRouter.of(context).push(const PurchasedHistoryRoute());
+        break;
+      case MoreRoutes.myHealthPharmacyOrders:
+        AutoRouter.of(context).push(MyOrdersRoute(isPharmacy: true));
+        break;
+      case MoreRoutes.savedPrescriptions:
+        AutoRouter.of(context).push(const SavedPrescriptionsRoute());
         break;
       case MoreRoutes.returnOrders:
         AutoRouter.of(context).push(const ReturnOrdersRoute());
@@ -230,7 +241,7 @@ class MoreController {
     }
   }
 // void callLanguages(BuildContext context) {
-//   //   bool isAuth = context.read<DeviceCubit>().state.model.auth;
+//   //   bool isAuth = context.isAuth;
 //   //   if (isAuth) {
 //   //    _getLanguages(false);
 //   //       _getLanguages(true);

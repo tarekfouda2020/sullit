@@ -80,12 +80,6 @@ class ShortCutSectionWidget extends StatelessWidget {
             image: Res.purchasedHistory,
           ),
           BuildMoreItem(
-            title: "Pharmacy orders",
-            onTap: () =>
-                controller.checkAuth(context, MoreRoutes.pharmacyPurchasedProducts),
-            image: Res.purchasedHistory,
-          ),
-          BuildMoreItem(
             image: Res.addAddresses,
             title: tr("myAddresses"),
             isSvg: true,

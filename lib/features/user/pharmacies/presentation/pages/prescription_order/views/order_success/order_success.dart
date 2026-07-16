@@ -44,6 +44,8 @@ class _OrderSuccessState extends State<OrderSuccess> {
                   ? PrescriptionOrderStepModel.prescriptionFlowSteps
                   : PrescriptionOrderStepModel.normalFlowSteps,
             ),
+            if (widget.havePrescription)
+              PharmacyInfoRowWidget(pharmacy: controller.pharmacy),
             Expanded(child: OrderSuccessBody(controller: controller)),
           ],
         ),

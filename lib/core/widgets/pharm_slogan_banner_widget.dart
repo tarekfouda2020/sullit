@@ -7,10 +7,12 @@ import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/res.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 class PharmSloganBannerWidget extends StatelessWidget {
   final String firstText;
@@ -26,9 +28,8 @@ class PharmSloganBannerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String lang = context.read<DeviceCubit>().state.model.locale.languageCode;
     return GestureDetector(
-      onTap: onTap,
+      onTap: ()=> _onTap(context),
       child: Container(
         padding: Dimens.paddingH10V10,
         decoration: BoxDecoration(
@@ -71,17 +72,33 @@ class PharmSloganBannerWidget extends StatelessWidget {
               height: 42,
               decoration: BoxDecoration(
                   color: context.colors.white, shape: BoxShape.circle),
-              child: Transform.rotate(
-                angle: lang == LangCodeHelper.langAR ? pi : 0,
-                child: Transform.scale(
-                    scale: 0.4, child: SvgPicture.asset(Res.arrowForward,
-                colorFilter: ColorFilter.mode(context.colors.pharmSloganDark, BlendMode.srcIn),
-                )),
-              ),
+              child: _buildTransform(context),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  void _onTap(BuildContext context) {
+      if(context.isAuth){
+      onTap();
+    }else{
+      CustomToast.showAuthDialog(context);
+    }
+  }
+
+  Transform _buildTransform(BuildContext context) {
+    String lang = context.read<DeviceCubit>().state.model.locale.languageCode;
+    return Transform.rotate(
+      angle: lang == LangCodeHelper.langAR ? pi : 0,
+      child: Transform.scale(
+          scale: 0.4,
+          child: SvgPicture.asset(
+            Res.arrowForward,
+            colorFilter: ColorFilter.mode(
+                context.colors.pharmSloganDark, BlendMode.srcIn),
+          )),
     );
   }
 }

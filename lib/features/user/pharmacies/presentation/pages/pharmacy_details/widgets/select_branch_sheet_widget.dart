@@ -18,7 +18,7 @@ class SelectBranchSheetWidget extends StatelessWidget {
           const BottomSheetHeaderWidget(title: "Select Branch"),
           Expanded(
               child: CustomRefreshIndicatorWidget(
-              onRefresh: () async{},
+              onRefresh: () async => controller.getPharmacyBranches(1) ,
               child:  PagedListView<int, PharmacyBranchDomainModel>(
                 pagingController: controller.branchesPagingController,
                 builderDelegate: PagedChildBuilderDelegate<PharmacyBranchDomainModel>(
@@ -28,13 +28,7 @@ class SelectBranchSheetWidget extends StatelessWidget {
                       controller: controller,
                     );
                   },
-                  noItemsFoundIndicatorBuilder: (cxt) =>
-                  const Center( child: CircularProgressIndicator(),),
-                  firstPageProgressIndicatorBuilder: (_) => Column(
-                    children: List.generate(2, (index) {
-                      return const Center( child: CircularProgressIndicator(),);
-                    }),
-                  ),
+                  firstPageProgressIndicatorBuilder: (_) => const CircularProgressIndicator(),
                   newPageProgressIndicatorBuilder: (context) => const Center(
                     child: SizedBox(
                       width: 25,

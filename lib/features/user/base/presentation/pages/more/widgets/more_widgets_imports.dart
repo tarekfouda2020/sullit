@@ -27,6 +27,7 @@ part 'build_more_header.dart';
 part 'build_more_item.dart';
 part 'more_grid_view_widget.dart';
 part 'shortcuts_section_widget.dart';
+part 'my_health_dashboard_section_widget.dart';
 part 'shop_by_section_widget.dart';
 part 'support_section_widget.dart';
 part 'other_section_widget.dart';

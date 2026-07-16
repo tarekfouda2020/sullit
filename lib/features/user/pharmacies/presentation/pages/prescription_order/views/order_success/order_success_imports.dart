@@ -22,9 +22,13 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_atta
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/prescription_order_step_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescription_order/views/order_success/widgets/widgets_imports.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescription_order/widgets/build_prescription_order_stepper.dart';
+import 'package:flutter_tdd/features/user/pharmacies/presentation/widgets/widgets_imports.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
 
 part 'order_success.dart';
 part 'order_success_controller.dart';

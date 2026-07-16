@@ -55,7 +55,7 @@ class PharmacyProduct extends Product {
       super.hasSpecialLoyaltyPoints,
       super.maxQnt,
       super.isAddedTCompare = false,
-      this.branch});
+      this.branch,});
 
   PharmacyProduct.fromJson(Map<String, dynamic> json) : super.fromJsonBase(json);
 }

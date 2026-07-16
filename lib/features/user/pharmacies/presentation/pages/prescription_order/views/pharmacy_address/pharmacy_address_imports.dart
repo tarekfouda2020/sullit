@@ -10,9 +10,13 @@ import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
+import 'package:flutter_tdd/core/helpers/loading_helper.dart';
+import 'package:flutter_tdd/core/helpers/location_service.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
@@ -42,6 +46,7 @@ import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/pharmacy
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescription_order/widgets/build_prescription_order_stepper.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/widgets/widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_pharmacy_shipping_info.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharamcy_shipping_info_params.dart';
@@ -50,6 +55,7 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_cart_s
 import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart';
 
 import 'widgets/widgets_imports.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 part 'pharmacy_address.dart';
 part 'pharmacy_address_controller.dart';

@@ -51,6 +51,7 @@ import 'package:flutter_tdd/res.dart';
 
 import '../../../../../category/presentation/pages/brands/widgets/brands_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tab_type.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 part 'build_best_rated.dart';
 part 'build_new_arrivals.dart';

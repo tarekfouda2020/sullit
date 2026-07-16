@@ -23,6 +23,7 @@ class PharmacyDetailsAppBar extends StatelessWidget {
                     pinned: true,
                     elevation: 0,
                     automaticallyImplyLeading: true,
+                    centerTitle: true,
                     leading: BackButton(color: context.colors.black),
                     title: AnimatedOpacity(
                       opacity: titleState.data ? 1 : 0,
@@ -93,8 +94,10 @@ class PharmacyDetailsAppBar extends StatelessWidget {
                                 onTap: () => controller.routeToPrescription(context),
                               ),
                             ),
-                            Gaps.vGap10,
-                            PickBranchWidget(controller: controller),
+                           if(controller.haveBranches)...[
+                             Gaps.vGap10,
+                             PickBranchWidget(controller: controller),
+                           ],
                             Gaps.vGap10,
                             PharmacyCategoriesWidgets(controller: controller),
                             PharmacyProductsSearchFieldWidget(
@@ -117,15 +120,21 @@ class PharmacyDetailsAppBar extends StatelessWidget {
     );
   }
 
-  bool get hasBranches =>
-      controller.pharmacyBloc.state.data?.hasBranches == true;
+  bool get haveBranches => controller.haveBranches;
+
+  /// Height budget for [PharmSloganBannerWidget] (Gaps.vGap10 + banner's own
+  /// vertical padding/content) — the banner is always shown in `bottom`, but
+  /// wasn't accounted for in the fixed height budgets below, which clipped
+  /// SupportedInsuranceWidget in the flexible space.
+  static const double _bannerHeight = 90;
 
   double get getExpandedHeight {
     double height =
         controller.categoriesPagingController.itemList?.isNotEmpty == true
             ? 565
             : 495;
-    if (hasBranches) {
+    height += _bannerHeight;
+    if (haveBranches) {
       height += 56;
     }
     return height;
@@ -136,7 +145,8 @@ class PharmacyDetailsAppBar extends StatelessWidget {
         controller.categoriesPagingController.itemList?.isNotEmpty == true
             ? 165
             : 90;
-    if (hasBranches) {
+    height += _bannerHeight;
+    if (haveBranches) {
       height += 56;
     }
     return height;

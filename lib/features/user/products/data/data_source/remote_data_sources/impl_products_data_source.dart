@@ -48,9 +48,10 @@ class ImplProductsDataSource extends ProductsDataSource {
   Future<Either<Failure, ProductDetailsModel>> getProductDetails(
       ProductDetailsParams param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.getProductDetails + param.paramToQuery(),
+      url: ApiNames.getProductDetails(param.id),
       responseType: ResType.model,
       requestMethod: RequestMethod.get,
+      requestBody: param.toJson().isNotEmpty ? param.toJson() : null,
       responseKey: (data) => data["data"],
       showLoader: false,
       refresh: param.refresh,

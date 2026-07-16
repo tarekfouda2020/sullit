@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_pickup.dart';
 
 class Shop extends BaseDomainModel {
   int? id;
@@ -25,6 +26,7 @@ class Shop extends BaseDomainModel {
   num? rating;
   bool? follow;
   bool? hasBranches;
+  ShopPickup? pickUp;
   List<String>? sliders;
   List<ShopCategory>? categories;
   List<InsuranceCompany>? insuranceCompanies;
@@ -55,6 +57,7 @@ class Shop extends BaseDomainModel {
     this.categories,
     this.insuranceCompanies,
     this.shopType,
+    this.pickUp,
     this.isSelect = false,
     required this.rating,
     required this.follow,

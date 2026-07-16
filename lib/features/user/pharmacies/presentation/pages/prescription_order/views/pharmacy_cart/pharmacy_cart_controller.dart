@@ -178,7 +178,7 @@ class PharmacyCartController {
     if ((cartData.pharmacyItems ?? []).isEmpty) {
       return;
     }
-    bool auth = context.read<DeviceCubit>().state.model.auth;
+    bool auth = context.isAuth;
     if (auth) {
       if (cartData.minimumStatus == false) {
         CustomToast.showSimpleToast(msg: cartData.minimumAmountMsg!);
@@ -198,13 +198,6 @@ class PharmacyCartController {
           ?.any((element) => element.prescriptionRequired == true) ==
       true;
 
-  bool get cartItemRequiredInsurance => insuranceAllowInCart && haveInsuranceCubit.state.data;
-
-
-
-  bool get insuranceAllowInCart => cartItemsBloc.state.data.pharmacyItems
-      ?.any((element) => element.insuranceEligible == true) ==
-      true;
 
 
   Future<void> _getPharmacyDetails({bool fromRemote = true}) async {

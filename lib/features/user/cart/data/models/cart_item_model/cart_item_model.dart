@@ -37,6 +37,7 @@ class CartItemModel extends BaseApiModel<GeneralCartItem> with _$CartItemModel {
     @JsonKey(name: "sold_by_type") required String soldByType,
     @JsonKey(name: "sold_by_name") required String soldBy,
     @JsonKey(name: "shop_id") required int? shopId,
+    @JsonKey(name: "branch_id") required int? branchId,
   }) = _CartItemModel;
 
   factory CartItemModel.fromJson(Map<String, dynamic> json) =>
@@ -67,6 +68,8 @@ class CartItemModel extends BaseApiModel<GeneralCartItem> with _$CartItemModel {
         hasSpecialLoyaltyPoints: hasSpecialLoyaltyPoints,
         loyaltyPoints: loyaltyPoints,
         insuranceEligible: insuranceEligible,
-        prescriptionRequired: prescriptionRequired);
+        prescriptionRequired: prescriptionRequired,
+        branchId: branchId
+    );
   }
 }

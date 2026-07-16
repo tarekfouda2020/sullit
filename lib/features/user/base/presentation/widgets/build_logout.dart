@@ -8,6 +8,7 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_imports.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 class BuildLogOut extends StatelessWidget {
   final HomeController controller;
@@ -16,7 +17,7 @@ class BuildLogOut extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
+    bool auth = context.isAuth;
     return InkWell(
       onTap: () => controller.checkAuth(context),
       child: Container(

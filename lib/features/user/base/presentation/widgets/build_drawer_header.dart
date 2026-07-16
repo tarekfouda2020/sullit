@@ -9,6 +9,7 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/res.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 class BuildDrawerHeader extends StatelessWidget {
   const BuildDrawerHeader({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class BuildDrawerHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var user = context.watch<UserCubit>().state.model;
-    bool auth = context.read<DeviceCubit>().state.model.auth;
+    bool auth = context.isAuth;
     return Padding(
       padding: Dimens.paddingAll15PX,
       child: Column(

@@ -6,6 +6,8 @@ class PharmacyAddressController {
   final GenericBloc<bool> refreshCubit = GenericBloc<bool>(true);
   final GenericBloc<bool> conditionsCubit = GenericBloc<bool>(false);
 
+  final GenericBloc<DeliveryTypeEnum> deliveryMethodCubit = GenericBloc<DeliveryTypeEnum>(DeliveryTypeEnum.delivery);
+
   final GenericBloc<List<PharmacyShippingDomainModel>> shippingDataCubit = GenericBloc<List<PharmacyShippingDomainModel>>([]);
 
   final PagingController<int, AddressDomainModel> pagingController =
@@ -51,7 +53,7 @@ class PharmacyAddressController {
   }
 
   void onSelectAddress(BuildContext context, AddressDomainModel address) {
-    var auth = context.read<DeviceCubit>().state.model.auth;
+    var auth = context.isAuth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
       return;
@@ -88,32 +90,49 @@ class PharmacyAddressController {
       return;
     }
 
+    if(havePrescription ){
+      if(deliveryMethodCubit.state.data == DeliveryTypeEnum.delivery){
+       if(pharmacy?.hasBranches == true){
+         getIt<LoadingHelper>().showLoadingDialog();
+         await getPharmacyBranches(1);
+         getIt<LoadingHelper>().dismissDialog();
+         showBranchesSheet(context);
+       }else{
+         createPrescriptionOrder(context);
+       }
+      }else{
+        createPrescriptionOrder(context);
+      }
+      return ;
+    }
 
+    getShippingInfo(context);
+
+  }
+
+
+  Future<void> getShippingInfo(BuildContext context)async{
     var params = PharamcyShippingInfoParams(addressId: selectedAddress!.id!);
     var result = await GetPharmacyShippingInfo().call(params);
-    for (var item in result) {
+    for (PharmacyShippingDomainModel item in result) {
       if (item.activeDelivery == false && item.activePickup == true) {
         item.deliveryType = DeliveryTypeEnum.pickUp;
       }
     }
     shippingDataCubit.onUpdateData(result);
 
-
+   BuildContext ctx = getIt<GlobalContext>().context();
     showModalBottomSheet(
-      context: context,
+      context: ctx,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       builder: (context) => PharmacyDeliveryTypeBottomSheet(
         controller: this,
         onConfirm: () {
           if(canConfirmShipping()){
-          Navigator.pop(context);
-          BuildContext ctx = getIt<GlobalContext>().context();
-          if (havePrescription) {
-            createPrescriptionOrder(ctx, result);
-          } else {
+            Navigator.pop(context);
+            BuildContext ctx = getIt<GlobalContext>().context();
             getCheckOutSummaryData(ctx, result);
-          }
           }
         },
       ),
@@ -132,8 +151,9 @@ class PharmacyAddressController {
     }
   }
 
-  Future<void> createPrescriptionOrder(BuildContext context, List<PharmacyShippingDomainModel> data) async {
-    PharmacyCreateOrderParams params = _createInsurancePrescriptionParams(data);
+  Future<void> createPrescriptionOrder(BuildContext context) async {
+    PharmacyCreateOrderParams params = _createInsurancePrescriptionParams();
+    log("====>>>>>>>>> params is ${params.toPrescriptionOrderJson()} =====");
     var result = await CreatePharmacyPrescriptionOrder().call(params);
     if(result != null){
       AutoRouter.of(context).push( OrderSuccessRoute(summary: result, havePrescription: true));
@@ -150,10 +170,13 @@ class PharmacyAddressController {
 
 
 
-  PharmacyCreateOrderParams _createInsurancePrescriptionParams(List<PharmacyShippingDomainModel> data){
+  PharmacyCreateOrderParams _createInsurancePrescriptionParams(){
     // createOrderParams!.setShippingInfo(_shippingData(data));
-    createOrderParams!.setAddressId(selectedAddress!.id!);
-    createOrderParams!.setShippingType(data.first.deliveryType);
+    DeliveryTypeEnum selectedDeliveryType = deliveryMethodCubit.state.data;
+    if(selectedDeliveryType == DeliveryTypeEnum.delivery){
+      createOrderParams!.setAddressId(selectedAddress?.id);
+    }
+    createOrderParams!.setShippingType(selectedDeliveryType);
     createOrderParams!.setShopBranchId(selectedBranch?.id);
     return createOrderParams!;
   }
@@ -178,38 +201,48 @@ class PharmacyAddressController {
   }
 
   PharmacyBranchesParams _branchesParams(int page, bool refresh) {
+    LatLng? currentLocation = GlobalState.instance.get(GlobalStateKeys.userLocation);
     return PharmacyBranchesParams(
-      latitude: double.tryParse(selectedAddress?.lat ?? "") ?? 0,
-      longitude: double.tryParse(selectedAddress?.lang ?? "") ?? 0,
+      latitude: double.tryParse(selectedAddress?.lat ?? "") ?? currentLocation?.latitude ??0,
+      longitude: double.tryParse(selectedAddress?.lang ?? "") ?? currentLocation?.longitude  ?? 0,
       pharmacyId: pharmacy!.id!,
       formRemote: refresh,
       paginateParams: _paginateParams(page, refresh),
     );
   }
 
-  void onPressSelectBranch(BuildContext context, PharmacyShippingDomainModel item) {
+  void showBranchesSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) {
         return BranchesBottomSheetWidget(
           pagingController: branchesPagingController,
-          onSelect: (branch) => onSelectBranch(context, item, branch),
+          onSelect: (branch) => onSelectBranch(context,branch),
         );
       },
     );
   }
 
-  void onSelectBranch(
-      BuildContext context, PharmacyShippingDomainModel item, PharmacyBranchDomainModel branch) {
+  void selectBranchInView(PharmacyBranchDomainModel branch) {
     for (PharmacyBranchDomainModel b in _branchesItemList ?? <PharmacyBranchDomainModel>[]) {
       b.isSelected = false;
     }
-    item.selectedBranch = branch;
     branch.isSelected = true;
+    branchesPagingController.itemList = [...?_branchesItemList];
+  }
+
+  void onSelectBranch(BuildContext context,PharmacyBranchDomainModel branch) {
     Navigator.pop(context);
+    for (PharmacyBranchDomainModel b in _branchesItemList ?? <PharmacyBranchDomainModel>[]) {
+      b.isSelected = false;
+    }
+    branch.isSelected = true;
     branchesPagingController.itemList = [...?_branchesItemList];
     shippingDataCubit.onUpdateData(shippingDataCubit.state.data);
+    BuildContext ctx = getIt<GlobalContext>().context();
+    createPrescriptionOrder(ctx);
+
   }
 
   List<PharmacyBranchDomainModel>? get _branchesItemList => branchesPagingController.itemList;

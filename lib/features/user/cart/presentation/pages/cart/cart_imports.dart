@@ -40,6 +40,7 @@ import 'package:flutter_tdd/features/user/cart/presentation/pages/shipping/shipp
 import 'package:path/path.dart';
 
 import 'widgets/cart_widgets_imports.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 part 'cart.dart';
 part 'cart_controller.dart';

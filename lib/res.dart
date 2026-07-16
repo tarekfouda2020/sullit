@@ -148,6 +148,8 @@ class Res {
   static const String fileIcon = "assets/images/file_icon.svg";
   static const String pharmSlogan = "assets/images/pharm_slogan.svg";
   static const String pdfIcon = "assets/images/pdf_icon.svg";
+  static const String prescriptionLogo = "assets/images/prescription_logo.svg";
+  static const String pharmLogo = "assets/images/pharm_logo.svg";
 
   static const String addToCartGif = "assets/images/add_cart.gif";
   static const String onTheWay = "assets/images/delivery.gif";

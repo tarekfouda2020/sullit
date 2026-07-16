@@ -32,6 +32,7 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_orde
 import 'package:flutter_tdd/features/user/pharmacies/data/models/saved_prescription_model/saved_prescription_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/saved_prescription_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/upload_prescription_params.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../purchasing/presentation/pages/order_summary/order_summary_imports.dart';
@@ -118,6 +119,18 @@ class ImplPharmaciesRepository extends PharmaciesRepository with ModelToDomain {
       GenericPaginateParams param) async {
     var result = await dataSources.getSavedPrescriptions(param);
     return toDomainResultList<SavedPrescriptionModel, SavedPrescriptionApiModel>(result);
+  }
+
+  @override
+  Future<Either<Failure, bool>> deleteSavedPrescription(int param) async {
+    return await dataSources.deleteSavedPrescription(param);
+  }
+
+  @override
+  Future<Either<Failure, SavedPrescriptionModel>> uploadPrescription(
+      UploadPrescriptionParams param) async {
+    var result = await dataSources.uploadPrescription(param);
+    return toDomainResult<SavedPrescriptionModel, SavedPrescriptionApiModel>(result);
   }
 
 }

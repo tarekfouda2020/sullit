@@ -39,6 +39,7 @@ import 'package:flutter_tdd/features/user/cart/presentation/widgets/build_cart_s
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/widgets/category_details_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 import 'package:flutter_tdd/res.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 part 'build_cart_buttons.dart';
 part 'build_cart_item.dart';

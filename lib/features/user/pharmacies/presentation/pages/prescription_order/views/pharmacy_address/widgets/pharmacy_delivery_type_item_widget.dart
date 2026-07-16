@@ -60,7 +60,7 @@ class PharmacyDeliveryTypeItemWidget extends StatelessWidget {
             Gaps.vGap15,
             PickBranchButtonWidget(
               selectedBranchName: model.selectedBranch?.name,
-              onTap: () => controller.onPressSelectBranch(context, model),
+              onTap: () => controller.showBranchesSheet(context),
             ),
           ],
         ],

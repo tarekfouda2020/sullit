@@ -145,7 +145,7 @@ class CartController {
   }
 
   void navigateToShipping(BuildContext context) {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
+    bool auth = context.isAuth;
     if (auth) {
       final cartData = cartItemsBloc.state.data;
       if ((cartData.minAmountSellers ?? []).isNotEmpty) {

@@ -23,6 +23,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../cart/domain/entities/get_cart_items_params.dart';
 import '../../../cart/domain/models/cart.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 @injectable
 class ProductsHelper {
@@ -33,7 +34,7 @@ class ProductsHelper {
     GenericBloc<bool>? loadingBloc,
     String? price,
   }) async {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
+    bool auth = context.isAuth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
       return;
@@ -63,7 +64,7 @@ class ProductsHelper {
 
   Future<int> addProductToCompare(
       {required BuildContext context, required Product product}) async {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
+    bool auth = context.isAuth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
       return 0;

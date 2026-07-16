@@ -35,6 +35,7 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_saved_
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/pharmacy_details/widgets/widgets_imports.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescription_order/views/attach_prescription/widgets/widgets_imports.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescription_order/widgets/build_prescription_order_stepper.dart';
+import 'package:flutter_tdd/features/user/pharmacies/presentation/widgets/widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 
 part 'attach_prescription.dart';

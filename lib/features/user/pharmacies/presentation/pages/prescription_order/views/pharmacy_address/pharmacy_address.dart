@@ -7,7 +7,8 @@ class PharmacyAddress extends StatefulWidget {
   const PharmacyAddress({
     super.key,
     this.havePrescription = false,
-    this.pharmacy, this.createOrderParams,
+    this.pharmacy,
+    this.createOrderParams,
   });
 
   @override
@@ -45,88 +46,68 @@ class _PharmacyAddressState extends State<PharmacyAddress> {
                 ? PrescriptionOrderStepModel.prescriptionFlowSteps
                 : PrescriptionOrderStepModel.normalFlowSteps,
           ),
+          if (widget.havePrescription)
+            PharmacyInfoRowWidget(pharmacy: widget.pharmacy),
           Expanded(
             child: SingleChildScrollView(
               padding: Dimens.paddingAll15PX,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Moved to AttachPrescriptionController/AttachPrescription page: insurance
-                  // company selection & insurance document attachment.
-                  // if(widget.haveInsurance) ...[
-                  //   Gaps.vGap8,
-                  //   Text("Insurance Company",
-                  //   style: AppTextStyle.s16_w600(color: context.colors.black),
-                  //   ),
-                  //   Gaps.vGap20,
-                  //   SelectInsuranceCompanyWidget(controller: controller)
-                  // ],
-                  // if (widget.haveInsurance) ...[
-                  //   Gaps.vGap20,
-                  //   PharmacyAttachPrescriptionWidget(
-                  //     controller: controller,
-                  //     fileCubit: controller.insuranceFileBloc,
-                  //     title: "Attach Health Insurance Document",
-                  //     emptyViewText: "Attach Health Insurance Document in PNG / JPG or pdf",
-                  //     hint: "Note that pharmacy will review your health insurance document and back to you with required invoice",
-                  //
-                  //   ),
-                  // ],
-                  // Moved to AttachPrescriptionController/AttachPrescription page: prescription
-                  // attachment. Stopped here (moved, not deleted).
-                  // if (widget.havePrescription) ...[
-                  //   Gaps.vGap20,
-                  //   PharmacyAttachPrescriptionWidget(
-                  //     controller: controller,
-                  //     fileCubit: controller.prescriptionFileBloc,
-                  //     title: "Attach Prescription ",
-                  //     emptyViewText: "Attach Prescription Document in PNG / JPG or pdf",
-                  //     hint: "Note that pharmacy will review your Prescription  document and back to you with confirmation or rejection",
-                  //   ),
-                  // ],
-                  Gaps.vGap20,
-                  Text(
-                    "Select Address",
-                    style: AppTextStyle.s16_w500(
-                      color: context.colors.black,
-                    ),
-                  ),
-                  Gaps.vGap15,
-                  Container(
-                    constraints: BoxConstraints(
-                      maxHeight: MediaQuery.sizeOf(context).height * 0.6,
-                      minHeight: MediaQuery.sizeOf(context).height * 0.25,
-                    ),
-                    padding: Dimens.paddingAll15PX,
-                    decoration: CustomDecoration(
-                      thisColor: context.colors.white,
-                      radius: Dimens.borderRadius10PX,
-                      boxBorder: Border.all(
-                        color: context.colors.borderColor,
-                      ),
-                      myBoxShadow: const [],
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Flexible(
-                          child: PharmacyAddressListWidget(
-                            controller: controller,
-                          ),
-                        ),
-                        Gaps.vGap15,
-                        DefaultButton(
-                          title: "+ ${tr("addNewAddress")}",
-                          onTap: () => controller.onAddNewAddress(context),
-                          color: context.colors.white,
-                          textColor: context.colors.primary,
-                          borderColor: context.colors.primary,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          margin: EdgeInsets.zero,
-                        ),
-                      ],
-                    ),
+                 if(widget.havePrescription)...[
+                   SelectReceivingMethodWidget(controller: controller),
+                   Gaps.vGap20,
+                 ],
+                  BlocBuilder<GenericBloc<DeliveryTypeEnum>,
+                      GenericState<DeliveryTypeEnum>>(
+                    bloc: controller.deliveryMethodCubit,
+                    builder: (context, state) {
+                      final isPickUp = widget.havePrescription &&
+                          state.data == DeliveryTypeEnum.pickUp;
+                      return AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 350),
+                        child: isPickUp
+                            ? Visibility(
+                              visible: widget.pharmacy?.hasBranches == true ,
+                              replacement: Center(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    if(widget.pharmacy?.pickUp != null){
+                                      getIt<LocationService>().openGoogleMapsNavigation(
+                                          latitude: widget.pharmacy!.pickUp!.lat,
+                                          longitude: widget.pharmacy!.pickUp!.lang,
+                                      );
+                                    }
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    spacing: 5,
+                                    children: [
+                                      Text("you will pick order from pharmacy",
+                                      style: AppTextStyle.s18_w500(color: context.colors.black),
+                                      ),
+                                      Icon(Icons.pin_drop,
+                                      color: context.colors.primary,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 20),
+                                child: PickupSectionWidget(
+                                  pagingController:
+                                      controller.branchesPagingController,
+                                  onSelectBranch: (branch) =>
+                                      controller.selectBranchInView(branch),
+                                ),
+                              ),
+                            )
+                            : AddressSelectionSectionWidget(
+                              controller: controller,
+                            ),
+                      );
+                    },
                   ),
                 ],
               ),

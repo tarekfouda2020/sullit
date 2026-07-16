@@ -17,6 +17,7 @@ import 'package:flutter_tdd/features/user/category/domain/entities/generic_pagin
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'widgets/addresses_widgets_imports.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 part 'addresses.dart';
 part 'addresses_controller.dart';

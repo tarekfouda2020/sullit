@@ -138,7 +138,6 @@ class CartHelper {
       bool callCartData = true}) async {
     PharmacyCartParams params = await _addPharmacyCartParams(variantId, qty, branchId,
         showLoader: showLoader);
-    log("====>>>>> json is before send method ${params.toJson()} ===== ");
     return _sendToCart(params,
         onAddCartFunc: onAddCartFunc, callCartData: callCartData, type: CartTypeEnum.pharmacy);
   }

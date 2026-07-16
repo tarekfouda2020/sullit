@@ -2,6 +2,7 @@ import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/models/insurance_company_model/insurance_company_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_pickup.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'shop_model.freezed.dart';
@@ -40,6 +41,7 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
     required String? youtube,
     required num rating,
     required bool follow,
+    ShopPickupModel? pickup,
   }) = _ShopModel;
 
   factory ShopModel.fromJson(Map<String, dynamic> json) =>
@@ -126,6 +128,38 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
       hasBranches: hasBranches,
       insuranceCompanies:
           insuranceCompanies?.map((e) => e.toDomainModel()).toList(),
+      pickUp: pickup?.toDomainModel(),
+    );
+  }
+}
+
+@freezed
+@immutable
+class ShopPickupModel extends BaseApiModel<ShopPickup> with _$ShopPickupModel {
+  const ShopPickupModel._();
+
+  @JsonSerializable(explicitToJson: true)
+  const factory ShopPickupModel({
+    required int id,
+    required String address,
+    @JsonKey(name: 'postal_code') required String postalCode,
+    required String phone,
+    required double lat,
+    required double lang,
+  }) = _ShopPickupModel;
+
+  factory ShopPickupModel.fromJson(Map<String, dynamic> json) =>
+      _$ShopPickupModelFromJson(json);
+
+  @override
+  ShopPickup toDomainModel() {
+    return ShopPickup(
+      id: id,
+      address: address,
+      postalCode: postalCode,
+      phone: phone,
+      lat: lat,
+      lang: lang,
     );
   }
 }

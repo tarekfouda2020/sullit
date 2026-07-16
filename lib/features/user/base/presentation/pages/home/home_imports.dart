@@ -45,6 +45,7 @@ import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/pay_order.
 import 'package:flutter_tdd/features/user/sale/presentation/pages/coupons/coupons_imports.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:new_version_plus/new_version_plus.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 part 'home.dart';
 part 'home_controller.dart';

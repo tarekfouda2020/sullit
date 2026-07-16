@@ -8,6 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../models/custom_address_model/custom_address_model.dart';
 import '../models/location_iq_place_model/location_iq_place.dart';
@@ -68,4 +69,20 @@ class LocationService {
     return Geolocator.getCurrentPosition()
         .then((value) => LatLng(value.latitude, value.longitude));
   }
+
+
+  Future<void> openGoogleMapsNavigation({
+    required double latitude,
+    required double longitude,
+  }) async {
+    final Uri uri = Uri.parse(
+        'https://www.google.com/maps/dir/?api=1&destination=$latitude,$longitude&travelmode=driving');
+
+    await launchUrl(
+      uri,
+      mode: LaunchMode.externalApplication,
+    );
+  }
+
+
 }

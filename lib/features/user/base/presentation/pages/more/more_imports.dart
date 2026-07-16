@@ -35,6 +35,7 @@ import 'package:flutter_tdd/features/user/gift_card/presentation/pages/gift_card
 import 'package:flutter_tdd/features/user/products/domain/models/home_domain_model.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 part 'more.dart';
 part 'more_controller.dart';

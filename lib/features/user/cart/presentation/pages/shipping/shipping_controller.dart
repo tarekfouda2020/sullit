@@ -39,7 +39,7 @@ class ShippingController {
     BuildContext context,
     AddressDomainModel address,
   ) {
-    var auth = context.read<DeviceCubit>().state.model.auth;
+    var auth = context.isAuth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
       return;
@@ -75,7 +75,7 @@ class ShippingController {
   }
 
   Future<void> cartAddAddress(BuildContext context) async {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
+    bool auth = context.isAuth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
       return;

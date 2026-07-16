@@ -187,6 +187,13 @@ class AttachPrescriptionController {
       );
       return;
     }
+    if (emiratesIdCubit.state.data.path.isEmpty) {
+      CustomToast.showSimpleToast(
+        msg: "Please attach your personal ID image first",
+      );
+      return;
+    }
+
     if (healthInsuranceCubit.state.data) {
       if (selectedInsuranceCompany.state.data == null) {
         CustomToast.showSimpleToast(
@@ -194,12 +201,27 @@ class AttachPrescriptionController {
         );
         return;
       }
-      if (emiratesIdCubit.state.data.path.isEmpty) {
+
+      if (insuranceFileBloc.state.data.path.isEmpty) {
         CustomToast.showSimpleToast(
-          msg: "Please attach your personal ID image first",
+          msg: "Please Upload your insurance image first",
         );
         return;
       }
+    }
+
+    if(requestedByCubit.state.data == null){
+      CustomToast.showSimpleToast(
+        msg: "Please select the type of prescription owner",
+      );
+      return;
+    }
+
+    if(agreeTermsCubit.state.data == false){
+      CustomToast.showSimpleToast(
+        msg: "You must accept the terms and conditions",
+      );
+      return;
     }
 
     AutoRouter.of(context).push(PharmacyAddressRoute(

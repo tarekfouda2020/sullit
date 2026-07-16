@@ -7,7 +7,7 @@ class CartItemsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isAuth = context.read<DeviceCubit>().state.model.auth;
+    bool isAuth = context.isAuth;
     return Scaffold(
       backgroundColor: context.colors.cartBg,
       appBar: DefaultAppBar(
