@@ -18,7 +18,7 @@ class SellerShippingModel extends BaseApiModel<SellerShipping>
   @JsonSerializable(explicitToJson: true)
   const factory SellerShippingModel(
       {required String name,
-      required List<CartItemModel> items,
+       List<CartItemModel>? items,
       required bool physical,
       @JsonKey(name: "active_pickup") required bool activePickUp,
       required PickUpModel? pickup,
@@ -34,7 +34,7 @@ class SellerShippingModel extends BaseApiModel<SellerShipping>
   SellerShipping toDomainModel() {
     return SellerShipping(
         name: name,
-        items: items.map((e) => e.toDomainModel()).toList(),
+        items: (items ?? <CartItemModel>[]).map((e) => e.toDomainModel()).toList(),
         physical: physical,
         activePickup: activePickUp,
         pickup: pickup?.toDomainModel(),

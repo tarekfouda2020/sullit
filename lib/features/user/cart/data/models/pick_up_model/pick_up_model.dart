@@ -14,8 +14,8 @@ class PickUpModel extends BaseApiModel<Pickup> with _$PickUpModel {
       {required int id,
       required String address,
       @JsonKey(name: 'postal_code') required String postalCode,
-      double? lat,
-      double? lang}) = _PickUpModel;
+      String? lat,
+      String? lang}) = _PickUpModel;
 
   factory PickUpModel.fromJson(Map<String, dynamic> json) =>
       _$PickUpModelFromJson(json);

@@ -2,6 +2,7 @@ import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/delivery_instruction/delivery_instruction.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/models/insurance_company_model/insurance_company_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_attachment_model/pharmacy_attachment_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_branch_model/pharmacy_branch_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_details_model/order_details_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_discount/order_discount.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_driver_model/order_driver_model.dart';
@@ -87,6 +88,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'requested_by') String? requestedBy,
     @JsonKey(name: 'requested_by_label') String? requestedByLabel,
     @JsonKey(name: 'pharmacy_reply') String? pharmacyReply,
+    PharmacyBranchModel? branch,
 
   }) = _OrderModel;
 
@@ -160,6 +162,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       requestedBy: requestedBy,
       requestedByLabel: requestedByLabel,
       pharmacyReply: pharmacyReply,
+      branch: branch?.toDomainModel(),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instruction_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_attachment_domain_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/enums/order_type_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/enum/track_order_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
@@ -77,6 +78,7 @@ class Orders extends BaseDomainModel {
   String? requestedBy;
   String? requestedByLabel;
   String? pharmacyReply;
+  PharmacyBranchDomainModel? branch;
 
 
   Orders({
@@ -144,6 +146,7 @@ class Orders extends BaseDomainModel {
     this.requestedBy,
     this.requestedByLabel,
     this.pharmacyReply,
+    this.branch,
   });
 
   int totalItemsCount() => orderDetails.fold(

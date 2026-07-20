@@ -20,40 +20,56 @@ class SelectReceivingMethodWidget extends StatelessWidget {
           ),
         ),
         Gaps.vGap15,
-        BlocBuilder<GenericBloc<DeliveryTypeEnum>,
-            GenericState<DeliveryTypeEnum>>(
-          bloc: controller.deliveryMethodCubit,
-          builder: (context, state) {
-            final selectedMethod = state.data;
-            return Row(
-              spacing: 12,
-              children: [
-                Expanded(
-                  child: _buildMethodButton(
-                    context: context,
-                    label: "Delivery",
-                    isSelected: selectedMethod == DeliveryTypeEnum.delivery,
-                    onTap: () {
-                      controller.deliveryMethodCubit
-                          .onUpdateData(DeliveryTypeEnum.delivery);
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: _buildMethodButton(
-                    context: context,
-                    label: "Pickup",
-                    isSelected: selectedMethod == DeliveryTypeEnum.pickUp,
-                    onTap: () {
-                      controller.deliveryMethodCubit
-                          .onUpdateData(DeliveryTypeEnum.pickUp);
-                    },
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
+       BlocBuilder<GenericBloc<SellerShipping?>,
+           GenericState<SellerShipping?>>(
+         bloc: controller.sellerShippingInfoCubit,
+         builder: (context, shippingData) {
+         return  BlocBuilder<GenericBloc<DeliveryTypeEnum>,
+             GenericState<DeliveryTypeEnum>>(
+           bloc: controller.deliveryMethodCubit,
+           builder: (context, state) {
+             DeliveryTypeEnum selectedMethod = state.data;
+             return Row(
+               spacing: 12,
+               children: [
+                 Expanded(
+                   child: Opacity(
+                     opacity: controller.haveDelivery ? 1 : 0.5,
+                     child: _buildMethodButton(
+                       context: context,
+                       label: "Delivery",
+                       isSelected: selectedMethod == DeliveryTypeEnum.delivery,
+                       onTap: () {
+                         if(controller.haveDelivery){
+                           controller.deliveryMethodCubit
+                               .onUpdateData(DeliveryTypeEnum.delivery);
+                         }
+
+                       },
+                     ),
+                   ),
+                 ),
+                 Expanded(
+                   child: Opacity(
+                     opacity: controller.havePickUp ? 1 : 0.5,
+                     child: _buildMethodButton(
+                       context: context,
+                       label: "Pickup",
+                       isSelected: selectedMethod == DeliveryTypeEnum.pickUp,
+                       onTap: () {
+                       if(controller.havePickUp){
+                         controller.deliveryMethodCubit
+                             .onUpdateData(DeliveryTypeEnum.pickUp);
+                       }
+                       },
+                     ),
+                   ),
+                 ),
+               ],
+             );
+           },
+         );
+       },)
       ],
     );
   }

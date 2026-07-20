@@ -109,6 +109,7 @@ class _PharmacyAddressState extends State<PharmacyAddress> {
                       );
                     },
                   ),
+                  Gaps.vGap20,
                 ],
               ),
             ),

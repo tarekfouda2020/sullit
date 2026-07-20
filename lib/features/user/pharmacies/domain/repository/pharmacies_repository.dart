@@ -2,9 +2,12 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/features/user/best_sellers/domain/entity/shop_category_params.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/seller_shipping_model/seller_shipping_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/seller_shipping.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_branches_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_create_order_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/seller_shipping_info_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_checkout_domai_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/shop_id_params.dart';
@@ -52,7 +55,8 @@ abstract class PharmaciesRepository {
 
   Future<Either<Failure, bool>> deleteSavedPrescription(int param);
 
-  Future<Either<Failure, SavedPrescriptionModel>> uploadPrescription(
-      UploadPrescriptionParams param);
+  Future<Either<Failure, SavedPrescriptionModel>> uploadPrescription(UploadPrescriptionParams param);
+
+  Future<Either<Failure, SellerShipping>> getShippingInfo(SellerShippingInfoParams param);
 
 }

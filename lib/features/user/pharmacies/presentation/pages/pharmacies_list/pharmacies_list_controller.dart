@@ -39,7 +39,9 @@ class PharmaciesListController {
     if (!makePrescriptionOrder) {
       if (shop.id != null) {
         AutoRouter.of(context)
-            .push(PharmacyCategoriesRoute(pharmacyId: shop.id!));
+            .push(PharmacyCategoriesRoute(
+            pharmacyId: shop.id!,
+        ));
       }
       return;
     }

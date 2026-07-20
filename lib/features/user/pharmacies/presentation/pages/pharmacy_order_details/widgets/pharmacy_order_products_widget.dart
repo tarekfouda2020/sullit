@@ -9,7 +9,7 @@ class PharmacyOrderProductsWidget extends StatelessWidget {
     return Column(
       children: [
         ...List.generate(order.orderDetails.length, (index) {
-          var item = order.orderDetails[index];
+          OrderDetails item = order.orderDetails[index];
           return PharmacyOrderProductItemWidget(
             orderDetails: item,
           );

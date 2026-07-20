@@ -148,6 +148,7 @@ mixin _$OrderModel {
   String? get requestedByLabel => throw _privateConstructorUsedError;
   @JsonKey(name: 'pharmacy_reply')
   String? get pharmacyReply => throw _privateConstructorUsedError;
+  PharmacyBranchModel? get branch => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -231,10 +232,12 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'identity_document_file') String? identityDocumentFile,
       @JsonKey(name: 'requested_by') String? requestedBy,
       @JsonKey(name: 'requested_by_label') String? requestedByLabel,
-      @JsonKey(name: 'pharmacy_reply') String? pharmacyReply});
+      @JsonKey(name: 'pharmacy_reply') String? pharmacyReply,
+      PharmacyBranchModel? branch});
 
   $OrderDriverModelCopyWith<$Res>? get driver;
   $InsuranceCompanyModelCopyWith<$Res>? get insuranceCompany;
+  $PharmacyBranchModelCopyWith<$Res>? get branch;
 }
 
 /// @nodoc
@@ -314,6 +317,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? requestedBy = freezed,
     Object? requestedByLabel = freezed,
     Object? pharmacyReply = freezed,
+    Object? branch = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -572,6 +576,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.pharmacyReply
           : pharmacyReply // ignore: cast_nullable_to_non_nullable
               as String?,
+      branch: freezed == branch
+          ? _value.branch
+          : branch // ignore: cast_nullable_to_non_nullable
+              as PharmacyBranchModel?,
     ) as $Val);
   }
 
@@ -597,6 +605,18 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     return $InsuranceCompanyModelCopyWith<$Res>(_value.insuranceCompany!,
         (value) {
       return _then(_value.copyWith(insuranceCompany: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PharmacyBranchModelCopyWith<$Res>? get branch {
+    if (_value.branch == null) {
+      return null;
+    }
+
+    return $PharmacyBranchModelCopyWith<$Res>(_value.branch!, (value) {
+      return _then(_value.copyWith(branch: value) as $Val);
     });
   }
 }
@@ -679,12 +699,15 @@ abstract class _$$_OrderModelCopyWith<$Res>
       @JsonKey(name: 'identity_document_file') String? identityDocumentFile,
       @JsonKey(name: 'requested_by') String? requestedBy,
       @JsonKey(name: 'requested_by_label') String? requestedByLabel,
-      @JsonKey(name: 'pharmacy_reply') String? pharmacyReply});
+      @JsonKey(name: 'pharmacy_reply') String? pharmacyReply,
+      PharmacyBranchModel? branch});
 
   @override
   $OrderDriverModelCopyWith<$Res>? get driver;
   @override
   $InsuranceCompanyModelCopyWith<$Res>? get insuranceCompany;
+  @override
+  $PharmacyBranchModelCopyWith<$Res>? get branch;
 }
 
 /// @nodoc
@@ -762,6 +785,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? requestedBy = freezed,
     Object? requestedByLabel = freezed,
     Object? pharmacyReply = freezed,
+    Object? branch = freezed,
   }) {
     return _then(_$_OrderModel(
       id: null == id
@@ -1020,6 +1044,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.pharmacyReply
           : pharmacyReply // ignore: cast_nullable_to_non_nullable
               as String?,
+      branch: freezed == branch
+          ? _value.branch
+          : branch // ignore: cast_nullable_to_non_nullable
+              as PharmacyBranchModel?,
     ));
   }
 }
@@ -1103,7 +1131,8 @@ class _$_OrderModel extends _OrderModel {
       @JsonKey(name: 'identity_document_file') this.identityDocumentFile,
       @JsonKey(name: 'requested_by') this.requestedBy,
       @JsonKey(name: 'requested_by_label') this.requestedByLabel,
-      @JsonKey(name: 'pharmacy_reply') this.pharmacyReply})
+      @JsonKey(name: 'pharmacy_reply') this.pharmacyReply,
+      this.branch})
       : _orderDetails = orderDetails,
         _deliveryInstructions = deliveryInstructions,
         _orderDiscounts = orderDiscounts,
@@ -1340,10 +1369,12 @@ class _$_OrderModel extends _OrderModel {
   @override
   @JsonKey(name: 'pharmacy_reply')
   final String? pharmacyReply;
+  @override
+  final PharmacyBranchModel? branch;
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, shopType: $shopType, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, paymentMethodConst: $paymentMethodConst, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, pickerNotes: $pickerNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver, orderSourceLabel: $orderSourceLabel, shippingProvider: $shippingProvider, shippingProviderLabel: $shippingProviderLabel, isPendingReview: $isPendingReview, awaitingCustomerCompletion: $awaitingCustomerCompletion, requiresPrescriptionReview: $requiresPrescriptionReview, insuranceApplied: $insuranceApplied, insuranceAttachments: $insuranceAttachments, prescriptionAttachments: $prescriptionAttachments, insuranceCompany: $insuranceCompany, cancelReason: $cancelReason, identityDocumentFile: $identityDocumentFile, requestedBy: $requestedBy, requestedByLabel: $requestedByLabel, pharmacyReply: $pharmacyReply)';
+    return 'OrderModel(id: $id, code: $code, orderType: $orderType, bagCount: $bagCount, availableReturnOrder: $availableReturnOrder, showButtonPay: $showButtonPay, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, shopType: $shopType, total: $total, date: $date, deliveryStatusConst: $deliveryStatusConst, deliveryStatus: $deliveryStatus, deliveryViewed: $deliveryViewed, paymentStatusViewed: $paymentStatusViewed, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, availableCancelOrder: $availableCancelOrder, additionalInfo: $additionalInfo, paymentMethod: $paymentMethod, paymentMethodConst: $paymentMethodConst, shippingMethod: $shippingMethod, orderStatus: $orderStatus, orderDate: $orderDate, shippingAddress: $shippingAddress, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, returnReason: $returnReason, soldByType: $soldByType, soldBy: $soldBy, loyaltyPointsValue: $loyaltyPointsValue, loyaltyPointsApplied: $loyaltyPointsApplied, loyaltyPoints: $loyaltyPoints, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, orderDetails: $orderDetails, serviceFees: $serviceFees, technologyFees: $technologyFees, environmentFees: $environmentFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, driverNotes: $driverNotes, pickerNotes: $pickerNotes, deliveryInstructions: $deliveryInstructions, orderDiscounts: $orderDiscounts, driver: $driver, orderSourceLabel: $orderSourceLabel, shippingProvider: $shippingProvider, shippingProviderLabel: $shippingProviderLabel, isPendingReview: $isPendingReview, awaitingCustomerCompletion: $awaitingCustomerCompletion, requiresPrescriptionReview: $requiresPrescriptionReview, insuranceApplied: $insuranceApplied, insuranceAttachments: $insuranceAttachments, prescriptionAttachments: $prescriptionAttachments, insuranceCompany: $insuranceCompany, cancelReason: $cancelReason, identityDocumentFile: $identityDocumentFile, requestedBy: $requestedBy, requestedByLabel: $requestedByLabel, pharmacyReply: $pharmacyReply, branch: $branch)';
   }
 
   @override
@@ -1457,7 +1488,8 @@ class _$_OrderModel extends _OrderModel {
             (identical(other.identityDocumentFile, identityDocumentFile) || other.identityDocumentFile == identityDocumentFile) &&
             (identical(other.requestedBy, requestedBy) || other.requestedBy == requestedBy) &&
             (identical(other.requestedByLabel, requestedByLabel) || other.requestedByLabel == requestedByLabel) &&
-            (identical(other.pharmacyReply, pharmacyReply) || other.pharmacyReply == pharmacyReply));
+            (identical(other.pharmacyReply, pharmacyReply) || other.pharmacyReply == pharmacyReply) &&
+            (identical(other.branch, branch) || other.branch == branch));
   }
 
   @JsonKey(ignore: true)
@@ -1527,7 +1559,8 @@ class _$_OrderModel extends _OrderModel {
         identityDocumentFile,
         requestedBy,
         requestedByLabel,
-        pharmacyReply
+        pharmacyReply,
+        branch
       ]);
 
   @JsonKey(ignore: true)
@@ -1628,8 +1661,8 @@ abstract class _OrderModel extends OrderModel {
       final String? identityDocumentFile,
       @JsonKey(name: 'requested_by') final String? requestedBy,
       @JsonKey(name: 'requested_by_label') final String? requestedByLabel,
-      @JsonKey(name: 'pharmacy_reply')
-      final String? pharmacyReply}) = _$_OrderModel;
+      @JsonKey(name: 'pharmacy_reply') final String? pharmacyReply,
+      final PharmacyBranchModel? branch}) = _$_OrderModel;
   const _OrderModel._() : super._();
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
@@ -1822,6 +1855,8 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'pharmacy_reply')
   String? get pharmacyReply;
+  @override
+  PharmacyBranchModel? get branch;
   @override
   @JsonKey(ignore: true)
   _$$_OrderModelCopyWith<_$_OrderModel> get copyWith =>

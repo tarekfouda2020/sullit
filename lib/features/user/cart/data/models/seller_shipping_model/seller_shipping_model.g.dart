@@ -10,8 +10,8 @@ _$_SellerShippingModel _$$_SellerShippingModelFromJson(
         Map<String, dynamic> json) =>
     _$_SellerShippingModel(
       name: json['name'] as String,
-      items: (json['items'] as List<dynamic>)
-          .map((e) => CartItemModel.fromJson(e as Map<String, dynamic>))
+      items: (json['items'] as List<dynamic>?)
+          ?.map((e) => CartItemModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       physical: json['physical'] as bool,
       activePickUp: json['active_pickup'] as bool,
@@ -30,7 +30,7 @@ Map<String, dynamic> _$$_SellerShippingModelToJson(
         _$_SellerShippingModel instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'items': instance.items.map((e) => e.toJson()).toList(),
+      'items': instance.items?.map((e) => e.toJson()).toList(),
       'physical': instance.physical,
       'active_pickup': instance.activePickUp,
       'pickup': instance.pickup?.toJson(),

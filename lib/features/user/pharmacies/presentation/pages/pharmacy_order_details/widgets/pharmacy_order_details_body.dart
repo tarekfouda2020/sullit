@@ -39,12 +39,14 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
                         ],
                       ),
                       Gaps.vGap20,
-                      Text(
-                        "Products",
-                        style:
-                            AppTextStyle.s16_w700(color: context.colors.black),
-                      ),
-                      Gaps.vGap20,
+                     if(state.data!.orderDetails.isNotEmpty)...[
+                       Text(
+                         "Products",
+                         style:
+                         AppTextStyle.s16_w700(color: context.colors.black),
+                       ),
+                       Gaps.vGap20,
+                     ],
                       PharmacyOrderProductsWidget(
                         order: state.data!,
                       ),

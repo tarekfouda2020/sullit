@@ -281,6 +281,8 @@ class ApiNames {
 
   static const String uploadPrescription = "prescriptions";
 
+  static const String getSellerShippingInfo = "cart/seller-shipping-info";
+
   static String deleteSavedPrescription(int id) => "prescriptions/$id/delete";
 
   static const String pharmacyOrderTerms = "pharmacy-order-terms";

@@ -34,7 +34,8 @@ class AttachPrescriptionController {
     File? initialPrescriptionFile,
     SavedPrescriptionModel? initialSavedPrescription,
   }) {
-    if (initialPrescriptionFile != null) {
+    if (initialPrescriptionFile != null &&
+        initialPrescriptionFile.path.isNotEmpty) {
       prescriptionFileCubit.onUpdateData(initialPrescriptionFile);
     } else if (initialSavedPrescription != null) {
       selectedSavedPrescriptionCubit.onUpdateData(initialSavedPrescription);

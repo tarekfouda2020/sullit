@@ -1,8 +1,6 @@
-import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
@@ -15,8 +13,6 @@ import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/clear_cart_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
@@ -25,7 +21,6 @@ import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/clear_cart.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/manager/helpers/cart_navigate_helper.dart';
-import 'package:flutter_tdd/features/user/cart/presentation/widgets/build_cart_stepper.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart'
     as domain_shipping;
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
@@ -37,7 +32,6 @@ import 'package:flutter_tdd/features/user/cart/presentation/pages/delivery/deliv
     as delivery_page;
 import 'package:flutter_tdd/features/user/cart/presentation/pages/shipping/shipping_imports.dart'
     as shipping_page;
-import 'package:path/path.dart';
 
 import 'widgets/cart_widgets_imports.dart';
 import 'package:flutter_tdd/core/extensions/auth_extension.dart';

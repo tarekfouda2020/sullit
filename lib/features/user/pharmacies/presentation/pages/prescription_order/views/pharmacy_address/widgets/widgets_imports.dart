@@ -19,6 +19,7 @@ import 'package:flutter_tdd/core/widgets/custom_refresh_indicator_widget.dart';
 import 'package:flutter_tdd/core/widgets/custom_safe_are.dart';
 import 'package:flutter_tdd/features/user/addresses/domain/models/address.dart';
 import 'package:flutter_tdd/features/user/cart/data/enum/delivery_type_enum.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/seller_shipping.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_shipping_domain_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';

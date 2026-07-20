@@ -4,12 +4,15 @@ import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/models/model_to_domain/model_to_domain.dart';
 import 'package:flutter_tdd/features/user/best_sellers/domain/entity/shop_category_params.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/order_summary_model/order_summary_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/seller_shipping_model/seller_shipping_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/seller_shipping.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/data_sources/pharmacies_sources.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_branch_model/pharmacy_branch_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_checkout_summary_model/pharmacy_checkout_summary_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_branches_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_create_order_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/seller_shipping_info_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_checkout_domai_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/shop_id_params.dart';
@@ -131,6 +134,12 @@ class ImplPharmaciesRepository extends PharmaciesRepository with ModelToDomain {
       UploadPrescriptionParams param) async {
     var result = await dataSources.uploadPrescription(param);
     return toDomainResult<SavedPrescriptionModel, SavedPrescriptionApiModel>(result);
+  }
+
+  @override
+  Future<Either<Failure, SellerShipping>> getShippingInfo(SellerShippingInfoParams param) async {
+    var result = await dataSources.getShippingInfo(param);
+    return toDomainResult<SellerShipping, SellerShippingModel>(result);
   }
 
 }

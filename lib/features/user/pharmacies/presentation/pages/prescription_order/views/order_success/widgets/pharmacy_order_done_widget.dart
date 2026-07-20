@@ -88,6 +88,10 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
           Gaps.vGap10,
           _buildRow(context, "Address", data.summary?.shippingAddress ??""),
           Gaps.vGap10,
+          if(controller.firstSectionOrder?.branch != null) ...[
+            _buildRow(context, "Branch", controller.firstSectionOrder!.branch!.name),
+            Gaps.vGap10,
+          ],
           if(data.pharmNormalOrder) ...[
             _buildRow(context, "Status :", data.summary?.orderStatus ??""),
             Gaps.vGap10,
