@@ -472,8 +472,8 @@ class HomeMainController {
 
   Future<void> onPickPrescriptionFile() async {
     var result = await getIt<Utilities>().getAttachmentFile(
-      FileType.image,
-      allowedExtensions: const ['jpg', 'jpeg', 'png'],
+      FileType.custom,
+      allowedExtensions: const ["pdf",'jpg', 'jpeg', 'png'],
     );
     if (result != null) {
       prescriptionFileCubit.onUpdateData(result);

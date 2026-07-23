@@ -41,6 +41,7 @@ class BuildRelatedProducts extends StatelessWidget {
                         padding: Dimens.paddingHorizontal5PX,
                         child: BuildProductItem(
                           productModel: relatedProducts[index],
+                          fallbackBranchId: controller.branchId,
                           onPressDelete: () => controller.getCartItems(),
                           afterAddToCart: () =>
                               controller.calculateRemainingAmount(),

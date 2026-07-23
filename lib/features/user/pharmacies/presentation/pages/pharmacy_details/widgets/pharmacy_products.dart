@@ -13,6 +13,7 @@ class PharmacyProducts extends StatelessWidget {
         top: 10,
       ),
       sliver: PagedSliverGrid<int, PharmacyProduct>(
+        key: controller.productListKey,
         showNewPageErrorIndicatorAsGridChild: false,
         showNewPageProgressIndicatorAsGridChild: false,
         showNoMoreItemsIndicatorAsGridChild: false,

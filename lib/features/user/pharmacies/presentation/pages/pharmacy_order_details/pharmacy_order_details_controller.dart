@@ -193,7 +193,12 @@ class PharmacyOrderDetailsController {
   }
 
 
-  Future<void> reOrder(BuildContext context) async {
+  Future<void> reOrder(BuildContext context,{bool prescriptionRequired = false}) async {
+    if(prescriptionRequired){
+      AutoRouter.of(context).pop();
+      AutoRouter.of(context).push(PharmaciesListRoute(makePrescriptionOrder: true));
+      return ;
+    }
     String result = await OrderAgain()(orderId);
     if (result.isNotEmpty) {
       CustomToast.showSimpleToast(msg: result, type: ToastType.success);
@@ -201,7 +206,7 @@ class PharmacyOrderDetailsController {
       BuildContext ctx = getIt<GlobalContext>().context();
       AutoRouter.of(ctx).push(PharmacyCartRoute(
           pharmacyId: orderDetailsBloc.state.data!.orderDetails.first.product!.shop!.id,
-          fromPharmacyDetails: false
+          fromPharmacyDetails: false,
       ));
     } else {
       CustomToast.showSimpleToast(msg: tr("tryAgain"), type: ToastType.error);

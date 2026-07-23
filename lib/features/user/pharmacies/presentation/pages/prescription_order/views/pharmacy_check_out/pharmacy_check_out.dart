@@ -91,8 +91,8 @@ class _PharmacyCheckOutState extends State<PharmacyCheckOut> {
                           applyGiftCard: state.data!.summary.isGiftCardApplied,
                         ),
                         Gaps.vGap20,
-                        // PharmacyAllowReplacementWidget(controller: controller),
-                        // Gaps.vGap13,
+                        PharmacyAllowReplacementWidget(controller: controller),
+                        Gaps.vGap13,
                         PharmacyBuildConditions(controller: controller),
                         Gaps.vGap20,
                         if (!context.isShareHolder)

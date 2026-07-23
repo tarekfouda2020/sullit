@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_tdd/core/widgets/prescription_placeholder_widget.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
+import 'package:flutter_tdd/core/widgets/custom_prescription_file_card_widget.dart';
 import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/core/widgets/DropdownTextField.dart';
 import 'package:flutter_tdd/core/widgets/custom_check_box_widget.dart';
@@ -26,7 +28,6 @@ import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_she
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescription_order/views/attach_prescription/attach_prescription_imports.dart';
 import 'package:flutter_tdd/res.dart';
 
-part 'prescription_file_card_widget.dart';
 part 'save_for_later_widget.dart';
 part 'emirates_id_upload_widget.dart';
 part 'health_insurance_widget.dart';

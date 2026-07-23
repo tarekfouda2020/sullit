@@ -1213,6 +1213,7 @@ class AppRouter extends _i112.RootStackRouter {
           key: args.key,
           pharmacyId: args.pharmacyId,
           fromPharmacyDetails: args.fromPharmacyDetails,
+          preSelectedBranchId: args.preSelectedBranchId,
         ),
         opaque: true,
       );
@@ -1227,6 +1228,7 @@ class AppRouter extends _i112.RootStackRouter {
           havePrescription: args.havePrescription,
           pharmacy: args.pharmacy,
           createOrderParams: args.createOrderParams,
+          preSelectedBranchId: args.preSelectedBranchId,
         ),
         opaque: true,
       );
@@ -1250,6 +1252,7 @@ class AppRouter extends _i112.RootStackRouter {
           key: args.key,
           summary: args.summary,
           havePrescription: args.havePrescription,
+          pharmacy: args.pharmacy,
         ),
         opaque: true,
       );
@@ -4157,6 +4160,7 @@ class PharmacyCartRoute extends _i112.PageRouteInfo<PharmacyCartRouteArgs> {
     _i115.Key? key,
     int? pharmacyId,
     bool fromPharmacyDetails = true,
+    int? preSelectedBranchId,
   }) : super(
           PharmacyCartRoute.name,
           path: '/pharmacy-cart',
@@ -4164,6 +4168,7 @@ class PharmacyCartRoute extends _i112.PageRouteInfo<PharmacyCartRouteArgs> {
             key: key,
             pharmacyId: pharmacyId,
             fromPharmacyDetails: fromPharmacyDetails,
+            preSelectedBranchId: preSelectedBranchId,
           ),
         );
 
@@ -4175,6 +4180,7 @@ class PharmacyCartRouteArgs {
     this.key,
     this.pharmacyId,
     this.fromPharmacyDetails = true,
+    this.preSelectedBranchId,
   });
 
   final _i115.Key? key;
@@ -4183,9 +4189,11 @@ class PharmacyCartRouteArgs {
 
   final bool fromPharmacyDetails;
 
+  final int? preSelectedBranchId;
+
   @override
   String toString() {
-    return 'PharmacyCartRouteArgs{key: $key, pharmacyId: $pharmacyId, fromPharmacyDetails: $fromPharmacyDetails}';
+    return 'PharmacyCartRouteArgs{key: $key, pharmacyId: $pharmacyId, fromPharmacyDetails: $fromPharmacyDetails, preSelectedBranchId: $preSelectedBranchId}';
   }
 }
 
@@ -4198,6 +4206,7 @@ class PharmacyAddressRoute
     bool havePrescription = false,
     _i122.Shop? pharmacy,
     _i128.PharmacyCreateOrderParams? createOrderParams,
+    int? preSelectedBranchId,
   }) : super(
           PharmacyAddressRoute.name,
           path: '/pharmacy-address',
@@ -4206,6 +4215,7 @@ class PharmacyAddressRoute
             havePrescription: havePrescription,
             pharmacy: pharmacy,
             createOrderParams: createOrderParams,
+            preSelectedBranchId: preSelectedBranchId,
           ),
         );
 
@@ -4218,6 +4228,7 @@ class PharmacyAddressRouteArgs {
     this.havePrescription = false,
     this.pharmacy,
     this.createOrderParams,
+    this.preSelectedBranchId,
   });
 
   final _i115.Key? key;
@@ -4228,9 +4239,11 @@ class PharmacyAddressRouteArgs {
 
   final _i128.PharmacyCreateOrderParams? createOrderParams;
 
+  final int? preSelectedBranchId;
+
   @override
   String toString() {
-    return 'PharmacyAddressRouteArgs{key: $key, havePrescription: $havePrescription, pharmacy: $pharmacy, createOrderParams: $createOrderParams}';
+    return 'PharmacyAddressRouteArgs{key: $key, havePrescription: $havePrescription, pharmacy: $pharmacy, createOrderParams: $createOrderParams, preSelectedBranchId: $preSelectedBranchId}';
   }
 }
 
@@ -4276,6 +4289,7 @@ class OrderSuccessRoute extends _i112.PageRouteInfo<OrderSuccessRouteArgs> {
     _i115.Key? key,
     required _i118.OrderSummaryDomainModel summary,
     bool havePrescription = false,
+    _i122.Shop? pharmacy,
   }) : super(
           OrderSuccessRoute.name,
           path: '/order-success',
@@ -4283,6 +4297,7 @@ class OrderSuccessRoute extends _i112.PageRouteInfo<OrderSuccessRouteArgs> {
             key: key,
             summary: summary,
             havePrescription: havePrescription,
+            pharmacy: pharmacy,
           ),
         );
 
@@ -4294,6 +4309,7 @@ class OrderSuccessRouteArgs {
     this.key,
     required this.summary,
     this.havePrescription = false,
+    this.pharmacy,
   });
 
   final _i115.Key? key;
@@ -4302,9 +4318,11 @@ class OrderSuccessRouteArgs {
 
   final bool havePrescription;
 
+  final _i122.Shop? pharmacy;
+
   @override
   String toString() {
-    return 'OrderSuccessRouteArgs{key: $key, summary: $summary, havePrescription: $havePrescription}';
+    return 'OrderSuccessRouteArgs{key: $key, summary: $summary, havePrescription: $havePrescription, pharmacy: $pharmacy}';
   }
 }
 

@@ -71,6 +71,7 @@ class Orders extends BaseDomainModel {
  bool? awaitingCustomerCompletion;
    bool? requiresPrescriptionReview;
   bool? insuranceApplied;
+  bool? allowReplacement;
   String? cancelReason;
   List<PharmacyAttachmentDomainModel>? insuranceAttachments;
   List<PharmacyAttachmentDomainModel>? prescriptionAttachments;
@@ -138,6 +139,7 @@ class Orders extends BaseDomainModel {
     this.awaitingCustomerCompletion,
     this.requiresPrescriptionReview,
     this.insuranceApplied,
+    this.allowReplacement,
     this.insuranceAttachments,
     this.prescriptionAttachments,
     this.insuranceCompany,
@@ -248,12 +250,11 @@ class Orders extends BaseDomainModel {
 
   bool get pharmNormalOrder {
 
-    return  (insuranceAttachments ?? []).isEmpty &&
-        (prescriptionAttachments ?? []).isEmpty;
+    return  requiresPrescriptionReview == false;
   }
-  bool get pharmOrderWithPrescription => (prescriptionAttachments ?? []).isNotEmpty;
+  bool get pharmOrderWithPrescription => requiresPrescriptionReview == true;
 
-  bool get pharmOrderWithInsurance => (insuranceAttachments ?? []).isNotEmpty;
+  bool get pharmOrderWithInsurance => insuranceApplied == true;
 
 
 }

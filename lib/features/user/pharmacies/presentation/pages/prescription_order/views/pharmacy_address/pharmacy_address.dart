@@ -4,11 +4,14 @@ class PharmacyAddress extends StatefulWidget {
   final bool havePrescription;
   final Shop? pharmacy;
   final PharmacyCreateOrderParams? createOrderParams;
+  final int? preSelectedBranchId;
+
   const PharmacyAddress({
     super.key,
     this.havePrescription = false,
     this.pharmacy,
     this.createOrderParams,
+    this.preSelectedBranchId,
   });
 
   @override
@@ -22,9 +25,10 @@ class _PharmacyAddressState extends State<PharmacyAddress> {
   void initState() {
     super.initState();
     controller = PharmacyAddressController(
-        havePrescription: widget.havePrescription,
+      havePrescription: widget.havePrescription,
       pharmacy: widget.pharmacy,
-      createOrderParams: widget.createOrderParams
+      createOrderParams: widget.createOrderParams,
+      preSelectedBranchId: widget.preSelectedBranchId,
     );
   }
 

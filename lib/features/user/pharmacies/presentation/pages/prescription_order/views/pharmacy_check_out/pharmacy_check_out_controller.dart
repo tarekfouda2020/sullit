@@ -348,6 +348,7 @@ class PharmacyCheckOutController {
             .firstWhere((element) => element.selected)
             .paymentTypeKey,
         giftCardCode: checkoutParams?.giftCardCode,
+      allowReplacement: allowReplacementCubit.state.data,
       couponCode: checkoutParams?.couponCode,
       shippingInfo: checkoutParams?.shippingInfo ?? <PharmacyShippingInfo>[],
       addressId: checkoutParams?.addressId,

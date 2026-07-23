@@ -39,3 +39,4 @@ part 'pharmacy_order_done_shimmer_widget.dart';
 part 'pharmacy_order_products_shimmer_widget.dart';
 part 'pharmacy_confirm_summary_shimmer_widget.dart';
 part 'additional_notes_widget.dart';
+part 'rejection_reasons_widget.dart';

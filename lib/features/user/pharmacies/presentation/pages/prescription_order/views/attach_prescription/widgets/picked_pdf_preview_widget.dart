@@ -11,24 +11,33 @@ class PickedPdfPreviewWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
-          Icons.picture_as_pdf,
-          color: context.colors.primary,
-          size: Dimens.dp28,
-        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 25),
+          child: Transform.scale(
+            scale: 1.8,
+            child: SvgPicture.asset(
+              Res.pdfIcon,
+              width: Dimens.dp50,
+              height: Dimens.dp50,
+            ),
+          ),
+        ) ,
         Gaps.hGap8,
         Expanded(
-          child: Text(
-            file.path.split('/').last,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: AppTextStyle.s14_w500(color: context.colors.primary),
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 15),
+            child: Text(
+              file.path.split('/').last,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppTextStyle.s14_w500(color: context.colors.primary),
+            ),
           ),
         ),
         onRemove != null
-            ? IconButton(
-                onPressed: onRemove,
-                icon: Icon(
+            ? GestureDetector(
+                onTap: onRemove,
+                child: Icon(
                   Icons.close,
                   color: context.colors.redAccent,
                   size: Dimens.dp20,

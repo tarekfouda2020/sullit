@@ -56,18 +56,21 @@ class PharmacyDetailsBottomNavWidget extends StatelessWidget {
                   ),
                   Visibility(
                     visible: controller.neededAmount() > 0,
-                    child: Row(
-                      children: [
-                        Gaps.hGap32,
-                        DirhamPrice(
-                            amount: controller.neededAmount().toStringAsFixed(2)
-                        ),
-                        Text(
-                          " ${tr("needed_to_reach_minimum_order")}",
-                          style: AppTextStyle.s16_w500(
-                              color: context.colors.primary),
-                        )
-                      ],
+                    child: Visibility(
+                      visible: controller.cartBranchId!= null &&  controller.cartBranchId == controller.selectedBranchId ,
+                      child: Row(
+                        children: [
+                          Gaps.hGap32,
+                          DirhamPrice(
+                              amount: controller.neededAmount().toStringAsFixed(2)
+                          ),
+                          Text(
+                            " ${tr("needed_to_reach_minimum_order")}",
+                            style: AppTextStyle.s16_w500(
+                                color: context.colors.primary),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ],

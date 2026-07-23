@@ -26,6 +26,7 @@ class BuildProductItem extends BaseProductItem {
     super.onPressDecrease,
     super.onPressDelete,
     super.margin,
+    super.fallbackBranchId,
   });
 
   @override

@@ -73,15 +73,16 @@ class PharmacyOrderProductItemWidget extends StatelessWidget {
                             currencyStyle: AppTextStyle.s16_w400(
                                 color: context.colors.primary),
                           ),
-                          if (_haveDiscount()) ...[
-                            Gaps.hGap8,
-                            InsuranceCoverageBadgeWidget(
-                              percentage:
-                                  orderDetails.insuranceCoveragePercentage!,
-                            ),
-                          ],
                         ],
                       ),
+                      Gaps.vGap10,
+                      if (_haveDiscount()) ...[
+                        Gaps.hGap8,
+                        InsuranceCoverageBadgeWidget(
+                          percentage:
+                          orderDetails.insuranceCoveragePercentage!,
+                        ),
+                      ],
                       Gaps.vGap10,
                       Row(
                         children: [

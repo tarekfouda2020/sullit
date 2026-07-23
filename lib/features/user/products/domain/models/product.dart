@@ -5,6 +5,7 @@ import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/core/models/domain_models/brand_domain_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/color_domain_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/reviews.dart';

@@ -9,13 +9,10 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: Dimens.paddingAll20PX,
-      margin: const EdgeInsets.only(top: 43),
+      margin: const EdgeInsets.only(top: 46),
       decoration: BoxDecoration(
         color: context.colors.white,
-        borderRadius: Dimens.borderRadius10PX.copyWith(
-          bottomLeft: Radius.zero,
-          bottomRight: Radius.zero,
-        ),
+        borderRadius: Dimens.borderRadius10PX,
       ),
       child: Column(
         children: [
@@ -33,9 +30,7 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: (controller.firstSectionOrder?.orderDetails.isNotEmpty == true
-                            ? controller.firstSectionOrder?.orderDetails.first.product?.shop?.name
-                            : null) ??
+                    text: (controller.pharmacy?.name) ??
                         "",
                     style: AppTextStyle.s14_w600(color: context.colors.green),
                   ),
@@ -92,16 +87,17 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
             _buildRow(context, "Branch", controller.firstSectionOrder!.branch!.name),
             Gaps.vGap10,
           ],
+          Gaps.vGap10,
+          _buildRow(context, "Phone", data.summary?.phone ??""),
           if(data.pharmNormalOrder) ...[
             _buildRow(context, "Status :", data.summary?.orderStatus ??""),
             Gaps.vGap10,
           ],
+          if(data.getTotalItems() > 0 )
           _buildRow(context, "Total Items", data.getTotalItems().toString()),
           Gaps.vGap10,
           if(data.pharmNormalOrder) ...[
             _buildRow(context, "Receipt Status", data.summary?.orderStatus ??""),
-            Gaps.vGap10,
-            _buildRow(context, "Phone", data.summary?.phone ??""),
             Gaps.vGap10,
             _buildRow(context, "Payment Method", data.summary?.paymentMethod ??""),
           ],

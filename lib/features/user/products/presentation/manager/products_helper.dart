@@ -4,15 +4,12 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
-import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/pharmacy_product.dart';
@@ -118,30 +115,6 @@ class ProductsHelper {
   ProductsTableData _comparedParams(Product product, BuildContext context) {
     return ProductsTableData(
         product: json.encode(product.toJson()), productId: product.id);
-  }
-
-  Future<bool?> addProductToCart(BuildContext context, Product product, {void Function()? afterAddToCart}) async {
-    var existCount = context.read<CountCubit>().state.cartCount;
-    log("===>>>>>> wrong one ");
-    var result = await getIt<CartHelper>().addProductToCart(
-      context,
-      product.minQty!,
-      product.variant?.id,
-      showLoader: false,
-      onAddCartFunc: () {
-        FacebookEventsHelper.instance.productAddToCart(
-          price: product.variant?.calculablePrice ?? "",
-          id: product.id!,
-        );
-        if(product.isPharmProduct == false){
-          getIt<CartHelper>().updateCartCount(context, product.minQty! + existCount);
-        }
-        if (afterAddToCart != null) {
-          afterAddToCart.call();
-        }
-      },
-    );
-    return result;
   }
 
   Future<bool?> addPharmacyProductToCart(

@@ -120,16 +120,11 @@ class OrderSummaryDomainModel extends BaseDomainModel {
 
 
   bool get pharmNormalOrder {
-    return sectionOrders?.every(
-          (element) =>
-      (element.insuranceAttachments ?? []).isEmpty &&
-          (element.prescriptionAttachments ?? []).isEmpty,
-    ) ==
-        true;
+    return summary?.requiresPrescriptionReview == false;
   }
-bool get pharmOrderWithPrescription => sectionOrders?.any((element) => (element.prescriptionAttachments??[]).isNotEmpty) == true;
+bool get pharmOrderWithPrescription => summary?.requiresPrescriptionReview == true;
 
-bool get pharmOrderWithInsurance => sectionOrders?.any((element) => (element.insuranceAttachments??[]).isNotEmpty) == true;
+bool get pharmOrderWithInsurance => summary?.insuranceApplied == true ;
 
 // bool get pharmNormalOrder => true;
 

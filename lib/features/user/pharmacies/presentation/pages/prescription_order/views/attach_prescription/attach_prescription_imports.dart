@@ -7,6 +7,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
+import 'package:flutter_tdd/core/widgets/custom_prescription_file_card_widget.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_create_order_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/manager/controllers/link_text_controller.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';

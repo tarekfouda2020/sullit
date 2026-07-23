@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
-import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/features/user/products/domain/behavior/product_behavior_x.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 
@@ -17,6 +17,12 @@ abstract class BaseProductItem extends StatefulWidget {
   final bool? showVipDiscount;
   final EdgeInsetsDirectional? margin;
 
+  /// Branch id from the surrounding page context (e.g. product-details
+  /// page entered via a pharmacy branch). Passed to
+  /// [ProductBehavior.addToCart] as the preferred branch. Pharmacy behavior
+  /// falls back to the product's own branch when null.
+  final int? fallbackBranchId;
+
   const BaseProductItem({
     super.key,
     required this.productModel,
@@ -28,6 +34,7 @@ abstract class BaseProductItem extends StatefulWidget {
     this.onPressDecrease,
     this.onPressDelete,
     this.margin,
+    this.fallbackBranchId,
   });
 }
 
@@ -82,12 +89,14 @@ abstract class BaseProductItemState<T extends BaseProductItem>
     enableAddToCartLoading.onUpdateData(true);
 
     try {
-      return await getIt<ProductsHelper>().addProductToCart(
-            context,
-            product,
-            afterAddToCart: afterAddToCartCallback,
-          ) ??
-          false;
+      final result = await product.behavior.addToCart(
+        context,
+        product,
+        product.minQty ?? 1,
+        fallbackBranchId: widget.fallbackBranchId,
+        afterAddToCart: afterAddToCartCallback,
+      );
+      return result ?? false;
     } finally {
       enableAddToCartLoading.onUpdateData(false);
     }

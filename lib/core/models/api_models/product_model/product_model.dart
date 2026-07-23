@@ -6,6 +6,7 @@ import 'package:flutter_tdd/features/user/products/data/models/product_options_m
 import 'package:flutter_tdd/features/user/products/data/models/reviews_model/reviews_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/shop_model/shop_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/variant_model/variant_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/behavior/product_type.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/normal_product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/pharmacy_product.dart';
@@ -81,104 +82,65 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
 
   @override
   Product toDomainModel() {
-    if (type == 'pharmacy') {
-      return PharmacyProduct(
-        description: description,
-        id: id,
-        rating: rating,
-        name: name,
-        category: category?.toDomainModel(),
-        thumbnailImage: thumbnailImage,
-        images: images,
-        strokedPrice: strokedPrice,
-        sellerId: sellerId,
-        sales: sales,
-        resellerId: resellerId,
-        mainPrice: mainPrice,
-        hasDiscount: hasDiscount,
-        discount: discount,
-        brand: brand?.toDomainModel(),
-        brandName: brandName,
-        categoryName: categoryName,
-        countReviews: countReviews,
-        currencySymbol: currencySymbol,
-        isDigital: isDigital,
-        isMultiple: isMultiple,
-        isResale: isResale,
-        isWishlist: isWishlist,
-        minQty: minQty,
-        priceHighLow: priceHighLow,
-        priceHighLowDiscount: priceHighLowDiscount,
-        shop: shop?.toDomainModel(),
-        soldByName: soldByName,
-        soldByType: soldByType,
-        reviews: reviews?.map((e) => e.toDomainModel()).toList(),
-        choiceOptions: choiceOptions.map((e) => e.toDomainModel()).toList(),
-        colors: colors?.map((e) => e.toDomainModel()).toList(),
-        tags: tags,
-        videoLink: videoLink,
-        videoProvider: videoProvider,
-        variant: variant?.toDomainModel(),
-        hasVipOffer: hasVipOffer,
-        unit: unit,
-        loyaltyPoints: loyaltyPoints,
-        hasSpecialLoyaltyPoints: hasSpecialLoyaltyPoints,
-        isFresh: isFresh,
-        maxQnt: maxQntPerOrder,
-        variants: variantsList?.map((e) => e.toDomainModel()).toList(),
-        insuranceEligible: insuranceEligible,
-        prescriptionRequired: prescriptionRequired,
-        type: type,
-        branch: branch?.toDomainModel(),
-      );
+    switch (ProductType.fromString(type)) {
+      case ProductType.pharmacy:
+        return _fillCommon(PharmacyProduct(branch: branch?.toDomainModel()));
+      case ProductType.general:
+        return _fillCommon(NormalProduct());
     }
-    return NormalProduct(
-      description: description,
-      id: id,
-      rating: rating,
-      name: name,
-      category: category?.toDomainModel(),
-      thumbnailImage: thumbnailImage,
-      images: images,
-      strokedPrice: strokedPrice,
-      sellerId: sellerId,
-      sales: sales,
-      resellerId: resellerId,
-      mainPrice: mainPrice,
-      hasDiscount: hasDiscount,
-      discount: discount,
-      brand: brand?.toDomainModel(),
-      brandName: brandName,
-      categoryName: categoryName,
-      countReviews: countReviews,
-      currencySymbol: currencySymbol,
-      isDigital: isDigital,
-      isMultiple: isMultiple,
-      isResale: isResale,
-      isWishlist: isWishlist,
-      minQty: minQty,
-      priceHighLow: priceHighLow,
-      priceHighLowDiscount: priceHighLowDiscount,
-      shop: shop?.toDomainModel(),
-      soldByName: soldByName,
-      soldByType: soldByType,
-      reviews: reviews?.map((e) => e.toDomainModel()).toList(),
-      choiceOptions: choiceOptions.map((e) => e.toDomainModel()).toList(),
-      colors: colors?.map((e) => e.toDomainModel()).toList(),
-      tags: tags,
-      videoLink: videoLink,
-      videoProvider: videoProvider,
-      variant: variant?.toDomainModel(),
-      hasVipOffer: hasVipOffer,
-      unit: unit,
-      loyaltyPoints: loyaltyPoints,
-      hasSpecialLoyaltyPoints: hasSpecialLoyaltyPoints,
-      isFresh: isFresh,
-      maxQnt: maxQntPerOrder,
-      variants: variantsList?.map((e) => e.toDomainModel()).toList(),
-      insuranceEligible: insuranceEligible,
-      prescriptionRequired: prescriptionRequired,
-      type: type,
-    );
+  }
+
+  /// Populate every field shared across product subclasses. Subclass-specific
+  /// fields (e.g. `branch` on [PharmacyProduct]) must be passed to the
+  /// subclass constructor before calling this helper.
+  T _fillCommon<T extends Product>(T p) {
+    p.id = id;
+    p.name = name;
+    p.type = type;
+    p.unit = unit;
+    p.thumbnailImage = thumbnailImage;
+    p.images = images;
+    p.isMultiple = isMultiple;
+    p.priceHighLowDiscount = priceHighLowDiscount;
+    p.priceHighLow = priceHighLow;
+    p.hasDiscount = hasDiscount;
+    p.discount = discount;
+    p.strokedPrice = strokedPrice;
+    p.mainPrice = mainPrice;
+    p.choiceOptions = choiceOptions.map((e) => e.toDomainModel()).toList();
+    p.colors = colors?.map((e) => e.toDomainModel()).toList();
+    p.minQty = minQty;
+    p.currencySymbol = currencySymbol;
+    p.variant = variant?.toDomainModel();
+    p.variants = variantsList?.map((e) => e.toDomainModel()).toList();
+    p.tags = tags;
+    p.rating = rating;
+    p.sales = sales;
+    p.isDigital = isDigital;
+    p.isWishlist = isWishlist;
+    p.sellerId = sellerId;
+    p.countReviews = countReviews;
+    p.soldByType = soldByType;
+    p.soldByName = soldByName;
+    p.shop = shop?.toDomainModel();
+    p.reviews = reviews?.map((e) => e.toDomainModel()).toList();
+    p.isResale = isResale;
+    p.resellerId = resellerId;
+    p.category = category?.toDomainModel();
+    p.brand = brand?.toDomainModel();
+    p.description = description;
+    p.videoProvider = videoProvider;
+    p.videoLink = videoLink;
+    p.categoryName = categoryName;
+    p.brandName = brandName;
+    p.hasVipOffer = hasVipOffer;
+    p.isFresh = isFresh;
+    p.loyaltyPoints = loyaltyPoints;
+    p.hasSpecialLoyaltyPoints = hasSpecialLoyaltyPoints;
+    p.hasShareholderDiscount = hasShareholderDiscount;
+    p.maxQnt = maxQntPerOrder;
+    p.prescriptionRequired = prescriptionRequired;
+    p.insuranceEligible = insuranceEligible;
+    return p;
   }
 }

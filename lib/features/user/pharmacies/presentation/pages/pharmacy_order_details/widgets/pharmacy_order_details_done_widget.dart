@@ -34,7 +34,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
                ),
              ],
            ),
-           Gaps.vGap10,
+           _buildVGap10(),
            Visibility(
              visible: data.pharmNormalOrder,
              replacement: RichText(
@@ -42,9 +42,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
                text: TextSpan(
                  children: [
                    TextSpan(
-                     text: data.orderDetails.isNotEmpty
-                         ? "${data.orderDetails.first.product?.shop?.name  ?? ""} "
-                         : "",
+                     text: "${_pharmName()  ?? ""} ",
                      style: AppTextStyle.s14_w600(color: context.colors.mainGreen),
                    ),
                    TextSpan(
@@ -66,7 +64,13 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
              ),
            ),
            Gaps.vGap20,
+           if(data.isCanceled && data.cancelReason?.isNotEmpty == true)
+             RejectionReasonsWidget(
+               title: 'Rejection Reasons :',
+               reasons: [data.cancelReason?? ""],
+             )
          ],
+
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -76,7 +80,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
               ),
             ],
           ),
-          Gaps.vGap10,
+          _buildVGap10(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -100,38 +104,41 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
               ),
             ],
           ),
+
+          if (_showActionRequiredText())...[
+            Gaps.vGap20,
+            const AfterReviewHintWidget(
+              title: "Acceptance is valid for 24 hours",
+            ),
+          ],
           if(data.pharmNormalOrder == false)...[
             Gaps.vGap20,
             Divider(color:context.colors.softGray,height: 1,thickness: 0.8,)
           ],
           Gaps.vGap20,
-          if (data.pharmNormalOrder == false &&
-              data.isPendingReview == false &&
-              data.awaitingCustomerCompletion == true && data.isCanceled == false) ...[
-            const AfterReviewHintWidget(
-              title: "select payment method to proceed to checkout , You must talk action within 24 hours or order will be automatically cancelled",
-            ),
-            Gaps.vGap20,
-            Divider(color: context.colors.greyWhite),
-            Gaps.vGap20,
-          ],
           _buildRow(context, "Date", data.orderDate),
-          Gaps.vGap10,
+          _buildVGap10(),
           if (data.pharmNormalOrder) ...[
             _buildRow(context, "Status :", data.orderStatus),
-            Gaps.vGap10,
+            _buildVGap10(),
           ],
-          _buildRow(context, "Total Items", data.totalItemsCount().toString()),
-          Gaps.vGap10,
-          if (data.pharmNormalOrder) ...[
-            _buildRow(context, "Receipt Status", data.orderStatus),
-            Gaps.vGap10,
+          if(data.totalItemsCount() > 0 )...[
+            _buildRow(context, "Total Items", data.totalItemsCount().toString()),
+            _buildVGap10(),
+          ],
+          _buildRow(context, "Requested By", data.requestedByLabel ?? ""),
+          _buildVGap10(),
+          _buildRow(context, "Receipt Status", data.orderStatus),
+          if(data.shippingAddress.isNotEmpty)...[
+            _buildVGap10(),
             _buildRow(context, "Address", data.shippingAddress),
-            Gaps.vGap10,
-            _buildRow(context, "Phone", data.customerPhone),
-            Gaps.vGap10,
+          ],
+          _buildVGap10(),
+          _buildRow(context, "Phone", data.customerPhone),
+          _buildVGap10(),
+          if(data.paymentMethod.isNotEmpty == true)...[
             _buildRow(context, "Payment Method", data.paymentMethod),
-            Gaps.vGap10,
+            _buildVGap10(),
           ],
           if (data.insuranceApplied == true && data.insuranceCompany != null) ...[
             RichText(
@@ -148,7 +155,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
                 ],
               ),
             ),
-            Gaps.vGap10,
+            _buildVGap10(),
           ],
           if(data.pharmOrderWithPrescription == true) ...[
             PharmacyOrderAttachmentWidget(
@@ -158,7 +165,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
             )
           ],
           if(data.pharmOrderWithInsurance == true) ...[
-            Gaps.vGap10,
+            _buildVGap10(),
             PharmacyOrderAttachmentWidget(
               title: "View Health Insurance Doc.",
               iconPath: Res.medicFile,
@@ -166,7 +173,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
             )
           ],
           if(data.identityDocumentFile?.isNotEmpty == true) ...[
-            Gaps.vGap10,
+            _buildVGap10(),
             PharmacyOrderAttachmentWidget(
               title: "View National ID",
               iconPath: Res.fileIcon,
@@ -176,6 +183,16 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String? _pharmName() => data.branch?.name ?? "";
+
+  Widget _buildVGap10() => Gaps.vGap10;
+
+  bool _showActionRequiredText() {
+    return data.pharmNormalOrder == false &&
+            data.isPendingReview == false &&
+            data.awaitingCustomerCompletion == true && data.isCanceled == false;
   }
 
   Widget _buildRow(BuildContext context, String title, String value) {
@@ -201,7 +218,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
      bool hasInsurance = data.insuranceApplied == true;
      bool isPendingReview = data.isPendingReview == true;
      if(data.isCanceled == true){
-       return data.cancelReason ?? "Your Order Have Been Cancelled";
+       return  "Rejected your health insurance and Prescription document due to following reasons";
      }
 
     if (hasPrescription && hasInsurance) {

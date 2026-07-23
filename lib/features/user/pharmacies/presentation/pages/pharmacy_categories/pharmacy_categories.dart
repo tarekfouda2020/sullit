@@ -40,7 +40,7 @@ class _PharmacyCategoriesState extends State<PharmacyCategories> {
               ),
             ),
             SliverPadding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.only(right: 16,left: 16,bottom: 16),
               sliver: PagedSliverGrid<int, ShopCategory>(
                 pagingController: controller.pagingController,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

@@ -83,6 +83,10 @@ class PharmacyCategoriesController {
     );
   }
 
+  void routeToPrescription(BuildContext context){
+    AutoRouter.of(context).push(AttachPrescriptionRoute(pharmacy: pharmacyBloc.state.data!));
+  }
+
 
 
 }

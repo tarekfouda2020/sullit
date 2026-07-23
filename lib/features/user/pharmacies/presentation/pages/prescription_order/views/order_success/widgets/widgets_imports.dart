@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,6 +21,7 @@ import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_payment/w
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescription_order/views/order_success/order_success_imports.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/widgets/order_pharam_card_widget.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/widgets/widgets_imports.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_discount_domain.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/widgets/order_details_widgets_imports.dart';

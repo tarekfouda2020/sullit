@@ -7,22 +7,24 @@ class PharmacyDetailsController {
 
   ShopCategory? selectedCategory;
 
+  CartDomainModel? originalCartData;
+
   bool fromCart = false;
 
   final PagingController<int, PharmacyBranchDomainModel>
       branchesPagingController = PagingController(firstPageKey: 1);
-
-  final GenericBloc<Shop?> pharmacyBloc = GenericBloc<Shop?>(null);
-
-  final GenericBloc<bool> refreshCategories = GenericBloc<bool>(false);
 
   final PagingController<int, ShopCategory> categoriesPagingController =
       PagingController(firstPageKey: 1);
   final PagingController<int, PharmacyProduct> productsPagingController =
       PagingController(firstPageKey: 1);
 
-  final TextEditingController productSearchCtr = TextEditingController();
 
+  final ScrollController scrollController = ScrollController();
+
+  final GenericBloc<Shop?> pharmacyBloc = GenericBloc<Shop?>(null);
+
+  final GenericBloc<bool> refreshCategories = GenericBloc<bool>(false);
   final GenericBloc<Pharmacy?> pharmacyCubit = GenericBloc<Pharmacy?>(null);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
   final GenericBloc<bool> isLoadingNextPage = GenericBloc<bool>(false);
@@ -31,7 +33,11 @@ class PharmacyDetailsController {
   GenericBloc<CartDomainModel> cartItemsBloc =
       GenericBloc<CartDomainModel>(CartDomainModel());
 
-  final ScrollController scrollController = ScrollController();
+
+  final TextEditingController productSearchCtr = TextEditingController();
+
+  final GlobalKey productListKey = GlobalKey();
+
 
 
   LatLng? get savedLocation => GlobalState.instance.get(GlobalStateKeys.userLocation);
@@ -41,6 +47,8 @@ class PharmacyDetailsController {
   int? get selectedBranchId => selectedBranchCubit.state.data?.id;
 
   int? get getPharmacyId => pharmacyBloc.state.data?.id ?? pharmacyId;
+
+  int? get cartBranchId => originalCartData?.items?.firstOrNull?.branchId;
 
 
   PharmacyDetailsController(
@@ -202,6 +210,10 @@ class PharmacyDetailsController {
     selectedBranchCubit.onUpdateData(defaultBranch);
     bool isLastPage = data.length < AppConstants.instance.paginationLimit;
     if (page == 1) {
+      if(defaultBranch != null && originalCartData == null){
+        getCartItems(refresh: false);
+        getCartItems();
+      }
       branchesPagingController.itemList = [];
     }
     if (isLastPage) {
@@ -284,6 +296,7 @@ class PharmacyDetailsController {
       updatedCart.items?.remove(cartItem);
       product.addedQtyToCart = 0;
       cartItemsBloc.onUpdateData(updatedCart);
+      originalCartData = updatedCart;
       return true;
     } else {
       return false;
@@ -304,6 +317,7 @@ class PharmacyDetailsController {
       loadingBloc?.onUpdateData(false);
       if (success != null) {
         cartItemsBloc.onUpdateData(success);
+        originalCartData = success;
         return true;
       } else {
         product.addedQtyToCart = cartItem.quantity;
@@ -333,6 +347,7 @@ class PharmacyDetailsController {
       FacebookEventsHelper.instance
           .productAddToCart(id: cartItem.productId, price: cartItem.price);
       cartItemsBloc.onUpdateData(success);
+      originalCartData = success;
       getCartItems();
       return true;
     }
@@ -360,6 +375,7 @@ class PharmacyDetailsController {
     String? token = await getIt<GetDeviceId>().deviceId;
     CartParams params = _cartParams(refresh, token!);
     var data = await GetCart().call(params);
+    originalCartData = data;
     var pharmacyProducts = data.items
         ?.where((element) => element.shopId == getPharmacyId)
         .toList();
@@ -406,7 +422,10 @@ class PharmacyDetailsController {
         AutoRouter.of(context).pop(true);
       } else {
         var result = await AutoRouter.of(context)
-            .push(PharmacyCartRoute(pharmacyId: pharmacyBloc.state.data!.id!));
+            .push(PharmacyCartRoute(
+              pharmacyId: pharmacyBloc.state.data!.id!,
+              preSelectedBranchId: selectedBranchId,
+            ));
         refreshDataAfterRoute(result);
       }
     }
@@ -488,6 +507,7 @@ class PharmacyDetailsController {
           type: ToastType.success);
       cartItemsBloc.state.data.pharmacyItems?.clear();
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
+      originalCartData = null;
       Navigator.pop(context);
     });
   }
@@ -514,10 +534,10 @@ class PharmacyDetailsController {
       _updateSelectedBranch(context, model);
       return ;
     }
-    _showChangeBranchDialog(context,model);
+    showChangeBranchDialog(context,model);
   }
 
-  void _showChangeBranchDialog(BuildContext pageContext, PharmacyBranchDomainModel model) {
+  void showChangeBranchDialog(BuildContext pageContext, PharmacyBranchDomainModel model) {
     showDialog(
       context: pageContext,
       builder: (dialogContext) => ChangeBranchDialogWidget(
@@ -606,5 +626,16 @@ class PharmacyDetailsController {
   }
 
 
+  void scrollToTarget() {
+    final context = productListKey.currentContext;
+    if (context != null) {
+      Scrollable.ensureVisible(
+        context,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+        alignment: 0.0,
+      );
+    }
+  }
 
 }

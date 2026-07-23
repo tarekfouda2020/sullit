@@ -9,11 +9,11 @@ class AfterReviewHintWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(Icons.info, color: context.colors.redAccent),
         Gaps.hGap5,
-        Expanded(
+        Flexible(
           child: Text(
             title,
             textAlign: TextAlign.center,

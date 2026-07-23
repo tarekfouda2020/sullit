@@ -337,7 +337,7 @@ class ProductDetailsController implements CartSheetController {
   Future<void> getCartItems({bool refresh = true}) async {
     await getIt<CartHelper>().getCartItems(refresh: refresh, type: getProductType).then((value) {
       if (isPharmProduct) {
-        _pharmacyCartBloc.onUpdateData(value);
+        _pharmacyCartBloc.onUpdateData(_filterByBranch(value));
         calculateRemainingAmount();
       }else{
         if (value.items!.isNotEmpty) {
@@ -348,6 +348,25 @@ class ProductDetailsController implements CartSheetController {
       }
       calculateRemainingAmount();
     });
+  }
+
+  CartDomainModel _filterByBranch(CartDomainModel cart) {
+    if (branchId == null) return cart;
+    final filtered = cart.pharmacyItems
+        ?.where((e) => e.branchId == branchId)
+        .toList();
+    return CartDomainModel(
+      items: cart.items,
+      pharmacyItems: filtered,
+      subTotal: cart.subTotal,
+      calculableTotal: cart.calculableTotal,
+      currencySymbol: cart.currencySymbol,
+      minimumAmountMsg: cart.minimumAmountMsg,
+      minimumAmount: cart.minimumAmount,
+      minimumStatus: cart.minimumStatus,
+      minAmountSellers: cart.minAmountSellers,
+      type: cart.type,
+    );
   }
 
   void showCartSuccessDialog(BuildContext context) {
@@ -471,8 +490,11 @@ class ProductDetailsController implements CartSheetController {
       onPressCheck: isPharmProduct
           ? () {
           Navigator.pop(context);
-          // AutoRouter.of(context).pop( _pharmacyCartBloc);
-          // AutoRouter.of(context).push();
+          AutoRouter.of(context).pop( _pharmacyCartBloc);
+          AutoRouter.of(context).push(PharmacyCartRoute(
+              fromPharmacyDetails: true,
+            pharmacyId: detailsCubit.state.data?.product.shop?.id
+          ));
       }
           : null
     );
@@ -552,7 +574,6 @@ class ProductDetailsController implements CartSheetController {
   }
 
   Future<void> routeToSellerPage(BuildContext context, Shop shopModel) async {
-    print("from seller page === ${fromSellerPage}");
     if(fromSellerPage){
       AutoRouter.of(context).pop(true);
     }else{

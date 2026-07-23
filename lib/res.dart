@@ -117,6 +117,8 @@ class Res {
       "assets/images/receiiving_method_icon.svg";
   static const String payCheckout = "assets/images/pay_checkout_icon.svg";
   static const String successIcon = "assets/images/sucess_icon.svg";
+  static const String payHand = "assets/images/pay_hand.svg";
+  static const String visaCards = "assets/images/visa_cards.svg";
   static const String orderConfirmImage =
       "assets/images/order_confirm_image.svg";
   static const String purchasedOrderIcon =

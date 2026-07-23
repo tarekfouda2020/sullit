@@ -19,15 +19,17 @@ class AttachPrescriptionSheetWidget extends StatelessWidget {
         children: [
           const BottomSheetHeaderWidget(title: "Attach Prescription"),
           Gaps.vGap20,
-          PrescriptionFileCardWidget(controller: controller),
+          CustomSharedPrescriptionFileCardWidget(
+            prescriptionFileCubit: controller.prescriptionFileCubit,
+            selectedSavedPrescriptionCubit: controller.selectedSavedPrescriptionCubit,
+            onPickFile: controller.onPickPrescriptionFile,
+            onRemoveFile: controller.onRemovePrescriptionFile,
+            onRemoveSavedPrescription: controller.onRemoveSelectedSavedPrescription,
+          ),
           Gaps.vGap20,
           const _WarningBullet(
             text:
                 "Your prescription will be reviewed by the selected pharmacy. You will receive a confirmation once approved.",
-          ),
-          Gaps.vGap8,
-          const _WarningBullet(
-            text: "The name on the prescription must match the name on the EID",
           ),
           Gaps.vGap20,
           DefaultButton(

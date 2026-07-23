@@ -22,20 +22,18 @@ class OrderSuccessBody extends StatelessWidget {
                     Gaps.vGap10,
                     if(controller.firstSectionOrder?.orderDetails.isNotEmpty == true)
                     OrderPharamCardWidget(
-                      url: controller.firstSectionOrder?.orderDetails.first.product?.shop?.logo ?? "",
-                      text: controller.firstSectionOrder?.orderDetails.first.product?.shop?.name  ?? "",
+                      url: _buildShop()?.logo ?? "",
+                      text: _buildShop()?.name  ?? "",
                     ),
                     Gaps.vGap10,
                     Stack(
                       alignment: Alignment.topCenter,
                       clipBehavior: Clip.none,
                       children: [
-                        PharmacyOrderDoneWidget(
-                            data: state.data!, controller: controller),
+                        PharmacyOrderDoneWidget(data: state.data!, controller: controller),
                         if (state.data?.pharmNormalOrder == false)
                           SvgPicture.asset(Res.orderConfirmImage)
-                        else if (controller.firstSectionOrder?.isCanceled ==
-                            true)
+                        else if (controller.firstSectionOrder?.isCanceled == true)
                           SvgPicture.asset(Res.confirmationAlertIcon)
                       ],
                     ),
@@ -55,7 +53,7 @@ class OrderSuccessBody extends StatelessWidget {
                     }),
                     if ((controller.firstSectionOrder?.additionalInfo ?? "")
                         .isNotEmpty) ...[
-                      Gaps.vGap20,
+                      Gaps.vGap10,
                       AdditionalNotesWidget(
                         additionalInfo: controller.firstSectionOrder!.additionalInfo!,
                         pharmacyReply: controller.firstSectionOrder!.pharmacyReply,
@@ -95,6 +93,8 @@ class OrderSuccessBody extends StatelessWidget {
       },
     );
   }
+
+  Shop? _buildShop() => controller.firstSectionOrder?.orderDetails.first.product?.shop;
 
   bool _showOrderInvoice(GenericState<OrderSummaryDomainModel?> state) =>
       state.data?.pharmNormalOrder == false &&

@@ -22,28 +22,36 @@ class PrescriptionPickedFileWidget extends StatelessWidget {
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
-                file.path.split('/').last,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: AppTextStyle.s14_w600(color: context.colors.black),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      file.path.split('/').last,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTextStyle.s14_w600(color: context.colors.black),
+                    ),
+                  ),
+                  Gaps.hGap3,
+                  GestureDetector(
+                    onTap: onRemove,
+                    child: Icon(
+                      Icons.close,
+                      color: context.colors.redAccent,
+                    ),
+                  ),
+                ],
               ),
-              Gaps.vGap4,
+              Gaps.vGap8,
               Text(
                 "Last Use : New attachment",
                 style: AppTextStyle.s12_w400(color: context.colors.textColor),
               ),
             ],
           ),
-        ),
-        IconButton(
-          onPressed: onRemove,
-          icon: Icon(
-            Icons.close,
-            color: context.colors.redAccent,
-          ),
-        ),
+        )
       ],
     );
   }

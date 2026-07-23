@@ -58,7 +58,18 @@ class _AttachPrescriptionState extends State<AttachPrescription> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PrescriptionFileCardWidget(controller: controller),
+                    Text(
+                      "Attach Prescription",
+                      style: AppTextStyle.s16_w600(color: context.colors.black),
+                    ),
+                    Gaps.vGap15,
+                    CustomSharedPrescriptionFileCardWidget(
+                      prescriptionFileCubit: controller.prescriptionFileCubit,
+                      selectedSavedPrescriptionCubit: controller.selectedSavedPrescriptionCubit,
+                      onPickFile: () => controller.onPickPrescriptionFile(),
+                      onRemoveFile:() => controller.onRemovePrescriptionFile(),
+                      onRemoveSavedPrescription: () => controller.onRemoveSelectedSavedPrescription(),
+                    ),
                     Gaps.vGap15,
                     SaveForLaterWidget(controller: controller),
                     Gaps.vGap20,

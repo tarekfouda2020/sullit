@@ -8,7 +8,7 @@ class HealthInsuranceWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: Dimens.paddingAll15PX,
+      padding: Dimens.paddingH10V10,
       decoration: CustomDecoration(
         thisColor: context.colors.white,
         myBoxShadow: const [],

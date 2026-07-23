@@ -25,9 +25,28 @@ class PharmacyAddressController {
 
   final Shop? pharmacy;
 
+  final int? preSelectedBranchId;
+
   AddressDomainModel? selectedAddress;
 
   final PharmacyCreateOrderParams? createOrderParams;
+
+  PharmacyAddressController(
+      {required this.havePrescription,
+      this.pharmacy,
+      this.createOrderParams,
+      this.preSelectedBranchId}) {
+    if (pharmacy?.hasBranches == true && preSelectedBranchId == null) {
+      getPharmacyBranches(1, refresh: false);
+      branchesPagingController.addPageRequestListener((pageKey) {
+        getPharmacyBranches(pageKey);
+      });
+    }
+    getPaginateAddress(1, refresh: false);
+    pagingController.addPageRequestListener((pageKey) {
+      getPaginateAddress(pageKey);
+    });
+  }
 
   bool get havePickUp {
     var data = sellerShippingInfoCubit.state.data;
@@ -41,19 +60,7 @@ class PharmacyAddressController {
     return canDelivery;
   }
 
-  PharmacyAddressController(
-      {required this.havePrescription, this.pharmacy, this.createOrderParams}) {
-    if (pharmacy?.hasBranches == true) {
-      getPharmacyBranches(1, refresh: false);
-      branchesPagingController.addPageRequestListener((pageKey) {
-        getPharmacyBranches(pageKey);
-      });
-    }
-    getPaginateAddress(1, refresh: false);
-    pagingController.addPageRequestListener((pageKey) {
-      getPaginateAddress(pageKey);
-    });
-  }
+
 
   Future<void> getPaginateAddress(int page, {bool refresh = true}) async {
     GenericPaginateParams params = _paginateParams(page, refresh);
@@ -84,9 +91,9 @@ class PharmacyAddressController {
     selectedAddress = address;
     createOrderParams?.setAddressId(address.id!);
     refreshCubit.onUpdateData(true);
-   if(pharmacy?.hasBranches == true){
+   if(pharmacy?.hasBranches == true && preSelectedBranchId == null){
      getBranches(context);
-   }else{
+   }else if(havePrescription){
      getPrescriptionShippingInfo();
    }
   }
@@ -111,7 +118,7 @@ class PharmacyAddressController {
       return;
     }
 
-    if(sellerShippingInfoCubit.state.data == null){
+    if(sellerShippingInfoCubit.state.data == null && havePrescription){
       CustomToast.showSimpleToast(msg: "Please select your receiving method");
       return;
     }
@@ -134,7 +141,6 @@ class PharmacyAddressController {
 
   void getPrescriptionShippingInfo() {
     SellerShippingInfoParams params = _prescriptionShippingInfo();
-    log("===>>>>> params is =>>>>  ${params.toJson()}  =========");
     GetSellerShippingInfo().call(params).then((value) {
       sellerShippingInfoCubit.onUpdateData(value);
       if(haveDelivery && havePickUp == false){
@@ -162,7 +168,7 @@ class PharmacyAddressController {
     return SellerShippingInfoParams(
       sellerId: pharmacy!.userId!,
       addressId: selectedAddress!.id!,
-      branchId: selectedBranch?.id,
+      branchId: effectiveBranchId,
     );
   }
 
@@ -216,7 +222,7 @@ class PharmacyAddressController {
     var result = await CreatePharmacyPrescriptionOrder().call(params);
     if (result != null) {
       AutoRouter.of(context)
-          .push(OrderSuccessRoute(summary: result, havePrescription: true));
+          .push(OrderSuccessRoute(summary: result, havePrescription: true, pharmacy: pharmacy));
     }
   }
 
@@ -234,7 +240,7 @@ class PharmacyAddressController {
       createOrderParams!.setAddressId(selectedAddress?.id);
     }
     createOrderParams!.setShippingType(selectedDeliveryType);
-    createOrderParams!.setShopBranchId(selectedBranch?.id);
+    createOrderParams!.setShopBranchId(effectiveBranchId);
     return createOrderParams!;
   }
 
@@ -305,7 +311,9 @@ class PharmacyAddressController {
     shippingDataCubit.onUpdateData(shippingDataCubit.state.data);
     // BuildContext ctx = getIt<GlobalContext>().context();
     // createPrescriptionOrder(ctx);
-    getPrescriptionShippingInfo();
+    if(havePrescription){
+      getPrescriptionShippingInfo();
+    }
 
   }
 
@@ -319,6 +327,8 @@ class PharmacyAddressController {
       return _branchesItemList!.firstWhere((element) => element.isSelected);
     }
   }
+
+  int? get effectiveBranchId => selectedBranch?.id ?? preSelectedBranchId;
 
   bool canConfirmShipping() {
     return shippingDataCubit.state.data.every(

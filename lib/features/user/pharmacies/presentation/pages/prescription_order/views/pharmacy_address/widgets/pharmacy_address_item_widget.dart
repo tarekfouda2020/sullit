@@ -69,7 +69,7 @@ class PharmacyAddressItemWidget extends StatelessWidget {
             ),
             CustomRadioWidget(
               selected: isSelected,
-              size: 22,
+              size: 18,
               padding: 2,
             ),
           ],

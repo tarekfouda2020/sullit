@@ -103,7 +103,9 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
               physics: widget.productModel.images!.length > 1
                   ? null
                   : const NeverScrollableScrollPhysics(),
-              pagination: const SwiperPagination(),
+              pagination: (widget.productModel.images?.length ??0) > 1
+                  ? const SwiperPagination()
+                  : null,
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   onTap: () => AutoRouter.of(context).push(ImageZoomRoute(

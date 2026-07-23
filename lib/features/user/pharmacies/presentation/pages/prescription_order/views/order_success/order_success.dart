@@ -3,11 +3,12 @@ part of 'order_success_imports.dart';
 class OrderSuccess extends StatefulWidget {
   final OrderSummaryDomainModel summary;
   final bool havePrescription;
-
+  final Shop? pharmacy;
   const OrderSuccess({
     super.key,
     required this.summary,
     this.havePrescription = false,
+    this.pharmacy,
   });
 
   @override
@@ -20,7 +21,7 @@ class _OrderSuccessState extends State<OrderSuccess> {
   @override
   void initState() {
     super.initState();
-    controller = OrderSuccessController(widget.summary);
+    controller = OrderSuccessController(widget.summary,widget.pharmacy);
   }
 
   @override
@@ -33,7 +34,9 @@ class _OrderSuccessState extends State<OrderSuccess> {
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
         appBar:  DefaultAppBar(
-            title: "Order Details",
+            title: widget.havePrescription
+                ? "Prescription Order"
+                :"Order Details",
           onBack: () => controller.onPressBack(context),
         ),
         body: Column(

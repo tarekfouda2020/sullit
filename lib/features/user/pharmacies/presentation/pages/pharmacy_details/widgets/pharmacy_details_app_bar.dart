@@ -43,8 +43,6 @@ class PharmacyDetailsAppBar extends StatelessWidget {
                         padding: EdgeInsets.only(
                           top: MediaQuery.paddingOf(context).top +
                               kToolbarHeight,
-                          left: 16,
-                          right: 16,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,9 +68,12 @@ class PharmacyDetailsAppBar extends StatelessWidget {
                               ],
                             ),
                             Gaps.vGap20,
-                            SupportedInsuranceWidget(
-                              insurance: shop.insuranceCompanies ?? [],
-                              controller: controller,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: SupportedInsuranceWidget(
+                                insurance: shop.insuranceCompanies ?? [],
+                                controller: controller,
+                              ),
                             ),
                           ],
                         ),
@@ -85,7 +86,7 @@ class PharmacyDetailsAppBar extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Gaps.vGap10,
+                            Gaps.vGap5,
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 16),
                               child: PharmSloganBannerWidget(
@@ -122,10 +123,7 @@ class PharmacyDetailsAppBar extends StatelessWidget {
 
   bool get haveBranches => controller.haveBranches;
 
-  /// Height budget for [PharmSloganBannerWidget] (Gaps.vGap10 + banner's own
-  /// vertical padding/content) — the banner is always shown in `bottom`, but
-  /// wasn't accounted for in the fixed height budgets below, which clipped
-  /// SupportedInsuranceWidget in the flexible space.
+
   static const double _bannerHeight = 90;
 
   double get getExpandedHeight {

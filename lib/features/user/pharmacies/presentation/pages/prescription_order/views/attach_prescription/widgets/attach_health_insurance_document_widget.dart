@@ -24,15 +24,7 @@ class AttachHealthInsuranceDocumentWidget extends StatelessWidget {
               onTap: controller.onPickInsuranceFile,
               child: Container(
                 alignment: Alignment.center,
-                padding: hasFile
-                    ? const EdgeInsets.symmetric(
-                        vertical: Dimens.dp10,
-                        horizontal: Dimens.dp10,
-                      )
-                    : const EdgeInsets.symmetric(
-                        vertical: Dimens.dp40,
-                        horizontal: Dimens.dp20,
-                      ),
+                  padding:  const EdgeInsets.only(right: 10,left: 10,top: 10),
                 decoration: BoxDecoration(
                   color: context.colors.white,
                   borderRadius: Dimens.borderRadius10PX,
@@ -42,24 +34,7 @@ class AttachHealthInsuranceDocumentWidget extends StatelessWidget {
                     ? (file.isImage
                         ? PickedImagePreviewWidget(file: file)
                         : PickedPdfPreviewWidget(file: file))
-                    : Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.add,
-                            size: Dimens.dp32,
-                            color: context.colors.textColor,
-                          ),
-                          Gaps.vGap12,
-                          Text(
-                            "Attach Health Insurance Document in PNG / JPG or pdf",
-                            textAlign: TextAlign.center,
-                            style: AppTextStyle.s14_w400(
-                              color: context.colors.textColor,
-                            ).copyWith(height: 1.3),
-                          ),
-                        ],
-                      ),
+                    : const PrescriptionPlaceholderWidget(placeholder:   "Attach Health Insurance Document in PNG / JPG or pdf")
               ),
             );
           },

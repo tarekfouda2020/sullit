@@ -4,6 +4,7 @@ class PharmacyCardWidget extends StatelessWidget {
   final Shop shop;
   final VoidCallback onTap;
   final bool showSelectionRadio;
+
   const PharmacyCardWidget({
     super.key,
     required this.shop,
@@ -18,90 +19,99 @@ class PharmacyCardWidget extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 6),
         padding: const EdgeInsets.symmetric(vertical: 12),
-        decoration: BoxDecoration(
-          color: context.colors.white,
-          borderRadius: Dimens.borderRadius12PX,
-          border: Border.all(
-            color: showSelectionRadio && shop.isSelected
-                ? context.colors.primary
-                : context.colors.borderColor,
-            width: 1.5,
-          ),
-        ),
+        color: Colors.transparent,
         child: Stack(
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 10,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CachedImage(
-                      width: MediaQuery.sizeOf(context).width * 0.85,
-                      height: 80,
-                      fit: BoxFit.cover,
-                      bgColor: context.colors.white,
-                      url: shop.logo ?? "",
-                    ),
-                  ],
+                CachedImage(
+                  width: MediaQuery.sizeOf(context).width,
+                  height: 100,
+                  fit: BoxFit.cover,
+                  bgColor: Colors.transparent,
+                  url: shop.logo ?? "",
+                  borderRadius: Dimens.topRadius12Px,
+                  border: Border(
+                      top: _buildBorderSide(context),
+                      left: _buildBorderSide(context),
+                      right: _buildBorderSide(context)),
                 ),
-                Divider(
-                  color: context.colors.borderColor,
-                  thickness: 1.5,
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 28),
+                Container(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  decoration: BoxDecoration(
+                    color: context.colors.white,
+                    borderRadius: Dimens.bottomRadius12Px,
+                    border: Border(
+                        bottom: _buildBorderSide(context),
+                        left: _buildBorderSide(context),
+                        right: _buildBorderSide(context)),
+                  ),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        shop.name ?? "",
-                        style: AppTextStyle.s18_w600(color: context.colors.black),
+                      Divider(
+                        color: context.colors.borderColor,
+                        thickness: 1.5,
                       ),
-                      Gaps.vGap12,
-                      Row(
-                        spacing: 10,
-                        children: [
-                          RatingBar.builder(
-                            initialRating: shop.rating?.toDouble() ?? 0.0,
-                            ignoreGestures: true,
-                            minRating: 1,
-                            direction: Axis.horizontal,
-                            allowHalfRating: true,
-                            itemCount: 5,
-                            itemSize: 15.sp,
-                            unratedColor: context.colors.disableGray,
-                            itemBuilder: (context, _) => const Icon(
-                              Icons.star,
-                              color: Colors.amber,
+                      Padding(
+                        padding: const EdgeInsetsDirectional.only(start: 28),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              shop.name ?? "",
+                              style: AppTextStyle.s18_w600(
+                                  color: context.colors.black),
                             ),
-                            onRatingUpdate: (rating) {},
-                          ),
-                          Text(
-                            "${shop.rating ?? 0}/5",
-                            style: AppTextStyle.s14_w400(
-                                color: context.colors.textColor),
-                          )
-                        ],
-                      ),
-                      Gaps.vGap12,
-                      ...(shop.categories ?? <ShopCategory>[]).take(3).map((e) {
-                        return Container(
-                          padding: Dimens.paddingAll10PX,
-                          decoration: BoxDecoration(
-                            color: const Color(0xff00749A).withAlpha(80),
-                            borderRadius: Dimens.borderRadius30PX,
-                          ),
-                          child: Text(
-                            e.name,
-                            style: AppTextStyle.s12_w600(color: context.colors.oceanBlue),
-                          ),
-                        );
-                      }),
+                            Gaps.vGap12,
+                            Row(
+                              spacing: 10,
+                              children: [
+                                RatingBar.builder(
+                                  initialRating: shop.rating?.toDouble() ?? 0.0,
+                                  ignoreGestures: true,
+                                  minRating: 1,
+                                  direction: Axis.horizontal,
+                                  allowHalfRating: true,
+                                  itemCount: 5,
+                                  itemSize: 15.sp,
+                                  unratedColor: context.colors.disableGray,
+                                  itemBuilder: (context, _) => const Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                  ),
+                                  onRatingUpdate: (rating) {},
+                                ),
+                                Text(
+                                  "${shop.rating ?? 0}/5",
+                                  style: AppTextStyle.s14_w400(
+                                      color: context.colors.textColor),
+                                )
+                              ],
+                            ),
+                            Gaps.vGap12,
+                            ...(shop.categories ?? <ShopCategory>[])
+                                .take(3)
+                                .map((e) {
+                              return Container(
+                                padding: Dimens.paddingAll10PX,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xff00749A).withAlpha(80),
+                                  borderRadius: Dimens.borderRadius30PX,
+                                ),
+                                child: Text(
+                                  e.name,
+                                  style: AppTextStyle.s12_w600(
+                                      color: context.colors.oceanBlue),
+                                ),
+                              );
+                            }),
+                          ],
+                        ),
+                      )
                     ],
                   ),
-                )
+                ),
               ],
             ),
             if (showSelectionRadio)
@@ -114,5 +124,13 @@ class PharmacyCardWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  BorderSide _buildBorderSide(BuildContext context) {
+    return BorderSide(
+        color: showSelectionRadio && shop.isSelected
+            ? context.colors.primary
+            : context.colors.borderColor,
+        width: 1.5);
   }
 }

@@ -11,29 +11,37 @@ class PharmacyProductsSearchFieldWidget extends StatelessWidget {
       children: [
         Gaps.hGap15,
         Expanded(
-          child: GenericTextField(
-            fieldTypes: FieldTypes.normal,
-            type: TextInputType.text,
-            action: TextInputAction.search,
-            fillColor: context.colors.white,
-            controller: controller.productSearchCtr,
-            validate: (value) => value?.noValidate(),
-            hint: "${tr("searchInProducts")}...",
-            onSubmit: () => controller.searchProducts(context),
-            onChange: (value) => controller.whileWriting(context, value),
-            suffixIcon: GestureDetector(
-              onTap: () => controller.searchProducts(context),
-              child: Transform.scale(
-                scale: 1,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SvgPicture.asset(Res.searchIcon),
-                  ],
+          child: Focus(
+            onFocusChange: (hasFocus) {
+              if(hasFocus){
+                controller.scrollToTarget();
+              }
+            },
+            child: GenericTextField(
+              fieldTypes: FieldTypes.normal,
+              type: TextInputType.text,
+              action: TextInputAction.search,
+              fillColor: context.colors.white,
+              controller: controller.productSearchCtr,
+              validate: (value) => value?.noValidate(),
+
+              hint: "${tr("searchInProducts")}...",
+              onSubmit: () => controller.searchProducts(context),
+              onChange: (value) => controller.whileWriting(context, value),
+              suffixIcon: GestureDetector(
+                onTap: () => controller.searchProducts(context),
+                child: Transform.scale(
+                  scale: 1,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SvgPicture.asset(Res.searchIcon),
+                    ],
+                  ),
                 ),
               ),
+              margin: EdgeInsets.zero,
             ),
-            margin: EdgeInsets.zero,
           ),
         ),
         Gaps.hGap15,

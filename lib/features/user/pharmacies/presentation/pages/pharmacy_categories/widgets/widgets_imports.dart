@@ -15,6 +15,7 @@ import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
+import 'package:flutter_tdd/core/widgets/pharm_slogan_banner_widget.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/pharmacy_details/widgets/widgets_imports.dart';

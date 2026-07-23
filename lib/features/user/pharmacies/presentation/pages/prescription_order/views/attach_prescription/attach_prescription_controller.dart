@@ -48,7 +48,7 @@ class AttachPrescriptionController {
     });
   }
 
-  List<String> get _allowedExtensions => [  'jpg', 'jpeg', 'png'];
+  List<String> get _allowedExtensions =>  ["pdf",'jpg', 'jpeg', 'png'];
 
   Future<void> getSavedPrescriptions(int page, {bool refresh = true}) async {
     GenericPaginateParams params = _genericPaginateParams(page, refresh);
@@ -122,7 +122,7 @@ class AttachPrescriptionController {
 
   Future<void> onPickPrescriptionFile() async {
     var result = await getIt<Utilities>().getAttachmentFile(
-      FileType.image,
+      FileType.custom,
       allowedExtensions: _allowedExtensions,
     );
     if (result != null) {
@@ -134,7 +134,7 @@ class AttachPrescriptionController {
 
   Future<void> onPickEmiratesId() async {
     var result = await getIt<Utilities>().getAttachmentFile(
-      FileType.image,
+      FileType.custom,
       allowedExtensions: _allowedExtensions,
     );
     if (result != null) {
@@ -152,7 +152,7 @@ class AttachPrescriptionController {
 
   Future<void> onPickInsuranceFile() async {
     var result = await getIt<Utilities>().getAttachmentFile(
-      FileType.image,
+      FileType.custom,
       allowedExtensions: _allowedExtensions,
     );
     if (result != null) {

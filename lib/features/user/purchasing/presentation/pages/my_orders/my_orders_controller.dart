@@ -94,7 +94,12 @@ class MyOrdersController {
     }
   }
 
-  Future<void> reOrder(BuildContext context, int orderId, bool isPharmacy, int pharamcyId) async {
+  Future<void> reOrder(BuildContext context, int orderId, bool isPharmacy, int pharamcyId,{bool prescriptionRequired = false}) async {
+    if(prescriptionRequired){
+      AutoRouter.of(context).pop();
+      AutoRouter.of(context).push(PharmaciesListRoute(makePrescriptionOrder: true));
+      return ;
+    }
     String result = await OrderAgain()(orderId);
     if (result.isNotEmpty) {
       CustomToast.showSimpleToast(msg: result, type: ToastType.success);
@@ -108,7 +113,7 @@ class MyOrdersController {
         AutoRouter.of(context).push(CartRoute());
       }
     } else {
-      CustomToast.showSimpleToast(msg: tr("tryAgain"), type: ToastType.error);
+      // CustomToast.showSimpleToast(msg: tr("tryAgain"), type: ToastType.error);
     }
   }
 }

@@ -16,6 +16,10 @@ class PharmacyCategoriesAppBar extends StatelessWidget {
           return BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.showAppBarTitle,
             builder: (context, titleState) {
+              final double baseHeight = 420;
+              final double insuranceHeight = insuranceList.isNotEmpty ? 100 : 0;
+              final double expandedHeight = baseHeight + insuranceHeight;
+
               return SliverAppBar(
                 backgroundColor: context.colors.white,
                 pinned: true,
@@ -32,13 +36,11 @@ class PharmacyCategoriesAppBar extends StatelessWidget {
                     style: AppTextStyle.s20_w700(color: context.colors.black),
                   ),
                 ),
-                expandedHeight: 450,
+                expandedHeight: expandedHeight,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Padding(
                     padding: EdgeInsets.only(
                       top: MediaQuery.paddingOf(context).top + kToolbarHeight,
-                      left: 16,
-                      right: 16,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,6 +69,15 @@ class PharmacyCategoriesAppBar extends StatelessWidget {
                         Gaps.vGap20,
                         if (insuranceList.isNotEmpty)
                           _buildInsuranceList(context, insuranceList),
+                        Gaps.vGap10,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: PharmSloganBannerWidget(
+                            firstText: 'Get Your Medication',
+                            secondText: 'Upload Prescription',
+                            onTap: () => controller.routeToPrescription(context),
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -83,51 +94,54 @@ class PharmacyCategoriesAppBar extends StatelessWidget {
 
   Widget _buildInsuranceList(
       BuildContext context, List<InsuranceCompany> insuranceList) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              tr("supported_health_insurance_by"),
-              style: AppTextStyle.s16_w600(color: context.colors.black),
-            ),
-            GestureDetector(
-              onTap: () => controller.onPressSupportedInsurance(context),
-              child: Text(
-                tr("seeAll"),
-                style: AppTextStyle.s14_w400(color: context.colors.textColor),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                tr("supported_health_insurance_by"),
+                style: AppTextStyle.s16_w600(color: context.colors.black),
               ),
-            ),
-          ],
-        ),
-        Gaps.vGap12,
-        SizedBox(
-          height: 60.h,
-          child: ListView.separated(
-            padding: EdgeInsets.zero,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) => Container(
-              width: 100.w,
-              padding: Dimens.paddingAll8PX,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: context.colors.disableGray.withValues(alpha: 0.5),
+              GestureDetector(
+                onTap: () => controller.onPressSupportedInsurance(context),
+                child: Text(
+                  tr("seeAll"),
+                  style: AppTextStyle.s14_w400(color: context.colors.textColor),
                 ),
-                borderRadius: Dimens.borderRadius8PX,
               ),
-              child: CachedImage(
-                url: insuranceList[index].logoUrl,
-                fit: BoxFit.contain,
-              ),
-            ),
-            separatorBuilder: (context, index) => Gaps.hGap10,
-            itemCount: insuranceList.length,
+            ],
           ),
-        ),
-      ],
+          Gaps.vGap12,
+          SizedBox(
+            height: 60.h,
+            child: ListView.separated(
+              padding: EdgeInsets.zero,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) => Container(
+                width: 100.w,
+                padding: Dimens.paddingAll8PX,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: context.colors.disableGray.withValues(alpha: 0.5),
+                  ),
+                  borderRadius: Dimens.borderRadius8PX,
+                ),
+                child: CachedImage(
+                  url: insuranceList[index].logoUrl,
+                  fit: BoxFit.contain,
+                ),
+              ),
+              separatorBuilder: (context, index) => Gaps.hGap10,
+              itemCount: insuranceList.length,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -11,16 +11,16 @@ class PrescriptionOrderStepModel {
 
   // Prescription-order flow: Attach Prescription -> Address -> Success.
   static const List<PrescriptionOrderStepModel> prescriptionFlowSteps = [
-    PrescriptionOrderStepModel(icon: Res.medicRecipeIcon, title: "Attach Prescription"),
-    PrescriptionOrderStepModel(icon: Res.addAddresses, title: "Address"),
+    PrescriptionOrderStepModel(icon: Res.shopCart, title: "Attachments"),
+    PrescriptionOrderStepModel(icon: Res.payHand, title: "Receiving Method"),
     PrescriptionOrderStepModel(icon: Res.successIcon, title: "Success"),
   ];
 
   // Normal-order flow: Cart -> Address -> Checkout -> Success.
   static const List<PrescriptionOrderStepModel> normalFlowSteps = [
     PrescriptionOrderStepModel(icon: Res.shopCart, title: "Cart"),
-    PrescriptionOrderStepModel(icon: Res.addAddresses, title: "Address"),
-    PrescriptionOrderStepModel(icon: Res.payCheckout, title: "Checkout"),
+    PrescriptionOrderStepModel(icon: Res.payHand, title: "Receiving Method"),
+    PrescriptionOrderStepModel(icon: Res.visaCards, title: "Payment Checkout"),
     PrescriptionOrderStepModel(icon: Res.successIcon, title: "Success"),
   ];
 }

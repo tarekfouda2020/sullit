@@ -53,12 +53,24 @@ class _PharmacyProductCardWidgetState
   Future<bool> handleFirstAddToCart(BuildContext context) async {
     final product = widget.productModel;
     if (product is! PharmacyProduct) {
-      return super.handleFirstAddToCart(context);
+      // return super.handleFirstAddToCart(context);
+      return false;
     }
 
     if ((product.addedQtyToCart ?? 0) > 0) {
       return false;
     }
+
+
+
+   //  log("==>>>>>>>> ${widget.controller.cartBranchId }");
+   //  log("==>>>>>>>> ${product.branch?.id }");
+   // if(widget.controller.cartBranchId !=null && widget.controller.cartBranchId != product.branch?.id ){
+   //   if(product.branch!= null){
+   //     widget.controller.showChangeBranchDialog(context, product.branch!);
+   //   }
+   //   return false;
+   // }
 
     enableAddToCartLoading.onUpdateData(true);
 
@@ -102,6 +114,13 @@ class _PharmacyProductCardWidgetState
       if (!mounted) return;
       widget.controller.showAddToCartFailedDialog(this.context);
       return;
+    }
+    final product = widget.productModel as PharmacyProduct;
+    if(widget.controller.cartBranchId !=null && widget.controller.cartBranchId != product.branch?.id ){
+      if(product.branch!= null){
+        widget.controller.showChangeBranchDialog(context, product.branch!);
+        return ;
+      }
     }
     var currentStockQnt = widget.productModel.variant?.currentStock ?? 0;
     int qnt = widget.productModel.addedQtyToCart! + 1;

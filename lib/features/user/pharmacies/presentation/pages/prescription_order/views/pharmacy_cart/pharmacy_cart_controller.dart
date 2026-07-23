@@ -14,8 +14,9 @@ class PharmacyCartController {
 
   bool fromPharmacyDetails = true;
 
+  final int? preSelectedBranchId;
 
-  PharmacyCartController({this.pharmacyId, this.fromPharmacyDetails = true});
+  PharmacyCartController({this.pharmacyId, this.fromPharmacyDetails = true, this.preSelectedBranchId});
 
   Future<void> getData() async {
     getCartItems(refresh: false);
@@ -185,19 +186,14 @@ class PharmacyCartController {
         return;
       }
       AutoRouter.of(context).push(PharmacyAddressRoute(
-        havePrescription: havePrescription,
-        pharmacy: pharmacyBloc.state.data
+        havePrescription: false,
+        pharmacy: pharmacyBloc.state.data,
+        preSelectedBranchId: preSelectedBranchId,
       ));
     } else {
       CustomToast.showAuthDialog(context);
     }
   }
-
-  bool get havePrescription =>
-      cartItemsBloc.state.data.pharmacyItems
-          ?.any((element) => element.prescriptionRequired == true) ==
-      true;
-
 
 
   Future<void> _getPharmacyDetails({bool fromRemote = true}) async {

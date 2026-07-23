@@ -89,7 +89,8 @@ class MyOrderItemWidget extends StatelessWidget {
                         context,
                         order.id,
                        order.isPharmacy,
-                      order.orderDetails.first!.product!.shop!.id!
+                      order.orderDetails.first.product!.shop!.id!,
+                      prescriptionRequired: order.requiresPrescriptionReview ?? false
                     )),
               ),
           ],
