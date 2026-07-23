@@ -31,7 +31,7 @@ class OrderSuccessBody extends StatelessWidget {
                       clipBehavior: Clip.none,
                       children: [
                         PharmacyOrderDoneWidget(data: state.data!, controller: controller),
-                        if (state.data?.pharmNormalOrder == false)
+                        if (controller.firstSectionOrder?.isCanceled == false)
                           SvgPicture.asset(Res.orderConfirmImage)
                         else if (controller.firstSectionOrder?.isCanceled == true)
                           SvgPicture.asset(Res.confirmationAlertIcon)

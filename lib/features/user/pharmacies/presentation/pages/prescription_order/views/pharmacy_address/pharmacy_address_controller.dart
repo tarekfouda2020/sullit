@@ -175,14 +175,16 @@ class PharmacyAddressController {
   Future<void> getShippingInfo(BuildContext context) async {
     var params = PharamcyShippingInfoParams(addressId: selectedAddress!.id!);
     var result = await GetPharmacyShippingInfo().call(params);
-    for (PharmacyShippingDomainModel item in result) {
-      if (item.activeDelivery == false && item.activePickup == true) {
-        item.deliveryType = DeliveryTypeEnum.pickUp;
+    if(result.isNotEmpty){
+      for (PharmacyShippingDomainModel item in result) {
+        if (item.activeDelivery == false && item.activePickup == true) {
+          item.deliveryType = DeliveryTypeEnum.pickUp;
+        }
       }
-    }
-    shippingDataCubit.onUpdateData(result);
+      shippingDataCubit.onUpdateData(result);
 
-    showShippingTypeSheet(context, result);
+      showShippingTypeSheet(context, result);
+    }
   }
 
   void showShippingTypeSheet(
