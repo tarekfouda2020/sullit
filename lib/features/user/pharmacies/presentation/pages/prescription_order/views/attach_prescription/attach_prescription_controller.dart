@@ -5,6 +5,8 @@ class AttachPrescriptionController {
 
   final GenericBloc<File> prescriptionFileCubit = GenericBloc<File>(File(""));
   final GenericBloc<File> emiratesIdCubit = GenericBloc<File>(File(""));
+  final GenericBloc<File> insuranceFileBloc = GenericBloc<File>(File(""));
+
 
   final GenericBloc<bool> saveForLaterCubit = GenericBloc<bool>(true);
   final GenericBloc<bool> healthInsuranceCubit = GenericBloc<bool>(false);
@@ -18,7 +20,6 @@ class AttachPrescriptionController {
 
   final GenericBloc<InsuranceCompany?> selectedInsuranceCompany =
       GenericBloc<InsuranceCompany?>(null);
-  final GenericBloc<File> insuranceFileBloc = GenericBloc<File>(File(""));
 
   final GenericBloc<PharmacyOrderTermsModel?> termsCubit =
       GenericBloc<PharmacyOrderTermsModel?>(null);
@@ -199,13 +200,6 @@ class AttachPrescriptionController {
       if (selectedInsuranceCompany.state.data == null) {
         CustomToast.showSimpleToast(
           msg: "Please select your insurance company first",
-        );
-        return;
-      }
-
-      if (insuranceFileBloc.state.data.path.isEmpty) {
-        CustomToast.showSimpleToast(
-          msg: "Please Upload your insurance image first",
         );
         return;
       }

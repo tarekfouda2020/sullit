@@ -22,13 +22,12 @@ class SaveForLaterWidget extends StatelessWidget {
         ),
         Gaps.vGap10,
         const _WarningBullet(
-          text:
-              "Note that pharmacy will review your Prescription  document and back to you with confirmation or rejection",
+          text: "Note that pharmacist will review your Prescription document and get back to you.",
         ),
         Gaps.vGap4,
         const _WarningBullet(
           showIcon: false,
-          text: "Attached prescription must be match attached identity",
+          text: "The attach prescription must match the attached ID card",
         ),
       ],
     );

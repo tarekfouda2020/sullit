@@ -34,7 +34,7 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
 
                           if(state.data?.isCanceled == true)
                             SvgPicture.asset(Res.confirmationAlertIcon)
-                         else if (state.data?.pharmNormalOrder == false && state.data?.isCanceled == false )
+                         else if (state.data?.pharmNormalOrder == false && state.data?.isPendingReview == true )
                             SvgPicture.asset(Res.orderConfirmImage)
                         ],
                       ),

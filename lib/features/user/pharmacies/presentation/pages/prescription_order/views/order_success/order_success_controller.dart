@@ -153,7 +153,8 @@ class OrderSuccessController {
   }
 
   void openIdentityDocument(BuildContext context, String url) {
-    AutoRouter.of(context).push(ImageZoomRoute(image: url));
+    HelperMethods.instance.launchURL(url: url);
+    // AutoRouter.of(context).push(ImageZoomRoute(image: url));
   }
 
 

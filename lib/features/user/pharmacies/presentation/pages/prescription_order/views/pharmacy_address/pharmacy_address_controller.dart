@@ -48,17 +48,17 @@ class PharmacyAddressController {
     });
   }
 
-  bool get havePickUp {
-    var data = sellerShippingInfoCubit.state.data;
-    var canPickUp = data?.activePickup == true && data?.pickup!= null;
-    return canPickUp;
-  }
-
-  bool get haveDelivery {
-    var data = sellerShippingInfoCubit.state.data;
-    var canDelivery = data?.activeDelivery == true && data?.delivery!= null;
-    return canDelivery;
-  }
+  // bool get havePickUp {
+  //   var data = sellerShippingInfoCubit.state.data;
+  //   var canPickUp = data?.activePickup == true && data?.pickup!= null;
+  //   return canPickUp;
+  // }
+  //
+  // bool get haveDelivery {
+  //   var data = sellerShippingInfoCubit.state.data;
+  //   var canDelivery = data?.activeDelivery == true && data?.delivery!= null;
+  //   return canDelivery;
+  // }
 
 
 
@@ -91,10 +91,12 @@ class PharmacyAddressController {
     selectedAddress = address;
     createOrderParams?.setAddressId(address.id!);
     refreshCubit.onUpdateData(true);
-   if(pharmacy?.hasBranches == true && preSelectedBranchId == null){
+    if(havePrescription){
+      // createPrescriptionOrder(context);
+      //   getPrescriptionShippingInfo();
+    }
+    else if(pharmacy?.hasBranches == true && preSelectedBranchId == null){
      getBranches(context);
-   }else if(havePrescription){
-     getPrescriptionShippingInfo();
    }
   }
 
@@ -118,10 +120,10 @@ class PharmacyAddressController {
       return;
     }
 
-    if(sellerShippingInfoCubit.state.data == null && havePrescription){
-      CustomToast.showSimpleToast(msg: "Please select your receiving method");
-      return;
-    }
+    // if(sellerShippingInfoCubit.state.data == null && havePrescription){
+    //   CustomToast.showSimpleToast(msg: "Please select your receiving method");
+    //   return;
+    // }
 
     if (havePrescription) {
       createPrescriptionOrder(context);
@@ -139,30 +141,30 @@ class PharmacyAddressController {
     showBranchesSheet(context);
   }
 
-  void getPrescriptionShippingInfo() {
-    SellerShippingInfoParams params = _prescriptionShippingInfo();
-    GetSellerShippingInfo().call(params).then((value) {
-      sellerShippingInfoCubit.onUpdateData(value);
-      if(haveDelivery && havePickUp == false){
-        CustomToast.showSimpleToast(msg: "Only Delivery Available",
-            type: ToastType.success
-        );
-        return ;
-      }
-      if(havePickUp && haveDelivery == false){
-        CustomToast.showSimpleToast(msg: "Only PickUp Available",
-            type: ToastType.success
-        );
-        return ;
-      }
-      if(havePickUp && haveDelivery){
-        CustomToast.showSimpleToast(msg: "Please select your order type",
-        type: ToastType.success
-        );
-        return ;
-      }
-    });
-  }
+  // void getPrescriptionShippingInfo() {
+  //   SellerShippingInfoParams params = _prescriptionShippingInfo();
+  //   GetSellerShippingInfo().call(params).then((value) {
+  //     sellerShippingInfoCubit.onUpdateData(value);
+  //     if(haveDelivery && havePickUp == false){
+  //       CustomToast.showSimpleToast(msg: "Only Delivery Available",
+  //           type: ToastType.success
+  //       );
+  //       return ;
+  //     }
+  //     if(havePickUp && haveDelivery == false){
+  //       CustomToast.showSimpleToast(msg: "Only PickUp Available",
+  //           type: ToastType.success
+  //       );
+  //       return ;
+  //     }
+  //     if(havePickUp && haveDelivery){
+  //       CustomToast.showSimpleToast(msg: "Please select your order type",
+  //       type: ToastType.success
+  //       );
+  //       return ;
+  //     }
+  //   });
+  // }
 
   SellerShippingInfoParams _prescriptionShippingInfo() {
     return SellerShippingInfoParams(
@@ -240,9 +242,11 @@ class PharmacyAddressController {
     DeliveryTypeEnum selectedDeliveryType = deliveryMethodCubit.state.data;
     if (selectedDeliveryType == DeliveryTypeEnum.delivery) {
       createOrderParams!.setAddressId(selectedAddress?.id);
+      createOrderParams!.setShopBranchId(null);
+    }else{
+      createOrderParams!.setShopBranchId(effectiveBranchId);
     }
     createOrderParams!.setShippingType(selectedDeliveryType);
-    createOrderParams!.setShopBranchId(effectiveBranchId);
     return createOrderParams!;
   }
 
@@ -314,7 +318,7 @@ class PharmacyAddressController {
     // BuildContext ctx = getIt<GlobalContext>().context();
     // createPrescriptionOrder(ctx);
     if(havePrescription){
-      getPrescriptionShippingInfo();
+      // getPrescriptionShippingInfo();
     }
 
   }
