@@ -126,8 +126,10 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
             _buildRow(context, "Total Items", data.totalItemsCount().toString()),
             _buildVGap10(),
           ],
-          _buildRow(context, "Requested By", data.requestedByLabel ?? ""),
-          _buildVGap10(),
+           if(data.requestedByLabel?.isNotEmpty == true)...[
+             _buildRow(context, "Requested By", data.requestedByLabel ?? ""),
+             _buildVGap10(),
+           ],
           _buildRow(context, "Receipt Status", data.orderStatus),
           if(data.shippingAddress.isNotEmpty)...[
             _buildVGap10(),

@@ -108,30 +108,32 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
     );
   }
 
-  Column _buildColumn(GenericState<Orders?> state, BuildContext context) {
-    return Column(
-      spacing: 12,
-      children: [
-        if (state.data?.awaitingCustomerCompletion == true &&
-            state.data?.isPendingReview == false)
-          DefaultButton(
-            title: "Confirm & Pay Now",
-            onTap: () => controller.routeToCheckout(context),
-            textColor: context.colors.white,
-            color: context.colors.mainGreen,
-            borderColor: context.colors.mainGreen,
-          ),
-        if (state.data?.availableCancelOrder == true &&
-            state.data?.isPendingReview == false)
-        DefaultButton(
-          title: "Cancel Order",
-          onTap: () => controller.cancelOrder(context),
-          textColor: context.colors.gray8,
-          color: context.colors.white,
-          borderColor: context.colors.gray8,
-          margin: EdgeInsets.zero,
-        ),
-      ],
+  Widget _buildColumn(GenericState<Orders?> state, BuildContext context) {
+    return CustomBottomSafeAreaWidget(
+      child: Column(
+        spacing: 12,
+        children: [
+          if (state.data?.awaitingCustomerCompletion == true &&
+              state.data?.isPendingReview == false)
+            DefaultButton(
+              title: "Confirm & Pay Now",
+              onTap: () => controller.routeToCheckout(context),
+              textColor: context.colors.white,
+              color: context.colors.mainGreen,
+              borderColor: context.colors.mainGreen,
+            ),
+          if (state.data?.availableCancelOrder == true &&
+              state.data?.isPendingReview == false)
+            DefaultButton(
+              title: "Cancel Order",
+              onTap: () => controller.cancelOrder(context),
+              textColor: context.colors.gray8,
+              color: context.colors.white,
+              borderColor: context.colors.gray8,
+              margin: const EdgeInsets.symmetric(horizontal: Dimens.dp16),
+            ),
+        ],
+      ),
     );
   }
 }
