@@ -899,7 +899,10 @@
   "grandTotalShort": "المبلغ الإجمالي",
   "noDataFoundForOrder": "لم يتم العثور على بيانات لهذا الطلب!",
   "search_in_sellers": "ابحث في البائعين...",
-  "select_your_choice": "حدد خيارك"
+  "select_your_choice": "حدد خيارك",
+  "proofOfDelivery": "إثبات التسليم",
+  "proofOfDeliverySubtitle": "هذه صورة لمكان ترك طلبك.",
+  "viewPhoto": "عرض الصورة"
 
 
 }

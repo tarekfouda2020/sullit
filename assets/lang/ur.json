@@ -888,6 +888,9 @@
   "grandTotalShort": "کل مجموعی رقم",
   "noDataFoundForOrder": "اس آرڈر کے لیے کوئی ڈیٹا نہیں ملا!",
   "search_in_sellers": "بیچنے والوں میں تلاش کریں...",
-  "select_your_choice": "اپنا انتخاب کریں"
+  "select_your_choice": "اپنا انتخاب کریں",
+  "proofOfDelivery": "ڈیلیوری کا ثبوت",
+  "proofOfDeliverySubtitle": "یہ اس جگہ کی تصویر ہے جہاں آپ کا آرڈر چھوڑا گیا۔",
+  "viewPhoto": "تصویر دیکھیں"
 
 }

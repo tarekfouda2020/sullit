@@ -54,3 +54,4 @@ part 'order_details_widget.dart';
 part 'order_details_products_widget.dart';
 part 'change_payment_method_sheet.dart';
 part 'confirm_cancel_dialog.dart';
+part 'proof_of_delivery_sheet.dart';

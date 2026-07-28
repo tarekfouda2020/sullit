@@ -10,9 +10,7 @@ class MyOrders extends StatefulWidget {
 
 class _MyOrdersState extends State<MyOrders> {
 
-
   final MyOrdersController controller = MyOrdersController();
-
 
   @override
   Widget build(BuildContext context) {

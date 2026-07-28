@@ -738,7 +738,10 @@
   "grandTotalShort": "Grand Total",
   "noDataFoundForOrder": "no data found for this order!",
   "search_in_sellers": "Search in sellers...",
-  "select_your_choice": "Select your choice"
+  "select_your_choice": "Select your choice",
+  "proofOfDelivery": "Proof of Delivery",
+  "proofOfDeliverySubtitle": "Here's a photo of where your order was left.",
+  "viewPhoto": "View photo"
 
 
 }

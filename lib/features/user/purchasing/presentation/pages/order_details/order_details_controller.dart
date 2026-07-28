@@ -25,6 +25,16 @@ class OrderDetailsPageController {
     fetchPaymentOptions();
   }
 
+  void showProofOfDelivery(BuildContext context, String imageUrl) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      useRootNavigator: true,
+      builder: (_) => ProofOfDeliverySheet(imageUrl: imageUrl),
+    );
+  }
+
   void reviewSheet(BuildContext context, OrderDetails? model) {
     showModalBottomSheet(
       context: context,

@@ -65,6 +65,7 @@ class Orders extends BaseDomainModel {
   List<OrderDiscountDomain>? orderDiscounts;
   List<OrderModificationDomainModel>? orderDetailHistories;
   List<OrderDisplayItem>? displayItems;
+  String? deliveryImage;
 
   Orders({
     required this.id,
@@ -119,6 +120,7 @@ class Orders extends BaseDomainModel {
     this.shippingProvider,
     this.shippingProviderLabel,
     this.orderDetailHistories,
+    this.deliveryImage,
   });
 
   int totalItemsCount() => orderDetails.fold(

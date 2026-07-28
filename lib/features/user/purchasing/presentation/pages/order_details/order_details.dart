@@ -58,6 +58,14 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   controller: controller,
                 ),
                 Gaps.vGap40,
+                if ((state.data?.deliveryImage ?? '').isNotEmpty) ...[
+                  ProofOfDeliveryRow(
+                    imageUrl: state.data?.deliveryImage ?? "",
+                    onTap: () => controller.showProofOfDelivery(
+                        context, state.data!.deliveryImage!),
+                  ),
+                  Gaps.vGap16,
+                ],
                 Row(
                   spacing: 10,
                   children: [

@@ -782,5 +782,8 @@
   "youSaved": "আপনি সাশ্রয় করেছেন",
   "amountCharged": "(চার্জ করা পরিমাণ)",
   "grandTotalShort": "সর্বমোট",
-  "noDataFoundForOrder": "এই অর্ডারের জন্য কোনও তথ্য পাওয়া যায়নি।"
+  "noDataFoundForOrder": "এই অর্ডারের জন্য কোনও তথ্য পাওয়া যায়নি।",
+  "proofOfDelivery": "ডেলিভারির প্রমাণ",
+  "proofOfDeliverySubtitle": "এটি আপনার অর্ডার যেখানে রেখে যাওয়া হয়েছিল তার একটি ছবি।",
+  "viewPhoto": "ছবি দেখুন"
 }
