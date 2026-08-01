@@ -4,7 +4,7 @@ publish_to: 'none'
 
 
 #android live
-version: 1.0.57+57
+version: 1.0.58+58
 
 
 #last ios version (test flight)

@@ -74,8 +74,8 @@ class PharmacyPickUpModel extends BaseApiModel<PharmacyShippingPickupDomainModel
       {required int id,
         required String address,
         @JsonKey(name: 'postal_code') required String postalCode,
-        String? lat,
-        String? lang,
+        double? lat,
+        double? lang,
       }) = _PharmacyPickUpModel;
 
   factory PharmacyPickUpModel.fromJson(Map<String, dynamic> json) =>
