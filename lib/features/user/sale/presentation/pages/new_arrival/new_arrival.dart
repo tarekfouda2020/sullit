@@ -37,7 +37,7 @@ class _NewArrivalState extends State<NewArrival> {
           Expanded(
             child: CustomRefreshIndicatorWidget(
               onRefresh: () async => await controller.getArrival(1),
-              child: GridViewPagination<Product>(
+              child: GridViewPagination<ProductCard>(
                 pagingController: controller.arrivalPagingController,
                 padding: EdgeInsets.only(
                     left: 15,

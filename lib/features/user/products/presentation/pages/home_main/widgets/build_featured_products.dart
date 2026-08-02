@@ -1,7 +1,7 @@
 part of 'home_main_widgets_imports.dart';
 
 class BuildFeaturedProducts extends StatelessWidget {
-  final List<Product> featuredProducts;
+  final List<ProductCard> featuredProducts;
   final HomeMainController controller;
 
   const BuildFeaturedProducts(

@@ -32,7 +32,7 @@ class _ShareholderOffersState extends State<ShareholderOffers> {
           Expanded(
             child: CustomRefreshIndicatorWidget(
               onRefresh: () async => await controller.getShareholderProducts(1),
-              child: GridViewPagination<Product>(
+              child: GridViewPagination<ProductCard>(
                 pagingController: controller.shareholderOffersPagingController,
                 padding: EdgeInsets.only(
                     left: 15,

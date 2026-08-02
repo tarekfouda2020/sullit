@@ -40,7 +40,7 @@ class _OnSaleState extends State<OnSale> {
           Expanded(
             child: CustomRefreshIndicatorWidget(
               onRefresh: () async => await controller.getOnSale(1),
-              child: GridViewPagination<Product>(
+              child: GridViewPagination<ProductCard>(
                 pagingController: controller.onSalePagingController,
                 padding: EdgeInsets.only(
                     left: 15,

@@ -62,9 +62,9 @@ class _BuildProductItemState extends BaseProductItemState<BuildProductItem> {
   Future<void> routeToDetails(BuildContext context) async {
     await AutoRouter.of(context).push(
       ProductDetailsRoute(
-        isFav: widget.productModel.isWishlist!,
-        productId: widget.productModel.id!,
-        isResale: widget.productModel.isResale!,
+        isFav: widget.productModel.isWishlist,
+        productId: widget.productModel.id,
+        isResale: false,
       ),
     );
     widget.onRefresh?.call();
@@ -154,7 +154,7 @@ class _BuildProductItemState extends BaseProductItemState<BuildProductItem> {
   @override
   void afterAddToCartCallback() {
     widget.productModel.addedQtyToCart =
-        widget.productModel.addedQtyToCart! + 1;
+        (widget.productModel.addedQtyToCart ?? 0) + 1;
     widget.afterAddToCart?.call();
   }
 }

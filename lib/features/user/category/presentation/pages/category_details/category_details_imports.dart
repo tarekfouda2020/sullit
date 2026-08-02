@@ -30,10 +30,12 @@ import 'package:flutter_tdd/features/user/category/domain/models/sub_category.da
 import 'package:flutter_tdd/features/user/category/domain/models/sub_category_level.dart';
 import 'package:flutter_tdd/features/user/category/domain/use_cases/get_brands.dart';
 import 'package:flutter_tdd/features/user/category/domain/use_cases/get_category_products.dart';
+import 'package:flutter_tdd/features/user/category/domain/use_cases/get_side_sub_cats.dart';
 import 'package:flutter_tdd/features/user/category/domain/use_cases/get_sub_categories.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_card_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_sheet_controller.dart';
 import 'package:flutter_tdd/features/user/search/domain/entities/search_result_params.dart';

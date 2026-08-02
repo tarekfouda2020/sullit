@@ -1,5 +1,5 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
-import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
+import 'package:flutter_tdd/features/user/products/data/models/product_card_model/product_card_model.dart';
 import 'package:flutter_tdd/features/user/category/data/models/price_range_model/price_range_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/shop_model/shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
@@ -43,7 +43,7 @@ class SectionProductsModel extends BaseApiModel<SellerSectionProductModel>
   @JsonSerializable(explicitToJson: true)
   factory SectionProductsModel({
     required SellerPaginationData pagination,
-    required List<ProductModel> products,
+    required List<ProductCardModel> products,
   }) = _SectionProductsModel;
 
   factory SectionProductsModel.fromJson(Map<String, dynamic> json) =>

@@ -6,10 +6,10 @@ class HomeMainController {
   final ScrollController scrollController = ScrollController();
   final GenericBloc<bool> scrollCubit = GenericBloc(true);
   final GenericBloc<TimerEntity> countDownCubit = GenericBloc(TimerEntity());
-  final GenericBloc<List<Product>> vipOffersCubit = GenericBloc([]);
-  final GenericBloc<List<Product>> arrivalCubit = GenericBloc([]);
-  final GenericBloc<List<Product>> onSaleCubit = GenericBloc([]);
-  final GenericBloc<List<Product>> bestRatedCubit = GenericBloc([]);
+  final GenericBloc<List<ProductCard>> vipOffersCubit = GenericBloc([]);
+  final GenericBloc<List<ProductCard>> arrivalCubit = GenericBloc([]);
+  final GenericBloc<List<ProductCard>> onSaleCubit = GenericBloc([]);
+  final GenericBloc<List<ProductCard>> bestRatedCubit = GenericBloc([]);
   final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
 
   final GenericBloc<File> prescriptionFileCubit = GenericBloc<File>(File(""));
@@ -94,12 +94,13 @@ class HomeMainController {
     }
   }
 
-  void onChangeFav(Product item, BuildContext context) {
+  void onChangeFav(ProductCard item, BuildContext context) {
     var isAuth = context.isAuth;
     if (isAuth) {
-      _synchronizeFavoriteStatus(item);
+      _synchronizeFavByProductId(item.id, !item.isWishlist!);
     }
   }
+
 
   void navigateToDeals(BuildContext context) {
     var deal = homeCubit.state.data?.flashSales;
@@ -199,33 +200,22 @@ class HomeMainController {
     return OffersParamsWidget(paginateParams: _vipOffersParams(refresh));
   }
 
-  void _synchronizeFavoriteStatus(Product item) {
-    final newFavoriteStatus = !item.isWishlist!;
+  void _synchronizeFavByProductId(int? id, bool newFavStatus) {
     for (var product in vipOffersCubit.state.data) {
-      if (product.id == item.id) {
-        product.isWishlist = newFavoriteStatus;
-      }
+      if (product.id == id) product.isWishlist = newFavStatus;
     }
     for (var product in arrivalCubit.state.data) {
-      if (product.id == item.id) {
-        product.isWishlist = newFavoriteStatus;
-      }
+      if (product.id == id) product.isWishlist = newFavStatus;
     }
     for (var product in onSaleCubit.state.data) {
-      if (product.id == item.id) {
-        product.isWishlist = newFavoriteStatus;
-      }
+      if (product.id == id) product.isWishlist = newFavStatus;
     }
     for (var product in bestRatedCubit.state.data) {
-      if (product.id == item.id) {
-        product.isWishlist = newFavoriteStatus;
-      }
+      if (product.id == id) product.isWishlist = newFavStatus;
     }
     for (var section in sectionsCubit.state.data) {
       for (var product in section.products) {
-        if (product.id == item.id) {
-          product.isWishlist = newFavoriteStatus;
-        }
+        if (product.id == id) product.isWishlist = newFavStatus;
       }
     }
     vipOffersCubit.onUpdateData(vipOffersCubit.state.data);
@@ -239,8 +229,8 @@ class HomeMainController {
   }
 
   // used to add vip offer on favorite
-  void onChangeVipOffersFav(Product item) {
-    _synchronizeFavoriteStatus(item);
+  void onChangeVipOffersFav(ProductCard item) {
+    _synchronizeFavByProductId(item.id, !item.isWishlist);
   }
 
   // ---------------------------------------------------------
@@ -258,8 +248,8 @@ class HomeMainController {
   }
 
   // used to add new arrival offer on favorite
-  void onChangeArrivalOffersFav(Product item) {
-    _synchronizeFavoriteStatus(item);
+  void onChangeArrivalOffersFav(ProductCard item) {
+    _synchronizeFavByProductId(item.id, !item.isWishlist);
   }
 
   void getOnSaleOffers({bool refresh = true}) async {
@@ -274,8 +264,8 @@ class HomeMainController {
   }
 
   // used to add on sale offer on favorite
-  void onChangeOnSaleOffersFav(Product item) {
-    _synchronizeFavoriteStatus(item);
+  void onChangeOnSaleOffersFav(ProductCard item) {
+    _synchronizeFavByProductId(item.id, !item.isWishlist);
   }
 
   // --------------------------------------------------------
@@ -293,8 +283,8 @@ class HomeMainController {
   }
 
   // used to add best rated offer on favorite
-  void onChangeBestRatedFav(Product item) {
-    _synchronizeFavoriteStatus(item);
+  void onChangeBestRatedFav(ProductCard item) {
+    _synchronizeFavByProductId(item.id, !item.isWishlist);
   }
 
   // --------------------------------------------------------
@@ -437,7 +427,7 @@ class HomeMainController {
 
 
 
-  void openCurrentOrderDetails(BuildContext context, Orders order){
+  void openCurrentOrderDetails(BuildContext context, OrdersListDomainModel order){
     if(order.isPharmacy){
       AutoRouter.of(context).push(
           PharmacyOrderDetailsRoute(
@@ -446,7 +436,7 @@ class HomeMainController {
       AutoRouter.of(context).push(
           OrderDetailsPageRoute(
               isReturnedOrder: false,
-              order: order));
+              id: order.id));
     }
 
   }

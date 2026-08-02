@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
@@ -12,8 +11,7 @@ import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/pharmacy_product.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/set_toggle_favourite.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:injectable/injectable.dart';
@@ -60,7 +58,7 @@ class ProductsHelper {
   }
 
   Future<int> addProductToCompare(
-      {required BuildContext context, required Product product}) async {
+      {required BuildContext context, required ProductCard product}) async {
     bool auth = context.isAuth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
@@ -81,7 +79,7 @@ class ProductsHelper {
     }
   }
 
-  Future<int> _addItemToCompare(Product product, BuildContext context) async {
+  Future<int> _addItemToCompare(ProductCard product, BuildContext context) async {
     var params = _comparedParams(product, context);
     var data = getIt<ComparedProductsDb>().insertItem(params);
     CustomToast.showSimpleToast(
@@ -92,7 +90,7 @@ class ProductsHelper {
     return data;
   }
 
-  Future<bool> isAddedToCompared(Product product) async {
+  Future<bool> isAddedToCompared(ProductCard product) async {
     var exitedItems = await getComparedProducts();
     if (exitedItems.isNotEmpty) {
       if (exitedItems
@@ -112,25 +110,24 @@ class ProductsHelper {
     return await getIt<ComparedProductsDb>().getItems();
   }
 
-  ProductsTableData _comparedParams(Product product, BuildContext context) {
+  ProductsTableData _comparedParams(ProductCard product, BuildContext context) {
     return ProductsTableData(
         product: json.encode(product.toJson()), productId: product.id);
   }
 
   Future<bool?> addPharmacyProductToCart(
-      BuildContext context, PharmacyProduct product, int? branchId,
+      BuildContext context, ProductCard product, int? branchId,
       {void Function()? afterAddToCart}) async {
-    log("===>>>>>> branch id is ${product.branch?.id}");
     var result = await getIt<CartHelper>().addPharmacyProductToCart(
       context,
-      product.minQty!,
+      product.minQty,
       product.variant?.id,
       branchId,
       showLoader: false,
       onAddCartFunc: () {
         FacebookEventsHelper.instance.productAddToCart(
           price: product.variant?.calculablePrice ?? "",
-          id: product.id!,
+          id: product.id,
         );
         if (afterAddToCart != null) {
           afterAddToCart.call();
@@ -166,7 +163,7 @@ class ProductsHelper {
   /// If current quantity is 1, deletes the item from cart.
   /// Returns true if operation was successful, false otherwise.
   Future<bool> reduceProductQntInCart(
-      BuildContext context, Product product, int newQnt,
+      BuildContext context, ProductCard product, int newQnt,
       {GenericBloc<bool>? loadingBloc}) async {
     var cartItem = _getSameProductInCart(product);
     if (cartItem == null) {
@@ -189,7 +186,7 @@ class ProductsHelper {
   }
 
   Future<bool> deleteProductInCartFromProductsList(
-      BuildContext context, Product product) async {
+      BuildContext context, ProductCard product) async {
     var cartItem = _getSameProductInCart(product);
     if (cartItem == null) {
       return false;
@@ -210,7 +207,7 @@ class ProductsHelper {
     }
   }
 
-  GeneralCartItem? _getSameProductInCart(Product product) {
+  GeneralCartItem? _getSameProductInCart(ProductCard product) {
     var cartList = getIt<CartHelper>().cartItemsBloc.state.data.items;
     if (cartList == null || cartList.isEmpty) {
       return null;
@@ -227,7 +224,7 @@ class ProductsHelper {
   }
 
   Future<bool> increaseProductAddedQntInCart(
-      BuildContext context, Product product, int qnt) async {
+      BuildContext context, ProductCard product, int qnt) async {
     GenericBloc<CartDomainModel> cartCubit = getIt<CartHelper>().cartItemsBloc;
     List<GeneralCartItem>? cartList = cartCubit.state.data.items;
     if (cartList == null || cartList.isEmpty) {

@@ -1,7 +1,7 @@
 part of 'home_main_widgets_imports.dart';
 
 class BuildTopSellersItem extends StatelessWidget {
-  final Shop topSellers;
+  final ShopCardDomainModel topSellers;
   const BuildTopSellersItem({super.key, required this.topSellers});
 
   @override
@@ -22,7 +22,7 @@ class BuildTopSellersItem extends StatelessWidget {
               width: 60,
               fit: BoxFit.contain,
               haveRadius: false,
-              url: "${topSellers.logo}",
+              url: topSellers.logo,
               boxShape: BoxShape.circle,
             ),
           ),
@@ -32,7 +32,7 @@ class BuildTopSellersItem extends StatelessWidget {
           width: 95,
           child: Text(
             textAlign: TextAlign.center,
-            "${topSellers.name}",
+            topSellers.name,
             maxLines: 2,
             style: AppTextStyle.s14_w400(color: context.colors.black),
           ),

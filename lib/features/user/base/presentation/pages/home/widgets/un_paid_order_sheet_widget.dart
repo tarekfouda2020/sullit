@@ -1,7 +1,7 @@
 part of 'home_widgets_imports.dart';
 
 class UnPaidOrderSheetWidget extends StatelessWidget {
-  final Orders order;
+  final OrderCardDomainModel order;
   final HomeController controller;
   const UnPaidOrderSheetWidget(
       {super.key, required this.order, required this.controller});

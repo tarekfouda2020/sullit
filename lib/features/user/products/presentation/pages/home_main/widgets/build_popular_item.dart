@@ -8,8 +8,8 @@ class BuildPopularItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => AutoRouter.of(context).push(
-          PopularProductsRoute(popularProductsModel: popularProductModel)),
+      onTap: () => AutoRouter.of(context).push(PopularProductCardsRoute(
+          popularProductCardsModel: popularProductModel)),
       child: Container(
         margin: const EdgeInsetsDirectional.only(end: Dimens.dp10),
         padding: Dimens.paddingAll10PX,

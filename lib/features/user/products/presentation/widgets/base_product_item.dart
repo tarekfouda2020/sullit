@@ -3,11 +3,11 @@ import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/features/user/products/domain/behavior/product_behavior_x.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 
 abstract class BaseProductItem extends StatefulWidget {
-  final Product productModel;
+  final ProductCard productModel;
   final VoidCallback onFavRefresh;
   final VoidCallback? onCompareRefresh;
   final VoidCallback? afterAddToCart;
@@ -59,7 +59,7 @@ abstract class BaseProductItemState<T extends BaseProductItem>
 
   Future<void> toggleFavourite(BuildContext context) async {
     ProductsHelper().toggleFavourite(
-      id: widget.productModel.id!,
+      id: widget.productModel.id,
       context: context,
       loadingBloc: showFavLoading,
       price: widget.productModel.priceHighLow,
@@ -80,7 +80,7 @@ abstract class BaseProductItemState<T extends BaseProductItem>
 
   @protected
   Future<bool> handleFirstAddToCart(BuildContext context) async {
-    Product product = widget.productModel;
+    var product = widget.productModel;
 
     if ((product.addedQtyToCart ?? 0) > 0) {
       return false;
@@ -104,10 +104,10 @@ abstract class BaseProductItemState<T extends BaseProductItem>
 
   @protected
   bool handleMaxQtyGuard(int qnt) {
-    if (widget.productModel.maxQnt == widget.productModel.addedQtyToCart) {
+    if (widget.productModel.maxQty == widget.productModel.addedQtyToCart) {
       enableAddToCartLoading.onUpdateData(false);
       CustomToast.showSimpleToast(
-        msg: 'You can add up to ${widget.productModel.maxQnt} items only',
+        msg: 'You can add up to ${widget.productModel.maxQty} items only',
       );
       return true;
     }

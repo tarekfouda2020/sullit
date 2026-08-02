@@ -17,6 +17,12 @@ class _WishlistState extends State<Wishlist> {
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
@@ -24,23 +30,21 @@ class _WishlistState extends State<Wishlist> {
         title: tr('wishlist'),
         showBack: true,
       ),
-      body: GenericListView(
-        type: ListViewType.gridApi,
-        onRefresh: controller.getWishlist,
-        cubit: controller.wishlistBloc,
-        runSpacing: 15.r,
-        spacing: 15.r,
-        gridCrossCount: 2,
-        gridItemHeight: 220,
+      body: GridViewPagination<ProductCard>(
         padding: Dimens.paddingAll15PX,
-        itemBuilder: (_, index, item) => BuildProductItem(
+        pagingController: controller.pagingController,
+        onRefresh: () async => controller.getWishlist(),
+        firstPageProgressIndicatorBuilder: (_) =>
+            const BuildLoadingProductsGridView(),
+        itemBuilder: (_, item, index) => BuildProductItem(
           productModel: item,
           onFavRefresh: () => controller.onChangeFav(item),
           onRefresh: () => controller.getWishlist(),
           // afterAddToCart:  () => getIt<CartHelper>().showCartSuccessSheet(context),
         ),
-        loadingWidget: const BuildLoadingProductsGridView(),
-        emptyWidget: const BuildEmptyDataImage(),
+        noItemsFoundIndicatorBuilder: (context) {
+          return const BuildEmptyDataImage();
+        },
       ),
     );
   }

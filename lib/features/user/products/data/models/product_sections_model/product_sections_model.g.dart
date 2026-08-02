@@ -13,7 +13,7 @@ _$_ProductSectionsModel _$$_ProductSectionsModelFromJson(
       name: json['name'] as String,
       description: json['description'] as String,
       products: (json['products'] as List<dynamic>)
-          .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => ProductCardModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

@@ -38,7 +38,7 @@ class _BestRatedState extends State<BestRated> {
           Expanded(
             child: CustomRefreshIndicatorWidget(
               onRefresh: () async => await controller.getBestRated(1),
-              child: GridViewPagination<Product>(
+              child: GridViewPagination<ProductCard>(
                 padding: EdgeInsets.only(
                     left: 15,
                     right: 15,

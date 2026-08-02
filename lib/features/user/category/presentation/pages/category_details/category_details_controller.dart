@@ -11,8 +11,8 @@ class CategoryDetailsController implements CartSheetController {
   final GenericBloc<SubCategory?> specificationsCubit = GenericBloc(null);
   final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
 
-  final GenericBloc<List<Shop>> sellersCubit = GenericBloc([]);
-  final PagingController<int, Shop> pagingSellersController =
+  final GenericBloc<List<ShopCardDomainModel>> sellersCubit = GenericBloc([]);
+  final PagingController<int, ShopCardDomainModel> pagingSellersController =
       PagingController(firstPageKey: 1);
   final TextEditingController searchSellersController = TextEditingController();
   final GenericBloc<bool> showSellersCubit = GenericBloc<bool>(false);
@@ -21,7 +21,7 @@ class CategoryDetailsController implements CartSheetController {
   final GenericBloc<String> titleCubit = GenericBloc("");
   final GenericBloc<bool> showBrandsCubit = GenericBloc<bool>(false);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
-  final PagingController<int, Product> pagingController =
+  final PagingController<int, ProductCard> pagingController =
       PagingController(firstPageKey: 1);
   final PagingController<int, BrandDomainModel> brandsPagingController =
       PagingController(firstPageKey: 1);
@@ -31,7 +31,7 @@ class CategoryDetailsController implements CartSheetController {
   int currentPageKey = 1;
 
   BrandDomainModel? brandModel;
-  Shop? selectedSeller;
+  ShopCardDomainModel? selectedSeller;
   Category? initialCategoryModel;
   int? catId;
 
@@ -125,7 +125,7 @@ class CategoryDetailsController implements CartSheetController {
     getBestSellers(1);
   }
 
-  void onChangeSellers(Shop? model) {
+  void onChangeSellers(ShopCardDomainModel? model) {
     if (model == null) return;
     var sellers = pagingSellersController.itemList;
     if (sellers == null) return;
@@ -164,7 +164,10 @@ class CategoryDetailsController implements CartSheetController {
     currentCatId = id;
     var params = productsParams(1, refresh);
 
-    var result = await GetSubCategories().call(params);
+    final subCategoryFuture = GetSubCategories().call(params);
+    final sideSubCatsFuture = GetSideSubCats().call(id);
+    var result = await subCategoryFuture;
+    var sideSubCats = await sideSubCatsFuture;
 
     if (result != null) {
       initialCategoryModel = result.category;
@@ -175,11 +178,12 @@ class CategoryDetailsController implements CartSheetController {
       }
       final newLevel = SubCategoryLevel(
         subCategory: result,
+        subCats: sideSubCats,
         selectedCategoryId: id,
       );
 
       if (appendLevel) {
-        if (result.subCats.isNotEmpty) {
+        if (sideSubCats.isNotEmpty) {
           final currentLevels =
               List<SubCategoryLevel>.from(subCategoriesCubit.state.data);
           currentLevels.add(newLevel);
@@ -280,7 +284,7 @@ class CategoryDetailsController implements CartSheetController {
 
       if (parentSelectedId > 0) {
         // Find the parent category name
-        final parentCategory = parentLevel.subCategory.subCats.firstWhere(
+        final parentCategory = parentLevel.subCats.firstWhere(
           (cat) => cat.id == parentSelectedId,
           orElse: () => parentLevel.subCategory.category,
         );
@@ -354,8 +358,8 @@ class CategoryDetailsController implements CartSheetController {
     currentPageKey = currentPage;
   }
 
-  void onFavChanged(Product model) {
-    model.isWishlist = !model.isWishlist!;
+  void onFavChanged(ProductCard model) {
+    model.isWishlist = !model.isWishlist;
     int index = pagingController.itemList!.indexWhere((e) => e.id == model.id);
     pagingController.itemList![index] = model;
     var data = pagingController.itemList;
@@ -363,15 +367,15 @@ class CategoryDetailsController implements CartSheetController {
     pagingController.itemList = data;
   }
 
-  void onCompareChanged(Product model) {
-    model.isAddedTCompare = !model.isAddedTCompare!;
-    int index = pagingController.itemList!
-        .indexWhere((element) => element.id == model.id);
-    pagingController.itemList![index] = model;
-    var data = pagingController.itemList;
-    pagingController.itemList = [];
-    pagingController.itemList = data;
-  }
+  // void onCompareChanged(Product model) {
+  //   model.isAddedTCompare = !model.isAddedTCompare!;
+  //   int index = pagingController.itemList!
+  //       .indexWhere((element) => element.id == model.id);
+  //   pagingController.itemList![index] = model;
+  //   var data = pagingController.itemList;
+  //   pagingController.itemList = [];
+  //   pagingController.itemList = data;
+  // }
 
   void changePriceValue(RangeValues values, BuildContext context) {
     rangeCubit.state.data!.value = values;
@@ -808,7 +812,7 @@ class CategoryDetailsController implements CartSheetController {
   }
 
   Future<void> reduceProductQntInCart(
-      BuildContext context, Product product, GenericBloc<int> loading) async {
+      BuildContext context, ProductCard product, GenericBloc<int> loading) async {
     var cartList = cartItemsBloc.state.data.items;
     if (cartList != null && cartList.isNotEmpty == true) {
       var cartItems =

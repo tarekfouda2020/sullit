@@ -1,7 +1,7 @@
 part of 'purchased_history_widgets_imports.dart';
 
 class BuildPurchasedHistoryItem extends StatelessWidget {
-  final Orders order;
+  final OrderCardDomainModel order;
   final PurchasedHistoryController controller;
 
   const BuildPurchasedHistoryItem({
@@ -78,7 +78,7 @@ class BuildPurchasedHistoryItem extends StatelessWidget {
                     itemColor: context.colors.greyWhite,
                   ),
                   Visibility(
-                    visible: order.availableCancelOrder,
+                    visible: order.availableCancelOrder == true,
                     child: BuildOrderOptionItem(
                       onTap: () => controller.cancelOrder(order),
                       iconData: Icons.delete_outline,

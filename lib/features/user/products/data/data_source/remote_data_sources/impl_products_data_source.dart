@@ -8,6 +8,7 @@ import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
 import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
+import 'package:flutter_tdd/features/user/products/data/models/product_card_model/product_card_model.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/remote_data_sources/products_data_source.dart';
 import 'package:flutter_tdd/features/user/products/data/models/home_model/home_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/product_details_model/product_details_model.dart';
@@ -61,7 +62,7 @@ class ImplProductsDataSource extends ProductsDataSource {
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getPopularProducts(
+  Future<Either<Failure, List<ProductCardModel>>> getPopularProducts(
       PopularProductsParams param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getPopularProducts + param.paramToQuery(),
@@ -69,12 +70,12 @@ class ImplProductsDataSource extends ProductsDataSource {
       refresh: param.refresh,
       responseType: ResType.list,
       showLoader: true,
-      toJsonFunc: (json) => List<ProductModel>.from(
-        json.map((e) => ProductModel.fromJson(e)),
+      toJsonFunc: (json) => List<ProductCardModel>.from(
+        json.map((e) => ProductCardModel.fromJson(e)),
       ),
       responseKey: (data) => data["data"]["section_products"]["products"],
     );
-    return await GenericHttpImpl<List<ProductModel>>().call(model);
+    return await GenericHttpImpl<List<ProductCardModel>>().call(model);
   }
 
   @override
@@ -121,7 +122,7 @@ class ImplProductsDataSource extends ProductsDataSource {
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getDigitalProducts(
+  Future<Either<Failure, List<ProductCardModel>>> getDigitalProducts(
       bool param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getDownloadProducts,
@@ -129,12 +130,12 @@ class ImplProductsDataSource extends ProductsDataSource {
       refresh: param,
       responseType: ResType.list,
       showLoader: true,
-      toJsonFunc: (json) => List<ProductModel>.from(
-        json.map((e) => ProductModel.fromJson(e)),
+      toJsonFunc: (json) => List<ProductCardModel>.from(
+        json.map((e) => ProductCardModel.fromJson(e)),
       ),
       responseKey: (data) => data["data"]["products"],
     );
-    return await GenericHttpImpl<List<ProductModel>>().call(model);
+    return await GenericHttpImpl<List<ProductCardModel>>().call(model);
   }
 
   @override

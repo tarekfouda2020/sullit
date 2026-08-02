@@ -21,7 +21,7 @@ class _OrderSuccessState extends State<OrderSuccess> {
   @override
   void initState() {
     super.initState();
-    controller = OrderSuccessController(widget.summary,widget.pharmacy);
+    controller = OrderSuccessController(widget.summary,widget.pharmacy?.toShopCardDomainModel());
   }
 
   @override

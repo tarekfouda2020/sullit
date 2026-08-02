@@ -7,7 +7,7 @@ class OnSaleOffersFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<List<Product>>, GenericState<List<Product>>>(
+    return BlocBuilder<GenericBloc<List<ProductCard>>, GenericState<List<ProductCard>>>(
       bloc: controller.onSaleCubit,
       builder: (context, state) {
         int length = state.data.take(4).length;

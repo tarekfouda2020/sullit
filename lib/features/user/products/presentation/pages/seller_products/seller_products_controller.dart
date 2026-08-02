@@ -4,7 +4,7 @@ class SellerProductsController {
   final TextEditingController brandsSearchCtr = TextEditingController();
 
   final TextEditingController productSearchCtr = TextEditingController();
-  final PagingController<int, Product> pagingController =
+  final PagingController<int, ProductCard> pagingController =
       PagingController(firstPageKey: 1);
   final PagingController<int, BrandDomainModel> brandsPagingController =
       PagingController(firstPageKey: 1);
@@ -57,12 +57,9 @@ class SellerProductsController {
     }
   }
 
-  SellerProductsController(int id, {Shop? shopModel}) {
+  SellerProductsController(int id) {
     shopId = id;
     getCartData();
-    if (shopModel != null) {
-      shopCubit.onUpdateData(shopModel);
-    }
     getProducts(1, refresh: false);
 
     pagingController.addPageRequestListener((pageKey) {
@@ -84,8 +81,8 @@ class SellerProductsController {
       shopCubit.onUpdateData(result.shop);
     }
     updateRangeValue(result);
-    final List<Product> data =
-        result?.sectionProductModel.products ?? <Product>[];
+    final List<ProductCard> data =
+        result?.sectionProductModel.products ?? <ProductCard>[];
     final isLastPage = (data.length) < pageSize;
     if (page == 1) {
       pagingController.itemList = [];
@@ -115,8 +112,8 @@ class SellerProductsController {
     }
   }
 
-  void onFavChanged(Product model) {
-    model.isWishlist = !model.isWishlist!;
+  void onFavChanged(ProductCard model) {
+    model.isWishlist = !model.isWishlist;
     int index = pagingController.itemList!.indexWhere((e) => e.id == model.id);
     pagingController.itemList![index] = model;
     var data = pagingController.itemList;

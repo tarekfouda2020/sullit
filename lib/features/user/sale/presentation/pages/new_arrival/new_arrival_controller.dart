@@ -3,7 +3,7 @@ part of 'new_arrival_imports.dart';
 class NewArrivalController {
   final TextEditingController searchFieldCtr = TextEditingController();
 
-  final PagingController<int, Product> arrivalPagingController =
+  final PagingController<int, ProductCard> arrivalPagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 10;
   int currentPage = 1;
@@ -46,7 +46,7 @@ class NewArrivalController {
         keyword: searchFieldCtr.text);
   }
 
-  void onChangeFav(Product item) {
+  void onChangeFav(ProductCard item) {
     item.isWishlist = !item.isWishlist!;
     if (arrivalPagingController.itemList != null) {
       int index =

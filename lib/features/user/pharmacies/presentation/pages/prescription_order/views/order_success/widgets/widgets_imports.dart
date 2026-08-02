@@ -22,6 +22,8 @@ import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescrip
 import 'package:flutter_tdd/features/user/pharmacies/presentation/widgets/order_pharam_card_widget.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/widgets/widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_card_domain_model.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_discount_domain.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/widgets/order_details_widgets_imports.dart';

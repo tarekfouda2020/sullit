@@ -3,13 +3,13 @@ part of 'best_sellers_page_imports.dart';
 class BestSellersPageController {
   final TextEditingController searchTxtController = TextEditingController();
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
-  final GenericBloc<List<Shop>> shopsCubit = GenericBloc([]);
+  final GenericBloc<List<ShopCardDomainModel>> shopsCubit = GenericBloc([]);
 
   final GenericBloc<bool> isLoadingCubit = GenericBloc(false);
 
   final ScrollController scrollController = ScrollController();
 
-  final PagingController<int, Shop> pagingController =
+  final PagingController<int, ShopCardDomainModel> pagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 12;
 

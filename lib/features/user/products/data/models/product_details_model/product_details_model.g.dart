@@ -11,10 +11,10 @@ _$_ProductDetailsModel _$$_ProductDetailsModelFromJson(
     _$_ProductDetailsModel(
       product: ProductModel.fromJson(json['product'] as Map<String, dynamic>),
       relatedProducts: (json['related_products'] as List<dynamic>)
-          .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => ProductCardModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       topProducts: (json['top_products'] as List<dynamic>)
-          .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => ProductCardModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       productQueries: ProductQueriesModel.fromJson(
           json['product_queries'] as Map<String, dynamic>),

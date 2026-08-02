@@ -4,11 +4,11 @@ import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/loading_icon_widget.dart';
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/widgets/category_details_widgets_imports.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:flutter_tdd/res.dart';
 
 class ProductCardFavButton extends StatelessWidget {
-  final Product productModel;
+  final ProductCard productModel;
   final GenericBloc<bool> showFavLoading;
   final VoidCallback onFavTap;
 
@@ -33,7 +33,7 @@ class ProductCardFavButton extends StatelessWidget {
                 visible: state.data,
                 replacement: BuildIconItem(
                   icon:
-                      productModel.isWishlist! ? Res.favIcon : Res.emptyFavIcon,
+                      productModel.isWishlist ? Res.favIcon : Res.emptyFavIcon,
                   changeBgColor: false,
                   inActiveColor: context.colors.customBackground,
                   onTap: onFavTap,

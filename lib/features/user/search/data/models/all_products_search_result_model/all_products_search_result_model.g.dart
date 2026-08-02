@@ -10,7 +10,7 @@ _$_AllProductsSearchResultModel _$$_AllProductsSearchResultModelFromJson(
         Map<String, dynamic> json) =>
     _$_AllProductsSearchResultModel(
       products: (json['products'] as List<dynamic>)
-          .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => ProductCardModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

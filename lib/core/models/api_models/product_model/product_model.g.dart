@@ -38,7 +38,7 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       hasVipOffer: json['has_vip_offer'] as bool,
       shop: json['shop'] == null
           ? null
-          : ShopModel.fromJson(json['shop'] as Map<String, dynamic>),
+          : ShopCardModel.fromJson(json['shop'] as Map<String, dynamic>),
       reviews: (json['reviews'] as List<dynamic>?)
           ?.map((e) => ReviewsModel.fromJson(e as Map<String, dynamic>))
           .toList(),

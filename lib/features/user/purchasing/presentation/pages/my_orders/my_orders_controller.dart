@@ -1,7 +1,7 @@
 part of 'my_orders_imports.dart';
 
 class MyOrdersController {
-  final PagingController<int, Orders> pagingController =
+  final PagingController<int, OrderCardDomainModel> pagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 12;
 
@@ -29,7 +29,7 @@ class MyOrdersController {
     }
   }
 
-  Future<void> routeToOrderDetails(BuildContext context, Orders order) async {
+  Future<void> routeToOrderDetails(BuildContext context, OrderCardDomainModel order) async {
     if(order.isPharmacy){
      var   result =  await AutoRouter.of(context).push(PharmacyOrderDetailsRoute(id: order.id));
      if (result == true) {
@@ -37,7 +37,7 @@ class MyOrdersController {
      }
     }else{
      var result = await AutoRouter.of(context)
-          .push(OrderDetailsPageRoute(isReturnedOrder: false, order: order));
+          .push(OrderDetailsPageRoute(isReturnedOrder: false, id: order.id));
      if (result == true) {
        getPurchasingHistory(1);
      }
@@ -64,7 +64,7 @@ class MyOrdersController {
     );
   }
 
-  void cancelOrder(BuildContext ctx, Orders model) async {
+  void cancelOrder(BuildContext ctx, OrderCardDomainModel model) async {
     showCupertinoDialog(
       context: ctx,
       builder: (context) => ConfirmCancelDialog(
@@ -85,7 +85,7 @@ class MyOrdersController {
     );
   }
 
-  void onPayOrder(BuildContext context, Orders model) async {
+  void onPayOrder(BuildContext context, OrderCardDomainModel model) async {
     var result = await PayOrder().call(model.id);
     if (result.isNotEmpty && model.isPaymentOnline) {
       await AutoRouter.of(context).push(

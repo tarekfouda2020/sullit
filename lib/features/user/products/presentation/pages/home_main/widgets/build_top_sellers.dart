@@ -1,7 +1,7 @@
 part of 'home_main_widgets_imports.dart';
 
 class BuildTopSellers extends StatelessWidget {
-  final List<Shop> topSellers;
+  final List<ShopCardDomainModel> topSellers;
 
   const BuildTopSellers({super.key, required this.topSellers});
 
@@ -26,8 +26,7 @@ class BuildTopSellers extends StatelessWidget {
                 return GestureDetector(
                     onTap: () => AutoRouter.of(context).push(
                         SellerProductsPageRoute(
-                            shopModel: topSellers[index],
-                            shopId: topSellers[index].id!)),
+                            shopId: topSellers[index].id)),
                     child: Padding(
                       padding: const EdgeInsetsDirectional.only(end: 5),
                       child: BuildTopSellersItem(topSellers: topSellers[index]),

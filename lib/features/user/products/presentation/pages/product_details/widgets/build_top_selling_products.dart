@@ -1,7 +1,7 @@
 part of 'product_details_widgets_imports.dart';
 
 class BuildTopSellingProducts extends StatelessWidget {
-  final List<Product> topProducts;
+  final List<ProductCard> topProducts;
   final ProductDetailsController controller;
 
   const BuildTopSellingProducts(
@@ -44,7 +44,7 @@ class BuildTopSellingProducts extends StatelessWidget {
                           fallbackBranchId: controller.branchId,
                           afterAddToCart: () =>
                               controller.calculateRemainingAmount(),
-                          onFavRefresh: () => controller.onChangeFav(
+                          onFavRefresh: () => controller.onChangeFavCard(
                             context,
                             topProducts[index],
                           ),

@@ -38,7 +38,7 @@ class _ProOffersState extends State<ProOffers> {
             Expanded(
               child: CustomRefreshIndicatorWidget(
                 onRefresh: () async => controller.getVipOffers(1),
-                child: GridViewPagination<Product>(
+                child: GridViewPagination<ProductCard>(
                   pagingController: controller.vipOffersPagingController,
                   padding: EdgeInsets.only(
                       left: 15,

@@ -8,10 +8,10 @@ import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
-import '../../features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_card_domain_model.dart';
 
 class SellerCardWidget extends StatelessWidget {
-  final Shop? shop;
+  final ShopCardDomainModel? shop;
   final void Function()? onTap;
   final bool openImage;
   const SellerCardWidget({
@@ -35,7 +35,7 @@ class SellerCardWidget extends StatelessWidget {
                 GestureDetector(
                   onTap: openImage
                       ? () {
-                          var link = shop?.sliders?.first ?? "";
+                          var link = shop?.sliders.first ?? "";
                           if (link.isNotEmpty) {
                             AutoRouter.of(context)
                                 .push(ImageZoomRoute(image: link));
@@ -43,7 +43,7 @@ class SellerCardWidget extends StatelessWidget {
                         }
                       : null,
                   child: CachedImage(
-                    url: shop?.sliders?.first ?? "",
+                    url: shop?.sliders.first ?? "",
                     height: 150,
                     borderRadius: Dimens.topRadius12Px,
                     fit: BoxFit.cover,
@@ -73,7 +73,7 @@ class SellerCardWidget extends StatelessWidget {
                           ),
                           Gaps.hGap9,
                           RatingBar.builder(
-                            initialRating: shop?.rating?.toDouble() ?? 0.0,
+                            initialRating: shop?.rating.toDouble() ?? 0.0,
                             ignoreGestures: true,
                             minRating: 1,
                             direction: Axis.horizontal,
@@ -97,7 +97,7 @@ class SellerCardWidget extends StatelessWidget {
                       ),
                       Gaps.vGap8,
                       Text(
-                        "${shop?.shopCategoryNames.join(' - ')}",
+                        "${shop?.categoriesNames}",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: AppTextStyle.s14_w300(

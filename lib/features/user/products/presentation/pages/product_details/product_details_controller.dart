@@ -247,18 +247,23 @@ class ProductDetailsController implements CartSheetController {
     // detailsCubit.onUpdateData(detailsCubit.state.data);
   }
 
-  void onChangeCompare(Product item) {
+  void onChangeFavCard(BuildContext context, ProductCard item) {
+    item.isWishlist = !item.isWishlist;
+    getProductDetails(context, productId, resetQty: false);
+  }
+
+  void onChangeCompare(ProductCard item) {
     item.isAddedTCompare = !item.isAddedTCompare!;
     detailsCubit.onUpdateData(detailsCubit.state.data);
   }
 
-  void addToCompare(BuildContext context, Product product) {
-    getIt<ProductsHelper>().addProductToCompare(
-      context: context,
-      product: product,
-    );
-    onChangeCompare(product);
-  }
+  // void addToCompare(BuildContext context, Product product) {
+  //   getIt<ProductsHelper>().addProductToCompare(
+  //     context: context,
+  //     product: product,
+  //   );
+  //   onChangeCompare(product);
+  // }
 
   void checkIfItemInCart() {
     var cartProducts = getIt<CartHelper>().cartItemsBloc.state.data.items;
@@ -273,16 +278,16 @@ class ProductDetailsController implements CartSheetController {
   }
 
   void updateTheSameItemInTopAndRelated(GeneralCartItem cartItem) {
-    List<Product> topSelling = detailsCubit.state.data!.topProducts;
-    List<Product> relatedProducts = detailsCubit.state.data!.relatedProducts;
-    List<int> topIds = topSelling.map((e) => e.id!).toList();
-    List<int> relatedIds = relatedProducts.map((e) => e.id!).toList();
+    List<ProductCard> topSelling = detailsCubit.state.data!.topProducts;
+    List<ProductCard> relatedProducts = detailsCubit.state.data!.relatedProducts;
+    List<int> topIds = topSelling.map((e) => e.id).toList();
+    List<int> relatedIds = relatedProducts.map((e) => e.id).toList();
     _updateInProductsList(relatedIds, cartItem, relatedProducts);
     _updateInProductsList(topIds, cartItem, topSelling);
   }
 
   void _updateInProductsList(List<int> topIds, GeneralCartItem cartItem,
-      List<Product> relatedProducts) {
+      List<ProductCard> relatedProducts) {
     if (topIds.contains(cartItem.productId)) {
       var productInTopSelling = relatedProducts
           .firstWhere((element) => element.id == cartItem.productId);
@@ -573,17 +578,17 @@ class ProductDetailsController implements CartSheetController {
         .onUpdateData((remain > 0 ? remain : 0.0).toStringAsFixed(2));
   }
 
-  Future<void> routeToSellerPage(BuildContext context, Shop shopModel) async {
+  Future<void> routeToSellerPage(BuildContext context, int id) async {
     if(fromSellerPage){
       AutoRouter.of(context).pop(true);
     }else{
       if(isPharmProduct){
         await AutoRouter.of(context).push(
-            PharmacyCategoriesRoute(pharmacyId:  shopModel.id!));
+            PharmacyCategoriesRoute(pharmacyId:  id));
         calculateRemainingAmount();
       }else{
         await AutoRouter.of(context).push(
-            SellerProductsPageRoute(shopModel: shopModel, shopId: shopModel.id!));
+            SellerProductsPageRoute(shopId: id));
         calculateRemainingAmount();
       }
     }

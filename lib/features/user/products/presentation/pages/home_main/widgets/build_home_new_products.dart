@@ -1,7 +1,7 @@
 part of 'home_main_widgets_imports.dart';
 
 class BuildHomeNewProducts extends StatelessWidget {
-  final List<Product> newestProducts;
+  final List<ProductCard> newestProducts;
   final HomeMainController controller;
 
   const BuildHomeNewProducts(

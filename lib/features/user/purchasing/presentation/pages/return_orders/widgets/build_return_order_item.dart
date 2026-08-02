@@ -1,7 +1,7 @@
 part of 'return_orders_widgets_imports.dart';
 
 class BuildReturnOrderItem extends StatelessWidget {
-  final Orders order;
+  final OrderCardDomainModel order;
   final ReturnOrdersController controller;
 
   const BuildReturnOrderItem(
@@ -152,10 +152,6 @@ class BuildReturnOrderItem extends StatelessWidget {
   }
 
   String sellerName() =>
-      order.orderDetails
-          .firstWhere((element) => element.id == order.id)
-          .product
-          ?.shop
-          ?.name ??
+      order.soldBy??
       "";
 }

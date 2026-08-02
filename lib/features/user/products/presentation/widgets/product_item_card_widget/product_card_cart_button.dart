@@ -5,12 +5,12 @@ import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/loading_icon_widget.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/product_counter_widget.dart';
 import 'package:flutter_tdd/res.dart';
 
 class ProductCardCartButton extends StatelessWidget {
-  final Product productModel;
+  final ProductCard productModel;
   final GenericBloc<bool> enableAddToCartLoading;
   final Future<void> Function() onAddToCart;
   final VoidCallback onPressReduce;

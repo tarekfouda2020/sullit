@@ -2,7 +2,7 @@ part of 'product_details_widgets_imports.dart';
 
 class BuildSellerInfo extends StatelessWidget {
   /// shopModel return in product details
-  final Shop? shopModel;
+  final ShopCardDomainModel? shopModel;
   final ProductDetailsController controller;
 
   const BuildSellerInfo(
@@ -13,7 +13,7 @@ class BuildSellerInfo extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         if (shopModel != null) {
-          controller.routeToSellerPage(context, shopModel!);
+          controller.routeToSellerPage(context, shopModel!.id);
         }
       },
       child: Container(

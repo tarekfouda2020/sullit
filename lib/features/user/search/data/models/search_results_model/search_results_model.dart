@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
 import 'package:flutter_tdd/features/user/category/data/models/category_model/category_model.dart';
+import 'package:flutter_tdd/features/user/products/data/models/shop_card_model/shop_card_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/shop_model/shop_model.dart';
 import 'package:flutter_tdd/features/user/search/data/models/all_products_search_result_model/all_products_search_result_model.dart';
 import 'package:flutter_tdd/features/user/search/domain/models/search_results.dart';
@@ -21,7 +22,7 @@ class SearchResultsModel extends BaseApiModel<SearchResults>
     @JsonKey(name: 'section_products')
     required AllProductsSearchResultModel products,
     @JsonKey(name: 'categories') required List<CategoryModel> categories,
-    @JsonKey(name: 'shops') List<ShopModel>? shops,
+    @JsonKey(name: 'shops') List<ShopCardModel>? shops,
   }) = _SearchResultsModel;
 
   factory SearchResultsModel.fromJson(Map<String, dynamic> json) =>

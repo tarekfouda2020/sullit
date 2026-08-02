@@ -1,7 +1,7 @@
 part of 'home_main_widgets_imports.dart';
 
 class TrackSellerOrderWidget extends StatelessWidget {
-  final List<Orders> currentOrders;
+  final List<OrdersListDomainModel> currentOrders;
   final HomeMainController controller;
   const TrackSellerOrderWidget({super.key, required this.currentOrders, required this.controller});
 

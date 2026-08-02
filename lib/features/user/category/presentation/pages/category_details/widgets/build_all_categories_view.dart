@@ -19,7 +19,7 @@ class BuildAllCategoriesView extends StatelessWidget {
                 state.data.length,
                 (levelIndex) {
                   final level = state.data[levelIndex];
-                  final subCats = level.subCategory.subCats;
+                  final subCats = level.subCats;
 
                   if (subCats.isEmpty) {
                     return const SizedBox.shrink();

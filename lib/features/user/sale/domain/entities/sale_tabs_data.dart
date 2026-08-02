@@ -1,11 +1,12 @@
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 
 class SaleTabsData {
-  List<Product>? vipOffers;
-  List<Product>? shareholderOffers;
-  List<Product>? newArrival;
-  List<Product>? onSale;
-  List<Product>? bestRated;
+  List<ProductCard>? vipOffers;
+  List<ProductCard>? shareholderOffers;
+  List<ProductCard>? newArrival;
+  List<ProductCard>? onSale;
+  List<ProductCard>? bestRated;
 
   SaleTabsData({
     this.vipOffers,

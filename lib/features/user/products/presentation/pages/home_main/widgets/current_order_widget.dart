@@ -1,7 +1,7 @@
 part of 'home_main_widgets_imports.dart';
 
 class CurrentOrderWidget extends StatelessWidget {
-  final Orders currentOrders;
+  final OrdersListDomainModel currentOrders;
 
   const CurrentOrderWidget({super.key, required this.currentOrders});
 
@@ -43,7 +43,7 @@ class CurrentOrderWidget extends StatelessWidget {
                     spacing: 8,
                     children: [
                       Text(
-                        currentOrders.soldBy,
+                        currentOrders.soldByName,
                         maxLines: 2,
                         style:
                             AppTextStyle.s18_w600(color: context.colors.black)

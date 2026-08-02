@@ -1,7 +1,7 @@
 part of 'home_main_widgets_imports.dart';
 
 class BuildBestRated extends StatelessWidget {
-  final List<Product> bestRated;
+  final List<ProductCard> bestRated;
   final HomeMainController controller;
 
   const BuildBestRated(

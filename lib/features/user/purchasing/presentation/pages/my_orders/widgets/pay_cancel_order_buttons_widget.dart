@@ -1,7 +1,7 @@
 part of 'purchased_orders_widgets_imports.dart';
 
 class PayCancelOrderButtonsWidget extends StatelessWidget {
-  final Orders order;
+  final OrderCardDomainModel order;
   final MyOrdersController controller;
   const PayCancelOrderButtonsWidget(
       {super.key, required this.order, required this.controller});

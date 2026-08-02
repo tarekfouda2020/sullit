@@ -9,7 +9,7 @@ import 'package:flutter_tdd/core/widgets/GenericListView.dart';
 import 'package:flutter_tdd/core/widgets/build_empty_data_image.dart';
 import 'package:flutter_tdd/core/widgets/build_empty_data_view.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_digital_products.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/downloads/widgets/downloads_widgets_imports.dart';
 

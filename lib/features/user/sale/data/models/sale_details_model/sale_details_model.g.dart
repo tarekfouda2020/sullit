@@ -13,7 +13,7 @@ _$_SaleDetailsModel _$$_SaleDetailsModelFromJson(Map<String, dynamic> json) =>
       date: DateTime.parse(json['date'] as String),
       banner: json['banner'] as String,
       products: (json['products'] as List<dynamic>)
-          .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => ProductCardModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

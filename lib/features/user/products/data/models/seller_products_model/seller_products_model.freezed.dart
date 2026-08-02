@@ -252,7 +252,7 @@ SectionProductsModel _$SectionProductsModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SectionProductsModel {
   SellerPaginationData get pagination => throw _privateConstructorUsedError;
-  List<ProductModel> get products => throw _privateConstructorUsedError;
+  List<ProductCardModel> get products => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -266,7 +266,7 @@ abstract class $SectionProductsModelCopyWith<$Res> {
           $Res Function(SectionProductsModel) then) =
       _$SectionProductsModelCopyWithImpl<$Res, SectionProductsModel>;
   @useResult
-  $Res call({SellerPaginationData pagination, List<ProductModel> products});
+  $Res call({SellerPaginationData pagination, List<ProductCardModel> products});
 
   $SellerPaginationDataCopyWith<$Res> get pagination;
 }
@@ -296,7 +296,7 @@ class _$SectionProductsModelCopyWithImpl<$Res,
       products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+              as List<ProductCardModel>,
     ) as $Val);
   }
 
@@ -317,7 +317,7 @@ abstract class _$$_SectionProductsModelCopyWith<$Res>
       __$$_SectionProductsModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({SellerPaginationData pagination, List<ProductModel> products});
+  $Res call({SellerPaginationData pagination, List<ProductCardModel> products});
 
   @override
   $SellerPaginationDataCopyWith<$Res> get pagination;
@@ -345,7 +345,7 @@ class __$$_SectionProductsModelCopyWithImpl<$Res>
       products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+              as List<ProductCardModel>,
     ));
   }
 }
@@ -355,7 +355,8 @@ class __$$_SectionProductsModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_SectionProductsModel extends _SectionProductsModel {
   _$_SectionProductsModel(
-      {required this.pagination, required final List<ProductModel> products})
+      {required this.pagination,
+      required final List<ProductCardModel> products})
       : _products = products,
         super._();
 
@@ -364,9 +365,9 @@ class _$_SectionProductsModel extends _SectionProductsModel {
 
   @override
   final SellerPaginationData pagination;
-  final List<ProductModel> _products;
+  final List<ProductCardModel> _products;
   @override
-  List<ProductModel> get products {
+  List<ProductCardModel> get products {
     if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_products);
@@ -409,8 +410,9 @@ class _$_SectionProductsModel extends _SectionProductsModel {
 
 abstract class _SectionProductsModel extends SectionProductsModel {
   factory _SectionProductsModel(
-      {required final SellerPaginationData pagination,
-      required final List<ProductModel> products}) = _$_SectionProductsModel;
+          {required final SellerPaginationData pagination,
+          required final List<ProductCardModel> products}) =
+      _$_SectionProductsModel;
   _SectionProductsModel._() : super._();
 
   factory _SectionProductsModel.fromJson(Map<String, dynamic> json) =
@@ -419,7 +421,7 @@ abstract class _SectionProductsModel extends SectionProductsModel {
   @override
   SellerPaginationData get pagination;
   @override
-  List<ProductModel> get products;
+  List<ProductCardModel> get products;
   @override
   @JsonKey(ignore: true)
   _$$_SectionProductsModelCopyWith<_$_SectionProductsModel> get copyWith =>

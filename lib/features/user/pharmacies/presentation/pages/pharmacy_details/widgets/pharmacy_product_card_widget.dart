@@ -14,6 +14,7 @@ class PharmacyProductCardWidget extends BaseProductItem {
     super.onPressDecrease,
     super.onPressDelete,
     super.margin,
+    super.fallbackBranchId,
     required this.controller,
      this.fromPharmPage = false,
   });
@@ -52,25 +53,10 @@ class _PharmacyProductCardWidgetState
   @override
   Future<bool> handleFirstAddToCart(BuildContext context) async {
     final product = widget.productModel;
-    if (product is! PharmacyProduct) {
-      // return super.handleFirstAddToCart(context);
-      return false;
-    }
 
     if ((product.addedQtyToCart ?? 0) > 0) {
       return false;
     }
-
-
-
-   //  log("==>>>>>>>> ${widget.controller.cartBranchId }");
-   //  log("==>>>>>>>> ${product.branch?.id }");
-   // if(widget.controller.cartBranchId !=null && widget.controller.cartBranchId != product.branch?.id ){
-   //   if(product.branch!= null){
-   //     widget.controller.showChangeBranchDialog(context, product.branch!);
-   //   }
-   //   return false;
-   // }
 
     enableAddToCartLoading.onUpdateData(true);
 
@@ -78,7 +64,8 @@ class _PharmacyProductCardWidgetState
       return await getIt<ProductsHelper>().addPharmacyProductToCart(
             context,
             product,
-           widget.controller.selectedBranchCubit.state.data?.id,
+            widget.fallbackBranchId ??
+                widget.controller.selectedBranchCubit.state.data?.id,
             afterAddToCart: afterAddToCartCallback,
           ) ??
           false;
@@ -92,9 +79,9 @@ class _PharmacyProductCardWidgetState
     final product = widget.productModel;
    var result =  await AutoRouter.of(context).push(
       ProductDetailsRoute(
-        isFav: product.isWishlist!,
-        productId: product.id!,
-        isResale: product.isResale!,
+        isFav: product.isWishlist,
+        productId: product.id,
+        isResale: false,
         fromSellerPage: widget.fromPharmPage,
         branchId: widget.controller.selectedBranchId,
       ),
@@ -115,11 +102,13 @@ class _PharmacyProductCardWidgetState
       widget.controller.showAddToCartFailedDialog(this.context);
       return;
     }
-    final product = widget.productModel as PharmacyProduct;
-    if(widget.controller.cartBranchId !=null && widget.controller.cartBranchId != product.branch?.id ){
-      if(product.branch!= null){
+    final product = widget.productModel;
+    if (product is PharmacyProductCard &&
+        widget.controller.cartBranchId != null &&
+        widget.controller.cartBranchId != product.branch?.id) {
+      if (product.branch != null) {
         widget.controller.showChangeBranchDialog(context, product.branch!);
-        return ;
+        return;
       }
     }
     var currentStockQnt = widget.productModel.variant?.currentStock ?? 0;

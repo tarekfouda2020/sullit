@@ -1,7 +1,7 @@
 part of 'all_product_page_imports.dart';
 
 class AllProductPage extends StatefulWidget {
-  final List<Product> bestSellingProducts;
+  final List<ProductCard> bestSellingProducts;
 
   const AllProductPage({
     super.key,

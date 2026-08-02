@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'product_card_name.dart';
 import 'product_card_rating_bar.dart';
 import 'product_card_price_section.dart';
 
 class ProductCardInfoSection extends StatelessWidget {
-  final Product productModel;
+  final ProductCard productModel;
   final bool? showVipDiscount;
 
   const ProductCardInfoSection({

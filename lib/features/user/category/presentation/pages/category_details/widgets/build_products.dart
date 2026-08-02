@@ -8,7 +8,7 @@ class BuildProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
-      child: GridViewPagination<Product>(
+      child: GridViewPagination<ProductCard>(
         pagingController: detailsController.pagingController,
         onRefresh: () async => await detailsController.refresh(),
         firstPageProgressIndicatorBuilder: (_) =>

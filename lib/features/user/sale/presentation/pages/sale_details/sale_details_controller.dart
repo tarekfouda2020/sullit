@@ -14,7 +14,7 @@ class SaleDetailsController {
         );
   }
 
-  void onFavChanged(Product model) {
+  void onFavChanged(ProductCard model) {
     model.isWishlist = !model.isWishlist!;
     saleDetailsBloc.onUpdateData(saleDetailsBloc.state.data);
   }

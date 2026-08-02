@@ -3,13 +3,13 @@
 part of 'return_orders_imports.dart';
 
 class ReturnOrdersController {
-  final PagingController<int, Orders> pagingController =
+  final PagingController<int, OrderCardDomainModel> pagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 12;
 
   ReturnOrdersController() {
+    getReturnOrders(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
-      getReturnOrders(pageKey, refresh: false);
       getReturnOrders(pageKey);
     });
   }
@@ -29,7 +29,7 @@ class ReturnOrdersController {
     }
   }
 
-  void cancelOrder(Orders model) async {
+  void cancelOrder(OrderCardDomainModel model) async {
     getIt<LoadingHelper>().showLoadingDialog();
     var result = await CancelOrder().call(model.id);
     if (result.isNotEmpty) {
@@ -49,7 +49,7 @@ class ReturnOrdersController {
     await FileHelper().downloadFile(url: ApiNames.downloadInvoice(id));
   }
 
-  void onOpenHistory(Orders orderModel) {
+  void onOpenHistory(OrderCardDomainModel orderModel) {
     orderModel.selected = !orderModel.selected;
     int index =
         pagingController.itemList!.indexWhere((e) => e.id == orderModel.id);

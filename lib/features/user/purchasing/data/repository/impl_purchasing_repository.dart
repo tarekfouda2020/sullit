@@ -9,6 +9,7 @@ import 'package:flutter_tdd/features/user/purchasing/data/data_sources/purchasin
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/my_orders_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/return_order_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/send_review_params.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/order_card.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/track_order_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/payment_option.dart';
@@ -22,7 +23,7 @@ class ImplPurchasingRepository extends PurchasingRepository with ModelToDomain {
   var dataSource = getIt<PurchasingDataSources>();
 
   @override
-  Future<Either<Failure, List<Orders>>> getPurchaseHistory(
+  Future<Either<Failure, List<OrderCardDomainModel>>> getPurchaseHistory(
       MyOrdersParams param) async {
     var result = await dataSource.getPurchaseHistory(param);
     return toDomainResultList(result);
@@ -57,7 +58,7 @@ class ImplPurchasingRepository extends PurchasingRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, List<Orders>>> getReturnOrders(
+  Future<Either<Failure, List<OrderCardDomainModel>>> getReturnOrders(
       GenericPaginateParams param) async {
     var result = await dataSource.getReturnOrders(param);
     return toDomainResultList(result);

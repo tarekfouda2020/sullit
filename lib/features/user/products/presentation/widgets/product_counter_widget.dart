@@ -7,10 +7,11 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart/widgets/cart_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:flutter_tdd/res.dart';
 
 class ProductCounterWidget extends StatelessWidget {
-  final Product product;
+  final ProductCard product;
   final void Function() onPressAdd;
   final void Function() onPressDecrease;
 

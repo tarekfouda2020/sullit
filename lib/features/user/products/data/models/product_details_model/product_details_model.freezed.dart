@@ -22,9 +22,10 @@ ProductDetailsModel _$ProductDetailsModelFromJson(Map<String, dynamic> json) {
 mixin _$ProductDetailsModel {
   ProductModel get product => throw _privateConstructorUsedError;
   @JsonKey(name: 'related_products')
-  List<ProductModel> get relatedProducts => throw _privateConstructorUsedError;
+  List<ProductCardModel> get relatedProducts =>
+      throw _privateConstructorUsedError;
   @JsonKey(name: 'top_products')
-  List<ProductModel> get topProducts => throw _privateConstructorUsedError;
+  List<ProductCardModel> get topProducts => throw _privateConstructorUsedError;
   @JsonKey(name: 'product_queries')
   ProductQueriesModel get productQueries => throw _privateConstructorUsedError;
 
@@ -42,8 +43,8 @@ abstract class $ProductDetailsModelCopyWith<$Res> {
   @useResult
   $Res call(
       {ProductModel product,
-      @JsonKey(name: 'related_products') List<ProductModel> relatedProducts,
-      @JsonKey(name: 'top_products') List<ProductModel> topProducts,
+      @JsonKey(name: 'related_products') List<ProductCardModel> relatedProducts,
+      @JsonKey(name: 'top_products') List<ProductCardModel> topProducts,
       @JsonKey(name: 'product_queries') ProductQueriesModel productQueries});
 
   $ProductModelCopyWith<$Res> get product;
@@ -76,11 +77,11 @@ class _$ProductDetailsModelCopyWithImpl<$Res, $Val extends ProductDetailsModel>
       relatedProducts: null == relatedProducts
           ? _value.relatedProducts
           : relatedProducts // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+              as List<ProductCardModel>,
       topProducts: null == topProducts
           ? _value.topProducts
           : topProducts // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+              as List<ProductCardModel>,
       productQueries: null == productQueries
           ? _value.productQueries
           : productQueries // ignore: cast_nullable_to_non_nullable
@@ -115,8 +116,8 @@ abstract class _$$_ProductDetailsModelCopyWith<$Res>
   @useResult
   $Res call(
       {ProductModel product,
-      @JsonKey(name: 'related_products') List<ProductModel> relatedProducts,
-      @JsonKey(name: 'top_products') List<ProductModel> topProducts,
+      @JsonKey(name: 'related_products') List<ProductCardModel> relatedProducts,
+      @JsonKey(name: 'top_products') List<ProductCardModel> topProducts,
       @JsonKey(name: 'product_queries') ProductQueriesModel productQueries});
 
   @override
@@ -149,11 +150,11 @@ class __$$_ProductDetailsModelCopyWithImpl<$Res>
       relatedProducts: null == relatedProducts
           ? _value._relatedProducts
           : relatedProducts // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+              as List<ProductCardModel>,
       topProducts: null == topProducts
           ? _value._topProducts
           : topProducts // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+              as List<ProductCardModel>,
       productQueries: null == productQueries
           ? _value.productQueries
           : productQueries // ignore: cast_nullable_to_non_nullable
@@ -169,9 +170,9 @@ class _$_ProductDetailsModel extends _ProductDetailsModel {
   const _$_ProductDetailsModel(
       {required this.product,
       @JsonKey(name: 'related_products')
-      required final List<ProductModel> relatedProducts,
+      required final List<ProductCardModel> relatedProducts,
       @JsonKey(name: 'top_products')
-      required final List<ProductModel> topProducts,
+      required final List<ProductCardModel> topProducts,
       @JsonKey(name: 'product_queries') required this.productQueries})
       : _relatedProducts = relatedProducts,
         _topProducts = topProducts,
@@ -182,19 +183,19 @@ class _$_ProductDetailsModel extends _ProductDetailsModel {
 
   @override
   final ProductModel product;
-  final List<ProductModel> _relatedProducts;
+  final List<ProductCardModel> _relatedProducts;
   @override
   @JsonKey(name: 'related_products')
-  List<ProductModel> get relatedProducts {
+  List<ProductCardModel> get relatedProducts {
     if (_relatedProducts is EqualUnmodifiableListView) return _relatedProducts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_relatedProducts);
   }
 
-  final List<ProductModel> _topProducts;
+  final List<ProductCardModel> _topProducts;
   @override
   @JsonKey(name: 'top_products')
-  List<ProductModel> get topProducts {
+  List<ProductCardModel> get topProducts {
     if (_topProducts is EqualUnmodifiableListView) return _topProducts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_topProducts);
@@ -251,9 +252,9 @@ abstract class _ProductDetailsModel extends ProductDetailsModel {
   const factory _ProductDetailsModel(
           {required final ProductModel product,
           @JsonKey(name: 'related_products')
-          required final List<ProductModel> relatedProducts,
+          required final List<ProductCardModel> relatedProducts,
           @JsonKey(name: 'top_products')
-          required final List<ProductModel> topProducts,
+          required final List<ProductCardModel> topProducts,
           @JsonKey(name: 'product_queries')
           required final ProductQueriesModel productQueries}) =
       _$_ProductDetailsModel;
@@ -266,10 +267,10 @@ abstract class _ProductDetailsModel extends ProductDetailsModel {
   ProductModel get product;
   @override
   @JsonKey(name: 'related_products')
-  List<ProductModel> get relatedProducts;
+  List<ProductCardModel> get relatedProducts;
   @override
   @JsonKey(name: 'top_products')
-  List<ProductModel> get topProducts;
+  List<ProductCardModel> get topProducts;
   @override
   @JsonKey(name: 'product_queries')
   ProductQueriesModel get productQueries;

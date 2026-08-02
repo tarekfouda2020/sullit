@@ -20,19 +20,19 @@ _$_HomeModel _$$_HomeModelFromJson(Map<String, dynamic> json) => _$_HomeModel(
           .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       currentOrders: (json['current_orders'] as List<dynamic>)
-          .map((e) => OrderModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => OrdersListModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       flashSales: json['flash_deal'] == null
           ? null
           : FlashSaleModel.fromJson(json['flash_deal'] as Map<String, dynamic>),
       shops: (json['shops'] as List<dynamic>)
-          .map((e) => ShopModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => ShopCardModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       topSellers: (json['top_sellers'] as List<dynamic>)
-          .map((e) => ShopModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => ShopCardModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       pharmacyShops: (json['pharmacy_shops'] as List<dynamic>)
-          .map((e) => ShopModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => ShopCardModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       cartCount: (json['cart_count'] as num).toInt(),
       favCount: (json['wishlist_count'] as num).toInt(),

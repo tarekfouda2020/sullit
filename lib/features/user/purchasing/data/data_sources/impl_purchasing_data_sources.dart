@@ -8,6 +8,7 @@ import 'package:flutter_tdd/core/http/models/http_request_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/products/data/models/reviews_model/reviews_model.dart';
+import 'package:flutter_tdd/features/user/purchasing/data/models/order_card_model/order_card_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_model/order_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/track_order/track_order.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/change_order_payment_params.dart';
@@ -22,7 +23,7 @@ import 'purchasing_data_sources.dart';
 @Injectable(as: PurchasingDataSources)
 class ImplPurchasingDataSources extends PurchasingDataSources {
   @override
-  Future<Either<Failure, List<OrderModel>>> getPurchaseHistory(
+  Future<Either<Failure, List<OrderCardModel>>> getPurchaseHistory(
       MyOrdersParams param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getPurchaseHistory ,
@@ -30,12 +31,12 @@ class ImplPurchasingDataSources extends PurchasingDataSources {
       refresh: param.refresh,
       responseType: ResType.list,
       requestBody: param.toJson(),
-      toJsonFunc: (json) => List<OrderModel>.from(
-        json.map((e) => OrderModel.fromJson(e)),
+      toJsonFunc: (json) => List<OrderCardModel>.from(
+        json.map((e) => OrderCardModel.fromJson(e)),
       ),
       responseKey: (data) => data["data"]["orders"],
     );
-    return await GenericHttpImpl<List<OrderModel>>().call(model);
+    return await GenericHttpImpl<List<OrderCardModel>>().call(model);
   }
 
   @override
@@ -106,7 +107,7 @@ class ImplPurchasingDataSources extends PurchasingDataSources {
   }
 
   @override
-  Future<Either<Failure, List<OrderModel>>> getReturnOrders(
+  Future<Either<Failure, List<OrderCardModel>>> getReturnOrders(
       GenericPaginateParams param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getReturnOrders + param.paramsToQuery(),
@@ -114,12 +115,12 @@ class ImplPurchasingDataSources extends PurchasingDataSources {
       refresh: param.refresh,
       responseType: ResType.list,
       showLoader: true,
-      toJsonFunc: (json) => List<OrderModel>.from(
-        json.map((e) => OrderModel.fromJson(e)),
+      toJsonFunc: (json) => List<OrderCardModel>.from(
+        json.map((e) => OrderCardModel.fromJson(e)),
       ),
       responseKey: (data) => data["data"]["orders"],
     );
-    return await GenericHttpImpl<List<OrderModel>>().call(model);
+    return await GenericHttpImpl<List<OrderCardModel>>().call(model);
   }
 
   @override

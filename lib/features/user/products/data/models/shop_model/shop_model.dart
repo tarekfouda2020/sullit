@@ -20,6 +20,7 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
     @JsonKey(name: 'user_id') required int userId,
     @JsonKey(name: 'has_branches')  bool? hasBranches,
     @JsonKey(name: 'type') required String shopType,
+    @JsonKey(name: 'type_label') required String shopTypeLabel,
     required String name,
     List<String>? sliders,
     List<ShopCategoryModel>? categories,
@@ -39,7 +40,7 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
     required String? twitter,
     required String? instagram,
     required String? youtube,
-    required num rating,
+    required double rating,
     required bool follow,
     ShopPickupModel? pickup,
   }) = _ShopModel;
@@ -47,58 +48,6 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
   factory ShopModel.fromJson(Map<String, dynamic> json) =>
       _$ShopModelFromJson(json);
 
-  // @override
-  // ShopDomainModel toDomainModel() {
-  //   if (shopType.toLowerCase() == 'pharmacy') {
-  //     return PharmacyModel(
-  //       id: id,
-  //       userId: userId,
-  //       name: name,
-  //       products: products,
-  //       logo: logo,
-  //       rating: rating,
-  //       description: description,
-  //       title: title,
-  //       address: address,
-  //       orders: orders,
-  //       packageInvalidAt: packageInvalidAt,
-  //       email: email,
-  //       phone: phone,
-  //       facebook: facebook,
-  //       google: google,
-  //       instagram: instagram,
-  //       twitter: twitter,
-  //       youtube: youtube,
-  //       follow: follow,
-  //       categories: categories?.map((e) => e.toDomainModel()).toList(),
-  //       sliders: sliders,
-  //     );
-  //   }
-  //
-  //   return MerchantShopModel(
-  //     id: id,
-  //     userId: userId,
-  //     name: name,
-  //     products: products,
-  //     logo: logo,
-  //     rating: rating,
-  //     description: description,
-  //     title: title,
-  //     address: address,
-  //     orders: orders,
-  //     packageInvalidAt: packageInvalidAt,
-  //     email: email,
-  //     phone: phone,
-  //     facebook: facebook,
-  //     google: google,
-  //     instagram: instagram,
-  //     twitter: twitter,
-  //     youtube: youtube,
-  //     follow: follow,
-  //     categories: categories?.map((e) => e.toDomainModel()).toList(),
-  //     sliders: sliders,
-  //   );
-  // }
 
   @override
   Shop toDomainModel() {
@@ -125,6 +74,7 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
       categories: categories?.map((e) => e.toDomainModel()).toList(),
       sliders: sliders,
       shopType: shopType,
+
       hasBranches: hasBranches,
       insuranceCompanies:
           insuranceCompanies?.map((e) => e.toDomainModel()).toList(),

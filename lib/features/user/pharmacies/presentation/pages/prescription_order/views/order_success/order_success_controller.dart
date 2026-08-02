@@ -11,12 +11,12 @@ class OrderSuccessController {
 
 
   final OrderSummaryDomainModel summary;
-  final Shop? pharmacyData;
+  final ShopCardDomainModel? pharmacyData;
 
   Orders? get firstSectionOrder =>
       orderSummaryBloc.state.data?.sectionOrders?.firstOrNull;
 
-  Shop? get pharmacy => pharmacyData ??
+  ShopCardDomainModel? get pharmacy => pharmacyData ??
       firstSectionOrder?.orderDetails.firstOrNull?.product?.shop;
 
   OrderSuccessController(this.summary, this.pharmacyData) {

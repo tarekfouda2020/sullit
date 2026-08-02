@@ -51,7 +51,7 @@ class _AttachPrescriptionState extends State<AttachPrescription> {
               current: 1,
               steps: PrescriptionOrderStepModel.prescriptionFlowSteps,
             ),
-            PharmacyInfoRowWidget(pharmacy: widget.pharmacy),
+            PharmacyInfoRowWidget(pharmacy: widget.pharmacy.toShopCardDomainModel()),
             Expanded(
               child: SingleChildScrollView(
                 padding: Dimens.paddingAll20PX,

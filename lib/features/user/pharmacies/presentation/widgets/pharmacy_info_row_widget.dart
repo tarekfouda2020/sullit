@@ -1,7 +1,7 @@
 part of 'widgets_imports.dart';
 
 class PharmacyInfoRowWidget extends StatelessWidget {
-  final Shop? pharmacy;
+  final ShopCardDomainModel? pharmacy;
 
   const PharmacyInfoRowWidget({super.key, required this.pharmacy});
 

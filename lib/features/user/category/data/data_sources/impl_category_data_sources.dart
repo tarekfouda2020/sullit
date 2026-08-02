@@ -5,7 +5,7 @@ import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
 import 'package:flutter_tdd/core/models/api_models/brand_model/brand_model.dart';
-import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
+import 'package:flutter_tdd/features/user/products/data/models/product_card_model/product_card_model.dart';
 import 'package:flutter_tdd/features/user/category/data/data_sources/category_data_sources.dart';
 import 'package:flutter_tdd/features/user/category/data/models/category_model/category_model.dart';
 import 'package:flutter_tdd/features/user/category/data/models/sub_category_model/sub_category_model.dart';
@@ -68,22 +68,22 @@ class ImplCategoryDataSources extends CategoryDataSources {
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getBrandProducts(
+  Future<Either<Failure, List<ProductCardModel>>> getBrandProducts(
       BrandDetailsParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.brandDetails + params.url,
       requestMethod: RequestMethod.get,
       refresh: params.refresh,
       responseType: ResType.list,
-      toJsonFunc: (json) => List<ProductModel>.from(
+      toJsonFunc: (json) => List<ProductCardModel>.from(
         json.map(
-          (e) => ProductModel.fromJson(e),
+          (e) => ProductCardModel.fromJson(e),
         ),
       ),
       responseKey: (data) => data["data"]["section_products"]["products"],
       errorFunc: (data) => data["msg"],
     );
-    return await GenericHttpImpl<List<ProductModel>>().call(model);
+    return await GenericHttpImpl<List<ProductCardModel>>().call(model);
   }
 
   @override
@@ -102,7 +102,7 @@ class ImplCategoryDataSources extends CategoryDataSources {
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getCategoryProducts(
+  Future<Either<Failure, List<ProductCardModel>>> getCategoryProducts(
       SearchProductsParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getCategoryProducts,
@@ -110,11 +110,11 @@ class ImplCategoryDataSources extends CategoryDataSources {
       refresh: params.refresh,
       responseType: ResType.list,
       requestBody: params.toJson(),
-      toJsonFunc: (json) => List<ProductModel>.from(
-        json.map((e) => ProductModel.fromJson(e)),
+      toJsonFunc: (json) => List<ProductCardModel>.from(
+        json.map((e) => ProductCardModel.fromJson(e)),
       ),
       responseKey: (data) => data["data"]["section_products"]["products"],
     );
-    return await GenericHttpImpl<List<ProductModel>>().call(model);
+    return await GenericHttpImpl<List<ProductCardModel>>().call(model);
   }
 }

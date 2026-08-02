@@ -23,10 +23,10 @@ class _ReturnOrdersState extends State<ReturnOrders> {
       appBar: DefaultAppBar(title: tr('returnedOrders'), showBack: true),
       body: CustomRefreshIndicatorWidget(
         onRefresh: () => controller.getReturnOrders(1),
-        child: PagedListView<int, Orders>(
+        child: PagedListView<int, OrderCardDomainModel>(
           padding: Dimens.paddingAll15PX,
           pagingController: controller.pagingController,
-          builderDelegate: PagedChildBuilderDelegate<Orders>(
+          builderDelegate: PagedChildBuilderDelegate<OrderCardDomainModel>(
             firstPageProgressIndicatorBuilder: (_) =>
                 const BuildLoadingOrders(),
             itemBuilder: (_, item, index) =>

@@ -3,10 +3,10 @@ import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 
 class ProductCardPriceSection extends StatelessWidget {
-  final Product productModel;
+  final ProductCard productModel;
   final bool? showVipDiscount;
 
   const ProductCardPriceSection({
@@ -38,7 +38,7 @@ class ProductCardPriceSection extends StatelessWidget {
 }
 
 class _CurrentPrice extends StatelessWidget {
-  final Product productModel;
+  final ProductCard productModel;
 
   const _CurrentPrice({required this.productModel});
 
@@ -49,7 +49,7 @@ class _CurrentPrice extends StatelessWidget {
         DirhamPrice(
           amount: productModel.variant?.calculablePrice ?? "0.0",
         ),
-        if (productModel.unit != null && productModel.unit?.isNotEmpty == true)
+        if (productModel.unit.isNotEmpty)
           Flexible(
             child: Text(
               " / ${productModel.unit}",
@@ -63,7 +63,7 @@ class _CurrentPrice extends StatelessWidget {
 }
 
 class _OriginalPrice extends StatelessWidget {
-  final Product productModel;
+  final ProductCard productModel;
   final bool? showVipDiscount;
 
   const _OriginalPrice({
@@ -78,7 +78,7 @@ class _OriginalPrice extends StatelessWidget {
       child: Row(
         children: [
           DirhamPrice(
-            amount: productModel.priceHighLow ?? "0.0",
+            amount: productModel.priceHighLow,
             showMinus: true,
             currencyOffset: 1,
             color: context.colors.textColor,
@@ -89,7 +89,7 @@ class _OriginalPrice extends StatelessWidget {
               decorationThickness: 1.2,
             ),
           ),
-          if (productModel.unit != null)
+          if (productModel.unit.isNotEmpty)
             Flexible(
               child: Text(
                 " / ${productModel.unit}",

@@ -3,7 +3,7 @@ part of 'pro_offers_imports.dart';
 class ProOffersController {
   final TextEditingController searchFieldCtr = TextEditingController();
 
-  final PagingController<int, Product> vipOffersPagingController =
+  final PagingController<int, ProductCard> vipOffersPagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 10;
   int currentPage = 1;
@@ -37,8 +37,8 @@ class ProOffersController {
         pageSize: pageSize, refresh: refresh, currentPage: currentPage);
   }
 
-  void onChangeFav(Product item) {
-    item.isWishlist = !item.isWishlist!;
+  void onChangeFav(ProductCard item) {
+    item.isWishlist = !item.isWishlist;
     if (vipOffersPagingController.itemList != null) {
       int index = vipOffersPagingController.itemList!
           .indexWhere((e) => e.id == item.id);

@@ -1,8 +1,8 @@
 part of 'seller_products_widgets_imports.dart';
 
-class SellerProducts extends StatelessWidget {
+class SellerProductsList extends StatelessWidget {
   final SellerProductsController controller;
-  const SellerProducts({super.key, required this.controller});
+  const SellerProductsList({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -12,14 +12,14 @@ class SellerProducts extends StatelessWidget {
         right: 15,
         top: 10,
       ),
-      sliver: PagedSliverGrid<int, Product>(
+      sliver: PagedSliverGrid<int, ProductCard>(
         showNewPageErrorIndicatorAsGridChild: false,
         showNewPageProgressIndicatorAsGridChild: false,
         showNoMoreItemsIndicatorAsGridChild: false,
         shrinkWrapFirstPageIndicators: false,
         pagingController: controller.pagingController,
         gridDelegate: _buildGridDelegate(),
-        builderDelegate: PagedChildBuilderDelegate<Product>(
+        builderDelegate: PagedChildBuilderDelegate<ProductCard>(
           itemBuilder: (context, item, index) {
             // final item = controller.pagingController.itemList![index];
             return BuildProductItem(

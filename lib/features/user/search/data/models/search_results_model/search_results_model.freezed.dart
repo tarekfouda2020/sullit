@@ -28,7 +28,7 @@ mixin _$SearchResultsModel {
   @JsonKey(name: 'categories')
   List<CategoryModel> get categories => throw _privateConstructorUsedError;
   @JsonKey(name: 'shops')
-  List<ShopModel>? get shops => throw _privateConstructorUsedError;
+  List<ShopCardModel>? get shops => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,7 +46,7 @@ abstract class $SearchResultsModelCopyWith<$Res> {
       {@JsonKey(name: 'popular_suggestions') List<String>? suggestions,
       @JsonKey(name: 'section_products') AllProductsSearchResultModel products,
       @JsonKey(name: 'categories') List<CategoryModel> categories,
-      @JsonKey(name: 'shops') List<ShopModel>? shops});
+      @JsonKey(name: 'shops') List<ShopCardModel>? shops});
 
   $AllProductsSearchResultModelCopyWith<$Res> get products;
 }
@@ -85,7 +85,7 @@ class _$SearchResultsModelCopyWithImpl<$Res, $Val extends SearchResultsModel>
       shops: freezed == shops
           ? _value.shops
           : shops // ignore: cast_nullable_to_non_nullable
-              as List<ShopModel>?,
+              as List<ShopCardModel>?,
     ) as $Val);
   }
 
@@ -111,7 +111,7 @@ abstract class _$$_SearchResultsModelCopyWith<$Res>
       {@JsonKey(name: 'popular_suggestions') List<String>? suggestions,
       @JsonKey(name: 'section_products') AllProductsSearchResultModel products,
       @JsonKey(name: 'categories') List<CategoryModel> categories,
-      @JsonKey(name: 'shops') List<ShopModel>? shops});
+      @JsonKey(name: 'shops') List<ShopCardModel>? shops});
 
   @override
   $AllProductsSearchResultModelCopyWith<$Res> get products;
@@ -149,7 +149,7 @@ class __$$_SearchResultsModelCopyWithImpl<$Res>
       shops: freezed == shops
           ? _value._shops
           : shops // ignore: cast_nullable_to_non_nullable
-              as List<ShopModel>?,
+              as List<ShopCardModel>?,
     ));
   }
 }
@@ -163,7 +163,7 @@ class _$_SearchResultsModel extends _SearchResultsModel {
       @JsonKey(name: 'section_products') required this.products,
       @JsonKey(name: 'categories')
       required final List<CategoryModel> categories,
-      @JsonKey(name: 'shops') final List<ShopModel>? shops})
+      @JsonKey(name: 'shops') final List<ShopCardModel>? shops})
       : _suggestions = suggestions,
         _categories = categories,
         _shops = shops,
@@ -195,10 +195,10 @@ class _$_SearchResultsModel extends _SearchResultsModel {
     return EqualUnmodifiableListView(_categories);
   }
 
-  final List<ShopModel>? _shops;
+  final List<ShopCardModel>? _shops;
   @override
   @JsonKey(name: 'shops')
-  List<ShopModel>? get shops {
+  List<ShopCardModel>? get shops {
     final value = _shops;
     if (value == null) return null;
     if (_shops is EqualUnmodifiableListView) return _shops;
@@ -257,7 +257,7 @@ abstract class _SearchResultsModel extends SearchResultsModel {
       @JsonKey(name: 'categories')
       required final List<CategoryModel> categories,
       @JsonKey(name: 'shops')
-      final List<ShopModel>? shops}) = _$_SearchResultsModel;
+      final List<ShopCardModel>? shops}) = _$_SearchResultsModel;
   const _SearchResultsModel._() : super._();
 
   factory _SearchResultsModel.fromJson(Map<String, dynamic> json) =
@@ -274,7 +274,7 @@ abstract class _SearchResultsModel extends SearchResultsModel {
   List<CategoryModel> get categories;
   @override
   @JsonKey(name: 'shops')
-  List<ShopModel>? get shops;
+  List<ShopCardModel>? get shops;
   @override
   @JsonKey(ignore: true)
   _$$_SearchResultsModelCopyWith<_$_SearchResultsModel> get copyWith =>

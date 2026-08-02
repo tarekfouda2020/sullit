@@ -16,7 +16,7 @@ class PharmacyDetailsController {
 
   final PagingController<int, ShopCategory> categoriesPagingController =
       PagingController(firstPageKey: 1);
-  final PagingController<int, PharmacyProduct> productsPagingController =
+  final PagingController<int, ProductCard> productsPagingController =
       PagingController(firstPageKey: 1);
 
 
@@ -172,10 +172,11 @@ class PharmacyDetailsController {
     if (pharmacyBloc.state.data == null && result != null) {
       pharmacyBloc.onUpdateData(result.shop);
     }
-    final List<PharmacyProduct> data =
-    List<PharmacyProduct>.from(
-      result?.sectionProductModel.products ?? <PharmacyProduct>[],
-    );
+    final branch = selectedBranchCubit.state.data;
+    final List<ProductCard> data = (result?.sectionProductModel.products ??
+            <ProductCard>[])
+        .map((card) => PharmacyProductCard.fromCard(card, branch: branch))
+        .toList();
     final isLastPage = (data.length) < AppConstants.instance.paginationLimit;
     if (page == 1) {
       productsPagingController.itemList = [];
@@ -245,8 +246,8 @@ class PharmacyDetailsController {
     }
   }
 
-  void onFavChanged(PharmacyProduct model) {
-    model.isWishlist = !model.isWishlist!;
+  void onFavChanged(ProductCard model) {
+    model.isWishlist = !model.isWishlist;
     int index =
         productsPagingController.itemList!.indexWhere((e) => e.id == model.id);
     if (index != -1) {
@@ -282,7 +283,7 @@ class PharmacyDetailsController {
   }
 
   Future<bool> deleteProductInCartFromProductsList(
-      BuildContext context, Product product) async {
+      BuildContext context, ProductCard product) async {
     var cartItem = _getSameProductInCart(product);
     if (cartItem == null) {
       return false;
@@ -304,7 +305,7 @@ class PharmacyDetailsController {
   }
 
   Future<bool> reduceProductQntInCart(
-      BuildContext context, Product product, int newQnt,
+      BuildContext context, ProductCard product, int newQnt,
       {GenericBloc<bool>? loadingBloc}) async {
     var cartItem = _getSameProductInCart(product);
     if (cartItem == null) {
@@ -327,7 +328,7 @@ class PharmacyDetailsController {
   }
 
   Future<bool> increaseProductAddedQntInCart(
-      BuildContext context, Product product, int qnt) async {
+      BuildContext context, ProductCard product, int qnt) async {
     List<GeneralCartItem>? cartList = cartItemsBloc.state.data.items;
     if (cartList == null || cartList.isEmpty) {
       return false;
@@ -355,7 +356,7 @@ class PharmacyDetailsController {
     return false;
   }
 
-  GeneralCartItem? _getSameProductInCart(Product product) {
+  GeneralCartItem? _getSameProductInCart(ProductCard product) {
     var cartList = cartItemsBloc.state.data.items;
     if (cartList == null || cartList.isEmpty) {
       return null;
@@ -445,12 +446,12 @@ class PharmacyDetailsController {
   }
 
   void syncProductsWithCart() {
-    final List<PharmacyProduct>? currentList = productsPagingController.itemList;
+    final List<ProductCard>? currentList = productsPagingController.itemList;
     if (currentList == null || currentList.isEmpty) return;
 
     final cartItems = cartItemsBloc.state.data.items ?? <GeneralCartItem>[];
 
-    List<PharmacyProduct> updatedList = currentList.map((product) {
+    List<ProductCard> updatedList = currentList.map((product) {
       final matchingCartItems = cartItems.where(
         (item) => item.productId == product.id,
       );

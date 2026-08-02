@@ -4,6 +4,7 @@ import 'package:flutter_tdd/features/user/category/data/models/category_model/ca
 import 'package:flutter_tdd/features/user/category/data/models/color_model/color_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/product_options_model/product_options_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/reviews_model/reviews_model.dart';
+import 'package:flutter_tdd/features/user/products/data/models/shop_card_model/shop_card_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/shop_model/shop_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/variant_model/variant_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/behavior/product_type.dart';
@@ -46,7 +47,7 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
     @JsonKey(name: 'sold_by_type') required String soldByType,
     @JsonKey(name: 'sold_by_name') required String soldByName,
     @JsonKey(name: 'has_vip_offer') required bool hasVipOffer,
-    ShopModel? shop,
+    ShopCardModel? shop,
     List<ReviewsModel>? reviews,
     @JsonKey(name: 'is_resale') required bool isResale,
     @JsonKey(name: 'reseller_id') required int resellerId,

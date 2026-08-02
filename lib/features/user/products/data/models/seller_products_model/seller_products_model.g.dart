@@ -30,7 +30,7 @@ _$_SectionProductsModel _$$_SectionProductsModelFromJson(
       pagination: SellerPaginationData.fromJson(
           json['pagination'] as Map<String, dynamic>),
       products: (json['products'] as List<dynamic>)
-          .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => ProductCardModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

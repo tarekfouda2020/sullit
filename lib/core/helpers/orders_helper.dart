@@ -57,7 +57,7 @@ class OrdersHelper {
             if (theSameOrder.isCanceled) {
               homeData.currentOrders.removeAt(index);
             } else {
-              homeData.currentOrders[index] = value;
+              homeData.currentOrders[index].deliveryStatusConst = value.deliveryStatusConst;
             }
             homeCubit.onUpdateData(homeData);
           } catch (e) {

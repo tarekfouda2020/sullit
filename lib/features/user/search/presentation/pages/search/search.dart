@@ -35,8 +35,8 @@ class _SearchState extends State<Search> {
                 bloc: controller.resultsCubit,
                 builder: (context, state) {
                   if (state is GenericUpdateState) {
-                    List<Shop>? shop = state.data!.shops;
-                    List<Shop>? shops =
+                    List<ShopCardDomainModel>? shop = state.data!.shops;
+                    List<ShopCardDomainModel>? shops =
                         shop!.length > 10 ? shop.take(10).toList() : shop;
 
                     List<Category> categories = state.data!.categories;
@@ -44,8 +44,8 @@ class _SearchState extends State<Search> {
                         ? categories.take(10).toList()
                         : categories;
 
-                    List<Product> products = state.data!.products;
-                    List<Product> prod = products.length > 10
+                    List<ProductCard> products = state.data!.products;
+                    List<ProductCard> prod = products.length > 10
                         ? products.take(10).toList()
                         : products;
 

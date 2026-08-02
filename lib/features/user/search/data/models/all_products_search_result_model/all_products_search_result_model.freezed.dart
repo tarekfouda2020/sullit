@@ -21,7 +21,7 @@ AllProductsSearchResultModel _$AllProductsSearchResultModelFromJson(
 
 /// @nodoc
 mixin _$AllProductsSearchResultModel {
-  List<ProductModel> get products => throw _privateConstructorUsedError;
+  List<ProductCardModel> get products => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +37,7 @@ abstract class $AllProductsSearchResultModelCopyWith<$Res> {
       _$AllProductsSearchResultModelCopyWithImpl<$Res,
           AllProductsSearchResultModel>;
   @useResult
-  $Res call({List<ProductModel> products});
+  $Res call({List<ProductCardModel> products});
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$AllProductsSearchResultModelCopyWithImpl<$Res,
       products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+              as List<ProductCardModel>,
     ) as $Val);
   }
 }
@@ -74,7 +74,7 @@ abstract class _$$_AllProductsSearchResultModelCopyWith<$Res>
       __$$_AllProductsSearchResultModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ProductModel> products});
+  $Res call({List<ProductCardModel> products});
 }
 
 /// @nodoc
@@ -96,7 +96,7 @@ class __$$_AllProductsSearchResultModelCopyWithImpl<$Res>
       products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+              as List<ProductCardModel>,
     ));
   }
 }
@@ -105,16 +105,17 @@ class __$$_AllProductsSearchResultModelCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$_AllProductsSearchResultModel extends _AllProductsSearchResultModel {
-  _$_AllProductsSearchResultModel({required final List<ProductModel> products})
+  _$_AllProductsSearchResultModel(
+      {required final List<ProductCardModel> products})
       : _products = products,
         super._();
 
   factory _$_AllProductsSearchResultModel.fromJson(Map<String, dynamic> json) =>
       _$$_AllProductsSearchResultModelFromJson(json);
 
-  final List<ProductModel> _products;
+  final List<ProductCardModel> _products;
   @override
-  List<ProductModel> get products {
+  List<ProductCardModel> get products {
     if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_products);
@@ -156,7 +157,7 @@ class _$_AllProductsSearchResultModel extends _AllProductsSearchResultModel {
 abstract class _AllProductsSearchResultModel
     extends AllProductsSearchResultModel {
   factory _AllProductsSearchResultModel(
-          {required final List<ProductModel> products}) =
+          {required final List<ProductCardModel> products}) =
       _$_AllProductsSearchResultModel;
   _AllProductsSearchResultModel._() : super._();
 
@@ -164,7 +165,7 @@ abstract class _AllProductsSearchResultModel
       _$_AllProductsSearchResultModel.fromJson;
 
   @override
-  List<ProductModel> get products;
+  List<ProductCardModel> get products;
   @override
   @JsonKey(ignore: true)
   _$$_AllProductsSearchResultModelCopyWith<_$_AllProductsSearchResultModel>

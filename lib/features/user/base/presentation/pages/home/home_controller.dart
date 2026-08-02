@@ -12,7 +12,7 @@ class HomeController {
   final TextEditingController searchController = TextEditingController();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  Orders? _firstUnPaidOrder;
+  OrderCardDomainModel? _firstUnPaidOrder;
 
   bool showToast = false;
   int offersTabIndex = 0;
@@ -168,8 +168,8 @@ class HomeController {
     }
     if (isAuth) {
       MyOrdersParams params = _myOrdersParams(refresh);
-      List<Orders> data = await GetPurchasingHistory().call(params);
-      Set<Orders> unPaidOrder =
+      List<OrderCardDomainModel> data = await GetPurchasingHistory().call(params);
+      Set<OrderCardDomainModel> unPaidOrder =
           data.where((element) => element.showUnPaidOnlineOrderActions).toSet();
       if (unPaidOrder.isNotEmpty) {
         _firstUnPaidOrder = unPaidOrder.first;
@@ -209,7 +209,7 @@ class HomeController {
     AutoRouter.of(context).push(
       OrderDetailsPageRoute(
         isReturnedOrder: false,
-        order: _firstUnPaidOrder!,
+        id: _firstUnPaidOrder!.id,
       ),
     );
   }
@@ -229,7 +229,7 @@ class HomeController {
           type: ToastType.success,
         );
         AutoRouter.of(ctx).push(OrderDetailsPageRoute(
-            isReturnedOrder: false, order: _firstUnPaidOrder!));
+            isReturnedOrder: false, id: _firstUnPaidOrder!.id));
       }
     }
   }
@@ -254,7 +254,7 @@ class HomeController {
           isVipProducts: isVipProducts,
         );
     try {
-      List<Future<List<Product>>> futures = [
+      List<Future<List<ProductCard>>> futures = [
         !context.isShareHolder
             ? GetVipOffers().call(offersParams(isVipProducts: true))
             : Future.value([]),

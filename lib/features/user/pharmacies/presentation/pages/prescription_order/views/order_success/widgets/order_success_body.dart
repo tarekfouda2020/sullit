@@ -22,8 +22,8 @@ class OrderSuccessBody extends StatelessWidget {
                     Gaps.vGap10,
                     if(controller.firstSectionOrder?.orderDetails.isNotEmpty == true)
                     OrderPharamCardWidget(
-                      url: _buildShop()?.logo ?? "",
-                      text: _buildShop()?.name  ?? "",
+                      url: _buildShop()?.soldBy ?? "",
+                      text: _buildShop()?.soldBy  ?? "",
                     ),
                     Gaps.vGap10,
                     Stack(
@@ -94,7 +94,7 @@ class OrderSuccessBody extends StatelessWidget {
     );
   }
 
-  Shop? _buildShop() => controller.firstSectionOrder?.orderDetails.first.product?.shop;
+  OrderDetails? _buildShop() => controller.firstSectionOrder?.orderDetails.first;
 
   bool _showOrderInvoice(GenericState<OrderSummaryDomainModel?> state) =>
       state.data?.pharmNormalOrder == false &&

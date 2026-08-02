@@ -54,7 +54,7 @@ mixin _$ProductModel {
   String get soldByName => throw _privateConstructorUsedError;
   @JsonKey(name: 'has_vip_offer')
   bool get hasVipOffer => throw _privateConstructorUsedError;
-  ShopModel? get shop => throw _privateConstructorUsedError;
+  ShopCardModel? get shop => throw _privateConstructorUsedError;
   List<ReviewsModel>? get reviews => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_resale')
   bool get isResale => throw _privateConstructorUsedError;
@@ -135,7 +135,7 @@ abstract class $ProductModelCopyWith<$Res> {
       @JsonKey(name: 'sold_by_type') String soldByType,
       @JsonKey(name: 'sold_by_name') String soldByName,
       @JsonKey(name: 'has_vip_offer') bool hasVipOffer,
-      ShopModel? shop,
+      ShopCardModel? shop,
       List<ReviewsModel>? reviews,
       @JsonKey(name: 'is_resale') bool isResale,
       @JsonKey(name: 'reseller_id') int resellerId,
@@ -164,7 +164,7 @@ abstract class $ProductModelCopyWith<$Res> {
       PharmacyBranchModel? branch});
 
   $VariantModelCopyWith<$Res>? get variant;
-  $ShopModelCopyWith<$Res>? get shop;
+  $ShopCardModelCopyWith<$Res>? get shop;
   $CategoryModelCopyWith<$Res>? get category;
   $BrandModelCopyWith<$Res>? get brand;
   $PharmacyBranchModelCopyWith<$Res>? get branch;
@@ -320,7 +320,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       shop: freezed == shop
           ? _value.shop
           : shop // ignore: cast_nullable_to_non_nullable
-              as ShopModel?,
+              as ShopCardModel?,
       reviews: freezed == reviews
           ? _value.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
@@ -442,12 +442,12 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $ShopModelCopyWith<$Res>? get shop {
+  $ShopCardModelCopyWith<$Res>? get shop {
     if (_value.shop == null) {
       return null;
     }
 
-    return $ShopModelCopyWith<$Res>(_value.shop!, (value) {
+    return $ShopCardModelCopyWith<$Res>(_value.shop!, (value) {
       return _then(_value.copyWith(shop: value) as $Val);
     });
   }
@@ -519,7 +519,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
       @JsonKey(name: 'sold_by_type') String soldByType,
       @JsonKey(name: 'sold_by_name') String soldByName,
       @JsonKey(name: 'has_vip_offer') bool hasVipOffer,
-      ShopModel? shop,
+      ShopCardModel? shop,
       List<ReviewsModel>? reviews,
       @JsonKey(name: 'is_resale') bool isResale,
       @JsonKey(name: 'reseller_id') int resellerId,
@@ -550,7 +550,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
   @override
   $VariantModelCopyWith<$Res>? get variant;
   @override
-  $ShopModelCopyWith<$Res>? get shop;
+  $ShopCardModelCopyWith<$Res>? get shop;
   @override
   $CategoryModelCopyWith<$Res>? get category;
   @override
@@ -707,7 +707,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
       shop: freezed == shop
           ? _value.shop
           : shop // ignore: cast_nullable_to_non_nullable
-              as ShopModel?,
+              as ShopCardModel?,
       reviews: freezed == reviews
           ? _value._reviews
           : reviews // ignore: cast_nullable_to_non_nullable
@@ -966,7 +966,7 @@ class _$_ProductModel extends _ProductModel {
   @JsonKey(name: 'has_vip_offer')
   final bool hasVipOffer;
   @override
-  final ShopModel? shop;
+  final ShopCardModel? shop;
   final List<ReviewsModel>? _reviews;
   @override
   List<ReviewsModel>? get reviews {
@@ -1241,7 +1241,7 @@ abstract class _ProductModel extends ProductModel {
       @JsonKey(name: 'sold_by_type') required final String soldByType,
       @JsonKey(name: 'sold_by_name') required final String soldByName,
       @JsonKey(name: 'has_vip_offer') required final bool hasVipOffer,
-      final ShopModel? shop,
+      final ShopCardModel? shop,
       final List<ReviewsModel>? reviews,
       @JsonKey(name: 'is_resale') required final bool isResale,
       @JsonKey(name: 'reseller_id') required final int resellerId,
@@ -1332,7 +1332,7 @@ abstract class _ProductModel extends ProductModel {
   @JsonKey(name: 'has_vip_offer')
   bool get hasVipOffer;
   @override
-  ShopModel? get shop;
+  ShopCardModel? get shop;
   @override
   List<ReviewsModel>? get reviews;
   @override

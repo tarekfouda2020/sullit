@@ -51,7 +51,7 @@ class _PharmacyAddressState extends State<PharmacyAddress> {
                 : PrescriptionOrderStepModel.normalFlowSteps,
           ),
           if (widget.havePrescription)
-            PharmacyInfoRowWidget(pharmacy: widget.pharmacy),
+            PharmacyInfoRowWidget(pharmacy: widget.pharmacy?.toShopCardDomainModel()),
           Expanded(
             child: SingleChildScrollView(
               padding: Dimens.paddingAll15PX,

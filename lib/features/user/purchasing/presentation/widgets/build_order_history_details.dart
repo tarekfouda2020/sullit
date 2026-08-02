@@ -1,7 +1,7 @@
 part of 'purchasing_widgets_imports.dart';
 
 class BuildOrderHistoryDetails extends StatelessWidget {
-  final Orders order;
+  final OrderCardDomainModel order;
 
   const BuildOrderHistoryDetails({super.key, required this.order});
 

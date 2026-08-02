@@ -11,6 +11,7 @@ _$_ShopModel _$$_ShopModelFromJson(Map<String, dynamic> json) => _$_ShopModel(
       userId: (json['user_id'] as num).toInt(),
       hasBranches: json['has_branches'] as bool?,
       shopType: json['type'] as String,
+      shopTypeLabel: json['type_label'] as String,
       name: json['name'] as String,
       sliders:
           (json['sliders'] as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -35,7 +36,7 @@ _$_ShopModel _$$_ShopModelFromJson(Map<String, dynamic> json) => _$_ShopModel(
       twitter: json['twitter'] as String?,
       instagram: json['instagram'] as String?,
       youtube: json['youtube'] as String?,
-      rating: json['rating'] as num,
+      rating: (json['rating'] as num).toDouble(),
       follow: json['follow'] as bool,
       pickup: json['pickup'] == null
           ? null
@@ -48,6 +49,7 @@ Map<String, dynamic> _$$_ShopModelToJson(_$_ShopModel instance) =>
       'user_id': instance.userId,
       'has_branches': instance.hasBranches,
       'type': instance.shopType,
+      'type_label': instance.shopTypeLabel,
       'name': instance.name,
       'sliders': instance.sliders,
       'categories': instance.categories?.map((e) => e.toJson()).toList(),

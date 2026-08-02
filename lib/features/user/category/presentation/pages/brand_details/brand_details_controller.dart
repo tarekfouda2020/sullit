@@ -1,7 +1,7 @@
 part of 'brand_details_imports.dart';
 
 class BrandDetailsController {
-  final PagingController<int, Product> productsPagingController =
+  final PagingController<int, ProductCard> productsPagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 10;
 
@@ -41,8 +41,8 @@ class BrandDetailsController {
         pageSize: pageSize, refresh: refresh, currentPage: currentPage);
   }
 
-  void onChangeFav(Product item) {
-    item.isWishlist = !item.isWishlist!;
+  void onChangeFav(ProductCard item) {
+    item.isWishlist = !item.isWishlist;
     int index =
         productsPagingController.itemList!.indexWhere((e) => e.id == item.id);
     productsPagingController.itemList![index] = item;

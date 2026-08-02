@@ -8,17 +8,17 @@ class SellersListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomRefreshIndicatorWidget(
       onRefresh: () => controller.getBestSellers(1),
-      child: PagedListView<int, Shop>(
+      child: PagedListView<int, ShopCardDomainModel>(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         pagingController: controller.pagingController,
-        builderDelegate: PagedChildBuilderDelegate<Shop>(
+        builderDelegate: PagedChildBuilderDelegate<ShopCardDomainModel>(
           itemBuilder: (_, item, index) {
             return Padding(
               padding: const EdgeInsets.only(bottom: 12),
               child: SellerCardWidget(
                 shop: item,
                 onTap: () => AutoRouter.of(context).push(
-                    SellerProductsPageRoute(shopModel: item, shopId: item.id!)),
+                    SellerProductsPageRoute(shopId: item.id)),
               ),
             );
           },

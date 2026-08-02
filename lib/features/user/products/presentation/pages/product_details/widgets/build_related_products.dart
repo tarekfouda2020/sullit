@@ -1,7 +1,7 @@
 part of 'product_details_widgets_imports.dart';
 
 class BuildRelatedProducts extends StatelessWidget {
-  final List<Product> relatedProducts;
+  final List<ProductCard> relatedProducts;
   final ProductDetailsController controller;
   const BuildRelatedProducts(
       {super.key, required this.relatedProducts, required this.controller});
@@ -45,7 +45,7 @@ class BuildRelatedProducts extends StatelessWidget {
                           onPressDelete: () => controller.getCartItems(),
                           afterAddToCart: () =>
                               controller.calculateRemainingAmount(),
-                          onFavRefresh: () => controller.onChangeFav(
+                          onFavRefresh: () => controller.onChangeFavCard(
                             context,
                             relatedProducts[index],
                           ),

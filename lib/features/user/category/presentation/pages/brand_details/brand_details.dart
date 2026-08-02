@@ -29,7 +29,7 @@ class _BrandDetailsState extends State<BrandDetails> {
       body: CustomRefreshIndicatorWidget(
         onRefresh: () async =>
             await controller.getBrandProducts(context, widget.brandId, 1),
-        child: GridViewPagination<Product>(
+        child: GridViewPagination<ProductCard>(
           pagingController: controller.productsPagingController,
           onRefresh: () async => controller.productsPagingController.refresh(),
           firstPageProgressIndicatorBuilder: (_) =>

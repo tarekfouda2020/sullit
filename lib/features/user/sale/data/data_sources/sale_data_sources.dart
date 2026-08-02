@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
-import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
+import 'package:flutter_tdd/features/user/products/data/models/product_card_model/product_card_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 import 'package:flutter_tdd/features/user/sale/data/models/coupon_model/coupon_model.dart';
 import 'package:flutter_tdd/features/user/sale/data/models/flash_sale_model/flash_sale_model.dart';
@@ -15,18 +15,18 @@ abstract class SaleDataSources {
   Future<Either<Failure, List<CouponModel>>> getCoupons(
       GenericPaginateParams param);
 
-  Future<Either<Failure, List<ProductModel>>> getNewArrival(
+  Future<Either<Failure, List<ProductCardModel>>> getNewArrival(
       OffersParamsWidget param);
 
-  Future<Either<Failure, List<ProductModel>>> getOnSale(
+  Future<Either<Failure, List<ProductCardModel>>> getOnSale(
       OffersParamsWidget param);
 
-  Future<Either<Failure, List<ProductModel>>> getBestRated(
+  Future<Either<Failure, List<ProductCardModel>>> getBestRated(
       OffersParamsWidget param);
 
-  Future<Either<Failure, List<ProductModel>>> getVipOffers(
+  Future<Either<Failure, List<ProductCardModel>>> getVipOffers(
       OffersParamsWidget param);
 
-  Future<Either<Failure, List<ProductModel>>> getShareholderProducts(
+  Future<Either<Failure, List<ProductCardModel>>> getShareholderProducts(
       OffersParamsWidget param);
 }

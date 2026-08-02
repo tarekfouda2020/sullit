@@ -11,6 +11,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/product_options
 import 'package:flutter_tdd/features/user/products/domain/models/reviews.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_card_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/variant.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/normal_product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/pharmacy_product.dart';
@@ -47,7 +48,7 @@ abstract class Product extends BaseDomainModel {
   int? countReviews;
   String? soldByType;
   String? soldByName;
-  Shop? shop;
+  ShopCardDomainModel? shop;
   List<Reviews>? reviews;
   bool? isResale;
   int? resellerId;
@@ -200,7 +201,7 @@ abstract class Product extends BaseDomainModel {
     countReviews = json['count_reviews'];
     soldByType = json['sold_by_type'];
     soldByName = json['sold_by_name'];
-    shop = json['shop'] != null ? Shop.fromJson(json['shop']) : null;
+    shop = json['shop'] != null ? ShopCardDomainModel.fromJson(json['shop']) : null;
     isResale = json['is_resale'];
     resellerId = json['reseller_id'];
     description = json['description'];

@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
+import 'package:flutter_tdd/features/user/products/data/models/product_card_model/product_card_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_sections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -18,7 +19,7 @@ class ProductSectionsModel extends BaseApiModel<ProductSections>
     required int id,
     required String name,
     required String description,
-    required List<ProductModel> products,
+    required List<ProductCardModel> products,
   }) = _ProductSectionsModel;
 
   factory ProductSectionsModel.fromJson(Map<String, dynamic> json) =>

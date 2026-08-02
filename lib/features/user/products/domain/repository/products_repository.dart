@@ -9,6 +9,7 @@ import 'package:flutter_tdd/features/user/products/domain/entities/send_query_pa
 import 'package:flutter_tdd/features/user/products/domain/entities/variant_price_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/home_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_details_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_sections.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/queries.dart';
@@ -20,7 +21,7 @@ abstract class ProductsRepository {
   Future<Either<Failure, ProductDetailsDomainModel>> getProductDetails(
       ProductDetailsParams param);
 
-  Future<Either<Failure, List<Product>>> getPopularProducts(
+  Future<Either<Failure, List<ProductCard>>> getPopularProducts(
       PopularProductsParams param);
 
   Future<List<ProductsTableData>> getItems();
@@ -31,7 +32,7 @@ abstract class ProductsRepository {
 
   Future<Either<Failure, Product>> getVariantPrice(VariantPriceParams param);
 
-  Future<Either<Failure, List<Product>>> getDigitalProducts(bool param);
+  Future<Either<Failure, List<ProductCard>>> getDigitalProducts(bool param);
 
   Future<Either<Failure, List<ProductSections>>> getProductSections(int param);
 

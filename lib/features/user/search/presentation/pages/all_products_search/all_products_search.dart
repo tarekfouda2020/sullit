@@ -44,7 +44,7 @@ class _AllProductsSearchState extends State<AllProductsSearch> {
                 const BuildLoadingSuggestions(),
             itemBuilder: (_, item, index) {
               if (widget.showProducts) {
-                final product = item as Product;
+                final product = item as ProductCard;
                 return BuildProductSuggestItem(productModel: product);
               } else {
                 final category = item as Category;

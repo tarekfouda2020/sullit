@@ -1,7 +1,7 @@
 part of 'purchased_orders_widgets_imports.dart';
 
 class MyOrderItemWidget extends StatelessWidget {
-  final Orders order;
+  final OrderCardDomainModel order;
   final MyOrdersController controller;
   const MyOrderItemWidget(
       {super.key, required this.order, required this.controller});
@@ -89,8 +89,9 @@ class MyOrderItemWidget extends StatelessWidget {
                         context,
                         order.id,
                        order.isPharmacy,
-                      order.orderDetails.first.product!.shop!.id!,
-                      prescriptionRequired: order.requiresPrescriptionReview ?? false
+                      // order.orderDetails.first.product!.shop!.id!,
+                     1,
+                      prescriptionRequired: order.requiresPrescriptionReview
                     )),
               ),
           ],

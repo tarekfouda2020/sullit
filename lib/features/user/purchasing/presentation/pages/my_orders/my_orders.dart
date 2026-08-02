@@ -30,10 +30,10 @@ class _MyOrdersState extends State<MyOrders> {
       ),
       body: CustomRefreshIndicatorWidget(
         onRefresh: () => controller.getPurchasingHistory(1),
-        child: PagedListView<int, Orders>(
+        child: PagedListView<int, OrderCardDomainModel>(
           padding: Dimens.paddingAll15PX,
           pagingController: controller.pagingController,
-          builderDelegate: PagedChildBuilderDelegate<Orders>(
+          builderDelegate: PagedChildBuilderDelegate<OrderCardDomainModel>(
             firstPageProgressIndicatorBuilder: (_) =>
                 const BuildLoadingOrders(),
             itemBuilder: (_, item, index) => MyOrderItemWidget(

@@ -1,6 +1,5 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
-import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/data/models/product_card_model/product_card_model.dart';
 import 'package:flutter_tdd/features/user/search/domain/models/all_products_search_domain_resul.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,7 +12,7 @@ class AllProductsSearchResultModel
     with _$AllProductsSearchResultModel {
   const AllProductsSearchResultModel._();
   @JsonSerializable(explicitToJson: true)
-  factory AllProductsSearchResultModel({required List<ProductModel> products}) =
+  factory AllProductsSearchResultModel({required List<ProductCardModel> products}) =
       _AllProductsSearchResultModel;
 
   factory AllProductsSearchResultModel.fromJson(Map<String, dynamic> json) =>

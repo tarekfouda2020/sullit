@@ -1,7 +1,7 @@
 part of 'return_orders_widgets_imports.dart';
 
 class ReturnOrdersItemWidget extends StatelessWidget {
-  final Orders order;
+  final OrderCardDomainModel order;
   final ReturnOrdersController controller;
   const ReturnOrdersItemWidget(
       {super.key, required this.order, required this.controller});
@@ -10,7 +10,7 @@ class ReturnOrdersItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => AutoRouter.of(context)
-          .push(OrderDetailsPageRoute(isReturnedOrder: true, order: order)),
+          .push(OrderDetailsPageRoute(isReturnedOrder: true, id: order.id)),
       child: Column(
         children: [
           Container(

@@ -12,11 +12,10 @@ class OrderDetailsPageController {
   final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc =
       GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
 
-  OrderDetailsPageController(Orders orderModel) {
-    orderDetailsBloc.onUpdateData(orderModel);
-    getOrderDetails(orderModel.id, refresh: false);
+  OrderDetailsPageController(int id) {
+    getOrderDetails(id, refresh: false);
     getOrderDetails(
-      orderModel.id,
+      id,
     );
     getOrderFees(fromRemote: false);
     getOrderFees();
@@ -87,7 +86,8 @@ class OrderDetailsPageController {
     }
   }
 
-  void cancelOrder(BuildContext ctx, Orders model) async {
+  void cancelOrder(BuildContext ctx) async {
+    Orders model = orderDetailsBloc.state.data!;
     showCupertinoDialog(
       context: ctx,
       builder: (context) => ConfirmCancelDialog(

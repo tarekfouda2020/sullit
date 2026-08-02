@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_card_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_pickup.dart';
 
@@ -16,6 +17,7 @@ class Shop extends BaseDomainModel {
   String? address;
   String? email;
   String? shopType;
+  String? typeLabel;
   String? phone;
   String? facebook;
   String? google;
@@ -23,7 +25,7 @@ class Shop extends BaseDomainModel {
   String? instagram;
   String? youtube;
   int? sellerId;
-  num? rating;
+  double? rating;
   bool? follow;
   bool? hasBranches;
   ShopPickup? pickUp;
@@ -57,6 +59,7 @@ class Shop extends BaseDomainModel {
     this.categories,
     this.insuranceCompanies,
     this.shopType,
+    this.typeLabel,
     this.pickUp,
     this.isSelect = false,
     required this.rating,
@@ -67,6 +70,7 @@ class Shop extends BaseDomainModel {
     return Shop(
       id: json['id'],
       userId: json['user_id'],
+      typeLabel: json['type_label'],
       sellerId: json['seller_id'],
       name: json['name'],
       title: json['title'],
@@ -95,6 +99,7 @@ class Shop extends BaseDomainModel {
     data['id'] = id;
     data['user_id'] = userId;
     data['seller_id'] = sellerId;
+    data['type_label'] = typeLabel;
     data['name'] = name;
     data['title'] = title;
     data['description'] = description;
@@ -119,4 +124,23 @@ class Shop extends BaseDomainModel {
 
   List<String> get shopCategoryNames =>
       categories?.map((e) => e.name).toList() ?? [];
+
+  ShopCardDomainModel toShopCardDomainModel() {
+    return ShopCardDomainModel(
+      id: id!,
+      userId: userId!,
+      hasBranches: hasBranches!,
+      name: name!,
+      type: shopType!,
+      typeLabel: typeLabel!,
+      logo: logo!,
+      email: email!,
+      address: address!,
+      phone: phone!,
+      rating: rating!,
+      sliders: sliders!,
+      follow: follow!,
+      categoriesNames: shopCategoryNames.join("-"),
+    );
+  }
 }

@@ -36,8 +36,8 @@ import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.d
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/widgets/pharamacy_header_shimmer_widget.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/pharmacy_product.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/pharmacy_product_card.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';

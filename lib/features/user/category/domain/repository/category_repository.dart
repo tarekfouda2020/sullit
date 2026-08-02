@@ -6,7 +6,7 @@ import 'package:flutter_tdd/features/user/category/domain/entities/brands_params
 import 'package:flutter_tdd/features/user/category/domain/entities/search_products_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/sub_category.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 
 abstract class CategoryRepository {
   Future<Either<Failure, List<Category>>> getAllCategories(bool param);
@@ -15,8 +15,8 @@ abstract class CategoryRepository {
       SearchProductsParams params);
   Future<Either<Failure, List<BrandDomainModel>>> getBrands(
       BrandsParams params);
-  Future<Either<Failure, List<Product>>> getBrandProducts(
+  Future<Either<Failure, List<ProductCard>>> getBrandProducts(
       BrandDetailsParams params);
-  Future<Either<Failure, List<Product>>> getCategoryProducts(
+  Future<Either<Failure, List<ProductCard>>> getCategoryProducts(
       SearchProductsParams params);
 }

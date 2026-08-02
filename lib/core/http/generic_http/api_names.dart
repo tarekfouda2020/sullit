@@ -2,7 +2,7 @@
 
 class ApiNames {
   ///staging
-  static const String baseUrl = "https://staging.mushrifcoop.com/api/v3/";
+  static const String baseUrl = "https://staging.mushrifcoop.com/api/v4/";
 
   ///production
   // static const String baseUrl = "https://admin.mushrifcoop.com/api/v3/";

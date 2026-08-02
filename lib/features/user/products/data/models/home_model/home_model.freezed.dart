@@ -29,15 +29,15 @@ mixin _$HomeModel {
   @JsonKey(name: 'categories')
   List<CategoryModel> get categories => throw _privateConstructorUsedError;
   @JsonKey(name: 'current_orders')
-  List<OrderModel> get currentOrders => throw _privateConstructorUsedError;
+  List<OrdersListModel> get currentOrders => throw _privateConstructorUsedError;
   @JsonKey(name: 'flash_deal')
   FlashSaleModel? get flashSales => throw _privateConstructorUsedError;
   @JsonKey(name: 'shops')
-  List<ShopModel> get shops => throw _privateConstructorUsedError;
+  List<ShopCardModel> get shops => throw _privateConstructorUsedError;
   @JsonKey(name: 'top_sellers')
-  List<ShopModel> get topSellers => throw _privateConstructorUsedError;
+  List<ShopCardModel> get topSellers => throw _privateConstructorUsedError;
   @JsonKey(name: 'pharmacy_shops')
-  List<ShopModel> get pharmacyShops =>
+  List<ShopCardModel> get pharmacyShops =>
       throw _privateConstructorUsedError; // @JsonKey(name: 'best_selling_products')
 //     required List<ProductModel> bestSellingProducts,
 // @JsonKey(name: 'newest_products')
@@ -71,11 +71,11 @@ abstract class $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'banners_one') List<BannerModel> bannersOne,
       @JsonKey(name: 'banners_two') List<BannerModel> bannersTwo,
       @JsonKey(name: 'categories') List<CategoryModel> categories,
-      @JsonKey(name: 'current_orders') List<OrderModel> currentOrders,
+      @JsonKey(name: 'current_orders') List<OrdersListModel> currentOrders,
       @JsonKey(name: 'flash_deal') FlashSaleModel? flashSales,
-      @JsonKey(name: 'shops') List<ShopModel> shops,
-      @JsonKey(name: 'top_sellers') List<ShopModel> topSellers,
-      @JsonKey(name: 'pharmacy_shops') List<ShopModel> pharmacyShops,
+      @JsonKey(name: 'shops') List<ShopCardModel> shops,
+      @JsonKey(name: 'top_sellers') List<ShopCardModel> topSellers,
+      @JsonKey(name: 'pharmacy_shops') List<ShopCardModel> pharmacyShops,
       @JsonKey(name: 'cart_count') int cartCount,
       @JsonKey(name: 'wishlist_count') int favCount,
       @JsonKey(name: 'is_admin_discount') bool isAdminDiscount,
@@ -131,7 +131,7 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
       currentOrders: null == currentOrders
           ? _value.currentOrders
           : currentOrders // ignore: cast_nullable_to_non_nullable
-              as List<OrderModel>,
+              as List<OrdersListModel>,
       flashSales: freezed == flashSales
           ? _value.flashSales
           : flashSales // ignore: cast_nullable_to_non_nullable
@@ -139,15 +139,15 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
       shops: null == shops
           ? _value.shops
           : shops // ignore: cast_nullable_to_non_nullable
-              as List<ShopModel>,
+              as List<ShopCardModel>,
       topSellers: null == topSellers
           ? _value.topSellers
           : topSellers // ignore: cast_nullable_to_non_nullable
-              as List<ShopModel>,
+              as List<ShopCardModel>,
       pharmacyShops: null == pharmacyShops
           ? _value.pharmacyShops
           : pharmacyShops // ignore: cast_nullable_to_non_nullable
-              as List<ShopModel>,
+              as List<ShopCardModel>,
       cartCount: null == cartCount
           ? _value.cartCount
           : cartCount // ignore: cast_nullable_to_non_nullable
@@ -192,11 +192,11 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'banners_one') List<BannerModel> bannersOne,
       @JsonKey(name: 'banners_two') List<BannerModel> bannersTwo,
       @JsonKey(name: 'categories') List<CategoryModel> categories,
-      @JsonKey(name: 'current_orders') List<OrderModel> currentOrders,
+      @JsonKey(name: 'current_orders') List<OrdersListModel> currentOrders,
       @JsonKey(name: 'flash_deal') FlashSaleModel? flashSales,
-      @JsonKey(name: 'shops') List<ShopModel> shops,
-      @JsonKey(name: 'top_sellers') List<ShopModel> topSellers,
-      @JsonKey(name: 'pharmacy_shops') List<ShopModel> pharmacyShops,
+      @JsonKey(name: 'shops') List<ShopCardModel> shops,
+      @JsonKey(name: 'top_sellers') List<ShopCardModel> topSellers,
+      @JsonKey(name: 'pharmacy_shops') List<ShopCardModel> pharmacyShops,
       @JsonKey(name: 'cart_count') int cartCount,
       @JsonKey(name: 'wishlist_count') int favCount,
       @JsonKey(name: 'is_admin_discount') bool isAdminDiscount,
@@ -251,7 +251,7 @@ class __$$_HomeModelCopyWithImpl<$Res>
       currentOrders: null == currentOrders
           ? _value._currentOrders
           : currentOrders // ignore: cast_nullable_to_non_nullable
-              as List<OrderModel>,
+              as List<OrdersListModel>,
       flashSales: freezed == flashSales
           ? _value.flashSales
           : flashSales // ignore: cast_nullable_to_non_nullable
@@ -259,15 +259,15 @@ class __$$_HomeModelCopyWithImpl<$Res>
       shops: null == shops
           ? _value._shops
           : shops // ignore: cast_nullable_to_non_nullable
-              as List<ShopModel>,
+              as List<ShopCardModel>,
       topSellers: null == topSellers
           ? _value._topSellers
           : topSellers // ignore: cast_nullable_to_non_nullable
-              as List<ShopModel>,
+              as List<ShopCardModel>,
       pharmacyShops: null == pharmacyShops
           ? _value._pharmacyShops
           : pharmacyShops // ignore: cast_nullable_to_non_nullable
-              as List<ShopModel>,
+              as List<ShopCardModel>,
       cartCount: null == cartCount
           ? _value.cartCount
           : cartCount // ignore: cast_nullable_to_non_nullable
@@ -299,12 +299,13 @@ class _$_HomeModel extends _HomeModel {
       @JsonKey(name: 'categories')
       required final List<CategoryModel> categories,
       @JsonKey(name: 'current_orders')
-      required final List<OrderModel> currentOrders,
+      required final List<OrdersListModel> currentOrders,
       @JsonKey(name: 'flash_deal') required this.flashSales,
-      @JsonKey(name: 'shops') required final List<ShopModel> shops,
-      @JsonKey(name: 'top_sellers') required final List<ShopModel> topSellers,
+      @JsonKey(name: 'shops') required final List<ShopCardModel> shops,
+      @JsonKey(name: 'top_sellers')
+      required final List<ShopCardModel> topSellers,
       @JsonKey(name: 'pharmacy_shops')
-      required final List<ShopModel> pharmacyShops,
+      required final List<ShopCardModel> pharmacyShops,
       @JsonKey(name: 'cart_count') required this.cartCount,
       @JsonKey(name: 'wishlist_count') required this.favCount,
       @JsonKey(name: 'is_admin_discount') required this.isAdminDiscount,
@@ -358,10 +359,10 @@ class _$_HomeModel extends _HomeModel {
     return EqualUnmodifiableListView(_categories);
   }
 
-  final List<OrderModel> _currentOrders;
+  final List<OrdersListModel> _currentOrders;
   @override
   @JsonKey(name: 'current_orders')
-  List<OrderModel> get currentOrders {
+  List<OrdersListModel> get currentOrders {
     if (_currentOrders is EqualUnmodifiableListView) return _currentOrders;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_currentOrders);
@@ -370,28 +371,28 @@ class _$_HomeModel extends _HomeModel {
   @override
   @JsonKey(name: 'flash_deal')
   final FlashSaleModel? flashSales;
-  final List<ShopModel> _shops;
+  final List<ShopCardModel> _shops;
   @override
   @JsonKey(name: 'shops')
-  List<ShopModel> get shops {
+  List<ShopCardModel> get shops {
     if (_shops is EqualUnmodifiableListView) return _shops;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_shops);
   }
 
-  final List<ShopModel> _topSellers;
+  final List<ShopCardModel> _topSellers;
   @override
   @JsonKey(name: 'top_sellers')
-  List<ShopModel> get topSellers {
+  List<ShopCardModel> get topSellers {
     if (_topSellers is EqualUnmodifiableListView) return _topSellers;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_topSellers);
   }
 
-  final List<ShopModel> _pharmacyShops;
+  final List<ShopCardModel> _pharmacyShops;
   @override
   @JsonKey(name: 'pharmacy_shops')
-  List<ShopModel> get pharmacyShops {
+  List<ShopCardModel> get pharmacyShops {
     if (_pharmacyShops is EqualUnmodifiableListView) return _pharmacyShops;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_pharmacyShops);
@@ -494,12 +495,13 @@ abstract class _HomeModel extends HomeModel {
       @JsonKey(name: 'categories')
       required final List<CategoryModel> categories,
       @JsonKey(name: 'current_orders')
-      required final List<OrderModel> currentOrders,
+      required final List<OrdersListModel> currentOrders,
       @JsonKey(name: 'flash_deal') required final FlashSaleModel? flashSales,
-      @JsonKey(name: 'shops') required final List<ShopModel> shops,
-      @JsonKey(name: 'top_sellers') required final List<ShopModel> topSellers,
+      @JsonKey(name: 'shops') required final List<ShopCardModel> shops,
+      @JsonKey(name: 'top_sellers')
+      required final List<ShopCardModel> topSellers,
       @JsonKey(name: 'pharmacy_shops')
-      required final List<ShopModel> pharmacyShops,
+      required final List<ShopCardModel> pharmacyShops,
       @JsonKey(name: 'cart_count') required final int cartCount,
       @JsonKey(name: 'wishlist_count') required final int favCount,
       @JsonKey(name: 'is_admin_discount') required final bool isAdminDiscount,
@@ -524,19 +526,19 @@ abstract class _HomeModel extends HomeModel {
   List<CategoryModel> get categories;
   @override
   @JsonKey(name: 'current_orders')
-  List<OrderModel> get currentOrders;
+  List<OrdersListModel> get currentOrders;
   @override
   @JsonKey(name: 'flash_deal')
   FlashSaleModel? get flashSales;
   @override
   @JsonKey(name: 'shops')
-  List<ShopModel> get shops;
+  List<ShopCardModel> get shops;
   @override
   @JsonKey(name: 'top_sellers')
-  List<ShopModel> get topSellers;
+  List<ShopCardModel> get topSellers;
   @override
   @JsonKey(name: 'pharmacy_shops')
-  List<ShopModel> get pharmacyShops;
+  List<ShopCardModel> get pharmacyShops;
   @override // @JsonKey(name: 'best_selling_products')
 //     required List<ProductModel> bestSellingProducts,
 // @JsonKey(name: 'newest_products')

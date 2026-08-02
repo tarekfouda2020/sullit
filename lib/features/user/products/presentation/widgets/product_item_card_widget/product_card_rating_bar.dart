@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 
 class ProductCardRatingBar extends StatelessWidget {
-  final Product productModel;
+  final ProductCard productModel;
 
   const ProductCardRatingBar({super.key, required this.productModel});
 
   @override
   Widget build(BuildContext context) {
     return RatingBar.builder(
-      initialRating: (productModel.rating ?? 0).toDouble(),
+      initialRating: productModel.rating,
       minRating: 0.5,
       direction: Axis.horizontal,
       allowHalfRating: true,

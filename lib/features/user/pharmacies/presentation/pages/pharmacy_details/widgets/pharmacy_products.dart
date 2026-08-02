@@ -12,7 +12,7 @@ class PharmacyProducts extends StatelessWidget {
         right: 15,
         top: 10,
       ),
-      sliver: PagedSliverGrid<int, PharmacyProduct>(
+      sliver: PagedSliverGrid<int, ProductCard>(
         key: controller.productListKey,
         showNewPageErrorIndicatorAsGridChild: false,
         showNewPageProgressIndicatorAsGridChild: false,
@@ -20,12 +20,13 @@ class PharmacyProducts extends StatelessWidget {
         shrinkWrapFirstPageIndicators: false,
         pagingController: controller.productsPagingController,
         gridDelegate: _buildGridDelegate(),
-        builderDelegate: PagedChildBuilderDelegate<PharmacyProduct>(
+        builderDelegate: PagedChildBuilderDelegate<ProductCard>(
           itemBuilder: (context, item, index) {
             return PharmacyProductCardWidget(
               controller: controller,
               showVipDiscount: item.hasVipOffer,
               productModel: item,
+              fallbackBranchId: controller.selectedBranchId,
               onFavRefresh: () => controller.onFavChanged(item),
               onPressDelete: () => controller.getCartItems(),
               afterAddToCart: () => controller.getCartItems(),

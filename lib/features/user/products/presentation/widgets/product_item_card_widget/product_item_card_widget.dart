@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 
 import 'product_card_image.dart';
 import 'out_of_stock_overlay.dart';
@@ -10,7 +10,7 @@ import 'product_card_cart_button.dart';
 import 'product_card_info_section.dart';
 
 class ProductItemCard extends StatelessWidget {
-  final Product productModel;
+  final ProductCard productModel;
   final bool? showVipDiscount;
   final GenericBloc<bool> showFavLoading;
   final GenericBloc<bool> enableAddToCartLoading;

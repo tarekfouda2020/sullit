@@ -1,13 +1,11 @@
 part of 'seller_products_imports.dart';
 
 class SellerProductsPage extends StatefulWidget {
-  final Shop? shopModel;
   final int shopId;
   final bool? fromCart;
 
   const SellerProductsPage({
     super.key,
-    this.shopModel,
     required this.shopId,
     this.fromCart = false,
   });
@@ -22,7 +20,7 @@ class SellerProductsPageState extends State<SellerProductsPage> {
   @override
   void initState() {
     controller =
-        SellerProductsController(widget.shopId, shopModel: widget.shopModel);
+        SellerProductsController(widget.shopId);
     super.initState();
   }
 
@@ -42,7 +40,7 @@ class SellerProductsPageState extends State<SellerProductsPage> {
                 SellerDetailsAppBar(
                   controller: controller,
                 ),
-                SellerProducts(
+                SellerProductsList(
                   controller: controller,
                 ),
                 SellerNewProductsLoadingWidget(

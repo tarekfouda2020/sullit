@@ -6,7 +6,7 @@ class FilterSellerListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<List<Shop>>, GenericState<List<Shop>>>(
+    return BlocBuilder<GenericBloc<List<ShopCardDomainModel>>, GenericState<List<ShopCardDomainModel>>>(
       bloc: controller.sellersCubit,
       builder: (context, state) {
         if (state is GenericUpdateState) {

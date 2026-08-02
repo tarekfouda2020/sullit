@@ -22,7 +22,7 @@ class _CompareState extends State<Compare> {
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(title: tr('compare'), showBack: true),
       body:
-          BlocBuilder<GenericBloc<List<Product>>, GenericState<List<Product>>>(
+          BlocBuilder<GenericBloc<List<ProductCard>>, GenericState<List<ProductCard>>>(
         bloc: controller.productsBloc,
         builder: (context, state) {
           return Visibility(

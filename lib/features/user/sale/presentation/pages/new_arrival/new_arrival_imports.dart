@@ -11,7 +11,7 @@ import 'package:flutter_tdd/core/widgets/grid_view_pagination.dart';
 import 'package:flutter_tdd/core/widgets/custom_refresh_indicator_widget.dart';
 import 'package:flutter_tdd/core/widgets/build_empty_data_view.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_loading_products_grid_view.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';

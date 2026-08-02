@@ -19,7 +19,7 @@ class PharmacyNormalDataWidget extends StatelessWidget {
           text: TextSpan(
             children: [
               TextSpan(
-                text: data.sectionOrders?.first.orderDetails.first.product?.shop?.name ?? "",
+                text: data.sectionOrders?.first.soldBy ?? "",
                 style: AppTextStyle.s14_w600(color: context.colors.green),
               ),
               TextSpan(
