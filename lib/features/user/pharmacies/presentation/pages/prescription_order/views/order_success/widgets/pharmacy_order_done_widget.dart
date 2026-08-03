@@ -32,10 +32,6 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: (controller.pharmacy?.name) ?? "",
-                      style: AppTextStyle.s14_w600(color: context.colors.green),
-                    ),
-                    TextSpan(
                       text: _getText(),
                       style:
                           AppTextStyle.s14_w400(color: context.colors.textColor)
@@ -212,12 +208,12 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
     }
     if (hasPrescription && hasInsurance) {
       return isPendingReview == false
-          ? " accepted your health insurance and Prescription document successfully"
-          : " will review health insurance and your Prescription document and back to you Shortly";
+          ? " Pharmacy accepted your health insurance and Prescription document successfully"
+          : " The pharmacy will review your prescription and health insurance and back to you Shortly.";
     }
     return isPendingReview == false && hasPrescription
-        ? " accepted your Prescription document successfully"
-        : " will review your prescription documents. We'll get back to you shortly.";
+        ? " Pharmacy accepted your Prescription document successfully"
+        : " The pharmacy will review your prescription and back to you Shortly.";
   }
 
   Widget _reviewStatusWidget(BuildContext context) {

@@ -530,8 +530,8 @@ mixin _$PharmacyPickUpModel {
   String get address => throw _privateConstructorUsedError;
   @JsonKey(name: 'postal_code')
   String get postalCode => throw _privateConstructorUsedError;
-  String? get lat => throw _privateConstructorUsedError;
-  String? get lang => throw _privateConstructorUsedError;
+  double? get lat => throw _privateConstructorUsedError;
+  double? get lang => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -549,8 +549,8 @@ abstract class $PharmacyPickUpModelCopyWith<$Res> {
       {int id,
       String address,
       @JsonKey(name: 'postal_code') String postalCode,
-      String? lat,
-      String? lang});
+      double? lat,
+      double? lang});
 }
 
 /// @nodoc
@@ -588,11 +588,11 @@ class _$PharmacyPickUpModelCopyWithImpl<$Res, $Val extends PharmacyPickUpModel>
       lat: freezed == lat
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
       lang: freezed == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
     ) as $Val);
   }
 }
@@ -609,8 +609,8 @@ abstract class _$$_PharmacyPickUpModelCopyWith<$Res>
       {int id,
       String address,
       @JsonKey(name: 'postal_code') String postalCode,
-      String? lat,
-      String? lang});
+      double? lat,
+      double? lang});
 }
 
 /// @nodoc
@@ -646,11 +646,11 @@ class __$$_PharmacyPickUpModelCopyWithImpl<$Res>
       lat: freezed == lat
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
       lang: freezed == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
     ));
   }
 }
@@ -678,9 +678,9 @@ class _$_PharmacyPickUpModel extends _PharmacyPickUpModel {
   @JsonKey(name: 'postal_code')
   final String postalCode;
   @override
-  final String? lat;
+  final double? lat;
   @override
-  final String? lang;
+  final double? lang;
 
   @override
   String toString() {
@@ -725,8 +725,8 @@ abstract class _PharmacyPickUpModel extends PharmacyPickUpModel {
       {required final int id,
       required final String address,
       @JsonKey(name: 'postal_code') required final String postalCode,
-      final String? lat,
-      final String? lang}) = _$_PharmacyPickUpModel;
+      final double? lat,
+      final double? lang}) = _$_PharmacyPickUpModel;
   const _PharmacyPickUpModel._() : super._();
 
   factory _PharmacyPickUpModel.fromJson(Map<String, dynamic> json) =
@@ -740,9 +740,9 @@ abstract class _PharmacyPickUpModel extends PharmacyPickUpModel {
   @JsonKey(name: 'postal_code')
   String get postalCode;
   @override
-  String? get lat;
+  double? get lat;
   @override
-  String? get lang;
+  double? get lang;
   @override
   @JsonKey(ignore: true)
   _$$_PharmacyPickUpModelCopyWith<_$_PharmacyPickUpModel> get copyWith =>

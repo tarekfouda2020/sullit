@@ -243,7 +243,7 @@ class AttachPrescriptionController {
       prescriptionAttachments: _prescriptionAttachments(),
       prescriptionAttachmentIds: _prescriptionAttachmentIds(),
       insuranceAttachments: [
-        emiratesIdCubit.state.data
+        insuranceFileBloc.state.data
       ],
     );
   }

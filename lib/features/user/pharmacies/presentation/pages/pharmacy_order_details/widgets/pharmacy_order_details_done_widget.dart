@@ -225,12 +225,12 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
 
     if (hasPrescription && hasInsurance) {
       return isPendingReview == false
-          ? "accepted your health insurance and Prescription document successfully"
-          : "will review health insurance and your Prescription document and back to you Shortly";
+          ? " Approved your health insurance and Prescription."
+          : " will review your prescription and health insurance and back to you Shortly.";
     }
     return isPendingReview == false && hasPrescription
-        ? "accepted your Prescription document successfully"
-        : "will review your prescription documents. We'll get back to you shortly.";
+        ? " Approved your Prescription."
+        : " will review your prescription and back to you Shortly.";
   }
 
   Widget _reviewStatusWidget(BuildContext context) {
@@ -241,7 +241,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
           CircleAvatar(radius: 4, backgroundColor: context.colors.bloodyRed),
           Gaps.hGap5,
           Text(
-            data.orderStatus,
+            data.deliveryStatus,
             style: AppTextStyle.s16_w600(color: context.colors.primary),
           ),
         ],
@@ -254,7 +254,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
           SvgPicture.asset(Res.layersIcon, width: 16, height: 16),
           Gaps.hGap5,
           Text(
-            data.orderStatus,
+            data.deliveryStatus,
             style: AppTextStyle.s14_w600(color: context.colors.mainGreen),
           ),
         ],
@@ -278,7 +278,7 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
           SvgPicture.asset(Res.layersIcon, width: 16, height: 16),
           Gaps.hGap5,
           Text(
-            data.orderStatus,
+            data.deliveryStatus,
             style: AppTextStyle.s16_w400(color: context.colors.mainGreen),
           ),
         ],
