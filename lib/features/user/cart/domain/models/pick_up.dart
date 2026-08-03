@@ -5,8 +5,8 @@ class Pickup extends BaseDomainModel {
   String address;
   String postalCode;
   String phone;
-  String? lat;
-  String? lang;
+  double? lat;
+  double? lang;
   bool isSelected;
 
   Pickup(

@@ -47,6 +47,8 @@ part 'seller_products_search_field_widget.dart';
 part 'seller_page_back_ground_widget.dart';
 part 'seller_page_products_section_widget.dart';
 part 'seller_page_categories_widget.dart';
+part 'seller_categories_shimmer_widget.dart';
+part 'seller_card_shimmer_widget.dart';
 part 'seller_details_app_bar.dart';
 part 'seller_products_list.dart';
 part 'seller_new_products_loading_widget.dart';

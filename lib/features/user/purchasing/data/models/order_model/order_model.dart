@@ -7,6 +7,7 @@ import 'package:flutter_tdd/features/user/purchasing/data/models/order_details_m
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_discount/order_discount.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_driver_model/order_driver_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
+import 'package:flutter_tdd/features/user/products/data/models/shop_card_model/shop_card_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'order_model.freezed.dart';
@@ -89,6 +90,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'requested_by_label') String? requestedByLabel,
     @JsonKey(name: 'pharmacy_reply') String? pharmacyReply,
     PharmacyBranchModel? branch,
+    ShopCardModel? shop,
 
   }) = _OrderModel;
 
@@ -163,6 +165,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       requestedByLabel: requestedByLabel,
       pharmacyReply: pharmacyReply,
       branch: branch?.toDomainModel(),
+      shop: shop?.toDomainModel(),
     );
   }
 }

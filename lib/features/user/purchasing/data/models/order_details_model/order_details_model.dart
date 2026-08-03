@@ -1,12 +1,48 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
-import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
-import 'package:flutter_tdd/features/user/products/data/models/product_card_model/product_card_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/reviews_model/reviews_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'order_details_model.freezed.dart';
 part 'order_details_model.g.dart';
+
+@freezed
+@immutable
+class OrderProductModel extends BaseApiModel<OrderProductDomainModel>
+    with _$OrderProductModel {
+  const OrderProductModel._();
+
+  @JsonSerializable(explicitToJson: true)
+  const factory OrderProductModel({
+    required int id,
+    required String name,
+    required String type,
+    @JsonKey(name: 'type_label') required String typeLabel,
+    required String unit,
+    required String barcode,
+    required double rating,
+    @JsonKey(name: 'thumbnail_img') required String thumbnailImage,
+    @JsonKey(name: 'currency_symbol') required String currencySymbol,
+  }) = _OrderProductModel;
+
+  factory OrderProductModel.fromJson(Map<String, dynamic> json) =>
+      _$OrderProductModelFromJson(json);
+
+  @override
+  OrderProductDomainModel toDomainModel() {
+    return OrderProductDomainModel(
+      id: id,
+      name: name,
+      type: type,
+      typeLabel: typeLabel,
+      unit: unit,
+      barcode: barcode,
+      rating: rating,
+      thumbnailImage: thumbnailImage,
+      currencySymbol: currencySymbol,
+    );
+  }
+}
 
 @freezed
 @immutable
@@ -17,7 +53,7 @@ class OrderDetailsModel extends BaseApiModel<OrderDetails>
   @JsonSerializable(explicitToJson: true)
   const factory OrderDetailsModel({
     required int id,
-    ProductModel? product,
+    OrderProductModel? product,
     required String variation,
     required int quantity,
     @JsonKey(name: 'available_return_qty') required int availableReturnQty,
@@ -61,3 +97,7 @@ class OrderDetailsModel extends BaseApiModel<OrderDetails>
         insuranceCoveragePercentage: insuranceCoveragePercentage);
   }
 }
+
+
+
+

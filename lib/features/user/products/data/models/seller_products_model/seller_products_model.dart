@@ -17,9 +17,7 @@ class SellerProductsModel extends BaseApiModel<SellerProductDomainModel>
 
   @JsonSerializable(explicitToJson: true)
   factory SellerProductsModel({
-    required ShopModel shop,
-    @JsonKey(name: "section_products")
-    required SectionProductsModel sectionProducts,
+    @JsonKey(name: "section_products") required SectionProductsModel sectionProducts,
     @JsonKey(name: 'price_range') required PriceRangeModel priceRange,
   }) = _SellerProductsModel;
 
@@ -30,7 +28,6 @@ class SellerProductsModel extends BaseApiModel<SellerProductDomainModel>
   SellerProductDomainModel toDomainModel() {
     return SellerProductDomainModel(
         sectionProductModel: sectionProducts.toDomainModel(),
-        shop: shop.toDomainModel(),
         priceRange: priceRange.toDomainModel());
   }
 }

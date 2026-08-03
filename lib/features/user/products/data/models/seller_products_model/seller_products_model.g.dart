@@ -9,7 +9,6 @@ part of 'seller_products_model.dart';
 _$_SellerProductsModel _$$_SellerProductsModelFromJson(
         Map<String, dynamic> json) =>
     _$_SellerProductsModel(
-      shop: ShopModel.fromJson(json['shop'] as Map<String, dynamic>),
       sectionProducts: SectionProductsModel.fromJson(
           json['section_products'] as Map<String, dynamic>),
       priceRange:
@@ -19,7 +18,6 @@ _$_SellerProductsModel _$$_SellerProductsModelFromJson(
 Map<String, dynamic> _$$_SellerProductsModelToJson(
         _$_SellerProductsModel instance) =>
     <String, dynamic>{
-      'shop': instance.shop.toJson(),
       'section_products': instance.sectionProducts.toJson(),
       'price_range': instance.priceRange.toJson(),
     };

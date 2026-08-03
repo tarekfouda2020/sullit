@@ -205,7 +205,7 @@ class PharmacyOrderDetailsController {
       await getIt<Utilities>().popManyTimes(context, 2);
       BuildContext ctx = getIt<GlobalContext>().context();
       AutoRouter.of(ctx).push(PharmacyCartRoute(
-          pharmacyId: orderDetailsBloc.state.data!.orderDetails.first.product!.shop!.id,
+          pharmacyId: orderDetailsBloc.state.data!.shop!.id,
           fromPharmacyDetails: false,
       ));
     } else {

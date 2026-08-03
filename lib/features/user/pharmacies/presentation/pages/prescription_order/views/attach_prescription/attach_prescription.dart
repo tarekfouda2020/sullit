@@ -1,13 +1,13 @@
 part of 'attach_prescription_imports.dart';
 
 class AttachPrescription extends StatefulWidget {
-  final Shop pharmacy;
+  final int shopId;
   final File? initialPrescriptionFile;
   final SavedPrescriptionModel? initialSavedPrescription;
 
   const AttachPrescription({
     super.key,
-    required this.pharmacy,
+    required this.shopId,
     this.initialPrescriptionFile,
     this.initialSavedPrescription,
   });
@@ -23,7 +23,7 @@ class _AttachPrescriptionState extends State<AttachPrescription> {
   void initState() {
     super.initState();
     controller = AttachPrescriptionController(
-      pharmacy: widget.pharmacy,
+      shopId: widget.shopId,
       initialPrescriptionFile: widget.initialPrescriptionFile,
       initialSavedPrescription: widget.initialSavedPrescription,
     );
@@ -51,7 +51,14 @@ class _AttachPrescriptionState extends State<AttachPrescription> {
               current: 1,
               steps: PrescriptionOrderStepModel.prescriptionFlowSteps,
             ),
-            PharmacyInfoRowWidget(pharmacy: widget.pharmacy.toShopCardDomainModel()),
+            BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
+              bloc: controller.pharmacyBloc,
+              builder: (context, state) {
+                return PharmacyInfoRowWidget(
+                  pharmacy: state.data?.toShopCardDomainModel(),
+                );
+              },
+            ),
             Expanded(
               child: SingleChildScrollView(
                 padding: Dimens.paddingAll20PX,

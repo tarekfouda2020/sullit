@@ -22,7 +22,7 @@ PharmacyConfirmOrderModel _$PharmacyConfirmOrderModelFromJson(
 /// @nodoc
 mixin _$PharmacyConfirmOrderModel {
   int? get id => throw _privateConstructorUsedError;
-  ProductModel? get product => throw _privateConstructorUsedError;
+  OrderProductModel? get product => throw _privateConstructorUsedError;
   String? get variation => throw _privateConstructorUsedError;
   int? get quantity => throw _privateConstructorUsedError;
   @JsonKey(name: 'available_return_qty')
@@ -59,7 +59,7 @@ abstract class $PharmacyConfirmOrderModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      ProductModel? product,
+      OrderProductModel? product,
       String? variation,
       int? quantity,
       @JsonKey(name: 'available_return_qty') int? availableReturnQty,
@@ -74,7 +74,7 @@ abstract class $PharmacyConfirmOrderModelCopyWith<$Res> {
       ReviewsModel? review,
       @JsonKey(name: 'transaction_url') String? transactionUrl});
 
-  $ProductModelCopyWith<$Res>? get product;
+  $OrderProductModelCopyWith<$Res>? get product;
   $ReviewsModelCopyWith<$Res>? get review;
 }
 
@@ -116,7 +116,7 @@ class _$PharmacyConfirmOrderModelCopyWithImpl<$Res,
       product: freezed == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
-              as ProductModel?,
+              as OrderProductModel?,
       variation: freezed == variation
           ? _value.variation
           : variation // ignore: cast_nullable_to_non_nullable
@@ -174,12 +174,12 @@ class _$PharmacyConfirmOrderModelCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ProductModelCopyWith<$Res>? get product {
+  $OrderProductModelCopyWith<$Res>? get product {
     if (_value.product == null) {
       return null;
     }
 
-    return $ProductModelCopyWith<$Res>(_value.product!, (value) {
+    return $OrderProductModelCopyWith<$Res>(_value.product!, (value) {
       return _then(_value.copyWith(product: value) as $Val);
     });
   }
@@ -208,7 +208,7 @@ abstract class _$$_PharmacyConfirmOrderModelCopyWith<$Res>
   @useResult
   $Res call(
       {int? id,
-      ProductModel? product,
+      OrderProductModel? product,
       String? variation,
       int? quantity,
       @JsonKey(name: 'available_return_qty') int? availableReturnQty,
@@ -224,7 +224,7 @@ abstract class _$$_PharmacyConfirmOrderModelCopyWith<$Res>
       @JsonKey(name: 'transaction_url') String? transactionUrl});
 
   @override
-  $ProductModelCopyWith<$Res>? get product;
+  $OrderProductModelCopyWith<$Res>? get product;
   @override
   $ReviewsModelCopyWith<$Res>? get review;
 }
@@ -266,7 +266,7 @@ class __$$_PharmacyConfirmOrderModelCopyWithImpl<$Res>
       product: freezed == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
-              as ProductModel?,
+              as OrderProductModel?,
       variation: freezed == variation
           ? _value.variation
           : variation // ignore: cast_nullable_to_non_nullable
@@ -351,7 +351,7 @@ class _$_PharmacyConfirmOrderModel extends _PharmacyConfirmOrderModel {
   @override
   final int? id;
   @override
-  final ProductModel? product;
+  final OrderProductModel? product;
   @override
   final String? variation;
   @override
@@ -461,7 +461,7 @@ class _$_PharmacyConfirmOrderModel extends _PharmacyConfirmOrderModel {
 abstract class _PharmacyConfirmOrderModel extends PharmacyConfirmOrderModel {
   const factory _PharmacyConfirmOrderModel(
           {final int? id,
-          final ProductModel? product,
+          final OrderProductModel? product,
           final String? variation,
           final int? quantity,
           @JsonKey(name: 'available_return_qty') final int? availableReturnQty,
@@ -484,7 +484,7 @@ abstract class _PharmacyConfirmOrderModel extends PharmacyConfirmOrderModel {
   @override
   int? get id;
   @override
-  ProductModel? get product;
+  OrderProductModel? get product;
   @override
   String? get variation;
   @override

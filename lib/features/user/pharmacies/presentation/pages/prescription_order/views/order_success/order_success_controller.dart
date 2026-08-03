@@ -16,8 +16,7 @@ class OrderSuccessController {
   Orders? get firstSectionOrder =>
       orderSummaryBloc.state.data?.sectionOrders?.firstOrNull;
 
-  ShopCardDomainModel? get pharmacy => pharmacyData ??
-      firstSectionOrder?.orderDetails.firstOrNull?.product?.shop;
+  ShopCardDomainModel? get pharmacy => pharmacyData ?? firstSectionOrder?.shop;
 
   OrderSuccessController(this.summary, this.pharmacyData) {
     orderSummaryBloc.onUpdateData(summary);

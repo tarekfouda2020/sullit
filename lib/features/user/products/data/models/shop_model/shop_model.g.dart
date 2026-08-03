@@ -15,9 +15,6 @@ _$_ShopModel _$$_ShopModelFromJson(Map<String, dynamic> json) => _$_ShopModel(
       name: json['name'] as String,
       sliders:
           (json['sliders'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      categories: (json['categories'] as List<dynamic>?)
-          ?.map((e) => ShopCategoryModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
       insuranceCompanies: (json['insurance_companies'] as List<dynamic>?)
           ?.map(
               (e) => InsuranceCompanyModel.fromJson(e as Map<String, dynamic>))
@@ -26,8 +23,6 @@ _$_ShopModel _$$_ShopModelFromJson(Map<String, dynamic> json) => _$_ShopModel(
       description: json['description'] as String?,
       logo: json['logo'] as String,
       packageInvalidAt: json['package_invalid_at'] as String,
-      products: (json['products'] as num?)?.toInt(),
-      orders: (json['orders'] as num).toInt(),
       address: json['address'] as String?,
       email: json['email'] as String?,
       phone: json['phone'] as String?,
@@ -52,15 +47,12 @@ Map<String, dynamic> _$$_ShopModelToJson(_$_ShopModel instance) =>
       'type_label': instance.shopTypeLabel,
       'name': instance.name,
       'sliders': instance.sliders,
-      'categories': instance.categories?.map((e) => e.toJson()).toList(),
       'insurance_companies':
           instance.insuranceCompanies?.map((e) => e.toJson()).toList(),
       'title': instance.title,
       'description': instance.description,
       'logo': instance.logo,
       'package_invalid_at': instance.packageInvalidAt,
-      'products': instance.products,
-      'orders': instance.orders,
       'address': instance.address,
       'email': instance.email,
       'phone': instance.phone,

@@ -20,6 +20,7 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/models/saved_prescri
 import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_pharmacies.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_card_domain_model.dart';
 import 'package:flutter_tdd/features/user/search/domain/entities/search_result_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/pharmacies_list/widgets/widgets_imports.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';

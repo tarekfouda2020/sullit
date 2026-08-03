@@ -1288,7 +1288,7 @@ class AppRouter extends _i112.RootStackRouter {
         routeData: routeData,
         child: _i110.AttachPrescription(
           key: args.key,
-          pharmacy: args.pharmacy,
+          shopId: args.shopId,
           initialPrescriptionFile: args.initialPrescriptionFile,
           initialSavedPrescription: args.initialSavedPrescription,
         ),
@@ -4416,7 +4416,7 @@ class AttachPrescriptionRoute
     extends _i112.PageRouteInfo<AttachPrescriptionRouteArgs> {
   AttachPrescriptionRoute({
     _i115.Key? key,
-    required _i127.Shop pharmacy,
+    required int shopId,
     _i125.File? initialPrescriptionFile,
     _i126.SavedPrescriptionModel? initialSavedPrescription,
   }) : super(
@@ -4424,7 +4424,7 @@ class AttachPrescriptionRoute
           path: '/attach-prescription',
           args: AttachPrescriptionRouteArgs(
             key: key,
-            pharmacy: pharmacy,
+            shopId: shopId,
             initialPrescriptionFile: initialPrescriptionFile,
             initialSavedPrescription: initialSavedPrescription,
           ),
@@ -4436,14 +4436,14 @@ class AttachPrescriptionRoute
 class AttachPrescriptionRouteArgs {
   const AttachPrescriptionRouteArgs({
     this.key,
-    required this.pharmacy,
+    required this.shopId,
     this.initialPrescriptionFile,
     this.initialSavedPrescription,
   });
 
   final _i115.Key? key;
 
-  final _i127.Shop pharmacy;
+  final int shopId;
 
   final _i125.File? initialPrescriptionFile;
 
@@ -4451,7 +4451,7 @@ class AttachPrescriptionRouteArgs {
 
   @override
   String toString() {
-    return 'AttachPrescriptionRouteArgs{key: $key, pharmacy: $pharmacy, initialPrescriptionFile: $initialPrescriptionFile, initialSavedPrescription: $initialSavedPrescription}';
+    return 'AttachPrescriptionRouteArgs{key: $key, shopId: $shopId, initialPrescriptionFile: $initialPrescriptionFile, initialSavedPrescription: $initialSavedPrescription}';
   }
 }
 

@@ -25,7 +25,6 @@ class PharmacyDetailsController {
   final GenericBloc<Shop?> pharmacyBloc = GenericBloc<Shop?>(null);
 
   final GenericBloc<bool> refreshCategories = GenericBloc<bool>(false);
-  final GenericBloc<Pharmacy?> pharmacyCubit = GenericBloc<Pharmacy?>(null);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
   final GenericBloc<bool> isLoadingNextPage = GenericBloc<bool>(false);
   final GenericBloc<bool> showAppBarTitle = GenericBloc<bool>(false);
@@ -169,9 +168,6 @@ class PharmacyDetailsController {
     isLoadingNextPage.onUpdateData(page > 1);
     var result = await GetSellerProducts().call(params);
     isLoadingNextPage.onUpdateData(false);
-    if (pharmacyBloc.state.data == null && result != null) {
-      pharmacyBloc.onUpdateData(result.shop);
-    }
     final branch = selectedBranchCubit.state.data;
     final List<ProductCard> data = (result?.sectionProductModel.products ??
             <ProductCard>[])
@@ -623,7 +619,7 @@ class PharmacyDetailsController {
 
 
   void routeToPrescription(BuildContext context){
-    AutoRouter.of(context).push(AttachPrescriptionRoute(pharmacy: pharmacyBloc.state.data!));
+    AutoRouter.of(context).push(AttachPrescriptionRoute(shopId: getPharmacyId!));
   }
 
 

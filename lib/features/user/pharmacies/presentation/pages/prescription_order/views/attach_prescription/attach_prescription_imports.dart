@@ -31,9 +31,11 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_orde
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_order_terms_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/prescription_order_step_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/saved_prescription_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/shop_id_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_pharmacy_order_requested_by.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_pharmacy_order_terms.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_saved_prescriptions.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_shop_details.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/pharmacy_details/widgets/widgets_imports.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescription_order/views/attach_prescription/widgets/widgets_imports.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescription_order/widgets/build_prescription_order_stepper.dart';

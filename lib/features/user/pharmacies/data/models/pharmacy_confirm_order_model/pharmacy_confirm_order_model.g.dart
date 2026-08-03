@@ -12,7 +12,7 @@ _$_PharmacyConfirmOrderModel _$$_PharmacyConfirmOrderModelFromJson(
       id: (json['id'] as num?)?.toInt(),
       product: json['product'] == null
           ? null
-          : ProductModel.fromJson(json['product'] as Map<String, dynamic>),
+          : OrderProductModel.fromJson(json['product'] as Map<String, dynamic>),
       variation: json['variation'] as String?,
       quantity: (json['quantity'] as num?)?.toInt(),
       availableReturnQty: (json['available_return_qty'] as num?)?.toInt(),

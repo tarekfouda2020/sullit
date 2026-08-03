@@ -21,8 +21,8 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
                     children: [
                       if(state.data!.orderDetails.isNotEmpty == true)
                       OrderPharamCardWidget(
-                        url: state.data!.orderDetails.first.product?.shop?.logo ?? "",
-                        text: state.data!.orderDetails.first.product?.shop?.name  ?? "",
+                        url: state.data!.shop?.logo ?? "",
+                        text: state.data!.shop?.name  ?? "",
                       ),
                       Gaps.vGap10,
                       Stack(

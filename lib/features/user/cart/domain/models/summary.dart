@@ -17,7 +17,7 @@ class Summary extends BaseDomainModel {
   bool? requiresPrescriptionReview;
   bool? awaitingCustomerCompletion;
   bool? insuranceApplied;
-  String shopType;
+  String? shopType;
 
   Summary({
     required this.orderDate,

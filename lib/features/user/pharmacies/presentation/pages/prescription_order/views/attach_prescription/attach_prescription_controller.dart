@@ -1,7 +1,9 @@
 part of 'attach_prescription_imports.dart';
 
 class AttachPrescriptionController {
-  final Shop pharmacy;
+  final int shopId;
+
+  final GenericBloc<Shop?> pharmacyBloc = GenericBloc<Shop?>(null);
 
   final GenericBloc<File> prescriptionFileCubit = GenericBloc<File>(File(""));
   final GenericBloc<File> emiratesIdCubit = GenericBloc<File>(File(""));
@@ -31,7 +33,7 @@ class AttachPrescriptionController {
       GenericBloc<SavedPrescriptionModel?>(null);
 
   AttachPrescriptionController({
-    required this.pharmacy,
+    required this.shopId,
     File? initialPrescriptionFile,
     SavedPrescriptionModel? initialSavedPrescription,
   }) {
@@ -41,12 +43,20 @@ class AttachPrescriptionController {
     } else if (initialSavedPrescription != null) {
       selectedSavedPrescriptionCubit.onUpdateData(initialSavedPrescription);
     }
+    _fetchShopDetails(fromRemote: false);
+    _fetchShopDetails();
     getRequestedByOptions();
     getPharmacyOrderTerms();
     getSavedPrescriptions(1,refresh: false);
     savedPrescriptionsPagingController.addPageRequestListener((page) {
       getSavedPrescriptions(page);
     });
+  }
+
+  Future<void> _fetchShopDetails({bool fromRemote = true}) async {
+    var data = await GetShopDetails()
+        .call(ShopIdParams(shopId: shopId, refresh: fromRemote));
+    pharmacyBloc.onUpdateData(data);
   }
 
   List<String> get _allowedExtensions =>  ["pdf",'jpg', 'jpeg', 'png'];
@@ -168,7 +178,7 @@ class AttachPrescriptionController {
       backgroundColor: Colors.transparent,
       builder: (context) {
         return SupportedInsuranceBottomSheetWidget(
-          insurance: pharmacy.insuranceCompanies ?? [],
+          insurance: pharmacyBloc.state.data?.insuranceCompanies ?? [],
           enableSelect: true,
           onPressConfirm: (model) => onSelectInsuranceCompany(context, model),
           title: "Insurance Companies",
@@ -221,7 +231,7 @@ class AttachPrescriptionController {
 
     AutoRouter.of(context).push(PharmacyAddressRoute(
       createOrderParams: _createOrderParams(),
-      pharmacy: pharmacy,
+      pharmacy: pharmacyBloc.state.data,
       havePrescription: true
     ));
 
@@ -232,7 +242,7 @@ class AttachPrescriptionController {
   PharmacyCreateOrderParams _createOrderParams(){
     return PharmacyCreateOrderParams(
         shippingInfo: [],
-        shopId: pharmacy.id!,
+        shopId: shopId,
         applyInsurance: healthInsuranceCubit.state.data,
       additionalInfo: notesController.text,
       allowReplacement: allowReplacementCubit.state.data,
@@ -243,7 +253,7 @@ class AttachPrescriptionController {
       prescriptionAttachments: _prescriptionAttachments(),
       prescriptionAttachmentIds: _prescriptionAttachmentIds(),
       insuranceAttachments: [
-        emiratesIdCubit.state.data
+        insuranceFileBloc.state.data
       ],
     );
   }

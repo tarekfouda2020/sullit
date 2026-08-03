@@ -11,6 +11,7 @@ import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/core/widgets/custom_radio_widget.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_card_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
 
 part 'Pharmacy_card_widget.dart';

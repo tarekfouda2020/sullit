@@ -1,7 +1,7 @@
 part of 'widgets_imports.dart';
 
 class PharmacyCardWidget extends StatelessWidget {
-  final Shop shop;
+  final ShopCardDomainModel shop;
   final VoidCallback onTap;
   final bool showSelectionRadio;
 
@@ -90,7 +90,7 @@ class PharmacyCardWidget extends StatelessWidget {
                               ],
                             ),
                             Gaps.vGap12,
-                            ...(shop.categories ?? <ShopCategory>[])
+                            ...(shop.categoriesNames.split("-"))
                                 .take(3)
                                 .map((e) {
                               return Container(
@@ -100,7 +100,7 @@ class PharmacyCardWidget extends StatelessWidget {
                                   borderRadius: Dimens.borderRadius30PX,
                                 ),
                                 child: Text(
-                                  e.name,
+                                  "$e - ",
                                   style: AppTextStyle.s12_w600(
                                       color: context.colors.oceanBlue),
                                 ),
@@ -118,7 +118,7 @@ class PharmacyCardWidget extends StatelessWidget {
               PositionedDirectional(
                 top: 8,
                 start: 8,
-                child: CustomRadioWidget(selected: shop.isSelected),
+                child: CustomRadioWidget(selected: shop.isSelect),
               ),
           ],
         ),
@@ -128,7 +128,7 @@ class PharmacyCardWidget extends StatelessWidget {
 
   BorderSide _buildBorderSide(BuildContext context) {
     return BorderSide(
-        color: showSelectionRadio && shop.isSelected
+        color: showSelectionRadio && shop.isSelect
             ? context.colors.primary
             : context.colors.borderColor,
         width: 1.5);

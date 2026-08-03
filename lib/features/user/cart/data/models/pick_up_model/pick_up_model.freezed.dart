@@ -24,8 +24,8 @@ mixin _$PickUpModel {
   String get address => throw _privateConstructorUsedError;
   @JsonKey(name: 'postal_code')
   String get postalCode => throw _privateConstructorUsedError;
-  String? get lat => throw _privateConstructorUsedError;
-  String? get lang => throw _privateConstructorUsedError;
+  double? get lat => throw _privateConstructorUsedError;
+  double? get lang => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,8 +43,8 @@ abstract class $PickUpModelCopyWith<$Res> {
       {int id,
       String address,
       @JsonKey(name: 'postal_code') String postalCode,
-      String? lat,
-      String? lang});
+      double? lat,
+      double? lang});
 }
 
 /// @nodoc
@@ -82,11 +82,11 @@ class _$PickUpModelCopyWithImpl<$Res, $Val extends PickUpModel>
       lat: freezed == lat
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
       lang: freezed == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
     ) as $Val);
   }
 }
@@ -103,8 +103,8 @@ abstract class _$$_PickUpModelCopyWith<$Res>
       {int id,
       String address,
       @JsonKey(name: 'postal_code') String postalCode,
-      String? lat,
-      String? lang});
+      double? lat,
+      double? lang});
 }
 
 /// @nodoc
@@ -140,11 +140,11 @@ class __$$_PickUpModelCopyWithImpl<$Res>
       lat: freezed == lat
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
       lang: freezed == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
     ));
   }
 }
@@ -172,9 +172,9 @@ class _$_PickUpModel extends _PickUpModel {
   @JsonKey(name: 'postal_code')
   final String postalCode;
   @override
-  final String? lat;
+  final double? lat;
   @override
-  final String? lang;
+  final double? lang;
 
   @override
   String toString() {
@@ -218,8 +218,8 @@ abstract class _PickUpModel extends PickUpModel {
       {required final int id,
       required final String address,
       @JsonKey(name: 'postal_code') required final String postalCode,
-      final String? lat,
-      final String? lang}) = _$_PickUpModel;
+      final double? lat,
+      final double? lang}) = _$_PickUpModel;
   const _PickUpModel._() : super._();
 
   factory _PickUpModel.fromJson(Map<String, dynamic> json) =
@@ -233,9 +233,9 @@ abstract class _PickUpModel extends PickUpModel {
   @JsonKey(name: 'postal_code')
   String get postalCode;
   @override
-  String? get lat;
+  double? get lat;
   @override
-  String? get lang;
+  double? get lang;
   @override
   @JsonKey(ignore: true)
   _$$_PickUpModelCopyWith<_$_PickUpModel> get copyWith =>

@@ -3,7 +3,7 @@ part of 'pharmacies_list_imports.dart';
 class PharmaciesListController {
   final TextEditingController searchController = TextEditingController();
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
-  final PagingController<int, Shop> pagingController =
+  final PagingController<int, ShopCardDomainModel> pagingController =
       PagingController(firstPageKey: 1);
 
   final bool makePrescriptionOrder;
@@ -35,23 +35,21 @@ class PharmaciesListController {
     }
   }
 
-  void onPressPharmacy(BuildContext context, Shop shop) {
+  void onPressPharmacy(BuildContext context, ShopCardDomainModel shop) {
     if (!makePrescriptionOrder) {
-      if (shop.id != null) {
-        AutoRouter.of(context)
-            .push(PharmacyCategoriesRoute(
-            pharmacyId: shop.id!,
-        ));
-      }
-      return;
+      AutoRouter.of(context)
+          .push(PharmacyCategoriesRoute(
+          pharmacyId: shop.id,
+      ));
+          return;
     }
-    for (var item in pagingController.itemList ?? <Shop>[]) {
-      item.isSelected = false;
+    for (var item in pagingController.itemList ?? <ShopCardDomainModel>[]) {
+      item.isSelect = false;
     }
-    shop.isSelected = true;
+    shop.isSelect = true;
     pagingController.itemList = [...?pagingController.itemList];
     AutoRouter.of(context).push(AttachPrescriptionRoute(
-      pharmacy: shop,
+      shopId: shop.id,
       initialPrescriptionFile: initialPrescriptionFile,
       initialSavedPrescription: initialSavedPrescription,
     ));

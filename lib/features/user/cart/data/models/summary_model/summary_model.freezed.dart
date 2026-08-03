@@ -34,7 +34,7 @@ mixin _$SummaryModel {
   @JsonKey(name: 'combined_order_id')
   int get combinedOrderId => throw _privateConstructorUsedError;
   @JsonKey(name: 'total_items')
-  int get totalItems => throw _privateConstructorUsedError;
+  int? get totalItems => throw _privateConstructorUsedError;
   @JsonKey(name: "expected_loyalty_points")
   int? get expectedLoyaltyPoints => throw _privateConstructorUsedError;
   String get shipping => throw _privateConstructorUsedError;
@@ -49,7 +49,7 @@ mixin _$SummaryModel {
   @JsonKey(name: "insurance_applied")
   bool? get insuranceApplied => throw _privateConstructorUsedError;
   @JsonKey(name: "shop_type")
-  String get shopType => throw _privateConstructorUsedError;
+  String? get shopType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -72,7 +72,7 @@ abstract class $SummaryModelCopyWith<$Res> {
       @JsonKey(name: 'order_status') String orderStatus,
       @JsonKey(name: 'total_order_amount') String totalOrderAmount,
       @JsonKey(name: 'combined_order_id') int combinedOrderId,
-      @JsonKey(name: 'total_items') int totalItems,
+      @JsonKey(name: 'total_items') int? totalItems,
       @JsonKey(name: "expected_loyalty_points") int? expectedLoyaltyPoints,
       String shipping,
       @JsonKey(name: "payment_method") String paymentMethod,
@@ -82,7 +82,7 @@ abstract class $SummaryModelCopyWith<$Res> {
       @JsonKey(name: "awaiting_customer_completion")
       bool? awaitingCustomerCompletion,
       @JsonKey(name: "insurance_applied") bool? insuranceApplied,
-      @JsonKey(name: "shop_type") String shopType});
+      @JsonKey(name: "shop_type") String? shopType});
 }
 
 /// @nodoc
@@ -106,7 +106,7 @@ class _$SummaryModelCopyWithImpl<$Res, $Val extends SummaryModel>
     Object? orderStatus = null,
     Object? totalOrderAmount = null,
     Object? combinedOrderId = null,
-    Object? totalItems = null,
+    Object? totalItems = freezed,
     Object? expectedLoyaltyPoints = freezed,
     Object? shipping = null,
     Object? paymentMethod = null,
@@ -114,7 +114,7 @@ class _$SummaryModelCopyWithImpl<$Res, $Val extends SummaryModel>
     Object? requiresPrescriptionReview = freezed,
     Object? awaitingCustomerCompletion = freezed,
     Object? insuranceApplied = freezed,
-    Object? shopType = null,
+    Object? shopType = freezed,
   }) {
     return _then(_value.copyWith(
       orderDate: null == orderDate
@@ -149,10 +149,10 @@ class _$SummaryModelCopyWithImpl<$Res, $Val extends SummaryModel>
           ? _value.combinedOrderId
           : combinedOrderId // ignore: cast_nullable_to_non_nullable
               as int,
-      totalItems: null == totalItems
+      totalItems: freezed == totalItems
           ? _value.totalItems
           : totalItems // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       expectedLoyaltyPoints: freezed == expectedLoyaltyPoints
           ? _value.expectedLoyaltyPoints
           : expectedLoyaltyPoints // ignore: cast_nullable_to_non_nullable
@@ -181,10 +181,10 @@ class _$SummaryModelCopyWithImpl<$Res, $Val extends SummaryModel>
           ? _value.insuranceApplied
           : insuranceApplied // ignore: cast_nullable_to_non_nullable
               as bool?,
-      shopType: null == shopType
+      shopType: freezed == shopType
           ? _value.shopType
           : shopType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -206,7 +206,7 @@ abstract class _$$_SummaryModelCopyWith<$Res>
       @JsonKey(name: 'order_status') String orderStatus,
       @JsonKey(name: 'total_order_amount') String totalOrderAmount,
       @JsonKey(name: 'combined_order_id') int combinedOrderId,
-      @JsonKey(name: 'total_items') int totalItems,
+      @JsonKey(name: 'total_items') int? totalItems,
       @JsonKey(name: "expected_loyalty_points") int? expectedLoyaltyPoints,
       String shipping,
       @JsonKey(name: "payment_method") String paymentMethod,
@@ -216,7 +216,7 @@ abstract class _$$_SummaryModelCopyWith<$Res>
       @JsonKey(name: "awaiting_customer_completion")
       bool? awaitingCustomerCompletion,
       @JsonKey(name: "insurance_applied") bool? insuranceApplied,
-      @JsonKey(name: "shop_type") String shopType});
+      @JsonKey(name: "shop_type") String? shopType});
 }
 
 /// @nodoc
@@ -238,7 +238,7 @@ class __$$_SummaryModelCopyWithImpl<$Res>
     Object? orderStatus = null,
     Object? totalOrderAmount = null,
     Object? combinedOrderId = null,
-    Object? totalItems = null,
+    Object? totalItems = freezed,
     Object? expectedLoyaltyPoints = freezed,
     Object? shipping = null,
     Object? paymentMethod = null,
@@ -246,7 +246,7 @@ class __$$_SummaryModelCopyWithImpl<$Res>
     Object? requiresPrescriptionReview = freezed,
     Object? awaitingCustomerCompletion = freezed,
     Object? insuranceApplied = freezed,
-    Object? shopType = null,
+    Object? shopType = freezed,
   }) {
     return _then(_$_SummaryModel(
       orderDate: null == orderDate
@@ -281,10 +281,10 @@ class __$$_SummaryModelCopyWithImpl<$Res>
           ? _value.combinedOrderId
           : combinedOrderId // ignore: cast_nullable_to_non_nullable
               as int,
-      totalItems: null == totalItems
+      totalItems: freezed == totalItems
           ? _value.totalItems
           : totalItems // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       expectedLoyaltyPoints: freezed == expectedLoyaltyPoints
           ? _value.expectedLoyaltyPoints
           : expectedLoyaltyPoints // ignore: cast_nullable_to_non_nullable
@@ -313,10 +313,10 @@ class __$$_SummaryModelCopyWithImpl<$Res>
           ? _value.insuranceApplied
           : insuranceApplied // ignore: cast_nullable_to_non_nullable
               as bool?,
-      shopType: null == shopType
+      shopType: freezed == shopType
           ? _value.shopType
           : shopType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -334,7 +334,7 @@ class _$_SummaryModel extends _SummaryModel {
       @JsonKey(name: 'order_status') required this.orderStatus,
       @JsonKey(name: 'total_order_amount') required this.totalOrderAmount,
       @JsonKey(name: 'combined_order_id') required this.combinedOrderId,
-      @JsonKey(name: 'total_items') required this.totalItems,
+      @JsonKey(name: 'total_items') this.totalItems,
       @JsonKey(name: "expected_loyalty_points") this.expectedLoyaltyPoints,
       required this.shipping,
       @JsonKey(name: "payment_method") required this.paymentMethod,
@@ -344,7 +344,7 @@ class _$_SummaryModel extends _SummaryModel {
       @JsonKey(name: "awaiting_customer_completion")
       this.awaitingCustomerCompletion,
       @JsonKey(name: "insurance_applied") this.insuranceApplied,
-      @JsonKey(name: "shop_type") required this.shopType})
+      @JsonKey(name: "shop_type") this.shopType})
       : super._();
 
   factory _$_SummaryModel.fromJson(Map<String, dynamic> json) =>
@@ -373,7 +373,7 @@ class _$_SummaryModel extends _SummaryModel {
   final int combinedOrderId;
   @override
   @JsonKey(name: 'total_items')
-  final int totalItems;
+  final int? totalItems;
   @override
   @JsonKey(name: "expected_loyalty_points")
   final int? expectedLoyaltyPoints;
@@ -396,7 +396,7 @@ class _$_SummaryModel extends _SummaryModel {
   final bool? insuranceApplied;
   @override
   @JsonKey(name: "shop_type")
-  final String shopType;
+  final String? shopType;
 
   @override
   String toString() {
@@ -492,7 +492,7 @@ abstract class _SummaryModel extends SummaryModel {
       @JsonKey(name: 'total_order_amount')
       required final String totalOrderAmount,
       @JsonKey(name: 'combined_order_id') required final int combinedOrderId,
-      @JsonKey(name: 'total_items') required final int totalItems,
+      @JsonKey(name: 'total_items') final int? totalItems,
       @JsonKey(name: "expected_loyalty_points")
       final int? expectedLoyaltyPoints,
       required final String shipping,
@@ -503,8 +503,7 @@ abstract class _SummaryModel extends SummaryModel {
       @JsonKey(name: "awaiting_customer_completion")
       final bool? awaitingCustomerCompletion,
       @JsonKey(name: "insurance_applied") final bool? insuranceApplied,
-      @JsonKey(name: "shop_type")
-      required final String shopType}) = _$_SummaryModel;
+      @JsonKey(name: "shop_type") final String? shopType}) = _$_SummaryModel;
   const _SummaryModel._() : super._();
 
   factory _SummaryModel.fromJson(Map<String, dynamic> json) =
@@ -533,7 +532,7 @@ abstract class _SummaryModel extends SummaryModel {
   int get combinedOrderId;
   @override
   @JsonKey(name: 'total_items')
-  int get totalItems;
+  int? get totalItems;
   @override
   @JsonKey(name: "expected_loyalty_points")
   int? get expectedLoyaltyPoints;
@@ -556,7 +555,7 @@ abstract class _SummaryModel extends SummaryModel {
   bool? get insuranceApplied;
   @override
   @JsonKey(name: "shop_type")
-  String get shopType;
+  String? get shopType;
   @override
   @JsonKey(ignore: true)
   _$$_SummaryModelCopyWith<_$_SummaryModel> get copyWith =>

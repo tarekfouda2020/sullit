@@ -1,12 +1,10 @@
 part of 'seller_products_widgets_imports.dart';
 
 class SellerPageCategoriesWidget extends StatelessWidget {
-  final List<ShopCategory> category;
   final SellerProductsController controller;
 
   const SellerPageCategoriesWidget({
     super.key,
-    required this.category,
     required this.controller,
   });
 
@@ -17,11 +15,11 @@ class SellerPageCategoriesWidget extends StatelessWidget {
       builder: (context, selectedCategory) {
         return SizedBox(
           height: 50,
-          child: SingleChildScrollView(
+          child: PagedListView<int, ShopCategory>(
             scrollDirection: Axis.horizontal,
-            child: Row(
-              children: List.generate(category.length, (index) {
-                final subCategory = category[index];
+            pagingController: controller.categoriesPagingController,
+            builderDelegate: PagedChildBuilderDelegate(
+              itemBuilder: (context, subCategory, index) {
                 final bool isSelected =
                     selectedCategory.data?.id == subCategory.id;
 
@@ -30,9 +28,12 @@ class SellerPageCategoriesWidget extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 23, vertical: 12),
+                    alignment: Alignment.center,
                     margin: EdgeInsetsDirectional.only(
                       start: index == 0 ? 20 : 8,
-                      end: index == category.length - 1 ? 20 : 0,
+                      end: index == controller.categoriesPagingController.itemList!.length - 1
+                          ? 20
+                          : 0,
                     ),
                     decoration: BoxDecoration(
                       color: isSelected
@@ -50,7 +51,13 @@ class SellerPageCategoriesWidget extends StatelessWidget {
                     ),
                   ),
                 );
-              }),
+              },
+              firstPageProgressIndicatorBuilder: (context) =>
+                   Gaps.empty,
+              newPageProgressIndicatorBuilder: (context) =>
+              Gaps.empty,
+              noItemsFoundIndicatorBuilder: (context) =>
+              Gaps.empty,
             ),
           ),
         );

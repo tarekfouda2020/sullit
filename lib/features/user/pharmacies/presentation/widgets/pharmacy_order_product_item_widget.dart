@@ -8,8 +8,7 @@ class PharmacyOrderProductItemWidget extends StatelessWidget {
     required this.orderDetails,
   });
 
-  PharmacyProduct? get pharmacyProduct =>
-      orderDetails.product as PharmacyProduct?;
+  OrderProductDomainModel? get pharmacyProduct => orderDetails.product;
 
   @override
   Widget build(BuildContext context) {

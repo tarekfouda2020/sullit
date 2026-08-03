@@ -12,8 +12,6 @@ class Shop extends BaseDomainModel {
   String? description;
   String? logo;
   String? packageInvalidAt;
-  int? products;
-  int? orders;
   String? address;
   String? email;
   String? shopType;
@@ -30,7 +28,6 @@ class Shop extends BaseDomainModel {
   bool? hasBranches;
   ShopPickup? pickUp;
   List<String>? sliders;
-  List<ShopCategory>? categories;
   List<InsuranceCompany>? insuranceCompanies;
   bool isSelect = false;
   bool isSelected = false;
@@ -44,8 +41,6 @@ class Shop extends BaseDomainModel {
     this.description,
     required this.logo,
     required this.packageInvalidAt,
-    required this.products,
-    required this.orders,
     this.address,
     this.phone,
     this.hasBranches,
@@ -56,7 +51,6 @@ class Shop extends BaseDomainModel {
     this.instagram,
     this.youtube,
     this.sliders,
-    this.categories,
     this.insuranceCompanies,
     this.shopType,
     this.typeLabel,
@@ -79,8 +73,6 @@ class Shop extends BaseDomainModel {
       logo: json['logo'],
       packageInvalidAt: json['package_invalid_at'],
       email: json['email'],
-      products: json['products'],
-      orders: json['orders'],
       address: json['address'],
       phone: json['phone'],
       facebook: json['facebook'],
@@ -106,8 +98,6 @@ class Shop extends BaseDomainModel {
     data['logo'] = logo;
     data['package_invalid_at'] = packageInvalidAt;
     data['email'] = email;
-    data['products'] = products;
-    data['orders'] = orders;
     data['address'] = address;
     data['phone'] = phone;
     data['facebook'] = facebook;
@@ -122,8 +112,7 @@ class Shop extends BaseDomainModel {
     return data;
   }
 
-  List<String> get shopCategoryNames =>
-      categories?.map((e) => e.name).toList() ?? [];
+
 
   ShopCardDomainModel toShopCardDomainModel() {
     return ShopCardDomainModel(
@@ -132,7 +121,7 @@ class Shop extends BaseDomainModel {
       hasBranches: hasBranches!,
       name: name!,
       type: shopType!,
-      typeLabel: typeLabel!,
+      typeLabel: typeLabel ?? "",
       logo: logo!,
       email: email!,
       address: address!,
@@ -140,7 +129,7 @@ class Shop extends BaseDomainModel {
       rating: rating!,
       sliders: sliders!,
       follow: follow!,
-      categoriesNames: shopCategoryNames.join("-"),
+      categoriesNames: "",
     );
   }
 }

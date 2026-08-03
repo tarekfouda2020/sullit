@@ -1,6 +1,6 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
-import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_confirm_order_domain_model.dart';
+import 'package:flutter_tdd/features/user/purchasing/data/models/order_details_model/order_details_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/reviews_model/reviews_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -17,7 +17,7 @@ class PharmacyConfirmOrderModel extends BaseApiModel<PharmacyConfirmOrderDomainM
   @JsonSerializable(explicitToJson: true)
   const factory PharmacyConfirmOrderModel({
     int? id,
-    ProductModel? product,
+    OrderProductModel? product,
     String? variation,
     int? quantity,
     @JsonKey(name: 'available_return_qty') int? availableReturnQty,

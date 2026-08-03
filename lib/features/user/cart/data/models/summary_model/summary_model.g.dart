@@ -16,7 +16,7 @@ _$_SummaryModel _$$_SummaryModelFromJson(Map<String, dynamic> json) =>
       orderStatus: json['order_status'] as String,
       totalOrderAmount: json['total_order_amount'] as String,
       combinedOrderId: (json['combined_order_id'] as num).toInt(),
-      totalItems: (json['total_items'] as num).toInt(),
+      totalItems: (json['total_items'] as num?)?.toInt(),
       expectedLoyaltyPoints: (json['expected_loyalty_points'] as num?)?.toInt(),
       shipping: json['shipping'] as String,
       paymentMethod: json['payment_method'] as String,
@@ -24,7 +24,7 @@ _$_SummaryModel _$$_SummaryModelFromJson(Map<String, dynamic> json) =>
       requiresPrescriptionReview: json['requires_prescription_review'] as bool?,
       awaitingCustomerCompletion: json['awaiting_customer_completion'] as bool?,
       insuranceApplied: json['insurance_applied'] as bool?,
-      shopType: json['shop_type'] as String,
+      shopType: json['shop_type'] as String?,
     );
 
 Map<String, dynamic> _$$_SummaryModelToJson(_$_SummaryModel instance) =>

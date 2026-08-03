@@ -11,8 +11,8 @@ _$_PickUpModel _$$_PickUpModelFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       address: json['address'] as String,
       postalCode: json['postal_code'] as String,
-      lat: json['lat'] as String?,
-      lang: json['lang'] as String?,
+      lat: (json['lat'] as num?)?.toDouble(),
+      lang: (json['lang'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$_PickUpModelToJson(_$_PickUpModel instance) =>

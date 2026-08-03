@@ -20,7 +20,6 @@ SellerProductsModel _$SellerProductsModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SellerProductsModel {
-  ShopModel get shop => throw _privateConstructorUsedError;
   @JsonKey(name: "section_products")
   SectionProductsModel get sectionProducts =>
       throw _privateConstructorUsedError;
@@ -40,11 +39,9 @@ abstract class $SellerProductsModelCopyWith<$Res> {
       _$SellerProductsModelCopyWithImpl<$Res, SellerProductsModel>;
   @useResult
   $Res call(
-      {ShopModel shop,
-      @JsonKey(name: "section_products") SectionProductsModel sectionProducts,
+      {@JsonKey(name: "section_products") SectionProductsModel sectionProducts,
       @JsonKey(name: 'price_range') PriceRangeModel priceRange});
 
-  $ShopModelCopyWith<$Res> get shop;
   $SectionProductsModelCopyWith<$Res> get sectionProducts;
   $PriceRangeModelCopyWith<$Res> get priceRange;
 }
@@ -62,15 +59,10 @@ class _$SellerProductsModelCopyWithImpl<$Res, $Val extends SellerProductsModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? shop = null,
     Object? sectionProducts = null,
     Object? priceRange = null,
   }) {
     return _then(_value.copyWith(
-      shop: null == shop
-          ? _value.shop
-          : shop // ignore: cast_nullable_to_non_nullable
-              as ShopModel,
       sectionProducts: null == sectionProducts
           ? _value.sectionProducts
           : sectionProducts // ignore: cast_nullable_to_non_nullable
@@ -80,14 +72,6 @@ class _$SellerProductsModelCopyWithImpl<$Res, $Val extends SellerProductsModel>
           : priceRange // ignore: cast_nullable_to_non_nullable
               as PriceRangeModel,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ShopModelCopyWith<$Res> get shop {
-    return $ShopModelCopyWith<$Res>(_value.shop, (value) {
-      return _then(_value.copyWith(shop: value) as $Val);
-    });
   }
 
   @override
@@ -116,12 +100,9 @@ abstract class _$$_SellerProductsModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ShopModel shop,
-      @JsonKey(name: "section_products") SectionProductsModel sectionProducts,
+      {@JsonKey(name: "section_products") SectionProductsModel sectionProducts,
       @JsonKey(name: 'price_range') PriceRangeModel priceRange});
 
-  @override
-  $ShopModelCopyWith<$Res> get shop;
   @override
   $SectionProductsModelCopyWith<$Res> get sectionProducts;
   @override
@@ -139,15 +120,10 @@ class __$$_SellerProductsModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? shop = null,
     Object? sectionProducts = null,
     Object? priceRange = null,
   }) {
     return _then(_$_SellerProductsModel(
-      shop: null == shop
-          ? _value.shop
-          : shop // ignore: cast_nullable_to_non_nullable
-              as ShopModel,
       sectionProducts: null == sectionProducts
           ? _value.sectionProducts
           : sectionProducts // ignore: cast_nullable_to_non_nullable
@@ -165,16 +141,13 @@ class __$$_SellerProductsModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_SellerProductsModel extends _SellerProductsModel {
   _$_SellerProductsModel(
-      {required this.shop,
-      @JsonKey(name: "section_products") required this.sectionProducts,
+      {@JsonKey(name: "section_products") required this.sectionProducts,
       @JsonKey(name: 'price_range') required this.priceRange})
       : super._();
 
   factory _$_SellerProductsModel.fromJson(Map<String, dynamic> json) =>
       _$$_SellerProductsModelFromJson(json);
 
-  @override
-  final ShopModel shop;
   @override
   @JsonKey(name: "section_products")
   final SectionProductsModel sectionProducts;
@@ -184,7 +157,7 @@ class _$_SellerProductsModel extends _SellerProductsModel {
 
   @override
   String toString() {
-    return 'SellerProductsModel(shop: $shop, sectionProducts: $sectionProducts, priceRange: $priceRange)';
+    return 'SellerProductsModel(sectionProducts: $sectionProducts, priceRange: $priceRange)';
   }
 
   @override
@@ -192,7 +165,6 @@ class _$_SellerProductsModel extends _SellerProductsModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SellerProductsModel &&
-            (identical(other.shop, shop) || other.shop == shop) &&
             (identical(other.sectionProducts, sectionProducts) ||
                 other.sectionProducts == sectionProducts) &&
             (identical(other.priceRange, priceRange) ||
@@ -201,8 +173,7 @@ class _$_SellerProductsModel extends _SellerProductsModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, shop, sectionProducts, priceRange);
+  int get hashCode => Object.hash(runtimeType, sectionProducts, priceRange);
 
   @JsonKey(ignore: true)
   @override
@@ -221,8 +192,7 @@ class _$_SellerProductsModel extends _SellerProductsModel {
 
 abstract class _SellerProductsModel extends SellerProductsModel {
   factory _SellerProductsModel(
-      {required final ShopModel shop,
-      @JsonKey(name: "section_products")
+      {@JsonKey(name: "section_products")
       required final SectionProductsModel sectionProducts,
       @JsonKey(name: 'price_range')
       required final PriceRangeModel priceRange}) = _$_SellerProductsModel;
@@ -231,8 +201,6 @@ abstract class _SellerProductsModel extends SellerProductsModel {
   factory _SellerProductsModel.fromJson(Map<String, dynamic> json) =
       _$_SellerProductsModel.fromJson;
 
-  @override
-  ShopModel get shop;
   @override
   @JsonKey(name: "section_products")
   SectionProductsModel get sectionProducts;

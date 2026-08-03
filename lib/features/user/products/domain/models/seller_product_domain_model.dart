@@ -4,14 +4,12 @@ import 'package:flutter_tdd/features/user/products/domain/models/product_card.da
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 
 class SellerProductDomainModel extends BaseDomainModel {
-  final Shop shop;
   final SellerSectionProductModel sectionProductModel;
 
   final PriceRange priceRange;
 
   SellerProductDomainModel({
     required this.sectionProductModel,
-    required this.shop,
     required this.priceRange,
   });
 }

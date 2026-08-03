@@ -8,5 +8,5 @@ import 'package:flutter_tdd/features/user/search/domain/entities/search_result_p
 abstract class BestSellersRepository {
   Future<Either<Failure, List<ShopCardDomainModel>>> getShop(ShopsParams param);
 
-  Future<Either<Failure, List<Shop>>> getPharmacies(ShopsParams param);
+  Future<Either<Failure, List<ShopCardDomainModel>>> getPharmacies(ShopsParams param);
 }

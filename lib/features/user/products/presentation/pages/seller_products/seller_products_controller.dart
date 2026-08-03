@@ -8,8 +8,11 @@ class SellerProductsController {
       PagingController(firstPageKey: 1);
   final PagingController<int, BrandDomainModel> brandsPagingController =
       PagingController(firstPageKey: 1);
+  final PagingController<int, ShopCategory> categoriesPagingController =
+      PagingController(firstPageKey: 1);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
   final GenericBloc<bool> isLoadingNextPage = GenericBloc<bool>(false);
+  final GenericBloc<bool> refreshCategories = GenericBloc<bool>(false);
   final GenericBloc<ShopCategory?> categoryCubit =
       GenericBloc<ShopCategory?>(null);
   final GenericBloc<Shop?> shopCubit = GenericBloc<Shop?>(null);
@@ -61,14 +64,55 @@ class SellerProductsController {
     shopId = id;
     getCartData();
     getProducts(1, refresh: false);
-
+    getBrands(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
       getProducts(pageKey);
     });
-    getBrands(1, refresh: false);
     brandsPagingController.addPageRequestListener((pageKey) {
       getBrands(pageKey);
     });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _fetchShopDetails(fromRemote: false);
+      _fetchShopDetails();
+      _getCategories();
+    });
+  }
+
+  Future<void> _fetchShopDetails({bool fromRemote = true}) async {
+    var data = await GetShopDetails()
+        .call(ShopIdParams(shopId: shopId, refresh: fromRemote));
+    if (data != null) {
+      shopCubit.onUpdateData(data);
+    }
+  }
+
+  void _getCategories() {
+    getShopCategories(1, refresh: false);
+    categoriesPagingController.addPageRequestListener((pageKey) {
+      getShopCategories(pageKey);
+    });
+  }
+
+  Future<void> getShopCategories(int page, {bool refresh = true}) async {
+    ShopCategoryParams params = ShopCategoryParams(
+      shopId: shopId,
+      paginParams: GenericPaginateParams(
+        currentPage: page,
+        pageSize: pageSize,
+        refresh: refresh,
+      ),
+    );
+    List<ShopCategory> data = await GetShopCategories().call(params);
+    final isLastPage = data.length < pageSize;
+    if (page == 1) {
+      categoriesPagingController.itemList = [];
+      refreshCategories.onUpdateData(true);
+    }
+    if (isLastPage) {
+      categoriesPagingController.appendLastPage(data);
+    } else {
+      categoriesPagingController.appendPage(data, page + 1);
+    }
   }
 
   Future<void> getProducts(int page, {bool refresh = true}) async {
@@ -77,9 +121,6 @@ class SellerProductsController {
     var result = await GetSellerProducts().call(params);
     isLoadingNextPage.onUpdateData(false);
     allSellerData = result;
-    if (shopCubit.state.data == null && result != null) {
-      shopCubit.onUpdateData(result.shop);
-    }
     updateRangeValue(result);
     final List<ProductCard> data =
         result?.sectionProductModel.products ?? <ProductCard>[];

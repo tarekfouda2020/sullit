@@ -67,9 +67,9 @@ class _PharmaciesListState extends State<PharmaciesList> {
             Expanded(
               child: CustomRefreshIndicatorWidget(
                 onRefresh: () => controller.getPharmacies(1),
-                child: PagedListView<int, Shop>(
+                child: PagedListView<int, ShopCardDomainModel>(
                   pagingController: controller.pagingController,
-                  builderDelegate: PagedChildBuilderDelegate<Shop>(
+                  builderDelegate: PagedChildBuilderDelegate<ShopCardDomainModel>(
                     itemBuilder: (_, item, index) {
                       return PharmacyCardWidget(
                         shop: item,

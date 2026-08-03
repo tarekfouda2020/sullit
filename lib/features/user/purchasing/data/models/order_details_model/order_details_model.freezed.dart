@@ -14,6 +14,324 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+OrderProductModel _$OrderProductModelFromJson(Map<String, dynamic> json) {
+  return _OrderProductModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OrderProductModel {
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  @JsonKey(name: 'type_label')
+  String get typeLabel => throw _privateConstructorUsedError;
+  String get unit => throw _privateConstructorUsedError;
+  String get barcode => throw _privateConstructorUsedError;
+  double get rating => throw _privateConstructorUsedError;
+  @JsonKey(name: 'thumbnail_img')
+  String get thumbnailImage => throw _privateConstructorUsedError;
+  @JsonKey(name: 'currency_symbol')
+  String get currencySymbol => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OrderProductModelCopyWith<OrderProductModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OrderProductModelCopyWith<$Res> {
+  factory $OrderProductModelCopyWith(
+          OrderProductModel value, $Res Function(OrderProductModel) then) =
+      _$OrderProductModelCopyWithImpl<$Res, OrderProductModel>;
+  @useResult
+  $Res call(
+      {int id,
+      String name,
+      String type,
+      @JsonKey(name: 'type_label') String typeLabel,
+      String unit,
+      String barcode,
+      double rating,
+      @JsonKey(name: 'thumbnail_img') String thumbnailImage,
+      @JsonKey(name: 'currency_symbol') String currencySymbol});
+}
+
+/// @nodoc
+class _$OrderProductModelCopyWithImpl<$Res, $Val extends OrderProductModel>
+    implements $OrderProductModelCopyWith<$Res> {
+  _$OrderProductModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? type = null,
+    Object? typeLabel = null,
+    Object? unit = null,
+    Object? barcode = null,
+    Object? rating = null,
+    Object? thumbnailImage = null,
+    Object? currencySymbol = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      typeLabel: null == typeLabel
+          ? _value.typeLabel
+          : typeLabel // ignore: cast_nullable_to_non_nullable
+              as String,
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String,
+      barcode: null == barcode
+          ? _value.barcode
+          : barcode // ignore: cast_nullable_to_non_nullable
+              as String,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double,
+      thumbnailImage: null == thumbnailImage
+          ? _value.thumbnailImage
+          : thumbnailImage // ignore: cast_nullable_to_non_nullable
+              as String,
+      currencySymbol: null == currencySymbol
+          ? _value.currencySymbol
+          : currencySymbol // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_OrderProductModelCopyWith<$Res>
+    implements $OrderProductModelCopyWith<$Res> {
+  factory _$$_OrderProductModelCopyWith(_$_OrderProductModel value,
+          $Res Function(_$_OrderProductModel) then) =
+      __$$_OrderProductModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      String name,
+      String type,
+      @JsonKey(name: 'type_label') String typeLabel,
+      String unit,
+      String barcode,
+      double rating,
+      @JsonKey(name: 'thumbnail_img') String thumbnailImage,
+      @JsonKey(name: 'currency_symbol') String currencySymbol});
+}
+
+/// @nodoc
+class __$$_OrderProductModelCopyWithImpl<$Res>
+    extends _$OrderProductModelCopyWithImpl<$Res, _$_OrderProductModel>
+    implements _$$_OrderProductModelCopyWith<$Res> {
+  __$$_OrderProductModelCopyWithImpl(
+      _$_OrderProductModel _value, $Res Function(_$_OrderProductModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? type = null,
+    Object? typeLabel = null,
+    Object? unit = null,
+    Object? barcode = null,
+    Object? rating = null,
+    Object? thumbnailImage = null,
+    Object? currencySymbol = null,
+  }) {
+    return _then(_$_OrderProductModel(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      typeLabel: null == typeLabel
+          ? _value.typeLabel
+          : typeLabel // ignore: cast_nullable_to_non_nullable
+              as String,
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String,
+      barcode: null == barcode
+          ? _value.barcode
+          : barcode // ignore: cast_nullable_to_non_nullable
+              as String,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double,
+      thumbnailImage: null == thumbnailImage
+          ? _value.thumbnailImage
+          : thumbnailImage // ignore: cast_nullable_to_non_nullable
+              as String,
+      currencySymbol: null == currencySymbol
+          ? _value.currencySymbol
+          : currencySymbol // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_OrderProductModel extends _OrderProductModel {
+  const _$_OrderProductModel(
+      {required this.id,
+      required this.name,
+      required this.type,
+      @JsonKey(name: 'type_label') required this.typeLabel,
+      required this.unit,
+      required this.barcode,
+      required this.rating,
+      @JsonKey(name: 'thumbnail_img') required this.thumbnailImage,
+      @JsonKey(name: 'currency_symbol') required this.currencySymbol})
+      : super._();
+
+  factory _$_OrderProductModel.fromJson(Map<String, dynamic> json) =>
+      _$$_OrderProductModelFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+  @override
+  final String type;
+  @override
+  @JsonKey(name: 'type_label')
+  final String typeLabel;
+  @override
+  final String unit;
+  @override
+  final String barcode;
+  @override
+  final double rating;
+  @override
+  @JsonKey(name: 'thumbnail_img')
+  final String thumbnailImage;
+  @override
+  @JsonKey(name: 'currency_symbol')
+  final String currencySymbol;
+
+  @override
+  String toString() {
+    return 'OrderProductModel(id: $id, name: $name, type: $type, typeLabel: $typeLabel, unit: $unit, barcode: $barcode, rating: $rating, thumbnailImage: $thumbnailImage, currencySymbol: $currencySymbol)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OrderProductModel &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.typeLabel, typeLabel) ||
+                other.typeLabel == typeLabel) &&
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.barcode, barcode) || other.barcode == barcode) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.thumbnailImage, thumbnailImage) ||
+                other.thumbnailImage == thumbnailImage) &&
+            (identical(other.currencySymbol, currencySymbol) ||
+                other.currencySymbol == currencySymbol));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name, type, typeLabel, unit,
+      barcode, rating, thumbnailImage, currencySymbol);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OrderProductModelCopyWith<_$_OrderProductModel> get copyWith =>
+      __$$_OrderProductModelCopyWithImpl<_$_OrderProductModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_OrderProductModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _OrderProductModel extends OrderProductModel {
+  const factory _OrderProductModel(
+      {required final int id,
+      required final String name,
+      required final String type,
+      @JsonKey(name: 'type_label') required final String typeLabel,
+      required final String unit,
+      required final String barcode,
+      required final double rating,
+      @JsonKey(name: 'thumbnail_img') required final String thumbnailImage,
+      @JsonKey(name: 'currency_symbol')
+      required final String currencySymbol}) = _$_OrderProductModel;
+  const _OrderProductModel._() : super._();
+
+  factory _OrderProductModel.fromJson(Map<String, dynamic> json) =
+      _$_OrderProductModel.fromJson;
+
+  @override
+  int get id;
+  @override
+  String get name;
+  @override
+  String get type;
+  @override
+  @JsonKey(name: 'type_label')
+  String get typeLabel;
+  @override
+  String get unit;
+  @override
+  String get barcode;
+  @override
+  double get rating;
+  @override
+  @JsonKey(name: 'thumbnail_img')
+  String get thumbnailImage;
+  @override
+  @JsonKey(name: 'currency_symbol')
+  String get currencySymbol;
+  @override
+  @JsonKey(ignore: true)
+  _$$_OrderProductModelCopyWith<_$_OrderProductModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 OrderDetailsModel _$OrderDetailsModelFromJson(Map<String, dynamic> json) {
   return _OrderDetailsModel.fromJson(json);
 }
@@ -21,7 +339,7 @@ OrderDetailsModel _$OrderDetailsModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$OrderDetailsModel {
   int get id => throw _privateConstructorUsedError;
-  ProductModel? get product => throw _privateConstructorUsedError;
+  OrderProductModel? get product => throw _privateConstructorUsedError;
   String get variation => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
   @JsonKey(name: 'available_return_qty')
@@ -61,7 +379,7 @@ abstract class $OrderDetailsModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      ProductModel? product,
+      OrderProductModel? product,
       String variation,
       int quantity,
       @JsonKey(name: 'available_return_qty') int availableReturnQty,
@@ -79,7 +397,7 @@ abstract class $OrderDetailsModelCopyWith<$Res> {
       @JsonKey(name: 'insurance_coverage_percentage')
       String? insuranceCoveragePercentage});
 
-  $ProductModelCopyWith<$Res>? get product;
+  $OrderProductModelCopyWith<$Res>? get product;
   $ReviewsModelCopyWith<$Res>? get review;
 }
 
@@ -122,7 +440,7 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
       product: freezed == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
-              as ProductModel?,
+              as OrderProductModel?,
       variation: null == variation
           ? _value.variation
           : variation // ignore: cast_nullable_to_non_nullable
@@ -188,12 +506,12 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $ProductModelCopyWith<$Res>? get product {
+  $OrderProductModelCopyWith<$Res>? get product {
     if (_value.product == null) {
       return null;
     }
 
-    return $ProductModelCopyWith<$Res>(_value.product!, (value) {
+    return $OrderProductModelCopyWith<$Res>(_value.product!, (value) {
       return _then(_value.copyWith(product: value) as $Val);
     });
   }
@@ -221,7 +539,7 @@ abstract class _$$_OrderDetailsModelCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      ProductModel? product,
+      OrderProductModel? product,
       String variation,
       int quantity,
       @JsonKey(name: 'available_return_qty') int availableReturnQty,
@@ -240,7 +558,7 @@ abstract class _$$_OrderDetailsModelCopyWith<$Res>
       String? insuranceCoveragePercentage});
 
   @override
-  $ProductModelCopyWith<$Res>? get product;
+  $OrderProductModelCopyWith<$Res>? get product;
   @override
   $ReviewsModelCopyWith<$Res>? get review;
 }
@@ -282,7 +600,7 @@ class __$$_OrderDetailsModelCopyWithImpl<$Res>
       product: freezed == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
-              as ProductModel?,
+              as OrderProductModel?,
       variation: null == variation
           ? _value.variation
           : variation // ignore: cast_nullable_to_non_nullable
@@ -378,7 +696,7 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
   @override
   final int id;
   @override
-  final ProductModel? product;
+  final OrderProductModel? product;
   @override
   final String variation;
   @override
@@ -501,7 +819,7 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
 abstract class _OrderDetailsModel extends OrderDetailsModel {
   const factory _OrderDetailsModel(
       {required final int id,
-      final ProductModel? product,
+      final OrderProductModel? product,
       required final String variation,
       required final int quantity,
       @JsonKey(name: 'available_return_qty')
@@ -528,7 +846,7 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
   @override
   int get id;
   @override
-  ProductModel? get product;
+  OrderProductModel? get product;
   @override
   String get variation;
   @override

@@ -9,6 +9,7 @@ import 'package:flutter_tdd/features/user/purchasing/domain/enum/track_order_enu
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_discount_domain.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_driver_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_card_domain_model.dart';
 
 import '../enum/order_payment_type.dart';
 
@@ -80,6 +81,7 @@ class Orders extends BaseDomainModel {
   String? requestedByLabel;
   String? pharmacyReply;
   PharmacyBranchDomainModel? branch;
+  ShopCardDomainModel? shop;
 
 
   Orders({
@@ -149,6 +151,7 @@ class Orders extends BaseDomainModel {
     this.requestedByLabel,
     this.pharmacyReply,
     this.branch,
+    this.shop,
   });
 
   int totalItemsCount() => orderDetails.fold(

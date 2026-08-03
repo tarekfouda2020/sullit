@@ -31,7 +31,6 @@ mixin _$ShopModel {
   String get shopTypeLabel => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<String>? get sliders => throw _privateConstructorUsedError;
-  List<ShopCategoryModel>? get categories => throw _privateConstructorUsedError;
   @JsonKey(name: 'insurance_companies')
   List<InsuranceCompanyModel>? get insuranceCompanies =>
       throw _privateConstructorUsedError;
@@ -40,8 +39,6 @@ mixin _$ShopModel {
   String get logo => throw _privateConstructorUsedError;
   @JsonKey(name: 'package_invalid_at')
   String get packageInvalidAt => throw _privateConstructorUsedError;
-  int? get products => throw _privateConstructorUsedError;
-  int get orders => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
@@ -73,15 +70,12 @@ abstract class $ShopModelCopyWith<$Res> {
       @JsonKey(name: 'type_label') String shopTypeLabel,
       String name,
       List<String>? sliders,
-      List<ShopCategoryModel>? categories,
       @JsonKey(name: 'insurance_companies')
       List<InsuranceCompanyModel>? insuranceCompanies,
       String? title,
       String? description,
       String logo,
       @JsonKey(name: 'package_invalid_at') String packageInvalidAt,
-      int? products,
-      int orders,
       String? address,
       String? email,
       String? phone,
@@ -117,14 +111,11 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
     Object? shopTypeLabel = null,
     Object? name = null,
     Object? sliders = freezed,
-    Object? categories = freezed,
     Object? insuranceCompanies = freezed,
     Object? title = freezed,
     Object? description = freezed,
     Object? logo = null,
     Object? packageInvalidAt = null,
-    Object? products = freezed,
-    Object? orders = null,
     Object? address = freezed,
     Object? email = freezed,
     Object? phone = freezed,
@@ -166,10 +157,6 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
           ? _value.sliders
           : sliders // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      categories: freezed == categories
-          ? _value.categories
-          : categories // ignore: cast_nullable_to_non_nullable
-              as List<ShopCategoryModel>?,
       insuranceCompanies: freezed == insuranceCompanies
           ? _value.insuranceCompanies
           : insuranceCompanies // ignore: cast_nullable_to_non_nullable
@@ -190,14 +177,6 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
           ? _value.packageInvalidAt
           : packageInvalidAt // ignore: cast_nullable_to_non_nullable
               as String,
-      products: freezed == products
-          ? _value.products
-          : products // ignore: cast_nullable_to_non_nullable
-              as int?,
-      orders: null == orders
-          ? _value.orders
-          : orders // ignore: cast_nullable_to_non_nullable
-              as int,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -273,15 +252,12 @@ abstract class _$$_ShopModelCopyWith<$Res> implements $ShopModelCopyWith<$Res> {
       @JsonKey(name: 'type_label') String shopTypeLabel,
       String name,
       List<String>? sliders,
-      List<ShopCategoryModel>? categories,
       @JsonKey(name: 'insurance_companies')
       List<InsuranceCompanyModel>? insuranceCompanies,
       String? title,
       String? description,
       String logo,
       @JsonKey(name: 'package_invalid_at') String packageInvalidAt,
-      int? products,
-      int orders,
       String? address,
       String? email,
       String? phone,
@@ -316,14 +292,11 @@ class __$$_ShopModelCopyWithImpl<$Res>
     Object? shopTypeLabel = null,
     Object? name = null,
     Object? sliders = freezed,
-    Object? categories = freezed,
     Object? insuranceCompanies = freezed,
     Object? title = freezed,
     Object? description = freezed,
     Object? logo = null,
     Object? packageInvalidAt = null,
-    Object? products = freezed,
-    Object? orders = null,
     Object? address = freezed,
     Object? email = freezed,
     Object? phone = freezed,
@@ -365,10 +338,6 @@ class __$$_ShopModelCopyWithImpl<$Res>
           ? _value._sliders
           : sliders // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      categories: freezed == categories
-          ? _value._categories
-          : categories // ignore: cast_nullable_to_non_nullable
-              as List<ShopCategoryModel>?,
       insuranceCompanies: freezed == insuranceCompanies
           ? _value._insuranceCompanies
           : insuranceCompanies // ignore: cast_nullable_to_non_nullable
@@ -389,14 +358,6 @@ class __$$_ShopModelCopyWithImpl<$Res>
           ? _value.packageInvalidAt
           : packageInvalidAt // ignore: cast_nullable_to_non_nullable
               as String,
-      products: freezed == products
-          ? _value.products
-          : products // ignore: cast_nullable_to_non_nullable
-              as int?,
-      orders: null == orders
-          ? _value.orders
-          : orders // ignore: cast_nullable_to_non_nullable
-              as int,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -457,15 +418,12 @@ class _$_ShopModel extends _ShopModel {
       @JsonKey(name: 'type_label') required this.shopTypeLabel,
       required this.name,
       final List<String>? sliders,
-      final List<ShopCategoryModel>? categories,
       @JsonKey(name: 'insurance_companies')
       final List<InsuranceCompanyModel>? insuranceCompanies,
       this.title,
       this.description,
       required this.logo,
       @JsonKey(name: 'package_invalid_at') required this.packageInvalidAt,
-      required this.products,
-      required this.orders,
       this.address,
       required this.email,
       required this.phone,
@@ -478,7 +436,6 @@ class _$_ShopModel extends _ShopModel {
       required this.follow,
       this.pickup})
       : _sliders = sliders,
-        _categories = categories,
         _insuranceCompanies = insuranceCompanies,
         super._();
 
@@ -511,16 +468,6 @@ class _$_ShopModel extends _ShopModel {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<ShopCategoryModel>? _categories;
-  @override
-  List<ShopCategoryModel>? get categories {
-    final value = _categories;
-    if (value == null) return null;
-    if (_categories is EqualUnmodifiableListView) return _categories;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
   final List<InsuranceCompanyModel>? _insuranceCompanies;
   @override
   @JsonKey(name: 'insurance_companies')
@@ -542,10 +489,6 @@ class _$_ShopModel extends _ShopModel {
   @override
   @JsonKey(name: 'package_invalid_at')
   final String packageInvalidAt;
-  @override
-  final int? products;
-  @override
-  final int orders;
   @override
   final String? address;
   @override
@@ -571,7 +514,7 @@ class _$_ShopModel extends _ShopModel {
 
   @override
   String toString() {
-    return 'ShopModel(id: $id, userId: $userId, hasBranches: $hasBranches, shopType: $shopType, shopTypeLabel: $shopTypeLabel, name: $name, sliders: $sliders, categories: $categories, insuranceCompanies: $insuranceCompanies, title: $title, description: $description, logo: $logo, packageInvalidAt: $packageInvalidAt, products: $products, orders: $orders, address: $address, email: $email, phone: $phone, facebook: $facebook, google: $google, twitter: $twitter, instagram: $instagram, youtube: $youtube, rating: $rating, follow: $follow, pickup: $pickup)';
+    return 'ShopModel(id: $id, userId: $userId, hasBranches: $hasBranches, shopType: $shopType, shopTypeLabel: $shopTypeLabel, name: $name, sliders: $sliders, insuranceCompanies: $insuranceCompanies, title: $title, description: $description, logo: $logo, packageInvalidAt: $packageInvalidAt, address: $address, email: $email, phone: $phone, facebook: $facebook, google: $google, twitter: $twitter, instagram: $instagram, youtube: $youtube, rating: $rating, follow: $follow, pickup: $pickup)';
   }
 
   @override
@@ -590,8 +533,6 @@ class _$_ShopModel extends _ShopModel {
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._sliders, _sliders) &&
             const DeepCollectionEquality()
-                .equals(other._categories, _categories) &&
-            const DeepCollectionEquality()
                 .equals(other._insuranceCompanies, _insuranceCompanies) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -599,9 +540,6 @@ class _$_ShopModel extends _ShopModel {
             (identical(other.logo, logo) || other.logo == logo) &&
             (identical(other.packageInvalidAt, packageInvalidAt) ||
                 other.packageInvalidAt == packageInvalidAt) &&
-            (identical(other.products, products) ||
-                other.products == products) &&
-            (identical(other.orders, orders) || other.orders == orders) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone) &&
@@ -628,14 +566,11 @@ class _$_ShopModel extends _ShopModel {
         shopTypeLabel,
         name,
         const DeepCollectionEquality().hash(_sliders),
-        const DeepCollectionEquality().hash(_categories),
         const DeepCollectionEquality().hash(_insuranceCompanies),
         title,
         description,
         logo,
         packageInvalidAt,
-        products,
-        orders,
         address,
         email,
         phone,
@@ -672,7 +607,6 @@ abstract class _ShopModel extends ShopModel {
       @JsonKey(name: 'type_label') required final String shopTypeLabel,
       required final String name,
       final List<String>? sliders,
-      final List<ShopCategoryModel>? categories,
       @JsonKey(name: 'insurance_companies')
       final List<InsuranceCompanyModel>? insuranceCompanies,
       final String? title,
@@ -680,8 +614,6 @@ abstract class _ShopModel extends ShopModel {
       required final String logo,
       @JsonKey(name: 'package_invalid_at')
       required final String packageInvalidAt,
-      required final int? products,
-      required final int orders,
       final String? address,
       required final String? email,
       required final String? phone,
@@ -717,8 +649,6 @@ abstract class _ShopModel extends ShopModel {
   @override
   List<String>? get sliders;
   @override
-  List<ShopCategoryModel>? get categories;
-  @override
   @JsonKey(name: 'insurance_companies')
   List<InsuranceCompanyModel>? get insuranceCompanies;
   @override
@@ -730,10 +660,6 @@ abstract class _ShopModel extends ShopModel {
   @override
   @JsonKey(name: 'package_invalid_at')
   String get packageInvalidAt;
-  @override
-  int? get products;
-  @override
-  int get orders;
   @override
   String? get address;
   @override

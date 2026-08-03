@@ -22,7 +22,7 @@ class ImplBestSellersRepository extends BestSellersRepository
   }
 
   @override
-  Future<Either<Failure, List<Shop>>> getPharmacies(ShopsParams param) async {
+  Future<Either<Failure, List<ShopCardDomainModel>>> getPharmacies(ShopsParams param) async {
     var result = await dataSources.getPharmacies(param);
     return toDomainResultList(result);
   }
