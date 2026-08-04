@@ -40,19 +40,37 @@ class _AliceFloatingButtonState extends State<AliceFloatingButton> {
           _updatePosition(details.delta.dx, details.delta.dy);
         },
         onTap: () => HttpTrackingInterceptor.instance.showAlice(),
-        child: Container(
-          height: buttonSize,
-          width: buttonSize,
-          alignment: Alignment.center,
-          decoration: const BoxDecoration(
-            color: Colors.black,
-            shape: BoxShape.circle,
-          ),
-          child: const Icon(
-            Icons.network_check,
-            color: Colors.white,
-            size: 20,
-          ),
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+              height: buttonSize,
+              width: buttonSize,
+              alignment: Alignment.center,
+              decoration:  BoxDecoration(
+                color: Colors.green.withAlpha(200),
+                shape: BoxShape.circle,
+              ),
+              child: StreamBuilder<int>(
+                stream: HttpTrackingInterceptor.instance.requestsCountStream,
+                initialData: HttpTrackingInterceptor.instance.requestsCount,
+                builder: (context, snapshot) {
+                  final count = snapshot.data ?? 0;
+                  if (count == 0) return const SizedBox.shrink();
+                  return Text(
+                     '$count',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      height: 1,
+                    ),
+                    textAlign: TextAlign.center,
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
