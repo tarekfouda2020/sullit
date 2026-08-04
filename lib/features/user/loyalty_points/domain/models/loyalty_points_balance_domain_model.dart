@@ -4,7 +4,6 @@ class LoyaltyPointsBalanceDomainModel extends BaseDomainModel {
   int points;
   String amount;
 
-
   LoyaltyPointsBalanceDomainModel({
     required this.points,
     required this.amount,

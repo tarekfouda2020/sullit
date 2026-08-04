@@ -8,8 +8,7 @@ class Notifications extends StatefulWidget {
 }
 
 class _NotificationsState extends State<Notifications> {
-
-   final NotificationsController  controller = NotificationsController();
+  final NotificationsController controller = NotificationsController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,8 @@ class _NotificationsState extends State<Notifications> {
           padding: Dimens.paddingAll15PX,
           pagingController: controller.pagingController,
           builderDelegate: PagedChildBuilderDelegate<NotificationDomainModel>(
-            firstPageProgressIndicatorBuilder: (_) => const BuildNotifiesLoading(),
+            firstPageProgressIndicatorBuilder: (_) =>
+                const BuildNotifiesLoading(),
             itemBuilder: (_, item, index) => BuildNotificationsItem(
               notification: item,
               controller: controller,

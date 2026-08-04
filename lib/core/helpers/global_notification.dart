@@ -73,14 +73,21 @@ class GlobalNotification {
           AutoRouter.of(context).push(const LoginRoute());
         }
         var itemType = message.data['item_type'];
-        var isOrder = itemType ==  NotifyEnum.order.getValue();
-        var updatedFromDashBoard = itemType ==  NotifyEnum.customerChangeOrderStatus.getValue();
-        if(itemType != null && (isOrder || updatedFromDashBoard) ){
-          bool isDelivered = message.data['body'].toString().split(" ").last.replaceAll(".", "") == "delivered";
+        var isOrder = itemType == NotifyEnum.order.getValue();
+        var updatedFromDashBoard =
+            itemType == NotifyEnum.customerChangeOrderStatus.getValue();
+        if (itemType != null && (isOrder || updatedFromDashBoard)) {
+          bool isDelivered = message.data['body']
+                  .toString()
+                  .split(" ")
+                  .last
+                  .replaceAll(".", "") ==
+              "delivered";
           // OrdersHelper.instance.getHome(setLoading: false);
           var orderId = int.tryParse(message.data['item_type_id']);
-          if( orderId != null){
-            OrdersHelper.instance.updateOrderInHomeFromOrderDetails(id: orderId);
+          if (orderId != null) {
+            OrdersHelper.instance
+                .updateOrderInHomeFromOrderDetails(id: orderId);
             OrdersHelper.instance.updateTrackOrderFromFcm(orderId);
           }
           // if(isDelivered){
@@ -97,7 +104,7 @@ class GlobalNotification {
       });
       FirebaseMessaging.onBackgroundMessage(
           _firebaseMessagingBackgroundHandler);
-    }else{
+    } else {
       GlobalState.instance.set(GlobalStateKeys.notificationGranted, false);
     }
   }
@@ -115,7 +122,7 @@ class GlobalNotification {
 
   Future<void> _showLocalNotification(RemoteMessage? message) async {
     if (message == null) return;
-    if (message.notification == null) return ;
+    if (message.notification == null) return;
     final android = AndroidNotificationDetails(
       "${DateTime.now()}",
       "Default",
@@ -147,11 +154,12 @@ class GlobalNotification {
       AutoRouter.of(context).push(const SupportRoute());
     } else if (type == NotifyEnum.order.getValue()) {
       var context = getIt<GlobalContext>().context();
-      AutoRouter.of(context).push(OrderSummaryRoute(orderId: id));
-    } else if (type == NotifyEnum.emailVerified.getValue() || type == NotifyEnum.newLogin.getValue()) {
+      AutoRouter.of(context).push(OrderSummaryPageRoute(orderId: id));
+    } else if (type == NotifyEnum.emailVerified.getValue() ||
+        type == NotifyEnum.newLogin.getValue()) {
       var context = getIt<GlobalContext>().context();
       AutoRouter.of(context).push(const LoginRoute());
-    }else if(isShareHolderOffer){
+    } else if (isShareHolderOffer) {
       var context = getIt<GlobalContext>().context();
       AutoRouter.of(context).push(HomeRoute(index: 3));
     }

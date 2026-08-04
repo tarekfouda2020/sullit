@@ -54,7 +54,8 @@ class BuildOrderFilter extends StatelessWidget {
                         hint: "Payment Status",
                         fillColor: context.colors.white,
                         itemAsString: (u) => u.name,
-                        margin: const EdgeInsets.symmetric(vertical: Dimens.dp10),
+                        margin:
+                            const EdgeInsets.symmetric(vertical: Dimens.dp10),
                         selectedItem: sellerOrdersController.paymentFilterModel,
                         validate: (value) => validateDropDown(context),
                         data: const [
@@ -73,7 +74,8 @@ class BuildOrderFilter extends StatelessWidget {
                         hint: "Deliver Status",
                         fillColor: context.colors.white,
                         itemAsString: (u) => u.name,
-                        margin: const EdgeInsets.symmetric(vertical: Dimens.dp10),
+                        margin:
+                            const EdgeInsets.symmetric(vertical: Dimens.dp10),
                         selectedItem: sellerOrdersController.statusFilterModel,
                         validate: (value) => validateDropDown(context),
                         data: const [

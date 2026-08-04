@@ -33,8 +33,7 @@ class BuildCustomerInfo extends StatelessWidget {
           const BuildPaddingText(title: "a@a.com"),
           const BuildPaddingText(title: "+98765432"),
           const BuildPaddingText(
-              title:
-                  "Dubai mall , Egypt , Cairo , Saudi Dubai mall "),
+              title: "Dubai mall , Egypt , Cairo , Saudi Dubai mall "),
           const BuildPickupInfo(),
         ],
       ),

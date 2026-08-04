@@ -19,19 +19,34 @@ class BuildHomeView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            BuildHomeSwiper(slider: homeDomainModel.sliders, controller: controller),
+            BuildHomeSwiper(
+                slider: homeDomainModel.sliders, controller: controller),
             Gaps.vGap25,
             const AdvantagesWidget(),
             Gaps.vGap20,
-            TrackSellerOrderWidget(currentOrders:homeDomainModel.currentOrders,),
+            TrackSellerOrderWidget(
+              currentOrders: homeDomainModel.currentOrders,
+              controller: controller,
+            ),
             Gaps.vGap10,
-            BuildTopSellers(topSellers: homeDomainModel.topSellers,),
-            BuildTopCategories(categories: homeDomainModel.categories, controller: controller),
+            BuildTopSellers(
+              topSellers: homeDomainModel.topSellers,
+            ),
+            BuildTopCategories(
+                categories: homeDomainModel.categories, controller: controller),
+            PharmacyHomeSectionWidget(controller: controller),
+            Gaps.vGap16,
+            PharmSloganBannerWidget(
+              firstText: 'Have a prescription?  Get Started',
+              secondText: 'Upload Now  ',
+              onTap: () => controller.onPressAttachPrescription(context),
+            ),
+            Gaps.vGap16,
             VipOffersFormWidget(controller: controller),
             Gaps.vGap16,
             VipOffersWidget(
               onTap: () => controller.onPressSeeOffers(context),
-              buttonText: tr("seeOffers",context: context),
+              buttonText: tr("seeOffers", context: context),
               margin: EdgeInsets.zero,
             ),
             // BuildPopularProducts(
@@ -50,19 +65,22 @@ class BuildHomeView extends StatelessWidget {
             //   controller: controller,
             // ),
             if (homeDomainModel.bannersTwo.isNotEmpty) Gaps.vGap10,
-            BuildBanners(banners: homeDomainModel.bannersTwo, controller: controller),
+            BuildBanners(
+                banners: homeDomainModel.bannersTwo, controller: controller),
             Gaps.vGap16,
             NewArrivalOffersFormWidget(controller: controller),
-            if(controller.homeCubit.state.data?.shop.isNotEmpty == true)
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: BuildHeaderTitle(
-                title: tr("sellers"),
-                controller: controller,
-                onTap: () => AutoRouter.of(context).push(const BestSellersPageRoute()),
+            if (controller.homeCubit.state.data?.shop.isNotEmpty == true)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: BuildHeaderTitle(
+                  title: tr("sellers"),
+                  onTap: () =>
+                      AutoRouter.of(context).push(const BestSellersPageRoute()),
+                ),
               ),
+            SellersSectionWidget(
+              controller: controller,
             ),
-             SellersSectionWidget(controller: controller,),
             // BuildHomeNewProducts(
             //   newestProducts: homeDomainModel.newestProducts,
             //   controller: controller,
@@ -72,7 +90,8 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap16,
             OnSaleOffersFormWidget(controller: controller),
             Gaps.vGap16,
-            BuildBanners(banners: homeDomainModel.bannersOne, controller: controller),
+            BuildBanners(
+                banners: homeDomainModel.bannersOne, controller: controller),
             Gaps.vGap16,
             BestRatedOffersFormWidget(controller: controller),
             // BuildFeaturedProducts(
@@ -86,7 +105,6 @@ class BuildHomeView extends StatelessWidget {
                 controller: controller,
               ),
             Gaps.vGap20,
-
           ],
         ),
       ),

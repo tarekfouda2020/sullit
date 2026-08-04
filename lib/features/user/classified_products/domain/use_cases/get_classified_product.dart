@@ -6,8 +6,9 @@ import 'package:flutter_tdd/features/user/classified_products/domain/repository/
 
 class GetClassifiedProduct implements UseCase<CusProduct?, GenericParams> {
   @override
-  Future<CusProduct?> call(GenericParams param)async {
-    var result =await getIt<ClassifiedProductsRepository>().getClassifiedProduct(param);
+  Future<CusProduct?> call(GenericParams param) async {
+    var result =
+        await getIt<ClassifiedProductsRepository>().getClassifiedProduct(param);
     return result.fold(
       (l) => null,
       (r) => r,

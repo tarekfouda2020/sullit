@@ -7,27 +7,20 @@ part 'flash_sale_model.g.dart';
 
 @freezed
 @immutable
-class FlashSaleModel extends BaseApiModel<FlashSale> with _$FlashSaleModel{
+class FlashSaleModel extends BaseApiModel<FlashSale> with _$FlashSaleModel {
   const FlashSaleModel._();
   @JsonSerializable(explicitToJson: true)
-  const factory FlashSaleModel({
-    required int id,
-    required String title,
-    required DateTime date,
-    required String banner
-  }) = _FlashSaleModel;
-
+  const factory FlashSaleModel(
+      {required int id,
+      required String title,
+      required DateTime date,
+      required String banner}) = _FlashSaleModel;
 
   factory FlashSaleModel.fromJson(Map<String, dynamic> json) =>
       _$FlashSaleModelFromJson(json);
 
   @override
   FlashSale toDomainModel() {
-    return FlashSale(
-      id: id,
-      title: title,
-      banner: banner,
-      date: date
-    );
+    return FlashSale(id: id, title: title, banner: banner, date: date);
   }
 }

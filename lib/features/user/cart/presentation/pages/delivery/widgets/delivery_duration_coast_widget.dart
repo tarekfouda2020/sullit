@@ -13,45 +13,43 @@ class DeliveryDurationCoastWidget extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border.all(color: context.colors.greyWhite),
             borderRadius: Dimens.borderRadius5PX,
-            color: context.colors.white
-        ),
+            color: context.colors.white),
         child: Visibility(
-          visible: shipping.delivery!=null,
-          replacement: Text(shipping.deliveryMessage,
-          style: AppTextStyle.s14_w400(color: context.colors.black).copyWith(
-            height: 1.2
-          ),
+          visible: shipping.delivery != null,
+          replacement: Text(
+            shipping.deliveryMessage,
+            style: AppTextStyle.s14_w400(color: context.colors.black)
+                .copyWith(height: 1.2),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Directionality(
-                textDirection:  TextDirection.ltr,
+                textDirection: TextDirection.ltr,
                 child: Flexible(
                   child: Text(
                     shipping.delivery?.transitIn ?? "",
                     style: AppTextStyle.s14_w400(
                       color: context.colors.black,
-                    ).copyWith(
-                      height: 1.2
-                    ),
+                    ).copyWith(height: 1.2),
                   ),
                 ),
               ),
               Gaps.hGap5,
               shipping.delivery?.isShippingFree == true
-                  ?Text(
-                  shipping.delivery?.shippingCost ?? "",
-                  style: AppTextStyle.s14_w400(color: context.colors.black)).withDirhamSymbol()
-                  :DirhamPrice(
-                amount: shipping.delivery?.shippingCost ?? "",
-                currencyStyle: AppTextStyle.s16_w400(
-                  color: context.colors.black,
-                ),
-                textStyle: AppTextStyle.s14_w400(
-                  color: context.colors.black,
-                ),
-              ),
+                  ? Text(shipping.delivery?.shippingCost ?? "",
+                          style: AppTextStyle.s14_w400(
+                              color: context.colors.black))
+                      .withDirhamSymbol()
+                  : DirhamPrice(
+                      amount: shipping.delivery?.shippingCost ?? "",
+                      currencyStyle: AppTextStyle.s16_w400(
+                        color: context.colors.black,
+                      ),
+                      textStyle: AppTextStyle.s14_w400(
+                        color: context.colors.black,
+                      ),
+                    ),
             ],
           ),
         ),

@@ -18,25 +18,26 @@ class CustomInputDecoration extends InputDecoration {
 
   const CustomInputDecoration(
       {required this.lang,
-        this.labelTxt,
-        this.prefIcon,
-        this.sufIcon,
-        this.hintColor,
-        this.customFillColor,
-        this.hintStr,
-        this.enableColor,
-        this.focsColor,
-        this.borderRadius,
-        this.hintTxtStyle,
-        this.padding}) :super();
+      this.labelTxt,
+      this.prefIcon,
+      this.sufIcon,
+      this.hintColor,
+      this.customFillColor,
+      this.hintStr,
+      this.enableColor,
+      this.focsColor,
+      this.borderRadius,
+      this.hintTxtStyle,
+      this.padding})
+      : super();
 
   @override
   InputBorder get enabledBorder => OutlineInputBorder(
-    borderSide: BorderSide(
-        color: enableColor ?? AppColors.noContextInstance.borderColor,
-        width: .7),
-    borderRadius: borderRadius ?? BorderRadius.circular(30),
-  );
+        borderSide: BorderSide(
+            color: enableColor ?? AppColors.noContextInstance.borderColor,
+            width: .7),
+        borderRadius: borderRadius ?? BorderRadius.circular(30),
+      );
 
   @override
   InputBorder get focusedBorder => OutlineInputBorder(
@@ -62,8 +63,6 @@ class CustomInputDecoration extends InputDecoration {
   @override
   String? get hintText => hintStr;
 
-
-
   @override
   int? get errorMaxLines => 2;
 
@@ -71,22 +70,23 @@ class CustomInputDecoration extends InputDecoration {
   Widget? get label => labelTxt == null
       ? super.label
       : Text(
-    labelTxt ?? "",
-    style: labelStyle,
-  );
+          labelTxt ?? "",
+          style: labelStyle,
+        );
 
   @override
   TextStyle get labelStyle =>
       AppTextStyle.s12_w400(color: AppColors.noContextInstance.blackOpacity);
 
   @override
-  TextStyle? get hintStyle => hintTxtStyle ??
+  TextStyle? get hintStyle =>
+      hintTxtStyle ??
       AppTextStyle.s14_w400(color: AppColors.noContextInstance.textColor);
 
   @override
   EdgeInsetsGeometry get contentPadding =>
       // padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 10);
-      padding ??  const EdgeInsets.symmetric(horizontal: 12, vertical: 16);
+      padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 16);
 
   @override
   bool get filled => true;

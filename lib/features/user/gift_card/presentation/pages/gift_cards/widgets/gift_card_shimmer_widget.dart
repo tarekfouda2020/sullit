@@ -6,9 +6,9 @@ import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 
 class GiftCardShimmerWidget extends StatelessWidget {
   final bool isMyGiftCard;
-  
+
   const GiftCardShimmerWidget({
-    super.key, 
+    super.key,
     required this.isMyGiftCard,
   });
 
@@ -122,4 +122,3 @@ class GiftCardShimmerWidget extends StatelessWidget {
     );
   }
 }
-

@@ -7,5 +7,4 @@ const List<AutoRoute> videoRoutes = [
   AdaptiveRoute(page: YoutubeViewer),
   AdaptiveRoute(page: MotionViewer),
   AdaptiveRoute(page: VimeoViewer),
-
 ];

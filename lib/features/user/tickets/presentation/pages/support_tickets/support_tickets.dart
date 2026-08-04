@@ -19,7 +19,7 @@ class _SupportTicketsState extends State<SupportTickets> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  DefaultAppBar(title: tr("supportTickets"), showBack: true),
+      appBar: DefaultAppBar(title: tr("supportTickets"), showBack: true),
       backgroundColor: context.colors.customBackground,
       body: GenericListView(
         type: ListViewType.api,

@@ -26,8 +26,7 @@ class ImplCategoryRepository extends CategoryRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, List<Category>>> getAllCategories(
-      bool param) async {
+  Future<Either<Failure, List<Category>>> getAllCategories(bool param) async {
     var result = await dataSources.getAllCategories(param);
     return toDomainResultList(result);
   }
@@ -54,7 +53,7 @@ class ImplCategoryRepository extends CategoryRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, List<Category>>> getSideSubCats(int param)async {
+  Future<Either<Failure, List<Category>>> getSideSubCats(int param) async {
     var result = await dataSources.getSideSubCats(param);
     return toDomainResultList(result);
   }

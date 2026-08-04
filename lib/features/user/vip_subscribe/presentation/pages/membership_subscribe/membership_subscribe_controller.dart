@@ -66,7 +66,9 @@ class MembershipSubscribeController {
       pagingController.appendPage(data, nextPageKey);
       isDataLoaded.onUpdateData(true);
     }
-    pagingController.itemList?.firstWhere((element) => currentSubscription?.price == element.price).isSelected = true;
+    pagingController.itemList
+        ?.firstWhere((element) => currentSubscription?.price == element.price)
+        .isSelected = true;
   }
 
   Future<void> getWalletData({bool refresh = true}) async {
@@ -126,14 +128,15 @@ class MembershipSubscribeController {
   }
 
   void updateSelectedMemberShip(VipSubscribeDomainModel model) {
-    double currentPlanPrice = double.parse(currentSubscription?.price.replaceAll(",", "")??"0.0");
+    double currentPlanPrice =
+        double.parse(currentSubscription?.price.replaceAll(",", "") ?? "0.0");
     double selectedPlanPrice = double.parse(model.price.replaceAll(",", ""));
-    if (model.byInvite == true ) {
-      if(currentPlanPrice == selectedPlanPrice){
+    if (model.byInvite == true) {
+      if (currentPlanPrice == selectedPlanPrice) {
         CustomToast.showSnakeBar(
             "${tr('already_subscribed_tier')} (${model.name})",
             type: ToastType.info);
-      }else{
+      } else {
         showUnAvailablePlanToast();
       }
       return;
@@ -155,18 +158,20 @@ class MembershipSubscribeController {
   }
 
   bool checkCurrentPlanValidation(VipSubscribeDomainModel model) {
-    double currentPlanPrice = double.parse(currentSubscription!.price.replaceAll(",", ""));
+    double currentPlanPrice =
+        double.parse(currentSubscription!.price.replaceAll(",", ""));
     double selectedPlanPrice = double.parse(model.price.replaceAll(",", ""));
-    if (currentPlanPrice == selectedPlanPrice || currentSubscription!.byInvite == true) {
+    if (currentPlanPrice == selectedPlanPrice ||
+        currentSubscription!.byInvite == true) {
       CustomToast.showSnakeBar(
           "${tr('already_subscribed_tier')} (${model.name})",
           type: ToastType.info);
       return false;
-    }else  {
+    } else {
       CustomToast.showSimpleToast(
-          msg: "${tr('already_subscribed_with_days')} ${currentSubscription!.name} ${tr('and_still_have')} ${currentSubscription!.expiredInDays} ${tr('day_before_ending')}",
-          type: ToastType.info
-      );
+          msg:
+              "${tr('already_subscribed_with_days')} ${currentSubscription!.name} ${tr('and_still_have')} ${currentSubscription!.expiredInDays} ${tr('day_before_ending')}",
+          type: ToastType.info);
       return currentPlanPrice < selectedPlanPrice;
     }
   }
@@ -243,10 +248,8 @@ class MembershipSubscribeController {
     );
   }
 
-
-
-  void acceptTerms(bool value){
-    if(isCurrentSubscriptionSelected){
+  void acceptTerms(bool value) {
+    if (isCurrentSubscriptionSelected) {
       CustomToast.showSimpleToast(
           msg: tr("selectMembership"), type: ToastType.info);
       return;
@@ -254,9 +257,7 @@ class MembershipSubscribeController {
     termCubit.onUpdateData(value);
   }
 
-
-  bool get isCurrentSubscriptionSelected => currentSubscription?.price == _selectedSubscription.price && currentSubscription?.isExpired == false;
-
-
-
+  bool get isCurrentSubscriptionSelected =>
+      currentSubscription?.price == _selectedSubscription.price &&
+      currentSubscription?.isExpired == false;
 }

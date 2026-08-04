@@ -16,7 +16,7 @@ abstract class DioHelper {
   Dio get dio {
     // Initialize Alice tracking interceptor
     HttpTrackingInterceptor.instance.init();
-    
+
     return Dio(
         BaseOptions(
             baseUrl: ApiNames.baseUrl,

@@ -1,4 +1,5 @@
 part of 'tickets_details_widgets_imports.dart';
+
 class BuildTicketsDetailsLoading extends StatelessWidget {
   const BuildTicketsDetailsLoading({Key? key}) : super(key: key);
 
@@ -39,7 +40,7 @@ class BuildTicketsDetailsLoading extends StatelessWidget {
                     width: 100,
                     height: 10,
                   ),
-                  subtitle: const  BuildShimmerItem(
+                  subtitle: const BuildShimmerItem(
                     height: 10,
                     width: 100,
                   ),
@@ -56,10 +57,7 @@ class BuildTicketsDetailsLoading extends StatelessWidget {
                       url: '',
                     ),
                   ),
-                  trailing: const BuildShimmerItem(
-                      height: 7,
-                      width: 120
-                  ),
+                  trailing: const BuildShimmerItem(height: 7, width: 120),
                   minLeadingWidth: 10.w,
                 )),
             itemCount: 5,

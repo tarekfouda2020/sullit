@@ -6,8 +6,9 @@ class OrderDetailsSectionsTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(title,
-    style: AppTextStyle.s16_w600(color: context.colors.black),
+    return Text(
+      title,
+      style: AppTextStyle.s16_w600(color: context.colors.black),
     );
   }
 }

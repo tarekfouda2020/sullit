@@ -31,7 +31,7 @@ class BuildLoadingCategoriesSectionWidget extends StatelessWidget {
         children: [
           // Header title shimmer
           Padding(
-            padding:  const EdgeInsetsDirectional.only(start: 30 ),
+            padding: const EdgeInsetsDirectional.only(start: 30),
             child: BuildShimmerItem(
               height: 20.r,
               width: 120.r,
@@ -47,7 +47,8 @@ class BuildLoadingCategoriesSectionWidget extends StatelessWidget {
                 5, // Show 5 shimmer subcategory items
                 (index) {
                   return Padding(
-                    padding:  EdgeInsetsDirectional.only(end: 8,start: index == 0 ? 30 : 0),
+                    padding: EdgeInsetsDirectional.only(
+                        end: 8, start: index == 0 ? 30 : 0),
                     child: Column(
                       children: [
                         // Circular image shimmer

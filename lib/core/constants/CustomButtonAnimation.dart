@@ -28,39 +28,40 @@ class CustomButtonAnimation extends StatefulWidget {
   final Color? disabledColor;
   final Color? disabledTextColor;
 
-  const CustomButtonAnimation(
-      {required this.height,
-        required this.width,
-        this.minWidth = 0,
-        this.loader,
-        this.animationDuration = const Duration(milliseconds: 450),
-        this.curve = Curves.easeInOutCirc,
-        this.reverseCurve = Curves.easeInOutCirc,
-        required this.child,
-        required this.onTap,
-        this.color,
-        // this.focusColor,
-        // this.hoverColor,
-        // this.highlightColor,
-        // this.splashColor,
-        this.colorBrightness,
-        this.elevation,
-        // this.focusElevation,
-        // this.hoverElevation,
-        // this.highlightElevation,
-        this.padding = const EdgeInsets.all(0),
-        this.borderRadius = 0.0,
-        this.clipBehavior = Clip.none,
-        this.focusNode,
-        this.materialTapTargetSize,
-        this.roundLoadingShape = true,
-        this.borderSide = const BorderSide(color: Colors.transparent, width: 0),
-        this.disabledElevation,
-        this.disabledColor,
-        this.disabledTextColor,
-        Key? key,
-      }):assert(elevation == null || elevation >= 0.0),
-        assert(disabledElevation == null || disabledElevation >= 0.0),super(key: key);
+  const CustomButtonAnimation({
+    required this.height,
+    required this.width,
+    this.minWidth = 0,
+    this.loader,
+    this.animationDuration = const Duration(milliseconds: 450),
+    this.curve = Curves.easeInOutCirc,
+    this.reverseCurve = Curves.easeInOutCirc,
+    required this.child,
+    required this.onTap,
+    this.color,
+    // this.focusColor,
+    // this.hoverColor,
+    // this.highlightColor,
+    // this.splashColor,
+    this.colorBrightness,
+    this.elevation,
+    // this.focusElevation,
+    // this.hoverElevation,
+    // this.highlightElevation,
+    this.padding = const EdgeInsets.all(0),
+    this.borderRadius = 0.0,
+    this.clipBehavior = Clip.none,
+    this.focusNode,
+    this.materialTapTargetSize,
+    this.roundLoadingShape = true,
+    this.borderSide = const BorderSide(color: Colors.transparent, width: 0),
+    this.disabledElevation,
+    this.disabledColor,
+    this.disabledTextColor,
+    Key? key,
+  })  : assert(elevation == null || elevation >= 0.0),
+        assert(disabledElevation == null || disabledElevation >= 0.0),
+        super(key: key);
 
   @override
   CustomButtonState createState() => CustomButtonState();
@@ -126,10 +127,9 @@ class CustomButtonState extends State<CustomButtonAnimation>
     }
   }
 
-
   double get minWidth => _minWidth;
 
-   set minWidth(double w){
+  set minWidth(double w) {
     if (widget.minWidth == 0) {
       _minWidth = w;
     } else {
@@ -157,23 +157,23 @@ class CustomButtonState extends State<CustomButtonAnimation>
           side: widget.borderSide,
           borderRadius: BorderRadius.circular(widget.roundLoadingShape
               ? lerpDouble(
-              widget.borderRadius, widget.height / 2, _animation.value)!
+                  widget.borderRadius, widget.height / 2, _animation.value)!
               : widget.borderRadius),
         ),
         child: ElevatedButton(
             // key: _buttonKey,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: widget.color,
-            elevation: widget.elevation,
-            padding: widget.padding,
-            shape: RoundedRectangleBorder(
-              side: widget.borderSide,
-              borderRadius: BorderRadius.circular(widget.roundLoadingShape
-                  ? lerpDouble(
-                  widget.borderRadius, widget.height / 2, _animation.value)!
-                  : widget.borderRadius),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: widget.color,
+              elevation: widget.elevation,
+              padding: widget.padding,
+              shape: RoundedRectangleBorder(
+                side: widget.borderSide,
+                borderRadius: BorderRadius.circular(widget.roundLoadingShape
+                    ? lerpDouble(widget.borderRadius, widget.height / 2,
+                        _animation.value)!
+                    : widget.borderRadius),
+              ),
             ),
-          ),
             clipBehavior: widget.clipBehavior,
             focusNode: widget.focusNode,
             onPressed: widget.onTap,

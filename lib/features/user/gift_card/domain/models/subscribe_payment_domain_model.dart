@@ -6,5 +6,4 @@ class SubscribePaymentDomainModel extends BaseDomainModel {
   SubscribePaymentDomainModel({
     required this.transactionUrl,
   });
-
 }

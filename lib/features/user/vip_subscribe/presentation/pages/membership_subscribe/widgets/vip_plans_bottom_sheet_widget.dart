@@ -24,33 +24,36 @@ class VipPlansBottomSheetWidget extends StatelessWidget {
                 onRefresh: () => controller.getSubscriptions(1),
                 child: PagedListView<int, VipSubscribeDomainModel>(
                   pagingController: controller.pagingController,
-                  builderDelegate: PagedChildBuilderDelegate<VipSubscribeDomainModel>(
+                  builderDelegate:
+                      PagedChildBuilderDelegate<VipSubscribeDomainModel>(
                     itemBuilder: (_, item, index) => Visibility(
                       visible: item.byInvite == false,
                       child: MembershipItemWidget(
                         model: item,
-                        isBottomSheet: controller.currentSubscription?.price != item.price,
+                        isBottomSheet:
+                            controller.currentSubscription?.price != item.price,
                         showVip: true,
-                        showBlur: controller.currentSubscription?.price != item.price,
-                        onSelect: () => controller.updateSelectedMemberShip(item),
+                        showBlur:
+                            controller.currentSubscription?.price != item.price,
+                        onSelect: () =>
+                            controller.updateSelectedMemberShip(item),
                       ),
                     ),
                     noItemsFoundIndicatorBuilder: (_) => Center(
                       child: Text(
                         tr("noSubscriptions"),
-                        style: AppTextStyle.s16_w700(color: context.colors.black),
+                        style:
+                            AppTextStyle.s16_w700(color: context.colors.black),
                       ),
                     ),
                     firstPageProgressIndicatorBuilder: (_) => Column(
                       children: List.generate(
                         3,
-                            (_) => const MembershipItemShimmerWidget(),
+                        (_) => const MembershipItemShimmerWidget(),
                       ),
                     ),
                   ),
-                )
-            ),
-
+                )),
           ),
           Gaps.vGap10,
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(

@@ -10,8 +10,8 @@ class BuildProductPaddedText extends StatelessWidget {
     Key? key,
     this.text,
     this.image,
-     this.align= TextAlign.center,
-     this.color= Colors.black,
+    this.align = TextAlign.center,
+    this.color = Colors.black,
   }) : super(key: key);
 
   @override

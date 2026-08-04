@@ -2,7 +2,8 @@ part of 'home_main_widgets_imports.dart';
 
 class TrackSellerOrderWidget extends StatelessWidget {
   final List<Orders> currentOrders;
-  const TrackSellerOrderWidget({super.key, required this.currentOrders});
+  final HomeMainController controller;
+  const TrackSellerOrderWidget({super.key, required this.currentOrders, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +24,7 @@ class TrackSellerOrderWidget extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return GestureDetector(
-                    onTap: () => AutoRouter.of(context).push(
-                        OrderDetailsPageRoute(
-                            isReturnedOrder: false,
-                            order: currentOrders[index])),
+                    onTap: () => controller.openCurrentOrderDetails(context, currentOrders[index]),
                     child: CurrentOrderWidget(
                       currentOrders: currentOrders[index],
                     ));

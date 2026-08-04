@@ -24,7 +24,7 @@ class AddressLoadingItemWidget extends StatelessWidget {
             child: Column(
               children: List.generate(
                 6,
-                    (index) => Padding(
+                (index) => Padding(
                   padding: Dimens.paddingVertical5PX,
                   child: Row(
                     children: [

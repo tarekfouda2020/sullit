@@ -8,10 +8,9 @@ class BuildMoreHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var user = context.watch<UserCubit>().state.model ;
+    var user = context.watch<UserCubit>().state.model;
     return Column(
       children: [
-
         Container(
           margin: Dimens.paddingVertical15PX,
           alignment: Alignment.center,
@@ -55,7 +54,7 @@ class BuildMoreHeader extends StatelessWidget {
                             height: 120.r,
                             width: 120.r,
                           ),
-                          url: user?.avatarOriginal??"",
+                          url: user?.avatarOriginal ?? "",
                         ),
                       ));
                 },
@@ -85,7 +84,7 @@ class BuildMoreHeader extends StatelessWidget {
           ),
         ),
         Text(
-          user?.name??"",
+          user?.name ?? "",
           style: AppTextStyle.s16_w400(color: context.colors.black),
         ),
         DefaultButton(
@@ -95,7 +94,8 @@ class BuildMoreHeader extends StatelessWidget {
           height: 20.h,
           fontSize: 10,
           margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10).r,
-          onTap: () => AutoRouter.of(context).push(const SellerDashboardRoute()),
+          onTap: () =>
+              AutoRouter.of(context).push(const SellerDashboardRoute()),
         ),
         Gaps.vGap24,
       ],

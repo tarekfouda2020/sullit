@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
@@ -16,8 +14,7 @@ class BrandsSheetShimmerWidget extends StatelessWidget {
       decoration: BoxDecoration(
           color: context.colors.white,
           borderRadius: Dimens.borderRadius12PX,
-          border: Border.all(color: context.colors.borderColor)
-      ),
+          border: Border.all(color: context.colors.borderColor)),
       child: Row(
         children: [
           const BuildShimmerItem(

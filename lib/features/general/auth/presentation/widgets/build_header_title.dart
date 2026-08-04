@@ -30,7 +30,8 @@ class BuildHeaderTitle extends StatelessWidget {
             child: Text(
               subTitle,
               textAlign: TextAlign.center,
-              style: AppTextStyle.s14_w400(color: context.colors.textColor).copyWith(
+              style: AppTextStyle.s14_w400(color: context.colors.textColor)
+                  .copyWith(
                 height: 1.5,
               ),
             ),

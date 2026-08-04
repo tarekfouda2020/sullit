@@ -20,27 +20,29 @@ import 'package:flutter_tdd/features/user/cart/domain/models/shipping_summary.da
 import 'package:flutter_tdd/features/user/products/domain/entities/add_product_to_cart_params.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/fess_mechanism_model/fess_mechanism_model.dart';
 
-
-
 abstract class CartRepository {
-  Future <Either<Failure, CartDomainModel>> getCartItems (CartParams params);
-  Future<Either<Failure, bool>> addCartAddress (AddCartAddressParams param);
-  Future<Either<Failure, Shipping>> cartStoreShipping (StoreCartShippingParams params);
-  Future<Either<Failure, CouponResponse>> applyCoupon (String param);
-  Future<Either<Failure, OrderSummary>> createOrder (CreateOrderParams params);
-  Future<Either<Failure, String>> addToCart (AddProductToCartParams params) ;
-  Future<Either<Failure, bool>> deleteCartItem (DeleteCartItemParams params);
-  Future<Either<Failure, CartDomainModel>> updateCartItem (UpdateCartItemParams params);
-  Future<Either<Failure, List<SellerShipping>>> getShippingInfo (bool param);
-  Future<Either<Failure, OrderSummary>> getCombinedOrder (int param);
-  Future<Either<Failure, ShippingSummary>> applyLoyaltyPoints (NoParams params);
-  Future<Either<Failure, ShippingSummary>> removeLoyaltyPoints (NoParams params);
-  Future<Either<Failure, GiftCardApllieCartDomainModel>> applyGiftCard (ApplyGiftCardParams params);
-  Future<Either<Failure, String>> clearCart (ClearCartParams params);
-  Future<Either<Failure, ShippingSummary>> removeCoupon (NoParams params);
-  Future<Either<Failure, FessMechanismModel>> getFees (bool params);
+  Future<Either<Failure, CartDomainModel>> getCartItems(CartParams params);
+  Future<Either<Failure, bool>> addCartAddress(AddCartAddressParams param);
+  Future<Either<Failure, Shipping>> cartStoreShipping(
+      StoreCartShippingParams params);
+  Future<Either<Failure, CouponResponse>> applyCoupon(String param);
+  Future<Either<Failure, OrderSummaryDomainModel>> createOrder(CreateOrderParams params);
+  Future<Either<Failure, String>> addToCart(BaseAddProductToCartParams params);
+  Future<Either<Failure, bool>> deleteCartItem(DeleteCartItemParams params);
+  Future<Either<Failure, CartDomainModel>> updateCartItem(
+      UpdateCartItemParams params);
+  Future<Either<Failure, List<SellerShipping>>> getShippingInfo(bool param);
+  Future<Either<Failure, OrderSummaryDomainModel>> getCombinedOrder(int param);
+  Future<Either<Failure, ShippingSummary>> applyLoyaltyPoints(NoParams params);
+  Future<Either<Failure, ShippingSummary>> removeLoyaltyPoints(NoParams params);
+  Future<Either<Failure, GiftCardApllieCartDomainModel>> applyGiftCard(
+      ApplyGiftCardParams params);
+  Future<Either<Failure, String>> clearCart(ClearCartParams params);
+  Future<Either<Failure, ShippingSummary>> removeCoupon(NoParams params);
+  Future<Either<Failure, FessMechanismModel>> getFees(bool params);
 
-  Future<Either<Failure, List<DeliveryInstructionModel>>> getInstructions(bool params);
+  Future<Either<Failure, List<DeliveryInstructionModel>>> getInstructions(
+      bool params);
   Future<Either<Failure, String>> shareCart(NoParams params);
   Future<Either<Failure, bool>> importCart(String token);
 }

@@ -25,8 +25,7 @@ class UserRegisterParams {
         'mac_address': macAddress,
         "device_token": deviceToken,
         "device_type": deviceType,
-  };
+      };
 
   String get deviceType => HelperMethods.instance.getDeviceType();
-
 }

@@ -1,7 +1,7 @@
 part of 'cart_confirm_buying_widgets_imports.dart';
 
 class CartOrderInfoWidget extends StatelessWidget {
-  final OrderSummary orderSummary;
+  final OrderSummaryDomainModel orderSummary;
   const CartOrderInfoWidget({super.key, required this.orderSummary});
 
   @override
@@ -39,16 +39,17 @@ class CartOrderInfoWidget extends StatelessWidget {
           gaps: Gaps.hGap7,
         ),
         Gaps.vGap12,
-        if(orderSummary.summary!.email.isNotEmpty)
-        OrderINfoItemWidget(
-          title: tr('mail'),
-          describe: orderSummary.summary!.email,
-          gaps: Gaps.hGap7,
-        ),
+        if (orderSummary.summary!.email.isNotEmpty)
+          OrderINfoItemWidget(
+            title: tr('mail'),
+            describe: orderSummary.summary!.email,
+            gaps: Gaps.hGap7,
+          ),
         Gaps.vGap12,
         OrderINfoItemWidget(
           title: tr("phone"),
-          describe: getIt<Utilities>().handleFullPhone(context, orderSummary.sectionOrders!.first.customerPhone),
+          describe: getIt<Utilities>().handleFullPhone(
+              context, orderSummary.sectionOrders!.first.customerPhone),
           gaps: Gaps.hGap9,
         ),
         Gaps.vGap12,
@@ -61,11 +62,7 @@ class CartOrderInfoWidget extends StatelessWidget {
     );
   }
 
-   String get _getDate {
+  String get _getDate {
     return DateTimeHelper.getDate(orderSummary.summary!.orderDate.toString());
   }
-
-
-
-
 }

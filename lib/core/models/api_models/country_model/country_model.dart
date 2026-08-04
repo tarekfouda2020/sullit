@@ -7,25 +7,19 @@ part 'country_model.g.dart';
 
 @freezed
 @immutable
-class CountryModel extends BaseApiModel<Country> with _$CountryModel{
+class CountryModel extends BaseApiModel<Country> with _$CountryModel {
   const CountryModel._();
   @JsonSerializable(explicitToJson: true)
-  const factory CountryModel({
-    required int id,
-    required String name,
-    required String code
-  }) = _CountryModel;
-
+  const factory CountryModel(
+      {required int id,
+      required String name,
+      required String code}) = _CountryModel;
 
   factory CountryModel.fromJson(Map<String, dynamic> json) =>
       _$CountryModelFromJson(json);
 
   @override
   Country toDomainModel() {
-   return Country(
-      name: name ,
-      id: id ,
-      code: code
-    );
+    return Country(name: name, id: id, code: code);
   }
 }

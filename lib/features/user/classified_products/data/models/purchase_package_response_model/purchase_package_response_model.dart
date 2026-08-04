@@ -8,21 +8,21 @@ part 'purchase_package_response_model.g.dart';
 
 @freezed
 @immutable
-class PurchasePackageResponseModel extends BaseApiModel<PurchasePackageResponse>  with _$PurchasePackageResponseModel{
+class PurchasePackageResponseModel extends BaseApiModel<PurchasePackageResponse>
+    with _$PurchasePackageResponseModel {
   const PurchasePackageResponseModel._();
   @JsonSerializable(explicitToJson: true)
-  const factory PurchasePackageResponseModel({
-    required String key ,
-    required String msg ,
-    TransactionModel? data
-  }) = _PurchasePackageResponseModel;
-
+  const factory PurchasePackageResponseModel(
+      {required String key,
+      required String msg,
+      TransactionModel? data}) = _PurchasePackageResponseModel;
 
   factory PurchasePackageResponseModel.fromJson(Map<String, dynamic> json) =>
       _$PurchasePackageResponseModelFromJson(json);
 
   @override
   PurchasePackageResponse toDomainModel() {
-    return PurchasePackageResponse(key: key, msg: msg, data: data?.toDomainModel());
+    return PurchasePackageResponse(
+        key: key, msg: msg, data: data?.toDomainModel());
   }
 }

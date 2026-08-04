@@ -14,7 +14,8 @@ class VouchersTabsView extends StatelessWidget {
         controller: controller.tabController,
         labelColor: context.colors.primary,
         unselectedLabelColor: context.colors.black,
-        unselectedLabelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        unselectedLabelStyle:
+            const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
         indicator: BoxDecoration(
           borderRadius: BorderRadius.zero,
           color: context.colors.white,

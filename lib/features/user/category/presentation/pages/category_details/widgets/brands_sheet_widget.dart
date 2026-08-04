@@ -10,25 +10,23 @@ class BrandsSheetWidget extends StatelessWidget {
       margin: const EdgeInsets.only(top: kToolbarHeight + 20),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: context.colors.white,
-        borderRadius: Dimens.sheetBorderRadius
-      ),
+          color: context.colors.white, borderRadius: Dimens.sheetBorderRadius),
       child: Column(
         children: [
           Gaps.vGap10,
-           BottomSheetHeaderWidget(title: tr("brands")),
+          BottomSheetHeaderWidget(title: tr("brands")),
           Gaps.vGap15,
           CustomSearchFiledWidget(
             txtController: controller.brandsSearchCtr,
             onPressSearch: () => controller.refreshBrands(context),
-            onChange: (value) =>  controller.whileSearch(value),
+            onChange: (value) => controller.whileSearch(value),
             onPressClear: () => controller.getBrands(1),
           ),
           Gaps.vGap15,
           Flexible(
             child: CustomRefreshIndicatorWidget(
               onRefresh: () async => await controller.getBrands(1),
-              child : PagedListView<int, BrandDomainModel>(
+              child: PagedListView<int, BrandDomainModel>(
                 pagingController: controller.brandsPagingController,
                 builderDelegate: PagedChildBuilderDelegate<BrandDomainModel>(
                   itemBuilder: (_, item, index) => BrandsSheetItemWidget(
@@ -36,12 +34,16 @@ class BrandsSheetWidget extends StatelessWidget {
                     brandModel: item,
                     isSelected: controller.brandModel?.id == item.id,
                   ),
-                  noItemsFoundIndicatorBuilder: (_) => const BuildEmptyDataView(),
+                  noItemsFoundIndicatorBuilder: (_) =>
+                      const BuildEmptyDataView(),
                   firstPageProgressIndicatorBuilder: (_) => Column(
                     spacing: 10,
-                    children: List.generate(3, (index) {
-                      return const BrandsSheetShimmerWidget();
-                    },),
+                    children: List.generate(
+                      3,
+                      (index) {
+                        return const BrandsSheetShimmerWidget();
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -53,7 +55,7 @@ class BrandsSheetWidget extends StatelessWidget {
   }
 
   void _onTap(BrandDomainModel item, BuildContext context) {
-     controller.onChangeBrand(item);
+    controller.onChangeBrand(item);
     Navigator.pop(context);
     controller.confirmFilter(context);
   }

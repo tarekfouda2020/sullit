@@ -4,8 +4,8 @@ import 'package:flutter_tdd/features/user/gift_card/domain/models/subscribe_paym
 import 'package:flutter_tdd/features/user/gift_card/domain/entity/pay_subscribe_params.dart';
 import 'package:flutter_tdd/features/user/vip_subscribe/domain/repositories/vip_repositories.dart';
 
-class PayVipSubscription implements UseCase<SubscribePaymentDomainModel?, PaySubscribeParams> {
-
+class PayVipSubscription
+    implements UseCase<SubscribePaymentDomainModel?, PaySubscribeParams> {
   @override
   Future<SubscribePaymentDomainModel?> call(PaySubscribeParams param) async {
     var result = await getIt.get<VipRepositories>().paySubscription(param);
@@ -14,4 +14,4 @@ class PayVipSubscription implements UseCase<SubscribePaymentDomainModel?, PaySub
       (r) => r,
     );
   }
-} 
+}

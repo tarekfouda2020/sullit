@@ -3,5 +3,4 @@ import 'package:flutter_tdd/features/general/conversations/presentations/pages/c
 
 const List<AutoRoute> conversationRoute = [
   AutoRoute(page: Conversations),
-
 ];

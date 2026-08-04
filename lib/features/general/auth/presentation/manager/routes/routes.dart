@@ -21,5 +21,4 @@ const List<AutoRoute> authRoute = [
   AdaptiveRoute(page: VerifyRegister),
   AdaptiveRoute(page: ResetPasswordVerify),
   AdaptiveRoute(page: ChangePassword),
-
 ];

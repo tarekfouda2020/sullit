@@ -7,15 +7,14 @@ class ShopByWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MoreGridViewWidget(
-        title: tr("shopBy",context: context),
+        title: tr("shopBy", context: context),
         crossAxisCount: 2,
         children: [
           BuildMoreItem(
             image: Res.allBrandsIcon,
             isSvg: true,
             title: tr('allBrands'),
-            onTap: () =>
-                controller.checkAuth(context, MoreRoutes.allBrands),
+            onTap: () => controller.checkAuth(context, MoreRoutes.allBrands),
           ),
           BuildMoreItem(
             image: Res.allCategoriesIcon,
@@ -29,7 +28,6 @@ class ShopByWidget extends StatelessWidget {
           //   title: tr('wishlist'),
           //   onTap: () => controller.checkAuth(context, MoreRoutes.wishlist),
           // ),
-        ]
-    );
+        ]);
   }
 }

@@ -14,7 +14,7 @@ class ChangePasswordWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-                tr("changePassword"),
+              tr("changePassword"),
               style: AppTextStyle.s16_w700(color: context.colors.primary),
             ),
           ],

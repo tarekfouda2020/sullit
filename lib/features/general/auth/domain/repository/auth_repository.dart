@@ -28,7 +28,8 @@ abstract class AuthRepository {
 
   Future<Either<Failure, String>> resendVerifyCode(String param);
 
-  Future<Either<Failure, String>> verifyResetPassword(VerifyResetPasswordParams params);
+  Future<Either<Failure, String>> verifyResetPassword(
+      VerifyResetPasswordParams params);
 
   Future<Either<Failure, String>> codeVerify(CodeVerifyParams params);
 

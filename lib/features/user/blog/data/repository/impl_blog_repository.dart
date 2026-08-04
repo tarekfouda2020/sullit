@@ -8,12 +8,11 @@ import 'package:flutter_tdd/features/user/blog/domain/repository/blog_repository
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: BlogRepository)
-class ImplBlogRepository extends BlogRepository with ModelToDomain{
+class ImplBlogRepository extends BlogRepository with ModelToDomain {
   var dataSources = getIt<BlogDataSources>();
   @override
   Future<Either<Failure, List<Blog>>> getBlogs(bool param) async {
     var result = await dataSources.getBlogs(param);
     return toDomainResultList(result);
   }
-
 }

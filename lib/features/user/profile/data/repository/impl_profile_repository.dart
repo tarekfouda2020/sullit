@@ -9,8 +9,8 @@ import 'package:flutter_tdd/features/user/profile/domain/entities/profile_params
 import 'package:flutter_tdd/features/user/profile/domain/repository/profile_repository.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as:ProfileRepository)
-class ImplProfileRepository extends ProfileRepository with ModelToDomain{
+@Injectable(as: ProfileRepository)
+class ImplProfileRepository extends ProfileRepository with ModelToDomain {
   var dataSources = getIt<ProfileDataSources>();
 
   @override
@@ -26,7 +26,7 @@ class ImplProfileRepository extends ProfileRepository with ModelToDomain{
   }
 
   @override
-  Future<Either<Failure, UserDomainModel>> getProfile(bool params) async{
+  Future<Either<Failure, UserDomainModel>> getProfile(bool params) async {
     var result = await dataSources.getProfile(params);
     return toDomainResult<UserDomainModel, UserModel>(result);
   }

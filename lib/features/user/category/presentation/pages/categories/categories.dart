@@ -28,21 +28,23 @@ class _CategoriesState extends State<Categories> {
           Gaps.vGap10,
           BuildCategorySearchView(categoriesController: categoriesController),
           Gaps.vGap20,
-          BlocBuilder<GenericBloc<List<Category>>, GenericState<List<Category>>>(
+          BlocBuilder<GenericBloc<List<Category>>,
+              GenericState<List<Category>>>(
             bloc: categoriesController.categoriesCubit,
             builder: (context, state) {
-             if(state is GenericUpdateState){
-               return Flexible(
-                 child: ListView.builder(
-                   itemCount: state.data.length,
-                   itemBuilder: (context, index) {
-                     return CategoriesSectionFormWidget(item: state.data[index]);
-                   },
-                 ),
-               );
-             }else{
-               return const BuildLoadingCategoriesView();
-             }
+              if (state is GenericUpdateState) {
+                return Flexible(
+                  child: ListView.builder(
+                    itemCount: state.data.length,
+                    itemBuilder: (context, index) {
+                      return CategoriesSectionFormWidget(
+                          item: state.data[index]);
+                    },
+                  ),
+                );
+              } else {
+                return const BuildLoadingCategoriesView();
+              }
             },
           ),
           Gaps.vGap10,

@@ -36,7 +36,9 @@ class SellerProductsDrawerWidget extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    CustomPriceRangeWidget(rangeCubit: controller.rangeCubit,),
+                    CustomPriceRangeWidget(
+                      rangeCubit: controller.rangeCubit,
+                    ),
                     Gaps.line(context.colors.gray, 15),
                     SellerBrandsWidget(controller: controller),
                     // ...List.generate(
@@ -71,17 +73,19 @@ class SellerProductsDrawerWidget extends StatelessWidget {
                     textColor: context.colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
-
                   ),
                 ),
                 Gaps.hGap5,
                 Expanded(
                   child: GestureDetector(
-                    onTap: ()=> controller.resetFilter(context),
-                    child: Text(tr('reset',
-                    ),
+                    onTap: () => controller.resetFilter(context),
+                    child: Text(
+                      tr(
+                        'reset',
+                      ),
                       textAlign: TextAlign.center,
-                      style: AppTextStyle.s18_w700(color: context.colors.primary),
+                      style:
+                          AppTextStyle.s18_w700(color: context.colors.primary),
                     ),
                   ),
                 ),

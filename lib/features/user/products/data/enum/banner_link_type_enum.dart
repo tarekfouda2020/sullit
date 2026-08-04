@@ -1,4 +1,3 @@
-
 enum LinkTypeEnum {
   product,
 
@@ -11,5 +10,4 @@ enum LinkTypeEnum {
   bool get isExternal => this == LinkTypeEnum.externalLink;
 
   bool get isProduct => this == LinkTypeEnum.product;
-
 }

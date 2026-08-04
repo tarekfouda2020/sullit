@@ -9,8 +9,11 @@ extension ThemeExtension on BuildContext {
   TextTheme get textTheme => theme.textTheme;
 
   AppColors get colors => AppColors.of(this);
-  
-  bool get isShareHolder => ((read<UserCubit>().state.model?.isShareHolder == true) && (read<UserCubit>().state.model?.hasValidSubscription == true) );
 
-  bool get isVipUser => read<UserCubit>().state.model?.hasValidSubscription  == true;
+  bool get isShareHolder =>
+      ((read<UserCubit>().state.model?.isShareHolder == true) &&
+          (read<UserCubit>().state.model?.hasValidSubscription == true));
+
+  bool get isVipUser =>
+      read<UserCubit>().state.model?.hasValidSubscription == true;
 }

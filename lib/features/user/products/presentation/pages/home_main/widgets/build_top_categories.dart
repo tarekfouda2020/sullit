@@ -3,7 +3,8 @@ part of 'home_main_widgets_imports.dart';
 class BuildTopCategories extends StatelessWidget {
   final List<Category> categories;
   final HomeMainController controller;
-  const BuildTopCategories({super.key, required this.categories, required this.controller});
+  const BuildTopCategories(
+      {super.key, required this.categories, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class BuildTopCategories extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Gaps.vGap15,
-           CategoriesHeaderWidget(controller: controller),
+          CategoriesHeaderWidget(controller: controller),
           Gaps.vGap16,
           SizedBox(
             height: 130,
@@ -21,26 +22,29 @@ class BuildTopCategories extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: controller.firstCategoriesSection().length,
               itemBuilder: (context, index) {
-              return BuildTopCategoriesItem(
-                categoryModel: controller.firstCategoriesSection()[index],
-              );
-            },),
-          ),
-          if(controller.secondCategoriesSection().isNotEmpty)
-          Padding(
-            padding: const EdgeInsets.only(top: 25),
-            child: SizedBox(
-              height: 130,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: controller.secondCategoriesSection().length,
-                itemBuilder: (context, index) {
-                  return BuildTopCategoriesItem(
-                    categoryModel: controller.secondCategoriesSection()[index],
-                  );
-                },),
+                return BuildTopCategoriesItem(
+                  categoryModel: controller.firstCategoriesSection()[index],
+                );
+              },
             ),
           ),
+          if (controller.secondCategoriesSection().isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 25),
+              child: SizedBox(
+                height: 130,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: controller.secondCategoriesSection().length,
+                  itemBuilder: (context, index) {
+                    return BuildTopCategoriesItem(
+                      categoryModel:
+                          controller.secondCategoriesSection()[index],
+                    );
+                  },
+                ),
+              ),
+            ),
           // GridView.builder(
           //   shrinkWrap: true,
           //   physics: const NeverScrollableScrollPhysics(),
@@ -57,7 +61,6 @@ class BuildTopCategories extends StatelessWidget {
           //     mainAxisSpacing: 15,
           //   ),
           // )
-
         ],
       ),
     );

@@ -18,24 +18,25 @@ class PhoneInputAndVerify extends StatelessWidget {
               value: controller.countryCubit,
               child: BlocBuilder<GenericBloc<Country?>, GenericState<Country?>>(
                 builder: (context, state) {
-                return Expanded(
-                  flex: 2,
-                  child: GenericTextField(
-                    controller: controller.phoneController,
-                    fieldTypes: FieldTypes.normal,
-                    fillColor: context.colors.white,
-                    type: TextInputType.number,
-                    action: TextInputAction.done,
-                    // contentPadding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                    // contentPadding: const EdgeInsetsDirectional.only(start: 32,end: 0,top:16,bottom: 16 ),
-                    validate: (value) => value?.isValidUAEPhone(value),
-                    hint: tr("phone"),
-                    margin: Dimens.marginTop5,
-                    // prefixIcon: _buildPrefixIcon(context, state),
-                    prefixIcon: PhoneFieldPrefixWidget(countryCubit: controller.countryCubit),
-                  ),
-                );
-              },
+                  return Expanded(
+                    flex: 2,
+                    child: GenericTextField(
+                      controller: controller.phoneController,
+                      fieldTypes: FieldTypes.normal,
+                      fillColor: context.colors.white,
+                      type: TextInputType.number,
+                      action: TextInputAction.done,
+                      // contentPadding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                      // contentPadding: const EdgeInsetsDirectional.only(start: 32,end: 0,top:16,bottom: 16 ),
+                      validate: (value) => value?.isValidUAEPhone(value),
+                      hint: tr("phone"),
+                      margin: Dimens.marginTop5,
+                      // prefixIcon: _buildPrefixIcon(context, state),
+                      prefixIcon: PhoneFieldPrefixWidget(
+                          countryCubit: controller.countryCubit),
+                    ),
+                  );
+                },
               ),
             ),
             // Gaps.hGap5,

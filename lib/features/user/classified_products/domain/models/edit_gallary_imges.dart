@@ -6,7 +6,7 @@ class EditGallaryImages {
   List<FileDomainModel> addedImages;
 
   EditGallaryImages({
-     required this.images,
-     required this.addedImages,
+    required this.images,
+    required this.addedImages,
   });
 }

@@ -8,8 +8,8 @@ class UserDetails extends BaseDomainModel {
 
   UserDetails({
     required this.id,
-    required  this.name,
-    required  this.avatar,
-    required  this.avatarOriginal,
+    required this.name,
+    required this.avatar,
+    required this.avatarOriginal,
   });
 }

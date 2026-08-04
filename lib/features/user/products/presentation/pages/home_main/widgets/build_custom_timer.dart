@@ -21,10 +21,13 @@ class BuildCustomTimer extends StatelessWidget {
       children: [
         Row(
           children: [
-            _buildContainer(context,firstTimeNumber),
-            _buildContainer(context,secondTimeNumber),
-            if(threeTimeNumber != "0"  && threeTimeNumber != "" && threeTimeNumber != "null"&& threeTimeNumber!=null)
-            _buildContainer(context,threeTimeNumber!),
+            _buildContainer(context, firstTimeNumber),
+            _buildContainer(context, secondTimeNumber),
+            if (threeTimeNumber != "0" &&
+                threeTimeNumber != "" &&
+                threeTimeNumber != "null" &&
+                threeTimeNumber != null)
+              _buildContainer(context, threeTimeNumber!),
           ],
         ),
         Gaps.vGap3,

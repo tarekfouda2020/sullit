@@ -9,4 +9,3 @@ class SubCategoryLevel {
     required this.selectedCategoryId,
   });
 }
-

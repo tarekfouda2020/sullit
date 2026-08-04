@@ -43,16 +43,17 @@ class CategoryDetailsController implements CartSheetController {
 
   RangeValues? rangeValues;
 
-  CategoryDetailsController(BuildContext context, Category? categoryModel, this.catId) {
-    getCartItems();
-    if(categoryModel!= null){
+  CategoryDetailsController(
+      BuildContext context, Category? categoryModel, this.catId) {
+
+    if (categoryModel != null) {
       FacebookEventsHelper.instance.categoryDetailsOpened(categoryModel);
       initialCategoryModel = categoryModel;
       titleCubit.onUpdateData(categoryModel.name);
-      getData(context, categoryModel.id,refresh: false);
+      getData(context, categoryModel.id, refresh: false);
       getData(context, categoryModel.id);
-    }else if(catId != null){
-      getData(context, catId!,refresh: false);
+    } else if (catId != null) {
+      getData(context, catId!, refresh: false);
       getData(context, catId!);
     }
     getBestSellers(1, refresh: false);
@@ -62,7 +63,7 @@ class CategoryDetailsController implements CartSheetController {
   }
 
   Future<void> getBestSellers(int page, {bool refresh = true}) async {
-    var params = searchParams(refresh, page);
+    var params = _shopsParams(refresh, page);
     var data = await GetBestSellers().call(params);
     final isLastPage = data.length < pageSize;
     if (page == 1) {
@@ -87,7 +88,12 @@ class CategoryDetailsController implements CartSheetController {
         pageSize: pageSize,
       );
 
-  SearchResultParams searchParams(bool refresh, int page) {
+  ShopsParams _shopsParams(bool refresh, int page) {
+    var params = _searchParams(refresh, page);
+    return ShopsParams(params: params);
+  }
+
+  SearchResultParams _searchParams(bool refresh, int page) {
     return SearchResultParams(
         searchTxt: searchSellersController.text,
         paginateParams: params(refresh, page));
@@ -137,8 +143,9 @@ class CategoryDetailsController implements CartSheetController {
     sellersCubit.onUpdateData(sellersCubit.state.data);
   }
 
-  Future<void> getData(BuildContext context, int id,{bool refresh = true}) async {
-    await getSubCategories(context, id,refresh:refresh);
+  Future<void> getData(BuildContext context, int id,
+      {bool refresh = true}) async {
+    await getSubCategories(context, id, refresh: refresh);
     getPopularProducts(1, refresh: false);
     getBrands(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
@@ -161,7 +168,7 @@ class CategoryDetailsController implements CartSheetController {
 
     if (result != null) {
       initialCategoryModel = result.category;
-      if(catId!= null){
+      if (catId != null) {
         FacebookEventsHelper.instance.categoryDetailsOpened(result.category);
         initialCategoryModel = result.category;
         titleCubit.onUpdateData(result.category.name);
@@ -664,7 +671,7 @@ class CategoryDetailsController implements CartSheetController {
   }
 
   Future<bool> onIncreaseCartQnt(
-      BuildContext context, CartItem cartItem, newQty) async {
+      BuildContext context, GeneralCartItem cartItem, newQty) async {
     final success =
         await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
     if (success != null) {
@@ -675,7 +682,7 @@ class CategoryDetailsController implements CartSheetController {
   }
 
   @override
-  Future<void> onIncreaseCart(BuildContext context, CartItem cartItem,
+  Future<void> onIncreaseCart(BuildContext context, GeneralCartItem cartItem,
       GenericBloc<int> qntCubit, String value) async {
     if (qntCubit.state.data < cartItem.stockQty) {
       var newQty = qntCubit.state.data + 1;
@@ -697,7 +704,7 @@ class CategoryDetailsController implements CartSheetController {
   }
 
   Future<bool?> onDecreaseCartQnt(
-      BuildContext context, CartItem cartItem, int newQty) async {
+      BuildContext context, GeneralCartItem cartItem, int newQty) async {
     if (newQty == 1) {
       deleteItemFromCart(context, cartItem);
       return null;
@@ -716,7 +723,7 @@ class CategoryDetailsController implements CartSheetController {
   }
 
   @override
-  Future<void> onDecreaseCart(BuildContext context, CartItem cartItem,
+  Future<void> onDecreaseCart(BuildContext context, GeneralCartItem cartItem,
       GenericBloc<int> qntCubit, String value) async {
     if (qntCubit.state.data > 1) {
       var newQty = qntCubit.state.data - 1;
@@ -736,7 +743,8 @@ class CategoryDetailsController implements CartSheetController {
   }
 
   @override
-  Future<void> deleteItemFromCart(BuildContext context, CartItem cartItem,
+  Future<void> deleteItemFromCart(
+      BuildContext context, GeneralCartItem cartItem,
       {bool enablePop = true}) async {
     getIt<LoadingHelper>().showLoadingDialog();
     final deleted =
@@ -768,7 +776,7 @@ class CategoryDetailsController implements CartSheetController {
   }
 
   @override
-  void updateFavFromSheet(CartItem cartItem) {
+  void updateFavFromSheet(GeneralCartItem cartItem) {
     cartItem.isWishlist = !cartItem.isWishlist;
   }
 
@@ -781,13 +789,13 @@ class CategoryDetailsController implements CartSheetController {
   int? get productId => null;
 
   double remainToGetMinAmount() {
-   return cartItemsBloc.state.data.getRemainAmountToOrder();
+    return cartItemsBloc.state.data.getRemainAmountToOrder();
   }
 
   @override
   String get minAmountRemain => remainToGetMinAmount().toStringAsFixed(2);
 
-  void removeProductCounter(CartItem cartItem) {
+  void removeProductCounter(GeneralCartItem cartItem) {
     var cartList = cartItemsBloc.state.data.items;
     if (cartList != null && cartList.isNotEmpty == true) {
       var productList = pagingController.itemList!
@@ -815,7 +823,7 @@ class CategoryDetailsController implements CartSheetController {
     }
   }
 
-  void reduceProductQntWhenReduceFromCart(CartItem cartItem) {
+  void reduceProductQntWhenReduceFromCart(GeneralCartItem cartItem) {
     var cartItems = pagingController.itemList
         ?.where((element) => element.id == cartItem.productId)
         .toList();

@@ -6,7 +6,7 @@ class BrandDetailsController {
   int pageSize = 10;
 
   BrandDetailsController(BuildContext context, int brandId) {
-    getBrandProducts(context, brandId, 1,refresh: false);
+    getBrandProducts(context, brandId, 1, refresh: false);
     productsPagingController.addPageRequestListener((pageKey) {
       getBrandProducts(context, brandId, pageKey);
     });
@@ -49,8 +49,6 @@ class BrandDetailsController {
     // productsPagingController.refresh(); // Or just notify listeners if needed, but managing state directly is better
     // Force rebuild to show changes? PagingController doesn't auto rebuild on item change unless we replace list
     var data = productsPagingController.itemList;
-    productsPagingController.itemList = [
-      ...?data
-    ];
+    productsPagingController.itemList = [...?data];
   }
 }

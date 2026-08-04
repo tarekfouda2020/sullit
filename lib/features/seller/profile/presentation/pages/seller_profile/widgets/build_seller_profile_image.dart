@@ -1,8 +1,11 @@
-part of'seller_profile_widgets_imports.dart';
-class BuildSellerProfileImage extends StatelessWidget {
-  final  SellerProfileController sellerProfileController;
+part of 'seller_profile_widgets_imports.dart';
 
-  const BuildSellerProfileImage({Key? key, required this.sellerProfileController}) : super(key: key);
+class BuildSellerProfileImage extends StatelessWidget {
+  final SellerProfileController sellerProfileController;
+
+  const BuildSellerProfileImage(
+      {Key? key, required this.sellerProfileController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

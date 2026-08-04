@@ -8,6 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../models/custom_address_model/custom_address_model.dart';
 import '../models/location_iq_place_model/location_iq_place.dart';
@@ -18,15 +19,15 @@ class LocationService {
 
   static LocationService get instance => GetIt.I<LocationService>();
 
-
-
   Future<String> getAddress(LatLng latLng, {bool setCountryName = true}) async {
     try {
-      final address = await getFullAddress(latLng, setCountryName: setCountryName);
+      final address =
+          await getFullAddress(latLng, setCountryName: setCountryName);
       if (address == null) {
         return "";
       }
-      var data = " ${setCountryName ? address.countryName ?? "" : ""}  ${address.city ?? ""}  ${address.region ?? ""}  ${address.streetAddress ?? ""}";
+      var data =
+          " ${setCountryName ? address.countryName ?? "" : ""}  ${address.city ?? ""}  ${address.region ?? ""}  ${address.streetAddress ?? ""}";
       return data;
     } catch (e) {
       log("=======>>>>>>>>>> error is $e end ============");
@@ -34,36 +35,54 @@ class LocationService {
     }
   }
 
-  Future<CustomAddressModel?> getFullAddress(LatLng latLng, {bool setCountryName = true}) async {
-   return LocationIqHelper.instance.getFullAddress(latLng,setCountryName: setCountryName);
+  Future<CustomAddressModel?> getFullAddress(LatLng latLng,
+      {bool setCountryName = true}) async {
+    return LocationIqHelper.instance
+        .getFullAddress(latLng, setCountryName: setCountryName);
   }
 
-  Future<List<LocationIQPlace>> autoCompletePlaces(String keyword, {bool refresh = true}) async {
-    var result = await LocationIqHelper.instance.getAutoCompleteLocations(keyword,refresh: refresh);
+  Future<List<LocationIQPlace>> autoCompletePlaces(String keyword,
+      {bool refresh = true}) async {
+    var result = await LocationIqHelper.instance
+        .getAutoCompleteLocations(keyword, refresh: refresh);
     return result.fold(
       (l) => <LocationIQPlace>[],
       (r) => r,
     );
   }
 
-  Future<LatLng?> getCurrentLocationWithPermission(BuildContext context)async{
+  Future<LatLng?> getCurrentLocationWithPermission(BuildContext context) async {
     // Use locationWhenInUse for better iOS compatibility
-     await getIt<PermissionServices>().requestPermission(Permission.locationWhenInUse, context);
+    await getIt<PermissionServices>()
+        .requestPermission(Permission.locationWhenInUse, context);
     try {
-      final Position position = await Geolocator.getCurrentPosition(locationSettings: const LocationSettings(
-          accuracy: LocationAccuracy.high
-      ));
+      final Position position = await Geolocator.getCurrentPosition(
+          locationSettings:
+              const LocationSettings(accuracy: LocationAccuracy.high));
       return LatLng(position.latitude, position.longitude);
     } catch (e) {
       return null;
     }
   }
 
-
-  Future<LatLng?> getCurrentLocation()async{
-    return Geolocator.getCurrentPosition().then((value) => LatLng(value.latitude, value.longitude)) ;
+  Future<LatLng?> getCurrentLocation() async {
+    return Geolocator.getCurrentPosition()
+        .then((value) => LatLng(value.latitude, value.longitude));
   }
 
+
+  Future<void> openGoogleMapsNavigation({
+    required double latitude,
+    required double longitude,
+  }) async {
+    final Uri uri = Uri.parse(
+        'https://www.google.com/maps/dir/?api=1&destination=$latitude,$longitude&travelmode=driving');
+
+    await launchUrl(
+      uri,
+      mode: LaunchMode.externalApplication,
+    );
+  }
 
 
 }

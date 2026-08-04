@@ -8,7 +8,8 @@ class GetUploadedFiles
     implements UseCase<List<FileDomainModel>, UploadedFilesParams> {
   @override
   Future<List<FileDomainModel>> call(UploadedFilesParams params) async {
-    var result = await getIt<ClassifiedProductsRepository>().getUploadedFiles(params);
+    var result =
+        await getIt<ClassifiedProductsRepository>().getUploadedFiles(params);
     return result.fold(
       (l) => [],
       (r) => r,

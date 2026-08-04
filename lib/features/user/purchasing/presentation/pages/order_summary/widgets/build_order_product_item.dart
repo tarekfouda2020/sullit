@@ -40,7 +40,9 @@ class BuildOrderProductItem extends StatelessWidget {
         Visibility(
           visible: orderDetails.isAvailableReview,
           child: DefaultButton(
-            title: orderDetails.review == null ? tr("addReview") : tr("viewReview"),
+            title: orderDetails.review == null
+                ? tr("addReview")
+                : tr("viewReview"),
             onTap: () => controller.showReviewDialog(context, orderDetails),
             height: 30.h,
             width: 200.w,

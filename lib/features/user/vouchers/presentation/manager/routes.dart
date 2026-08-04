@@ -6,5 +6,4 @@ import 'package:flutter_tdd/features/user/vouchers/presentation/pages/my_voucher
 
 const List<AutoRoute> vouchersRoutes = [
   AdaptiveRoute(page: MyVouchers),
-
 ];

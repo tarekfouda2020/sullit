@@ -1,6 +1,5 @@
 part of 'seller_products_widgets_imports.dart';
 
-
 class SellerPageProductsSectionWidget extends StatelessWidget {
   final SellerProductsController controller;
   const SellerPageProductsSectionWidget({super.key, required this.controller});
@@ -12,8 +11,9 @@ class SellerPageProductsSectionWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(tr("products"),
-          style: AppTextStyle.s16_w600(color: context.colors.black),
+          Text(
+            tr("products"),
+            style: AppTextStyle.s16_w600(color: context.colors.black),
           ),
           GestureDetector(
             onTap: () => controller.openDrawerFilter(),

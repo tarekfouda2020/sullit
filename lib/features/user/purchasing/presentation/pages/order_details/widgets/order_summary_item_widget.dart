@@ -26,7 +26,7 @@ class OrderSummaryItemWidget extends StatelessWidget {
             style: AppTextStyle.s14_w400(color: context.colors.black),
           ),
         ),
-        if(isDiscount)
+        if (isDiscount)
           Text(
             " - ",
             style: AppTextStyle.s14_w600(color: context.colors.primary),
@@ -34,12 +34,15 @@ class OrderSummaryItemWidget extends StatelessWidget {
         useDirhamPrice
             ? DirhamPrice(
                 amount: price,
-                currencyStyle: AppTextStyle.s16_w400(color: priceColor ?? context.colors.black),
-                textStyle: AppTextStyle.s14_w600(color: priceColor ?? context.colors.black),
+                currencyStyle: AppTextStyle.s16_w400(
+                    color: priceColor ?? context.colors.black),
+                textStyle: AppTextStyle.s14_w600(
+                    color: priceColor ?? context.colors.black),
               )
             : Text(
                 price,
-                style: AppTextStyle.s14_w600(color: priceColor ?? context.colors.black),
+                style: AppTextStyle.s14_w600(
+                    color: priceColor ?? context.colors.black),
               )
       ],
     );

@@ -32,7 +32,8 @@ class RegisterController {
 
   void _cashAndRoute(BuildContext context, UserDomainModel data) async {
     getIt<UserServiceHelper>().updateUserdata(context, data);
-    AutoRouter.of(context).push(VerifyRegisterRoute(email: emailController.text));
+    AutoRouter.of(context)
+        .push(VerifyRegisterRoute(email: emailController.text));
     getIt<ComparedProductsDb>().deleteEverything();
     CustomToast.showSimpleToast(
       msg: tr('registerVerify'),

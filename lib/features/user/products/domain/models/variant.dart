@@ -11,7 +11,7 @@ class Variant extends BaseDomainModel {
   String? currencySymbol;
   String? image;
   String? options;
-   bool? hasDiscount;
+  bool? hasDiscount;
   String? originalPrice;
   bool? isSelected;
   int? sortOrder;
@@ -29,7 +29,7 @@ class Variant extends BaseDomainModel {
     required this.sku,
     required this.hasDiscount,
     required this.originalPrice,
-     this.isSelected = false,
+    this.isSelected = false,
     this.sortOrder,
   });
 

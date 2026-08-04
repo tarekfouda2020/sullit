@@ -1,4 +1,5 @@
 part of 'customers_products_w_imports.dart';
+
 class BuildLoadingMainCategories extends StatelessWidget {
   const BuildLoadingMainCategories({Key? key}) : super(key: key);
 

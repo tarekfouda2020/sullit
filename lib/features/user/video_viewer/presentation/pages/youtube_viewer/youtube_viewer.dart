@@ -22,7 +22,7 @@ class _YoutubeViewerState extends State<YoutubeViewer> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(title: tr('videoViewer')),
+      appBar: DefaultAppBar(title: tr('videoViewer')),
       body: Center(
         child: BlocBuilder<GenericBloc<YoutubePlayerController?>,
             GenericState<YoutubePlayerController?>>(

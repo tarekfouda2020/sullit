@@ -1,4 +1,3 @@
-
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +50,7 @@ part 'build_coupon.dart';
 part 'build_payment_buttons.dart';
 part 'build_payment_item.dart';
 part 'build_payment_options.dart';
-part 'build_summary.dart';
+// part 'build_summary.dart';
 part 'build_summary_header.dart';
 part 'build_summary_item.dart';
 part 'build_wallet_balance.dart';
@@ -71,7 +70,6 @@ part 'gift_card_code_widget.dart';
 part 'apply_button_widget.dart';
 part 'gift_card_annotation_widget.dart';
 part 'confirm_order_sheet_widget.dart';
-part 'allow_replacement_widget.dart';
 part 'fees_sheet_widget.dart';
 part 'fees_item_widget.dart';
 part 'voucher_ticket_card_widget.dart';

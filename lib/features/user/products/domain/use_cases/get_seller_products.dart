@@ -4,7 +4,8 @@ import 'package:flutter_tdd/features/user/products/domain/entities/seller_produc
 import 'package:flutter_tdd/features/user/products/domain/models/seller_product_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/repository/products_repository.dart';
 
-class GetSellerProducts extends UseCase<SellerProductDomainModel?, SellerProductsParams> {
+class GetSellerProducts
+    extends UseCase<SellerProductDomainModel?, SellerProductsParams> {
   @override
   Future<SellerProductDomainModel?> call(SellerProductsParams params) async {
     var result = await getIt<ProductsRepository>().sellerProducts(params);

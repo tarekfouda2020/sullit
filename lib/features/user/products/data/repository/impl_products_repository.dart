@@ -2,12 +2,12 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/models/model_to_domain/model_to_domain.dart';
-import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/remote_data_sources/products_data_source.dart';
 import 'package:flutter_tdd/features/user/products/data/models/home_model/home_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/product_details_model/product_details_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/popular_products_params.dart';
+import 'package:flutter_tdd/features/user/products/domain/entities/product_details_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/seller_products_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/send_query_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/variant_price_params.dart';
@@ -32,7 +32,7 @@ class ImplProductsRepository extends ProductsRepository with ModelToDomain {
 
   @override
   Future<Either<Failure, ProductDetailsDomainModel>> getProductDetails(
-      GenericParams param) async {
+      ProductDetailsParams param) async {
     var result = await dataSources.getProductDetails(param);
     return toDomainResult<ProductDetailsDomainModel, ProductDetailsModel>(
         result);
@@ -75,24 +75,27 @@ class ImplProductsRepository extends ProductsRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, List<ProductSections>>> getProductSections(int param) async{
+  Future<Either<Failure, List<ProductSections>>> getProductSections(
+      int param) async {
     var result = await dataSources.getProductSections(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, ProductDetailsDomainModel>> scanProduct(String param) async{
+  Future<Either<Failure, ProductDetailsDomainModel>> scanProduct(
+      String param) async {
     var result = await dataSources.scanProduct(param);
     return toDomainResult(result);
   }
 
   @override
-  Future<Either<Failure, bool>> toggleFollowing(int param) async{
+  Future<Either<Failure, bool>> toggleFollowing(int param) async {
     return dataSources.toggleFollowing(param);
   }
 
   @override
-  Future<Either<Failure, SellerProductDomainModel>> sellerProducts(SellerProductsParams param) async{
+  Future<Either<Failure, SellerProductDomainModel>> sellerProducts(
+      SellerProductsParams param) async {
     var result = await dataSources.sellerProducts(param);
     return toDomainResult(result);
   }

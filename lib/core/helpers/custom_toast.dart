@@ -50,5 +50,4 @@ class CustomToast {
         textColor: textColor ?? Colors.white,
         fontSize: 16.0);
   }
-
 }

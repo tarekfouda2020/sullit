@@ -1,4 +1,5 @@
 part of 'category_details_widgets_imports.dart';
+
 class CategorySearchFiledWidget extends StatelessWidget {
   final CategoryDetailsController controller;
   const CategorySearchFiledWidget({super.key, required this.controller});
@@ -43,10 +44,12 @@ class CategorySearchFiledWidget extends StatelessWidget {
                   margin: Dimens.paddingEnd10,
                   decoration: BoxDecoration(
                       color: context.colors.disableGray,
-                      shape: BoxShape.circle
-                  ),
+                      shape: BoxShape.circle),
                   child: Icon(
-                    Icons.clear, size: 16, color: context.colors.gray8,),
+                    Icons.clear,
+                    size: 16,
+                    color: context.colors.gray8,
+                  ),
                 ),
               ),
             );

@@ -28,5 +28,7 @@ enum MoreRoutes {
   profile,
   classifiedProducts,
   customersProducts,
+  myHealthPharmacyOrders,
+  savedPrescriptions,
   test
 }

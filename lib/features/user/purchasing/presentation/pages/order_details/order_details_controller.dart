@@ -230,8 +230,7 @@ class OrderDetailsPageController {
       var result = await GetPaymentOptions().call(refresh);
       if (result.isNotEmpty && orderDetailsBloc.state.data != null) {
         result = result.where((element) {
-          return (element.paymentTypeKey.replaceAll("_", " ").toLowerCase())
-                  .toLowerCase() !=
+          return (element.paymentTypeKey.replaceAll("_", " ").toLowerCase()).toLowerCase() !=
               orderDetailsBloc.state.data!.paymentMethod.toLowerCase();
         }).toList();
       }
@@ -284,5 +283,29 @@ class OrderDetailsPageController {
   ChangeOrderPaymentParams _changeOrderPaymentParams() {
     return ChangeOrderPaymentParams(orderDetailsBloc.state.data!.id,
         payMethod: selectedPaymentOption!.paymentTypeKey);
+  }
+
+  Future<void> changeNoonStatus() async {
+    /// before change enable key in ChangeNoonOrder class
+    getIt<LoadingHelper>().showLoadingDialog();
+    var result = await ChangeNoonOrder.instance.changeStatus(
+      _changeParms(),
+    );
+    result.fold(
+      (l) {},
+      (r) {
+        CustomToast.showSimpleToast(msg: "Status updated successfully");
+      },
+    );
+    getIt<LoadingHelper>().dismissDialog();
+  }
+
+  ChangeNoonOrderParams _changeParms() {
+    /// this is dummy trackingNumber
+    return ChangeNoonOrderParams(
+      id: orderDetailsBloc.state.data!.id,
+      noonStatus: NoonStatus.arrivedAtPickupLocation,
+      trackingNumber: "HG5HNNA6EW7OH8TZ",
+    );
   }
 }

@@ -1,6 +1,10 @@
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instruction_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_attachment_domain_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
+import 'package:flutter_tdd/features/user/purchasing/data/enums/order_type_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/enum/track_order_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_discount_domain.dart';
@@ -29,7 +33,7 @@ class Orders extends BaseDomainModel {
   bool paymentStatus;
   String paymentStatusText;
   bool availableCancelOrder;
-  String additionalInfo;
+  String? additionalInfo;
   String paymentMethod;
   String paymentMethodConst;
   String shippingMethod;
@@ -51,13 +55,32 @@ class Orders extends BaseDomainModel {
   bool loyaltyPointsApplied;
   int loyaltyPoints;
   String loyaltyPointsValue;
+  String shopType;
   int expectedLoyaltyPoints;
   String environmentFees;
   String? driverNotes;
   String? pickerNotes;
+  String? orderSourceLabel;
+  String? shippingProvider;
+  String? shippingProviderLabel;
+  InsuranceCompany? insuranceCompany;
   OrderDriverDomainModel? driverModel;
   List<DeliveryInstructionModel>? instructions;
   List<OrderDiscountDomain>? orderDiscounts;
+  bool? isPendingReview;
+ bool? awaitingCustomerCompletion;
+   bool? requiresPrescriptionReview;
+  bool? insuranceApplied;
+  bool? allowReplacement;
+  String? cancelReason;
+  List<PharmacyAttachmentDomainModel>? insuranceAttachments;
+  List<PharmacyAttachmentDomainModel>? prescriptionAttachments;
+  String? identityDocumentFile;
+  String? requestedBy;
+  String? requestedByLabel;
+  String? pharmacyReply;
+  PharmacyBranchDomainModel? branch;
+
 
   Orders({
     required this.id,
@@ -79,8 +102,9 @@ class Orders extends BaseDomainModel {
     required this.paymentStatus,
     required this.paymentStatusText,
     required this.availableCancelOrder,
-    required this.additionalInfo,
+    this.additionalInfo,
     required this.paymentMethod,
+    required this.shopType,
     required this.paymentMethodConst,
     required this.shippingMethod,
     required this.orderStatus,
@@ -100,19 +124,38 @@ class Orders extends BaseDomainModel {
     required this.totalFeeAmount,
     required this.expectedLoyaltyPoints,
     required this.environmentFees,
-     this.driverModel,
-     this.serviceFees,
-     this.technologyFees,
-     this.vatFeeAmount,
-     this.driverNotes,
-     this.instructions,
-     this.orderDiscounts,
-     this.pickerNotes,
+    this.driverModel,
+    this.serviceFees,
+    this.technologyFees,
+    this.vatFeeAmount,
+    this.driverNotes,
+    this.instructions,
+    this.orderDiscounts,
+    this.pickerNotes,
+    this.orderSourceLabel,
+    this.shippingProvider,
+    this.shippingProviderLabel,
+    this.isPendingReview,
+    this.awaitingCustomerCompletion,
+    this.requiresPrescriptionReview,
+    this.insuranceApplied,
+    this.allowReplacement,
+    this.insuranceAttachments,
+    this.prescriptionAttachments,
+    this.insuranceCompany,
+    this.cancelReason,
+    this.identityDocumentFile,
+    this.requestedBy,
+    this.requestedByLabel,
+    this.pharmacyReply,
+    this.branch,
   });
 
-  int totalItemsCount() => orderDetails.fold(0, (previousValue, element) => previousValue + element.quantity);
+  int totalItemsCount() => orderDetails.fold(
+      0, (previousValue, element) => previousValue + element.quantity);
 
-  DateTime get getOrderDate => DateTimeHelper.convertToDateTime(strDate: orderDate);
+  DateTime get getOrderDate =>
+      DateTimeHelper.convertToDateTime(strDate: orderDate);
 
   double getDiscountNumber() {
     var currencySymbol = orderDetails.first.product?.currencySymbol;
@@ -122,13 +165,13 @@ class Orders extends BaseDomainModel {
   }
 
   bool get isCouponApply => getDiscountNumber() > 0;
-  
-  double get totalServiceFess => double.parse(technologyFees ?? "0.0" ) + double.parse(serviceFees??"0.0");
 
-  double get totalVat => double.parse(tax) + double.parse(vatFeeAmount ?? "0.0");
+  double get totalServiceFess =>
+      double.parse(technologyFees ?? "0.0") +
+      double.parse(serviceFees ?? "0.0");
 
-
-
+  double get totalVat =>
+      double.parse(tax) + double.parse(vatFeeAmount ?? "0.0");
 
   TrackOrderEnum get getTrackOrderStatus {
     /// at first its Placed
@@ -145,9 +188,9 @@ class Orders extends BaseDomainModel {
         return TrackOrderEnum.confirmed;
       case "preparing":
         return TrackOrderEnum.preparing;
-        case "ready_for_delivery":
+      case "ready_for_delivery":
         return TrackOrderEnum.readyForDelivery;
-        case "on_the_way":
+      case "on_the_way":
         return TrackOrderEnum.onTheWay;
       case "picked_up":
         return TrackOrderEnum.pickedUp;
@@ -158,23 +201,26 @@ class Orders extends BaseDomainModel {
       default:
         return TrackOrderEnum.placed;
     }
-
-
   }
 
-
-  OrderPaymentType orderPaymentType(){
-    switch(paymentMethodConst){
-      case "cash_on_delivery" :return OrderPaymentType.cash;
-      case "paymob" : return OrderPaymentType.paymob;
-      case "wallet" :return OrderPaymentType.wallet;
-      default: return OrderPaymentType.paymob;
+  OrderPaymentType orderPaymentType() {
+    switch (paymentMethodConst) {
+      case "cash_on_delivery":
+        return OrderPaymentType.cash;
+      case "paymob":
+        return OrderPaymentType.paymob;
+      case "wallet":
+        return OrderPaymentType.wallet;
+      default:
+        return OrderPaymentType.paymob;
     }
   }
 
   bool get isPaymentCash => orderPaymentType() == OrderPaymentType.cash;
 
-  bool get isPaymentOnline => orderPaymentType() != OrderPaymentType.cash && orderPaymentType() != OrderPaymentType.wallet;
+  bool get isPaymentOnline =>
+      orderPaymentType() != OrderPaymentType.cash &&
+      orderPaymentType() != OrderPaymentType.wallet;
 
   bool get isPaid => paymentStatus;
 
@@ -182,5 +228,33 @@ class Orders extends BaseDomainModel {
 
   bool get isCanceled => getTrackOrderStatus == TrackOrderEnum.cancelled;
 
-  bool get showUnPaidOnlineOrderActions => isPaymentOnline && !isPaid && !isCanceled;
+  bool get isPlaced => getTrackOrderStatus == TrackOrderEnum.placed;
+
+  bool get isConfirmed => getTrackOrderStatus == TrackOrderEnum.confirmed;
+
+  bool get showUnPaidOnlineOrderActions =>
+      isPaymentOnline && !isPaid && !isCanceled;
+
+
+
+   OrderTypeEnum orderTypeEnum() {
+     if(shopType == "pharmacy") {
+       return OrderTypeEnum.pharmacy ;
+     }else{
+       return OrderTypeEnum.general ;
+     }
+   }
+
+   bool get  isPharmacy => orderTypeEnum() == OrderTypeEnum.pharmacy;
+
+
+  bool get pharmNormalOrder {
+
+    return  requiresPrescriptionReview == false;
+  }
+  bool get pharmOrderWithPrescription => requiresPrescriptionReview == true;
+
+  bool get pharmOrderWithInsurance => insuranceApplied == true;
+
+
 }

@@ -9,9 +9,9 @@ class BestSellersPageController {
 
   final ScrollController scrollController = ScrollController();
 
-  final PagingController<int, Shop> pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, Shop> pagingController =
+      PagingController(firstPageKey: 1);
   int pageSize = 12;
-
 
   BestSellersPageController() {
     getBestSellers(1, refresh: false);
@@ -21,8 +21,8 @@ class BestSellersPageController {
   }
 
   Future<void> getBestSellers(int page, {bool refresh = true}) async {
-    var params = searchParams(refresh, page);
-    var data = await  GetBestSellers().call(params);
+    var params = _shopsParams(refresh, page);
+    var data = await GetBestSellers().call(params);
     final isLastPage = data.length < pageSize;
     if (page == 1) {
       pagingController.itemList = [];
@@ -34,11 +34,13 @@ class BestSellersPageController {
       pagingController.appendPage(data, nextPageKey);
     }
   }
+
   void clearSearchField() {
     searchTxtController.clear();
     showClearIcon.onUpdateData(false);
     getBestSellers(1);
   }
+
   void whileWriting(String value) {
     showClearIcon.onUpdateData(value.isNotEmpty);
     DebounceHelper.instance.startSearch(
@@ -46,22 +48,25 @@ class BestSellersPageController {
         onSearch: (val) {
           pagingController.refresh();
           getBestSellers(1);
-        }
-    );
+        });
   }
-  GenericPaginateParams  params(bool refresh,int page) =>  GenericPaginateParams(
-    currentPage: page,
-    refresh: refresh,
-    pageSize: pageSize,
-  );
 
-  SearchResultParams searchParams(bool refresh,int page){
+  GenericPaginateParams params(bool refresh, int page) => GenericPaginateParams(
+        currentPage: page,
+        refresh: refresh,
+        pageSize: pageSize,
+      );
+
+  ShopsParams _shopsParams(bool refresh, int page) {
+    var params = _searchParams(refresh, page);
+    return ShopsParams(params: params);
+  }
+
+  SearchResultParams _searchParams(bool refresh, int page) {
     return SearchResultParams(
         searchTxt: searchTxtController.text,
-        paginateParams: params(refresh,page)
-    );
+        paginateParams: params(refresh, page));
   }
-
 
   // Future<void> getBestSellers({bool refresh = false}) async {
   //   if (refresh) {
@@ -84,16 +89,12 @@ class BestSellersPageController {
   //   isLoadingCubit.onUpdateData(false);
   // }
 
-
-
   // void _scrollListener() {
   //   if (scrollController.position.pixels >=
   //       scrollController.position.maxScrollExtent * 0.9) {
   //     getBestSellers();
   //   }
   // }
-
-
 
   // void dispose() {
   //   searchTxtController.dispose();

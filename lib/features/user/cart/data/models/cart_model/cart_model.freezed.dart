@@ -21,6 +21,7 @@ CartModel _$CartModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CartModel {
   List<CartItemModel> get items => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
   @JsonKey(name: "sub_total")
   String get subTotal => throw _privateConstructorUsedError;
   @JsonKey(name: "calculable_total")
@@ -50,6 +51,7 @@ abstract class $CartModelCopyWith<$Res> {
   @useResult
   $Res call(
       {List<CartItemModel> items,
+      String type,
       @JsonKey(name: "sub_total") String subTotal,
       @JsonKey(name: "calculable_total") num calculableTotal,
       @JsonKey(name: "currency_symbol") String currencySymbol,
@@ -74,6 +76,7 @@ class _$CartModelCopyWithImpl<$Res, $Val extends CartModel>
   @override
   $Res call({
     Object? items = null,
+    Object? type = null,
     Object? subTotal = null,
     Object? calculableTotal = null,
     Object? currencySymbol = null,
@@ -87,6 +90,10 @@ class _$CartModelCopyWithImpl<$Res, $Val extends CartModel>
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<CartItemModel>,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
       subTotal: null == subTotal
           ? _value.subTotal
           : subTotal // ignore: cast_nullable_to_non_nullable
@@ -128,6 +135,7 @@ abstract class _$$_CartModelCopyWith<$Res> implements $CartModelCopyWith<$Res> {
   @useResult
   $Res call(
       {List<CartItemModel> items,
+      String type,
       @JsonKey(name: "sub_total") String subTotal,
       @JsonKey(name: "calculable_total") num calculableTotal,
       @JsonKey(name: "currency_symbol") String currencySymbol,
@@ -150,6 +158,7 @@ class __$$_CartModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? items = null,
+    Object? type = null,
     Object? subTotal = null,
     Object? calculableTotal = null,
     Object? currencySymbol = null,
@@ -163,6 +172,10 @@ class __$$_CartModelCopyWithImpl<$Res>
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<CartItemModel>,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
       subTotal: null == subTotal
           ? _value.subTotal
           : subTotal // ignore: cast_nullable_to_non_nullable
@@ -201,6 +214,7 @@ class __$$_CartModelCopyWithImpl<$Res>
 class _$_CartModel extends _CartModel {
   const _$_CartModel(
       {required final List<CartItemModel> items,
+      required this.type,
       @JsonKey(name: "sub_total") required this.subTotal,
       @JsonKey(name: "calculable_total") required this.calculableTotal,
       @JsonKey(name: "currency_symbol") required this.currencySymbol,
@@ -224,6 +238,8 @@ class _$_CartModel extends _CartModel {
     return EqualUnmodifiableListView(_items);
   }
 
+  @override
+  final String type;
   @override
   @JsonKey(name: "sub_total")
   final String subTotal;
@@ -256,7 +272,7 @@ class _$_CartModel extends _CartModel {
 
   @override
   String toString() {
-    return 'CartModel(items: $items, subTotal: $subTotal, calculableTotal: $calculableTotal, currencySymbol: $currencySymbol, minAmountSeller: $minAmountSeller, minimumAmountMsg: $minimumAmountMsg, minimumAmount: $minimumAmount, minimumStatus: $minimumStatus)';
+    return 'CartModel(items: $items, type: $type, subTotal: $subTotal, calculableTotal: $calculableTotal, currencySymbol: $currencySymbol, minAmountSeller: $minAmountSeller, minimumAmountMsg: $minimumAmountMsg, minimumAmount: $minimumAmount, minimumStatus: $minimumStatus)';
   }
 
   @override
@@ -265,6 +281,7 @@ class _$_CartModel extends _CartModel {
         (other.runtimeType == runtimeType &&
             other is _$_CartModel &&
             const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.subTotal, subTotal) ||
                 other.subTotal == subTotal) &&
             (identical(other.calculableTotal, calculableTotal) ||
@@ -286,6 +303,7 @@ class _$_CartModel extends _CartModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_items),
+      type,
       subTotal,
       calculableTotal,
       currencySymbol,
@@ -311,6 +329,7 @@ class _$_CartModel extends _CartModel {
 abstract class _CartModel extends CartModel {
   const factory _CartModel(
       {required final List<CartItemModel> items,
+      required final String type,
       @JsonKey(name: "sub_total") required final String subTotal,
       @JsonKey(name: "calculable_total") required final num calculableTotal,
       @JsonKey(name: "currency_symbol") required final String currencySymbol,
@@ -327,6 +346,8 @@ abstract class _CartModel extends CartModel {
 
   @override
   List<CartItemModel> get items;
+  @override
+  String get type;
   @override
   @JsonKey(name: "sub_total")
   String get subTotal;

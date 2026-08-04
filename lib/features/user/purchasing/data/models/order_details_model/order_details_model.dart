@@ -25,10 +25,14 @@ class OrderDetailsModel extends BaseApiModel<OrderDetails>
     String? tax,
     @JsonKey(name: 'review_is_available') required bool isAvailableReview,
     @JsonKey(name: 'msg_cant_review') required String msgCantReview,
-    @JsonKey(name: 'shipped_by')  String? shippedBy,
+    @JsonKey(name: 'shipped_by') String? shippedBy,
     @JsonKey(name: 'sold_by_type') required String soldByType,
     @JsonKey(name: 'sold_by_name') required String soldBy,
     ReviewsModel? review,
+    @JsonKey(name: 'picker_notes') String? pickerNotes,
+    String? instructions,
+    @JsonKey(name: 'insurance_coverage_percentage')
+    String? insuranceCoveragePercentage,
   }) = _OrderDetailsModel;
 
   factory OrderDetailsModel.fromJson(Map<String, dynamic> json) =>
@@ -37,20 +41,22 @@ class OrderDetailsModel extends BaseApiModel<OrderDetails>
   @override
   OrderDetails toDomainModel() {
     return OrderDetails(
-      id: id,
-      variation: variation,
-      quantity: quantity,
-      deliveryType: deliveryType,
-      price: price,
-      availableReturnQty: availableReturnQty,
-      isAvailableReview: isAvailableReview,
-      msgCantReview: msgCantReview,
-      product: product?.toDomainModel(),
-      review: review?.toDomainModel(),
-      shippedBy:shippedBy,
-      tax: tax,
-      soldBy: soldBy,
-      soldByType: soldByType
-    );
+        id: id,
+        variation: variation,
+        quantity: quantity,
+        deliveryType: deliveryType,
+        price: price,
+        availableReturnQty: availableReturnQty,
+        isAvailableReview: isAvailableReview,
+        msgCantReview: msgCantReview,
+        product: product?.toDomainModel(),
+        review: review?.toDomainModel(),
+        shippedBy: shippedBy,
+        tax: tax,
+        soldBy: soldBy,
+        soldByType: soldByType,
+        pickerNotes: pickerNotes,
+        instructions: instructions,
+        insuranceCoveragePercentage: insuranceCoveragePercentage);
   }
 }

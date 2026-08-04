@@ -47,7 +47,7 @@ class BuildIconItem extends StatelessWidget {
         width: width ?? 25,
         padding: padding,
         decoration: BoxDecoration(
-          border: Border.all(color: context.colors.gray3,width: .5),
+          border: Border.all(color: context.colors.gray3, width: .5),
           color: checkValue == true && changeBgColor!
               ? context.colors.primary
               : inActiveColor ?? context.colors.white,

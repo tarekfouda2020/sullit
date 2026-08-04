@@ -25,10 +25,6 @@ class OrderSummaryDiscountModel extends BaseApiModel<OrderSummaryDiscountDomain>
   @override
   OrderSummaryDiscountDomain toDomainModel() {
     return OrderSummaryDiscountDomain(
-      type: type,
-      label: label,
-      discount: discount,
-      description: description
-    );
+        type: type, label: label, discount: discount, description: description);
   }
 }

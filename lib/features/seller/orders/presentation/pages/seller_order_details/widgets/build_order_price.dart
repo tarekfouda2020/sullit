@@ -27,7 +27,8 @@ class BuildOrderPrice extends StatelessWidget {
           const BuildDetailsItem(title: "Coupon", desc: "222 د.إ"),
           const BuildDetailsItem(title: "Reseller Amount", desc: "222 د.إ"),
           Gaps.line(context.colors.gray, 10),
-          const BuildDetailsItem(title: "Total", desc: "222 د.إ", isColor: true),
+          const BuildDetailsItem(
+              title: "Total", desc: "222 د.إ", isColor: true),
         ],
       ),
     );

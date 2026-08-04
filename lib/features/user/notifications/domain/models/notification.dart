@@ -17,15 +17,14 @@ class NotificationDomainModel extends BaseDomainModel {
 
   NotificationDomainModel({
     required this.id,
-     this.orderId,
+    this.orderId,
     required this.text,
     required this.type,
     required this.createdAt,
   });
 
-
-
-  bool get _isShareHolderOffer => type == NotifyEnum.shareholderProducts.getValue();
+  bool get _isShareHolderOffer =>
+      type == NotifyEnum.shareholderProducts.getValue();
 
   bool get _isVipOffer => type == NotifyEnum.offerVipProducts.getValue();
 
@@ -33,15 +32,17 @@ class NotificationDomainModel extends BaseDomainModel {
 
   bool get _isNewArrivalOffer => type == NotifyEnum.offerNewArrival.getValue();
 
-  bool get isOffer => _isShareHolderOffer || _isVipOffer || _isOnSaleOffer || _isNewArrivalOffer;
-
+  bool get isOffer =>
+      _isShareHolderOffer ||
+      _isVipOffer ||
+      _isOnSaleOffer ||
+      _isNewArrivalOffer;
 
   String normalizeDate() {
     try {
-      return  createdAt;
-      final normalized = createdAt
-          .replaceAll("am", "AM")
-          .replaceAll("pm", "PM");
+      return createdAt;
+      final normalized =
+          createdAt.replaceAll("am", "AM").replaceAll("pm", "PM");
 
       final parseFormatter = DateFormat("MMMM d yyyy, h:mm a", "en_US");
 
@@ -59,8 +60,7 @@ class NotificationDomainModel extends BaseDomainModel {
     }
   }
 
-
-   String _getLang(){
+  String _getLang() {
     var lang = "en";
     var code = GlobalState.instance.get(LangCodeHelper.langKey);
     if (code == LangTypeEnum.arabic.getLangCode()) {
@@ -74,6 +74,4 @@ class NotificationDomainModel extends BaseDomainModel {
     }
     return lang;
   }
-
-
 }

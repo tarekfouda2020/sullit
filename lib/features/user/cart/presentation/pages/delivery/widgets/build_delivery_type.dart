@@ -13,7 +13,7 @@ class BuildDeliveryType extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 22),
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 22),
           margin: Dimens.paddingVertical8PX,
           decoration: BoxDecoration(
             color: context.colors.white,
@@ -36,27 +36,30 @@ class BuildDeliveryType extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  if(shipping.activeDelivery)
-                  BuildDeliveryTypeItem(
-                    title: tr("homeDelivery"),
-                    value: DeliveryTypeEnum.delivery,
-                    groupValue: shipping.deliveryType,
-                    onChanged: (val) => controller.onChangeType(shipping, val!),
-                  ),
-                  if(shipping.activeDelivery)
-                  Gaps.hGap10,
-                  if(shipping.activePickup)
-                  BuildDeliveryTypeItem(
-                    title: tr('localPick'),
-                    value: DeliveryTypeEnum.pickUp,
-                    groupValue: shipping.deliveryType,
-                    onChanged: (val) => controller.onChangeType(shipping, val!),
-                  ),
+                  if (shipping.activeDelivery)
+                    BuildDeliveryTypeItem(
+                      title: tr("homeDelivery"),
+                      value: DeliveryTypeEnum.delivery,
+                      groupValue: shipping.deliveryType,
+                      onChanged: (val) =>
+                          controller.onChangeType(shipping, val!),
+                    ),
+                  if (shipping.activeDelivery) Gaps.hGap10,
+                  if (shipping.activePickup)
+                    BuildDeliveryTypeItem(
+                      title: tr('localPick'),
+                      value: DeliveryTypeEnum.pickUp,
+                      groupValue: shipping.deliveryType,
+                      onChanged: (val) =>
+                          controller.onChangeType(shipping, val!),
+                    ),
                 ],
               ),
               Visibility(
                 visible: shipping.deliveryType.isPickUp,
-                replacement: DeliveryDurationCoastWidget(shipping: shipping,),
+                replacement: DeliveryDurationCoastWidget(
+                  shipping: shipping,
+                ),
                 child: DropdownTextField<Pickup?>(
                   title: tr('selectNearestPoint'),
                   hint: tr('selectNearestPoint'),

@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/banner_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/slider_domain_model.dart';
 import 'package:flutter_tdd/features/user/sale/domain/models/flash_sale.dart';
@@ -16,6 +17,7 @@ class HomeDomainModel extends BaseDomainModel {
   final FlashSale? flashSales;
   final List<Shop> shop;
   final List<Shop> topSellers;
+  final List<Shop> pharmacyShops;
   // final List<Product> bestSellingProducts;
   // final List<Product> newestProducts;
   // final List<Product> featuredProducts;
@@ -26,7 +28,7 @@ class HomeDomainModel extends BaseDomainModel {
   final bool isAdminDiscount;
   final int discountRate;
 
-  HomeDomainModel( {
+  HomeDomainModel({
     required this.sliders,
     required this.bannersOne,
     required this.bannersTwo,
@@ -45,5 +47,6 @@ class HomeDomainModel extends BaseDomainModel {
     required this.favCount,
     required this.isAdminDiscount,
     required this.discountRate,
+    required this.pharmacyShops,
   });
 }

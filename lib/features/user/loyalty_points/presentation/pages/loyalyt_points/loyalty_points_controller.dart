@@ -1,11 +1,11 @@
-part  of 'loyalty_points_imports.dart';
+part of 'loyalty_points_imports.dart';
 
 class LoyaltyPointsController {
   final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc =
-  GenericBloc(null);
-  final PagingController<int, TransactionsDomainModel> pagingController = PagingController(firstPageKey: 1);
+      GenericBloc(null);
+  final PagingController<int, TransactionsDomainModel> pagingController =
+      PagingController(firstPageKey: 1);
   int pageSize = 12;
-
 
   LoyaltyPointsController() {
     getLoyaltyPointsBalance(refresh: false);
@@ -34,15 +34,13 @@ class LoyaltyPointsController {
   Future<void> getLoyaltyPointsBalance({bool refresh = true}) async {
     return await GetLoyaltyPointsBalance().call(refresh).then(
           (value) => loyaltyPointsBalanceBloc.onUpdateData(value),
-    );
+        );
   }
 
-
-  Future<void> refresh()async{
+  Future<void> refresh() async {
     await getTransactions(1);
     await getLoyaltyPointsBalance();
   }
-
 
   final List<LoyaltyPointTypeEnum> pointsTypes = [
     LoyaltyPointTypeEnum.gained,
@@ -64,5 +62,4 @@ class LoyaltyPointsController {
       pageSize: pageSize,
     );
   }
-
 }

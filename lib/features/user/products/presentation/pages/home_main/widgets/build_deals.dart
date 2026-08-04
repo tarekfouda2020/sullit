@@ -20,9 +20,11 @@ class BuildDeals extends StatelessWidget {
             fit: BoxFit.fill,
             borderRadius: Dimens.borderRadius10PX,
             bgColor: Colors.transparent,
-            placeHolder: Image.asset(Res.dealOfDayBackGround,),
+            placeHolder: Image.asset(
+              Res.dealOfDayBackGround,
+            ),
           ),
-          DealsCountDownWidget(flashSales: flashSales,controller: controller),
+          DealsCountDownWidget(flashSales: flashSales, controller: controller),
         ],
       ),
     );

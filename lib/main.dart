@@ -17,7 +17,6 @@ import 'core/routes/router_imports.gr.dart';
 import 'core/http/dio_helper/utils/http_tracking_interceptor.dart';
 import 'my_app.dart';
 
-
 void main() async {
   tz.initializeTimeZones();
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
@@ -11,7 +10,11 @@ class BrandsSheetItemWidget extends StatelessWidget {
   final void Function() onTap;
   final bool? isSelected;
   final BrandDomainModel brandModel;
-  const BrandsSheetItemWidget({super.key, required this.onTap, this.isSelected, required this.brandModel});
+  const BrandsSheetItemWidget(
+      {super.key,
+      required this.onTap,
+      this.isSelected,
+      required this.brandModel});
 
   @override
   Widget build(BuildContext context) {
@@ -25,24 +28,24 @@ class BrandsSheetItemWidget extends StatelessWidget {
             borderRadius: Dimens.borderRadius12PX,
             border: Border.all(
                 color: isSelected ?? brandModel.isSelected
-                    ?context.colors.primary
-                    :context.colors.gray3
-            )
-        ),
+                    ? context.colors.primary
+                    : context.colors.gray3)),
         child: Row(
           children: [
-            CachedImage(url: brandModel.logo,
+            CachedImage(
+              url: brandModel.logo,
               width: 30,
               height: 30,
               boxShape: BoxShape.circle,
               haveRadius: false,
             ),
             Gaps.hGap10,
-            Text(brandModel.name,
-              style: AppTextStyle.s15_w500(color:isSelected ?? brandModel.isSelected
-                  ?context.colors.primary
-                  :context.colors.black
-              ),
+            Text(
+              brandModel.name,
+              style: AppTextStyle.s15_w500(
+                  color: isSelected ?? brandModel.isSelected
+                      ? context.colors.primary
+                      : context.colors.black),
             )
           ],
         ),

@@ -56,7 +56,9 @@ class ContactUsFormWidget extends StatelessWidget {
                 action: TextInputAction.next,
                 hint: "53534332",
                 margin: Dimens.marginTop5Bottom12,
-                validate: (value) => ((state.data?.callingCode ?? "") + (value ?? "")).validatePhoneOrNull(),
+                validate: (value) =>
+                    ((state.data?.callingCode ?? "") + (value ?? ""))
+                        .validatePhoneOrNull(),
                 prefixIcon: PhoneFieldPrefixWidget(
                   countryCubit: controller.countryCubit,
                 ),

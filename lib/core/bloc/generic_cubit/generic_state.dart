@@ -14,19 +14,18 @@ class GenericInitialState<T> extends GenericState<T> {
   List<Object> get props => [changed];
 }
 
-
 class GenericUpdateState<T> extends GenericState<T> {
-  GenericUpdateState(T data, bool changed, String error) : super(data, changed, error);
+  GenericUpdateState(T data, bool changed, String error)
+      : super(data, changed, error);
 
   @override
   List<Object> get props => [changed];
 }
 
 class GenericFailedState<T> extends GenericState<T> {
-  GenericFailedState(T data, bool changed, String error) : super(data, changed, error);
+  GenericFailedState(T data, bool changed, String error)
+      : super(data, changed, error);
 
   @override
   List<Object> get props => [changed, error];
 }
-
-

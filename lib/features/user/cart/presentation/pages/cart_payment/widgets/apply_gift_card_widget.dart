@@ -11,10 +11,9 @@ class ApplyGiftCardWidget extends StatelessWidget {
       child: Row(
         children: [
           Text(tr("orApplyGiftCard"),
-              style: AppTextStyle.s14_w400(color: context.colors.primary)
-          ),
+              style: AppTextStyle.s14_w400(color: context.colors.primary)),
           Gaps.hGap7,
-          Icon(Icons.arrow_forward,color: context.colors.primary)
+          Icon(Icons.arrow_forward, color: context.colors.primary)
         ],
       ),
     );

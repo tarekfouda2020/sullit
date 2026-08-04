@@ -13,7 +13,7 @@ class BuildSupportMsgItem extends StatelessWidget {
   // Helper function to get appropriate padding based on language direction
   EdgeInsets _getMessagePadding(BuildContext context) {
     final isRTL = _isRTL(context);
-    
+
     if (model.isSender) {
       // Sender message
       if (isRTL) {
@@ -54,7 +54,7 @@ class BuildSupportMsgItem extends StatelessWidget {
   // Helper function to get appropriate alignment based on language direction
   AlignmentDirectional _getMessageAlignment(BuildContext context) {
     final isRTL = _isRTL(context);
-    
+
     if (model.isSender) {
       // Sender message
       if (isRTL) {
@@ -79,7 +79,7 @@ class BuildSupportMsgItem extends StatelessWidget {
   // Helper function to get appropriate cross alignment based on language direction
   CrossAxisAlignment _getCrossAxisAlignment(BuildContext context) {
     final isRTL = _isRTL(context);
-    
+
     if (model.isSender) {
       // Sender message
       if (isRTL) {
@@ -114,7 +114,8 @@ class BuildSupportMsgItem extends StatelessWidget {
           ),
           Gaps.vGap10,
           Text(
-            DateTimeHelper.getDate(model.createdAt,formatType: "d MMM yyyy - hh:mm a"),
+            DateTimeHelper.getDate(model.createdAt,
+                formatType: "d MMM yyyy - hh:mm a"),
             style: AppTextStyle.s12_w400(color: context.colors.textColor),
           ),
           Container(
@@ -126,16 +127,20 @@ class BuildSupportMsgItem extends StatelessWidget {
                 horizontal: 16,
               ),
               decoration: BoxDecoration(
-                color: model.isSender ? context.colors.primary : context.colors.gray4,
+                color: model.isSender
+                    ? context.colors.primary
+                    : context.colors.gray4,
                 borderRadius: BorderRadiusDirectional.only(
                   topStart: model.isSender
-                      ? const Radius.circular(0)  // Small radius for sender's bottom-left
+                      ? const Radius.circular(
+                          0) // Small radius for sender's bottom-left
                       : const Radius.circular(20),
                   topEnd: model.isSender
                       ? const Radius.circular(20)
                       : const Radius.circular(0),
-                  bottomStart:  const Radius.circular(20),
-                  bottomEnd:  const Radius.circular(20), // Small radius for receiver's bottom-right
+                  bottomStart: const Radius.circular(20),
+                  bottomEnd: const Radius.circular(
+                      20), // Small radius for receiver's bottom-right
                 ),
                 // Optional: Add subtle shadow for depth
                 boxShadow: [
@@ -153,14 +158,16 @@ class BuildSupportMsgItem extends StatelessWidget {
                   Visibility(
                     visible: model.msgType == "text",
                     replacement: InkWell(
-                      onTap: () => AutoRouter.of(context).push(ImageZoomRoute(image: model.msg)),
+                      onTap: () => AutoRouter.of(context)
+                          .push(ImageZoomRoute(image: model.msg)),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: CachedImage(
                           url: model.msg,
                           width: Dimens.dp150,
                           height: Dimens.dp150,
-                          fit: BoxFit.cover, // Changed from fill to cover for better image display
+                          fit: BoxFit
+                              .cover, // Changed from fill to cover for better image display
                         ),
                       ),
                     ),
@@ -170,7 +177,8 @@ class BuildSupportMsgItem extends StatelessWidget {
                         Flexible(
                           child: Text(
                             model.msg,
-                            style: AppTextStyle.s16_w400(color: context.colors.white),
+                            style: AppTextStyle.s16_w400(
+                                color: context.colors.white),
                           ),
                         ),
                       ],

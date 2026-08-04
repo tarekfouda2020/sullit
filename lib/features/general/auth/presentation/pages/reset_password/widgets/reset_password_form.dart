@@ -13,7 +13,9 @@ class ResetPasswordForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           BuildInputLabel(label: tr("newPassword"),),
+          BuildInputLabel(
+            label: tr("newPassword"),
+          ),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.passwordCubit,
             builder: (context, state) {
@@ -41,7 +43,9 @@ class ResetPasswordForm extends StatelessWidget {
               );
             },
           ),
-           BuildInputLabel(label: tr("confirmPassword"),),
+          BuildInputLabel(
+            label: tr("confirmPassword"),
+          ),
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.confirmPasswordCubit,
             builder: (context, state) {
@@ -56,7 +60,8 @@ class ResetPasswordForm extends StatelessWidget {
                     !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
-                validate: (value) => value?.validatePasswordConfirm(pass: controller.password.text),
+                validate: (value) => value?.validatePasswordConfirm(
+                    pass: controller.password.text),
                 suffixIcon: IconButton(
                   onPressed: () =>
                       controller.confirmPasswordCubit.onUpdateData(!state.data),

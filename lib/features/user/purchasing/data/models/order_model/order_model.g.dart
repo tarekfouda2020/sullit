@@ -18,6 +18,7 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       shipping: json['shipping'] as String,
       tax: json['tax'] as String,
       couponDiscount: json['coupon_discount'] as String,
+      shopType: json['shop_type'] as String,
       total: json['total'] as String,
       date: json['date'] as String,
       deliveryStatusConst: json['delivery_status_const'] as String,
@@ -27,7 +28,7 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       paymentStatus: json['payment_status'] as bool,
       paymentStatusText: json['payment_status_text'] as String,
       availableCancelOrder: json['available_cancel_order'] as bool,
-      additionalInfo: json['additional_info'] as String,
+      additionalInfo: json['additional_info'] as String?,
       paymentMethod: json['payment_method'] as String,
       paymentMethodConst: json['payment_method_key'] as String,
       shippingMethod: json['shipping_method'] as String,
@@ -64,6 +65,35 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       driver: json['driver'] == null
           ? null
           : OrderDriverModel.fromJson(json['driver'] as Map<String, dynamic>),
+      orderSourceLabel: json['order_source_label'] as String?,
+      shippingProvider: json['shipping_provider'] as String?,
+      shippingProviderLabel: json['shipping_provider_label'] as String?,
+      isPendingReview: json['is_pending_review'] as bool?,
+      awaitingCustomerCompletion: json['awaiting_customer_completion'] as bool?,
+      requiresPrescriptionReview: json['requires_prescription_review'] as bool?,
+      insuranceApplied: json['insurance_applied'] as bool?,
+      insuranceAttachments: (json['insurance_attachments'] as List<dynamic>?)
+          ?.map((e) =>
+              PharmacyAttachmentModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      prescriptionAttachments:
+          (json['prescription_attachments'] as List<dynamic>?)
+              ?.map((e) =>
+                  PharmacyAttachmentModel.fromJson(e as Map<String, dynamic>))
+              .toList(),
+      insuranceCompany: json['insurance_company'] == null
+          ? null
+          : InsuranceCompanyModel.fromJson(
+              json['insurance_company'] as Map<String, dynamic>),
+      cancelReason: json['cancel_reason'] as String?,
+      identityDocumentFile: json['identity_document_file'] as String?,
+      requestedBy: json['requested_by'] as String?,
+      requestedByLabel: json['requested_by_label'] as String?,
+      pharmacyReply: json['pharmacy_reply'] as String?,
+      branch: json['branch'] == null
+          ? null
+          : PharmacyBranchModel.fromJson(
+              json['branch'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
@@ -78,6 +108,7 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'shipping': instance.shipping,
       'tax': instance.tax,
       'coupon_discount': instance.couponDiscount,
+      'shop_type': instance.shopType,
       'total': instance.total,
       'date': instance.date,
       'delivery_status_const': instance.deliveryStatusConst,
@@ -118,4 +149,22 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'order_discounts':
           instance.orderDiscounts?.map((e) => e.toJson()).toList(),
       'driver': instance.driver?.toJson(),
+      'order_source_label': instance.orderSourceLabel,
+      'shipping_provider': instance.shippingProvider,
+      'shipping_provider_label': instance.shippingProviderLabel,
+      'is_pending_review': instance.isPendingReview,
+      'awaiting_customer_completion': instance.awaitingCustomerCompletion,
+      'requires_prescription_review': instance.requiresPrescriptionReview,
+      'insurance_applied': instance.insuranceApplied,
+      'insurance_attachments':
+          instance.insuranceAttachments?.map((e) => e.toJson()).toList(),
+      'prescription_attachments':
+          instance.prescriptionAttachments?.map((e) => e.toJson()).toList(),
+      'insurance_company': instance.insuranceCompany?.toJson(),
+      'cancel_reason': instance.cancelReason,
+      'identity_document_file': instance.identityDocumentFile,
+      'requested_by': instance.requestedBy,
+      'requested_by_label': instance.requestedByLabel,
+      'pharmacy_reply': instance.pharmacyReply,
+      'branch': instance.branch?.toJson(),
     };

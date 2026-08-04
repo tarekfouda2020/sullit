@@ -17,10 +17,10 @@ class ProductDetailsModel extends BaseApiModel<ProductDetailsDomainModel>
   const factory ProductDetailsModel({
     required ProductModel product,
     @JsonKey(name: 'related_products')
-        required List<ProductModel> relatedProducts,
+    required List<ProductModel> relatedProducts,
     @JsonKey(name: 'top_products') required List<ProductModel> topProducts,
     @JsonKey(name: 'product_queries')
-        required ProductQueriesModel productQueries,
+    required ProductQueriesModel productQueries,
   }) = _ProductDetailsModel;
 
   factory ProductDetailsModel.fromJson(Map<String, dynamic> json) =>

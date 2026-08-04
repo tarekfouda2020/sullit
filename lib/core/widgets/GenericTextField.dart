@@ -36,14 +36,15 @@ class GenericTextField extends StatelessWidget {
   final Function()? onSubmit;
   final Function(String value)? onChange;
   final List<TextInputFormatter>? inputFormatters;
- final AutovalidateMode? autoValidateMode;
- final String? fontFamily;
- final TextDirection? textDirection;
- final TextStyle? hintStyle;
+  final AutovalidateMode? autoValidateMode;
+  final String? fontFamily;
+  final TextDirection? textDirection;
+  final TextStyle? hintStyle;
 
   const GenericTextField(
-      {super.key,  this.label,
-       this.hint,
+      {super.key,
+      this.label,
+      this.hint,
       required this.fieldTypes,
       this.controller,
       this.focusNode,
@@ -81,14 +82,14 @@ class GenericTextField extends StatelessWidget {
     return Container(
       margin: margin ?? const EdgeInsets.all(0),
       child: Visibility(
-        visible: fieldTypes==FieldTypes.clickable,
+        visible: fieldTypes == FieldTypes.clickable,
         replacement: buildFormFiled(context),
         child: buildClickableView(context),
       ),
     );
   }
 
-  Widget buildClickableView(BuildContext context){
+  Widget buildClickableView(BuildContext context) {
     return InkWell(
       onTap: onTab,
       child: AbsorbPointer(
@@ -98,30 +99,37 @@ class GenericTextField extends StatelessWidget {
     );
   }
 
-  Widget buildFormFiled(BuildContext context){
+  Widget buildFormFiled(BuildContext context) {
     return TextFormField(
       controller: controller,
-      keyboardType: type ,
+      keyboardType: type,
       textInputAction: action,
       enableSuggestions: false,
       autocorrect: false,
       autofocus: autoFocus,
       focusNode: focusNode,
       textDirection: textDirection,
-      autovalidateMode: autoValidateMode??AutovalidateMode.onUserInteraction,
-      inputFormatters: inputFormatters??[
-        if(maxLength!=null)
-          LengthLimitingTextInputFormatter(maxLength), //n is maximum number of characters you want in textfield
-      ],
-      enabled: fieldTypes!=FieldTypes.disable,
+      autovalidateMode: autoValidateMode ?? AutovalidateMode.onUserInteraction,
+      inputFormatters: inputFormatters ??
+          [
+            if (maxLength != null)
+              LengthLimitingTextInputFormatter(
+                  maxLength), //n is maximum number of characters you want in textfield
+          ],
+      enabled: fieldTypes != FieldTypes.disable,
       autofillHints: getAutoFillHints(type),
-      maxLines: fieldTypes==FieldTypes.chat? null: fieldTypes==FieldTypes.rich? max :1,
-      obscureText: fieldTypes==FieldTypes.password,
-      readOnly: fieldTypes==FieldTypes.readonly,
+      maxLines: fieldTypes == FieldTypes.chat
+          ? null
+          : fieldTypes == FieldTypes.rich
+              ? max
+              : 1,
+      obscureText: fieldTypes == FieldTypes.password,
+      readOnly: fieldTypes == FieldTypes.readonly,
       onEditingComplete: onSubmit,
       onChanged: onChange,
       validator: (value) => validate(value),
-      style: AppTextStyle.s14_w400(color: textColor??context.colors.black).copyWith(fontFamily: fontFamily),
+      style: AppTextStyle.s14_w400(color: textColor ?? context.colors.black)
+          .copyWith(fontFamily: fontFamily),
       decoration: CustomInputDecoration(
         labelTxt: label,
         hintStr: hint,
@@ -144,19 +152,18 @@ class GenericTextField extends StatelessWidget {
     );
   }
 
-  List<String> getAutoFillHints(TextInputType inputType){
-    if(inputType==TextInputType.emailAddress){
+  List<String> getAutoFillHints(TextInputType inputType) {
+    if (inputType == TextInputType.emailAddress) {
       return [AutofillHints.email];
-    } else if(inputType==TextInputType.datetime){
+    } else if (inputType == TextInputType.datetime) {
       return [AutofillHints.birthday];
-    } else if(inputType==TextInputType.phone){
+    } else if (inputType == TextInputType.phone) {
       return [AutofillHints.telephoneNumber];
-    }else if(inputType==TextInputType.url){
+    } else if (inputType == TextInputType.url) {
       return [AutofillHints.url];
     }
-    return [AutofillHints.name,AutofillHints.username];
+    return [AutofillHints.name, AutofillHints.username];
   }
-
 }
 
-enum FieldTypes { normal, clickable, readonly, chat, password,rich,disable}
+enum FieldTypes { normal, clickable, readonly, chat, password, rich, disable }

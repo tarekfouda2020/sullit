@@ -26,6 +26,10 @@ _$_OrderDetailsModel _$$_OrderDetailsModelFromJson(Map<String, dynamic> json) =>
       review: json['review'] == null
           ? null
           : ReviewsModel.fromJson(json['review'] as Map<String, dynamic>),
+      pickerNotes: json['picker_notes'] as String?,
+      instructions: json['instructions'] as String?,
+      insuranceCoveragePercentage:
+          json['insurance_coverage_percentage'] as String?,
     );
 
 Map<String, dynamic> _$$_OrderDetailsModelToJson(
@@ -45,4 +49,7 @@ Map<String, dynamic> _$$_OrderDetailsModelToJson(
       'sold_by_type': instance.soldByType,
       'sold_by_name': instance.soldBy,
       'review': instance.review?.toJson(),
+      'picker_notes': instance.pickerNotes,
+      'instructions': instance.instructions,
+      'insurance_coverage_percentage': instance.insuranceCoveragePercentage,
     };

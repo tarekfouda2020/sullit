@@ -17,6 +17,7 @@ class OrderDiscountDomain extends BaseDomainModel {
     required this.typeDescription,
   });
 
-
   bool get isTierDiscount => type == "subscription_order_discount";
+
+  bool get isInsuranceDiscount => type == "insurance_discount";
 }

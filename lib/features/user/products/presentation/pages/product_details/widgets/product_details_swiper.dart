@@ -13,7 +13,8 @@ class BuildProductDetailsSwiper extends StatefulWidget {
   });
 
   @override
-  State<BuildProductDetailsSwiper> createState() => _BuildProductDetailsSwiperState();
+  State<BuildProductDetailsSwiper> createState() =>
+      _BuildProductDetailsSwiperState();
 }
 
 class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
@@ -61,13 +62,16 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
                     margin: const EdgeInsets.symmetric(vertical: 10),
                     changeBgColor: false,
                     radius: Dimens.dp5,
-                    icon: widget.productModel.isWishlist! ? Res.favIcon : Res.emptyFavIcon,
+                    icon: widget.productModel.isWishlist!
+                        ? Res.favIcon
+                        : Res.emptyFavIcon,
                     checkValue: widget.productModel.isWishlist,
                     onTap: () => getIt<ProductsHelper>().toggleFavourite(
                       context: context,
                       id: widget.productModel.id!,
                       loadingBloc: showLoading,
-                      onRefresh: () => widget.controller.onChangeFav(context, widget.productModel),
+                      onRefresh: () => widget.controller
+                          .onChangeFav(context, widget.productModel),
                     ),
                   ),
                   child: const Center(
@@ -96,11 +100,16 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
             background: Swiper(
               autoplay: false,
               itemCount: widget.productModel.images!.length,
-              physics: widget.productModel.images!.length > 1 ? null : const NeverScrollableScrollPhysics(),
-              pagination: const SwiperPagination(),
+              physics: widget.productModel.images!.length > 1
+                  ? null
+                  : const NeverScrollableScrollPhysics(),
+              pagination: (widget.productModel.images?.length ??0) > 1
+                  ? const SwiperPagination()
+                  : null,
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
-                  onTap: () => AutoRouter.of(context).push(ImageZoomRoute(image: widget.productModel.images![index])),
+                  onTap: () => AutoRouter.of(context).push(ImageZoomRoute(
+                      image: widget.productModel.images![index])),
                   child: Stack(
                     alignment: AlignmentDirectional.bottomStart,
                     children: [
@@ -116,11 +125,11 @@ class _BuildProductDetailsSwiperState extends State<BuildProductDetailsSwiper> {
                           ),
                         ),
                       ),
-                      if(widget.productModel.isOutOfStock)
-                      const Padding(
-                        padding: EdgeInsets.all(5),
-                        child: OutOfStockGlassWidget(),
-                      )
+                      if (widget.productModel.isOutOfStock)
+                        const Padding(
+                          padding: EdgeInsets.all(5),
+                          child: OutOfStockGlassWidget(),
+                        )
                     ],
                   ),
                 );

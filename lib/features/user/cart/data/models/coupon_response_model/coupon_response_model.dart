@@ -8,14 +8,14 @@ part 'coupon_response_model.g.dart';
 
 @freezed
 @immutable
-class CouponResponseModel extends BaseApiModel<CouponResponse> with _$CouponResponseModel{
+class CouponResponseModel extends BaseApiModel<CouponResponse>
+    with _$CouponResponseModel {
   const CouponResponseModel._();
   @JsonSerializable(explicitToJson: true)
   const factory CouponResponseModel({
-    required String msg ,
-    required ShippingModel data ,
+    required String msg,
+    required ShippingModel data,
   }) = _CouponResponseModel;
-
 
   factory CouponResponseModel.fromJson(Map<String, dynamic> json) =>
       _$CouponResponseModelFromJson(json);

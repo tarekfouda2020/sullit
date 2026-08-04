@@ -70,13 +70,13 @@ class ImplCommonDataSources extends CommonDataSources {
   @override
   Future<Either<Failure, String>> returnPolicy() async {
     HttpRequestModel model = HttpRequestModel(
-        url: ApiNames.returnPolicy,
-        requestMethod: RequestMethod.get,
-        responseType: ResType.type,
-        showLoader: true,
-        responseKey: (data) => data["data"]["content"],
-        errorFunc: (data) => data["msg"],
-        );
+      url: ApiNames.returnPolicy,
+      requestMethod: RequestMethod.get,
+      responseType: ResType.type,
+      showLoader: true,
+      responseKey: (data) => data["data"]["content"],
+      errorFunc: (data) => data["msg"],
+    );
     return await GenericHttpImpl<String>().call(model);
   }
 
@@ -110,7 +110,8 @@ class ImplCommonDataSources extends CommonDataSources {
   }
 
   @override
-  Future<Either<Failure, List<SupportMsgModel>>> sendSupportMsg(SupportMsgParams params) async {
+  Future<Either<Failure, List<SupportMsgModel>>> sendSupportMsg(
+      SupportMsgParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.sendSupportMsg,
       requestMethod: RequestMethod.post,

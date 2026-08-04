@@ -4,8 +4,7 @@ import 'package:flutter_tdd/features/user/category/domain/entities/search_produc
 import 'package:flutter_tdd/features/user/category/domain/repository/category_repository.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 
-class GetCategoryProducts
-    extends UseCase<List<Product>, SearchProductsParams> {
+class GetCategoryProducts extends UseCase<List<Product>, SearchProductsParams> {
   @override
   Future<List<Product>> call(SearchProductsParams params) async {
     var result = await getIt<CategoryRepository>().getCategoryProducts(params);

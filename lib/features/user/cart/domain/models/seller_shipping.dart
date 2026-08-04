@@ -1,12 +1,12 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/enum/delivery_type_enum.dart';
-import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/delivery.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/pick_up.dart';
 
 class SellerShipping extends BaseDomainModel {
   String name;
-  List<CartItem> items;
+  List<GeneralCartItem> items;
   bool physical;
   bool activePickup;
   Pickup? pickup;
@@ -17,14 +17,14 @@ class SellerShipping extends BaseDomainModel {
   DeliveryTypeEnum deliveryType = DeliveryTypeEnum.delivery;
 
   SellerShipping({
-   required this.name,
-   required this.items,
-   required this.physical,
-   required this.activePickup,
-   required this.pickup,
-   required this.activeDelivery,
-   required this.delivery,
-   required this.ownerId,
-   required this.deliveryMessage,
+    required this.name,
+    required this.items,
+    required this.physical,
+    required this.activePickup,
+    required this.pickup,
+    required this.activeDelivery,
+    required this.delivery,
+    required this.ownerId,
+    required this.deliveryMessage,
   });
 }

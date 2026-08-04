@@ -27,7 +27,6 @@ class BuildSellerButton extends StatelessWidget {
           width: 100.w,
         ),
         Gaps.vGap8,
-
       ],
     );
   }

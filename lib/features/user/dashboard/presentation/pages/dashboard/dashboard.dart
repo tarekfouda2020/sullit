@@ -20,7 +20,7 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(title: tr('dashboard'), showBack: true),
+      appBar: DefaultAppBar(title: tr('dashboard'), showBack: true),
       body: BlocBuilder<GenericBloc<Dashboards?>, GenericState<Dashboards?>>(
         bloc: controller.dashboardsCubit,
         builder: (context, state) {

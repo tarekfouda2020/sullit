@@ -21,12 +21,15 @@ class PaymentMethodBottomSheetWidget extends StatelessWidget {
             children: [
               BottomSheetHeaderWidget(title: tr("paymentMethods")),
               Gaps.vGap23,
-              ...List.generate(controller.shippingBloc.state.data!.paymentOption!.length, (index) {
-                PaymentOption payOption = controller.shippingBloc.state.data!.paymentOption![index];
+              ...List.generate(
+                  controller.shippingBloc.state.data!.paymentOption!.length,
+                  (index) {
+                PaymentOption payOption =
+                    controller.shippingBloc.state.data!.paymentOption![index];
                 return Visibility(
                   visible: payOption.getPaymentType() != PayTypeEnum.wallet,
                   child: PayOptionItemWidget(
-                    onTap: ()=> controller.onChangePayment(state.data!, index),
+                    onTap: () => controller.onChangePayment(state.data!, index),
                     payOption: payOption,
                   ),
                 );

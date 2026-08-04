@@ -19,7 +19,8 @@ class ImplAddressesRepository extends AddressesRepository with ModelToDomain {
   var dataSources = getIt<AddressesDataSources>();
 
   @override
-  Future<Either<Failure, List<AddressDomainModel>>> getAddress(GenericPaginateParams param) async {
+  Future<Either<Failure, List<AddressDomainModel>>> getAddress(
+      GenericPaginateParams param) async {
     var result = await dataSources.getAddress(param);
     return toDomainResultList(result);
   }
@@ -61,12 +62,15 @@ class ImplAddressesRepository extends AddressesRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, AddressDomainModel>> editAddress(EditAddressParams params) async {
+  Future<Either<Failure, AddressDomainModel>> editAddress(
+      EditAddressParams params) async {
     var result = await dataSources.editAddress(params);
     return toDomainResult(result);
   }
+
   @override
-  Future<Either<Failure, List<AddressTypeModel>>> addressTypes(bool param) async {
+  Future<Either<Failure, List<AddressTypeModel>>> addressTypes(
+      bool param) async {
     var result = await dataSources.addressTypes(param);
     return toDomainResultList(result);
   }

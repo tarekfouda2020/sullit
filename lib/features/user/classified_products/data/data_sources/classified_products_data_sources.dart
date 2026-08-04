@@ -40,7 +40,8 @@ abstract class ClassifiedProductsDataSources {
   Future<Either<Failure, ClassifiedProductsModel>> getClassifiedProducts(
       bool param);
 
-  Future<Either<Failure, CusProductModel>> getClassifiedProduct(GenericParams param);
+  Future<Either<Failure, CusProductModel>> getClassifiedProduct(
+      GenericParams param);
 
   Future<Either<Failure, CusProductModel>> editClassifiedProduct(
       EditClassifiedProductParams params);
@@ -55,5 +56,4 @@ abstract class ClassifiedProductsDataSources {
 
   Future<Either<Failure, bool>> changeStatus(int param);
   Future<Either<Failure, String>> deleteProduct(int param);
-
 }

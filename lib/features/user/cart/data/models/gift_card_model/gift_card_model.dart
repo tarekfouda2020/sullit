@@ -7,14 +7,16 @@ part 'gift_card_model.freezed.dart';
 part 'gift_card_model.g.dart';
 
 @freezed
-class GiftCardAppliedCartModel extends BaseApiModel<GiftCardApllieCartDomainModel> with _$GiftCardAppliedCartModel{
+class GiftCardAppliedCartModel
+    extends BaseApiModel<GiftCardApllieCartDomainModel>
+    with _$GiftCardAppliedCartModel {
   const GiftCardAppliedCartModel._();
   @JsonSerializable(explicitToJson: true)
   factory GiftCardAppliedCartModel({
-    @JsonKey(name: "summary") required ShippingSummaryModel shippingSummaryModel,
+    @JsonKey(name: "summary")
+    required ShippingSummaryModel shippingSummaryModel,
     @JsonKey(name: "applied_gift_card") String? appliedGiftCard,
   }) = _GiftCardAppliedCartModel;
-
 
   factory GiftCardAppliedCartModel.fromJson(Map<String, dynamic> json) =>
       _$GiftCardAppliedCartModelFromJson(json);
@@ -22,8 +24,7 @@ class GiftCardAppliedCartModel extends BaseApiModel<GiftCardApllieCartDomainMode
   @override
   GiftCardApllieCartDomainModel toDomainModel() {
     return GiftCardApllieCartDomainModel(
-      summary: shippingSummaryModel.toDomainModel(),
-      appliedGiftCard: appliedGiftCard
-    );
+        summary: shippingSummaryModel.toDomainModel(),
+        appliedGiftCard: appliedGiftCard);
   }
 }

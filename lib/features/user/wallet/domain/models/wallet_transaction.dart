@@ -22,28 +22,14 @@ class WalletTransaction extends BaseDomainModel {
     required this.createdAt,
   });
 
-
   WalletTransactionType transactionType() {
-    switch(type){
-      case "deduct": return WalletTransactionType.deduct;
-      case "income": return WalletTransactionType.income;
-      default: return WalletTransactionType.deduct;
+    switch (type) {
+      case "deduct":
+        return WalletTransactionType.deduct;
+      case "income":
+        return WalletTransactionType.income;
+      default:
+        return WalletTransactionType.deduct;
     }
   }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

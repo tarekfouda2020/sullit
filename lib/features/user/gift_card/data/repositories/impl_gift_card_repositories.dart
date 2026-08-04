@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
@@ -16,43 +15,49 @@ import 'package:flutter_tdd/features/user/gift_card/domain/entity/pay_subscribe_
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: GiftCardsRepositories)
-class ImplGiftCardRepositories extends GiftCardsRepositories  with ModelToDomain {
+class ImplGiftCardRepositories extends GiftCardsRepositories
+    with ModelToDomain {
   var dataSource = getIt<GiftCardsDataSource>();
 
   @override
-  Future<Either<Failure, List<PayMethodDomainModel>>> getPayMethods() async{
+  Future<Either<Failure, List<PayMethodDomainModel>>> getPayMethods() async {
     var result = await dataSource.getPayMethods();
-   return toDomainResultList<PayMethodDomainModel,PayMethodModel>(result);
+    return toDomainResultList<PayMethodDomainModel, PayMethodModel>(result);
   }
 
   @override
-  Future<Either<Failure, List<GiftCardDomainModel>>> giftCardSubscriptionsList(GenericPaginateParams params) async{
+  Future<Either<Failure, List<GiftCardDomainModel>>> giftCardSubscriptionsList(
+      GenericPaginateParams params) async {
     var result = await dataSource.giftCardSubscriptionsList(params);
-   return toDomainResultList<GiftCardDomainModel,GiftCardModel>(result);
+    return toDomainResultList<GiftCardDomainModel, GiftCardModel>(result);
   }
 
   @override
-  Future<Either<Failure, List<GiftCardDomainModel>>> giftCardList(GenericPaginateParams params) async{
+  Future<Either<Failure, List<GiftCardDomainModel>>> giftCardList(
+      GenericPaginateParams params) async {
     var result = await dataSource.giftCardList(params);
-   return toDomainResultList<GiftCardDomainModel,GiftCardModel>(result);
+    return toDomainResultList<GiftCardDomainModel, GiftCardModel>(result);
   }
 
   @override
-  Future<Either<Failure, GiftCardDomainModel>> giftCardSubscriptionDetails(int params) async{
+  Future<Either<Failure, GiftCardDomainModel>> giftCardSubscriptionDetails(
+      int params) async {
     var result = await dataSource.giftCardSubscriptionDetails(params);
-   return toDomainResult<GiftCardDomainModel,GiftCardModel>(result);
+    return toDomainResult<GiftCardDomainModel, GiftCardModel>(result);
   }
 
   @override
-  Future<Either<Failure, GiftCardDomainModel>> giftCardDetails(int params) async{
+  Future<Either<Failure, GiftCardDomainModel>> giftCardDetails(
+      int params) async {
     var result = await dataSource.giftCardDetails(params);
-   return toDomainResult<GiftCardDomainModel,GiftCardModel>(result);
+    return toDomainResult<GiftCardDomainModel, GiftCardModel>(result);
   }
 
   @override
-  Future<Either<Failure, SubscribePaymentDomainModel>> payGiftCardSubscribe(PaySubscribeParams params) async{
+  Future<Either<Failure, SubscribePaymentDomainModel>> payGiftCardSubscribe(
+      PaySubscribeParams params) async {
     var result = await dataSource.payGiftCardSubscribe(params);
-   return toDomainResult<SubscribePaymentDomainModel,SubscribePaymentModel>(result);
+    return toDomainResult<SubscribePaymentDomainModel, SubscribePaymentModel>(
+        result);
   }
-
 }

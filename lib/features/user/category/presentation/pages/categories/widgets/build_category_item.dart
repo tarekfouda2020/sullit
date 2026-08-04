@@ -30,7 +30,7 @@ class BuildCategoryItem extends StatelessWidget {
                 // height: 60.r,
                 // width: 60.r,
                 fit: BoxFit.contain,
-                url: categoryModel.icon ,
+                url: categoryModel.icon,
               ),
             ),
             Gaps.vGap15,

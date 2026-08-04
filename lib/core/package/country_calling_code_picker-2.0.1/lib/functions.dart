@@ -10,7 +10,9 @@ Future<List<Country>> getCountries(BuildContext context) async {
   String rawData = await DefaultAssetBundle.of(context).loadString(
       'packages/country_calling_code_picker/raw/country_codes.json');
   final parsed = json.decode(rawData.toString()) as List<dynamic>;
-  return parsed.map<Country>((json) => Country.fromJson(json as Map<String, dynamic>)).toList();
+  return parsed
+      .map<Country>((json) => Country.fromJson(json as Map<String, dynamic>))
+      .toList();
 }
 
 ///This function returns an user's current country. User's sim country code is matched with the ones in the list.
@@ -26,7 +28,8 @@ Future<Country> getDefaultCountry(BuildContext context) async {
       return list.first;
     }
     return list.firstWhere(
-      (element) => element.countryCode.toLowerCase() == countryCode.toLowerCase(),
+      (element) =>
+          element.countryCode.toLowerCase() == countryCode.toLowerCase(),
       orElse: () => list.first,
     );
   } catch (e) {
@@ -51,14 +54,15 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
     Color? backgroundColor,
     Color? textColor,
     String? chooseRegionText,
-    String Function(String countryCode, BuildContext context)? getLocalizedCountryName,
+    String Function(String countryCode, BuildContext context)?
+        getLocalizedCountryName,
     String Function(String key)? translate}) {
   assert(heightFactor <= 0.9 && heightFactor >= 0.4,
       'heightFactor must be between 0.4 and 0.9');
   final bgColor = backgroundColor ?? Colors.white;
   final txtColor = textColor ?? Colors.black;
   final regionText = chooseRegionText ?? 'Choose region';
-  
+
   return showModalBottomSheet<Country?>(
       context: context,
       isScrollControlled: true,
@@ -71,8 +75,7 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
         return Container(
           height: MediaQuery.of(context).size.height * heightFactor,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(12))
-          ),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
           child: Column(
             children: <Widget>[
               SizedBox(height: 16),
@@ -84,9 +87,10 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
                         top: 4,
                         bottom: 0,
                         child: TextButton(
-                            child: Text('Cancel', style: TextStyle(
-                              color: txtColor
-                            ),),
+                            child: Text(
+                              'Cancel',
+                              style: TextStyle(color: txtColor),
+                            ),
                             onPressed: () => Navigator.pop(context)),
                       ),
                   Center(
@@ -95,10 +99,9 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
                           regionText,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.w500,
-                            color: txtColor
-                          ),
+                              fontSize: 25,
+                              fontWeight: FontWeight.w500,
+                              color: txtColor),
                         ),
                   ),
                 ],
@@ -160,14 +163,14 @@ Future<Country?> showCountryPickerDialog(
             ],
           ),
           SizedBox(height: 16),
-                      Expanded(
-              child: CountryPickerWidget(
-                onSelected: (country) => Navigator.of(context).pop(country),
-                forceArabic: forceArabic,
-                getLocalizedCountryName: null,
-                translate: null,
-              ),
+          Expanded(
+            child: CountryPickerWidget(
+              onSelected: (country) => Navigator.of(context).pop(country),
+              forceArabic: forceArabic,
+              getLocalizedCountryName: null,
+              translate: null,
             ),
+          ),
         ],
       ),
     ),

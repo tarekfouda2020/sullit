@@ -1,6 +1,5 @@
 part of 'search_widgets_imports.dart';
 
-
 class SearchHistoryWidget extends StatelessWidget {
   final SearchController controller;
   const SearchHistoryWidget({super.key, required this.controller});
@@ -21,28 +20,30 @@ class SearchHistoryWidget extends StatelessWidget {
             ),
             child: ConstrainedBox(
               constraints: BoxConstraints(
-                maxHeight: MediaQuery
-                    .sizeOf(context)
-                    .height * 0.2,
+                maxHeight: MediaQuery.sizeOf(context).height * 0.2,
               ),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   spacing: 10,
-                  children: List.generate(state.data.length,
-                        (index) {
+                  children: List.generate(
+                    state.data.length,
+                    (index) {
                       return Visibility(
                         visible: state.data[index].isNotEmpty,
                         child: GestureDetector(
-                          onTap: () => controller.selectSearchHistoryItem(state.data[index]),
+                          onTap: () => controller
+                              .selectSearchHistoryItem(state.data[index]),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             spacing: 10,
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 12),
-                                child: Text(state.data[index],
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 12),
+                                child: Text(
+                                  state.data[index],
                                   style: AppTextStyle.s15_w500(
                                       color: context.colors.black),
                                 ),
@@ -52,7 +53,8 @@ class SearchHistoryWidget extends StatelessWidget {
                           ),
                         ),
                       );
-                    },),
+                    },
+                  ),
                 ),
               ),
             ),

@@ -3,7 +3,6 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/res.dart';
 
-
 class AppLoaderWidget extends StatefulWidget {
   const AppLoaderWidget({super.key});
 
@@ -11,9 +10,11 @@ class AppLoaderWidget extends StatefulWidget {
   State<AppLoaderWidget> createState() => _AppLoaderWidgetState();
 }
 
-class _AppLoaderWidgetState extends State<AppLoaderWidget> with SingleTickerProviderStateMixin {
-  late final AnimationController _controller =
-      AnimationController(vsync: this, duration: const Duration(milliseconds: 800))..repeat();
+class _AppLoaderWidgetState extends State<AppLoaderWidget>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+      vsync: this, duration: const Duration(milliseconds: 800))
+    ..repeat();
 
   @override
   void dispose() {
@@ -23,7 +24,7 @@ class _AppLoaderWidgetState extends State<AppLoaderWidget> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
-    const double size= 128;
+    const double size = 128;
     Widget animationBuilder = AnimatedBuilder(
       animation: _controller,
       builder: (_, child) {
@@ -33,7 +34,7 @@ class _AppLoaderWidgetState extends State<AppLoaderWidget> with SingleTickerProv
         );
       },
       child: Image.asset(
-        Res.appLoaderBg ,
+        Res.appLoaderBg,
         height: size,
         width: size,
         fit: BoxFit.fill,

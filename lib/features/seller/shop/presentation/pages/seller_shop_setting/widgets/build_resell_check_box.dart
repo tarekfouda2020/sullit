@@ -15,8 +15,8 @@ class BuildResellCheckBox extends StatelessWidget {
         Checkbox(
             checkColor: context.colors.white,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5),
-                ),
+              borderRadius: BorderRadius.circular(5),
+            ),
             activeColor: context.colors.darkPurple,
             value: value,
             onChanged: (value) {}),
@@ -24,7 +24,6 @@ class BuildResellCheckBox extends StatelessWidget {
           title,
           style: AppTextStyle.s14_w400(color: context.colors.black),
           textAlign: TextAlign.start,
-
         ),
       ],
     );

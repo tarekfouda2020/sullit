@@ -24,11 +24,12 @@ class _BestRatedState extends State<BestRated> {
         children: [
           Gaps.vGap10,
           Padding(
-            padding: const EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 8),
+            padding:
+                const EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 8),
             child: CustomSearchFiledWidget(
               txtController: controller.searchFieldCtr,
-              onPressSearch: () =>controller.onPressSearch(context),
-              onChange: (value) => controller.whileWriting(value) ,
+              onPressSearch: () => controller.onPressSearch(context),
+              onChange: (value) => controller.whileWriting(value),
               onPressClear: () => controller.callProductsSearch(),
               height: Dimens.dp50,
               hint: tr("search_in_offers"),
@@ -39,13 +40,15 @@ class _BestRatedState extends State<BestRated> {
               onRefresh: () async => await controller.getBestRated(1),
               child: GridViewPagination<Product>(
                 padding: EdgeInsets.only(
-                    left: 15, right: 15, top: 10,
-                    bottom: MediaQuery.paddingOf(context).bottom + 30
-                ),
+                    left: 15,
+                    right: 15,
+                    top: 10,
+                    bottom: MediaQuery.paddingOf(context).bottom + 30),
                 pagingController: controller.bestRatedPagingController,
                 onRefresh: () async =>
                     controller.bestRatedPagingController.refresh(),
-                firstPageProgressIndicatorBuilder: (_) => const BuildLoadingProductsGridView(),
+                firstPageProgressIndicatorBuilder: (_) =>
+                    const BuildLoadingProductsGridView(),
                 showNewPageProgressIndicatorAsGridChild: false,
                 noItemsFoundIndicatorBuilder: (context) =>
                     const BuildEmptyDataView(),

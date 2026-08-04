@@ -25,7 +25,7 @@ class VideoURLValidator {
     return match;
   }
 
-   bool validateWistiaVideoURL({required String url}) {
+  bool validateWistiaVideoURL({required String url}) {
     final RegExp pattern = RegExp(VideoURLRegex.wistiaRegex);
     final bool match = pattern.hasMatch(url);
     return match;

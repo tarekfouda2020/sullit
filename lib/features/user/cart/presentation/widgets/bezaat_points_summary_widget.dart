@@ -16,65 +16,74 @@ class BezatPointsSummaryWidget extends StatefulWidget {
   final double redeemedPoints;
   final double redeemedValue;
   final double earnedPoints;
-  const BezatPointsSummaryWidget({super.key, required this.redeemedPoints, required this.redeemedValue, required this.earnedPoints});
+  const BezatPointsSummaryWidget(
+      {super.key,
+      required this.redeemedPoints,
+      required this.redeemedValue,
+      required this.earnedPoints});
 
   @override
-  State<BezatPointsSummaryWidget> createState() => _BezaatPointsSummaryWidgetState();
+  State<BezatPointsSummaryWidget> createState() =>
+      _BezaatPointsSummaryWidgetState();
 }
 
 class _BezaatPointsSummaryWidgetState extends State<BezatPointsSummaryWidget> {
-
-
-  final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc = GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
+  final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc =
+      GenericBloc<LoyaltyPointsBalanceDomainModel?>(null);
 
   Future<void> getLoyaltyPointsBalance({bool refresh = true}) async {
     return await GetLoyaltyPointsBalance().call(refresh).then(
           (value) => loyaltyPointsBalanceBloc.onUpdateData(value),
-    );
+        );
   }
-  
-  
+
   @override
   void initState() {
     super.initState();
     getLoyaltyPointsBalance(refresh: false);
     getLoyaltyPointsBalance();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsetsDirectional.fromSTEB( 20,15,5,15 ),
+      padding: const EdgeInsetsDirectional.fromSTEB(20, 15, 5, 15),
       decoration: BoxDecoration(
           border: Border.all(
             color: context.colors.borderColor,
           ),
           color: context.colors.white,
-          borderRadius: BorderRadius.circular(12)
-      ),
-      child: BlocBuilder<GenericBloc<LoyaltyPointsBalanceDomainModel?>, GenericState<LoyaltyPointsBalanceDomainModel?>>(
+          borderRadius: BorderRadius.circular(12)),
+      child: BlocBuilder<GenericBloc<LoyaltyPointsBalanceDomainModel?>,
+          GenericState<LoyaltyPointsBalanceDomainModel?>>(
         bloc: loyaltyPointsBalanceBloc,
         builder: (context, state) {
-          if(state is GenericUpdateState || state.data != null){
-           return Column(
+          if (state is GenericUpdateState || state.data != null) {
+            return Column(
               spacing: 10,
               children: [
                 Row(
                   spacing: 10,
                   children: [
-                    SvgPicture.asset(Res.loyaltyIcon,width: 25, height: 25,),
-                    Text(tr("bezat_points_summary"),
-                      style: AppTextStyle.s18_w500(color: context.colors.primary),
+                    SvgPicture.asset(
+                      Res.loyaltyIcon,
+                      width: 25,
+                      height: 25,
+                    ),
+                    Text(
+                      tr("bezat_points_summary"),
+                      style:
+                          AppTextStyle.s18_w500(color: context.colors.primary),
                     )
                   ],
                 ),
-                  Gaps.vGap10,
-                  if (widget.redeemedValue > 0)
-                    _buildPointsItem(
-                      title: tr("points_redeemed"),
-                      points: widget.redeemedPoints,
-                      showRedeemedValue: true,
-                    ),
+                Gaps.vGap10,
+                if (widget.redeemedValue > 0)
+                  _buildPointsItem(
+                    title: tr("points_redeemed"),
+                    points: widget.redeemedPoints,
+                    showRedeemedValue: true,
+                  ),
                 _buildPointsItem(
                   title: tr("points_earned_on_this_order"),
                   points: widget.earnedPoints,
@@ -85,19 +94,23 @@ class _BezaatPointsSummaryWidgetState extends State<BezatPointsSummaryWidget> {
                 ),
               ],
             );
-          }else{
+          } else {
             return Column(
-              children: List.generate(4, (index) {
-                return const BuildShimmerItem(height: 20,width: 100,);
-              },),
+              children: List.generate(
+                4,
+                (index) {
+                  return const BuildShimmerItem(
+                    height: 20,
+                    width: 100,
+                  );
+                },
+              ),
             );
           }
         },
       ),
     );
   }
-
-
 
   Widget _buildPointsItem({
     required String title,
@@ -143,13 +156,11 @@ class _BezaatPointsSummaryWidgetState extends State<BezatPointsSummaryWidget> {
       children: [
         Text(" ( ", style: AppTextStyle.s15_w400(color: context.colors.black)),
         Text("${widget.redeemedValue}",
-            style: AppTextStyle.s15_w400(color: context.colors.black))
+                style: AppTextStyle.s15_w400(color: context.colors.black))
             .withDirhamSymbol(),
         Text(" ${tr("value")}) ",
             style: AppTextStyle.s15_w400(color: context.colors.black)),
       ],
     );
   }
-
-
 }

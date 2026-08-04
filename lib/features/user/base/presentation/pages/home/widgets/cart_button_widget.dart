@@ -1,10 +1,9 @@
 part of 'home_widgets_imports.dart';
 
-
 class CartButtonWidget extends StatelessWidget {
- final double size;
- final EdgeInsetsDirectional? margin;
-  const CartButtonWidget({super.key,  this.size = 70, this.margin});
+  final double size;
+  final EdgeInsetsDirectional? margin;
+  const CartButtonWidget({super.key, this.size = 70, this.margin});
 
   @override
   Widget build(BuildContext context) {
@@ -12,56 +11,56 @@ class CartButtonWidget extends StatelessWidget {
       builder: (context, state) {
         return KeyboardVisibilityBuilder(
           builder: (ctx, isKeyboardVisible) {
-          return Visibility(
-            visible: !isKeyboardVisible,
-            child: GestureDetector(
-              onTap: () => AutoRouter.of(context).push( CartRoute()),
-              child: Container(
-                width: size,
-                height: size,
-                alignment: Alignment.center,
-                margin: margin,
-                decoration: BoxDecoration(
-                    color: context.colors.primary,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: context.colors.white, width: 1.5)
-                ),
-                child: Visibility(
-                  // visible: state.data.items!=null && (state.data.items??<CartItem>[]).isNotEmpty,
-                  child: Stack(
-                    alignment: AlignmentDirectional.topEnd,
-                    clipBehavior: Clip.none,
-                    children: [
-                      SvgPicture.asset(Res.shopCart),
-                      if(state.cartCount>0)
-                        PositionedDirectional(
-                          top:-7 ,
-                          end: -8,
-                          child: Container(
-                              width: 19,
-                              height: 19,
-                              padding: const EdgeInsets.only(bottom: 2),
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                  color: context.colors.white,
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                      color: context.colors.primary,
-                                      width: 1.5
-                                  )
-                              ),
-                              child: Text("${state.cartCount }",
-                                style: AppTextStyle.s11_w500(color: context.colors.primary),
-                              )
-                          ),
-                        )
-                    ],
+            return Visibility(
+              visible: !isKeyboardVisible,
+              child: GestureDetector(
+                onTap: () => AutoRouter.of(context).push(CartRoute()),
+                child: Container(
+                  width: size,
+                  height: size,
+                  alignment: Alignment.center,
+                  margin: margin,
+                  decoration: BoxDecoration(
+                      color: context.colors.primary,
+                      shape: BoxShape.circle,
+                      border:
+                          Border.all(color: context.colors.white, width: 1.5)),
+                  child: Visibility(
+                    // visible: state.data.items!=null && (state.data.items??<CartItem>[]).isNotEmpty,
+                    child: Stack(
+                      alignment: AlignmentDirectional.topEnd,
+                      clipBehavior: Clip.none,
+                      children: [
+                        SvgPicture.asset(Res.shopCart),
+                        if (state.cartCount > 0)
+                          PositionedDirectional(
+                            top: -7,
+                            end: -8,
+                            child: Container(
+                                width: 19,
+                                height: 19,
+                                padding: const EdgeInsets.only(bottom: 2),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    color: context.colors.white,
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                        color: context.colors.primary,
+                                        width: 1.5)),
+                                child: Text(
+                                  "${state.cartCount}",
+                                  style: AppTextStyle.s11_w500(
+                                      color: context.colors.primary),
+                                )),
+                          )
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          );
-        },);
+            );
+          },
+        );
       },
     );
     // return GestureDetector(

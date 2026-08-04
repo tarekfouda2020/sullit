@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/helpers/barcode_service.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
@@ -15,12 +18,15 @@ import 'package:flutter_tdd/core/helpers/orders_helper.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/saved_prescription_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_saved_prescriptions.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/features/user/base/presentation/manager/count_cubit/count_cubit.dart';
 import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_imports.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 import 'package:flutter_tdd/features/user/notifications/domain/entities/notify_enum.dart';
+import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/pharmacies_list/pharmacies_list_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/home_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_sections.dart';
@@ -28,6 +34,7 @@ import 'package:flutter_tdd/features/user/products/domain/use_cases/get_home.dar
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_product_sections.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_sku_product.dart';
 import 'package:flutter_tdd/features/user/products/presentation/pages/home_main/widgets/home_main_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/timer_entity.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -48,6 +55,7 @@ import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tab_type.dar
 import '../../../data/enum/banner_link_type_enum.dart';
 import '../../../domain/models/banner_domain_model.dart';
 import '../../../domain/models/slider_domain_model.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 part 'home_main.dart';
 part 'home_main_controller.dart';

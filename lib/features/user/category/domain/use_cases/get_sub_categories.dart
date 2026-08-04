@@ -4,8 +4,7 @@ import 'package:flutter_tdd/features/user/category/domain/entities/search_produc
 import 'package:flutter_tdd/features/user/category/domain/models/sub_category.dart';
 import 'package:flutter_tdd/features/user/category/domain/repository/category_repository.dart';
 
-class GetSubCategories
-    extends UseCase<SubCategory?, SearchProductsParams> {
+class GetSubCategories extends UseCase<SubCategory?, SearchProductsParams> {
   @override
   Future<SubCategory?> call(SearchProductsParams params) async {
     var result = await getIt<CategoryRepository>().getSubCategories(params);

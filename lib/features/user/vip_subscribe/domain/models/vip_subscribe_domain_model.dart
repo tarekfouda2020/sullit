@@ -16,7 +16,6 @@ class VipSubscribeDomainModel extends BaseDomainModel {
   final bool? isExpired;
   final VipSubscribeDomainModel? subscription;
 
-
   VipSubscribeDomainModel({
     required this.id,
     required this.name,
@@ -25,8 +24,8 @@ class VipSubscribeDomainModel extends BaseDomainModel {
     required this.days,
     required this.description,
     required this.subscription,
-     this.byInvite,
-     this.inviteLabel,
+    this.byInvite,
+    this.inviteLabel,
     this.isSelected = false,
     this.startsAt,
     this.expiresAt,

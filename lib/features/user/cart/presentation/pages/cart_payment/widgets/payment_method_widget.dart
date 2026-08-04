@@ -3,7 +3,8 @@ part of 'cart_payment_widgets_imports.dart';
 class PaymentMethodWidget extends StatelessWidget {
   final CartPaymentController controller;
   final Shipping shipping;
-  const PaymentMethodWidget({super.key, required this.controller, required this.shipping});
+  const PaymentMethodWidget(
+      {super.key, required this.controller, required this.shipping});
 
   @override
   Widget build(BuildContext context) {

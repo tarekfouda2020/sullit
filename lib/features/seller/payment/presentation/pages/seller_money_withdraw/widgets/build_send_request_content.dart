@@ -12,8 +12,7 @@ class BuildSendRequestContent extends StatelessWidget {
       onTap: () => FocusScope.of(context).unfocus(),
       child: AlertDialog(
         backgroundColor: context.colors.white,
-        shape:
-             RoundedRectangleBorder(borderRadius: Dimens.borderRadius5PX),
+        shape: RoundedRectangleBorder(borderRadius: Dimens.borderRadius5PX),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

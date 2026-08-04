@@ -13,7 +13,7 @@ class AdvantagesWidget extends StatelessWidget {
         Expanded(
           child: _advantageItem(
             context,
-            title: tr("freeDelivery",context: context),
+            title: tr("freeDelivery", context: context),
             icon: Res.truckIcon,
             // subTitle: tr("from200AED"),
             subTitle: "",
@@ -50,7 +50,8 @@ class AdvantagesWidget extends StatelessWidget {
     );
   }
 
-  Widget _advantageItem(BuildContext context, {required String icon, required String title, required String subTitle}) {
+  Widget _advantageItem(BuildContext context,
+      {required String icon, required String title, required String subTitle}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       //mainAxisSize: MainAxisSize.min,
@@ -69,7 +70,7 @@ class AdvantagesWidget extends StatelessWidget {
           child: Text(
             textAlign: TextAlign.center,
             subTitle,
-            style: AppTextStyle.s11_w400(color:  context.colors.textColor),
+            style: AppTextStyle.s11_w400(color: context.colors.textColor),
           ),
         ),
       ],

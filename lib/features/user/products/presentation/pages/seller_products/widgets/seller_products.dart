@@ -29,13 +29,15 @@ class SellerProducts extends StatelessWidget {
               onPressDelete: () async => controller.getCartData(),
             );
           },
-          firstPageProgressIndicatorBuilder: (_) => const BuildLoadingProductsGridView(),
-          noItemsFoundIndicatorBuilder: (_) =>  const BuildEmptyDataView(),
+          firstPageProgressIndicatorBuilder: (_) =>
+              const BuildLoadingProductsGridView(),
+          noItemsFoundIndicatorBuilder: (_) => const BuildEmptyDataView(),
           newPageProgressIndicatorBuilder: (context) => Gaps.empty,
         ),
       ),
     );
   }
+
   SliverGridDelegateWithFixedCrossAxisCount _buildGridDelegate() {
     return const SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
@@ -44,5 +46,4 @@ class SellerProducts extends StatelessWidget {
       mainAxisSpacing: 12,
     );
   }
-
 }

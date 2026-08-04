@@ -8,7 +8,7 @@ class BuildPackagesText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: Text(
-         tr('premiumPackageForCustomers'),
+        tr('premiumPackageForCustomers'),
         style: AppTextStyle.s16_w700(color: context.colors.black),
       ),
     );

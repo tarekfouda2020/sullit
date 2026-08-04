@@ -13,7 +13,7 @@ class BuildAdditionalInfo extends StatelessWidget {
           child: Text(
             "Additional Info : ",
             style: AppTextStyle.s14_w600(
-              color:  context.colors.primary,
+              color: context.colors.primary,
             ),
           ),
         ),

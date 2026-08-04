@@ -6,14 +6,13 @@ part 'address_type.freezed.dart';
 part 'address_type.g.dart';
 
 @freezed
-class AddressType extends BaseApiModel<AddressTypeModel> with _$AddressType{
+class AddressType extends BaseApiModel<AddressTypeModel> with _$AddressType {
   const AddressType._();
   @JsonSerializable(explicitToJson: true)
   factory AddressType({
     required String key,
     required String label,
   }) = _AddressType;
-
 
   factory AddressType.fromJson(Map<String, dynamic> json) =>
       _$AddressTypeFromJson(json);

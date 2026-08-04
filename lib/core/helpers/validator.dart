@@ -25,19 +25,16 @@ extension Validator on String {
   //   return null;
   // }
 
-
   String? isValidUAEPhone(String phone) {
     String sanitized = phone.replaceAll(RegExp(r'\s+|-|\(|\)'), '');
 
-    final regex = RegExp(
-        r'^(?:\+971|0)?'
+    final regex = RegExp(r'^(?:\+971|0)?'
         r'('
         r'50|51|52|55|56|57|58|59'
         r'|2|3|4|6|7'
         r')'
-        r'\d{7,8}$'
-    );
-    if(!regex.hasMatch(sanitized)){
+        r'\d{7,8}$');
+    if (!regex.hasMatch(sanitized)) {
       return tr("phoneValidation");
     }
 
@@ -103,6 +100,7 @@ extension Validator on String {
     }
     return null;
   }
+
   String? validatePhone({String? message}) {
     if (trim().isEmpty) {
       return message ?? tr("fillField");

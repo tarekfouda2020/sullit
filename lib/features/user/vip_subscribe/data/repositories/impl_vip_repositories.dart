@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
@@ -21,13 +20,14 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: VipRepositories)
 class ImplVipSubscribe extends VipRepositories with ModelToDomain {
-
   final VipDataSource _dataSource = getIt<VipDataSource>();
 
   @override
-  Future<Either<Failure, List<VipSubscribeDomainModel>>> getSubscriptions(GenericPaginateParams params) async {
+  Future<Either<Failure, List<VipSubscribeDomainModel>>> getSubscriptions(
+      GenericPaginateParams params) async {
     var result = await _dataSource.getSubscriptions(params);
-    return toDomainResultList<VipSubscribeDomainModel, VipSubscribeModel>(result);
+    return toDomainResultList<VipSubscribeDomainModel, VipSubscribeModel>(
+        result);
   }
 
   @override
@@ -37,21 +37,26 @@ class ImplVipSubscribe extends VipRepositories with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, VipCurrentPlanDomainModel>> getCurrentSubscription(bool refresh) async {
+  Future<Either<Failure, VipCurrentPlanDomainModel>> getCurrentSubscription(
+      bool refresh) async {
     var result = await _dataSource.getCurrentSubscription(refresh);
-    return toDomainResult<VipCurrentPlanDomainModel, VipCurrentPlanModel>(result);
+    return toDomainResult<VipCurrentPlanDomainModel, VipCurrentPlanModel>(
+        result);
   }
 
   @override
-  Future<Either<Failure, SubscribePaymentDomainModel>> paySubscription(PaySubscribeParams params) async {
+  Future<Either<Failure, SubscribePaymentDomainModel>> paySubscription(
+      PaySubscribeParams params) async {
     var result = await _dataSource.paySubscription(params);
-    return toDomainResult<SubscribePaymentDomainModel, SubscribePaymentModel>(result);
+    return toDomainResult<SubscribePaymentDomainModel, SubscribePaymentModel>(
+        result);
   }
 
   @override
-  Future<Either<Failure, SubscribeContentDomainModel>> getSubscriptionContent(bool param) async {
+  Future<Either<Failure, SubscribeContentDomainModel>> getSubscriptionContent(
+      bool param) async {
     var result = await _dataSource.getSubscriptionContent(param);
-    return toDomainResult<SubscribeContentDomainModel, SubscribeContentModel>(result);
+    return toDomainResult<SubscribeContentDomainModel, SubscribeContentModel>(
+        result);
   }
-
 }

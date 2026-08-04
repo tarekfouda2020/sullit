@@ -6,8 +6,7 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
 
-  onUpdateAuth(bool authorized){
+  onUpdateAuth(bool authorized) {
     emit(AuthUpdated(authorized));
   }
-
 }

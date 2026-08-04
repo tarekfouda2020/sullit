@@ -10,7 +10,7 @@ class PayMethodDomainModel extends BaseDomainModel {
   final String details;
   final String name;
   final String title;
-   bool isSelected;
+  bool isSelected;
 
   PayMethodDomainModel({
     required this.paymentType,
@@ -20,10 +20,8 @@ class PayMethodDomainModel extends BaseDomainModel {
     required this.details,
     required this.name,
     required this.title,
-     this.isSelected = false,
+    this.isSelected = false,
   });
-
-
 
   /// there is no cash option in giftCard payment
   PayTypeEnum getPaymentType() {
@@ -40,6 +38,4 @@ class PayMethodDomainModel extends BaseDomainModel {
         return PayTypeEnum.paymob;
     }
   }
-
-
 }

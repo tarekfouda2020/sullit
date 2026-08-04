@@ -12,15 +12,21 @@ abstract class SaleDataSources {
 
   Future<Either<Failure, SaleDetailsModel>> getAlFlashDealProducts(int param);
 
-  Future<Either<Failure, List<CouponModel>>> getCoupons(GenericPaginateParams param);
+  Future<Either<Failure, List<CouponModel>>> getCoupons(
+      GenericPaginateParams param);
 
-  Future<Either<Failure, List<ProductModel>>> getNewArrival(OffersParamsWidget param);
+  Future<Either<Failure, List<ProductModel>>> getNewArrival(
+      OffersParamsWidget param);
 
-  Future<Either<Failure, List<ProductModel>>> getOnSale(OffersParamsWidget param);
+  Future<Either<Failure, List<ProductModel>>> getOnSale(
+      OffersParamsWidget param);
 
-  Future<Either<Failure, List<ProductModel>>> getBestRated(OffersParamsWidget param);
+  Future<Either<Failure, List<ProductModel>>> getBestRated(
+      OffersParamsWidget param);
 
-  Future<Either<Failure, List<ProductModel>>> getVipOffers(OffersParamsWidget param);
+  Future<Either<Failure, List<ProductModel>>> getVipOffers(
+      OffersParamsWidget param);
 
-  Future<Either<Failure, List<ProductModel>>> getShareholderProducts(OffersParamsWidget param);
+  Future<Either<Failure, List<ProductModel>>> getShareholderProducts(
+      OffersParamsWidget param);
 }

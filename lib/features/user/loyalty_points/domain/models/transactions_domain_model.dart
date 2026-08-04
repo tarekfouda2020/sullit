@@ -29,10 +29,10 @@ class TransactionsDomainModel extends BaseDomainModel {
     );
   }
 
-  LoyaltyPointTypeEnum transactionType(){
-    if(type == "gained"){
+  LoyaltyPointTypeEnum transactionType() {
+    if (type == "gained") {
       return LoyaltyPointTypeEnum.gained;
-    }else {
+    } else {
       return LoyaltyPointTypeEnum.deduct;
     }
   }

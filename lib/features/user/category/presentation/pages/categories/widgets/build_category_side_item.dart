@@ -26,9 +26,9 @@ class BuildCategorySideItem extends StatelessWidget {
           categoryModel.name,
           textAlign: TextAlign.center,
           style: AppTextStyle.s14_w600(
-            color:categoryModel.isSelected == false
+            color: categoryModel.isSelected == false
                 ? context.colors.black
-                :context.colors.primary,
+                : context.colors.primary,
           ),
         ),
       ),

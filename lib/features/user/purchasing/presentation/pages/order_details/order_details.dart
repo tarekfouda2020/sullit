@@ -79,7 +79,8 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                       child: Expanded(
                         child: DefaultButton(
                           title: tr('cancel'),
-                          onTap: () => controller.cancelOrder(context, widget.order),
+                          onTap: () =>
+                              controller.cancelOrder(context, widget.order),
                           margin: EdgeInsets.zero,
                           color: context.colors.gray8,
                           height: Dimens.dp40,
@@ -96,6 +97,12 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                     height: Dimens.dp50,
                   ),
                 Gaps.vGap20,
+                // ReOrderButtonWidget(
+                //   onPress: () => controller.changeNoonStatus(),
+                //   bgColor: context.colors.primary,
+                //   txtColor: context.colors.white,
+                //   height: Dimens.dp50,
+                // ),
               ],
             ),
           );

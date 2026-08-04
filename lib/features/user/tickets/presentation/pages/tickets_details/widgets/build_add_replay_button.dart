@@ -13,7 +13,7 @@ class BuildAddReplayButton extends StatelessWidget {
     return Padding(
       padding: Dimens.paddingAll10PX,
       child: FloatingActionButton(
-        onPressed: ()=>controller.showAddReplyDialog(context, id),
+        onPressed: () => controller.showAddReplyDialog(context, id),
         backgroundColor: context.colors.primary,
         child: Icon(Icons.add, color: context.colors.white, size: 30.sp),
       ),

@@ -15,7 +15,7 @@ class PurchasedHistoryController {
   }
 
   Future<void> getPurchasingHistory(int page, {bool refresh = true}) async {
-    var params = _historyParams(page, refresh);
+    var params = _myOrdersParams(page, refresh);
     var data = await GetPurchasingHistory().call(params);
     final isLastPage = data.length < pageSize;
     if (page == 1) {
@@ -57,6 +57,14 @@ class PurchasedHistoryController {
     var data = pagingController.itemList;
     pagingController.itemList = [];
     pagingController.itemList = data;
+  }
+
+
+
+  MyOrdersParams _myOrdersParams(int page, bool refresh){
+    return MyOrdersParams(
+      paginateParams: _historyParams(page, refresh),
+    );
   }
 
   GenericPaginateParams _historyParams(int page, bool refresh) {

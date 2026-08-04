@@ -6,7 +6,9 @@ class BuildBrandItem extends StatelessWidget {
   final double? width;
   final EdgeInsetsDirectional? margin;
 
-  const BuildBrandItem({Key? key, required this.brand, this.height, this.width, this.margin}) : super(key: key);
+  const BuildBrandItem(
+      {Key? key, required this.brand, this.height, this.width, this.margin})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,8 @@ class BuildBrandItem extends StatelessWidget {
       child: Container(
         margin: margin ?? EdgeInsets.zero,
         padding: const EdgeInsets.all(4),
-        decoration: const CustomDecoration(boxShape: BoxShape.circle, myBoxShadow: []),
+        decoration:
+            const CustomDecoration(boxShape: BoxShape.circle, myBoxShadow: []),
         child: CachedImage(
           height: height,
           width: width,

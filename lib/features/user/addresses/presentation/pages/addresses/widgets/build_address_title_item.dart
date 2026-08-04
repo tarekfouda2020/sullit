@@ -21,7 +21,8 @@ class BuildAddressTitleItem extends StatelessWidget {
           Expanded(
             child: Text(
               desc,
-              style: AppTextStyle.s14_w600(color: context.colors.black).copyWith(height: 1.3),
+              style: AppTextStyle.s14_w600(color: context.colors.black)
+                  .copyWith(height: 1.3),
             ),
           )
         ],

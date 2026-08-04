@@ -18,11 +18,12 @@ class _ShareholderOffersState extends State<ShareholderOffers> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 8),
+            padding:
+                const EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 8),
             child: CustomSearchFiledWidget(
               txtController: controller.searchFieldCtr,
-              onPressSearch: () =>controller.onPressSearch(context),
-              onChange: (value) => controller.whileWriting(value) ,
+              onPressSearch: () => controller.onPressSearch(context),
+              onChange: (value) => controller.whileWriting(value),
               onPressClear: () => controller.callProductsSearch(),
               height: Dimens.dp50,
               hint: tr("search_in_offers"),
@@ -50,7 +51,8 @@ class _ShareholderOffersState extends State<ShareholderOffers> {
                   showVipDiscount: item.hasShareholderDiscount == true &&
                       isShareHolder == true,
                   onFavRefresh: () => controller.onChangeFav(item),
-                  onRefresh: () => controller.getShareholderProducts(controller.currentPage),
+                  onRefresh: () =>
+                      controller.getShareholderProducts(controller.currentPage),
                 ),
               ),
             ),

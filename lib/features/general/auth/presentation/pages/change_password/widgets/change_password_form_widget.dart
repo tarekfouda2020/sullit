@@ -1,6 +1,5 @@
 part of 'change_password_widgets_imports.dart';
 
-
 class ChangePasswordFormWidget extends StatelessWidget {
   final ChangePasswordController controller;
   const ChangePasswordFormWidget({super.key, required this.controller});
@@ -25,7 +24,7 @@ class ChangePasswordFormWidget extends StatelessWidget {
                 controller: controller.oldPassword,
                 radius: Dimens.borderRadius40PX,
                 fieldTypes:
-                !state.data ? FieldTypes.password : FieldTypes.normal,
+                    !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
                 validate: (value) => value?.validatePassword(),
@@ -54,7 +53,7 @@ class ChangePasswordFormWidget extends StatelessWidget {
                 controller: controller.password,
                 radius: Dimens.borderRadius20PX,
                 fieldTypes:
-                !state.data ? FieldTypes.password : FieldTypes.normal,
+                    !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
                 validate: (value) => value?.validatePassword(),
@@ -83,10 +82,11 @@ class ChangePasswordFormWidget extends StatelessWidget {
                 controller: controller.confirmPassword,
                 radius: Dimens.borderRadius20PX,
                 fieldTypes:
-                !state.data ? FieldTypes.password : FieldTypes.normal,
+                    !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
-                validate: (value) => value?.validatePasswordConfirm(pass: controller.password.text),
+                validate: (value) => value?.validatePasswordConfirm(
+                    pass: controller.password.text),
                 suffixIcon: IconButton(
                   onPressed: () =>
                       controller.confirmPasswordCubit.onUpdateData(!state.data),

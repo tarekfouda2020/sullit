@@ -6,7 +6,8 @@ import 'package:flutter_tdd/features/user/purchasing/domain/repository/purchasin
 class GetPaymentOptions implements UseCase<List<PaymentOption>, bool> {
   @override
   Future<List<PaymentOption>> call(bool param) async {
-    var result = await getIt<PurchasingRepository>().getOrderPaymentOptions(param);
+    var result =
+        await getIt<PurchasingRepository>().getOrderPaymentOptions(param);
     return result.fold((l) => [], (r) => r);
   }
 }

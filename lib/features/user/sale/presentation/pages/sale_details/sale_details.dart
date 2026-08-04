@@ -42,7 +42,7 @@ class _SaleDetailsState extends State<SaleDetails> {
                     ),
                     itemCount: state.data!.products.length,
                     itemBuilder: (context, index) => BuildProductItem(
-                      onRefresh:() => controller.getSaleDetails(widget.dealId),
+                      onRefresh: () => controller.getSaleDetails(widget.dealId),
                       productModel: state.data!.products[index],
                       onFavRefresh: () =>
                           controller.onFavChanged(state.data!.products[index]),

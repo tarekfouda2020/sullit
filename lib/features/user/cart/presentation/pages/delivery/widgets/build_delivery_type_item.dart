@@ -29,7 +29,7 @@ class BuildDeliveryTypeItem extends StatelessWidget {
           ),
           child: Row(
             children: [
-              CustomRadioWidget(selected: value == groupValue,size: 18),
+              CustomRadioWidget(selected: value == groupValue, size: 18),
               Gaps.hGap10,
               Flexible(
                 child: Text(

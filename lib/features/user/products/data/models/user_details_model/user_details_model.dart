@@ -24,6 +24,7 @@ class UserDetailsModel extends BaseApiModel<UserDetails>
 
   @override
   UserDetails toDomainModel() {
-    return UserDetails(id: id,name: name,avatar: avatar,avatarOriginal: avatar);
+    return UserDetails(
+        id: id, name: name, avatar: avatar, avatarOriginal: avatar);
   }
 }

@@ -23,6 +23,7 @@ mixin _$ProductModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get unit => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'thumbnail_image')
   String get thumbnailImage => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
@@ -94,6 +95,11 @@ mixin _$ProductModel {
   bool get hasShareholderDiscount => throw _privateConstructorUsedError;
   @JsonKey(name: 'loyalty_points')
   int get loyaltyPoints => throw _privateConstructorUsedError;
+  @JsonKey(name: 'prescription_required')
+  bool get prescriptionRequired => throw _privateConstructorUsedError;
+  @JsonKey(name: 'insurance_eligible')
+  bool get insuranceEligible => throw _privateConstructorUsedError;
+  PharmacyBranchModel? get branch => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -111,6 +117,7 @@ abstract class $ProductModelCopyWith<$Res> {
       {int id,
       String name,
       String unit,
+      String type,
       @JsonKey(name: 'thumbnail_image') String thumbnailImage,
       List<String> images,
       @JsonKey(name: 'is_multiple') bool isMultiple,
@@ -151,12 +158,16 @@ abstract class $ProductModelCopyWith<$Res> {
       @JsonKey(name: 'is_fresh') bool isFresh,
       @JsonKey(name: 'has_special_loyalty_points') bool hasSpecialLoyaltyPoints,
       @JsonKey(name: 'has_shareholder_discount') bool hasShareholderDiscount,
-      @JsonKey(name: 'loyalty_points') int loyaltyPoints});
+      @JsonKey(name: 'loyalty_points') int loyaltyPoints,
+      @JsonKey(name: 'prescription_required') bool prescriptionRequired,
+      @JsonKey(name: 'insurance_eligible') bool insuranceEligible,
+      PharmacyBranchModel? branch});
 
   $VariantModelCopyWith<$Res>? get variant;
   $ShopModelCopyWith<$Res>? get shop;
   $CategoryModelCopyWith<$Res>? get category;
   $BrandModelCopyWith<$Res>? get brand;
+  $PharmacyBranchModelCopyWith<$Res>? get branch;
 }
 
 /// @nodoc
@@ -175,6 +186,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? id = null,
     Object? name = null,
     Object? unit = null,
+    Object? type = null,
     Object? thumbnailImage = null,
     Object? images = null,
     Object? isMultiple = null,
@@ -216,6 +228,9 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? hasSpecialLoyaltyPoints = null,
     Object? hasShareholderDiscount = null,
     Object? loyaltyPoints = null,
+    Object? prescriptionRequired = null,
+    Object? insuranceEligible = null,
+    Object? branch = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -229,6 +244,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       unit: null == unit
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String,
       thumbnailImage: null == thumbnailImage
           ? _value.thumbnailImage
@@ -394,6 +413,18 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.loyaltyPoints
           : loyaltyPoints // ignore: cast_nullable_to_non_nullable
               as int,
+      prescriptionRequired: null == prescriptionRequired
+          ? _value.prescriptionRequired
+          : prescriptionRequired // ignore: cast_nullable_to_non_nullable
+              as bool,
+      insuranceEligible: null == insuranceEligible
+          ? _value.insuranceEligible
+          : insuranceEligible // ignore: cast_nullable_to_non_nullable
+              as bool,
+      branch: freezed == branch
+          ? _value.branch
+          : branch // ignore: cast_nullable_to_non_nullable
+              as PharmacyBranchModel?,
     ) as $Val);
   }
 
@@ -444,6 +475,18 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       return _then(_value.copyWith(brand: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PharmacyBranchModelCopyWith<$Res>? get branch {
+    if (_value.branch == null) {
+      return null;
+    }
+
+    return $PharmacyBranchModelCopyWith<$Res>(_value.branch!, (value) {
+      return _then(_value.copyWith(branch: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -458,6 +501,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
       {int id,
       String name,
       String unit,
+      String type,
       @JsonKey(name: 'thumbnail_image') String thumbnailImage,
       List<String> images,
       @JsonKey(name: 'is_multiple') bool isMultiple,
@@ -498,7 +542,10 @@ abstract class _$$_ProductModelCopyWith<$Res>
       @JsonKey(name: 'is_fresh') bool isFresh,
       @JsonKey(name: 'has_special_loyalty_points') bool hasSpecialLoyaltyPoints,
       @JsonKey(name: 'has_shareholder_discount') bool hasShareholderDiscount,
-      @JsonKey(name: 'loyalty_points') int loyaltyPoints});
+      @JsonKey(name: 'loyalty_points') int loyaltyPoints,
+      @JsonKey(name: 'prescription_required') bool prescriptionRequired,
+      @JsonKey(name: 'insurance_eligible') bool insuranceEligible,
+      PharmacyBranchModel? branch});
 
   @override
   $VariantModelCopyWith<$Res>? get variant;
@@ -508,6 +555,8 @@ abstract class _$$_ProductModelCopyWith<$Res>
   $CategoryModelCopyWith<$Res>? get category;
   @override
   $BrandModelCopyWith<$Res>? get brand;
+  @override
+  $PharmacyBranchModelCopyWith<$Res>? get branch;
 }
 
 /// @nodoc
@@ -524,6 +573,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? unit = null,
+    Object? type = null,
     Object? thumbnailImage = null,
     Object? images = null,
     Object? isMultiple = null,
@@ -565,6 +615,9 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? hasSpecialLoyaltyPoints = null,
     Object? hasShareholderDiscount = null,
     Object? loyaltyPoints = null,
+    Object? prescriptionRequired = null,
+    Object? insuranceEligible = null,
+    Object? branch = freezed,
   }) {
     return _then(_$_ProductModel(
       id: null == id
@@ -578,6 +631,10 @@ class __$$_ProductModelCopyWithImpl<$Res>
       unit: null == unit
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String,
       thumbnailImage: null == thumbnailImage
           ? _value.thumbnailImage
@@ -743,6 +800,18 @@ class __$$_ProductModelCopyWithImpl<$Res>
           ? _value.loyaltyPoints
           : loyaltyPoints // ignore: cast_nullable_to_non_nullable
               as int,
+      prescriptionRequired: null == prescriptionRequired
+          ? _value.prescriptionRequired
+          : prescriptionRequired // ignore: cast_nullable_to_non_nullable
+              as bool,
+      insuranceEligible: null == insuranceEligible
+          ? _value.insuranceEligible
+          : insuranceEligible // ignore: cast_nullable_to_non_nullable
+              as bool,
+      branch: freezed == branch
+          ? _value.branch
+          : branch // ignore: cast_nullable_to_non_nullable
+              as PharmacyBranchModel?,
     ));
   }
 }
@@ -755,6 +824,7 @@ class _$_ProductModel extends _ProductModel {
       {required this.id,
       required this.name,
       required this.unit,
+      required this.type,
       @JsonKey(name: 'thumbnail_image') required this.thumbnailImage,
       required final List<String> images,
       @JsonKey(name: 'is_multiple') required this.isMultiple,
@@ -799,7 +869,11 @@ class _$_ProductModel extends _ProductModel {
       required this.hasSpecialLoyaltyPoints,
       @JsonKey(name: 'has_shareholder_discount')
       required this.hasShareholderDiscount,
-      @JsonKey(name: 'loyalty_points') required this.loyaltyPoints})
+      @JsonKey(name: 'loyalty_points') required this.loyaltyPoints,
+      @JsonKey(name: 'prescription_required')
+      required this.prescriptionRequired,
+      @JsonKey(name: 'insurance_eligible') required this.insuranceEligible,
+      this.branch})
       : _images = images,
         _choiceOptions = choiceOptions,
         _colors = colors,
@@ -817,6 +891,8 @@ class _$_ProductModel extends _ProductModel {
   final String name;
   @override
   final String unit;
+  @override
+  final String type;
   @override
   @JsonKey(name: 'thumbnail_image')
   final String thumbnailImage;
@@ -970,10 +1046,18 @@ class _$_ProductModel extends _ProductModel {
   @override
   @JsonKey(name: 'loyalty_points')
   final int loyaltyPoints;
+  @override
+  @JsonKey(name: 'prescription_required')
+  final bool prescriptionRequired;
+  @override
+  @JsonKey(name: 'insurance_eligible')
+  final bool insuranceEligible;
+  @override
+  final PharmacyBranchModel? branch;
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, name: $name, unit: $unit, thumbnailImage: $thumbnailImage, images: $images, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, choiceOptions: $choiceOptions, colors: $colors, minQty: $minQty, currencySymbol: $currencySymbol, variant: $variant, tags: $tags, countReviews: $countReviews, soldByType: $soldByType, soldByName: $soldByName, hasVipOffer: $hasVipOffer, shop: $shop, reviews: $reviews, isResale: $isResale, resellerId: $resellerId, category: $category, strokedPrice: $strokedPrice, isDigital: $isDigital, isWishlist: $isWishlist, mainPrice: $mainPrice, variantsList: $variantsList, rating: $rating, sales: $sales, sellerId: $sellerId, maxQntPerOrder: $maxQntPerOrder, brand: $brand, description: $description, videoProvider: $videoProvider, videoLink: $videoLink, categoryName: $categoryName, brandName: $brandName, isFresh: $isFresh, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, hasShareholderDiscount: $hasShareholderDiscount, loyaltyPoints: $loyaltyPoints)';
+    return 'ProductModel(id: $id, name: $name, unit: $unit, type: $type, thumbnailImage: $thumbnailImage, images: $images, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, choiceOptions: $choiceOptions, colors: $colors, minQty: $minQty, currencySymbol: $currencySymbol, variant: $variant, tags: $tags, countReviews: $countReviews, soldByType: $soldByType, soldByName: $soldByName, hasVipOffer: $hasVipOffer, shop: $shop, reviews: $reviews, isResale: $isResale, resellerId: $resellerId, category: $category, strokedPrice: $strokedPrice, isDigital: $isDigital, isWishlist: $isWishlist, mainPrice: $mainPrice, variantsList: $variantsList, rating: $rating, sales: $sales, sellerId: $sellerId, maxQntPerOrder: $maxQntPerOrder, brand: $brand, description: $description, videoProvider: $videoProvider, videoLink: $videoLink, categoryName: $categoryName, brandName: $brandName, isFresh: $isFresh, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, hasShareholderDiscount: $hasShareholderDiscount, loyaltyPoints: $loyaltyPoints, prescriptionRequired: $prescriptionRequired, insuranceEligible: $insuranceEligible, branch: $branch)';
   }
 
   @override
@@ -984,6 +1068,7 @@ class _$_ProductModel extends _ProductModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.thumbnailImage, thumbnailImage) ||
                 other.thumbnailImage == thumbnailImage) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
@@ -1055,7 +1140,12 @@ class _$_ProductModel extends _ProductModel {
             (identical(other.hasShareholderDiscount, hasShareholderDiscount) ||
                 other.hasShareholderDiscount == hasShareholderDiscount) &&
             (identical(other.loyaltyPoints, loyaltyPoints) ||
-                other.loyaltyPoints == loyaltyPoints));
+                other.loyaltyPoints == loyaltyPoints) &&
+            (identical(other.prescriptionRequired, prescriptionRequired) ||
+                other.prescriptionRequired == prescriptionRequired) &&
+            (identical(other.insuranceEligible, insuranceEligible) ||
+                other.insuranceEligible == insuranceEligible) &&
+            (identical(other.branch, branch) || other.branch == branch));
   }
 
   @JsonKey(ignore: true)
@@ -1065,6 +1155,7 @@ class _$_ProductModel extends _ProductModel {
         id,
         name,
         unit,
+        type,
         thumbnailImage,
         const DeepCollectionEquality().hash(_images),
         isMultiple,
@@ -1105,7 +1196,10 @@ class _$_ProductModel extends _ProductModel {
         isFresh,
         hasSpecialLoyaltyPoints,
         hasShareholderDiscount,
-        loyaltyPoints
+        loyaltyPoints,
+        prescriptionRequired,
+        insuranceEligible,
+        branch
       ]);
 
   @JsonKey(ignore: true)
@@ -1127,6 +1221,7 @@ abstract class _ProductModel extends ProductModel {
       {required final int id,
       required final String name,
       required final String unit,
+      required final String type,
       @JsonKey(name: 'thumbnail_image') required final String thumbnailImage,
       required final List<String> images,
       @JsonKey(name: 'is_multiple') required final bool isMultiple,
@@ -1171,8 +1266,12 @@ abstract class _ProductModel extends ProductModel {
       required final bool hasSpecialLoyaltyPoints,
       @JsonKey(name: 'has_shareholder_discount')
       required final bool hasShareholderDiscount,
-      @JsonKey(name: 'loyalty_points')
-      required final int loyaltyPoints}) = _$_ProductModel;
+      @JsonKey(name: 'loyalty_points') required final int loyaltyPoints,
+      @JsonKey(name: 'prescription_required')
+      required final bool prescriptionRequired,
+      @JsonKey(name: 'insurance_eligible')
+      required final bool insuranceEligible,
+      final PharmacyBranchModel? branch}) = _$_ProductModel;
   const _ProductModel._() : super._();
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
@@ -1184,6 +1283,8 @@ abstract class _ProductModel extends ProductModel {
   String get name;
   @override
   String get unit;
+  @override
+  String get type;
   @override
   @JsonKey(name: 'thumbnail_image')
   String get thumbnailImage;
@@ -1295,6 +1396,14 @@ abstract class _ProductModel extends ProductModel {
   @override
   @JsonKey(name: 'loyalty_points')
   int get loyaltyPoints;
+  @override
+  @JsonKey(name: 'prescription_required')
+  bool get prescriptionRequired;
+  @override
+  @JsonKey(name: 'insurance_eligible')
+  bool get insuranceEligible;
+  @override
+  PharmacyBranchModel? get branch;
   @override
   @JsonKey(ignore: true)
   _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>

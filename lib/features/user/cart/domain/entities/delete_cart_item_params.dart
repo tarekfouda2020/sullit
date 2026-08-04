@@ -1,17 +1,10 @@
-
-
 class DeleteCartItemParams {
   int id;
-  String? deviceId ;
+  String? deviceId;
 
-  DeleteCartItemParams({
-    required this.id,
-     this.deviceId
-  });
+  DeleteCartItemParams({required this.id, this.deviceId});
 
-  Map<String, dynamic> toJson ()=> {
-    "mac_address":  deviceId
-  };
+  Map<String, dynamic> toJson() => {"mac_address": deviceId};
 
-  String toQuery () => '/$id/delete' ;
+  String toQuery() => '/$id/delete';
 }

@@ -2,13 +2,12 @@
 
 class ApiNames {
   ///staging
-  // static const String baseUrl = "https://staging.mushrifcoop.com/api/v3/";
+  static const String baseUrl = "https://staging.mushrifcoop.com/api/v3/";
 
   ///production
-  static const String baseUrl = "https://admin.mushrifcoop.com/api/v3/";
+  // static const String baseUrl = "https://admin.mushrifcoop.com/api/v3/";
 
   static const String iqUrl = "https://us1.locationiq.com/v1/";
-
 
   // auth routes
   static const String login = "login";
@@ -38,10 +37,12 @@ class ApiNames {
 //home urls
   static const String getFollowing = "shops/followings";
   static const String shopsList = "shops";
+  static String shopCategories(int id) => "shops/$id/categories";
+  static String shopDetails(int id) => "shops/$id";
 
   //products urls
   static const String getHome = "home";
-  static const String getProductDetails = "products";
+  static  String getProductDetails(int id) => "products/$id";
   static const String getPopularProducts = "mostpopulars";
 
   static String toggleWishlist(int id) => "products/$id/wishlist/toggle";
@@ -254,8 +255,35 @@ class ApiNames {
 
   /// location
 
-  static  const String locationAutoComplete = "autocomplete";
+  static const String locationAutoComplete = "autocomplete";
 
-  static  const String locationAddress = "reverse";
+  static const String locationAddress = "reverse";
 
+  // Pharmacy shipping info
+  static const String pharmacyShippingInfo = "cart/pharmacy-shipping-info";
+
+  // Pharmacy cart summary
+  static const String cartSummary = "cart/summary";
+
+  static const String createPharmacyOrder = "pharmacy-orders";
+
+  static const String createPharmacyPrescriptionOrder = "pharmacy-orders/prescription";
+
+  static String pharmacyConfirmSummary(int id) => "pharmacy-orders/$id/confirm-summary";
+
+  static String pharmacyBranches(int id) => "shops/$id/branches";
+
+  static String pharmacyConfirmOrder(int id) => "pharmacy-orders/$id/confirm";
+
+  static const String pharmacyOrderRequestedBy = "pharmacy-order-requested-by";
+
+  static const String prescriptions = "prescriptions";
+
+  static const String uploadPrescription = "prescriptions";
+
+  static const String getSellerShippingInfo = "cart/seller-shipping-info";
+
+  static String deleteSavedPrescription(int id) => "prescriptions/$id/delete";
+
+  static const String pharmacyOrderTerms = "pharmacy-order-terms";
 }

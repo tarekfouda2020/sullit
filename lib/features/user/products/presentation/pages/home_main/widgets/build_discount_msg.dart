@@ -6,7 +6,7 @@ class BuildDiscountMsg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var discount = context.watch<CountCubit>().state.discount;
-    var auth = context.read<DeviceCubit>().state.model.auth;
+    var auth = context.isAuth;
     return Visibility(
       visible: !auth,
       child: Container(

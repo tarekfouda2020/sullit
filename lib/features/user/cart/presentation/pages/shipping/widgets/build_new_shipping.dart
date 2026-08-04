@@ -8,18 +8,23 @@ class BuildNewShipping extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultButton(
-        title: "",
-      onTap:()=> controller.onAddNewAddress(context),
+      title: "",
+      onTap: () => controller.onAddNewAddress(context),
       color: context.colors.white,
       borderColor: context.colors.primary,
       margin: Dimens.paddingHorizontal20PX,
       customLabel: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.add,color: context.colors.primary,size: 15.sp,),
+          Icon(
+            Icons.add,
+            color: context.colors.primary,
+            size: 15.sp,
+          ),
           Gaps.hGap4,
-          Text(tr('addNewAddress'),
-          style: AppTextStyle.s18_w700(color: context.colors.primary),
+          Text(
+            tr('addNewAddress'),
+            style: AppTextStyle.s18_w700(color: context.colors.primary),
           )
         ],
       ),

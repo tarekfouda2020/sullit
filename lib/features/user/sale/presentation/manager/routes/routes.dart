@@ -9,5 +9,4 @@ const List<AutoRoute> saleRoute = [
   AdaptiveRoute(page: SaleDetails),
   AdaptiveRoute(page: Coupons),
   AdaptiveRoute(page: OnSale),
-
 ];

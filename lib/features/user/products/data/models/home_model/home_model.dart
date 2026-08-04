@@ -15,8 +15,7 @@ part 'home_model.g.dart';
 
 @freezed
 @immutable
-class HomeModel extends BaseApiModel<HomeDomainModel>
-    with _$HomeModel {
+class HomeModel extends BaseApiModel<HomeDomainModel> with _$HomeModel {
   const HomeModel._();
 
   @JsonSerializable(explicitToJson: true)
@@ -29,6 +28,7 @@ class HomeModel extends BaseApiModel<HomeDomainModel>
     @JsonKey(name: 'flash_deal') required FlashSaleModel? flashSales,
     @JsonKey(name: 'shops') required List<ShopModel> shops,
     @JsonKey(name: 'top_sellers') required List<ShopModel> topSellers,
+    @JsonKey(name: 'pharmacy_shops') required List<ShopModel> pharmacyShops,
     // @JsonKey(name: 'best_selling_products')
     //     required List<ProductModel> bestSellingProducts,
     // @JsonKey(name: 'newest_products')
@@ -69,6 +69,7 @@ class HomeModel extends BaseApiModel<HomeDomainModel>
       favCount: favCount,
       discountRate: discountRate,
       isAdminDiscount: isAdminDiscount,
+      pharmacyShops: pharmacyShops.map((e) => e.toDomainModel()).toList()
     );
   }
 }

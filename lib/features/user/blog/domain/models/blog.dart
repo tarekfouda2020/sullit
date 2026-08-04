@@ -19,5 +19,4 @@ class Blog extends BaseDomainModel {
     required this.description,
     required this.shortDescription,
   });
-
 }

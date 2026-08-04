@@ -12,6 +12,12 @@ class HomeMainController {
   final GenericBloc<List<Product>> bestRatedCubit = GenericBloc([]);
   final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
 
+  final GenericBloc<File> prescriptionFileCubit = GenericBloc<File>(File(""));
+  final GenericBloc<SavedPrescriptionModel?> selectedSavedPrescriptionCubit =
+      GenericBloc<SavedPrescriptionModel?>(null);
+  final PagingController<int, SavedPrescriptionModel> savedPrescriptionsPagingController =
+      PagingController(firstPageKey: 1);
+
   GenericBloc<HomeDomainModel?> get homeCubit =>
       OrdersHelper.instance.homeCubit;
 
@@ -45,6 +51,9 @@ class HomeMainController {
 
     getProductSections();
     scrollController.addListener(scrollListener);
+    savedPrescriptionsPagingController.addPageRequestListener((page) {
+      getSavedPrescriptions(page);
+    });
   }
 
   void scrollListener() {
@@ -63,7 +72,7 @@ class HomeMainController {
     });
   }
 
-  void getHome({bool refresh = true}){
+  void getHome({bool refresh = true}) {
     OrdersHelper.instance.getHome(refresh: refresh);
   }
 
@@ -86,7 +95,7 @@ class HomeMainController {
   }
 
   void onChangeFav(Product item, BuildContext context) {
-    var isAuth = context.read<DeviceCubit>().state.model.auth;
+    var isAuth = context.isAuth;
     if (isAuth) {
       _synchronizeFavoriteStatus(item);
     }
@@ -115,10 +124,10 @@ class HomeMainController {
       default:
         throw ArgumentError('Invalid time unit: $unit');
     }
-    try{
+    try {
       return value.toString().padLeft(2, '0')[index];
-    }catch(e){
-     return "";
+    } catch (e) {
+      return "";
     }
   }
 
@@ -325,7 +334,7 @@ class HomeMainController {
   }
 
   void routeToMembershipSubscribe(BuildContext context) {
-    bool isAuth = context.read<DeviceCubit>().state.model.auth;
+    bool isAuth = context.isAuth;
     if (isAuth) {
       AutoRouter.of(context).push(MembershipSubscribeRoute());
     } else {
@@ -341,51 +350,36 @@ class HomeMainController {
     );
   }
 
-
-
-  Future<void> goNotification(BuildContext context)async {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
+  Future<void> goNotification(BuildContext context) async {
+    bool auth = context.isAuth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
       return;
     }
-    var result =  await AutoRouter.of(context).push(const NotificationsRoute());
-    if(result is String){
+    var result = await AutoRouter.of(context).push(const NotificationsRoute());
+    if (result is String) {
       homeController.showShareHolderOffers = true;
-      if(result == NotifyEnum.shareholderProducts.getValue()){
-        changeCouponsTab(
-            SaleTabType.shareholderOffers,
-            context
-        );
-      }else if(result == NotifyEnum.offerNewArrival.getValue()){
-        changeCouponsTab(
-            SaleTabType.newArrival,
-            context
-        );
-      }else if(result == NotifyEnum.offerOnSale.getValue()){
-        changeCouponsTab(
-            SaleTabType.onSale,
-            context
-        );
-      }else if(result == NotifyEnum.offerVipProducts.getValue()){
-        changeCouponsTab(
-            SaleTabType.vipOffers,
-            context
-        );
+      if (result == NotifyEnum.shareholderProducts.getValue()) {
+        changeCouponsTab(SaleTabType.shareholderOffers, context);
+      } else if (result == NotifyEnum.offerNewArrival.getValue()) {
+        changeCouponsTab(SaleTabType.newArrival, context);
+      } else if (result == NotifyEnum.offerOnSale.getValue()) {
+        changeCouponsTab(SaleTabType.onSale, context);
+      } else if (result == NotifyEnum.offerVipProducts.getValue()) {
+        changeCouponsTab(SaleTabType.vipOffers, context);
       }
-      homeController.animateTabsPages(3,context);
+      homeController.animateTabsPages(3, context);
       Future.delayed(const Duration(milliseconds: 450), () {
         homeController.showShareHolderOffers = false;
       });
     }
   }
 
-
-  void onSwiperTapped(BuildContext context,SliderDomainModel model){
-    if(model.value == null || model.value?.trim().isEmpty == true){
-      return ;
+  void onSwiperTapped(BuildContext context, SliderDomainModel model) {
+    if (model.value == null || model.value?.trim().isEmpty == true) {
+      return;
     }
-    switch(model.getLinkType){
+    switch (model.getLinkType) {
       case LinkTypeEnum.product:
         routeTpProductDetails(context, model.value!);
       case LinkTypeEnum.externalLink:
@@ -395,11 +389,11 @@ class HomeMainController {
     }
   }
 
-  void onBannerTwoTapped(BuildContext context,BannerDomainModel model){
-    if(model.value == null || model.value?.trim().isEmpty == true){
-      return ;
+  void onBannerTwoTapped(BuildContext context, BannerDomainModel model) {
+    if (model.value == null || model.value?.trim().isEmpty == true) {
+      return;
     }
-    switch(model.getLinkType){
+    switch (model.getLinkType) {
       case LinkTypeEnum.product:
         routeTpProductDetails(context, model.value!);
       case LinkTypeEnum.externalLink:
@@ -409,23 +403,130 @@ class HomeMainController {
     }
   }
 
-
-  void routeTpProductDetails(BuildContext context,String id){
-    try{
+  void routeTpProductDetails(BuildContext context, String id) {
+    try {
       var prodId = int.parse(id);
-      AutoRouter.of(context).push(ProductDetailsRoute(productId: prodId, isResale: false, isFav: false));
-    }catch(e){
+      AutoRouter.of(context).push(ProductDetailsRoute(
+          productId: prodId, isResale: false, isFav: false));
+    } catch (e) {
       log("error while route to product details");
     }
   }
 
-  void routeTpCategoryDetails(BuildContext context,String id){
-    try{
+  void routeTpCategoryDetails(BuildContext context, String id) {
+    try {
       var catId = int.parse(id);
-      AutoRouter.of(context).push(CategoryDetailsRoute(catId:catId,fromHome: true));
-    }catch(e){
+      AutoRouter.of(context)
+          .push(CategoryDetailsRoute(catId: catId, fromHome: true));
+    } catch (e) {
       log("error while route to category details");
     }
+  }
+
+  void routeToPharmaciesList(BuildContext context) {
+    AutoRouter.of(context).push( PharmaciesListRoute());
+  }
+
+  void routeToPharmaciesListWithPrescriptionOrder(BuildContext context) {
+    AutoRouter.of(context).push( PharmaciesListRoute(
+      makePrescriptionOrder: true,
+      initialPrescriptionFile: prescriptionFileCubit.state.data,
+      initialSavedPrescription: selectedSavedPrescriptionCubit.state.data
+    ));
+  }
+
+
+
+  void openCurrentOrderDetails(BuildContext context, Orders order){
+    if(order.isPharmacy){
+      AutoRouter.of(context).push(
+          PharmacyOrderDetailsRoute(
+              id: order.id));
+    }else{
+      AutoRouter.of(context).push(
+          OrderDetailsPageRoute(
+              isReturnedOrder: false,
+              order: order));
+    }
+
+  }
+
+  // Same API-calling pattern as AttachPrescriptionController.getSavedPrescriptions.
+  Future<void> getSavedPrescriptions(int page, {bool refresh = true}) async {
+    var params = GenericPaginateParams(
+      currentPage: page,
+      refresh: refresh,
+      pageSize: AppConstants.instance.paginationLimit,
+    );
+    var result = await GetSavedPrescriptions().call(params);
+    var isLastPage = result.length < AppConstants.instance.paginationLimit;
+    if (page == 1) {
+      savedPrescriptionsPagingController.itemList = [];
+    }
+    if (isLastPage) {
+      savedPrescriptionsPagingController.appendLastPage(result);
+    } else {
+      savedPrescriptionsPagingController.appendPage(result, page + 1);
+    }
+  }
+
+  Future<void> onPickPrescriptionFile() async {
+    var result = await getIt<Utilities>().getAttachmentFile(
+      FileType.custom,
+      allowedExtensions: const ["pdf",'jpg', 'jpeg', 'png'],
+    );
+    if (result != null) {
+      prescriptionFileCubit.onUpdateData(result);
+      selectedSavedPrescriptionCubit.onUpdateData(null);
+    }
+  }
+
+  void onRemovePrescriptionFile() {
+    prescriptionFileCubit.onUpdateData(File(""));
+  }
+
+  void onSelectSavedPrescription(SavedPrescriptionModel model) {
+    selectedSavedPrescriptionCubit.onUpdateData(model);
+    prescriptionFileCubit.onUpdateData(File(""));
+  }
+
+  void onRemoveSelectedSavedPrescription() {
+    selectedSavedPrescriptionCubit.onUpdateData(null);
+  }
+
+  void onPressAttachPrescription(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) {
+        return AttachPrescriptionSheetWidget(controller: this);
+      },
+    );
+  }
+
+  void onPressChooseFromSavedPrescriptions(BuildContext context) {
+    getSavedPrescriptions(1, refresh: false);
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) {
+        return SavedPrescriptionsBottomSheetWidget(controller: this);
+      },
+    );
+  }
+
+  void onPressContinuePrescription(BuildContext context) {
+    if (prescriptionFileCubit.state.data.path.isEmpty &&
+        selectedSavedPrescriptionCubit.state.data == null) {
+      CustomToast.showSimpleToast(
+        msg: "Please attach your prescription first",
+      );
+      return;
+    }
+    Navigator.pop(context);
+    routeToPharmaciesListWithPrescriptionOrder(context);
   }
 
 

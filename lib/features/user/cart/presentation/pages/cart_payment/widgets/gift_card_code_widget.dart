@@ -10,16 +10,16 @@ class GiftCardCodeWidget extends StatelessWidget {
       key: controller.giftCardFormKey,
       child: GenericTextField(
         hint: tr("enterGiftCardCode"),
-        controller: controller.giftCardCode ,
+        controller: controller.giftCardCode,
         fieldTypes: FieldTypes.normal,
         type: TextInputType.text,
         action: TextInputAction.done,
         margin: const EdgeInsets.only(top: 5),
         fillColor: context.colors.white,
         validate: (value) => value?.validateEmpty(),
-        suffixIcon: ApplyButtonWidget(onPressApply: ()=> controller.applyGiftCard(context)),
+        suffixIcon: ApplyButtonWidget(
+            onPressApply: () => controller.applyGiftCard(context)),
       ),
     );
   }
-
 }

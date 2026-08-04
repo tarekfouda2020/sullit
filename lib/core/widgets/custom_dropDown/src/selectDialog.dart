@@ -223,7 +223,7 @@ class _SelectDialogState<T> extends State<SelectDialog<T>> {
                               widget.searchBoxController?.text,
                         );
                       } else {
-                        return  Center(
+                        return Center(
                           child: Text(tr("noDataFound")),
                         );
                       }
@@ -470,9 +470,9 @@ class _SelectDialogState<T> extends State<SelectDialog<T>> {
         ),
         selected: _manageSelectedItemVisibility(item),
         onTap:
-        widget.itemDisabled != null && (widget.itemDisabled!(item)) == true
-            ? null
-            : () => _handleSelectItem(item),
+            widget.itemDisabled != null && (widget.itemDisabled!(item)) == true
+                ? null
+                : () => _handleSelectItem(item),
       );
     }
   }

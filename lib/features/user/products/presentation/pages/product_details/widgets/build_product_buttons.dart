@@ -10,14 +10,13 @@ class BuildProductButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible:
-          hasVariant ? detailsModel.product.variant!.currentStock! > 0 : false,
+      visible: hasVariant ? !detailsModel.product.isOutOfStock : false,
       child: CustomBottomSafeAreaWidget(
         child: Padding(
-          padding:  EdgeInsetsDirectional.only(
-              top: 10, start: 20, end: detailsModel.product.isOutOfStock
-              ?20
-              :45),
+          padding: EdgeInsetsDirectional.only(
+              top: 10,
+              start: 20,
+              end: detailsModel.product.isOutOfStock ? 20 : 45),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -26,8 +25,8 @@ class BuildProductButtons extends StatelessWidget {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        if(detailsModel.product.isOutOfStock){
-                          return ;
+                        if (detailsModel.product.isOutOfStock) {
+                          return;
                         }
                         controller.onAddToCart(context);
                       },
@@ -37,14 +36,14 @@ class BuildProductButtons extends StatelessWidget {
                         margin: Dimens.paddingAll5PX,
                         decoration: BoxDecoration(
                           color: detailsModel.product.isOutOfStock
-                              ?context.colors.deepGray
+                              ? context.colors.deepGray
                               : context.colors.primary,
                           borderRadius: Dimens.borderRadius30PX,
                         ),
                         child: Text(
-                            detailsModel.product.isOutOfStock
-                                ? tr('outOfStock')
-                                : tr('addToCart'),
+                          detailsModel.product.isOutOfStock
+                              ? tr('outOfStock')
+                              : tr('addToCart'),
                           style: AppTextStyle.s18_w700(
                             color: context.colors.white,
                           ),
@@ -52,7 +51,7 @@ class BuildProductButtons extends StatelessWidget {
                       ),
                     ),
                   ),
-                  if(!detailsModel.product.isOutOfStock)...[
+                  if (!detailsModel.product.isOutOfStock) ...[
                     Gaps.hGap11,
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +69,7 @@ class BuildProductButtons extends StatelessWidget {
                           builder: (context, state) {
                             return DirhamPrice(
                               amount:
-                              "${detailsModel.product.variant?.calculablePrice}",
+                                  "${detailsModel.product.variant?.calculablePrice}",
                               currencyOffset: -0.5,
                               currencyStyle: AppTextStyle.s18_w400(
                                 color: context.colors.primary,
@@ -87,21 +86,25 @@ class BuildProductButtons extends StatelessWidget {
                   ]
                 ],
               ),
-              if(!detailsModel.product.isOutOfStock)...[
+              if (!detailsModel.product.isOutOfStock) ...[
                 Gaps.vGap10,
-                BlocBuilder<GenericBloc<CartDomainModel>, GenericState<CartDomainModel>>(
+                BlocBuilder<GenericBloc<CartDomainModel>,
+                    GenericState<CartDomainModel>>(
                   bloc: controller.cartItemsBloc,
                   builder: (context, cartState) {
-                    return BlocBuilder<GenericBloc<String>, GenericState<String>>(
+                    return BlocBuilder<GenericBloc<String>,
+                        GenericState<String>>(
                       bloc: controller.remainingAmountBloc,
                       builder: (context, state) {
-                        var remain = double.parse(state.data);
+                        var remain = double.parse(state.data.cleanNumber());
                         return Visibility(
                           visible: (cartState.data.minimumStatus == false) &&
-                              controller.remainToGetMinAmount() > 0 && remain > 0,
+                              controller.remainToGetMinAmount() > 0 &&
+                              remain > 0,
                           child: CartMinAmountNeededWidget(
                             minAmount: state.data,
-                            sellerName: "from '${cartState.data.getRequiredSellerName()}'",
+                            sellerName:
+                                "from '${cartState.data.getRequiredSellerName()}'",
                           ),
                         );
                       },

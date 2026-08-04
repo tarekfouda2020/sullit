@@ -26,6 +26,8 @@ import 'package:flutter_tdd/features/user/base/presentation/pages/more/more_impo
 import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/purchasing/data/enums/order_type_enum.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/entities/my_orders_params.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/offers_params_widget.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tab_type.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tabs_data.dart';
@@ -43,6 +45,7 @@ import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/pay_order.
 import 'package:flutter_tdd/features/user/sale/presentation/pages/coupons/coupons_imports.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:new_version_plus/new_version_plus.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 part 'home.dart';
 part 'home_controller.dart';

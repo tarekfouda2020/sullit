@@ -17,7 +17,7 @@ class _BuildCompareItemState extends State<BuildCompareItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:  CustomDecoration(),
+      decoration: CustomDecoration(),
       padding: Dimens.paddingAll10PX,
       margin: Dimens.paddingVertical5PX,
       child: Row(
@@ -70,7 +70,8 @@ class _BuildCompareItemState extends State<BuildCompareItem> {
                         id: widget.productModel.id!,
                         context: context,
                         loadingBloc: showLoading,
-                        onRefresh: () => widget.controller.onFavChanged(widget.productModel),
+                        onRefresh: () =>
+                            widget.controller.onFavChanged(widget.productModel),
                       ),
                       checkValue: widget.productModel.isWishlist,
                       padding: Dimens.paddingAll5PX,

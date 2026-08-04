@@ -12,11 +12,14 @@ class SearchResultParams {
 
   String paramToQuery() {
     String header = paginateParams.paramsToQuery();
-    if(searchTxt.isNotEmpty){
+    if (searchTxt.isNotEmpty) {
       header = "?keyword=$searchTxt&${header.replaceAll("?", "")}";
     }
-   return header;
-}
+    return header;
+  }
 
-
+  Map<String, dynamic> toJson() => {
+        ...paginateParams.toJson(),
+        if (searchTxt.trim().isNotEmpty) "keyword": searchTxt,
+      };
 }

@@ -37,11 +37,10 @@ class BuildFileItem extends StatelessWidget {
                     color: context.colors.darkPurple,
                   ),
                   enabled: true,
-
                   onSelected: (int value) {
-                    if(value==0){
+                    if (value == 0) {
                       showModalBottomSheet(
-                          shape:  RoundedRectangleBorder(
+                          shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(20).r,
                                   topRight: Radius.circular(20).r)),
@@ -64,7 +63,8 @@ class BuildFileItem extends StatelessWidget {
                           Gaps.hGap5,
                           Text(
                             "Details Info",
-                            style: AppTextStyle.s12_w400(color: context.colors.black),
+                            style: AppTextStyle.s12_w400(
+                                color: context.colors.black),
                           ),
                         ],
                       ),
@@ -77,12 +77,12 @@ class BuildFileItem extends StatelessWidget {
                             Icons.download_for_offline_outlined,
                             color: context.colors.blackOpacity,
                             size: 17.sp,
-
                           ),
                           Gaps.hGap5,
                           Text(
                             "Download",
-                            style: AppTextStyle.s12_w400(color: context.colors.black),
+                            style: AppTextStyle.s12_w400(
+                                color: context.colors.black),
                           ),
                         ],
                       ),
@@ -95,16 +95,15 @@ class BuildFileItem extends StatelessWidget {
                             Icons.copy,
                             color: context.colors.blackOpacity,
                             size: 17.sp,
-
                           ),
                           Gaps.hGap5,
                           Text(
                             "Copy Link",
-                            style: AppTextStyle.s12_w400(color: context.colors.black),
+                            style: AppTextStyle.s12_w400(
+                                color: context.colors.black),
                           ),
                         ],
                       ),
-
                     ),
                     PopupMenuItem(
                       value: 3,
@@ -118,10 +117,12 @@ class BuildFileItem extends StatelessWidget {
                           Gaps.hGap5,
                           Text(
                             "Delete",
-                            style: AppTextStyle.s12_w400(color: context.colors.black),
+                            style: AppTextStyle.s12_w400(
+                                color: context.colors.black),
                           ),
                         ],
-                      ),)
+                      ),
+                    )
                   ],
                 )
               ],

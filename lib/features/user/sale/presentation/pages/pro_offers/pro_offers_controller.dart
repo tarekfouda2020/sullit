@@ -8,7 +8,6 @@ class ProOffersController {
   int pageSize = 10;
   int currentPage = 1;
 
-
   ProOffersController() {
     getVipOffers(1, refresh: false);
     vipOffersPagingController.addPageRequestListener((pageKey) {
@@ -52,9 +51,9 @@ class ProOffersController {
   }
 
   void routeToMembershipSubscribe(BuildContext context) {
-    bool isAuth = context.read<DeviceCubit>().state.model.auth;
+    bool isAuth = context.isAuth;
     if (isAuth) {
-      AutoRouter.of(context).push( MembershipSubscribeRoute());
+      AutoRouter.of(context).push(MembershipSubscribeRoute());
     } else {
       CustomToast.showAuthDialog(context);
     }
@@ -62,10 +61,9 @@ class ProOffersController {
 
   OffersParamsWidget _vipOffers(bool refresh, int currentPage) {
     return OffersParamsWidget(
-      paginateParams: _vipOffersParams(refresh, currentPage),
-      isVipProducts: true,
-        keyword: searchFieldCtr.text
-    );
+        paginateParams: _vipOffersParams(refresh, currentPage),
+        isVipProducts: true,
+        keyword: searchFieldCtr.text);
   }
 
   void onPressSearch(BuildContext context) {

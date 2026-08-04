@@ -5,7 +5,7 @@ class BuildShippingDetailsItem extends StatelessWidget {
 
   const BuildShippingDetailsItem({
     super.key,
-     this.orderModel,
+    this.orderModel,
   });
 
   @override
@@ -28,7 +28,7 @@ class BuildShippingDetailsItem extends StatelessWidget {
               children: [
                 BuildTrackOrderSummaryItem(
                   title: "${tr('productName')} :",
-                  subTitle: orderModel?.product!.name??"subTitle1",
+                  subTitle: orderModel?.product!.name ?? "subTitle1",
                 ),
                 BuildTrackOrderSummaryItem(
                   title: "${tr('shippedBy')} :",

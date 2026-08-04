@@ -6,8 +6,8 @@ class BuildSummaryItem extends StatelessWidget {
   final bool useDirhamPrice;
 
   const BuildSummaryItem({
-    super.key, 
-    required this.title, 
+    super.key,
+    required this.title,
     required this.details,
     this.useDirhamPrice = false,
   });
@@ -16,7 +16,7 @@ class BuildSummaryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       visualDensity: const VisualDensity(vertical: -4),
-      leading: Icon(Icons.circle,color: context.colors.primary,size: 10),
+      leading: Icon(Icons.circle, color: context.colors.primary, size: 10),
       minLeadingWidth: 10,
       title: Text(
         title,

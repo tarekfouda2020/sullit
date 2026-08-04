@@ -44,7 +44,6 @@ class TimerEntity {
     () => myDuration = const Duration(days: 5);
   }
 
-
   String strDigits(int n) => n.toString().padLeft(2, '0');
 
   String days() => strDigits(myDuration.inDays);

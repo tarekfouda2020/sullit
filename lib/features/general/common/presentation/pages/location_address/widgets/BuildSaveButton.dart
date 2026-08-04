@@ -1,6 +1,5 @@
 part of 'LocationWidgetsImports.dart';
 
-
 class BuildSaveButton extends StatelessWidget {
   final LocationAddressData locationAddressData;
 
@@ -13,7 +12,7 @@ class BuildSaveButton extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         InkWell(
-          onTap: ()=>locationAddressData.changeLocation(context),
+          onTap: () => locationAddressData.changeLocation(context),
           child: Container(
             height: 45,
             width: MediaQuery.of(context).size.width * .7,

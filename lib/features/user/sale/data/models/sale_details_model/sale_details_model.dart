@@ -13,25 +13,23 @@ class SaleDetailsModel extends BaseApiModel<SaleDetailsDomainModel>
   const SaleDetailsModel._();
 
   @JsonSerializable(explicitToJson: true)
-  const factory SaleDetailsModel({
-    required int id,
-    required String title,
-    required DateTime date,
-    required String banner,
-    required List<ProductModel> products
-  }) = _SaleDetailsModel;
-
+  const factory SaleDetailsModel(
+      {required int id,
+      required String title,
+      required DateTime date,
+      required String banner,
+      required List<ProductModel> products}) = _SaleDetailsModel;
 
   factory SaleDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$SaleDetailsModelFromJson(json);
 
   @override
   SaleDetailsDomainModel toDomainModel() {
-    return SaleDetailsDomainModel(id: id,
+    return SaleDetailsDomainModel(
+        id: id,
         title: title,
         date: date,
         banner: banner,
-        products: products.map((e) => e.toDomainModel()).toList()
-    );
+        products: products.map((e) => e.toDomainModel()).toList());
   }
 }

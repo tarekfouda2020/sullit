@@ -11,12 +11,10 @@ class VerifyResetPasswordParams {
     required this.confirmPassword,
   });
 
-
   Map<String, dynamic> toJson() => {
-    "code":code,
-    "email": email,
-    "password": password,
-    "password_confirmation":confirmPassword,
-  };
-
+        "code": code,
+        "email": email,
+        "password": password,
+        "password_confirmation": confirmPassword,
+      };
 }

@@ -19,7 +19,7 @@ class _CustomersProductsState extends State<CustomersProducts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  DefaultAppBar(title: tr('customersProducts')),
+      appBar: DefaultAppBar(title: tr('customersProducts')),
       backgroundColor: context.colors.customBackground,
       body: Column(
         children: [

@@ -8,17 +8,22 @@ import '../../../../../core/theme/text/app_text_style.dart';
 class BuildSubProductItem extends StatelessWidget {
   final String text;
   final Function() onTap;
-  const BuildSubProductItem({Key? key, required this.text, required this.onTap}) : super(key: key);
+  const BuildSubProductItem({Key? key, required this.text, required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10).r,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10).r,
         child: Row(
           children: [
-            Icon(Icons.circle_outlined,size: 8.sp,color:context.colors.black ,),
+            Icon(
+              Icons.circle_outlined,
+              size: 8.sp,
+              color: context.colors.black,
+            ),
             Gaps.hGap10,
             Text(
               text,

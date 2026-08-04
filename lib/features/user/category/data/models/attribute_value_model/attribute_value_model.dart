@@ -23,7 +23,6 @@ class AttributeValueModel extends BaseApiModel<AttributeValue>
 
   @override
   AttributeValue toDomainModel() {
-    return AttributeValue(
-        id: id, colorCode: colorCode, value: value);
+    return AttributeValue(id: id, colorCode: colorCode, value: value);
   }
 }

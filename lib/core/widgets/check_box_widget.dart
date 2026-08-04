@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
@@ -16,7 +14,8 @@ class CheckBoxWidget extends StatelessWidget {
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       activeColor: context.colors.primary,
       visualDensity: VisualDensity.compact,
-      fillColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
+      fillColor:
+          WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
         if (states.contains(WidgetState.disabled)) {
           return context.colors.white;
         }

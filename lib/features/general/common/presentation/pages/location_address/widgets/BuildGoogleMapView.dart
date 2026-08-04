@@ -2,7 +2,10 @@ part of 'LocationWidgetsImports.dart';
 
 class BuildGoogleMapView extends StatelessWidget {
   final LocationAddressData locationAddressData;
-  const BuildGoogleMapView({super.key, required this.locationAddressData, });
+  const BuildGoogleMapView({
+    super.key,
+    required this.locationAddressData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,19 +43,18 @@ class BuildGoogleMapView extends StatelessWidget {
                     locationAddressData.getLocationAddress(context);
                   },
                   // onTap: (location) async => locationAddressData.onTapOnMap(context, location),
-                  onTap: (location)  {
-                     locationAddressData.onTapOnMap(context, location);
-                    locationAddressData.moveCameraToLocation(context,location);
+                  onTap: (location) {
+                    locationAddressData.onTapOnMap(context, location);
+                    locationAddressData.moveCameraToLocation(context, location);
                   },
-                  onCameraMove: (loc) async => locationAddressData.getDataAfterCameraMove(context, loc.target)
-              ),
+                  onCameraMove: (loc) async => locationAddressData
+                      .getDataAfterCameraMove(context, loc.target)),
             ),
             PositionedDirectional(
                 top: -8,
                 start: 0,
                 end: 0,
-                child: MapSearchFieldWidget(controller: locationAddressData)
-            ),
+                child: MapSearchFieldWidget(controller: locationAddressData)),
             ImageIcon(
               const AssetImage(Res.marker),
               size: 50,

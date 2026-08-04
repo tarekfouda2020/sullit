@@ -18,10 +18,11 @@ class BuildAttributeItems extends StatelessWidget {
       onTap: () => controller.onSelectAttributes(context, variants, index),
       child: Container(
         width: 230,
-       alignment: Alignment.center,
+        alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         decoration: BoxDecoration(
-          color: _isSelected ? context.colors.lightPrimary : context.colors.white,
+          color:
+              _isSelected ? context.colors.lightPrimary : context.colors.white,
           border: Border.all(
             color: _isSelected ? context.colors.primary : context.colors.gray3,
           ),
@@ -34,21 +35,19 @@ class BuildAttributeItems extends StatelessWidget {
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
             text: TextSpan(
-              style: _style(context).copyWith(
-                height: 1.2
-              ),
+              style: _style(context).copyWith(height: 1.2),
               children: [
                 TextSpan(
                   text: "${_variant.options ?? ''}  -  ".replaceAll(",", ", "),
-                  style: _style( context),
+                  style: _style(context),
                 ),
                 TextSpan(
                     text: AppTheme.dirhamIcon,
-                    style: _style( context)
+                    style: _style(context)
                         .copyWith(fontFamily: AppTheme.dirhamFontFamily)),
                 TextSpan(
                   text: (_variant.calculablePrice ?? ''),
-                  style: _style( context),
+                  style: _style(context),
                 ),
               ],
             ),

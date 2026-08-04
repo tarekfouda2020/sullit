@@ -35,19 +35,22 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title:titleWidget?? Text(
-        title,
-        // style: AppTextStyle.s16_w800(color: context.colors.black),
-        style: AppTextStyle.s20_w700(color: context.colors.black),
-      ),
+      title: titleWidget ??
+          Text(
+            title,
+            // style: AppTextStyle.s16_w800(color: context.colors.black),
+            style: AppTextStyle.s20_w700(color: context.colors.black),
+          ),
       centerTitle: centerTitle ?? true,
       systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
-          statusBarBrightness: Platform.isIOS? Brightness.light : Brightness.dark,
-          statusBarIconBrightness: Platform.isIOS? Brightness.light : Brightness.dark),
+          statusBarBrightness:
+              Platform.isIOS ? Brightness.light : Brightness.dark,
+          statusBarIconBrightness:
+              Platform.isIOS ? Brightness.light : Brightness.dark),
       backgroundColor: bgColor ?? context.colors.customBackground,
       // elevation:elevation ?? 0.2,
-      elevation:0,
+      elevation: 0,
       leadingWidth: showBack == true ? 55 : 10,
       leading: leading ??
           Visibility(

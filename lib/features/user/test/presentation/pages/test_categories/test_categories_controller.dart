@@ -1,5 +1,3 @@
-part of'test_categories_imports.dart';
+part of 'test_categories_imports.dart';
 
-class TestCategoriesController{
-
-}
+class TestCategoriesController {}

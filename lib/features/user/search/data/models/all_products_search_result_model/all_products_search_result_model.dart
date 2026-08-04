@@ -8,13 +8,13 @@ part 'all_products_search_result_model.freezed.dart';
 part 'all_products_search_result_model.g.dart';
 
 @freezed
-class AllProductsSearchResultModel extends BaseApiModel<AllProductsSearchDomainResul> with _$AllProductsSearchResultModel{
+class AllProductsSearchResultModel
+    extends BaseApiModel<AllProductsSearchDomainResul>
+    with _$AllProductsSearchResultModel {
   const AllProductsSearchResultModel._();
   @JsonSerializable(explicitToJson: true)
-  factory AllProductsSearchResultModel({
-    required List<ProductModel> products
-  }) = _AllProductsSearchResultModel;
-
+  factory AllProductsSearchResultModel({required List<ProductModel> products}) =
+      _AllProductsSearchResultModel;
 
   factory AllProductsSearchResultModel.fromJson(Map<String, dynamic> json) =>
       _$AllProductsSearchResultModelFromJson(json);
@@ -22,7 +22,6 @@ class AllProductsSearchResultModel extends BaseApiModel<AllProductsSearchDomainR
   @override
   AllProductsSearchDomainResul toDomainModel() {
     return AllProductsSearchDomainResul(
-        products: products.map((e) => e.toDomainModel()).toList()
-    );
+        products: products.map((e) => e.toDomainModel()).toList());
   }
 }

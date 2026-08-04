@@ -8,7 +8,6 @@ import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
 import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
-import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/remote_data_sources/products_data_source.dart';
 import 'package:flutter_tdd/features/user/products/data/models/home_model/home_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/product_details_model/product_details_model.dart';
@@ -16,6 +15,7 @@ import 'package:flutter_tdd/features/user/products/data/models/product_sections_
 import 'package:flutter_tdd/features/user/products/data/models/queries_model/queries_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/seller_products_model/seller_products_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/popular_products_params.dart';
+import 'package:flutter_tdd/features/user/products/domain/entities/product_details_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/seller_products_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/send_query_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/variant_price_params.dart';
@@ -26,9 +26,9 @@ class ImplProductsDataSource extends ProductsDataSource {
   @override
   Future<Either<Failure, HomeModel>> getHome(bool param) async {
     String? deviceId = GlobalState.instance.get(GlobalStateKeys.deviceToken);
-    if(deviceId!=null && deviceId.isNotEmpty){
+    if (deviceId != null && deviceId.isNotEmpty) {
       deviceId = "?mac_address=$deviceId";
-    }else{
+    } else {
       deviceId = "";
     }
 
@@ -46,11 +46,12 @@ class ImplProductsDataSource extends ProductsDataSource {
 
   @override
   Future<Either<Failure, ProductDetailsModel>> getProductDetails(
-      GenericParams param) async {
+      ProductDetailsParams param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.getProductDetails + param.paramToQuery(),
+      url: ApiNames.getProductDetails(param.id),
       responseType: ResType.model,
       requestMethod: RequestMethod.get,
+      requestBody: param.toJson().isNotEmpty ? param.toJson() : null,
       responseKey: (data) => data["data"],
       showLoader: false,
       refresh: param.refresh,
@@ -107,7 +108,6 @@ class ImplProductsDataSource extends ProductsDataSource {
   @override
   Future<Either<Failure, ProductModel>> getVariantPrice(
       VariantPriceParams param) async {
-    print("json data ${param.toJson()}");
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getVariantPrice(param.id),
       requestMethod: RequestMethod.get,
@@ -154,7 +154,7 @@ class ImplProductsDataSource extends ProductsDataSource {
   }
 
   @override
-  Future<Either<Failure, bool>> toggleFollowing(int param) async{
+  Future<Either<Failure, bool>> toggleFollowing(int param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.toggleFollowing(param),
       requestMethod: RequestMethod.get,
@@ -166,7 +166,7 @@ class ImplProductsDataSource extends ProductsDataSource {
   }
 
   @override
-  Future<Either<Failure, ProductDetailsModel>> scanProduct(String param) async{
+  Future<Either<Failure, ProductDetailsModel>> scanProduct(String param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.skuSearch(param),
       requestMethod: RequestMethod.get,
@@ -178,15 +178,15 @@ class ImplProductsDataSource extends ProductsDataSource {
   }
 
   @override
-  Future<Either<Failure, SellerProductsModel>> sellerProducts(SellerProductsParams param) async{
+  Future<Either<Failure, SellerProductsModel>> sellerProducts(
+      SellerProductsParams param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.shopProducts(param.sellerId)+param.paramsToQuery(),
-      requestMethod: RequestMethod.get,
-      responseType: ResType.model,
-      responseKey: (data) => data['data'],
-      toJsonFunc: (data) => SellerProductsModel.fromJson(data),
-      refresh: param.paginateParams.refresh
-    );
+        url: ApiNames.shopProducts(param.sellerId) + param.paramsToQuery(),
+        requestMethod: RequestMethod.get,
+        responseType: ResType.model,
+        responseKey: (data) => data['data'],
+        toJsonFunc: (data) => SellerProductsModel.fromJson(data),
+        refresh: param.paginateParams.refresh);
     return await GenericHttpImpl<SellerProductsModel>().call(model);
   }
 }

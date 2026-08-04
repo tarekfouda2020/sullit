@@ -59,7 +59,8 @@ class AddImageHelper {
   Future<void> setUploadFile(BuildContext context, File file) async {
     var data = await SetUploadFile().call(file);
     if (data) {
-      CustomToast.showSimpleToast(msg: tr('successfullySent'),type: ToastType.success);
+      CustomToast.showSimpleToast(
+          msg: tr('successfullySent'), type: ToastType.success);
       AutoRouter.of(context).pop();
       return;
     }
@@ -68,7 +69,8 @@ class AddImageHelper {
   Future<void> setUploadFiles(BuildContext context, List<File> files) async {
     var data = await SetUploadFiles().call(files);
     if (data) {
-      CustomToast.showSimpleToast(msg: tr('successfullyUploaded'),type: ToastType.success);
+      CustomToast.showSimpleToast(
+          msg: tr('successfullyUploaded'), type: ToastType.success);
       AutoRouter.of(context).pop();
       return;
     }

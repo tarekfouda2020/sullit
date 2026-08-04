@@ -5,14 +5,15 @@ class BuildSellerInfo extends StatelessWidget {
   final Shop? shopModel;
   final ProductDetailsController controller;
 
-  const BuildSellerInfo({super.key, required this.shopModel, required this.controller});
+  const BuildSellerInfo(
+      {super.key, required this.shopModel, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async{
-        if(shopModel!=null){
-         controller.routeToSellerPage(context,shopModel!);
+      onTap: () async {
+        if (shopModel != null) {
+          controller.routeToSellerPage(context, shopModel!);
         }
       },
       child: Container(

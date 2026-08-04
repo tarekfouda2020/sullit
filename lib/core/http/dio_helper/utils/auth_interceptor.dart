@@ -9,7 +9,6 @@ import 'package:flutter_tdd/core/http/models/request_body_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthInterceptor extends Interceptor {
-
   final pref = getIt<SharedPreferences>();
 
   String? accessToken;
@@ -26,25 +25,22 @@ class AuthInterceptor extends Interceptor {
 
   @override
   void onError(
-      DioError err,
-      ErrorInterceptorHandler handler,
-      ) async {
-    if (err.response?.statusCode == 403 ||
-        err.response?.statusCode == 401) {
+    DioError err,
+    ErrorInterceptorHandler handler,
+  ) async {
+    if (err.response?.statusCode == 403 || err.response?.statusCode == 401) {
       final result = await refreshToken();
       if (result) {
         final result = await _retry(err, handler);
         if (result) {
           return;
         } else {
-          if (err.requestOptions.headers["requiresToken"] ==
-              true &&
+          if (err.requestOptions.headers["requiresToken"] == true &&
               isInvalidSession) getIt<LoadingHelper>().showInvalidSession();
           isInvalidSession = true;
         }
       } else {
-        if (err.requestOptions.headers["requiresToken"] ==
-            true &&
+        if (err.requestOptions.headers["requiresToken"] == true &&
             isInvalidSession) getIt<LoadingHelper>().showInvalidSession();
         isInvalidSession = true;
       }
@@ -54,10 +50,8 @@ class AuthInterceptor extends Interceptor {
     return;
   }
 
-
   Future<bool> refreshToken() async {
     try {
-
       final refreshToken = pref.getString("refreshToken");
       final resistanceAccessToken = pref.getString("token");
 
@@ -76,8 +70,8 @@ class AuthInterceptor extends Interceptor {
         Map<String, dynamic> data = response!.data;
         String? accessToken = data['result'];
         if (accessToken != null && (accessToken.isNotEmpty)) {
-          pref.setString("token",accessToken);
-          pref.setString("refreshToken",refreshToken??"");
+          pref.setString("token", accessToken);
+          pref.setString("refreshToken", refreshToken ?? "");
 
           return Future.value(true);
         }
@@ -90,9 +84,9 @@ class AuthInterceptor extends Interceptor {
   }
 
   Future<bool> _retry(
-      DioError dioError,
-      ErrorInterceptorHandler handler,
-      ) async {
+    DioError dioError,
+    ErrorInterceptorHandler handler,
+  ) async {
     try {
       final dio = Dio();
       final resistanceAccessToken = pref.getString("token");
@@ -113,8 +107,7 @@ class AuthInterceptor extends Interceptor {
       handler.resolve(cloneReq);
       return Future.value(true);
     } catch (e) {
-      log(
-          'error happened in _retry and then we will logout from the application');
+      log('error happened in _retry and then we will logout from the application');
       return Future.value(false);
     }
   }

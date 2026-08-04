@@ -6,14 +6,15 @@ part 'loyalty_points_balance_model.freezed.dart';
 part 'loyalty_points_balance_model.g.dart';
 
 @freezed
-class LoyaltyPointsBalanceModel extends BaseApiModel<LoyaltyPointsBalanceDomainModel> with _$LoyaltyPointsBalanceModel{
+class LoyaltyPointsBalanceModel
+    extends BaseApiModel<LoyaltyPointsBalanceDomainModel>
+    with _$LoyaltyPointsBalanceModel {
   const LoyaltyPointsBalanceModel._();
   @JsonSerializable(explicitToJson: true)
   factory LoyaltyPointsBalanceModel({
     required int points,
     required String amount,
   }) = _LoyaltyPointsBalanceModel;
-
 
   factory LoyaltyPointsBalanceModel.fromJson(Map<String, dynamic> json) =>
       _$LoyaltyPointsBalanceModelFromJson(json);

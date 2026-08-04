@@ -66,10 +66,9 @@ class LoadingButton extends StatelessWidget {
               title,
               style: AppTextStyle.s18_w700(color: textColor ?? Colors.white)
                   .copyWith(
-                fontFamily: fontFamily,
-                fontWeight: fontWeight,
-                fontSize: fontSize
-              ),
+                      fontFamily: fontFamily,
+                      fontWeight: fontWeight,
+                      fontSize: fontSize),
             ),
           ),
         ],

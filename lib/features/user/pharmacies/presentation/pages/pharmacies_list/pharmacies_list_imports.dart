@@ -1,0 +1,28 @@
+import 'dart:io';
+
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/app_constants.dart';
+import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/helpers/debounce_helper.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/core/widgets/build_empty_data_view.dart';
+import 'package:flutter_tdd/core/widgets/custom_refresh_indicator_widget.dart';
+import 'package:flutter_tdd/core/widgets/custom_search_filed_widget.dart';
+import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
+import 'package:flutter_tdd/features/user/best_sellers/data/enums/shop_type_enum.dart';
+import 'package:flutter_tdd/features/user/best_sellers/domain/entity/shops_params.dart';
+import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/saved_prescription_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_pharmacies.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/search/domain/entities/search_result_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/pharmacies_list/widgets/widgets_imports.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+
+part 'pharmacies_list.dart';
+part 'pharmacies_list_controller.dart';

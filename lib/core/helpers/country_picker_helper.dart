@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
@@ -9,10 +8,8 @@ import 'package:flutter_tdd/core/package/country_calling_code_picker-2.0.1/lib/f
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/helpers/country_localization_helper.dart';
 
-
 class CountryPickerHelper {
-
-  static Future<Country?> pickCountry(BuildContext context)async{
+  static Future<Country?> pickCountry(BuildContext context) async {
     String lang = context.read<DeviceCubit>().state.model.locale.languageCode;
     final externalCountry = await showCountryPickerSheet(
       context,
@@ -26,7 +23,7 @@ class CountryPickerHelper {
               color: context.colors.primary,
               borderRadius: BorderRadius.circular(8),
             ),
-            child:  Text(
+            child: Text(
               tr("cancel"),
               textAlign: TextAlign.center,
               style: const TextStyle(color: Colors.white),
@@ -39,15 +36,16 @@ class CountryPickerHelper {
       backgroundColor: context.colors.white,
       textColor: context.colors.black,
       chooseRegionText: tr("chooseRegion"),
-      getLocalizedCountryName: CountryLocalizationHelper.getLocalizedCountryName,
+      getLocalizedCountryName:
+          CountryLocalizationHelper.getLocalizedCountryName,
       translate: (key) => tr(key),
     );
-    
+
     return externalCountry;
   }
 
   /// Pick country with forced Arabic display
-  static Future<Country?> pickCountryForceArabic(BuildContext context)async{
+  static Future<Country?> pickCountryForceArabic(BuildContext context) async {
     final externalCountry = await showCountryPickerSheet(
       context,
       cancelWidget: PositionedDirectional(
@@ -60,7 +58,7 @@ class CountryPickerHelper {
               color: context.colors.white,
               borderRadius: BorderRadius.circular(8),
             ),
-            child:  Text(
+            child: Text(
               tr("cancel"),
               textAlign: TextAlign.center,
               style: const TextStyle(color: Colors.white),
@@ -72,19 +70,22 @@ class CountryPickerHelper {
       backgroundColor: context.colors.white,
       textColor: context.colors.black,
       chooseRegionText: tr("chooseRegion"),
-      getLocalizedCountryName: CountryLocalizationHelper.getLocalizedCountryName,
+      getLocalizedCountryName:
+          CountryLocalizationHelper.getLocalizedCountryName,
       translate: (key) => tr(key),
     );
-    
+
     return externalCountry;
   }
 
-  static Future<Country?> getCountryByCallingCode(BuildContext context, String callingCode) async {
+  static Future<Country?> getCountryByCallingCode(
+      BuildContext context, String callingCode) async {
     try {
       final countries = await getCountries(context);
       return countries.firstWhere(
         (country) => country.callingCode == callingCode,
-        orElse: () => throw StateError('No country found with calling code: $callingCode'),
+        orElse: () => throw StateError(
+            'No country found with calling code: $callingCode'),
       );
     } catch (e) {
       return null;
@@ -96,25 +97,25 @@ class CountryPickerHelper {
       return await getDefaultCountry(context);
     } catch (e) {
       return const Country(
-          "United Arab Emirates","flags/are.png","AE","+971"
-      );
+          "United Arab Emirates", "flags/are.png", "AE", "+971");
     }
   }
 
-  static Country get defaultCountrySync{
-    return const Country(
-        "United Arab Emirates","flags/are.png","AE","+971"
-    );
+  static Country get defaultCountrySync {
+    return const Country("United Arab Emirates", "flags/are.png", "AE", "+971");
   }
 
   /// Get localized country name for display
-  static String getLocalizedCountryName(String countryCode, BuildContext context) {
-    return CountryLocalizationHelper.getLocalizedCountryName(countryCode, context);
+  static String getLocalizedCountryName(
+      String countryCode, BuildContext context) {
+    return CountryLocalizationHelper.getLocalizedCountryName(
+        countryCode, context);
   }
 
   /// Get localized display name for a country object
   static String getLocalizedDisplayName(Country country, BuildContext context) {
-    return CountryLocalizationHelper.getLocalizedCountryName(country.countryCode, context);
+    return CountryLocalizationHelper.getLocalizedCountryName(
+        country.countryCode, context);
   }
 
   /// Force Arabic display for country picker (for testing)

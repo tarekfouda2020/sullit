@@ -6,23 +6,20 @@ enum WalletTransactionType {
   deduct;
 
   Color get color {
-    switch(this){
+    switch (this) {
       case WalletTransactionType.income:
         return AppColors.noContextInstance.green;
       case WalletTransactionType.deduct:
-       return  AppColors.noContextInstance.darkRed;
+        return AppColors.noContextInstance.darkRed;
     }
   }
 
-
-
   String get transactionSign {
-    switch(this){
+    switch (this) {
       case WalletTransactionType.income:
         return "+";
       case WalletTransactionType.deduct:
-        return  "-";
+        return "-";
     }
   }
-
 }

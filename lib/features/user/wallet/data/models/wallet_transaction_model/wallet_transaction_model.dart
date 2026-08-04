@@ -7,9 +7,10 @@ part 'wallet_transaction_model.g.dart';
 
 @freezed
 @immutable
-class WalletTransactionModel extends BaseApiModel<WalletTransaction> with _$WalletTransactionModel {
+class WalletTransactionModel extends BaseApiModel<WalletTransaction>
+    with _$WalletTransactionModel {
   const WalletTransactionModel._();
-  
+
   @JsonSerializable(explicitToJson: true)
   const factory WalletTransactionModel({
     required int id,
@@ -39,17 +40,3 @@ class WalletTransactionModel extends BaseApiModel<WalletTransaction> with _$Wall
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

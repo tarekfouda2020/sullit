@@ -1,6 +1,5 @@
 part of 'support_tickets_sheet_widgets_imports.dart';
 
-
 class SupportTicketsSheetWidget extends StatelessWidget {
   final SupportTicketsController controller;
   const SupportTicketsSheetWidget({super.key, required this.controller});
@@ -34,8 +33,9 @@ class SupportTicketsSheetWidget extends StatelessWidget {
                 controller: controller.subjectController,
                 validate: (value) => value?.validateEmpty(),
                 hint: tr('enterSubject'),
-                hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
-                margin: const EdgeInsets.only(top: 7,bottom: 12),
+                hintStyle:
+                    AppTextStyle.s14_w400(color: context.colors.textColor),
+                margin: const EdgeInsets.only(top: 7, bottom: 12),
                 radius: Dimens.borderRadius40PX,
                 contentPadding: Dimens.paddingH12V16,
                 enableBorderColor: context.colors.white,
@@ -51,8 +51,9 @@ class SupportTicketsSheetWidget extends StatelessWidget {
                 action: TextInputAction.done,
                 validate: (value) => value?.validateEmpty(),
                 hint: tr('enterDescription'),
-                hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
-                margin: const EdgeInsets.only(top: 7,bottom: 12),
+                hintStyle:
+                    AppTextStyle.s14_w400(color: context.colors.textColor),
+                margin: const EdgeInsets.only(top: 7, bottom: 12),
                 radius: Dimens.borderRadius40PX,
                 contentPadding: Dimens.paddingH12V16,
                 enableBorderColor: context.colors.white,
@@ -66,8 +67,7 @@ class SupportTicketsSheetWidget extends StatelessWidget {
                   title: tr('send'),
                   height: 50,
                   margin: Dimens.paddingVertical10PX,
-                  onTap: () => controller.createTicket(context)
-              ),
+                  onTap: () => controller.createTicket(context)),
             ],
           ),
         ),

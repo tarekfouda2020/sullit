@@ -14,5 +14,4 @@ class WishlistController {
     allWishList.remove(item);
     wishlistBloc.onUpdateData(allWishList);
   }
-
 }

@@ -21,9 +21,9 @@ class BestRatedOffersFormWidget extends StatelessWidget {
                 children: [
                   BuildHeaderTitle(
                     title: tr('bestRated'),
-                    controller: controller,
                     onTap: () {
-                      controller.changeCouponsTab(SaleTabType.bestRated, context);
+                      controller.changeCouponsTab(
+                          SaleTabType.bestRated, context);
                       controller.homeController.animateTabsPages(3, context);
                     },
                   ),

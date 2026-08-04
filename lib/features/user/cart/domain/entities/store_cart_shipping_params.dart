@@ -1,12 +1,6 @@
-
 class StoreCartShippingParams {
-
   final List<Map> params;
-   bool showLoader;
+  bool showLoader;
 
-  StoreCartShippingParams({required this.params,  this.showLoader = true});
-
-
-
-
+  StoreCartShippingParams({required this.params, this.showLoader = true});
 }

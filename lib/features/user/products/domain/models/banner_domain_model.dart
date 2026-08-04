@@ -9,7 +9,12 @@ class BannerDomainModel extends BaseDomainModel {
   final String linkType;
   final String? value;
 
-  BannerDomainModel( {required this.photo, this.url,required this.linkType, required this.value,});
+  BannerDomainModel({
+    required this.photo,
+    this.url,
+    required this.linkType,
+    required this.value,
+  });
 
   LinkTypeEnum get getLinkType {
     switch (linkType) {

@@ -1,6 +1,5 @@
 part of 'LocationAddressImports.dart';
 
-
 class LocationAddress extends StatefulWidget {
   final bool fromEdit;
 
@@ -18,7 +17,6 @@ class _LocationAddress extends State<LocationAddress> {
     locationAddressData.getLocation(context);
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,9 +25,9 @@ class _LocationAddress extends State<LocationAddress> {
         leading: GestureDetector(
             onTap: () => locationAddressData.onPop(context),
             child: Icon(Icons.arrow_back, color: context.colors.black)),
-        title: BlocBuilder<GenericBloc<String>,GenericState<String>>(
+        title: BlocBuilder<GenericBloc<String>, GenericState<String>>(
           bloc: locationAddressData.titleBloc,
-          builder: (context,state){
+          builder: (context, state) {
             return Text(
               state.data,
               style: AppTextStyle.s12_w500(color: context.colors.black),

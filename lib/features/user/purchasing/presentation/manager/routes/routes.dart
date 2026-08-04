@@ -8,12 +8,11 @@ import 'package:flutter_tdd/features/user/purchasing/presentation/pages/return_o
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/track_order/track_order_imports.dart';
 
 const List<AutoRoute> purchasingRoute = [
-  AdaptiveRoute(page: OrderSummary),
+  AdaptiveRoute(page: OrderSummaryPage),
   AdaptiveRoute(page: PurchasedHistory),
   AdaptiveRoute(page: ReturnOrders),
   AdaptiveRoute(page: TrackOrder),
   AdaptiveRoute(page: RetrieveOrder),
   AdaptiveRoute(page: OrderDetailsPage),
   AdaptiveRoute(page: MyOrders),
-
 ];

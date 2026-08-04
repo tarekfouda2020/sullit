@@ -10,4 +10,4 @@ class VipCurrentPlanDomainModel extends BaseDomainModel {
     required this.currentSubscription,
     required this.otherSubscriptions,
   });
-} 
+}

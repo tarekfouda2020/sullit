@@ -24,7 +24,7 @@ class BuildDescription extends StatelessWidget {
           decoration: CustomDecoration(),
           padding: Dimens.paddingAll10PX,
           child: GenericTextField(
-            margin:Dimens.paddingVertical10PX,
+            margin: Dimens.paddingVertical10PX,
             fieldTypes: FieldTypes.rich,
             type: TextInputType.text,
             action: TextInputAction.next,

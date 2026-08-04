@@ -10,9 +10,9 @@ import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @lazySingleton
-class UserServiceHelper{
-
-  Future<void> updateUserdata(BuildContext context,UserDomainModel data)async{
+class UserServiceHelper {
+  Future<void> updateUserdata(
+      BuildContext context, UserDomainModel data) async {
     context.read<DeviceCubit>().updateUserAuth(true);
     GlobalState.instance.set("token", data.token);
     context.read<UserCubit>().onUpdateUserData(data);
@@ -20,8 +20,7 @@ class UserServiceHelper{
     preferences.setString("user", json.encode(data.toJson()));
   }
 
-
-  Future<void> clearUserData(BuildContext context)async{
+  Future<void> clearUserData(BuildContext context) async {
     GlobalState.instance.set("token", null);
     context.read<DeviceCubit>().updateUserAuth(false);
     context.read<UserCubit>().onUpdateUserData(UserDomainModel());
@@ -29,6 +28,4 @@ class UserServiceHelper{
     pref.clear();
     pref.remove("user");
   }
-
-
 }

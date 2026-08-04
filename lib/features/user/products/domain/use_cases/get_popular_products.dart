@@ -4,8 +4,7 @@ import 'package:flutter_tdd/features/user/products/domain/entities/popular_produ
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/repository/products_repository.dart';
 
-class GetPopularProducts
-    extends UseCase<List<Product>, PopularProductsParams> {
+class GetPopularProducts extends UseCase<List<Product>, PopularProductsParams> {
   @override
   Future<List<Product>> call(PopularProductsParams params) async {
     var result = await getIt<ProductsRepository>().getPopularProducts(params);

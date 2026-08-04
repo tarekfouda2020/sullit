@@ -5,8 +5,8 @@ class LocationEntity {
   double lng;
   String address;
   final CustomAddressModel? fullAddress;
-  LocationEntity({this.lat = 0, this.lng = 0, this.address = "", this.fullAddress});
-
+  LocationEntity(
+      {this.lat = 0, this.lng = 0, this.address = "", this.fullAddress});
 
   LocationEntity copyWith({
     double? lat,
@@ -15,11 +15,9 @@ class LocationEntity {
     CustomAddressModel? fullAddress,
   }) {
     return LocationEntity(
-      lat: lat ?? this.lat,
-      lng: lng ?? this.lng,
-      address: address ?? this.address,
-      fullAddress: fullAddress ?? this.fullAddress
-    );
+        lat: lat ?? this.lat,
+        lng: lng ?? this.lng,
+        address: address ?? this.address,
+        fullAddress: fullAddress ?? this.fullAddress);
   }
-
 }

@@ -36,7 +36,7 @@ class BuildReviewDialog extends StatelessWidget {
               ),
               Gaps.vGap10,
               RatingBar.builder(
-                initialRating: orderDetailsModel.review?.rate.toDouble()??0.0,
+                initialRating: orderDetailsModel.review?.rate.toDouble() ?? 0.0,
                 minRating: 0,
                 direction: Axis.horizontal,
                 allowHalfRating: false,
@@ -51,7 +51,8 @@ class BuildReviewDialog extends StatelessWidget {
                 onRatingUpdate: (rating) {},
               ),
               Visibility(
-                visible:orderDetailsModel.review?.comment != null && orderDetailsModel.review?.createdAt != "" ,
+                visible: orderDetailsModel.review?.comment != null &&
+                    orderDetailsModel.review?.createdAt != "",
                 child: Padding(
                   padding: Dimens.paddingVertical15PX,
                   child: Row(
@@ -63,7 +64,7 @@ class BuildReviewDialog extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        orderDetailsModel.review?.comment??"",
+                        orderDetailsModel.review?.comment ?? "",
                         style: AppTextStyle.s15_w400(
                           color: context.colors.black,
                         ),

@@ -10,20 +10,19 @@ class BuildTopCategoriesItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsetsDirectional.only(end: 15),
       child: GestureDetector(
-        onTap: () => AutoRouter.of(context).push(CategoryDetailsRoute(categoryModel: categoryModel,fromHome: true)),
+        onTap: () => AutoRouter.of(context).push(
+            CategoryDetailsRoute(categoryModel: categoryModel, fromHome: true)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-               height: 90,
+              height: 90,
               decoration: BoxDecoration(
-                color: context.colors.lightPink,
-                shape:  BoxShape.circle
-              ),
+                  color: context.colors.lightPink, shape: BoxShape.circle),
               child: CachedImage(
                 height: 70,
                 width: 70,
-                bgColor: context.colors.lightPink ,
+                bgColor: context.colors.lightPink,
                 fit: BoxFit.cover,
                 haveRadius: false,
                 url: categoryModel.icon,

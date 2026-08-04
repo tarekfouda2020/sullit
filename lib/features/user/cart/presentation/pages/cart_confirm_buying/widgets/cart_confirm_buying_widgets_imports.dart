@@ -1,5 +1,3 @@
-
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,4 +35,3 @@ part 'confirm_buying_summary_widget.dart';
 part 'cart_confirm_buying_products_widget.dart';
 part 'cart_confirm_shimmer_widget.dart';
 part 'new_points_balance_widget.dart';
-

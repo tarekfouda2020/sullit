@@ -4,9 +4,11 @@ import 'package:flutter_tdd/features/user/addresses/domain/repository/addresses_
 
 class SetDeleteAddress implements UseCase<bool, int> {
   @override
-  Future<bool> call(int param)  async{
-    var result  = await  getIt<AddressesRepository>().deleteAddress(param);
-    return  result.fold((l) => false, (r) => r,);
+  Future<bool> call(int param) async {
+    var result = await getIt<AddressesRepository>().deleteAddress(param);
+    return result.fold(
+      (l) => false,
+      (r) => r,
+    );
   }
-
 }

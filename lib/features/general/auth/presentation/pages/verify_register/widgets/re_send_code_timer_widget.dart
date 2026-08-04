@@ -1,6 +1,5 @@
 part of 'widgets_imports.dart';
 
-
 class ReSendCodeTimerWidget extends StatelessWidget {
   final VerifyRegisterController controller;
   const ReSendCodeTimerWidget({super.key, required this.controller});
@@ -34,7 +33,6 @@ class ReSendCodeTimerWidget extends StatelessWidget {
     );
   }
 
-
   String formattedTime() {
     int sec = controller.counterCubit.state.data % 60;
     int min = (controller.counterCubit.state.data / 60).floor();
@@ -42,6 +40,4 @@ class ReSendCodeTimerWidget extends StatelessWidget {
     String second = sec.toString().length <= 1 ? "0$sec" : "$sec";
     return "$minute:$second";
   }
-
-
 }

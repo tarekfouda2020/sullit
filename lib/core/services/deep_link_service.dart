@@ -51,7 +51,8 @@ class DeepLinkService {
       }
     }
     // Handle cart share link: https://suliit.com/cart?token=xxxx
-    else if (uri.pathSegments.contains('cart') && uri.queryParameters.containsKey('token')) {
+    else if (uri.pathSegments.contains('cart') &&
+        uri.queryParameters.containsKey('token')) {
       final token = uri.queryParameters['token'];
       if (token != null && token.isNotEmpty) {
         _importCart(token);
@@ -88,7 +89,8 @@ class DeepLinkService {
       return;
     }
     final router = getIt<RouterHelper>().appRoute;
-    router.push(ProductDetailsRoute(productId: productId, isResale: false, isFav: false));
+    router.push(ProductDetailsRoute(
+        productId: productId, isResale: false, isFav: false));
   }
 
   void _importCart(String token) {

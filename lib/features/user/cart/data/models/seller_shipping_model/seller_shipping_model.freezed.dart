@@ -21,7 +21,7 @@ SellerShippingModel _$SellerShippingModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SellerShippingModel {
   String get name => throw _privateConstructorUsedError;
-  List<CartItemModel> get items => throw _privateConstructorUsedError;
+  List<CartItemModel>? get items => throw _privateConstructorUsedError;
   bool get physical => throw _privateConstructorUsedError;
   @JsonKey(name: "active_pickup")
   bool get activePickUp => throw _privateConstructorUsedError;
@@ -48,7 +48,7 @@ abstract class $SellerShippingModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
-      List<CartItemModel> items,
+      List<CartItemModel>? items,
       bool physical,
       @JsonKey(name: "active_pickup") bool activePickUp,
       PickUpModel? pickup,
@@ -75,7 +75,7 @@ class _$SellerShippingModelCopyWithImpl<$Res, $Val extends SellerShippingModel>
   @override
   $Res call({
     Object? name = null,
-    Object? items = null,
+    Object? items = freezed,
     Object? physical = null,
     Object? activePickUp = null,
     Object? pickup = freezed,
@@ -89,10 +89,10 @@ class _$SellerShippingModelCopyWithImpl<$Res, $Val extends SellerShippingModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      items: null == items
+      items: freezed == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<CartItemModel>,
+              as List<CartItemModel>?,
       physical: null == physical
           ? _value.physical
           : physical // ignore: cast_nullable_to_non_nullable
@@ -159,7 +159,7 @@ abstract class _$$_SellerShippingModelCopyWith<$Res>
   @useResult
   $Res call(
       {String name,
-      List<CartItemModel> items,
+      List<CartItemModel>? items,
       bool physical,
       @JsonKey(name: "active_pickup") bool activePickUp,
       PickUpModel? pickup,
@@ -186,7 +186,7 @@ class __$$_SellerShippingModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? items = null,
+    Object? items = freezed,
     Object? physical = null,
     Object? activePickUp = null,
     Object? pickup = freezed,
@@ -200,10 +200,10 @@ class __$$_SellerShippingModelCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      items: null == items
+      items: freezed == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<CartItemModel>,
+              as List<CartItemModel>?,
       physical: null == physical
           ? _value.physical
           : physical // ignore: cast_nullable_to_non_nullable
@@ -242,7 +242,7 @@ class __$$_SellerShippingModelCopyWithImpl<$Res>
 class _$_SellerShippingModel extends _SellerShippingModel {
   const _$_SellerShippingModel(
       {required this.name,
-      required final List<CartItemModel> items,
+      final List<CartItemModel>? items,
       required this.physical,
       @JsonKey(name: "active_pickup") required this.activePickUp,
       required this.pickup,
@@ -258,12 +258,14 @@ class _$_SellerShippingModel extends _SellerShippingModel {
 
   @override
   final String name;
-  final List<CartItemModel> _items;
+  final List<CartItemModel>? _items;
   @override
-  List<CartItemModel> get items {
+  List<CartItemModel>? get items {
+    final value = _items;
+    if (value == null) return null;
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_items);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -343,7 +345,7 @@ class _$_SellerShippingModel extends _SellerShippingModel {
 abstract class _SellerShippingModel extends SellerShippingModel {
   const factory _SellerShippingModel(
       {required final String name,
-      required final List<CartItemModel> items,
+      final List<CartItemModel>? items,
       required final bool physical,
       @JsonKey(name: "active_pickup") required final bool activePickUp,
       required final PickUpModel? pickup,
@@ -360,7 +362,7 @@ abstract class _SellerShippingModel extends SellerShippingModel {
   @override
   String get name;
   @override
-  List<CartItemModel> get items;
+  List<CartItemModel>? get items;
   @override
   bool get physical;
   @override

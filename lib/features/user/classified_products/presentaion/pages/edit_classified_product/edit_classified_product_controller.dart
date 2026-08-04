@@ -77,8 +77,9 @@ class EditClassifiedProductController {
       var params = _editProductParams();
       print("=====>${params.toJson()}");
       var result = await SetEditCusProduct().call(params);
-      if (result!=null) {
-        CustomToast.showSimpleToast(msg: tr('productUpdatedSuccess'),type: ToastType.success);
+      if (result != null) {
+        CustomToast.showSimpleToast(
+            msg: tr('productUpdatedSuccess'), type: ToastType.success);
         AutoRouter.of(context).pop(result);
       }
     }

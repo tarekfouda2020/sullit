@@ -8,16 +8,22 @@ import 'package:flutter_tdd/res.dart';
 class BuildHeaderLogo extends StatelessWidget {
   final double? marginTop;
   final double? marginBottom;
-  const BuildHeaderLogo({Key? key, this.marginTop, this.marginBottom}) : super(key: key);
+  const BuildHeaderLogo({Key? key, this.marginTop, this.marginBottom})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.only(top:marginTop ?? 20+kToolbarHeight,bottom:marginBottom ?? 20),
+      padding: EdgeInsets.only(
+          top: marginTop ?? 20 + kToolbarHeight, bottom: marginBottom ?? 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(Res.newAuthLogo,height: 99,width: 200,),
+          Image.asset(
+            Res.newAuthLogo,
+            height: 99,
+            width: 200,
+          ),
           // Row(
           //   mainAxisAlignment: MainAxisAlignment.center,
           //   children: [
@@ -34,11 +40,9 @@ class BuildHeaderLogo extends StatelessWidget {
     );
   }
 
-
   // double get height{
   //   return Platform.isIOS
   //       ?60
   //       : 20;
   // }
-
 }

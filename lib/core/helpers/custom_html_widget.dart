@@ -47,7 +47,6 @@ class CustomHtmlWidget extends StatelessWidget {
         //   margin: Margins.zero,
         //   padding: HtmlPaddings.zero,
         // ),
-
       },
     );
   }

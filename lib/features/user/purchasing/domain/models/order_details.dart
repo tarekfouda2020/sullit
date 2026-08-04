@@ -21,9 +21,10 @@ class OrderDetails extends BaseDomainModel {
   OrderReview? orderReview;
   String? shippedBy;
   bool? isSelected;
-  GenericBloc<int>?qtyCubit;
-
-
+  GenericBloc<int>? qtyCubit;
+  String? pickerNotes;
+  String? instructions;
+  String? insuranceCoveragePercentage;
 
   OrderDetails({
     required this.id,
@@ -43,9 +44,10 @@ class OrderDetails extends BaseDomainModel {
     this.shippedBy,
     this.isSelected = false,
     this.qtyCubit,
+    this.pickerNotes,
+    this.instructions,
+    this.insuranceCoveragePercentage,
   });
 
-
-  double get getPrice => double.parse(product?.variant?.mainPrice ?? "0.0" );
-
+  double get getPrice => double.parse(product?.variant?.mainPrice ?? "0.0");
 }

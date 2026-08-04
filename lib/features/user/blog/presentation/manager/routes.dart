@@ -1,6 +1,6 @@
 part of 'routes_imports.dart';
 
-const blogRoutes =  [
+const blogRoutes = [
   AdaptiveRoute(page: Blogs),
   AdaptiveRoute(page: BlogDetails),
 ];

@@ -12,14 +12,17 @@ class ShippingAlertWidget extends StatelessWidget {
         backgroundColor: context.colors.transparent,
         content: Container(
             width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.only(top: 16,left: 18,right: 18,bottom: 16),
-            decoration: BoxDecoration(color: context.colors.white, borderRadius: BorderRadius.circular(16)),
+            padding:
+                const EdgeInsets.only(top: 16, left: 18, right: 18, bottom: 16),
+            decoration: BoxDecoration(
+                color: context.colors.white,
+                borderRadius: BorderRadius.circular(16)),
             child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                   GestureDetector(
-                    onTap:  () => Navigator.pop(context),
+                  GestureDetector(
+                    onTap: () => Navigator.pop(context),
                     child: Icon(
                       Icons.close,
                       color: context.colors.black,
@@ -28,14 +31,15 @@ class ShippingAlertWidget extends StatelessWidget {
                   ),
                   Gaps.vGap8,
                   Center(
-                    child: Text(tr("notAllSellersDelivery"),
-                      style: AppTextStyle.s16_w600(color: context.colors.black),)),
-                  DefaultButton(title: "Ok",
-                  height: 50,
-                  onTap: () => Navigator.pop(context),
+                      child: Text(
+                    tr("notAllSellersDelivery"),
+                    style: AppTextStyle.s16_w600(color: context.colors.black),
+                  )),
+                  DefaultButton(
+                    title: "Ok",
+                    height: 50,
+                    onTap: () => Navigator.pop(context),
                   ),
-                ])
-        )
-    );
+                ])));
   }
 }

@@ -17,34 +17,36 @@ class RequestReplaceSheetWidget extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-              BottomSheetHeaderWidget(
-               title: tr("confirmation"),
-               // onClose: () => controller.refuseReplacement(context),
-                showCloseIcon: false,
-             ),
+            BottomSheetHeaderWidget(
+              title: tr("confirmation"),
+              // onClose: () => controller.refuseReplacement(context),
+              showCloseIcon: false,
+            ),
             Gaps.vGap26,
             SvgPicture.asset(Res.confirmationAlertIcon),
             Gaps.vGap26,
-            Text(tr("replace_out_of_stock"),
-            textAlign: TextAlign.center,
-            style: AppTextStyle.s18_w700(color: context.colors.black).copyWith(
-              height: 1.3
-            ),
+            Text(
+              tr("replace_out_of_stock"),
+              textAlign: TextAlign.center,
+              style: AppTextStyle.s18_w700(color: context.colors.black)
+                  .copyWith(height: 1.3),
             ),
             Gaps.vGap32,
             Row(
               spacing: 9,
               children: [
                 Expanded(
-                  child: DefaultButton(title:tr("yes_replace"),
-                  margin: EdgeInsets.zero,
-                  color: context.colors.mainGreen,
+                  child: DefaultButton(
+                    title: tr("yes_replace"),
+                    margin: EdgeInsets.zero,
+                    color: context.colors.mainGreen,
                     onTap: () => controller.confirmReplacement(context),
                   ),
                 ),
                 Expanded(
-                  child: DefaultButton(title: tr("no"),
-                  color: context.colors.deepGray,
+                  child: DefaultButton(
+                    title: tr("no"),
+                    color: context.colors.deepGray,
                     margin: EdgeInsets.zero,
                     onTap: () => controller.refuseReplacement(context),
                     textColor: context.colors.black,

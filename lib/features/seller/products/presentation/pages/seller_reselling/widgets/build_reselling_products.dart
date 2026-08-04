@@ -40,7 +40,8 @@ class BuildResellingProducts extends StatelessWidget {
                                 children: [
                                   Expanded(
                                       child: CachedImage(
-                                    url: "https://cdn.shopify.com/s/files/1/0583/7737/1842/files/banner3.jpg?v=1629357208",
+                                    url:
+                                        "https://cdn.shopify.com/s/files/1/0583/7737/1842/files/banner3.jpg?v=1629357208",
                                     height: 50.r,
                                     width: 50.r,
                                     haveRadius: true,
@@ -61,8 +62,8 @@ class BuildResellingProducts extends StatelessWidget {
                                             Text(
                                               "Product Text",
                                               style: AppTextStyle.s12_w400(
-                                                  color:
-                                                      context.colors.blackOpacity),
+                                                  color: context
+                                                      .colors.blackOpacity),
                                             ),
                                             Spacer(),
                                             Icon(
@@ -86,8 +87,8 @@ class BuildResellingProducts extends StatelessWidget {
                                             Text(
                                               "325526-45756",
                                               style: AppTextStyle.s12_w400(
-                                                  color:
-                                                  context.colors.blackOpacity),
+                                                  color: context
+                                                      .colors.blackOpacity),
                                             ),
                                           ],
                                         ),
@@ -146,12 +147,12 @@ class BuildResellingProducts extends StatelessWidget {
                                           .r,
                                       onTap: () {
                                         showModalBottomSheet(
-
-
-                                            shape:  RoundedRectangleBorder(
+                                            shape: RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(20).r,
-                                                    topRight: Radius.circular(20).r)),
+                                                    topLeft:
+                                                        Radius.circular(20).r,
+                                                    topRight:
+                                                        Radius.circular(20).r)),
                                             context: context,
                                             builder: (context) {
                                               return const BuildResellingProductDetailsDialog();

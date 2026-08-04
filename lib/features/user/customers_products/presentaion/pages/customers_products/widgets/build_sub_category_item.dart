@@ -18,11 +18,11 @@ class BuildSubCategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color color = (subCategoryModel.id == selected ||
-        subCategoryModel.parentId == selected)
+            subCategoryModel.parentId == selected)
         ? context.colors.primary
         : context.colors.white;
     Color textColor = (subCategoryModel.id == selected ||
-        subCategoryModel.parentId == selected)
+            subCategoryModel.parentId == selected)
         ? context.colors.white
         : context.colors.primary;
     return InkWell(

@@ -17,5 +17,4 @@ const List<AutoRoute> commonRoute = [
   AutoRoute(page: ImageZoom),
   AutoRoute(page: Support),
   AutoRoute(page: LocationAddress),
-
 ];

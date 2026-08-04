@@ -36,22 +36,18 @@ class HelperMethods {
     // launchUrl(url);
   }
 
-  String getDeviceType(){
-    if(Platform.isIOS){
+  String getDeviceType() {
+    if (Platform.isIOS) {
       return DeviceTypeEnum.ios.getDeviceType();
-    } else{
+    } else {
       return DeviceTypeEnum.android.getDeviceType();
     }
   }
-
 
   void clearSavedData() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.clear();
   }
-
-
-
 
   String convertDigitsToLatin(String text) {
     var sb = StringBuffer();

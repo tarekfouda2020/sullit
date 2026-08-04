@@ -32,8 +32,9 @@ class ImplCategoryDataSources extends CategoryDataSources {
     );
     return await GenericHttpImpl<List<CategoryModel>>()(model);
   }
+
   @override
-  Future<Either<Failure, List<CategoryModel>>> getSideSubCats(int param) async{
+  Future<Either<Failure, List<CategoryModel>>> getSideSubCats(int param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getSideSubCats(param),
       requestMethod: RequestMethod.get,
@@ -45,6 +46,7 @@ class ImplCategoryDataSources extends CategoryDataSources {
     );
     return await GenericHttpImpl<List<CategoryModel>>()(model);
   }
+
   @override
   Future<Either<Failure, List<BrandModel>>> getBrands(
       BrandsParams params) async {
@@ -66,9 +68,10 @@ class ImplCategoryDataSources extends CategoryDataSources {
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getBrandProducts(BrandDetailsParams params) async {
+  Future<Either<Failure, List<ProductModel>>> getBrandProducts(
+      BrandDetailsParams params) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.brandDetails+params.url,
+      url: ApiNames.brandDetails + params.url,
       requestMethod: RequestMethod.get,
       refresh: params.refresh,
       responseType: ResType.list,
@@ -87,7 +90,7 @@ class ImplCategoryDataSources extends CategoryDataSources {
   Future<Either<Failure, SubCategoryModel>> getSubCategories(
       SearchProductsParams params) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.getCategoryProducts ,
+      url: ApiNames.getCategoryProducts,
       requestMethod: RequestMethod.get,
       responseType: ResType.model,
       requestBody: params.toJson(),
@@ -102,7 +105,7 @@ class ImplCategoryDataSources extends CategoryDataSources {
   Future<Either<Failure, List<ProductModel>>> getCategoryProducts(
       SearchProductsParams params) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.getCategoryProducts ,
+      url: ApiNames.getCategoryProducts,
       requestMethod: RequestMethod.get,
       refresh: params.refresh,
       responseType: ResType.list,
@@ -110,11 +113,8 @@ class ImplCategoryDataSources extends CategoryDataSources {
       toJsonFunc: (json) => List<ProductModel>.from(
         json.map((e) => ProductModel.fromJson(e)),
       ),
-      responseKey: (data) =>
-          data["data"]["section_products"]["products"],
+      responseKey: (data) => data["data"]["section_products"]["products"],
     );
     return await GenericHttpImpl<List<ProductModel>>().call(model);
   }
-
-
 }

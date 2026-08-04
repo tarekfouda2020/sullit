@@ -29,7 +29,8 @@ class BuildTermsAndConditions extends StatelessWidget {
                         color: context.colors.blackOpacity),
                   ),
                   GestureDetector(
-                    onTap: ()=>AutoRouter.of(context).push(const TermsRoute()),
+                    onTap: () =>
+                        AutoRouter.of(context).push(const TermsRoute()),
                     child: Text(
                       tr('termsAndConditions'),
                       style:

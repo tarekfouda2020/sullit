@@ -20,7 +20,6 @@ abstract class GenericHttp<T> {
 
 @lazySingleton
 class GenericHttpImpl<T> extends GenericHttp<T> {
-
   @preResolve
   @override
   Future<Either<Failure, T>> call(HttpRequestModel model) async {
@@ -61,6 +60,4 @@ class GenericHttpImpl<T> extends GenericHttp<T> {
     );
     return customType;
   }
-
-
 }

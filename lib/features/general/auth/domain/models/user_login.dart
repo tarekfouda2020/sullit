@@ -6,19 +6,16 @@ class UserLogin extends BaseDomainModel {
   String? msg;
   UserData? userData;
 
-
   UserLogin({
     this.key,
     this.msg,
     this.userData,
-
   });
 
   UserLogin.fromJson(Map<String, dynamic> json) {
     key = json['key'];
     msg = json['msg'];
     userData = json['data'] != null ? UserData.fromJson(json['data']) : null;
-
   }
 
   Map<String, dynamic> toJson() {

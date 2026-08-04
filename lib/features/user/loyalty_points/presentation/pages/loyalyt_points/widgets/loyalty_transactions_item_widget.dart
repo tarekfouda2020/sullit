@@ -13,7 +13,8 @@ class LoyaltyTransactionItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsetsDirectional.only(start: 19, top: 16, bottom: 16, end: 24),
+      padding: const EdgeInsetsDirectional.only(
+          start: 19, top: 16, bottom: 16, end: 24),
       margin: Dimens.marginBottom8,
       decoration: BoxDecoration(
           color: context.colors.white,
@@ -26,7 +27,8 @@ class LoyaltyTransactionItemWidget extends StatelessWidget {
             children: [
               Text(
                 model.type.capitalize,
-                style: AppTextStyle.s14_w600(color: model.transactionType().getColor(context)),
+                style: AppTextStyle.s14_w600(
+                    color: model.transactionType().getColor(context)),
               ),
               const Spacer(),
               // Text(
@@ -45,13 +47,15 @@ class LoyaltyTransactionItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-               tr("transactionNo"),
-                style: AppTextStyle.s12_w700(color: context.colors.blackTextColor),
+                tr("transactionNo"),
+                style:
+                    AppTextStyle.s12_w700(color: context.colors.blackTextColor),
               ),
               Expanded(
                 child: Text(
                   "${model.transactionsNo}",
-                  style: AppTextStyle.s14_w700(color: context.colors.blackTextColor),
+                  style: AppTextStyle.s14_w700(
+                      color: context.colors.blackTextColor),
                 ),
               ),
               Text(

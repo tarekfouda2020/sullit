@@ -33,7 +33,8 @@ class _MenuItem extends SingleChildRenderObjectWidget {
   }
 
   @override
-  void updateRenderObject(BuildContext context, covariant _RenderMenuItem renderObject) {
+  void updateRenderObject(
+      BuildContext context, covariant _RenderMenuItem renderObject) {
     renderObject.onLayout = onLayout;
   }
 }
@@ -198,7 +199,8 @@ class PopupMenuItemState<T, W extends CustomPopupMenuItem<T>> extends State<W> {
       child: Container(
         alignment: AlignmentDirectional.centerStart,
         constraints: BoxConstraints(minHeight: widget.height),
-        padding: const EdgeInsets.symmetric(horizontal: _kMenuHorizontalPadding),
+        padding:
+            const EdgeInsets.symmetric(horizontal: _kMenuHorizontalPadding),
         child: buildChild(),
       ),
     );
@@ -231,8 +233,9 @@ class _PopupMenu<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double unit =
-        1.0 / (route!.items.length + 1.5); // 1.0 for the width and 0.5 for the last item's fade.
+    final double unit = 1.0 /
+        (route!.items.length +
+            1.5); // 1.0 for the width and 0.5 for the last item's fade.
     final List<Widget> children = <Widget>[];
     final PopupMenuThemeData popupMenuTheme = PopupMenuTheme.of(context);
 
@@ -244,7 +247,8 @@ class _PopupMenu<T> extends StatelessWidget {
         curve: Interval(start, end),
       );
       Widget item = route!.items[i];
-      if (route!.initialValue != null && route!.items[i].represents(route!.initialValue)) {
+      if (route!.initialValue != null &&
+          route!.items[i].represents(route!.initialValue)) {
         item = Container(
           color: Theme.of(context).highlightColor,
           child: item,
@@ -263,9 +267,11 @@ class _PopupMenu<T> extends StatelessWidget {
       );
     }
 
-    final CurveTween opacity = CurveTween(curve: const Interval(0.0, 1.0 / 3.0));
+    final CurveTween opacity =
+        CurveTween(curve: const Interval(0.0, 1.0 / 3.0));
     final CurveTween width = CurveTween(curve: Interval(0.0, unit));
-    final CurveTween height = CurveTween(curve: Interval(0.0, unit * route!.items.length));
+    final CurveTween height =
+        CurveTween(curve: Interval(0.0, unit * route!.items.length));
 
     final Widget child = ConstrainedBox(
       constraints: const BoxConstraints(minWidth: _kMenuMinWidth),
@@ -277,7 +283,8 @@ class _PopupMenu<T> extends StatelessWidget {
           explicitChildNodes: true,
           label: semanticLabel,
           child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(vertical: _kMenuVerticalPadding),
+            padding:
+                const EdgeInsets.symmetric(vertical: _kMenuVerticalPadding),
             child: ListBody(children: children),
           ),
         ),
@@ -310,7 +317,8 @@ class _PopupMenu<T> extends StatelessWidget {
 
 // Positioning of the menu on the screen.
 class _PopupMenuRouteLayout extends SingleChildLayoutDelegate {
-  _PopupMenuRouteLayout(this.position, this.itemSizes, this.selectedItemIndex, this.textDirection);
+  _PopupMenuRouteLayout(this.position, this.itemSizes, this.selectedItemIndex,
+      this.textDirection);
 
   // Rectangle of underlying button, relative to the overlay's dimensions.
   final RelativeRect? position;
@@ -335,7 +343,8 @@ class _PopupMenuRouteLayout extends SingleChildLayoutDelegate {
     // The menu can be at most the size of the overlay minus 8.0 pixels in each
     // direction.
     return BoxConstraints.loose(constraints.biggest -
-        const Offset(_kMenuScreenPadding * 2.0, _kMenuScreenPadding * 2.0) as Size);
+            const Offset(_kMenuScreenPadding * 2.0, _kMenuScreenPadding * 2.0)
+        as Size);
   }
 
   @override
@@ -457,11 +466,13 @@ class _PopupMenuRoute<T> extends PopupRoute<T> {
   final String? barrierLabel;
 
   @override
-  Widget buildPage(
-      BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
     int? selectedItemIndex;
     if (initialValue != null) {
-      for (int index = 0; selectedItemIndex == null && index < items.length; index += 1) {
+      for (int index = 0;
+          selectedItemIndex == null && index < items.length;
+          index += 1) {
         if (items[index].represents(initialValue)) selectedItemIndex = index;
       }
     }

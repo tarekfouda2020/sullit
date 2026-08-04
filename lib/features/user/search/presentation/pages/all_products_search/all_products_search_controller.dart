@@ -1,12 +1,12 @@
 part of 'all_products_search_imports.dart';
 
-
 class AllProductsSearchController {
   final String searchText;
   final bool showProducts;
-  
+
   // Use dynamic type to support both Product and Category
-  final PagingController<int, dynamic> pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, dynamic> pagingController =
+      PagingController(firstPageKey: 1);
   int pageSize = 12;
 
   AllProductsSearchController({
@@ -22,7 +22,7 @@ class AllProductsSearchController {
   Future<void> getSearchResults(int page, {bool refresh = true}) async {
     var params = _searchResultParams(page, refresh);
     var result = await GetSearchResults().call(params);
-    
+
     if (result == null) {
       pagingController.error = "Error loading results";
       return;

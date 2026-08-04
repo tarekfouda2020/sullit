@@ -29,12 +29,14 @@ class ImplWalletRepository extends WalletRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, String>> rechargeWallet(RechargeWalletParams param) async {
+  Future<Either<Failure, String>> rechargeWallet(
+      RechargeWalletParams param) async {
     return await dataSource.rechargeWallet(param);
   }
 
   @override
-  Future<Either<Failure, List<WalletTransaction>>> walletTransactions(GenericPaginateParams param)async {
+  Future<Either<Failure, List<WalletTransaction>>> walletTransactions(
+      GenericPaginateParams param) async {
     var result = await dataSource.walletTransactions(param);
     return toDomainResultList(result);
   }

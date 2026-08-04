@@ -11,6 +11,7 @@ import 'package:flutter_tdd/features/user/base/presentation/pages/home/home_impo
 import 'build_drawer_header.dart';
 import 'build_drawer_item.dart';
 import 'build_logout.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 class BuildDrawer extends StatelessWidget {
   final HomeController controller;
@@ -19,7 +20,7 @@ class BuildDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
+    bool auth = context.isAuth;
 
     return Container(
       color: context.colors.customBackground,

@@ -37,6 +37,7 @@ import 'package:flutter_tdd/features/user/category/domain/models/sub_category.da
 import 'package:flutter_tdd/features/user/category/domain/models/sub_category_level.dart';
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/category_details_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_product_item_shimmer.dart';
@@ -45,7 +46,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:flutter_tdd/core/widgets/grid_view_pagination.dart';
 
 import '../../../../../../../core/widgets/custom_safe_are.dart';
-import '../../../../../products/domain/models/shop.dart';
+import '../../../../../products/domain/models/merchant_shop_model.dart';
 
 part 'build_all_categories_view.dart';
 part 'build_color_filter.dart';

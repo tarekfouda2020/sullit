@@ -21,7 +21,6 @@ class NewArrivalOffersFormWidget extends StatelessWidget {
                 children: [
                   BuildHeaderTitle(
                     title: tr('newArrival'),
-                    controller: controller,
                     onTap: () {
                       controller.changeCouponsTab(
                           SaleTabType.newArrival, context);

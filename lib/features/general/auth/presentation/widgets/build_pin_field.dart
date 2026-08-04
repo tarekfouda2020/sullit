@@ -12,7 +12,7 @@ class BuildPinField extends StatelessWidget {
   const BuildPinField({
     Key? key,
     required this.onComplete,
-     this.count,
+    this.count,
     this.margin,
     this.alignment,
   }) : super(key: key);
@@ -20,16 +20,16 @@ class BuildPinField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-       margin:margin?? const EdgeInsets.symmetric(vertical: 20),
+      margin: margin ?? const EdgeInsets.symmetric(vertical: 20),
       child: PinCodeTextField(
-        length: count ?? 6,
-        appContext: context,
-        keyboardType: TextInputType.number,
-        onChanged: (String value) {},
-        backgroundColor: Colors.transparent,
-        textStyle: AppTextStyle.s16_w500(color: context.colors.black),
-        animationType: AnimationType.fade,
-        pinTheme: PinTheme(
+          length: count ?? 6,
+          appContext: context,
+          keyboardType: TextInputType.number,
+          onChanged: (String value) {},
+          backgroundColor: Colors.transparent,
+          textStyle: AppTextStyle.s16_w500(color: context.colors.black),
+          animationType: AnimationType.fade,
+          pinTheme: PinTheme(
             shape: PinCodeFieldShape.circle,
             fieldHeight: 48,
             fieldWidth: 48,
@@ -40,13 +40,12 @@ class BuildPinField extends StatelessWidget {
             inactiveFillColor: context.colors.white,
             activeFillColor: context.colors.white,
             disabledColor: context.colors.black,
-        ),
-        cursorColor: context.colors.black,
-        animationDuration: const Duration(milliseconds: 300),
-        enableActiveFill: true,
-        onCompleted: onComplete,
-        mainAxisAlignment: alignment ?? MainAxisAlignment.spaceBetween
-      ),
+          ),
+          cursorColor: context.colors.black,
+          animationDuration: const Duration(milliseconds: 300),
+          enableActiveFill: true,
+          onCompleted: onComplete,
+          mainAxisAlignment: alignment ?? MainAxisAlignment.spaceBetween),
     );
   }
 }

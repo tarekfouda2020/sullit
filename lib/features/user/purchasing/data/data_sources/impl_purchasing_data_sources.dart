@@ -11,6 +11,7 @@ import 'package:flutter_tdd/features/user/products/data/models/reviews_model/rev
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_model/order_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/track_order/track_order.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/change_order_payment_params.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/entities/my_orders_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/return_order_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/send_review_params.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/payment_option_model/payment_option_model.dart';
@@ -22,13 +23,13 @@ import 'purchasing_data_sources.dart';
 class ImplPurchasingDataSources extends PurchasingDataSources {
   @override
   Future<Either<Failure, List<OrderModel>>> getPurchaseHistory(
-      GenericPaginateParams param) async {
+      MyOrdersParams param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.getPurchaseHistory + param.paramsToQuery(),
+      url: ApiNames.getPurchaseHistory ,
       requestMethod: RequestMethod.get,
       refresh: param.refresh,
       responseType: ResType.list,
-      showLoader: true,
+      requestBody: param.toJson(),
       toJsonFunc: (json) => List<OrderModel>.from(
         json.map((e) => OrderModel.fromJson(e)),
       ),
@@ -177,7 +178,8 @@ class ImplPurchasingDataSources extends PurchasingDataSources {
   }
 
   @override
-  Future<Either<Failure, OrderModel>> changeOrderPaymentMethod(ChangeOrderPaymentParams param) async {
+  Future<Either<Failure, OrderModel>> changeOrderPaymentMethod(
+      ChangeOrderPaymentParams param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.changeOrderPayMethod(param.orderId),
       requestMethod: RequestMethod.post,

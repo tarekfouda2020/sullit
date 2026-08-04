@@ -7,29 +7,27 @@ class BuildLoginTabsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        return Container(
-          height: 48,
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          margin: const EdgeInsets.only(bottom: 16).r,
-          decoration: BoxDecoration(
-              color: context.colors.white,
-              border: Border.all(color: context.colors.borderColor),
-              borderRadius: Dimens.borderRadius40PX
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(controller.tabs.length, (index) {
-              return BuildLoginTabs(
-                text: controller.tabs[index],
-                selected: controller.tabsCubit.state.data == index,
-                onTap: () {
-                  controller.tabsCubit.onUpdateData(index);
-                },
-              );
-            }),
-          ),
-        );
-
+    return Container(
+      height: 48,
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      margin: const EdgeInsets.only(bottom: 16).r,
+      decoration: BoxDecoration(
+          color: context.colors.white,
+          border: Border.all(color: context.colors.borderColor),
+          borderRadius: Dimens.borderRadius40PX),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: List.generate(controller.tabs.length, (index) {
+          return BuildLoginTabs(
+            text: controller.tabs[index],
+            selected: controller.tabsCubit.state.data == index,
+            onTap: () {
+              controller.tabsCubit.onUpdateData(index);
+            },
+          );
+        }),
+      ),
+    );
   }
 }

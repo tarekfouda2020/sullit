@@ -1,0 +1,4 @@
+enum CartType {
+  general,
+  pharmacy;
+}

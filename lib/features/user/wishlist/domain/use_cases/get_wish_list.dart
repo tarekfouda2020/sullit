@@ -5,8 +5,11 @@ import 'package:flutter_tdd/features/user/wishlist/domain/repository/wishlist_re
 
 class GetWishlist implements UseCase<List<Product>, bool> {
   @override
-  Future<List<Product>> call(bool param)async {
+  Future<List<Product>> call(bool param) async {
     var result = await getIt<WishlistRepository>().getWishlist(param);
-    return result.fold((l) => [], (r) => r,);
+    return result.fold(
+      (l) => [],
+      (r) => r,
+    );
   }
 }

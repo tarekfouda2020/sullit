@@ -14,16 +14,18 @@ class AgreeTermsConditionsWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              width: 19, height: 19,
+              width: 19,
+              height: 19,
               child: Checkbox(
                 checkColor: context.colors.white,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 activeColor: context.colors.primary,
-                fillColor: WidgetStateProperty. resolveWith<Color>((Set<WidgetState> states) {
-                  if (states. contains(WidgetState. disabled)) {
+                fillColor: WidgetStateProperty.resolveWith<Color>(
+                    (Set<WidgetState> states) {
+                  if (states.contains(WidgetState.disabled)) {
                     return context.colors.white;
                   }
-                  if (states. contains(WidgetState.selected)) {
+                  if (states.contains(WidgetState.selected)) {
                     return context.colors.primary;
                   }
                   return Colors.transparent;
@@ -44,16 +46,14 @@ class AgreeTermsConditionsWidget extends StatelessWidget {
               children: [
                 Text(
                   tr('agree'),
-                  style: AppTextStyle.s14_w400(
-                      color: context.colors.textColor),
+                  style: AppTextStyle.s14_w400(color: context.colors.textColor),
                 ),
                 Gaps.hGap4,
                 GestureDetector(
                   onTap: () => AutoRouter.of(context).push(const TermsRoute()),
                   child: Text(
                     tr('termsAndConditions'),
-                    style:
-                    AppTextStyle.s14_w700(color: context.colors.black),
+                    style: AppTextStyle.s14_w700(color: context.colors.black),
                   ),
                 ),
               ],

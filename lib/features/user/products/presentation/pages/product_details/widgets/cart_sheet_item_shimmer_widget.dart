@@ -52,15 +52,16 @@ class CartSheetItemShimmerWidget extends StatelessWidget {
                 Gaps.vGap5,
                 // Rating stars shimmer
                 Row(
-                  children: List.generate(5, (index) =>
-                      Padding(
-                        padding: EdgeInsets.only(right: index < 4 ? 2.0 : 0.0),
-                        child: BuildShimmerItem(
-                          width: 10,
-                          height: 10,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
+                  children: List.generate(
+                    5,
+                    (index) => Padding(
+                      padding: EdgeInsets.only(right: index < 4 ? 2.0 : 0.0),
+                      child: BuildShimmerItem(
+                        width: 10,
+                        height: 10,
+                        borderRadius: BorderRadius.circular(5),
                       ),
+                    ),
                   ),
                 ),
                 Gaps.vGap5,
@@ -117,7 +118,4 @@ class CartSheetItemShimmerWidget extends StatelessWidget {
       ),
     );
   }
-
-
-
 }

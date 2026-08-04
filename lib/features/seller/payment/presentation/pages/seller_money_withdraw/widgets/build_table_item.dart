@@ -8,7 +8,8 @@ class BuildTableItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: Dimens.dp15,horizontal: Dimens.dp5),
+      padding: const EdgeInsets.symmetric(
+          vertical: Dimens.dp15, horizontal: Dimens.dp5),
       child: Text(
         title,
         style: AppTextStyle.s12_w400(

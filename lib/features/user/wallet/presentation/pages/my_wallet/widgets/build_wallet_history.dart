@@ -1,4 +1,4 @@
-part of'my_wallet_widgets_imports.dart';
+part of 'my_wallet_widgets_imports.dart';
 
 class BuildWalletHistory extends StatelessWidget {
   final MyWalletController controller;
@@ -15,7 +15,9 @@ class BuildWalletHistory extends StatelessWidget {
           padding: Dimens.paddingAll15PX,
           pagingController: controller.pagingController,
           builderDelegate: PagedChildBuilderDelegate<WalletTransaction>(
-            itemBuilder: (_, item, index) => WalletItemWidget(item: item,),
+            itemBuilder: (_, item, index) => WalletItemWidget(
+              item: item,
+            ),
             firstPageProgressIndicatorBuilder: (_) => _transactionsLoading(),
             noItemsFoundIndicatorBuilder: (cxt) {
               return SizedBox(
@@ -33,7 +35,6 @@ class BuildWalletHistory extends StatelessWidget {
       ),
     );
   }
-
 
   Widget _transactionsLoading() {
     return Column(
@@ -60,6 +61,4 @@ class BuildWalletHistory extends StatelessWidget {
       }),
     );
   }
-
-
 }

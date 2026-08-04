@@ -14,7 +14,7 @@ class NotificationModel extends BaseApiModel<NotificationDomainModel>
   @JsonSerializable(explicitToJson: true)
   const factory NotificationModel({
     required String id,
-    @JsonKey(name: 'order_id')  int? orderId,
+    @JsonKey(name: 'order_id') int? orderId,
     required String text,
     required String type,
     @JsonKey(name: 'created_at') required String createdAt,
@@ -26,11 +26,6 @@ class NotificationModel extends BaseApiModel<NotificationDomainModel>
   @override
   NotificationDomainModel toDomainModel() {
     return NotificationDomainModel(
-      id: id,
-      orderId: orderId,
-      text: text,
-      createdAt: createdAt,
-      type: type
-    );
+        id: id, orderId: orderId, text: text, createdAt: createdAt, type: type);
   }
 }

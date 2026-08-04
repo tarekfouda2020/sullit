@@ -31,7 +31,7 @@ class BuildLoadingDetails extends StatelessWidget {
                 child: BuildIconItem(
                   onTap: () {},
                   padding: Dimens.paddingAll10PX,
-                   iconData: Icons.arrow_back,
+                  iconData: Icons.arrow_back,
                 ),
               ),
             )

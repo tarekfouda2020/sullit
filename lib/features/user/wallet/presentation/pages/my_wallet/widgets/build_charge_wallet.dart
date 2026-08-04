@@ -10,18 +10,23 @@ class BuildChargeWallet extends StatelessWidget {
     return CustomBottomSafeAreaWidget(
       child: DefaultButton(
         title: "",
-      margin:const  EdgeInsets.only(right: 15,left: 15,top: 15),
-      onTap:()=> controller.showChargeWalletSheet(context),
-      customLabel: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.add,color: context.colors.white,size: 15.sp,),
-          Gaps.hGap4,
-          Text(tr("chargeWallet"),
-          style: AppTextStyle.s18_w700(color: context.colors.white),
-          )
-        ],
-      ),
+        margin: const EdgeInsets.only(right: 15, left: 15, top: 15),
+        onTap: () => controller.showChargeWalletSheet(context),
+        customLabel: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.add,
+              color: context.colors.white,
+              size: 15.sp,
+            ),
+            Gaps.hGap4,
+            Text(
+              tr("chargeWallet"),
+              style: AppTextStyle.s18_w700(color: context.colors.white),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -11,7 +11,7 @@ class PasswordVerifyForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           BuildInputLabel(
+          BuildInputLabel(
             label: tr("code"),
           ),
           GenericTextField(
@@ -47,11 +47,12 @@ class PasswordVerifyForm extends StatelessWidget {
             builder: (context, state) {
               return GenericTextField(
                 fillColor: context.colors.white,
-                hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
+                hintStyle:
+                    AppTextStyle.s14_w400(color: context.colors.textColor),
                 controller: controller.password,
                 contentPadding: Dimens.paddingH12V16,
                 fieldTypes:
-                !state.data ? FieldTypes.password : FieldTypes.normal,
+                    !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
                 validate: (value) => value?.validatePassword(),
@@ -59,10 +60,13 @@ class PasswordVerifyForm extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(vertical: Dimens.dp12),
                 radius: Dimens.borderRadius40PX,
                 suffixIcon: IconButton(
-                  onPressed: () => controller.passwordCubit.onUpdateData(!state.data),
+                  onPressed: () =>
+                      controller.passwordCubit.onUpdateData(!state.data),
                   // splashColor: Colors.transparent,
                   icon: Icon(
-                    !state.data ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                    !state.data
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
                     size: 17.sp,
                     color: context.colors.textColor,
                   ),
@@ -74,25 +78,31 @@ class PasswordVerifyForm extends StatelessWidget {
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.confirmPasswordCubit,
             builder: (context, state) {
-              return  GenericTextField(
+              return GenericTextField(
                 fillColor: context.colors.white,
-                hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
+                hintStyle:
+                    AppTextStyle.s14_w400(color: context.colors.textColor),
                 contentPadding: Dimens.paddingH12V16,
                 enableBorderColor: context.colors.borderColor,
                 focusBorderColor: context.colors.borderColor,
                 controller: controller.confirmPassword,
-                fieldTypes: !state.data ? FieldTypes.password : FieldTypes.normal,
+                fieldTypes:
+                    !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
-                validate: (value) => value?.validatePasswordConfirm(pass: controller.password.text),
+                validate: (value) => value?.validatePasswordConfirm(
+                    pass: controller.password.text),
                 hint: tr('enterYourPassword'),
                 margin: const EdgeInsets.symmetric(vertical: Dimens.dp12),
                 radius: Dimens.borderRadius40PX,
                 suffixIcon: IconButton(
-                  onPressed: () => controller.confirmPasswordCubit.onUpdateData(!state.data),
+                  onPressed: () =>
+                      controller.confirmPasswordCubit.onUpdateData(!state.data),
                   // splashColor: Colors.transparent,
                   icon: Icon(
-                    !state.data ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                    !state.data
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
                     size: 17.sp,
                     color: context.colors.textColor,
                   ),

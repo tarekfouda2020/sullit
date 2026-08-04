@@ -4,6 +4,7 @@ class Summary extends BaseDomainModel {
   String orderDate;
   String name;
   String email;
+  String? phone;
   String shippingAddress;
   String orderStatus;
   String totalOrderAmount;
@@ -12,7 +13,11 @@ class Summary extends BaseDomainModel {
   // int  totalItems;
   int combinedOrderId;
   int? expectedLoyaltyPoints;
-
+  bool? isPendingReview;
+  bool? requiresPrescriptionReview;
+  bool? awaitingCustomerCompletion;
+  bool? insuranceApplied;
+  String shopType;
 
   Summary({
     required this.orderDate,
@@ -25,6 +30,12 @@ class Summary extends BaseDomainModel {
     required this.paymentMethod,
     // required this.totalItems,
     required this.combinedOrderId,
-     this.expectedLoyaltyPoints,
+    this.expectedLoyaltyPoints,
+    this.isPendingReview,
+    this.requiresPrescriptionReview,
+    this.awaitingCustomerCompletion,
+    this.insuranceApplied,
+    this.phone,
+    required this.shopType,
   });
 }

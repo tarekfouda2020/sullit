@@ -9,8 +9,8 @@ class VerifyEmail implements UseCase<UserDomainModel?, CodeVerifyParams> {
   Future<UserDomainModel?> call(CodeVerifyParams params) async {
     var result = await getIt<AuthRepository>().emailVerify(params);
     return result.fold(
-          (l) => null,
-          (r) => r,
+      (l) => null,
+      (r) => r,
     );
   }
 }

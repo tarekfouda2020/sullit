@@ -29,7 +29,7 @@ class _ReturnPolicyState extends State<ReturnPolicy> {
               padding: Dimens.paddingAll15PX,
               child: Column(
                 children: [
-                  const BuildHeaderLogo(marginBottom: 0,marginTop: 5),
+                  const BuildHeaderLogo(marginBottom: 0, marginTop: 5),
                   CustomHtmlWidget(data: state.data!),
                 ],
               ),

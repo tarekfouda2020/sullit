@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_dynamic_calls
 
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
@@ -16,13 +15,13 @@ import 'package:flutter_tdd/features/user/vip_subscribe/data/models/vip_current_
 import 'package:flutter_tdd/features/user/vip_subscribe/data/models/vip_subscribe_model/vip_subscribe_model.dart';
 import 'package:injectable/injectable.dart';
 
-
 @Injectable(as: VipDataSource)
 class ImplVipSubscribeDataSource extends VipDataSource {
   @override
-  Future<Either<Failure, List<VipSubscribeModel>>> getSubscriptions(GenericPaginateParams params) async{
+  Future<Either<Failure, List<VipSubscribeModel>>> getSubscriptions(
+      GenericPaginateParams params) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.subscriptions+params.paramsToQuery(),
+      url: ApiNames.subscriptions + params.paramsToQuery(),
       requestMethod: RequestMethod.get,
       responseType: ResType.list,
       responseKey: (data) => data['data']['subscriptions'],
@@ -33,9 +32,8 @@ class ImplVipSubscribeDataSource extends VipDataSource {
     return await GenericHttpImpl<List<VipSubscribeModel>>()(model);
   }
 
-
   @override
-  Future<Either<Failure, List<PayMethodModel>>> getPayMethods() async{
+  Future<Either<Failure, List<PayMethodModel>>> getPayMethods() async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.subscriptionsPaymentMethods,
       requestMethod: RequestMethod.get,
@@ -49,7 +47,8 @@ class ImplVipSubscribeDataSource extends VipDataSource {
   }
 
   @override
-  Future<Either<Failure, VipCurrentPlanModel>> getCurrentSubscription(bool refresh) async{
+  Future<Either<Failure, VipCurrentPlanModel>> getCurrentSubscription(
+      bool refresh) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.currentSubscription,
       requestMethod: RequestMethod.get,
@@ -62,21 +61,22 @@ class ImplVipSubscribeDataSource extends VipDataSource {
   }
 
   @override
-  Future<Either<Failure, SubscribePaymentModel>> paySubscription(PaySubscribeParams params) async{
+  Future<Either<Failure, SubscribePaymentModel>> paySubscription(
+      PaySubscribeParams params) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.paySubscription(params.id),
-      requestMethod: RequestMethod.post,
-      responseType: ResType.model,
-      responseKey: (data) => data['data'],
-      toJsonFunc: (json) => SubscribePaymentModel.fromJson(json),
-      requestBody: params.toJson(),
-      showLoader: false
-    );
+        url: ApiNames.paySubscription(params.id),
+        requestMethod: RequestMethod.post,
+        responseType: ResType.model,
+        responseKey: (data) => data['data'],
+        toJsonFunc: (json) => SubscribePaymentModel.fromJson(json),
+        requestBody: params.toJson(),
+        showLoader: false);
     return await GenericHttpImpl<SubscribePaymentModel>()(model);
   }
 
   @override
-  Future<Either<Failure, SubscribeContentModel>> getSubscriptionContent(bool param) async{
+  Future<Either<Failure, SubscribeContentModel>> getSubscriptionContent(
+      bool param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.subscriptionPage,
       requestMethod: RequestMethod.get,
@@ -87,5 +87,4 @@ class ImplVipSubscribeDataSource extends VipDataSource {
     );
     return await GenericHttpImpl<SubscribeContentModel>()(model);
   }
-
 }

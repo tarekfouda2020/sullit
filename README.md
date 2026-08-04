@@ -15,14 +15,16 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+/// change icon
+- flutter pub run flutter_launcher_icons
+
 /// for build release apk
 - flutter build apk --release --no-tree-shake-icons
 
-/// for build appBundle apk => Google Play
+/// for build release appBundle => Google Play
 - flutter build appbundle --release --no-tree-shake-icons
-- flutter pub run flutter_launcher_icons
 
-/// for build ipa apk => Ios
+/// for build release ipa ⇒ IOS
 - flutter build ipa --release --no-tree-shake-icons
 
 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

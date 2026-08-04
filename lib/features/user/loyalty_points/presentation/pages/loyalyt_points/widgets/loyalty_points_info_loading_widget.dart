@@ -1,4 +1,5 @@
-part of'loyalty_points_widgets_imports.dart';
+part of 'loyalty_points_widgets_imports.dart';
+
 class LoyaltyPointsInfoLoadingWidget extends StatelessWidget {
   const LoyaltyPointsInfoLoadingWidget({super.key});
 
@@ -11,7 +12,7 @@ class LoyaltyPointsInfoLoadingWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-           BuildShimmerItem(height: 22,width: 170),
+          BuildShimmerItem(height: 22, width: 170),
           BuildShimmerItem(height: 43),
         ],
       ),

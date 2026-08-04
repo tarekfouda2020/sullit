@@ -1,7 +1,6 @@
 import 'package:flutter/rendering.dart';
 
-class GridFixedHeightDelegate
-    extends SliverGridDelegate {
+class GridFixedHeightDelegate extends SliverGridDelegate {
   /// Creates a delegate that makes grid layouts with a fixed number of tiles in
   /// the cross axis.
   ///
