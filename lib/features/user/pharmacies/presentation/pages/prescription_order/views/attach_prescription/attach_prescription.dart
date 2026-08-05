@@ -126,8 +126,9 @@ class _AttachPrescriptionState extends State<AttachPrescription> {
                       type: TextInputType.multiline,
                       action: TextInputAction.newline,
                       fieldTypes: FieldTypes.rich,
+                      validate: (value) => value?.noValidate(),
+                      textHeight: 1.35,
                       max: 4,
-                      validate: (value) => null,
                     ),
                     Gaps.vGap20,
                     AllowReplacementWidget(
