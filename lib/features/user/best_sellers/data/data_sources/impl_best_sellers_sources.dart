@@ -32,7 +32,7 @@ class ImplBestSellersSources extends BestSellersSources {
   }
 
   @override
-  Future<Either<Failure, List<ShopModel>>> getPharmacies(ShopsParams param) async {
+  Future<Either<Failure, List<ShopCardModel>>> getPharmacies(ShopsParams param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.shopsList,
       requestBody: param.toJons(),
@@ -41,10 +41,10 @@ class ImplBestSellersSources extends BestSellersSources {
       responseKey: (data) => data["data"]["shops"],
       showLoader: false,
       refresh: param.params.refresh,
-      toJsonFunc: (json) => List<ShopModel>.from(
-        json.map((e) => ShopModel.fromJson(e)),
+      toJsonFunc: (json) => List<ShopCardModel>.from(
+        json.map((e) => ShopCardModel.fromJson(e)),
       ),
     );
-    return await GenericHttpImpl<List<ShopModel>>()(model);
+    return await GenericHttpImpl<List<ShopCardModel>>()(model);
   }
 }
