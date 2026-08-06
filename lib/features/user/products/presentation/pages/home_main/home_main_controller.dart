@@ -2,6 +2,7 @@ part of 'home_main_imports.dart';
 
 class HomeMainController {
   final GenericBloc<List<ProductSections>> sectionsCubit = GenericBloc([]);
+  final GenericBloc<int> swiperIndexCubit = GenericBloc(0);
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final ScrollController scrollController = ScrollController();
   final GenericBloc<bool> scrollCubit = GenericBloc(true);
@@ -18,8 +19,7 @@ class HomeMainController {
   final PagingController<int, SavedPrescriptionModel> savedPrescriptionsPagingController =
       PagingController(firstPageKey: 1);
 
-  GenericBloc<HomeDomainModel?> get homeCubit =>
-      OrdersHelper.instance.homeCubit;
+  GenericBloc<HomeDomainModel?> get homeCubit => OrdersHelper.instance.homeCubit;
 
   List<ProductSections> allSections = [];
   int currentPage = 1;
@@ -57,8 +57,7 @@ class HomeMainController {
   }
 
   void scrollListener() {
-    if (scrollController.position.pixels ==
-        scrollController.position.maxScrollExtent) {
+    if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
       getProductSections();
     }
   }
@@ -77,8 +76,7 @@ class HomeMainController {
   }
 
   Future<void> getProductSections() async {
-    if (sectionsCubit.state.data.length / 5 == currentPage - 1 ||
-        sectionsCubit.state.data.isEmpty) {
+    if (sectionsCubit.state.data.length / 5 == currentPage - 1 || sectionsCubit.state.data.isEmpty) {
       var result = await GetProductSections().call(currentPage);
       final isLastPage = result.length < pageSize;
       if (currentPage == 1) {
@@ -135,8 +133,7 @@ class HomeMainController {
     return number.toString().padLeft(2, '0')[index];
   }
 
-  Future<void> getProductWithSkuAndRoute(
-      BuildContext context, String sku) async {
+  Future<void> getProductWithSkuAndRoute(BuildContext context, String sku) async {
     getIt<LoadingHelper>().showLoadingDialog();
     await GetSkuProduct().call(sku).then(
       (value) {
@@ -324,9 +321,7 @@ class HomeMainController {
   }
 
   void onPressSeeOffers(BuildContext context) {
-    context.isShareHolder
-        ? routeToOffersTab(context)
-        : routeToMembershipSubscribe(context);
+    context.isShareHolder ? routeToOffersTab(context) : routeToMembershipSubscribe(context);
   }
 
   void routeToOffersTab(BuildContext context) {
@@ -406,8 +401,7 @@ class HomeMainController {
   void routeTpProductDetails(BuildContext context, String id) {
     try {
       var prodId = int.parse(id);
-      AutoRouter.of(context).push(ProductDetailsRoute(
-          productId: prodId, isResale: false, isFav: false));
+      AutoRouter.of(context).push(ProductDetailsRoute(productId: prodId, isResale: false, isFav: false));
     } catch (e) {
       log("error while route to product details");
     }
@@ -416,39 +410,29 @@ class HomeMainController {
   void routeTpCategoryDetails(BuildContext context, String id) {
     try {
       var catId = int.parse(id);
-      AutoRouter.of(context)
-          .push(CategoryDetailsRoute(catId: catId, fromHome: true));
+      AutoRouter.of(context).push(CategoryDetailsRoute(catId: catId, fromHome: true));
     } catch (e) {
       log("error while route to category details");
     }
   }
 
   void routeToPharmaciesList(BuildContext context) {
-    AutoRouter.of(context).push( PharmaciesListRoute());
+    AutoRouter.of(context).push(PharmaciesListRoute());
   }
 
   void routeToPharmaciesListWithPrescriptionOrder(BuildContext context) {
-    AutoRouter.of(context).push( PharmaciesListRoute(
-      makePrescriptionOrder: true,
-      initialPrescriptionFile: prescriptionFileCubit.state.data,
-      initialSavedPrescription: selectedSavedPrescriptionCubit.state.data
-    ));
+    AutoRouter.of(context).push(PharmaciesListRoute(
+        makePrescriptionOrder: true,
+        initialPrescriptionFile: prescriptionFileCubit.state.data,
+        initialSavedPrescription: selectedSavedPrescriptionCubit.state.data));
   }
 
-
-
-  void openCurrentOrderDetails(BuildContext context, Orders order){
-    if(order.isPharmacy){
-      AutoRouter.of(context).push(
-          PharmacyOrderDetailsRoute(
-              id: order.id));
-    }else{
-      AutoRouter.of(context).push(
-          OrderDetailsPageRoute(
-              isReturnedOrder: false,
-              order: order));
+  void openCurrentOrderDetails(BuildContext context, Orders order) {
+    if (order.isPharmacy) {
+      AutoRouter.of(context).push(PharmacyOrderDetailsRoute(id: order.id));
+    } else {
+      AutoRouter.of(context).push(OrderDetailsPageRoute(isReturnedOrder: false, order: order));
     }
-
   }
 
   // Same API-calling pattern as AttachPrescriptionController.getSavedPrescriptions.
@@ -473,7 +457,7 @@ class HomeMainController {
   Future<void> onPickPrescriptionFile() async {
     var result = await getIt<Utilities>().getAttachmentFile(
       FileType.custom,
-      allowedExtensions: const ["pdf",'jpg', 'jpeg', 'png'],
+      allowedExtensions: const ["pdf", 'jpg', 'jpeg', 'png'],
     );
     if (result != null) {
       prescriptionFileCubit.onUpdateData(result);
@@ -518,8 +502,7 @@ class HomeMainController {
   }
 
   void onPressContinuePrescription(BuildContext context) {
-    if (prescriptionFileCubit.state.data.path.isEmpty &&
-        selectedSavedPrescriptionCubit.state.data == null) {
+    if (prescriptionFileCubit.state.data.path.isEmpty && selectedSavedPrescriptionCubit.state.data == null) {
       CustomToast.showSimpleToast(
         msg: "Please attach your prescription first",
       );
@@ -528,7 +511,6 @@ class HomeMainController {
     Navigator.pop(context);
     routeToPharmaciesListWithPrescriptionOrder(context);
   }
-
 
 //
 // Future<void> scanSkuNumber() async {
@@ -593,4 +575,33 @@ class HomeMainController {
 //     );
 //   }
 // }
+  Future<void> saveIds(Set<int> ids) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(
+      LocalStorageKeys.trackOrderIds,
+      jsonEncode(ids.toList()),
+    );
+  }
+
+  Future<Set<int>> getSavedIds() async {
+    final prefs = await SharedPreferences.getInstance();
+    final json = prefs.getString(LocalStorageKeys.trackOrderIds);
+    if (json == null) return <int>{};
+    return (jsonDecode(json) as List<dynamic>).map((e) => e as int).toSet();
+  }
+
+  Future<void> removeTrackedOrder(int id) async {
+    final ids = await getSavedIds();
+    ids.remove(id);
+    await saveIds(ids);
+    final state = homeCubit.state;
+    if (state is GenericUpdateState<HomeDomainModel?> && state.data != null) {
+      final home = state.data!;
+      final updatedOrders = home.currentOrders.where((e) => e.id != id).toList();
+      final updatedHome = home.copyWith(
+        currentOrders: updatedOrders,
+      );
+      homeCubit.onUpdateData(updatedHome);
+    }
+  }
 }
