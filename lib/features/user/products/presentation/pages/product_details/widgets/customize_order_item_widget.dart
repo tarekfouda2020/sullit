@@ -52,7 +52,6 @@ class CustomizeOrderItemWidget extends StatelessWidget {
               title: 'Make it Spicy',
             ),
             Gaps.vGap12,
-            const CustomizeDescriptionItemWidget(),
           ],
         ),
       ),

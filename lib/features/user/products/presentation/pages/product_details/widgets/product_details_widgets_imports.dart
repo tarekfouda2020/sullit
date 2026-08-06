@@ -128,7 +128,6 @@ part 'points_promo_sheet_widget.dart';
 part 'required_prescription_note_widget.dart';
 
 part 'customize_order_item_widget.dart';
-part'customize_description_item_widget.dart';
 part 'customize_radio_item.dart';
 
 part 'customize_check_item_widget.dart';
