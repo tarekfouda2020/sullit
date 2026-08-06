@@ -3,8 +3,8 @@ part of 'home_main_widgets_imports.dart';
 class BuildHomeSwiper extends StatelessWidget {
   final List<SliderDomainModel> slider;
   final HomeMainController controller;
-  const BuildHomeSwiper(
-      {super.key, required this.slider, required this.controller});
+
+  const BuildHomeSwiper({super.key, required this.slider, required this.controller});
 
   @override
   Widget build(BuildContext context) {

@@ -4,8 +4,7 @@ class BuildDetailsView extends StatelessWidget {
   final ProductDetailsController controller;
   final ProductDetailsDomainModel detailsModel;
 
-  const BuildDetailsView(
-      {super.key, required this.controller, required this.detailsModel});
+  const BuildDetailsView({super.key, required this.controller, required this.detailsModel});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +26,7 @@ class BuildDetailsView extends StatelessWidget {
               controller: controller,
               productModel: detailsModel.product,
             ),
-
-
+            const CustomizeOrderItemWidget(),
             // SliverToBoxAdapter(
             //   child: Gaps.vGap20,
             // ),
