@@ -226,11 +226,11 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
     if (hasPrescription && hasInsurance) {
       return isPendingReview == false
           ? " Approved your health insurance and Prescription."
-          : " will review your prescription and health insurance and back to you Shortly.";
+          : " will review your prescription and health insurance and get back to you Shortly.";
     }
     return isPendingReview == false && hasPrescription
         ? " Approved your Prescription."
-        : " will review your prescription and back to you Shortly.";
+        : " will review your prescription and get back to you Shortly.";
   }
 
   Widget _reviewStatusWidget(BuildContext context) {

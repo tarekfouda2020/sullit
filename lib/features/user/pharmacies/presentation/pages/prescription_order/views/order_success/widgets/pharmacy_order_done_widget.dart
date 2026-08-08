@@ -41,8 +41,11 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
                 ),
               ),
               child: Text(
-                "Your shipment is being prepared for delivery.",
-                style: AppTextStyle.s14_w400(color: context.colors.textColor),
+                textAlign: TextAlign.center,
+                "Thanks for your order, ${controller.summary.summary?.name ?? ""} \n We’ll get to work on your order right away. You’ll receive your receipt once the order is ready.",
+                style: AppTextStyle.s15_w500(color: context.colors.textColor).copyWith(
+                  height: 1.35
+                ),
               ),
             ),
           Gaps.vGap20,

@@ -97,7 +97,7 @@ class OrderSuccessBody extends StatelessWidget {
   Shop? _buildShop() => controller.firstSectionOrder?.orderDetails.first.product?.shop;
 
   bool _showOrderInvoice(GenericState<OrderSummaryDomainModel?> state) =>
-      state.data?.pharmNormalOrder == false &&
+      state.data?.pharmNormalOrder == true &&
       state.data?.summary?.isPendingReview == false &&
       controller.firstSectionOrder?.isCanceled == false;
 }
