@@ -18,7 +18,11 @@ class SellersListWidget extends StatelessWidget {
               child: SellerCardWidget(
                 shop: item,
                 onTap: () => AutoRouter.of(context).push(
-                    SellerProductsPageRoute(shopModel: item, shopId: item.id!)),
+                    SellerProductsPageRoute(
+                        shopModel: item,
+                        shopId: item.id!,
+                        showInStore: index == 1
+                    )),
               ),
             );
           },

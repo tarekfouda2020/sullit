@@ -27,7 +27,9 @@ class BuildTopSellers extends StatelessWidget {
                     onTap: () => AutoRouter.of(context).push(
                         SellerProductsPageRoute(
                             shopModel: topSellers[index],
-                            shopId: topSellers[index].id!)),
+                            shopId: topSellers[index].id!,
+                          showInStore: index == 1
+                        )),
                     child: Padding(
                       padding: const EdgeInsetsDirectional.only(end: 5),
                       child: BuildTopSellersItem(topSellers: topSellers[index]),

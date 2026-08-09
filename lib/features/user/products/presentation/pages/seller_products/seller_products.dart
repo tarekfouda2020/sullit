@@ -4,12 +4,13 @@ class SellerProductsPage extends StatefulWidget {
   final Shop? shopModel;
   final int shopId;
   final bool? fromCart;
-
+  final bool showInStore;
   const SellerProductsPage({
     super.key,
     this.shopModel,
     required this.shopId,
     this.fromCart = false,
+     this.showInStore = false,
   });
 
   @override
@@ -69,6 +70,7 @@ class SellerProductsPageState extends State<SellerProductsPage> {
                       children: [
                         Row(
                           children: [
+                            if(widget.showInStore)
                             Expanded(
                               child: DefaultButton(
                                 title: tr('inStoreShopping'),
