@@ -27,7 +27,7 @@ class ChangePaymentMethodSheet extends StatelessWidget {
                 return Column(
                   children: [
                     ...List.generate(state.data.length, (index) {
-                      var item = state.data[index];
+                      PaymentOption item = state.data[index];
                       return PayOptionItemWidget(
                         onTap: () => controller.onSelectPaymentOption(item),
                         payOption: item,

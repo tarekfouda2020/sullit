@@ -72,6 +72,8 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
               (e) => OrderModificationModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       deliveryImage: json['delivery_image'] as String?,
+      creationMethod: json['creation_method'] as String?,
+      creationMethodLabel: json['creation_method_label'] as String?,
     );
 
 Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
@@ -132,4 +134,6 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'order_detail_histories':
           instance.orderDetailHistories?.map((e) => e.toJson()).toList(),
       'delivery_image': instance.deliveryImage,
+      'creation_method': instance.creationMethod,
+      'creation_method_label': instance.creationMethodLabel,
     };

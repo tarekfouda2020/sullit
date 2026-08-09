@@ -4,6 +4,7 @@ import 'package:flutter_tdd/features/user/category/domain/entities/generic_pagin
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/reviews.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/change_order_payment_params.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/entities/order_payment_options_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/return_order_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/send_review_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
@@ -31,7 +32,8 @@ abstract class PurchasingRepository {
 
   Future<Either<Failure, TrackOrderModel>> trackingHistory(int param);
 
-  Future<Either<Failure, List<PaymentOption>>> getOrderPaymentOptions(bool param);
+  Future<Either<Failure, List<PaymentOption>>> getOrderPaymentOptions(
+      OrderPaymentOptionsParams param);
 
   Future<Either<Failure, Orders>> changeOrderPaymentMethod(ChangeOrderPaymentParams param);
 }

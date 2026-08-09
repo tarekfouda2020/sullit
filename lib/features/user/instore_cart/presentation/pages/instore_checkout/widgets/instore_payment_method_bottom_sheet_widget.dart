@@ -31,13 +31,15 @@ class InstorePaymentMethodBottomSheetWidget extends StatelessWidget {
               BottomSheetHeaderWidget(title: tr('paymentMethods')),
               Gaps.vGap23,
               ...List.generate(state.data.length, (index) {
-                final payOption = state.data[index];
+                PaymentOption payOption = state.data[index];
                 return Visibility(
-                  visible: payOption.getPaymentType() != PayTypeEnum.wallet,
-                  child: PayOptionItemWidget(
+                  visible: payOption.getPaymentType() == PayTypeEnum.wallet
+                  || payOption.getPaymentType() == PayTypeEnum.cash,
+                  replacement: PayOptionItemWidget(
                     onTap: () => controller.onChangePayment(index),
                     payOption: payOption,
                   ),
+                  child: Gaps.empty,
                 );
               }),
               Gaps.vGap25,

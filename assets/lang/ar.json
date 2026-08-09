@@ -905,7 +905,9 @@
   "viewPhoto": "عرض الصورة",
   "inStoreShopping": "التسوق في المتجر",
   "wantToDeleteCartItem": "هل أنت متأكد أنك تريد إزالة هذا المنتج؟",
-  "instoreCartDifferentSeller": "لديك منتجات محفوظة من \"{seller}\". يرجى مسح السلة أولاً للتسوق من هذا المتجر."
+  "instoreCartDifferentSeller": "لديك منتجات محفوظة من \"{seller}\". يرجى مسح السلة أولاً للتسوق من هذا المتجر.",
+  "instoreCart": "سلة المتجر",
+  "productScannedWithCode": "تم مسح المنتج بالرمز: {code}"
 
 
 }

@@ -16,7 +16,10 @@ class BuildDeleteDialog extends StatelessWidget {
             children: [
               Text(
                 content,
-                style: AppTextStyle.s14_w500(color: context.colors.black),
+                textAlign: TextAlign.center,
+                style: AppTextStyle.s14_w500(color: context.colors.black).copyWith(
+                  height: 1.35
+                ),
               ),
               Gaps.vGap16,
               Column(

@@ -237,7 +237,9 @@ class OrderDetailsPageController {
     var data = orderDetailsBloc.state.data;
     if (data == null) return;
     if (showChangePayOption()) {
-      var result = await GetPaymentOptions().call(refresh);
+      var result = await GetPaymentOptions().call(
+        OrderPaymentOptionsParams(refresh: refresh, orderId: data.id),
+      );
       if (result.isNotEmpty && orderDetailsBloc.state.data != null) {
         result = result.where((element) {
           return (element.paymentTypeKey.replaceAll("_", " ").toLowerCase())

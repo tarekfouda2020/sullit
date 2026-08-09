@@ -72,6 +72,8 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'shipping_provider_label') String? shippingProviderLabel,
     @JsonKey(name: 'order_detail_histories') List<OrderModificationModel>? orderDetailHistories,
     @JsonKey(name: 'delivery_image') String? deliveryImage,
+    @JsonKey(name: 'creation_method') String? creationMethod,
+    @JsonKey(name: 'creation_method_label') String? creationMethodLabel,
   }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);
@@ -132,6 +134,8 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       shippingProviderLabel:shippingProviderLabel,
       orderDetailHistories: orderDetailHistories?.map((e) => e.toDomainModel()).toList(),
       deliveryImage: deliveryImage,
+      creationMethod: creationMethod,
+      creationMethodLabel:creationMethodLabel,
     );
   }
 }

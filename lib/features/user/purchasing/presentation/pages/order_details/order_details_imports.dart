@@ -28,6 +28,7 @@ import 'package:flutter_tdd/features/user/category/domain/entities/generic_param
 import 'package:flutter_tdd/features/user/loyalty_points/domain/models/loyalty_points_balance_domain_model.dart';
 import 'package:flutter_tdd/features/user/loyalty_points/domain/use_case/get_loyalty_points_balance.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/change_order_payment_params.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/entities/order_payment_options_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/send_review_params.dart';
 
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';

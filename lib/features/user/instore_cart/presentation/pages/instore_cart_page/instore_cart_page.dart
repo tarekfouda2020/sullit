@@ -17,10 +17,10 @@ class _InstoreCartPageState extends State<InstoreCartPage> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(
-        title: tr('inStoreShopping'),
+        title: tr('instoreCart'),
         actions: [
           IconButton(
-            onPressed: ()=>controller.scanProduct(context),
+            onPressed: () => controller.scanProduct(context),
             icon: SvgPicture.asset(
               Res.qrScanIcon,
               width: 24,
@@ -34,12 +34,21 @@ class _InstoreCartPageState extends State<InstoreCartPage> {
         bloc: controller.cartItemsBloc,
         builder: (context, state) {
           if (state is GenericUpdateState) {
-            return InstoreCartItemsWidget(
-              controller: controller,
-              cartItems: state.data,
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              spacing: 12,
+              children: [
+                ClearAllButtonWidget(controller: controller),
+                Expanded(
+                  child: InstoreCartItemsWidget(
+                    controller: controller,
+                    cartItems: state.data,
+                  ),
+                ),
+              ],
             );
           }
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator.adaptive());
         },
       ),
       bottomNavigationBar: BlocBuilder<GenericBloc<List<InstoreCartItemModel>>,
@@ -50,10 +59,26 @@ class _InstoreCartPageState extends State<InstoreCartPage> {
             return const SizedBox.shrink();
           }
           return CustomBottomSafeAreaWidget(
-            child: DefaultButton(
-              title: tr('continue'),
-              margin: Dimens.paddingAll15PX,
-              onTap: () => controller.routeToCheckout(context),
+            child: Row(
+              spacing: 8,
+              children: [
+                Gaps.hGap5,
+                Expanded(
+                  child: DefaultButton(
+                    title: tr('checkout'),
+                    margin: EdgeInsets.zero,
+                    onTap: () => controller.routeToCheckout(context),
+                  ),
+                ),
+                Expanded(
+                  child: DefaultButton(
+                    title: tr('keep_shopping'),
+                    margin: EdgeInsets.zero,
+                    onTap: () => controller.scanProduct(context),
+                  ),
+                ),
+                Gaps.hGap5,
+              ],
             ),
           );
         },

@@ -742,7 +742,9 @@
   "proofOfDelivery": "Proof of Delivery",
   "proofOfDeliverySubtitle": "Here's a photo of where your order was left.",
   "viewPhoto": "View photo",
-  "inStoreShopping": "In store shopping",
+  "inStoreShopping": "In-Store shopping",
   "wantToDeleteCartItem": "Are you sure you want to remove this item?",
-  "instoreCartDifferentSeller": "You have saved items from \"{seller}\". Please clear your cart first to shop here."
+  "instoreCartDifferentSeller": "You have saved items from \"{seller}\". Please clear your cart first to shop here.",
+  "instoreCart": "Instore Cart",
+  "productScannedWithCode": "Product scanned with code: {code}"
 }

@@ -64,7 +64,9 @@ class OrderDetailsProductsWidget extends StatelessWidget {
                   displayItem: item,
                 )),
           ],
-          if (!isReturned)
+          if (!isReturned || order.isInStore == true)
+            Gaps.empty
+            else
             Padding(
               padding: const EdgeInsets.only(top: 18),
               child: GestureDetector(

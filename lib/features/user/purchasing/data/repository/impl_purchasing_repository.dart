@@ -15,6 +15,7 @@ import 'package:flutter_tdd/features/user/purchasing/domain/repository/purchasin
 import 'package:injectable/injectable.dart';
 
 import '../../domain/entities/change_order_payment_params.dart';
+import '../../domain/entities/order_payment_options_params.dart';
 
 @Injectable(as: PurchasingRepository)
 class ImplPurchasingRepository extends PurchasingRepository with ModelToDomain {
@@ -80,7 +81,7 @@ class ImplPurchasingRepository extends PurchasingRepository with ModelToDomain {
 
   @override
   Future<Either<Failure, List<PaymentOption>>> getOrderPaymentOptions(
-      bool param) async {
+      OrderPaymentOptionsParams param) async {
     var result = await dataSource.getOrderPaymentOptions(param);
     return toDomainResultList(result);
   }

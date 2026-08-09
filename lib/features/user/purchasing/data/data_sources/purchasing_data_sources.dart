@@ -6,12 +6,14 @@ import 'package:flutter_tdd/features/user/products/data/models/reviews_model/rev
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_model/order_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/track_order/track_order.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/change_order_payment_params.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/entities/order_payment_options_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/return_order_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/send_review_params.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/payment_option_model/payment_option_model.dart';
 
 abstract class PurchasingDataSources {
-  Future<Either<Failure, List<PaymentOptionModel>>> getOrderPaymentOptions(bool param);
+  Future<Either<Failure, List<PaymentOptionModel>>> getOrderPaymentOptions(
+      OrderPaymentOptionsParams param);
 
   Future<Either<Failure, OrderModel>> changeOrderPaymentMethod(ChangeOrderPaymentParams param);
 

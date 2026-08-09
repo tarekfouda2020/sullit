@@ -13,21 +13,25 @@ class InstoreCartPageController {
   }
 
   Future<void> routeToCheckout(BuildContext context) async {
+   if(context.isAuth == false){
+     CustomToast.showAuthDialog(context);
+     return ;
+   }
     await AutoRouter.of(context).push(const InstoreCheckoutRoute());
     syncLocalCart();
   }
 
   Future<void> scanProduct(BuildContext context) async {
-    var barcode = await getIt<BarcodeService>().scanBarcode();
+    var barcode = await getIt<BarcodeService>().scanBarcode(context);
     if (!context.mounted) return;
-    if (barcode?.isNotEmpty == true) {
-      // var code = '21670';
-      await getProductWithSku(context, barcode!);
-      if (!context.mounted) return;
+    if (barcode?.isNotEmpty == true && barcode != null && barcode != "-1") {
       CustomToast.showSnakeBar(
-        tr('productScanned'),
+        tr('productScannedWithCode').replaceAll('{code}', barcode),
         type: ToastType.success,
       );
+      // var code = '21670';
+      await getProductWithSku(context, barcode);
+
     }
   }
 
@@ -158,6 +162,26 @@ class InstoreCartPageController {
     await InstoreCartHelper.instance.deleteItemFromCart(
       variantId: item.variantId,
     );
+    syncLocalCart();
+  }
+
+  void showClearCartDialog(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) {
+        return BuildDeleteDialog(
+          content: tr('want_to_clear_your_cart'),
+          onPressConfirm: () {
+            Navigator.of(dialogContext).pop();
+            clearAllCart();
+          },
+        );
+      },
+    );
+  }
+
+  Future<void> clearAllCart() async {
+    await InstoreCartHelper.instance.deleteAllItemsFromCart();
     syncLocalCart();
   }
 }

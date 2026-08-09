@@ -71,16 +71,16 @@ class SellerProductsPageState extends State<SellerProductsPage> {
                         Row(
                           children: [
                             // if(widget.showInStore)
-                            Expanded(
-                              child: DefaultButton(
-                                title: tr('inStoreShopping'),
-                                margin: EdgeInsets.zero,
-                                fontSize: 14,
-                                onTap: () =>
-                                    controller.routeToInstoreShopping(context),
-                              ),
-                            ),
-                            Gaps.hGap12,
+                            // Expanded(
+                            //   child: DefaultButton(
+                            //     title: tr('inStoreShopping'),
+                            //     margin: EdgeInsets.zero,
+                            //     fontSize: 14,
+                            //     onTap: () =>
+                            //         controller.routeToInstoreShopping(context),
+                            //   ),
+                            // ),
+                            // Gaps.hGap12,
                             Expanded(
                               child: Opacity(
                                 opacity: controller.cartHaveSellerProduct()
