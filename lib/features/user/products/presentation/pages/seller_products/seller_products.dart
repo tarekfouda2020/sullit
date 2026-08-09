@@ -70,7 +70,7 @@ class SellerProductsPageState extends State<SellerProductsPage> {
                       children: [
                         Row(
                           children: [
-                            if(widget.showInStore)
+                            // if(widget.showInStore)
                             Expanded(
                               child: DefaultButton(
                                 title: tr('inStoreShopping'),
