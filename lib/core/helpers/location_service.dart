@@ -18,7 +18,16 @@ class LocationService {
 
   static LocationService get instance => GetIt.I<LocationService>();
 
+  LatLng? _userLocation;
 
+  LatLng? get userLocation => _userLocation;
+
+  void setUserLocation(LatLng location) => _userLocation = location;
+
+  String locationQuerySuffix() {
+    if (_userLocation == null) return '';
+    return '&latitude=${_userLocation!.latitude}&longitude=${_userLocation!.longitude}';
+  }
 
   Future<String> getAddress(LatLng latLng, {bool setCountryName = true}) async {
     try {

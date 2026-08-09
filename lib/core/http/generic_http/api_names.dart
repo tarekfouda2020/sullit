@@ -2,10 +2,10 @@
 
 class ApiNames {
   ///staging
-  // static const String baseUrl = "https://staging.mushrifcoop.com/api/v3/";
+  static const String baseUrl = "https://staging.mushrifcoop.com/api/v3/";
 
   ///production
-  static const String baseUrl = "https://admin.mushrifcoop.com/api/v3/";
+  // static const String baseUrl = "https://admin.mushrifcoop.com/api/v3/";
 
   static const String iqUrl = "https://us1.locationiq.com/v1/";
 
@@ -149,6 +149,8 @@ class ApiNames {
   static const String applyGiftCard = "cart/apply-gift-card";
   static const String clearCart = "cart/clear";
   static const String removeCoupon = "cart/remove-coupon";
+  static const String instoreOrderSummary = "in-store/orders/summary";
+  static const String instoreOrders = "in-store/orders";
   static const String deliveryInstructions = "delivery-instructions";
 
   // notifications

@@ -3,6 +3,7 @@ import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
 import 'package:flutter_tdd/features/user/products/data/models/product_details_model/product_details_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/entities/home_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/popular_products_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/seller_products_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/send_query_params.dart';
@@ -15,7 +16,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/queries.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/seller_product_domain_model.dart';
 
 abstract class ProductsRepository {
-  Future<Either<Failure, HomeDomainModel>> getHome(bool param);
+  Future<Either<Failure, HomeDomainModel>> getHome(HomeParams param);
 
   Future<Either<Failure, ProductDetailsDomainModel>> getProductDetails(
       GenericParams param);

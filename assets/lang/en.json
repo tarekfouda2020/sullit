@@ -741,7 +741,8 @@
   "select_your_choice": "Select your choice",
   "proofOfDelivery": "Proof of Delivery",
   "proofOfDeliverySubtitle": "Here's a photo of where your order was left.",
-  "viewPhoto": "View photo"
-
-
+  "viewPhoto": "View photo",
+  "inStoreShopping": "In store shopping",
+  "wantToDeleteCartItem": "Are you sure you want to remove this item?",
+  "instoreCartDifferentSeller": "You have saved items from \"{seller}\". Please clear your cart first to shop here."
 }

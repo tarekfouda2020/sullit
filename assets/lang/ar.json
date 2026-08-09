@@ -902,7 +902,10 @@
   "select_your_choice": "حدد خيارك",
   "proofOfDelivery": "إثبات التسليم",
   "proofOfDeliverySubtitle": "هذه صورة لمكان ترك طلبك.",
-  "viewPhoto": "عرض الصورة"
+  "viewPhoto": "عرض الصورة",
+  "inStoreShopping": "التسوق في المتجر",
+  "wantToDeleteCartItem": "هل أنت متأكد أنك تريد إزالة هذا المنتج؟",
+  "instoreCartDifferentSeller": "لديك منتجات محفوظة من \"{seller}\". يرجى مسح السلة أولاً للتسوق من هذا المتجر."
 
 
 }

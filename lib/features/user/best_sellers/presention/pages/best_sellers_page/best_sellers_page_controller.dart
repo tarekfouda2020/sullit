@@ -1,5 +1,7 @@
 part of 'best_sellers_page_imports.dart';
 
+// ignore_for_file: use_build_context_synchronously
+
 class BestSellersPageController {
   final TextEditingController searchTxtController = TextEditingController();
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
@@ -14,13 +16,35 @@ class BestSellersPageController {
 
 
   BestSellersPageController() {
-    getBestSellers(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
       getBestSellers(pageKey);
     });
   }
 
-  Future<void> getBestSellers(int page, {bool refresh = true}) async {
+  Future<void> init(BuildContext context) async {
+    await getBestSellers(1, refresh: false, context: context);
+  }
+
+  Future<void> ensureUserLocation(BuildContext context) async {
+    if (getIt<LocationService>().userLocation != null) return;
+
+    final granted = await getIt<PermissionServices>().requestPermission(
+      Permission.location,
+      context,
+    );
+    if (!granted) return;
+
+    final location = await getIt<LocationService>().getCurrentLocation();
+    if (location != null) {
+      getIt<LocationService>().setUserLocation(location);
+    }
+  }
+
+  Future<void> getBestSellers(int page, {bool refresh = true, BuildContext? context}) async {
+    if (page == 1 && getIt<LocationService>().userLocation == null) {
+      await ensureUserLocation(context ?? getIt<GlobalContext>().context());
+    }
+
     var params = searchParams(refresh, page);
     var data = await  GetBestSellers().call(params);
     final isLastPage = data.length < pageSize;

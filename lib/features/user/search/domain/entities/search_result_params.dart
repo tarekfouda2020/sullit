@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/helpers/location_service.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 
 class SearchResultParams {
@@ -12,11 +13,9 @@ class SearchResultParams {
 
   String paramToQuery() {
     String header = paginateParams.paramsToQuery();
-    if(searchTxt.isNotEmpty){
+    if (searchTxt.isNotEmpty) {
       header = "?keyword=$searchTxt&${header.replaceAll("?", "")}";
     }
-   return header;
-}
-
-
+    return '$header${LocationService.instance.locationQuerySuffix()}';
+  }
 }

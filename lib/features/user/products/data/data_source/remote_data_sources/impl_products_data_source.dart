@@ -1,9 +1,7 @@
 // ignore_for_file: avoid_dynamic_calls
 
 import 'package:dartz/dartz.dart';
-import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
-import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
@@ -15,6 +13,7 @@ import 'package:flutter_tdd/features/user/products/data/models/product_details_m
 import 'package:flutter_tdd/features/user/products/data/models/product_sections_model/product_sections_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/queries_model/queries_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/seller_products_model/seller_products_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/entities/home_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/popular_products_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/seller_products_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/send_query_params.dart';
@@ -24,21 +23,14 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: ProductsDataSource)
 class ImplProductsDataSource extends ProductsDataSource {
   @override
-  Future<Either<Failure, HomeModel>> getHome(bool param) async {
-    String? deviceId = GlobalState.instance.get(GlobalStateKeys.deviceToken);
-    if(deviceId!=null && deviceId.isNotEmpty){
-      deviceId = "?mac_address=$deviceId";
-    }else{
-      deviceId = "";
-    }
-
+  Future<Either<Failure, HomeModel>> getHome(HomeParams param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: "${ApiNames.getHome}$deviceId",
+      url: ApiNames.getHome + param.paramToQuery(),
       responseType: ResType.model,
       requestMethod: RequestMethod.get,
       responseKey: (data) => data["data"],
       showLoader: false,
-      refresh: param,
+      refresh: param.refresh,
       toJsonFunc: (json) => HomeModel.fromJson(json),
     );
     return await GenericHttpImpl<HomeModel>()(model);

@@ -7,6 +7,7 @@ import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_
 import 'package:flutter_tdd/features/user/products/data/data_source/remote_data_sources/products_data_source.dart';
 import 'package:flutter_tdd/features/user/products/data/models/home_model/home_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/product_details_model/product_details_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/entities/home_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/popular_products_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/seller_products_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/send_query_params.dart';
@@ -25,7 +26,7 @@ class ImplProductsRepository extends ProductsRepository with ModelToDomain {
   var dataSources = getIt<ProductsDataSource>();
 
   @override
-  Future<Either<Failure, HomeDomainModel>> getHome(bool param) async {
+  Future<Either<Failure, HomeDomainModel>> getHome(HomeParams param) async {
     var result = await dataSources.getHome(param);
     return toDomainResult<HomeDomainModel, HomeModel>(result);
   }

@@ -5,11 +5,18 @@ part of 'payment_imports.dart';
 class PaymentController {
   late final WebViewController webController;
   late final bool orderPaymentFromHome;
+  late final bool orderPaymentFromInstore;
 
   int combinedOrderId = 0;
 
-  void init(String initialUrl, BuildContext context,{bool orderPayFromHome = false}) {
+  void init(
+    String initialUrl,
+    BuildContext context, {
+    bool orderPayFromHome = false,
+    bool orderPayFromInstore = false,
+  }) {
     orderPaymentFromHome = orderPayFromHome;
+    orderPaymentFromInstore = orderPayFromInstore;
     webController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
@@ -39,8 +46,18 @@ class PaymentController {
     log("====>>>---- $url ----<<<<====");
     if (url.contains("combined_order_id")) {
       combinedOrderId = int.parse(url.split('combined_order_id=').last);
-      // AutoRouter.of(context).push(ConfirmationRoute(combinedId: id));
-      AutoRouter.of(context).push(CartConfirmBuyingRoute(combinedId: combinedOrderId,paymentFromHome: orderPaymentFromHome));
+      if (orderPaymentFromInstore) {
+        AutoRouter.of(context).push(
+          InstoreConfirmBuyingRoute(combinedId: combinedOrderId),
+        );
+      } else {
+        AutoRouter.of(context).push(
+          CartConfirmBuyingRoute(
+            combinedId: combinedOrderId,
+            paymentFromHome: orderPaymentFromHome,
+          ),
+        );
+      }
     } else if (url.contains('Fail')) {
       CustomToast.showSimpleToast(
         msg: tr("paymentFailed"),

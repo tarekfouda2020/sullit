@@ -34,6 +34,21 @@ class HomeController {
 
 
 
+  Future<void> initUserLocation(BuildContext context) async {
+    final granted = await getIt<PermissionServices>().requestPermission(
+      Permission.locationWhenInUse,
+      context,
+    );
+    if (granted) {
+      final location = await getIt<LocationService>().getCurrentLocation();
+      if (location != null) {
+        getIt<LocationService>().setUserLocation(location);
+      }
+    }
+    OrdersHelper.instance.getHome(refresh: false);
+    OrdersHelper.instance.getHome();
+  }
+
   Future<bool> checkForUpdate() async {
     final NewVersionPlus newVersion = NewVersionPlus(
       androidId: AppConstants.instance.appId,

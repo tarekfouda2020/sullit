@@ -67,14 +67,34 @@ class SellerProductsPageState extends State<SellerProductsPage> {
                       mainAxisSize: MainAxisSize.min,
                       spacing: 12,
                       children: [
-                        Opacity(
-                          opacity: controller.cartHaveSellerProduct() ? 1 : 0.5,
-                          child: DefaultButton(
-                            title: tr("view_cart"),
-                            margin: EdgeInsets.zero,
-                            onTap: () =>
-                                controller.onPressViewCart(context, widget.fromCart!),
-                          ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: DefaultButton(
+                                title: tr('inStoreShopping'),
+                                margin: EdgeInsets.zero,
+                                fontSize: 14,
+                                onTap: () =>
+                                    controller.routeToInstoreShopping(context),
+                              ),
+                            ),
+                            Gaps.hGap12,
+                            Expanded(
+                              child: Opacity(
+                                opacity: controller.cartHaveSellerProduct()
+                                    ? 1
+                                    : 0.5,
+                                child: DefaultButton(
+                                  title: tr('view_cart'),
+                                  margin: EdgeInsets.zero,
+                                  onTap: () => controller.onPressViewCart(
+                                    context,
+                                    widget.fromCart!,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         Visibility(
                           visible: controller.neededAmount() > 0,

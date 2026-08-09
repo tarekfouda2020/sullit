@@ -321,5 +321,38 @@ class SellerProductsController {
     }
   }
 
+  void routeToInstoreShopping(BuildContext context) {
+    int? sellerId = shopCubit.state.data!.userId;
+    if(sellerId == null){
+      return ;
+    }
+    if (InstoreCartHelper.instance.hasItemsFromDifferentSeller(sellerId)) {
+      final cart = InstoreCartHelper.instance.getLocalCart();
+      showDifferentSellerDialog(context, cart?.sellerName ?? '');
+      return;
+    }
+    AutoRouter.of(context).push(const InstoreCartPageRoute());
+  }
+
+  void showDifferentSellerDialog(BuildContext context, String sellerName) {
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) {
+        return BuildDeleteDialog(
+          content: tr('instoreCartDifferentSeller')
+              .replaceAll('{seller}', sellerName),
+          onPressConfirm: () {
+            Navigator.of(dialogContext).pop();
+            InstoreCartHelper.instance.deleteAllItemsFromCart().then((_) {
+              if (context.mounted) {
+                AutoRouter.of(context).push(const InstoreCartPageRoute());
+              }
+            });
+          },
+        );
+      },
+    );
+  }
+
 
 }

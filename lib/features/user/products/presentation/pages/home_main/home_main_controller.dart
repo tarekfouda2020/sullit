@@ -25,8 +25,6 @@ class HomeMainController {
     homeController = controller;
     controller.searchController.clear();
     controller.visibleSearch.onUpdateData(false);
-    getHome(refresh: false);
-    getHome();
 
     getVipOffers(refresh: false);
     getVipOffers();

@@ -6,6 +6,7 @@ import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
 import 'package:flutter_tdd/core/helpers/router_helper.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
+import 'package:flutter_tdd/features/user/products/domain/entities/home_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_home.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_product_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/track_order_model.dart';
@@ -29,7 +30,7 @@ class OrdersHelper {
     if(setLoading){
       homeCubit.onUpdateToInitState(null);
     }
-    var result = await GetHome().call(refresh);
+    var result = await GetHome().call(HomeParams.fromLocation(refresh: refresh));
     homeCubit.onUpdateData(result);
   }
 
