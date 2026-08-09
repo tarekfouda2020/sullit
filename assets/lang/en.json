@@ -745,6 +745,6 @@
   "inStoreShopping": "In-Store shopping",
   "wantToDeleteCartItem": "Are you sure you want to remove this item?",
   "instoreCartDifferentSeller": "You have saved items from \"{seller}\". Please clear your cart first to shop here.",
-  "instoreCart": "Instore Cart",
+  "instoreCart": "In-Store cart",
   "productScannedWithCode": "Product scanned with code: {code}"
 }
