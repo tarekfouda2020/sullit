@@ -68,7 +68,7 @@ class OrderDetailsSummaryWidget extends StatelessWidget {
             useDirhamPrice: true,
             onPressInfo: () => controller.showFeesSheet(context),
           ),
-          if(order?.isInStore == true)
+          if(order?.isInStore == false)
           BuildSummaryHeader(
             title: tr('environmentFee'),
             details: order?.environmentFees ?? "0.0",
