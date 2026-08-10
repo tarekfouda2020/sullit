@@ -94,28 +94,68 @@ class InstoreCartPageController {
     final variantId = variant.id;
     if (variantId == null) return;
 
+    final cartItem = _buildCartItem(value, variant);
+    final existing =
+        InstoreCartHelper.instance.getItemFromCart(variantId: variantId);
+
+    if (existing != null) {
+      final merged = existing.copyWith(
+        isFresh: cartItem.isFresh,
+        currentStock: cartItem.currentStock,
+      );
+      if (!merged.canSetQuantity(existing.qnt + 1)) {
+        _showStockLimitToast(merged.currentStock);
+        return;
+      }
+    } else if (!cartItem.canSetQuantity(1)) {
+      CustomToast.showSimpleToast(msg: tr('outOfStock'));
+      return;
+    }
+
     await InstoreCartHelper.instance.addItemToCart(
       sellerId: value.product.sellerId!,
       sellerName: value.product.shop?.name ?? value.product.shop?.title ?? '',
-      item: InstoreCartItemModel(
-        id: value.product.id!,
-        variantId: variantId,
-        qnt: 1,
-        price: num.parse(variant.calculablePrice ?? '0'),
-        name: (variant.name?.isNotEmpty == true
-                ? variant.name
-                : value.product.name) ??
-            '',
-        image: (variant.image?.isNotEmpty == true
-                ? variant.image
-                : value.product.thumbnailImage) ??
-            '',
-      ),
+      item: cartItem,
     );
     syncLocalCart();
   }
 
-  Future<void> onIncreaseItem(InstoreCartItemModel item) async {
+  InstoreCartItemModel _buildCartItem(
+    ProductDetailsDomainModel value,
+    Variant variant,
+  ) {
+    return InstoreCartItemModel(
+      id: value.product.id!,
+      variantId: variant.id!,
+      qnt: 1,
+      price: num.parse(variant.calculablePrice ?? '0'),
+      name: (variant.name?.isNotEmpty == true
+              ? variant.name
+              : value.product.name) ??
+          '',
+      image: (variant.image?.isNotEmpty == true
+              ? variant.image
+              : value.product.thumbnailImage) ??
+          '',
+      isFresh: value.product.isFresh == true,
+      currentStock: variant.currentStock,
+    );
+  }
+
+  void _showStockLimitToast(int? stock) {
+    CustomToast.showSimpleToast(
+      msg: '${tr('only')} $stock ${tr('availableStock')}',
+    );
+  }
+
+  Future<void> onIncreaseItem(
+    BuildContext context,
+    InstoreCartItemModel item,
+  ) async {
+    if (!item.canSetQuantity(item.qnt + 1)) {
+      _showStockLimitToast(item.currentStock);
+      return;
+    }
     await InstoreCartHelper.instance.updateItemInCart(
       item: item.copyWith(qnt: item.qnt + 1),
     );

@@ -15,6 +15,8 @@ _$_InstoreCartItemModel _$$_InstoreCartItemModelFromJson(
       price: json['price'] as num,
       name: json['name'] as String,
       image: json['image'] as String,
+      isFresh: json['is_fresh'] as bool? ?? false,
+      currentStock: (json['current_stock'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$_InstoreCartItemModelToJson(
@@ -26,4 +28,6 @@ Map<String, dynamic> _$$_InstoreCartItemModelToJson(
       'price': instance.price,
       'name': instance.name,
       'image': instance.image,
+      'is_fresh': instance.isFresh,
+      'current_stock': instance.currentStock,
     };

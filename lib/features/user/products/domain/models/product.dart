@@ -190,6 +190,7 @@ class Product extends BaseDomainModel {
     brandName = json['brand_name'];
     hasVipOffer = json['has_vip_offer'];
     hasShareholderDiscount = json['has_shareholder_discount'];
+    isFresh = json['is_fresh'];
   }
 
   Map<String, dynamic> toJson() {
@@ -237,6 +238,7 @@ class Product extends BaseDomainModel {
     data['has_vip_offer'] = hasVipOffer;
     data['max_qty'] = maxQnt;
     data['has_shareholder_discount'] = hasShareholderDiscount;
+    data['is_fresh'] = isFresh;
     return data;
   }
 }

@@ -113,7 +113,8 @@ class InstoreCartItemWidget extends StatelessWidget {
                     Gaps.hGap19,
                     InstoreQtyButtonWidget(
                       iconData: CupertinoIcons.add,
-                      onTap: () => controller.onIncreaseItem(cartItem),
+                      onTap: () =>
+                          controller.onIncreaseItem(context, cartItem),
                     ),
                     const Spacer(),
                     GestureDetector(

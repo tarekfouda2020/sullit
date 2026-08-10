@@ -85,7 +85,13 @@ class InstoreCartHelper {
     if (index != -1) {
       final updatedItems = [...cart.items];
       final existing = updatedItems[index];
-      updatedItems[index] = existing.copyWith(qnt: existing.qnt + item.qnt);
+      final merged = existing.copyWith(
+        isFresh: item.isFresh,
+        currentStock: item.currentStock,
+      );
+      final newQnt = existing.qnt + item.qnt;
+      if (!merged.canSetQuantity(newQnt)) return;
+      updatedItems[index] = merged.copyWith(qnt: newQnt);
       await _saveCart(
         cart.copyWith(
           subTotal: _calculateSubTotal(updatedItems),

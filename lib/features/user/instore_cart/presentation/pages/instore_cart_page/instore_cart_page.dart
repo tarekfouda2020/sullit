@@ -38,6 +38,14 @@ class _InstoreCartPageState extends State<InstoreCartPage> {
               crossAxisAlignment: CrossAxisAlignment.end,
               spacing: 12,
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                  Text("Add More Items",
+                  style: AppTextStyle.s14_w500(color: context.colors.black),
+                  )
+                  ],
+                ),
                 ClearAllButtonWidget(controller: controller),
                 Expanded(
                   child: InstoreCartItemsWidget(
