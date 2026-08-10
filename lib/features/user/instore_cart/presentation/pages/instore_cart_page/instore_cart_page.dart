@@ -41,8 +41,14 @@ class _InstoreCartPageState extends State<InstoreCartPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                  Text("Add More Items",
-                  style: AppTextStyle.s14_w500(color: context.colors.black),
+                  GestureDetector(
+                    onTap: () => controller.scanProduct(context),
+                    child: Padding(
+                      padding:  const EdgeInsets.symmetric(horizontal: 16),
+                      child: Text("Add More Items",
+                      style: AppTextStyle.s14_w500(color: context.colors.black),
+                      ),
+                    ),
                   )
                   ],
                 ),
