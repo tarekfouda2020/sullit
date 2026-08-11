@@ -204,12 +204,12 @@ class AttachPrescriptionController {
         return;
       }
 
-      if (insuranceFileBloc.state.data.path.isEmpty) {
-        CustomToast.showSimpleToast(
-          msg: "Please upload your insurance document first.",
-        );
-        return;
-      }
+      // if (insuranceFileBloc.state.data.path.isEmpty) {
+      //   CustomToast.showSimpleToast(
+      //     msg: "Please upload your insurance document first.",
+      //   );
+      //   return;
+      // }
     }
 
     if(requestedByCubit.state.data == null){
@@ -249,9 +249,9 @@ class AttachPrescriptionController {
       identityDocumentFile: emiratesIdCubit.state.data,
       prescriptionAttachments: _prescriptionAttachments(),
       prescriptionAttachmentIds: _prescriptionAttachmentIds(),
-      insuranceAttachments: [
-        insuranceFileBloc.state.data
-      ],
+      insuranceAttachments:  insuranceFileBloc.state.data.path.isNotEmpty
+          ? [insuranceFileBloc.state.data]
+          : null,
     );
   }
 

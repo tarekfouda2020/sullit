@@ -20,12 +20,10 @@ class CurrentOrderWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              const Spacer(),
               GestureDetector(
-                onTap: () async {
-                  await controller.removeTrackedOrder(currentOrders.id);
-                },
+                onTap: () async => controller.removeTrackedOrder(currentOrders.id),
                 child: Icon(
                   Icons.close,
                   color: context.colors.black,

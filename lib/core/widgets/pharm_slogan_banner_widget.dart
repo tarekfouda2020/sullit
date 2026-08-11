@@ -84,7 +84,7 @@ class PharmSloganBannerWidget extends StatelessWidget {
       if(context.isAuth){
       onTap();
     }else{
-      CustomToast.showAuthDialog(context);
+      CustomToast.showAuthDialog(context,);
     }
   }
 

@@ -10,9 +10,27 @@ class AttachHealthInsuranceDocumentWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Attach Health Insurance Document",
-          style: AppTextStyle.s16_w600(color: context.colors.black),
+        Row(
+          spacing: 4,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Flexible(
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: "Attach Health Insurance Document",
+                      style: AppTextStyle.s16_w600(color: context.colors.black),
+                    ),
+                    TextSpan(
+                      text: " (optional)",
+                      style: AppTextStyle.s14_w400(color: context.colors.textColor),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
         Gaps.vGap15,
         BlocBuilder<GenericBloc<File>, GenericState<File>>(

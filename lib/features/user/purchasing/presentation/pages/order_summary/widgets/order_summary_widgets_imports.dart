@@ -22,6 +22,7 @@ import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubi
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_confirm_buying/widgets/cart_confirm_buying_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_payment/widgets/cart_payment_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/order_discount_domain.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/widgets/order_details_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_summary/order_summary_imports.dart';

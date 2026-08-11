@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
 import 'package:flutter_tdd/core/helpers/router_helper.dart';
@@ -10,6 +12,7 @@ import 'package:flutter_tdd/features/user/products/domain/use_cases/get_product_
 import 'package:flutter_tdd/features/user/purchasing/domain/models/track_order_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/get_order_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/get_tracking_history.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/user/products/domain/models/home_domain_model.dart';
 
@@ -23,11 +26,31 @@ class OrdersHelper {
   final GenericBloc<TrackOrderModel?> trackOrderCubit =
       GenericBloc<TrackOrderModel?>(null);
 
+  Set<int> _deletedOrdersIds = {};
+
+  Future<Set<int>> getCurrentOrdersSavedIds() async {
+    final prefs = await SharedPreferences.getInstance();
+    final json = prefs.getString(LocalStorageKeys.trackOrderIds);
+    if (json == null) return {};
+    var ids = (jsonDecode(json) as List<dynamic>).map((e) => e as int).toSet();
+    _deletedOrdersIds = ids;
+    return ids;
+  }
+
+
+  bool _isCurrentOrderSavedInLocal(int id) {
+    Set<int> ids = _deletedOrdersIds;
+    bool isExist = ids.contains(id);
+    return isExist;
+  }
+
+
   Future<void> getHome({bool refresh = true, bool setLoading = true}) async {
     if (setLoading) {
       homeCubit.onUpdateToInitState(null);
     }
     var result = await GetHome().call(refresh);
+    result?.currentOrders.removeWhere((element) => _isCurrentOrderSavedInLocal(element.id));
     homeCubit.onUpdateData(result);
   }
 

@@ -60,7 +60,7 @@ class BuildHomeSwiper extends StatelessWidget {
                 dotHeight: 8,
                 dotWidth: 8,
                 activeDotColor: context.colors.lightRed,
-                dotColor: context.colors.borderColor,
+                dotColor: context.colors.gray4,
               ),
             );
           },

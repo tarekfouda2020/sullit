@@ -158,7 +158,7 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
                   controller.firstSectionOrder!.prescriptionAttachments!.first),
             )
           ],
-          if (data.pharmOrderWithInsurance == true) ...[
+          if (controller.firstSectionOrder!.insuranceAttachments?.firstOrNull != null) ...[
             Gaps.vGap10,
             PharmacyOrderAttachmentWidget(
               title: "View Health Insurance Doc.",
@@ -212,7 +212,7 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
     if (hasPrescription && hasInsurance) {
       return isPendingReview == false
           ? " Pharmacy accepted your health insurance and Prescription document successfully"
-          : " The pharmacy will review your prescription and health insurance and back to you Shortly.";
+          : " The pharmacy will review your prescription and health insurance and get back to you Shortly.";
     }
     return isPendingReview == false && hasPrescription
         ? " Pharmacy accepted your Prescription document successfully"

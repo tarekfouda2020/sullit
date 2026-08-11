@@ -13,11 +13,11 @@ class HomeDomainModel extends BaseDomainModel {
   final List<BannerDomainModel> bannersOne;
   final List<BannerDomainModel> bannersTwo;
   final List<Category> categories;
-  final List<Orders> currentOrders;
   final FlashSale? flashSales;
   final List<Shop> shop;
   final List<Shop> topSellers;
   final List<Shop> pharmacyShops;
+  List<Orders> currentOrders;
 
   // final List<Product> bestSellingProducts;
   // final List<Product> newestProducts;
@@ -51,35 +51,4 @@ class HomeDomainModel extends BaseDomainModel {
     required this.pharmacyShops,
   });
 
-  HomeDomainModel copyWith({
-    List<SliderDomainModel>? sliders,
-    List<BannerDomainModel>? bannersOne,
-    List<BannerDomainModel>? bannersTwo,
-    List<Category>? categories,
-    List<Orders>? currentOrders,
-    FlashSale? flashSales,
-    List<Shop>? shop,
-    List<Shop>? topSellers,
-    List<Shop>? pharmacyShops,
-    int? cartCount,
-    int? favCount,
-    bool? isAdminDiscount,
-    int? discountRate,
-  }) {
-    return HomeDomainModel(
-      sliders: sliders ?? this.sliders,
-      bannersOne: bannersOne ?? this.bannersOne,
-      bannersTwo: bannersTwo ?? this.bannersTwo,
-      categories: categories ?? this.categories,
-      currentOrders: currentOrders ?? this.currentOrders,
-      flashSales: flashSales ?? this.flashSales,
-      shop: shop ?? this.shop,
-      topSellers: topSellers ?? this.topSellers,
-      pharmacyShops: pharmacyShops ?? this.pharmacyShops,
-      cartCount: cartCount ?? this.cartCount,
-      favCount: favCount ?? this.favCount,
-      isAdminDiscount: isAdminDiscount ?? this.isAdminDiscount,
-      discountRate: discountRate ?? this.discountRate,
-    );
-  }
 }

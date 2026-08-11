@@ -25,9 +25,12 @@ class HomeMainController {
   int currentPage = 1;
   int pageSize = 5;
 
+  Set<int> _deletedOrdersIds = <int>{};
+
   late final HomeController homeController;
 
   HomeMainController(BuildContext context, HomeController controller) {
+    getSavedIds();
     homeController = controller;
     controller.searchController.clear();
     controller.visibleSearch.onUpdateData(false);
@@ -575,6 +578,22 @@ class HomeMainController {
 //     );
 //   }
 // }
+
+
+  Future<void> getSavedIds() async {
+    _deletedOrdersIds =  await OrdersHelper.instance.getCurrentOrdersSavedIds();
+  }
+
+  void removeTrackedOrder(int id){
+    _deletedOrdersIds.add(id);
+    var home = homeCubit.state.data!;
+    var updatedOrders = home.currentOrders.where((e) => e.id != id).toList();
+    home.currentOrders = updatedOrders;
+    homeCubit.onUpdateData(home);
+    saveIds(_deletedOrdersIds);
+  }
+
+
   Future<void> saveIds(Set<int> ids) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(
@@ -583,25 +602,7 @@ class HomeMainController {
     );
   }
 
-  Future<Set<int>> getSavedIds() async {
-    final prefs = await SharedPreferences.getInstance();
-    final json = prefs.getString(LocalStorageKeys.trackOrderIds);
-    if (json == null) return <int>{};
-    return (jsonDecode(json) as List<dynamic>).map((e) => e as int).toSet();
-  }
 
-  Future<void> removeTrackedOrder(int id) async {
-    final ids = await getSavedIds();
-    ids.remove(id);
-    await saveIds(ids);
-    final state = homeCubit.state;
-    if (state is GenericUpdateState<HomeDomainModel?> && state.data != null) {
-      final home = state.data!;
-      final updatedOrders = home.currentOrders.where((e) => e.id != id).toList();
-      final updatedHome = home.copyWith(
-        currentOrders: updatedOrders,
-      );
-      homeCubit.onUpdateData(updatedHome);
-    }
-  }
+
+
 }
