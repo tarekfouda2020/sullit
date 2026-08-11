@@ -56,13 +56,26 @@ class LoginController {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString("user", json.encode(data?.toJson()));
     context.read<UserCubit>().onUpdateUserData(data!);
-    AutoRouter.of(context).push(HomeRoute(index: 0));
+    _redirectAfterLogin(context);
     CustomToast.showSimpleToast(
       msg: tr('successLoggedIn'),
       type: ToastType.success,
     );
     if (model?.isAdminDiscount == true) {
       showDiscountDialog(context, model!.msgAdminDiscount!);
+    }
+  }
+
+
+
+  void _redirectAfterLogin(BuildContext context) {
+    PendingNavigationService pendingService = PendingNavigationService.instance;
+    if (pendingService.hasPending) {
+      final route = pendingService.pending!;
+      pendingService.clear();
+      context.router.replace(route);
+    } else {
+      AutoRouter.of(context).push(HomeRoute(index: 0));
     }
   }
 

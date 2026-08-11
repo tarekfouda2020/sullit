@@ -3,6 +3,7 @@ part of 'home_main_widgets_imports.dart';
 class TrackSellerOrderWidget extends StatelessWidget {
   final List<OrdersListDomainModel> currentOrders;
   final HomeMainController controller;
+
   const TrackSellerOrderWidget({super.key, required this.currentOrders, required this.controller});
 
   @override
@@ -24,10 +25,12 @@ class TrackSellerOrderWidget extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return GestureDetector(
-                    onTap: () => controller.openCurrentOrderDetails(context, currentOrders[index]),
-                    child: CurrentOrderWidget(
-                      currentOrders: currentOrders[index],
-                    ));
+                  onTap: () => controller.openCurrentOrderDetails(context, currentOrders[index]),
+                  child: CurrentOrderWidget(
+                    currentOrders: currentOrders[index],
+                    controller: controller,
+                  ),
+                );
               },
             ),
           ),

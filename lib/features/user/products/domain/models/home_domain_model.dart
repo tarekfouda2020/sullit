@@ -14,7 +14,7 @@ class HomeDomainModel extends BaseDomainModel {
   final List<BannerDomainModel> bannersOne;
   final List<BannerDomainModel> bannersTwo;
   final List<Category> categories;
-  final List<OrdersListDomainModel> currentOrders;
+   List<OrdersListDomainModel> currentOrders;
   final FlashSale? flashSales;
   final List<ShopCardDomainModel> shop;
   final List<ShopCardDomainModel> topSellers;
@@ -50,4 +50,5 @@ class HomeDomainModel extends BaseDomainModel {
     required this.discountRate,
     required this.pharmacyShops,
   });
+
 }

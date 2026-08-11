@@ -41,17 +41,20 @@ class PharmacyConfirmSummaryWidget extends StatelessWidget {
           order.orderDiscounts!.length,
           (index) {
             var item = order.orderDiscounts![index];
-            return BuildSummaryHeader(
-              title: item.typeLabel ,
-              // details: shippingSummary.vatAmount().toStringAsFixed(2),
-              details: item.discount ,
-              useDirhamPrice: true,
-              isDiscount: true,
-              detailsColor: context.colors.primary,
-              onPressInfo: item.isTierDiscount == true
-                  ? () => controller.showTierFullName(
-                      context, item.typeDescription ?? "", item.typeLabel ?? "")
-                  : null,
+            return Visibility(
+              visible: !item.isInsuranceDiscount,
+              child: BuildSummaryHeader(
+                title: item.typeLabel ,
+                // details: shippingSummary.vatAmount().toStringAsFixed(2),
+                details: item.discount ,
+                useDirhamPrice: true,
+                isDiscount: true,
+                detailsColor: context.colors.primary,
+                onPressInfo: item.isTierDiscount == true
+                    ? () => controller.showTierFullName(
+                        context, item.typeDescription ?? "", item.typeLabel ?? "")
+                    : null,
+              ),
             );
           },
         ),

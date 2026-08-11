@@ -121,6 +121,7 @@ class PharmacyOrderDetailsBody extends StatelessWidget {
               textColor: context.colors.white,
               color: context.colors.mainGreen,
               borderColor: context.colors.mainGreen,
+              margin: const EdgeInsets.symmetric(horizontal: Dimens.dp16),
             ),
           if (state.data?.availableCancelOrder == true &&
               state.data?.isPendingReview == false)

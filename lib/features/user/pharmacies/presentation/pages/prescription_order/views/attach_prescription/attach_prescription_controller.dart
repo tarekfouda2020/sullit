@@ -195,13 +195,13 @@ class AttachPrescriptionController {
     if (prescriptionFileCubit.state.data.path.isEmpty &&
         selectedSavedPrescriptionCubit.state.data == null) {
       CustomToast.showSimpleToast(
-        msg: "Please attach your prescription first",
+        msg: "Please attach your prescription first.",
       );
       return;
     }
     if (emiratesIdCubit.state.data.path.isEmpty) {
       CustomToast.showSimpleToast(
-        msg: "Please attach your personal ID image first",
+        msg: "Please attach your personal ID image first.",
       );
       return;
     }
@@ -209,22 +209,29 @@ class AttachPrescriptionController {
     if (healthInsuranceCubit.state.data) {
       if (selectedInsuranceCompany.state.data == null) {
         CustomToast.showSimpleToast(
-          msg: "Please select your insurance company first",
+          msg: "Please select your insurance company first.",
         );
         return;
       }
+
+      // if (insuranceFileBloc.state.data.path.isEmpty) {
+      //   CustomToast.showSimpleToast(
+      //     msg: "Please upload your insurance document first.",
+      //   );
+      //   return;
+      // }
     }
 
     if(requestedByCubit.state.data == null){
       CustomToast.showSimpleToast(
-        msg: "Please select the type of prescription owner",
+        msg: "Please select the type of prescription owner.",
       );
       return;
     }
 
     if(agreeTermsCubit.state.data == false){
       CustomToast.showSimpleToast(
-        msg: "You must accept the terms and conditions",
+        msg: "You must accept the terms and conditions.",
       );
       return;
     }
@@ -252,9 +259,9 @@ class AttachPrescriptionController {
       identityDocumentFile: emiratesIdCubit.state.data,
       prescriptionAttachments: _prescriptionAttachments(),
       prescriptionAttachmentIds: _prescriptionAttachmentIds(),
-      insuranceAttachments: [
-        insuranceFileBloc.state.data
-      ],
+      insuranceAttachments:  insuranceFileBloc.state.data.path.isNotEmpty
+          ? [insuranceFileBloc.state.data]
+          : null,
     );
   }
 

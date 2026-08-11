@@ -52,7 +52,7 @@ import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/timer_entity.dart';
 import 'package:flutter_tdd/features/user/sale/domain/models/flash_sale.dart';
 import 'package:flutter_tdd/res.dart';
-
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../../category/presentation/pages/brands/widgets/brands_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tab_type.dart';
 import 'package:flutter_tdd/core/extensions/auth_extension.dart';

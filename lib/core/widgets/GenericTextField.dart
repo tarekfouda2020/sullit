@@ -24,6 +24,7 @@ class GenericTextField extends StatelessWidget {
   final Widget? suffixWidget;
   final double? minHeight;
   final double? minWidth;
+  final double? textHeight;
   final Function()? onTab;
   final Color? enableBorderColor;
   final Color? focusBorderColor;
@@ -56,6 +57,7 @@ class GenericTextField extends StatelessWidget {
       this.onTab,
       this.radius,
       this.max,
+      this.textHeight,
       this.maxLength,
       this.suffixWidget,
       this.prefixWidget,
@@ -129,7 +131,10 @@ class GenericTextField extends StatelessWidget {
       onChanged: onChange,
       validator: (value) => validate(value),
       style: AppTextStyle.s14_w400(color: textColor ?? context.colors.black)
-          .copyWith(fontFamily: fontFamily),
+          .copyWith(
+          fontFamily: fontFamily,
+          height: textHeight,
+      ),
       decoration: CustomInputDecoration(
         labelTxt: label,
         hintStr: hint,

@@ -2,6 +2,7 @@ part of 'home_main_imports.dart';
 
 class HomeMainController {
   final GenericBloc<List<ProductSections>> sectionsCubit = GenericBloc([]);
+  final GenericBloc<int> swiperIndexCubit = GenericBloc(0);
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final ScrollController scrollController = ScrollController();
   final GenericBloc<bool> scrollCubit = GenericBloc(true);
@@ -18,16 +19,18 @@ class HomeMainController {
   final PagingController<int, SavedPrescriptionModel> savedPrescriptionsPagingController =
       PagingController(firstPageKey: 1);
 
-  GenericBloc<HomeDomainModel?> get homeCubit =>
-      OrdersHelper.instance.homeCubit;
+  GenericBloc<HomeDomainModel?> get homeCubit => OrdersHelper.instance.homeCubit;
 
   List<ProductSections> allSections = [];
   int currentPage = 1;
   int pageSize = 5;
 
+  Set<int> _deletedOrdersIds = <int>{};
+
   late final HomeController homeController;
 
   HomeMainController(BuildContext context, HomeController controller) {
+    getSavedIds();
     homeController = controller;
     controller.searchController.clear();
     controller.visibleSearch.onUpdateData(false);
@@ -425,8 +428,6 @@ class HomeMainController {
     ));
   }
 
-
-
   void openCurrentOrderDetails(BuildContext context, OrdersListDomainModel order){
     if(order.isPharmacy){
       AutoRouter.of(context).push(
@@ -438,7 +439,6 @@ class HomeMainController {
               isReturnedOrder: false,
               id: order.id));
     }
-
   }
 
   // Same API-calling pattern as AttachPrescriptionController.getSavedPrescriptions.
@@ -463,7 +463,7 @@ class HomeMainController {
   Future<void> onPickPrescriptionFile() async {
     var result = await getIt<Utilities>().getAttachmentFile(
       FileType.custom,
-      allowedExtensions: const ["pdf",'jpg', 'jpeg', 'png'],
+      allowedExtensions: const ["pdf", 'jpg', 'jpeg', 'png'],
     );
     if (result != null) {
       prescriptionFileCubit.onUpdateData(result);
@@ -508,8 +508,7 @@ class HomeMainController {
   }
 
   void onPressContinuePrescription(BuildContext context) {
-    if (prescriptionFileCubit.state.data.path.isEmpty &&
-        selectedSavedPrescriptionCubit.state.data == null) {
+    if (prescriptionFileCubit.state.data.path.isEmpty && selectedSavedPrescriptionCubit.state.data == null) {
       CustomToast.showSimpleToast(
         msg: "Please attach your prescription first",
       );
@@ -518,7 +517,6 @@ class HomeMainController {
     Navigator.pop(context);
     routeToPharmaciesListWithPrescriptionOrder(context);
   }
-
 
 //
 // Future<void> scanSkuNumber() async {
@@ -583,4 +581,31 @@ class HomeMainController {
 //     );
 //   }
 // }
+
+
+  Future<void> getSavedIds() async {
+    _deletedOrdersIds =  await OrdersHelper.instance.getCurrentOrdersSavedIds();
+  }
+
+  void removeTrackedOrder(int id){
+    _deletedOrdersIds.add(id);
+    var home = homeCubit.state.data!;
+    var updatedOrders = home.currentOrders.where((e) => e.id != id).toList();
+    home.currentOrders = updatedOrders;
+    homeCubit.onUpdateData(home);
+    saveIds(_deletedOrdersIds);
+  }
+
+
+  Future<void> saveIds(Set<int> ids) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(
+      LocalStorageKeys.trackOrderIds,
+      jsonEncode(ids.toList()),
+    );
+  }
+
+
+
+
 }

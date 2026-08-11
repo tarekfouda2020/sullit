@@ -32,10 +32,6 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: (controller.pharmacy?.name) ?? "",
-                      style: AppTextStyle.s14_w600(color: context.colors.green),
-                    ),
-                    TextSpan(
                       text: _getText(),
                       style:
                           AppTextStyle.s14_w400(color: context.colors.textColor)
@@ -45,8 +41,11 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
                 ),
               ),
               child: Text(
-                "Your shipment is being prepared for delivery.",
-                style: AppTextStyle.s14_w400(color: context.colors.textColor),
+                textAlign: TextAlign.center,
+                "Thanks for your order, ${controller.summary.summary?.name ?? ""} \n We’ll get to work on your order right away. You’ll receive your receipt once the order is ready.",
+                style: AppTextStyle.s15_w500(color: context.colors.textColor).copyWith(
+                  height: 1.35
+                ),
               ),
             ),
           Gaps.vGap20,
@@ -159,7 +158,7 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
                   controller.firstSectionOrder!.prescriptionAttachments!.first),
             )
           ],
-          if (data.pharmOrderWithInsurance == true) ...[
+          if (controller.firstSectionOrder!.insuranceAttachments?.firstOrNull != null) ...[
             Gaps.vGap10,
             PharmacyOrderAttachmentWidget(
               title: "View Health Insurance Doc.",
@@ -212,12 +211,12 @@ class PharmacyOrderDoneWidget extends StatelessWidget {
     }
     if (hasPrescription && hasInsurance) {
       return isPendingReview == false
-          ? " accepted your health insurance and Prescription document successfully"
-          : " will review health insurance and your Prescription document and back to you Shortly";
+          ? " Pharmacy accepted your health insurance and Prescription document successfully"
+          : " The pharmacy will review your prescription and health insurance and get back to you Shortly.";
     }
     return isPendingReview == false && hasPrescription
-        ? " accepted your Prescription document successfully"
-        : " will review your prescription documents. We'll get back to you shortly.";
+        ? " Pharmacy accepted your Prescription document successfully"
+        : " The pharmacy will review your prescription and back to you Shortly.";
   }
 
   Widget _reviewStatusWidget(BuildContext context) {

@@ -19,8 +19,7 @@ class BuildHomeView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            BuildHomeSwiper(
-                slider: homeDomainModel.sliders, controller: controller),
+            BuildHomeSwiper(slider: homeDomainModel.sliders, controller: controller),
             Gaps.vGap25,
             const AdvantagesWidget(),
             Gaps.vGap20,
@@ -32,8 +31,7 @@ class BuildHomeView extends StatelessWidget {
             BuildTopSellers(
               topSellers: homeDomainModel.topSellers,
             ),
-            BuildTopCategories(
-                categories: homeDomainModel.categories, controller: controller),
+            BuildTopCategories(categories: homeDomainModel.categories, controller: controller),
             PharmacyHomeSectionWidget(controller: controller),
             Gaps.vGap16,
             PharmSloganBannerWidget(
@@ -65,8 +63,7 @@ class BuildHomeView extends StatelessWidget {
             //   controller: controller,
             // ),
             if (homeDomainModel.bannersTwo.isNotEmpty) Gaps.vGap10,
-            BuildBanners(
-                banners: homeDomainModel.bannersTwo, controller: controller),
+            BuildBanners(banners: homeDomainModel.bannersTwo, controller: controller),
             Gaps.vGap16,
             NewArrivalOffersFormWidget(controller: controller),
             if (controller.homeCubit.state.data?.shop.isNotEmpty == true)
@@ -74,8 +71,7 @@ class BuildHomeView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: BuildHeaderTitle(
                   title: tr("sellers"),
-                  onTap: () =>
-                      AutoRouter.of(context).push(const BestSellersPageRoute()),
+                  onTap: () => AutoRouter.of(context).push(const BestSellersPageRoute()),
                 ),
               ),
             SellersSectionWidget(
@@ -90,8 +86,7 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap16,
             OnSaleOffersFormWidget(controller: controller),
             Gaps.vGap16,
-            BuildBanners(
-                banners: homeDomainModel.bannersOne, controller: controller),
+            BuildBanners(banners: homeDomainModel.bannersOne, controller: controller),
             Gaps.vGap16,
             BestRatedOffersFormWidget(controller: controller),
             // BuildFeaturedProducts(
