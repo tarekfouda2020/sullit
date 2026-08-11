@@ -73,8 +73,6 @@ class _CartPaymentState extends State<CartPayment> {
                               state.data!.summary.appliedGiftCard != null
                                   ? state.data!.summary.appliedGiftCard!
                                   : '',
-                          applyGiftCard:
-                              state.data!.summary.appliedGiftCard != null,
                         ),
                         Gaps.vGap20,
                         AllowReplacementWidget(

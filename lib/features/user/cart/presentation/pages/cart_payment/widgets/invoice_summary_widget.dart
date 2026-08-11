@@ -4,14 +4,12 @@ class InvoiceSummaryWidget extends StatelessWidget {
   final CartPaymentController controller;
   final ShippingSummary shippingSummary;
   final String giftCardTotal;
-  final bool applyGiftCard;
 
   const InvoiceSummaryWidget({
     super.key,
     required this.controller,
     required this.shippingSummary,
     this.giftCardTotal = "",
-    this.applyGiftCard = false,
   });
 
   @override
@@ -98,7 +96,7 @@ class InvoiceSummaryWidget extends StatelessWidget {
                 vMargin: 0,
               ),
               Visibility(
-                visible: applyGiftCard,
+                visible: (double.parse(shippingSummary.appliedGiftCard ??"0.0")) >  0,
                 child: BuildSummaryHeader(
                   title: tr("appliedGiftCard"),
                   details: shippingSummary.appliedGiftCard ?? "",

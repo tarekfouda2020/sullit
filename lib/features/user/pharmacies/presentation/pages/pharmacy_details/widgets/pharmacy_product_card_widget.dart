@@ -191,7 +191,7 @@ class _PharmacyProductCardWidgetState
   @override
   void afterAddToCartCallback() {
     widget.productModel.addedQtyToCart =
-        widget.productModel.addedQtyToCart! + 1;
+        (widget.productModel.addedQtyToCart??0) + 1;
     widget.afterAddToCart?.call();
   }
 }
