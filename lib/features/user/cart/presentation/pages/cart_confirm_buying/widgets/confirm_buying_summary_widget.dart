@@ -34,18 +34,21 @@ class ConfirmBuyingSummaryWidget extends StatelessWidget {
         ...List.generate(
           orderSummary.discountList.length,
           (index) {
-            var item = orderSummary.discountList[index];
-            return BuildSummaryHeader(
-              title: item.typeLabel,
-              // details: shippingSummary.vatAmount().toStringAsFixed(2),
-              details: item.discount,
-              useDirhamPrice: true,
-              isDiscount: true,
-              detailsColor: context.colors.primary,
-              onPressInfo: item.isTierDiscount
-                  ? () => controller.showTierFullName(
-                      context, item.typeDescription, item.typeLabel)
-                  : null,
+            OrderDiscountDomain item = orderSummary.discountList[index];
+            return Visibility(
+              visible: !item.isInsuranceDiscount,
+              child: BuildSummaryHeader(
+                title: item.typeLabel,
+                // details: shippingSummary.vatAmount().toStringAsFixed(2),
+                details: item.discount,
+                useDirhamPrice: true,
+                isDiscount: true,
+                detailsColor: context.colors.primary,
+                onPressInfo: item.isTierDiscount
+                    ? () => controller.showTierFullName(
+                        context, item.typeDescription, item.typeLabel)
+                    : null,
+              ),
             );
           },
         ),

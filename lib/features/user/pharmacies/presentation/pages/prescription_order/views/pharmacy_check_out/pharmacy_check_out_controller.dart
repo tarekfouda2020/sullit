@@ -326,6 +326,7 @@ class PharmacyCheckOutController {
     AutoRouter.of(context).push(
       PaymentRoute(
         transactionUrl: transactionUrl!,
+        orderPaymentFromHome: true
       ),
     );
     return;

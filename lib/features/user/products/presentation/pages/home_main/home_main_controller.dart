@@ -587,11 +587,14 @@ class HomeMainController {
     _deletedOrdersIds =  await OrdersHelper.instance.getCurrentOrdersSavedIds();
   }
 
-  void removeTrackedOrder(int id){
+  void removeTrackedOrder(int id, int index){
     _deletedOrdersIds.add(id);
     var home = homeCubit.state.data!;
-    var updatedOrders = home.currentOrders.where((e) => e.id != id).toList();
-    home.currentOrders = updatedOrders;
+    var list = home.currentOrders;
+    list.removeAt(index);
+    home.currentOrders = [
+      ...list
+    ];
     homeCubit.onUpdateData(home);
     saveIds(_deletedOrdersIds);
   }

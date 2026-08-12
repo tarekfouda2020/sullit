@@ -54,17 +54,20 @@ class PharmacyInvoiceSummaryWidget extends StatelessWidget {
                       (index) {
                         OrderSummaryDiscountDomain? item =
                             shippingSummary.discountTypes?[index];
-                        return PharmacyBuildSummaryHeader(
-                          isDiscount: true,
-                          applyDashSeperate: false,
-                          title: item?.label ?? "",
-                          details: item?.discount ?? "",
-                          detailsColor: context.colors.primary,
-                          useDirhamPrice: true,
-                          onPressInfo: item?.isTierDiscount == true
-                              ? () => controller.showTierFullName(context,
-                                  item?.description ?? "", item?.label ?? "")
-                              : null,
+                        return Visibility(
+                          visible: item?.isInsuranceDiscount == false,
+                          child: PharmacyBuildSummaryHeader(
+                            isDiscount: true,
+                            applyDashSeperate: false,
+                            title: item?.label ?? "",
+                            details: item?.discount ?? "",
+                            detailsColor: context.colors.primary,
+                            useDirhamPrice: true,
+                            onPressInfo: item?.isTierDiscount == true
+                                ? () => controller.showTierFullName(context,
+                                    item?.description ?? "", item?.label ?? "")
+                                : null,
+                          ),
                         );
                       },
                     ),

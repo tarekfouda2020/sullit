@@ -29,6 +29,7 @@ class TrackSellerOrderWidget extends StatelessWidget {
                   child: CurrentOrderWidget(
                     currentOrders: currentOrders[index],
                     controller: controller,
+                    index: index,
                   ),
                 );
               },

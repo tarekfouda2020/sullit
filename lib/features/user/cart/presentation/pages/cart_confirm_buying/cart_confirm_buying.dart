@@ -5,8 +5,12 @@ class CartConfirmBuying extends StatefulWidget {
   final int? combinedId;
   final bool paymentFromHome;
 
-  const CartConfirmBuying(
-      {super.key, this.summary, this.combinedId, this.paymentFromHome = false});
+  const CartConfirmBuying({
+    super.key,
+    this.summary,
+    this.combinedId,
+    this.paymentFromHome = false,
+  });
 
   @override
   State<CartConfirmBuying> createState() => _CartConfirmBuyingState();

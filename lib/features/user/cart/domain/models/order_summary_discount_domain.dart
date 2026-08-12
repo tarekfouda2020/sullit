@@ -15,6 +15,8 @@ class OrderSummaryDiscountDomain extends BaseDomainModel {
 
   bool get isTierDiscount => type == "subscription_order_discount";
 
+  bool get isInsuranceDiscount => type == "insurance_discount";
+
   String getDiscountTitle() {
     if (isTierDiscount) {
       var remain = label.split(" ");

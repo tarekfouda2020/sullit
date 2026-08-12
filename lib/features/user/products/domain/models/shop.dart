@@ -1,7 +1,6 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_card_domain_model.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_pickup.dart';
 
 class Shop extends BaseDomainModel {
@@ -122,13 +121,13 @@ class Shop extends BaseDomainModel {
       name: name!,
       type: shopType!,
       typeLabel: typeLabel ?? "",
-      logo: logo!,
-      email: email!,
-      address: address!,
-      phone: phone!,
-      rating: rating!,
-      sliders: sliders!,
-      follow: follow!,
+      logo: logo ?? "",
+      email: email ?? "",
+      address: address??"",
+      phone: phone ?? "",
+      rating: rating ?? 0,
+      sliders: sliders ?? <String>[],
+      follow: follow ?? false,
       categoriesNames: "",
     );
   }
