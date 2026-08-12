@@ -22,7 +22,7 @@ class SellerDetailsAppBar extends StatelessWidget {
           );
         },
       ),
-      expandedHeight: 500,
+      expandedHeight: 550,
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(
           padding: EdgeInsets.only(
@@ -44,11 +44,20 @@ class SellerDetailsAppBar extends StatelessWidget {
         ),
       ),
       bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(180),
+        preferredSize: const Size.fromHeight(220),
         child: Container(
           color: context.colors.white,
           child: Column(
             children: [
+              Gaps.vGap10,
+              DefaultButton(
+                title: tr('inStoreShopping'),
+                margin: const EdgeInsets.symmetric(horizontal: 18),
+                width: 230,
+                fontSize: 14,
+                onTap: () =>
+                    controller.routeToInstoreShopping(context),
+              ),
               Gaps.vGap10,
               SellerPageProductsSectionWidget(
                 controller: controller,

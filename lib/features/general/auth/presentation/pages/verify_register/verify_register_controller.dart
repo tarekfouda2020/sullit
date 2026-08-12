@@ -53,7 +53,7 @@ class VerifyRegisterController {
         CustomToast.showSimpleToast(
             msg: tr("emailVerify"), type: ToastType.success);
         FacebookEventsHelper.instance.completedRegistration();
-        AutoRouter.of(context).push(const LoginRoute());
+        AutoRouter.of(context).replace(const LoginRoute());
       }
       getIt<LoadingHelper>().dismissDialog();
     });

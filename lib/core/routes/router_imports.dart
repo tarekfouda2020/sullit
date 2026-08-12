@@ -21,6 +21,7 @@ import 'package:flutter_tdd/features/user/classified_products/presentaion/manage
 import 'package:flutter_tdd/features/user/customers_products/presentaion/manager/routes/routes_imports.dart';
 import 'package:flutter_tdd/features/user/dashboard/presentation/manager/routes/routes.dart';
 import 'package:flutter_tdd/features/user/gift_card/presentation/manager/route/gift_card_routes.dart';
+import 'package:flutter_tdd/features/user/instore_cart/presentation/manager/routes/routes.dart';
 import 'package:flutter_tdd/features/user/notifications/presentation/manager/routes/routes.dart';
 import 'package:flutter_tdd/features/user/payment/presentaion/manager/routes/routes.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/routes/routes.dart';

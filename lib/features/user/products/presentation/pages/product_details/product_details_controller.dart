@@ -620,7 +620,7 @@ class ProductDetailsController implements CartSheetController {
   void onShareProduct(BuildContext context) {
     final link = getIt<DeepLinkService>().generateProductLink(productId);
     final productName =
-        detailsCubit.state.data?.product.name ?? "AMCOOP Product";
+        detailsCubit.state.data?.product.name ?? "Sahlashop Product";
     FacebookEventsHelper.instance.productShareEvent(
       productId: productId,
       productName: productName,

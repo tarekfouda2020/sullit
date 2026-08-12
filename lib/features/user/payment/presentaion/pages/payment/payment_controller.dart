@@ -5,12 +5,18 @@ part of 'payment_imports.dart';
 class PaymentController {
   late final WebViewController webController;
   late final bool orderPaymentFromHome;
+  late final bool orderPaymentFromInstore;
 
   int combinedOrderId = 0;
 
-  void init(String initialUrl, BuildContext context,
-      {bool orderPayFromHome = false}) {
+  void init(
+    String initialUrl,
+    BuildContext context, {
+    bool orderPayFromHome = false,
+    bool orderPayFromInstore = false,
+  }) {
     orderPaymentFromHome = orderPayFromHome;
+    orderPaymentFromInstore = orderPayFromInstore;
     webController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
@@ -20,14 +26,14 @@ class PaymentController {
   }
 
   NavigationDelegate _navigationDelegate(BuildContext context) {
-    if (Platform.isIOS) {
+    if(Platform.isIOS){
       return NavigationDelegate(
         onNavigationRequest: (NavigationRequest request) {
           handleUrlChange(context, request.url);
           return NavigationDecision.navigate;
         },
       );
-    } else {
+    }else{
       return NavigationDelegate(
         onPageStarted: (url) {
           handleUrlChange(context, url);
@@ -36,13 +42,22 @@ class PaymentController {
     }
   }
 
-  Future<void> handleUrlChange(BuildContext context, String url) async {
+  Future<void> handleUrlChange(BuildContext context, String url) async{
     log("====>>>---- $url ----<<<<====");
     if (url.contains("combined_order_id")) {
       combinedOrderId = int.parse(url.split('combined_order_id=').last);
-      // AutoRouter.of(context).push(ConfirmationRoute(combinedId: id));
-      AutoRouter.of(context).push(CartConfirmBuyingRoute(
-          combinedId: combinedOrderId, paymentFromHome: orderPaymentFromHome));
+      if (orderPaymentFromInstore) {
+        AutoRouter.of(context).push(
+          InstoreConfirmBuyingRoute(combinedId: combinedOrderId),
+        );
+      } else {
+        AutoRouter.of(context).push(
+          CartConfirmBuyingRoute(
+            combinedId: combinedOrderId,
+            paymentFromHome: orderPaymentFromHome,
+          ),
+        );
+      }
     } else if (url.contains('Fail')) {
       CustomToast.showSimpleToast(
         msg: tr("paymentFailed"),
@@ -50,29 +65,29 @@ class PaymentController {
       );
       AutoRouter.of(context).pop();
     } else if (url.contains('success')) {
-      log("====>>>---- success logic $url ----<<<<====");
-      if (Platform.isIOS) {
-        await Future.delayed(const Duration(seconds: 2));
+      log("====>>>---- $url ----<<<<====");
+      if(Platform.isIOS){
+       await Future.delayed(const Duration(seconds: 3));
       }
       CustomToast.showSimpleToast(
         msg: tr('paymentDone'),
         type: ToastType.success,
       );
-      AutoRouter.of(context).pop(true);
-
+      if(combinedOrderId == 0){
+        AutoRouter.of(context).pop(true);
+      }
     }
   }
 
-  void showConfirmPopDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return ConfirmLeavingDialogWidget(controller: this);
-      },
-    );
+
+
+  void showConfirmPopDialog(BuildContext context){
+   showDialog(context: context, builder: (context) {
+     return  ConfirmLeavingDialogWidget(controller: this);
+   },);
   }
 
-  void onPressBack(BuildContext context) {
+  void onPressBack(BuildContext context){
     AutoRouter.of(context).pushAndPopUntil(
       HomeRoute(index: 0),
       predicate: (route) => route.settings.name == HomeRoute.name,
@@ -83,14 +98,20 @@ class PaymentController {
     );
   }
 
-  void onPressStay(BuildContext context) {
+
+  void onPressStay(BuildContext context){
     Navigator.pop(context);
   }
 
-  void onPressLeave(BuildContext context) {
-    AutoRouter.of(context).pushAndPopUntil(
+
+
+  void onPressLeave(BuildContext context){
+   AutoRouter.of(context).pushAndPopUntil(
       HomeRoute(index: 0),
-      predicate: (route) => route.settings.name == HomeRoute.name,
-    );
+     predicate: (route) => route.settings.name == HomeRoute.name,
+   );
   }
+
+
+
 }

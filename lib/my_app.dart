@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
               builder: (theme, darkTheme) {
                 return MaterialApp.router(
                   debugShowCheckedModeBanner: false,
-                  title: "AMCOOP",
+                  title: "Sahlashop",
                   darkTheme: darkTheme,
                   theme: theme,
                   supportedLocales: const [

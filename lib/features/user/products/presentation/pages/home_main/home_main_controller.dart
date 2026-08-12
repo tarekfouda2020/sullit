@@ -163,7 +163,7 @@ class HomeMainController {
   }
 
   Future<void> scanProduct(BuildContext context) async {
-    String? barcode = await getIt<BarcodeService>().scanBarcode();
+    String? barcode = await getIt<BarcodeService>().scanBarcode(context);
     if (barcode != null && barcode.isNotEmpty) {
       getProductWithSkuAndRoute(context, barcode);
       CustomToast.showSnakeBar(

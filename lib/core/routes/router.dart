@@ -37,6 +37,7 @@ part of 'router_imports.dart';
     ...videoRoutes,
     ...vouchersRoutes,
     ...giftCardRoute,
+    ...instoreCartRoute,
     ...vipMembershipRoute,
     ...loyaltyPointsRoute,
     ...bestSellersRoutes,

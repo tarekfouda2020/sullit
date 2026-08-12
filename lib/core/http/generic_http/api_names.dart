@@ -150,6 +150,8 @@ class ApiNames {
   static const String applyGiftCard = "cart/apply-gift-card";
   static const String clearCart = "cart/clear";
   static const String removeCoupon = "cart/remove-coupon";
+  static const String instoreOrderSummary = "in-store/orders/summary";
+  static const String instoreOrders = "in-store/orders";
   static const String deliveryInstructions = "delivery-instructions";
 
   // notifications

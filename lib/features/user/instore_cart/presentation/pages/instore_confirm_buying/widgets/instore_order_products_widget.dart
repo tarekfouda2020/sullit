@@ -28,11 +28,11 @@ class InstoreOrderProductsWidget extends StatelessWidget {
           ),
           Gaps.vGap12,
           ...List.generate(order.orderDetails.length, (index) {
-            var item = order.orderDetails[index];
+            OrderDetails item = order.orderDetails[index];
             return  OrderDetailsProductItemWidget(
               onPressReview: () => controller.reviewSheet(context,item),
               hasReview: false,
-              orderDetails: OrderDisplayItem(current: item),
+              orderDetails: item,
             );
           }),
             // Padding(

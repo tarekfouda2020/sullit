@@ -100,7 +100,6 @@ dependencies:
   country_phone_validator: ^1.0.1
   geolocator: ^14.0.2
   device_info_plus: ^11.5.0
-  barcode_scan2: ^4.3.0
   barcode: ^2.2.9
   facebook_app_events: ^0.24.0
   app_tracking_transparency: ^2.0.6+1
@@ -113,6 +112,7 @@ dependencies:
   collection: ^1.19.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  simple_barcode_scanner: ^0.6.0
   timeago:
   timezone:
   country_calling_code_picker:

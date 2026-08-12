@@ -25,7 +25,7 @@
         android:extractNativeLibs="false"
         android:fullBackupContent="false"
         android:icon="@mipmap/launcher_icon"
-        android:label="AMCOOP">
+        android:label="Sahlashop">
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />

@@ -71,9 +71,15 @@ class LoginController {
   void _redirectAfterLogin(BuildContext context) {
     PendingNavigationService pendingService = PendingNavigationService.instance;
     if (pendingService.hasPending) {
-      final route = pendingService.pending!;
       pendingService.clear();
-      context.router.replace(route);
+      // Pending page already under auth stack — pop auth, don't re-push it.
+      context.router.popUntil((route) {
+        final name = route.settings.name;
+        return name != LoginRoute.name &&
+            name != VerifyRegisterRoute.name &&
+            name != RegisterRoute.name &&
+            name != ActiveAccountRoute.name;
+      });
     } else {
       AutoRouter.of(context).push(HomeRoute(index: 0));
     }
