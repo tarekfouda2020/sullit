@@ -96,7 +96,7 @@ class InstoreCartPageController {
 
     await InstoreCartHelper.instance.addItemToCart(
       sellerId: value.product.sellerId!,
-      sellerName: value.product.shop?.name ?? value.product.shop?.title ?? '',
+      sellerName: value.product.shop?.name ?? "",
       item: InstoreCartItemModel(
         id: value.product.id!,
         variantId: variantId,

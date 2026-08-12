@@ -23,10 +23,10 @@ class ImplInstoreCartRepository extends InstoreCartRepository with ModelToDomain
   }
 
   @override
-  Future<Either<Failure, OrderSummary>> createOrder(
+  Future<Either<Failure, OrderSummaryDomainModel>> createOrder(
     InstoreCreateOrderParams params,
   ) async {
     final result = await _dataSource.createOrder(params);
-    return toDomainResult<OrderSummary, OrderSummaryModel>(result);
+    return toDomainResult<OrderSummaryDomainModel, OrderSummaryModel>(result);
   }
 }

@@ -111,6 +111,8 @@ dependencies:
   app_links: ^6.4.1
   share_plus: ^12.0.1
   collection: ^1.19.1
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
   timeago:
   timezone:
   country_calling_code_picker:

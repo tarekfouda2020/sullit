@@ -10,7 +10,7 @@ abstract class InstoreCartRepository {
     InstoreOrderPreviewParams params,
   );
 
-  Future<Either<Failure, OrderSummary>> createOrder(
+  Future<Either<Failure, OrderSummaryDomainModel>> createOrder(
     InstoreCreateOrderParams params,
   );
 }
