@@ -10,4 +10,12 @@ class BrandDetailsParams {
       required this.refresh});
 
   String get url => "$brandId${paginateParams.paramsToQuery()}";
+
+
+  Map<String, dynamic> toJson() => {
+    ...paginateParams.toJson(),
+    "brand_id" : brandId
+  };
+
+
 }

@@ -123,7 +123,7 @@ class Res {
       "assets/images/order_confirm_image.svg";
   static const String purchasedOrderIcon =
       "assets/images/purchased_order_icon.png";
-  static const String newSplashImage = "assets/images/new_splash_image.png";
+  static const String newSplashImage = "assets/images/new_auth_logo.png";
   static const String newAuthLogo = "assets/images/new_auth_logo.png";
   static const String pointsPromoIcon = "assets/images/points_promo.svg";
   static const String crownHeadIcon = "assets/images/crown_head_icon.svg";

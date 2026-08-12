@@ -71,8 +71,9 @@ class ImplCategoryDataSources extends CategoryDataSources {
   Future<Either<Failure, List<ProductCardModel>>> getBrandProducts(
       BrandDetailsParams params) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.brandDetails + params.url,
+      url: ApiNames.getCategoryProducts,
       requestMethod: RequestMethod.get,
+      requestBody: params.toJson(),
       refresh: params.refresh,
       responseType: ResType.list,
       toJsonFunc: (json) => List<ProductCardModel>.from(

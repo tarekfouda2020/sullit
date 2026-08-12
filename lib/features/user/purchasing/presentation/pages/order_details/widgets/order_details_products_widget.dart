@@ -20,6 +20,7 @@ class OrderDetailsProductsWidget extends StatelessWidget {
           const EdgeInsets.only(left: 19, right: 19, top: 17, bottom: 20).r,
       decoration: const CustomDecoration(),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
@@ -49,7 +50,9 @@ class OrderDetailsProductsWidget extends StatelessWidget {
                   controller.orderDetailsBloc.state.data!.orderDetails[index],
             );
           }),
-          if (!isReturned)
+          if (isReturned || order.isInStore == true)
+            Gaps.empty
+          else
             Padding(
               padding: const EdgeInsets.only(top: 18),
               child: GestureDetector(

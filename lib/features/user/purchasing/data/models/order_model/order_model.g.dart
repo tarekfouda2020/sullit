@@ -97,6 +97,8 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       shop: json['shop'] == null
           ? null
           : ShopCardModel.fromJson(json['shop'] as Map<String, dynamic>),
+      creationMethod: json['creation_method'] as String?,
+      creationMethodLabel: json['creation_method_label'] as String?,
     );
 
 Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
@@ -171,4 +173,6 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'pharmacy_reply': instance.pharmacyReply,
       'branch': instance.branch?.toJson(),
       'shop': instance.shop?.toJson(),
+      'creation_method': instance.creationMethod,
+      'creation_method_label': instance.creationMethodLabel,
     };

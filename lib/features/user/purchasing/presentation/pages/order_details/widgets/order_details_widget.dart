@@ -37,17 +37,18 @@ class OrderDetailsWidget extends StatelessWidget {
           gaps: Gaps.hGap4,
         ),
         Gaps.vGap12,
-        OrderINfoItemWidget(
-          title: tr('address'),
-          describe: order?.shippingAddress ?? "",
-          gaps: Gaps.hGap4,
-          textHeight: 1.2,
-        ),
-        Gaps.vGap12,
+        if(order?.isInStore == false)...[
+          OrderINfoItemWidget(
+            title: tr('address'),
+            describe: order?.shippingAddress ?? "",
+            gaps: Gaps.hGap4,
+            textHeight: 1.2,
+          ),
+          Gaps.vGap12,
+        ],
         OrderINfoItemWidget(
           title: tr('phone'),
-          describe: getIt<Utilities>()
-              .handleFullPhone(context, order?.customerPhone ?? ""),
+          describe: getIt<Utilities>().handleFullPhone(context, order?.customerPhone ?? ""),
           gaps: Gaps.hGap4,
         ),
         Gaps.vGap12,

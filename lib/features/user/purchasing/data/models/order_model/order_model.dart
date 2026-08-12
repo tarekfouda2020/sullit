@@ -91,6 +91,8 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'pharmacy_reply') String? pharmacyReply,
     PharmacyBranchModel? branch,
     ShopCardModel? shop,
+    @JsonKey(name: 'creation_method') String? creationMethod,
+    @JsonKey(name: 'creation_method_label') String? creationMethodLabel,
 
   }) = _OrderModel;
 
@@ -166,6 +168,8 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       pharmacyReply: pharmacyReply,
       branch: branch?.toDomainModel(),
       shop: shop?.toDomainModel(),
+      creationMethod: creationMethod,
+      creationMethodLabel: creationMethodLabel,
     );
   }
 }

@@ -82,6 +82,8 @@ class Orders extends BaseDomainModel {
   String? pharmacyReply;
   PharmacyBranchDomainModel? branch;
   ShopCardDomainModel? shop;
+  String? creationMethod;
+  String? creationMethodLabel;
 
 
   Orders({
@@ -152,10 +154,14 @@ class Orders extends BaseDomainModel {
     this.pharmacyReply,
     this.branch,
     this.shop,
+    this.creationMethod,
+    this.creationMethodLabel,
   });
 
   int totalItemsCount() => orderDetails.fold(
       0, (previousValue, element) => previousValue + element.quantity);
+
+  bool get isInStore => creationMethod == "in_store";
 
   DateTime get getOrderDate =>
       DateTimeHelper.convertToDateTime(strDate: orderDate);

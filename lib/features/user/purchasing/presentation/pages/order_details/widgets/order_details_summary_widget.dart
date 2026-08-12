@@ -13,6 +13,7 @@ class OrderDetailsSummaryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("==>>>>> order is inStore  ${order?.isInStore} =>>>>");
     return Container(
       padding: const EdgeInsetsDirectional.fromSTEB(21, 19, 19, 15),
       decoration: CustomDecoration(
@@ -68,19 +69,21 @@ class OrderDetailsSummaryWidget extends StatelessWidget {
             useDirhamPrice: true,
             onPressInfo: () => controller.showFeesSheet(context),
           ),
+          if(order?.isInStore == false)
           BuildSummaryHeader(
             title: tr('environmentFee'),
             details: order?.environmentFees ?? "0.0",
             useDirhamPrice: true,
             onPressInfo: () => controller.showEnvFeesSheet(context),
           ),
-          if (!isReturned)
-            BuildSummaryHeader(
-              title: tr('shippingFees'),
-              details: order?.shipping ?? '',
-              useDirhamPrice: true,
-              onPressInfo: () => controller.showDeliveryFeesSheet(context),
-            ),
+          if (isReturned || order?.isInStore == true)
+            Gaps.empty
+          else BuildSummaryHeader(
+            title: tr('shippingFees'),
+            details: order?.shipping ?? '',
+            useDirhamPrice: true,
+            onPressInfo: () => controller.showDeliveryFeesSheet(context),
+          ),
           BuildSummaryHeader(
             title: tr('totalVat'),
             details: order?.totalVat.toString() ?? "",
