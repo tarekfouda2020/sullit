@@ -1,7 +1,7 @@
 part of 'widgets_imports.dart';
 
 class PharmacyBranchItemWidget extends StatelessWidget {
-  final PharmacyBranchDomainModel model;
+  final BranchDomainModel model;
   final PharmacyDetailsController controller;
   const PharmacyBranchItemWidget({super.key, required this.model, required this.controller});
 

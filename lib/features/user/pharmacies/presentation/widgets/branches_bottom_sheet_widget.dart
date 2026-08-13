@@ -1,8 +1,8 @@
 part of 'widgets_imports.dart';
 
 class BranchesBottomSheetWidget extends StatelessWidget {
-  final PagingController<int, PharmacyBranchDomainModel> pagingController;
-  final void Function(PharmacyBranchDomainModel model) onSelect;
+  final PagingController<int, BranchDomainModel> pagingController;
+  final void Function(BranchDomainModel model) onSelect;
 
   const BranchesBottomSheetWidget({
     super.key,
@@ -29,10 +29,10 @@ class BranchesBottomSheetWidget extends StatelessWidget {
           Flexible(
             child: CustomRefreshIndicatorWidget(
               onRefresh: () async {},
-              child: PagedListView<int, PharmacyBranchDomainModel>(
+              child: PagedListView<int, BranchDomainModel>(
                 pagingController: pagingController,
                 shrinkWrap: true,
-                builderDelegate: PagedChildBuilderDelegate<PharmacyBranchDomainModel>(
+                builderDelegate: PagedChildBuilderDelegate<BranchDomainModel>(
                   itemBuilder: (_, item, index) {
                     return BranchItemWidget(
                       model: item,

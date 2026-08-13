@@ -12,7 +12,7 @@ class PharmacyShippingDomainModel extends BaseDomainModel {
   String? deliveryMessage;
   int? ownerId;
   DeliveryTypeEnum deliveryType;
-  PharmacyBranchDomainModel? selectedBranch;
+  BranchDomainModel? selectedBranch;
 
   PharmacyShippingDomainModel({
     this.name,

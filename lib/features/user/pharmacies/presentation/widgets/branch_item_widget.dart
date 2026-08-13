@@ -1,7 +1,7 @@
 part of 'widgets_imports.dart';
 
 class BranchItemWidget extends StatelessWidget {
-  final PharmacyBranchDomainModel model;
+  final BranchDomainModel model;
   final VoidCallback onTap;
 
   const BranchItemWidget({super.key, required this.model, required this.onTap});

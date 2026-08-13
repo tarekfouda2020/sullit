@@ -11,7 +11,7 @@ class PharmacyDetailsController {
 
   bool fromCart = false;
 
-  final PagingController<int, PharmacyBranchDomainModel>
+  final PagingController<int, BranchDomainModel>
       branchesPagingController = PagingController(firstPageKey: 1);
 
   final PagingController<int, ShopCategory> categoriesPagingController =
@@ -28,7 +28,7 @@ class PharmacyDetailsController {
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
   final GenericBloc<bool> isLoadingNextPage = GenericBloc<bool>(false);
   final GenericBloc<bool> showAppBarTitle = GenericBloc<bool>(false);
-  final GenericBloc<PharmacyBranchDomainModel?> selectedBranchCubit = GenericBloc<PharmacyBranchDomainModel?>(null);
+  final GenericBloc<BranchDomainModel?> selectedBranchCubit = GenericBloc<BranchDomainModel?>(null);
   GenericBloc<CartDomainModel> cartItemsBloc =
       GenericBloc<CartDomainModel>(CartDomainModel());
 
@@ -202,8 +202,8 @@ class PharmacyDetailsController {
 
   Future<void> getPharmacyBranches(int page, {bool refresh = true}) async {
     PharmacyBranchesParams params = _branchesParams(page, refresh);
-    List<PharmacyBranchDomainModel> data = await GetPharmacyBranches().call(params);
-    PharmacyBranchDomainModel? defaultBranch = data.firstWhereOrNull((branch) => branch.isDefault);
+    List<BranchDomainModel> data = await GetPharmacyBranches().call(params);
+    BranchDomainModel? defaultBranch = data.firstWhereOrNull((branch) => branch.isDefault);
     selectedBranchCubit.onUpdateData(defaultBranch);
     bool isLastPage = data.length < AppConstants.instance.paginationLimit;
     if (page == 1) {
@@ -521,7 +521,7 @@ class PharmacyDetailsController {
 
 
 
-  void selectBranch( BuildContext context,PharmacyBranchDomainModel model){
+  void selectBranch( BuildContext context,BranchDomainModel model){
     if(model.isSelected){
       return ;
     }
@@ -534,7 +534,7 @@ class PharmacyDetailsController {
     showChangeBranchDialog(context,model);
   }
 
-  void showChangeBranchDialog(BuildContext pageContext, PharmacyBranchDomainModel model) {
+  void showChangeBranchDialog(BuildContext pageContext, BranchDomainModel model) {
     showDialog(
       context: pageContext,
       builder: (dialogContext) => ChangeBranchDialogWidget(
@@ -547,9 +547,9 @@ class PharmacyDetailsController {
     );
   }
 
-  void _updateSelectedBranch( BuildContext context,PharmacyBranchDomainModel model){
+  void _updateSelectedBranch( BuildContext context,BranchDomainModel model){
     branchesPagingController.itemList = [...?branchesPagingController.itemList];
-    for(PharmacyBranchDomainModel item in branchesPagingController.itemList ?? <PharmacyBranchDomainModel>[]){
+    for(BranchDomainModel item in branchesPagingController.itemList ?? <BranchDomainModel>[]){
       item.isSelected = false;
     }
     model.isSelected = true;

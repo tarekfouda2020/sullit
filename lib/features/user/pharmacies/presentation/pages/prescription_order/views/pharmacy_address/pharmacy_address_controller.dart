@@ -18,7 +18,7 @@ class PharmacyAddressController {
   final PagingController<int, AddressDomainModel> pagingController =
       PagingController(firstPageKey: 1);
 
-  final PagingController<int, PharmacyBranchDomainModel>
+  final PagingController<int, BranchDomainModel>
       branchesPagingController = PagingController(firstPageKey: 1);
 
   final bool havePrescription;
@@ -253,7 +253,7 @@ class PharmacyAddressController {
   Future<void> getPharmacyBranches(int page, {bool refresh = true}) async {
     PharmacyBranchesParams params = _branchesParams(page, refresh);
     var data = await GetPharmacyBranches().call(params);
-    for (PharmacyBranchDomainModel branch in data) {
+    for (BranchDomainModel branch in data) {
       branch.isSelected = branch.isDefault;
     }
     var isLastPage = data.length < AppConstants.instance.paginationLimit;
@@ -297,19 +297,19 @@ class PharmacyAddressController {
     );
   }
 
-  void selectBranchInView(PharmacyBranchDomainModel branch) {
-    for (PharmacyBranchDomainModel b
-        in _branchesItemList ?? <PharmacyBranchDomainModel>[]) {
+  void selectBranchInView(BranchDomainModel branch) {
+    for (BranchDomainModel b
+        in _branchesItemList ?? <BranchDomainModel>[]) {
       b.isSelected = false;
     }
     branch.isSelected = true;
     branchesPagingController.itemList = [...?_branchesItemList];
   }
 
-  void onSelectBranch(BuildContext context, PharmacyBranchDomainModel branch) {
+  void onSelectBranch(BuildContext context, BranchDomainModel branch) {
     Navigator.pop(context);
-    for (PharmacyBranchDomainModel b
-        in _branchesItemList ?? <PharmacyBranchDomainModel>[]) {
+    for (BranchDomainModel b
+        in _branchesItemList ?? <BranchDomainModel>[]) {
       b.isSelected = false;
     }
     branch.isSelected = true;
@@ -323,10 +323,10 @@ class PharmacyAddressController {
 
   }
 
-  List<PharmacyBranchDomainModel>? get _branchesItemList =>
+  List<BranchDomainModel>? get _branchesItemList =>
       branchesPagingController.itemList;
 
-  PharmacyBranchDomainModel? get selectedBranch {
+  BranchDomainModel? get selectedBranch {
     if ((_branchesItemList ?? []).every((element) => !element.isSelected)) {
       return null;
     } else {

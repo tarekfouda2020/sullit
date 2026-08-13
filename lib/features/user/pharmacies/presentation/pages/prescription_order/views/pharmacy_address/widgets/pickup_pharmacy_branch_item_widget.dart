@@ -1,7 +1,7 @@
 part of 'widgets_imports.dart';
 
 class PickupPharmacyBranchItemWidget extends StatelessWidget {
-  final PharmacyBranchDomainModel model;
+  final BranchDomainModel model;
   final VoidCallback onTap;
 
   const PickupPharmacyBranchItemWidget({

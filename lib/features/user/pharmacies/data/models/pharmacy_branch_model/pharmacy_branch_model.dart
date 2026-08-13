@@ -7,7 +7,7 @@ part 'pharmacy_branch_model.freezed.dart';
 part 'pharmacy_branch_model.g.dart';
 
 @freezed
-class PharmacyBranchModel extends BaseApiModel<PharmacyBranchDomainModel> with _$PharmacyBranchModel {
+class PharmacyBranchModel extends BaseApiModel<BranchDomainModel> with _$PharmacyBranchModel {
   const PharmacyBranchModel._();
    const factory PharmacyBranchModel({
     required int id,
@@ -27,8 +27,8 @@ class PharmacyBranchModel extends BaseApiModel<PharmacyBranchDomainModel> with _
       _$PharmacyBranchModelFromJson(json);
 
   @override
-  PharmacyBranchDomainModel toDomainModel() {
-    return PharmacyBranchDomainModel(
+  BranchDomainModel toDomainModel() {
+    return BranchDomainModel(
       id: id,
       name: name,
       phone: phone,
@@ -45,7 +45,7 @@ class PharmacyBranchModel extends BaseApiModel<PharmacyBranchDomainModel> with _
 }
 
 @freezed
-class PharmacyBranchLocationModel extends BaseApiModel<PharmacyBranchLocationDomainModel>
+class PharmacyBranchLocationModel extends BaseApiModel<BranchLocationDomainModel>
     with _$PharmacyBranchLocationModel {
   const PharmacyBranchLocationModel._();
   const factory PharmacyBranchLocationModel({
@@ -57,7 +57,7 @@ class PharmacyBranchLocationModel extends BaseApiModel<PharmacyBranchLocationDom
       _$PharmacyBranchLocationModelFromJson(json);
 
   @override
-  PharmacyBranchLocationDomainModel toDomainModel() {
-    return PharmacyBranchLocationDomainModel(id: id, name:name);
+  BranchLocationDomainModel toDomainModel() {
+    return BranchLocationDomainModel(id: id, name:name);
   }
 }

@@ -1,11 +1,11 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 
-class PharmacyBranchDomainModel extends BaseDomainModel {
+class BranchDomainModel extends BaseDomainModel {
   final int id;
   final String name;
   final String phone;
-  final PharmacyBranchLocationDomainModel state;
-  final PharmacyBranchLocationDomainModel city;
+  final BranchLocationDomainModel state;
+  final BranchLocationDomainModel city;
   final String address;
   final String mapDescription;
   final String latitude;
@@ -14,7 +14,7 @@ class PharmacyBranchDomainModel extends BaseDomainModel {
   final double? distanceKm;
   bool isSelected;
 
-   PharmacyBranchDomainModel({
+   BranchDomainModel({
     required this.id,
     required this.name,
     required this.phone,
@@ -30,11 +30,11 @@ class PharmacyBranchDomainModel extends BaseDomainModel {
   });
 }
 
-class PharmacyBranchLocationDomainModel extends BaseDomainModel {
+class BranchLocationDomainModel extends BaseDomainModel {
   final int id;
   final String name;
 
-  const PharmacyBranchLocationDomainModel({
+  const BranchLocationDomainModel({
     required this.id,
     required this.name,
   });

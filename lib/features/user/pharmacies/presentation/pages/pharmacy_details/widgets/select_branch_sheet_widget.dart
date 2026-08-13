@@ -19,9 +19,9 @@ class SelectBranchSheetWidget extends StatelessWidget {
           Expanded(
               child: CustomRefreshIndicatorWidget(
               onRefresh: () async => controller.getPharmacyBranches(1) ,
-              child:  PagedListView<int, PharmacyBranchDomainModel>(
+              child:  PagedListView<int, BranchDomainModel>(
                 pagingController: controller.branchesPagingController,
-                builderDelegate: PagedChildBuilderDelegate<PharmacyBranchDomainModel>(
+                builderDelegate: PagedChildBuilderDelegate<BranchDomainModel>(
                   itemBuilder: (_, item, index) {
                     return PharmacyBranchItemWidget(
                       model: item,

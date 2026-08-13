@@ -80,7 +80,7 @@ class Orders extends BaseDomainModel {
   String? requestedBy;
   String? requestedByLabel;
   String? pharmacyReply;
-  PharmacyBranchDomainModel? branch;
+  BranchDomainModel? branch;
   ShopCardDomainModel? shop;
   String? creationMethod;
   String? creationMethodLabel;
