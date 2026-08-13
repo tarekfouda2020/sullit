@@ -59,20 +59,8 @@ class BuildHomeView extends StatelessWidget {
               ),
             ),
             Gaps.vGap8,
-            SizedBox(
-              height: 130,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: 5,
-                separatorBuilder: (_, __) => Gaps.hGap12,
-                itemBuilder: (context, index) {
-                  return const RestaurantCardWidget(
-                    image:
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvOcBZ81pEEUO5vVLZ9qnHxc8eqEmn_9cphmmoCIDbcw&s=10",
-                    name: "Andoks Restaurant",
-                  );
-                },
-              ),
+            RestaurantItemWidget(
+              restaurantModel: homeDomainModel.restaurantShops,
             ),
             // BuildPopularProducts(
             //   mostPopularProducts: homeDomainModel.mostPopular,

@@ -19,6 +19,7 @@ class HomeDomainModel extends BaseDomainModel {
   final List<ShopCardDomainModel> shop;
   final List<ShopCardDomainModel> topSellers;
   final List<ShopCardDomainModel> pharmacyShops;
+  final List<ShopCardDomainModel> restaurantShops;
   // final List<Product> bestSellingProducts;
   // final List<Product> newestProducts;
   // final List<Product> featuredProducts;
@@ -49,6 +50,7 @@ class HomeDomainModel extends BaseDomainModel {
     required this.isAdminDiscount,
     required this.discountRate,
     required this.pharmacyShops,
+    required this.restaurantShops,
   });
 
 }

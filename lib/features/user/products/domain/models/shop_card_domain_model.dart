@@ -76,5 +76,7 @@ class ShopCardDomainModel extends BaseDomainModel {
     };
   }
 
+  dynamic operator [](int other) {}
+
 
 }

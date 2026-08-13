@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:dartz/dartz.dart' as item;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -56,6 +57,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../../category/presentation/pages/brands/widgets/brands_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tab_type.dart';
 import 'package:flutter_tdd/core/extensions/auth_extension.dart';
+
+import '../../../../data/models/shop_card_model/shop_card_model.dart';
 
 part 'build_best_rated.dart';
 
@@ -154,3 +157,4 @@ part 'category_card_widget.dart';
 part 'restaurant_card_widget.dart';
 
 part 'shop_type_short_cuts_widget.dart';
+part 'restaurant_item_widget.dart';

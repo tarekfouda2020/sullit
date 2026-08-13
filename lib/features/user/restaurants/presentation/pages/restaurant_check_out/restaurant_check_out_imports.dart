@@ -33,7 +33,6 @@ import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_payment/w
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_check_out_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_confirm_summary_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_create_order_params.dart';
-import 'package:flutter_tdd/features/user/restaurants/domain/entity/restaurant_create_order_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_confirm_order_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_confirm_order_domain_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/confirm_pharmacy_order.dart';
@@ -47,6 +46,8 @@ import 'package:flutter_tdd/features/user/loyalty_points/domain/models/loyalty_p
 import 'package:flutter_tdd/features/user/loyalty_points/domain/use_case/get_loyalty_points_balance.dart';
 import 'package:flutter_tdd/features/user/restaurants/presentation/pages/restaurant_check_out/widgets/restaurant_check_out_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/get_payment_options.dart';
+
+import '../../../domain/params/restaurant_create_order_params.dart';
 
 
 

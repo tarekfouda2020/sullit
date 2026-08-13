@@ -1,7 +1,9 @@
 part of 'import_widgets.dart';
 
 class RestaurantItemWidget extends StatelessWidget {
-  const RestaurantItemWidget({super.key});
+  final ShopCardDomainModel shop;
+
+  const RestaurantItemWidget({super.key, required this.shop});
 
   @override
   Widget build(BuildContext context) {
@@ -13,43 +15,46 @@ class RestaurantItemWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const SizedBox(
-            height: 110,
-            child: Padding(
-              padding: EdgeInsets.all(18),
-              child: CachedImage(
-                url:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvOcBZ81pEEUO5vVLZ9qnHxc8eqEmn_9cphmmoCIDbcw&s=10",
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+          CachedImage(
+              height: 95,
+              width: double.infinity,
+              url: shop.logo ?? "",
+              fit: BoxFit.cover,
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(14))),
+          Gaps.vGap8,
           Gaps.line(context.colors.borderColor, 1),
           Padding(
-            padding: const EdgeInsets.all(14),
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Andoks Restaurant",
+                  shop.name ?? "",
                   style: AppTextStyle.s18_w600(color: context.colors.black),
                 ),
                 Gaps.vGap11,
                 Row(
+                  spacing: 10,
                   children: [
-                    ...List.generate(
-                      5,
-                      (index) => Icon(
+                    RatingBar.builder(
+                      initialRating: shop.rating.toDouble() ?? 0.0,
+                      ignoreGestures: true,
+                      minRating: 1,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemSize: 15.sp,
+                      unratedColor: context.colors.disableGray,
+                      itemBuilder: (context, _) => Icon(
                         Icons.star,
-                        size: 16,
                         color: context.colors.gold,
                       ),
+                      onRatingUpdate: (rating) {},
                     ),
-                    Gaps.hGap8,
                     Text(
-                      "5/5",
-                      style: AppTextStyle.s14_w400(color: context.colors.black),
-                    ),
+                      "${shop.rating ?? 0}/5",
+                      style: AppTextStyle.s14_w400(color: context.colors.textColor),
+                    )
                   ],
                 ),
               ],
