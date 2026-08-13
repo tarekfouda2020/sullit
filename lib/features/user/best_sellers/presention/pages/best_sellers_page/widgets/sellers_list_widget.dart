@@ -2,6 +2,7 @@ part of 'widgets_imports.dart';
 
 class SellersListWidget extends StatelessWidget {
   final BestSellersPageController controller;
+
   const SellersListWidget({super.key, required this.controller});
 
   @override
@@ -17,8 +18,7 @@ class SellersListWidget extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 12),
               child: SellerCardWidget(
                 shop: item,
-                onTap: () => AutoRouter.of(context).push(
-                    SellerProductsPageRoute(shopId: item.id)),
+                onTap: () => AutoRouter.of(context).push(SellerProductsPageRoute(shopId: item.id)),
               ),
             );
           },

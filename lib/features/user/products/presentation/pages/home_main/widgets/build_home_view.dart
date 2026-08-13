@@ -23,6 +23,10 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap25,
             const AdvantagesWidget(),
             Gaps.vGap20,
+            ShopTypeShortCutsWidget(
+              controller: controller,
+            ),
+            Gaps.vGap20,
             TrackSellerOrderWidget(
               currentOrders: homeDomainModel.currentOrders,
               controller: controller,
@@ -46,6 +50,29 @@ class BuildHomeView extends StatelessWidget {
               onTap: () => controller.onPressSeeOffers(context),
               buttonText: tr("seeOffers", context: context),
               margin: EdgeInsets.zero,
+            ),
+            Gaps.vGap16,
+            BuildHeaderTitle(
+              title: 'Restaurants',
+              onTap: () => AutoRouter.of(context).push(
+                const RestaurantsRoute(),
+              ),
+            ),
+            Gaps.vGap8,
+            SizedBox(
+              height: 130,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                separatorBuilder: (_, __) => Gaps.hGap12,
+                itemBuilder: (context, index) {
+                  return const RestaurantCardWidget(
+                    image:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvOcBZ81pEEUO5vVLZ9qnHxc8eqEmn_9cphmmoCIDbcw&s=10",
+                    name: "Andoks Restaurant",
+                  );
+                },
+              ),
             ),
             // BuildPopularProducts(
             //   mostPopularProducts: homeDomainModel.mostPopular,

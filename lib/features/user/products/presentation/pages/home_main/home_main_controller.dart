@@ -60,8 +60,7 @@ class HomeMainController {
   }
 
   void scrollListener() {
-    if (scrollController.position.pixels ==
-        scrollController.position.maxScrollExtent) {
+    if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
       getProductSections();
     }
   }
@@ -80,8 +79,7 @@ class HomeMainController {
   }
 
   Future<void> getProductSections() async {
-    if (sectionsCubit.state.data.length / 5 == currentPage - 1 ||
-        sectionsCubit.state.data.isEmpty) {
+    if (sectionsCubit.state.data.length / 5 == currentPage - 1 || sectionsCubit.state.data.isEmpty) {
       var result = await GetProductSections().call(currentPage);
       final isLastPage = result.length < pageSize;
       if (currentPage == 1) {
@@ -103,7 +101,6 @@ class HomeMainController {
       _synchronizeFavByProductId(item.id, !item.isWishlist!);
     }
   }
-
 
   void navigateToDeals(BuildContext context) {
     var deal = homeCubit.state.data?.flashSales;
@@ -317,9 +314,7 @@ class HomeMainController {
   }
 
   void onPressSeeOffers(BuildContext context) {
-    context.isShareHolder
-        ? routeToOffersTab(context)
-        : routeToMembershipSubscribe(context);
+    context.isShareHolder ? routeToOffersTab(context) : routeToMembershipSubscribe(context);
   }
 
   void routeToOffersTab(BuildContext context) {
@@ -428,6 +423,8 @@ class HomeMainController {
     ));
   }
 
+
+
   void openCurrentOrderDetails(BuildContext context, OrdersListDomainModel order){
     if(order.isPharmacy){
       AutoRouter.of(context).push(
@@ -463,7 +460,7 @@ class HomeMainController {
   Future<void> onPickPrescriptionFile() async {
     var result = await getIt<Utilities>().getAttachmentFile(
       FileType.custom,
-      allowedExtensions: const ["pdf", 'jpg', 'jpeg', 'png'],
+      allowedExtensions: const ["pdf",'jpg', 'jpeg', 'png'],
     );
     if (result != null) {
       prescriptionFileCubit.onUpdateData(result);
@@ -508,7 +505,8 @@ class HomeMainController {
   }
 
   void onPressContinuePrescription(BuildContext context) {
-    if (prescriptionFileCubit.state.data.path.isEmpty && selectedSavedPrescriptionCubit.state.data == null) {
+    if (prescriptionFileCubit.state.data.path.isEmpty &&
+        selectedSavedPrescriptionCubit.state.data == null) {
       CustomToast.showSimpleToast(
         msg: "Please attach your prescription first",
       );

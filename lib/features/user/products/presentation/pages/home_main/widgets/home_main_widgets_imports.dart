@@ -58,48 +58,99 @@ import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tab_type.dar
 import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 part 'build_best_rated.dart';
+
 part 'build_new_arrivals.dart';
+
 part 'build_banners.dart';
+
 part 'build_custom_timer.dart';
+
 part 'build_best_selling_products.dart';
+
 part 'build_custom_header_title.dart';
+
 part 'build_deals.dart';
+
 part 'build_deals_item.dart';
+
 part 'build_featured_products.dart';
+
 part 'build_header_title.dart';
+
 part 'build_home_main_app_bar.dart';
+
 part 'build_home_new_products.dart';
+
 part 'build_home_swiper.dart';
+
 part 'build_home_view.dart';
+
 part 'build_loading_home_view.dart';
+
 part 'build_popular_item.dart';
+
 part 'build_popular_products.dart';
+
 part 'build_top_brand_item.dart';
+
 part 'build_top_brands.dart';
+
 part 'build_top_categories.dart';
+
 part 'build_top_category_item.dart';
+
 part 'build_header_icon.dart';
+
 part 'build_discount_msg.dart';
+
 part 'advantages_widget.dart';
+
 part 'categories_header_widget.dart';
+
 part 'vip_offers_widget.dart';
+
 part 'deals_count_down_widget.dart';
+
 part 'vip_offers_form_widget.dart';
+
 part 'new_arrival_offers_form_widget.dart';
+
 part 'product_sections_form_widget.dart';
+
 part 'on_sale_offers_form_widget.dart';
+
 part 'best_rated_offers_form_widget.dart';
+
 part 'build_header_title_shimmer_widget.dart';
+
 part 'build_home_main_offers_shimmer_widget.dart';
+
 part 'brands_from_widget.dart';
+
 part 'sellers_section_widget.dart';
+
 part 'track_seller_order_widget.dart';
+
 part 'build_top_sellers.dart';
+
 part 'build_top_sellers_item.dart';
+
 part 'current_order_widget.dart';
+
 part 'pahrmacy_home_section_widget.dart';
+
 part 'pharmacy_advantages_widget.dart';
+
 part 'home_Pharmacies_widget.dart';
+
 part 'attach_prescription_sheet_widget.dart';
+
 part 'saved_prescriptions_bottom_sheet_widget.dart';
+
 part 'saved_prescription_item_widget.dart';
+
+part 'category_card_widget.dart';
+
+part 'restaurant_card_widget.dart';
+
+part 'shop_type_short_cuts_widget.dart';
