@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/variant.dart';
 
 class ProductCard extends BaseDomainModel {
@@ -26,8 +27,9 @@ class ProductCard extends BaseDomainModel {
   final String currencySymbol;
   final Variant? variant;
   final double rating;
+  final List<ProductOptionModel>? productOptions;
   final bool isDigital;
-   bool isWishlist;
+  bool isWishlist;
   final int sellerId;
   final int shopId;
   final String soldByType;
@@ -44,8 +46,7 @@ class ProductCard extends BaseDomainModel {
 
   bool get sameQntInCart => (variant?.currentStock ?? 0) == addedQtyToCart;
 
-  bool showPriceDiscount({bool? showVipDiscount}) =>
-      hasDiscount || showVipDiscount == true;
+  bool showPriceDiscount({bool? showVipDiscount}) => hasDiscount || showVipDiscount == true;
 
   ProductCard({
     required this.id,
@@ -53,6 +54,7 @@ class ProductCard extends BaseDomainModel {
     required this.type,
     required this.typeLabel,
     required this.unit,
+    this.productOptions,
     required this.barcode,
     required this.prescriptionRequired,
     required this.insuranceEligible,
@@ -109,6 +111,7 @@ class ProductCard extends BaseDomainModel {
         'currency_symbol': currencySymbol,
         'variant': variant?.toJson(),
         'rating': rating,
+        'product_options': productOptions,
         'is_digital': isDigital,
         'is_wishlist': isWishlist,
         'seller_id': sellerId,

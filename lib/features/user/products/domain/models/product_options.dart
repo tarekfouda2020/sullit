@@ -1,33 +1,52 @@
-// ignore_for_file: avoid_dynamic_calls
+import 'package:flutter_tdd/features/user/products/domain/models/product_option_value.dart';
+import '../../../../../core/models/domain_model/base_domain_model.dart';
 
-import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+class ProductOptionModel extends BaseDomainModel {
+  final int id;
+  final String name;
+  final String type;
+  final bool isRequired;
+  final int? maxSelect;
+  final int sortOrder;
+  final List<ProductOptionValue> values;
 
-class ProductOptions extends BaseDomainModel {
-  int? attributeId;
-  String? title;
-  List<String>? options;
-  List<String>? selectedAttribute;
-  bool? hasValue;
-
-  ProductOptions({
-    required this.attributeId,
-    required this.title,
-    required this.options,
-    this.selectedAttribute,
-    this.hasValue = false,
+  const ProductOptionModel({
+    required this.id,
+    required this.name,
+    required this.type,
+    required this.isRequired,
+    this.maxSelect,
+    required this.sortOrder,
+    required this.values,
   });
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['attribute_id'] = attributeId;
-    data['title'] = title;
-    data['options'] = options;
-    return data;
+  factory ProductOptionModel.fromJson(Map<String, dynamic> json) {
+    return ProductOptionModel(
+      id: json['id'],
+      name: json['name'],
+      type: json['type'],
+      isRequired: json['is_required'],
+      maxSelect: json['max_select'],
+      sortOrder: json['sort_order'],
+      values: (json['values'] as List)
+          .map(
+            (e) => ProductOptionValue.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+          .toList(),
+    );
   }
 
-  ProductOptions.fromJson(Map<String, dynamic> json) {
-    attributeId = json['attribute_id'];
-    title = json['title'];
-    options = json['options'].cast<String>();
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'type': type,
+      'is_required': isRequired,
+      'max_select': maxSelect,
+      'sort_order': sortOrder,
+      'values': values.map((e) => e.toJson()).toList(),
+    };
   }
 }

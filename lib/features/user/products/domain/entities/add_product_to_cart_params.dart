@@ -1,10 +1,11 @@
+import '../models/product_options.dart';
+
 abstract class BaseAddProductToCartParams {
   int? variantId;
-
   int quantity;
-
   String? macAddress;
   final bool showLoader;
+
   BaseAddProductToCartParams({
     required this.variantId,
     required this.quantity,
@@ -34,7 +35,7 @@ class PharmacyCartParams extends BaseAddProductToCartParams {
   PharmacyCartParams({
     required super.variantId,
     required super.quantity,
-     this.branchId,
+    this.branchId,
     super.macAddress,
     super.showLoader = true,
   });
@@ -42,6 +43,26 @@ class PharmacyCartParams extends BaseAddProductToCartParams {
   @override
   Map<String, dynamic> toJson() => {
         ...super.toJson(),
-        if(branchId!= null) 'branch_id': branchId,
+        if (branchId != null) 'branch_id': branchId,
       };
+}
+
+class RestaurantCartParams extends BaseAddProductToCartParams {
+  final List<ProductOptionModel> productOptions;
+  final int? branchId;
+  RestaurantCartParams({
+    required this.productOptions,
+    required this.branchId,
+    required super.variantId,
+    required super.quantity,
+    super.macAddress,
+    super.showLoader = true,
+  });
+
+  @override
+  Map<String, dynamic> toJson() => {
+    ...super.toJson(),
+    'branch_id': branchId,
+    'product_options': productOptions.map((e) => e.toJson()).toList(),
+  };
 }

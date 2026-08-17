@@ -1,59 +1,64 @@
 part of 'product_details_widgets_imports.dart';
 
 class CustomizeOrderItemWidget extends StatelessWidget {
-  const CustomizeOrderItemWidget({super.key});
+  final ProductOptionModel? optionModel;
+  final ProductDetailsController controller;
+
+  const CustomizeOrderItemWidget({
+    super.key,
+    required this.optionModel,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Padding(
-        padding: Dimens.standardPadding,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Gaps.vGap10,
-            Text(
-              tr('Select Box Size'),
-              style: AppTextStyle.s18_w600(
-                color: context.colors.black,
-              ),
+    return Padding(
+      padding: Dimens.standardPadding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Gaps.vGap10,
+          Text(
+            tr(optionModel?.name ?? ""),
+            style: AppTextStyle.s18_w600(
+              color: context.colors.black,
             ),
-            Gaps.vGap8,
-            ...List.generate(
-              3,
-              (index) => const CustomizeRadioItem(),
-            ),
-            Gaps.vGap16,
-            Text(
-              tr('Customize Your Order'),
-              style: AppTextStyle.s18_w600(
-                color: context.colors.black,
-              ),
-            ),
-            Gaps.vGap8,
-            const CustomizeCheckItemWidget(
-              title: 'Extra Garlic Sauce',
-              price: "+  0.50",
-            ),
-            const CustomizeCheckItemWidget(
-              title: 'Extra Pickles',
-              price: "+  0.30",
-            ),
-            const CustomizeCheckItemWidget(
-              title: 'Extra Garlic Sauce',
-            ),
-            const CustomizeCheckItemWidget(
-              title: 'No Onions',
-            ),
-            const CustomizeCheckItemWidget(
-              title: 'Add Cheese',
-            ),
-            const CustomizeCheckItemWidget(
-              title: 'Make it Spicy',
-            ),
-            Gaps.vGap12,
-          ],
-        ),
+          ),
+          Gaps.vGap8,
+          ...List.generate(
+            optionModel?.values.length ?? 0,
+            (index) {
+              final value = optionModel!.values[index];
+              return BlocBuilder<GenericBloc<List<int>>, GenericState<List<int>>>(
+                bloc: controller.isSelected,
+                builder: (context, state) {
+                  final selectedList = state.data;
+                  final isRadio = optionModel?.type == 'radio';
+                  final itemValue = index + 1;
+                  final isSelectedItem = selectedList.contains(itemValue);
+                  return CustomizeOptionsItem(
+                    valueModel: value,
+                    type: optionModel?.type ?? "",
+                    isSelected: isSelectedItem,
+                    onTap: () {
+                      if (isRadio) {
+                        controller.isSelected.onUpdateData([itemValue]);
+                      } else {
+                        final updatedList = List<int>.from(selectedList);
+                        if (updatedList.contains(itemValue)) {
+                          updatedList.remove(itemValue);
+                        } else {
+                          updatedList.add(itemValue);
+                        }
+                        controller.isSelected.onUpdateData(updatedList);
+                      }
+                    },
+                  );
+                },
+              );
+            },
+          ),
+        ],
       ),
     );
   }

@@ -4,38 +4,33 @@ part of 'product_details_imports.dart';
 class ProductDetailsController implements CartSheetController {
   final GlobalKey<FormState> formKey = GlobalKey();
   final TextEditingController queryController = TextEditingController();
-  final GenericBloc<int> qtyCubit = GenericBloc(0);
-  final GenericBloc<int> isSelected = GenericBloc(0);
+  final GenericBloc<int> qtyCubit = GenericBloc(1);
+  final GenericBloc<List<int>> isSelected = GenericBloc<List<int>>([]);
   final GenericBloc<int> selectedColorCubit = GenericBloc(0);
   final GenericBloc<bool> showAppBarTitleCubit = GenericBloc(false);
   final GenericBloc<bool> showAllDescriptionCubit = GenericBloc(false);
-  final GenericBloc<ProductDetailsDomainModel?> detailsCubit =
-      GenericBloc(null);
+  final GenericBloc<ProductDetailsDomainModel?> detailsCubit = GenericBloc(null);
   final GenericBloc<String> remainingAmountBloc = GenericBloc("0.0");
 
-
-  final GenericBloc<CartDomainModel> _pharmacyCartBloc =
-  GenericBloc(CartDomainModel());
+  final GenericBloc<CartDomainModel> _pharmacyCartBloc = GenericBloc(CartDomainModel());
 
   bool get isPharmProduct => detailsCubit.state.data?.product.isPharmProduct == true;
 
+  bool get isRestaurantProduct => detailsCubit.state.data?.product.type == "restaurant";
 
   CartTypeEnum get getProductType {
-  return  isPharmProduct
-        ? CartTypeEnum.pharmacy
-        : CartTypeEnum.general;
+    return isPharmProduct ? CartTypeEnum.pharmacy : CartTypeEnum.general;
   }
 
   @override
-  GenericBloc<CartDomainModel> get cartItemsBloc => isPharmProduct
-      ? _pharmacyCartBloc
-      :getIt<CartHelper>().cartItemsBloc;
+  GenericBloc<CartDomainModel> get cartItemsBloc =>
+      isPharmProduct ? _pharmacyCartBloc : getIt<CartHelper>().cartItemsBloc;
 
   final ScrollController scrollController = ScrollController();
   late bool isResale;
   late bool isFav;
-   bool fromSellerPage = false;
-   int? branchId;
+  bool fromSellerPage = false;
+  int? branchId;
 
   // late bool isFav;
   @override
@@ -73,8 +68,7 @@ class ProductDetailsController implements CartSheetController {
     var result = await GetProductDetails().call(params);
     if (result != null) {
       !refresh ? result.product.isWishlist = isFav : null;
-      result.product.variants?.sort(
-          (first, second) => second.sortOrder!.compareTo(first.sortOrder!));
+      result.product.variants?.sort((first, second) => second.sortOrder!.compareTo(first.sortOrder!));
       detailsCubit.onUpdateData(result);
       basicImage = detailsCubit.state.data!.product.images!;
       if (refresh) {
@@ -141,8 +135,7 @@ class ProductDetailsController implements CartSheetController {
     getIt<LoadingHelper>().dismissDialog();
   }
 
-  void onSelectAttributes(
-      BuildContext context, List<Variant> variants, int selectedIndex) async {
+  void onSelectAttributes(BuildContext context, List<Variant> variants, int selectedIndex) async {
     getIt<LoadingHelper>().showLoadingDialog();
 
     for (var v in variants) {
@@ -202,9 +195,8 @@ class ProductDetailsController implements CartSheetController {
     bool isFresh = detailsCubit.state.data?.product.isFresh == true;
     if (variantPrice.currentStock! >= 1 || isFresh) {
       int maxQnt = detailsCubit.state.data!.product.maxQnt ?? 0;
-      if (maxQnt == qtyCubit.state.data) {
-        CustomToast.showSimpleToast(
-            msg: 'You can add up to $maxQnt items only');
+      if (maxQnt == qtyCubit.state.data && maxQnt != 0) {
+        CustomToast.showSimpleToast(msg: 'You can add up to $maxQnt items only');
         return;
       }
       if (variantPrice.currentStock! > qtyCubit.state.data || isFresh) {
@@ -214,9 +206,7 @@ class ProductDetailsController implements CartSheetController {
         qtyCubit.onUpdateData(newQty);
         calculateRemainingAmount();
       } else {
-        CustomToast.showSimpleToast(
-            msg:
-                "${tr('only')} ${variantPrice.currentStock} available in stock");
+        CustomToast.showSimpleToast(msg: "${tr('only')} ${variantPrice.currentStock} available in stock");
         return;
       }
     } else {
@@ -270,8 +260,7 @@ class ProductDetailsController implements CartSheetController {
     var cartProductsIds = cartProducts?.map((e) => e.productId).toList();
     var product = detailsCubit.state.data!.product;
     if (cartProductsIds?.contains(product.id) == true) {
-      var cartProduct = cartProducts
-          ?.firstWhere((element) => element.productId == product.id);
+      var cartProduct = cartProducts?.firstWhere((element) => element.productId == product.id);
       product.addedQtyToCart = cartProduct?.quantity;
       qtyCubit.onUpdateData(cartProduct?.quantity ?? 1);
     }
@@ -286,11 +275,9 @@ class ProductDetailsController implements CartSheetController {
     _updateInProductsList(topIds, cartItem, topSelling);
   }
 
-  void _updateInProductsList(List<int> topIds, GeneralCartItem cartItem,
-      List<ProductCard> relatedProducts) {
+  void _updateInProductsList(List<int> topIds, GeneralCartItem cartItem, List<ProductCard> relatedProducts) {
     if (topIds.contains(cartItem.productId)) {
-      var productInTopSelling = relatedProducts
-          .firstWhere((element) => element.id == cartItem.productId);
+      var productInTopSelling = relatedProducts.firstWhere((element) => element.id == cartItem.productId);
       productInTopSelling.addedQtyToCart = 0;
       detailsCubit.onUpdateData(detailsCubit.state.data);
     }
@@ -303,39 +290,59 @@ class ProductDetailsController implements CartSheetController {
   }
 
   void onAddToCart(BuildContext context) {
-   if(isPharmProduct){
-     getIt<CartHelper>().addPharmacyProductToCart(
-       context,
-       qtyCubit.state.data,
-       detailsCubit.state.data?.product.variant?.id,
-       branchId,
-       // onAddCartFunc: () => showCartSuccessDialog(context),
-       onAddCartFunc: () {
-         FacebookEventsHelper.instance.productAddToCart(
-             id: detailsCubit.state.data!.product.id!,
-             price: detailsCubit.state.data!.product.variant?.calculablePrice ??
-                 "");
-         showCartSuccessSheet(context);
-       },
-     );
-   }else{
-     getIt<CartHelper>().addProductToCart(
-       context,
-       qtyCubit.state.data,
-       detailsCubit.state.data?.product.variant?.id,
-       callCartData: true,
-       type: getProductType,
-       // onAddCartFunc: () => showCartSuccessDialog(context),
-       onAddCartFunc: () {
-         FacebookEventsHelper.instance.productAddToCart(
-             id: detailsCubit.state.data!.product.id!,
-             price: detailsCubit.state.data!.product.variant?.calculablePrice ??
-                 "");
-         showCartSuccessSheet(context);
-       },
-     );
-   }
+    if (isRestaurantProduct) {
+      onRestaurantToCart(context);
+    } else if (isPharmProduct) {
+      getIt<CartHelper>().addPharmacyProductToCart(
+        context,
+        qtyCubit.state.data,
+        detailsCubit.state.data?.product.variant?.id,
+        branchId,
+        // onAddCartFunc: () => showCartSuccessDialog(context),
+        onAddCartFunc: () {
+          FacebookEventsHelper.instance.productAddToCart(
+              id: detailsCubit.state.data!.product.id!,
+              price: detailsCubit.state.data!.product.variant?.calculablePrice ?? "");
+          showCartSuccessSheet(context);
+        },
+      );
+    } else {
+      getIt<CartHelper>().addProductToCart(
+        context,
+        qtyCubit.state.data,
+        detailsCubit.state.data?.product.variant?.id,
+        callCartData: true,
+        type: getProductType,
+        // onAddCartFunc: () => showCartSuccessDialog(context),
+        onAddCartFunc: () {
+          FacebookEventsHelper.instance.productAddToCart(
+              id: detailsCubit.state.data!.product.id!,
+              price: detailsCubit.state.data!.product.variant?.calculablePrice ?? "");
+          showCartSuccessSheet(context);
+        },
+      );
+    }
+  }
 
+  void onRestaurantToCart(BuildContext context) async {
+    final product = detailsCubit.state.data!.product;
+
+    final params = RestaurantCartParams(
+      branchId: branchId,
+      variantId: product.variant?.id,
+      quantity: qtyCubit.state.data,
+      productOptions: product.productOptions ?? [],
+    );
+
+    final result = await AddProductToCart().call(params);
+
+    if (result.isNotEmpty) {
+      FacebookEventsHelper.instance.productAddToCart(
+        id: product.id!,
+        price: product.variant?.calculablePrice ?? "",
+      );
+      showCartSuccessSheet(context);
+    }
   }
 
   @override
@@ -344,7 +351,7 @@ class ProductDetailsController implements CartSheetController {
       if (isPharmProduct) {
         _pharmacyCartBloc.onUpdateData(_filterByBranch(value));
         calculateRemainingAmount();
-      }else{
+      } else {
         if (value.items!.isNotEmpty) {
           _updateCartCountFromCart(value);
         } else {
@@ -357,9 +364,7 @@ class ProductDetailsController implements CartSheetController {
 
   CartDomainModel _filterByBranch(CartDomainModel cart) {
     if (branchId == null) return cart;
-    final filtered = cart.pharmacyItems
-        ?.where((e) => e.branchId == branchId)
-        .toList();
+    final filtered = cart.pharmacyItems?.where((e) => e.branchId == branchId).toList();
     return CartDomainModel(
       items: cart.items,
       pharmacyItems: filtered,
@@ -381,10 +386,8 @@ class ProductDetailsController implements CartSheetController {
     );
   }
 
-  Future<bool> onIncreaseCartQnt(
-      BuildContext context, GeneralCartItem cartItem, int newQty) async {
-    final success =
-        await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+  Future<bool> onIncreaseCartQnt(BuildContext context, GeneralCartItem cartItem, int newQty) async {
+    final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
     if (success != null) {
       cartItem.quantity = newQty;
       cartItemsBloc.onUpdateData(success);
@@ -395,8 +398,8 @@ class ProductDetailsController implements CartSheetController {
   }
 
   @override
-  Future<void> onIncreaseCart(BuildContext context, GeneralCartItem cartItem,
-      GenericBloc<int> qntCubit, String value) async {
+  Future<void> onIncreaseCart(
+      BuildContext context, GeneralCartItem cartItem, GenericBloc<int> qntCubit, String value) async {
     if (qntCubit.state.data < cartItem.stockQty) {
       var newQty = qntCubit.state.data + 1;
       qntCubit.onUpdateData(newQty);
@@ -416,15 +419,13 @@ class ProductDetailsController implements CartSheetController {
     }
   }
 
-  Future<bool?> onDecreaseCartQnt(
-      BuildContext context, GeneralCartItem cartItem, int newQty) async {
+  Future<bool?> onDecreaseCartQnt(BuildContext context, GeneralCartItem cartItem, int newQty) async {
     if (newQty == 1) {
       deleteItemFromCart(context, cartItem);
       return null;
     }
     if (cartItem.quantity > 1) {
-      final success =
-          await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+      final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
       if (success != null) {
         cartItem.quantity = newQty;
         cartItemsBloc.onUpdateData(success);
@@ -438,8 +439,8 @@ class ProductDetailsController implements CartSheetController {
   }
 
   @override
-  Future<void> onDecreaseCart(BuildContext context, GeneralCartItem cartItem,
-      GenericBloc<int> qntCubit, String value) async {
+  Future<void> onDecreaseCart(
+      BuildContext context, GeneralCartItem cartItem, GenericBloc<int> qntCubit, String value) async {
     if (qntCubit.state.data > 1) {
       var newQty = qntCubit.state.data - 1;
       qntCubit.onUpdateData(newQty);
@@ -458,22 +459,19 @@ class ProductDetailsController implements CartSheetController {
   }
 
   @override
-  Future<void> deleteItemFromCart(
-      BuildContext context, GeneralCartItem cartItem) async {
+  Future<void> deleteItemFromCart(BuildContext context, GeneralCartItem cartItem) async {
     getIt<LoadingHelper>().showLoadingDialog();
     var data = await getIt<CartHelper>().deleteItemFromCart(context, cartItem);
     if (data) {
       getIt<LoadingHelper>().dismissDialog();
-      var newSubTotal =
-          cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
+      var newSubTotal = cartItemsBloc.state.data.calculableTotal! - cartItem.calculableTotal;
       cartItemsBloc.state.data.calculableTotal = newSubTotal;
       updateTheSameItemInTopAndRelated(cartItem);
       updateTheSameProduct(cartItem, isDelete: true);
       cartItemsBloc.state.data.items!.remove(cartItem);
       cartItemsBloc.onUpdateData(cartItemsBloc.state.data);
       _updateCartCountFromCart(cartItemsBloc.state.data);
-      CustomToast.showSimpleToast(
-          msg: tr('itemDeleted'), type: ToastType.success);
+      CustomToast.showSimpleToast(msg: tr('itemDeleted'), type: ToastType.success);
       if ((cartItemsBloc.state.data.items ?? <GeneralCartItem>[]).isEmpty) {
         Navigator.pop(context);
       }
@@ -484,27 +482,52 @@ class ProductDetailsController implements CartSheetController {
   }
 
   void showCartSuccessSheet(BuildContext context) {
-    if(isPharmProduct){
-      getIt<CartHelper>().getCartItems(refresh: true, type: CartTypeEnum.pharmacy);
-    }else{
-      getIt<CartHelper>().getCartItems(refresh: true, type: CartTypeEnum.general);
+    final cartHelper = getIt<CartHelper>();
+
+    if (isRestaurantProduct) {
+      cartHelper.getCartItems(
+        refresh: true,
+        type: CartTypeEnum.restaurant,
+      );
+    } else if (isPharmProduct) {
+      cartHelper.getCartItems(
+        refresh: true,
+        type: CartTypeEnum.pharmacy,
+      );
+    } else {
+      cartHelper.getCartItems(
+        refresh: true,
+        type: CartTypeEnum.general,
+      );
     }
-    getIt<CartHelper>().showCartSuccessSheet(
-        context,
-        controller: this,
-      onPressCheck: isPharmProduct
+
+    cartHelper.showCartSuccessSheet(
+      context,
+      controller: this,
+      onPressCheck: isRestaurantProduct
           ? () {
-          Navigator.pop(context);
-          AutoRouter.of(context).pop( _pharmacyCartBloc);
-          AutoRouter.of(context).push(PharmacyCartRoute(
-              fromPharmacyDetails: true,
-            pharmacyId: detailsCubit.state.data?.product.shop?.id
-          ));
+        Navigator.pop(context);
+
+        AutoRouter.of(context).push(
+           RestaurantCartRoute(),
+        );
       }
-          : null
+          : isPharmProduct
+          ? () {
+        Navigator.pop(context);
+
+        AutoRouter.of(context).pop(_pharmacyCartBloc);
+
+        AutoRouter.of(context).push(
+          PharmacyCartRoute(
+            fromPharmacyDetails: true,
+            pharmacyId: detailsCubit.state.data?.product.shop?.id,
+          ),
+        );
+      }
+          : null,
     );
   }
-
   @override
   Future<void> refreshProductDetails(BuildContext context) async {
     await getProductDetails(context, productId, resetQty: false);
@@ -542,16 +565,14 @@ class ProductDetailsController implements CartSheetController {
   VariantPriceParams _variantPriceParams() {
     int? resellerId = detailsCubit.state.data!.product.resellerId;
     return VariantPriceParams(
-      id: detailsCubit.state.data!.product.id!,
-      resellerId: isResale ? resellerId : null,
-      variants: selectedVariants.join(','),
-      branchId: branchId
-    );
+        id: detailsCubit.state.data!.product.id!,
+        resellerId: isResale ? resellerId : null,
+        variants: selectedVariants.join(','),
+        branchId: branchId);
   }
 
   void calculateRemainingAmount() {
-    double cartSubTotal =
-        double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
+    double cartSubTotal = double.parse(cartItemsBloc.state.data.subTotal ?? "0.0");
     double minAmount = cartItemsBloc.state.data.minimumAmount ?? 0.0;
 
     double currentItemPriceInCart = 0.0;
@@ -567,34 +588,26 @@ class ProductDetailsController implements CartSheetController {
       currentItemPriceInCart = 0.0;
     }
 
-    double currentLocalPrice = double.parse(
-        detailsCubit.state.data?.product.variant?.calculablePrice ?? "0.0");
+    double currentLocalPrice = double.parse(detailsCubit.state.data?.product.variant?.calculablePrice ?? "0.0");
 
-    double effectiveTotal =
-        (cartSubTotal - currentItemPriceInCart) + currentLocalPrice;
+    double effectiveTotal = (cartSubTotal - currentItemPriceInCart) + currentLocalPrice;
     double remain = minAmount - effectiveTotal;
 
-    remainingAmountBloc
-        .onUpdateData((remain > 0 ? remain : 0.0).toStringAsFixed(2));
+    remainingAmountBloc.onUpdateData((remain > 0 ? remain : 0.0).toStringAsFixed(2));
   }
 
   Future<void> routeToSellerPage(BuildContext context, int id) async {
-    if(fromSellerPage){
+    if (fromSellerPage) {
       AutoRouter.of(context).pop(true);
-    }else{
-      if(isPharmProduct){
-        await AutoRouter.of(context).push(
-            PharmacyCategoriesRoute(pharmacyId:  id));
+    } else {
+      if (isPharmProduct) {
+        await AutoRouter.of(context).push(PharmacyCategoriesRoute(pharmacyId: id));
         calculateRemainingAmount();
-      }else{
-        await AutoRouter.of(context).push(
-            SellerProductsPageRoute(shopId: id));
+      } else {
+        await AutoRouter.of(context).push(SellerProductsPageRoute(shopId: id));
         calculateRemainingAmount();
       }
     }
-
-
-
   }
 
   double remainToGetMinAmount() {
@@ -619,8 +632,7 @@ class ProductDetailsController implements CartSheetController {
 
   void onShareProduct(BuildContext context) {
     final link = getIt<DeepLinkService>().generateProductLink(productId);
-    final productName =
-        detailsCubit.state.data?.product.name ?? "Sahlashop Product";
+    final productName = detailsCubit.state.data?.product.name ?? "Sahlashop Product";
     FacebookEventsHelper.instance.productShareEvent(
       productId: productId,
       productName: productName,
@@ -631,8 +643,9 @@ class ProductDetailsController implements CartSheetController {
     );
   }
 
-
-
-
-
+  double getTotalPrice() {
+    var price = double.parse(detailsCubit.state.data?.product.priceHighLowDiscount ?? "0.0");
+    var qnt = qtyCubit.state.data;
+    return qnt * price;
+  }
 }

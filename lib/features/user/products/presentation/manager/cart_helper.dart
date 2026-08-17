@@ -37,6 +37,8 @@ import 'package:flutter_tdd/features/user/products/presentation/widgets/build_ad
 import 'package:injectable/injectable.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../domain/models/product_attributes_options.dart';
+
 @lazySingleton
 class CartHelper {
   List<String> selectedVariants = [];
@@ -47,7 +49,7 @@ class CartHelper {
   void onSelectAttributes(
       BuildContext context,
       GenericBloc<Product?> productCubit,
-      List<ProductOptions> model,
+      List<ProductAttributesOptions> model,
       int index,
       int position) {
     List<String> selected = [];

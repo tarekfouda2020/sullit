@@ -26,7 +26,18 @@ class BuildDetailsView extends StatelessWidget {
               controller: controller,
               productModel: detailsModel.product,
             ),
-            const CustomizeOrderItemWidget(),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  final options = detailsModel.product.productOptions ?? [];
+                  return CustomizeOrderItemWidget(
+                    optionModel: options[index],
+                    controller: controller,
+                  );
+                },
+                childCount: detailsModel.product.productOptions?.length,
+              ),
+            ),
             // SliverToBoxAdapter(
             //   child: Gaps.vGap20,
             // ),

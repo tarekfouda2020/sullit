@@ -27,6 +27,9 @@ _$_ProductCardModel _$$_ProductCardModelFromJson(Map<String, dynamic> json) =>
       hasShareholderDiscount: json['has_shareholder_discount'] as bool,
       hasDiscount: json['has_discount'] as bool,
       discount: json['discount'] as String,
+      productOptions: (json['product_options'] as List<dynamic>?)
+          ?.map((e) => ProductOption.fromJson(e as Map<String, dynamic>))
+          .toList(),
       minQty: (json['min_qty'] as num).toInt(),
       maxQty: (json['max_qty'] as num?)?.toInt(),
       currencySymbol: json['currency_symbol'] as String,
@@ -65,6 +68,8 @@ Map<String, dynamic> _$$_ProductCardModelToJson(_$_ProductCardModel instance) =>
       'has_shareholder_discount': instance.hasShareholderDiscount,
       'has_discount': instance.hasDiscount,
       'discount': instance.discount,
+      'product_options':
+          instance.productOptions?.map((e) => e.toJson()).toList(),
       'min_qty': instance.minQty,
       'max_qty': instance.maxQty,
       'currency_symbol': instance.currencySymbol,

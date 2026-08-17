@@ -69,7 +69,8 @@ class BuildProductButtons extends StatelessWidget {
                           builder: (context, state) {
                             return DirhamPrice(
                               amount:
-                                  "${detailsModel.product.variant?.calculablePrice}",
+                                  "${controller.getTotalPrice()}",
+                                  // "${detailsModel.product.variant?.calculablePrice}",
                               currencyOffset: -0.5,
                               currencyStyle: AppTextStyle.s18_w400(
                                 color: context.colors.primary,

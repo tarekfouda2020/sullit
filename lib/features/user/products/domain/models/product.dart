@@ -7,6 +7,7 @@ import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/color_domain_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_attributes_options.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/reviews.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
@@ -15,6 +16,8 @@ import 'package:flutter_tdd/features/user/products/domain/models/shop_card_domai
 import 'package:flutter_tdd/features/user/products/domain/models/variant.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/normal_product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/pharmacy_product.dart';
+
+import '../../data/models/product_options/product_options.dart';
 
 abstract class Product extends BaseDomainModel {
   int? id;
@@ -33,7 +36,7 @@ abstract class Product extends BaseDomainModel {
   String? discount;
   String? strokedPrice;
   String? mainPrice;
-  List<ProductOptions>? choiceOptions;
+  List<ProductAttributesOptions>? choiceOptions;
   List<ColorDomainModel>? colors;
   int? minQty;
   String? currencySymbol;
@@ -67,63 +70,66 @@ abstract class Product extends BaseDomainModel {
   bool? insuranceEligible;
   int? addedQtyToCart;
   int? maxQnt;
+  List<ProductOptionModel>? productOptions;
 
-
-  Product(
-      {this.id,
-      this.name,
-      this.images,
-      this.type,
-      this.thumbnailImage,
-      this.isMultiple,
-      this.prescriptionRequired,
-      this.insuranceEligible,
-      this.priceHighLowDiscount,
-      this.priceHighLow,
-      this.hasDiscount,
-      this.discount,
-      this.strokedPrice,
-      this.variant,
-      this.variants,
-      this.mainPrice,
-      this.choiceOptions,
-      this.colors,
-      this.minQty,
-      this.currencySymbol,
-      this.tags,
-      this.rating,
-      this.sales,
-      this.isDigital,
-      this.isWishlist,
-      this.sellerId,
-      this.countReviews,
-      this.soldByType,
-      this.soldByName,
-      this.shop,
-      this.reviews,
-      this.isResale,
-      this.resellerId,
-      this.category,
-      this.brand,
-      this.description,
-      this.videoProvider,
-      this.videoLink,
-      this.categoryName,
-      this.brandName,
-      this.hasVipOffer,
-      this.unit,
-      this.isFresh,
-      this.loyaltyPoints,
-      this.hasShareholderDiscount,
-      this.showProductCounter = false,
-      this.addedQtyToCart = 0,
-      this.hasSpecialLoyaltyPoints,
-      this.maxQnt,
-      this.isAddedTCompare = false});
+  Product({this.id,
+    this.name,
+    this.images,
+    this.type,
+    this.thumbnailImage,
+    this.isMultiple,
+    this.prescriptionRequired,
+    this.insuranceEligible,
+    this.priceHighLowDiscount,
+    this.priceHighLow,
+    this.hasDiscount,
+    this.discount,
+    this.strokedPrice,
+    this.variant,
+    this.variants,
+    this.mainPrice,
+    this.choiceOptions,
+    this.colors,
+    this.minQty,
+    this.currencySymbol,
+    this.tags,
+    this.rating,
+    this.sales,
+    this.isDigital,
+    this.isWishlist,
+    this.sellerId,
+    this.countReviews,
+    this.soldByType,
+    this.soldByName,
+    this.shop,
+    this.reviews,
+    this.isResale,
+    this.resellerId,
+    this.category,
+    this.brand,
+    this.description,
+    this.videoProvider,
+    this.videoLink,
+    this.categoryName,
+    this.brandName,
+    this.hasVipOffer,
+    this.unit,
+    this.isFresh,
+    this.loyaltyPoints,
+    this.hasShareholderDiscount,
+    this.showProductCounter = false,
+    this.addedQtyToCart = 0,
+    this.hasSpecialLoyaltyPoints,
+    this.maxQnt,
+    this.productOptions,
+    this.isAddedTCompare = false});
 
   Future<void> isAddedToCompare() async {
     var items = await getIt<ComparedProductsDb>().getItems();
-    if (items.where((e) => e.productId == id).toList().isNotEmpty) {
+    if (items
+        .where((e) => e.productId == id)
+        .toList()
+        .isNotEmpty) {
       isAddedTCompare = true;
     }
   }
@@ -136,6 +142,7 @@ abstract class Product extends BaseDomainModel {
   bool get isOutOfStock => (variant?.currentStock ?? 0) == 0 && !isFreshProduct;
 
   bool get isFreshProduct => isFresh == true;
+
   // bool get isOutOfStock => (variant?.currentStock ?? 0) > 0 ;
 
   bool get sameQntInCart => (variant?.currentStock ?? 0) == addedQtyToCart;
@@ -166,6 +173,13 @@ abstract class Product extends BaseDomainModel {
     variants = json['variants'] != null
         ? List<Variant>.from(json['variants'].map((x) => Variant.fromJson(x)))
         : null;
+    if (json['product_options'] != null) {
+      productOptions = <ProductOptionModel>[];
+
+      json['product_options'].forEach((v) {
+        productOptions!.add(ProductOptionModel.fromJson(v));
+      });
+    }
     thumbnailImage = json['thumbnail_image'];
     images = json['images'].cast<String>();
     isMultiple = json['is_multiple'];
@@ -176,9 +190,9 @@ abstract class Product extends BaseDomainModel {
     hasDiscount = json['has_discount'];
     discount = json['discount'];
     if (json['choice_options'] != null) {
-      choiceOptions = <ProductOptions>[];
+      choiceOptions = <ProductAttributesOptions>[];
       json['choice_options'].forEach((v) {
-        choiceOptions!.add(ProductOptions.fromJson(v));
+        choiceOptions!.add(ProductAttributesOptions.fromJson(v));
       });
     }
     if (json['colors'] != null) {
@@ -190,7 +204,7 @@ abstract class Product extends BaseDomainModel {
     minQty = json['min_qty'];
     currencySymbol = json['currency_symbol'];
     variant =
-        json['variant'] != null ? Variant.fromJson(json['variant']) : null;
+    json['variant'] != null ? Variant.fromJson(json['variant']) : null;
     tags = json['tags'].cast<String>();
     rating = json['rating'];
     sales = json['sales'];
@@ -248,6 +262,10 @@ abstract class Product extends BaseDomainModel {
     data['variants'] = variants?.map((e) => e.toJson()).toList();
     if (shop != null) {
       data['shop'] = shop!.toJson();
+    }
+    if (productOptions != null) {
+      data['product_options'] =
+          productOptions!.map((v) => v.toJson()).toList();
     }
     data['is_resale'] = isResale;
     data['reseller_id'] = resellerId;

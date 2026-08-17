@@ -59,6 +59,9 @@ import 'package:flutter_tdd/res.dart';
 
 import '../../../../../../../core/theme/themes/app_theme.dart';
 import '../../../../../../../core/widgets/custom_safe_are.dart';
+import '../../../../data/models/product_options/product_options.dart';
+import '../../../../domain/models/product_option_value.dart';
+import '../../../../domain/models/product_options.dart';
 import '../product_details_imports.dart';
 
 part 'build_attribute_items.dart';
@@ -128,6 +131,6 @@ part 'points_promo_sheet_widget.dart';
 part 'required_prescription_note_widget.dart';
 
 part 'customize_order_item_widget.dart';
-part 'customize_radio_item.dart';
+part 'customize_options_item.dart';
 
 part 'customize_check_item_widget.dart';
