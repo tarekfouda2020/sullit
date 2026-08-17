@@ -26,7 +26,9 @@ class SellerDetailsAppBar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(
           padding: EdgeInsets.only(
-              top: MediaQuery.paddingOf(context).top + kToolbarHeight,
+              top: MediaQuery
+                  .paddingOf(context)
+                  .top + kToolbarHeight,
               left: 16,
               right: 16),
           child: BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
@@ -35,9 +37,9 @@ class SellerDetailsAppBar extends StatelessWidget {
               var shopModel = state.data;
               return shopModel != null
                   ? SellerCardWidget(
-                      shop: shopModel.toShopCardDomainModel(),
-                      openImage: true,
-                    )
+                shop: shopModel.toShopCardDomainModel(),
+                openImage: true,
+              )
                   : const SellerCardShimmerWidget();
             },
           ),
@@ -50,13 +52,29 @@ class SellerDetailsAppBar extends StatelessWidget {
           child: Column(
             children: [
               Gaps.vGap10,
-              DefaultButton(
-                title: tr('inStoreShopping'),
-                margin: const EdgeInsets.symmetric(horizontal: 18),
-                width: 230,
-                fontSize: 14,
-                onTap: () =>
-                    controller.routeToInstoreShopping(context),
+              BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
+                bloc: controller.shopCubit,
+                builder: (context, state) {
+                  return Visibility(
+                      visible: state.data != null,
+                      replacement: BuildShimmerItem(
+                        child: Container(
+                          width: 230,
+                          height: 52,
+                          decoration: BoxDecoration(
+                            borderRadius: Dimens.borderRadius40PX
+                          ),
+                        ),
+                      ),
+                      child: DefaultButton(
+                        title: tr('inStoreShopping'),
+                        margin: const EdgeInsets.symmetric(horizontal: 18),
+                        width: 230,
+                        fontSize: 14,
+                        onTap: () =>
+                            controller.routeToInstoreShopping(context),
+                      ));
+                },
               ),
               Gaps.vGap10,
               SellerPageProductsSectionWidget(
@@ -71,8 +89,8 @@ class SellerDetailsAppBar extends StatelessWidget {
                   }
                   return Visibility(
                     visible: controller
-                            .categoriesPagingController.itemList
-                            ?.isNotEmpty ==
+                        .categoriesPagingController.itemList
+                        ?.isNotEmpty ==
                         true,
                     child: SellerPageCategoriesWidget(
                       controller: controller,

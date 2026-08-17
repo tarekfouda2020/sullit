@@ -23,7 +23,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     required int id,
     required String code,
     @JsonKey(name: 'order_type') required String orderType,
-    @JsonKey(name: 'bag_count') required int bagCount,
+    @JsonKey(name: 'bag_count')  int? bagCount,
     @JsonKey(name: 'available_return_order') required bool availableReturnOrder,
     @JsonKey(name: 'show_button_pay') required bool showButtonPay,
     required String subtotal,
@@ -104,7 +104,7 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     return Orders(
       id: id,
       code: code,
-      bagCount: bagCount,
+      bagCount: bagCount ?? 0,
       orderType: orderType,
       availableReturnOrder: availableReturnOrder,
       showButtonPay: showButtonPay,

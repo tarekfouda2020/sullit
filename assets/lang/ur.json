@@ -887,6 +887,10 @@
   "search_in_sellers": "بیچنے والوں میں تلاش کریں...",
   "select_your_choice": "اپنا انتخاب کریں",
   "see_more": "مزید دیکھیں",
-  "see_less": "کم دیکھیں"
-
+  "see_less": "کم دیکھیں",
+  "instoreCart": "ان اسٹور ٹوکری",
+  "productScannedWithCode": "مصنوع کوڈ {code} کے ساتھ اسکین ہو گئی",
+  "wantToDeleteCartItem": "کیا آپ اس آئٹم کو ٹوکری سے حذف کرنا چاہتے ہیں؟",
+  "clearAll": "سب صاف کریں",
+  "keep_shopping": "خریداری جاری رکھیں"
 }

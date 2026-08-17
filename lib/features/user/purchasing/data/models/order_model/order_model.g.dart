@@ -11,7 +11,7 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       code: json['code'] as String,
       orderType: json['order_type'] as String,
-      bagCount: (json['bag_count'] as num).toInt(),
+      bagCount: (json['bag_count'] as num?)?.toInt(),
       availableReturnOrder: json['available_return_order'] as bool,
       showButtonPay: json['show_button_pay'] as bool,
       subtotal: json['subtotal'] as String,

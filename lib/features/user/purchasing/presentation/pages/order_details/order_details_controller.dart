@@ -20,8 +20,6 @@ class OrderDetailsPageController {
     getOrderFees(fromRemote: false);
     getOrderFees();
     getLoyaltyPointsBalance();
-    fetchPaymentOptions(refresh: false);
-    fetchPaymentOptions();
   }
 
   void reviewSheet(BuildContext context, OrderDetails? model) {
@@ -70,6 +68,8 @@ class OrderDetailsPageController {
     await GetOrderDetails()(params).then((value) {
       if (value != null) {
         orderDetailsBloc.onUpdateData(value);
+        fetchPaymentOptions(refresh: false);
+        fetchPaymentOptions();
       }
     });
   }
@@ -224,8 +224,6 @@ class OrderDetailsPageController {
   }
 
   Future<void> fetchPaymentOptions({bool refresh = true}) async {
-    var data = orderDetailsBloc.state.data;
-    if (data == null) return;
     if (showChangePayOption()) {
       var result = await GetPaymentOptions().call(refresh);
       if (result.isNotEmpty && orderDetailsBloc.state.data != null) {
@@ -236,6 +234,7 @@ class OrderDetailsPageController {
       }
       paymentOptionsBloc.onUpdateData(result);
     }
+
   }
 
   void changePaymentMethod(BuildContext context) {
