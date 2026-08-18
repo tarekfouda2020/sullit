@@ -907,7 +907,10 @@
   "grandTotalShort": "المبلغ الإجمالي",
   "noDataFoundForOrder": "لم يتم العثور على بيانات لهذا الطلب!",
   "search_in_sellers": "ابحث في البائعين...",
-  "select_your_choice": "حدد خيارك"
-
-
+  "select_your_choice": "حدد خيارك",
+  "instoreCart": "سلة داخل المتجر",
+  "inStoreShopping": "تسوق داخل التجر",
+  "productScannedWithCode": "تم مسح المنتج بالرمز {code}",
+  "wantToDeleteCartItem": "هل تريد حذف هذا المنتج من السلة؟",
+  "clearAll": "مسح الكل"
 }

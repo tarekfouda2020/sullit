@@ -25,7 +25,7 @@ mixin _$OrderModel {
   @JsonKey(name: 'order_type')
   String get orderType => throw _privateConstructorUsedError;
   @JsonKey(name: 'bag_count')
-  int get bagCount => throw _privateConstructorUsedError;
+  int? get bagCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'available_return_order')
   bool get availableReturnOrder => throw _privateConstructorUsedError;
   @JsonKey(name: 'show_button_pay')
@@ -171,7 +171,7 @@ abstract class $OrderModelCopyWith<$Res> {
       {int id,
       String code,
       @JsonKey(name: 'order_type') String orderType,
-      @JsonKey(name: 'bag_count') int bagCount,
+      @JsonKey(name: 'bag_count') int? bagCount,
       @JsonKey(name: 'available_return_order') bool availableReturnOrder,
       @JsonKey(name: 'show_button_pay') bool showButtonPay,
       String subtotal,
@@ -265,7 +265,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? id = null,
     Object? code = null,
     Object? orderType = null,
-    Object? bagCount = null,
+    Object? bagCount = freezed,
     Object? availableReturnOrder = null,
     Object? showButtonPay = null,
     Object? subtotal = null,
@@ -344,10 +344,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.orderType
           : orderType // ignore: cast_nullable_to_non_nullable
               as String,
-      bagCount: null == bagCount
+      bagCount: freezed == bagCount
           ? _value.bagCount
           : bagCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       availableReturnOrder: null == availableReturnOrder
           ? _value.availableReturnOrder
           : availableReturnOrder // ignore: cast_nullable_to_non_nullable
@@ -669,7 +669,7 @@ abstract class _$$_OrderModelCopyWith<$Res>
       {int id,
       String code,
       @JsonKey(name: 'order_type') String orderType,
-      @JsonKey(name: 'bag_count') int bagCount,
+      @JsonKey(name: 'bag_count') int? bagCount,
       @JsonKey(name: 'available_return_order') bool availableReturnOrder,
       @JsonKey(name: 'show_button_pay') bool showButtonPay,
       String subtotal,
@@ -765,7 +765,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? id = null,
     Object? code = null,
     Object? orderType = null,
-    Object? bagCount = null,
+    Object? bagCount = freezed,
     Object? availableReturnOrder = null,
     Object? showButtonPay = null,
     Object? subtotal = null,
@@ -844,10 +844,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.orderType
           : orderType // ignore: cast_nullable_to_non_nullable
               as String,
-      bagCount: null == bagCount
+      bagCount: freezed == bagCount
           ? _value.bagCount
           : bagCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       availableReturnOrder: null == availableReturnOrder
           ? _value.availableReturnOrder
           : availableReturnOrder // ignore: cast_nullable_to_non_nullable
@@ -1116,7 +1116,7 @@ class _$_OrderModel extends _OrderModel {
       {required this.id,
       required this.code,
       @JsonKey(name: 'order_type') required this.orderType,
-      @JsonKey(name: 'bag_count') required this.bagCount,
+      @JsonKey(name: 'bag_count') this.bagCount,
       @JsonKey(name: 'available_return_order')
       required this.availableReturnOrder,
       @JsonKey(name: 'show_button_pay') required this.showButtonPay,
@@ -1211,7 +1211,7 @@ class _$_OrderModel extends _OrderModel {
   final String orderType;
   @override
   @JsonKey(name: 'bag_count')
-  final int bagCount;
+  final int? bagCount;
   @override
   @JsonKey(name: 'available_return_order')
   final bool availableReturnOrder;
@@ -1655,7 +1655,7 @@ abstract class _OrderModel extends OrderModel {
       {required final int id,
       required final String code,
       @JsonKey(name: 'order_type') required final String orderType,
-      @JsonKey(name: 'bag_count') required final int bagCount,
+      @JsonKey(name: 'bag_count') final int? bagCount,
       @JsonKey(name: 'available_return_order')
       required final bool availableReturnOrder,
       @JsonKey(name: 'show_button_pay') required final bool showButtonPay,
@@ -1754,7 +1754,7 @@ abstract class _OrderModel extends OrderModel {
   String get orderType;
   @override
   @JsonKey(name: 'bag_count')
-  int get bagCount;
+  int? get bagCount;
   @override
   @JsonKey(name: 'available_return_order')
   bool get availableReturnOrder;

@@ -746,7 +746,10 @@
   "grandTotalShort": "Grand Total",
   "noDataFoundForOrder": "no data found for this order!",
   "search_in_sellers": "Search in sellers...",
-  "select_your_choice": "Select your choice"
-
-
+  "select_your_choice": "Select your choice",
+  "instoreCart": "In-store Cart",
+  "inStoreShopping": "In-store Shopping",
+  "productScannedWithCode": "Product scanned with code {code}",
+  "wantToDeleteCartItem": "Want to delete this cart item?",
+  "clearAll": "Clear all"
 }

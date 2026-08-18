@@ -781,5 +781,11 @@
   "youSaved": "আপনি সাশ্রয় করেছেন",
   "amountCharged": "(চার্জ করা পরিমাণ)",
   "grandTotalShort": "সর্বমোট",
-  "noDataFoundForOrder": "এই অর্ডারের জন্য কোনও তথ্য পাওয়া যায়নি।"
+  "noDataFoundForOrder": "এই অর্ডারের জন্য কোনও তথ্য পাওয়া যায়নি।",
+  "instoreCart": "ইন-স্টোর কার্ট",
+  "productScannedWithCode": "পণ্য কোড {code} দিয়ে স্ক্যান করা হয়েছে",
+  "wantToDeleteCartItem": "আপনি কি এই কার্ট আইটেমটি মুছে ফেলতে চান?",
+  "clearAll": "সব মুছুন",
+  "keep_shopping": "কেনাকাটা চালিয়ে যান",
+  "select_your_choice": "আপনার পছন্দ নির্বাচন করুন"
 }

@@ -25,11 +25,13 @@ class InstoreCartPageController {
     var barcode = await getIt<BarcodeService>().scanBarcode(context);
     if (!context.mounted) return;
     if (barcode?.isNotEmpty == true && barcode != null && barcode != "-1") {
+    // if (true) {
+    //   var barcode = '6223001930044';
       CustomToast.showSnakeBar(
         tr('productScannedWithCode').replaceAll('{code}', barcode),
         type: ToastType.success,
       );
-      // var code = '21670';
+
       await getProductWithSku(context, barcode);
 
     }

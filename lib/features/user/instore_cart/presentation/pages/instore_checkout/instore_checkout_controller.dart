@@ -361,14 +361,14 @@ class InstoreCheckoutController {
   }
 
   Future<void> applyGiftCard(BuildContext context) async {
-    if (!(summary?.minimumOrderAmountStatus ?? true)) {
-      CustomToast.showSimpleToast(
-        msg:
-            '${tr('addPurchases')}\n${summary?.minimumOrderAmount ?? 0} toCreateOrder ',
-        type: ToastType.error,
-      );
-      return;
-    }
+    // if (!(summary?.minimumOrderAmountStatus ?? true)) {
+    //   CustomToast.showSimpleToast(
+    //     msg:
+    //         '${tr('addPurchases')}\n${summary?.minimumOrderAmount ?? 0} ${tr('to_create_order')} ',
+    //     type: ToastType.error,
+    //   );
+    //   return;
+    // }
 
     if (!giftCardFormKey.currentState!.validate()) return;
 
@@ -419,14 +419,14 @@ class InstoreCheckoutController {
   }
 
   Future<void> createOrder(BuildContext context) async {
-    if (!(summary?.minimumOrderAmountStatus ?? true)) {
-      CustomToast.showSimpleToast(
-        msg:
-            '${tr('addPurchases')}\n${summary?.minimumOrderAmount ?? 0} toCreateOrder ',
-        type: ToastType.error,
-      );
-      return;
-    }
+    // if (!(summary?.minimumOrderAmountStatus ?? true)) {
+    //   CustomToast.showSimpleToast(
+    //     msg:
+    //         '${tr('addPurchases')}\n${summary?.minimumOrderAmount ?? 0} ${tr('to_create_order')} ',
+    //     type: ToastType.error,
+    //   );
+    //   return;
+    // }
 
     if (!conditionsCubit.state.data) {
       CustomToast.showSimpleToast(
