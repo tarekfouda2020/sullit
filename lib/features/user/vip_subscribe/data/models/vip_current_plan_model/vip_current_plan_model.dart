@@ -7,23 +7,28 @@ part 'vip_current_plan_model.freezed.dart';
 part 'vip_current_plan_model.g.dart';
 
 @freezed
-class VipCurrentPlanModel extends BaseApiModel<VipCurrentPlanDomainModel> with _$VipCurrentPlanModel {
+class VipCurrentPlanModel extends BaseApiModel<VipCurrentPlanDomainModel>
+    with _$VipCurrentPlanModel {
   const VipCurrentPlanModel._();
 
   @JsonSerializable(explicitToJson: true)
   factory VipCurrentPlanModel({
     /// can be null if user is not subscribed in any plan
-    @JsonKey(name: "current_subscription") required VipSubscribeModel? currentSubscription,
-    @JsonKey(name: "other_subscriptions") required List<VipSubscribeModel> otherSubscriptions,
+    @JsonKey(name: "current_subscription")
+    required VipSubscribeModel? currentSubscription,
+    @JsonKey(name: "other_subscriptions")
+    required List<VipSubscribeModel> otherSubscriptions,
   }) = _VipCurrentPlanModel;
 
-  factory VipCurrentPlanModel.fromJson(Map<String, dynamic> json) => _$VipCurrentPlanModelFromJson(json);
+  factory VipCurrentPlanModel.fromJson(Map<String, dynamic> json) =>
+      _$VipCurrentPlanModelFromJson(json);
 
   @override
   VipCurrentPlanDomainModel toDomainModel() {
     return VipCurrentPlanDomainModel(
       currentSubscription: currentSubscription?.toDomainModel(),
-      otherSubscriptions: otherSubscriptions.map((model) => model.toDomainModel()).toList(),
+      otherSubscriptions:
+          otherSubscriptions.map((model) => model.toDomainModel()).toList(),
     );
   }
-} 
+}

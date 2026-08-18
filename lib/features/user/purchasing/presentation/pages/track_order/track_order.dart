@@ -24,7 +24,8 @@ class _TrackOrderState extends State<TrackOrder> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(title: tr('trackOrder')),
-      body: BlocBuilder<GenericBloc<TrackOrderModel?>, GenericState<TrackOrderModel?>>(
+      body: BlocBuilder<GenericBloc<TrackOrderModel?>,
+          GenericState<TrackOrderModel?>>(
         bloc: controller.trackOrderCubit,
         builder: (context, state) {
           if (state is GenericUpdateState) {
@@ -38,11 +39,12 @@ class _TrackOrderState extends State<TrackOrder> {
                   ),
                   Gaps.vGap17,
                   Column(
-                    children: List.generate(state.data!.tracking.length, (index) {
+                    children:
+                        List.generate(state.data!.tracking.length, (index) {
                       return TrackOrderItemWidget(
                         statusModel: state.data!.tracking[index],
                         trackModel: state.data!,
-                        isLast: index == state.data!.tracking.length-1,
+                        isLast: index == state.data!.tracking.length - 1,
                       );
                     }),
                   )
@@ -71,7 +73,6 @@ class _TrackOrderState extends State<TrackOrder> {
                   //
                   //   ],
                   // )
-
                 ],
               ),
             );
@@ -82,7 +83,6 @@ class _TrackOrderState extends State<TrackOrder> {
       ),
     );
   }
-
 
   // int inActiveItemsListLength(TrackOrderModel model){
   //   var isCompleted = model.isCompleted;
@@ -101,6 +101,4 @@ class _TrackOrderState extends State<TrackOrder> {
   //   // (5 all steps number in regular case)
   //   return 5;
   // }
-
-
 }

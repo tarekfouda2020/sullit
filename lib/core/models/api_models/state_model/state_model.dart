@@ -15,7 +15,7 @@ class StateModel extends BaseApiModel<StateDomainModel> with _$StateModel {
   const factory StateModel({
     required int id,
     required String name,
-     CountryModel? country,
+    CountryModel? country,
   }) = _StateModel;
 
   factory StateModel.fromJson(Map<String, dynamic> json) =>

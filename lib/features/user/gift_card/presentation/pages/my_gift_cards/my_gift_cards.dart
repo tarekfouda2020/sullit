@@ -8,14 +8,16 @@ class MyGiftCards extends StatefulWidget {
 }
 
 class _MyGiftCardsState extends State<MyGiftCards> {
-
   final MyGiftCardsController controller = MyGiftCardsController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: DefaultAppBar(title: tr("myGiftCards"),elevation: 0,),
+      appBar: DefaultAppBar(
+        title: tr("myGiftCards"),
+        elevation: 0,
+      ),
       body: MyGiftCardsListWidget(controller: controller),
     );
   }

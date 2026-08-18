@@ -88,8 +88,8 @@ class MinAmountDialog extends StatelessWidget {
                     borderRadius: Dimens.borderRadius12PX,
                     onTap: () async {
                       Navigator.pop(context);
-                      if(shopId!=null && shopId! >0 ){
-                         AutoRouter.of(context)
+                      if (shopId != null && shopId! > 0) {
+                        AutoRouter.of(context)
                             .push(SellerProductsPageRoute(shopId: shopId!));
                       }
                     },

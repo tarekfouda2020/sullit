@@ -16,7 +16,7 @@ class BuildPackageBtn extends StatelessWidget {
       child: Column(
         children: [
           GestureDetector(
-            onTap: () =>controller.onUpgradePackage(context),
+            onTap: () => controller.onUpgradePackage(context),
             child: Container(
               margin: Dimens.paddingVertical10PX,
               padding: Dimens.paddingH20V10,
@@ -28,7 +28,7 @@ class BuildPackageBtn extends StatelessWidget {
             ),
           ),
           Text(
-          package?? tr('noPackage'),
+            package ?? tr('noPackage'),
             style: AppTextStyle.s14_w400(color: context.colors.black),
           ),
         ],

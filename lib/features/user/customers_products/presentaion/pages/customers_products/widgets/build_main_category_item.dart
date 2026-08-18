@@ -3,9 +3,13 @@ part of 'customers_products_w_imports.dart';
 class BuildMainCategoryItem extends StatelessWidget {
   final CustomerProductsController controller;
   final Category categoryModel;
-final int index;
-  const BuildMainCategoryItem(
-      {super.key, required this.controller, required this.categoryModel,required this.index,});
+  final int index;
+  const BuildMainCategoryItem({
+    super.key,
+    required this.controller,
+    required this.categoryModel,
+    required this.index,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,8 @@ final int index;
         ? context.colors.white
         : context.colors.primary;
     return InkWell(
-      onTap: () => controller.onChangeMainCategory(context,categoryModel,index),
+      onTap: () =>
+          controller.onChangeMainCategory(context, categoryModel, index),
       child: Container(
         height: 30.h,
         padding: Dimens.paddingHorizontal15PX,

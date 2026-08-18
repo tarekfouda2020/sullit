@@ -56,13 +56,32 @@ class LoginController {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString("user", json.encode(data?.toJson()));
     context.read<UserCubit>().onUpdateUserData(data!);
-    AutoRouter.of(context).push(HomeRoute(index: 0));
+    _redirectAfterLogin(context);
     CustomToast.showSimpleToast(
       msg: tr('successLoggedIn'),
       type: ToastType.success,
     );
     if (model?.isAdminDiscount == true) {
       showDiscountDialog(context, model!.msgAdminDiscount!);
+    }
+  }
+
+
+
+  void _redirectAfterLogin(BuildContext context) {
+    PendingNavigationService pendingService = PendingNavigationService.instance;
+    if (pendingService.hasPending) {
+      pendingService.clear();
+      // Pending page already under auth stack — pop auth, don't re-push it.
+      context.router.popUntil((route) {
+        final name = route.settings.name;
+        return name != LoginRoute.name &&
+            name != VerifyRegisterRoute.name &&
+            name != RegisterRoute.name &&
+            name != ActiveAccountRoute.name;
+      });
+    } else {
+      AutoRouter.of(context).push(HomeRoute(index: 0));
     }
   }
 

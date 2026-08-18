@@ -32,9 +32,10 @@ class VipOffersWidget extends StatelessWidget {
                 begin: AlignmentDirectional.centerStart,
                 end: AlignmentDirectional.centerEnd,
                 colors: [
-                  context.colors.primary,
+              context.colors.primary,
               context.colors.lightRed,
-            ])),
+            ])
+        ),
         child: Row(
           children: [
             SvgPicture.asset(Res.vipMark),
@@ -43,10 +44,12 @@ class VipOffersWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  customTitle ?? Text(
-                    title ?? tr("saveYourMoneyWith"),
-                    style: AppTextStyle.s12_w400(color: context.colors.white),
-                  ),
+                  customTitle ??
+                      Text(
+                        title ?? tr("saveYourMoneyWith"),
+                        style:
+                            AppTextStyle.s12_w400(color: context.colors.white),
+                      ),
                   Gaps.vGap5,
                   Text(
                     subTitle ?? tr("vipMemberships"),
@@ -64,7 +67,7 @@ class VipOffersWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: context.colors.white, shape: BoxShape.circle),
                   child: Transform.rotate(
-                    angle: lang == 'ar' ? pi : 0,
+                    angle: lang == LangCodeHelper.langAR ? pi : 0,
                     child: Transform.scale(
                         scale: 0.4, child: SvgPicture.asset(Res.arrowForward)),
                   ),

@@ -67,7 +67,9 @@ class _SearchFormFieldState extends State<SearchFormField> {
     _expandSearchFieldWidth = MediaQuery.of(context).size.width;
     return AnimatedContainer(
       duration: Duration(milliseconds: 400),
-      width: _isSearchFieldExpand ? _expandSearchFieldWidth : _collapsedSearchFieldWidth,
+      width: _isSearchFieldExpand
+          ? _expandSearchFieldWidth
+          : _collapsedSearchFieldWidth,
       height: _isSearchFieldExpand ? 32.h : 28.h,
       padding: EdgeInsets.zero,
       child: TextField(
@@ -81,7 +83,8 @@ class _SearchFormFieldState extends State<SearchFormField> {
         onSubmitted: widget.onSubmit,
         decoration: InputDecoration(
             hintText: widget.searchHint ?? tr("search"),
-            contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
             fillColor: Color(0xFFF7F7F7),
             filled: true,
             hintStyle: TextStyle(
@@ -98,7 +101,8 @@ class _SearchFormFieldState extends State<SearchFormField> {
                   color: Color(0xFF6E6E6E), size: 20),
             ),
             border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(99)), borderSide: BorderSide.none)),
+                borderRadius: BorderRadius.all(Radius.circular(99)),
+                borderSide: BorderSide.none)),
       ),
     );
   }

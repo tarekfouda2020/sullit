@@ -1,6 +1,4 @@
-
 part of 'widgets/share_holder_view_widgets_imports.dart';
-
 
 class ShareHolderView extends StatelessWidget {
   final ProfileController controller;
@@ -18,7 +16,7 @@ class ShareHolderView extends StatelessWidget {
             bottom: 0,
             left: 0,
             right: 0,
-            top: kToolbarHeight-30,
+            top: kToolbarHeight - 30,
             child: SingleChildScrollView(
               child: Column(
                 children: [

@@ -40,7 +40,6 @@ class BuildLoadingHomeView extends StatelessWidget {
                       margin: Dimens.paddingHorizontal5PX,
                     ),
                   ),
-
                 ],
               ),
             ),

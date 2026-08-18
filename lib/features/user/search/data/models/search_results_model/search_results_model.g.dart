@@ -18,7 +18,7 @@ _$_SearchResultsModel _$$_SearchResultsModelFromJson(
           .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       shops: (json['shops'] as List<dynamic>?)
-          ?.map((e) => ShopModel.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ShopCardModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

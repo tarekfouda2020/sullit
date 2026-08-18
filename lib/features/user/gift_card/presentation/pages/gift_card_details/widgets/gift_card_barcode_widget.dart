@@ -11,10 +11,11 @@ class GiftCardBarcodeWidget extends StatelessWidget {
         Gaps.vGap19,
         Container(
           color: context.colors.white,
-          padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
           child: SvgPicture.string(
             getIt<BarcodeService>().generateBarcode(model.code ?? ""),
-            width: 236, height: 74,
+            width: 236,
+            height: 74,
           ),
         ),
       ],

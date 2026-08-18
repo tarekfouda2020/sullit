@@ -5,13 +5,11 @@ import 'package:flutter_tdd/features/user/wallet/domain/models/wallet_transactio
 import 'package:flutter_tdd/features/user/wallet/domain/models/wallet_types.dart';
 import 'package:flutter_tdd/features/user/wallet/domain/repository/wallet_repository.dart';
 
-class GetWalletTransactions extends UseCase<List<WalletTransaction>, GenericPaginateParams> {
+class GetWalletTransactions
+    extends UseCase<List<WalletTransaction>, GenericPaginateParams> {
   @override
   Future<List<WalletTransaction>> call(GenericPaginateParams params) async {
     var result = await getIt<WalletRepository>().walletTransactions(params);
-    return result.fold(
-            (l) => [],
-            (r) => r
-    );
+    return result.fold((l) => [], (r) => r);
   }
 }

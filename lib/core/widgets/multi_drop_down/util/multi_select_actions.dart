@@ -9,7 +9,8 @@ mixin MultiSelectActions<V> {
     if (checked) {
       selectedValues.add(itemValue);
     } else {
-      selectedValues.removeWhere((element) => element.toString()==itemValue.toString());
+      selectedValues
+          .removeWhere((element) => element.toString() == itemValue.toString());
     }
 
     return selectedValues;

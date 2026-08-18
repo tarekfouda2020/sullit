@@ -13,10 +13,8 @@ class BuildForgetPasswordView extends StatelessWidget {
         Gaps.hGap4,
         InkWell(
           onTap: () => AutoRouter.of(context).push(const ForgetPasswordRoute()),
-          child: Text(
-            tr("restore"),
-            style: AppTextStyle.s16_w700(color: context.colors.primary)
-          ),
+          child: Text(tr("restore"),
+              style: AppTextStyle.s16_w700(color: context.colors.primary)),
         ),
       ],
     );

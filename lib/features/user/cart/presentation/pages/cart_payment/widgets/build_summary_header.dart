@@ -24,7 +24,7 @@ class BuildSummaryHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:  EdgeInsets.symmetric(vertical: vMargin ?? 8),
+      margin: EdgeInsets.symmetric(vertical: vMargin ?? 8),
       child: Row(
         children: [
           Expanded(
@@ -35,27 +35,26 @@ class BuildSummaryHeader extends StatelessWidget {
                   style: AppTextStyle.s14_w400(color: context.colors.black),
                 ),
                 Gaps.hGap10,
-                if(onPressInfo!=null)
-                QuestionMarkInfoWidget(onPressInfo: onPressInfo!)
+                if (onPressInfo != null)
+                  QuestionMarkInfoWidget(onPressInfo: onPressInfo!)
               ],
             ),
           ),
-          if(isDiscount)
-          Text(
-            " - ",
-            style: AppTextStyle.s14_w600(color: context.colors.primary),
-          ),
-           DirhamPrice(
-                  amount: isDiscount
-                      ?details.replaceAll("-", "")
-                      :details,
-                  textStyle: AppTextStyle.s14_w600(color: detailsColor ?? context.colors.black),
-            currencyStyle: AppTextStyle.s16_w400(color: detailsColor ?? context.colors.black),
+          if (isDiscount)
+            Text(
+              " - ",
+              style: AppTextStyle.s14_w600(color: context.colors.primary),
+            ),
+          DirhamPrice(
+            amount: isDiscount ? details.replaceAll("-", "") : details,
+            textStyle: AppTextStyle.s14_w600(
+                color: detailsColor ?? context.colors.black),
+            currencyStyle: AppTextStyle.s16_w400(
+                color: detailsColor ?? context.colors.black),
             currencyOffset: 0,
             showMinus: false,
-             applyDashSeperate: applyDashSeperate,
-                )
-             ,
+            applyDashSeperate: applyDashSeperate,
+          ),
         ],
       ),
     );

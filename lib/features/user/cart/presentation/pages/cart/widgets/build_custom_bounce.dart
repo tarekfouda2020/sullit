@@ -12,9 +12,9 @@ class BuildCustomBounce extends StatelessWidget {
       {super.key,
       required this.onTap,
       required this.iconData,
-       this.margin,
-        this.size,
-        this.padding,
+      this.margin,
+      this.size,
+      this.padding,
       this.deleteIcon = false});
 
   @override
@@ -23,23 +23,22 @@ class BuildCustomBounce extends StatelessWidget {
       onPressed: onTap,
       duration: const Duration(milliseconds: 200),
       child: Container(
-        width: size, height: size,
+        width: size,
+        height: size,
         margin: margin ?? const EdgeInsets.symmetric(horizontal: Dimens.dp10),
         alignment: Alignment.center,
         padding: padding ?? const EdgeInsets.all(Dimens.dp8),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-                color: context.colors.offWhite,
-                blurRadius: 1,
-                spreadRadius: 1)
+                color: context.colors.offWhite, blurRadius: 1, spreadRadius: 1)
           ],
-          color: context.colors.primary ,
+          color: context.colors.primary,
           shape: BoxShape.circle,
         ),
         child: Icon(
           iconData,
-          color:  context.colors.white,
+          color: context.colors.white,
           size: 17,
         ),
       ),

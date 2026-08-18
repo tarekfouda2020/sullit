@@ -1,14 +1,15 @@
 part of 'home_widgets_imports.dart';
 
 class UnPaidOrderSheetWidget extends StatelessWidget {
-  final Orders order;
+  final OrderCardDomainModel order;
   final HomeController controller;
-  const UnPaidOrderSheetWidget({super.key, required this.order, required this.controller});
+  const UnPaidOrderSheetWidget(
+      {super.key, required this.order, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       decoration: BoxDecoration(
         color: context.colors.white,
         borderRadius: Dimens.sheetBorderRadius,
@@ -16,7 +17,7 @@ class UnPaidOrderSheetWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-           BottomSheetHeaderWidget(title: tr("alert")),
+          BottomSheetHeaderWidget(title: tr("alert")),
           Gaps.vGap26,
           SvgPicture.asset(
             Res.confirmationAlertIcon,
@@ -42,7 +43,7 @@ class UnPaidOrderSheetWidget extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: DefaultButton(
+                  child: DefaultButton(
                 onTap: () => controller.viewOrderDetails(context),
                 title: tr("view_details"),
                 height: Dimens.dp40,

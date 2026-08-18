@@ -1,7 +1,7 @@
 part of 'compare_widgets_imports.dart';
 
 class BuildCompareItem extends StatefulWidget {
-  final Product productModel;
+  final ProductCard productModel;
   final CompareController controller;
 
   const BuildCompareItem(
@@ -17,13 +17,13 @@ class _BuildCompareItemState extends State<BuildCompareItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:  CustomDecoration(),
+      decoration: CustomDecoration(),
       padding: Dimens.paddingAll10PX,
       margin: Dimens.paddingVertical5PX,
       child: Row(
         children: [
           CachedImage(
-            url: widget.productModel.images?.first ?? "",
+            url: widget.productModel.thumbnailImg,
             height: 70.r,
             width: 70.r,
             fit: BoxFit.fill,
@@ -35,7 +35,7 @@ class _BuildCompareItemState extends State<BuildCompareItem> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.productModel.name ?? "",
+                  widget.productModel.name,
                   style: AppTextStyle.s15_w500(color: context.colors.black),
                 ),
                 Gaps.vGap5,
@@ -63,14 +63,15 @@ class _BuildCompareItemState extends State<BuildCompareItem> {
                   return Visibility(
                     visible: state.data,
                     replacement: BuildIconItem(
-                      iconData: widget.productModel.isWishlist!
+                      iconData: widget.productModel.isWishlist
                           ? Icons.favorite
                           : Icons.favorite_border,
                       onTap: () => ProductsHelper().toggleFavourite(
-                        id: widget.productModel.id!,
+                        id: widget.productModel.id,
                         context: context,
                         loadingBloc: showLoading,
-                        onRefresh: () => widget.controller.onFavChanged(widget.productModel),
+                        onRefresh: () =>
+                            widget.controller.onFavChanged(widget.productModel),
                       ),
                       checkValue: widget.productModel.isWishlist,
                       padding: Dimens.paddingAll5PX,
@@ -78,14 +79,6 @@ class _BuildCompareItemState extends State<BuildCompareItem> {
                     child: const LoadingIconWidget(),
                   );
                 },
-              ),
-              BuildIconItem(
-                iconData: Icons.shopping_cart,
-                onTap: () => getIt<CartHelper>().addToCartDialog(
-                  context,
-                  widget.productModel,
-                ),
-                padding: Dimens.paddingAll5PX,
               ),
             ],
           )

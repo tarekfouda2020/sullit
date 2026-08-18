@@ -17,8 +17,7 @@ class DashboardsModel extends BaseApiModel<Dashboards> with _$DashboardsModel {
     @JsonKey(name: 'cart_products_count') required int cartCount,
     @JsonKey(name: 'wishlist_products_count') required int wishlistCount,
     @JsonKey(name: 'orders_products_count') required int ordersCount,
-    @JsonKey(name: 'default shipping_address')
-        AddressModel? defaultAddress,
+    @JsonKey(name: 'default shipping_address') AddressModel? defaultAddress,
     @JsonKey(name: 'customer_package') PackagesModel? customerPackage,
   }) = _DashboardsModel;
 

@@ -17,9 +17,9 @@ import 'package:flutter_tdd/res.dart';
 
 import '../register_imports.dart';
 
-part'build_have_account.dart';
+part 'build_have_account.dart';
 part 'build_register_button.dart';
 part 'build_register_form_fields.dart';
-part'build_register_social.dart';
+part 'build_register_social.dart';
 part 'build_seller_button.dart';
 part 'build_terms_and_conditions.dart';

@@ -20,9 +20,14 @@ import 'package:flutter_tdd/features/user/category/domain/entities/brands_params
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/price_range_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/use_cases/get_brands.dart';
+import 'package:flutter_tdd/features/user/best_sellers/domain/entity/shop_category_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/shop_id_params.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_shop_categories.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_shop_details.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/seller_products_params.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/seller_product_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_seller_products.dart';

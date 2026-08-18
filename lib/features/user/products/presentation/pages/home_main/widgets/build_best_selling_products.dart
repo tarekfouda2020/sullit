@@ -1,7 +1,7 @@
 part of 'home_main_widgets_imports.dart';
 
 class BuildBestSellingProducts extends StatelessWidget {
-  final List<Product> bestSellingProducts;
+  final List<ProductCard> bestSellingProducts;
   final HomeMainController controller;
 
   const BuildBestSellingProducts({
@@ -36,7 +36,8 @@ class BuildBestSellingProducts extends StatelessWidget {
                       padding: Dimens.paddingHorizontal5PX,
                       child: BuildProductItem(
                         productModel: bestSellingProducts[index],
-                        onFavRefresh: () => controller.onChangeFav(bestSellingProducts[index],context),
+                        onFavRefresh: () => controller.onChangeFav(
+                            bestSellingProducts[index], context),
                         onCompareRefresh: () {
                           bestSellingProducts[index].isAddedTCompare =
                               !bestSellingProducts[index].isAddedTCompare!;

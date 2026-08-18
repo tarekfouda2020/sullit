@@ -3,7 +3,7 @@ part of 'on_sale_imports.dart';
 class OnSaleController {
   final TextEditingController searchFieldCtr = TextEditingController();
 
-  final PagingController<int, Product> onSalePagingController =
+  final PagingController<int, ProductCard> onSalePagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 10;
   int currentPage = 1;
@@ -43,11 +43,10 @@ class OnSaleController {
   OffersParamsWidget _onSaleOffers(bool refresh, int currentPage) {
     return OffersParamsWidget(
         paginateParams: _onSaleParams(refresh, currentPage),
-        keyword: searchFieldCtr.text
-    );
+        keyword: searchFieldCtr.text);
   }
 
-  void onChangeFav(Product item) {
+  void onChangeFav(ProductCard item) {
     item.isWishlist = !item.isWishlist!;
     if (onSalePagingController.itemList != null) {
       int index =

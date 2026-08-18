@@ -7,7 +7,7 @@ class BestRatedOffersFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<List<Product>>, GenericState<List<Product>>>(
+    return BlocBuilder<GenericBloc<List<ProductCard>>, GenericState<List<ProductCard>>>(
       bloc: controller.bestRatedCubit,
       builder: (context, state) {
         int length = state.data.take(4).length;
@@ -21,9 +21,9 @@ class BestRatedOffersFormWidget extends StatelessWidget {
                 children: [
                   BuildHeaderTitle(
                     title: tr('bestRated'),
-                    controller: controller,
                     onTap: () {
-                      controller.changeCouponsTab(SaleTabType.bestRated, context);
+                      controller.changeCouponsTab(
+                          SaleTabType.bestRated, context);
                       controller.homeController.animateTabsPages(3, context);
                     },
                   ),

@@ -23,15 +23,28 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap25,
             const AdvantagesWidget(),
             Gaps.vGap20,
-            TrackSellerOrderWidget(currentOrders:homeDomainModel.currentOrders,),
+            TrackSellerOrderWidget(
+              currentOrders: homeDomainModel.currentOrders,
+              controller: controller,
+            ),
             Gaps.vGap10,
-            BuildTopSellers(topSellers: homeDomainModel.topSellers,),
+            BuildTopSellers(
+              topSellers: homeDomainModel.topSellers,
+            ),
             BuildTopCategories(categories: homeDomainModel.categories, controller: controller),
+            PharmacyHomeSectionWidget(controller: controller),
+            Gaps.vGap16,
+            PharmSloganBannerWidget(
+              firstText: 'Have a prescription?  Get Started',
+              secondText: 'Upload Now  ',
+              onTap: () => controller.onPressAttachPrescription(context),
+            ),
+            Gaps.vGap16,
             VipOffersFormWidget(controller: controller),
             Gaps.vGap16,
             VipOffersWidget(
               onTap: () => controller.onPressSeeOffers(context),
-              buttonText: tr("seeOffers",context: context),
+              buttonText: tr("seeOffers", context: context),
               margin: EdgeInsets.zero,
             ),
             // BuildPopularProducts(
@@ -53,16 +66,17 @@ class BuildHomeView extends StatelessWidget {
             BuildBanners(banners: homeDomainModel.bannersTwo, controller: controller),
             Gaps.vGap16,
             NewArrivalOffersFormWidget(controller: controller),
-            if(controller.homeCubit.state.data?.shop.isNotEmpty == true)
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: BuildHeaderTitle(
-                title: tr("sellers"),
-                controller: controller,
-                onTap: () => AutoRouter.of(context).push(const BestSellersPageRoute()),
+            if (controller.homeCubit.state.data?.shop.isNotEmpty == true)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: BuildHeaderTitle(
+                  title: tr("sellers"),
+                  onTap: () => AutoRouter.of(context).push(const BestSellersPageRoute()),
+                ),
               ),
+            SellersSectionWidget(
+              controller: controller,
             ),
-             SellersSectionWidget(controller: controller,),
             // BuildHomeNewProducts(
             //   newestProducts: homeDomainModel.newestProducts,
             //   controller: controller,
@@ -86,7 +100,6 @@ class BuildHomeView extends StatelessWidget {
                 controller: controller,
               ),
             Gaps.vGap20,
-
           ],
         ),
       ),

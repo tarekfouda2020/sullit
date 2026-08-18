@@ -7,23 +7,20 @@ class OffersParamsWidget {
   final bool? isVipProducts;
   OffersParamsWidget({
     required this.paginateParams,
-     this.keyword,
-     this.isVipProducts = false,
-     this.usePagination = 1,
+    this.keyword,
+    this.isVipProducts = false,
+    this.usePagination = 1,
   });
 
-
-  String getUrl(){
+  String getUrl() {
     String paginateHeader = paginateParams.paramsToQuery();
-   String url = paginateHeader;
-   if(isVipProducts == false){
-     url = "$url&with_pagination=$usePagination";
-   }
-   if(keyword!=null && keyword?.isNotEmpty == true){
-     url = "$url&keyword=$keyword";
-   }
+    String url = paginateHeader;
+    if (isVipProducts == false) {
+      url = "$url&with_pagination=$usePagination";
+    }
+    if (keyword != null && keyword?.isNotEmpty == true) {
+      url = "$url&keyword=$keyword";
+    }
     return url;
   }
-
-
 }

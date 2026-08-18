@@ -58,24 +58,21 @@ class SupportTicketsController {
     );
   }
 
-
-  void showAddTicketsSheet(BuildContext context){
+  void showAddTicketsSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       useRootNavigator: true,
       enableDrag: false,
-      builder: (context) =>   SupportTicketsSheetWidget(controller: this),
+      builder: (context) => SupportTicketsSheetWidget(controller: this),
     );
   }
 
-
-  void removeImage(File file){
+  void removeImage(File file) {
     imagesCubit.state.data.remove(file);
     imagesCubit.onUpdateData(imagesCubit.state.data);
   }
-
 
   CreateTicketParams _createTicketParams() {
     return CreateTicketParams(

@@ -1,4 +1,3 @@
-
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -17,13 +16,14 @@ class OutOfStockGlassWidget extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical:8 ,horizontal:18),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
           decoration: BoxDecoration(
             color: context.colors.black.withAlpha(26),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Text(tr("outOfStock"),
-          style: const AppTextStyle.s12_w600(color: Color(0xff454545)) ,
+          child: Text(
+            tr("outOfStock"),
+            style: const AppTextStyle.s12_w600(color: Color(0xff454545)),
           ),
         ),
       ),

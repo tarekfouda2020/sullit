@@ -1,7 +1,7 @@
 part of 'downloads_import.dart';
 
 class DownloadsController {
-  final GenericBloc<List<Product>> productsCubit = GenericBloc([]);
+  final GenericBloc<List<ProductCard>> productsCubit = GenericBloc([]);
 
   void getDigitalProducts({bool refresh = true}) async {
     var result = await GetDigitalProducts().call(refresh);

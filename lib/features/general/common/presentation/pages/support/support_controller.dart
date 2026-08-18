@@ -37,7 +37,7 @@ class SupportController {
   }
 
   Future<void> getImage(BuildContext context) async {
-    var image = await FileHelper().pickImagesFiles(context,allowMulti: false);
+    var image = await FileHelper().pickImagesFiles(context, allowMulti: false);
     if (image != null) {
       imageCubit.onUpdateData(image.first);
       var params = _msgParams();

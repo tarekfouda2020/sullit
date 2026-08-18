@@ -4,14 +4,12 @@ class InvoiceSummaryWidget extends StatelessWidget {
   final CartPaymentController controller;
   final ShippingSummary shippingSummary;
   final String giftCardTotal;
-  final bool applyGiftCard;
 
   const InvoiceSummaryWidget({
     super.key,
     required this.controller,
     required this.shippingSummary,
     this.giftCardTotal = "",
-    this.applyGiftCard = false,
   });
 
   @override
@@ -47,25 +45,29 @@ class InvoiceSummaryWidget extends StatelessWidget {
                 ),
               ),
               Visibility(
-                  visible: shippingSummary.showOrderDiscounts ,
+                  visible: shippingSummary.showOrderDiscounts,
                   child: Column(
                     spacing: 16,
-                    children: List.generate(shippingSummary.discountTypes?.length??0, (index) {
-                      OrderSummaryDiscountDomain? item = shippingSummary.discountTypes?[index];
-                      return BuildSummaryHeader(
-                        isDiscount: true,
-                        applyDashSeperate: false,
-                        title: item?.label ?? "",
-                        details: item?.discount ?? "",
-                        detailsColor: context.colors.primary,
-                        useDirhamPrice: true,
-                        onPressInfo: item?.isTierDiscount == true
-                            ? ()=> controller.showTierFullName(context, item?.description ?? "",item?.label ?? "")
-                            : null,
-                      );
-                    },),
-                  )
-              ),
+                    children: List.generate(
+                      shippingSummary.discountTypes?.length ?? 0,
+                      (index) {
+                        OrderSummaryDiscountDomain? item =
+                            shippingSummary.discountTypes?[index];
+                        return BuildSummaryHeader(
+                          isDiscount: true,
+                          applyDashSeperate: false,
+                          title: item?.label ?? "",
+                          details: item?.discount ?? "",
+                          detailsColor: context.colors.primary,
+                          useDirhamPrice: true,
+                          onPressInfo: item?.isTierDiscount == true
+                              ? () => controller.showTierFullName(context,
+                                  item?.description ?? "", item?.label ?? "")
+                              : null,
+                        );
+                      },
+                    ),
+                  )),
               BuildSummaryHeader(
                 title: tr('service_fees'),
                 details:
@@ -94,7 +96,7 @@ class InvoiceSummaryWidget extends StatelessWidget {
                 vMargin: 0,
               ),
               Visibility(
-                visible: applyGiftCard,
+                visible: (double.parse(shippingSummary.appliedGiftCard ??"0.0")) >  0,
                 child: BuildSummaryHeader(
                   title: tr("appliedGiftCard"),
                   details: shippingSummary.appliedGiftCard ?? "",

@@ -14,87 +14,89 @@ import 'package:flutter_tdd/features/user/gift_card/domain/entity/pay_subscribe_
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: GiftCardsDataSource)
-class ImplGiftCardDataSource extends GiftCardsDataSource{
-
+class ImplGiftCardDataSource extends GiftCardsDataSource {
   @override
-  Future<Either<Failure, List<PayMethodModel>>> getPayMethods() async{
+  Future<Either<Failure, List<PayMethodModel>>> getPayMethods() async {
     HttpRequestModel model = HttpRequestModel(
-    url: ApiNames.paymentMethods,
-    requestMethod: RequestMethod.get,
-    responseType: ResType.list,
-    responseKey: (data) => data['data'],
-    toJsonFunc: (json) => List<PayMethodModel>.from(
-      json.map((e) => PayMethodModel.fromJson(e)),
-    ),
-  );
-  return await GenericHttpImpl<List<PayMethodModel>>()(model);
+      url: ApiNames.paymentMethods,
+      requestMethod: RequestMethod.get,
+      responseType: ResType.list,
+      responseKey: (data) => data['data'],
+      toJsonFunc: (json) => List<PayMethodModel>.from(
+        json.map((e) => PayMethodModel.fromJson(e)),
+      ),
+    );
+    return await GenericHttpImpl<List<PayMethodModel>>()(model);
   }
 
   @override
-  Future<Either<Failure, List<GiftCardModel>>> giftCardSubscriptionsList(GenericPaginateParams params) async{
+  Future<Either<Failure, List<GiftCardModel>>> giftCardSubscriptionsList(
+      GenericPaginateParams params) async {
     HttpRequestModel model = HttpRequestModel(
-    url: ApiNames.giftCardSubscriptions+params.paramsToQuery(),
-    requestMethod: RequestMethod.get,
-    refresh: params.refresh,
-    responseType: ResType.list,
-    responseKey: (data) => data['data']['gift_cards'],
-    toJsonFunc: (json) => List<GiftCardModel>.from(
-      json.map((e) => GiftCardModel.fromJson(e)),
-    ),
-  );
-  return await GenericHttpImpl<List<GiftCardModel>>()(model);
+      url: ApiNames.giftCardSubscriptions + params.paramsToQuery(),
+      requestMethod: RequestMethod.get,
+      refresh: params.refresh,
+      responseType: ResType.list,
+      responseKey: (data) => data['data']['gift_cards'],
+      toJsonFunc: (json) => List<GiftCardModel>.from(
+        json.map((e) => GiftCardModel.fromJson(e)),
+      ),
+    );
+    return await GenericHttpImpl<List<GiftCardModel>>()(model);
   }
 
   @override
-  Future<Either<Failure, List<GiftCardModel>>> giftCardList(GenericPaginateParams params) async{
+  Future<Either<Failure, List<GiftCardModel>>> giftCardList(
+      GenericPaginateParams params) async {
     HttpRequestModel model = HttpRequestModel(
-    url: ApiNames.giftCards+params.paramsToQuery(),
-    requestMethod: RequestMethod.get,
-    responseType: ResType.list,
-    refresh: params.refresh,
-    responseKey: (data) => data['data']['gift_cards'],
-    toJsonFunc: (json) => List<GiftCardModel>.from(
-      json.map((e) => GiftCardModel.fromJson(e)),
-    ),
-  );
-  return await GenericHttpImpl<List<GiftCardModel>>()(model);
+      url: ApiNames.giftCards + params.paramsToQuery(),
+      requestMethod: RequestMethod.get,
+      responseType: ResType.list,
+      refresh: params.refresh,
+      responseKey: (data) => data['data']['gift_cards'],
+      toJsonFunc: (json) => List<GiftCardModel>.from(
+        json.map((e) => GiftCardModel.fromJson(e)),
+      ),
+    );
+    return await GenericHttpImpl<List<GiftCardModel>>()(model);
   }
 
   @override
-  Future<Either<Failure, GiftCardModel>> giftCardSubscriptionDetails(int params) async{
+  Future<Either<Failure, GiftCardModel>> giftCardSubscriptionDetails(
+      int params) async {
     HttpRequestModel model = HttpRequestModel(
-    url: ApiNames.giftCardSubscriptionDetails(params),
-    requestMethod: RequestMethod.get,
-    responseType: ResType.model,
-    responseKey: (data) => data['data'],
-    toJsonFunc: (json) => GiftCardModel.fromJson(json),
-  );
-  return await GenericHttpImpl<GiftCardModel>()(model);
-  }
-  @override
-  Future<Either<Failure, GiftCardModel>> giftCardDetails(int params) async{
-    HttpRequestModel model = HttpRequestModel(
-    url: ApiNames.giftCardDetails(params),
-    requestMethod: RequestMethod.get,
-    responseType: ResType.model,
-    responseKey: (data) => data['data'],
-    toJsonFunc: (json) => GiftCardModel.fromJson(json),
-  );
-  return await GenericHttpImpl<GiftCardModel>()(model);
+      url: ApiNames.giftCardSubscriptionDetails(params),
+      requestMethod: RequestMethod.get,
+      responseType: ResType.model,
+      responseKey: (data) => data['data'],
+      toJsonFunc: (json) => GiftCardModel.fromJson(json),
+    );
+    return await GenericHttpImpl<GiftCardModel>()(model);
   }
 
   @override
-  Future<Either<Failure, SubscribePaymentModel>> payGiftCardSubscribe(PaySubscribeParams params) async{
+  Future<Either<Failure, GiftCardModel>> giftCardDetails(int params) async {
     HttpRequestModel model = HttpRequestModel(
-    url: ApiNames.payGiftCardSubscribe(params.id),
-    requestMethod: RequestMethod.post,
-    responseType: ResType.model,
-    responseKey: (data) => data['data'],
-    toJsonFunc: (json) => SubscribePaymentModel.fromJson(json),
-    requestBody: params.toJson(),
-      showLoader: false
-  );
-  return await GenericHttpImpl<SubscribePaymentModel>()(model);
+      url: ApiNames.giftCardDetails(params),
+      requestMethod: RequestMethod.get,
+      responseType: ResType.model,
+      responseKey: (data) => data['data'],
+      toJsonFunc: (json) => GiftCardModel.fromJson(json),
+    );
+    return await GenericHttpImpl<GiftCardModel>()(model);
   }
 
+  @override
+  Future<Either<Failure, SubscribePaymentModel>> payGiftCardSubscribe(
+      PaySubscribeParams params) async {
+    HttpRequestModel model = HttpRequestModel(
+        url: ApiNames.payGiftCardSubscribe(params.id),
+        requestMethod: RequestMethod.post,
+        responseType: ResType.model,
+        responseKey: (data) => data['data'],
+        toJsonFunc: (json) => SubscribePaymentModel.fromJson(json),
+        requestBody: params.toJson(),
+        showLoader: false);
+    return await GenericHttpImpl<SubscribePaymentModel>()(model);
+  }
 }

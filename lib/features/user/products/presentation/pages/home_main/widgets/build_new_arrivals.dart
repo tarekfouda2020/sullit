@@ -1,7 +1,7 @@
 part of 'home_main_widgets_imports.dart';
 
 class BuildNewArrivals extends StatelessWidget {
-  final List<Product> newArrivals;
+  final List<ProductCard> newArrivals;
   final HomeMainController controller;
 
   const BuildNewArrivals(
@@ -28,10 +28,9 @@ class BuildNewArrivals extends StatelessWidget {
                       padding: Dimens.paddingHorizontal5PX,
                       child: BuildProductItem(
                         productModel: newArrivals[index],
-                        onFavRefresh: () => controller.onChangeFav(
-                          newArrivals[index],context
-                        ),
-                        onRefresh: () => controller.getHome( refresh: true),
+                        onFavRefresh: () =>
+                            controller.onChangeFav(newArrivals[index], context),
+                        onRefresh: () => controller.getHome(refresh: true),
                       ),
                     );
                   },

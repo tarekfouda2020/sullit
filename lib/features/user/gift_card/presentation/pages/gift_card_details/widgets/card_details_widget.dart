@@ -7,7 +7,8 @@ class GiftCardDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<GiftCardDomainModel?>, GenericState<GiftCardDomainModel?>>(
+    return BlocBuilder<GenericBloc<GiftCardDomainModel?>,
+        GenericState<GiftCardDomainModel?>>(
       bloc: controller.giftCardDetailsCubit,
       builder: (context, state) {
         if (state is GenericUpdateState) {
@@ -18,7 +19,9 @@ class GiftCardDetailsWidget extends StatelessWidget {
               Screenshot(
                 controller: controller.screenshotController,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 26, horizontal: 10).r,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 26, horizontal: 10)
+                          .r,
                   margin: const EdgeInsets.only(top: 85),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -28,19 +31,21 @@ class GiftCardDetailsWidget extends StatelessWidget {
                           colors: [
                             context.colors.darkRed,
                             context.colors.primary,
-                          ])
-                  ),
+                          ])),
                   child: Column(
                     children: [
                       Gaps.vGap30,
-                      GiftCardInfoWidget(controller: controller, model: state.data!,),
-                      if(controller.isMyGiftCard)
-                         GiftCardBarcodeWidget(model: state.data!,),
-                      if(controller.isMyGiftCard)
-                        GiftCardCouponWidget(
+                      GiftCardInfoWidget(
+                        controller: controller,
                         model: state.data!,
-                        controller: controller
-                        )
+                      ),
+                      if (controller.isMyGiftCard)
+                        GiftCardBarcodeWidget(
+                          model: state.data!,
+                        ),
+                      if (controller.isMyGiftCard)
+                        GiftCardCouponWidget(
+                            model: state.data!, controller: controller)
                     ],
                   ),
                 ),

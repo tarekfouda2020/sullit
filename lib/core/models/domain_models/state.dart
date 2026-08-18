@@ -9,6 +9,6 @@ class StateDomainModel extends BaseDomainModel {
   StateDomainModel({
     required this.id,
     required this.name,
-     this.country,
+    this.country,
   });
 }

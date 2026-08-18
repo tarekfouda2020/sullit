@@ -1,15 +1,15 @@
 part of 'search_widgets_imports.dart';
 
 class BuildSellersSuggestItem extends StatelessWidget {
-   final SearchController controller;
-   final List<Shop> shop;
-   final bool showSeeAll;
-   const BuildSellersSuggestItem({
+  final SearchController controller;
+  final List<ShopCardDomainModel> shop;
+  final bool showSeeAll;
+  const BuildSellersSuggestItem({
     super.key,
     required this.controller,
     required this.showSeeAll,
     required this.shop,
-   });
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +36,7 @@ class BuildSellersSuggestItem extends StatelessWidget {
         ...List.generate(
           shop.length,
           (index) => GestureDetector(
-            onTap: () => AutoRouter.of(context).push(SellerProductsPageRoute(
-                shopModel: shop[index], shopId: shop[index].id!)),
+            onTap: () => AutoRouter.of(context).push(SellerProductsPageRoute(shopId: shop[index].id!)),
             child: Padding(
               padding: Dimens.standardPadding,
               child: Text(

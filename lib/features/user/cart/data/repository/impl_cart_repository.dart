@@ -28,102 +28,116 @@ import 'package:flutter_tdd/features/user/products/domain/entities/add_product_t
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: CartRepository)
-class ImplCartRepository extends CartRepository with ModelToDomain{
+class ImplCartRepository extends CartRepository with ModelToDomain {
   var dataSource = getIt<CartDataSources>();
   @override
-  Future<Either<Failure, CartDomainModel>> getCartItems(CartParams params)async {
+  Future<Either<Failure, CartDomainModel>> getCartItems(
+      CartParams params) async {
     var result = await dataSource.getCartItems(params);
     return toDomainResult(result);
   }
 
   @override
-  Future<Either<Failure, bool>> addCartAddress(AddCartAddressParams param)async {
+  Future<Either<Failure, bool>> addCartAddress(
+      AddCartAddressParams param) async {
     return await dataSource.addCartAddress(param);
   }
 
   @override
-  Future<Either<Failure, Shipping>> cartStoreShipping(StoreCartShippingParams params)async {
+  Future<Either<Failure, Shipping>> cartStoreShipping(
+      StoreCartShippingParams params) async {
     var result = await dataSource.cartStoreShipping(params);
     return toDomainResult(result);
   }
 
   @override
-  Future<Either<Failure, CouponResponse>> applyCoupon(String param)async {
+  Future<Either<Failure, CouponResponse>> applyCoupon(String param) async {
     var result = await dataSource.applyCoupon(param);
     return toDomainResult(result);
   }
 
   @override
-  Future<Either<Failure, OrderSummary>> createOrder(CreateOrderParams params)async {
+  Future<Either<Failure, OrderSummaryDomainModel>> createOrder(
+      CreateOrderParams params) async {
     var result = await dataSource.createOrder(params);
     return toDomainResult(result);
   }
+
   @override
-  Future<Either<Failure, String>> addToCart(AddProductToCartParams params)async {
+  Future<Either<Failure, String>> addToCart(
+      BaseAddProductToCartParams params) async {
     return await dataSource.addToCart(params);
   }
 
   @override
-  Future<Either<Failure, bool>> deleteCartItem(DeleteCartItemParams params)async {
+  Future<Either<Failure, bool>> deleteCartItem(
+      DeleteCartItemParams params) async {
     return await dataSource.deleteCartItem(params);
   }
 
   @override
-  Future<Either<Failure, CartDomainModel>> updateCartItem(UpdateCartItemParams params)async {
+  Future<Either<Failure, CartDomainModel>> updateCartItem(
+      UpdateCartItemParams params) async {
     var result = await dataSource.updateCartItem(params);
     return toDomainResult(result);
   }
 
   @override
-  Future<Either<Failure, List<SellerShipping>>> getShippingInfo(bool param)async {
+  Future<Either<Failure, List<SellerShipping>>> getShippingInfo(
+      bool param) async {
     var result = await dataSource.getShippingInfo(param);
     return toDomainResultList<SellerShipping, SellerShippingModel>(result);
   }
 
   @override
-  Future<Either<Failure, OrderSummary>> getCombinedOrder(int param)async {
+  Future<Either<Failure, OrderSummaryDomainModel>> getCombinedOrder(int param) async {
     var result = await dataSource.getCombinedOrder(param);
     return toDomainResult(result);
   }
 
   @override
-  Future<Either<Failure, ShippingSummary>> applyLoyaltyPoints(NoParams params)async {
+  Future<Either<Failure, ShippingSummary>> applyLoyaltyPoints(
+      NoParams params) async {
     var result = await dataSource.applyLoyaltyPoints(params);
     return toDomainResult(result);
   }
 
   @override
-  Future<Either<Failure, ShippingSummary>> removeLoyaltyPoints(NoParams params)async {
+  Future<Either<Failure, ShippingSummary>> removeLoyaltyPoints(
+      NoParams params) async {
     var result = await dataSource.removeLoyaltyPoints(params);
     return toDomainResult(result);
   }
 
   @override
-  Future<Either<Failure, GiftCardApllieCartDomainModel>> applyGiftCard(ApplyGiftCardParams params)async {
+  Future<Either<Failure, GiftCardApllieCartDomainModel>> applyGiftCard(
+      ApplyGiftCardParams params) async {
     var result = await dataSource.applyGiftCard(params);
     return toDomainResult(result);
   }
 
   @override
-  Future<Either<Failure, String>> clearCart(ClearCartParams params)async {
+  Future<Either<Failure, String>> clearCart(ClearCartParams params) async {
     return await dataSource.clearCart(params);
   }
 
   @override
-  Future<Either<Failure, ShippingSummary>> removeCoupon(NoParams params)async {
+  Future<Either<Failure, ShippingSummary>> removeCoupon(NoParams params) async {
     var result = await dataSource.removeCoupon(params);
     return toDomainResult(result);
   }
 
   @override
-  Future<Either<Failure, FessMechanismModel>> getFees (bool params)async {
+  Future<Either<Failure, FessMechanismModel>> getFees(bool params) async {
     return await dataSource.getFees(params);
   }
 
   @override
-  Future<Either<Failure, List<DeliveryInstructionModel>>> getInstructions (bool params)async {
+  Future<Either<Failure, List<DeliveryInstructionModel>>> getInstructions(
+      bool params) async {
     var result = await dataSource.getInstructions(params);
-    return toDomainResultList<DeliveryInstructionModel, DeliveryInstruction>(result);
+    return toDomainResultList<DeliveryInstructionModel, DeliveryInstruction>(
+        result);
   }
 
   @override

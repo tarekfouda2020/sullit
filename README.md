@@ -21,10 +21,10 @@ samples, guidance on mobile development, and a full API reference.
 /// for build release apk
 - flutter build apk --release --no-tree-shake-icons
 
-/// for build appBundle apk => Google Play
+/// for build release appBundle => Google Play
 - flutter build appbundle --release --no-tree-shake-icons
 
-/// for build ipa apk => Ios
+/// for build release ipa ⇒ IOS
 - flutter build ipa --release --no-tree-shake-icons
 
 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

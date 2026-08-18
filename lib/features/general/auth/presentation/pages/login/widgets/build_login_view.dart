@@ -1,4 +1,4 @@
-part of'login_widgets_imports.dart';
+part of 'login_widgets_imports.dart';
 
 class BuildLoginView extends StatelessWidget {
   final LoginController controller;

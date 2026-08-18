@@ -12,8 +12,8 @@ class AddressDomainModel extends BaseDomainModel {
   City? city;
   String? postalCode;
   String? phone;
-  String?countryCode;
-  String?fullPhone;
+  String? countryCode;
+  String? fullPhone;
   bool? setDefault;
   String? lat;
   String? lang;
@@ -58,8 +58,8 @@ class AddressDomainModel extends BaseDomainModel {
     address = json['address'];
     postalCode = json['postal_code'];
     phone = json['phone'];
-    countryCode=json['country_code'];
-    fullPhone=json['full_phone'];
+    countryCode = json['country_code'];
+    fullPhone = json['full_phone'];
     setDefault = json['set_default'];
     lat = json['lat'];
     lang = json['lang'];
@@ -81,8 +81,8 @@ class AddressDomainModel extends BaseDomainModel {
     data['address'] = address;
     data['postal_code'] = postalCode;
     data['phone'] = phone;
-    data['full_phone']=fullPhone;
-    data['country_code']=countryCode;
+    data['full_phone'] = fullPhone;
+    data['country_code'] = countryCode;
     data['set_default'] = setDefault;
     data['lat'] = lat;
     data['lang'] = lang;
@@ -96,7 +96,4 @@ class AddressDomainModel extends BaseDomainModel {
     data["city_name"] = cityName;
     return data;
   }
-
-
-
 }

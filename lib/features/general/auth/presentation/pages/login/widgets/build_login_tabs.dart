@@ -12,8 +12,8 @@ class BuildLoginTabs extends StatelessWidget {
     required this.text,
     required this.selected,
     required this.onTap,
-     this.width,
-     this.height,
+    this.width,
+    this.height,
   });
 
   @override
@@ -26,8 +26,7 @@ class BuildLoginTabs extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
             color: selected ? context.colors.primary : Colors.transparent,
-            borderRadius: BorderRadius.circular(40)
-        ),
+            borderRadius: BorderRadius.circular(40)),
         child: Text(
           text,
           style: AppTextStyle.s14_w800(

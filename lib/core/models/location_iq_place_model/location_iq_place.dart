@@ -1,4 +1,3 @@
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'location_iq_place.freezed.dart';
@@ -25,8 +24,6 @@ class LocationIQPlace with _$LocationIQPlace {
   factory LocationIQPlace.fromJson(Map<String, dynamic> json) =>
       _$LocationIQPlaceFromJson(json);
 }
-
-
 
 @freezed
 class LocationIQAddress with _$LocationIQAddress {

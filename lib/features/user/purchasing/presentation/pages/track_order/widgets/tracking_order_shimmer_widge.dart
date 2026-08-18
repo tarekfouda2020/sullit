@@ -1,6 +1,5 @@
 part of 'track_order_widgets_imports.dart';
 
-
 class TrackingOrderShimmerWidget extends StatelessWidget {
   const TrackingOrderShimmerWidget({super.key});
 
@@ -43,7 +42,8 @@ class TrackingOrderShimmerWidget extends StatelessWidget {
         ),
         Gaps.vGap17,
         // Track order items shimmer
-        ...List.generate(4, (index) => _buildTrackOrderItemShimmer(context, index)),
+        ...List.generate(
+            4, (index) => _buildTrackOrderItemShimmer(context, index)),
       ],
     );
   }

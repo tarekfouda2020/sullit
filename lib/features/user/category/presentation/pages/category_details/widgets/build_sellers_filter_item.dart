@@ -1,6 +1,5 @@
 part of 'category_details_widgets_imports.dart';
 
-
 class BuildSellersFilterItem extends StatelessWidget {
   final CategoryDetailsController controller;
   const BuildSellersFilterItem({super.key, required this.controller});
@@ -13,7 +12,8 @@ class BuildSellersFilterItem extends StatelessWidget {
         return Column(
           children: [
             GestureDetector(
-              onTap: () => controller.showSellersCubit.onUpdateData(!state.data),
+              onTap: () =>
+                  controller.showSellersCubit.onUpdateData(!state.data),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -47,7 +47,7 @@ class BuildSellersFilterItem extends StatelessWidget {
                 if (state.data)
                   Visibility(
                     visible: controller
-                        .pagingSellersController.itemList?.isNotEmpty ==
+                            .pagingSellersController.itemList?.isNotEmpty ==
                         true,
                     replacement: Center(
                       child: Text(

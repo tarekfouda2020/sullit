@@ -1,6 +1,5 @@
 part of 'category_details_widgets_imports.dart';
 
-
 class FilterSellersShimmerWidget extends StatelessWidget {
   const FilterSellersShimmerWidget({super.key});
 
@@ -9,7 +8,7 @@ class FilterSellersShimmerWidget extends StatelessWidget {
     return Column(
       children: List.generate(
         3,
-            (index) {
+        (index) {
           return Row(
             children: [
               BuildShimmerItem(

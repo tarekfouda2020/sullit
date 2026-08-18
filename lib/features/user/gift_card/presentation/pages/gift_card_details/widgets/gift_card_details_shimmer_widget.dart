@@ -2,7 +2,7 @@ part of 'gift_card_details_widgets_imports.dart';
 
 class GiftCardDetailsShimmerWidget extends StatelessWidget {
   final bool isMyGiftCard;
-  
+
   const GiftCardDetailsShimmerWidget({
     super.key,
     this.isMyGiftCard = false,

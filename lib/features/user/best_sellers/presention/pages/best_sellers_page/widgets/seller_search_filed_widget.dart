@@ -11,7 +11,7 @@ class SellerSearchFiledWidget extends StatelessWidget {
       padding: Dimens.paddingHorizontal15PX,
       child: CustomSearchFiledWidget(
         txtController: controller.searchTxtController,
-        onPressSearch: () => controller.getBestSellers(1) ,
+        onPressSearch: () => controller.getBestSellers(1),
         onChange: (value) => controller.whileWriting(value),
         onPressClear: () => controller.clearSearchField(),
         hint: "Search in sellers....",

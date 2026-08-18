@@ -8,20 +8,19 @@ part 'order_driver_model.freezed.dart';
 part 'order_driver_model.g.dart';
 
 @freezed
-class OrderDriverModel extends BaseApiModel<OrderDriverDomainModel> with _$OrderDriverModel {
+class OrderDriverModel extends BaseApiModel<OrderDriverDomainModel>
+    with _$OrderDriverModel {
   const OrderDriverModel._();
 
   @JsonSerializable(explicitToJson: true)
-  factory OrderDriverModel({
-    required int id,
-    required String name,
-    required String email,
-    required String avatar,
-    required String phone,
-    @JsonKey(name: "work_type") required String workType,
-    @JsonKey(name: "avg_rate") required int avgRate
-  }) = _OrderDriverModel;
-
+  factory OrderDriverModel(
+      {required int id,
+      required String name,
+      required String email,
+      required String avatar,
+      required String phone,
+      @JsonKey(name: "work_type") required String workType,
+      @JsonKey(name: "avg_rate") required int avgRate}) = _OrderDriverModel;
 
   factory OrderDriverModel.fromJson(Map<String, dynamic> json) =>
       _$OrderDriverModelFromJson(json);

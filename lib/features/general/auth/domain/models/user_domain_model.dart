@@ -8,14 +8,14 @@ class UserDomainModel extends BaseDomainModel {
   String? avatarOriginal;
   String? email;
   String? phone;
-  String?fullPhone;
+  String? fullPhone;
   String? countryCode;
   String? token;
   String? tokenType;
   bool? isPhoneActive;
   bool? isEmailActive;
-   bool? hasValidSubscription;
-   bool?  isShareHolder;
+  bool? hasValidSubscription;
+  bool? isShareHolder;
   AddressDomainModel? address;
 
   UserDomainModel(
@@ -25,7 +25,7 @@ class UserDomainModel extends BaseDomainModel {
       this.avatarOriginal,
       this.email,
       this.phone,
-        this.fullPhone,
+      this.fullPhone,
       this.countryCode,
       this.token,
       this.tokenType,
@@ -42,15 +42,17 @@ class UserDomainModel extends BaseDomainModel {
     avatar = json['avatar'];
     avatarOriginal = json['avatar_original'];
     phone = json['phone'];
-    fullPhone=json['full_phone'];
+    fullPhone = json['full_phone'];
     countryCode = json['country_code'];
     token = json['token'];
     tokenType = json['token_type'];
     isPhoneActive = json['phone_is_active'];
-    isEmailActive=json['email_is_active'];
-    hasValidSubscription=json['has_valid_subscription'];
+    isEmailActive = json['email_is_active'];
+    hasValidSubscription = json['has_valid_subscription'];
     isShareHolder = json['is_shareholder'];
-    address = json['address'] != null ? AddressDomainModel.fromJson(json['address']) : null;
+    address = json['address'] != null
+        ? AddressDomainModel.fromJson(json['address'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -61,14 +63,14 @@ class UserDomainModel extends BaseDomainModel {
     data['avatar'] = avatar;
     data['avatar_original'] = avatarOriginal;
     data['phone'] = phone;
-    data['full_phone']=fullPhone;
+    data['full_phone'] = fullPhone;
     data['country_code'] = countryCode;
     data['token'] = token;
     data['token_type'] = tokenType;
     data['phone_is_active'] = isPhoneActive;
-    data['email_is_active']=isEmailActive;
+    data['email_is_active'] = isEmailActive;
     data['is_shareholder'] = isShareHolder;
-    data['has_valid_subscription']=hasValidSubscription;
+    data['has_valid_subscription'] = hasValidSubscription;
     if (address != null) {
       data['address'] = address!.toJson();
     }

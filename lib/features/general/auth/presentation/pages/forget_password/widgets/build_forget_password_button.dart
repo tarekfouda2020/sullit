@@ -11,7 +11,7 @@ class BuildForgetPasswordButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultButton(
       title: tr("send"),
-      onTap: () =>forgetPasswordController.forgetPassword(context),
+      onTap: () => forgetPasswordController.forgetPassword(context),
       color: context.colors.primary,
       textColor: context.colors.white,
       //btnKey: forgetPasswordController.btnKey,

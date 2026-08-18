@@ -4,18 +4,20 @@ class SellerProductsController {
   final TextEditingController brandsSearchCtr = TextEditingController();
 
   final TextEditingController productSearchCtr = TextEditingController();
-  final PagingController<int, Product> pagingController =
+  final PagingController<int, ProductCard> pagingController =
       PagingController(firstPageKey: 1);
   final PagingController<int, BrandDomainModel> brandsPagingController =
       PagingController(firstPageKey: 1);
+  final PagingController<int, ShopCategory> categoriesPagingController =
+      PagingController(firstPageKey: 1);
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
   final GenericBloc<bool> isLoadingNextPage = GenericBloc<bool>(false);
+  final GenericBloc<bool> refreshCategories = GenericBloc<bool>(false);
   final GenericBloc<ShopCategory?> categoryCubit =
       GenericBloc<ShopCategory?>(null);
   final GenericBloc<Shop?> shopCubit = GenericBloc<Shop?>(null);
 
   final GenericBloc<String> priceCubit = GenericBloc<String>("0.0");
-
 
   int pageSize = 12;
   bool isFilterAppliedBefore = false;
@@ -33,50 +35,84 @@ class SellerProductsController {
   GenericBloc<CartDomainModel> get cartItemsBloc =>
       getIt<CartHelper>().cartItemsBloc;
 
-
-  void getCartData(){
+  void getCartData() {
     var minShopsRequired = cartItemsBloc.state.data.minAmountSellers;
     var minShopsIds = minShopsRequired?.map((e) => e.shopId).toList();
-    if(minShopsIds?.contains(shopId) == true){
+    if (minShopsIds?.contains(shopId) == true) {
       getIt<CartHelper>().getCartItems(refresh: false);
       getIt<CartHelper>().getCartItems();
     }
   }
 
-
-  bool cartHaveSellerProduct(){
+  bool cartHaveSellerProduct() {
     var products = cartItemsBloc.state.data.items;
     var productsShopsIds = products?.map((e) => e.shopId).toSet();
     return productsShopsIds?.contains(shopId) ?? false;
   }
 
-
-  double neededAmount(){
+  double neededAmount() {
     var minShopsRequired = cartItemsBloc.state.data.minAmountSellers;
     var minShopsIds = minShopsRequired?.map((e) => e.shopId).toList();
-    if(minShopsIds?.contains(shopId) == true){
+    if (minShopsIds?.contains(shopId) == true) {
       return cartItemsBloc.state.data.getSingleSellerReMainAmount(shopId);
-    }else{
+    } else {
       return 0.0;
     }
   }
 
-
-  SellerProductsController(int id, {Shop? shopModel}) {
+  SellerProductsController(int id) {
     shopId = id;
     getCartData();
-    if (shopModel != null) {
-      shopCubit.onUpdateData(shopModel);
-    }
     getProducts(1, refresh: false);
-
+    getBrands(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
       getProducts(pageKey);
     });
-    getBrands(1, refresh: false);
     brandsPagingController.addPageRequestListener((pageKey) {
       getBrands(pageKey);
     });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _fetchShopDetails(fromRemote: false);
+      _fetchShopDetails();
+      _getCategories();
+    });
+  }
+
+  Future<void> _fetchShopDetails({bool fromRemote = true}) async {
+    var data = await GetShopDetails()
+        .call(ShopIdParams(shopId: shopId, refresh: fromRemote));
+    if (data != null) {
+      shopCubit.onUpdateData(data);
+    }
+  }
+
+  void _getCategories() {
+    getShopCategories(1, refresh: false);
+    categoriesPagingController.addPageRequestListener((pageKey) {
+      getShopCategories(pageKey);
+    });
+  }
+
+  Future<void> getShopCategories(int page, {bool refresh = true}) async {
+    ShopCategoryParams params = ShopCategoryParams(
+      shopId: shopId,
+      paginParams: GenericPaginateParams(
+        currentPage: page,
+        pageSize: pageSize,
+        refresh: refresh,
+      ),
+    );
+    List<ShopCategory> data = await GetShopCategories().call(params);
+    final isLastPage = data.length < pageSize;
+    if (page == 1) {
+      categoriesPagingController.itemList = [];
+      refreshCategories.onUpdateData(true);
+    }
+    if (isLastPage) {
+      categoriesPagingController.appendLastPage(data);
+    } else {
+      categoriesPagingController.appendPage(data, page + 1);
+    }
   }
 
   Future<void> getProducts(int page, {bool refresh = true}) async {
@@ -85,12 +121,9 @@ class SellerProductsController {
     var result = await GetSellerProducts().call(params);
     isLoadingNextPage.onUpdateData(false);
     allSellerData = result;
-    if (shopCubit.state.data == null && result != null) {
-      shopCubit.onUpdateData(result.shop);
-    }
     updateRangeValue(result);
-    final List<Product> data =
-        result?.sectionProductModel.products ?? <Product>[];
+    final List<ProductCard> data =
+        result?.sectionProductModel.products ?? <ProductCard>[];
     final isLastPage = (data.length) < pageSize;
     if (page == 1) {
       pagingController.itemList = [];
@@ -120,8 +153,8 @@ class SellerProductsController {
     }
   }
 
-  void onFavChanged(Product model) {
-    model.isWishlist = !model.isWishlist!;
+  void onFavChanged(ProductCard model) {
+    model.isWishlist = !model.isWishlist;
     int index = pagingController.itemList!.indexWhere((e) => e.id == model.id);
     pagingController.itemList![index] = model;
     var data = pagingController.itemList;
@@ -309,14 +342,13 @@ class SellerProductsController {
     getProducts(1);
   }
 
-
-  void onPressViewCart(BuildContext context, bool fromCart){
-    if(cartHaveSellerProduct() == false){
-      return ;
+  void onPressViewCart(BuildContext context, bool fromCart) {
+    if (cartHaveSellerProduct() == false) {
+      return;
     }
     if (fromCart == true) {
       AutoRouter.of(context).pop();
-    }else{
+    } else {
       AutoRouter.of(context).push(CartRoute());
     }
   }

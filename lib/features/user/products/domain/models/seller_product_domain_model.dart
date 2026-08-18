@@ -1,27 +1,25 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
-import 'package:flutter_tdd/features/user/category/domain/models/pagination_domain_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/price_range.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 
 class SellerProductDomainModel extends BaseDomainModel {
-  final Shop shop;
   final SellerSectionProductModel sectionProductModel;
 
   final PriceRange priceRange;
 
   SellerProductDomainModel({
     required this.sectionProductModel,
-    required this.shop,
     required this.priceRange,
   });
 }
 
 class SellerSectionProductModel extends BaseDomainModel {
   final SellerPaginationModel pagination;
-  final List<Product> products;
+  final List<ProductCard> products;
 
   SellerSectionProductModel({required this.products, required this.pagination});
+
 }
 
 class SellerPaginationModel extends BaseDomainModel {

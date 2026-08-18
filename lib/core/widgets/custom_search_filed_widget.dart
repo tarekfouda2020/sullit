@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,16 +23,16 @@ class CustomSearchFiledWidget extends StatefulWidget {
     required this.onPressSearch,
     required this.onChange,
     required this.onPressClear,
-     this.height = Dimens.dp35,
-     this.hint,
+    this.height = Dimens.dp35,
+    this.hint,
   });
 
   @override
-  State<CustomSearchFiledWidget> createState() => _CustomSearchFiledWidgetState();
+  State<CustomSearchFiledWidget> createState() =>
+      _CustomSearchFiledWidgetState();
 }
 
 class _CustomSearchFiledWidgetState extends State<CustomSearchFiledWidget> {
-
   final GenericBloc<bool> showClearIconCubit = GenericBloc<bool>(false);
 
   @override
@@ -42,7 +41,7 @@ class _CustomSearchFiledWidgetState extends State<CustomSearchFiledWidget> {
       children: [
         Expanded(
           child: SizedBox(
-            height:widget.height,
+            height: widget.height,
             child: GenericTextField(
               fieldTypes: FieldTypes.normal,
               controller: widget.txtController,
@@ -87,10 +86,12 @@ class _CustomSearchFiledWidgetState extends State<CustomSearchFiledWidget> {
                   margin: Dimens.paddingHorizontal10PX,
                   decoration: BoxDecoration(
                       color: context.colors.disableGray,
-                      shape: BoxShape.circle
-                  ),
+                      shape: BoxShape.circle),
                   child: Icon(
-                    Icons.clear, size: 16, color: context.colors.gray8,),
+                    Icons.clear,
+                    size: 16,
+                    color: context.colors.gray8,
+                  ),
                 ),
               ),
             );
@@ -107,7 +108,7 @@ class _CustomSearchFiledWidgetState extends State<CustomSearchFiledWidget> {
   }
 
   void _onChange(String value) {
-       widget.onChange.call(value);
-       showClearIconCubit.onUpdateData(value.isNotEmpty);
+    widget.onChange.call(value);
+    showClearIconCubit.onUpdateData(value.isNotEmpty);
   }
 }

@@ -1,15 +1,16 @@
 part of 'return_orders_widgets_imports.dart';
 
-
 class ReturnOrdersItemWidget extends StatelessWidget {
-  final Orders order;
+  final OrderCardDomainModel order;
   final ReturnOrdersController controller;
-  const ReturnOrdersItemWidget({super.key, required this.order, required this.controller});
+  const ReturnOrdersItemWidget(
+      {super.key, required this.order, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AutoRouter.of(context).push(OrderDetailsPageRoute(isReturnedOrder: true,order: order)),
+      onTap: () => AutoRouter.of(context)
+          .push(OrderDetailsPageRoute(isReturnedOrder: true, id: order.id)),
       child: Column(
         children: [
           Container(
@@ -19,11 +20,7 @@ class ReturnOrdersItemWidget extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
-                    Res.returnedOrder,
-                    height: 32.r,
-                    width: 32.r
-                ),
+                Image.asset(Res.returnedOrder, height: 32.r, width: 32.r),
                 Gaps.hGap16,
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,12 +29,14 @@ class ReturnOrdersItemWidget extends StatelessWidget {
                       children: [
                         Text(
                           tr('order'),
-                          style: AppTextStyle.s14_w400(color: context.colors.black),
+                          style: AppTextStyle.s14_w400(
+                              color: context.colors.black),
                         ),
                         Gaps.hGap6,
                         Text(
-                         "#${order.code}",
-                          style: AppTextStyle.s14_w600(color: context.colors.black),
+                          "#${order.code}",
+                          style: AppTextStyle.s14_w600(
+                              color: context.colors.black),
                         ),
                       ],
                     ),
@@ -46,16 +45,19 @@ class ReturnOrdersItemWidget extends StatelessWidget {
                       children: [
                         Text(
                           tr('Seller'),
-                          style: AppTextStyle.s12_w400(color: context.colors.black),
+                          style: AppTextStyle.s12_w400(
+                              color: context.colors.black),
                         ),
                         Gaps.hGap2,
                         Text(
                           ": ",
-                          style: AppTextStyle.s12_w400(color: context.colors.black),
+                          style: AppTextStyle.s12_w400(
+                              color: context.colors.black),
                         ),
                         Text(
                           order.soldBy,
-                          style: AppTextStyle.s12_w600(color: context.colors.black),
+                          style: AppTextStyle.s12_w600(
+                              color: context.colors.black),
                         ),
                       ],
                     ),
@@ -64,19 +66,21 @@ class ReturnOrdersItemWidget extends StatelessWidget {
                       children: [
                         Text(
                           tr("returnedDate"),
-                          style: AppTextStyle.s12_w400(color: context.colors.primary),
+                          style: AppTextStyle.s12_w400(
+                              color: context.colors.primary),
                         ),
                         Gaps.hGap2,
                         Text(
                           ":",
-                          style: AppTextStyle.s12_w400(color: context.colors.primary),
+                          style: AppTextStyle.s12_w400(
+                              color: context.colors.primary),
                         ),
                         Text(
                           DateTimeHelper.formatDate(
                               date: _getDate,
-                              formatType: "d MMM yyyy - hh:mm a"
-                          ),
-                          style: AppTextStyle.s12_w400(color: context.colors.textColor),
+                              formatType: "d MMM yyyy - hh:mm a"),
+                          style: AppTextStyle.s12_w400(
+                              color: context.colors.textColor),
                         ),
                       ],
                     ),
@@ -90,7 +94,6 @@ class ReturnOrdersItemWidget extends StatelessWidget {
     );
   }
 
-  DateTime get _getDate => DateTimeHelper.convertToDateTime(strDate: order.orderDate);
-
-
+  DateTime get _getDate =>
+      DateTimeHelper.convertToDateTime(strDate: order.orderDate);
 }

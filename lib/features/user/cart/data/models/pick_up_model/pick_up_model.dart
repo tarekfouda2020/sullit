@@ -7,30 +7,27 @@ part 'pick_up_model.g.dart';
 
 @freezed
 @immutable
-class PickUpModel extends BaseApiModel<Pickup> with _$PickUpModel{
+class PickUpModel extends BaseApiModel<Pickup> with _$PickUpModel {
   const PickUpModel._();
   @JsonSerializable(explicitToJson: true)
-  const factory PickUpModel({
-    required int id ,
-    required String address ,
-    @JsonKey(name: 'postal_code') required String postalCode,
-     double? lat ,
-     double? lang
-  }) = _PickUpModel;
-
+  const factory PickUpModel(
+      {required int id,
+      required String address,
+      @JsonKey(name: 'postal_code') required String postalCode,
+      double? lat,
+        double? lang}) = _PickUpModel;
 
   factory PickUpModel.fromJson(Map<String, dynamic> json) =>
       _$PickUpModelFromJson(json);
 
   @override
   Pickup toDomainModel() {
-   return Pickup(
-     id: id ,
-     address: address,
-     phone: postalCode ,
-     lat: lat,
-     lang: lang,
-     postalCode: postalCode
-   );
+    return Pickup(
+        id: id,
+        address: address,
+        phone: postalCode,
+        lat: lat,
+        lang: lang,
+        postalCode: postalCode);
   }
 }

@@ -62,7 +62,7 @@ class BuildChargeWalletDialog extends StatelessWidget {
                 title: tr('confirm'),
                 height: 35.h,
                 margin: Dimens.paddingAll10PX,
-                onTap: () =>controller.rechargeWallet(context),
+                onTap: () => controller.rechargeWallet(context),
               ),
             ],
           ),

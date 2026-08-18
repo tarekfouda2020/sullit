@@ -16,6 +16,11 @@ class SearchResultParams {
     if (searchTxt.isNotEmpty) {
       header = "?keyword=$searchTxt&${header.replaceAll("?", "")}";
     }
-    return '$header${LocationService.instance.locationQuerySuffix()}';
+    return header;
   }
+
+  Map<String, dynamic> toJson() => {
+        ...paginateParams.toJson(),
+        if (searchTxt.trim().isNotEmpty) "keyword": searchTxt,
+      };
 }

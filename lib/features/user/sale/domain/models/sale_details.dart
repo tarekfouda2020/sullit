@@ -1,12 +1,12 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 
-class SaleDetailsDomainModel extends BaseDomainModel{
+class SaleDetailsDomainModel extends BaseDomainModel {
   int id;
   String title;
   DateTime date;
   String banner;
-  List<Product> products;
+  List<ProductCard> products;
 
   SaleDetailsDomainModel({
     required this.id,

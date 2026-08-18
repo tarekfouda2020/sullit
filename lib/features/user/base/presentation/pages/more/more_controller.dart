@@ -24,11 +24,19 @@ class MoreController {
     }
   }
 
+  void onPressMyHealthPharmacyOrders(BuildContext context) {
+    checkAuth(context, MoreRoutes.myHealthPharmacyOrders);
+  }
+
+  void onPressSavedPrescriptions(BuildContext context) {
+    checkAuth(context, MoreRoutes.savedPrescriptions);
+  }
+
   void checkAuth(BuildContext context, MoreRoutes route) {
     if (canBePress(route)) {
       _getMoreItemRoute(route, context);
     } else {
-      bool auth = context.read<DeviceCubit>().state.model.auth;
+      bool auth = context.isAuth;
       if (auth) {
         _getMoreItemRoute(route, context);
       } else {
@@ -43,8 +51,14 @@ class MoreController {
         AutoRouter.of(context).push(const DashBoardRoute());
         break;
       case MoreRoutes.purchasedProducts:
-        AutoRouter.of(context).push(const MyOrdersRoute());
-        // AutoRouter.of(context).push(const PurchasedHistoryRoute());
+        AutoRouter.of(context).push( MyOrdersRoute(isPharmacy: false));
+
+        break;
+      case MoreRoutes.myHealthPharmacyOrders:
+        AutoRouter.of(context).push(MyOrdersRoute(isPharmacy: true));
+        break;
+      case MoreRoutes.savedPrescriptions:
+        AutoRouter.of(context).push(const SavedPrescriptionsRoute());
         break;
       case MoreRoutes.returnOrders:
         AutoRouter.of(context).push(const ReturnOrdersRoute());
@@ -177,14 +191,14 @@ class MoreController {
     await getIt<Utilities>().changeLanguage(code, context);
     if (context.mounted) {
       context.read<DeviceCubit>().updateLanguage(
-        Locale(
-          code,
-          _getCountryLangCode(code),
-        ),
-      );
-      homeController.animateTabsPages(0,context);
+            Locale(
+              code,
+              _getCountryLangCode(code),
+            ),
+          );
+      homeController.animateTabsPages(0, context);
       HomeDomainModel? homeData = OrdersHelper.instance.homeCubit.state.data;
-      if( homeData?.currentOrders.isNotEmpty == true ){
+      if (homeData?.currentOrders.isNotEmpty == true) {
         OrdersHelper.instance.getHome(setLoading: false);
       }
     }
@@ -222,12 +236,12 @@ class MoreController {
     bool isGranted = status.isGranted || status.isProvisional;
     GlobalState.instance.set(GlobalStateKeys.notificationGranted, isGranted);
     refreshNotifyCubit.onUpdateData(true);
-    if(isGranted){
+    if (isGranted) {
       getIt<GlobalNotification>().setupNotification();
     }
   }
 // void callLanguages(BuildContext context) {
-//   //   bool isAuth = context.read<DeviceCubit>().state.model.auth;
+//   //   bool isAuth = context.isAuth;
 //   //   if (isAuth) {
 //   //    _getLanguages(false);
 //   //       _getLanguages(true);

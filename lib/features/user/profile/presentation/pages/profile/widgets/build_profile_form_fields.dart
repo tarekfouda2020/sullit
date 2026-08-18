@@ -22,7 +22,7 @@ class BuildProfileFormFields extends StatelessWidget {
             type: TextInputType.text,
             action: TextInputAction.next,
             validate: (value) => value?.validateEmpty(),
-            margin:  Dimens.marginTop5Bottom12,
+            margin: Dimens.marginTop5Bottom12,
             hint: tr('yourName'),
           ),
           BuildInputLabel(label: tr('yourEmail')),
@@ -34,7 +34,7 @@ class BuildProfileFormFields extends StatelessWidget {
             action: TextInputAction.next,
             validate: (value) => value?.validateEmail(),
             hint: "mmm@example.com",
-            margin:  Dimens.marginTop5Bottom12,
+            margin: Dimens.marginTop5Bottom12,
           ),
           PhoneInputAndVerify(controller: controller)
           // GenericTextField(

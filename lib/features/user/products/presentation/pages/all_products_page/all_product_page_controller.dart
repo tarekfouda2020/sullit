@@ -1,1 +1,1 @@
-part of'all_product_page_imports.dart';
+part of 'all_product_page_imports.dart';

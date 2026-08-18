@@ -1,4 +1,5 @@
 part of 'order_summary_widgets_imports.dart';
+
 class BuildLoadingAmount extends StatelessWidget {
   const BuildLoadingAmount({Key? key}) : super(key: key);
 
@@ -23,19 +24,22 @@ class BuildLoadingAmount extends StatelessWidget {
               BuildShimmerItem(height: 15.h, width: 70.w),
               BuildShimmerItem(height: 15.h, width: 100.w),
             ],
-          ),Row(
+          ),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               BuildShimmerItem(height: 15.h, width: 80.w),
               BuildShimmerItem(height: 15.h, width: 100.w),
             ],
-          ),Row(
+          ),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               BuildShimmerItem(height: 15.h, width: 70.w),
               BuildShimmerItem(height: 15.h, width: 100.w),
             ],
-          ),Row(
+          ),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               BuildShimmerItem(height: 15.h, width: 80.w),
@@ -45,6 +49,5 @@ class BuildLoadingAmount extends StatelessWidget {
         ],
       ),
     );
-
   }
 }

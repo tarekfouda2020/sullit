@@ -20,7 +20,7 @@ class AddAddressParams {
       {required this.address,
       required this.addressType,
       // required this.postalCode,
-       this.countryId,
+      this.countryId,
       required this.stateId,
       required this.cityId,
       required this.phone,
@@ -34,7 +34,7 @@ class AddAddressParams {
   Map<String, dynamic> toJson() => {
         "address": address,
         // "postal_code": postalCode,
-       if(countryId!=null) "country_id": countryId,
+        if (countryId != null) "country_id": countryId,
         "state_name": stateId,
         "city_name": cityId,
         "address_type": addressType,

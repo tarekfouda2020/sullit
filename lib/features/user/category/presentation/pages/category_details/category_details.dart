@@ -3,8 +3,9 @@ part of 'category_details_imports.dart';
 class CategoryDetails extends StatefulWidget {
   final Category? categoryModel;
   final bool fromHome;
- final int? catId;
-  const CategoryDetails({super.key,  this.categoryModel, this.fromHome = false, this.catId});
+  final int? catId;
+  const CategoryDetails(
+      {super.key, this.categoryModel, this.fromHome = false, this.catId});
 
   @override
   _CategoryDetailsState createState() => _CategoryDetailsState();
@@ -16,7 +17,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   void initState() {
     super.initState();
-    controller = CategoryDetailsController(context, widget.categoryModel,widget.catId);
+    controller =
+        CategoryDetailsController(context, widget.categoryModel, widget.catId);
   }
 
   @override
@@ -30,7 +32,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
         onBack: () async {
           final handled = await controller.handleBackNavigation(context);
           if (!handled) {
-           AutoRouter.of(context).pop();
+            AutoRouter.of(context).pop();
           }
         },
         titleWidget: BlocBuilder<GenericBloc<String>, GenericState<String>>(

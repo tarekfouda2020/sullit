@@ -24,16 +24,16 @@ mixin _$CategoryModel {
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'banner')
-  String? get banner => throw _privateConstructorUsedError;
   @JsonKey(name: 'icon')
   String get icon => throw _privateConstructorUsedError;
-  @JsonKey(name: 'order_level')
-  int get orderLevel => throw _privateConstructorUsedError;
-  @JsonKey(name: 'digital')
-  int get digital => throw _privateConstructorUsedError;
   @JsonKey(name: 'slug')
   String get slug => throw _privateConstructorUsedError;
+  @JsonKey(name: 'banner')
+  String? get banner => throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_level')
+  int? get orderLevel => throw _privateConstructorUsedError;
+  @JsonKey(name: 'digital')
+  int? get digital => throw _privateConstructorUsedError;
   @JsonKey(name: 'chileds')
   List<CategoryModel>? get subCats => throw _privateConstructorUsedError;
 
@@ -52,11 +52,11 @@ abstract class $CategoryModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'id') int id,
       @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'banner') String? banner,
       @JsonKey(name: 'icon') String icon,
-      @JsonKey(name: 'order_level') int orderLevel,
-      @JsonKey(name: 'digital') int digital,
       @JsonKey(name: 'slug') String slug,
+      @JsonKey(name: 'banner') String? banner,
+      @JsonKey(name: 'order_level') int? orderLevel,
+      @JsonKey(name: 'digital') int? digital,
       @JsonKey(name: 'chileds') List<CategoryModel>? subCats});
 }
 
@@ -75,11 +75,11 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? banner = freezed,
     Object? icon = null,
-    Object? orderLevel = null,
-    Object? digital = null,
     Object? slug = null,
+    Object? banner = freezed,
+    Object? orderLevel = freezed,
+    Object? digital = freezed,
     Object? subCats = freezed,
   }) {
     return _then(_value.copyWith(
@@ -91,26 +91,26 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      banner: freezed == banner
-          ? _value.banner
-          : banner // ignore: cast_nullable_to_non_nullable
-              as String?,
       icon: null == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
               as String,
-      orderLevel: null == orderLevel
-          ? _value.orderLevel
-          : orderLevel // ignore: cast_nullable_to_non_nullable
-              as int,
-      digital: null == digital
-          ? _value.digital
-          : digital // ignore: cast_nullable_to_non_nullable
-              as int,
       slug: null == slug
           ? _value.slug
           : slug // ignore: cast_nullable_to_non_nullable
               as String,
+      banner: freezed == banner
+          ? _value.banner
+          : banner // ignore: cast_nullable_to_non_nullable
+              as String?,
+      orderLevel: freezed == orderLevel
+          ? _value.orderLevel
+          : orderLevel // ignore: cast_nullable_to_non_nullable
+              as int?,
+      digital: freezed == digital
+          ? _value.digital
+          : digital // ignore: cast_nullable_to_non_nullable
+              as int?,
       subCats: freezed == subCats
           ? _value.subCats
           : subCats // ignore: cast_nullable_to_non_nullable
@@ -130,11 +130,11 @@ abstract class _$$_CategoryModelCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'id') int id,
       @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'banner') String? banner,
       @JsonKey(name: 'icon') String icon,
-      @JsonKey(name: 'order_level') int orderLevel,
-      @JsonKey(name: 'digital') int digital,
       @JsonKey(name: 'slug') String slug,
+      @JsonKey(name: 'banner') String? banner,
+      @JsonKey(name: 'order_level') int? orderLevel,
+      @JsonKey(name: 'digital') int? digital,
       @JsonKey(name: 'chileds') List<CategoryModel>? subCats});
 }
 
@@ -151,11 +151,11 @@ class __$$_CategoryModelCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? banner = freezed,
     Object? icon = null,
-    Object? orderLevel = null,
-    Object? digital = null,
     Object? slug = null,
+    Object? banner = freezed,
+    Object? orderLevel = freezed,
+    Object? digital = freezed,
     Object? subCats = freezed,
   }) {
     return _then(_$_CategoryModel(
@@ -167,26 +167,26 @@ class __$$_CategoryModelCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      banner: freezed == banner
-          ? _value.banner
-          : banner // ignore: cast_nullable_to_non_nullable
-              as String?,
       icon: null == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
               as String,
-      orderLevel: null == orderLevel
-          ? _value.orderLevel
-          : orderLevel // ignore: cast_nullable_to_non_nullable
-              as int,
-      digital: null == digital
-          ? _value.digital
-          : digital // ignore: cast_nullable_to_non_nullable
-              as int,
       slug: null == slug
           ? _value.slug
           : slug // ignore: cast_nullable_to_non_nullable
               as String,
+      banner: freezed == banner
+          ? _value.banner
+          : banner // ignore: cast_nullable_to_non_nullable
+              as String?,
+      orderLevel: freezed == orderLevel
+          ? _value.orderLevel
+          : orderLevel // ignore: cast_nullable_to_non_nullable
+              as int?,
+      digital: freezed == digital
+          ? _value.digital
+          : digital // ignore: cast_nullable_to_non_nullable
+              as int?,
       subCats: freezed == subCats
           ? _value._subCats
           : subCats // ignore: cast_nullable_to_non_nullable
@@ -202,11 +202,11 @@ class _$_CategoryModel extends _CategoryModel {
   const _$_CategoryModel(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'name') required this.name,
-      @JsonKey(name: 'banner') this.banner,
       @JsonKey(name: 'icon') required this.icon,
-      @JsonKey(name: 'order_level') required this.orderLevel,
-      @JsonKey(name: 'digital') required this.digital,
       @JsonKey(name: 'slug') required this.slug,
+      @JsonKey(name: 'banner') this.banner,
+      @JsonKey(name: 'order_level') this.orderLevel,
+      @JsonKey(name: 'digital') this.digital,
       @JsonKey(name: 'chileds') final List<CategoryModel>? subCats})
       : _subCats = subCats,
         super._();
@@ -221,20 +221,20 @@ class _$_CategoryModel extends _CategoryModel {
   @JsonKey(name: 'name')
   final String name;
   @override
-  @JsonKey(name: 'banner')
-  final String? banner;
-  @override
   @JsonKey(name: 'icon')
   final String icon;
   @override
-  @JsonKey(name: 'order_level')
-  final int orderLevel;
-  @override
-  @JsonKey(name: 'digital')
-  final int digital;
-  @override
   @JsonKey(name: 'slug')
   final String slug;
+  @override
+  @JsonKey(name: 'banner')
+  final String? banner;
+  @override
+  @JsonKey(name: 'order_level')
+  final int? orderLevel;
+  @override
+  @JsonKey(name: 'digital')
+  final int? digital;
   final List<CategoryModel>? _subCats;
   @override
   @JsonKey(name: 'chileds')
@@ -248,7 +248,7 @@ class _$_CategoryModel extends _CategoryModel {
 
   @override
   String toString() {
-    return 'CategoryModel(id: $id, name: $name, banner: $banner, icon: $icon, orderLevel: $orderLevel, digital: $digital, slug: $slug, subCats: $subCats)';
+    return 'CategoryModel(id: $id, name: $name, icon: $icon, slug: $slug, banner: $banner, orderLevel: $orderLevel, digital: $digital, subCats: $subCats)';
   }
 
   @override
@@ -258,19 +258,19 @@ class _$_CategoryModel extends _CategoryModel {
             other is _$_CategoryModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.banner, banner) || other.banner == banner) &&
             (identical(other.icon, icon) || other.icon == icon) &&
+            (identical(other.slug, slug) || other.slug == slug) &&
+            (identical(other.banner, banner) || other.banner == banner) &&
             (identical(other.orderLevel, orderLevel) ||
                 other.orderLevel == orderLevel) &&
             (identical(other.digital, digital) || other.digital == digital) &&
-            (identical(other.slug, slug) || other.slug == slug) &&
             const DeepCollectionEquality().equals(other._subCats, _subCats));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, banner, icon,
-      orderLevel, digital, slug, const DeepCollectionEquality().hash(_subCats));
+  int get hashCode => Object.hash(runtimeType, id, name, icon, slug, banner,
+      orderLevel, digital, const DeepCollectionEquality().hash(_subCats));
 
   @JsonKey(ignore: true)
   @override
@@ -290,11 +290,11 @@ abstract class _CategoryModel extends CategoryModel {
   const factory _CategoryModel(
           {@JsonKey(name: 'id') required final int id,
           @JsonKey(name: 'name') required final String name,
-          @JsonKey(name: 'banner') final String? banner,
           @JsonKey(name: 'icon') required final String icon,
-          @JsonKey(name: 'order_level') required final int orderLevel,
-          @JsonKey(name: 'digital') required final int digital,
           @JsonKey(name: 'slug') required final String slug,
+          @JsonKey(name: 'banner') final String? banner,
+          @JsonKey(name: 'order_level') final int? orderLevel,
+          @JsonKey(name: 'digital') final int? digital,
           @JsonKey(name: 'chileds') final List<CategoryModel>? subCats}) =
       _$_CategoryModel;
   const _CategoryModel._() : super._();
@@ -309,20 +309,20 @@ abstract class _CategoryModel extends CategoryModel {
   @JsonKey(name: 'name')
   String get name;
   @override
-  @JsonKey(name: 'banner')
-  String? get banner;
-  @override
   @JsonKey(name: 'icon')
   String get icon;
   @override
-  @JsonKey(name: 'order_level')
-  int get orderLevel;
-  @override
-  @JsonKey(name: 'digital')
-  int get digital;
-  @override
   @JsonKey(name: 'slug')
   String get slug;
+  @override
+  @JsonKey(name: 'banner')
+  String? get banner;
+  @override
+  @JsonKey(name: 'order_level')
+  int? get orderLevel;
+  @override
+  @JsonKey(name: 'digital')
+  int? get digital;
   @override
   @JsonKey(name: 'chileds')
   List<CategoryModel>? get subCats;

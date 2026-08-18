@@ -3,7 +3,7 @@ part of 'shareholder_offers_imports.dart';
 class ShareholderOffersController {
   final TextEditingController searchFieldCtr = TextEditingController();
 
-  final PagingController<int, Product> shareholderOffersPagingController =
+  final PagingController<int, ProductCard> shareholderOffersPagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 10;
   int currentPage = 1;
@@ -38,7 +38,7 @@ class ShareholderOffersController {
         pageSize: pageSize, refresh: refresh, currentPage: currentPage);
   }
 
-  void onChangeFav(Product item) {
+  void onChangeFav(ProductCard item) {
     item.isWishlist = !item.isWishlist!;
     // Refresh to update UI state - though PagingController might need manual list update trigger
     // Similar to brand_details_controller reference
@@ -58,10 +58,9 @@ class ShareholderOffersController {
 
   OffersParamsWidget _shareHolderOffers(bool refresh, int currentPage) {
     return OffersParamsWidget(
-      paginateParams: _shareholderOffersParams(refresh, currentPage),
-      isVipProducts: true,
-      keyword: searchFieldCtr.text
-    );
+        paginateParams: _shareholderOffersParams(refresh, currentPage),
+        isVipProducts: true,
+        keyword: searchFieldCtr.text);
   }
 
   void onPressSearch(BuildContext context) {
@@ -80,8 +79,4 @@ class ShareholderOffersController {
     shareholderOffersPagingController.refresh();
     getShareholderProducts(1);
   }
-
-
-
-
 }

@@ -8,11 +8,11 @@ import '../../models/http_request_model.dart';
 @lazySingleton
 class HandleJsonResponse<BaseModel> {
   Future<Either<Failure, BaseModel>> call(
-      Either<Failure, Response> response,
-      ResType responseType,
-      _ToJsonFunc toJsonFunc,
-      _ResponseKeyFunc? dataKeyFun,
-      ) async {
+    Either<Failure, Response> response,
+    ResType responseType,
+    _ToJsonFunc toJsonFunc,
+    _ResponseKeyFunc? dataKeyFun,
+  ) async {
     if (response.isLeft()) return Left(ServerFailure());
     var responseData = response.fold((l) => null, (r) => r.data);
 

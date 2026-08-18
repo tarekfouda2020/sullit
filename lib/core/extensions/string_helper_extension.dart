@@ -14,13 +14,12 @@ extension StringHelperExtension on String? {
     return getIt<Utilities>().capitalize(this ?? "");
   }
 
-  String  formatAmount({bool applyDashSeperate = true}) {
-    return getIt<Utilities>().formatAmount(this ?? "",applyDashSeperate: applyDashSeperate);
+  String formatAmount({bool applyDashSeperate = true}) {
+    return getIt<Utilities>()
+        .formatAmount(this ?? "", applyDashSeperate: applyDashSeperate);
   }
 
-
-  String  cleanNumber(){
+  String cleanNumber() {
     return (this ?? "").replaceAll(",", "");
   }
-
 }

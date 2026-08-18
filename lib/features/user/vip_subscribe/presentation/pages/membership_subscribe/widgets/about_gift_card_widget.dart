@@ -8,7 +8,8 @@ class AboutGiftCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: CustomDecoration(
-          radius: BorderRadius.circular(12), boxBorder: Border.all(color: context.colors.borderColor, width: 1)),
+          radius: BorderRadius.circular(12),
+          boxBorder: Border.all(color: context.colors.borderColor, width: 1)),
       padding: const EdgeInsets.fromLTRB(23, 13, 23, 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

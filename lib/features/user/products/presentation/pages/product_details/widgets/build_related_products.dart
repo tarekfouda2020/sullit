@@ -1,9 +1,10 @@
 part of 'product_details_widgets_imports.dart';
 
 class BuildRelatedProducts extends StatelessWidget {
-  final List<Product> relatedProducts;
-final ProductDetailsController controller;
-  const BuildRelatedProducts({super.key, required this.relatedProducts, required this.controller});
+  final List<ProductCard> relatedProducts;
+  final ProductDetailsController controller;
+  const BuildRelatedProducts(
+      {super.key, required this.relatedProducts, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,8 @@ final ProductDetailsController controller;
               ),
               Flexible(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsetsDirectional.only(top: 10,bottom: 10,start: 15),
+                  padding: const EdgeInsetsDirectional.only(
+                      top: 10, bottom: 10, start: 15),
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -39,16 +41,20 @@ final ProductDetailsController controller;
                         padding: Dimens.paddingHorizontal5PX,
                         child: BuildProductItem(
                           productModel: relatedProducts[index],
+                          fallbackBranchId: controller.branchId,
                           onPressDelete: () => controller.getCartItems(),
-                          afterAddToCart: () => controller.calculateRemainingAmount(),
-                          onFavRefresh: () => controller.onChangeFav(
+                          afterAddToCart: () =>
+                              controller.calculateRemainingAmount(),
+                          onFavRefresh: () => controller.onChangeFavCard(
                             context,
                             relatedProducts[index],
                           ),
                           onCompareRefresh: () => controller.onChangeCompare(
                             relatedProducts[index],
                           ),
-                          onRefresh: () => controller.getProductDetails(context, controller.productId, resetQty: false),
+                          onRefresh: () => controller.getProductDetails(
+                              context, controller.productId,
+                              resetQty: false),
                         ),
                       ),
                     ),

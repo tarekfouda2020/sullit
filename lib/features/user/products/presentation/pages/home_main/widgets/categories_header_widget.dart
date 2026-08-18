@@ -17,7 +17,7 @@ class CategoriesHeaderWidget extends StatelessWidget {
           onTap: () => controller.homeController.animateTabsPages(1, context),
           child: Text(
             tr("seeAll"),
-            style: AppTextStyle.s12_w400(color: context.colors.primary),
+            style: AppTextStyle.s12_w400(color: context.colors.textColor),
           ),
         ),
       ],

@@ -27,7 +27,7 @@ enum TrackOrderEnum {
         return 2;
       case preparing:
         return 3;
-        case readyForDelivery:
+      case readyForDelivery:
         return 4;
       case pickedUp:
         return 5;
@@ -48,7 +48,7 @@ enum TrackOrderEnum {
         return AppColors.noContextInstance.green;
       case preparing:
         return AppColors.noContextInstance.primary;
-        case readyForDelivery:
+      case readyForDelivery:
         return AppColors.noContextInstance.gold;
       case pickedUp:
         return AppColors.noContextInstance.green;
@@ -69,7 +69,7 @@ enum TrackOrderEnum {
         return Res.confirmed;
       case TrackOrderEnum.preparing:
         return Res.pickedUp;
-        case TrackOrderEnum.readyForDelivery:
+      case TrackOrderEnum.readyForDelivery:
         return Res.pickedUp;
       case TrackOrderEnum.pickedUp:
         return Res.onTheWay;

@@ -1,29 +1,40 @@
 part of 'my_orders_imports.dart';
 
-
 class MyOrders extends StatefulWidget {
-  const MyOrders({super.key});
+  final bool isPharmacy;
+  const MyOrders({super.key, required this.isPharmacy});
 
   @override
   State<MyOrders> createState() => _MyOrdersState();
 }
 
 class _MyOrdersState extends State<MyOrders> {
+ late final MyOrdersController controller;
 
-  final MyOrdersController controller = MyOrdersController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller = MyOrdersController(isPharmacy: widget.isPharmacy);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: DefaultAppBar(title: tr("my_orders"),),
+      appBar: DefaultAppBar(
+        title:  widget.isPharmacy
+            ? "Pharmacy Orders"
+            :tr("my_orders"),
+      ),
       body: CustomRefreshIndicatorWidget(
         onRefresh: () => controller.getPurchasingHistory(1),
-        child: PagedListView<int, Orders>(
+        child: PagedListView<int, OrderCardDomainModel>(
           padding: Dimens.paddingAll15PX,
           pagingController: controller.pagingController,
-          builderDelegate: PagedChildBuilderDelegate<Orders>(
-            firstPageProgressIndicatorBuilder: (_) => const BuildLoadingOrders(),
+          builderDelegate: PagedChildBuilderDelegate<OrderCardDomainModel>(
+            firstPageProgressIndicatorBuilder: (_) =>
+                const BuildLoadingOrders(),
             itemBuilder: (_, item, index) => MyOrderItemWidget(
               order: item,
               controller: controller,
@@ -33,7 +44,7 @@ class _MyOrdersState extends State<MyOrders> {
             },
           ),
         ),
-      ) ,
+      ),
     );
   }
 }

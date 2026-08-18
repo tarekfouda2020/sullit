@@ -1,9 +1,13 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/delivery_instruction/delivery_instruction.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/insurance_company_model/insurance_company_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_attachment_model/pharmacy_attachment_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_branch_model/pharmacy_branch_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_details_model/order_details_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_discount/order_discount.dart';
 import 'package:flutter_tdd/features/user/purchasing/data/models/order_driver_model/order_driver_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
+import 'package:flutter_tdd/features/user/products/data/models/shop_card_model/shop_card_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../order_modification_model/order_modification_model.dart';
@@ -21,13 +25,14 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     required int id,
     required String code,
     @JsonKey(name: 'order_type') required String orderType,
-    @JsonKey(name: 'bag_count') required int bagCount,
+    @JsonKey(name: 'bag_count')  int? bagCount,
     @JsonKey(name: 'available_return_order') required bool availableReturnOrder,
     @JsonKey(name: 'show_button_pay') required bool showButtonPay,
     required String subtotal,
     required String shipping,
     required String tax,
     @JsonKey(name: 'coupon_discount') required String couponDiscount,
+    @JsonKey(name: 'shop_type') required String shopType,
     required String total,
     required String date,
     @JsonKey(name: 'delivery_status_const') required String deliveryStatusConst,
@@ -54,18 +59,22 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'loyalty_points_applied') required bool loyaltyPointsApplied,
     @JsonKey(name: 'loyalty_points') required int loyaltyPoints,
     @JsonKey(name: 'total_items') required int totalItems,
-    @JsonKey(name: 'expected_loyalty_points') required int expectedLoyaltyPoints,
-    @JsonKey(name: 'order_details') required List<OrderDetailsModel> orderDetails,
+    @JsonKey(name: 'expected_loyalty_points')
+    required int expectedLoyaltyPoints,
+    @JsonKey(name: 'order_details')
+    required List<OrderDetailsModel> orderDetails,
     @JsonKey(name: 'service_fees') required String serviceFees,
     @JsonKey(name: 'technology_fees') required String technologyFees,
     @JsonKey(name: 'environment_fees') required String environmentFees,
     @JsonKey(name: 'vat_fee_amount') required String vatFeeAmount,
+
     /// total of fees with there *vat => (vatFeeAmount)*
     @JsonKey(name: 'total_fee_amount') required String totalFeeAmount,
     @JsonKey(name: 'driver_notes') required String driverNotes,
     @JsonKey(name: 'picker_notes') required String pickerNotes,
-    @JsonKey(name: 'delivery_instructions') required List<DeliveryInstruction> deliveryInstructions,
-    @JsonKey(name: 'order_discounts')  List<OrderDiscount>? orderDiscounts,
+    @JsonKey(name: 'delivery_instructions')
+    required List<DeliveryInstruction> deliveryInstructions,
+    @JsonKey(name: 'order_discounts') List<OrderDiscount>? orderDiscounts,
     @JsonKey(name: 'driver') OrderDriverModel? driver,
     @JsonKey(name: 'order_source_label') String? orderSourceLabel,
     @JsonKey(name: 'shipping_provider') String? shippingProvider,
@@ -74,16 +83,34 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'delivery_image') String? deliveryImage,
     @JsonKey(name: 'creation_method') String? creationMethod,
     @JsonKey(name: 'creation_method_label') String? creationMethodLabel,
+    @JsonKey(name: 'is_pending_review') bool? isPendingReview,
+    @JsonKey(name: 'awaiting_customer_completion') bool? awaitingCustomerCompletion,
+    @JsonKey(name: 'requires_prescription_review') bool? requiresPrescriptionReview,
+    @JsonKey(name: 'insurance_applied') bool? insuranceApplied,
+    @JsonKey(name: 'insurance_attachments') List<PharmacyAttachmentModel>? insuranceAttachments,
+    @JsonKey(name: 'prescription_attachments') List<PharmacyAttachmentModel>? prescriptionAttachments,
+    @JsonKey(name: 'insurance_company') InsuranceCompanyModel? insuranceCompany,
+    @JsonKey(name: 'cancel_reason') String? cancelReason,
+    @JsonKey(name: 'identity_document_file') String? identityDocumentFile,
+    @JsonKey(name: 'requested_by') String? requestedBy,
+    @JsonKey(name: 'requested_by_label') String? requestedByLabel,
+    @JsonKey(name: 'pharmacy_reply') String? pharmacyReply,
+    PharmacyBranchModel? branch,
+    ShopCardModel? shop,
+    @JsonKey(name: 'creation_method') String? creationMethod,
+    @JsonKey(name: 'creation_method_label') String? creationMethodLabel,
+
   }) = _OrderModel;
 
-  factory OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);
+  factory OrderModel.fromJson(Map<String, dynamic> json) =>
+      _$OrderModelFromJson(json);
 
   @override
   Orders toDomainModel() {
     return Orders(
       id: id,
       code: code,
-        bagCount : bagCount,
+      bagCount: bagCount ?? 0,
       orderType: orderType,
       availableReturnOrder: availableReturnOrder,
       showButtonPay: showButtonPay,
@@ -132,10 +159,26 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       orderSourceLabel:orderSourceLabel ,
        shippingProvider: shippingProvider,
       shippingProviderLabel:shippingProviderLabel,
-      orderDetailHistories: orderDetailHistories?.map((e) => e.toDomainModel()).toList(),
-      deliveryImage: deliveryImage,
       creationMethod: creationMethod,
       creationMethodLabel:creationMethodLabel,
+      orderSourceLabel: orderSourceLabel,
+      shippingProvider: shippingProvider,
+      shippingProviderLabel: shippingProviderLabel,
+      shopType: shopType,
+      awaitingCustomerCompletion: awaitingCustomerCompletion,
+      isPendingReview: isPendingReview,
+      requiresPrescriptionReview: requiresPrescriptionReview,
+      insuranceApplied: insuranceApplied,
+      prescriptionAttachments: prescriptionAttachments?.map((e) => e.toDomainModel()).toList(),
+      insuranceAttachments: insuranceAttachments?.map((e) => e.toDomainModel()).toList(),
+      insuranceCompany: insuranceCompany?.toDomainModel(),
+      cancelReason: cancelReason,
+      identityDocumentFile: identityDocumentFile,
+      requestedBy: requestedBy,
+      requestedByLabel: requestedByLabel,
+      pharmacyReply: pharmacyReply,
+      branch: branch?.toDomainModel(),
+      shop: shop?.toDomainModel(),
     );
   }
 }

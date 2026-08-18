@@ -3,10 +3,7 @@
 part of 'splash_imports.dart';
 
 class SplashController {
-
-
-
-  Future<void> initScreen(BuildContext context)async{
+  Future<void> initScreen(BuildContext context) async {
     manipulateSaveData(context);
     // PlaySoundHelper.instance.startSound(
     //     afterSoundEnd: () => manipulateSaveData(context)
@@ -14,6 +11,7 @@ class SplashController {
   }
 
   Future<void> manipulateSaveData(BuildContext context) async {
+    getUserCurrentLocation(context);
     updateLang(context);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var strUser = prefs.get("user");
@@ -40,13 +38,24 @@ class SplashController {
     }
   }
 
-  /// stored lang in sharedPref & DeviceCubit is use for local translates
-  /// while stored lang in global state is use for back-end
-  /// back-end lang code is different from local lang code
 
+
+  Future<void> getUserCurrentLocation(BuildContext context)async{
+    LatLng? location = await getIt<LocationService>().getCurrentLocationWithPermission(context);
+    if(location != null){
+      GlobalState.instance.set(GlobalStateKeys.userLocation, location);
+      log("location in splash are =>>>>>> $location =============");
+    }else{
+     var ll =  GlobalState.instance.set(GlobalStateKeys.userLocation, const LatLng(24.46, 54.38));
+      log("fake location in splash are =>>>>>> $ll =============");
+    }
+  }
+
+
+  /// back-end lang code is different from local lang code
   Future<void> updateLang(BuildContext context) async {
     await SharedPreferences.getInstance().then(
-          (lang) {
+      (lang) {
         String? value = lang.getString(LangCodeHelper.langKey);
         context.read<DeviceCubit>().updateLanguage(
               Locale(
@@ -63,7 +72,8 @@ class SplashController {
         if (value == LangCodeHelper.langUR) {
           value = LangTypeEnum.urdu.getLangCode();
         }
-        GlobalState.instance.set(LangCodeHelper.langKey, value ?? LangCodeHelper.langEN);
+        GlobalState.instance
+            .set(LangCodeHelper.langKey, value ?? LangCodeHelper.langEN);
       },
     );
   }

@@ -13,13 +13,13 @@ class GiftCardsListWidget extends StatelessWidget {
         builderDelegate: PagedChildBuilderDelegate<GiftCardDomainModel>(
           itemBuilder: (_, item, index) {
             return GiftCardItemWidget(
-                isMyGiftCard: false,
-                model: item,
-              onTap: ()=> controller.routeToCardDetails(context, item.id),
+              isMyGiftCard: false,
+              model: item,
+              onTap: () => controller.routeToCardDetails(context, item.id),
             );
           },
           noItemsFoundIndicatorBuilder: (cxt) {
-            return  Center(
+            return Center(
               child: Text(
                 tr("comingSoon"),
                 style: AppTextStyle.s16_w700(color: context.colors.black),

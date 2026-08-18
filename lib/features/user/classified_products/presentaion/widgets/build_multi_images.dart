@@ -74,8 +74,8 @@ class BuildMultiImages extends StatelessWidget {
         } else {
           return Center(
             child: GestureDetector(
-              onTap: () => getIt<AddImageHelper>()
-                  .getImages(context, imagesBloc),
+              onTap: () =>
+                  getIt<AddImageHelper>().getImages(context, imagesBloc),
               child: Text(
                 tr('browseFile'),
                 style: AppTextStyle.s16_w500(

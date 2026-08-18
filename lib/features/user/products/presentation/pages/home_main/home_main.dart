@@ -26,8 +26,7 @@ class _HomeMainState extends State<HomeMain> {
           children: [
             BuildHomeMainAppBar(homeMainController: controller),
             // const BuildDiscountMsg(),
-            BlocBuilder<GenericBloc<HomeDomainModel?>,
-                GenericState<HomeDomainModel?>>(
+            BlocBuilder<GenericBloc<HomeDomainModel?>, GenericState<HomeDomainModel?>>(
               bloc: controller.homeCubit,
               builder: (context, state) {
                 if (state is GenericUpdateState && state.data != null) {

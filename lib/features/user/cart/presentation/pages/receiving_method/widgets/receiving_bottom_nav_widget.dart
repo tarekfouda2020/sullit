@@ -7,9 +7,8 @@ class ReceivingBottomNavWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultButton(
-        title: tr("proceedToCheckout"),
-         onTap: () => controller.onPressProceed(context),
-
+      title: tr("proceedToCheckout"),
+      onTap: () => controller.onPressProceed(context),
     );
   }
 }

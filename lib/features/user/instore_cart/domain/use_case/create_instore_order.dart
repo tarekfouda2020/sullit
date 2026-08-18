@@ -5,9 +5,9 @@ import 'package:flutter_tdd/features/user/instore_cart/domain/entity/instore_cre
 import 'package:flutter_tdd/features/user/instore_cart/domain/repository/instore_cart_repository.dart';
 
 class CreateInstoreOrder
-    implements UseCase<OrderSummary?, InstoreCreateOrderParams> {
+    implements UseCase<OrderSummaryDomainModel?, InstoreCreateOrderParams> {
   @override
-  Future<OrderSummary?> call(InstoreCreateOrderParams params) async {
+  Future<OrderSummaryDomainModel?> call(InstoreCreateOrderParams params) async {
     final result = await getIt<InstoreCartRepository>().createOrder(params);
     return result.fold((_) => null, (data) => data);
   }

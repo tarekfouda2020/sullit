@@ -4,12 +4,13 @@ class BuildDealsItem extends StatelessWidget {
   final FlashSale flashSaleModel;
   final HomeMainController controller;
 
-  const BuildDealsItem({super.key, required this.flashSaleModel, required this.controller});
+  const BuildDealsItem(
+      {super.key, required this.flashSaleModel, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()=>controller.navigateToDeals(context),
+      onTap: () => controller.navigateToDeals(context),
       child: Container(
         margin: Dimens.paddingAll3PX,
         padding: Dimens.paddingVertical8PX,

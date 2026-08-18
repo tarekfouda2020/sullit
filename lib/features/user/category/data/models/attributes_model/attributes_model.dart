@@ -8,8 +8,7 @@ part 'attributes_model.g.dart';
 
 @freezed
 @immutable
-class AttributesModel extends BaseApiModel<Attributes>
-    with _$AttributesModel {
+class AttributesModel extends BaseApiModel<Attributes> with _$AttributesModel {
   const AttributesModel._();
 
   @JsonSerializable(explicitToJson: true)
@@ -17,7 +16,7 @@ class AttributesModel extends BaseApiModel<Attributes>
     @JsonKey(name: 'id') required int id,
     @JsonKey(name: 'name') required String name,
     @JsonKey(name: 'attribute_values')
-        required List<AttributeValueModel> attributesValues,
+    required List<AttributeValueModel> attributesValues,
   }) = _AttributesModel;
 
   factory AttributesModel.fromJson(Map<String, dynamic> json) =>

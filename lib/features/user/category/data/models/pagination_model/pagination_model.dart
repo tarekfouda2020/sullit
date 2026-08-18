@@ -7,7 +7,8 @@ part 'pagination_model.g.dart';
 
 @freezed
 @immutable
-class PaginationModel extends BaseApiModel<PaginationDomainModel> with _$PaginationModel {
+class PaginationModel extends BaseApiModel<PaginationDomainModel>
+    with _$PaginationModel {
   const PaginationModel._();
 
   @JsonSerializable(explicitToJson: true)

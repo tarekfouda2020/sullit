@@ -1,8 +1,6 @@
-class FavoriteParams{
-
+class FavoriteParams {
   final int id;
-   bool showLoader;
+  bool showLoader;
 
   FavoriteParams({required this.id, this.showLoader = true});
-
 }

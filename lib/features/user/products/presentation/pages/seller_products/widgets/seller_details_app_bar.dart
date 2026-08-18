@@ -7,70 +7,106 @@ class SellerDetailsAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
-      bloc: controller.shopCubit,
-      builder: (context, state) {
-        final shopModel = state.data;
-        return SliverAppBar(
-          backgroundColor: context.colors.white,
-          pinned: true,
-          elevation: 0,
-          automaticallyImplyLeading: true,
-          leading: const BackButton(color: Colors.black),
-          title: Text(
-            shopModel?.name ?? "",
+    return SliverAppBar(
+      backgroundColor: context.colors.white,
+      pinned: true,
+      elevation: 0,
+      automaticallyImplyLeading: true,
+      leading: const BackButton(color: Colors.black),
+      title: BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
+        bloc: controller.shopCubit,
+        builder: (context, state) {
+          return Text(
+            state.data?.name ?? "",
             style: AppTextStyle.s20_w700(color: context.colors.black),
+          );
+        },
+      ),
+      expandedHeight: 550,
+      flexibleSpace: FlexibleSpaceBar(
+        background: Padding(
+          padding: EdgeInsets.only(
+              top: MediaQuery
+                  .paddingOf(context)
+                  .top + kToolbarHeight,
+              left: 16,
+              right: 16),
+          child: BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
+            bloc: controller.shopCubit,
+            builder: (context, state) {
+              var shopModel = state.data;
+              return shopModel != null
+                  ? SellerCardWidget(
+                shop: shopModel.toShopCardDomainModel(),
+                openImage: true,
+              )
+                  : const SellerCardShimmerWidget();
+            },
           ),
-          expandedHeight: 550,
-          // expandedHeight: 500,
-          flexibleSpace: FlexibleSpaceBar(
-            background: Padding(
-              padding: EdgeInsets.only(
-                  top: MediaQuery.paddingOf(context).top + kToolbarHeight,
-                  left: 16,
-                  right: 16),
-              child: shopModel != null
-                  ? SellerCardWidget(shop: shopModel, openImage: true)
-                  : const BuildShimmerItem(height: 300),
-            ),
-          ),
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(220),
-            // preferredSize: const Size.fromHeight(180),
-            child: Container(
-              color: context.colors.white,
-              child: Column(
-                children: [
-                  Gaps.vGap10,
-                  DefaultButton(
-                    title: tr('inStoreShopping'),
-                    margin: const EdgeInsets.symmetric(horizontal: 18),
-                    width: 230,
-                    fontSize: 14,
-                    onTap: () =>
-                        controller.routeToInstoreShopping(context),
-                  ),
-                  Gaps.vGap10,
-                  SellerPageProductsSectionWidget(
-                    controller: controller,
-                  ),
-                  Gaps.vGap12,
-                  if (shopModel?.categories != null)
-                    SellerPageCategoriesWidget(
-                      category: shopModel!.categories!,
+        ),
+      ),
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(220),
+        child: Container(
+          color: context.colors.white,
+          child: Column(
+            children: [
+              Gaps.vGap10,
+              BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
+                bloc: controller.shopCubit,
+                builder: (context, state) {
+                  return Visibility(
+                      visible: state.data != null,
+                      replacement: BuildShimmerItem(
+                        child: Container(
+                          width: 230,
+                          height: 52,
+                          decoration: BoxDecoration(
+                            borderRadius: Dimens.borderRadius40PX
+                          ),
+                        ),
+                      ),
+                      child: DefaultButton(
+                        title: tr('inStoreShopping'),
+                        margin: const EdgeInsets.symmetric(horizontal: 18),
+                        width: 230,
+                        fontSize: 14,
+                        onTap: () =>
+                            controller.routeToInstoreShopping(context),
+                      ));
+                },
+              ),
+              Gaps.vGap10,
+              SellerPageProductsSectionWidget(
+                controller: controller,
+              ),
+              Gaps.vGap12,
+              BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+                bloc: controller.refreshCategories,
+                builder: (context, state) {
+                  if (!state.data) {
+                    return const SellerCategoriesShimmerWidget();
+                  }
+                  return Visibility(
+                    visible: controller
+                        .categoriesPagingController.itemList
+                        ?.isNotEmpty ==
+                        true,
+                    child: SellerPageCategoriesWidget(
                       controller: controller,
                     ),
-                  Gaps.vGap12,
-                  SellerProductsSearchFieldWidget(
-                    controller: controller,
-                  ),
-                  Gaps.vGap10,
-                ],
+                  );
+                },
               ),
-            ),
+              Gaps.vGap12,
+              SellerProductsSearchFieldWidget(
+                controller: controller,
+              ),
+              Gaps.vGap10,
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

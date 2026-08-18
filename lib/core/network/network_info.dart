@@ -6,12 +6,10 @@ abstract class NetworkInfo {
 }
 
 @lazySingleton
-class NetworkInfoImpl extends NetworkInfo{
-
+class NetworkInfoImpl extends NetworkInfo {
   @preResolve
   @override
   Future<bool> get isConnected async {
     return await SimpleConnectionChecker.isConnectedToInternet();
   }
-
 }

@@ -7,7 +7,8 @@ class LoyaltyPointsInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<LoyaltyPointsBalanceDomainModel?>, GenericState<LoyaltyPointsBalanceDomainModel?>>(
+    return BlocBuilder<GenericBloc<LoyaltyPointsBalanceDomainModel?>,
+        GenericState<LoyaltyPointsBalanceDomainModel?>>(
       bloc: controller.loyaltyPointsBalanceBloc,
       builder: (context, state) {
         if (state is GenericUpdateState) {
@@ -17,10 +18,13 @@ class LoyaltyPointsInfo extends StatelessWidget {
             margin: Dimens.marginBottom20,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [
-                  context.colors.darkRed,
-                  context.colors.primary,
-                ])),
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      context.colors.darkRed,
+                      context.colors.primary,
+                    ])),
             child: Column(
               children: [
                 Text(
@@ -36,10 +40,12 @@ class LoyaltyPointsInfo extends StatelessWidget {
                       style: AppTextStyle.s28_w800(color: context.colors.gold),
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.only(top: 7,start: 3),
+                      padding:
+                          const EdgeInsetsDirectional.only(top: 7, start: 3),
                       child: Text(
                         tr("point"),
-                        style: AppTextStyle.s20_w400(color: context.colors.gold),
+                        style:
+                            AppTextStyle.s20_w400(color: context.colors.gold),
                       ),
                     ),
                     Gaps.hGap12,
@@ -47,14 +53,19 @@ class LoyaltyPointsInfo extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 10),
                       child: Text(
                         "=",
-                        style: AppTextStyle.s28_w800(color: context.colors.gold),
+                        style:
+                            AppTextStyle.s28_w800(color: context.colors.gold),
                       ),
                     ),
                     Gaps.hGap16,
                     DirhamPrice(
-                      amount: state.data == null ? '0:00' : state.data!.amount.rawPrice,
-                      currencyStyle: AppTextStyle.s30_w400(color: context.colors.gold),
-                      textStyle:AppTextStyle.s28_w800(color: context.colors.gold) ,
+                      amount: state.data == null
+                          ? '0:00'
+                          : state.data!.amount.rawPrice,
+                      currencyStyle:
+                          AppTextStyle.s30_w400(color: context.colors.gold),
+                      textStyle:
+                          AppTextStyle.s28_w800(color: context.colors.gold),
                     ),
                     Gaps.hGap3,
                   ],

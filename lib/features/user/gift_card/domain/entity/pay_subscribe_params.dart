@@ -7,8 +7,7 @@ class PaySubscribeParams {
     required this.id,
   });
 
-  Map<String, dynamic> toJson ()=> {
-    "payment_method" : paymentMethod,
-  };
-
+  Map<String, dynamic> toJson() => {
+        "payment_method": paymentMethod,
+      };
 }

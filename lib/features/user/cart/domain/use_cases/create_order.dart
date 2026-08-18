@@ -4,9 +4,9 @@ import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_para
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart';
 import 'package:flutter_tdd/features/user/cart/domain/repository/cart_repository.dart';
 
-class CreateOrder implements UseCase<OrderSummary?, CreateOrderParams> {
+class CreateOrder implements UseCase<OrderSummaryDomainModel?, CreateOrderParams> {
   @override
-  Future<OrderSummary?> call(CreateOrderParams params) async {
+  Future<OrderSummaryDomainModel?> call(CreateOrderParams params) async {
     var result = await getIt<CartRepository>().createOrder(params);
     return result.fold(
       (l) => null,

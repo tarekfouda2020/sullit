@@ -34,7 +34,8 @@ class _LoyaltyPointsState extends State<LoyaltyPoints> {
                 onRefresh: () async => await controller.refresh(),
                 child: PagedListView<int, TransactionsDomainModel>(
                   pagingController: controller.pagingController,
-                  builderDelegate: PagedChildBuilderDelegate<TransactionsDomainModel>(
+                  builderDelegate:
+                      PagedChildBuilderDelegate<TransactionsDomainModel>(
                     itemBuilder: (_, item, index) {
                       return LoyaltyTransactionItemWidget(
                         controller: controller,
@@ -45,11 +46,13 @@ class _LoyaltyPointsState extends State<LoyaltyPoints> {
                       return Center(
                         child: Text(
                           tr("noTransactionsFound"),
-                          style: AppTextStyle.s16_w700(color: context.colors.black),
+                          style: AppTextStyle.s16_w700(
+                              color: context.colors.black),
                         ),
                       );
                     },
-                    firstPageProgressIndicatorBuilder: (_) => const LoyaltyPointsTransactionsLoadingWidget(),
+                    firstPageProgressIndicatorBuilder: (_) =>
+                        const LoyaltyPointsTransactionsLoadingWidget(),
                   ),
                 ),
               ),

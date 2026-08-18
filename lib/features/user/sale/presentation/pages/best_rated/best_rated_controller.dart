@@ -3,7 +3,7 @@ part of 'best_rated_imports.dart';
 class BestRatedController {
   final TextEditingController searchFieldCtr = TextEditingController();
 
-  final PagingController<int, Product> bestRatedPagingController =
+  final PagingController<int, ProductCard> bestRatedPagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 10;
 
@@ -42,11 +42,10 @@ class BestRatedController {
   OffersParamsWidget _bestRatedOffers(bool refresh, int currentPage) {
     return OffersParamsWidget(
         paginateParams: _bestRatedPaginateParams(refresh, currentPage),
-        keyword: searchFieldCtr.text
-    );
+        keyword: searchFieldCtr.text);
   }
 
-  void onChangeFav(Product item) {
+  void onChangeFav(ProductCard item) {
     item.isWishlist = !item.isWishlist!;
     if (bestRatedPagingController.itemList != null) {
       int index = bestRatedPagingController.itemList!

@@ -8,25 +8,17 @@ part 'city_model.g.dart';
 
 @freezed
 @immutable
-class CityModel extends BaseApiModel<City> with _$CityModel{
+class CityModel extends BaseApiModel<City> with _$CityModel {
   const CityModel._();
   @JsonSerializable(explicitToJson: true)
-  const factory CityModel({
-    required int id ,
-    required String name ,
-    StateModel? state
-  }) = _CityModel;
-
+  const factory CityModel(
+      {required int id, required String name, StateModel? state}) = _CityModel;
 
   factory CityModel.fromJson(Map<String, dynamic> json) =>
       _$CityModelFromJson(json);
 
   @override
   City toDomainModel() {
-    return City(
-      name: name ,
-      id: id,
-      state: state?.toDomainModel()
-    );
+    return City(name: name, id: id, state: state?.toDomainModel());
   }
 }

@@ -8,7 +8,8 @@ class ApplyLoyaltyPoints extends UseCase<ShippingSummary?, NoParams> {
   Future<ShippingSummary?> call(NoParams params) async {
     var result = await getIt<CartRepository>().applyLoyaltyPoints(params);
     return result.fold(
-          (l) => null,
-          (r) => r,
-    );}
+      (l) => null,
+      (r) => r,
+    );
   }
+}

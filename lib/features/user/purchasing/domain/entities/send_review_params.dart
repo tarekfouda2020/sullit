@@ -17,7 +17,7 @@ class SendReviewParams {
     return {
       "product_id": productId,
       "rating": rating,
-      if(comment!=null)"comment": comment,
+      if (comment != null) "comment": comment,
     };
   }
 }

@@ -1,7 +1,7 @@
 part of 'cart_widgets_imports.dart';
 
 class BuildCartItems extends StatelessWidget {
-  final List<CartItem> cartItems;
+  final List<GeneralCartItem> cartItems;
   final CartController controller;
 
   const BuildCartItems(

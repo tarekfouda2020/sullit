@@ -1,6 +1,5 @@
 part of 'change_password_imports.dart';
 
-
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key});
 
@@ -9,17 +8,15 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
-
-
   final ChangePasswordController controller = ChangePasswordController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(title: tr("changePassword")),
+      appBar: DefaultAppBar(title: tr("changePassword")),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: Column(
           children: [
             Gaps.vGap20,

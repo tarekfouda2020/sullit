@@ -1,8 +1,7 @@
 part of 'edit_classified_product_w_imports.dart';
 
-
 class BuildMetaInputs extends StatelessWidget {
-  final EditClassifiedProductController controller ;
+  final EditClassifiedProductController controller;
   const BuildMetaInputs({Key? key, required this.controller}) : super(key: key);
 
   @override
@@ -24,7 +23,7 @@ class BuildMetaInputs extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GenericTextField(
-                margin:Dimens.paddingVertical10PX,
+                margin: Dimens.paddingVertical10PX,
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.next,
@@ -33,7 +32,7 @@ class BuildMetaInputs extends StatelessWidget {
                 label: tr('metaTitle'),
               ),
               GenericTextField(
-                margin:Dimens.paddingVertical10PX,
+                margin: Dimens.paddingVertical10PX,
                 fieldTypes: FieldTypes.rich,
                 max: 5,
                 controller: controller.metaDescription,

@@ -5,11 +5,6 @@ class AddressTypeModel extends BaseDomainModel {
   final String label;
   bool isSelected;
 
-
-  AddressTypeModel({
-   required this.key,
-    required this.label,
-    this.isSelected = false
-  });
-
+  AddressTypeModel(
+      {required this.key, required this.label, this.isSelected = false});
 }

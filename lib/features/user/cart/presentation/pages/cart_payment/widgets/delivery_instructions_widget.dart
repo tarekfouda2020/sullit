@@ -11,15 +11,19 @@ class DeliveryInstructionsWidget extends StatelessWidget {
       children: [
         Row(
           children: [
-             CartPaymentSectionTitleWidget(title: tr("delivery_instructions"),),
-            Text( tr("optional"),
-            style: AppTextStyle.s12_w400(color: context.colors.black),
+            CartPaymentSectionTitleWidget(
+              title: tr("delivery_instructions"),
+            ),
+            Text(
+              tr("optional"),
+              style: AppTextStyle.s12_w400(color: context.colors.black),
             )
           ],
         ),
         Gaps.vGap8,
-        DeliveryInstructionsCardWidget(controller: controller,),
-
+        DeliveryInstructionsCardWidget(
+          controller: controller,
+        ),
       ],
     );
   }

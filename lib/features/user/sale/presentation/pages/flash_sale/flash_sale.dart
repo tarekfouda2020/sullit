@@ -13,7 +13,7 @@ class _FlashSaleState extends State<FlashSale> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  DefaultAppBar(title: tr('flashSale'), showBack: true),
+      appBar: DefaultAppBar(title: tr('flashSale'), showBack: true),
       body: GridView(
         padding: const EdgeInsets.symmetric(
           vertical: 20,
@@ -29,7 +29,7 @@ class _FlashSaleState extends State<FlashSale> {
           11,
           (index) => InkWell(
             onTap: () => AutoRouter.of(context).push(
-               SaleDetailsRoute(dealId: 4),
+              SaleDetailsRoute(dealId: 4),
             ),
             child: Image.network(
               "https://globalnews.ca/wp-content/uploads/2018/01/sale-canada.jpg?quality=85&strip=all",

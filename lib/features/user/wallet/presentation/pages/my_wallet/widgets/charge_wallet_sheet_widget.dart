@@ -7,12 +7,12 @@ class ChargeWalletSheetWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.only(top: 29, left: 20, right: 20, bottom: 10),
+      padding: const EdgeInsets.only(top: 29, left: 20, right: 20, bottom: 10),
       margin: MediaQuery.of(context).viewInsets,
-        decoration: BoxDecoration(
-          color: context.colors.customBackground,
-          borderRadius: Dimens.sheetBorderRadius,
-        ),
+      decoration: BoxDecoration(
+        color: context.colors.customBackground,
+        borderRadius: Dimens.sheetBorderRadius,
+      ),
       child: Form(
         key: controller.formKey,
         child: Column(
@@ -57,7 +57,7 @@ class ChargeWalletSheetWidget extends StatelessWidget {
             DefaultButton(
               title: tr('continueToPayment'),
               height: 35.h,
-              onTap: () =>controller.rechargeWallet(context),
+              onTap: () => controller.rechargeWallet(context),
             ),
           ],
         ),

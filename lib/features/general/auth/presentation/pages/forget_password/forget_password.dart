@@ -17,9 +17,12 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       onTap: FocusScope.of(context).unfocus,
       child: Scaffold(
         backgroundColor: context.colors.customBackground,
-        appBar: const DefaultAppBar(title: "",bgColor: Colors.transparent,),
+        appBar: const DefaultAppBar(
+          title: "",
+          bgColor: Colors.transparent,
+        ),
         body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 0),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
           child: Column(
             children: [
               // const BuildAuthAppBar(),
@@ -29,11 +32,11 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 subTitle: tr('recoverPassword'),
               ),
               Gaps.vGap20,
-              BuildForgetForm(forgetPasswordController: forgetPasswordController),
+              BuildForgetForm(
+                  forgetPasswordController: forgetPasswordController),
               Gaps.vGap8,
               BuildForgetPasswordButton(
-                  forgetPasswordController: forgetPasswordController
-              ),
+                  forgetPasswordController: forgetPasswordController),
               const BuildBackToLogin(),
             ],
           ),

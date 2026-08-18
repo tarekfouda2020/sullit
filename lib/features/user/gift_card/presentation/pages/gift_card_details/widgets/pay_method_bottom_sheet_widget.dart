@@ -11,23 +11,25 @@ class PayMethodBottomSheetWidget extends StatelessWidget {
     required this.onSelectItem,
     required this.payMethodsCubit,
     required this.onPressProcess,
-     this.onClose,
+    this.onClose,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: Dimens.paddingAll20PX,
-      decoration: BoxDecoration(color: context.colors.white, borderRadius: Dimens.sheetBorderRadius),
+      decoration: BoxDecoration(
+          color: context.colors.white, borderRadius: Dimens.sheetBorderRadius),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-           BottomSheetHeaderWidget(
+          BottomSheetHeaderWidget(
             title: tr("selectPaymentMethod"),
             onClose: onClose,
           ),
           Gaps.vGap20,
-          BlocBuilder<GenericBloc<List<PayMethodDomainModel>>, GenericState<List<PayMethodDomainModel>>>(
+          BlocBuilder<GenericBloc<List<PayMethodDomainModel>>,
+              GenericState<List<PayMethodDomainModel>>>(
             bloc: payMethodsCubit,
             builder: (context, state) {
               if (state is GenericUpdateState) {
@@ -38,7 +40,7 @@ class PayMethodBottomSheetWidget extends StatelessWidget {
                       (index) {
                         return PayMethodItemWidget(
                           model: state.data[index],
-                          onTap:() => onSelectItem(state.data[index]),
+                          onTap: () => onSelectItem(state.data[index]),
                         );
                       },
                     ),
@@ -70,8 +72,9 @@ class PayMethodBottomSheetWidget extends StatelessWidget {
                       BuildShimmerItem(
                         child: Container(
                           height: 50,
-                          decoration:
-                              BoxDecoration(color: context.colors.offWhite, borderRadius: Dimens.borderRadius30PX),
+                          decoration: BoxDecoration(
+                              color: context.colors.offWhite,
+                              borderRadius: Dimens.borderRadius30PX),
                         ),
                       ),
                     ],
@@ -85,5 +88,6 @@ class PayMethodBottomSheetWidget extends StatelessWidget {
     );
   }
 
-  bool _isItemSelected(List<PayMethodDomainModel> data) => data.any((e) => e.isSelected);
+  bool _isItemSelected(List<PayMethodDomainModel> data) =>
+      data.any((e) => e.isSelected);
 }

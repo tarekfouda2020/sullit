@@ -26,11 +26,12 @@ class _OnSaleState extends State<OnSale> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 8),
+            padding:
+                const EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 8),
             child: CustomSearchFiledWidget(
               txtController: controller.searchFieldCtr,
-              onPressSearch: () =>controller.onPressSearch(context),
-              onChange: (value) => controller.whileWriting(value) ,
+              onPressSearch: () => controller.onPressSearch(context),
+              onChange: (value) => controller.whileWriting(value),
               onPressClear: () => controller.callProductsSearch(),
               height: Dimens.dp50,
               hint: tr("search_in_offers"),
@@ -39,7 +40,7 @@ class _OnSaleState extends State<OnSale> {
           Expanded(
             child: CustomRefreshIndicatorWidget(
               onRefresh: () async => await controller.getOnSale(1),
-              child: GridViewPagination<Product>(
+              child: GridViewPagination<ProductCard>(
                 pagingController: controller.onSalePagingController,
                 padding: EdgeInsets.only(
                     left: 15,

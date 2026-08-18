@@ -61,7 +61,8 @@ class CartMinAmountSellerItem extends StatelessWidget {
                 borderColor: context.colors.primary,
                 fontSize: 16,
                 color: Colors.transparent,
-                onTap: () => controller.navigateToSeller(context, seller.shopId),
+                onTap: () =>
+                    controller.navigateToSeller(context, seller.shopId),
                 height: 35.h,
                 margin: EdgeInsets.zero,
               ),

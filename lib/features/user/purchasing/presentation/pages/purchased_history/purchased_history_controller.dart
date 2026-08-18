@@ -3,19 +3,19 @@
 part of 'purchased_history_imports.dart';
 
 class PurchasedHistoryController {
-  final PagingController<int, Orders> pagingController =
+  final PagingController<int, OrderCardDomainModel> pagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 12;
 
   PurchasedHistoryController() {
+    getPurchasingHistory(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
-      getPurchasingHistory(pageKey, refresh: false);
       getPurchasingHistory(pageKey);
     });
   }
 
   Future<void> getPurchasingHistory(int page, {bool refresh = true}) async {
-    var params = _historyParams(page, refresh);
+    var params = _myOrdersParams(page, refresh);
     var data = await GetPurchasingHistory().call(params);
     final isLastPage = data.length < pageSize;
     if (page == 1) {
@@ -29,7 +29,7 @@ class PurchasedHistoryController {
     }
   }
 
-  void cancelOrder(Orders model) async {
+  void cancelOrder(OrderCardDomainModel model) async {
     getIt<LoadingHelper>().showLoadingDialog();
     var result = await CancelOrder().call(model.id);
     if (result.isNotEmpty) {
@@ -49,7 +49,7 @@ class PurchasedHistoryController {
     await FileHelper().downloadFile(url: ApiNames.downloadInvoice(id));
   }
 
-  void onOpenHistory(Orders orderModel) {
+  void onOpenHistory(OrderCardDomainModel orderModel) {
     orderModel.selected = !orderModel.selected;
     int index =
         pagingController.itemList!.indexWhere((e) => e.id == orderModel.id);
@@ -57,6 +57,14 @@ class PurchasedHistoryController {
     var data = pagingController.itemList;
     pagingController.itemList = [];
     pagingController.itemList = data;
+  }
+
+
+
+  MyOrdersParams _myOrdersParams(int page, bool refresh){
+    return MyOrdersParams(
+      paginateParams: _historyParams(page, refresh),
+    );
   }
 
   GenericPaginateParams _historyParams(int page, bool refresh) {

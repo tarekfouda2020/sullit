@@ -17,13 +17,12 @@ class SellersSectionWidget extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Padding(
-            padding:  EdgeInsetsDirectional.only(
+            padding: EdgeInsetsDirectional.only(
                 end: index == _buildLength - 1 ? 0 : 10),
             child: SellerCardWidget(
               shop: controller.homeCubit.state.data!.shop[index],
               onTap: () => AutoRouter.of(context).push(SellerProductsPageRoute(
-                shopModel: controller.homeCubit.state.data!.shop[index],
-                shopId: controller.homeCubit.state.data!.shop[index].id!,
+                shopId: controller.homeCubit.state.data!.shop[index].id,
               )),
             ),
           );

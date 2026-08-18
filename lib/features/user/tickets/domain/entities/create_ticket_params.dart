@@ -15,11 +15,8 @@ class CreateTicketParams {
     required this.images,
   });
 
-  Map<String , dynamic> toJson ()=> {
-    "subject": subject,
-    "details": details,
-    "images[]": images
-  };
+  Map<String, dynamic> toJson() =>
+      {"subject": subject, "details": details, "images[]": images};
 
-  bool isSuccess (data)=> data['key'] =='success' ;
+  bool isSuccess(data) => data['key'] == 'success';
 }

@@ -23,7 +23,7 @@ class BuildDefaultShippingAddress extends StatelessWidget {
           Visibility(
             visible: dashboardModel.defaultAddress != null,
             replacement: Text(
-              tr("notDetermined") ,
+              tr("notDetermined"),
               style: AppTextStyle.s15_w500(color: context.colors.black),
             ),
             child: Column(

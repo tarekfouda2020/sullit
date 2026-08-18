@@ -6,11 +6,9 @@ import 'package:flutter_tdd/features/user/classified_products/domain/models/cus_
 import 'package:flutter_tdd/features/user/classified_products/domain/repository/classified_products_repository.dart';
 
 class SetEditCusProduct
-    implements
-        UseCase<CusProduct?, EditClassifiedProductParams> {
+    implements UseCase<CusProduct?, EditClassifiedProductParams> {
   @override
-  Future<CusProduct?> call(
-      EditClassifiedProductParams params) async {
+  Future<CusProduct?> call(EditClassifiedProductParams params) async {
     var result = await getIt<ClassifiedProductsRepository>()
         .updateClassifiedProduct(params);
     return result.fold((l) => null, (r) => r);

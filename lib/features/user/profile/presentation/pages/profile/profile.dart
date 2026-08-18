@@ -20,9 +20,9 @@ class _ProfileState extends State<Profile> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) {
-      controller.onSaveUserData(context);
-    }
+    // if (state == AppLifecycleState.resumed) {
+    //   controller.onSaveUserData(context);
+    // }
   }
 
   @override

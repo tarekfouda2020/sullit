@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
@@ -9,16 +8,18 @@ import 'package:flutter_tdd/features/user/vip_subscribe/domain/models/subscribe_
 import 'package:flutter_tdd/features/user/vip_subscribe/domain/models/vip_current_plan_domain_model.dart';
 import 'package:flutter_tdd/features/user/vip_subscribe/domain/models/vip_subscribe_domain_model.dart';
 
-abstract class VipRepositories{
-
-  Future<Either<Failure, List<VipSubscribeDomainModel>>> getSubscriptions(GenericPaginateParams params);
+abstract class VipRepositories {
+  Future<Either<Failure, List<VipSubscribeDomainModel>>> getSubscriptions(
+      GenericPaginateParams params);
 
   Future<Either<Failure, List<PayMethodDomainModel>>> getPayMethods();
 
-  Future<Either<Failure, VipCurrentPlanDomainModel>> getCurrentSubscription(bool refresh);
+  Future<Either<Failure, VipCurrentPlanDomainModel>> getCurrentSubscription(
+      bool refresh);
 
-  Future<Either<Failure, SubscribePaymentDomainModel>> paySubscription(PaySubscribeParams params);
+  Future<Either<Failure, SubscribePaymentDomainModel>> paySubscription(
+      PaySubscribeParams params);
 
-  Future<Either<Failure, SubscribeContentDomainModel>> getSubscriptionContent(bool param);
-
+  Future<Either<Failure, SubscribeContentDomainModel>> getSubscriptionContent(
+      bool param);
 }

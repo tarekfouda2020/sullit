@@ -27,7 +27,11 @@ class BuildAuthAppBar extends StatelessWidget {
               color: Colors.transparent,
             ),
             child: IconButton(
-              icon: Icon(Icons.arrow_back_outlined, size: 20.sp,color: context.colors.black,),
+              icon: Icon(
+                Icons.arrow_back_outlined,
+                size: 20.sp,
+                color: context.colors.black,
+              ),
               onPressed: () => Navigator.of(context).pop(),
             ),
           ),

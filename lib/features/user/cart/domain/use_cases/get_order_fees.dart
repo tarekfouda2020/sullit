@@ -4,13 +4,12 @@ import 'package:flutter_tdd/features/user/cart/data/models/fess_mechanism_model/
 import 'package:flutter_tdd/features/user/cart/domain/repository/cart_repository.dart';
 
 class GetOrderFees implements UseCase<FessMechanismModel?, bool> {
-
   @override
   Future<FessMechanismModel?> call(bool param) async {
     var result = await getIt<CartRepository>().getFees(param);
     return result.fold(
-          (l) =>  null,
-          (r) => r,
+      (l) => null,
+      (r) => r,
     );
   }
 }

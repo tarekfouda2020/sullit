@@ -10,7 +10,6 @@ enum NotifyEnum {
   newLogin,
 
   message;
-
 }
 
 extension NotifyValue on NotifyEnum {
@@ -24,19 +23,20 @@ extension NotifyValue on NotifyEnum {
         return "message";
       case NotifyEnum.order:
         return "order";
-        case NotifyEnum.customerChangeOrderStatus:
+      case NotifyEnum.customerChangeOrderStatus:
         return "customer_changed_order_status";
-        case NotifyEnum.shareholderProducts:
+      case NotifyEnum.shareholderProducts:
         return "offer_shareholder_products";
-        case NotifyEnum.offerVipProducts:
+      case NotifyEnum.offerVipProducts:
         return "offer_vip_products";
-        case NotifyEnum.offerNewArrival:
+      case NotifyEnum.offerNewArrival:
         return "offer_new_arrival";
-        case NotifyEnum.offerOnSale:
+      case NotifyEnum.offerOnSale:
         return "offer_on_sale";
-        case NotifyEnum.newLogin:
+      case NotifyEnum.newLogin:
         return "new_login";
-        default: return "";
-      }
+      default:
+        return "";
+    }
   }
 }

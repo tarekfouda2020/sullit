@@ -5,9 +5,11 @@ import 'package:flutter_tdd/features/user/addresses/domain/repository/addresses_
 
 class GetStatesByCountryId implements UseCase<List<StateDomainModel>, int> {
   @override
-  Future<List<StateDomainModel>> call(int param)async {
+  Future<List<StateDomainModel>> call(int param) async {
     var result = await getIt<AddressesRepository>().getStatesByCountryId(param);
-    return result.fold((l) => [], (r) => r,);
+    return result.fold(
+      (l) => [],
+      (r) => r,
+    );
   }
-
 }

@@ -13,8 +13,8 @@ class BuildFlashSaleLoadingView extends StatelessWidget {
             BuildShimmerItem(
               child: Container(
                 margin: const EdgeInsets.all(5),
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 15, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 decoration: BoxDecoration(
                   color: Colors.grey,
                   borderRadius: BorderRadius.circular(10),
@@ -28,8 +28,8 @@ class BuildFlashSaleLoadingView extends StatelessWidget {
             BuildShimmerItem(
               child: Container(
                 margin: const EdgeInsets.all(5),
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 15, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 decoration: BoxDecoration(
                   color: Colors.grey,
                   borderRadius: BorderRadius.circular(10),
@@ -43,8 +43,8 @@ class BuildFlashSaleLoadingView extends StatelessWidget {
             BuildShimmerItem(
               child: Container(
                 margin: const EdgeInsets.all(5),
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 15, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 decoration: BoxDecoration(
                   color: Colors.grey,
                   borderRadius: BorderRadius.circular(10),
@@ -58,8 +58,8 @@ class BuildFlashSaleLoadingView extends StatelessWidget {
             BuildShimmerItem(
               child: Container(
                 margin: const EdgeInsets.all(5),
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 15, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 decoration: BoxDecoration(
                   color: Colors.grey,
                   borderRadius: BorderRadius.circular(10),
@@ -82,8 +82,7 @@ class BuildFlashSaleLoadingView extends StatelessWidget {
               childAspectRatio: 8 / 9,
             ),
             itemCount: 10,
-            itemBuilder: (context, index) =>
-            const BuildProductItemShimmer(),
+            itemBuilder: (context, index) => const BuildProductItemShimmer(),
           ),
         ),
       ],

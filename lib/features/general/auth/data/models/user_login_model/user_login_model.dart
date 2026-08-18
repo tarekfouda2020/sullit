@@ -13,16 +13,15 @@ part 'user_login_model.g.dart';
 @immutable
 class UserLoginModel extends BaseApiModel<UserLogin> with _$UserLoginModel {
   const UserLoginModel._();
- ///UserDataConverter() is used to handle the response of 'data' key
- ///when return another Type instead of Map<String,dynamic> for UserDataModel
+
+  ///UserDataConverter() is used to handle the response of 'data' key
+  ///when return another Type instead of Map<String,dynamic> for UserDataModel
 
   @JsonSerializable(explicitToJson: true)
   const factory UserLoginModel({
     @JsonKey(name: "key") required String key,
     @JsonKey(name: "msg") required String msg,
-    @UserDataConverter()
-    @JsonKey(name: "data") UserDataModel? data,
-
+    @UserDataConverter() @JsonKey(name: "data") UserDataModel? data,
   }) = _UserLoginModel;
 
   factory UserLoginModel.fromJson(Map<String, dynamic> json) =>
@@ -34,7 +33,6 @@ class UserLoginModel extends BaseApiModel<UserLogin> with _$UserLoginModel {
       msg: msg,
       userData: data?.toDomainModel(),
       key: key,
-
     );
   }
 }

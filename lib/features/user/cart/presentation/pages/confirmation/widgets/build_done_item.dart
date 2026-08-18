@@ -1,10 +1,11 @@
 part of 'confirmation_w_imports.dart';
+
 class BuildDone extends StatelessWidget {
   const BuildDone({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(

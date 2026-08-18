@@ -5,7 +5,7 @@ import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
-import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
+import 'package:flutter_tdd/features/user/products/data/models/product_card_model/product_card_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 import 'package:flutter_tdd/features/user/sale/data/data_sources/sale_data_sources.dart';
 import 'package:flutter_tdd/features/user/sale/data/models/coupon_model/coupon_model.dart';
@@ -70,55 +70,58 @@ class ImplSaleRepository extends SaleDataSources {
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getBestRated(OffersParamsWidget param) async {
+  Future<Either<Failure, List<ProductCardModel>>> getBestRated(
+      OffersParamsWidget param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getBestRated + param.getUrl(),
       requestMethod: RequestMethod.get,
       refresh: param.paginateParams.refresh,
       responseType: ResType.list,
       showLoader: true,
-      toJsonFunc: (json) => List<ProductModel>.from(
-        json.map((e) => ProductModel.fromJson(e)),
+      toJsonFunc: (json) => List<ProductCardModel>.from(
+        json.map((e) => ProductCardModel.fromJson(e)),
       ),
       responseKey: (data) => data["data"]['products'],
     );
-    return await GenericHttpImpl<List<ProductModel>>().call(model);
+    return await GenericHttpImpl<List<ProductCardModel>>().call(model);
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getNewArrival(OffersParamsWidget param) async {
+  Future<Either<Failure, List<ProductCardModel>>> getNewArrival(
+      OffersParamsWidget param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getNewArrival + param.getUrl(),
       requestMethod: RequestMethod.get,
       refresh: param.paginateParams.refresh,
       responseType: ResType.list,
       showLoader: true,
-      toJsonFunc: (json) => List<ProductModel>.from(
-        json.map((e) => ProductModel.fromJson(e)),
+      toJsonFunc: (json) => List<ProductCardModel>.from(
+        json.map((e) => ProductCardModel.fromJson(e)),
       ),
       responseKey: (data) => data["data"]['products'],
     );
-    return await GenericHttpImpl<List<ProductModel>>().call(model);
+    return await GenericHttpImpl<List<ProductCardModel>>().call(model);
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getOnSale(OffersParamsWidget param) async {
+  Future<Either<Failure, List<ProductCardModel>>> getOnSale(
+      OffersParamsWidget param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getOnSale + param.getUrl(),
       requestMethod: RequestMethod.get,
       refresh: param.paginateParams.refresh,
       responseType: ResType.list,
       showLoader: true,
-      toJsonFunc: (json) => List<ProductModel>.from(
-        json.map((e) => ProductModel.fromJson(e)),
+      toJsonFunc: (json) => List<ProductCardModel>.from(
+        json.map((e) => ProductCardModel.fromJson(e)),
       ),
       responseKey: (data) => data["data"]['products'],
     );
-    return await GenericHttpImpl<List<ProductModel>>().call(model);
+    return await GenericHttpImpl<List<ProductCardModel>>().call(model);
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getVipOffers(
+  Future<Either<Failure, List<ProductCardModel>>> getVipOffers(
       OffersParamsWidget param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.vipProducts + param.getUrl(),
@@ -126,16 +129,16 @@ class ImplSaleRepository extends SaleDataSources {
       refresh: param.paginateParams.refresh,
       responseType: ResType.list,
       showLoader: true,
-      toJsonFunc: (json) => List<ProductModel>.from(
-        json.map((e) => ProductModel.fromJson(e)),
+      toJsonFunc: (json) => List<ProductCardModel>.from(
+        json.map((e) => ProductCardModel.fromJson(e)),
       ),
       responseKey: (data) => data["data"]["products"],
     );
-    return await GenericHttpImpl<List<ProductModel>>().call(model);
+    return await GenericHttpImpl<List<ProductCardModel>>().call(model);
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getShareholderProducts(
+  Future<Either<Failure, List<ProductCardModel>>> getShareholderProducts(
       OffersParamsWidget param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.shareholderProducts + param.getUrl(),
@@ -143,11 +146,11 @@ class ImplSaleRepository extends SaleDataSources {
       refresh: param.paginateParams.refresh,
       responseType: ResType.list,
       showLoader: true,
-      toJsonFunc: (json) => List<ProductModel>.from(
-        json.map((e) => ProductModel.fromJson(e)),
+      toJsonFunc: (json) => List<ProductCardModel>.from(
+        json.map((e) => ProductCardModel.fromJson(e)),
       ),
       responseKey: (data) => data["data"]["products"],
     );
-    return await GenericHttpImpl<List<ProductModel>>().call(model);
+    return await GenericHttpImpl<List<ProductCardModel>>().call(model);
   }
 }

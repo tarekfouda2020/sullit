@@ -1,7 +1,7 @@
 part of 'search_widgets_imports.dart';
 
 class BuildProductSuggestions extends StatelessWidget {
-  final List<Product> products;
+  final List<ProductCard> products;
   final bool showSeeAll;
   final SearchController controller;
 

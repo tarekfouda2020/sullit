@@ -27,7 +27,7 @@ class PaymentOption extends BaseDomainModel {
     required this.title,
     required this.details,
     required this.offlinePaymentId,
-     this.name,
+    this.name,
   });
 
   PayTypeEnum getPaymentType() {
@@ -44,11 +44,6 @@ class PaymentOption extends BaseDomainModel {
         return PayTypeEnum.paymob;
     }
   }
-
-
-
-
-
 
   PaymentOption copyWith({
     String? paymentType,

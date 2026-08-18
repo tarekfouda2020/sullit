@@ -1,4 +1,5 @@
-part of'seller_commission_history_widgets_imports.dart';
+part of 'seller_commission_history_widgets_imports.dart';
+
 class BuildCommissionHistoryItem extends StatelessWidget {
   const BuildCommissionHistoryItem({Key? key}) : super(key: key);
 
@@ -8,8 +9,7 @@ class BuildCommissionHistoryItem extends StatelessWidget {
         margin: const EdgeInsets.symmetric(
           vertical: 5,
         ).r,
-        padding:
-        const EdgeInsets.symmetric(vertical: 10, horizontal: 12).r,
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12).r,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5).r,
             color: context.colors.white,
@@ -26,13 +26,11 @@ class BuildCommissionHistoryItem extends StatelessWidget {
               children: [
                 Text(
                   "Admin Commission",
-                  style:
-                  AppTextStyle.s14_w500(color: context.colors.black),
+                  style: AppTextStyle.s14_w500(color: context.colors.black),
                 ),
                 Text(
                   "0",
-                  style:
-                  AppTextStyle.s14_w400(color: context.colors.black),
+                  style: AppTextStyle.s14_w400(color: context.colors.black),
                 ),
               ],
             ),
@@ -45,13 +43,11 @@ class BuildCommissionHistoryItem extends StatelessWidget {
               children: [
                 Text(
                   "Earning",
-                  style:
-                  AppTextStyle.s14_w500(color: context.colors.black),
+                  style: AppTextStyle.s14_w500(color: context.colors.black),
                 ),
                 Text(
                   "200 AED",
-                  style:
-                  AppTextStyle.s14_w400(color: context.colors.black),
+                  style: AppTextStyle.s14_w400(color: context.colors.black),
                 ),
               ],
             ),
@@ -64,13 +60,11 @@ class BuildCommissionHistoryItem extends StatelessWidget {
               children: [
                 Text(
                   "Order Code",
-                  style:
-                  AppTextStyle.s14_w500(color: context.colors.black),
+                  style: AppTextStyle.s14_w500(color: context.colors.black),
                 ),
                 Text(
                   "13425235-544574",
-                  style:
-                  AppTextStyle.s14_w400(color: context.colors.black),
+                  style: AppTextStyle.s14_w400(color: context.colors.black),
                 ),
               ],
             ),
@@ -83,13 +77,11 @@ class BuildCommissionHistoryItem extends StatelessWidget {
               children: [
                 Text(
                   "Created At",
-                  style:
-                  AppTextStyle.s14_w500(color: context.colors.black),
+                  style: AppTextStyle.s14_w500(color: context.colors.black),
                 ),
                 Text(
                   "23/12/2023 3:00 pm",
-                  style:
-                  AppTextStyle.s14_w400(color: context.colors.black),
+                  style: AppTextStyle.s14_w400(color: context.colors.black),
                 ),
               ],
             ),

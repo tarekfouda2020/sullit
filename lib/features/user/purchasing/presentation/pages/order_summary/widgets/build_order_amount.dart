@@ -42,16 +42,19 @@ class BuildOrderAmount extends StatelessWidget {
             ...List.generate(
               orderModel.orderDiscounts?.length ?? 0,
               (index) {
-                var item = orderModel.orderDiscounts?[index];
-                return BuildSummaryHeader(
-                  title: item?.typeLabel ?? "",
-                  details: item?.discount ?? "",
-                  isDiscount: true,
-                  detailsColor: context.colors.primary,
-                  onPressInfo: item?.isTierDiscount == true
-                      ? () => controller.showTierFullName(context,
-                          item?.typeDescription ?? "", item?.typeLabel ?? "")
-                      : null,
+                OrderDiscountDomain? item = orderModel.orderDiscounts?[index];
+                return Visibility(
+                  visible: item?.isInsuranceDiscount == false,
+                  child: BuildSummaryHeader(
+                    title: item?.typeLabel ?? "",
+                    details: item?.discount ?? "",
+                    isDiscount: true,
+                    detailsColor: context.colors.primary,
+                    onPressInfo: item?.isTierDiscount == true
+                        ? () => controller.showTierFullName(context,
+                            item?.typeDescription ?? "", item?.typeLabel ?? "")
+                        : null,
+                  ),
                 );
               },
             ),

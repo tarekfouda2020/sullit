@@ -3,14 +3,15 @@ part of 'order_details_widgets_imports.dart';
 class OrderDetailsProductItemWidget extends StatelessWidget {
   final bool hasReview;
   final void Function()? onPressReview;
+  final OrderDetails orderDetails;
   final OrderDisplayItem displayItem;
 
-  const OrderDetailsProductItemWidget({
-    super.key,
-    required this.hasReview,
-    this.onPressReview,
-    required this.displayItem,
-  });
+  const OrderDetailsProductItemWidget(
+      {super.key,
+      required this.hasReview,
+      this.onPressReview,
+        required this.displayItem,
+        required this.orderDetails});
 
   @override
   Widget build(BuildContext context) {

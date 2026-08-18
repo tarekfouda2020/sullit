@@ -1,7 +1,7 @@
 part of 'following_w_imports.dart';
 
 class BuildFollowingItem extends StatelessWidget {
-  final Shop shopModel;
+  final MerchantShopModel shopModel;
   final FollowingController controller;
 
   const BuildFollowingItem(

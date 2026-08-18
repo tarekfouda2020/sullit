@@ -1,6 +1,5 @@
 part of 'cart_payment_widgets_imports.dart';
 
-
 class VerticalDottedLineWidget extends StatelessWidget {
   final double height;
   final double dotHigh;
@@ -21,7 +20,8 @@ class VerticalDottedLineWidget extends StatelessWidget {
       height: height,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final dotCount = (constraints.maxHeight / (dotHigh + spacing)).floor();
+          final dotCount =
+              (constraints.maxHeight / (dotHigh + spacing)).floor();
           return Flex(
             direction: Axis.vertical,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,7 +31,7 @@ class VerticalDottedLineWidget extends StatelessWidget {
                 height: 8,
                 margin: const EdgeInsets.only(bottom: 3),
                 decoration: BoxDecoration(
-                  color: color??context.colors.black,
+                  color: color ?? context.colors.black,
                 ),
               );
             }),
@@ -41,4 +41,3 @@ class VerticalDottedLineWidget extends StatelessWidget {
     );
   }
 }
-

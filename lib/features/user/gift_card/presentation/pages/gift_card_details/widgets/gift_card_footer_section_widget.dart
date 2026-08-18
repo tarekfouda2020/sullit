@@ -20,7 +20,7 @@ class GiftCardFooterSectionWidget extends StatelessWidget {
         margin: Dimens.marginTop22,
       ),
       // child:  CardAvailablePrice(controller: controller),
-      child:  Gaps.empty,
+      child: Gaps.empty,
     );
   }
 }

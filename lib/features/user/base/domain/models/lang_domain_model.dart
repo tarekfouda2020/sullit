@@ -15,15 +15,16 @@ class LangDomainModel extends BaseDomainModel {
     required this.logo,
   });
 
-
-  LangTypeEnum getLangType(){
-    switch(code){
-      case "en" : return LangTypeEnum.english;
-      case "bd" : return LangTypeEnum.bangladesh;
-      case "sa" : return LangTypeEnum.arabic;
-      default : return LangTypeEnum.english;
+  LangTypeEnum getLangType() {
+    switch (code) {
+      case "en":
+        return LangTypeEnum.english;
+      case "bd":
+        return LangTypeEnum.bangladesh;
+      case "sa":
+        return LangTypeEnum.arabic;
+      default:
+        return LangTypeEnum.english;
     }
   }
-
-
 }

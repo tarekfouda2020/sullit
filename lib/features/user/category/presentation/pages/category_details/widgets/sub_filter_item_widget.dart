@@ -17,7 +17,7 @@ class SubFilterItemWidget extends StatelessWidget {
     return Row(
       children: [
         Transform.scale(
-        scale: 1.2,
+          scale: 1.2,
           child: Checkbox(
             value: isSelected,
             visualDensity: const VisualDensity(vertical: -2),
@@ -30,11 +30,12 @@ class SubFilterItemWidget extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: Dimens.borderRadius4PX,
             ),
-            fillColor: WidgetStateProperty. resolveWith<Color>((Set<WidgetState> states) {
-              if (states. contains(WidgetState. disabled)) {
+            fillColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) {
+              if (states.contains(WidgetState.disabled)) {
                 return context.colors.white;
               }
-              if (states. contains(WidgetState.selected)) {
+              if (states.contains(WidgetState.selected)) {
                 return context.colors.primary;
               }
               return context.colors.white;
@@ -42,16 +43,18 @@ class SubFilterItemWidget extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap:() => onSelect(isSelected),
+          onTap: () => onSelect(isSelected),
           child: SizedBox(
             width: 215,
             child: Text(
               text,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: AppTextStyle.s14_w400(color: isSelected ? context.colors.primary : context.colors.black).copyWith(
-                height: 1.3
-              ),
+              style: AppTextStyle.s14_w400(
+                      color: isSelected
+                          ? context.colors.primary
+                          : context.colors.black)
+                  .copyWith(height: 1.3),
             ),
           ),
         ),

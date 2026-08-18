@@ -1,4 +1,4 @@
-enum PayTypeEnum{
+enum PayTypeEnum {
   paymob,
   telr,
   wallet,

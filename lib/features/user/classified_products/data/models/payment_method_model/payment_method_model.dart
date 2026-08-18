@@ -16,7 +16,7 @@ class PaymentMethodModel extends BaseApiModel<PaymentMethodDomainModel>
       {@JsonKey(name: 'payment_type') required String paymentType,
       @JsonKey(name: 'payment_type_key') required String paymentTypeKey,
       required String image,
-        required String name,
+      required String name,
       required String title,
       @JsonKey(name: 'offline_payment_id') required int offlinePaymentId,
       required String details}) = _PaymentMethodModel;

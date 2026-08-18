@@ -1,9 +1,10 @@
 part of 'downloads_widgets_imports.dart';
 
 class BuildDownloadsItem extends StatelessWidget {
-  final Product productModel;
-final DownloadsController controller;
-  const BuildDownloadsItem({super.key, required this.productModel, required this.controller});
+  final ProductCard productModel;
+  final DownloadsController controller;
+  const BuildDownloadsItem(
+      {super.key, required this.productModel, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +19,13 @@ final DownloadsController controller;
               style: AppTextStyle.s13_w500(color: context.colors.black),
             ),
             Text(
-              productModel.name!,
+              productModel.name,
               style: AppTextStyle.s12_w400(color: context.colors.blackOpacity),
             ),
           ],
         ),
         trailing: BuildOptionItem(
-          onTap: () =>controller.downloadDigitalProduct(productModel.id!),
+          onTap: () => controller.downloadDigitalProduct(productModel.id ?? 0),
           iconData: Icons.download,
           customColor: context.colors.blue,
         ),

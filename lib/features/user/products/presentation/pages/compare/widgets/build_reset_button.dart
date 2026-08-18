@@ -10,7 +10,7 @@ class BuildResetButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<List<Product>>, GenericState<List<Product>>>(
+    return BlocBuilder<GenericBloc<List<ProductCard>>, GenericState<List<ProductCard>>>(
       bloc: controller.productsBloc,
       builder: (context, state) {
         return Visibility(

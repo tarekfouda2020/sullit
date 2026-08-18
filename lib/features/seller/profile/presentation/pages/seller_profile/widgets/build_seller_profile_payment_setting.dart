@@ -1,8 +1,11 @@
-part of'seller_profile_widgets_imports.dart';
-class BuildSellerProfilePaymentSetting extends StatelessWidget {
-  final  SellerProfileController sellerProfileController;
+part of 'seller_profile_widgets_imports.dart';
 
-  const BuildSellerProfilePaymentSetting({Key? key, required this.sellerProfileController}) : super(key: key);
+class BuildSellerProfilePaymentSetting extends StatelessWidget {
+  final SellerProfileController sellerProfileController;
+
+  const BuildSellerProfilePaymentSetting(
+      {Key? key, required this.sellerProfileController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +35,22 @@ class BuildSellerProfilePaymentSetting extends StatelessWidget {
             style: AppTextStyle.s14_w400(color: context.colors.black),
             textAlign: TextAlign.start,
           ),
-          Switch(value: true, onChanged: (v){},inactiveTrackColor: context.colors.greyWhite),
+          Switch(
+              value: true,
+              onChanged: (v) {},
+              inactiveTrackColor: context.colors.greyWhite),
           Text(
             "Bank Payment",
             style: AppTextStyle.s14_w400(color: context.colors.black),
             textAlign: TextAlign.start,
           ),
-          Switch(value: false, onChanged: (v){},inactiveTrackColor: context.colors.greyWhite),
+          Switch(
+              value: false,
+              onChanged: (v) {},
+              inactiveTrackColor: context.colors.greyWhite),
           GenericTextField(
             contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
             controller: sellerProfileController.bankNameController,
             fieldTypes: FieldTypes.normal,
             type: TextInputType.text,
@@ -52,7 +61,7 @@ class BuildSellerProfilePaymentSetting extends StatelessWidget {
           ),
           GenericTextField(
             contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
             controller: sellerProfileController.bankAccountNameController,
             fieldTypes: FieldTypes.normal,
             type: TextInputType.text,
@@ -63,7 +72,7 @@ class BuildSellerProfilePaymentSetting extends StatelessWidget {
           ),
           GenericTextField(
             contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
             controller: sellerProfileController.bankAccountNumberController,
             fieldTypes: FieldTypes.normal,
             type: TextInputType.text,
@@ -74,7 +83,7 @@ class BuildSellerProfilePaymentSetting extends StatelessWidget {
           ),
           GenericTextField(
             contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
             controller: sellerProfileController.bankRoutingNumberController,
             fieldTypes: FieldTypes.normal,
             type: TextInputType.text,
@@ -83,7 +92,6 @@ class BuildSellerProfilePaymentSetting extends StatelessWidget {
             label: "Bank Routing Number",
             margin: const EdgeInsets.symmetric(vertical: 10).r,
           ),
-
         ],
       ),
     );

@@ -3,8 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:tf_dio_cache/tf_dio_cache.dart';
 
 @lazySingleton
-class DioOptions{
-
+class DioOptions {
   Options call({bool forceRefresh = true}) {
     return buildCacheOptions(
       const Duration(hours: 3),
@@ -13,5 +12,4 @@ class DioOptions{
       options: Options(extra: {}),
     );
   }
-
 }

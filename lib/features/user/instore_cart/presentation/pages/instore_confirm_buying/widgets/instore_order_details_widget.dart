@@ -2,7 +2,7 @@ part of 'instore_confirm_buying_widgets_imports.dart';
 
 
 class InstoreOrderDetailsWidget extends StatelessWidget {
-  final OrderSummary summary;
+  final OrderSummaryDomainModel summary;
   const InstoreOrderDetailsWidget({super.key, required this.summary});
 
   @override

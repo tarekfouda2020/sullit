@@ -12,11 +12,8 @@ class Wallet extends BaseDomainModel {
     required this.rechargeHistory,
   });
 
-
-
   bool get haveWalletCredit {
     double? credit = double.tryParse(walletCredit);
-    return credit!= null && credit > 0.0;
+    return credit != null && credit > 0.0;
   }
-
 }

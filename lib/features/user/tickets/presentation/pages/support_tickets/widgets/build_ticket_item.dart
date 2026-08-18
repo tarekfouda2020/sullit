@@ -4,12 +4,14 @@ class BuildTicketItem extends StatelessWidget {
   final Ticket ticketModel;
   final SupportTicketsController controller;
 
-  const BuildTicketItem({super.key, required this.ticketModel, required this.controller});
+  const BuildTicketItem(
+      {super.key, required this.ticketModel, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsetsDirectional.only(start: 34, top: 14, bottom: 20, end: 10),
+      padding: const EdgeInsetsDirectional.only(
+          start: 34, top: 14, bottom: 20, end: 10),
       margin: const EdgeInsets.only(bottom: 10),
       decoration: const CustomDecoration().copyWith(
         border: Border.all(color: context.colors.gray3, width: 1),
@@ -42,9 +44,8 @@ class BuildTicketItem extends StatelessWidget {
               Flexible(
                 child: Text(
                   ticketModel.subject,
-                  style: AppTextStyle.s14_w600(color: context.colors.black).copyWith(
-                    height: 1.3
-                  ),
+                  style: AppTextStyle.s14_w600(color: context.colors.black)
+                      .copyWith(height: 1.3),
                 ),
               ),
             ],
@@ -84,6 +85,7 @@ class BuildTicketItem extends StatelessWidget {
   }
 
   String getDate() {
-    return DateTimeHelper.getDate(ticketModel.sendingDate.toString(), formatType: "dd MMM yyyy - hh:mm a");
+    return DateTimeHelper.getDate(ticketModel.sendingDate.toString(),
+        formatType: "dd MMM yyyy - hh:mm a");
   }
 }

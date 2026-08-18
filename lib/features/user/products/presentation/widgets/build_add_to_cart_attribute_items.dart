@@ -32,7 +32,7 @@ class BuildAddToCartAttributeItems extends StatelessWidget {
           context, productCubit, allOptions, index, position),
       child: Container(
         // width: 100.w,
-        padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
         decoration: BoxDecoration(
           border: Border.all(
             color: current ? context.colors.primary : context.colors.greyWhite,

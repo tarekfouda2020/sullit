@@ -11,9 +11,9 @@ import 'package:flutter_tdd/features/user/profile/domain/entities/profile_params
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: ProfileDataSources)
-class ImplProfileDataSources extends ProfileDataSources   {
+class ImplProfileDataSources extends ProfileDataSources {
   @override
-  Future<Either<Failure, UserModel>> updateProfile(ProfileParams params) async{
+  Future<Either<Failure, UserModel>> updateProfile(ProfileParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.updateProfile,
       responseType: ResType.model,
@@ -27,21 +27,21 @@ class ImplProfileDataSources extends ProfileDataSources   {
   }
 
   @override
-  Future<Either<Failure, bool>> updateProfileEmail(String param)async {
+  Future<Either<Failure, bool>> updateProfileEmail(String param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.updateProfileEmail,
       responseType: ResType.type,
       requestMethod: RequestMethod.post,
       responseKey: (data) => data["key"] == 'success',
-      errorFunc: (data)=>data["msg"],
-      requestBody: {"email":param},
+      errorFunc: (data) => data["msg"],
+      requestBody: {"email": param},
       showLoader: true,
     );
     return await GenericHttpImpl<bool>()(model);
   }
 
   @override
-  Future<Either<Failure, UserModel>> getProfile(bool params)async {
+  Future<Either<Failure, UserModel>> getProfile(bool params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getProfile,
       responseType: ResType.model,

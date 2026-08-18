@@ -12,8 +12,8 @@ class ChangePlanButtonWidget extends StatelessWidget {
       builder: (context, state) {
         return DefaultButton(
             onTap: state.data
-                ?() {}
-                :()=> controller.showPayMethodsSheet(context),
+                ? () {}
+                : () => controller.showPayMethodsSheet(context),
             title: _title(),
             disabled: state.data,
             elevation: 0,
@@ -28,19 +28,17 @@ class ChangePlanButtonWidget extends StatelessWidget {
             fontWeight: FontWeight.w700,
             height: 50,
             borderRadius: Dimens.borderRadius30PX,
-            margin: Dimens.marginTop8Bottom20
-        );
+            margin: Dimens.marginTop8Bottom20);
       },
     );
   }
 
-
-  String  _title(){
-    if(controller.currentSubscriptionBloc.state.data!.currentSubscription==null){
+  String _title() {
+    if (controller.currentSubscriptionBloc.state.data!.currentSubscription ==
+        null) {
       return tr("subscribe");
-    }else{
+    } else {
       return tr("changePlan");
     }
   }
-
 }

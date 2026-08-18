@@ -23,15 +23,9 @@ mixin _$SubCategoryModel {
   @JsonKey(name: 'category')
   CategoryModel get category => throw _privateConstructorUsedError;
   @JsonKey(name: 'categories')
-  List<CategoryModel> get cats => throw _privateConstructorUsedError;
+  List<CategoryModel>? get cats => throw _privateConstructorUsedError;
   @JsonKey(name: 'children_categories')
   List<CategoryModel> get subCats => throw _privateConstructorUsedError;
-  @JsonKey(name: 'brands')
-  List<BrandModel> get brands => throw _privateConstructorUsedError;
-  @JsonKey(name: 'colors')
-  List<ColorModel> get colors => throw _privateConstructorUsedError;
-  @JsonKey(name: 'attributes')
-  List<AttributesModel> get attributes => throw _privateConstructorUsedError;
   @JsonKey(name: 'price_range')
   PriceRangeModel get priceRange =>
       throw _privateConstructorUsedError; // @JsonKey(name: 'section_products')
@@ -52,11 +46,8 @@ abstract class $SubCategoryModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'category') CategoryModel category,
-      @JsonKey(name: 'categories') List<CategoryModel> cats,
+      @JsonKey(name: 'categories') List<CategoryModel>? cats,
       @JsonKey(name: 'children_categories') List<CategoryModel> subCats,
-      @JsonKey(name: 'brands') List<BrandModel> brands,
-      @JsonKey(name: 'colors') List<ColorModel> colors,
-      @JsonKey(name: 'attributes') List<AttributesModel> attributes,
       @JsonKey(name: 'price_range') PriceRangeModel priceRange,
       int? selectedId});
 
@@ -78,11 +69,8 @@ class _$SubCategoryModelCopyWithImpl<$Res, $Val extends SubCategoryModel>
   @override
   $Res call({
     Object? category = null,
-    Object? cats = null,
+    Object? cats = freezed,
     Object? subCats = null,
-    Object? brands = null,
-    Object? colors = null,
-    Object? attributes = null,
     Object? priceRange = null,
     Object? selectedId = freezed,
   }) {
@@ -91,26 +79,14 @@ class _$SubCategoryModelCopyWithImpl<$Res, $Val extends SubCategoryModel>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryModel,
-      cats: null == cats
+      cats: freezed == cats
           ? _value.cats
           : cats // ignore: cast_nullable_to_non_nullable
-              as List<CategoryModel>,
+              as List<CategoryModel>?,
       subCats: null == subCats
           ? _value.subCats
           : subCats // ignore: cast_nullable_to_non_nullable
               as List<CategoryModel>,
-      brands: null == brands
-          ? _value.brands
-          : brands // ignore: cast_nullable_to_non_nullable
-              as List<BrandModel>,
-      colors: null == colors
-          ? _value.colors
-          : colors // ignore: cast_nullable_to_non_nullable
-              as List<ColorModel>,
-      attributes: null == attributes
-          ? _value.attributes
-          : attributes // ignore: cast_nullable_to_non_nullable
-              as List<AttributesModel>,
       priceRange: null == priceRange
           ? _value.priceRange
           : priceRange // ignore: cast_nullable_to_non_nullable
@@ -149,11 +125,8 @@ abstract class _$$_SubCategoryModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'category') CategoryModel category,
-      @JsonKey(name: 'categories') List<CategoryModel> cats,
+      @JsonKey(name: 'categories') List<CategoryModel>? cats,
       @JsonKey(name: 'children_categories') List<CategoryModel> subCats,
-      @JsonKey(name: 'brands') List<BrandModel> brands,
-      @JsonKey(name: 'colors') List<ColorModel> colors,
-      @JsonKey(name: 'attributes') List<AttributesModel> attributes,
       @JsonKey(name: 'price_range') PriceRangeModel priceRange,
       int? selectedId});
 
@@ -175,11 +148,8 @@ class __$$_SubCategoryModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? category = null,
-    Object? cats = null,
+    Object? cats = freezed,
     Object? subCats = null,
-    Object? brands = null,
-    Object? colors = null,
-    Object? attributes = null,
     Object? priceRange = null,
     Object? selectedId = freezed,
   }) {
@@ -188,26 +158,14 @@ class __$$_SubCategoryModelCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryModel,
-      cats: null == cats
+      cats: freezed == cats
           ? _value._cats
           : cats // ignore: cast_nullable_to_non_nullable
-              as List<CategoryModel>,
+              as List<CategoryModel>?,
       subCats: null == subCats
           ? _value._subCats
           : subCats // ignore: cast_nullable_to_non_nullable
               as List<CategoryModel>,
-      brands: null == brands
-          ? _value._brands
-          : brands // ignore: cast_nullable_to_non_nullable
-              as List<BrandModel>,
-      colors: null == colors
-          ? _value._colors
-          : colors // ignore: cast_nullable_to_non_nullable
-              as List<ColorModel>,
-      attributes: null == attributes
-          ? _value._attributes
-          : attributes // ignore: cast_nullable_to_non_nullable
-              as List<AttributesModel>,
       priceRange: null == priceRange
           ? _value.priceRange
           : priceRange // ignore: cast_nullable_to_non_nullable
@@ -226,20 +184,13 @@ class __$$_SubCategoryModelCopyWithImpl<$Res>
 class _$_SubCategoryModel extends _SubCategoryModel {
   const _$_SubCategoryModel(
       {@JsonKey(name: 'category') required this.category,
-      @JsonKey(name: 'categories') required final List<CategoryModel> cats,
+      @JsonKey(name: 'categories') final List<CategoryModel>? cats,
       @JsonKey(name: 'children_categories')
       required final List<CategoryModel> subCats,
-      @JsonKey(name: 'brands') required final List<BrandModel> brands,
-      @JsonKey(name: 'colors') required final List<ColorModel> colors,
-      @JsonKey(name: 'attributes')
-      required final List<AttributesModel> attributes,
       @JsonKey(name: 'price_range') required this.priceRange,
       this.selectedId})
       : _cats = cats,
         _subCats = subCats,
-        _brands = brands,
-        _colors = colors,
-        _attributes = attributes,
         super._();
 
   factory _$_SubCategoryModel.fromJson(Map<String, dynamic> json) =>
@@ -248,13 +199,15 @@ class _$_SubCategoryModel extends _SubCategoryModel {
   @override
   @JsonKey(name: 'category')
   final CategoryModel category;
-  final List<CategoryModel> _cats;
+  final List<CategoryModel>? _cats;
   @override
   @JsonKey(name: 'categories')
-  List<CategoryModel> get cats {
+  List<CategoryModel>? get cats {
+    final value = _cats;
+    if (value == null) return null;
     if (_cats is EqualUnmodifiableListView) return _cats;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_cats);
+    return EqualUnmodifiableListView(value);
   }
 
   final List<CategoryModel> _subCats;
@@ -264,33 +217,6 @@ class _$_SubCategoryModel extends _SubCategoryModel {
     if (_subCats is EqualUnmodifiableListView) return _subCats;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_subCats);
-  }
-
-  final List<BrandModel> _brands;
-  @override
-  @JsonKey(name: 'brands')
-  List<BrandModel> get brands {
-    if (_brands is EqualUnmodifiableListView) return _brands;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_brands);
-  }
-
-  final List<ColorModel> _colors;
-  @override
-  @JsonKey(name: 'colors')
-  List<ColorModel> get colors {
-    if (_colors is EqualUnmodifiableListView) return _colors;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_colors);
-  }
-
-  final List<AttributesModel> _attributes;
-  @override
-  @JsonKey(name: 'attributes')
-  List<AttributesModel> get attributes {
-    if (_attributes is EqualUnmodifiableListView) return _attributes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_attributes);
   }
 
   @override
@@ -303,7 +229,7 @@ class _$_SubCategoryModel extends _SubCategoryModel {
 
   @override
   String toString() {
-    return 'SubCategoryModel(category: $category, cats: $cats, subCats: $subCats, brands: $brands, colors: $colors, attributes: $attributes, priceRange: $priceRange, selectedId: $selectedId)';
+    return 'SubCategoryModel(category: $category, cats: $cats, subCats: $subCats, priceRange: $priceRange, selectedId: $selectedId)';
   }
 
   @override
@@ -315,10 +241,6 @@ class _$_SubCategoryModel extends _SubCategoryModel {
                 other.category == category) &&
             const DeepCollectionEquality().equals(other._cats, _cats) &&
             const DeepCollectionEquality().equals(other._subCats, _subCats) &&
-            const DeepCollectionEquality().equals(other._brands, _brands) &&
-            const DeepCollectionEquality().equals(other._colors, _colors) &&
-            const DeepCollectionEquality()
-                .equals(other._attributes, _attributes) &&
             (identical(other.priceRange, priceRange) ||
                 other.priceRange == priceRange) &&
             (identical(other.selectedId, selectedId) ||
@@ -332,9 +254,6 @@ class _$_SubCategoryModel extends _SubCategoryModel {
       category,
       const DeepCollectionEquality().hash(_cats),
       const DeepCollectionEquality().hash(_subCats),
-      const DeepCollectionEquality().hash(_brands),
-      const DeepCollectionEquality().hash(_colors),
-      const DeepCollectionEquality().hash(_attributes),
       priceRange,
       selectedId);
 
@@ -355,13 +274,9 @@ class _$_SubCategoryModel extends _SubCategoryModel {
 abstract class _SubCategoryModel extends SubCategoryModel {
   const factory _SubCategoryModel(
       {@JsonKey(name: 'category') required final CategoryModel category,
-      @JsonKey(name: 'categories') required final List<CategoryModel> cats,
+      @JsonKey(name: 'categories') final List<CategoryModel>? cats,
       @JsonKey(name: 'children_categories')
       required final List<CategoryModel> subCats,
-      @JsonKey(name: 'brands') required final List<BrandModel> brands,
-      @JsonKey(name: 'colors') required final List<ColorModel> colors,
-      @JsonKey(name: 'attributes')
-      required final List<AttributesModel> attributes,
       @JsonKey(name: 'price_range') required final PriceRangeModel priceRange,
       final int? selectedId}) = _$_SubCategoryModel;
   const _SubCategoryModel._() : super._();
@@ -374,19 +289,10 @@ abstract class _SubCategoryModel extends SubCategoryModel {
   CategoryModel get category;
   @override
   @JsonKey(name: 'categories')
-  List<CategoryModel> get cats;
+  List<CategoryModel>? get cats;
   @override
   @JsonKey(name: 'children_categories')
   List<CategoryModel> get subCats;
-  @override
-  @JsonKey(name: 'brands')
-  List<BrandModel> get brands;
-  @override
-  @JsonKey(name: 'colors')
-  List<ColorModel> get colors;
-  @override
-  @JsonKey(name: 'attributes')
-  List<AttributesModel> get attributes;
   @override
   @JsonKey(name: 'price_range')
   PriceRangeModel get priceRange;

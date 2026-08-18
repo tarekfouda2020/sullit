@@ -36,7 +36,8 @@ class CartConfirmShimmerWidget extends StatelessWidget {
       children: [
         Container(
           width: MediaQuery.of(context).size.width - 40,
-          padding: const EdgeInsets.only(top: 46, bottom: 20, right: 21, left: 21).r,
+          padding:
+              const EdgeInsets.only(top: 46, bottom: 20, right: 21, left: 21).r,
           margin: const EdgeInsets.only(top: 43),
           decoration: CustomDecoration(
             thisColor: context.colors.white,
@@ -138,7 +139,8 @@ class CartConfirmShimmerWidget extends StatelessWidget {
     return Column(
       children: List.generate(2, (index) {
         return Container(
-          padding: const EdgeInsets.only(left: 19, right: 19, top: 17, bottom: 20).r,
+          padding:
+              const EdgeInsets.only(left: 19, right: 19, top: 17, bottom: 20).r,
           margin: Dimens.paddingHorizontal20PX,
           decoration: const CustomDecoration(),
           child: Column(

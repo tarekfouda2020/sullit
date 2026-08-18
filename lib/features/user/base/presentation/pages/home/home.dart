@@ -29,7 +29,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         initialIndex: widget.index,
         length: 5,
         child: GestureDetector(
-          onTap: () =>  FocusManager.instance.primaryFocus?.unfocus(),
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: Scaffold(
             key: controller.scaffoldKey,
             extendBody: true,
@@ -41,7 +41,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             ),
             bottomNavigationBar: BuildBottomNavBar(controller: controller),
             floatingActionButton: const CartButtonWidget(),
-            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
           ),
         ),
       ),

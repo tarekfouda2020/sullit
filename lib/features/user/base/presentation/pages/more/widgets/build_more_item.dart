@@ -47,13 +47,13 @@ class BuildMoreItem extends StatelessWidget {
                     image,
                     width: size,
                     height: size,
-              colorFilter: svgColor,
-                )
+                    colorFilter: svgColor,
+                  )
                 : Image.asset(
                     image,
                     width: size,
                     height: size,
-                ),
+                  ),
             Gaps.vGap10,
             Row(
               children: [
@@ -61,7 +61,8 @@ class BuildMoreItem extends StatelessWidget {
                   child: Text(
                     title,
                     textAlign: TextAlign.center,
-                    style: AppTextStyle.s14_w500(color: context.colors.black).copyWith(),
+                    style: AppTextStyle.s14_w500(color: context.colors.black)
+                        .copyWith(),
                   ),
                 ),
               ],

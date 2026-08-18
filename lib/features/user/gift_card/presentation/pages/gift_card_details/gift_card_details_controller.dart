@@ -149,11 +149,11 @@ class GiftCardDetailsController {
         if (imageBytes == null) return;
         final tempDir = await getTemporaryDirectory();
         final file = File(
-            '${tempDir.path}/gift_card_${DateTime.now().millisecondsSinceEpoch}.png'
-        );
+            '${tempDir.path}/gift_card_${DateTime.now().millisecondsSinceEpoch}.png');
         await file.writeAsBytes(imageBytes);
         SharePlus.instance.share(
-          ShareParams(files: [XFile(file.path)], text: 'check out my gift card'),
+          ShareParams(
+              files: [XFile(file.path)], text: 'check out my gift card'),
         );
         showCopyIcon.onUpdateData(true);
       }

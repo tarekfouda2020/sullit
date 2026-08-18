@@ -38,11 +38,11 @@ class ImplCartDataSources extends CartDataSources {
   @override
   Future<Either<Failure, CartModel>> getCartItems(CartParams params) async {
     HttpRequestModel model = HttpRequestModel(
-      url: params.toQuery(),
+      url: ApiNames.cart,
+      requestBody: params.toJson(),
       requestMethod: RequestMethod.get,
       refresh: params.refresh,
       responseType: ResType.model,
-      showLoader: true,
       toJsonFunc: (json) => CartModel.fromJson(json),
       responseKey: (data) => data["data"],
       errorFunc: (data) => data["msg"],
@@ -51,23 +51,24 @@ class ImplCartDataSources extends CartDataSources {
   }
 
   @override
-  Future<Either<Failure, bool>> addCartAddress(AddCartAddressParams param)async {
+  Future<Either<Failure, bool>> addCartAddress(
+      AddCartAddressParams param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.addCartAddress,
       requestBody: {"address_id": param.addressId},
       requestMethod: RequestMethod.post,
       responseType: ResType.type,
       showLoader: param.showLoader,
-      responseKey: (data)=> data["key"] == "success",
-      errorFunc: (data)=> data["msg"],
+      responseKey: (data) => data["key"] == "success",
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<bool>().call(model);
   }
 
   @override
-  Future<Either<Failure, ShippingModel>> cartStoreShipping(StoreCartShippingParams params) async  {
-    String param = json.encode(params.params);
-    log("====>>>>>> params ${param}  =====");
+  Future<Either<Failure, ShippingModel>> cartStoreShipping(
+      StoreCartShippingParams params) async {
+    var param = json.encode(params.params);
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.cartStoreShipping,
       requestBody: {"shipping_info": param},
@@ -75,14 +76,14 @@ class ImplCartDataSources extends CartDataSources {
       responseType: ResType.model,
       showLoader: params.showLoader,
       toJsonFunc: (data) => ShippingModel.fromJson(data),
-      responseKey: (data)=> data["data"],
-      errorFunc: (data)=> data["msg"],
+      responseKey: (data) => data["data"],
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<ShippingModel>().call(model);
   }
 
   @override
-  Future<Either<Failure, CouponResponseModel>> applyCoupon(String param)async {
+  Future<Either<Failure, CouponResponseModel>> applyCoupon(String param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.applyCoupon,
       requestBody: {"code": param},
@@ -91,13 +92,14 @@ class ImplCartDataSources extends CartDataSources {
       refresh: true,
       showLoader: true,
       toJsonFunc: (data) => CouponResponseModel.fromJson(data),
-      errorFunc: (data)=> data["msg"],
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<CouponResponseModel>().call(model);
   }
 
   @override
-  Future<Either<Failure, OrderSummaryModel>> createOrder(CreateOrderParams params)async {
+  Future<Either<Failure, OrderSummaryModel>> createOrder(
+      CreateOrderParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.storeOrders,
       requestBody: params.toJson(),
@@ -105,14 +107,15 @@ class ImplCartDataSources extends CartDataSources {
       responseType: ResType.model,
       showLoader: true,
       toJsonFunc: (data) => OrderSummaryModel.fromJson(data),
-      responseKey: (data)=> data['data'],
-      errorFunc: (data)=> data["msg"],
+      responseKey: (data) => data['data'],
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<OrderSummaryModel>().call(model);
   }
 
   @override
-  Future<Either<Failure, String>> addToCart (AddProductToCartParams params) async {
+  Future<Either<Failure, String>> addToCart(
+      BaseAddProductToCartParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.storeProductToCart,
       requestMethod: RequestMethod.post,
@@ -125,20 +128,22 @@ class ImplCartDataSources extends CartDataSources {
   }
 
   @override
-  Future<Either<Failure, bool>> deleteCartItem(DeleteCartItemParams params)async {
+  Future<Either<Failure, bool>> deleteCartItem(
+      DeleteCartItemParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.cart + params.toQuery(),
       requestBody: params.toJson(),
       requestMethod: RequestMethod.delete,
       responseType: ResType.type,
-      responseKey: (data)=> data["key"] == "success",
-      errorFunc: (data)=> data["msg"],
+      responseKey: (data) => data["key"] == "success",
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<bool>().call(model);
   }
 
   @override
-  Future<Either<Failure, CartModel>> updateCartItem(UpdateCartItemParams params)async {
+  Future<Either<Failure, CartModel>> updateCartItem(
+      UpdateCartItemParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: params.toQuery(),
       requestBody: params.toJson(),
@@ -146,14 +151,15 @@ class ImplCartDataSources extends CartDataSources {
       responseType: ResType.model,
       showLoader: false,
       toJsonFunc: (data) => CartModel.fromJson(data),
-      responseKey: (data)=> data['data'],
-      errorFunc: (data)=> data["msg"],
+      responseKey: (data) => data['data'],
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<CartModel>().call(model);
   }
 
   @override
-  Future<Either<Failure, List<SellerShippingModel>>> getShippingInfo(bool param)async {
+  Future<Either<Failure, List<SellerShippingModel>>> getShippingInfo(
+      bool param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.cartShippingInfo,
       requestMethod: RequestMethod.get,
@@ -162,7 +168,7 @@ class ImplCartDataSources extends CartDataSources {
       showLoader: true,
       toJsonFunc: (json) => List<SellerShippingModel>.from(
         json.map(
-              (e) => SellerShippingModel.fromJson(e),
+          (e) => SellerShippingModel.fromJson(e),
         ),
       ),
       responseKey: (data) => data["data"],
@@ -172,21 +178,22 @@ class ImplCartDataSources extends CartDataSources {
   }
 
   @override
-  Future<Either<Failure, OrderSummaryModel>> getCombinedOrder(int param)async {
+  Future<Either<Failure, OrderSummaryModel>> getCombinedOrder(int param) async {
     HttpRequestModel model = HttpRequestModel(
-      url:'${ApiNames.getCombinedOrder}$param',
+      url: '${ApiNames.getCombinedOrder}$param',
       requestMethod: RequestMethod.get,
       responseType: ResType.model,
       showLoader: true,
       toJsonFunc: (data) => OrderSummaryModel.fromJson(data),
-      responseKey: (data)=> data['data'],
-      errorFunc: (data)=> data["msg"],
+      responseKey: (data) => data['data'],
+      errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<OrderSummaryModel>().call(model);
   }
 
   @override
-  Future<Either<Failure, ShippingSummaryModel>> applyLoyaltyPoints(NoParams params)async {
+  Future<Either<Failure, ShippingSummaryModel>> applyLoyaltyPoints(
+      NoParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.applyLoyaltyPoints,
       requestMethod: RequestMethod.post,
@@ -200,7 +207,8 @@ class ImplCartDataSources extends CartDataSources {
   }
 
   @override
-  Future<Either<Failure, ShippingSummaryModel>> removeLoyaltyPoints(NoParams params)async {
+  Future<Either<Failure, ShippingSummaryModel>> removeLoyaltyPoints(
+      NoParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.removeLoyaltyPoints,
       responseType: ResType.model,
@@ -214,7 +222,8 @@ class ImplCartDataSources extends CartDataSources {
   }
 
   @override
-  Future<Either<Failure, GiftCardAppliedCartModel>> applyGiftCard(ApplyGiftCardParams params)async {
+  Future<Either<Failure, GiftCardAppliedCartModel>> applyGiftCard(
+      ApplyGiftCardParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.applyGiftCard,
       requestMethod: RequestMethod.post,
@@ -229,15 +238,15 @@ class ImplCartDataSources extends CartDataSources {
   }
 
   @override
-  Future<Either<Failure, String>> clearCart(ClearCartParams params)async {
+  Future<Either<Failure, String>> clearCart(ClearCartParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.clearCart,
       requestBody: params.toJson(),
       requestMethod: RequestMethod.post,
       responseType: ResType.type,
       showLoader: true,
-      responseKey: (data)=> data["key"],
-      errorFunc: (data)=> data["key"],
+      responseKey: (data) => data["key"],
+      errorFunc: (data) => data["key"],
     );
     return await GenericHttpImpl<String>().call(model);
   }
@@ -269,8 +278,6 @@ class ImplCartDataSources extends CartDataSources {
     return await GenericHttpImpl<FessMechanismModel>()(model);
   }
 
-
-
   @override
   Future<Either<Failure, List<DeliveryInstruction>>> getInstructions(bool params)async {
     HttpRequestModel model = HttpRequestModel(
@@ -280,7 +287,7 @@ class ImplCartDataSources extends CartDataSources {
       refresh: params,
       toJsonFunc: (json) => List<DeliveryInstruction>.from(
         json.map(
-              (e) => DeliveryInstruction.fromJson(e),
+          (e) => DeliveryInstruction.fromJson(e),
         ),
       ),
       responseKey: (data) => data["data"],
@@ -305,9 +312,9 @@ class ImplCartDataSources extends CartDataSources {
   @override
   Future<Either<Failure, bool>> importCart(String token) async {
     String? deviceToken = await getIt<GetDeviceId>().deviceId;
-    final macAddress  = "?mac_address=${deviceToken!}";
+    final macAddress = "?mac_address=${deviceToken!}";
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.cartImport+macAddress,
+      url: ApiNames.cartImport + macAddress,
       requestMethod: RequestMethod.post,
       responseType: ResType.type,
       requestBody: {"token": token},

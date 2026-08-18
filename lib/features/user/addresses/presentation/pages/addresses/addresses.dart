@@ -22,7 +22,7 @@ class _AddressesState extends State<Addresses> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(title: tr('addresses')),
-      body : CustomRefreshIndicatorWidget(
+      body: CustomRefreshIndicatorWidget(
         onRefresh: () async => await controller.getAddress(1),
         child: PagedListView<int, AddressDomainModel>(
           pagingController: controller.pagingController,
@@ -34,13 +34,16 @@ class _AddressesState extends State<Addresses> {
                 controller: controller,
               );
             },
-            noItemsFoundIndicatorBuilder: (cxt) =>const BuildAddressesEmptyView(),
-            firstPageProgressIndicatorBuilder: (_) => const BuildAddressLoading(),
-            newPageProgressIndicatorBuilder: (context) =>   SizedBox(
-              width: 15,height: 15,
+            noItemsFoundIndicatorBuilder: (cxt) =>
+                const BuildAddressesEmptyView(),
+            firstPageProgressIndicatorBuilder: (_) =>
+                const BuildAddressLoading(),
+            newPageProgressIndicatorBuilder: (context) => SizedBox(
+              width: 15,
+              height: 15,
               child: Center(
                 child: CircularProgressIndicator(
-                 strokeWidth: 2,
+                  strokeWidth: 2,
                   valueColor: AlwaysStoppedAnimation(context.colors.white),
                 ),
               ),

@@ -11,7 +11,7 @@ import 'package:flutter_tdd/features/user/category/domain/entities/search_produc
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/sub_category.dart';
 import 'package:flutter_tdd/features/user/category/domain/repository/category_repository.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: CategoryRepository)
@@ -26,14 +26,13 @@ class ImplCategoryRepository extends CategoryRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, List<Category>>> getAllCategories(
-      bool param) async {
+  Future<Either<Failure, List<Category>>> getAllCategories(bool param) async {
     var result = await dataSources.getAllCategories(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getBrandProducts(
+  Future<Either<Failure, List<ProductCard>>> getBrandProducts(
       BrandDetailsParams params) async {
     var result = await dataSources.getBrandProducts(params);
     return toDomainResultList(result);
@@ -47,14 +46,14 @@ class ImplCategoryRepository extends CategoryRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getCategoryProducts(
+  Future<Either<Failure, List<ProductCard>>> getCategoryProducts(
       SearchProductsParams params) async {
     var result = await dataSources.getCategoryProducts(params);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, List<Category>>> getSideSubCats(int param)async {
+  Future<Either<Failure, List<Category>>> getSideSubCats(int param) async {
     var result = await dataSources.getSideSubCats(param);
     return toDomainResultList(result);
   }

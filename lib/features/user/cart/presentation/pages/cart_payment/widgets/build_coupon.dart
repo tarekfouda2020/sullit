@@ -23,7 +23,8 @@ class BuildCoupon extends StatelessWidget {
             action: TextInputAction.done,
             type: TextInputType.text,
             fillColor: context.colors.customBackground,
-            suffixIcon: ApplyButtonWidget(onPressApply: () => controller.applyCoupon()),
+            suffixIcon:
+                ApplyButtonWidget(onPressApply: () => controller.applyCoupon()),
             margin: Dimens.paddingVertical8PX,
             validate: (value) => value!.validateEmpty(),
           ),

@@ -24,7 +24,10 @@ class BuildSocialItem extends StatelessWidget {
       child: Row(
         children: [
           Gaps.hGap15,
-          Text(title, style: AppTextStyle.s14_w400(color: context.colors.black),)
+          Text(
+            title,
+            style: AppTextStyle.s14_w400(color: context.colors.black),
+          )
         ],
       ),
     );

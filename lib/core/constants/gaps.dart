@@ -75,7 +75,7 @@ class Gaps {
 
   static Widget vLine(Color color, double height) => SizedBox(
         width: 0.6,
-        height:height,
+        height: height,
         child: VerticalDivider(color: color),
       );
 

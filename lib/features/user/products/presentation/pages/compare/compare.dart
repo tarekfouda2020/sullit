@@ -20,13 +20,14 @@ class _CompareState extends State<Compare> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(title: tr('compare'), showBack: true),
-      body: BlocBuilder<GenericBloc<List<Product>>, GenericState<List<Product>>>(
+      appBar: DefaultAppBar(title: tr('compare'), showBack: true),
+      body:
+          BlocBuilder<GenericBloc<List<ProductCard>>, GenericState<List<ProductCard>>>(
         bloc: controller.productsBloc,
         builder: (context, state) {
           return Visibility(
             visible: state.data.isNotEmpty,
-            replacement:  const BuildEmptyDataImage(),
+            replacement: const BuildEmptyDataImage(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -42,10 +43,11 @@ class _CompareState extends State<Compare> {
                       childAspectRatio: .75,
                     ),
                     itemBuilder: (context, index) => BuildProductItem(
-                      productModel: state.data[index],
-                      onFavRefresh: () => controller.onFavChanged(state.data[index]),
-                      onCompareRefresh: ()=> controller.onCompareChanged(state.data[index])
-                    ),
+                        productModel: state.data[index],
+                        onFavRefresh: () =>
+                            controller.onFavChanged(state.data[index]),
+                        onCompareRefresh: () =>
+                            controller.onCompareChanged(state.data[index])),
                   ),
                 ),
               ],

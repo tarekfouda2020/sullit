@@ -2,8 +2,8 @@ part of 'product_details_widgets_imports.dart';
 
 class CartSuccessSheetWidget extends StatefulWidget {
   final CartSheetController controller;
-
-  const CartSuccessSheetWidget({super.key, required this.controller});
+  final void Function()? onPressCheck;
+  const CartSuccessSheetWidget({super.key, required this.controller, this.onPressCheck});
 
   @override
   State<CartSuccessSheetWidget> createState() => _CartSuccessSheetWidgetState();
@@ -34,7 +34,8 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
           ),
           Gaps.vGap20,
           Flexible(
-            child: BlocBuilder<GenericBloc<CartDomainModel>, GenericState<CartDomainModel>>(
+            child: BlocBuilder<GenericBloc<CartDomainModel>,
+                GenericState<CartDomainModel>>(
               bloc: widget.controller.cartItemsBloc,
               builder: (context, state) {
                 if (state is GenericUpdateState) {
@@ -55,22 +56,26 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
-                          children: List.generate((state.data.items ?? <CartItem>[]).length, (index) {
-                          return CartSheetItemWidget(
-                            item: (state.data.items ?? <CartItem>[])[index],
-                            controller: widget.controller,
-                          );
-                          }),
+                            children: List.generate(
+                                (state.data.items ?? <GeneralCartItem>[])
+                                    .length, (index) {
+                              return CartSheetItemWidget(
+                                item: (state.data.items ??
+                                    <GeneralCartItem>[])[index],
+                                controller: widget.controller,
+                              );
+                            }),
                           ),
                         ),
                       ),
                       Gaps.vGap16,
                       DefaultButton(
                         title: tr('returnToShop'),
-                        onTap: () async{
+                        onTap: () async {
                           Navigator.pop(context);
-                         await Future.delayed(const Duration(milliseconds: 300));
-                         BuildContext ctx = getIt<GlobalContext>().context();
+                          await Future.delayed(
+                              const Duration(milliseconds: 300));
+                          BuildContext ctx = getIt<GlobalContext>().context();
                           AutoRouter.of(ctx).pop();
                         },
                         borderColor: context.colors.primary,
@@ -82,27 +87,29 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                       CustomBottomSafeAreaWidget(
                         iosPaddingBottom: 10,
                         child: Opacity(
-                          opacity: state.data.minimumStatus==true
-                              ?1
-                              :0.35,
+                          opacity: state.data.minimumStatus == true ? 1 : 0.35,
                           child: DefaultButton(
                             title: "",
-                            onTap: state.data.minimumStatus==true
+                            onTap: state.data.minimumStatus == true
                                 ? () => checkOut(state.data)
-                                : (){},
+                                : () {},
                             margin: EdgeInsets.zero,
                             customLabel: Row(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("${tr('checkout')} : ",
-                                style: AppTextStyle.s18_w700(color: context.colors.white),
+                                Text(
+                                  "${tr('checkout')} : ",
+                                  style: AppTextStyle.s18_w700(
+                                      color: context.colors.white),
                                 ),
-                                Text(state.data.subTotal ?? "",
-                                  style: AppTextStyle.s18_w700(color: context.colors.white),
+                                Text(
+                                  state.data.subTotal ?? "",
+                                  style: AppTextStyle.s18_w700(
+                                      color: context.colors.white),
                                 ).withDirhamSymbol(
-                                  symbolStyle: AppTextStyle.s20_w300(color: context.colors.white)
-                                ),
+                                    symbolStyle: AppTextStyle.s20_w300(
+                                        color: context.colors.white)),
                               ],
                             ),
                           ),
@@ -167,14 +174,18 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
     );
   }
 
-
-  void checkOut(CartDomainModel model){
-    if(model.minimumStatus == false){
+  void checkOut(CartDomainModel model) {
+    if (model.minimumStatus == false) {
       CustomToast.showSimpleToast(msg: model.minimumAmountMsg!);
-      return ;
+      return;
     }
-    AutoRouter.of(context).popAndPush( CartRoute(initialIndex: CartNavigateHelper.shippingStepIndex));
+
+    if(widget.onPressCheck!= null){
+      widget.onPressCheck!();
+      return;
+    }
+
+    AutoRouter.of(context).popAndPush(
+        CartRoute(initialIndex: CartNavigateHelper.shippingStepIndex));
   }
-
-
 }

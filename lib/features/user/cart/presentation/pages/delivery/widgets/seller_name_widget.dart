@@ -7,21 +7,21 @@ class SellerNameWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 9,horizontal: 23).r,
-      decoration:  CustomDecoration(
-        myBoxShadow: const [],
-        radius: Dimens.borderRadius12PX
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 23).r,
+      decoration: CustomDecoration(
+          myBoxShadow: const [], radius: Dimens.borderRadius12PX),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(tr("seller"),
-          style: AppTextStyle.s12_w400(color: context.colors.textColor),
+          Text(
+            tr("seller"),
+            style: AppTextStyle.s12_w400(color: context.colors.textColor),
           ),
           Gaps.vGap4,
           Row(
             children: [
-              Text(shipping.name,
+              Text(
+                shipping.name,
                 style: AppTextStyle.s14_w600(color: context.colors.black),
               ),
             ],

@@ -1,5 +1,3 @@
-
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,6 +25,8 @@ import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_payment/w
 import 'package:flutter_tdd/features/user/cart/presentation/widgets/build_cart_stepper_shimmer.dart';
 import 'package:flutter_tdd/features/user/loyalty_points/domain/models/loyalty_points_balance_domain_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_display_item.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/models/order_discount_domain.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/widgets/order_details_widgets_imports.dart';
 import 'package:flutter_tdd/res.dart';
@@ -38,4 +38,3 @@ part 'confirm_buying_summary_widget.dart';
 part 'cart_confirm_buying_products_widget.dart';
 part 'cart_confirm_shimmer_widget.dart';
 part 'new_points_balance_widget.dart';
-

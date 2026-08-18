@@ -24,6 +24,7 @@ mixin _$SummaryModel {
   String get orderDate => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
   @JsonKey(name: 'shipping_address')
   String get shippingAddress => throw _privateConstructorUsedError;
   @JsonKey(name: 'order_status')
@@ -31,13 +32,24 @@ mixin _$SummaryModel {
   @JsonKey(name: 'total_order_amount')
   String get totalOrderAmount => throw _privateConstructorUsedError;
   @JsonKey(name: 'combined_order_id')
-  int get combinedOrderId =>
-      throw _privateConstructorUsedError; // @JsonKey(name: 'total_items') required int totalItems,
+  int get combinedOrderId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'total_items')
+  int? get totalItems => throw _privateConstructorUsedError;
   @JsonKey(name: "expected_loyalty_points")
   int? get expectedLoyaltyPoints => throw _privateConstructorUsedError;
   String get shipping => throw _privateConstructorUsedError;
   @JsonKey(name: "payment_method")
   String get paymentMethod => throw _privateConstructorUsedError;
+  @JsonKey(name: "is_pending_review")
+  bool? get isPendingReview => throw _privateConstructorUsedError;
+  @JsonKey(name: "requires_prescription_review")
+  bool? get requiresPrescriptionReview => throw _privateConstructorUsedError;
+  @JsonKey(name: "awaiting_customer_completion")
+  bool? get awaitingCustomerCompletion => throw _privateConstructorUsedError;
+  @JsonKey(name: "insurance_applied")
+  bool? get insuranceApplied => throw _privateConstructorUsedError;
+  @JsonKey(name: "shop_type")
+  String? get shopType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,13 +67,22 @@ abstract class $SummaryModelCopyWith<$Res> {
       {@JsonKey(name: 'order_date') String orderDate,
       String name,
       String? email,
+      String? phone,
       @JsonKey(name: 'shipping_address') String shippingAddress,
       @JsonKey(name: 'order_status') String orderStatus,
       @JsonKey(name: 'total_order_amount') String totalOrderAmount,
       @JsonKey(name: 'combined_order_id') int combinedOrderId,
+      @JsonKey(name: 'total_items') int? totalItems,
       @JsonKey(name: "expected_loyalty_points") int? expectedLoyaltyPoints,
       String shipping,
-      @JsonKey(name: "payment_method") String paymentMethod});
+      @JsonKey(name: "payment_method") String paymentMethod,
+      @JsonKey(name: "is_pending_review") bool? isPendingReview,
+      @JsonKey(name: "requires_prescription_review")
+      bool? requiresPrescriptionReview,
+      @JsonKey(name: "awaiting_customer_completion")
+      bool? awaitingCustomerCompletion,
+      @JsonKey(name: "insurance_applied") bool? insuranceApplied,
+      @JsonKey(name: "shop_type") String? shopType});
 }
 
 /// @nodoc
@@ -80,13 +101,20 @@ class _$SummaryModelCopyWithImpl<$Res, $Val extends SummaryModel>
     Object? orderDate = null,
     Object? name = null,
     Object? email = freezed,
+    Object? phone = freezed,
     Object? shippingAddress = null,
     Object? orderStatus = null,
     Object? totalOrderAmount = null,
     Object? combinedOrderId = null,
+    Object? totalItems = freezed,
     Object? expectedLoyaltyPoints = freezed,
     Object? shipping = null,
     Object? paymentMethod = null,
+    Object? isPendingReview = freezed,
+    Object? requiresPrescriptionReview = freezed,
+    Object? awaitingCustomerCompletion = freezed,
+    Object? insuranceApplied = freezed,
+    Object? shopType = freezed,
   }) {
     return _then(_value.copyWith(
       orderDate: null == orderDate
@@ -100,6 +128,10 @@ class _$SummaryModelCopyWithImpl<$Res, $Val extends SummaryModel>
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String?,
       shippingAddress: null == shippingAddress
           ? _value.shippingAddress
@@ -117,6 +149,10 @@ class _$SummaryModelCopyWithImpl<$Res, $Val extends SummaryModel>
           ? _value.combinedOrderId
           : combinedOrderId // ignore: cast_nullable_to_non_nullable
               as int,
+      totalItems: freezed == totalItems
+          ? _value.totalItems
+          : totalItems // ignore: cast_nullable_to_non_nullable
+              as int?,
       expectedLoyaltyPoints: freezed == expectedLoyaltyPoints
           ? _value.expectedLoyaltyPoints
           : expectedLoyaltyPoints // ignore: cast_nullable_to_non_nullable
@@ -129,6 +165,26 @@ class _$SummaryModelCopyWithImpl<$Res, $Val extends SummaryModel>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      isPendingReview: freezed == isPendingReview
+          ? _value.isPendingReview
+          : isPendingReview // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      requiresPrescriptionReview: freezed == requiresPrescriptionReview
+          ? _value.requiresPrescriptionReview
+          : requiresPrescriptionReview // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      awaitingCustomerCompletion: freezed == awaitingCustomerCompletion
+          ? _value.awaitingCustomerCompletion
+          : awaitingCustomerCompletion // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      insuranceApplied: freezed == insuranceApplied
+          ? _value.insuranceApplied
+          : insuranceApplied // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      shopType: freezed == shopType
+          ? _value.shopType
+          : shopType // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -145,13 +201,22 @@ abstract class _$$_SummaryModelCopyWith<$Res>
       {@JsonKey(name: 'order_date') String orderDate,
       String name,
       String? email,
+      String? phone,
       @JsonKey(name: 'shipping_address') String shippingAddress,
       @JsonKey(name: 'order_status') String orderStatus,
       @JsonKey(name: 'total_order_amount') String totalOrderAmount,
       @JsonKey(name: 'combined_order_id') int combinedOrderId,
+      @JsonKey(name: 'total_items') int? totalItems,
       @JsonKey(name: "expected_loyalty_points") int? expectedLoyaltyPoints,
       String shipping,
-      @JsonKey(name: "payment_method") String paymentMethod});
+      @JsonKey(name: "payment_method") String paymentMethod,
+      @JsonKey(name: "is_pending_review") bool? isPendingReview,
+      @JsonKey(name: "requires_prescription_review")
+      bool? requiresPrescriptionReview,
+      @JsonKey(name: "awaiting_customer_completion")
+      bool? awaitingCustomerCompletion,
+      @JsonKey(name: "insurance_applied") bool? insuranceApplied,
+      @JsonKey(name: "shop_type") String? shopType});
 }
 
 /// @nodoc
@@ -168,13 +233,20 @@ class __$$_SummaryModelCopyWithImpl<$Res>
     Object? orderDate = null,
     Object? name = null,
     Object? email = freezed,
+    Object? phone = freezed,
     Object? shippingAddress = null,
     Object? orderStatus = null,
     Object? totalOrderAmount = null,
     Object? combinedOrderId = null,
+    Object? totalItems = freezed,
     Object? expectedLoyaltyPoints = freezed,
     Object? shipping = null,
     Object? paymentMethod = null,
+    Object? isPendingReview = freezed,
+    Object? requiresPrescriptionReview = freezed,
+    Object? awaitingCustomerCompletion = freezed,
+    Object? insuranceApplied = freezed,
+    Object? shopType = freezed,
   }) {
     return _then(_$_SummaryModel(
       orderDate: null == orderDate
@@ -188,6 +260,10 @@ class __$$_SummaryModelCopyWithImpl<$Res>
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String?,
       shippingAddress: null == shippingAddress
           ? _value.shippingAddress
@@ -205,6 +281,10 @@ class __$$_SummaryModelCopyWithImpl<$Res>
           ? _value.combinedOrderId
           : combinedOrderId // ignore: cast_nullable_to_non_nullable
               as int,
+      totalItems: freezed == totalItems
+          ? _value.totalItems
+          : totalItems // ignore: cast_nullable_to_non_nullable
+              as int?,
       expectedLoyaltyPoints: freezed == expectedLoyaltyPoints
           ? _value.expectedLoyaltyPoints
           : expectedLoyaltyPoints // ignore: cast_nullable_to_non_nullable
@@ -217,6 +297,26 @@ class __$$_SummaryModelCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      isPendingReview: freezed == isPendingReview
+          ? _value.isPendingReview
+          : isPendingReview // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      requiresPrescriptionReview: freezed == requiresPrescriptionReview
+          ? _value.requiresPrescriptionReview
+          : requiresPrescriptionReview // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      awaitingCustomerCompletion: freezed == awaitingCustomerCompletion
+          ? _value.awaitingCustomerCompletion
+          : awaitingCustomerCompletion // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      insuranceApplied: freezed == insuranceApplied
+          ? _value.insuranceApplied
+          : insuranceApplied // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      shopType: freezed == shopType
+          ? _value.shopType
+          : shopType // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -229,13 +329,22 @@ class _$_SummaryModel extends _SummaryModel {
       {@JsonKey(name: 'order_date') required this.orderDate,
       required this.name,
       required this.email,
+      this.phone,
       @JsonKey(name: 'shipping_address') required this.shippingAddress,
       @JsonKey(name: 'order_status') required this.orderStatus,
       @JsonKey(name: 'total_order_amount') required this.totalOrderAmount,
       @JsonKey(name: 'combined_order_id') required this.combinedOrderId,
+      @JsonKey(name: 'total_items') this.totalItems,
       @JsonKey(name: "expected_loyalty_points") this.expectedLoyaltyPoints,
       required this.shipping,
-      @JsonKey(name: "payment_method") required this.paymentMethod})
+      @JsonKey(name: "payment_method") required this.paymentMethod,
+      @JsonKey(name: "is_pending_review") this.isPendingReview,
+      @JsonKey(name: "requires_prescription_review")
+      this.requiresPrescriptionReview,
+      @JsonKey(name: "awaiting_customer_completion")
+      this.awaitingCustomerCompletion,
+      @JsonKey(name: "insurance_applied") this.insuranceApplied,
+      @JsonKey(name: "shop_type") this.shopType})
       : super._();
 
   factory _$_SummaryModel.fromJson(Map<String, dynamic> json) =>
@@ -249,6 +358,8 @@ class _$_SummaryModel extends _SummaryModel {
   @override
   final String? email;
   @override
+  final String? phone;
+  @override
   @JsonKey(name: 'shipping_address')
   final String shippingAddress;
   @override
@@ -260,7 +371,9 @@ class _$_SummaryModel extends _SummaryModel {
   @override
   @JsonKey(name: 'combined_order_id')
   final int combinedOrderId;
-// @JsonKey(name: 'total_items') required int totalItems,
+  @override
+  @JsonKey(name: 'total_items')
+  final int? totalItems;
   @override
   @JsonKey(name: "expected_loyalty_points")
   final int? expectedLoyaltyPoints;
@@ -269,10 +382,25 @@ class _$_SummaryModel extends _SummaryModel {
   @override
   @JsonKey(name: "payment_method")
   final String paymentMethod;
+  @override
+  @JsonKey(name: "is_pending_review")
+  final bool? isPendingReview;
+  @override
+  @JsonKey(name: "requires_prescription_review")
+  final bool? requiresPrescriptionReview;
+  @override
+  @JsonKey(name: "awaiting_customer_completion")
+  final bool? awaitingCustomerCompletion;
+  @override
+  @JsonKey(name: "insurance_applied")
+  final bool? insuranceApplied;
+  @override
+  @JsonKey(name: "shop_type")
+  final String? shopType;
 
   @override
   String toString() {
-    return 'SummaryModel(orderDate: $orderDate, name: $name, email: $email, shippingAddress: $shippingAddress, orderStatus: $orderStatus, totalOrderAmount: $totalOrderAmount, combinedOrderId: $combinedOrderId, expectedLoyaltyPoints: $expectedLoyaltyPoints, shipping: $shipping, paymentMethod: $paymentMethod)';
+    return 'SummaryModel(orderDate: $orderDate, name: $name, email: $email, phone: $phone, shippingAddress: $shippingAddress, orderStatus: $orderStatus, totalOrderAmount: $totalOrderAmount, combinedOrderId: $combinedOrderId, totalItems: $totalItems, expectedLoyaltyPoints: $expectedLoyaltyPoints, shipping: $shipping, paymentMethod: $paymentMethod, isPendingReview: $isPendingReview, requiresPrescriptionReview: $requiresPrescriptionReview, awaitingCustomerCompletion: $awaitingCustomerCompletion, insuranceApplied: $insuranceApplied, shopType: $shopType)';
   }
 
   @override
@@ -284,6 +412,7 @@ class _$_SummaryModel extends _SummaryModel {
                 other.orderDate == orderDate) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.shippingAddress, shippingAddress) ||
                 other.shippingAddress == shippingAddress) &&
             (identical(other.orderStatus, orderStatus) ||
@@ -292,12 +421,28 @@ class _$_SummaryModel extends _SummaryModel {
                 other.totalOrderAmount == totalOrderAmount) &&
             (identical(other.combinedOrderId, combinedOrderId) ||
                 other.combinedOrderId == combinedOrderId) &&
+            (identical(other.totalItems, totalItems) ||
+                other.totalItems == totalItems) &&
             (identical(other.expectedLoyaltyPoints, expectedLoyaltyPoints) ||
                 other.expectedLoyaltyPoints == expectedLoyaltyPoints) &&
             (identical(other.shipping, shipping) ||
                 other.shipping == shipping) &&
             (identical(other.paymentMethod, paymentMethod) ||
-                other.paymentMethod == paymentMethod));
+                other.paymentMethod == paymentMethod) &&
+            (identical(other.isPendingReview, isPendingReview) ||
+                other.isPendingReview == isPendingReview) &&
+            (identical(other.requiresPrescriptionReview,
+                    requiresPrescriptionReview) ||
+                other.requiresPrescriptionReview ==
+                    requiresPrescriptionReview) &&
+            (identical(other.awaitingCustomerCompletion,
+                    awaitingCustomerCompletion) ||
+                other.awaitingCustomerCompletion ==
+                    awaitingCustomerCompletion) &&
+            (identical(other.insuranceApplied, insuranceApplied) ||
+                other.insuranceApplied == insuranceApplied) &&
+            (identical(other.shopType, shopType) ||
+                other.shopType == shopType));
   }
 
   @JsonKey(ignore: true)
@@ -307,13 +452,20 @@ class _$_SummaryModel extends _SummaryModel {
       orderDate,
       name,
       email,
+      phone,
       shippingAddress,
       orderStatus,
       totalOrderAmount,
       combinedOrderId,
+      totalItems,
       expectedLoyaltyPoints,
       shipping,
-      paymentMethod);
+      paymentMethod,
+      isPendingReview,
+      requiresPrescriptionReview,
+      awaitingCustomerCompletion,
+      insuranceApplied,
+      shopType);
 
   @JsonKey(ignore: true)
   @override
@@ -334,16 +486,24 @@ abstract class _SummaryModel extends SummaryModel {
       {@JsonKey(name: 'order_date') required final String orderDate,
       required final String name,
       required final String? email,
+      final String? phone,
       @JsonKey(name: 'shipping_address') required final String shippingAddress,
       @JsonKey(name: 'order_status') required final String orderStatus,
       @JsonKey(name: 'total_order_amount')
       required final String totalOrderAmount,
       @JsonKey(name: 'combined_order_id') required final int combinedOrderId,
+      @JsonKey(name: 'total_items') final int? totalItems,
       @JsonKey(name: "expected_loyalty_points")
       final int? expectedLoyaltyPoints,
       required final String shipping,
-      @JsonKey(name: "payment_method")
-      required final String paymentMethod}) = _$_SummaryModel;
+      @JsonKey(name: "payment_method") required final String paymentMethod,
+      @JsonKey(name: "is_pending_review") final bool? isPendingReview,
+      @JsonKey(name: "requires_prescription_review")
+      final bool? requiresPrescriptionReview,
+      @JsonKey(name: "awaiting_customer_completion")
+      final bool? awaitingCustomerCompletion,
+      @JsonKey(name: "insurance_applied") final bool? insuranceApplied,
+      @JsonKey(name: "shop_type") final String? shopType}) = _$_SummaryModel;
   const _SummaryModel._() : super._();
 
   factory _SummaryModel.fromJson(Map<String, dynamic> json) =
@@ -357,6 +517,8 @@ abstract class _SummaryModel extends SummaryModel {
   @override
   String? get email;
   @override
+  String? get phone;
+  @override
   @JsonKey(name: 'shipping_address')
   String get shippingAddress;
   @override
@@ -368,7 +530,10 @@ abstract class _SummaryModel extends SummaryModel {
   @override
   @JsonKey(name: 'combined_order_id')
   int get combinedOrderId;
-  @override // @JsonKey(name: 'total_items') required int totalItems,
+  @override
+  @JsonKey(name: 'total_items')
+  int? get totalItems;
+  @override
   @JsonKey(name: "expected_loyalty_points")
   int? get expectedLoyaltyPoints;
   @override
@@ -376,6 +541,21 @@ abstract class _SummaryModel extends SummaryModel {
   @override
   @JsonKey(name: "payment_method")
   String get paymentMethod;
+  @override
+  @JsonKey(name: "is_pending_review")
+  bool? get isPendingReview;
+  @override
+  @JsonKey(name: "requires_prescription_review")
+  bool? get requiresPrescriptionReview;
+  @override
+  @JsonKey(name: "awaiting_customer_completion")
+  bool? get awaitingCustomerCompletion;
+  @override
+  @JsonKey(name: "insurance_applied")
+  bool? get insuranceApplied;
+  @override
+  @JsonKey(name: "shop_type")
+  String? get shopType;
   @override
   @JsonKey(ignore: true)
   _$$_SummaryModelCopyWith<_$_SummaryModel> get copyWith =>

@@ -340,8 +340,8 @@ class MultiSelectBottomSheetFieldViewState<V>
   Future<void> setItemsToStream() async {
     _itemsCubit.onUpdateToInitState([]);
     List<dynamic> data = await widget.onFind!.call();
-    var ids = _selectedItems.map((e) => e.id).toList();
-    _selectedItems = data.where((element) => ids.contains(element.id)).toList();
+    var ids = _selectedItems.map((e) => e.orderId).toList();
+    _selectedItems = data.where((element) => ids.contains(element.orderId)).toList();
     _itemsCubit.onUpdateData(
         data.map((e) => MultiSelectItem<V>(e, e.toString())).toList());
   }

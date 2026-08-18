@@ -7,7 +7,7 @@ class OnSaleOffersFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<List<Product>>, GenericState<List<Product>>>(
+    return BlocBuilder<GenericBloc<List<ProductCard>>, GenericState<List<ProductCard>>>(
       bloc: controller.onSaleCubit,
       builder: (context, state) {
         int length = state.data.take(4).length;
@@ -21,7 +21,6 @@ class OnSaleOffersFormWidget extends StatelessWidget {
                 children: [
                   BuildHeaderTitle(
                     title: tr('promotions'),
-                    controller: controller,
                     onTap: () {
                       controller.changeCouponsTab(SaleTabType.onSale, context);
                       controller.homeController.animateTabsPages(3, context);

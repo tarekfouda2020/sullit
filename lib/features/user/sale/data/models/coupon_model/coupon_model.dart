@@ -14,9 +14,9 @@ class CouponModel extends BaseApiModel<Coupon> with _$CouponModel {
   @JsonSerializable(explicitToJson: true)
   const factory CouponModel({
     @JsonKey(name: "id") required int id,
-    @JsonKey(name: "code")required String code,
-    @JsonKey(name: "icon")required String icon,
-    @JsonKey(name: "coupon_usages_count")required int couponUsagesCount,
+    @JsonKey(name: "code") required String code,
+    @JsonKey(name: "icon") required String icon,
+    @JsonKey(name: "coupon_usages_count") required int couponUsagesCount,
   }) = _CouponModel;
 
   factory CouponModel.fromJson(Map<String, dynamic> json) =>

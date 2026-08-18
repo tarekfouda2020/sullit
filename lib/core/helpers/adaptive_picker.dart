@@ -47,7 +47,8 @@ class AdaptivePicker {
         borderRadius: 16,
         height: 300,
         theme: ThemeData.light().copyWith(
-          primaryColor: context.colors.primary, buttonTheme:
+          primaryColor: context.colors.primary,
+          buttonTheme:
               const ButtonThemeData(textTheme: ButtonTextTheme.primary),
         )).then(onConfirm);
   }
@@ -197,7 +198,8 @@ class AdaptivePicker {
     );
   }
 
-  static Future bottomSheet({required BuildContext context, required Widget child}) {
+  static Future bottomSheet(
+      {required BuildContext context, required Widget child}) {
     return showModalBottomSheet(
       isScrollControlled: false,
       shape: const RoundedRectangleBorder(

@@ -7,7 +7,8 @@ class BuildAllCategoriesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<List<SubCategoryLevel>>, GenericState<List<SubCategoryLevel>>>(
+    return BlocBuilder<GenericBloc<List<SubCategoryLevel>>,
+        GenericState<List<SubCategoryLevel>>>(
       bloc: detailsController.subCategoriesCubit,
       builder: (context, state) {
         if (state is GenericUpdateState && state.data.isNotEmpty) {
@@ -18,12 +19,12 @@ class BuildAllCategoriesView extends StatelessWidget {
                 state.data.length,
                 (levelIndex) {
                   final level = state.data[levelIndex];
-                  final subCats = level.subCategory.subCats;
-                  
+                  final subCats = level.subCats;
+
                   if (subCats.isEmpty) {
                     return const SizedBox.shrink();
                   }
-                  
+
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -35,7 +36,8 @@ class BuildAllCategoriesView extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (_, index) {
                             final category = subCats[index];
-                            final isSelected = category.id == level.selectedCategoryId;
+                            final isSelected =
+                                category.id == level.selectedCategoryId;
                             return Padding(
                               padding: Dimens.paddingHorizontal5PX,
                               child: SizedBox(
@@ -88,9 +90,7 @@ class BuildAllCategoriesView extends StatelessWidget {
                                           color: isSelected
                                               ? context.colors.primary
                                               : context.colors.black,
-                                        ).copyWith(
-                                        height: 1.25
-                                        ),
+                                        ).copyWith(height: 1.25),
                                       )
                                     ],
                                   ),
@@ -107,7 +107,7 @@ class BuildAllCategoriesView extends StatelessWidget {
               ),
             ),
           );
-        }  else {
+        } else {
           return const BuildLoadingSubCats();
         }
       },

@@ -5,7 +5,12 @@ class OrderINfoItemWidget extends StatelessWidget {
   final String describe;
   final Widget gaps;
   final double? textHeight;
-  const OrderINfoItemWidget({super.key, required this.title, required this.describe, required this.gaps, this.textHeight});
+  const OrderINfoItemWidget(
+      {super.key,
+      required this.title,
+      required this.describe,
+      required this.gaps,
+      this.textHeight});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +25,8 @@ class OrderINfoItemWidget extends StatelessWidget {
         Expanded(
           child: Text(
             describe,
-            style: AppTextStyle.s14_w600(color: context.colors.black).copyWith(
-              height: textHeight
-            ),
+            style: AppTextStyle.s14_w600(color: context.colors.black)
+                .copyWith(height: textHeight),
           ),
         ),
       ],

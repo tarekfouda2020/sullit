@@ -11,16 +11,19 @@ class BuildHomeMainAppBar extends StatelessWidget {
       bloc: homeMainController.homeController.visibleSearch,
       builder: (context, state) {
         return Container(
-          padding: const EdgeInsets.only(top: 10,left: 16,right: 16, bottom: 6),
+          padding:
+              const EdgeInsets.only(top: 10, left: 16, right: 16, bottom: 6),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
                 child: GenericTextField(
                   fieldTypes: FieldTypes.normal,
-                  hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
+                  hintStyle:
+                      AppTextStyle.s14_w400(color: context.colors.textColor),
                   type: TextInputType.text,
-                  controller: homeMainController.homeController.searchController,
+                  controller:
+                      homeMainController.homeController.searchController,
                   action: TextInputAction.search,
                   radius: const BorderRadius.all(Radius.circular(30)),
                   validate: (value) {},
@@ -28,7 +31,7 @@ class BuildHomeMainAppBar extends StatelessWidget {
                   fillColor: context.colors.white,
                   enableBorderColor: context.colors.borderColor,
                   focusBorderColor: context.colors.borderColor,
-                  hint: tr('searchCats',context: context),
+                  hint: tr('searchCats', context: context),
                   minHeight: 48,
                   minWidth: 20,
                   onSubmit: () => homeMainController.routeToSearchPage(context),
@@ -63,17 +66,17 @@ class BuildHomeMainAppBar extends StatelessWidget {
               //   ),
               // ),
               GestureDetector(
-                onTap: () => homeMainController.goNotification(context),
-                child: Container(
-                  height: 35,
-                  width: 35,
-                  padding: Dimens.paddingAll5PX,
-                  decoration: BoxDecoration(
-                    color: context.colors.bgIcon,
-                    shape: BoxShape.circle,
-                  ),
-                  child: SvgPicture.asset(Res.notification),
-                )),
+                  onTap: () => homeMainController.goNotification(context),
+                  child: Container(
+                    height: 35,
+                    width: 35,
+                    padding: Dimens.paddingAll5PX,
+                    decoration: BoxDecoration(
+                      color: context.colors.bgIcon,
+                      shape: BoxShape.circle,
+                    ),
+                    child: SvgPicture.asset(Res.notification),
+                  )),
             ],
           ),
         );

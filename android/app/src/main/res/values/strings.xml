@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AMCOOP</string>
+    <string name="app_name">Sahlashop</string>
     <string name="facebook_app_id">1981210759416763</string>
     <string name="facebook_client_token">f5411f6a11fd6c597c52450c957cf4bb</string>
     <string name="fb_login_protocol_scheme">fb1981210759416763</string>

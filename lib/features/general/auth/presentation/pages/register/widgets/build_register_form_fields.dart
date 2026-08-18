@@ -26,8 +26,7 @@ class BuildRegisterFormFields extends StatelessWidget {
             type: TextInputType.text,
             action: TextInputAction.next,
             validate: (value) => value?.validateName(),
-            margin:
-            const EdgeInsets.only(bottom: Dimens.dp12, top: Dimens.dp8),
+            margin: const EdgeInsets.only(bottom: Dimens.dp12, top: Dimens.dp8),
           ),
           BuildInputLabel(label: tr('email')),
           GenericTextField(
@@ -50,13 +49,14 @@ class BuildRegisterFormFields extends StatelessWidget {
             builder: (context, state) {
               return GenericTextField(
                 fillColor: context.colors.white,
-                hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
+                hintStyle:
+                    AppTextStyle.s14_w400(color: context.colors.textColor),
                 enableBorderColor: context.colors.borderColor,
                 focusBorderColor: context.colors.borderColor,
                 controller: registerController.passwordController,
                 contentPadding: Dimens.paddingH12V16,
                 fieldTypes:
-                !state.data ? FieldTypes.password : FieldTypes.normal,
+                    !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
                 validate: (value) => value?.validatePassword(),
@@ -64,12 +64,13 @@ class BuildRegisterFormFields extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(vertical: Dimens.dp12),
                 radius: Dimens.borderRadius40PX,
                 suffixIcon: IconButton(
-                  onPressed: () =>
-                      registerController.passwordCubit
-                          .onUpdateData(!state.data),
+                  onPressed: () => registerController.passwordCubit
+                      .onUpdateData(!state.data),
                   // splashColor: Colors.transparent,
                   icon: Icon(
-                    !state.data ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                    !state.data
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
                     size: 17.sp,
                     color: context.colors.textColor,
                   ),
@@ -81,28 +82,31 @@ class BuildRegisterFormFields extends StatelessWidget {
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: registerController.confirmPasswordCubit,
             builder: (context, state) {
-              return  GenericTextField(
+              return GenericTextField(
                 fillColor: context.colors.white,
-                hintStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
+                hintStyle:
+                    AppTextStyle.s14_w400(color: context.colors.textColor),
                 contentPadding: Dimens.paddingH12V16,
                 enableBorderColor: context.colors.borderColor,
                 focusBorderColor: context.colors.borderColor,
                 controller: registerController.confirmPasswordController,
                 fieldTypes:
-                !state.data ? FieldTypes.password : FieldTypes.normal,
+                    !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.done,
-                validate: (value) => value?.validatePasswordConfirm(pass: registerController.passwordController.text),
+                validate: (value) => value?.validatePasswordConfirm(
+                    pass: registerController.passwordController.text),
                 hint: tr('enterYourPassword'),
                 margin: const EdgeInsets.symmetric(vertical: Dimens.dp12),
                 radius: Dimens.borderRadius40PX,
                 suffixIcon: IconButton(
-                  onPressed: () =>
-                      registerController.confirmPasswordCubit
-                          .onUpdateData(!state.data),
+                  onPressed: () => registerController.confirmPasswordCubit
+                      .onUpdateData(!state.data),
                   // splashColor: Colors.transparent,
                   icon: Icon(
-                    !state.data ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                    !state.data
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
                     size: 17.sp,
                     color: context.colors.textColor,
                   ),

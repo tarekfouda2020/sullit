@@ -3,11 +3,10 @@ part of 'pro_offers_imports.dart';
 class ProOffersController {
   final TextEditingController searchFieldCtr = TextEditingController();
 
-  final PagingController<int, Product> vipOffersPagingController =
+  final PagingController<int, ProductCard> vipOffersPagingController =
       PagingController(firstPageKey: 1);
   int pageSize = 10;
   int currentPage = 1;
-
 
   ProOffersController() {
     getVipOffers(1, refresh: false);
@@ -38,8 +37,8 @@ class ProOffersController {
         pageSize: pageSize, refresh: refresh, currentPage: currentPage);
   }
 
-  void onChangeFav(Product item) {
-    item.isWishlist = !item.isWishlist!;
+  void onChangeFav(ProductCard item) {
+    item.isWishlist = !item.isWishlist;
     if (vipOffersPagingController.itemList != null) {
       int index = vipOffersPagingController.itemList!
           .indexWhere((e) => e.id == item.id);
@@ -52,9 +51,9 @@ class ProOffersController {
   }
 
   void routeToMembershipSubscribe(BuildContext context) {
-    bool isAuth = context.read<DeviceCubit>().state.model.auth;
+    bool isAuth = context.isAuth;
     if (isAuth) {
-      AutoRouter.of(context).push( MembershipSubscribeRoute());
+      AutoRouter.of(context).push(MembershipSubscribeRoute());
     } else {
       CustomToast.showAuthDialog(context);
     }
@@ -62,10 +61,9 @@ class ProOffersController {
 
   OffersParamsWidget _vipOffers(bool refresh, int currentPage) {
     return OffersParamsWidget(
-      paginateParams: _vipOffersParams(refresh, currentPage),
-      isVipProducts: true,
-        keyword: searchFieldCtr.text
-    );
+        paginateParams: _vipOffersParams(refresh, currentPage),
+        isVipProducts: true,
+        keyword: searchFieldCtr.text);
   }
 
   void onPressSearch(BuildContext context) {

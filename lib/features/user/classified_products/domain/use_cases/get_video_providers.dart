@@ -6,7 +6,8 @@ import 'package:flutter_tdd/features/user/classified_products/domain/repository/
 class GetVideoProviders implements UseCase<List<VideoProvider>, bool> {
   @override
   Future<List<VideoProvider>> call(bool param) async {
-    var result = await getIt<ClassifiedProductsRepository>().getVideoProviders(param);
+    var result =
+        await getIt<ClassifiedProductsRepository>().getVideoProviders(param);
     return result.fold(
       (l) => [],
       (r) => r,

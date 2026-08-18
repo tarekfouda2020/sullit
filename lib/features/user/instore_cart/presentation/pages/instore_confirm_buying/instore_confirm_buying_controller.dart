@@ -1,14 +1,14 @@
 part of 'instore_confirm_buying_imports.dart';
 
 class InstoreConfirmBuyingController {
-  final GenericBloc<OrderSummary?> orderSummaryBloc = GenericBloc(null);
+  final GenericBloc<OrderSummaryDomainModel?> orderSummaryBloc = GenericBloc(null);
   final GenericBloc<FessMechanismModel?> feesCubit = GenericBloc(null);
   final GenericBloc<LoyaltyPointsBalanceDomainModel?> loyaltyPointsBalanceBloc =
       GenericBloc(null);
 
   bool _checkoutEventLogged = false;
 
-  InstoreConfirmBuyingController(OrderSummary? summary, int? id) {
+  InstoreConfirmBuyingController(OrderSummaryDomainModel? summary, int? id) {
     if (summary != null) {
       orderSummaryBloc.onUpdateData(summary);
       FacebookEventsHelper.instance
@@ -35,7 +35,7 @@ class InstoreConfirmBuyingController {
     }
   }
 
-  void _logCheckoutOnce(OrderSummary summary) {
+  void _logCheckoutOnce(OrderSummaryDomainModel summary) {
     if (!_checkoutEventLogged) {
       addCheckOutEvent(summary);
       _checkoutEventLogged = true;
@@ -167,7 +167,7 @@ class InstoreConfirmBuyingController {
     );
   }
 
-  void addCheckOutEvent(OrderSummary summary) {
+  void addCheckOutEvent(OrderSummaryDomainModel summary) {
     FacebookEventsHelper.instance.checkOut(
       itemsNumber: summary.getTotalItems(),
       orderPrice: double.parse(summary.summary!.totalOrderAmount),

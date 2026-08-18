@@ -1,15 +1,15 @@
 part of 'order_summary_imports.dart';
 
-class OrderSummary extends StatefulWidget {
+class OrderSummaryPage extends StatefulWidget {
   final int orderId;
 
-  const OrderSummary({super.key, required this.orderId});
+  const OrderSummaryPage({super.key, required this.orderId});
 
   @override
-  State<OrderSummary> createState() => _OrderSummaryState();
+  State<OrderSummaryPage> createState() => _OrderSummaryPageState();
 }
 
-class _OrderSummaryState extends State<OrderSummary> {
+class _OrderSummaryPageState extends State<OrderSummaryPage> {
   late OrderSummaryController controller;
 
   @override
@@ -22,17 +22,18 @@ class _OrderSummaryState extends State<OrderSummary> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(title: tr('orderSummary'), showBack: true),
+      appBar: DefaultAppBar(title: tr('orderSummary'), showBack: true),
       body: BlocBuilder<GenericBloc<Orders?>, GenericState<Orders?>>(
         bloc: controller.orderDetailsBloc,
         builder: (context, state) {
-          if(state is GenericFailedState){
+          if (state is GenericFailedState) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Center(
-                  child: Text(tr("noDataFoundForOrder"),
-                  style: AppTextStyle.s18_w600(color: context.colors.black),
+                  child: Text(
+                    tr("noDataFoundForOrder"),
+                    style: AppTextStyle.s18_w600(color: context.colors.black),
                   ),
                 )
               ],

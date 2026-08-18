@@ -1,9 +1,10 @@
 part of 'sale_details_w_imports.dart';
 
 class BuildTimeItem extends StatelessWidget {
-  final String time ;
-  final String title ;
-  const BuildTimeItem({Key? key, required this.time, required this.title}) : super(key: key);
+  final String time;
+  final String title;
+  const BuildTimeItem({Key? key, required this.time, required this.title})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,21 +14,14 @@ class BuildTimeItem extends StatelessWidget {
       height: 60,
       decoration: BoxDecoration(
         color: context.colors.primary,
-        borderRadius:Dimens.borderRadius8PX,
+        borderRadius: Dimens.borderRadius8PX,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            time,
-            style:  const AppTextStyle.s18_w700(color: Colors.white)
-          ),
+          Text(time, style: const AppTextStyle.s18_w700(color: Colors.white)),
           Gaps.vGap2,
-          Text(
-              title,
-            style:  const AppTextStyle.s8_w500(color: Colors.white)
-          ),
-
+          Text(title, style: const AppTextStyle.s8_w500(color: Colors.white)),
         ],
       ),
     );

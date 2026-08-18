@@ -13,41 +13,41 @@ class SearchProductsParams extends BaseDomainModel {
   final int pageSize;
   final bool refresh;
 
-  SearchProductsParams(
-      {this.searchKey,
-      this.minPrice,
-      this.maxPrice,
-      this.catId,
-      this.brandId,
-      this.color,
-      this.attributes,
-      this.currentPage = 1,
-      this.pageSize = 12,
-      this.refresh = true,
-        this.sellerId,
-      });
+  SearchProductsParams({
+    this.searchKey,
+    this.minPrice,
+    this.maxPrice,
+    this.catId,
+    this.brandId,
+    this.color,
+    this.attributes,
+    this.currentPage = 1,
+    this.pageSize = 12,
+    this.refresh = true,
+    this.sellerId,
+  });
 
   String paramsToQuery() {
     var url = "?paginate=$pageSize&page=$currentPage";
-    if(minPrice!=0 && minPrice!=null){
+    if (minPrice != 0 && minPrice != null) {
       url = "$url&min_price=$minPrice";
     }
-    if(maxPrice!=0 && maxPrice!=0){
+    if (maxPrice != 0 && maxPrice != 0) {
       url = "$url&max_price=$maxPrice";
     }
-    if(catId!=null){
+    if (catId != null) {
       url = "$url?category_id=$catId";
     }
-    if(brandId!=null){
+    if (brandId != null) {
       url = "$url&brand_id=$brandId";
     }
-    if(sellerId != null){
-      url="$url&seller_id=$sellerId";
+    if (sellerId != null) {
+      url = "$url&seller_id=$sellerId";
     }
-    if(attributes!=null){
+    if (attributes != null) {
       url = "$url&selected_attribute_values[]=$attributes";
     }
-    if(searchKey!=null && searchKey?.isNotEmpty == true){
+    if (searchKey != null && searchKey?.isNotEmpty == true) {
       url = "$url&keyword=$searchKey";
     }
     return url;
@@ -56,13 +56,15 @@ class SearchProductsParams extends BaseDomainModel {
   Map<String, dynamic> toJson() => {
         "paginate": pageSize,
         "page": currentPage,
-       if(minPrice!=null && minPrice!=0) "min_price": minPrice,
-    if(maxPrice!=null && maxPrice!=0) "max_price": maxPrice,
+        if (minPrice != null && minPrice != 0) "min_price": minPrice,
+        if (maxPrice != null && maxPrice != 0) "max_price": maxPrice,
         "category_id": catId,
-    if(brandId!=null) "brand_id": brandId,
-    if(sellerId!=null) "seller_id":sellerId ,
-      if(color!=null && color!=[])  "color": color,
-       if(attributes!=null && attributes!=[]) "selected_attribute_values[]": attributes,
-       if(searchKey!=null && searchKey?.isNotEmpty == true) "keyword": searchKey,
+        if (brandId != null) "brand_id": brandId,
+        if (sellerId != null) "seller_id": sellerId,
+        if (color != null && color != []) "color": color,
+        if (attributes != null && attributes != [])
+          "selected_attribute_values[]": attributes,
+        if (searchKey != null && searchKey?.isNotEmpty == true)
+          "keyword": searchKey,
       };
 }

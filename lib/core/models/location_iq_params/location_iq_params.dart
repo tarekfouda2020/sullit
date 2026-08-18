@@ -3,7 +3,7 @@ import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LocationIqParams {
-  final LatLng?  latLng;
+  final LatLng? latLng;
   final int? maxSuggestionsNumbers;
   final int? min;
   final String? keyword;
@@ -22,11 +22,8 @@ class LocationIqParams {
     return "?key=$iqKey&q=$keyword&limit=$maxSuggestionsNumbers&dedupe=$min&countrycodes=ae";
   }
 
-
   String addressUrl() {
     final String iqKey = LocationIqHelper.instance.key;
     return "?key=$iqKey&lat=${latLng?.latitude}&lon=${latLng?.longitude}&format=json";
   }
 }
-
-

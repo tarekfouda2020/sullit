@@ -1,7 +1,7 @@
 part of 'instore_confirm_buying_imports.dart';
 
 class InstoreConfirmBuying extends StatefulWidget {
-  final OrderSummary? summary;
+  final OrderSummaryDomainModel? summary;
   final int? combinedId;
 
   const InstoreConfirmBuying({
@@ -37,7 +37,7 @@ class _InstoreConfirmBuyingState extends State<InstoreConfirmBuying> {
           bgColor: context.colors.white,
           onBack: () => controller.onPressBack(context),
         ),
-        body: BlocBuilder<GenericBloc<OrderSummary?>, GenericState<OrderSummary?>>(
+        body: BlocBuilder<GenericBloc<OrderSummaryDomainModel?>, GenericState<OrderSummaryDomainModel?>>(
           bloc: controller.orderSummaryBloc,
           builder: (context, state) {
             if (state is GenericUpdateState) {

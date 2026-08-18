@@ -97,19 +97,19 @@ class VipMembershipsController {
   }
 
   void selectMembership(VipSubscribeDomainModel model) {
-    double currentPlanPrice = double.parse(_currentSubscription()?.price.replaceAll(",", "")??"0.0");
+    double currentPlanPrice = double.parse(
+        _currentSubscription()?.price.replaceAll(",", "") ?? "0.0");
     double selectedPlanPrice = double.parse(model.price.replaceAll(",", ""));
-    if (model.byInvite == true ) {
-      if(currentPlanPrice == selectedPlanPrice){
+    if (model.byInvite == true) {
+      if (currentPlanPrice == selectedPlanPrice) {
         CustomToast.showSnakeBar(
             "${tr('already_subscribed_tier')} (${model.name})",
             type: ToastType.info);
-      }else{
+      } else {
         showUnAvailablePlanToast();
       }
       return;
     }
-
 
     if (_currentSubscription() != null && !model.isSelected) {
       if (!checkCurrentPlanValidation(model)) {
@@ -132,21 +132,21 @@ class VipMembershipsController {
   }
 
   bool checkCurrentPlanValidation(VipSubscribeDomainModel model) {
-    double currentPlanPrice = double.parse(_currentSubscription()!.price.replaceAll(",", ""));
+    double currentPlanPrice =
+        double.parse(_currentSubscription()!.price.replaceAll(",", ""));
     double selectedPlanPrice = double.parse(model.price.replaceAll(",", ""));
     if (currentPlanPrice == selectedPlanPrice) {
       CustomToast.showSnakeBar(
           "${tr('already_subscribed_tier')} (${model.name})",
           type: ToastType.info);
       return false;
-    } else if(model.byInvite == true){
-
+    } else if (model.byInvite == true) {
       return false;
-    }else  {
+    } else {
       CustomToast.showSimpleToast(
-          msg: "${tr('already_subscribed_with_days')} ${_currentSubscription()!.name} ${tr('and_still_have')} ${_currentSubscription()!.expiredInDays} ${tr('day_before_ending')}",
-      type: ToastType.info
-      );
+          msg:
+              "${tr('already_subscribed_with_days')} ${_currentSubscription()!.name} ${tr('and_still_have')} ${_currentSubscription()!.expiredInDays} ${tr('day_before_ending')}",
+          type: ToastType.info);
       return currentPlanPrice < selectedPlanPrice;
     }
   }
@@ -172,7 +172,7 @@ class VipMembershipsController {
         BuildContext ctx = getIt<GlobalContext>().context();
         if (value.transactionUrl != null) {
           disableChangeButtonCubit.onUpdateData(true);
-         await routeToPaymentPage(ctx, value.transactionUrl!);
+          await routeToPaymentPage(ctx, value.transactionUrl!);
           removeSelectedPayMethod();
         } else {
           await getCurrentSubscription();
@@ -182,7 +182,6 @@ class VipMembershipsController {
         }
       }
       getIt<LoadingHelper>().dismissDialog();
-
     });
   }
 

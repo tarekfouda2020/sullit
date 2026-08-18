@@ -2,26 +2,35 @@ part of 'home_main_imports.dart';
 
 class HomeMainController {
   final GenericBloc<List<ProductSections>> sectionsCubit = GenericBloc([]);
+  final GenericBloc<int> swiperIndexCubit = GenericBloc(0);
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final ScrollController scrollController = ScrollController();
   final GenericBloc<bool> scrollCubit = GenericBloc(true);
   final GenericBloc<TimerEntity> countDownCubit = GenericBloc(TimerEntity());
-  final GenericBloc<List<Product>> vipOffersCubit = GenericBloc([]);
-  final GenericBloc<List<Product>> arrivalCubit = GenericBloc([]);
-  final GenericBloc<List<Product>> onSaleCubit = GenericBloc([]);
-  final GenericBloc<List<Product>> bestRatedCubit = GenericBloc([]);
+  final GenericBloc<List<ProductCard>> vipOffersCubit = GenericBloc([]);
+  final GenericBloc<List<ProductCard>> arrivalCubit = GenericBloc([]);
+  final GenericBloc<List<ProductCard>> onSaleCubit = GenericBloc([]);
+  final GenericBloc<List<ProductCard>> bestRatedCubit = GenericBloc([]);
   final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
 
-  GenericBloc<HomeDomainModel?> get homeCubit =>
-      OrdersHelper.instance.homeCubit;
+  final GenericBloc<File> prescriptionFileCubit = GenericBloc<File>(File(""));
+  final GenericBloc<SavedPrescriptionModel?> selectedSavedPrescriptionCubit =
+      GenericBloc<SavedPrescriptionModel?>(null);
+  final PagingController<int, SavedPrescriptionModel> savedPrescriptionsPagingController =
+      PagingController(firstPageKey: 1);
+
+  GenericBloc<HomeDomainModel?> get homeCubit => OrdersHelper.instance.homeCubit;
 
   List<ProductSections> allSections = [];
   int currentPage = 1;
   int pageSize = 5;
 
+  Set<int> _deletedOrdersIds = <int>{};
+
   late final HomeController homeController;
 
   HomeMainController(BuildContext context, HomeController controller) {
+    getSavedIds();
     homeController = controller;
     controller.searchController.clear();
     controller.visibleSearch.onUpdateData(false);
@@ -43,6 +52,9 @@ class HomeMainController {
 
     getProductSections();
     scrollController.addListener(scrollListener);
+    savedPrescriptionsPagingController.addPageRequestListener((page) {
+      getSavedPrescriptions(page);
+    });
   }
 
   void scrollListener() {
@@ -61,7 +73,7 @@ class HomeMainController {
     });
   }
 
-  void getHome({bool refresh = true}){
+  void getHome({bool refresh = true}) {
     OrdersHelper.instance.getHome(refresh: refresh);
   }
 
@@ -83,12 +95,13 @@ class HomeMainController {
     }
   }
 
-  void onChangeFav(Product item, BuildContext context) {
-    var isAuth = context.read<DeviceCubit>().state.model.auth;
+  void onChangeFav(ProductCard item, BuildContext context) {
+    var isAuth = context.isAuth;
     if (isAuth) {
-      _synchronizeFavoriteStatus(item);
+      _synchronizeFavByProductId(item.id, !item.isWishlist!);
     }
   }
+
 
   void navigateToDeals(BuildContext context) {
     var deal = homeCubit.state.data?.flashSales;
@@ -113,10 +126,10 @@ class HomeMainController {
       default:
         throw ArgumentError('Invalid time unit: $unit');
     }
-    try{
+    try {
       return value.toString().padLeft(2, '0')[index];
-    }catch(e){
-     return "";
+    } catch (e) {
+      return "";
     }
   }
 
@@ -188,33 +201,22 @@ class HomeMainController {
     return OffersParamsWidget(paginateParams: _vipOffersParams(refresh));
   }
 
-  void _synchronizeFavoriteStatus(Product item) {
-    final newFavoriteStatus = !item.isWishlist!;
+  void _synchronizeFavByProductId(int? id, bool newFavStatus) {
     for (var product in vipOffersCubit.state.data) {
-      if (product.id == item.id) {
-        product.isWishlist = newFavoriteStatus;
-      }
+      if (product.id == id) product.isWishlist = newFavStatus;
     }
     for (var product in arrivalCubit.state.data) {
-      if (product.id == item.id) {
-        product.isWishlist = newFavoriteStatus;
-      }
+      if (product.id == id) product.isWishlist = newFavStatus;
     }
     for (var product in onSaleCubit.state.data) {
-      if (product.id == item.id) {
-        product.isWishlist = newFavoriteStatus;
-      }
+      if (product.id == id) product.isWishlist = newFavStatus;
     }
     for (var product in bestRatedCubit.state.data) {
-      if (product.id == item.id) {
-        product.isWishlist = newFavoriteStatus;
-      }
+      if (product.id == id) product.isWishlist = newFavStatus;
     }
     for (var section in sectionsCubit.state.data) {
       for (var product in section.products) {
-        if (product.id == item.id) {
-          product.isWishlist = newFavoriteStatus;
-        }
+        if (product.id == id) product.isWishlist = newFavStatus;
       }
     }
     vipOffersCubit.onUpdateData(vipOffersCubit.state.data);
@@ -228,8 +230,8 @@ class HomeMainController {
   }
 
   // used to add vip offer on favorite
-  void onChangeVipOffersFav(Product item) {
-    _synchronizeFavoriteStatus(item);
+  void onChangeVipOffersFav(ProductCard item) {
+    _synchronizeFavByProductId(item.id, !item.isWishlist);
   }
 
   // ---------------------------------------------------------
@@ -247,8 +249,8 @@ class HomeMainController {
   }
 
   // used to add new arrival offer on favorite
-  void onChangeArrivalOffersFav(Product item) {
-    _synchronizeFavoriteStatus(item);
+  void onChangeArrivalOffersFav(ProductCard item) {
+    _synchronizeFavByProductId(item.id, !item.isWishlist);
   }
 
   void getOnSaleOffers({bool refresh = true}) async {
@@ -263,8 +265,8 @@ class HomeMainController {
   }
 
   // used to add on sale offer on favorite
-  void onChangeOnSaleOffersFav(Product item) {
-    _synchronizeFavoriteStatus(item);
+  void onChangeOnSaleOffersFav(ProductCard item) {
+    _synchronizeFavByProductId(item.id, !item.isWishlist);
   }
 
   // --------------------------------------------------------
@@ -282,8 +284,8 @@ class HomeMainController {
   }
 
   // used to add best rated offer on favorite
-  void onChangeBestRatedFav(Product item) {
-    _synchronizeFavoriteStatus(item);
+  void onChangeBestRatedFav(ProductCard item) {
+    _synchronizeFavByProductId(item.id, !item.isWishlist);
   }
 
   // --------------------------------------------------------
@@ -323,7 +325,7 @@ class HomeMainController {
   }
 
   void routeToMembershipSubscribe(BuildContext context) {
-    bool isAuth = context.read<DeviceCubit>().state.model.auth;
+    bool isAuth = context.isAuth;
     if (isAuth) {
       AutoRouter.of(context).push(MembershipSubscribeRoute());
     } else {
@@ -339,51 +341,36 @@ class HomeMainController {
     );
   }
 
-
-
-  Future<void> goNotification(BuildContext context)async {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
+  Future<void> goNotification(BuildContext context) async {
+    bool auth = context.isAuth;
     if (!auth) {
       CustomToast.showAuthDialog(context);
       return;
     }
-    var result =  await AutoRouter.of(context).push(const NotificationsRoute());
-    if(result is String){
+    var result = await AutoRouter.of(context).push(const NotificationsRoute());
+    if (result is String) {
       homeController.showShareHolderOffers = true;
-      if(result == NotifyEnum.shareholderProducts.getValue()){
-        changeCouponsTab(
-            SaleTabType.shareholderOffers,
-            context
-        );
-      }else if(result == NotifyEnum.offerNewArrival.getValue()){
-        changeCouponsTab(
-            SaleTabType.newArrival,
-            context
-        );
-      }else if(result == NotifyEnum.offerOnSale.getValue()){
-        changeCouponsTab(
-            SaleTabType.onSale,
-            context
-        );
-      }else if(result == NotifyEnum.offerVipProducts.getValue()){
-        changeCouponsTab(
-            SaleTabType.vipOffers,
-            context
-        );
+      if (result == NotifyEnum.shareholderProducts.getValue()) {
+        changeCouponsTab(SaleTabType.shareholderOffers, context);
+      } else if (result == NotifyEnum.offerNewArrival.getValue()) {
+        changeCouponsTab(SaleTabType.newArrival, context);
+      } else if (result == NotifyEnum.offerOnSale.getValue()) {
+        changeCouponsTab(SaleTabType.onSale, context);
+      } else if (result == NotifyEnum.offerVipProducts.getValue()) {
+        changeCouponsTab(SaleTabType.vipOffers, context);
       }
-      homeController.animateTabsPages(3,context);
+      homeController.animateTabsPages(3, context);
       Future.delayed(const Duration(milliseconds: 450), () {
         homeController.showShareHolderOffers = false;
       });
     }
   }
 
-
-  void onSwiperTapped(BuildContext context,SliderDomainModel model){
-    if(model.value == null || model.value?.trim().isEmpty == true){
-      return ;
+  void onSwiperTapped(BuildContext context, SliderDomainModel model) {
+    if (model.value == null || model.value?.trim().isEmpty == true) {
+      return;
     }
-    switch(model.getLinkType){
+    switch (model.getLinkType) {
       case LinkTypeEnum.product:
         routeTpProductDetails(context, model.value!);
       case LinkTypeEnum.externalLink:
@@ -393,11 +380,11 @@ class HomeMainController {
     }
   }
 
-  void onBannerTwoTapped(BuildContext context,BannerDomainModel model){
-    if(model.value == null || model.value?.trim().isEmpty == true){
-      return ;
+  void onBannerTwoTapped(BuildContext context, BannerDomainModel model) {
+    if (model.value == null || model.value?.trim().isEmpty == true) {
+      return;
     }
-    switch(model.getLinkType){
+    switch (model.getLinkType) {
       case LinkTypeEnum.product:
         routeTpProductDetails(context, model.value!);
       case LinkTypeEnum.externalLink:
@@ -407,25 +394,127 @@ class HomeMainController {
     }
   }
 
-
-  void routeTpProductDetails(BuildContext context,String id){
-    try{
+  void routeTpProductDetails(BuildContext context, String id) {
+    try {
       var prodId = int.parse(id);
-      AutoRouter.of(context).push(ProductDetailsRoute(productId: prodId, isResale: false, isFav: false));
-    }catch(e){
+      AutoRouter.of(context).push(ProductDetailsRoute(
+          productId: prodId, isResale: false, isFav: false));
+    } catch (e) {
       log("error while route to product details");
     }
   }
 
-  void routeTpCategoryDetails(BuildContext context,String id){
-    try{
+  void routeTpCategoryDetails(BuildContext context, String id) {
+    try {
       var catId = int.parse(id);
-      AutoRouter.of(context).push(CategoryDetailsRoute(catId:catId,fromHome: true));
-    }catch(e){
+      AutoRouter.of(context)
+          .push(CategoryDetailsRoute(catId: catId, fromHome: true));
+    } catch (e) {
       log("error while route to category details");
     }
   }
 
+  void routeToPharmaciesList(BuildContext context) {
+    AutoRouter.of(context).push( PharmaciesListRoute());
+  }
+
+  void routeToPharmaciesListWithPrescriptionOrder(BuildContext context) {
+    AutoRouter.of(context).push( PharmaciesListRoute(
+      makePrescriptionOrder: true,
+      initialPrescriptionFile: prescriptionFileCubit.state.data,
+      initialSavedPrescription: selectedSavedPrescriptionCubit.state.data
+    ));
+  }
+
+  void openCurrentOrderDetails(BuildContext context, OrdersListDomainModel order){
+    if(order.isPharmacy){
+      AutoRouter.of(context).push(
+          PharmacyOrderDetailsRoute(
+              id: order.id));
+    }else{
+      AutoRouter.of(context).push(
+          OrderDetailsPageRoute(
+              isReturnedOrder: false,
+              id: order.id));
+    }
+  }
+
+  // Same API-calling pattern as AttachPrescriptionController.getSavedPrescriptions.
+  Future<void> getSavedPrescriptions(int page, {bool refresh = true}) async {
+    var params = GenericPaginateParams(
+      currentPage: page,
+      refresh: refresh,
+      pageSize: AppConstants.instance.paginationLimit,
+    );
+    var result = await GetSavedPrescriptions().call(params);
+    var isLastPage = result.length < AppConstants.instance.paginationLimit;
+    if (page == 1) {
+      savedPrescriptionsPagingController.itemList = [];
+    }
+    if (isLastPage) {
+      savedPrescriptionsPagingController.appendLastPage(result);
+    } else {
+      savedPrescriptionsPagingController.appendPage(result, page + 1);
+    }
+  }
+
+  Future<void> onPickPrescriptionFile() async {
+    var result = await getIt<Utilities>().getAttachmentFile(
+      FileType.custom,
+      allowedExtensions: const ["pdf", 'jpg', 'jpeg', 'png'],
+    );
+    if (result != null) {
+      prescriptionFileCubit.onUpdateData(result);
+      selectedSavedPrescriptionCubit.onUpdateData(null);
+    }
+  }
+
+  void onRemovePrescriptionFile() {
+    prescriptionFileCubit.onUpdateData(File(""));
+  }
+
+  void onSelectSavedPrescription(SavedPrescriptionModel model) {
+    selectedSavedPrescriptionCubit.onUpdateData(model);
+    prescriptionFileCubit.onUpdateData(File(""));
+  }
+
+  void onRemoveSelectedSavedPrescription() {
+    selectedSavedPrescriptionCubit.onUpdateData(null);
+  }
+
+  void onPressAttachPrescription(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) {
+        return AttachPrescriptionSheetWidget(controller: this);
+      },
+    );
+  }
+
+  void onPressChooseFromSavedPrescriptions(BuildContext context) {
+    getSavedPrescriptions(1, refresh: false);
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) {
+        return SavedPrescriptionsBottomSheetWidget(controller: this);
+      },
+    );
+  }
+
+  void onPressContinuePrescription(BuildContext context) {
+    if (prescriptionFileCubit.state.data.path.isEmpty && selectedSavedPrescriptionCubit.state.data == null) {
+      CustomToast.showSimpleToast(
+        msg: "Please attach your prescription first",
+      );
+      return;
+    }
+    Navigator.pop(context);
+    routeToPharmaciesListWithPrescriptionOrder(context);
+  }
 
 //
 // Future<void> scanSkuNumber() async {
@@ -490,4 +579,34 @@ class HomeMainController {
 //     );
 //   }
 // }
+
+
+  Future<void> getSavedIds() async {
+    _deletedOrdersIds =  await OrdersHelper.instance.getCurrentOrdersSavedIds();
+  }
+
+  void removeTrackedOrder(int id, int index){
+    _deletedOrdersIds.add(id);
+    var home = homeCubit.state.data!;
+    var list = home.currentOrders;
+    list.removeAt(index);
+    home.currentOrders = [
+      ...list
+    ];
+    homeCubit.onUpdateData(home);
+    saveIds(_deletedOrdersIds);
+  }
+
+
+  Future<void> saveIds(Set<int> ids) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(
+      LocalStorageKeys.trackOrderIds,
+      jsonEncode(ids.toList()),
+    );
+  }
+
+
+
+
 }

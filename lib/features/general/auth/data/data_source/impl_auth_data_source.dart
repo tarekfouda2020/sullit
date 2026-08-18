@@ -154,8 +154,10 @@ class ImplAuthDataSource extends AuthDataSource {
     );
     return await GenericHttpImpl<String>()(model);
   }
+
   @override
-  Future<Either<Failure, String>> verifyResetPassword (VerifyResetPasswordParams params) async {
+  Future<Either<Failure, String>> verifyResetPassword(
+      VerifyResetPasswordParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.resetPassword,
       requestMethod: RequestMethod.post,
@@ -166,8 +168,10 @@ class ImplAuthDataSource extends AuthDataSource {
     );
     return await GenericHttpImpl<String>()(model);
   }
+
   @override
-  Future<Either<Failure, UserModel>> emailVerify (CodeVerifyParams params) async {
+  Future<Either<Failure, UserModel>> emailVerify(
+      CodeVerifyParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.verifyEmail,
       requestMethod: RequestMethod.post,
@@ -182,7 +186,8 @@ class ImplAuthDataSource extends AuthDataSource {
   }
 
   @override
-  Future<Either<Failure, String>> changePassword(ChangePasswordParams params) async {
+  Future<Either<Failure, String>> changePassword(
+      ChangePasswordParams params) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.changePassword,
       requestMethod: RequestMethod.post,

@@ -7,17 +7,17 @@ class OrderDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("===>>>>>>> ${order?.isInStore} <<<<<===");
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if(order?.getOrderDate != null)
-        OrderINfoItemWidget(
-          title: tr('date'),
-          describe: DateTimeHelper.formatDate(date : order?.getOrderDate ?? DateTime.now(),
-              formatType: "d MMM yyyy - hh:mm a"),
-          gaps: Gaps.hGap4,
-        ),
+        if (order?.getOrderDate != null)
+          OrderINfoItemWidget(
+            title: tr('date'),
+            describe: DateTimeHelper.formatDate(
+                date: order?.getOrderDate ?? DateTime.now(),
+                formatType: "d MMM yyyy - hh:mm a"),
+            gaps: Gaps.hGap4,
+          ),
         Gaps.vGap12,
         OrderINfoItemWidget(
           title: tr('status'),
@@ -44,12 +44,11 @@ class OrderDetailsWidget extends StatelessWidget {
             gaps: Gaps.hGap4,
             textHeight: 1.2,
           ),
-          Gaps.vGap12
+          Gaps.vGap12,
         ],
         OrderINfoItemWidget(
           title: tr('phone'),
-          describe: getIt<Utilities>()
-              .handleFullPhone(context, order?.customerPhone ?? ""),
+          describe: getIt<Utilities>().handleFullPhone(context, order?.customerPhone ?? ""),
           gaps: Gaps.hGap4,
         ),
         Gaps.vGap12,
@@ -59,13 +58,13 @@ class OrderDetailsWidget extends StatelessWidget {
           gaps: Gaps.hGap4,
         ),
         Gaps.vGap10,
-        if(controller.showChangePayOption())
+        if (controller.showChangePayOption())
           InkWell(
             onTap: () => controller.changePaymentMethod(context),
             child: Text(
               tr("pay_now"),
               style: AppTextStyle.s12_w500(color: context.colors.green)
-                  .copyWith(decoration: TextDecoration.underline,height: 1.4),
+                  .copyWith(decoration: TextDecoration.underline, height: 1.4),
             ),
           )
       ],

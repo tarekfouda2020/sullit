@@ -3,7 +3,7 @@ import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/models/model_to_domain/model_to_domain.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:flutter_tdd/features/user/sale/data/data_sources/sale_data_sources.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/offers_params_widget.dart';
 import 'package:flutter_tdd/features/user/sale/domain/models/coupon.dart';
@@ -37,35 +37,35 @@ class ImplSaleRepository extends SaleRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getBestRated(
+  Future<Either<Failure, List<ProductCard>>> getBestRated(
       OffersParamsWidget param) async {
     var result = await dataSources.getBestRated(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getNewArrival(
+  Future<Either<Failure, List<ProductCard>>> getNewArrival(
       OffersParamsWidget param) async {
     var result = await dataSources.getNewArrival(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getOnSale(
+  Future<Either<Failure, List<ProductCard>>> getOnSale(
       OffersParamsWidget param) async {
     var result = await dataSources.getOnSale(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getVipOffers(
+  Future<Either<Failure, List<ProductCard>>> getVipOffers(
       OffersParamsWidget param) async {
     var result = await dataSources.getVipOffers(param);
     return toDomainResultList(result);
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getShareholderProducts(
+  Future<Either<Failure, List<ProductCard>>> getShareholderProducts(
       OffersParamsWidget param) async {
     var result = await dataSources.getShareholderProducts(param);
     return toDomainResultList(result);

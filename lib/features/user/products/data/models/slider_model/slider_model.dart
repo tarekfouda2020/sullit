@@ -43,7 +43,4 @@ class SliderModel extends BaseApiModel<SliderDomainModel> with _$SliderModel {
       value: value?.asString,
     );
   }
-
-
-
 }

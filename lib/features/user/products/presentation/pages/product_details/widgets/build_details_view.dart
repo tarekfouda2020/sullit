@@ -4,7 +4,8 @@ class BuildDetailsView extends StatelessWidget {
   final ProductDetailsController controller;
   final ProductDetailsDomainModel detailsModel;
 
-  const BuildDetailsView({super.key, required this.controller, required this.detailsModel});
+  const BuildDetailsView(
+      {super.key, required this.controller, required this.detailsModel});
 
   @override
   Widget build(BuildContext context) {

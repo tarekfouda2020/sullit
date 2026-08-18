@@ -32,7 +32,8 @@ abstract class AuthDataSource {
 
   Future<Either<Failure, bool>> deleteAccount(NoParams params);
 
-  Future<Either<Failure, String>> verifyResetPassword(VerifyResetPasswordParams params);
+  Future<Either<Failure, String>> verifyResetPassword(
+      VerifyResetPasswordParams params);
 
   Future<Either<Failure, UserModel>> emailVerify(CodeVerifyParams params);
 

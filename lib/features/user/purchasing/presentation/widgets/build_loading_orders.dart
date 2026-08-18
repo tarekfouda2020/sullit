@@ -20,8 +20,8 @@ class BuildLoadingOrders extends StatelessWidget {
                 Row(
                   children: [
                     BuildShimmerItem(
-                        height: 30.h,
-                        width: 40.w,
+                      height: 30.h,
+                      width: 40.w,
                       borderRadius: BorderRadius.circular(5),
                     ),
                     // BuildShimmerItem(
@@ -35,11 +35,15 @@ class BuildLoadingOrders extends StatelessWidget {
                     Gaps.hGap10,
                     Column(
                       children: [
-                        BuildShimmerItem(height: 10, width: 200.r,
-                        borderRadius: BorderRadius.circular(5),
+                        BuildShimmerItem(
+                          height: 10,
+                          width: 200.r,
+                          borderRadius: BorderRadius.circular(5),
                         ),
                         Gaps.vGap6,
-                        BuildShimmerItem(height: 10, width: 200.r,
+                        BuildShimmerItem(
+                          height: 10,
+                          width: 200.r,
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ],

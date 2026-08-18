@@ -5,26 +5,25 @@ class Category extends BaseDomainModel {
   final String name;
   final String? banner;
   final String icon;
-  final int orderLevel;
-  final int digital;
+  final int? orderLevel;
+  final int? digital;
   final String slug;
-  List<Category>?subCats;
+  List<Category>? subCats;
   int? parentId;
   bool isSelected;
   bool isSideCatSelected;
-
 
   Category({
     required this.id,
     required this.name,
     this.banner,
     required this.icon,
-    required this.orderLevel,
-    required this.digital,
+     this.orderLevel,
+     this.digital,
     required this.slug,
     this.subCats,
     this.parentId,
-    this.isSelected=false,
-    this.isSideCatSelected=false,
+    this.isSelected = false,
+    this.isSideCatSelected = false,
   });
 }

@@ -5,31 +5,33 @@ class UploadedFilesParams {
   String? type;
 
   UploadedFilesParams({
-     this.search,
-     this.sort,
-     this.type,
+    this.search,
+    this.sort,
+    this.type,
   });
-  String _getSearch(){
-    if(search != null){
+  String _getSearch() {
+    if (search != null) {
       return '?search=$search';
-    }else {
+    } else {
       return '';
     }
   }
-  String _getSort (){
-    if(sort != null){
-      return '&sort=$sort';
-    }else {
-      return '';
-    }
-  }
-  String _getExtension(){
-    if(type != null){
-      return '&type=$type';
-    }else {
-      return '';
-    }
-  }
-  String toQuery ()=> '${_getSearch()}${_getSort()}${_getExtension()}';
 
+  String _getSort() {
+    if (sort != null) {
+      return '&sort=$sort';
+    } else {
+      return '';
+    }
+  }
+
+  String _getExtension() {
+    if (type != null) {
+      return '&type=$type';
+    } else {
+      return '';
+    }
+  }
+
+  String toQuery() => '${_getSearch()}${_getSort()}${_getExtension()}';
 }

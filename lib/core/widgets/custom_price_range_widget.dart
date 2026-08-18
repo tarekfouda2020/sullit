@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
@@ -12,7 +10,8 @@ import 'package:flutter_tdd/features/user/category/domain/entities/price_range_p
 class CustomPriceRangeWidget extends StatelessWidget {
   final GenericBloc<PriceRangeParams?> rangeCubit;
   final void Function()? duringSlide;
-  const CustomPriceRangeWidget({super.key, required this.rangeCubit, this.duringSlide});
+  const CustomPriceRangeWidget(
+      {super.key, required this.rangeCubit, this.duringSlide});
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +41,9 @@ class CustomPriceRangeWidget extends StatelessWidget {
                       trackHeight: 5,
                       thumbColor: context.colors.primary,
                       activeTrackColor: const Color(0xffD9D9D9),
-                      inactiveTrackColor:context.colors.primary,
-                      thumbShape: const RoundSliderOverlayShape(overlayRadius: 50),
+                      inactiveTrackColor: context.colors.primary,
+                      thumbShape:
+                          const RoundSliderOverlayShape(overlayRadius: 50),
                     ),
                     child: RangeSlider(
                       values: state.data!.value,
@@ -68,14 +68,14 @@ class CustomPriceRangeWidget extends StatelessWidget {
                         // Gaps.hGap8,
                         Text(
                           "${state.data!.value.start.toInt()} ",
-                          style:
-                          AppTextStyle.s14_w800(color: context.colors.black),
+                          style: AppTextStyle.s14_w800(
+                              color: context.colors.black),
                         ),
                         // const Spacer(),
                         Text(
                           "${state.data!.value.end.toInt()} ",
-                          style:
-                          AppTextStyle.s14_w800(color: context.colors.black),
+                          style: AppTextStyle.s14_w800(
+                              color: context.colors.black),
                         ),
                       ],
                     ),

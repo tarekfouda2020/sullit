@@ -7,12 +7,10 @@ import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
 import 'package:flutter_tdd/core/widgets/app_loader_widget.dart';
 import 'package:injectable/injectable.dart';
 
-
-
 @lazySingleton
 class LoadingHelper {
   void showLoadingDialog() {
-    if(!EasyLoading.isShow) {
+    if (!EasyLoading.isShow) {
       EasyLoading.show(
         maskType: EasyLoadingMaskType.clear,
         dismissOnTap: false,
@@ -20,7 +18,7 @@ class LoadingHelper {
     }
   }
 
-  void initConfig(){
+  void initConfig() {
     EasyLoading.instance
       ..indicatorWidget = const _LoadingDialogOverly()
       ..backgroundColor = Colors.white
@@ -29,7 +27,6 @@ class LoadingHelper {
       ..loadingStyle = EasyLoadingStyle.light
       ..contentPadding = EdgeInsets.zero;
   }
-
 
   Widget showLoadingView({Color? color}) {
     return Center(
@@ -54,10 +51,7 @@ class LoadingHelper {
   }
 
   void showInvalidSession() {}
-
-
 }
-
 
 class _LoadingDialogOverly extends StatelessWidget {
   const _LoadingDialogOverly({Key? key}) : super(key: key);
@@ -76,8 +70,8 @@ class _LoadingDialogOverly extends StatelessWidget {
             ),
           ),
           const Material(
-              color: Colors.transparent,
-              child: AppLoaderWidget(),
+            color: Colors.transparent,
+            child: AppLoaderWidget(),
           ),
         ],
       ),

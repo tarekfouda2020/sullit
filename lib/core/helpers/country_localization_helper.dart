@@ -36,7 +36,10 @@ class CountryLocalizationHelper {
     'BW': {'en': 'Botswana', 'ar': 'بوتسوانا'},
     'BV': {'en': 'Bouvet Island', 'ar': 'جزيرة بوفيه'},
     'BR': {'en': 'Brazil', 'ar': 'البرازيل'},
-    'IO': {'en': 'British Indian Ocean Territory', 'ar': 'إقليم المحيط الهندي البريطاني'},
+    'IO': {
+      'en': 'British Indian Ocean Territory',
+      'ar': 'إقليم المحيط الهندي البريطاني'
+    },
     'BN': {'en': 'Brunei Darussalam', 'ar': 'بروناي دار السلام'},
     'BG': {'en': 'Bulgaria', 'ar': 'بلغاريا'},
     'BF': {'en': 'Burkina Faso', 'ar': 'بوركينا فاسو'},
@@ -55,7 +58,10 @@ class CountryLocalizationHelper {
     'CO': {'en': 'Colombia', 'ar': 'كولومبيا'},
     'KM': {'en': 'Comoros', 'ar': 'جزر القمر'},
     'CG': {'en': 'Congo', 'ar': 'الكونغو'},
-    'CD': {'en': 'Congo, Democratic Republic', 'ar': 'جمهورية الكونغو الديمقراطية'},
+    'CD': {
+      'en': 'Congo, Democratic Republic',
+      'ar': 'جمهورية الكونغو الديمقراطية'
+    },
     'CK': {'en': 'Cook Islands', 'ar': 'جزر كوك'},
     'CR': {'en': 'Costa Rica', 'ar': 'كوستاريكا'},
     'CI': {'en': 'Côte d\'Ivoire', 'ar': 'ساحل العاج'},
@@ -81,7 +87,10 @@ class CountryLocalizationHelper {
     'FR': {'en': 'France', 'ar': 'فرنسا'},
     'GF': {'en': 'French Guiana', 'ar': 'غويانا الفرنسية'},
     'PF': {'en': 'French Polynesia', 'ar': 'بولينيزيا الفرنسية'},
-    'TF': {'en': 'French Southern Territories', 'ar': 'الأراضي الجنوبية الفرنسية'},
+    'TF': {
+      'en': 'French Southern Territories',
+      'ar': 'الأراضي الجنوبية الفرنسية'
+    },
     'GA': {'en': 'Gabon', 'ar': 'الغابون'},
     'GM': {'en': 'Gambia', 'ar': 'غامبيا'},
     'GE': {'en': 'Georgia', 'ar': 'جورجيا'},
@@ -100,7 +109,10 @@ class CountryLocalizationHelper {
     'GY': {'en': 'Guyana', 'ar': 'غيانا'},
     'HT': {'en': 'Haiti', 'ar': 'هايتي'},
     'HM': {'en': 'Heard Island', 'ar': 'جزيرة هيرد'},
-    'VA': {'en': 'Holy See (Vatican City)', 'ar': 'الكرسي الرسولي (مدينة الفاتيكان)'},
+    'VA': {
+      'en': 'Holy See (Vatican City)',
+      'ar': 'الكرسي الرسولي (مدينة الفاتيكان)'
+    },
     'HN': {'en': 'Honduras', 'ar': 'هندوراس'},
     'HK': {'en': 'Hong Kong', 'ar': 'هونغ كونغ'},
     'HU': {'en': 'Hungary', 'ar': 'المجر'},
@@ -193,7 +205,10 @@ class CountryLocalizationHelper {
     'LC': {'en': 'Saint Lucia', 'ar': 'سانت لوسيا'},
     'MF': {'en': 'Saint Martin', 'ar': 'سانت مارتن'},
     'PM': {'en': 'Saint Pierre and Miquelon', 'ar': 'سانت بيير وميكلون'},
-    'VC': {'en': 'Saint Vincent and the Grenadines', 'ar': 'سانت فنسنت والغرينادين'},
+    'VC': {
+      'en': 'Saint Vincent and the Grenadines',
+      'ar': 'سانت فنسنت والغرينادين'
+    },
     'WS': {'en': 'Samoa', 'ar': 'ساموا'},
     'SM': {'en': 'San Marino', 'ar': 'سان مارينو'},
     'ST': {'en': 'Sao Tome and Principe', 'ar': 'ساو تومي وبرينسيبي'},
@@ -238,7 +253,10 @@ class CountryLocalizationHelper {
     'AE': {'en': 'United Arab Emirates', 'ar': 'الإمارات العربية المتحدة'},
     'GB': {'en': 'United Kingdom', 'ar': 'المملكة المتحدة'},
     'US': {'en': 'United States', 'ar': 'الولايات المتحدة'},
-    'UM': {'en': 'United States Minor Outlying Islands', 'ar': 'جزر الولايات المتحدة الصغيرة النائية'},
+    'UM': {
+      'en': 'United States Minor Outlying Islands',
+      'ar': 'جزر الولايات المتحدة الصغيرة النائية'
+    },
     'UY': {'en': 'Uruguay', 'ar': 'أوروغواي'},
     'UZ': {'en': 'Uzbekistan', 'ar': 'أوزبكستان'},
     'VU': {'en': 'Vanuatu', 'ar': 'فانواتو'},
@@ -254,7 +272,8 @@ class CountryLocalizationHelper {
   };
 
   /// Get localized country name based on current locale
-  static String getLocalizedCountryName(String countryCode, BuildContext context) {
+  static String getLocalizedCountryName(
+      String countryCode, BuildContext context) {
     // Try to get locale from DeviceCubit first (your app's locale system)
     String? locale;
     try {
@@ -264,27 +283,33 @@ class CountryLocalizationHelper {
       // Fallback to Flutter's locale system
       locale = Localizations.localeOf(context).languageCode;
     }
-    
+
     // Debug: Print the detected locale
-    print('CountryLocalizationHelper: Detected locale: $locale for country: $countryCode');
-    
+    print(
+        'CountryLocalizationHelper: Detected locale: $locale for country: $countryCode');
+
     final countryNames = _localizedCountryNames[countryCode];
-    
+
     if (countryNames != null) {
       // Return Arabic if locale is Arabic, otherwise English
-      String result = locale == LangCodeHelper.langAR ? countryNames[LangCodeHelper.langAR]! : countryNames[LangCodeHelper.langEN]!;
+      String result = locale == LangCodeHelper.langAR
+          ? countryNames[LangCodeHelper.langAR]!
+          : countryNames[LangCodeHelper.langEN]!;
       print('CountryLocalizationHelper: Returning: $result');
       return result;
     }
-    
+
     // Fallback to English if country not found
     return countryNames?[LangCodeHelper.langEN] ?? countryCode;
   }
 
   /// Get country name in specific language
-  static String getCountryNameInLanguage(String countryCode, String languageCode) {
+  static String getCountryNameInLanguage(
+      String countryCode, String languageCode) {
     final countryNames = _localizedCountryNames[countryCode];
-    return countryNames?[languageCode] ?? countryNames?[LangCodeHelper.langEN] ?? countryCode;
+    return countryNames?[languageCode] ??
+        countryNames?[LangCodeHelper.langEN] ??
+        countryCode;
   }
 
   /// Get all available languages for a country
@@ -295,7 +320,9 @@ class CountryLocalizationHelper {
   /// Force Arabic language for country names (useful for testing)
   static String getArabicCountryName(String countryCode) {
     final countryNames = _localizedCountryNames[countryCode];
-    return countryNames?[LangCodeHelper.langAR] ?? countryNames?[LangCodeHelper.langEN] ?? countryCode;
+    return countryNames?[LangCodeHelper.langAR] ??
+        countryNames?[LangCodeHelper.langEN] ??
+        countryCode;
   }
 
   /// Force English language for country names (useful for testing)

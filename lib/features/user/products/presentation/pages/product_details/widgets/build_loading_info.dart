@@ -1,4 +1,5 @@
 part of 'product_details_widgets_imports.dart';
+
 class BuildLoadingInfo extends StatelessWidget {
   const BuildLoadingInfo({Key? key}) : super(key: key);
 
@@ -31,7 +32,6 @@ class BuildLoadingInfo extends StatelessWidget {
               BuildShimmerItem(height: 10.h, width: 50.w),
               const Spacer(),
               BuildShimmerItem(height: 18.h, width: 90.w),
-
             ],
           ),
           Gaps.line(context.colors.greyWhite, 10.h),
@@ -42,7 +42,6 @@ class BuildLoadingInfo extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BuildShimmerItem(height: 10.h, width: 50.w),
-
                   BuildShimmerItem(height: 10.h, width: 100.w),
                 ],
               ),
@@ -51,10 +50,7 @@ class BuildLoadingInfo extends StatelessWidget {
           ),
           Gaps.line(context.colors.greyWhite, 20.h),
           BuildShimmerItem(height: 10.h, width: 70.w),
-
           BuildShimmerItem(height: 40.h, width: double.infinity),
-
-
           Gaps.vGap10,
         ],
       ),

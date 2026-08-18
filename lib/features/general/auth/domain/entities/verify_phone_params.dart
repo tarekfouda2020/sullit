@@ -15,5 +15,5 @@ class VerifyPhoneParams {
         "code": code,
       };
 
-  bool isSuccess (dynamic data) => data['key'] == 'success';
+  bool isSuccess(dynamic data) => data['key'] == 'success';
 }

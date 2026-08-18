@@ -1,4 +1,3 @@
 part of 'blog_details_imports.dart';
-class BlogDetailsController {
 
-}
+class BlogDetailsController {}

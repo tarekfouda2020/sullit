@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'country.dart';
 import 'functions.dart';
 
-const TextStyle _defaultItemTextStyle = const TextStyle(fontSize: 16, color: Colors.black);
-const TextStyle _defaultSearchInputStyle = const TextStyle(fontSize: 16, color: Colors.black);
+const TextStyle _defaultItemTextStyle =
+    const TextStyle(fontSize: 16, color: Colors.black);
+const TextStyle _defaultSearchInputStyle =
+    const TextStyle(fontSize: 16, color: Colors.black);
 const String _kDefaultSearchHintText = 'Search country name, code';
 const String countryCodePackageName = 'country_calling_code_picker';
 
@@ -39,7 +41,8 @@ class CountryPickerWidget extends StatefulWidget {
   final bool forceArabic;
 
   /// Callback to get localized country name
-  final String Function(String countryCode, BuildContext context)? getLocalizedCountryName;
+  final String Function(String countryCode, BuildContext context)?
+      getLocalizedCountryName;
 
   /// Callback to get translation
   final String Function(String key)? translate;
@@ -80,22 +83,23 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
     } else {
       setState(() {
         final searchText = text.toString().toLowerCase();
-        _filteredList = _list
-            .where((Country element) {
-              // Search in default name
-              if (element.name.toLowerCase().contains(searchText)) return true;
-              // Search in calling code (e.g., +971)
-              if (element.callingCode.toLowerCase().contains(searchText)) return true;
-              // Search in country code (e.g., AE, US)
-              if (element.countryCode.toLowerCase().startsWith(searchText)) return true;
-              // Search in localized name if callback provided
-              if (widget.getLocalizedCountryName != null) {
-                final String localizedName = widget.getLocalizedCountryName!(element.countryCode, context);
-                if (localizedName.toLowerCase().contains(searchText)) return true;
-              }
-              return false;
-            })
-            .toList();
+        _filteredList = _list.where((Country element) {
+          // Search in default name
+          if (element.name.toLowerCase().contains(searchText)) return true;
+          // Search in calling code (e.g., +971)
+          if (element.callingCode.toLowerCase().contains(searchText))
+            return true;
+          // Search in country code (e.g., AE, US)
+          if (element.countryCode.toLowerCase().startsWith(searchText))
+            return true;
+          // Search in localized name if callback provided
+          if (widget.getLocalizedCountryName != null) {
+            final String localizedName =
+                widget.getLocalizedCountryName!(element.countryCode, context);
+            if (localizedName.toLowerCase().contains(searchText)) return true;
+          }
+          return false;
+        }).toList();
       });
     }
   }
@@ -130,7 +134,8 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
       }
       final country = _currentCountry;
       if (country != null) {
-        _list.removeWhere((element) => element.callingCode == country.callingCode);
+        _list.removeWhere(
+            (element) => element.callingCode == country.callingCode);
         _list.insert(0, country);
       }
     } finally {
@@ -171,9 +176,11 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                     borderSide: const BorderSide(),
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  contentPadding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
+                  contentPadding: const EdgeInsets.only(
+                      left: 16, right: 16, top: 8, bottom: 8),
                   hintText: widget.searchHintText == _kDefaultSearchHintText
-                      ? (widget.translate?.call('searchCountryNameCode') ?? 'Search country name, code')
+                      ? (widget.translate?.call('searchCountryNameCode') ??
+                          'Search country name, code')
                       : widget.searchHintText,
                 ),
             textInputAction: TextInputAction.done,
@@ -191,14 +198,16 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                   padding: const EdgeInsets.only(top: 16),
                   controller: _scrollController,
                   itemCount: _filteredList.length,
-                  separatorBuilder: (_, index) => widget.showSeparator ? const Divider() : Container(),
+                  separatorBuilder: (_, index) =>
+                      widget.showSeparator ? const Divider() : Container(),
                   itemBuilder: (_, index) {
                     return InkWell(
                       onTap: () {
                         widget.onSelected?.call(_filteredList[index]);
                       },
                       child: Container(
-                        padding: const EdgeInsets.only(bottom: 12, top: 12, left: 24, right: 24),
+                        padding: const EdgeInsets.only(
+                            bottom: 12, top: 12, left: 24, right: 24),
                         child: Row(
                           children: <Widget>[
                             Image.asset(

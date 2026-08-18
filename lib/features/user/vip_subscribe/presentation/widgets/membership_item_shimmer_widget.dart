@@ -11,7 +11,8 @@ class MembershipItemShimmerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsetsDirectional.only(start: 22, end: 15, top: 15, bottom: 13),
+      padding: const EdgeInsetsDirectional.only(
+          start: 22, end: 15, top: 15, bottom: 13),
       decoration: CustomDecoration(
         radius: BorderRadius.circular(12),
       ).copyWith(

@@ -23,11 +23,12 @@ class _NewArrivalState extends State<NewArrival> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 8),
+            padding:
+                const EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 8),
             child: CustomSearchFiledWidget(
               txtController: controller.searchFieldCtr,
-              onPressSearch: () =>controller.onPressSearch(context),
-              onChange: (value) => controller.whileWriting(value) ,
+              onPressSearch: () => controller.onPressSearch(context),
+              onChange: (value) => controller.whileWriting(value),
               onPressClear: () => controller.callProductsSearch(),
               height: Dimens.dp50,
               hint: tr("search_in_offers"),
@@ -36,20 +37,25 @@ class _NewArrivalState extends State<NewArrival> {
           Expanded(
             child: CustomRefreshIndicatorWidget(
               onRefresh: () async => await controller.getArrival(1),
-              child: GridViewPagination<Product>(
+              child: GridViewPagination<ProductCard>(
                 pagingController: controller.arrivalPagingController,
                 padding: EdgeInsets.only(
-                  left: 15, right: 15,  top: 10,
-                    bottom: MediaQuery.paddingOf(context).bottom + 30
-                ),
-                onRefresh: () async => controller.arrivalPagingController.refresh(),
-                firstPageProgressIndicatorBuilder: (_) => const BuildLoadingProductsGridView(),
+                    left: 15,
+                    right: 15,
+                    top: 10,
+                    bottom: MediaQuery.paddingOf(context).bottom + 30),
+                onRefresh: () async =>
+                    controller.arrivalPagingController.refresh(),
+                firstPageProgressIndicatorBuilder: (_) =>
+                    const BuildLoadingProductsGridView(),
                 showNewPageProgressIndicatorAsGridChild: false,
-                noItemsFoundIndicatorBuilder: (context) => const BuildEmptyDataView(),
+                noItemsFoundIndicatorBuilder: (context) =>
+                    const BuildEmptyDataView(),
                 itemBuilder: (_, item, index) => BuildProductItem(
                   productModel: item,
                   onFavRefresh: () => controller.onChangeFav(item),
-                  onRefresh: () => controller.getArrival(controller.currentPage),
+                  onRefresh: () =>
+                      controller.getArrival(controller.currentPage),
                 ),
               ),
             ),

@@ -4,7 +4,8 @@ import 'package:flutter_tdd/features/user/purchasing/domain/entities/change_orde
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/repository/purchasing_repository.dart';
 
-class ChangeOrderPayMethod implements UseCase<Orders?, ChangeOrderPaymentParams> {
+class ChangeOrderPayMethod
+    implements UseCase<Orders?, ChangeOrderPaymentParams> {
   @override
   Future<Orders?> call(ChangeOrderPaymentParams param) async {
     var result =

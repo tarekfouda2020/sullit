@@ -7,21 +7,20 @@ part 'cus_products_brand_model.g.dart';
 
 @freezed
 @immutable
-class CusProductsBrandModel extends BaseApiModel<CusProductBrand> with _$CusProductsBrandModel{
+class CusProductsBrandModel extends BaseApiModel<CusProductBrand>
+    with _$CusProductsBrandModel {
   const CusProductsBrandModel._();
   @JsonSerializable(explicitToJson: true)
-  const factory CusProductsBrandModel({
-    required int id ,
-    required String name ,
-    required String logo
-  }) = _CusProductsBrandModel;
-
+  const factory CusProductsBrandModel(
+      {required int id,
+      required String name,
+      required String logo}) = _CusProductsBrandModel;
 
   factory CusProductsBrandModel.fromJson(Map<String, dynamic> json) =>
       _$CusProductsBrandModelFromJson(json);
 
   @override
   CusProductBrand toDomainModel() {
-   return CusProductBrand(id: id, name: name, logo: logo);
+    return CusProductBrand(id: id, name: name, logo: logo);
   }
 }

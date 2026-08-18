@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
-import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
+import 'package:flutter_tdd/features/user/products/data/models/product_card_model/product_card_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/home_model/home_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/product_details_model/product_details_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/product_sections_model/product_sections_model.dart';
@@ -9,6 +9,7 @@ import 'package:flutter_tdd/features/user/products/data/models/queries_model/que
 import 'package:flutter_tdd/features/user/products/data/models/seller_products_model/seller_products_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/home_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/popular_products_params.dart';
+import 'package:flutter_tdd/features/user/products/domain/entities/product_details_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/seller_products_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/send_query_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/variant_price_params.dart';
@@ -17,9 +18,9 @@ abstract class ProductsDataSource {
   Future<Either<Failure, HomeModel>> getHome(HomeParams param);
 
   Future<Either<Failure, ProductDetailsModel>> getProductDetails(
-      GenericParams param);
+      ProductDetailsParams param);
 
-  Future<Either<Failure, List<ProductModel>>> getPopularProducts(
+  Future<Either<Failure, List<ProductCardModel>>> getPopularProducts(
       PopularProductsParams param);
 
   Future<Either<Failure, bool>> toggleFavourite(int param);
@@ -29,7 +30,7 @@ abstract class ProductsDataSource {
   Future<Either<Failure, ProductModel>> getVariantPrice(
       VariantPriceParams param);
 
-  Future<Either<Failure, List<ProductModel>>> getDigitalProducts(bool param);
+  Future<Either<Failure, List<ProductCardModel>>> getDigitalProducts(bool param);
 
   Future<Either<Failure, List<ProductSectionsModel>>> getProductSections(
       int param);

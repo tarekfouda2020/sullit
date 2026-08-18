@@ -5,26 +5,40 @@ part of 'best_sellers_page_imports.dart';
 class BestSellersPageController {
   final TextEditingController searchTxtController = TextEditingController();
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
-  final GenericBloc<List<Shop>> shopsCubit = GenericBloc([]);
+  final GenericBloc<List<ShopCardDomainModel>> shopsCubit = GenericBloc([]);
 
   final GenericBloc<bool> isLoadingCubit = GenericBloc(false);
 
   final ScrollController scrollController = ScrollController();
 
-  final PagingController<int, Shop> pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, ShopCardDomainModel> pagingController =
+      PagingController(firstPageKey: 1);
   int pageSize = 12;
 
-
   BestSellersPageController() {
+    getBestSellers(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
       getBestSellers(pageKey);
     });
   }
-
   Future<void> init(BuildContext context) async {
     await getBestSellers(1, refresh: false, context: context);
   }
 
+  Future<void> getBestSellers(int page, {bool refresh = true}) async {
+    var params = _shopsParams(refresh, page);
+    var data = await GetBestSellers().call(params);
+    final isLastPage = data.length < pageSize;
+    if (page == 1) {
+      pagingController.itemList = [];
+    }
+    if (isLastPage) {
+      pagingController.appendLastPage(data);
+    } else {
+      final nextPageKey = page + 1;
+      pagingController.appendPage(data, nextPageKey);
+    }
+  }
   Future<void> ensureUserLocation(BuildContext context) async {
     if (getIt<LocationService>().userLocation != null) return;
 
@@ -39,30 +53,12 @@ class BestSellersPageController {
       getIt<LocationService>().setUserLocation(location);
     }
   }
-
-  Future<void> getBestSellers(int page, {bool refresh = true, BuildContext? context}) async {
-    if (page == 1 && getIt<LocationService>().userLocation == null) {
-      await ensureUserLocation(context ?? getIt<GlobalContext>().context());
-    }
-
-    var params = searchParams(refresh, page);
-    var data = await  GetBestSellers().call(params);
-    final isLastPage = data.length < pageSize;
-    if (page == 1) {
-      pagingController.itemList = [];
-    }
-    if (isLastPage) {
-      pagingController.appendLastPage(data);
-    } else {
-      final nextPageKey = page + 1;
-      pagingController.appendPage(data, nextPageKey);
-    }
-  }
   void clearSearchField() {
     searchTxtController.clear();
     showClearIcon.onUpdateData(false);
     getBestSellers(1);
   }
+
   void whileWriting(String value) {
     showClearIcon.onUpdateData(value.isNotEmpty);
     DebounceHelper.instance.startSearch(
@@ -70,22 +66,25 @@ class BestSellersPageController {
         onSearch: (val) {
           pagingController.refresh();
           getBestSellers(1);
-        }
-    );
+        });
   }
-  GenericPaginateParams  params(bool refresh,int page) =>  GenericPaginateParams(
-    currentPage: page,
-    refresh: refresh,
-    pageSize: pageSize,
-  );
 
-  SearchResultParams searchParams(bool refresh,int page){
+  GenericPaginateParams params(bool refresh, int page) => GenericPaginateParams(
+        currentPage: page,
+        refresh: refresh,
+        pageSize: pageSize,
+      );
+
+  ShopsParams _shopsParams(bool refresh, int page) {
+    var params = _searchParams(refresh, page);
+    return ShopsParams(params: params);
+  }
+
+  SearchResultParams _searchParams(bool refresh, int page) {
     return SearchResultParams(
         searchTxt: searchTxtController.text,
-        paginateParams: params(refresh,page)
-    );
+        paginateParams: params(refresh, page));
   }
-
 
   // Future<void> getBestSellers({bool refresh = false}) async {
   //   if (refresh) {
@@ -108,16 +107,12 @@ class BestSellersPageController {
   //   isLoadingCubit.onUpdateData(false);
   // }
 
-
-
   // void _scrollListener() {
   //   if (scrollController.position.pixels >=
   //       scrollController.position.maxScrollExtent * 0.9) {
   //     getBestSellers();
   //   }
   // }
-
-
 
   // void dispose() {
   //   searchTxtController.dispose();

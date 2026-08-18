@@ -1,6 +1,4 @@
-
 part of 'seller_products_widgets_imports.dart';
-
 
 class SellerProductsSearchFieldWidget extends StatelessWidget {
   final SellerProductsController controller;
@@ -21,7 +19,7 @@ class SellerProductsSearchFieldWidget extends StatelessWidget {
             validate: (value) => value?.noValidate(),
             hint: "${tr("searchInProducts")}...",
             onSubmit: () => controller.searchProducts(context),
-            onChange: (value) => controller.whileWriting(context,value),
+            onChange: (value) => controller.whileWriting(context, value),
             suffixIcon: GestureDetector(
               onTap: () => controller.searchProducts(context),
               child: Transform.scale(
@@ -46,10 +44,12 @@ class SellerProductsSearchFieldWidget extends StatelessWidget {
                   margin: Dimens.paddingEnd10,
                   decoration: BoxDecoration(
                       color: context.colors.disableGray,
-                      shape: BoxShape.circle
-                  ),
+                      shape: BoxShape.circle),
                   child: Icon(
-                    Icons.clear, size: 16, color: context.colors.gray8,),
+                    Icons.clear,
+                    size: 16,
+                    color: context.colors.gray8,
+                  ),
                 ),
               ),
             );

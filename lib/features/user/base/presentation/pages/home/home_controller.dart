@@ -12,7 +12,7 @@ class HomeController {
   final TextEditingController searchController = TextEditingController();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  Orders? _firstUnPaidOrder;
+  OrderCardDomainModel? _firstUnPaidOrder;
 
   bool showToast = false;
   int offersTabIndex = 0;
@@ -52,19 +52,18 @@ class HomeController {
   Future<bool> checkForUpdate() async {
     final NewVersionPlus newVersion = NewVersionPlus(
       androidId: AppConstants.instance.appId,
-      iOSId: AppConstants.instance.iosAppId ,
+      iOSId: AppConstants.instance.iosAppId,
     );
     final status = await newVersion.getVersionStatus();
     if (status != null && status.canUpdate) {
       showUpdateDialog();
       return true;
-    }else{
+    } else {
       return false;
     }
   }
 
-
-  void showUpdateDialog(){
+  void showUpdateDialog() {
     BuildContext context = getIt<GlobalContext>().context();
     showDialog(
       barrierDismissible: false,
@@ -75,7 +74,6 @@ class HomeController {
       },
     );
   }
-
 
   Future<void> getCartItems(BuildContext context, {bool refresh = true}) async {
     CartDomainModel result =
@@ -93,7 +91,8 @@ class HomeController {
         Gaps.empty,
         BlocBuilder<GenericBloc<int>, GenericState<int>>(
           bloc: homeTabCubit,
-          builder: (context, state) => Coupons(homeController: this, index: offersTabIndex),
+          builder: (context, state) =>
+              Coupons(homeController: this, index: offersTabIndex),
         ),
         More(homeController: this),
       ];
@@ -107,8 +106,6 @@ class HomeController {
         tr("account", context: context),
       ];
 
-
-
   void initBottomNavigation(TickerProvider ticker, int index) {
     tabController =
         TabController(length: 5, vsync: ticker, initialIndex: index);
@@ -118,7 +115,7 @@ class HomeController {
 
   void animateTabsPages(int index, BuildContext context) {
     Future.delayed(const Duration(milliseconds: 350), () {
-      if(index == 0 ){
+      if (index == 0) {
         OrdersHelper.instance.getHome(refresh: false);
         OrdersHelper.instance.getHome();
         getOffersData(context);
@@ -127,17 +124,16 @@ class HomeController {
         AutoRouter.of(context).push(CartRoute());
         return;
       } else {
-        if(index == 3 ){
+        if (index == 3) {
           // If navigation came from a notification we already set offersTabIndex.
           // In that case, don't override it here.
-          if(showShareHolderOffers == false){
-            if(saleTabsData.onSale?.isNotEmpty == true){
+          if (showShareHolderOffers == false) {
+            if (saleTabsData.onSale?.isNotEmpty == true) {
               offersTabIndex = getSaleTabIndex(
                   context.isShareHolder
                       ? SaleTabType.shareholderOffers
-                      :  SaleTabType.onSale,
-                  context.isShareHolder
-              );
+                      : SaleTabType.onSale,
+                  context.isShareHolder);
             }
           }
         }
@@ -147,10 +143,8 @@ class HomeController {
     });
   }
 
-
-
   void checkAuth(BuildContext context) {
-    bool auth = context.read<DeviceCubit>().state.model.auth;
+    bool auth = context.isAuth;
     if (auth) {
       context.read<CountCubit>().onUpdateCount(0, 0);
       getIt<AuthHelper>().onLogOut(context);
@@ -186,13 +180,13 @@ class HomeController {
   Future<void> getPurchasingHistory({bool refresh = true}) async {
     BuildContext ctx = getIt<GlobalContext>().context();
     bool isAuth = ctx.read<DeviceCubit>().state.model.auth;
-    if( await checkForUpdate() ){
+    if (await checkForUpdate()) {
       return;
     }
     if (isAuth) {
-      GenericPaginateParams params = _historyParams(refresh);
-      List<Orders> data = await GetPurchasingHistory().call(params);
-      Set<Orders> unPaidOrder =
+      MyOrdersParams params = _myOrdersParams(refresh);
+      List<OrderCardDomainModel> data = await GetPurchasingHistory().call(params);
+      Set<OrderCardDomainModel> unPaidOrder =
           data.where((element) => element.showUnPaidOnlineOrderActions).toSet();
       if (unPaidOrder.isNotEmpty) {
         _firstUnPaidOrder = unPaidOrder.first;
@@ -201,7 +195,7 @@ class HomeController {
     }
   }
 
-  Future<void> checkIfEmailExist() async{
+  Future<void> checkIfEmailExist() async {
     BuildContext ctx = getIt<GlobalContext>().context();
     bool isAuth = ctx.read<DeviceCubit>().state.model.auth;
     if (isAuth) {
@@ -232,7 +226,7 @@ class HomeController {
     AutoRouter.of(context).push(
       OrderDetailsPageRoute(
         isReturnedOrder: false,
-        order: _firstUnPaidOrder!,
+        id: _firstUnPaidOrder!.id,
       ),
     );
   }
@@ -252,21 +246,24 @@ class HomeController {
           type: ToastType.success,
         );
         AutoRouter.of(ctx).push(OrderDetailsPageRoute(
-            isReturnedOrder: false, order: _firstUnPaidOrder!));
+            isReturnedOrder: false, id: _firstUnPaidOrder!.id));
       }
     }
   }
 
   SaleTabsData saleTabsData = SaleTabsData();
 
-
-  void getOffersData(BuildContext context,){
-    fetchSaleTabsData(context,refresh: false);
+  void getOffersData(
+    BuildContext context,
+  ) {
+    fetchSaleTabsData(context, refresh: false);
     fetchSaleTabsData(context);
   }
 
-  Future<void> fetchSaleTabsData(BuildContext context,{bool refresh = true}) async {
-    var params = GenericPaginateParams(currentPage: 1, refresh: refresh, pageSize: 10);
+  Future<void> fetchSaleTabsData(BuildContext context,
+      {bool refresh = true}) async {
+    var params =
+        GenericPaginateParams(currentPage: 1, refresh: refresh, pageSize: 10);
 
     OffersParamsWidget offersParams({bool isVipProducts = false}) =>
         OffersParamsWidget(
@@ -274,7 +271,7 @@ class HomeController {
           isVipProducts: isVipProducts,
         );
     try {
-      List<Future<List<Product>>> futures = [
+      List<Future<List<ProductCard>>> futures = [
         !context.isShareHolder
             ? GetVipOffers().call(offersParams(isVipProducts: true))
             : Future.value([]),
@@ -297,7 +294,6 @@ class HomeController {
     }
   }
 
-
   bool showShareHolderOffers = false;
   int getSaleTabIndex(SaleTabType type, bool isShareHolder) {
     List<SaleTabType> visibleTypes = [];
@@ -318,20 +314,28 @@ class HomeController {
     return index != -1 ? index : 0;
   }
 
-  GenericPaginateParams _historyParams(bool refresh) {
-    return GenericPaginateParams(
-      currentPage: 1,
-      refresh: refresh,
-      pageSize: 12,
+
+
+  MyOrdersParams _myOrdersParams(bool refresh){
+    return MyOrdersParams(
+      paginateParams: _historyParams( refresh),
+      type:  OrderTypeEnum.general,
     );
   }
 
 
-  void checkIosTracking(){
+  GenericPaginateParams _historyParams(bool refresh) {
+    return GenericPaginateParams(
+      currentPage: 1,
+      refresh: refresh,
+      pageSize: AppConstants.instance.paginationLimit,
+    );
+  }
+
+  void checkIosTracking() {
     bool authorizedTrack = FacebookEventsHelper.instance.iosEnableTracking;
-    if(authorizedTrack == false && Platform.isIOS){
+    if (authorizedTrack == false && Platform.isIOS) {
       FacebookEventsHelper.instance.enableIosTracking();
     }
   }
-
 }

@@ -5,13 +5,13 @@ class BuildPaymentItem extends StatelessWidget {
   final Function() onTap;
 
   const BuildPaymentItem(
-      {super.key,
-      required this.paymentOptionModel,
-      required this.onTap});
+      {super.key, required this.paymentOptionModel, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    Color borderColor = paymentOptionModel.selected ? context.colors.primary : context.colors.greyWhite;
+    Color borderColor = paymentOptionModel.selected
+        ? context.colors.primary
+        : context.colors.greyWhite;
     return Expanded(
       child: GestureDetector(
         onTap: onTap,
@@ -27,7 +27,7 @@ class BuildPaymentItem extends StatelessWidget {
             height: 70.r,
             width: 70.r,
             fit: BoxFit.contain,
-            url : paymentOptionModel.image,
+            url: paymentOptionModel.image,
           ),
         ),
       ),

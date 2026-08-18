@@ -1,4 +1,5 @@
 part of 'seller_money_withdraw_widgets_imports.dart';
+
 class BuildProductBalance extends StatelessWidget {
   const BuildProductBalance({Key? key}) : super(key: key);
 
@@ -58,7 +59,7 @@ class BuildProductBalance extends StatelessWidget {
               ),
               ...List.generate(
                 3,
-                    (index) => const TableRow(
+                (index) => const TableRow(
                   children: [
                     BuildTableItem(title: "1"),
                     BuildTableItem(title: "2324234 - 23242342"),

@@ -54,13 +54,6 @@ class _DebounceRequest {
   _DebounceRequest(this.value, this.onSearch);
 }
 
-
-
-
-
-
-
-
 /// A keyed debounce helper that allows each key to have its own copy
 ///  when you have multiple items (products)
 /// and don't want debounce operations on one item to affect others.

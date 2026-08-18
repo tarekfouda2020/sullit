@@ -14,18 +14,17 @@ class MyGiftCardsListWidget extends StatelessWidget {
         builderDelegate: PagedChildBuilderDelegate<GiftCardDomainModel>(
           itemBuilder: (_, item, index) {
             return GiftCardItemWidget(
-                isMyGiftCard: true,
-                model: item,
-              onTap: ()=> controller.routeToCardDetails(context, item),
+              isMyGiftCard: true,
+              model: item,
+              onTap: () => controller.routeToCardDetails(context, item),
             );
           },
           noItemsFoundIndicatorBuilder: (cxt) {
-            return  Center(
+            return Center(
               child: Text(
                 tr("notSubscribedToGiftCards"),
-                style: AppTextStyle.s16_w700(color: context.colors.black).copyWith(
-                  height: 1.5
-                ),
+                style: AppTextStyle.s16_w700(color: context.colors.black)
+                    .copyWith(height: 1.5),
                 textAlign: TextAlign.center,
               ),
             );

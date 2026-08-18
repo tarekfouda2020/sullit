@@ -6,7 +6,8 @@ import 'package:flutter_tdd/features/user/classified_products/domain/repository/
 class GetCusProductsBrands implements UseCase<List<CusProductBrand>, bool> {
   @override
   Future<List<CusProductBrand>> call(bool param) async {
-    var result = await getIt<ClassifiedProductsRepository>().getCusProductBrands(param);
+    var result =
+        await getIt<ClassifiedProductsRepository>().getCusProductBrands(param);
     return result.fold(
       (l) => [],
       (r) => r,

@@ -8,16 +8,18 @@ class BuildAddAddressBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultButton(
-        title: "",
+      title: "",
       onTap: () => controller.checkAddAddress(context),
-      margin: EdgeInsets.only(left: 20,right: 20,bottom: Dimens.iosBottomDp(context),top: 15),
+      margin: EdgeInsets.only(
+          left: 20, right: 20, bottom: Dimens.iosBottomDp(context), top: 15),
       customLabel: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(Icons.add, color: context.colors.white, size: 15.sp),
           Gaps.hGap4,
-          Text(tr("addNewAddress"),
-          style: AppTextStyle.s18_w700(color: context.colors.white),
+          Text(
+            tr("addNewAddress"),
+            style: AppTextStyle.s18_w700(color: context.colors.white),
           )
         ],
       ),

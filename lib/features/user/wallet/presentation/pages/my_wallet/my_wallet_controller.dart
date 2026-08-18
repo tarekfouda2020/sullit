@@ -136,11 +136,8 @@ class MyWalletController {
     walletPaymentTypes.onUpdateData(data);
   }
 
-
-  Future<void> refresh()async{
+  Future<void> refresh() async {
     getWallet();
     await getTransactions(1);
   }
-
-
 }

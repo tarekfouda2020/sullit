@@ -35,12 +35,13 @@ class CategoriesSectionFormWidget extends StatelessWidget {
                 spacing: 5,
                 children: List.generate(
                   item.subCats?.length ?? 0,
-                      (index) {
+                  (index) {
                     return Padding(
                       padding: const EdgeInsetsDirectional.only(end: 8),
                       child: InkWell(
                         onTap: () => AutoRouter.of(context).push(
-                          CategoryDetailsRoute(categoryModel: item.subCats![index]),
+                          CategoryDetailsRoute(
+                              categoryModel: item.subCats![index]),
                         ),
                         child: Container(
                           color: Colors.transparent,
@@ -61,10 +62,11 @@ class CategoriesSectionFormWidget extends StatelessWidget {
                                   item.subCats?[index].name ?? '',
                                   maxLines: 2,
                                   textAlign: TextAlign.center,
-                                  style: AppTextStyle.s12_w700(color: context.colors.black).copyWith(
-                                    overflow: TextOverflow.ellipsis,
-                                    height: 1.25
-                                  ),
+                                  style: AppTextStyle.s12_w700(
+                                          color: context.colors.black)
+                                      .copyWith(
+                                          overflow: TextOverflow.ellipsis,
+                                          height: 1.25),
                                 ),
                               ),
                               Gaps.vGap5,

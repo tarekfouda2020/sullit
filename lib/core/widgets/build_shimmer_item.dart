@@ -34,7 +34,7 @@ class BuildShimmerItem extends StatelessWidget {
               color: context.colors.offWhite,
               shape: boxShape ?? BoxShape.rectangle,
               borderRadius:
-              borderRadius ?? BorderRadius.circular(height! > 15 ? 5 : 0),
+                  borderRadius ?? BorderRadius.circular(height! > 15 ? 5 : 0),
             ),
           ),
     );

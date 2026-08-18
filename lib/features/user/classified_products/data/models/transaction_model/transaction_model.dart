@@ -7,22 +7,19 @@ part 'transaction_model.g.dart';
 
 @freezed
 @immutable
-class TransactionModel extends BaseApiModel<Transaction> with _$TransactionModel{
+class TransactionModel extends BaseApiModel<Transaction>
+    with _$TransactionModel {
   const TransactionModel._();
   @JsonSerializable(explicitToJson: true)
-  const factory TransactionModel({
-    @JsonKey(name: 'transaction_url')  String? transactionUrl
-  }) = _TransactionModel;
-
+  const factory TransactionModel(
+          {@JsonKey(name: 'transaction_url') String? transactionUrl}) =
+      _TransactionModel;
 
   factory TransactionModel.fromJson(Map<String, dynamic> json) =>
       _$TransactionModelFromJson(json);
 
   @override
   Transaction toDomainModel() {
-    return Transaction(
-      transactionUrl: transactionUrl
-    );
+    return Transaction(transactionUrl: transactionUrl);
   }
-
 }

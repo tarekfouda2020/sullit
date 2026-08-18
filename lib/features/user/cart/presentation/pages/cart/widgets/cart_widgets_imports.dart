@@ -1,5 +1,6 @@
 import 'dart:io';
-import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart' show DeviceCubit;
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart'
+    show DeviceCubit;
 import 'package:flutter_tdd/core/widgets/custom_safe_are.dart';
 import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_sheet_header_widget.dart';
 
@@ -29,7 +30,7 @@ import 'package:flutter_tdd/core/widgets/dirham_currency_symbol.dart';
 import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/core/widgets/loading_icon_widget.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
-import 'package:flutter_tdd/features/user/cart/domain/models/cart_item.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/min_amount_seller_domain.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/update_cart_item.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart/cart_imports.dart';
@@ -38,6 +39,7 @@ import 'package:flutter_tdd/features/user/cart/presentation/widgets/build_cart_s
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/widgets/category_details_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 import 'package:flutter_tdd/res.dart';
+import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 part 'build_cart_buttons.dart';
 part 'build_cart_item.dart';

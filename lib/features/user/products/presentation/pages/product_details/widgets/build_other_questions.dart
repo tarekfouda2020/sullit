@@ -37,7 +37,8 @@ class BuildOtherQuestions extends StatelessWidget {
                         productQueries.otherProductQueries.length,
                         (index) {
                           return BuildQuestionItem(
-                            queryModel: productQueries.otherProductQueries[index],
+                            queryModel:
+                                productQueries.otherProductQueries[index],
                           );
                         },
                       )

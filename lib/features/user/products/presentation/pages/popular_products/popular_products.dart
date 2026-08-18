@@ -1,20 +1,20 @@
 part of 'popular_products_imports.dart';
 
-class PopularProducts extends StatefulWidget {
-  final PopularProductsDomainModel popularProductsModel;
+class PopularProductCards extends StatefulWidget {
+  final PopularProductsDomainModel popularProductCardsModel;
 
-  const PopularProducts({super.key, required this.popularProductsModel});
+  const PopularProductCards({super.key, required this.popularProductCardsModel});
 
   @override
-  _PopularProductsState createState() => _PopularProductsState();
+  _PopularProductCardsState createState() => _PopularProductCardsState();
 }
 
-class _PopularProductsState extends State<PopularProducts> {
-  late PopularProductsController controller;
+class _PopularProductCardsState extends State<PopularProductCards> {
+  late PopularProductCardsController controller;
 
   @override
   void initState() {
-    controller = PopularProductsController(widget.popularProductsModel.id);
+    controller = PopularProductCardsController(widget.popularProductCardsModel.id);
     super.initState();
   }
 
@@ -23,13 +23,13 @@ class _PopularProductsState extends State<PopularProducts> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(
-        title: widget.popularProductsModel.name,
+        title: widget.popularProductCardsModel.name,
         showBack: true,
       ),
       body: CustomRefreshIndicatorWidget(
         onRefresh: () =>
-            controller.getPopularProducts(widget.popularProductsModel.id, 1),
-        child: PagedGridView<int, Product>(
+            controller.getPopularProductCards(widget.popularProductCardsModel.id, 1),
+        child: PagedGridView<int, ProductCard>(
           padding: Dimens.paddingAll15PX,
           shrinkWrap: true,
           pagingController: controller.pagingController,
@@ -39,16 +39,16 @@ class _PopularProductsState extends State<PopularProducts> {
             crossAxisCount: 2,
             childAspectRatio: .9,
           ),
-          builderDelegate: PagedChildBuilderDelegate<Product>(
+          builderDelegate: PagedChildBuilderDelegate<ProductCard>(
             firstPageProgressIndicatorBuilder: (_) =>
                 const BuildPopularProductsLoadingView(),
             itemBuilder: (_, item, index) => BuildProductItem(
               productModel: item,
-              onFavRefresh: () => controller.getPopularProducts(
-                  widget.popularProductsModel.id, 1),
+              onFavRefresh: () => controller.getPopularProductCards(
+                  widget.popularProductCardsModel.id, 1),
               // onCompareRefresh: () {
               //   item.isAddedTCompare = !item.isAddedTCompare! ;
-              //   controller.getPopularProducts(widget.popularProductsModel.id, 1);
+              //   controller.getPopularProductCards(widget.popularProductCardsModel.id, 1);
               // },
             ),
             noItemsFoundIndicatorBuilder: (cxt) => const BuildEmptyDataView(),

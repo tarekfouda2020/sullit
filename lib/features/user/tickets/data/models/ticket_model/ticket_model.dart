@@ -9,19 +9,17 @@ part 'ticket_model.g.dart';
 
 @freezed
 @immutable
-class TicketModel extends BaseApiModel<Ticket> with _$TicketModel{
+class TicketModel extends BaseApiModel<Ticket> with _$TicketModel {
   const TicketModel._();
   @JsonSerializable(explicitToJson: true)
-  const factory TicketModel({
-    required int id ,
-    @JsonKey(name:"ticket_id") required String ticketId ,
-    @JsonKey(name: "sending_date") required DateTime sendingDate,
-    required String subject,
-    required String status,
-    required List<ImageModel> images,
-     List<TicketReplyModel>? replies
-  }) = _TicketModel;
-
+  const factory TicketModel(
+      {required int id,
+      @JsonKey(name: "ticket_id") required String ticketId,
+      @JsonKey(name: "sending_date") required DateTime sendingDate,
+      required String subject,
+      required String status,
+      required List<ImageModel> images,
+      List<TicketReplyModel>? replies}) = _TicketModel;
 
   factory TicketModel.fromJson(Map<String, dynamic> json) =>
       _$TicketModelFromJson(json);
@@ -29,13 +27,12 @@ class TicketModel extends BaseApiModel<Ticket> with _$TicketModel{
   @override
   Ticket toDomainModel() {
     return Ticket(
-      id: id,
-      images: images.map((e) => e.toDomainModel()).toList(),
-      sendingDate: sendingDate,
-      subject: subject,
-      ticketId: ticketId,
-      status: status,
-      replies: replies?.map((e) => e.toDomainModel()).toList()
-    );
+        id: id,
+        images: images.map((e) => e.toDomainModel()).toList(),
+        sendingDate: sendingDate,
+        subject: subject,
+        ticketId: ticketId,
+        status: status,
+        replies: replies?.map((e) => e.toDomainModel()).toList());
   }
 }

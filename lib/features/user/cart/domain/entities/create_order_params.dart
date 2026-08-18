@@ -23,30 +23,27 @@ class CreateOrderParams {
     this.instructions,
   });
 
+  Map<String, int> get _driverInstructions {
+    final Map<String, int> map = <String, int>{};
 
-  Map<String,int> get _driverInstructions{
-    final Map<String,int> map = <String,int>{};
+    if (instructions == null ||
+        (instructions ?? <DeliveryInstructionModel>[]).isEmpty) return map;
 
-    if(instructions ==null || (instructions ?? <DeliveryInstructionModel>[]).isEmpty) return map;
-
-    for(int i = 0; i < instructions!.length; i++){
+    for (int i = 0; i < instructions!.length; i++) {
       map["delivery_instructions[$i]"] = instructions![i].id;
     }
     return map;
   }
 
+  Map<String, dynamic> toJson() => {
+        "payment_option": paymentOption,
+        "allow_replacement": allowReplacement,
+        if (additionalInfo != "") "additional_info": additionalInfo,
+        if (giftCardCode.trim().isNotEmpty) "gift_card_code": giftCardCode,
+        if (driverNotes.trim().isNotEmpty) "driver_notes": driverNotes,
+        if (pickerNotes.trim().isNotEmpty) "picker_notes": pickerNotes,
+        if (_driverInstructions.isNotEmpty) ..._driverInstructions
+      };
 
-  Map<String, dynamic> toJson ()=> {
-    "payment_option": paymentOption,
-    "allow_replacement": allowReplacement,
-    if(additionalInfo != "")"additional_info": additionalInfo,
-    if( giftCardCode.trim().isNotEmpty)"gift_card_code": giftCardCode,
-    if( driverNotes.trim().isNotEmpty)"driver_notes": driverNotes,
-    if( pickerNotes.trim().isNotEmpty)"picker_notes": pickerNotes,
-    if(_driverInstructions.isNotEmpty) ..._driverInstructions
-  };
-
-  bool isSuccess (dynamic json)=> json["key"] == "success" ;
-
-
+  bool isSuccess(dynamic json) => json["key"] == "success";
 }

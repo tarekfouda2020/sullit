@@ -1,12 +1,37 @@
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/reviews.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_review.dart';
 
+class OrderProductDomainModel extends BaseDomainModel {
+  final int id;
+  final String name;
+  final String type;
+  final String typeLabel;
+  final String unit;
+  final String barcode;
+  final double rating;
+  final String thumbnailImage;
+  final String currencySymbol;
+
+  OrderProductDomainModel({
+    required this.id,
+    required this.name,
+    required this.type,
+    required this.typeLabel,
+    required this.unit,
+    required this.barcode,
+    required this.rating,
+    required this.thumbnailImage,
+    required this.currencySymbol,
+  });
+}
+
+
+
 class OrderDetails extends BaseDomainModel {
   int id;
-  Product? product;
+  OrderProductDomainModel? product;
   String variation;
   int quantity;
   int availableReturnQty;
@@ -21,9 +46,10 @@ class OrderDetails extends BaseDomainModel {
   OrderReview? orderReview;
   String? shippedBy;
   bool? isSelected;
-  GenericBloc<int>?qtyCubit;
-
-
+  GenericBloc<int>? qtyCubit;
+  String? pickerNotes;
+  String? instructions;
+  String? insuranceCoveragePercentage;
 
   OrderDetails({
     required this.id,
@@ -43,9 +69,10 @@ class OrderDetails extends BaseDomainModel {
     this.shippedBy,
     this.isSelected = false,
     this.qtyCubit,
+    this.pickerNotes,
+    this.instructions,
+    this.insuranceCoveragePercentage,
   });
 
-
-  double get getPrice => double.parse(product?.variant?.mainPrice ?? "0.0" );
-
+  double get getPrice => double.parse(price);
 }

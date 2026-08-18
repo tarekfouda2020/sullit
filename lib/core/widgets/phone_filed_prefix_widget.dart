@@ -10,13 +10,14 @@ class PhoneFieldPrefixWidget extends StatelessWidget {
   final void Function()? afterSelect;
   final GenericBloc<Country?> countryCubit;
 
-  const PhoneFieldPrefixWidget({super.key, this.afterSelect, required this.countryCubit});
+  const PhoneFieldPrefixWidget(
+      {super.key, this.afterSelect, required this.countryCubit});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () async {
-          return ;
+          return;
           Country? country = await CountryPickerHelper.pickCountry(context);
           if (country != null) {
             countryCubit.onUpdateData(country);
@@ -26,7 +27,8 @@ class PhoneFieldPrefixWidget extends StatelessWidget {
         child: Visibility(
           visible: countryCubit.state.data?.name != "",
           replacement: Padding(
-            padding: const EdgeInsetsDirectional.only(start: 23, top: 16, end: 17),
+            padding:
+                const EdgeInsetsDirectional.only(start: 23, top: 16, end: 17),
             child: Text(
               "Select Country",
               style: AppTextStyle.s14_w400(color: context.colors.black),

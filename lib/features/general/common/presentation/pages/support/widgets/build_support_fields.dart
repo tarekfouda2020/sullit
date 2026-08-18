@@ -42,9 +42,7 @@ class BuildSupportFields extends StatelessWidget {
                   padding: const EdgeInsets.all(15),
                   child: InkWell(
                     onTap: () => controller.getImage(context),
-                    child: SvgPicture.asset(
-                        Res.attachments
-                    ),
+                    child: SvgPicture.asset(Res.attachments),
                   ),
                 ),
               ),
@@ -53,9 +51,8 @@ class BuildSupportFields extends StatelessWidget {
             Transform.rotate(
               angle: lang == LangCodeHelper.langAR ? pi : 0,
               child: InkWell(
-                onTap: () => controller.sendMessage(),
-                  child: SvgPicture.asset(Res.sendMessage)
-              ),
+                  onTap: () => controller.sendMessage(),
+                  child: SvgPicture.asset(Res.sendMessage)),
             ),
             Gaps.hGap22,
           ],

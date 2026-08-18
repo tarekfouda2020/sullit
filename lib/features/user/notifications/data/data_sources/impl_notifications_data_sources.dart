@@ -9,19 +9,21 @@ import 'package:flutter_tdd/features/user/category/domain/entities/generic_pagin
 import 'package:flutter_tdd/features/user/notifications/data/data_sources/notifications_data_sources.dart';
 import 'package:flutter_tdd/features/user/notifications/data/models/notification_model/notification_model.dart';
 import 'package:injectable/injectable.dart';
+
 @Injectable(as: NotificationsDataSources)
 class ImplNotificationsDataSources extends NotificationsDataSources {
   @override
-  Future<Either<Failure, List<NotificationModel>>> getNotifications(GenericPaginateParams param)async {
+  Future<Either<Failure, List<NotificationModel>>> getNotifications(
+      GenericPaginateParams param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.notifications+param.paramsToQuery(),
+      url: ApiNames.notifications + param.paramsToQuery(),
       requestMethod: RequestMethod.get,
       refresh: param.refresh,
       responseType: ResType.list,
       showLoader: true,
       toJsonFunc: (json) => List<NotificationModel>.from(
         json.map(
-              (e) => NotificationModel.fromJson(e),
+          (e) => NotificationModel.fromJson(e),
         ),
       ),
       responseKey: (data) => data["data"]['notifications'],
@@ -29,5 +31,4 @@ class ImplNotificationsDataSources extends NotificationsDataSources {
     );
     return await GenericHttpImpl<List<NotificationModel>>().call(model);
   }
-
 }

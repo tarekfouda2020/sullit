@@ -385,7 +385,8 @@ class DropdownSearchState<T> extends State<DropdownSearch<T>> {
                 }),
             if (state.errorText != null)
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
                 child: Text(
                   state.errorText ?? "",
                   style: widget.dropdownSearchDecoration?.errorStyle,

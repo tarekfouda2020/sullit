@@ -17,9 +17,10 @@ class BuildSpecificationItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SubFilterItemWidget(
       key: ValueKey('spec_${attributeValueModel.id}'),
-      text: attributeValueModel.value, 
+      text: attributeValueModel.value,
       isSelected: attributeValueModel.selected,
-      onSelect: (val) => categoryDetailsController.onSelectAttributes(attributeIndex, position),
+      onSelect: (val) => categoryDetailsController.onSelectAttributes(
+          attributeIndex, position),
     );
 
     // return Container(

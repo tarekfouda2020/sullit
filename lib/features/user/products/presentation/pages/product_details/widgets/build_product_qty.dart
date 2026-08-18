@@ -10,10 +10,10 @@ class BuildProductQty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsetsDirectional.only(start: 23,end: 25,top:14 ,bottom:13),
-      decoration:  CustomDecoration(
-        radius: BorderRadius.circular(Dimens.dp12)
-      ),
+      padding: const EdgeInsetsDirectional.only(
+          start: 23, end: 25, top: 14, bottom: 13),
+      decoration:
+          CustomDecoration(radius: BorderRadius.circular(Dimens.dp12)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -28,7 +28,8 @@ class BuildProductQty extends StatelessWidget {
           ),
           Visibility(
             visible: productModel.isOutOfStock == false,
-            replacement: Text(tr("outOfStock"),
+            replacement: Text(
+              tr("outOfStock"),
               style: AppTextStyle.s15_w700(color: context.colors.primary),
             ),
             child: BlocBuilder<GenericBloc<int>, GenericState<int>>(
@@ -61,7 +62,8 @@ class BuildProductQty extends StatelessWidget {
                     // ),
                     // Gaps.hGap10,
                     BuildCustomBounce(
-                      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 7.5),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 7.5),
                       onTap: () => controller.decreaseQty(),
                       iconData: CupertinoIcons.minus,
                       margin: EdgeInsets.zero,
@@ -69,11 +71,13 @@ class BuildProductQty extends StatelessWidget {
                     Gaps.hGap19,
                     Text(
                       "${state.data}",
-                      style: AppTextStyle.s18_w600(color: context.colors.black),
+                      style:
+                          AppTextStyle.s18_w600(color: context.colors.black),
                     ),
                     Gaps.hGap19,
                     BuildCustomBounce(
-                      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 7.5),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 7.5),
                       onTap: () => controller.increaseQty(),
                       iconData: CupertinoIcons.add,
                       margin: EdgeInsets.zero,
@@ -119,7 +123,9 @@ class BuildProductQty extends StatelessWidget {
                   ),
                   Gaps.hGap10,
                   Visibility(
-                    visible: hasVariant ? productModel.variant!.currentStock! > 0 : false,
+                    visible: hasVariant
+                        ? productModel.variant!.currentStock! > 0
+                        : false,
                     replacement: Text(
                       tr("outOfStock"),
                       style: AppTextStyle.s15_w700(

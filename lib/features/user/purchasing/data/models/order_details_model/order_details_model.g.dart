@@ -6,12 +6,39 @@ part of 'order_details_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$_OrderProductModel _$$_OrderProductModelFromJson(Map<String, dynamic> json) =>
+    _$_OrderProductModel(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+      type: json['type'] as String,
+      typeLabel: json['type_label'] as String,
+      unit: json['unit'] as String,
+      barcode: json['barcode'] as String,
+      rating: (json['rating'] as num).toDouble(),
+      thumbnailImage: json['thumbnail_img'] as String,
+      currencySymbol: json['currency_symbol'] as String,
+    );
+
+Map<String, dynamic> _$$_OrderProductModelToJson(
+        _$_OrderProductModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'type': instance.type,
+      'type_label': instance.typeLabel,
+      'unit': instance.unit,
+      'barcode': instance.barcode,
+      'rating': instance.rating,
+      'thumbnail_img': instance.thumbnailImage,
+      'currency_symbol': instance.currencySymbol,
+    };
+
 _$_OrderDetailsModel _$$_OrderDetailsModelFromJson(Map<String, dynamic> json) =>
     _$_OrderDetailsModel(
       id: (json['id'] as num).toInt(),
       product: json['product'] == null
           ? null
-          : ProductModel.fromJson(json['product'] as Map<String, dynamic>),
+          : OrderProductModel.fromJson(json['product'] as Map<String, dynamic>),
       variation: json['variation'] as String,
       quantity: (json['quantity'] as num).toInt(),
       availableReturnQty: (json['available_return_qty'] as num).toInt(),
@@ -26,6 +53,10 @@ _$_OrderDetailsModel _$$_OrderDetailsModelFromJson(Map<String, dynamic> json) =>
       review: json['review'] == null
           ? null
           : ReviewsModel.fromJson(json['review'] as Map<String, dynamic>),
+      pickerNotes: json['picker_notes'] as String?,
+      instructions: json['instructions'] as String?,
+      insuranceCoveragePercentage:
+          json['insurance_coverage_percentage'] as String?,
     );
 
 Map<String, dynamic> _$$_OrderDetailsModelToJson(
@@ -45,4 +76,7 @@ Map<String, dynamic> _$$_OrderDetailsModelToJson(
       'sold_by_type': instance.soldByType,
       'sold_by_name': instance.soldBy,
       'review': instance.review?.toJson(),
+      'picker_notes': instance.pickerNotes,
+      'instructions': instance.instructions,
+      'insurance_coverage_percentage': instance.insuranceCoveragePercentage,
     };

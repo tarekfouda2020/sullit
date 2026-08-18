@@ -1,7 +1,7 @@
 part of 'instore_confirm_buying_widgets_imports.dart';
 
 class InstoreConfirmBuyingSummaryWidget extends StatelessWidget {
-  final OrderSummary orderSummary;
+  final OrderSummaryDomainModel orderSummary;
   final InstoreConfirmBuyingController controller;
   const InstoreConfirmBuyingSummaryWidget(
       {super.key, required this.orderSummary, required this.controller});

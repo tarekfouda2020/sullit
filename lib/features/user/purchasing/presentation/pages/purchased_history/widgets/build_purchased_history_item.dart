@@ -1,7 +1,7 @@
 part of 'purchased_history_widgets_imports.dart';
 
 class BuildPurchasedHistoryItem extends StatelessWidget {
-  final Orders order;
+  final OrderCardDomainModel order;
   final PurchasedHistoryController controller;
 
   const BuildPurchasedHistoryItem({
@@ -17,7 +17,7 @@ class BuildPurchasedHistoryItem extends StatelessWidget {
         Container(
           margin: Dimens.paddingVertical5PX,
           padding: Dimens.paddingAll15PX,
-          decoration: CustomDecoration(),
+          decoration: const CustomDecoration(),
           child: Column(
             children: [
               Row(
@@ -72,13 +72,13 @@ class BuildPurchasedHistoryItem extends StatelessWidget {
                 children: [
                   BuildOrderOptionItem(
                     onTap: () => AutoRouter.of(context)
-                        .push(OrderSummaryRoute(orderId: order.id)),
+                        .push(OrderSummaryPageRoute(orderId: order.id)),
                     iconData: Icons.remove_red_eye_outlined,
                     iconColor: context.colors.blueAccent,
                     itemColor: context.colors.greyWhite,
                   ),
                   Visibility(
-                    visible: order.availableCancelOrder,
+                    visible: order.availableCancelOrder == true,
                     child: BuildOrderOptionItem(
                       onTap: () => controller.cancelOrder(order),
                       iconData: Icons.delete_outline,

@@ -14,9 +14,7 @@ class CartMinAmountBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-        bottom: MediaQuery.viewInsetsOf(context).bottom,
-        left: 20,right: 20
-      ),
+          bottom: MediaQuery.viewInsetsOf(context).bottom, left: 20, right: 20),
       decoration: BoxDecoration(
         color: context.colors.customBackground,
         borderRadius: BorderRadius.only(
@@ -66,7 +64,8 @@ class CartMinAmountBottomSheet extends StatelessWidget {
                 return CartMinAmountSellerItem(
                   seller: seller,
                   controller: controller,
-                  remainAmount: cartData.getSingleSellerReMainAmount(seller.shopId),
+                  remainAmount:
+                      cartData.getSingleSellerReMainAmount(seller.shopId),
                 );
               },
             ),

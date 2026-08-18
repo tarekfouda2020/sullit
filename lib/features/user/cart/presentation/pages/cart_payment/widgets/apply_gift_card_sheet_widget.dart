@@ -12,7 +12,8 @@ class ApplyGiftCardSheet extends StatelessWidget {
         bottom: MediaQuery.viewInsetsOf(context).bottom,
       ),
       child: Container(
-        padding: const EdgeInsets.only(top: 29, left: 20, right: 20, bottom: 20),
+        padding:
+            const EdgeInsets.only(top: 29, left: 20, right: 20, bottom: 20),
         margin: const EdgeInsets.only(top: kToolbarHeight),
         decoration: BoxDecoration(
           color: context.colors.customBackground,
@@ -33,14 +34,12 @@ class ApplyGiftCardSheet extends StatelessWidget {
               Gaps.vGap12,
               const GiftCardAnnotationWidget(),
               Gaps.vGap17,
-              BlocBuilder <GenericBloc<Shipping?>,
-              GenericState<Shipping?>>(
+              BlocBuilder<GenericBloc<Shipping?>, GenericState<Shipping?>>(
                 bloc: controller.shippingBloc,
                 builder: (context, state) {
                   return InvoiceSummaryWidget(
                     controller: controller,
                     shippingSummary: state.data!.summary,
-                    applyGiftCard: state.data!.summary.appliedGiftCard != null,
                   );
                 },
               ),
@@ -60,10 +59,10 @@ class ApplyGiftCardSheet extends StatelessWidget {
   }
 
   void _onPressSubmit(BuildContext context) {
-      if(controller.isGiftCardApplied){
+    if (controller.isGiftCardApplied) {
       controller.createOrder(context);
       Navigator.pop(context);
-    }else{
+    } else {
       CustomToast.showSimpleToast(msg: tr("applyGiftCardFirst"));
     }
   }

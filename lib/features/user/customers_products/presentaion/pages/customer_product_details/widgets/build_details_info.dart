@@ -38,7 +38,6 @@ class BuildDetailsInfo extends StatelessWidget {
             title: detailsModel.userData?.phone ?? tr("notDetermined"),
             iconData: Icons.phone,
           ),
-
         ],
       ),
     );

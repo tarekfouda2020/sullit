@@ -5,17 +5,22 @@ import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/core/models/domain_models/brand_domain_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/color_domain_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/reviews.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_card_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/variant.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/normal_product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/pharmacy_product.dart';
 
-
-class Product extends BaseDomainModel {
+abstract class Product extends BaseDomainModel {
   int? id;
   int? loyaltyPoints;
   String? name;
+  String? type;
   String? unit;
   String? thumbnailImage;
   List<String>? images;
@@ -43,7 +48,7 @@ class Product extends BaseDomainModel {
   int? countReviews;
   String? soldByType;
   String? soldByName;
-  Shop? shop;
+  ShopCardDomainModel? shop;
   List<Reviews>? reviews;
   bool? isResale;
   int? resellerId;
@@ -58,15 +63,21 @@ class Product extends BaseDomainModel {
   bool? hasVipOffer;
   bool? showProductCounter;
   bool? hasShareholderDiscount;
+  bool? prescriptionRequired;
+  bool? insuranceEligible;
   int? addedQtyToCart;
   int? maxQnt;
+
 
   Product(
       {this.id,
       this.name,
       this.images,
+      this.type,
       this.thumbnailImage,
       this.isMultiple,
+      this.prescriptionRequired,
+      this.insuranceEligible,
       this.priceHighLowDiscount,
       this.priceHighLow,
       this.hasDiscount,
@@ -117,11 +128,10 @@ class Product extends BaseDomainModel {
     }
   }
 
+  bool showPriceDiscount({bool? showVipDiscount}) =>
+      (hasDiscount == true || showVipDiscount == true);
 
-
-  bool   showPriceDiscount({bool? showVipDiscount}) => ( hasDiscount == true || showVipDiscount == true);
-
-  bool   get showSpecialPoints => hasSpecialLoyaltyPoints == true;
+  bool get showSpecialPoints => hasSpecialLoyaltyPoints == true;
 
   bool get isOutOfStock => (variant?.currentStock ?? 0) == 0 && !isFreshProduct;
 
@@ -130,27 +140,38 @@ class Product extends BaseDomainModel {
 
   bool get sameQntInCart => (variant?.currentStock ?? 0) == addedQtyToCart;
 
-  String getPriceWhenHavePointsAndDiscount(){
-    if(hasSpecialLoyaltyPoints==true){
+
+  bool get isPharmProduct => type == "pharmacy";
+
+  String getPriceWhenHavePointsAndDiscount() {
+    if (hasSpecialLoyaltyPoints == true) {
       return priceHighLow ?? "";
-    }else{
+    } else {
       return priceHighLowDiscount ?? "";
     }
   }
 
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return json['type'] == 'pharmacy'
+        ? PharmacyProduct.fromJson(json)
+        : NormalProduct.fromJson(json);
+  }
 
-
-
-  Product.fromJson(Map<String, dynamic> json) {
+  Product.fromJsonBase(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    type = json['type'];
     unit = json['unit'];
     maxQnt = json['max_qty'];
-    variants = json['variants'] != null ? List<Variant>.from(json['variants'].map((x) => Variant.fromJson(x))) : null;
+    variants = json['variants'] != null
+        ? List<Variant>.from(json['variants'].map((x) => Variant.fromJson(x)))
+        : null;
     thumbnailImage = json['thumbnail_image'];
     images = json['images'].cast<String>();
     isMultiple = json['is_multiple'];
     priceHighLowDiscount = json['price_high_low_discount'];
+    prescriptionRequired = json['prescription_required'];
+    insuranceEligible = json['insurance_eligible'];
     priceHighLow = json['price_high_low'];
     hasDiscount = json['has_discount'];
     discount = json['discount'];
@@ -180,7 +201,7 @@ class Product extends BaseDomainModel {
     countReviews = json['count_reviews'];
     soldByType = json['sold_by_type'];
     soldByName = json['sold_by_name'];
-    shop = json['shop'] != null ? Shop.fromJson(json['shop']) : null;
+    shop = json['shop'] != null ? ShopCardDomainModel.fromJson(json['shop']) : null;
     isResale = json['is_resale'];
     resellerId = json['reseller_id'];
     description = json['description'];
@@ -195,6 +216,7 @@ class Product extends BaseDomainModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
+    data['type'] = type;
     data['name'] = name;
     data['thumbnail_image'] = thumbnailImage;
     data['images'] = images;
@@ -237,6 +259,8 @@ class Product extends BaseDomainModel {
     data['has_vip_offer'] = hasVipOffer;
     data['max_qty'] = maxQnt;
     data['has_shareholder_discount'] = hasShareholderDiscount;
+    data['prescription_required'] = prescriptionRequired;
+    data['insurance_eligible'] = insuranceEligible;
     return data;
   }
 }

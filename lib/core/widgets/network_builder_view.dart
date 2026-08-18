@@ -24,13 +24,13 @@ class NetworkLayerWidget extends StatefulWidget {
 }
 
 class _NetworkLayerWidgetState extends State<NetworkLayerWidget> {
-  final GenericBloc<bool> _visibilityObs  = GenericBloc<bool>(false);
+  final GenericBloc<bool> _visibilityObs = GenericBloc<bool>(false);
 
   @override
   void didUpdateWidget(covariant NetworkLayerWidget oldWidget) {
     if (!widget.isNetworkConnected) {
       _visibilityObs.onUpdateData(true);
-    }else{
+    } else {
       Future.delayed(const Duration(milliseconds: 1000), () {
         _visibilityObs.onUpdateData(false);
       });
@@ -44,7 +44,7 @@ class _NetworkLayerWidgetState extends State<NetworkLayerWidget> {
       body: Column(
         children: [
           Expanded(child: widget.child),
-          BlocBuilder<GenericBloc<bool>,GenericState<bool>>(
+          BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
               bloc: _visibilityObs,
               builder: (context, state) {
                 return Visibility(
@@ -61,8 +61,9 @@ class _NetworkLayerWidgetState extends State<NetworkLayerWidget> {
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 20),
                           child: Text(
-                            tr('noInternet',context: context),
-                            style: AppTextStyle.s20_w500(color: context.colors.primary),
+                            tr('noInternet', context: context),
+                            style: AppTextStyle.s20_w500(
+                                color: context.colors.primary),
                           ),
                         ),
                         InkWell(
@@ -71,12 +72,14 @@ class _NetworkLayerWidgetState extends State<NetworkLayerWidget> {
                             height: 45,
                             width: 200,
                             decoration: BoxDecoration(
-                                border: Border.all(color: context.colors.primary),
+                                border:
+                                    Border.all(color: context.colors.primary),
                                 borderRadius: BorderRadius.circular(20)),
                             alignment: Alignment.center,
                             child: Text(
-                              tr('tryAgain',context: context),
-                              style: AppTextStyle.s16_w500(color: context.colors.primary),
+                              tr('tryAgain', context: context),
+                              style: AppTextStyle.s16_w500(
+                                  color: context.colors.primary),
                             ),
                           ),
                         ),
@@ -84,8 +87,7 @@ class _NetworkLayerWidgetState extends State<NetworkLayerWidget> {
                     ),
                   ),
                 );
-              }
-          ),
+              }),
         ],
       ),
     );

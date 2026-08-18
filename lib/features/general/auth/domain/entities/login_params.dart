@@ -1,5 +1,3 @@
-
-
 import 'package:flutter_tdd/core/helpers/helper_methods.dart';
 
 class LoginParams {
@@ -24,8 +22,5 @@ class LoginParams {
         "device_type": deviceType,
       };
 
-
   String get deviceType => HelperMethods.instance.getDeviceType();
-
-
 }

@@ -7,23 +7,17 @@ part 'image_model.g.dart';
 
 @freezed
 @immutable
-class ImageModel extends BaseApiModel<ImageDomainModel> with _$ImageModel{
+class ImageModel extends BaseApiModel<ImageDomainModel> with _$ImageModel {
   const ImageModel._();
   @JsonSerializable(explicitToJson: true)
-  const factory ImageModel({
-    required String name ,
-    required String url
-  }) = _ImageModel;
-
+  const factory ImageModel({required String name, required String url}) =
+      _ImageModel;
 
   factory ImageModel.fromJson(Map<String, dynamic> json) =>
       _$ImageModelFromJson(json);
 
   @override
   ImageDomainModel toDomainModel() {
-    return ImageDomainModel(
-      name: name,
-      url: url
-    );
+    return ImageDomainModel(name: name, url: url);
   }
 }

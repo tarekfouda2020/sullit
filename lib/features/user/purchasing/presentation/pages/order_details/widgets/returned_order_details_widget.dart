@@ -1,6 +1,5 @@
 part of 'order_details_widgets_imports.dart';
 
-
 class ReturnedOrderDetailsWidget extends StatelessWidget {
   final Orders? order;
   const ReturnedOrderDetailsWidget({super.key, this.order});
@@ -10,9 +9,10 @@ class ReturnedOrderDetailsWidget extends StatelessWidget {
     return Column(
       children: [
         OrderINfoItemWidget(
-            title: tr('returnedDate'),
+          title: tr('returnedDate'),
           describe: DateTimeHelper.formatDate(
-              date: order?.getOrderDate ?? DateTime.now(), formatType: "d MMM yyyy - hh:mm a"),
+              date: order?.getOrderDate ?? DateTime.now(),
+              formatType: "d MMM yyyy - hh:mm a"),
           gaps: Gaps.hGap4,
         ),
         Gaps.vGap8,
@@ -22,7 +22,10 @@ class ReturnedOrderDetailsWidget extends StatelessWidget {
           gaps: Gaps.hGap4,
         ),
         Gaps.vGap8,
-        OrderINfoItemWidget(title: tr('phone'), describe: order?.customerPhone ?? "", gaps: Gaps.hGap17),
+        OrderINfoItemWidget(
+            title: tr('phone'),
+            describe: order?.customerPhone ?? "",
+            gaps: Gaps.hGap17),
         Gaps.vGap8,
         OrderINfoItemWidget(
           title: tr('refundMethod'),
@@ -32,7 +35,4 @@ class ReturnedOrderDetailsWidget extends StatelessWidget {
       ],
     );
   }
-
-
-
 }

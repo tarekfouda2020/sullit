@@ -20,7 +20,7 @@ class _ContactUsState extends State<ContactUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(title: tr('contactUs')),
+      appBar: DefaultAppBar(title: tr('contactUs')),
       body: ListView(
         padding: Dimens.paddingAll15PX,
         children: [

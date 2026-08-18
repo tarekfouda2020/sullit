@@ -30,8 +30,8 @@ class CartShimmerItemWidget extends StatelessWidget {
                   fit: BoxFit.fill,
                 ),
               ),
-              Column(
-                children: const [
+              const Column(
+                children: [
                   BuildShimmerItem(
                     height: 10,
                     width: 200,
@@ -44,11 +44,11 @@ class CartShimmerItemWidget extends StatelessWidget {
               )
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(10),
+          const Padding(
+            padding: EdgeInsets.all(10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 BuildShimmerItem(height: 10, width: 100),
                 BuildShimmerItem(
                   height: 10,

@@ -27,13 +27,15 @@ class _BrandDetailsState extends State<BrandDetails> {
           title: "${tr('brand')} ${widget.brandName}", showBack: true),
       backgroundColor: context.colors.customBackground,
       body: CustomRefreshIndicatorWidget(
-        onRefresh: () async => await controller.getBrandProducts(context, widget.brandId, 1) ,
-        child: GridViewPagination<Product>(
+        onRefresh: () async =>
+            await controller.getBrandProducts(context, widget.brandId, 1),
+        child: GridViewPagination<ProductCard>(
           pagingController: controller.productsPagingController,
           onRefresh: () async => controller.productsPagingController.refresh(),
-          firstPageProgressIndicatorBuilder: (_) => const BuildLoadingCatsProducts(),
+          firstPageProgressIndicatorBuilder: (_) =>
+              const BuildLoadingCatsProducts(),
           showNewPageProgressIndicatorAsGridChild: false,
-          noItemsFoundIndicatorBuilder: (context) =>  const BuildEmptyDataView(),
+          noItemsFoundIndicatorBuilder: (context) => const BuildEmptyDataView(),
           itemBuilder: (_, item, index) => BuildProductItem(
             productModel: item,
             onFavRefresh: () => controller.onChangeFav(item),

@@ -1,6 +1,7 @@
 part of 'bolg_details_widgets_imports.dart';
+
 class BuildBlogDetailsView extends StatelessWidget {
-final Blog blog;
+  final Blog blog;
 
   const BuildBlogDetailsView({super.key, required this.blog});
   @override
@@ -10,8 +11,9 @@ final Blog blog;
         padding: Dimens.standardPadding,
         children: [
           BuildBlogDetailsInfo(blog: blog),
-
-          BuildBlogDetailsComments(blog: blog,)
+          BuildBlogDetailsComments(
+            blog: blog,
+          )
         ],
       ),
     );

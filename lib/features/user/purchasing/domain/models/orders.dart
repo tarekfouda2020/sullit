@@ -1,12 +1,17 @@
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instruction_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_attachment_domain_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
+import 'package:flutter_tdd/features/user/purchasing/data/enums/order_type_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/enum/track_order_enum.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_discount_domain.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_display_item.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_driver_domain_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_modification_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_card_domain_model.dart';
 
 import '../enum/order_payment_type.dart';
 
@@ -31,7 +36,7 @@ class Orders extends BaseDomainModel {
   bool paymentStatus;
   String paymentStatusText;
   bool availableCancelOrder;
-  String additionalInfo;
+  String? additionalInfo;
   String paymentMethod;
   String paymentMethodConst;
   String shippingMethod;
@@ -53,6 +58,7 @@ class Orders extends BaseDomainModel {
   bool loyaltyPointsApplied;
   int loyaltyPoints;
   String loyaltyPointsValue;
+  String shopType;
   int expectedLoyaltyPoints;
   String environmentFees;
   String? driverNotes;
@@ -60,6 +66,7 @@ class Orders extends BaseDomainModel {
   String? orderSourceLabel;
   String? shippingProvider;
   String? shippingProviderLabel;
+  InsuranceCompany? insuranceCompany;
   OrderDriverDomainModel? driverModel;
   List<DeliveryInstructionModel>? instructions;
   List<OrderDiscountDomain>? orderDiscounts;
@@ -68,6 +75,21 @@ class Orders extends BaseDomainModel {
   String? deliveryImage;
   String? creationMethod;
   String? creationMethodLabel;
+  bool? isPendingReview;
+ bool? awaitingCustomerCompletion;
+   bool? requiresPrescriptionReview;
+  bool? insuranceApplied;
+  bool? allowReplacement;
+  String? cancelReason;
+  List<PharmacyAttachmentDomainModel>? insuranceAttachments;
+  List<PharmacyAttachmentDomainModel>? prescriptionAttachments;
+  String? identityDocumentFile;
+  String? requestedBy;
+  String? requestedByLabel;
+  String? pharmacyReply;
+  PharmacyBranchDomainModel? branch;
+  ShopCardDomainModel? shop;
+
 
   Orders({
     required this.id,
@@ -89,8 +111,9 @@ class Orders extends BaseDomainModel {
     required this.paymentStatus,
     required this.paymentStatusText,
     required this.availableCancelOrder,
-    required this.additionalInfo,
+    this.additionalInfo,
     required this.paymentMethod,
+    required this.shopType,
     required this.paymentMethodConst,
     required this.shippingMethod,
     required this.orderStatus,
@@ -125,6 +148,21 @@ class Orders extends BaseDomainModel {
     this.deliveryImage,
     this.creationMethod,
     this.creationMethodLabel,
+    this.isPendingReview,
+    this.awaitingCustomerCompletion,
+    this.requiresPrescriptionReview,
+    this.insuranceApplied,
+    this.allowReplacement,
+    this.insuranceAttachments,
+    this.prescriptionAttachments,
+    this.insuranceCompany,
+    this.cancelReason,
+    this.identityDocumentFile,
+    this.requestedBy,
+    this.requestedByLabel,
+    this.pharmacyReply,
+    this.branch,
+    this.shop,
   });
 
   int totalItemsCount() => orderDetails.fold(
@@ -206,6 +244,33 @@ class Orders extends BaseDomainModel {
 
   bool get isCanceled => getTrackOrderStatus == TrackOrderEnum.cancelled;
 
+  bool get isPlaced => getTrackOrderStatus == TrackOrderEnum.placed;
+
+  bool get isConfirmed => getTrackOrderStatus == TrackOrderEnum.confirmed;
+
   bool get showUnPaidOnlineOrderActions =>
       isPaymentOnline && !isPaid && !isCanceled;
+
+
+
+   OrderTypeEnum orderTypeEnum() {
+     if(shopType == "pharmacy") {
+       return OrderTypeEnum.pharmacy ;
+     }else{
+       return OrderTypeEnum.general ;
+     }
+   }
+
+   bool get  isPharmacy => orderTypeEnum() == OrderTypeEnum.pharmacy;
+
+
+  bool get pharmNormalOrder {
+
+    return  requiresPrescriptionReview == false;
+  }
+  bool get pharmOrderWithPrescription => requiresPrescriptionReview == true;
+
+  bool get pharmOrderWithInsurance => insuranceApplied == true;
+
+
 }

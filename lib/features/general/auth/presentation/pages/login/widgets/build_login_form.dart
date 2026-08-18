@@ -23,9 +23,7 @@ class BuildLoginForm extends StatelessWidget {
                       children: [
                         Expanded(
                           child: BuildInputLabel(
-                            label: state.data==1
-                                ?tr("mobile")
-                                :tr("email"),
+                            label: state.data == 1 ? tr("mobile") : tr("email"),
                           ),
                         ),
                       ],
@@ -33,25 +31,24 @@ class BuildLoginForm extends StatelessWidget {
                     state.data == 1
                         ? PhoneFiledWidget(controller: controller)
                         : GenericTextField(
-                      hint: tr("enterYourEmailHint"),
-                      fillColor: context.colors.white,
-                      contentPadding: Dimens.paddingH12V16,
-                      enableBorderColor: context.colors.white,
-                      focusBorderColor: context.colors.borderColor,
-                      controller: controller.email,
-                      fieldTypes: FieldTypes.normal,
-                      type: TextInputType.emailAddress,
-                      action: TextInputAction.next,
-                      validate: (value) => value?.validateEmail(),
-                      margin: Dimens.headerTitlePadding,
-                      radius: Dimens.borderRadius40PX,
-                    ),
+                            hint: tr("enterYourEmailHint"),
+                            fillColor: context.colors.white,
+                            contentPadding: Dimens.paddingH12V16,
+                            enableBorderColor: context.colors.white,
+                            focusBorderColor: context.colors.borderColor,
+                            controller: controller.email,
+                            fieldTypes: FieldTypes.normal,
+                            type: TextInputType.emailAddress,
+                            action: TextInputAction.next,
+                            validate: (value) => value?.validateEmail(),
+                            margin: Dimens.headerTitlePadding,
+                            radius: Dimens.borderRadius40PX,
+                          ),
                   ],
                 ),
               );
             },
           ),
-
           BuildInputLabel(
             label: tr("password"),
           ),
@@ -66,8 +63,8 @@ class BuildLoginForm extends StatelessWidget {
                 focusBorderColor: context.colors.white,
                 margin: Dimens.headerTitlePadding,
                 controller: controller.password,
-                fieldTypes: !state.data ? FieldTypes.password : FieldTypes
-                    .normal,
+                fieldTypes:
+                    !state.data ? FieldTypes.password : FieldTypes.normal,
                 type: TextInputType.visiblePassword,
                 onSubmit: () => controller.onSubmit(context),
                 action: TextInputAction.done,
@@ -77,8 +74,9 @@ class BuildLoginForm extends StatelessWidget {
                       controller.passwordCubit.onUpdateData(!state.data),
                   // splashColor: Colors.transparent,
                   icon: Icon(
-                    !state.data ? Icons.visibility_outlined : Icons
-                        .visibility_off_outlined,
+                    !state.data
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
                     size: 17.sp,
                     color: context.colors.textColor,
                   ),
@@ -90,6 +88,4 @@ class BuildLoginForm extends StatelessWidget {
       ),
     );
   }
-
-
 }

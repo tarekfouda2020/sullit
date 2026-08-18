@@ -1,4 +1,5 @@
 enum ResType { model, list, type }
+
 enum RequestMethod { get, post, put, patch, delete }
 
 class HttpRequestModel {

@@ -14,7 +14,7 @@ class _BlogDetailsState extends State<BlogDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar:  DefaultAppBar(title: tr("blogDetails")),
+      appBar: DefaultAppBar(title: tr("blogDetails")),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

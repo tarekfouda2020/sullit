@@ -19,11 +19,11 @@ class _ProOffersState extends State<ProOffers> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 15,right: 15,bottom: 8),
+              padding: const EdgeInsets.only(left: 15, right: 15, bottom: 8),
               child: CustomSearchFiledWidget(
                 txtController: controller.searchFieldCtr,
-                onPressSearch: () =>controller.onPressSearch(context),
-                onChange: (value) => controller.whileWriting(value) ,
+                onPressSearch: () => controller.onPressSearch(context),
+                onChange: (value) => controller.whileWriting(value),
                 onPressClear: () => controller.callProductsSearch(),
                 height: Dimens.dp50,
                 hint: tr("search_in_offers"),
@@ -38,7 +38,7 @@ class _ProOffersState extends State<ProOffers> {
             Expanded(
               child: CustomRefreshIndicatorWidget(
                 onRefresh: () async => controller.getVipOffers(1),
-                child: GridViewPagination<Product>(
+                child: GridViewPagination<ProductCard>(
                   pagingController: controller.vipOffersPagingController,
                   padding: EdgeInsets.only(
                       left: 15,

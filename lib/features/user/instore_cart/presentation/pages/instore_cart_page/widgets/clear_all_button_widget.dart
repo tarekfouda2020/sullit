@@ -20,8 +20,9 @@ class ClearAllButtonWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             spacing: 5,
             children: [
-              Text("clear all",
-              style: AppTextStyle.s15_w500(color: context.colors.primary),
+              Text(
+                tr('clearAll'),
+                style: AppTextStyle.s15_w500(color: context.colors.primary),
               ),
               SvgPicture.asset(
                 Res.trashIcon,

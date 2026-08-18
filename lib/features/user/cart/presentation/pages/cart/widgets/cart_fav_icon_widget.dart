@@ -1,18 +1,17 @@
 part of 'cart_widgets_imports.dart';
 
 class CartFavIconWidget extends StatefulWidget {
-  final CartItem cartItem;
+  final GeneralCartItem cartItem;
   final CartController controller;
 
-  const CartFavIconWidget({super.key, required this.cartItem, required this.controller});
+  const CartFavIconWidget(
+      {super.key, required this.cartItem, required this.controller});
 
   @override
   State<CartFavIconWidget> createState() => _CartFavIconWidgetState();
 }
 
 class _CartFavIconWidgetState extends State<CartFavIconWidget> {
-
-
   final GenericBloc<bool> showLoading = GenericBloc<bool>(false);
 
   @override
@@ -27,17 +26,17 @@ class _CartFavIconWidgetState extends State<CartFavIconWidget> {
             changeBgColor: false,
             margin: EdgeInsets.zero,
             checkValue: widget.cartItem.isWishlist,
-            onTap: () =>
-                ProductsHelper().toggleFavourite(
-                  id: widget.cartItem.productId,
-                  loadingBloc: showLoading,
-                  context: context,
-                  onRefresh: () {
-                    widget.cartItem.isWishlist = !widget.cartItem.isWishlist;
-                    widget.controller.cartItemsBloc.onUpdateData(widget.controller.cartItemsBloc.state.data);
-                    widget.controller.getCartItems();
-                  },
-                ),
+            onTap: () => ProductsHelper().toggleFavourite(
+              id: widget.cartItem.productId,
+              loadingBloc: showLoading,
+              context: context,
+              onRefresh: () {
+                widget.cartItem.isWishlist = !widget.cartItem.isWishlist;
+                widget.controller.cartItemsBloc
+                    .onUpdateData(widget.controller.cartItemsBloc.state.data);
+                widget.controller.getCartItems();
+              },
+            ),
           ),
           child: const LoadingIconWidget(margin: EdgeInsets.zero),
         );

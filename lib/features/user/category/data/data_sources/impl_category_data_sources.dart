@@ -5,7 +5,7 @@ import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
 import 'package:flutter_tdd/core/models/api_models/brand_model/brand_model.dart';
-import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
+import 'package:flutter_tdd/features/user/products/data/models/product_card_model/product_card_model.dart';
 import 'package:flutter_tdd/features/user/category/data/data_sources/category_data_sources.dart';
 import 'package:flutter_tdd/features/user/category/data/models/category_model/category_model.dart';
 import 'package:flutter_tdd/features/user/category/data/models/sub_category_model/sub_category_model.dart';
@@ -32,8 +32,9 @@ class ImplCategoryDataSources extends CategoryDataSources {
     );
     return await GenericHttpImpl<List<CategoryModel>>()(model);
   }
+
   @override
-  Future<Either<Failure, List<CategoryModel>>> getSideSubCats(int param) async{
+  Future<Either<Failure, List<CategoryModel>>> getSideSubCats(int param) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getSideSubCats(param),
       requestMethod: RequestMethod.get,
@@ -45,6 +46,7 @@ class ImplCategoryDataSources extends CategoryDataSources {
     );
     return await GenericHttpImpl<List<CategoryModel>>()(model);
   }
+
   @override
   Future<Either<Failure, List<BrandModel>>> getBrands(
       BrandsParams params) async {
@@ -66,28 +68,30 @@ class ImplCategoryDataSources extends CategoryDataSources {
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getBrandProducts(BrandDetailsParams params) async {
+  Future<Either<Failure, List<ProductCardModel>>> getBrandProducts(
+      BrandDetailsParams params) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.brandDetails+params.url,
+      url: ApiNames.getCategoryProducts,
       requestMethod: RequestMethod.get,
+      requestBody: params.toJson(),
       refresh: params.refresh,
       responseType: ResType.list,
-      toJsonFunc: (json) => List<ProductModel>.from(
+      toJsonFunc: (json) => List<ProductCardModel>.from(
         json.map(
-          (e) => ProductModel.fromJson(e),
+          (e) => ProductCardModel.fromJson(e),
         ),
       ),
       responseKey: (data) => data["data"]["section_products"]["products"],
       errorFunc: (data) => data["msg"],
     );
-    return await GenericHttpImpl<List<ProductModel>>().call(model);
+    return await GenericHttpImpl<List<ProductCardModel>>().call(model);
   }
 
   @override
   Future<Either<Failure, SubCategoryModel>> getSubCategories(
       SearchProductsParams params) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.getCategoryProducts ,
+      url: ApiNames.getCategoryProducts,
       requestMethod: RequestMethod.get,
       responseType: ResType.model,
       requestBody: params.toJson(),
@@ -99,22 +103,19 @@ class ImplCategoryDataSources extends CategoryDataSources {
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getCategoryProducts(
+  Future<Either<Failure, List<ProductCardModel>>> getCategoryProducts(
       SearchProductsParams params) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.getCategoryProducts ,
+      url: ApiNames.getCategoryProducts,
       requestMethod: RequestMethod.get,
       refresh: params.refresh,
       responseType: ResType.list,
       requestBody: params.toJson(),
-      toJsonFunc: (json) => List<ProductModel>.from(
-        json.map((e) => ProductModel.fromJson(e)),
+      toJsonFunc: (json) => List<ProductCardModel>.from(
+        json.map((e) => ProductCardModel.fromJson(e)),
       ),
-      responseKey: (data) =>
-          data["data"]["section_products"]["products"],
+      responseKey: (data) => data["data"]["section_products"]["products"],
     );
-    return await GenericHttpImpl<List<ProductModel>>().call(model);
+    return await GenericHttpImpl<List<ProductCardModel>>().call(model);
   }
-
-
 }

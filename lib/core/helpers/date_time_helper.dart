@@ -10,25 +10,23 @@ import 'package:intl/intl.dart';
 import '../../features/user/base/data/enums/lang_type_enum.dart';
 
 class DateTimeHelper {
-
-
-  static String formatDate({required DateTime date, required String formatType}) {
-   try{
-    // return  DateFormat(formatType,_getLang()).format(date);
-    return  DateFormat(formatType,"en").format(date);
-   } catch(e){
-     return   DateFormat(formatType,"en").format(date);
-   }
+  static String formatDate(
+      {required DateTime date, required String formatType}) {
+    try {
+      // return  DateFormat(formatType,_getLang()).format(date);
+      return DateFormat(formatType, "en").format(date);
+    } catch (e) {
+      return DateFormat(formatType, "en").format(date);
+    }
   }
 
-
   static DateTime convertToDateTime({required String strDate}) {
-    String cleaned = strDate.replaceAll(RegExp(r"\s(AM|PM)$",caseSensitive: false), "");
+    String cleaned =
+        strDate.replaceAll(RegExp(r"\s(AM|PM)$", caseSensitive: false), "");
     return DateFormat("dd-MM-yyyy HH:mm").parse(cleaned);
   }
 
-
-  static String _getLang(){
+  static String _getLang() {
     var lang = "en";
     var code = GlobalState.instance.get(LangCodeHelper.langKey);
     if (code == LangTypeEnum.arabic.getLangCode()) {
@@ -43,7 +41,6 @@ class DateTimeHelper {
     return lang;
   }
 
-
   static String getDayOfWeek(DateTime date) {
     const days = [
       'Monday',
@@ -57,26 +54,28 @@ class DateTimeHelper {
     return days[date.weekday - 1];
   }
 
-
   static String getDate(String backendDate, {String? formatType}) {
     try {
       final context = getIt<GlobalContext>().context();
-      final locale = context.read<DeviceCubit>().state.model.locale.languageCode;
+      final locale =
+          context.read<DeviceCubit>().state.model.locale.languageCode;
 
       DateTime? parsed;
 
       // Normalize AM/PM
       String normalizeAmPm(String input) => input.replaceAllMapped(
-        RegExp(r'\b(am|pm)\b', caseSensitive: false),
+            RegExp(r'\b(am|pm)\b', caseSensitive: false),
             (m) => m.group(0)!.toUpperCase(),
-      );
+          );
       String normalizedDate = normalizeAmPm(backendDate.trim());
 
       // --- 🩹 Fix invalid cases like "13:55 PM" or "00:30 AM" ---
       final hourMatch = RegExp(r'(\d{1,2}):\d{2}').firstMatch(normalizedDate);
       if (hourMatch != null) {
         final hour = int.tryParse(hourMatch.group(1)!);
-        if (hour != null && hour > 12 && normalizedDate.contains(RegExp(r'AM|PM'))) {
+        if (hour != null &&
+            hour > 12 &&
+            normalizedDate.contains(RegExp(r'AM|PM'))) {
           // Convert to valid 12-hour format
           final correctedHour = hour - 12;
           normalizedDate = normalizedDate.replaceFirst(
@@ -133,33 +132,48 @@ class DateTimeHelper {
     }
   }
 
-
   static String _toArabicNumbers(String input) {
-    const english = ['0','1','2','3','4','5','6','7','8','9'];
-    const arabic  = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+    const english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    const arabic = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
 
     for (int i = 0; i < english.length; i++) {
       input = input.replaceAll(english[i], arabic[i]);
     }
-    
+
     // Also convert month names to Arabic if they exist
     const englishMonths = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
     ];
     const arabicMonths = [
-      'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
-      'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'
+      'يناير',
+      'فبراير',
+      'مارس',
+      'أبريل',
+      'مايو',
+      'يونيو',
+      'يوليو',
+      'أغسطس',
+      'سبتمبر',
+      'أكتوبر',
+      'نوفمبر',
+      'ديسمبر'
     ];
-    
+
     for (int i = 0; i < englishMonths.length; i++) {
       input = input.replaceAll(englishMonths[i], arabicMonths[i]);
     }
-    
+
     return input;
   }
-
-
-
-
 }

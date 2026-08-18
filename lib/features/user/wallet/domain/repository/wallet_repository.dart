@@ -13,5 +13,6 @@ abstract class WalletRepository {
 
   Future<Either<Failure, String>> rechargeWallet(RechargeWalletParams param);
 
-  Future<Either<Failure, List<WalletTransaction>>> walletTransactions(GenericPaginateParams param);
+  Future<Either<Failure, List<WalletTransaction>>> walletTransactions(
+      GenericPaginateParams param);
 }

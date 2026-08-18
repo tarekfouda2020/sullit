@@ -26,10 +26,10 @@ class AppLightTheme extends AppTheme {
           elevation: 0,
           centerTitle: true,
           // titleTextStyle: textTheme.headline2!.copyWith(color: _colorsLight.black),
-                systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarBrightness: Brightness.dark,
-          statusBarIconBrightness: Brightness.dark),
+          systemOverlayStyle: const SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+              statusBarBrightness: Brightness.dark,
+              statusBarIconBrightness: Brightness.dark),
           iconTheme: IconThemeData(color: _colorsLight.black, size: 21),
         ),
         inputDecorationTheme: const InputDecorationTheme(
@@ -90,8 +90,8 @@ class AppLightTheme extends AppTheme {
         onError: _colorsLight.white,
         background: _colorsLight.background,
         onBackground: _colorsLight.black,
-        surface: _colorsLight.primary,
-        onSurface: _colorsLight.white,
+        surface: _colorsLight.background,
+        onSurface: _colorsLight.black,
         brightness: Brightness.light,
       );
 }

@@ -11,7 +11,7 @@ _$_ShippingSummaryModel _$$_ShippingSummaryModelFromJson(
     _$_ShippingSummaryModel(
       subtotal: json['subtotal'] as String,
       tax: json['tax'] as String,
-      shipping: json['shipping'] as String,
+      shipping: json['shipping'] as String?,
       couponDiscount: json['coupon_discount'] as String,
       calTotal: (json['calculable_total'] as num).toDouble(),
       total: json['total'] as String,
@@ -19,10 +19,10 @@ _$_ShippingSummaryModel _$$_ShippingSummaryModelFromJson(
       couponApplied: json['coupon_applied'] as bool?,
       totalItems: (json['total_items'] as num).toInt(),
       bagsCount: (json['bag_count'] as num).toInt(),
-      minimumOrderAmountStatus: json['minimum_order_amount_status'] as bool,
-      minimumOrderAmountMsg: json['minimum_order_amount_msg'] as String,
+      minimumOrderAmountStatus: json['minimum_order_amount_status'] as bool?,
+      minimumOrderAmountMsg: json['minimum_order_amount_msg'] as String?,
       minimumOrderAmountAmount:
-          (json['minimum_order_amount'] as num).toDouble(),
+          (json['minimum_order_amount'] as num?)?.toDouble(),
       walletSystemActive: json['wallet_system_active'] as bool,
       walletBalance: json['wallet_balance'] as String,
       walletBalanceValue: (json['wallet_balance_value'] as num).toDouble(),
@@ -30,15 +30,25 @@ _$_ShippingSummaryModel _$$_ShippingSummaryModelFromJson(
       avilableCashOnDelivery: json['avilable_cash_on_delivery'] as bool,
       serviceFee: json['service_fees'] as String,
       technologyFees: json['technology_fees'] as String,
-      vatPercentage: json['vat_percentage '] as String,
+      vatPercentage: readVatPercentage(json, 'vatPercentage') as String,
       vatFeeAmount: json['vat_fee_amount'] as String,
       environmentFees: json['environment_fees'] as String,
-      items: (json['items'] as List<dynamic>)
-          .map((e) => ShippingItemModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      items: (json['items'] as List<dynamic>?)
+              ?.map(
+                  (e) => ShippingItemModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
       loyaltyPointsValue: json['loyalty_points_value'] as String?,
       loyaltyPointsApplied: json['loyalty_points_applied'] as bool?,
       loyaltyPoints: (json['loyalty_points'] as num?)?.toInt(),
+      prescriptionRequired: json['prescription_required'] as bool?,
+      insuranceEligible: json['insurance_eligible'] as bool?,
+      totalFeeAmount: json['total_fee_amount'] as String?,
+      giftCardApplied: json['gift_card_applied'] as bool?,
+      giftCardValid: json['gift_card_valid'] as bool?,
+      giftCardValue: json['gift_card_value'] as String?,
+      appliedGiftCard: (json['applied_gift_card'] as num?)?.toDouble(),
+      giftCardCode: json['gift_card_code'] as String?,
       expectedLoyaltyPoints: (json['expected_loyalty_points'] as num).toInt(),
       orderDiscountTypes: (json['order_discounts'] as List<dynamic>?)
           ?.map((e) =>
@@ -69,13 +79,21 @@ Map<String, dynamic> _$$_ShippingSummaryModelToJson(
       'avilable_cash_on_delivery': instance.avilableCashOnDelivery,
       'service_fees': instance.serviceFee,
       'technology_fees': instance.technologyFees,
-      'vat_percentage ': instance.vatPercentage,
+      'vatPercentage': instance.vatPercentage,
       'vat_fee_amount': instance.vatFeeAmount,
       'environment_fees': instance.environmentFees,
-      'items': instance.items.map((e) => e.toJson()).toList(),
+      'items': instance.items?.map((e) => e.toJson()).toList(),
       'loyalty_points_value': instance.loyaltyPointsValue,
       'loyalty_points_applied': instance.loyaltyPointsApplied,
       'loyalty_points': instance.loyaltyPoints,
+      'prescription_required': instance.prescriptionRequired,
+      'insurance_eligible': instance.insuranceEligible,
+      'total_fee_amount': instance.totalFeeAmount,
+      'gift_card_applied': instance.giftCardApplied,
+      'gift_card_valid': instance.giftCardValid,
+      'gift_card_value': instance.giftCardValue,
+      'applied_gift_card': instance.appliedGiftCard,
+      'gift_card_code': instance.giftCardCode,
       'expected_loyalty_points': instance.expectedLoyaltyPoints,
       'order_discounts':
           instance.orderDiscountTypes?.map((e) => e.toJson()).toList(),

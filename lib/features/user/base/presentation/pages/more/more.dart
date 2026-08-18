@@ -15,7 +15,7 @@ class _MoreState extends State<More> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    controller = MoreController(context,widget.homeController);
+    controller = MoreController(context, widget.homeController);
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -24,7 +24,8 @@ class _MoreState extends State<More> with WidgetsBindingObserver {
     super.didChangeAppLifecycleState(state);
     if (state == AppLifecycleState.paused) {
       controller.wasInBackground = true;
-    } else if (state == AppLifecycleState.resumed && controller.wasInBackground) {
+    } else if (state == AppLifecycleState.resumed &&
+        controller.wasInBackground) {
       controller.wasInBackground = false;
       controller.refreshNotificationStatus();
     }
@@ -36,13 +37,12 @@ class _MoreState extends State<More> with WidgetsBindingObserver {
     WidgetsBinding.instance.removeObserver(this);
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
-      appBar: DefaultAppBar(title: tr('more'),bgColor: context.colors.white,showBack: false),
+      appBar: DefaultAppBar(
+          title: tr('more'), bgColor: context.colors.white, showBack: false),
       body: ListView(
         padding: Dimens.paddingHorizontal20PX,
         children: [
@@ -56,6 +56,7 @@ class _MoreState extends State<More> with WidgetsBindingObserver {
           // ),
           Gaps.vGap16,
           ShortCutSectionWidget(controller: controller),
+          MyHealthDashboardSectionWidget(controller: controller),
           ShopByWidget(controller: controller),
           SupportSectionWidget(controller: controller),
           OtherSectionWidget(controller: controller),

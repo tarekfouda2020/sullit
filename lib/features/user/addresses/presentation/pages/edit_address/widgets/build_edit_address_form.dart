@@ -22,7 +22,7 @@ class BuildEditAddressForm extends StatelessWidget {
             type: TextInputType.none,
             controller: controller.locationController,
             fieldTypes: FieldTypes.clickable,
-            onTab: ()  => controller.routeToDetectLocation(context),
+            onTab: () => controller.routeToDetectLocation(context),
             action: TextInputAction.done,
             fillColor: context.colors.white,
             validate: (value) => value?.validateEmpty(),
@@ -143,7 +143,7 @@ class BuildEditAddressForm extends StatelessWidget {
             fillColor: context.colors.white,
             textSize: 16.sp,
             useName: true,
-            onFind: (data)=> controller.getAddressTypes(),
+            onFind: (data) => controller.getAddressTypes(),
             fontSize: 16.sp,
             onChange: (value) => controller.onSelectAddressType(value),
             validate: (value) => validateDropDown(value),
@@ -223,7 +223,7 @@ class BuildEditAddressForm extends StatelessWidget {
             margin: Dimens.paddingVertical10PX,
             action: TextInputAction.next,
             validate: (value) => value?.validateEmpty(),
-            hint:tr("buildingName"),
+            hint: tr("buildingName"),
           ),
           BuildInputLabel(
             label: tr("flatNo"),
@@ -246,7 +246,7 @@ class BuildEditAddressForm extends StatelessWidget {
             child: BlocBuilder<GenericBloc<package.Country?>,
                 GenericState<package.Country?>>(
               builder: (context, state) {
-                return  GenericTextField(
+                return GenericTextField(
                   controller: controller.phoneController,
                   fieldTypes: FieldTypes.normal,
                   fillColor: context.colors.white,
@@ -269,5 +269,4 @@ class BuildEditAddressForm extends StatelessWidget {
       ),
     );
   }
-
 }

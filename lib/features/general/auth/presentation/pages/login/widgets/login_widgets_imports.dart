@@ -20,7 +20,7 @@ import 'package:flutter_tdd/res.dart';
 
 import '../login_imports.dart';
 
-part'build_do_not_have_account.dart';
+part 'build_do_not_have_account.dart';
 part 'build_forget_password_view.dart';
 part 'build_login_button.dart';
 part 'build_login_form.dart';

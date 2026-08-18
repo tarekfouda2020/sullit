@@ -1,10 +1,9 @@
 part of 'profile_widgets_imports.dart';
 
-
 class LogoutButtonWidget extends StatelessWidget {
   final ProfileController controller;
   final EdgeInsets? margin;
-  const LogoutButtonWidget({super.key, required this.controller,  this.margin});
+  const LogoutButtonWidget({super.key, required this.controller, this.margin});
 
   @override
   Widget build(BuildContext context) {

@@ -2,8 +2,10 @@ part of 'notifications_widgets_imports.dart';
 
 class BuildNotificationsItem extends StatelessWidget {
   final NotificationDomainModel notification;
- final NotificationsController controller;
-  const BuildNotificationsItem({Key? key, required this.notification, required this.controller}) : super(key: key);
+  final NotificationsController controller;
+  const BuildNotificationsItem(
+      {Key? key, required this.notification, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +18,7 @@ class BuildNotificationsItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
-                Res.newSplashImage,
-                width: 45,
-                height: 45
-            ),
+            Image.asset(Res.newSplashImage, width: 45, height: 45),
             Gaps.hGap10,
             Expanded(
               child: Column(
@@ -29,7 +27,8 @@ class BuildNotificationsItem extends StatelessWidget {
                   Text(
                     /// edit from back end
                     notification.text,
-                    style: AppTextStyle.s14_w400(color: context.colors.black).copyWith(height: 1.3),
+                    style: AppTextStyle.s14_w400(color: context.colors.black)
+                        .copyWith(height: 1.3),
                   ),
                   Gaps.vGap7,
                   Text(

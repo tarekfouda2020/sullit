@@ -17,7 +17,7 @@ class BuildAddNewProduct extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              margin:Dimens.paddingVertical10PX,
+              margin: Dimens.paddingVertical10PX,
               padding: Dimens.paddingAll10PX,
               decoration: BoxDecoration(
                 color: context.colors.grey,

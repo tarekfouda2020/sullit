@@ -1,18 +1,30 @@
 part of 'wishlist_imports.dart';
 
 class WishlistController {
-  final GenericBloc<List<Product>> wishlistBloc = GenericBloc([]);
+  final PagingController<int, ProductCard> pagingController =
+      PagingController(firstPageKey: 1);
 
-  void getWishlist({bool refresh = true}) async {
-    return await GetWishlist()(refresh)
-        .then((value) => wishlistBloc.onUpdateData(value));
+  WishlistController() {
+    getWishlist(refresh: false);
+    pagingController.addPageRequestListener((pageKey) {
+      getWishlist();
+    });
   }
 
-  void onChangeFav(Product item) {
-    var allWishList = wishlistBloc.state.data;
-    item.isWishlist = !item.isWishlist!;
+  Future<void> getWishlist({bool refresh = true}) async {
+    var data = await GetWishlist()(refresh);
+    pagingController.itemList = [];
+    pagingController.appendLastPage(data);
+  }
+
+  void onChangeFav(ProductCard item) {
+    var allWishList = pagingController.itemList ?? [];
+    item.isWishlist = !item.isWishlist;
     allWishList.remove(item);
-    wishlistBloc.onUpdateData(allWishList);
+    pagingController.itemList = [...allWishList];
   }
 
+  void dispose() {
+    pagingController.dispose();
+  }
 }

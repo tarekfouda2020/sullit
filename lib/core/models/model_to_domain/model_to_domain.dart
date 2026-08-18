@@ -8,12 +8,14 @@ mixin ModelToDomain {
   /// example:
   /// MyResult<BlobModel> result = await iBlobRemoteSource.uploadAttachment(file);
   /// return toDomainResult<Blob, BlobModel>(result);
-  Either<Failure, D> toDomainResult<D extends BaseDomainModel, M extends BaseApiModel>(Either<Failure, M> result) {
+  Either<Failure, D>
+      toDomainResult<D extends BaseDomainModel, M extends BaseApiModel>(
+          Either<Failure, M> result) {
     return result.fold(
-          (error) {
+      (error) {
         return Left(error);
       },
-          (data) {
+      (data) {
         return Right(data.toDomainModel() as D);
       },
     );
@@ -21,15 +23,15 @@ mixin ModelToDomain {
 
   /// MyResult<List<BlobModel>> result = await iBlobRemoteSource.uploadAttachment(file);
   /// return toDomainResultList<Blob, BlobModel>(result);
-  Either< Failure , List<D>> toDomainResultList<D, M extends BaseApiModel>(Either<Failure, List<M>> result) {
+  Either<Failure, List<D>> toDomainResultList<D, M extends BaseApiModel>(
+      Either<Failure, List<M>> result) {
     return result.fold(
-          (error) {
+      (error) {
         return Left(error);
       },
-          (data) {
+      (data) {
         return Right(data.map((e) => (e.toDomainModel() as D)).toList());
       },
     );
-
   }
 }

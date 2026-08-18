@@ -24,7 +24,7 @@ mixin _$SaleDetailsModel {
   String get title => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
   String get banner => throw _privateConstructorUsedError;
-  List<ProductModel> get products => throw _privateConstructorUsedError;
+  List<ProductCardModel> get products => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +43,7 @@ abstract class $SaleDetailsModelCopyWith<$Res> {
       String title,
       DateTime date,
       String banner,
-      List<ProductModel> products});
+      List<ProductCardModel> products});
 }
 
 /// @nodoc
@@ -85,7 +85,7 @@ class _$SaleDetailsModelCopyWithImpl<$Res, $Val extends SaleDetailsModel>
       products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+              as List<ProductCardModel>,
     ) as $Val);
   }
 }
@@ -103,7 +103,7 @@ abstract class _$$_SaleDetailsModelCopyWith<$Res>
       String title,
       DateTime date,
       String banner,
-      List<ProductModel> products});
+      List<ProductCardModel> products});
 }
 
 /// @nodoc
@@ -143,7 +143,7 @@ class __$$_SaleDetailsModelCopyWithImpl<$Res>
       products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+              as List<ProductCardModel>,
     ));
   }
 }
@@ -157,7 +157,7 @@ class _$_SaleDetailsModel extends _SaleDetailsModel {
       required this.title,
       required this.date,
       required this.banner,
-      required final List<ProductModel> products})
+      required final List<ProductCardModel> products})
       : _products = products,
         super._();
 
@@ -172,9 +172,9 @@ class _$_SaleDetailsModel extends _SaleDetailsModel {
   final DateTime date;
   @override
   final String banner;
-  final List<ProductModel> _products;
+  final List<ProductCardModel> _products;
   @override
-  List<ProductModel> get products {
+  List<ProductCardModel> get products {
     if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_products);
@@ -222,7 +222,7 @@ abstract class _SaleDetailsModel extends SaleDetailsModel {
       required final String title,
       required final DateTime date,
       required final String banner,
-      required final List<ProductModel> products}) = _$_SaleDetailsModel;
+      required final List<ProductCardModel> products}) = _$_SaleDetailsModel;
   const _SaleDetailsModel._() : super._();
 
   factory _SaleDetailsModel.fromJson(Map<String, dynamic> json) =
@@ -237,7 +237,7 @@ abstract class _SaleDetailsModel extends SaleDetailsModel {
   @override
   String get banner;
   @override
-  List<ProductModel> get products;
+  List<ProductCardModel> get products;
   @override
   @JsonKey(ignore: true)
   _$$_SaleDetailsModelCopyWith<_$_SaleDetailsModel> get copyWith =>

@@ -8,7 +8,9 @@ class BuildTableHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: Dimens.dp10,horizontal: Dimens.dp5).r,
+      padding: const EdgeInsets.symmetric(
+              vertical: Dimens.dp10, horizontal: Dimens.dp5)
+          .r,
       child: Text(
         title,
         style: AppTextStyle.s13_w500(

@@ -5,13 +5,14 @@ class TrackOrderController {
 
   final GenericBloc<Orders?> orderBloc = GenericBloc(null);
   final GenericBloc<bool> orderSummaryVisible = GenericBloc(false);
-   GenericBloc<TrackOrderModel?> get trackOrderCubit => OrdersHelper.instance.trackOrderCubit;
+  GenericBloc<TrackOrderModel?> get trackOrderCubit =>
+      OrdersHelper.instance.trackOrderCubit;
   final TextEditingController orderCodeController = TextEditingController();
 
   TrackOrderController(this.orderId);
 
   Future<void> getTrackOrder() async {
-  await OrdersHelper.instance.getTrackOrder(id: orderId);
+    await OrdersHelper.instance.getTrackOrder(id: orderId);
   }
 
   final List<TrackOrderEnum> trackOrderStatus = [

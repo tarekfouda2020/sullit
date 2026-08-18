@@ -2,10 +2,10 @@ part of 'order_details_imports.dart';
 
 class OrderDetailsPage extends StatefulWidget {
   final bool isReturnedOrder;
-  final Orders order;
+  final int id;
 
   const OrderDetailsPage(
-      {super.key, required this.isReturnedOrder, required this.order});
+      {super.key, required this.isReturnedOrder, required this.id});
 
   @override
   State<OrderDetailsPage> createState() => _OrderDetailsPageState();
@@ -17,7 +17,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
   @override
   void initState() {
     super.initState();
-    controller = OrderDetailsPageController(widget.order);
+    controller = OrderDetailsPageController(widget.id);
   }
 
   @override
@@ -28,9 +28,12 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
       body: BlocBuilder<GenericBloc<Orders?>, GenericState<Orders?>>(
         bloc: controller.orderDetailsBloc,
         builder: (context, state) {
+          if (state.data == null) {
+            return const OrderDetailsShimmerWidget();
+          }
           return CustomRefreshIndicatorWidget(
             onRefresh: () async =>
-                await controller.getOrderDetails(widget.order.id),
+                await controller.getOrderDetails(widget.id),
             child: ListView(
               padding: Dimens.paddingHorizontal20PX,
               controller: controller.scrollController,
@@ -87,7 +90,8 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                       child: Expanded(
                         child: DefaultButton(
                           title: tr('cancel'),
-                          onTap: () => controller.cancelOrder(context, widget.order),
+                          onTap: () =>
+                              controller.cancelOrder(context),
                           margin: EdgeInsets.zero,
                           color: context.colors.gray8,
                           height: Dimens.dp40,

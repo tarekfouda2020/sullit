@@ -27,12 +27,11 @@ class OrderDiscount extends BaseApiModel<OrderDiscountDomain>
   @override
   OrderDiscountDomain toDomainModel() {
     return OrderDiscountDomain(
-      id: id,
-      typeLabel: typeLabel,
-      type: type,
-      discount: discount,
-      discountValue: discountValue,
-      typeDescription: typeDescription
-    );
+        id: id,
+        typeLabel: typeLabel,
+        type: type,
+        discount: discount,
+        discountValue: discountValue,
+        typeDescription: typeDescription);
   }
 }

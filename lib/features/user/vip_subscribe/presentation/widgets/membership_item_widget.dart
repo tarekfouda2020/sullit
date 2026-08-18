@@ -41,7 +41,8 @@ class MembershipItemWidget extends StatelessWidget {
         children: [
           Container(
             margin: const EdgeInsets.only(bottom: 12),
-            padding: const EdgeInsetsDirectional.only(start: 22, end: 15, top: 15, bottom: 13),
+            padding: const EdgeInsetsDirectional.only(
+                start: 22, end: 15, top: 15, bottom: 13),
             decoration: CustomDecoration(
               radius: BorderRadius.circular(12),
             ).copyWith(
@@ -49,17 +50,20 @@ class MembershipItemWidget extends StatelessWidget {
               border: model.subscription != null
                   ? null
                   : Border.all(
-                      color: model.isSelected ? context.colors.primary : context.colors.borderColor,
+                      color: model.isSelected
+                          ? context.colors.primary
+                          : context.colors.borderColor,
                       width: 1,
                     ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if(model.byInvite == true)
-                Text(model.inviteLabel ?? "",
-                style: AppTextStyle.s16_w500(color: context.colors.primary),
-                ),
+                if (model.byInvite == true)
+                  Text(
+                    model.inviteLabel ?? "",
+                    style: AppTextStyle.s16_w500(color: context.colors.primary),
+                  ),
                 Gaps.vGap10,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,45 +88,57 @@ class MembershipItemWidget extends StatelessWidget {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                              color: model.isSelected ? context.colors.primary : context.colors.textColor, width: 1.5),
+                              color: model.isSelected
+                                  ? context.colors.primary
+                                  : context.colors.textColor,
+                              width: 1.5),
                         ),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: model.isSelected ? context.colors.primary : Colors.transparent,
+                              color: model.isSelected
+                                  ? context.colors.primary
+                                  : Colors.transparent,
                               shape: BoxShape.circle),
                         ),
                       ),
                     )
                   ],
                 ),
-                Visibility(visible: model.subscription == null, child: Gaps.vGap12),
-                if(model.byInvite == false)
-                Row(
-                  children: [
-                    DirhamPrice(
-                      amount: model.price,
-                      textStyle: AppTextStyle.s22_w600(color: context.colors.primary),
-                      currencyStyle:AppTextStyle.s24_w400(color: context.colors.primary) ,
-                    ),
-                    Text(
-                      "/${model.duration.capitalize}",
-                      style: AppTextStyle.s22_w300(color: context.colors.primary),
-                    ),
-                  ],
-                ),
+                Visibility(
+                    visible: model.subscription == null, child: Gaps.vGap12),
+                if (model.byInvite == false)
+                  Row(
+                    children: [
+                      DirhamPrice(
+                        amount: model.price,
+                        textStyle: AppTextStyle.s22_w600(
+                            color: context.colors.primary),
+                        currencyStyle: AppTextStyle.s24_w400(
+                            color: context.colors.primary),
+                      ),
+                      Text(
+                        "/${model.duration.capitalize}",
+                        style: AppTextStyle.s22_w300(
+                            color: context.colors.primary),
+                      ),
+                    ],
+                  ),
                 Gaps.vGap8,
                 Text(
                   "${tr("benefits")} :",
                   style: AppTextStyle.s14_w600(color: context.colors.black),
                 ),
                 Gaps.vGap6,
-                Html(data: getIt<Utilities>().cleanHtml(model.description),
+                Html(
+                  data: getIt<Utilities>().cleanHtml(model.description),
                   style: {
                     "body": Style(
                       color: context.colors.textColor,
                       fontSize: FontSize(14),
                       fontWeight: FontWeight.w500,
-                      alignment: lang == LangCodeHelper.langAR ? Alignment.centerLeft : Alignment.centerRight,
+                      alignment: lang == LangCodeHelper.langAR
+                          ? Alignment.centerLeft
+                          : Alignment.centerRight,
                       margin: Margins.all(0),
                       padding: HtmlPaddings.all(0),
                     ),
@@ -163,7 +179,8 @@ class MembershipItemWidget extends StatelessWidget {
                       Gaps.vGap15,
                       Text(
                         getExpireText(model),
-                        style: AppTextStyle.s12_w400(color: context.colors.textColor),
+                        style: AppTextStyle.s12_w400(
+                            color: context.colors.textColor),
                       ),
                     ],
                   ),
@@ -171,16 +188,16 @@ class MembershipItemWidget extends StatelessWidget {
               ],
             ),
           ),
-          if(showBlur && model.byInvite == true )
-          Positioned.fill(
-            child: Container(
-              margin: const EdgeInsets.only(bottom: 12),
-              decoration: BoxDecoration(
-                color: Colors.white.withAlpha(150),
-                borderRadius: BorderRadius.circular(12),
+          if (showBlur && model.byInvite == true)
+            Positioned.fill(
+              child: Container(
+                margin: const EdgeInsets.only(bottom: 12),
+                decoration: BoxDecoration(
+                  color: Colors.white.withAlpha(150),
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
-            ),
-          )
+            )
         ],
       ),
     );

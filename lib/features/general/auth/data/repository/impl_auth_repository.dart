@@ -21,7 +21,8 @@ class ImplAuthRepository extends AuthRepository with ModelToDomain {
   var dataSources = getIt<AuthDataSource>();
 
   @override
-  Future<Either<Failure, UserDomainModel>> register(UserRegisterParams params) async {
+  Future<Either<Failure, UserDomainModel>> register(
+      UserRegisterParams params) async {
     var result = await dataSources.register(params);
     return toDomainResult(result);
   }
@@ -43,7 +44,8 @@ class ImplAuthRepository extends AuthRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, String>> resetPassword(ResetPasswordParams param) async {
+  Future<Either<Failure, String>> resetPassword(
+      ResetPasswordParams param) async {
     return await dataSources.resetPassword(param);
   }
 
@@ -73,18 +75,21 @@ class ImplAuthRepository extends AuthRepository with ModelToDomain {
   }
 
   @override
-  Future<Either<Failure, String>> verifyResetPassword(VerifyResetPasswordParams params) async {
+  Future<Either<Failure, String>> verifyResetPassword(
+      VerifyResetPasswordParams params) async {
     return await dataSources.verifyResetPassword(params);
   }
 
   @override
-  Future<Either<Failure, UserDomainModel>> emailVerify(CodeVerifyParams params) async {
+  Future<Either<Failure, UserDomainModel>> emailVerify(
+      CodeVerifyParams params) async {
     var result = await dataSources.emailVerify(params);
     return toDomainResult(result);
   }
 
   @override
-  Future<Either<Failure, String>> changePassword(ChangePasswordParams params) async {
+  Future<Either<Failure, String>> changePassword(
+      ChangePasswordParams params) async {
     return await dataSources.changePassword(params);
   }
 }

@@ -26,9 +26,8 @@ class NotificationDialog extends StatelessWidget {
             Text(
               tr('notification_desc'),
               textAlign: TextAlign.start,
-              style: AppTextStyle.s14_w500(color: context.colors.textColor).copyWith(
-                height: 1.4
-              ),
+              style: AppTextStyle.s14_w500(color: context.colors.textColor)
+                  .copyWith(height: 1.4),
             ),
             Gaps.vGap30,
             Row(

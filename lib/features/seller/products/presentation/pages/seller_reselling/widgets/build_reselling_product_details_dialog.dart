@@ -11,7 +11,8 @@ class BuildResellingProductDetailsDialog extends StatelessWidget {
         decoration: BoxDecoration(
             color: context.colors.white,
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10).r, topRight: Radius.circular(10).r)),
+                topLeft: Radius.circular(10).r,
+                topRight: Radius.circular(10).r)),
         padding: const EdgeInsets.only(top: 10).r,
         child: ListView(
           children: [
@@ -127,7 +128,8 @@ class BuildResellingProductDetailsDialog extends StatelessWidget {
                           onTap: () {}, iconData: CupertinoIcons.minus),
                       Text(
                         "1",
-                        style: AppTextStyle.s16_w400(color: context.colors.black),
+                        style:
+                            AppTextStyle.s16_w400(color: context.colors.black),
                       ),
                       BuildCustomBounce(
                           onTap: () {}, iconData: CupertinoIcons.add),
@@ -166,7 +168,6 @@ class BuildResellingProductDetailsDialog extends StatelessWidget {
                     ],
                   ),
                   Gaps.line(context.colors.greyWhite, 30.h),
-
                 ],
               ),
             ),
@@ -230,9 +231,8 @@ class BuildResellingProductDetailsDialog extends StatelessWidget {
               height: 35.h,
               fontSize: 12,
               color: context.colors.darkPurple,
-              margin: const EdgeInsets.symmetric(
-                  horizontal: 10, vertical: 10)
-                  .r,
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 10, vertical: 10).r,
               onTap: () {},
             ),
           ],

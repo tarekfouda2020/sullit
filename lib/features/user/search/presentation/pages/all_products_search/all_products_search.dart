@@ -1,10 +1,10 @@
 part of 'all_products_search_imports.dart';
 
-
 class AllProductsSearch extends StatefulWidget {
   final String searchText;
   final bool showProducts;
-  const AllProductsSearch({super.key, required this.searchText, required this.showProducts});
+  const AllProductsSearch(
+      {super.key, required this.searchText, required this.showProducts});
 
   @override
   State<AllProductsSearch> createState() => _AllProductsSearchState();
@@ -40,10 +40,11 @@ class _AllProductsSearchState extends State<AllProductsSearch> {
           padding: const EdgeInsets.symmetric(vertical: 15),
           pagingController: controller.pagingController,
           builderDelegate: PagedChildBuilderDelegate<dynamic>(
-            firstPageProgressIndicatorBuilder: (_) => const BuildLoadingSuggestions(),
+            firstPageProgressIndicatorBuilder: (_) =>
+                const BuildLoadingSuggestions(),
             itemBuilder: (_, item, index) {
               if (widget.showProducts) {
-                final product = item as Product;
+                final product = item as ProductCard;
                 return BuildProductSuggestItem(productModel: product);
               } else {
                 final category = item as Category;

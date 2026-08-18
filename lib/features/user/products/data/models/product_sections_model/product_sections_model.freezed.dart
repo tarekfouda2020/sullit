@@ -23,7 +23,7 @@ mixin _$ProductSectionsModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  List<ProductModel> get products => throw _privateConstructorUsedError;
+  List<ProductCardModel> get products => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,7 +38,10 @@ abstract class $ProductSectionsModelCopyWith<$Res> {
       _$ProductSectionsModelCopyWithImpl<$Res, ProductSectionsModel>;
   @useResult
   $Res call(
-      {int id, String name, String description, List<ProductModel> products});
+      {int id,
+      String name,
+      String description,
+      List<ProductCardModel> products});
 }
 
 /// @nodoc
@@ -76,7 +79,7 @@ class _$ProductSectionsModelCopyWithImpl<$Res,
       products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+              as List<ProductCardModel>,
     ) as $Val);
   }
 }
@@ -90,7 +93,10 @@ abstract class _$$_ProductSectionsModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id, String name, String description, List<ProductModel> products});
+      {int id,
+      String name,
+      String description,
+      List<ProductCardModel> products});
 }
 
 /// @nodoc
@@ -125,7 +131,7 @@ class __$$_ProductSectionsModelCopyWithImpl<$Res>
       products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+              as List<ProductCardModel>,
     ));
   }
 }
@@ -138,7 +144,7 @@ class _$_ProductSectionsModel extends _ProductSectionsModel {
       {required this.id,
       required this.name,
       required this.description,
-      required final List<ProductModel> products})
+      required final List<ProductCardModel> products})
       : _products = products,
         super._();
 
@@ -151,9 +157,9 @@ class _$_ProductSectionsModel extends _ProductSectionsModel {
   final String name;
   @override
   final String description;
-  final List<ProductModel> _products;
+  final List<ProductCardModel> _products;
   @override
-  List<ProductModel> get products {
+  List<ProductCardModel> get products {
     if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_products);
@@ -198,10 +204,11 @@ class _$_ProductSectionsModel extends _ProductSectionsModel {
 
 abstract class _ProductSectionsModel extends ProductSectionsModel {
   const factory _ProductSectionsModel(
-      {required final int id,
-      required final String name,
-      required final String description,
-      required final List<ProductModel> products}) = _$_ProductSectionsModel;
+          {required final int id,
+          required final String name,
+          required final String description,
+          required final List<ProductCardModel> products}) =
+      _$_ProductSectionsModel;
   const _ProductSectionsModel._() : super._();
 
   factory _ProductSectionsModel.fromJson(Map<String, dynamic> json) =
@@ -214,7 +221,7 @@ abstract class _ProductSectionsModel extends ProductSectionsModel {
   @override
   String get description;
   @override
-  List<ProductModel> get products;
+  List<ProductCardModel> get products;
   @override
   @JsonKey(ignore: true)
   _$$_ProductSectionsModelCopyWith<_$_ProductSectionsModel> get copyWith =>

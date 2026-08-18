@@ -1,7 +1,7 @@
 part of 'search_widgets_imports.dart';
 
 class BuildProductSuggestItem extends StatelessWidget {
-  final Product productModel;
+  final ProductCard productModel;
 
   const BuildProductSuggestItem({super.key, required this.productModel});
 
@@ -10,9 +10,10 @@ class BuildProductSuggestItem extends StatelessWidget {
     return InkWell(
       onTap: () => AutoRouter.of(context).push(
         ProductDetailsRoute(
-          isFav: productModel.isWishlist!,
-          productId: productModel.id!,
-          isResale: productModel.isResale!,
+          isFav: productModel.isWishlist,
+          productId: productModel.id,
+          // isResale: productModel.isResale!,
+          isResale: false,
         ),
       ),
       child: Container(
@@ -21,30 +22,34 @@ class BuildProductSuggestItem extends StatelessWidget {
         decoration: const CustomDecoration(),
         child: ListTile(
           leading: CachedImage(
-            url: productModel.images?.first ?? "",
+            url: productModel.thumbnailImg,
             height: 65.r,
             width: 65.r,
             fit: BoxFit.fill,
           ),
           title: Text(
-            productModel.name ?? "",
+            productModel.name ,
             style: AppTextStyle.s15_w500(color: context.colors.black),
           ),
           subtitle: Padding(
             padding: const EdgeInsets.only(top: 8),
             child: Row(
               children: [
-                DirhamPrice(amount: productModel.priceHighLowDiscount ?? "",
-                  textStyle: AppTextStyle.s15_w700(color: context.colors.primary),
+                DirhamPrice(
+                  amount: productModel.priceHighLowDiscount ?? "",
+                  textStyle:
+                      AppTextStyle.s15_w700(color: context.colors.primary),
                 ),
                 Gaps.hGap10,
-                if(productModel.hasDiscount == true)
-                DirhamPrice(amount: productModel.priceHighLow ?? "",
-                textStyle: AppTextStyle.s15_w700(color: context.colors.textColor).copyWith(
-                  decoration: TextDecoration.lineThrough,
-                  decorationColor: context.colors.textColor
-                ),
-                ),
+                if (productModel.hasDiscount == true)
+                  DirhamPrice(
+                    amount: productModel.priceHighLow ?? "",
+                    textStyle:
+                        AppTextStyle.s15_w700(color: context.colors.textColor)
+                            .copyWith(
+                                decoration: TextDecoration.lineThrough,
+                                decorationColor: context.colors.textColor),
+                  ),
               ],
             ),
           ),

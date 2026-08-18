@@ -1,5 +1,10 @@
+import 'dart:math';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/route_helpers/guard_route_helper.dart';
 import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
 import 'package:flutter_tdd/core/widgets/auth_dialog.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -28,6 +33,10 @@ class CustomToast {
   }
 
   static void showAuthDialog(BuildContext context) {
+    getIt<AuthGuard>().requireAuth(
+        context: context,
+    pendingRoute: context.routeData.route.toPageRouteInfo()
+    );
     showCupertinoDialog(
       context: context,
       builder: (context) {
@@ -50,5 +59,4 @@ class CustomToast {
         textColor: textColor ?? Colors.white,
         fontSize: 16.0);
   }
-
 }
