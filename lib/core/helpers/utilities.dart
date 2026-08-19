@@ -332,7 +332,7 @@ class Utilities {
   }
 
   String _formatSingle(String value) {
-    final parsed = double.tryParse(value.cleanNumber()) ?? 0;
+    final parsed = double.tryParse(value.cleanNumber) ?? 0;
     final intValue = parsed.toStringAsFixed(2);
 
     final formattedInteger = intValue.replaceAllMapped(

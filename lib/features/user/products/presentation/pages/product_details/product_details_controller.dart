@@ -551,7 +551,7 @@ class ProductDetailsController implements CartSheetController {
 
   void calculateRemainingAmount() {
     double cartSubTotal =
-        double.parse(cartItemsBloc.state.data.subTotal?.cleanNumber() ?? "0.0");
+        double.parse(cartItemsBloc.state.data.subTotal?.cleanNumber ?? "0.0");
     double minAmount = cartItemsBloc.state.data.minimumAmount ?? 0.0;
 
     double currentItemPriceInCart = 0.0;

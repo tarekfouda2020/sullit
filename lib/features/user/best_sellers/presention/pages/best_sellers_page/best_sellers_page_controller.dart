@@ -22,7 +22,7 @@ class BestSellersPageController {
     });
   }
   Future<void> init(BuildContext context) async {
-    await getBestSellers(1, refresh: false, context: context);
+    await getBestSellers(1, refresh: false,);
   }
 
   Future<void> getBestSellers(int page, {bool refresh = true}) async {

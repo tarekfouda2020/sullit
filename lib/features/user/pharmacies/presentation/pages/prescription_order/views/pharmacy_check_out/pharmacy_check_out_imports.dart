@@ -45,6 +45,7 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_cart_s
 import 'package:flutter_tdd/features/user/loyalty_points/domain/models/loyalty_points_balance_domain_model.dart';
 import 'package:flutter_tdd/features/user/loyalty_points/domain/use_case/get_loyalty_points_balance.dart';
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescription_order/views/pharmacy_check_out/widgets/pharmacy_check_out_widgets_imports.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/entities/order_payment_options_params.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/use_cases/get_payment_options.dart';
 
 

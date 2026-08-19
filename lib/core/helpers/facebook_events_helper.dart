@@ -56,7 +56,7 @@ class FacebookEventsHelper {
         id: id.toString(),
         type: _product,
         currency: _currency,
-        price: double.parse(price.cleanNumber()),
+        price: double.parse(price.cleanNumber),
         content: {
           ..._userDataJson(),
           if (variantId != null) "variant_id": variantId,

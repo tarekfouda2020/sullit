@@ -37,7 +37,7 @@ class OrderDetailsTotalWidget extends StatelessWidget {
     var priceChanged = displayItem.isModifiedInPlace &&
         displayItem.history!.isUpdatePrice;
     if(priceChanged){
-      return double.parse(displayItem.history!.newPrice.cleanNumber());
+      return double.parse(displayItem.history!.newPrice.cleanNumber);
     }
     return displayItem.price;
   }

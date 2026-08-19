@@ -235,8 +235,9 @@ class OrderDetailsPageController {
 
   Future<void> fetchPaymentOptions({bool refresh = true}) async {
     if (showChangePayOption()) {
+      var id = orderDetailsBloc.state.data!.id;
       var result = await GetPaymentOptions().call(
-        OrderPaymentOptionsParams(refresh: refresh, orderId: data.id),
+        OrderPaymentOptionsParams(refresh: refresh, orderId: id),
       );
       if (result.isNotEmpty && orderDetailsBloc.state.data != null) {
         result = result.where((element) {

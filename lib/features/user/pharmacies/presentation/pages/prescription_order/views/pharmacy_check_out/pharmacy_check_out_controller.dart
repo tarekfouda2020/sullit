@@ -124,7 +124,7 @@ class PharmacyCheckOutController {
   void calculateDiscount() {
     String subTotal =
     shippingBloc.state.data!.summary.subTotal.replaceAll("", "");
-    String newSubTotal = subTotal.cleanNumber();
+    String newSubTotal = subTotal.cleanNumber;
     double subTotalVal = double.parse(newSubTotal);
     double discount =
         subTotalVal * (shippingBloc.state.data!.discountRate! / 100);
@@ -135,8 +135,8 @@ class PharmacyCheckOutController {
   }
 
   void calcTotalAfterCoupon() {
-    String total = shippingBloc.state.data!.summary.total.cleanNumber();
-    String newTotal = total.cleanNumber();
+    String total = shippingBloc.state.data!.summary.total.cleanNumber;
+    String newTotal = total.cleanNumber;
     double totalVal = double.parse(newTotal);
     double calTotal = totalVal - shippingBloc.state.data!.discountVal!;
     shippingBloc.state.data!.summary.total = calTotal.toString();
@@ -636,7 +636,7 @@ class PharmacyCheckOutController {
   }
 
   double getTotal() {
-    return double.parse(shippingBloc.state.data!.summary.total.cleanNumber());
+    return double.parse(shippingBloc.state.data!.summary.total.cleanNumber);
     //  ShippingSummary summary = shippingBloc.state.data!.summary;
     //  double subTotal = double.parse(summary.subTotal);
     //  double totalFeesAmount = summary.getFeesTotal;
@@ -720,10 +720,15 @@ class PharmacyCheckOutController {
 
 
   Future<void> fetchPaymentOptions({bool refresh = true}) async {
-    var result = await GetPaymentOptions().call(refresh);
+    OrderPaymentOptionsParams params = _params(refresh: refresh);
+    var result = await GetPaymentOptions().call(params);
     result.first.selected = true;
     result.first.fakeSelected = true;
     paymentOptionsBloc.onUpdateData(result);
+  }
+
+  OrderPaymentOptionsParams _params({bool refresh = true}) {
+    return OrderPaymentOptionsParams(refresh: refresh);
   }
 
 

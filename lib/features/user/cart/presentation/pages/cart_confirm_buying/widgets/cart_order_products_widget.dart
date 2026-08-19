@@ -34,7 +34,6 @@ class CartOrderProductsWidget extends StatelessWidget {
             return  OrderDetailsProductItemWidget(
               onPressReview: () => controller.reviewSheet(context,item),
               displayItem: OrderDisplayItem(current: item),
-              orderDetails: item,
               hasReview: false,
             );
           }),

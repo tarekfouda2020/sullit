@@ -33,7 +33,6 @@ class InstoreOrderProductsWidget extends StatelessWidget {
               onPressReview: () => controller.reviewSheet(context,item),
               displayItem: OrderDisplayItem(current: item),
               hasReview: false,
-              orderDetails: item,
             );
           }),
             // Padding(

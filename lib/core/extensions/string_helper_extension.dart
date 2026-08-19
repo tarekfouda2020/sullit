@@ -19,7 +19,7 @@ extension StringHelperExtension on String? {
         .formatAmount(this ?? "", applyDashSeperate: applyDashSeperate);
   }
 
-  String cleanNumber() {
+  String get cleanNumber {
     return (this ?? "").replaceAll(",", "");
   }
 }

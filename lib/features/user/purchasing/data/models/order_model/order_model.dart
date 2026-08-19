@@ -97,9 +97,6 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
     @JsonKey(name: 'pharmacy_reply') String? pharmacyReply,
     PharmacyBranchModel? branch,
     ShopCardModel? shop,
-    @JsonKey(name: 'creation_method') String? creationMethod,
-    @JsonKey(name: 'creation_method_label') String? creationMethodLabel,
-
   }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) =>
@@ -161,9 +158,6 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       shippingProviderLabel:shippingProviderLabel,
       creationMethod: creationMethod,
       creationMethodLabel:creationMethodLabel,
-      orderSourceLabel: orderSourceLabel,
-      shippingProvider: shippingProvider,
-      shippingProviderLabel: shippingProviderLabel,
       shopType: shopType,
       awaitingCustomerCompletion: awaitingCustomerCompletion,
       isPendingReview: isPendingReview,
