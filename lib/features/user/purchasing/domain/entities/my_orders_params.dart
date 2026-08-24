@@ -13,7 +13,7 @@ class MyOrdersParams {
   Map<String,dynamic> toJson(){
     return {
       ...paginateParams.toJson(),
-     if(type!= null && type!.getKey().isNotEmpty == true) "shop_type" : type!.getKey()
+     if(type!= null) "shop_type" : type!.getKey()
     };
   }
 

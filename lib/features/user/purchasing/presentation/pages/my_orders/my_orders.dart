@@ -27,7 +27,7 @@ class _MyOrdersState extends State<MyOrders> {
         title: switch (widget.type) {
           OrderTypeEnum.pharmacy => "Pharmacy Orders",
           OrderTypeEnum.restaurant => "Restaurant Orders",
-          OrderTypeEnum.general => tr("my_orders"),
+          OrderTypeEnum.merchant => tr("my_orders"),
         },
       ),
       body: CustomRefreshIndicatorWidget(

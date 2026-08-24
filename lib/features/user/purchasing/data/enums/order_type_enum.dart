@@ -1,16 +1,16 @@
 
 enum OrderTypeEnum {
 
-  general,
+  merchant,
   pharmacy,
   restaurant;
 
 
   String getKey(){
     switch (this) {
-      case OrderTypeEnum.general:
-        /// default in back-end "general"
-        return "";
+      case OrderTypeEnum.merchant:
+        /// default in back-end "merchant"
+        return "merchant";
       case OrderTypeEnum.pharmacy:
         return "pharmacy";
         case OrderTypeEnum.restaurant:
