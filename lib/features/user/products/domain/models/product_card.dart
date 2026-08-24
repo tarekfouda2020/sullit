@@ -48,6 +48,10 @@ class ProductCard extends BaseDomainModel {
 
   bool showPriceDiscount({bool? showVipDiscount}) => hasDiscount || showVipDiscount == true;
 
+  bool get haveOptions => productOptions?.isNotEmpty == true;
+
+  bool get isAnyRequired => productOptions?.any((element) => element.isRequired) == true;
+
   ProductCard({
     required this.id,
     required this.name,

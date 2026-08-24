@@ -11,7 +11,7 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:io' as _i135;
+import 'dart:io' as _i136;
 
 import 'package:auto_route/auto_route.dart' as _i120;
 import 'package:flutter/cupertino.dart' as _i123;
@@ -110,6 +110,8 @@ import 'package:flutter_tdd/features/user/blog/presentation/pages/blog_details/b
     as _i42;
 import 'package:flutter_tdd/features/user/blog/presentation/pages/blogs/blogs_imports.dart'
     as _i41;
+import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart'
+    as _i138;
 import 'package:flutter_tdd/features/user/cart/domain/models/order_summary.dart'
     as _i126;
 import 'package:flutter_tdd/features/user/cart/domain/models/shipping.dart'
@@ -139,9 +141,9 @@ import 'package:flutter_tdd/features/user/category/presentation/pages/categories
 import 'package:flutter_tdd/features/user/category/presentation/pages/category_details/category_details_imports.dart'
     as _i54;
 import 'package:flutter_tdd/features/user/classified_products/domain/models/cus_product.dart'
-    as _i134;
+    as _i135;
 import 'package:flutter_tdd/features/user/classified_products/domain/models/file_domain_model.dart'
-    as _i133;
+    as _i134;
 import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/add_classified_product/add_classified_product_imports.dart'
     as _i92;
 import 'package:flutter_tdd/features/user/classified_products/presentaion/pages/classified_products/classified_products_imports.dart'
@@ -175,11 +177,11 @@ import 'package:flutter_tdd/features/user/notifications/presentation/pages/notif
 import 'package:flutter_tdd/features/user/payment/presentaion/pages/payment/payment_imports.dart'
     as _i66;
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_check_out_params.dart'
-    as _i132;
+    as _i133;
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_create_order_params.dart'
-    as _i137;
+    as _i139;
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/saved_prescription_model.dart'
-    as _i136;
+    as _i137;
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/pharmacies_list/pharmacies_list_imports.dart'
     as _i110;
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/pharmacy_categories/pharmacy_categories_imports.dart'
@@ -200,12 +202,14 @@ import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescrip
     as _i116;
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/saved_prescriptions/saved_prescriptions_imports.dart'
     as _i119;
-import 'package:flutter_tdd/features/user/products/domain/models/popular_products_domain_model.dart'
+import 'package:flutter_tdd/features/user/products/domain/entities/product_details_page_route_params.dart'
     as _i128;
-import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart'
+import 'package:flutter_tdd/features/user/products/domain/models/popular_products_domain_model.dart'
     as _i129;
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart'
+    as _i130;
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart'
-    as _i131;
+    as _i132;
 import 'package:flutter_tdd/features/user/products/presentation/pages/all_products_page/all_product_page_imports.dart'
     as _i63;
 import 'package:flutter_tdd/features/user/products/presentation/pages/compare/compare_imports.dart'
@@ -225,9 +229,11 @@ import 'package:flutter_tdd/features/user/products/presentation/pages/seller_pro
 import 'package:flutter_tdd/features/user/profile/presentation/pages/profile/profile_imports.dart'
     as _i70;
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart'
-    as _i130;
+    as _i131;
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/my_orders/my_orders_imports.dart'
     as _i77;
+import 'package:flutter_tdd/features/user/purchasing/data/enums/order_type_enum.dart'
+    as _i145;
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/order_details_imports.dart'
     as _i76;
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_summary/order_summary_imports.dart'
@@ -795,11 +801,7 @@ class AppRouter extends _i120.RootStackRouter {
         routeData: routeData,
         child: _i61.ProductDetails(
           key: args.key,
-          productId: args.productId,
-          isResale: args.isResale,
-          branchId: args.branchId,
-          fromSellerPage: args.fromSellerPage,
-          isFav: args.isFav,
+          params: args.params,
         ),
         opaque: true,
       );
@@ -964,7 +966,7 @@ class AppRouter extends _i120.RootStackRouter {
         routeData: routeData,
         child: _i77.MyOrders(
           key: args.key,
-          isPharmacy: args.isPharmacy,
+          type: args.type,
         ),
         opaque: true,
       );
@@ -1302,6 +1304,7 @@ class AppRouter extends _i120.RootStackRouter {
           fromCart: args.fromCart,
           pharmacyId: args.pharmacyId,
           selectedCategoryName: args.selectedCategoryName,
+          type: args.type,
           selectedCategoryId: args.selectedCategoryId,
         ),
         opaque: true,
@@ -3076,21 +3079,13 @@ class HomeMainRouteArgs {
 class ProductDetailsRoute extends _i120.PageRouteInfo<ProductDetailsRouteArgs> {
   ProductDetailsRoute({
     _i123.Key? key,
-    required int productId,
-    required bool isResale,
-    int? branchId,
-    bool fromSellerPage = false,
-    required bool isFav,
+    required _i128.ProductDetailsPageRouteParams params,
   }) : super(
           ProductDetailsRoute.name,
           path: '/product-details',
           args: ProductDetailsRouteArgs(
             key: key,
-            productId: productId,
-            isResale: isResale,
-            branchId: branchId,
-            fromSellerPage: fromSellerPage,
-            isFav: isFav,
+            params: params,
           ),
         );
 
@@ -3100,28 +3095,16 @@ class ProductDetailsRoute extends _i120.PageRouteInfo<ProductDetailsRouteArgs> {
 class ProductDetailsRouteArgs {
   const ProductDetailsRouteArgs({
     this.key,
-    required this.productId,
-    required this.isResale,
-    this.branchId,
-    this.fromSellerPage = false,
-    required this.isFav,
+    required this.params,
   });
 
   final _i123.Key? key;
 
-  final int productId;
-
-  final bool isResale;
-
-  final int? branchId;
-
-  final bool fromSellerPage;
-
-  final bool isFav;
+  final _i128.ProductDetailsPageRouteParams params;
 
   @override
   String toString() {
-    return 'ProductDetailsRouteArgs{key: $key, productId: $productId, isResale: $isResale, branchId: $branchId, fromSellerPage: $fromSellerPage, isFav: $isFav}';
+    return 'ProductDetailsRouteArgs{key: $key, params: $params}';
   }
 }
 
@@ -3131,7 +3114,7 @@ class PopularProductCardsRoute
     extends _i120.PageRouteInfo<PopularProductCardsRouteArgs> {
   PopularProductCardsRoute({
     _i123.Key? key,
-    required _i128.PopularProductsDomainModel popularProductCardsModel,
+    required _i129.PopularProductsDomainModel popularProductCardsModel,
   }) : super(
           PopularProductCardsRoute.name,
           path: '/popular-product-cards',
@@ -3152,7 +3135,7 @@ class PopularProductCardsRouteArgs {
 
   final _i123.Key? key;
 
-  final _i128.PopularProductsDomainModel popularProductCardsModel;
+  final _i129.PopularProductsDomainModel popularProductCardsModel;
 
   @override
   String toString() {
@@ -3165,7 +3148,7 @@ class PopularProductCardsRouteArgs {
 class AllProductPageRoute extends _i120.PageRouteInfo<AllProductPageRouteArgs> {
   AllProductPageRoute({
     _i123.Key? key,
-    required List<_i129.ProductCard> bestSellingProducts,
+    required List<_i130.ProductCard> bestSellingProducts,
   }) : super(
           AllProductPageRoute.name,
           path: '/all-product-page',
@@ -3186,7 +3169,7 @@ class AllProductPageRouteArgs {
 
   final _i123.Key? key;
 
-  final List<_i129.ProductCard> bestSellingProducts;
+  final List<_i130.ProductCard> bestSellingProducts;
 
   @override
   String toString() {
@@ -3509,7 +3492,7 @@ class TrackOrderRouteArgs {
 class RetrieveOrderRoute extends _i120.PageRouteInfo<RetrieveOrderRouteArgs> {
   RetrieveOrderRoute({
     _i123.Key? key,
-    required _i130.Orders orderModel,
+    required _i131.Orders orderModel,
   }) : super(
           RetrieveOrderRoute.name,
           path: '/retrieve-order',
@@ -3530,7 +3513,7 @@ class RetrieveOrderRouteArgs {
 
   final _i123.Key? key;
 
-  final _i130.Orders orderModel;
+  final _i131.Orders orderModel;
 
   @override
   String toString() {
@@ -3583,13 +3566,13 @@ class OrderDetailsPageRouteArgs {
 class MyOrdersRoute extends _i120.PageRouteInfo<MyOrdersRouteArgs> {
   MyOrdersRoute({
     _i123.Key? key,
-    required bool isPharmacy,
+    required _i145.OrderTypeEnum type,
   }) : super(
           MyOrdersRoute.name,
           path: '/my-orders',
           args: MyOrdersRouteArgs(
             key: key,
-            isPharmacy: isPharmacy,
+            type: type,
           ),
         );
 
@@ -3599,16 +3582,16 @@ class MyOrdersRoute extends _i120.PageRouteInfo<MyOrdersRouteArgs> {
 class MyOrdersRouteArgs {
   const MyOrdersRouteArgs({
     this.key,
-    required this.isPharmacy,
+    required this.type,
   });
 
   final _i123.Key? key;
 
-  final bool isPharmacy;
+  final _i145.OrderTypeEnum type;
 
   @override
   String toString() {
-    return 'MyOrdersRouteArgs{key: $key, isPharmacy: $isPharmacy}';
+    return 'MyOrdersRouteArgs{key: $key, type: $type}';
   }
 }
 
@@ -3674,7 +3657,7 @@ class RestaurantAddressRoute
     extends _i120.PageRouteInfo<RestaurantAddressRouteArgs> {
   RestaurantAddressRoute({
     _i123.Key? key,
-    _i131.Shop? restaurant,
+    _i132.Shop? restaurant,
     int? preSelectedBranchId,
   }) : super(
           RestaurantAddressRoute.name,
@@ -3698,7 +3681,7 @@ class RestaurantAddressRouteArgs {
 
   final _i123.Key? key;
 
-  final _i131.Shop? restaurant;
+  final _i132.Shop? restaurant;
 
   final int? preSelectedBranchId;
 
@@ -3715,7 +3698,7 @@ class RestaurantCheckOutRoute
   RestaurantCheckOutRoute({
     _i123.Key? key,
     required _i125.Shipping? shipping,
-    _i132.PharmacyCheckoutParams? checkoutParams,
+    _i133.PharmacyCheckoutParams? checkoutParams,
     int? confirmOrderId,
     bool fromOrderDetails = false,
   }) : super(
@@ -3746,7 +3729,7 @@ class RestaurantCheckOutRouteArgs {
 
   final _i125.Shipping? shipping;
 
-  final _i132.PharmacyCheckoutParams? checkoutParams;
+  final _i133.PharmacyCheckoutParams? checkoutParams;
 
   final int? confirmOrderId;
 
@@ -3765,7 +3748,7 @@ class RestaurantOrderSuccessRoute
   RestaurantOrderSuccessRoute({
     _i123.Key? key,
     required _i126.OrderSummaryDomainModel summary,
-    _i131.Shop? restaurant,
+    _i132.Shop? restaurant,
   }) : super(
           RestaurantOrderSuccessRoute.name,
           path: '/restaurant-order-success',
@@ -3790,7 +3773,7 @@ class RestaurantOrderSuccessRouteArgs {
 
   final _i126.OrderSummaryDomainModel summary;
 
-  final _i131.Shop? restaurant;
+  final _i132.Shop? restaurant;
 
   @override
   String toString() {
@@ -4005,10 +3988,10 @@ class AddClassifiedProductRoute
     extends _i120.PageRouteInfo<AddClassifiedProductRouteArgs> {
   AddClassifiedProductRoute({
     _i123.Key? key,
-    List<_i133.FileDomainModel>? images,
-    _i133.FileDomainModel? thumbnailImage,
-    _i133.FileDomainModel? metaImage,
-    _i133.FileDomainModel? pdf,
+    List<_i134.FileDomainModel>? images,
+    _i134.FileDomainModel? thumbnailImage,
+    _i134.FileDomainModel? metaImage,
+    _i134.FileDomainModel? pdf,
   }) : super(
           AddClassifiedProductRoute.name,
           path: '/add-classified-product',
@@ -4035,13 +4018,13 @@ class AddClassifiedProductRouteArgs {
 
   final _i123.Key? key;
 
-  final List<_i133.FileDomainModel>? images;
+  final List<_i134.FileDomainModel>? images;
 
-  final _i133.FileDomainModel? thumbnailImage;
+  final _i134.FileDomainModel? thumbnailImage;
 
-  final _i133.FileDomainModel? metaImage;
+  final _i134.FileDomainModel? metaImage;
 
-  final _i133.FileDomainModel? pdf;
+  final _i134.FileDomainModel? pdf;
 
   @override
   String toString() {
@@ -4055,7 +4038,7 @@ class EditClassifiedProductRoute
     extends _i120.PageRouteInfo<EditClassifiedProductRouteArgs> {
   EditClassifiedProductRoute({
     _i123.Key? key,
-    required _i134.CusProduct productModel,
+    required _i135.CusProduct productModel,
   }) : super(
           EditClassifiedProductRoute.name,
           path: '/edit-classified-product',
@@ -4076,7 +4059,7 @@ class EditClassifiedProductRouteArgs {
 
   final _i123.Key? key;
 
-  final _i134.CusProduct productModel;
+  final _i135.CusProduct productModel;
 
   @override
   String toString() {
@@ -4450,8 +4433,8 @@ class PharmaciesListRoute extends _i120.PageRouteInfo<PharmaciesListRouteArgs> {
   PharmaciesListRoute({
     _i123.Key? key,
     bool makePrescriptionOrder = false,
-    _i135.File? initialPrescriptionFile,
-    _i136.SavedPrescriptionModel? initialSavedPrescription,
+    _i136.File? initialPrescriptionFile,
+    _i137.SavedPrescriptionModel? initialSavedPrescription,
   }) : super(
           PharmaciesListRoute.name,
           path: '/pharmacies-list',
@@ -4478,9 +4461,9 @@ class PharmaciesListRouteArgs {
 
   final bool makePrescriptionOrder;
 
-  final _i135.File? initialPrescriptionFile;
+  final _i136.File? initialPrescriptionFile;
 
-  final _i136.SavedPrescriptionModel? initialSavedPrescription;
+  final _i137.SavedPrescriptionModel? initialSavedPrescription;
 
   @override
   String toString() {
@@ -4497,6 +4480,7 @@ class PharmacyDetailsRoute
     bool fromCart = false,
     required int pharmacyId,
     String? selectedCategoryName,
+    _i138.CartTypeEnum type = _i138.CartTypeEnum.pharmacy,
     int? selectedCategoryId,
   }) : super(
           PharmacyDetailsRoute.name,
@@ -4506,6 +4490,7 @@ class PharmacyDetailsRoute
             fromCart: fromCart,
             pharmacyId: pharmacyId,
             selectedCategoryName: selectedCategoryName,
+            type: type,
             selectedCategoryId: selectedCategoryId,
           ),
         );
@@ -4519,6 +4504,7 @@ class PharmacyDetailsRouteArgs {
     this.fromCart = false,
     required this.pharmacyId,
     this.selectedCategoryName,
+    this.type = _i138.CartTypeEnum.pharmacy,
     this.selectedCategoryId,
   });
 
@@ -4530,11 +4516,13 @@ class PharmacyDetailsRouteArgs {
 
   final String? selectedCategoryName;
 
+  final _i138.CartTypeEnum type;
+
   final int? selectedCategoryId;
 
   @override
   String toString() {
-    return 'PharmacyDetailsRouteArgs{key: $key, fromCart: $fromCart, pharmacyId: $pharmacyId, selectedCategoryName: $selectedCategoryName, selectedCategoryId: $selectedCategoryId}';
+    return 'PharmacyDetailsRouteArgs{key: $key, fromCart: $fromCart, pharmacyId: $pharmacyId, selectedCategoryName: $selectedCategoryName, type: $type, selectedCategoryId: $selectedCategoryId}';
   }
 }
 
@@ -4589,8 +4577,8 @@ class PharmacyAddressRoute
   PharmacyAddressRoute({
     _i123.Key? key,
     bool havePrescription = false,
-    _i131.Shop? pharmacy,
-    _i137.PharmacyCreateOrderParams? createOrderParams,
+    _i132.Shop? pharmacy,
+    _i139.PharmacyCreateOrderParams? createOrderParams,
     int? preSelectedBranchId,
   }) : super(
           PharmacyAddressRoute.name,
@@ -4620,9 +4608,9 @@ class PharmacyAddressRouteArgs {
 
   final bool havePrescription;
 
-  final _i131.Shop? pharmacy;
+  final _i132.Shop? pharmacy;
 
-  final _i137.PharmacyCreateOrderParams? createOrderParams;
+  final _i139.PharmacyCreateOrderParams? createOrderParams;
 
   final int? preSelectedBranchId;
 
@@ -4674,7 +4662,7 @@ class OrderSuccessRoute extends _i120.PageRouteInfo<OrderSuccessRouteArgs> {
     _i123.Key? key,
     required _i126.OrderSummaryDomainModel summary,
     bool havePrescription = false,
-    _i131.Shop? pharmacy,
+    _i132.Shop? pharmacy,
   }) : super(
           OrderSuccessRoute.name,
           path: '/order-success',
@@ -4703,7 +4691,7 @@ class OrderSuccessRouteArgs {
 
   final bool havePrescription;
 
-  final _i131.Shop? pharmacy;
+  final _i132.Shop? pharmacy;
 
   @override
   String toString() {
@@ -4718,7 +4706,7 @@ class PharmacyCheckOutRoute
   PharmacyCheckOutRoute({
     _i123.Key? key,
     required _i125.Shipping? shipping,
-    _i132.PharmacyCheckoutParams? checkoutParams,
+    _i133.PharmacyCheckoutParams? checkoutParams,
     int? confirmOrderId,
     bool fromOrderDetails = false,
   }) : super(
@@ -4749,7 +4737,7 @@ class PharmacyCheckOutRouteArgs {
 
   final _i125.Shipping? shipping;
 
-  final _i132.PharmacyCheckoutParams? checkoutParams;
+  final _i133.PharmacyCheckoutParams? checkoutParams;
 
   final int? confirmOrderId;
 
@@ -4808,8 +4796,8 @@ class AttachPrescriptionRoute
   AttachPrescriptionRoute({
     _i123.Key? key,
     required int shopId,
-    _i135.File? initialPrescriptionFile,
-    _i136.SavedPrescriptionModel? initialSavedPrescription,
+    _i136.File? initialPrescriptionFile,
+    _i137.SavedPrescriptionModel? initialSavedPrescription,
   }) : super(
           AttachPrescriptionRoute.name,
           path: '/attach-prescription',
@@ -4836,9 +4824,9 @@ class AttachPrescriptionRouteArgs {
 
   final int shopId;
 
-  final _i135.File? initialPrescriptionFile;
+  final _i136.File? initialPrescriptionFile;
 
-  final _i136.SavedPrescriptionModel? initialSavedPrescription;
+  final _i137.SavedPrescriptionModel? initialSavedPrescription;
 
   @override
   String toString() {

@@ -150,6 +150,10 @@ abstract class Product extends BaseDomainModel {
 
   bool get isPharmProduct => type == "pharmacy";
 
+  bool get isRestaurantProduct => type == "restaurant";
+
+  bool get haveOptions => productOptions?.isNotEmpty == true;
+
   String getPriceWhenHavePointsAndDiscount() {
     if (hasSpecialLoyaltyPoints == true) {
       return priceHighLow ?? "";

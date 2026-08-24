@@ -32,6 +32,9 @@ _$_CartItemModel _$$_CartItemModelFromJson(Map<String, dynamic> json) =>
       soldBy: json['sold_by_name'] as String,
       shopId: (json['shop_id'] as num?)?.toInt(),
       branchId: (json['branch_id'] as num?)?.toInt(),
+      cartOptions: (json['cart_options'] as List<dynamic>?)
+          ?.map((e) => CartOptionModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_CartItemModelToJson(_$_CartItemModel instance) =>
@@ -60,4 +63,5 @@ Map<String, dynamic> _$$_CartItemModelToJson(_$_CartItemModel instance) =>
       'sold_by_name': instance.soldBy,
       'shop_id': instance.shopId,
       'branch_id': instance.branchId,
+      'cart_options': instance.cartOptions?.map((e) => e.toJson()).toList(),
     };

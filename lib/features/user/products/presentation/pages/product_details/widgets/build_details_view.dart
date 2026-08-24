@@ -27,9 +27,10 @@ class BuildDetailsView extends StatelessWidget {
               productModel: detailsModel.product,
             ),
             SliverList(
+              key: controller.optionsKey,
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
-                  final options = detailsModel.product.productOptions ?? [];
+                  List<ProductOptionModel> options = detailsModel.product.productOptions ?? <ProductOptionModel>[];
                   return CustomizeOrderItemWidget(
                     optionModel: options[index],
                     controller: controller,

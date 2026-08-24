@@ -3,6 +3,7 @@ part of 'pharmacy_details_imports.dart';
 class PharmacyDetailsController {
   int? pharmacyId;
   final int? selectedCategoryId;
+  final CartTypeEnum? type;
   final String? selectedCategoryName;
 
   ShopCategory? selectedCategory;
@@ -49,11 +50,18 @@ class PharmacyDetailsController {
 
   int? get cartBranchId => originalCartData?.items?.firstOrNull?.branchId;
 
+  bool get isPharmacy => type == CartTypeEnum.pharmacy;
+
+  bool get isRestaurant=> type == CartTypeEnum.restaurant;
+
+
+
 
   PharmacyDetailsController(
       {required this.pharmacyId,
       this.fromCart = false,
       this.selectedCategoryId,
+      this.type,
       this.selectedCategoryName}) {
     _setupScrollListener();
     _injectSelectedCategoryPlaceholder();
@@ -168,11 +176,9 @@ class PharmacyDetailsController {
     isLoadingNextPage.onUpdateData(page > 1);
     var result = await GetSellerProducts().call(params);
     isLoadingNextPage.onUpdateData(false);
-    final branch = selectedBranchCubit.state.data;
+    // final branch = selectedBranchCubit.state.data;
     final List<ProductCard> data = (result?.sectionProductModel.products ??
-            <ProductCard>[])
-        .map((card) => PharmacyProductCard.fromCard(card, branch: branch))
-        .toList();
+            <ProductCard>[]);
     final isLastPage = (data.length) < AppConstants.instance.paginationLimit;
     if (page == 1) {
       productsPagingController.itemList = [];
@@ -557,7 +563,6 @@ class PharmacyDetailsController {
     productsPagingController.refresh();
     getProducts(1,refresh: false);
     getProducts(1);
-    var cartData = cartItemsBloc.state.data.items ??[];
     getCartItems(refresh: true);
     Navigator.pop(context);
   }
@@ -613,7 +618,7 @@ class PharmacyDetailsController {
       macAddress: token,
       refresh: refresh,
       branchId: selectedBranchCubit.state.data?.id,
-      type: CartTypeEnum.pharmacy,
+      type: type ?? CartTypeEnum.pharmacy,
     );
   }
 

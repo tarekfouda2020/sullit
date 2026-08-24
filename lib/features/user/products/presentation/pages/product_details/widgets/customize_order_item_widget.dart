@@ -1,7 +1,7 @@
 part of 'product_details_widgets_imports.dart';
 
 class CustomizeOrderItemWidget extends StatelessWidget {
-  final ProductOptionModel? optionModel;
+  final ProductOptionModel optionModel;
   final ProductDetailsController controller;
 
   const CustomizeOrderItemWidget({
@@ -19,26 +19,26 @@ class CustomizeOrderItemWidget extends StatelessWidget {
         children: [
           Gaps.vGap10,
           Text(
-            tr(optionModel?.name ?? ""),
+            optionModel.name,
             style: AppTextStyle.s18_w600(
               color: context.colors.black,
             ),
           ),
           Gaps.vGap8,
           ...List.generate(
-            optionModel?.values.length ?? 0,
+            optionModel.values.length ,
             (index) {
-              final value = optionModel!.values[index];
+              final value = optionModel.values[index];
               return BlocBuilder<GenericBloc<List<int>>, GenericState<List<int>>>(
                 bloc: controller.isSelected,
                 builder: (context, state) {
                   final selectedList = state.data;
-                  final isRadio = optionModel?.type == 'radio';
+                  final isRadio = optionModel.type == 'radio';
                   final itemValue = index + 1;
                   final isSelectedItem = selectedList.contains(itemValue);
                   return CustomizeOptionsItem(
                     valueModel: value,
-                    type: optionModel?.type ?? "",
+                    type: optionModel.type ,
                     isSelected: isSelectedItem,
                     onTap: () {
                       if (isRadio) {

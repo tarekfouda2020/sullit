@@ -12,14 +12,18 @@ class ProductDetailsController implements CartSheetController {
   final GenericBloc<ProductDetailsDomainModel?> detailsCubit = GenericBloc(null);
   final GenericBloc<String> remainingAmountBloc = GenericBloc("0.0");
 
+  final GlobalKey optionsKey = GlobalKey();
+
   final GenericBloc<CartDomainModel> _pharmacyCartBloc = GenericBloc(CartDomainModel());
 
   bool get isPharmProduct => detailsCubit.state.data?.product.isPharmProduct == true;
 
-  bool get isRestaurantProduct => detailsCubit.state.data?.product.type == "restaurant";
+  bool get isRestaurantProduct => detailsCubit.state.data?.product.isRestaurantProduct == true;
 
   CartTypeEnum get getProductType {
-    return isPharmProduct ? CartTypeEnum.pharmacy : CartTypeEnum.general;
+    if (isRestaurantProduct) return CartTypeEnum.restaurant;
+    if (isPharmProduct) return CartTypeEnum.pharmacy;
+    return CartTypeEnum.general;
   }
 
   @override
@@ -38,18 +42,35 @@ class ProductDetailsController implements CartSheetController {
   List<String> selectedVariants = [];
   List<String> basicImage = [];
 
-  ProductDetailsController(BuildContext context, ProductDetailsPageParams params) {
+  ProductDetailsController(BuildContext context, ProductDetailsPageRouteParams params) {
     productId = params.productId;
     isResale = params.isResale;
     isFav = params.isFav;
     fromSellerPage = params.fromSellerPage;
     branchId = params.branchId;
-
-    getProductDetails(context, productId, refresh: false);
-    getProductDetails(context, productId);
+    getData(context);
     // getCartItems(refresh: false);
     // getCartItems();
     onScroll();
+  }
+
+  Future<void> getData(BuildContext context)async{
+    await getProductDetails(context, productId, refresh: false);
+    _scrollToOptions();
+     getProductDetails(context, productId);
+  }
+
+  void _scrollToOptions() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if(detailsCubit.state.data?.product.haveOptions == true){
+        Scrollable.ensureVisible(
+          optionsKey.currentContext!,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      }
+    });
+
   }
 
   void onScroll() {
@@ -324,15 +345,21 @@ class ProductDetailsController implements CartSheetController {
     }
   }
 
-  void onRestaurantToCart(BuildContext context) async {
-    final product = detailsCubit.state.data!.product;
 
-    final params = RestaurantCartParams(
-      branchId: branchId,
-      variantId: product.variant?.id,
-      quantity: qtyCubit.state.data,
-      productOptions: product.productOptions ?? [],
-    );
+  List<ProductOptionModel> get getOptions {
+    final product = detailsCubit.state.data!.product;
+    var selectedOptions = isSelected.state.data;
+    return
+      (product.productOptions??<ProductOptionModel>[]).where(
+              (element) => element.values.any((element) => selectedOptions.contains(element.id))
+      ).toList();
+}
+
+
+  Future<void> onRestaurantToCart(BuildContext context) async {
+    final product = detailsCubit.state.data!.product;
+    final params = await _restaurantCartParams();
+
 
     final result = await AddProductToCart().call(params);
 
@@ -343,6 +370,33 @@ class ProductDetailsController implements CartSheetController {
       );
       showCartSuccessSheet(context);
     }
+  }
+
+  Future<RestaurantCartParams> _restaurantCartParams() async{
+    var macAddress = await getIt<GetDeviceId>().deviceId;
+    final product = detailsCubit.state.data!.product;
+    return RestaurantCartParams(
+    branchId: branchId,
+    variantId: product.variant?.id,
+    quantity: qtyCubit.state.data,
+    macAddress: macAddress,
+    productOptions: _addToCartOptions() ,
+  );
+  }
+
+  List<ProductOptionsParams> _addToCartOptions() {
+    final selectedIds = isSelected.state.data;
+    return getOptions.map((option) {
+    final selectedValueIds = option.values
+        .where((value) => selectedIds.contains(value.id))
+        .map((value) => value.id)
+        .toList();
+
+    return ProductOptionsParams(
+      id: option.id,
+      optionsIds: selectedValueIds,
+    );
+  }).toList();
   }
 
   @override
@@ -385,9 +439,20 @@ class ProductDetailsController implements CartSheetController {
       builder: (context) => const BuildCartSuccessDialog(),
     );
   }
-
+  List<ProductOptionsParams> _getCartItemOptions(GeneralCartItem cartItem){
+    return cartItem.cartOptions?.isNotEmpty == true
+        ? cartItem.cartOptions!.map((e) => ProductOptionsParams(
+        id: e.option.id,
+        optionsIds: e.values.map((v)=>v.id).toList()
+    )).toList()
+        : <ProductOptionsParams>[];
+  }
   Future<bool> onIncreaseCartQnt(BuildContext context, GeneralCartItem cartItem, int newQty) async {
-    final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+    final success = await getIt<CartHelper>().updateCartItem(
+        newQty,
+        cartItem.id,
+        _getCartItemOptions(cartItem)
+    );
     if (success != null) {
       cartItem.quantity = newQty;
       cartItemsBloc.onUpdateData(success);
@@ -482,26 +547,7 @@ class ProductDetailsController implements CartSheetController {
   }
 
   void showCartSuccessSheet(BuildContext context) {
-    final cartHelper = getIt<CartHelper>();
-
-    if (isRestaurantProduct) {
-      cartHelper.getCartItems(
-        refresh: true,
-        type: CartTypeEnum.restaurant,
-      );
-    } else if (isPharmProduct) {
-      cartHelper.getCartItems(
-        refresh: true,
-        type: CartTypeEnum.pharmacy,
-      );
-    } else {
-      cartHelper.getCartItems(
-        refresh: true,
-        type: CartTypeEnum.general,
-      );
-    }
-
-    cartHelper.showCartSuccessSheet(
+    getIt<CartHelper>().showCartSuccessSheet(
       context,
       controller: this,
       onPressCheck: isRestaurantProduct
@@ -509,7 +555,10 @@ class ProductDetailsController implements CartSheetController {
         Navigator.pop(context);
 
         AutoRouter.of(context).push(
-           RestaurantCartRoute(),
+           RestaurantCartRoute(
+             restaurantId: detailsCubit.state.data?.product.shop?.id,
+             preSelectedBranchId: branchId,
+           ),
         );
       }
           : isPharmProduct

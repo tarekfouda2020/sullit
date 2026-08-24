@@ -199,14 +199,12 @@ class CartHelper {
     return cartItemsBloc.state.data;
   }
 
-  Future<CartDomainModel?> updateCartItem(int qty, int id) async {
-    final params = await _updateCartItemParams(qty, id);
-    final result = await UpdateCartItem().call(params); // your API call
+  Future<CartDomainModel?> updateCartItem(int qty, int id,[List<ProductOptionsParams>? options]) async {
+    final params = await _updateCartItemParams(qty, id,options);
+    final result = await UpdateCartItem().call(params);
     return result;
   }
 
-  /// 1709
-  /// variant_id 29935
 
   Future<bool> deleteItemFromCart(
       BuildContext context, GeneralCartItem cartItem) async {
@@ -277,11 +275,12 @@ class CartHelper {
     );
   }
 
-  Future<UpdateCartItemParams> _updateCartItemParams(int qty, int id) async {
+  Future<UpdateCartItemParams> _updateCartItemParams(int qty, int id,[List<ProductOptionsParams>? options]) async {
     return UpdateCartItemParams(
       macAddress: await getIt<GetDeviceId>().deviceId,
       qty: qty,
       id: id,
+      options: options
     );
   }
 

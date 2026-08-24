@@ -144,9 +144,11 @@ class HomeMainController {
         getIt<LoadingHelper>().dismissDialog();
         if (value != null) {
           AutoRouter.of(context).push(ProductDetailsRoute(
-            isFav: value.product.isWishlist ?? false,
-            productId: value.product.id ?? 0,
-            isResale: value.product.isResale ?? false,
+            params: ProductDetailsPageRouteParams(
+              productId: value.product.id ?? 0,
+              isFav: value.product.isWishlist ?? false,
+              isResale: value.product.isResale ?? false,
+            ),
           ));
         } else {
           CustomToast.showSnakeBar(
@@ -395,7 +397,8 @@ class HomeMainController {
     try {
       var prodId = int.parse(id);
       AutoRouter.of(context).push(ProductDetailsRoute(
-          productId: prodId, isResale: false, isFav: false));
+        params: ProductDetailsPageRouteParams(productId: prodId),
+      ));
     } catch (e) {
       log("error while route to product details");
     }

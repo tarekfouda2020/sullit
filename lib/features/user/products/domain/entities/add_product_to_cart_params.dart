@@ -1,4 +1,4 @@
-import '../models/product_options.dart';
+import 'dart:convert';
 
 abstract class BaseAddProductToCartParams {
   int? variantId;
@@ -48,7 +48,7 @@ class PharmacyCartParams extends BaseAddProductToCartParams {
 }
 
 class RestaurantCartParams extends BaseAddProductToCartParams {
-  final List<ProductOptionModel> productOptions;
+  final List<ProductOptionsParams> productOptions;
   final int? branchId;
   RestaurantCartParams({
     required this.productOptions,
@@ -60,9 +60,30 @@ class RestaurantCartParams extends BaseAddProductToCartParams {
   });
 
   @override
-  Map<String, dynamic> toJson() => {
-    ...super.toJson(),
-    'branch_id': branchId,
-    'product_options': productOptions.map((e) => e.toJson()).toList(),
+  Map<String, dynamic> toJson() {
+    List<Map<String, dynamic>> options = productOptions.map((e) => e.toJson()).toList();
+    return {
+      ...super.toJson(),
+      'branch_id': branchId,
+     if( options.isNotEmpty) 'options': jsonEncode(options),
+    };
+  }
+}
+
+
+
+class ProductOptionsParams{
+  final int id;
+
+  final List<int> optionsIds;
+
+  ProductOptionsParams({required this.id, required this.optionsIds});
+
+
+  Map<String,dynamic> toJson()=>{
+    "id" : id,
+    "option_value_ids":optionsIds
   };
+
+
 }

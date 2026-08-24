@@ -24,8 +24,8 @@ class RestaurantDeliveryTypeBottomSheet extends StatelessWidget {
         color: context.colors.customBackground,
         borderRadius: Dimens.sheetBorderRadius,
       ),
-      child: BlocBuilder<GenericBloc<List<PharmacyShippingDomainModel>>,
-          GenericState<List<PharmacyShippingDomainModel>>>(
+      child: BlocBuilder<GenericBloc<List<SellerShipping>>,
+          GenericState<List<SellerShipping>>>(
         bloc: controller.shippingDataCubit,
         builder: (context, state) {
           return Column(

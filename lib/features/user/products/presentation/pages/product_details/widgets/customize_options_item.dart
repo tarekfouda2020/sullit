@@ -54,11 +54,11 @@ class CustomizeOptionsItem extends StatelessWidget {
               ),
             ),
             Text(
-              '+ ${valueModel.price}',
+              valueModel.price,
               style: AppTextStyle.s16_w400(
                 color: context.colors.black,
               ),
-            ),
+            ).withDirhamSymbol(),
           ],
         ),
       ),

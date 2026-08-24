@@ -1,21 +1,24 @@
 import 'dart:convert';
 
 import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instruction_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_check_out_params.dart';
 
 class RestaurantCreateOrderParams {
-  String? paymentOption;
-  final List<RestaurantShippingInfo> shippingInfo;
-  int? addressId;
-  int? applyLoyaltyPoints;
-  String? couponCode;
-  String? giftCardCode;
-  List<DeliveryInstructionModel>? instructions;
-  String? driverNotes;
-  String? pickerNotes;
-  bool? allowReplacement;
+  final String? paymentOption;
+  final int? wallet;
+  final List<PharmacyShippingInfo> shippingInfo;
+  final int? addressId;
+  final int? applyLoyaltyPoints;
+  final String? couponCode;
+  final String? giftCardCode;
+  final List<DeliveryInstructionModel>? instructions;
+  final String? driverNotes;
+  final String? pickerNotes;
+  final bool? allowReplacement;
 
   RestaurantCreateOrderParams({
     this.paymentOption,
+    this.wallet,
     required this.shippingInfo,
     this.addressId,
     this.applyLoyaltyPoints,
@@ -30,6 +33,7 @@ class RestaurantCreateOrderParams {
   Map<String, dynamic> toJson() {
     return {
       if (paymentOption != null) 'payment_option': paymentOption,
+      if (wallet != null) 'wallet': wallet,
       if (shippingInfo.isNotEmpty)
         'shipping_info': jsonEncode(
           shippingInfo.map((e) => e.toJson()).toList(),
@@ -54,25 +58,8 @@ class RestaurantCreateOrderParams {
       return map;
     }
     for (int i = 0; i < instructions!.length; i++) {
-      map["delivery_instructions[$i]"] = instructions![i].id;
+      map['delivery_instructions[$i]'] = instructions![i].id;
     }
     return map;
-  }
-}
-
-class RestaurantShippingInfo {
-  final int ownerId;
-  final String shippingType;
-
-  const RestaurantShippingInfo({
-    required this.ownerId,
-    required this.shippingType,
-  });
-
-  Map<String, dynamic> toJson() {
-    return {
-      'owner_id': ownerId,
-      'shipiing_type': shippingType,
-    };
   }
 }

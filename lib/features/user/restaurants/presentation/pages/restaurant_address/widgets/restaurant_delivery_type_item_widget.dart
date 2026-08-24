@@ -1,7 +1,7 @@
 part of 'widgets_imports.dart';
 
 class RestaurantDeliveryTypeItemWidget extends StatelessWidget {
-  final PharmacyShippingDomainModel model;
+  final SellerShipping model;
   final RestaurantAddressController controller;
   final VoidCallback onRefresh;
 
@@ -26,25 +26,25 @@ class RestaurantDeliveryTypeItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            model.name ?? "",
+            model.name,
             style: AppTextStyle.s16_w600(color: context.colors.black),
           ),
           Gaps.vGap8,
           Row(
             spacing: 10,
             children: [
-              if (model.activeDelivery == true)
+              if (model.activeDelivery)
                 RestaurantDeliveryOptionWidget(
-                  isSelected: model.isDelivery,
+                  isSelected: model.deliveryType.isDelivery,
                   label: "Delivery",
                   onTap: () {
                     model.deliveryType = DeliveryTypeEnum.delivery;
                     onRefresh();
                   },
                 ),
-              if (model.activePickup == true)
+              if (model.activePickup)
                 RestaurantDeliveryOptionWidget(
-                  isSelected: model.isPickup,
+                  isSelected: model.deliveryType.isPickUp,
                   label: "Pickup",
                   onTap: () {
                     model.deliveryType = DeliveryTypeEnum.pickUp;
@@ -53,7 +53,7 @@ class RestaurantDeliveryTypeItemWidget extends StatelessWidget {
                 ),
             ],
           ),
-          if (!model.noOption) Gaps.vGap15,
+          if (model.activeDelivery || model.activePickup) Gaps.vGap15,
           _buildInfoText(context),
         ],
       ),
@@ -61,14 +61,15 @@ class RestaurantDeliveryTypeItemWidget extends StatelessWidget {
   }
 
   Widget _buildInfoText(BuildContext context) {
-    if (model.noOption) {
+    final noOption = !model.activeDelivery && !model.activePickup;
+    if (noOption) {
       return Text(
-        model.deliveryMessage ?? "",
+        model.deliveryMessage,
         style: AppTextStyle.s15_w600(color: context.colors.textColor),
       );
     }
-    if (model.isDelivery) {
-      final msg = model.delivery?.transitIn ?? model.deliveryMessage ?? "";
+    if (model.deliveryType.isDelivery) {
+      final msg = model.delivery?.transitIn ?? model.deliveryMessage;
       if (msg.isEmpty) return Gaps.empty;
       return Text(
         msg,

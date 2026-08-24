@@ -218,21 +218,8 @@ class RestaurantCheckOutController {
 
   Future<void> submitToCreateOrder() async {
     BuildContext ctx = getIt<GlobalContext>().context();
-    RestaurantCreateOrderParams params = _orderParams();
-    OrderSummaryDomainModel? data = await CreatePharmacyOrder().call(
-      PharmacyCreateOrderParams(
-        paymentOption: params.paymentOption,
-        shippingInfo: checkoutParams?.shippingInfo ?? <PharmacyShippingInfo>[],
-        addressId: params.addressId,
-        applyLoyaltyPoints: params.applyLoyaltyPoints,
-        couponCode: params.couponCode,
-        giftCardCode: params.giftCardCode,
-        instructions: params.instructions,
-        driverNotes: params.driverNotes,
-        pickerNotes: params.pickerNotes,
-        allowReplacement: params.allowReplacement,
-      ),
-    );
+    OrderSummaryDomainModel? data =
+        await CreateRestaurantOrder().call(_orderParams());
     if (data != null) {
       if (data.transactionUrl != null) {
         goToPay(data.transactionUrl!, ctx);
@@ -360,15 +347,11 @@ class RestaurantCheckOutController {
       paymentOption: paymentOptionsBloc.state.data
           .firstWhere((element) => element.selected)
           .paymentTypeKey,
+      wallet: isWalletSelected.state.data ? 1 : 0,
       giftCardCode: checkoutParams?.giftCardCode,
       allowReplacement: allowReplacementCubit.state.data,
       couponCode: checkoutParams?.couponCode,
-      shippingInfo: (checkoutParams?.shippingInfo ?? <PharmacyShippingInfo>[])
-          .map((e) => RestaurantShippingInfo(
-                ownerId: e.ownerId,
-                shippingType: e.shippingType,
-              ))
-          .toList(),
+      shippingInfo: checkoutParams?.shippingInfo ?? <PharmacyShippingInfo>[],
       addressId: checkoutParams?.addressId,
       instructions: _selectedInstructions(),
       driverNotes: driverNotesCtr.text.trim(),

@@ -8,14 +8,11 @@ class RestaurantAddressController {
   final GenericBloc<DeliveryTypeEnum> deliveryMethodCubit =
       GenericBloc<DeliveryTypeEnum>(DeliveryTypeEnum.delivery);
 
-  final GenericBloc<List<PharmacyShippingDomainModel>> shippingDataCubit =
-      GenericBloc<List<PharmacyShippingDomainModel>>([]);
+  final GenericBloc<List<SellerShipping>> shippingDataCubit =
+      GenericBloc<List<SellerShipping>>([]);
 
   final PagingController<int, AddressDomainModel> pagingController =
       PagingController(firstPageKey: 1);
-
-  final PagingController<int, BranchDomainModel>
-      branchesPagingController = PagingController(firstPageKey: 1);
 
   final Shop? restaurant;
 
@@ -27,12 +24,6 @@ class RestaurantAddressController {
     this.restaurant,
     this.preSelectedBranchId,
   }) {
-    if (restaurant?.hasBranches == true && preSelectedBranchId == null) {
-      getRestaurantBranches(1, refresh: false);
-      branchesPagingController.addPageRequestListener((pageKey) {
-        getRestaurantBranches(pageKey);
-      });
-    }
     getPaginateAddress(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
       getPaginateAddress(pageKey);
@@ -66,9 +57,6 @@ class RestaurantAddressController {
     address.selected = true;
     selectedAddress = address;
     refreshCubit.onUpdateData(true);
-    if (restaurant?.hasBranches == true && preSelectedBranchId == null) {
-      getBranches(context);
-    }
   }
 
   void onAddNewAddress(BuildContext context) async {
@@ -88,29 +76,24 @@ class RestaurantAddressController {
     getShippingInfo(context);
   }
 
-  Future<void> getBranches(BuildContext context) async {
-    getIt<LoadingHelper>().showLoadingDialog();
-    await getRestaurantBranches(1);
-    getIt<LoadingHelper>().dismissDialog();
-    showBranchesSheet(context);
-  }
-
   Future<void> getShippingInfo(BuildContext context) async {
-    var params = PharamcyShippingInfoParams(addressId: selectedAddress!.id!);
-    var result = await GetPharmacyShippingInfo().call(params);
-    if (result.isNotEmpty) {
-      for (PharmacyShippingDomainModel item in result) {
-        if (item.activeDelivery == false && item.activePickup == true) {
-          item.deliveryType = DeliveryTypeEnum.pickUp;
-        }
+    var params = SellerShippingInfoParams(
+      sellerId: restaurant!.userId!,
+      addressId: selectedAddress!.id!,
+      branchId: preSelectedBranchId,
+    );
+    var result = await GetSellerShippingInfo().call(params);
+    if (result != null) {
+      if (result.activeDelivery == false && result.activePickup == true) {
+        result.deliveryType = DeliveryTypeEnum.pickUp;
       }
-      shippingDataCubit.onUpdateData(result);
-      showShippingTypeSheet(context, result);
+      shippingDataCubit.onUpdateData([result]);
+      showShippingTypeSheet(context, [result]);
     }
   }
 
   void showShippingTypeSheet(
-      BuildContext context, List<PharmacyShippingDomainModel> result) {
+      BuildContext context, List<SellerShipping> result) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -129,7 +112,7 @@ class RestaurantAddressController {
   }
 
   Future<void> getCheckOutSummaryData(
-      BuildContext context, List<PharmacyShippingDomainModel> data) async {
+      BuildContext context, List<SellerShipping> data) async {
     PharmacyCheckoutParams params = _checkOutParams(data);
     final result = await GetCartSummary().call(params);
     if (result != null) {
@@ -141,7 +124,7 @@ class RestaurantAddressController {
   }
 
   PharmacyCheckoutParams _checkOutParams(
-      List<PharmacyShippingDomainModel> data) {
+      List<SellerShipping> data) {
     return PharmacyCheckoutParams(
       type: CartTypeEnum.restaurant,
       shippingInfo: _shippingData(data),
@@ -149,88 +132,16 @@ class RestaurantAddressController {
     );
   }
 
-  Future<void> getRestaurantBranches(int page, {bool refresh = true}) async {
-    PharmacyBranchesParams params = _branchesParams(page, refresh);
-    var data = await GetPharmacyBranches().call(params);
-    for (BranchDomainModel branch in data) {
-      branch.isSelected = branch.isDefault;
-    }
-    var isLastPage = data.length < AppConstants.instance.paginationLimit;
-    if (page == 1) {
-      branchesPagingController.itemList = [];
-    }
-    if (isLastPage) {
-      branchesPagingController.appendLastPage(data);
-    } else {
-      var nextPageKey = page + 1;
-      branchesPagingController.appendPage(data, nextPageKey);
-    }
-  }
-
-  PharmacyBranchesParams _branchesParams(int page, bool refresh) {
-    LatLng? currentLocation =
-        GlobalState.instance.get(GlobalStateKeys.userLocation);
-    return PharmacyBranchesParams(
-      latitude: double.tryParse(selectedAddress?.lat ?? "") ??
-          currentLocation?.latitude ??
-          0,
-      longitude: double.tryParse(selectedAddress?.lang ?? "") ??
-          currentLocation?.longitude ??
-          0,
-      pharmacyId: restaurant!.id!,
-      formRemote: refresh,
-      paginateParams: _paginateParams(page, refresh),
-    );
-  }
-
-  void showBranchesSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (context) {
-        return BranchesBottomSheetWidget(
-          pagingController: branchesPagingController,
-          onSelect: (branch) => onSelectBranch(context, branch),
-        );
-      },
-    );
-  }
-
-  void onSelectBranch(BuildContext context, BranchDomainModel branch) {
-    Navigator.pop(context);
-    for (BranchDomainModel b
-        in _branchesItemList ?? <BranchDomainModel>[]) {
-      b.isSelected = false;
-    }
-    branch.isSelected = true;
-    branchesPagingController.itemList = [...?_branchesItemList];
-    shippingDataCubit.onUpdateData(shippingDataCubit.state.data);
-  }
-
-  List<BranchDomainModel>? get _branchesItemList =>
-      branchesPagingController.itemList;
-
-  BranchDomainModel? get selectedBranch {
-    if ((_branchesItemList ?? []).every((element) => !element.isSelected)) {
-      return null;
-    } else {
-      return _branchesItemList!.firstWhere((element) => element.isSelected);
-    }
-  }
-
-  int? get effectiveBranchId => selectedBranch?.id ?? preSelectedBranchId;
-
   bool canConfirmShipping() {
     return shippingDataCubit.state.data.every(
       (e) => e.activeDelivery == true || e.activePickup == true,
     );
   }
 
-  List<PharmacyShippingInfo> _shippingData(
-      List<PharmacyShippingDomainModel> data) {
+  List<PharmacyShippingInfo> _shippingData(List<SellerShipping> data) {
     return data
         .map((e) => PharmacyShippingInfo(
-              ownerId: e.ownerId ?? 0,
+              ownerId: e.ownerId,
               shippingType: (e.deliveryType).getEnumValue(),
             ))
         .toList();

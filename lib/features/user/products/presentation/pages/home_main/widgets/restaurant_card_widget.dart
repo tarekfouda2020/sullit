@@ -14,7 +14,9 @@ class RestaurantCardWidget extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () => AutoRouter.of(context).push(
-            PharmacyDetailsRoute(pharmacyId: restaurantModel.id),
+            PharmacyDetailsRoute(pharmacyId: restaurantModel.id,
+            type: CartTypeEnum.restaurant
+            ),
           ),
           child: Container(
             width: 181,

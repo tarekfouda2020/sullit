@@ -43,11 +43,9 @@ class RestaurantCartController {
     );
   }
 
-  Future<bool> onIncreaseCart(
-      BuildContext context, GeneralCartItem cartItem, int newQty) async {
-    final success =
-        await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
-    if (success != null) {
+  Future<bool> onIncreaseCart(BuildContext context, GeneralCartItem cartItem, int newQty) async {
+    final success = await getIt<CartHelper>().updateCartItem(newQty, cartItem.id);
+    if (success != null) { 
       cartItem.quantity = newQty;
       cartItemsBloc.onUpdateData(success);
       FacebookEventsHelper.instance
@@ -187,7 +185,9 @@ class RestaurantCartController {
       }
       AutoRouter.of(context).push(RestaurantAddressRoute(
         restaurant: restaurantBloc.state.data,
-        preSelectedBranchId: preSelectedBranchId,
+        preSelectedBranchId: preSelectedBranchId ??
+            cartData.items?.firstOrNull?.branchId ??
+            cartData.pharmacyItems?.firstOrNull?.branchId,
       ));
     } else {
       CustomToast.showAuthDialog(context);
