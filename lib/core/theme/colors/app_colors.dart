@@ -34,6 +34,8 @@ abstract class AppColors {
 
   Color get primary;
 
+  Color get  lightPink3;
+
   Color get secondary;
 
   Color get grey;

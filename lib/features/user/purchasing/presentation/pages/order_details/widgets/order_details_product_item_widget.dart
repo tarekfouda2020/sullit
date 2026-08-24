@@ -17,9 +17,10 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          padding: Dimens.paddingH17V13,
-          margin: const EdgeInsets.only(bottom: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 15),
+          margin: const EdgeInsets.symmetric(horizontal: 18,vertical: 8),
           decoration: CustomDecoration(
+            thisColor: context.colors.white,
               boxBorder: Border.all(color: context.colors.gray3),
               myBoxShadow: const []),
           child: Column(
@@ -71,8 +72,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                             ),
                           Gaps.vGap7,
                           OrderDetailsPriceQuantityWidget(displayItem: displayItem),
-                          Gaps.vGap10,
-                          OrderDetailsTotalWidget(displayItem: displayItem),
+                          // OrderDetailsTotalWidget(displayItem: displayItem),
                         ],
                       ),
                     ),

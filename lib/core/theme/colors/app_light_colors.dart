@@ -96,6 +96,8 @@ class AppLightColors extends AppColors {
   Color get lightPink => const Color(0xffFFE1E2);
 
   @override
+  Color get lightPink3 => const Color(0xffFFE4E5);
+  @override
   Color get darkRed => const Color(0xff822426);
 
   @override

@@ -32,16 +32,54 @@ class InstoreOrderDetailsWidget extends StatelessWidget {
                   style: AppTextStyle.s14_w400(color: context.colors.grey),
                 ),
                 Gaps.vGap6,
-
                 Text(
                   // "${summary.summary!.combinedOrderId}",
                  "#${ summary.sectionOrders!.first.code}",
-                  style: AppTextStyle.s28_w400(color: context.colors.black),
+                  style: AppTextStyle.s28_w500(color: context.colors.black),
                   textAlign: TextAlign.center,
                 ),
                 Gaps.vGap12,
+                ReviewStatusWidget(
+                  textColor:context.colors.mainGreen ,
+                  backGroundColor:context.colors.lightGreen ,
+                  text:summary.sectionOrders!.first.deliveryStatus,
+                  child:SvgPicture.asset(Res.layersIcon, width: 16, height: 16),
+
+                ),
                 Gaps.vGap14,
-                InstoreOrderInfoWidget(orderSummary: summary,),
+                Row(
+                 crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: InstoreOrderInfoWidget(
+                        orderSummary: summary,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap:() {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: context.colors.transparent,
+                          builder: (_) {
+                            return OrderQrBottomSheet(
+                              orderNumber:summary.sectionOrders!.first.code,
+                              status: summary.sectionOrders!.first.deliveryStatus,
+                              totalPrice: summary.sectionOrders!.first.total,
+                              orderId: summary.sectionOrders!.first.id,
+                            );
+                          },
+                        );
+                      } ,
+                      child:SvgPicture.string(
+                        getIt<BarcodeService>().generateQrCode(summary.sectionOrders!.first.id.toString(),),
+                        width: 70,
+                        height: 70,
+                      ),
+
+                    ),
+                  ],
+                ),
               ],
             )
         ),

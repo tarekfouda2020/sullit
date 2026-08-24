@@ -75,6 +75,29 @@ class _InstoreConfirmBuyingState extends State<InstoreConfirmBuying> {
                       orderSummary: state.data!,
                       controller: controller,
                     ),
+                    Gaps.vGap24,
+                    DefaultButton(
+                      title: "View Order QR",
+                      onTap:() {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: context.colors.transparent,
+                          builder: (_) {
+                            return OrderQrBottomSheet(
+                              orderNumber:widget.summary!.sectionOrders!.first.code,
+                              status:widget.summary!.sectionOrders!.first.deliveryStatus,
+                              totalPrice: widget.summary!.sectionOrders!.first.total, orderId: widget.summary!.sectionOrders!.first.id,
+                            );
+                          },
+                        );
+                      } ,
+                      textColor: context.colors.white,
+                      color: context.colors.mainGreen,
+                      borderColor: context.colors.mainGreen,
+                      disabled: false,
+
+                    ),
                     Gaps.vGap30,
                   ],
                 ),

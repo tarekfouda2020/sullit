@@ -69,6 +69,7 @@ class Res {
   static const String minusIcon = "assets/images/minus_icon.svg";
   static const String searchIcon = "assets/images/search_icon.svg";
   static const String qrScanIcon = "assets/images/scan_qr_icon.svg";
+  static const String qrScanImage = "assets/images/QR_code_image.png";
   static const String truckIcon = "assets/images/truck_icon.svg";
   static const String feedBackIcon = "assets/images/feedback_icon.svg";
   static const String recyleIcon = "assets/images/recyle_icon.svg";

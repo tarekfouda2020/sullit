@@ -94,13 +94,11 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 13),
-                decoration: BoxDecoration(
-                  color: _getReviewStatusColor(context),
-                  borderRadius: Dimens.borderRadius30PX,
-                ),
-                child: _reviewStatusWidget(context),
+              ReviewStatusWidget(
+                textColor: _getReviewTextStatusColor(context),
+                backGroundColor: _getReviewStatusColor(context) ,
+                text: data.deliveryStatus,
+                child:  _reviewStatusWidget(context),
               ),
             ],
           ),
@@ -235,28 +233,18 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
 
   Widget _reviewStatusWidget(BuildContext context) {
     if(data.isCanceled == true){
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CircleAvatar(radius: 4, backgroundColor: context.colors.bloodyRed),
-          Gaps.hGap5,
-          Text(
-            data.deliveryStatus,
-            style: AppTextStyle.s16_w600(color: context.colors.primary),
-          ),
-        ],
-      );
+      return  CircleAvatar(radius: 4, backgroundColor: context.colors.bloodyRed);
     }
     if (data.pharmNormalOrder) {
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           SvgPicture.asset(Res.layersIcon, width: 16, height: 16),
-          Gaps.hGap5,
-          Text(
-            data.deliveryStatus,
-            style: AppTextStyle.s14_w600(color: context.colors.mainGreen),
-          ),
+          // Gaps.hGap5,
+          // Text(
+          //   data.deliveryStatus,
+          //   style: AppTextStyle.s14_w600(color: context.colors.mainGreen),
+          // ),
         ],
       );
     } else if (data.isPendingReview == true) {
@@ -264,11 +252,11 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           CircleAvatar(radius: 4, backgroundColor: context.colors.orange),
-          Gaps.hGap5,
-          Text(
-            "Under Reviewing",
-            style: AppTextStyle.s16_w600(color: context.colors.orange),
-          ),
+          // Gaps.hGap5,
+          // Text(
+          //   "Under Reviewing",
+          //   style: AppTextStyle.s16_w600(color: context.colors.orange),
+          // ),
         ],
       );
     } else {
@@ -276,11 +264,11 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SvgPicture.asset(Res.layersIcon, width: 16, height: 16),
-          Gaps.hGap5,
-          Text(
-            data.deliveryStatus,
-            style: AppTextStyle.s16_w400(color: context.colors.mainGreen),
-          ),
+          // Gaps.hGap5,
+          // Text(
+          //   data.deliveryStatus,
+          //   style: AppTextStyle.s16_w400(color: context.colors.mainGreen),
+          // ),
         ],
       );
     }
@@ -291,8 +279,17 @@ class PharmacyOrderDetailsDoneWidget extends StatelessWidget {
       return context.colors.lightOrange;
     }
     if(data.isCanceled == true){
-      return const Color(0xffFFE4E5);
+      return context.colors.lightPink3;
     }
     return context.colors.lightGreen;
+  }
+  Color _getReviewTextStatusColor(BuildContext context) {
+    if (data.pharmNormalOrder == false && data.isPendingReview == true) {
+      return context.colors.orange;
+    }
+    if(data.isCanceled == true){
+      return context.colors.primary;
+    }
+    return context.colors.mainGreen;
   }
 }

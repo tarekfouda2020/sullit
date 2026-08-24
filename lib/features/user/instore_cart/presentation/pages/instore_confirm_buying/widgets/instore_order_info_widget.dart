@@ -16,7 +16,7 @@ class InstoreOrderInfoWidget extends StatelessWidget {
         ),
         Gaps.vGap12,
         OrderINfoItemWidget(
-          title: tr('orderStatus'),
+          title: tr('Status'),
           describe: orderSummary.summary!.orderStatus,
           gaps: Gaps.hGap7,
         ),
@@ -27,24 +27,24 @@ class InstoreOrderInfoWidget extends StatelessWidget {
           gaps: Gaps.hGap9,
         ),
         Gaps.vGap12,
-        // OrderINfoItemWidget(
-        //   title: tr('deliverStatus'),
-        //   describe: orderSummary.summary!.orderStatus,
-        //   gaps: Gaps.hGap9,
-        // ),
-        // Gaps.vGap12,
-        // OrderINfoItemWidget(
-        //   title: tr('address'),
-        //   describe: orderSummary.summary!.shippingAddress,
-        //   gaps: Gaps.hGap7,
-        // ),
-        // Gaps.vGap12,
-        if(orderSummary.summary!.email.isNotEmpty)
         OrderINfoItemWidget(
-          title: tr('mail'),
-          describe: orderSummary.summary!.email,
+          title: tr('Receipt Status'),
+          describe: orderSummary.summary!.orderStatus,
+          gaps: Gaps.hGap9,
+        ),
+        Gaps.vGap12,
+        OrderINfoItemWidget(
+          title: tr('address'),
+          describe: orderSummary.summary!.shippingAddress,
           gaps: Gaps.hGap7,
         ),
+        // Gaps.vGap12,
+        // if(orderSummary.summary!.email.isNotEmpty)
+        // OrderINfoItemWidget(
+        //   title: tr('mail'),
+        //   describe: orderSummary.summary!.email,
+        //   gaps: Gaps.hGap7,
+        // ),
         Gaps.vGap12,
         OrderINfoItemWidget(
           title: tr("phone"),

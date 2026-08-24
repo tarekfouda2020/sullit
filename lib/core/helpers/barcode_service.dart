@@ -8,7 +8,7 @@ import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 @lazySingleton
 class BarcodeService {
   final Barcode code128 = Barcode.code128();
-
+  final Barcode qrCode = Barcode.qrCode();
   String generateBarcode(String data,{bool showText = false}){
     final String svg = code128.toSvg(
       data,
@@ -17,6 +17,13 @@ class BarcodeService {
       drawText: showText,
     );
     return svg;
+  }
+  String generateQrCode(String data) {
+    return qrCode.toSvg(
+      data,
+      width: 300,
+      height: 300,
+    );
   }
 
 

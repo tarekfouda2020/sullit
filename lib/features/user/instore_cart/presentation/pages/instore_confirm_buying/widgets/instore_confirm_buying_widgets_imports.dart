@@ -25,6 +25,9 @@ import 'package:flutter_tdd/features/user/purchasing/domain/models/orders.dart';
 import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_details/widgets/order_details_widgets_imports.dart';
 import 'package:flutter_tdd/res.dart';
 
+import '../../../../../../../core/helpers/barcode_service.dart';
+import '../../../../../../../core/widgets/review_status_widget.dart';
+
 part 'instore_order_details_widget.dart';
 part 'instore_order_info_widget.dart';
 part 'instore_order_products_widget.dart';
@@ -32,3 +35,4 @@ part 'instore_confirm_buying_summary_widget.dart';
 part 'instore_confirm_buying_products_widget.dart';
 part 'instore_confirm_shimmer_widget.dart';
 part 'instore_new_points_balance_widget.dart';
+part 'order_qr_bottom_sheet.dart';

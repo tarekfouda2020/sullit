@@ -29,6 +29,8 @@ import 'package:flutter_tdd/features/user/purchasing/presentation/pages/order_de
 import 'package:flutter_tdd/res.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../../../../core/widgets/review_status_widget.dart';
+
 part 'pharmacy_order_details_body.dart';
 part 'pharmacy_order_details_done_widget.dart';
 part 'pharmacy_order_products_widget.dart';
