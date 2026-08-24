@@ -100,7 +100,7 @@ class _RestaurantCheckOutState extends State<RestaurantCheckOut> {
                                 (state.data!.summary.loyaltyPoints ?? 0).toDouble(),
                             redeemedValue: double.parse((state
                                 .data!.summary.loyaltyPointsValue
-                                .cleanNumber())),
+                                .cleanNumber)),
                             earnedPoints:
                                 state.data!.summary.expectedLoyaltyPoints.toDouble(),
                           ),

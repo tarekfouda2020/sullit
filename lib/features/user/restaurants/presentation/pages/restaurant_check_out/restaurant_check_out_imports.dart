@@ -35,6 +35,7 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_conf
 import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_confirm_order_params.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_confirm_order_domain_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/confirm_pharmacy_order.dart';
+import 'package:flutter_tdd/features/user/purchasing/domain/entities/order_payment_options_params.dart';
 import 'package:flutter_tdd/features/user/restaurants/domain/models/restaurant_order_step_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/use_cases/get_pharmacy_confirm_summary.dart';
 import 'package:flutter_tdd/features/user/restaurants/presentation/pages/widgets/restaurant_order_stepper.dart';

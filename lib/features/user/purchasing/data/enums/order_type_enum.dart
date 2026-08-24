@@ -9,7 +9,8 @@ enum OrderTypeEnum {
   String getKey(){
     switch (this) {
       case OrderTypeEnum.general:
-        return "general";
+        /// default in back-end "general"
+        return "";
       case OrderTypeEnum.pharmacy:
         return "pharmacy";
         case OrderTypeEnum.restaurant:
