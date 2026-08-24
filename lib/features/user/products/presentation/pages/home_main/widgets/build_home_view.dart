@@ -23,6 +23,9 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap25,
             const AdvantagesWidget(),
             Gaps.vGap20,
+             const InStoreShoppingBanner(),
+            Gaps.vGap20,
+
             TrackSellerOrderWidget(
               currentOrders: homeDomainModel.currentOrders,
               controller: controller,

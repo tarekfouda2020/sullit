@@ -36,6 +36,7 @@ import 'package:flutter_tdd/features/user/products/presentation/widgets/build_pr
 import 'package:flutter_tdd/res.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import '../../home_main/widgets/home_main_widgets_imports.dart';
 import '../seller_products_imports.dart';
 
 part 'seller_product_item_widget.dart';

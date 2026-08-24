@@ -20,6 +20,9 @@ class ClearAllButtonWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             spacing: 5,
             children: [
+              Gaps.hGap18,
+              Text("Cart Products",style: AppTextStyle.s16_w700(color: context.colors.black),),
+              const Spacer(),
               Text(
                 tr('clearAll'),
                 style: AppTextStyle.s15_w500(color: context.colors.primary),

@@ -13,7 +13,6 @@ class InstoreCartItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final unitPrice = cartItem.price.toStringAsFixed(2);
-    final totalPrice = (cartItem.qnt * cartItem.price).toStringAsFixed(2);
 
     return Container(
       margin: Dimens.paddingVertical5PX,
@@ -44,54 +43,44 @@ class InstoreCartItemWidget extends StatelessWidget {
               children: [
                 Text(
                   cartItem.name,
-                  style: AppTextStyle.s14_w600(color: context.colors.black)
-                      .copyWith(height: 1.5),
+                  style: AppTextStyle.s14_w600(color: context.colors.black).copyWith(height: 1.5),
                 ),
                 Gaps.vGap8,
+                RatingBar.builder(
+                  initialRating: 0.0,
+                  ignoreGestures: true,
+                  minRating: 1,
+                  direction: Axis.horizontal,
+                  allowHalfRating: true,
+                  itemCount: 5,
+                  itemSize: 10.sp,
+                  unratedColor: context.colors.disableGray,
+                  itemBuilder: (context, _) => const Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  ),
+                  onRatingUpdate: (rating) {},
+                ),
+                Gaps.vGap4,
+                DirhamPrice(
+                  amount: unitPrice,
+                  currencyStyle: AppTextStyle.s14_w400(
+                    color: context.colors.primary,
+                  ),
+                  textStyle: AppTextStyle.s14_w600(
+                    color: context.colors.primary,
+                  ),
+                ),
+                Gaps.vGap7,
                 Row(
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          tr('unitPrice'),
-                          style: AppTextStyle.s12_w400(
-                            color: context.colors.textColor,
-                          ),
-                        ),
-                        Gaps.vGap4,
-                        DirhamPrice(
-                          amount: unitPrice,
-                          currencyStyle: AppTextStyle.s14_w400(
-                            color: context.colors.textColor,
-                          ),
-                          textStyle: AppTextStyle.s14_w600(
-                            color: context.colors.black,
-                          ),
-                        ),
-                      ],
+                    Text(
+                      "Sold By :",
+                      style: AppTextStyle.s12_w400(color: context.colors.textColor),
                     ),
-                    const Spacer(),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          tr('totalPrice'),
-                          style: AppTextStyle.s12_w400(
-                            color: context.colors.textColor,
-                          ),
-                        ),
-                        Gaps.vGap4,
-                        DirhamPrice(
-                          amount: totalPrice,
-                          currencyStyle: AppTextStyle.s16_w400(
-                            color: context.colors.primary,
-                          ),
-                          textStyle: AppTextStyle.s14_w600(
-                            color: context.colors.primary,
-                          ),
-                        ),
-                      ],
+                    Text(
+                      "Munch Corner",
+                      style: AppTextStyle.s12_w600(color: context.colors.black),
                     ),
                   ],
                 ),

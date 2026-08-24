@@ -103,3 +103,4 @@ part 'home_Pharmacies_widget.dart';
 part 'attach_prescription_sheet_widget.dart';
 part 'saved_prescriptions_bottom_sheet_widget.dart';
 part 'saved_prescription_item_widget.dart';
+part'in_store_shopping_banner.dart';

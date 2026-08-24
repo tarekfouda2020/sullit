@@ -165,14 +165,15 @@ class __$$_InstoreCartItemModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_InstoreCartItemModel implements _InstoreCartItemModel {
+class _$_InstoreCartItemModel extends _InstoreCartItemModel {
   const _$_InstoreCartItemModel(
       {required this.id,
       @JsonKey(name: 'variant_id') required this.variantId,
       required this.qnt,
       required this.price,
       required this.name,
-      required this.image});
+      required this.image})
+      : super._();
 
   factory _$_InstoreCartItemModel.fromJson(Map<String, dynamic> json) =>
       _$$_InstoreCartItemModelFromJson(json);
@@ -230,7 +231,7 @@ class _$_InstoreCartItemModel implements _InstoreCartItemModel {
   }
 }
 
-abstract class _InstoreCartItemModel implements InstoreCartItemModel {
+abstract class _InstoreCartItemModel extends InstoreCartItemModel {
   const factory _InstoreCartItemModel(
       {required final int id,
       @JsonKey(name: 'variant_id') required final int variantId,
@@ -238,6 +239,7 @@ abstract class _InstoreCartItemModel implements InstoreCartItemModel {
       required final num price,
       required final String name,
       required final String image}) = _$_InstoreCartItemModel;
+  const _InstoreCartItemModel._() : super._();
 
   factory _InstoreCartItemModel.fromJson(Map<String, dynamic> json) =
       _$_InstoreCartItemModel.fromJson;
