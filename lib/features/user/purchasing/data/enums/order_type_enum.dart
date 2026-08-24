@@ -2,7 +2,8 @@
 enum OrderTypeEnum {
 
   general,
-  pharmacy;
+  pharmacy,
+  restaurant;
 
 
   String getKey(){
@@ -11,6 +12,8 @@ enum OrderTypeEnum {
         return "general";
       case OrderTypeEnum.pharmacy:
         return "pharmacy";
+        case OrderTypeEnum.restaurant:
+        return "restaurant";
       }
   }
 

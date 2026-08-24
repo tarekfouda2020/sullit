@@ -38,5 +38,6 @@ import 'package:flutter_tdd/features/user/wishlist/presentation/manager/routes/r
 
 import '../../features/user/loyalty_points/presentation/manager/routes/loyalty_points_route.dart';
 import '../../features/user/pharmacies/presentation/manager/routes/pharmacies_routes.dart';
+import '../../features/user/restaurants/presentation/manager/routes/restaurant_routes.dart';
 
 part 'router.dart';

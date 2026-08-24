@@ -8,6 +8,7 @@ import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.dart';
+import 'package:flutter_tdd/features/user/products/domain/entities/product_details_page_route_params.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 
@@ -62,9 +63,11 @@ class _BuildProductItemState extends BaseProductItemState<BuildProductItem> {
   Future<void> routeToDetails(BuildContext context) async {
     await AutoRouter.of(context).push(
       ProductDetailsRoute(
-        isFav: widget.productModel.isWishlist,
-        productId: widget.productModel.id,
-        isResale: false,
+        params: ProductDetailsPageRouteParams(
+          productId: widget.productModel.id,
+          isFav: widget.productModel.isWishlist,
+          branchId: widget.fallbackBranchId,
+        ),
       ),
     );
     widget.onRefresh?.call();

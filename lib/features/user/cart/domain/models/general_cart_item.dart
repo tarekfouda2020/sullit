@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/features/user/cart/domain/models/base_cart_domain_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart_option.dart';
 
 class GeneralCartItem extends BaseCartItemDomainModel {
   @override
@@ -47,12 +48,14 @@ class GeneralCartItem extends BaseCartItemDomainModel {
   final bool? prescriptionRequired;
   final bool? insuranceEligible;
   final int? branchId;
+  final List<CartOption>? cartOptions;
 
   GeneralCartItem({
     required this.id,
     this.prescriptionRequired,
     this.insuranceEligible,
     this.branchId,
+    this.cartOptions,
     required this.ownerId,
     required this.thumbnailImage,
     required this.name,

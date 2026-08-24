@@ -2,7 +2,7 @@ import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/variant_model/variant_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
+import '../product_options/product_options.dart';
 part 'product_card_model.freezed.dart';
 part 'product_card_model.g.dart';
 
@@ -32,6 +32,7 @@ class ProductCardModel extends BaseApiModel<ProductCard> with _$ProductCardModel
     @JsonKey(name: 'has_shareholder_discount') required bool hasShareholderDiscount,
     @JsonKey(name: 'has_discount') required bool hasDiscount,
     required String discount,
+    @JsonKey(name: 'product_options') List<ProductOption>? productOptions,
     @JsonKey(name: 'min_qty') required int minQty,
     @JsonKey(name: 'max_qty') int? maxQty,
     @JsonKey(name: 'currency_symbol') required String currencySymbol,
@@ -47,8 +48,7 @@ class ProductCardModel extends BaseApiModel<ProductCard> with _$ProductCardModel
     @JsonKey(name: 'brand_name') required String brandName,
   }) = _ProductCardModel;
 
-  factory ProductCardModel.fromJson(Map<String, dynamic> json) =>
-      _$ProductCardModelFromJson(json);
+  factory ProductCardModel.fromJson(Map<String, dynamic> json) => _$ProductCardModelFromJson(json);
 
   @override
   ProductCard toDomainModel() {
@@ -77,6 +77,7 @@ class ProductCardModel extends BaseApiModel<ProductCard> with _$ProductCardModel
       currencySymbol: currencySymbol,
       variant: variant?.toDomainModel(),
       rating: rating,
+      productOptions: productOptions?.map((e) => e.toDomainModel()).toList(),
       isDigital: isDigital,
       isWishlist: isWishlist,
       sellerId: sellerId,

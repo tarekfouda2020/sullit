@@ -1,19 +1,12 @@
 part of 'product_details_imports.dart';
 
 class ProductDetails extends StatefulWidget {
-  final int productId;
-  final int? branchId;
-  final bool isResale;
-  final bool isFav;
-  final bool fromSellerPage;
+  final ProductDetailsPageRouteParams params;
 
-  const ProductDetails(
-      {super.key,
-      required this.productId,
-      required this.isResale,
-      this.branchId,
-      this.fromSellerPage = false,
-      required this.isFav});
+  const ProductDetails({
+    super.key,
+    required this.params,
+  });
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
@@ -25,16 +18,7 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   void initState() {
     super.initState();
-    controller = ProductDetailsController(
-      context,
-      ProductDetailsPageParams(
-        productId: widget.productId,
-        isResale: widget.isResale,
-        isFav: widget.isFav,
-        fromSellerPage: widget.fromSellerPage,
-        branchId: widget.branchId,
-      ),
-    );
+    controller = ProductDetailsController(context, widget.params);
   }
 
   @override

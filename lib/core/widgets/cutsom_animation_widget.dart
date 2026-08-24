@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
 
-/// ✅ Ultra-optimized version
 class AppearAnimation extends StatefulWidget {
   final Widget child;
   final Duration duration;
@@ -70,7 +69,6 @@ class _AppearAnimationState extends State<AppearAnimation>
     return AnimatedBuilder(
       animation: _animation,
       builder: (context, child) {
-        // ✅ Use single animation value for all transforms
         final progress = _animation.value;
 
         return Opacity(
@@ -92,7 +90,6 @@ class _AppearAnimationState extends State<AppearAnimation>
   }
 }
 
-/// ✅ Alternative: Minimal version (fastest)
 class AppearAnimationMinimal extends StatefulWidget {
   final Widget child;
   final Duration duration;

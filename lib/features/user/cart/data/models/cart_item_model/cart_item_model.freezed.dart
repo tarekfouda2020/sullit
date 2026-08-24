@@ -61,6 +61,8 @@ mixin _$CartItemModel {
   int? get shopId => throw _privateConstructorUsedError;
   @JsonKey(name: "branch_id")
   int? get branchId => throw _privateConstructorUsedError;
+  @JsonKey(name: "cart_options")
+  List<CartOptionModel>? get cartOptions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -98,7 +100,8 @@ abstract class $CartItemModelCopyWith<$Res> {
       @JsonKey(name: "sold_by_type") String soldByType,
       @JsonKey(name: "sold_by_name") String soldBy,
       @JsonKey(name: "shop_id") int? shopId,
-      @JsonKey(name: "branch_id") int? branchId});
+      @JsonKey(name: "branch_id") int? branchId,
+      @JsonKey(name: "cart_options") List<CartOptionModel>? cartOptions});
 }
 
 /// @nodoc
@@ -138,6 +141,7 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
     Object? soldBy = null,
     Object? shopId = freezed,
     Object? branchId = freezed,
+    Object? cartOptions = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -236,6 +240,10 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
           ? _value.branchId
           : branchId // ignore: cast_nullable_to_non_nullable
               as int?,
+      cartOptions: freezed == cartOptions
+          ? _value.cartOptions
+          : cartOptions // ignore: cast_nullable_to_non_nullable
+              as List<CartOptionModel>?,
     ) as $Val);
   }
 }
@@ -272,7 +280,8 @@ abstract class _$$_CartItemModelCopyWith<$Res>
       @JsonKey(name: "sold_by_type") String soldByType,
       @JsonKey(name: "sold_by_name") String soldBy,
       @JsonKey(name: "shop_id") int? shopId,
-      @JsonKey(name: "branch_id") int? branchId});
+      @JsonKey(name: "branch_id") int? branchId,
+      @JsonKey(name: "cart_options") List<CartOptionModel>? cartOptions});
 }
 
 /// @nodoc
@@ -310,6 +319,7 @@ class __$$_CartItemModelCopyWithImpl<$Res>
     Object? soldBy = null,
     Object? shopId = freezed,
     Object? branchId = freezed,
+    Object? cartOptions = freezed,
   }) {
     return _then(_$_CartItemModel(
       id: null == id
@@ -408,6 +418,10 @@ class __$$_CartItemModelCopyWithImpl<$Res>
           ? _value.branchId
           : branchId // ignore: cast_nullable_to_non_nullable
               as int?,
+      cartOptions: freezed == cartOptions
+          ? _value._cartOptions
+          : cartOptions // ignore: cast_nullable_to_non_nullable
+              as List<CartOptionModel>?,
     ));
   }
 }
@@ -441,8 +455,10 @@ class _$_CartItemModel extends _CartItemModel {
       @JsonKey(name: "sold_by_type") required this.soldByType,
       @JsonKey(name: "sold_by_name") required this.soldBy,
       @JsonKey(name: "shop_id") required this.shopId,
-      @JsonKey(name: "branch_id") required this.branchId})
-      : super._();
+      @JsonKey(name: "branch_id") required this.branchId,
+      @JsonKey(name: "cart_options") final List<CartOptionModel>? cartOptions})
+      : _cartOptions = cartOptions,
+        super._();
 
   factory _$_CartItemModel.fromJson(Map<String, dynamic> json) =>
       _$$_CartItemModelFromJson(json);
@@ -512,10 +528,20 @@ class _$_CartItemModel extends _CartItemModel {
   @override
   @JsonKey(name: "branch_id")
   final int? branchId;
+  final List<CartOptionModel>? _cartOptions;
+  @override
+  @JsonKey(name: "cart_options")
+  List<CartOptionModel>? get cartOptions {
+    final value = _cartOptions;
+    if (value == null) return null;
+    if (_cartOptions is EqualUnmodifiableListView) return _cartOptions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'CartItemModel(id: $id, ownerId: $ownerId, loyaltyPoints: $loyaltyPoints, thumbnailImage: $thumbnailImage, name: $name, price: $price, tax: $tax, quantity: $quantity, rating: $rating, isDigital: $isDigital, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, total: $total, calculableTotal: $calculableTotal, currencySymbol: $currencySymbol, productId: $productId, minQty: $minQty, stockQty: $stockQty, isWishlist: $isWishlist, prescriptionRequired: $prescriptionRequired, insuranceEligible: $insuranceEligible, soldByType: $soldByType, soldBy: $soldBy, shopId: $shopId, branchId: $branchId)';
+    return 'CartItemModel(id: $id, ownerId: $ownerId, loyaltyPoints: $loyaltyPoints, thumbnailImage: $thumbnailImage, name: $name, price: $price, tax: $tax, quantity: $quantity, rating: $rating, isDigital: $isDigital, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, total: $total, calculableTotal: $calculableTotal, currencySymbol: $currencySymbol, productId: $productId, minQty: $minQty, stockQty: $stockQty, isWishlist: $isWishlist, prescriptionRequired: $prescriptionRequired, insuranceEligible: $insuranceEligible, soldByType: $soldByType, soldBy: $soldBy, shopId: $shopId, branchId: $branchId, cartOptions: $cartOptions)';
   }
 
   @override
@@ -561,7 +587,9 @@ class _$_CartItemModel extends _CartItemModel {
             (identical(other.soldBy, soldBy) || other.soldBy == soldBy) &&
             (identical(other.shopId, shopId) || other.shopId == shopId) &&
             (identical(other.branchId, branchId) ||
-                other.branchId == branchId));
+                other.branchId == branchId) &&
+            const DeepCollectionEquality()
+                .equals(other._cartOptions, _cartOptions));
   }
 
   @JsonKey(ignore: true)
@@ -591,7 +619,8 @@ class _$_CartItemModel extends _CartItemModel {
         soldByType,
         soldBy,
         shopId,
-        branchId
+        branchId,
+        const DeepCollectionEquality().hash(_cartOptions)
       ]);
 
   @JsonKey(ignore: true)
@@ -634,8 +663,9 @@ abstract class _CartItemModel extends CartItemModel {
       @JsonKey(name: "sold_by_type") required final String soldByType,
       @JsonKey(name: "sold_by_name") required final String soldBy,
       @JsonKey(name: "shop_id") required final int? shopId,
-      @JsonKey(name: "branch_id")
-      required final int? branchId}) = _$_CartItemModel;
+      @JsonKey(name: "branch_id") required final int? branchId,
+      @JsonKey(name: "cart_options")
+      final List<CartOptionModel>? cartOptions}) = _$_CartItemModel;
   const _CartItemModel._() : super._();
 
   factory _CartItemModel.fromJson(Map<String, dynamic> json) =
@@ -706,6 +736,9 @@ abstract class _CartItemModel extends CartItemModel {
   @override
   @JsonKey(name: "branch_id")
   int? get branchId;
+  @override
+  @JsonKey(name: "cart_options")
+  List<CartOptionModel>? get cartOptions;
   @override
   @JsonKey(ignore: true)
   _$$_CartItemModelCopyWith<_$_CartItemModel> get copyWith =>

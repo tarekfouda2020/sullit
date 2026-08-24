@@ -29,6 +29,7 @@ part of 'router_imports.dart';
     ...wishListRoute,
     ...profileRoute,
     ...purchasingRoute,
+    ...restaurantRoutes,
     ...saleRoute,
     ...ticketRoute,
     ...walletRoute,

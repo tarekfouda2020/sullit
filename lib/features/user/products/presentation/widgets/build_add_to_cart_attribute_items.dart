@@ -9,6 +9,8 @@ import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 
+import '../../domain/models/product_attributes_options.dart';
+
 class BuildAddToCartAttributeItems extends StatelessWidget {
   final int index;
   final int position;
@@ -23,7 +25,7 @@ class BuildAddToCartAttributeItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<ProductOptions> allOptions = productCubit.state.data!.choiceOptions!;
+    List<ProductAttributesOptions> allOptions = productCubit.state.data!.choiceOptions!;
     List<String> selectedAttributes = allOptions[index].selectedAttribute!;
     var optionItem = allOptions[index].options![position];
     bool current = selectedAttributes.contains(optionItem);

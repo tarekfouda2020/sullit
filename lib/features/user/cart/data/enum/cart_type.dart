@@ -1,4 +1,5 @@
 enum CartType {
   general,
-  pharmacy;
+  pharmacy,
+  restaurant;
 }

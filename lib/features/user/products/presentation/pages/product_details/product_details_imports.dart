@@ -13,6 +13,7 @@ import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/debounce_helper.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
+import 'package:flutter_tdd/core/helpers/get_device_id.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/services/deep_link_service.dart';
@@ -42,9 +43,11 @@ import 'package:flutter_tdd/features/user/products/presentation/manager/cart_hel
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_sheet_controller.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 import 'package:flutter_tdd/features/user/vip_subscribe/presentation/pages/membership_subscribe/membership_subscribe_imports.dart';
+import '../../../../cart/domain/use_cases/add_product_to_cart.dart';
+import '../../../domain/entities/add_product_to_cart_params.dart';
+import '../../../domain/entities/product_details_page_route_params.dart';
 import 'widgets/product_details_widgets_imports.dart';
 import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
 part 'product_details.dart';
 part 'product_details_controller.dart';
-part '../../../domain/entities/product_details_page_params.dart';

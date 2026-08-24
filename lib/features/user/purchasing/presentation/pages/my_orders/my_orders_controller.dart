@@ -5,9 +5,9 @@ class MyOrdersController {
       PagingController(firstPageKey: 1);
   int pageSize = 12;
 
-  final bool isPharmacy;
+  final OrderTypeEnum type;
 
-  MyOrdersController({this.isPharmacy = false}) {
+  MyOrdersController({required this.type}) {
     getPurchasingHistory(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
       getPurchasingHistory(pageKey);
@@ -50,7 +50,7 @@ class MyOrdersController {
   MyOrdersParams _myOrdersParams(int page, bool refresh){
     return MyOrdersParams(
       paginateParams: _historyParams(page, refresh),
-      type: isPharmacy ? OrderTypeEnum.pharmacy : OrderTypeEnum.general,
+      type: type,
     );
   }
 

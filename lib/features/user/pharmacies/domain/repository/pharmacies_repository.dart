@@ -44,7 +44,7 @@ abstract class PharmaciesRepository {
 
   Future<Either<Failure, PharmacyConfirmOrderDomainModel>> confirmOrder(PharmacyConfirmOrderParams param);
 
-  Future<Either<Failure, List<PharmacyBranchDomainModel>>> getPharmacyBranches(PharmacyBranchesParams param);
+  Future<Either<Failure, List<BranchDomainModel>>> getPharmacyBranches(PharmacyBranchesParams param);
 
   Future<Either<Failure, List<PharmacyOrderRequestedByModel>>> getPharmacyOrderRequestedBy();
 

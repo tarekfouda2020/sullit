@@ -8,6 +8,8 @@ import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
 import 'package:flutter_tdd/features/user/products/presentation/widgets/build_add_to_cart_attribute_list.dart';
 
+import '../../domain/models/product_attributes_options.dart';
+
 class BuildProductAttributes extends StatelessWidget {
   final GenericBloc<Product?> productCubit;
 
@@ -18,7 +20,7 @@ class BuildProductAttributes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<ProductOptions> options = productCubit.state.data!.choiceOptions!;
+    List<ProductAttributesOptions> options = productCubit.state.data!.choiceOptions!;
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

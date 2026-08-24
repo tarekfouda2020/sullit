@@ -21,7 +21,7 @@ class PickBranchWidget extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: BlocBuilder<GenericBloc<PharmacyBranchDomainModel?>, GenericState<PharmacyBranchDomainModel?>>(
+              child: BlocBuilder<GenericBloc<BranchDomainModel?>, GenericState<BranchDomainModel?>>(
                 bloc: controller.selectedBranchCubit,
                 builder: (context, state) {
                   return Text(

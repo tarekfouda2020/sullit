@@ -37,6 +37,8 @@ import 'package:flutter_tdd/features/user/products/presentation/widgets/build_ad
 import 'package:injectable/injectable.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../domain/models/product_attributes_options.dart';
+
 @lazySingleton
 class CartHelper {
   List<String> selectedVariants = [];
@@ -47,7 +49,7 @@ class CartHelper {
   void onSelectAttributes(
       BuildContext context,
       GenericBloc<Product?> productCubit,
-      List<ProductOptions> model,
+      List<ProductAttributesOptions> model,
       int index,
       int position) {
     List<String> selected = [];
@@ -197,14 +199,12 @@ class CartHelper {
     return cartItemsBloc.state.data;
   }
 
-  Future<CartDomainModel?> updateCartItem(int qty, int id) async {
-    final params = await _updateCartItemParams(qty, id);
-    final result = await UpdateCartItem().call(params); // your API call
+  Future<CartDomainModel?> updateCartItem(int qty, int id,[List<ProductOptionsParams>? options]) async {
+    final params = await _updateCartItemParams(qty, id,options);
+    final result = await UpdateCartItem().call(params);
     return result;
   }
 
-  /// 1709
-  /// variant_id 29935
 
   Future<bool> deleteItemFromCart(
       BuildContext context, GeneralCartItem cartItem) async {
@@ -275,11 +275,12 @@ class CartHelper {
     );
   }
 
-  Future<UpdateCartItemParams> _updateCartItemParams(int qty, int id) async {
+  Future<UpdateCartItemParams> _updateCartItemParams(int qty, int id,[List<ProductOptionsParams>? options]) async {
     return UpdateCartItemParams(
       macAddress: await getIt<GetDeviceId>().deviceId,
       qty: qty,
       id: id,
+      options: options
     );
   }
 

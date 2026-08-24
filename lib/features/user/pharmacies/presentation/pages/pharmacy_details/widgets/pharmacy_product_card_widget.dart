@@ -24,10 +24,10 @@ class PharmacyProductCardWidget extends BaseProductItem {
       _PharmacyProductCardWidgetState();
 }
 
-class _PharmacyProductCardWidgetState
-    extends BaseProductItemState<PharmacyProductCardWidget> {
+class _PharmacyProductCardWidgetState extends BaseProductItemState<PharmacyProductCardWidget> {
   @override
   Widget build(BuildContext context) {
+    print("===>>>>> have options ${widget.productModel.haveOptions} =>>>>>");
     return Container(
       margin: widget.margin ?? const EdgeInsets.all(0),
       width: 160,
@@ -54,6 +54,20 @@ class _PharmacyProductCardWidgetState
   Future<bool> handleFirstAddToCart(BuildContext context) async {
     final product = widget.productModel;
 
+    if(product.haveOptions){
+      AutoRouter.of(context).push(
+        ProductDetailsRoute(
+          params: ProductDetailsPageRouteParams(
+            productId: product.id,
+            isFav: product.isWishlist,
+            fromSellerPage: widget.fromPharmPage,
+            branchId: widget.controller.selectedBranchId,
+          ),
+        ),
+      );
+      return false;
+    }
+
     if ((product.addedQtyToCart ?? 0) > 0) {
       return false;
     }
@@ -79,11 +93,12 @@ class _PharmacyProductCardWidgetState
     final product = widget.productModel;
    var result =  await AutoRouter.of(context).push(
       ProductDetailsRoute(
-        isFav: product.isWishlist,
-        productId: product.id,
-        isResale: false,
-        fromSellerPage: widget.fromPharmPage,
-        branchId: widget.controller.selectedBranchId,
+        params: ProductDetailsPageRouteParams(
+          productId: product.id,
+          isFav: product.isWishlist,
+          fromSellerPage: widget.fromPharmPage,
+          branchId: widget.controller.selectedBranchId,
+        ),
       ),
     );
      widget.controller.refreshDataAfterRoute(result);
@@ -177,6 +192,9 @@ class _PharmacyProductCardWidgetState
 
   @override
   void checkIfItemInCart() {
+    if(widget.productModel.haveOptions){
+      return ;
+    }
     final List<GeneralCartItem>? cartProducts =
         widget.controller.cartItemsBloc.state.data.items;
     final Set<int>? cartProductsIds =

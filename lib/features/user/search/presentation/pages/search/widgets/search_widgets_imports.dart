@@ -17,6 +17,7 @@ import 'package:flutter_tdd/core/widgets/build_shimmer_item.dart';
 import 'package:flutter_tdd/core/widgets/custom_decoration.dart';
 import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
+import 'package:flutter_tdd/features/user/products/domain/entities/product_details_page_route_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';

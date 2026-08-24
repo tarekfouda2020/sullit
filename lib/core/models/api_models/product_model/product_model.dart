@@ -14,7 +14,10 @@ import 'package:flutter_tdd/features/user/products/domain/models/pharmacy_produc
 import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_branch_model/pharmacy_branch_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../features/user/products/data/models/product_options/product_options.dart';
+
 part 'product_model.freezed.dart';
+
 part 'product_model.g.dart';
 
 @freezed
@@ -31,13 +34,12 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
     @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
     required List<String> images,
     @JsonKey(name: 'is_multiple') required bool isMultiple,
-    @JsonKey(name: 'price_high_low_discount')
-    required String priceHighLowDiscount,
+    @JsonKey(name: 'price_high_low_discount') required String priceHighLowDiscount,
     @JsonKey(name: 'price_high_low') required String priceHighLow,
     @JsonKey(name: 'has_discount') required bool hasDiscount,
     required String discount,
-    @JsonKey(name: 'choice_options')
-    required List<ProductOptionsModel> choiceOptions,
+    @JsonKey(name: 'product_options') List<ProductOption>? productOptions,
+    @JsonKey(name: 'choice_options') required List<ProductOptionsModel> choiceOptions,
     List<ColorModel>? colors,
     @JsonKey(name: "min_qty") required int minQty,
     @JsonKey(name: "currency_symbol") required String currencySymbol,
@@ -68,18 +70,15 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
     @JsonKey(name: 'category_name') required String categoryName,
     @JsonKey(name: 'brand_name') required String brandName,
     @JsonKey(name: 'is_fresh') required bool isFresh,
-    @JsonKey(name: 'has_special_loyalty_points')
-    required bool hasSpecialLoyaltyPoints,
-    @JsonKey(name: 'has_shareholder_discount')
-    required bool hasShareholderDiscount,
+    @JsonKey(name: 'has_special_loyalty_points') required bool hasSpecialLoyaltyPoints,
+    @JsonKey(name: 'has_shareholder_discount') required bool hasShareholderDiscount,
     @JsonKey(name: 'loyalty_points') required int loyaltyPoints,
     @JsonKey(name: 'prescription_required') required bool prescriptionRequired,
     @JsonKey(name: 'insurance_eligible') required bool insuranceEligible,
     PharmacyBranchModel? branch,
   }) = _ProductModel;
 
-  factory ProductModel.fromJson(Map<String, dynamic> json) =>
-      _$ProductModelFromJson(json);
+  factory ProductModel.fromJson(Map<String, dynamic> json) => _$ProductModelFromJson(json);
 
   @override
   Product toDomainModel() {
@@ -118,6 +117,8 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
     p.rating = rating;
     p.sales = sales;
     p.isDigital = isDigital;
+    p.productOptions = productOptions?.map((e) => e.toDomainModel()).toList();
+
     p.isWishlist = isWishlist;
     p.sellerId = sellerId;
     p.countReviews = countReviews;

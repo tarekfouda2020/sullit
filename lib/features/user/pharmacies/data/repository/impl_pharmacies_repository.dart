@@ -100,9 +100,9 @@ class ImplPharmaciesRepository extends PharmaciesRepository with ModelToDomain {
 
 
   @override
-  Future<Either<Failure, List<PharmacyBranchDomainModel>>> getPharmacyBranches(PharmacyBranchesParams param) async {
+  Future<Either<Failure, List<BranchDomainModel>>> getPharmacyBranches(PharmacyBranchesParams param) async {
     var result = await dataSources.getPharmacyBranches(param);
-    return toDomainResultList<PharmacyBranchDomainModel,PharmacyBranchModel>(result);
+    return toDomainResultList<BranchDomainModel,PharmacyBranchModel>(result);
   }
 
   @override

@@ -34,6 +34,9 @@ _$_HomeModel _$$_HomeModelFromJson(Map<String, dynamic> json) => _$_HomeModel(
       pharmacyShops: (json['pharmacy_shops'] as List<dynamic>)
           .map((e) => ShopCardModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      restaurantShops: (json['restaurant_shops'] as List<dynamic>)
+          .map((e) => ShopCardModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       cartCount: (json['cart_count'] as num).toInt(),
       favCount: (json['wishlist_count'] as num).toInt(),
       isAdminDiscount: json['is_admin_discount'] as bool,
@@ -51,6 +54,8 @@ Map<String, dynamic> _$$_HomeModelToJson(_$_HomeModel instance) =>
       'shops': instance.shops.map((e) => e.toJson()).toList(),
       'top_sellers': instance.topSellers.map((e) => e.toJson()).toList(),
       'pharmacy_shops': instance.pharmacyShops.map((e) => e.toJson()).toList(),
+      'restaurant_shops':
+          instance.restaurantShops.map((e) => e.toJson()).toList(),
       'cart_count': instance.cartCount,
       'wishlist_count': instance.favCount,
       'is_admin_discount': instance.isAdminDiscount,

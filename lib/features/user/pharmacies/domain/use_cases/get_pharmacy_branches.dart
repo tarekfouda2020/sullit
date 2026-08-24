@@ -6,14 +6,14 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/entity/pharmacy_bran
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/repository/pharmacies_repository.dart';
 
-class GetPharmacyBranches extends UseCase<List<PharmacyBranchDomainModel>, PharmacyBranchesParams> {
+class GetPharmacyBranches extends UseCase<List<BranchDomainModel>, PharmacyBranchesParams> {
   @override
-  Future<List<PharmacyBranchDomainModel>> call(PharmacyBranchesParams params) async {
+  Future<List<BranchDomainModel>> call(PharmacyBranchesParams params) async {
     var result = await getIt<PharmaciesRepository>().getPharmacyBranches(params);
     return result.fold(
             (l) => [],
             (branches) {
-              for(PharmacyBranchDomainModel item in branches){
+              for(BranchDomainModel item in branches){
                 item.isSelected = item.isDefault;
               }
               return branches;

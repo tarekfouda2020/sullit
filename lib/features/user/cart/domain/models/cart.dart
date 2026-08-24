@@ -99,13 +99,15 @@ class CartDomainModel extends BaseDomainModel {
   CartType cartType() {
     if (type == "pharmacy") {
       return CartType.pharmacy;
+    } else if (type == "restaurant") {
+      return CartType.restaurant;
     } else {
       return CartType.general;
     }
   }
 
   List<GeneralCartItem> get currentCartItems =>
-      cartType() == CartType.pharmacy ? pharmacyItems ?? [] : items ?? [];
+      cartType() == CartType.general ? items ?? [] : pharmacyItems ?? [];
 
   /// used in seller details page and in sellers ist in cart page that dose not reach th min amount
 

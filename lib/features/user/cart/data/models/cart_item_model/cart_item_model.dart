@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/cart_option_model/cart_option_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/general_cart_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -38,6 +39,7 @@ class CartItemModel extends BaseApiModel<GeneralCartItem> with _$CartItemModel {
     @JsonKey(name: "sold_by_name") required String soldBy,
     @JsonKey(name: "shop_id") required int? shopId,
     @JsonKey(name: "branch_id") required int? branchId,
+    @JsonKey(name: "cart_options") List<CartOptionModel>? cartOptions,
   }) = _CartItemModel;
 
   factory CartItemModel.fromJson(Map<String, dynamic> json) =>
@@ -69,7 +71,8 @@ class CartItemModel extends BaseApiModel<GeneralCartItem> with _$CartItemModel {
         loyaltyPoints: loyaltyPoints,
         insuranceEligible: insuranceEligible,
         prescriptionRequired: prescriptionRequired,
-        branchId: branchId
+        branchId: branchId,
+        cartOptions: cartOptions?.map((e) => e.toDomainModel()).toList(),
     );
   }
 }

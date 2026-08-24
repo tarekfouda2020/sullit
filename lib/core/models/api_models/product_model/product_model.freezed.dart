@@ -36,6 +36,8 @@ mixin _$ProductModel {
   @JsonKey(name: 'has_discount')
   bool get hasDiscount => throw _privateConstructorUsedError;
   String get discount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'product_options')
+  List<ProductOption>? get productOptions => throw _privateConstructorUsedError;
   @JsonKey(name: 'choice_options')
   List<ProductOptionsModel> get choiceOptions =>
       throw _privateConstructorUsedError;
@@ -125,6 +127,7 @@ abstract class $ProductModelCopyWith<$Res> {
       @JsonKey(name: 'price_high_low') String priceHighLow,
       @JsonKey(name: 'has_discount') bool hasDiscount,
       String discount,
+      @JsonKey(name: 'product_options') List<ProductOption>? productOptions,
       @JsonKey(name: 'choice_options') List<ProductOptionsModel> choiceOptions,
       List<ColorModel>? colors,
       @JsonKey(name: "min_qty") int minQty,
@@ -194,6 +197,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? priceHighLow = null,
     Object? hasDiscount = null,
     Object? discount = null,
+    Object? productOptions = freezed,
     Object? choiceOptions = null,
     Object? colors = freezed,
     Object? minQty = null,
@@ -277,6 +281,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
               as String,
+      productOptions: freezed == productOptions
+          ? _value.productOptions
+          : productOptions // ignore: cast_nullable_to_non_nullable
+              as List<ProductOption>?,
       choiceOptions: null == choiceOptions
           ? _value.choiceOptions
           : choiceOptions // ignore: cast_nullable_to_non_nullable
@@ -509,6 +517,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
       @JsonKey(name: 'price_high_low') String priceHighLow,
       @JsonKey(name: 'has_discount') bool hasDiscount,
       String discount,
+      @JsonKey(name: 'product_options') List<ProductOption>? productOptions,
       @JsonKey(name: 'choice_options') List<ProductOptionsModel> choiceOptions,
       List<ColorModel>? colors,
       @JsonKey(name: "min_qty") int minQty,
@@ -581,6 +590,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? priceHighLow = null,
     Object? hasDiscount = null,
     Object? discount = null,
+    Object? productOptions = freezed,
     Object? choiceOptions = null,
     Object? colors = freezed,
     Object? minQty = null,
@@ -664,6 +674,10 @@ class __$$_ProductModelCopyWithImpl<$Res>
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
               as String,
+      productOptions: freezed == productOptions
+          ? _value._productOptions
+          : productOptions // ignore: cast_nullable_to_non_nullable
+              as List<ProductOption>?,
       choiceOptions: null == choiceOptions
           ? _value._choiceOptions
           : choiceOptions // ignore: cast_nullable_to_non_nullable
@@ -833,6 +847,8 @@ class _$_ProductModel extends _ProductModel {
       @JsonKey(name: 'price_high_low') required this.priceHighLow,
       @JsonKey(name: 'has_discount') required this.hasDiscount,
       required this.discount,
+      @JsonKey(name: 'product_options')
+      final List<ProductOption>? productOptions,
       @JsonKey(name: 'choice_options')
       required final List<ProductOptionsModel> choiceOptions,
       final List<ColorModel>? colors,
@@ -875,6 +891,7 @@ class _$_ProductModel extends _ProductModel {
       @JsonKey(name: 'insurance_eligible') required this.insuranceEligible,
       this.branch})
       : _images = images,
+        _productOptions = productOptions,
         _choiceOptions = choiceOptions,
         _colors = colors,
         _tags = tags,
@@ -918,6 +935,17 @@ class _$_ProductModel extends _ProductModel {
   final bool hasDiscount;
   @override
   final String discount;
+  final List<ProductOption>? _productOptions;
+  @override
+  @JsonKey(name: 'product_options')
+  List<ProductOption>? get productOptions {
+    final value = _productOptions;
+    if (value == null) return null;
+    if (_productOptions is EqualUnmodifiableListView) return _productOptions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   final List<ProductOptionsModel> _choiceOptions;
   @override
   @JsonKey(name: 'choice_options')
@@ -1057,7 +1085,7 @@ class _$_ProductModel extends _ProductModel {
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, name: $name, unit: $unit, type: $type, thumbnailImage: $thumbnailImage, images: $images, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, choiceOptions: $choiceOptions, colors: $colors, minQty: $minQty, currencySymbol: $currencySymbol, variant: $variant, tags: $tags, countReviews: $countReviews, soldByType: $soldByType, soldByName: $soldByName, hasVipOffer: $hasVipOffer, shop: $shop, reviews: $reviews, isResale: $isResale, resellerId: $resellerId, category: $category, strokedPrice: $strokedPrice, isDigital: $isDigital, isWishlist: $isWishlist, mainPrice: $mainPrice, variantsList: $variantsList, rating: $rating, sales: $sales, sellerId: $sellerId, maxQntPerOrder: $maxQntPerOrder, brand: $brand, description: $description, videoProvider: $videoProvider, videoLink: $videoLink, categoryName: $categoryName, brandName: $brandName, isFresh: $isFresh, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, hasShareholderDiscount: $hasShareholderDiscount, loyaltyPoints: $loyaltyPoints, prescriptionRequired: $prescriptionRequired, insuranceEligible: $insuranceEligible, branch: $branch)';
+    return 'ProductModel(id: $id, name: $name, unit: $unit, type: $type, thumbnailImage: $thumbnailImage, images: $images, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, productOptions: $productOptions, choiceOptions: $choiceOptions, colors: $colors, minQty: $minQty, currencySymbol: $currencySymbol, variant: $variant, tags: $tags, countReviews: $countReviews, soldByType: $soldByType, soldByName: $soldByName, hasVipOffer: $hasVipOffer, shop: $shop, reviews: $reviews, isResale: $isResale, resellerId: $resellerId, category: $category, strokedPrice: $strokedPrice, isDigital: $isDigital, isWishlist: $isWishlist, mainPrice: $mainPrice, variantsList: $variantsList, rating: $rating, sales: $sales, sellerId: $sellerId, maxQntPerOrder: $maxQntPerOrder, brand: $brand, description: $description, videoProvider: $videoProvider, videoLink: $videoLink, categoryName: $categoryName, brandName: $brandName, isFresh: $isFresh, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, hasShareholderDiscount: $hasShareholderDiscount, loyaltyPoints: $loyaltyPoints, prescriptionRequired: $prescriptionRequired, insuranceEligible: $insuranceEligible, branch: $branch)';
   }
 
   @override
@@ -1082,6 +1110,8 @@ class _$_ProductModel extends _ProductModel {
                 other.hasDiscount == hasDiscount) &&
             (identical(other.discount, discount) ||
                 other.discount == discount) &&
+            const DeepCollectionEquality()
+                .equals(other._productOptions, _productOptions) &&
             const DeepCollectionEquality()
                 .equals(other._choiceOptions, _choiceOptions) &&
             const DeepCollectionEquality().equals(other._colors, _colors) &&
@@ -1163,6 +1193,7 @@ class _$_ProductModel extends _ProductModel {
         priceHighLow,
         hasDiscount,
         discount,
+        const DeepCollectionEquality().hash(_productOptions),
         const DeepCollectionEquality().hash(_choiceOptions),
         const DeepCollectionEquality().hash(_colors),
         minQty,
@@ -1230,6 +1261,8 @@ abstract class _ProductModel extends ProductModel {
       @JsonKey(name: 'price_high_low') required final String priceHighLow,
       @JsonKey(name: 'has_discount') required final bool hasDiscount,
       required final String discount,
+      @JsonKey(name: 'product_options')
+      final List<ProductOption>? productOptions,
       @JsonKey(name: 'choice_options')
       required final List<ProductOptionsModel> choiceOptions,
       final List<ColorModel>? colors,
@@ -1304,6 +1337,9 @@ abstract class _ProductModel extends ProductModel {
   bool get hasDiscount;
   @override
   String get discount;
+  @override
+  @JsonKey(name: 'product_options')
+  List<ProductOption>? get productOptions;
   @override
   @JsonKey(name: 'choice_options')
   List<ProductOptionsModel> get choiceOptions;
