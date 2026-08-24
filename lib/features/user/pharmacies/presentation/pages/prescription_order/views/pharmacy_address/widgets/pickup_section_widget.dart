@@ -1,8 +1,8 @@
 part of 'widgets_imports.dart';
 
 class PickupSectionWidget extends StatelessWidget {
-  final PagingController<int, PharmacyBranchDomainModel> pagingController;
-  final void Function(PharmacyBranchDomainModel) onSelectBranch;
+  final PagingController<int, BranchDomainModel> pagingController;
+  final void Function(BranchDomainModel) onSelectBranch;
 
   const PickupSectionWidget({
     super.key,

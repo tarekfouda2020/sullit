@@ -29,6 +29,7 @@ enum MoreRoutes {
   classifiedProducts,
   customersProducts,
   myHealthPharmacyOrders,
+  restaurantOrders,
   savedPrescriptions,
   test
 }

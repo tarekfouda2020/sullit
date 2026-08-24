@@ -87,7 +87,7 @@ class Orders extends BaseDomainModel {
   String? requestedBy;
   String? requestedByLabel;
   String? pharmacyReply;
-  PharmacyBranchDomainModel? branch;
+  BranchDomainModel? branch;
   ShopCardDomainModel? shop;
 
 
@@ -257,7 +257,7 @@ class Orders extends BaseDomainModel {
      if(shopType == "pharmacy") {
        return OrderTypeEnum.pharmacy ;
      }else{
-       return OrderTypeEnum.general ;
+       return OrderTypeEnum.merchant ;
      }
    }
 

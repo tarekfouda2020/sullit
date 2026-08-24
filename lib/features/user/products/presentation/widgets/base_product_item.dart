@@ -17,10 +17,7 @@ abstract class BaseProductItem extends StatefulWidget {
   final bool? showVipDiscount;
   final EdgeInsetsDirectional? margin;
 
-  /// Branch id from the surrounding page context (e.g. product-details
-  /// page entered via a pharmacy branch). Passed to
-  /// [ProductBehavior.addToCart] as the preferred branch. Pharmacy behavior
-  /// falls back to the product's own branch when null.
+
   final int? fallbackBranchId;
 
   const BaseProductItem({
@@ -38,8 +35,7 @@ abstract class BaseProductItem extends StatefulWidget {
   });
 }
 
-abstract class BaseProductItemState<T extends BaseProductItem>
-    extends State<T> {
+abstract class BaseProductItemState<T extends BaseProductItem> extends State<T> {
   final GenericBloc<bool> showFavLoading = GenericBloc<bool>(false);
   final GenericBloc<bool> enableAddToCartLoading = GenericBloc<bool>(false);
 

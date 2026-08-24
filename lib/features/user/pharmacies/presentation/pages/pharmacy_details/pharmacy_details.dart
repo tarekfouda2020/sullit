@@ -5,12 +5,13 @@ class PharmacyDetails extends StatefulWidget {
   final int pharmacyId;
   final int? selectedCategoryId;
   final String? selectedCategoryName;
-
+  final CartTypeEnum type;
   const PharmacyDetails(
       {super.key,
       this.fromCart = false,
       required this.pharmacyId,
       this.selectedCategoryName,
+      this.type = CartTypeEnum.pharmacy,
       this.selectedCategoryId});
 
   @override
@@ -28,6 +29,7 @@ class _PharmacyDetailsState extends State<PharmacyDetails> {
       fromCart: widget.fromCart,
       selectedCategoryId: widget.selectedCategoryId,
       selectedCategoryName: widget.selectedCategoryName,
+      type: widget.type,
     );
   }
 

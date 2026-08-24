@@ -25,10 +25,12 @@ class CartParams {
 
 enum CartTypeEnum {
   general,
-  pharmacy;
+  pharmacy,
+  restaurant;
 
   String getKey() => switch (this) {
         general => "general",
         pharmacy => "pharmacy",
+        restaurant => "restaurant",
       };
 }

@@ -36,6 +36,8 @@ class PharmaciesListController {
   }
 
   void onPressPharmacy(BuildContext context, ShopCardDomainModel shop) {
+
+
     if (!makePrescriptionOrder) {
       AutoRouter.of(context)
           .push(PharmacyCategoriesRoute(
@@ -43,6 +45,17 @@ class PharmaciesListController {
       ));
           return;
     }
+
+
+
+
+
+
+
+
+
+
+
     for (var item in pagingController.itemList ?? <ShopCardDomainModel>[]) {
       item.isSelect = false;
     }

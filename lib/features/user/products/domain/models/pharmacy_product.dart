@@ -2,7 +2,7 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_bran
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 
 class PharmacyProduct extends Product {
-  PharmacyBranchDomainModel? branch;
+  BranchDomainModel? branch;
 
   PharmacyProduct(
       {super.id,

@@ -19,7 +19,7 @@ class PharmacyCardWidget extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 6),
         padding: const EdgeInsets.symmetric(vertical: 12),
-        color: Colors.transparent,
+        color: context.colors.transparent,
         child: Stack(
           children: [
             Column(
@@ -29,7 +29,7 @@ class PharmacyCardWidget extends StatelessWidget {
                   width: MediaQuery.sizeOf(context).width,
                   height: 100,
                   fit: BoxFit.cover,
-                  bgColor: Colors.transparent,
+                  bgColor: context.colors.transparent,
                   url: shop.logo ?? "",
                   borderRadius: Dimens.topRadius12Px,
                   border: Border(
@@ -60,8 +60,7 @@ class PharmacyCardWidget extends StatelessWidget {
                           children: [
                             Text(
                               shop.name ?? "",
-                              style: AppTextStyle.s18_w600(
-                                  color: context.colors.black),
+                              style: AppTextStyle.s18_w600(color: context.colors.black),
                             ),
                             Gaps.vGap12,
                             Row(
@@ -76,23 +75,20 @@ class PharmacyCardWidget extends StatelessWidget {
                                   itemCount: 5,
                                   itemSize: 15.sp,
                                   unratedColor: context.colors.disableGray,
-                                  itemBuilder: (context, _) => const Icon(
+                                  itemBuilder: (context, _) => Icon(
                                     Icons.star,
-                                    color: Colors.amber,
+                                    color: context.colors.gold,
                                   ),
                                   onRatingUpdate: (rating) {},
                                 ),
                                 Text(
                                   "${shop.rating ?? 0}/5",
-                                  style: AppTextStyle.s14_w400(
-                                      color: context.colors.textColor),
+                                  style: AppTextStyle.s14_w400(color: context.colors.textColor),
                                 )
                               ],
                             ),
                             Gaps.vGap12,
-                            ...(shop.categoriesNames.split("-"))
-                                .take(3)
-                                .map((e) {
+                            ...(shop.categoriesNames.split("-")).take(3).map((e) {
                               return Container(
                                 padding: Dimens.paddingAll10PX,
                                 decoration: BoxDecoration(
@@ -101,8 +97,7 @@ class PharmacyCardWidget extends StatelessWidget {
                                 ),
                                 child: Text(
                                   "$e - ",
-                                  style: AppTextStyle.s12_w600(
-                                      color: context.colors.oceanBlue),
+                                  style: AppTextStyle.s12_w600(color: context.colors.oceanBlue),
                                 ),
                               );
                             }),
@@ -128,9 +123,6 @@ class PharmacyCardWidget extends StatelessWidget {
 
   BorderSide _buildBorderSide(BuildContext context) {
     return BorderSide(
-        color: showSelectionRadio && shop.isSelect
-            ? context.colors.primary
-            : context.colors.borderColor,
-        width: 1.5);
+        color: showSelectionRadio && shop.isSelect ? context.colors.primary : context.colors.borderColor, width: 1.5);
   }
 }

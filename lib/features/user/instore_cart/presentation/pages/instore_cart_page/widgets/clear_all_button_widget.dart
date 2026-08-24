@@ -11,9 +11,24 @@ class ClearAllButtonWidget extends StatelessWidget {
         GenericState<List<InstoreCartItemModel>>>(
       bloc: controller.cartItemsBloc,
       builder: (context, state) {
-        if (state is! GenericUpdateState || state.data.isEmpty) {
-          return const SizedBox.shrink();
+        if (state is! GenericUpdateState) {
+          return Gaps.empty;
         }
+
+        if (state.data.isEmpty) {
+          return Center(
+            child: GestureDetector(
+              onTap: ()=> controller.scanProduct(context),
+              child: Text(
+                tr('addMoreItems'),
+                style: AppTextStyle.s15_w500(
+                  color: context.colors.primary,
+                ),
+              ),
+            ),
+          );
+        }
+
         return GestureDetector(
           onTap: () => controller.showClearCartDialog(context),
           child: Row(
@@ -25,7 +40,9 @@ class ClearAllButtonWidget extends StatelessWidget {
               const Spacer(),
               Text(
                 tr('clearAll'),
-                style: AppTextStyle.s15_w500(color: context.colors.primary),
+                style: AppTextStyle.s15_w500(
+                  color: context.colors.primary,
+                ),
               ),
               SvgPicture.asset(
                 Res.trashIcon,

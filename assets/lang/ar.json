@@ -919,7 +919,8 @@
   "proofOfDelivery": "إثبات التسليم",
   "proofOfDeliverySubtitle": "هذه صورة لمكان ترك طلبك.",
   "viewPhoto": "عرض الصورة",
-  "instoreCartDifferentSeller": "لديك منتجات محفوظة من \"{seller}\". يرجى مسح السلة أولاً للتسوق من هذا المتجر.",
+  "addMoreItems": "أضف المزيد من المنتجات",
+  "instoreCartDifferentSeller": "لديك منتجات محفوظة من \"{seller}\". يرجى مسح السلة أولاً للتسوق من هذا المتجر."
 
 
 }

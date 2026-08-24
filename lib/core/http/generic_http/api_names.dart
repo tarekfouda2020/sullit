@@ -269,6 +269,8 @@ class ApiNames {
 
   static const String createPharmacyOrder = "pharmacy-orders";
 
+  static const String createRestaurantOrder = "restaurant-orders";
+
   static const String createPharmacyPrescriptionOrder = "pharmacy-orders/prescription";
 
   static String pharmacyConfirmSummary(int id) => "pharmacy-orders/$id/confirm-summary";

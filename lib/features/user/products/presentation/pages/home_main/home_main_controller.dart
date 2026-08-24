@@ -58,8 +58,7 @@ class HomeMainController {
   }
 
   void scrollListener() {
-    if (scrollController.position.pixels ==
-        scrollController.position.maxScrollExtent) {
+    if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
       getProductSections();
     }
   }
@@ -78,8 +77,7 @@ class HomeMainController {
   }
 
   Future<void> getProductSections() async {
-    if (sectionsCubit.state.data.length / 5 == currentPage - 1 ||
-        sectionsCubit.state.data.isEmpty) {
+    if (sectionsCubit.state.data.length / 5 == currentPage - 1 || sectionsCubit.state.data.isEmpty) {
       var result = await GetProductSections().call(currentPage);
       final isLastPage = result.length < pageSize;
       if (currentPage == 1) {
@@ -101,7 +99,6 @@ class HomeMainController {
       _synchronizeFavByProductId(item.id, !item.isWishlist!);
     }
   }
-
 
   void navigateToDeals(BuildContext context) {
     var deal = homeCubit.state.data?.flashSales;
@@ -145,9 +142,11 @@ class HomeMainController {
         getIt<LoadingHelper>().dismissDialog();
         if (value != null) {
           AutoRouter.of(context).push(ProductDetailsRoute(
-            isFav: value.product.isWishlist ?? false,
-            productId: value.product.id ?? 0,
-            isResale: value.product.isResale ?? false,
+            params: ProductDetailsPageRouteParams(
+              productId: value.product.id ?? 0,
+              isFav: value.product.isWishlist ?? false,
+              isResale: value.product.isResale ?? false,
+            ),
           ));
         } else {
           CustomToast.showSnakeBar(
@@ -315,9 +314,7 @@ class HomeMainController {
   }
 
   void onPressSeeOffers(BuildContext context) {
-    context.isShareHolder
-        ? routeToOffersTab(context)
-        : routeToMembershipSubscribe(context);
+    context.isShareHolder ? routeToOffersTab(context) : routeToMembershipSubscribe(context);
   }
 
   void routeToOffersTab(BuildContext context) {
@@ -398,7 +395,8 @@ class HomeMainController {
     try {
       var prodId = int.parse(id);
       AutoRouter.of(context).push(ProductDetailsRoute(
-          productId: prodId, isResale: false, isFav: false));
+        params: ProductDetailsPageRouteParams(productId: prodId),
+      ));
     } catch (e) {
       log("error while route to product details");
     }
@@ -425,6 +423,8 @@ class HomeMainController {
       initialSavedPrescription: selectedSavedPrescriptionCubit.state.data
     ));
   }
+
+
 
   void openCurrentOrderDetails(BuildContext context, OrdersListDomainModel order){
     if(order.isPharmacy){
@@ -461,7 +461,7 @@ class HomeMainController {
   Future<void> onPickPrescriptionFile() async {
     var result = await getIt<Utilities>().getAttachmentFile(
       FileType.custom,
-      allowedExtensions: const ["pdf", 'jpg', 'jpeg', 'png'],
+      allowedExtensions: const ["pdf",'jpg', 'jpeg', 'png'],
     );
     if (result != null) {
       prescriptionFileCubit.onUpdateData(result);
@@ -506,7 +506,8 @@ class HomeMainController {
   }
 
   void onPressContinuePrescription(BuildContext context) {
-    if (prescriptionFileCubit.state.data.path.isEmpty && selectedSavedPrescriptionCubit.state.data == null) {
+    if (prescriptionFileCubit.state.data.path.isEmpty &&
+        selectedSavedPrescriptionCubit.state.data == null) {
       CustomToast.showSimpleToast(
         msg: "Please attach your prescription first",
       );

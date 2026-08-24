@@ -52,6 +52,8 @@ mixin _$ProductCardModel {
   @JsonKey(name: 'has_discount')
   bool get hasDiscount => throw _privateConstructorUsedError;
   String get discount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'product_options')
+  List<ProductOption>? get productOptions => throw _privateConstructorUsedError;
   @JsonKey(name: 'min_qty')
   int get minQty => throw _privateConstructorUsedError;
   @JsonKey(name: 'max_qty')
@@ -109,6 +111,7 @@ abstract class $ProductCardModelCopyWith<$Res> {
       @JsonKey(name: 'has_shareholder_discount') bool hasShareholderDiscount,
       @JsonKey(name: 'has_discount') bool hasDiscount,
       String discount,
+      @JsonKey(name: 'product_options') List<ProductOption>? productOptions,
       @JsonKey(name: 'min_qty') int minQty,
       @JsonKey(name: 'max_qty') int? maxQty,
       @JsonKey(name: 'currency_symbol') String currencySymbol,
@@ -158,6 +161,7 @@ class _$ProductCardModelCopyWithImpl<$Res, $Val extends ProductCardModel>
     Object? hasShareholderDiscount = null,
     Object? hasDiscount = null,
     Object? discount = null,
+    Object? productOptions = freezed,
     Object? minQty = null,
     Object? maxQty = freezed,
     Object? currencySymbol = null,
@@ -249,6 +253,10 @@ class _$ProductCardModelCopyWithImpl<$Res, $Val extends ProductCardModel>
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
               as String,
+      productOptions: freezed == productOptions
+          ? _value.productOptions
+          : productOptions // ignore: cast_nullable_to_non_nullable
+              as List<ProductOption>?,
       minQty: null == minQty
           ? _value.minQty
           : minQty // ignore: cast_nullable_to_non_nullable
@@ -345,6 +353,7 @@ abstract class _$$_ProductCardModelCopyWith<$Res>
       @JsonKey(name: 'has_shareholder_discount') bool hasShareholderDiscount,
       @JsonKey(name: 'has_discount') bool hasDiscount,
       String discount,
+      @JsonKey(name: 'product_options') List<ProductOption>? productOptions,
       @JsonKey(name: 'min_qty') int minQty,
       @JsonKey(name: 'max_qty') int? maxQty,
       @JsonKey(name: 'currency_symbol') String currencySymbol,
@@ -393,6 +402,7 @@ class __$$_ProductCardModelCopyWithImpl<$Res>
     Object? hasShareholderDiscount = null,
     Object? hasDiscount = null,
     Object? discount = null,
+    Object? productOptions = freezed,
     Object? minQty = null,
     Object? maxQty = freezed,
     Object? currencySymbol = null,
@@ -484,6 +494,10 @@ class __$$_ProductCardModelCopyWithImpl<$Res>
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
               as String,
+      productOptions: freezed == productOptions
+          ? _value._productOptions
+          : productOptions // ignore: cast_nullable_to_non_nullable
+              as List<ProductOption>?,
       minQty: null == minQty
           ? _value.minQty
           : minQty // ignore: cast_nullable_to_non_nullable
@@ -568,6 +582,8 @@ class _$_ProductCardModel extends _ProductCardModel {
       required this.hasShareholderDiscount,
       @JsonKey(name: 'has_discount') required this.hasDiscount,
       required this.discount,
+      @JsonKey(name: 'product_options')
+      final List<ProductOption>? productOptions,
       @JsonKey(name: 'min_qty') required this.minQty,
       @JsonKey(name: 'max_qty') this.maxQty,
       @JsonKey(name: 'currency_symbol') required this.currencySymbol,
@@ -581,7 +597,8 @@ class _$_ProductCardModel extends _ProductCardModel {
       @JsonKey(name: 'sold_by_name') required this.soldByName,
       @JsonKey(name: 'category_name') required this.categoryName,
       @JsonKey(name: 'brand_name') required this.brandName})
-      : super._();
+      : _productOptions = productOptions,
+        super._();
 
   factory _$_ProductCardModel.fromJson(Map<String, dynamic> json) =>
       _$$_ProductCardModelFromJson(json);
@@ -637,6 +654,17 @@ class _$_ProductCardModel extends _ProductCardModel {
   final bool hasDiscount;
   @override
   final String discount;
+  final List<ProductOption>? _productOptions;
+  @override
+  @JsonKey(name: 'product_options')
+  List<ProductOption>? get productOptions {
+    final value = _productOptions;
+    if (value == null) return null;
+    if (_productOptions is EqualUnmodifiableListView) return _productOptions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'min_qty')
   final int minQty;
@@ -677,7 +705,7 @@ class _$_ProductCardModel extends _ProductCardModel {
 
   @override
   String toString() {
-    return 'ProductCardModel(id: $id, name: $name, type: $type, typeLabel: $typeLabel, unit: $unit, barcode: $barcode, prescriptionRequired: $prescriptionRequired, insuranceEligible: $insuranceEligible, isFresh: $isFresh, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, loyaltyPoints: $loyaltyPoints, thumbnailImg: $thumbnailImg, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasVipOffer: $hasVipOffer, hasShareholderDiscount: $hasShareholderDiscount, hasDiscount: $hasDiscount, discount: $discount, minQty: $minQty, maxQty: $maxQty, currencySymbol: $currencySymbol, variant: $variant, rating: $rating, isDigital: $isDigital, isWishlist: $isWishlist, sellerId: $sellerId, shopId: $shopId, soldByType: $soldByType, soldByName: $soldByName, categoryName: $categoryName, brandName: $brandName)';
+    return 'ProductCardModel(id: $id, name: $name, type: $type, typeLabel: $typeLabel, unit: $unit, barcode: $barcode, prescriptionRequired: $prescriptionRequired, insuranceEligible: $insuranceEligible, isFresh: $isFresh, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, loyaltyPoints: $loyaltyPoints, thumbnailImg: $thumbnailImg, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasVipOffer: $hasVipOffer, hasShareholderDiscount: $hasShareholderDiscount, hasDiscount: $hasDiscount, discount: $discount, productOptions: $productOptions, minQty: $minQty, maxQty: $maxQty, currencySymbol: $currencySymbol, variant: $variant, rating: $rating, isDigital: $isDigital, isWishlist: $isWishlist, sellerId: $sellerId, shopId: $shopId, soldByType: $soldByType, soldByName: $soldByName, categoryName: $categoryName, brandName: $brandName)';
   }
 
   @override
@@ -718,6 +746,8 @@ class _$_ProductCardModel extends _ProductCardModel {
                 other.hasDiscount == hasDiscount) &&
             (identical(other.discount, discount) ||
                 other.discount == discount) &&
+            const DeepCollectionEquality()
+                .equals(other._productOptions, _productOptions) &&
             (identical(other.minQty, minQty) || other.minQty == minQty) &&
             (identical(other.maxQty, maxQty) || other.maxQty == maxQty) &&
             (identical(other.currencySymbol, currencySymbol) ||
@@ -764,6 +794,7 @@ class _$_ProductCardModel extends _ProductCardModel {
         hasShareholderDiscount,
         hasDiscount,
         discount,
+        const DeepCollectionEquality().hash(_productOptions),
         minQty,
         maxQty,
         currencySymbol,
@@ -819,6 +850,8 @@ abstract class _ProductCardModel extends ProductCardModel {
       required final bool hasShareholderDiscount,
       @JsonKey(name: 'has_discount') required final bool hasDiscount,
       required final String discount,
+      @JsonKey(name: 'product_options')
+      final List<ProductOption>? productOptions,
       @JsonKey(name: 'min_qty') required final int minQty,
       @JsonKey(name: 'max_qty') final int? maxQty,
       @JsonKey(name: 'currency_symbol') required final String currencySymbol,
@@ -889,6 +922,9 @@ abstract class _ProductCardModel extends ProductCardModel {
   bool get hasDiscount;
   @override
   String get discount;
+  @override
+  @JsonKey(name: 'product_options')
+  List<ProductOption>? get productOptions;
   @override
   @JsonKey(name: 'min_qty')
   int get minQty;

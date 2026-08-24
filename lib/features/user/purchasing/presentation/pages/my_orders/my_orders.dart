@@ -1,8 +1,9 @@
 part of 'my_orders_imports.dart';
 
 class MyOrders extends StatefulWidget {
-  final bool isPharmacy;
-  const MyOrders({super.key, required this.isPharmacy});
+  final OrderTypeEnum type;
+
+  const MyOrders({super.key, required this.type});
 
   @override
   State<MyOrders> createState() => _MyOrdersState();
@@ -15,7 +16,7 @@ class _MyOrdersState extends State<MyOrders> {
   @override
   void initState() {
     super.initState();
-    controller = MyOrdersController(isPharmacy: widget.isPharmacy);
+    controller = MyOrdersController(type: widget.type);
   }
 
   @override
@@ -23,9 +24,11 @@ class _MyOrdersState extends State<MyOrders> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(
-        title:  widget.isPharmacy
-            ? "Pharmacy Orders"
-            :tr("my_orders"),
+        title: switch (widget.type) {
+          OrderTypeEnum.pharmacy => "Pharmacy Orders",
+          OrderTypeEnum.restaurant => "Restaurant Orders",
+          OrderTypeEnum.merchant => tr("my_orders"),
+        },
       ),
       body: CustomRefreshIndicatorWidget(
         onRefresh: () => controller.getPurchasingHistory(1),

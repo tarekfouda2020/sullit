@@ -67,6 +67,7 @@ class PharmacyDetailsAppBar extends StatelessWidget {
                                 ),
                               ],
                             ),
+                          if(controller.isPharmacy)...[
                             Gaps.vGap20,
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -75,6 +76,7 @@ class PharmacyDetailsAppBar extends StatelessWidget {
                                 controller: controller,
                               ),
                             ),
+                          ]
                           ],
                         ),
                       ),
@@ -86,15 +88,18 @@ class PharmacyDetailsAppBar extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Gaps.vGap5,
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
-                              child: PharmSloganBannerWidget(
-                                firstText: 'Get Your Medication',
-                                secondText: 'Upload Prescription',
-                                onTap: () => controller.routeToPrescription(context),
-                              ),
-                            ),
+
+                           if(controller.isPharmacy)...[
+                             Gaps.vGap5,
+                             Padding(
+                               padding: const EdgeInsets.symmetric(horizontal: 16),
+                               child: PharmSloganBannerWidget(
+                                 firstText: 'Get Your Medication',
+                                 secondText: 'Upload Prescription',
+                                 onTap: () => controller.routeToPrescription(context),
+                               ),
+                             ),
+                           ],
                            if(controller.haveBranches)...[
                              Gaps.vGap10,
                              PickBranchWidget(controller: controller),
@@ -127,6 +132,9 @@ class PharmacyDetailsAppBar extends StatelessWidget {
   static const double _bannerHeight = 90;
 
   double get getExpandedHeight {
+    if(controller.isRestaurant){
+      return 500;
+    }
     double height =
         controller.categoriesPagingController.itemList?.isNotEmpty == true
             ? 565

@@ -1,8 +1,8 @@
 part of 'widgets_imports.dart';
 
 class PickupPharmacyBranchListWidget extends StatelessWidget {
-  final PagingController<int, PharmacyBranchDomainModel> pagingController;
-  final void Function(PharmacyBranchDomainModel) onSelectBranch;
+  final PagingController<int, BranchDomainModel> pagingController;
+  final void Function(BranchDomainModel) onSelectBranch;
 
   const PickupPharmacyBranchListWidget({
     super.key,
@@ -27,10 +27,10 @@ class PickupPharmacyBranchListWidget extends StatelessWidget {
             onRefresh: () async {
               pagingController.refresh();
             },
-            child: PagedListView<int, PharmacyBranchDomainModel>(
+            child: PagedListView<int, BranchDomainModel>(
               pagingController: pagingController,
               builderDelegate:
-                  PagedChildBuilderDelegate<PharmacyBranchDomainModel>(
+                  PagedChildBuilderDelegate<BranchDomainModel>(
                 itemBuilder: (context, item, index) {
                   return PickupPharmacyBranchItemWidget(
                     model: item,

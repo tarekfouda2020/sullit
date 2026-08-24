@@ -4,6 +4,7 @@ import 'package:app_links/app_links.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/router_helper.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
+import 'package:flutter_tdd/features/user/products/domain/entities/product_details_page_route_params.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:injectable/injectable.dart';
@@ -90,7 +91,8 @@ class DeepLinkService {
     }
     final router = getIt<RouterHelper>().appRoute;
     router.push(ProductDetailsRoute(
-        productId: productId, isResale: false, isFav: false));
+      params: ProductDetailsPageRouteParams(productId: productId),
+    ));
   }
 
   void _importCart(String token) {

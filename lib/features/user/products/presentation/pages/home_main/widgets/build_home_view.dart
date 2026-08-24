@@ -23,6 +23,10 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap25,
             const AdvantagesWidget(),
             Gaps.vGap20,
+            ShopTypeShortCutsWidget(
+              controller: controller,
+            ),
+            Gaps.vGap20,
              const InStoreShoppingBanner(),
             Gaps.vGap20,
 
@@ -49,6 +53,17 @@ class BuildHomeView extends StatelessWidget {
               onTap: () => controller.onPressSeeOffers(context),
               buttonText: tr("seeOffers", context: context),
               margin: EdgeInsets.zero,
+            ),
+            Gaps.vGap16,
+            BuildHeaderTitle(
+              title: 'Restaurants',
+              onTap: () => AutoRouter.of(context).push(
+                const RestaurantsRoute(),
+              ),
+            ),
+            Gaps.vGap8,
+            RestaurantItemWidget(
+              restaurantModel: homeDomainModel.restaurantShops,
             ),
             // BuildPopularProducts(
             //   mostPopularProducts: homeDomainModel.mostPopular,

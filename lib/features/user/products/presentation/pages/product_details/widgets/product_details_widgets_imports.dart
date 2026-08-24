@@ -59,38 +59,78 @@ import 'package:flutter_tdd/res.dart';
 
 import '../../../../../../../core/theme/themes/app_theme.dart';
 import '../../../../../../../core/widgets/custom_safe_are.dart';
+import '../../../../data/models/product_options/product_options.dart';
+import '../../../../domain/models/product_option_value.dart';
+import '../../../../domain/models/product_options.dart';
 import '../product_details_imports.dart';
 
 part 'build_attribute_items.dart';
+
 part 'build_attribute_list.dart';
+
 part 'build_cart_success_dialog.dart';
+
 part 'build_details_view.dart';
+
 part 'build_loading_attributes.dart';
+
 part 'build_loading_details.dart';
+
 part 'build_loading_info.dart';
+
 part 'build_other_questions.dart';
+
 part 'build_own_questions.dart';
+
 part 'build_product_attributes.dart';
+
 part 'build_product_buttons.dart';
+
 part 'build_product_info.dart';
+
 part 'build_product_qty.dart';
+
 part 'build_product_queries.dart';
+
 part 'build_product_reviews.dart';
+
 part 'build_product_specifications.dart';
+
 part 'build_products_description.dart';
+
 part 'build_question_item.dart';
+
 part 'build_related_products.dart';
+
 part 'build_review_item.dart';
+
 part 'build_seller_info.dart';
+
 part 'build_share_item.dart';
+
 part 'build_top_selling_item.dart';
+
 part 'build_top_selling_products.dart';
+
 part 'product_details_swiper.dart';
+
 part 'cart_success_sheet_widget.dart';
+
 part 'cart_sheet_item_widget.dart';
+
 part 'cart_sheet_item_favorite_widget.dart';
+
 part 'change_qty_cart_sheet_item_widget.dart';
+
 part 'cart_sheet_item_shimmer_widget.dart';
+
 part 'product_gained_points_widget.dart';
+
 part 'points_promo_sheet_widget.dart';
+
 part 'required_prescription_note_widget.dart';
+
+part 'customize_order_item_widget.dart';
+part 'customize_options_item.dart';
+
+part 'customize_check_item_widget.dart';

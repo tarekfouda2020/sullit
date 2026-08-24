@@ -319,7 +319,7 @@ class HomeController {
   MyOrdersParams _myOrdersParams(bool refresh){
     return MyOrdersParams(
       paginateParams: _historyParams( refresh),
-      type:  OrderTypeEnum.general,
+      type:  OrderTypeEnum.merchant,
     );
   }
 

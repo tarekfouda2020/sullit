@@ -2,7 +2,7 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_bran
 import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 
 class PharmacyProductCard extends ProductCard {
-  PharmacyBranchDomainModel? branch;
+  BranchDomainModel? branch;
 
   PharmacyProductCard({
     required super.id,
@@ -48,7 +48,7 @@ class PharmacyProductCard extends ProductCard {
   /// details page, injected by the caller.
   factory PharmacyProductCard.fromCard(
     ProductCard card, {
-    PharmacyBranchDomainModel? branch,
+    BranchDomainModel? branch,
   }) {
     return PharmacyProductCard(
       id: card.id,

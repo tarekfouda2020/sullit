@@ -114,7 +114,7 @@ class OrderCardDomainModel extends BaseDomainModel {
     if (shopType == "pharmacy") {
       return OrderTypeEnum.pharmacy;
     } else {
-      return OrderTypeEnum.general;
+      return OrderTypeEnum.merchant;
     }
   }
 
