@@ -19,34 +19,32 @@ class CategoryCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Expanded(
-        child: Container(
-          width: 122,
-          height: 122,
-          padding: const EdgeInsets.symmetric(
-            horizontal: 15,
-            vertical: 8,
+      child: Container(
+        width: 122,
+        height: 122,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: 8,
+        ),
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(
+            color: context.colors.borderColor,
           ),
-          decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: BorderRadius.circular(24),
-            border: Border.all(
-              color: context.colors.borderColor,
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Image.asset(
-                  image,
-                  fit: BoxFit.contain,
-                ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Image.asset(
+                image,
+                fit: BoxFit.contain,
               ),
-              Gaps.vGap5,
-              Text(title, style: AppTextStyle.s14_w600(color: textColor)),
-            ],
-          ),
+            ),
+            Gaps.vGap5,
+            Text(title, style: AppTextStyle.s13_w500(color: textColor)),
+          ],
         ),
       ),
     );
