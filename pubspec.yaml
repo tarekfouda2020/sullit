@@ -101,6 +101,7 @@ dependencies:
   geolocator: ^14.0.2
   device_info_plus: ^11.5.0
   barcode: ^2.2.9
+  mobile_scanner: 6.0.2
   facebook_app_events: ^0.24.0
   app_tracking_transparency: ^2.0.6+1
   new_version_plus: ^0.1.0

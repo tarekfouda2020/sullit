@@ -34,6 +34,8 @@ import 'package:flutter_tdd/features/user/products/domain/use_cases/get_sku_prod
 import 'package:flutter_tdd/features/user/profile/presentation/pages/profile/widgets/profile_widgets_imports.dart';
 import 'package:flutter_tdd/res.dart';
 
+import '../scanner_page/scanner_page_imports.dart';
+
 part 'instore_cart_page.dart';
 part 'instore_cart_page_controller.dart';
 part 'widgets/instore_qty_button_widget.dart';

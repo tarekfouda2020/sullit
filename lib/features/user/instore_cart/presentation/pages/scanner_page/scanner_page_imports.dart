@@ -1,0 +1,27 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
+import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
+import 'package:flutter_tdd/features/user/instore_cart/presentation/pages/scanner_page/widgets/imports.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
+
+import '../../../../../../core/bloc/generic_cubit/generic_cubit.dart';
+import '../../../../../../core/helpers/custom_toast.dart';
+import '../../../../../../core/helpers/di.dart';
+import '../../../../../../core/helpers/instore_cart_helper.dart';
+import '../../../../../../core/helpers/loading_helper.dart';
+import '../../../../../../core/localization/localization_methods.dart';
+import '../../../../../../core/widgets/DefaultButton.dart';
+import '../../../../../../core/widgets/dirham_price_widget.dart';
+import '../../../../products/domain/models/product.dart';
+import '../../../../products/domain/models/product_details_domain_model.dart';
+import '../../../../products/domain/models/variant.dart';
+import '../../../../products/domain/use_cases/get_sku_product.dart';
+import '../../../data/models/instore_cart_item_model/instore_cart_item_model.dart';
+import '../instore_cart_page/instore_cart_page_imports.dart';
+part 'scanner_page.dart';
+part'scanner_controller.dart';

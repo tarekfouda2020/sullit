@@ -1,6 +1,5 @@
 part of 'instore_cart_page_imports.dart';
 
-
 class InstoreCartPage extends StatefulWidget {
   const InstoreCartPage({super.key});
 
@@ -11,64 +10,56 @@ class InstoreCartPage extends StatefulWidget {
 class _InstoreCartPageState extends State<InstoreCartPage> {
   final InstoreCartPageController controller = InstoreCartPageController();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
+      appBar: DefaultAppBar(
+        bgColor: context.colors.white,
+        title: tr('instoreCart'),
+      ),
       body: Column(
         children: [
           Container(
-            padding: const EdgeInsets.only(top: 40),
             color: context.colors.white,
-            child:Column(
+            child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18),
-                  child: SizedBox(
-                    height: 50,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: GestureDetector(
-                            onTap: AutoRouter.of(context).pop,
-                            child: Icon(
-                              Icons.arrow_back,
-                              color: context.colors.black,
-                            ),
-                          ),
-                        ),
-
-                        Text(
-                          tr('instoreCart'),
-                          style: AppTextStyle.s20_w700(
-                            color: context.colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Gaps.vGap15,
                 Gaps.line(context.colors.gray3, 10.h),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 18),
                   child: Row(
                     children: [
-                      CachedImage(
-                        url: "",
-                        borderRadius: BorderRadius.circular(30),
-                        height: 36,
+                      Container(
                         width: 36,
-                        fit: BoxFit.fill,
+                        height: 36,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.purple,
+                        ),
+                        child: Icon(
+                          Icons.store,
+                          color: context.colors.white,
+                        ),
                       ),
                       Gaps.hGap9,
-                      Text("Munch Corner",style: AppTextStyle.s16_w600(color: context.colors.black),),
+                      Text(
+                        "Munch Corner",
+                        style: AppTextStyle.s16_w600(color: context.colors.black),
+                      ),
                       const Spacer(),
                       IconButton(
-                        onPressed: () => controller.scanProduct(context),
+                        onPressed: () async {
+                          final result = await AutoRouter.of(context).push(
+                            const ScannerPageRoute(),
+                          );
+                          if (!context.mounted || result == null) return;
+                          if (result is String) {
+                            controller.getProductWithSku(context, result);
+                          }
+                          else if (result is List<InstoreCartItemModel>) {
+                            controller.syncLocalCart();
+                          }
+                        },
                         icon: SvgPicture.asset(
                           Res.qrScanIcon,
                           width: 24,
@@ -83,8 +74,7 @@ class _InstoreCartPageState extends State<InstoreCartPage> {
           ),
           Gaps.vGap24,
           Expanded(
-            child: BlocBuilder<GenericBloc<List<InstoreCartItemModel>>,
-                GenericState<List<InstoreCartItemModel>>>(
+            child: BlocBuilder<GenericBloc<List<InstoreCartItemModel>>, GenericState<List<InstoreCartItemModel>>>(
               bloc: controller.cartItemsBloc,
               builder: (context, state) {
                 if (state is GenericUpdateState) {
@@ -108,17 +98,16 @@ class _InstoreCartPageState extends State<InstoreCartPage> {
           ),
         ],
       ),
-      bottomNavigationBar: BlocBuilder<GenericBloc<List<InstoreCartItemModel>>,
-          GenericState<List<InstoreCartItemModel>>>(
+      bottomNavigationBar:
+          BlocBuilder<GenericBloc<List<InstoreCartItemModel>>, GenericState<List<InstoreCartItemModel>>>(
         bloc: controller.cartItemsBloc,
         builder: (context, state) {
-
           if (state is! GenericUpdateState || state.data.isEmpty) {
             return const SizedBox.shrink();
           }
           final total = state.data.fold<double>(
             0,
-                (sum, item) => sum + item.totalPrice,
+            (sum, item) => sum + item.totalPrice,
           );
           return CustomBottomSafeAreaWidget(
             child: Row(
@@ -131,9 +120,7 @@ class _InstoreCartPageState extends State<InstoreCartPage> {
                     onTap: () => controller.routeToCheckout(context),
                   ),
                 ),
-
-             Gaps.hGap12,
-
+                Gaps.hGap12,
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,7 +133,7 @@ class _InstoreCartPageState extends State<InstoreCartPage> {
                     ),
                     Gaps.vGap4,
                     DirhamPrice(
-                      amount:total.toString(),
+                      amount: total.toString(),
                       currencyStyle: AppTextStyle.s16_w400(
                         color: context.colors.primary,
                       ),
@@ -156,7 +143,6 @@ class _InstoreCartPageState extends State<InstoreCartPage> {
                     ),
                   ],
                 ),
-
                 Gaps.hGap18,
               ],
             ),
