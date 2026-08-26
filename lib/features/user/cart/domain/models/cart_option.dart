@@ -12,6 +12,8 @@ class CartOption extends BaseDomainModel {
 
 class CartOptionInfo extends BaseDomainModel {
   final int id;
+  /// Returns in order details only.
+  final int? optionId;
   final String name;
   final String type;
   final bool isRequired;
@@ -19,6 +21,7 @@ class CartOptionInfo extends BaseDomainModel {
 
   CartOptionInfo({
     required this.id,
+    this.optionId,
     required this.name,
     required this.type,
     required this.isRequired,
@@ -28,11 +31,14 @@ class CartOptionInfo extends BaseDomainModel {
 
 class CartOptionValue extends BaseDomainModel {
   final int id;
+  /// Returns in order details only.
+  final int? optionValueId;
   final String name;
   final String price;
 
   CartOptionValue({
     required this.id,
+    this.optionValueId,
     required this.name,
     required this.price,
   });

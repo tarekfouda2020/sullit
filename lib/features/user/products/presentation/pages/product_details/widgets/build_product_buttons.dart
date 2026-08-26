@@ -70,7 +70,6 @@ class BuildProductButtons extends StatelessWidget {
                             return DirhamPrice(
                               amount:
                                   "${controller.getTotalPrice()}",
-                                  // "${detailsModel.product.variant?.calculablePrice}",
                               currencyOffset: -0.5,
                               currencyStyle: AppTextStyle.s18_w400(
                                 color: context.colors.primary,
@@ -97,7 +96,7 @@ class BuildProductButtons extends StatelessWidget {
                         GenericState<String>>(
                       bloc: controller.remainingAmountBloc,
                       builder: (context, state) {
-                        var remain = double.parse(state.data.cleanNumber);
+                        double remain = double.parse(state.data.cleanNumber);
                         return Visibility(
                           visible: (cartState.data.minimumStatus == false) &&
                               controller.remainToGetMinAmount() > 0 &&

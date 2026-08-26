@@ -18,44 +18,47 @@ class GetOrderDetails extends UseCase<Orders?, GenericParams> {
   }
 
   Orders _handleAllProducts(Orders data) {
-    final currentMap = <int, OrderDetails>{
-      for (final item in data.orderDetails)
-        if (item.product != null) item.product!.id!: item,
-    };
+    final histories = List<OrderModificationDomainModel>.of(
+      data.orderDetailHistories ?? <OrderModificationDomainModel>[],
+    );
+    final usedHistoryIds = <int>{};
 
-    final historyMap = <int, OrderModificationDomainModel>{
-      for (OrderModificationDomainModel h in data.orderDetailHistories ?? <OrderModificationDomainModel>[])
-       if(h.oldProduct!= null) h.oldProduct!.id: h,
-    };
-
-    final addedHistoryMap = <int, OrderModificationDomainModel>{
-      for (final h in data.orderDetailHistories ?? <OrderModificationDomainModel>[])
-        if (h.isAdd && h.newProduct != null) h.newProduct!.id: h,
-    };
-
-    final allIds = {...currentMap.keys, ...historyMap.keys};
+    OrderModificationDomainModel? takeHistory(OrderDetails item) {
+      final productId = item.product?.id;
+      if (productId == null) return null;
+      final index = histories.indexWhere((h) {
+        if (usedHistoryIds.contains(h.id)) return false;
+        if (h.isAdd && h.newProduct?.id == productId) return true;
+        return h.oldProduct?.id == productId;
+      });
+      if (index < 0) return null;
+      usedHistoryIds.add(histories[index].id);
+      return histories[index];
+    }
 
     final regular = <OrderDisplayItem>[];
     final removed = <OrderDisplayItem>[];
     final added = <OrderDisplayItem>[];
 
-    for (final id in allIds) {
-      final current = currentMap[id];
-      final hist = historyMap[id];
-
+    for (final item in data.orderDetails) {
+      final hist = takeHistory(item);
       if (hist == null) {
-        final addHist = addedHistoryMap[id];
-        if (addHist != null) {
-          added.add(OrderDisplayItem(current: current, history: addHist));
-        } else {
-          regular.add(OrderDisplayItem(current: current));
-        }
+        regular.add(OrderDisplayItem(current: item));
       } else if (hist.isAdd) {
-        added.add(OrderDisplayItem(current: current, history: hist));
+        added.add(OrderDisplayItem(current: item, history: hist));
       } else if (hist.isRemove || hist.isReplace) {
-        removed.add(OrderDisplayItem(current: current, history: hist));
+        removed.add(OrderDisplayItem(current: item, history: hist));
       } else {
-        regular.add(OrderDisplayItem(current: current, history: hist));
+        regular.add(OrderDisplayItem(current: item, history: hist));
+      }
+    }
+
+    for (final hist in histories) {
+      if (usedHistoryIds.contains(hist.id)) continue;
+      if (hist.isRemove || hist.isReplace) {
+        removed.add(OrderDisplayItem(history: hist));
+      } else if (hist.isAdd) {
+        added.add(OrderDisplayItem(history: hist));
       }
     }
 

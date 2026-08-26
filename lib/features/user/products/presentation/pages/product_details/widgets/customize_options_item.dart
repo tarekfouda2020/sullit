@@ -2,21 +2,20 @@ part of 'product_details_widgets_imports.dart';
 
 class CustomizeOptionsItem extends StatelessWidget {
   final ProductOptionValue valueModel;
-  final String type;
+  final bool isRadio;
   final bool isSelected;
   final VoidCallback onTap;
 
   const CustomizeOptionsItem({
     super.key,
     required this.valueModel,
-    required this.type,
+    required this.isRadio,
     required this.isSelected,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    final isRadio = type == 'radio';
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -36,12 +35,12 @@ class CustomizeOptionsItem extends StatelessWidget {
           children: [
             Icon(
               isRadio
-                  ? isSelected
+                  ? (isSelected
                       ? Icons.radio_button_checked
-                      : Icons.radio_button_off
-                  : isSelected
+                      : Icons.radio_button_off)
+                  : (isSelected
                       ? Icons.check_box
-                      : Icons.check_box_outline_blank,
+                      : Icons.check_box_outline_blank),
               color: isSelected ? context.colors.primary : context.colors.grey,
             ),
             Gaps.hGap12,

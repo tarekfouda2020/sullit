@@ -18,7 +18,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
       children: [
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 15),
-          margin: const EdgeInsets.symmetric(horizontal: 18,vertical: 8),
+          margin: const EdgeInsets.symmetric(vertical: 8),
           decoration: CustomDecoration(
             thisColor: context.colors.white,
               boxBorder: Border.all(color: context.colors.gray3),
@@ -43,11 +43,18 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            displayItem.name,
+                            "${displayItem.name } ${displayItem.current?.variation ?? ""}",
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: AppTextStyle.s14_w600(color: context.colors.black),
+                            style: AppTextStyle.s14_w600(color: context.colors.black).copyWith(
+                              height: 1.3
+                            ),
                           ),
+                          Gaps.vGap5,
+                          if (displayItem.current?.cartOptions?.isNotEmpty == true)
+                            CartSheetItemOptionsWidget(
+                              cartOptions: displayItem.current!.cartOptions!,
+                            ),
                           Gaps.vGap5,
                           if (displayItem.current?.product != null &&
                               !displayItem.isRemoved &&
@@ -73,24 +80,6 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                           Gaps.vGap7,
                           OrderDetailsPriceQuantityWidget(displayItem: displayItem),
                           Gaps.vGap7,
-                          Row(
-                            children: [
-                              Text(
-                                "vcola :",
-                                style: AppTextStyle.s14_w400(
-                                  color: context.colors.textColor,
-                                ),
-                              ),
-                              Gaps.hGap4,
-                              DirhamPrice(
-                                amount: "20",
-                                textStyle: AppTextStyle.s14_w600(
-                                    color: context.colors.primary),
-                                currencyStyle: AppTextStyle.s16_w400(
-                                    color: context.colors.primary),
-                              ),
-                            ],
-                          )
                           // OrderDetailsTotalWidget(displayItem: displayItem),
                         ],
                       ),

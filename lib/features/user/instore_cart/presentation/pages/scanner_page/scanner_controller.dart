@@ -15,7 +15,6 @@ class ScannerController {
     syncLocalCart();
   }
 
-  // Helpers
 
   void _notifyChange() {
     refreshBloc.onUpdateData(!refreshBloc.state.data);
@@ -78,7 +77,6 @@ class ScannerController {
     syncLocalCart();
   }
 
-  // Barcode
 
   String? detectBarcode(BarcodeCapture capture) {
     if (_isScanned) return null;
@@ -98,7 +96,6 @@ class ScannerController {
     _isScanned = false;
   }
 
-  // Totals
 
   double totalPriceResult() {
     return cartProducts.fold(
@@ -114,7 +111,6 @@ class ScannerController {
     );
   }
 
-  // Barcode Text
 
   Future<void> submitBarcodeText(
     BuildContext context,
@@ -169,7 +165,6 @@ class ScannerController {
     await addOrUpdateItem(value, variant!);
   }
 
-  // Product Details Sheet
 
   Future<void> submitBarcodeAndShowSheet(
     BuildContext context,

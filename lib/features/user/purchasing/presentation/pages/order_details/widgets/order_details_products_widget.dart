@@ -4,6 +4,7 @@ class OrderDetailsProductsWidget extends StatelessWidget {
   final bool isReturned;
   final Orders order;
   final OrderDetailsPageController controller;
+
   const OrderDetailsProductsWidget({
     super.key,
     required this.isReturned,
@@ -40,6 +41,7 @@ class OrderDetailsProductsWidget extends StatelessWidget {
           ),
           Gaps.vGap12,
           ..._getRegularItems().map((item) => OrderDetailsProductItemWidget(
+                key: ValueKey(item.current?.id ?? item.history?.id),
                 hasReview: item.current?.isAvailableReview ?? false,
                 onPressReview: item.current != null
                     ? () => controller.reviewSheet(context, item.current)
@@ -64,7 +66,7 @@ class OrderDetailsProductsWidget extends StatelessWidget {
                   displayItem: item,
                 )),
           ],
-          if (!isReturned || order.isInStore == true)
+          if (isReturned || order.isInStore == true)
             Gaps.empty
             else
             Padding(
@@ -107,12 +109,25 @@ class OrderDetailsProductsWidget extends StatelessWidget {
 
 
 
-  List<OrderDisplayItem> get _displayItems =>
-      order.displayItems ??
-          order.orderDetails.map((e) => OrderDisplayItem(current: e)).toList();
+  List<OrderDisplayItem> get _displayItems {
+    final currentIds = order.orderDetails.map((e) => e.id).toSet();
+    final currentRows = order.orderDetails.map((line) {
+      final matched = order.displayItems?.where((d) => d.current?.id == line.id);
+      return OrderDisplayItem(
+        current: line,
+        history: matched == null || matched.isEmpty ? null : matched.first.history,
+      );
+    });
+    final historyOnly = (order.displayItems ?? []).where(
+      (e) => e.current == null || !currentIds.contains(e.current!.id),
+    );
+    return [...currentRows, ...historyOnly];
+  }
 
-  List<OrderDisplayItem> _getRegularItems() =>
-      _displayItems.where((e) => !e.isRemoved && !e.isReplace).toList();
+  List<OrderDisplayItem> _getRegularItems() => _displayItems
+      .where((e) =>
+          e.current != null && !e.isRemoved && !e.isReplace && !e.isAdded)
+      .toList();
 
   List<OrderDisplayItem> _getRemovedItems() =>
       _displayItems.where((e) => e.isRemoved || e.isReplace).toList();

@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart_option.dart';
 import 'package:flutter_tdd/features/user/products/data/models/reviews_model/reviews_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_details.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -70,6 +71,7 @@ class OrderDetailsModel extends BaseApiModel<OrderDetails>
     String? instructions,
     @JsonKey(name: 'insurance_coverage_percentage')
     String? insuranceCoveragePercentage,
+    @JsonKey(name: 'options') List<OrderDetailsOptionModel>? cartOptions,
   }) = _OrderDetailsModel;
 
   factory OrderDetailsModel.fromJson(Map<String, dynamic> json) =>
@@ -94,7 +96,70 @@ class OrderDetailsModel extends BaseApiModel<OrderDetails>
         soldByType: soldByType,
         pickerNotes: pickerNotes,
         instructions: instructions,
-        insuranceCoveragePercentage: insuranceCoveragePercentage);
+        insuranceCoveragePercentage: insuranceCoveragePercentage,
+        cartOptions: cartOptions?.map((e) => e.toDomainModel()).toList());
+  }
+}
+
+@freezed
+@immutable
+class OrderDetailsOptionModel extends BaseApiModel<CartOption>
+    with _$OrderDetailsOptionModel {
+  const OrderDetailsOptionModel._();
+
+  @JsonSerializable(explicitToJson: true)
+  const factory OrderDetailsOptionModel({
+    required int id,
+    /// Returns in order details only.
+    @JsonKey(name: 'option_id') int? optionId,
+    required String name,
+    required List<OrderDetailsOptionValueModel> values,
+  }) = _OrderDetailsOptionModel;
+
+  factory OrderDetailsOptionModel.fromJson(Map<String, dynamic> json) =>
+      _$OrderDetailsOptionModelFromJson(json);
+
+  @override
+  CartOption toDomainModel() {
+    return CartOption(
+      option: CartOptionInfo(
+        id: id,
+        optionId: optionId,
+        name: name,
+        type: '',
+        isRequired: false,
+      ),
+      values: values.map((e) => e.toDomainModel()).toList(),
+    );
+  }
+}
+
+@freezed
+@immutable
+class OrderDetailsOptionValueModel extends BaseApiModel<CartOptionValue>
+    with _$OrderDetailsOptionValueModel {
+  const OrderDetailsOptionValueModel._();
+
+  @JsonSerializable(explicitToJson: true)
+  const factory OrderDetailsOptionValueModel({
+    required int id,
+    /// Returns in order details only.
+    @JsonKey(name: 'option_value_id') int? optionValueId,
+    required String name,
+    required String price,
+  }) = _OrderDetailsOptionValueModel;
+
+  factory OrderDetailsOptionValueModel.fromJson(Map<String, dynamic> json) =>
+      _$OrderDetailsOptionValueModelFromJson(json);
+
+  @override
+  CartOptionValue toDomainModel() {
+    return CartOptionValue(
+      id: id,
+      optionValueId: optionValueId,
+      name: name,
+      price: price,
+    );
   }
 }
 

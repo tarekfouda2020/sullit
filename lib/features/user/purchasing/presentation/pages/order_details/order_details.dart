@@ -4,8 +4,11 @@ class OrderDetailsPage extends StatefulWidget {
   final bool isReturnedOrder;
   final int id;
 
-  const OrderDetailsPage(
-      {super.key, required this.isReturnedOrder, required this.id});
+  const OrderDetailsPage({
+    super.key,
+    required this.isReturnedOrder,
+    required this.id,
+  });
 
   @override
   State<OrderDetailsPage> createState() => _OrderDetailsPageState();
@@ -32,8 +35,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             return const OrderDetailsShimmerWidget();
           }
           return CustomRefreshIndicatorWidget(
-            onRefresh: () async =>
-                await controller.getOrderDetails(widget.id),
+            onRefresh: () async => await controller.getOrderDetails(widget.id),
             child: ListView(
               padding: Dimens.paddingHorizontal20PX,
               controller: controller.scrollController,
@@ -90,8 +92,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                       child: Expanded(
                         child: DefaultButton(
                           title: tr('cancel'),
-                          onTap: () =>
-                              controller.cancelOrder(context),
+                          onTap: () => controller.cancelOrder(context),
                           margin: EdgeInsets.zero,
                           color: context.colors.gray8,
                           height: Dimens.dp40,

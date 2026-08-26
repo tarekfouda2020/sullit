@@ -424,11 +424,20 @@ class PharmacyDetailsController {
       if (fromCart) {
         AutoRouter.of(context).pop(true);
       } else {
-        var result = await AutoRouter.of(context)
-            .push(PharmacyCartRoute(
-              pharmacyId: pharmacyBloc.state.data!.id!,
-              preSelectedBranchId: selectedBranchId,
-            ));
+        var result;
+        if(isRestaurant){
+          result = await AutoRouter.of(context)
+              .push(RestaurantCartRoute(
+            restaurantId: getPharmacyId!,
+            preSelectedBranchId: selectedBranchId,
+          ));
+        }else{
+           result = await AutoRouter.of(context)
+              .push(PharmacyCartRoute(
+            pharmacyId: pharmacyBloc.state.data!.id!,
+            preSelectedBranchId: selectedBranchId,
+          ));
+        }
         refreshDataAfterRoute(result);
       }
     }

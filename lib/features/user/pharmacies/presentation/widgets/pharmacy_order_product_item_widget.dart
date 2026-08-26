@@ -38,10 +38,17 @@ class PharmacyOrderProductItemWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        pharmacyProduct?.name ?? "",
-                        style:
-                            AppTextStyle.s14_w600(color: context.colors.black),
+                        (pharmacyProduct?.name ?? "") + (" ${orderDetails.variation}"),
+                        style: AppTextStyle.s14_w600(color: context.colors.black).copyWith(
+                          height: 1.3
+                        ),
                       ),
+                      Gaps.vGap5,
+                      if(orderDetails.cartOptions?.isNotEmpty == true)...[
+                        ...List.generate(orderDetails.cartOptions!.length, (index) {
+                          return CartSheetItemOptionsWidget(cartOptions: orderDetails.cartOptions!);
+                        },),
+                      ],
                       Gaps.vGap5,
                       RatingBar.builder(
                         initialRating: (orderDetails.review?.rate ??

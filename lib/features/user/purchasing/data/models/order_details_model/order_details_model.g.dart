@@ -57,6 +57,10 @@ _$_OrderDetailsModel _$$_OrderDetailsModelFromJson(Map<String, dynamic> json) =>
       instructions: json['instructions'] as String?,
       insuranceCoveragePercentage:
           json['insurance_coverage_percentage'] as String?,
+      cartOptions: (json['options'] as List<dynamic>?)
+          ?.map((e) =>
+              OrderDetailsOptionModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_OrderDetailsModelToJson(
@@ -79,4 +83,44 @@ Map<String, dynamic> _$$_OrderDetailsModelToJson(
       'picker_notes': instance.pickerNotes,
       'instructions': instance.instructions,
       'insurance_coverage_percentage': instance.insuranceCoveragePercentage,
+      'options': instance.cartOptions?.map((e) => e.toJson()).toList(),
+    };
+
+_$_OrderDetailsOptionModel _$$_OrderDetailsOptionModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_OrderDetailsOptionModel(
+      id: (json['id'] as num).toInt(),
+      optionId: (json['option_id'] as num?)?.toInt(),
+      name: json['name'] as String,
+      values: (json['values'] as List<dynamic>)
+          .map((e) =>
+              OrderDetailsOptionValueModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$_OrderDetailsOptionModelToJson(
+        _$_OrderDetailsOptionModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'option_id': instance.optionId,
+      'name': instance.name,
+      'values': instance.values.map((e) => e.toJson()).toList(),
+    };
+
+_$_OrderDetailsOptionValueModel _$$_OrderDetailsOptionValueModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_OrderDetailsOptionValueModel(
+      id: (json['id'] as num).toInt(),
+      optionValueId: (json['option_value_id'] as num?)?.toInt(),
+      name: json['name'] as String,
+      price: json['price'] as String,
+    );
+
+Map<String, dynamic> _$$_OrderDetailsOptionValueModelToJson(
+        _$_OrderDetailsOptionValueModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'option_value_id': instance.optionValueId,
+      'name': instance.name,
+      'price': instance.price,
     };
