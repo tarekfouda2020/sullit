@@ -8,7 +8,6 @@ class ShopTypeShortCutsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CategoryCardWidget(
           title: "Groceries",
@@ -19,6 +18,7 @@ class ShopTypeShortCutsWidget extends StatelessWidget {
             const BestSellersPageRoute(),
           ),
         ),
+        Gaps.hGap8,
         CategoryCardWidget(
           title: "Pharmacies",
           image: Res.pharmacies,
@@ -26,6 +26,7 @@ class ShopTypeShortCutsWidget extends StatelessWidget {
           textColor: context.colors.oceanBlue,
           onTap: () => controller.routeToPharmaciesList(context),
         ),
+        Gaps.hGap8,
         CategoryCardWidget(
           title: "Restaurants",
           image: Res.restaurants,

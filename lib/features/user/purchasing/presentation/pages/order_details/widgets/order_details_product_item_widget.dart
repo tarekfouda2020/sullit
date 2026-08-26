@@ -72,6 +72,25 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
                             ),
                           Gaps.vGap7,
                           OrderDetailsPriceQuantityWidget(displayItem: displayItem),
+                          Gaps.vGap7,
+                          Row(
+                            children: [
+                              Text(
+                                "vcola :",
+                                style: AppTextStyle.s14_w400(
+                                  color: context.colors.textColor,
+                                ),
+                              ),
+                              Gaps.hGap4,
+                              DirhamPrice(
+                                amount: "20",
+                                textStyle: AppTextStyle.s14_w600(
+                                    color: context.colors.primary),
+                                currencyStyle: AppTextStyle.s16_w400(
+                                    color: context.colors.primary),
+                              ),
+                            ],
+                          )
                           // OrderDetailsTotalWidget(displayItem: displayItem),
                         ],
                       ),

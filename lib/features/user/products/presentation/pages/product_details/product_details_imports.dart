@@ -43,6 +43,7 @@ import 'package:flutter_tdd/features/user/products/presentation/manager/cart_hel
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_sheet_controller.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 import 'package:flutter_tdd/features/user/vip_subscribe/presentation/pages/membership_subscribe/membership_subscribe_imports.dart';
+import '../../../../../../core/helpers/utilities.dart';
 import '../../../../cart/domain/use_cases/add_product_to_cart.dart';
 import '../../../domain/entities/add_product_to_cart_params.dart';
 import '../../../domain/entities/product_details_page_route_params.dart';

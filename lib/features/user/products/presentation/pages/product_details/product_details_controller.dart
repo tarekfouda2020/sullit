@@ -5,8 +5,13 @@ class ProductDetailsController implements CartSheetController {
   final GlobalKey<FormState> formKey = GlobalKey();
   final TextEditingController queryController = TextEditingController();
   final GenericBloc<int> qtyCubit = GenericBloc(1);
-  final GenericBloc<List<int>> isSelected = GenericBloc<List<int>>([]);
-  final GenericBloc<int> selectedColorCubit = GenericBloc(0);
+  final Map<int, GenericBloc<List<int>>> optionsSelectionMap = {};
+  GenericBloc<List<int>> getSelectionBloc(int optionId) {
+    return optionsSelectionMap.putIfAbsent(
+      optionId,
+          () => GenericBloc<List<int>>(<int>[]),
+    );
+  }  final GenericBloc<int> selectedColorCubit = GenericBloc(0);
   final GenericBloc<bool> showAppBarTitleCubit = GenericBloc(false);
   final GenericBloc<bool> showAllDescriptionCubit = GenericBloc(false);
   final GenericBloc<ProductDetailsDomainModel?> detailsCubit = GenericBloc(null);
@@ -211,7 +216,7 @@ class ProductDetailsController implements CartSheetController {
 
   void increaseQty({bool isInit = false}) {
     var variantPrice = detailsCubit.state.data?.product.variant;
-    var price = double.parse(variantPrice!.calculablePrice!);
+    var price = _safePrice(variantPrice!.calculablePrice);
     price = price / qtyCubit.state.data;
     bool isFresh = detailsCubit.state.data?.product.isFresh == true;
     if (variantPrice.currentStock! >= 1 || isFresh) {
@@ -237,7 +242,7 @@ class ProductDetailsController implements CartSheetController {
 
   void decreaseQty() {
     var variantPrice = detailsCubit.state.data?.product.variant;
-    var price = double.parse(variantPrice!.calculablePrice!);
+    var price = _safePrice(variantPrice!.calculablePrice);
     if (qtyCubit.state.data > 1) {
       var priceQty = price - (price / qtyCubit.state.data);
       var newQty = qtyCubit.state.data - 1;
@@ -348,14 +353,15 @@ class ProductDetailsController implements CartSheetController {
 
   List<ProductOptionModel> get getOptions {
     final product = detailsCubit.state.data!.product;
-    var selectedOptions = isSelected.state.data;
-    return
-      (product.productOptions??<ProductOptionModel>[]).where(
-              (element) => element.values.any((element) => selectedOptions.contains(element.id))
-      ).toList();
-}
-
-
+    return (product.productOptions ?? <ProductOptionModel>[]).where((option) {
+      final selectedForThisOption = getSelectionBloc(option.id).state.data;
+      return option.values.any((v) => selectedForThisOption.contains(v.id));
+    }).toList();
+  }
+  double _safePrice(String? value) {
+    if (value == null) return 0.0;
+    return getIt<Utilities>().extractFormattedNumberToDouble(value) ?? 0.0;
+  }
   Future<void> onRestaurantToCart(BuildContext context) async {
     final product = detailsCubit.state.data!.product;
     final params = await _restaurantCartParams();
@@ -385,20 +391,19 @@ class ProductDetailsController implements CartSheetController {
   }
 
   List<ProductOptionsParams> _addToCartOptions() {
-    final selectedIds = isSelected.state.data;
     return getOptions.map((option) {
-    final selectedValueIds = option.values
-        .where((value) => selectedIds.contains(value.id))
-        .map((value) => value.id)
-        .toList();
+      final selectedIds = getSelectionBloc(option.id).state.data;
+      final selectedValueIds = option.values
+          .where((value) => selectedIds.contains(value.id))
+          .map((value) => value.id)
+          .toList();
 
-    return ProductOptionsParams(
-      id: option.id,
-      optionsIds: selectedValueIds,
-    );
-  }).toList();
+      return ProductOptionsParams(
+        id: option.id,
+        optionsIds: selectedValueIds,
+      );
+    }).toList();
   }
-
   @override
   Future<void> getCartItems({bool refresh = true}) async {
     await getIt<CartHelper>().getCartItems(refresh: refresh, type: getProductType).then((value) {
@@ -637,7 +642,7 @@ class ProductDetailsController implements CartSheetController {
       currentItemPriceInCart = 0.0;
     }
 
-    double currentLocalPrice = double.parse(detailsCubit.state.data?.product.variant?.calculablePrice ?? "0.0");
+    double currentLocalPrice = _safePrice(detailsCubit.state.data?.product.variant?.calculablePrice);
 
     double effectiveTotal = (cartSubTotal - currentItemPriceInCart) + currentLocalPrice;
     double remain = minAmount - effectiveTotal;
@@ -693,7 +698,7 @@ class ProductDetailsController implements CartSheetController {
   }
 
   double getTotalPrice() {
-    var price = double.parse(detailsCubit.state.data?.product.priceHighLowDiscount ?? "0.0");
+    var price = _safePrice(detailsCubit.state.data?.product.priceHighLowDiscount);
     var qnt = qtyCubit.state.data;
     return qnt * price;
   }

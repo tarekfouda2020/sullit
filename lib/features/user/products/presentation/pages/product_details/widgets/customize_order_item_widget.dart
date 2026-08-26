@@ -26,23 +26,24 @@ class CustomizeOrderItemWidget extends StatelessWidget {
           ),
           Gaps.vGap8,
           ...List.generate(
-            optionModel.values.length ,
+            optionModel.values.length,
             (index) {
               final value = optionModel.values[index];
               return BlocBuilder<GenericBloc<List<int>>, GenericState<List<int>>>(
-                bloc: controller.isSelected,
+                bloc: controller.getSelectionBloc(optionModel.id),
                 builder: (context, state) {
                   final selectedList = state.data;
                   final isRadio = optionModel.type == 'radio';
-                  final itemValue = index + 1;
+                  final itemValue = value.id;
                   final isSelectedItem = selectedList.contains(itemValue);
                   return CustomizeOptionsItem(
                     valueModel: value,
-                    type: optionModel.type ,
+                    type: optionModel.type,
                     isSelected: isSelectedItem,
                     onTap: () {
+                      final bloc = controller.getSelectionBloc(optionModel.id);
                       if (isRadio) {
-                        controller.isSelected.onUpdateData([itemValue]);
+                        bloc.onUpdateData([itemValue]);
                       } else {
                         final updatedList = List<int>.from(selectedList);
                         if (updatedList.contains(itemValue)) {
@@ -50,7 +51,7 @@ class CustomizeOrderItemWidget extends StatelessWidget {
                         } else {
                           updatedList.add(itemValue);
                         }
-                        controller.isSelected.onUpdateData(updatedList);
+                        bloc.onUpdateData(updatedList);
                       }
                     },
                   );

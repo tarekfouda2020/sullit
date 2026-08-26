@@ -147,6 +147,9 @@ class PharmacyDetailsAppBar extends StatelessWidget {
   }
 
   double get sizeWhileScroll {
+    if(controller.isRestaurant){
+      return kToolbarHeight + 50;
+    }
     double height =
         controller.categoriesPagingController.itemList?.isNotEmpty == true
             ? 165

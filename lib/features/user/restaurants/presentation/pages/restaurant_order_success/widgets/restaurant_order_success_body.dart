@@ -60,7 +60,6 @@ class RestaurantOrderSuccessBody extends StatelessWidget {
                       ),
                     ],
                     Gaps.vGap20,
-                    if (_showOrderInvoice(state))
                       RestaurantConfirmSummaryWidget(
                           orderSummary: state.data!, controller: controller)
                   ],

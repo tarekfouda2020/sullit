@@ -16,7 +16,7 @@ class PharmacyCategoriesAppBar extends StatelessWidget {
           return BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.showAppBarTitle,
             builder: (context, titleState) {
-              final double baseHeight = 420;
+              const double baseHeight = 420;
               final double insuranceHeight = insuranceList.isNotEmpty ? 100 : 0;
               final double expandedHeight = baseHeight + insuranceHeight;
 

@@ -75,6 +75,13 @@ class OrderDetailsSummaryWidget extends StatelessWidget {
             useDirhamPrice: true,
             onPressInfo: () => controller.showEnvFeesSheet(context),
           ),
+          BuildSummaryHeader(
+            title: tr('shippingFees'),
+            details: order?.deliveryStatus ??"0.0",
+            useDirhamPrice: true,
+            onPressInfo: () => controller.showDeliveryFeesSheet(context),
+          ),
+
           if (!isReturned || order?.isInStore == true)
             Gaps.empty
           else BuildSummaryHeader(
