@@ -10,29 +10,35 @@ class ShopTypeShortCutsWidget extends StatelessWidget {
     return Row(
       spacing: 8,
       children: [
-        CategoryCardWidget(
-          title: "Groceries",
-          image: Res.groceries,
-          backgroundColor: context.colors.lightPink,
-          textColor: context.colors.primary,
-          onTap: () => AutoRouter.of(context).push(
-            const BestSellersPageRoute(),
+        Expanded(
+          child: CategoryCardWidget(
+            title: "Groceries",
+            image: Res.groceries,
+            backgroundColor: context.colors.lightPink,
+            textColor: context.colors.primary,
+            onTap: () => AutoRouter.of(context).push(
+              const BestSellersPageRoute(),
+            ),
           ),
         ),
-        CategoryCardWidget(
-          title: "Pharmacies",
-          image: Res.pharmacies,
-          backgroundColor: context.colors.lightBlue,
-          textColor: context.colors.oceanBlue,
-          onTap: () => controller.routeToPharmaciesList(context),
+        Expanded(
+          child: CategoryCardWidget(
+            title: "Pharmacies",
+            image: Res.pharmacies,
+            backgroundColor: context.colors.lightBlue,
+            textColor: context.colors.oceanBlue,
+            onTap: () => controller.routeToPharmaciesList(context),
+          ),
         ),
-        CategoryCardWidget(
-          title: "Restaurants",
-          image: Res.restaurants,
-          backgroundColor: context.colors.lightOrange2,
-          textColor: context.colors.darkOrange,
-          onTap: () => AutoRouter.of(context).push(
-            const RestaurantsRoute(),
+        Expanded(
+          child: CategoryCardWidget(
+            title: "Restaurants",
+            image: Res.restaurants,
+            backgroundColor: context.colors.lightOrange2,
+            textColor: context.colors.darkOrange,
+            onTap: () => AutoRouter.of(context).push(
+              const RestaurantsRoute(),
+            ),
           ),
         ),
       ],

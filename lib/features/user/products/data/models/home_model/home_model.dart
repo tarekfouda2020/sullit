@@ -31,6 +31,7 @@ class HomeModel extends BaseApiModel<HomeDomainModel> with _$HomeModel {
     @JsonKey(name: 'top_sellers') required List<ShopCardModel> topSellers,
     @JsonKey(name: 'pharmacy_shops') required List<ShopCardModel> pharmacyShops,
     @JsonKey(name: 'restaurant_shops') required List<ShopCardModel> restaurantShops,
+    @JsonKey(name: 'nearby_in_store_shop') required ShopCardModel? inStoreShop,
     // @JsonKey(name: 'best_selling_products')
     //     required List<ProductModel> bestSellingProducts,
     // @JsonKey(name: 'newest_products')
@@ -59,7 +60,9 @@ class HomeModel extends BaseApiModel<HomeDomainModel> with _$HomeModel {
       categories: categories.map((e) => e.toDomainModel()).toList(),
       currentOrders: currentOrders.map((e) => e.toDomainModel()).toList(),
       flashSales: flashSales?.toDomainModel(),
-      // featuredProducts: featuredProducts.map((e) => e.toDomainModel()).toList(),
+        inStoreShop:inStoreShop?.toDomainModel(),
+
+        // featuredProducts: featuredProducts.map((e) => e.toDomainModel()).toList(),
       // mostPopular: mostPopular.map((e) => e.toDomainModel()).toList(),
       // newestProducts: newestProducts.map((e) => e.toDomainModel()).toList(),
       // bestRated: bestRated.map((e) => e.toDomainModel()).toList(),

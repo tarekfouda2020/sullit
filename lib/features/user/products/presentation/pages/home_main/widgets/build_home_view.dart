@@ -23,7 +23,11 @@ class BuildHomeView extends StatelessWidget {
             Gaps.vGap25,
             const AdvantagesWidget(),
             Gaps.vGap20,
-            const InStoreShoppingBanner(),
+            if(homeDomainModel.inStoreShop != null)
+            InStoreShoppingBanner(
+              storeName: homeDomainModel.inStoreShop?.name ?? "",
+              image: homeDomainModel.inStoreShop?.logo ?? "",
+            ),
             Gaps.vGap20,
             ShopTypeShortCutsWidget(
               controller: controller,
