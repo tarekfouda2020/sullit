@@ -25,6 +25,7 @@ import 'package:flutter_tdd/features/user/cart/data/models/fess_mechanism_model/
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/get_order_fees.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/pages/cart_payment/widgets/cart_payment_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
+import 'package:flutter_tdd/features/user/instore_cart/presentation/pages/instore_confirm_buying/widgets/instore_confirm_buying_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/loyalty_points/domain/models/loyalty_points_balance_domain_model.dart';
 import 'package:flutter_tdd/features/user/loyalty_points/domain/use_case/get_loyalty_points_balance.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/entities/change_order_payment_params.dart';

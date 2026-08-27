@@ -3,7 +3,8 @@ part of 'instore_confirm_buying_widgets_imports.dart';
 
 class InstoreOrderDetailsWidget extends StatelessWidget {
   final OrderSummaryDomainModel summary;
-  const InstoreOrderDetailsWidget({super.key, required this.summary});
+  final InstoreConfirmBuyingController controller;
+  const InstoreOrderDetailsWidget({super.key, required this.summary, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -56,23 +57,9 @@ class InstoreOrderDetailsWidget extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap:() {
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          backgroundColor: context.colors.transparent,
-                          builder: (_) {
-                            return OrderQrBottomSheet(
-                              orderNumber:summary.sectionOrders!.first.code,
-                              status: summary.sectionOrders!.first.deliveryStatus,
-                              totalPrice: summary.sectionOrders!.first.total,
-                              orderId: summary.sectionOrders!.first.id,
-                            );
-                          },
-                        );
-                      } ,
+                      onTap:() => controller.showQrSheet(context),
                       child:SvgPicture.string(
-                        getIt<BarcodeService>().generateQrCode(summary.sectionOrders!.first.id.toString(),),
+                        getIt<BarcodeService>().generateQrCode(summary.sectionOrders!.first.id.toString()),
                         width: 70,
                         height: 70,
                       ),
