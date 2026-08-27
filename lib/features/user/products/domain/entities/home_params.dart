@@ -6,26 +6,33 @@ class HomeParams {
   final bool refresh;
   final double? latitude;
   final double? longitude;
+  final String? macAddress;
 
   HomeParams({
     required this.refresh,
     this.latitude,
     this.longitude,
+    this.macAddress,
   });
 
-  factory HomeParams.fromLocation({required bool refresh}) {
-    final location = LocationService.instance.userLocation;
+  factory HomeParams.fromLocation({
+    required bool refresh,
+    String? macAddress,
+  }) {
+    final location = LocationService.instance.cachedUserLocation();
     return HomeParams(
       refresh: refresh,
       latitude: location?.latitude,
       longitude: location?.longitude,
+      macAddress: macAddress,
     );
   }
 
   String paramToQuery() {
     final parts = <String>[];
-    final deviceId = GlobalState.instance.get(GlobalStateKeys.deviceToken);
-    if (deviceId != null && deviceId.toString().isNotEmpty) {
+    final deviceId = macAddress ??
+        GlobalState.instance.get(GlobalStateKeys.deviceToken)?.toString();
+    if (deviceId != null && deviceId.isNotEmpty) {
       parts.add('mac_address=$deviceId');
     }
     if (latitude != null && longitude != null) {

@@ -188,6 +188,14 @@ class ScannerController {
     BuildContext context,
     String sku,
   ) async {
+
+    CustomToast.showSnakeBar(
+      "Product Scanned with code : $sku",
+      type: ToastType.success,
+    );
+
+    await Future.delayed(const Duration(milliseconds: 180));
+
     getIt<LoadingHelper>().showLoadingDialog();
 
     final value = await GetSkuProduct().call(sku);
@@ -201,11 +209,11 @@ class ScannerController {
         tr('productNotFound'),
         type: ToastType.error,
       );
-      _isScanned = false;
       return;
     }
 
     await addNewItem(context, value);
+    _isScanned = false;
   }
 
   Future<void> addNewItem(

@@ -41,7 +41,7 @@ class RestaurantCardWidget extends StatelessWidget {
           restaurantModel.name,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: AppTextStyle.s14_w400(color: context.colors.black),
+          style: AppTextStyle.s14_w600(color: context.colors.black),
         ),
       ],
     );

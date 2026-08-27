@@ -20,6 +20,7 @@ class _HomeMainState extends State<HomeMain> {
 
   @override
   Widget build(BuildContext context) {
+    controller.getDistance();
     return MyScaffold(
       body: SafeArea(
         child: Column(

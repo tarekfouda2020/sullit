@@ -654,4 +654,22 @@ class HomeMainController {
       },
     );
   }
+
+
+
+void getDistance(){
+  const point1 = LatLng(31.4294774, 31.6724592);
+  const point2 = LatLng(31.28, 30.85);
+
+  final distance = Geolocator.distanceBetween(
+    point1.latitude,
+    point1.longitude,
+    point2.latitude,
+    point2.longitude,
+  );
+
+  print('${distance / 1000} km');
+}
+
+
 }

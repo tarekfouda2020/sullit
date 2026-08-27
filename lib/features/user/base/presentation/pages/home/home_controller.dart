@@ -35,16 +35,29 @@ class HomeController {
 
 
   Future<void> initUserLocation(BuildContext context) async {
+    await _ensureUserLocation(context);
+    _loadHome();
+  }
+
+  Future<void> _ensureUserLocation(BuildContext context) async {
+    final locationService = getIt<LocationService>();
+    if (locationService.userLocation != null) return;
+
     final granted = await getIt<PermissionServices>().requestPermission(
       Permission.locationWhenInUse,
       context,
     );
     if (granted) {
-      final location = await getIt<LocationService>().getCurrentLocation();
+      final location = await locationService.getCurrentLocation();
       if (location != null) {
-        getIt<LocationService>().setUserLocation(location);
+        locationService.setUserLocation(location);
+        return;
       }
     }
+    locationService.setUserLocation(const LatLng(24.46, 54.38));
+  }
+
+  void _loadHome() {
     OrdersHelper.instance.getHome(refresh: false);
     OrdersHelper.instance.getHome();
   }
@@ -116,8 +129,7 @@ class HomeController {
   void animateTabsPages(int index, BuildContext context) {
     Future.delayed(const Duration(milliseconds: 350), () {
       if (index == 0) {
-        OrdersHelper.instance.getHome(refresh: false);
-        OrdersHelper.instance.getHome();
+        _loadHome();
         getOffersData(context);
       }
       if (index == 2) {

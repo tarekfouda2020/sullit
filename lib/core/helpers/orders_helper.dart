@@ -4,10 +4,11 @@ import 'dart:developer';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/get_device_id.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
 import 'package:flutter_tdd/core/helpers/router_helper.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_params.dart';
-import 'package:flutter_tdd/features/user/products/domain/entities/home_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/home_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_home.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_product_details.dart';
@@ -51,7 +52,16 @@ class OrdersHelper {
     if(setLoading){
       homeCubit.onUpdateToInitState(null);
     }
-    var result = await GetHome().call(HomeParams.fromLocation(refresh: refresh));
+    String? macAddress;
+    try {
+      macAddress = await getIt<GetDeviceId>().deviceId;
+      if (macAddress != null && macAddress.isNotEmpty) {
+        GlobalState.instance.set(GlobalStateKeys.deviceToken, macAddress);
+      }
+    } catch (_) {}
+    var result = await GetHome().call(
+      HomeParams.fromLocation(refresh: refresh, macAddress: macAddress),
+    );
     result?.currentOrders.removeWhere((element) => _isCurrentOrderSavedInLocal(element.id));
     homeCubit.onUpdateData(result);
   }

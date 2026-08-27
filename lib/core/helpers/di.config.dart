@@ -354,7 +354,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i75.InstoreCartRepository>(
         () => _i76.ImplInstoreCartRepository());
     gh.lazySingleton<_i77.LoadingHelper>(() => _i77.LoadingHelper());
-    gh.factory<_i78.LocationService>(() => _i78.LocationService());
+    gh.lazySingleton<_i78.LocationService>(() => _i78.LocationService());
     gh.factory<_i79.LoyaltyPointsDataSource>(
         () => _i80.ImplLoyaltyPointsDataSource());
     gh.factory<_i81.LoyaltyPointsRepository>(

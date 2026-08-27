@@ -15,7 +15,7 @@ import '../models/location_iq_place_model/location_iq_place.dart';
 import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
 
-@injectable
+@lazySingleton
 class LocationService {
   LocationService();
 
@@ -25,7 +25,10 @@ class LocationService {
 
   LatLng? get userLocation => _userLocation;
 
-  void setUserLocation(LatLng location) => _userLocation = location;
+  void setUserLocation(LatLng location) {
+    _userLocation = location;
+    GlobalState.instance.set(GlobalStateKeys.userLocation, location);
+  }
 
   String locationQuerySuffix() {
     if (_userLocation == null) return '';
