@@ -20,57 +20,27 @@ class _InstoreCartPageState extends State<InstoreCartPage> {
       ),
       body: Column(
         children: [
-          Container(
-            color: context.colors.white,
-            child: Column(
-              children: [
-                Gaps.line(context.colors.gray3, 10.h),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 36,
-                        height: 36,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.purple,
-                        ),
-                        child: Icon(
-                          Icons.store,
-                          color: context.colors.white,
-                        ),
-                      ),
-                      Gaps.hGap9,
-                      Text(
-                        "Munch Corner",
-                        style: AppTextStyle.s16_w600(color: context.colors.black),
-                      ),
-                      const Spacer(),
-                      IconButton(
-                        onPressed: () async {
-                          final result = await AutoRouter.of(context).push(
-                            const ScannerPageRoute(),
-                          );
-                          if (!context.mounted || result == null) return;
-                          if (result is String) {
-                            controller.getProductWithSku(context, result);
-                          }
-                          else if (result is List<InstoreCartItemModel>) {
-                            controller.syncLocalCart();
-                          }
-                        },
-                        icon: SvgPicture.asset(
-                          Res.qrScanIcon,
-                          width: 24,
-                          height: 24,
-                        ),
-                      ),
-                    ],
+          BlocBuilder<GenericBloc<List<InstoreCartItemModel>>,
+              GenericState<List<InstoreCartItemModel>>>(
+            bloc: controller.cartItemsBloc,
+            builder: (context, _) {
+              final cart = InstoreCartHelper.instance.getLocalCart();
+              return Container(
+                color: context.colors.white,
+                child: StoreHeaderWidget(
+                  sellerName: cart?.sellerName ?? '',
+                  sellerImage: cart?.sellerImage ?? '',
+                  trailing: IconButton(
+                    onPressed: () async => controller.routeToScanPage(context),
+                    icon: SvgPicture.asset(
+                      Res.qrScanIcon,
+                      width: 24,
+                      height: 24,
+                    ),
                   ),
-                )
-              ],
-            ),
+                ),
+              );
+            },
           ),
           Gaps.vGap24,
           Expanded(

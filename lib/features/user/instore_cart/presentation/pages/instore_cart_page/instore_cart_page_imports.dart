@@ -35,6 +35,7 @@ import 'package:flutter_tdd/features/user/profile/presentation/pages/profile/wid
 import 'package:flutter_tdd/res.dart';
 
 import '../scanner_page/scanner_page_imports.dart';
+import '../scanner_page/widgets/imports.dart';
 
 part 'instore_cart_page.dart';
 part 'instore_cart_page_controller.dart';

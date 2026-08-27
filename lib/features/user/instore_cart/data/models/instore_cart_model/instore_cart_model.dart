@@ -10,6 +10,7 @@ class InstoreCartModel with _$InstoreCartModel {
   const factory InstoreCartModel({
     @JsonKey(name: 'seller_id') required int sellerId,
     @JsonKey(name: 'seller_name') @Default('') String sellerName,
+    @JsonKey(name: 'seller_image') @Default('') String sellerImage,
     @JsonKey(name: 'sub_total') required num subTotal,
     required List<InstoreCartItemModel> items,
   }) = _InstoreCartModel;

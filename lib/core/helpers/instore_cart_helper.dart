@@ -50,6 +50,7 @@ class InstoreCartHelper {
   Future<void> addItemToCart({
     required int sellerId,
     required String sellerName,
+    String sellerImage = '',
     required InstoreCartItemModel item,
   }) async {
     InstoreCartModel? cart = getLocalCart();
@@ -60,6 +61,7 @@ class InstoreCartHelper {
         InstoreCartModel(
           sellerId: sellerId,
           sellerName: sellerName,
+          sellerImage: sellerImage,
           subTotal: _calculateSubTotal(items),
           items: items,
         ),
@@ -73,6 +75,7 @@ class InstoreCartHelper {
         InstoreCartModel(
           sellerId: sellerId,
           sellerName: sellerName,
+          sellerImage: sellerImage,
           subTotal: _calculateSubTotal(items),
           items: items,
         ),
@@ -88,6 +91,8 @@ class InstoreCartHelper {
       updatedItems[index] = existing.copyWith(qnt: existing.qnt + item.qnt);
       await _saveCart(
         cart.copyWith(
+          sellerName: sellerName.isNotEmpty ? sellerName : cart.sellerName,
+          sellerImage: sellerImage.isNotEmpty ? sellerImage : cart.sellerImage,
           subTotal: _calculateSubTotal(updatedItems),
           items: updatedItems,
         ),
@@ -98,6 +103,8 @@ class InstoreCartHelper {
     final updatedItems = [...cart.items, item];
     await _saveCart(
       cart.copyWith(
+        sellerName: sellerName.isNotEmpty ? sellerName : cart.sellerName,
+        sellerImage: sellerImage.isNotEmpty ? sellerImage : cart.sellerImage,
         subTotal: _calculateSubTotal(updatedItems),
         items: updatedItems,
       ),

@@ -24,7 +24,7 @@ class ScannerWidget extends StatelessWidget {
               child: MobileScanner(
                 controller: controller.scannerController,
                 onDetect: (capture) {
-                  final barcode = controller.detectBarcode(capture);
+                  String? barcode = controller.detectBarcode(capture);
                   if (barcode == null) return;
                   if (!context.mounted) return;
                   controller.getProductWithSku(context, barcode);

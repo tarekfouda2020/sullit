@@ -100,6 +100,7 @@ class InstoreCartPageController {
     await InstoreCartHelper.instance.addItemToCart(
       sellerId: value.product.sellerId!,
       sellerName: value.product.shop?.name ?? "",
+      sellerImage: value.product.shop?.logo ?? "",
       item: InstoreCartItemModel(
         id: value.product.id!,
         variantId: variantId,
@@ -187,4 +188,16 @@ class InstoreCartPageController {
     await InstoreCartHelper.instance.deleteAllItemsFromCart();
     syncLocalCart();
   }
+
+  Future<void> routeToScanPage(BuildContext context)async{
+     await AutoRouter.of(context).push(
+      const ScannerPageRoute(),
+    );
+    syncLocalCart();
+  }
+
+
+
+
+
 }

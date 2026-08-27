@@ -21,29 +21,6 @@ void main() async {
   await Firebase.initializeApp();
   await HiveHelper.instance.init();
   await HiveHelper.instance.openBox<String>(HiveBoxesNames.instoreCart);
-  final Logger logger = Logger(
-    printer: PrettyPrinter(
-      methodCount: 5,
-      errorMethodCount: 8,
-      lineLength: 120,
-      colors: true,
-      printEmojis: true,
-    ),
-  );
-  FlutterError.onError = (FlutterErrorDetails details) {
-    FlutterError.presentError(details);
-    FirebaseCrashlytics.instance.recordFlutterError(details);
-    const red = '\x1B[31m';
-    const bold = '\x1B[1m';
-    const reset = '\x1B[0m';
-    final message = '''
-$red$bold 
- ${details.exceptionAsString()} 
-
- $reset
-''';
-    logger.e(message);
-  };
   PlaySoundHelper.instance.initSound();
 
   final prefs = await SharedPreferences.getInstance();

@@ -22,12 +22,14 @@ class TotalItemsBottom extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TotalQntItemWidget(
+                      text: "No. of items :",
                       child: Text(
-                        controller.totalQntResult().toStringAsFixed(0),
+                        controller.totalQntResult().toString(),
                         style: AppTextStyle.s18_w500(color: context.colors.primary),
                       ),
                     ),
                     TotalQntItemWidget(
+                      text: "Total: ",
                       child: DirhamPrice(
                         amount: controller.totalPriceResult().toStringAsFixed(2),
                         currencyStyle: AppTextStyle.s16_w400(color: context.colors.primary),
