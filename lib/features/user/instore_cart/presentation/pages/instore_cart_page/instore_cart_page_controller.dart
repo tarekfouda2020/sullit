@@ -1,10 +1,50 @@
 part of 'instore_cart_page_imports.dart';
 
 class InstoreCartPageController {
+  final int sellerId;
+  final String sellerName;
+  final String sellerImage;
+  final bool hasBranches;
   final GenericBloc<List<InstoreCartItemModel>> cartItemsBloc = GenericBloc([]);
 
-  InstoreCartPageController() {
+  InstoreCartPageController({
+    required this.sellerId,
+    required this.sellerName,
+    required this.sellerImage,
+    required this.hasBranches,
+  }) {
     syncLocalCart();
+  }
+
+  Future<void> saveSellerLocalIfMissing() async {
+    await InstoreCartHelper.instance.saveSellerIfMissing(
+      sellerId: sellerId,
+      sellerName: sellerName,
+      sellerImage: sellerImage,
+      hasBranches: hasBranches,
+    );
+    syncLocalCart();
+  }
+
+  Future<void> ensureLocationIfHasBranches(BuildContext context) async {
+    if (!hasBranches) return;
+    await LocationService.instance.resolveUserLocation(context: context);
+  }
+
+  String get headerName {
+    final cart = InstoreCartHelper.instance.getLocalCart();
+    if (cart != null && cart.sellerId == sellerId && cart.sellerName.isNotEmpty) {
+      return cart.sellerName;
+    }
+    return sellerName;
+  }
+
+  String get headerImage {
+    final cart = InstoreCartHelper.instance.getLocalCart();
+    if (cart != null && cart.sellerId == sellerId && cart.sellerImage.isNotEmpty) {
+      return cart.sellerImage;
+    }
+    return sellerImage;
   }
 
   void syncLocalCart() {
@@ -100,6 +140,7 @@ class InstoreCartPageController {
     await InstoreCartHelper.instance.addItemToCart(
       sellerId: value.product.sellerId!,
       sellerName: value.product.shop?.name ?? "",
+      sellerImage: value.product.shop?.logo ?? "",
       item: InstoreCartItemModel(
         id: value.product.id!,
         variantId: variantId,
@@ -113,6 +154,7 @@ class InstoreCartPageController {
                 ? variant.image
                 : value.product.thumbnailImage) ??
             '',
+        sellerName: value.product.shop?.name ?? '',
       ),
     );
     syncLocalCart();
@@ -187,4 +229,16 @@ class InstoreCartPageController {
     await InstoreCartHelper.instance.deleteAllItemsFromCart();
     syncLocalCart();
   }
+
+  Future<void> routeToScanPage(BuildContext context)async{
+     await AutoRouter.of(context).push(
+      const ScannerPageRoute(),
+    );
+    syncLocalCart();
+  }
+
+
+
+
+
 }

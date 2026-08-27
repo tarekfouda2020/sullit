@@ -320,4 +320,26 @@ class OrderDetailsPageController {
       trackingNumber: "HG5HNNA6EW7OH8TZ",
     );
   }
+
+
+  void showQrSheet(BuildContext context){
+    var order = orderDetailsBloc.state.data;
+    if(order == null) return ;
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      enableDrag: false,
+      backgroundColor: context.colors.transparent,
+      builder: (_) {
+        return OrderQrBottomSheet(
+          orderNumber:order.code,
+          status: order.deliveryStatus,
+          totalPrice: order.total,
+          orderId: order.id,
+        );
+      },
+    );
+  }
+
+
 }

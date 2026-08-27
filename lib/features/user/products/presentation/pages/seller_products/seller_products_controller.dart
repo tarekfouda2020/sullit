@@ -354,30 +354,58 @@ class SellerProductsController {
   }
 
   void routeToInstoreShopping(BuildContext context) {
-    int? sellerId = shopCubit.state.data!.userId;
-    if(sellerId == null){
-      return ;
-    }
-    if (InstoreCartHelper.instance.hasItemsFromDifferentSeller(sellerId)) {
-      final cart = InstoreCartHelper.instance.getLocalCart();
-      showDifferentSellerDialog(context, cart?.sellerName ?? '');
+    final shop = shopCubit.state.data;
+    final sellerId = shop?.userId;
+    if (sellerId == null) {
       return;
     }
-    AutoRouter.of(context).push(const InstoreCartPageRoute());
+    final sellerName = shop?.name ?? '';
+    final sellerImage = shop?.logo ?? '';
+    final hasBranches = shop?.hasBranches ?? false;
+    if (InstoreCartHelper.instance.hasItemsFromDifferentSeller(sellerId)) {
+      final cart = InstoreCartHelper.instance.getLocalCart();
+      showDifferentSellerDialog(
+        context,
+        cartSellerName: cart?.sellerName ?? '',
+        sellerId: sellerId,
+        sellerName: sellerName,
+        sellerImage: sellerImage,
+        hasBranches: hasBranches,
+      );
+      return;
+    }
+    AutoRouter.of(context).push(InstoreCartPageRoute(
+      sellerId: sellerId,
+      sellerName: sellerName,
+      sellerImage: sellerImage,
+      hasBranches: hasBranches,
+    ));
   }
 
-  void showDifferentSellerDialog(BuildContext context, String sellerName) {
+  void showDifferentSellerDialog(
+    BuildContext context, {
+    required String cartSellerName,
+    required int sellerId,
+    required String sellerName,
+    required String sellerImage,
+    required bool hasBranches,
+  }) {
     showDialog<void>(
       context: context,
       builder: (dialogContext) {
         return BuildDeleteDialog(
           content: tr('instoreCartDifferentSeller')
-              .replaceAll('{seller}', sellerName),
+              .replaceAll('{seller}', cartSellerName),
           onPressConfirm: () {
             Navigator.of(dialogContext).pop();
             InstoreCartHelper.instance.deleteAllItemsFromCart().then((_) {
               if (context.mounted) {
-                AutoRouter.of(context).push(const InstoreCartPageRoute());
+                AutoRouter.of(context).push(InstoreCartPageRoute(
+                  sellerId: sellerId,
+                  sellerName: sellerName,
+                  sellerImage: sellerImage,
+                  hasBranches: hasBranches,
+                ));
               }
             });
           },

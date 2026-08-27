@@ -33,6 +33,7 @@ class ProductOption extends BaseApiModel<ProductOptionModel>
       maxSelect: maxSelect,
       sortOrder: sortOrder,
       values: values.map((e) => e.toDomainModel()).toList(),
+      isSelected: false,
     );
   }
 }
@@ -61,6 +62,7 @@ class ProductOptionValueModel extends BaseApiModel<ProductOptionValue>
       price: price,
       isDefault: isDefault,
       sortOrder: sortOrder,
+      isSelected: false,
     );
   }
 }

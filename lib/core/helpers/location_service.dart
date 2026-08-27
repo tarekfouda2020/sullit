@@ -12,6 +12,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../models/custom_address_model/custom_address_model.dart';
 import '../models/location_iq_place_model/location_iq_place.dart';
+import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
 
 @injectable
 class LocationService {
@@ -72,6 +74,44 @@ class LocationService {
 
   Future<LatLng?> getCurrentLocation()async{
     return Geolocator.getCurrentPosition().then((value) => LatLng(value.latitude, value.longitude)) ;
+  }
+
+  LatLng? cachedUserLocation() {
+    final cached = GlobalState.instance.get(GlobalStateKeys.userLocation);
+    if (cached is LatLng) return cached;
+    return _userLocation;
+  }
+
+  Future<LatLng?> resolveUserLocation({BuildContext? context}) async {
+    final status = await Permission.locationWhenInUse.status;
+    final granted = status.isGranted || status.isLimited;
+    final cached = cachedUserLocation();
+
+    if (granted) {
+      if (cached != null) {
+        setUserLocation(cached);
+        GlobalState.instance.set(GlobalStateKeys.userLocation, cached);
+        return cached;
+      }
+      try {
+        final loc = await getCurrentLocation();
+        if (loc != null) {
+          setUserLocation(loc);
+          GlobalState.instance.set(GlobalStateKeys.userLocation, loc);
+        }
+        return loc;
+      } catch (_) {
+        return null;
+      }
+    }
+
+    if (context == null) return cached;
+    final loc = await getCurrentLocationWithPermission(context);
+    if (loc != null) {
+      setUserLocation(loc);
+      GlobalState.instance.set(GlobalStateKeys.userLocation, loc);
+    }
+    return loc;
   }
 
 

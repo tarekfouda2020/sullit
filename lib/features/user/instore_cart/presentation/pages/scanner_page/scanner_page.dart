@@ -33,7 +33,16 @@ class _ScannerPageState extends State<ScannerPage> {
       ),
       body: Column(
         children: [
-          const StoreHeaderWidget(),
+          BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+            bloc: controller.refreshBloc,
+            builder: (context, _) {
+              final cart = InstoreCartHelper.instance.getLocalCart();
+              return StoreHeaderWidget(
+                sellerName: cart?.sellerName ?? '',
+                sellerImage: cart?.sellerImage ?? '',
+              );
+            },
+          ),
           Gaps.vGap12,
           Expanded(
             child: ScannerWidget(

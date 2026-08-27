@@ -174,4 +174,27 @@ class InstoreConfirmBuyingController {
       orderId: summary.summary!.combinedOrderId.toString(),
     );
   }
+
+
+
+  void showQrSheet(BuildContext context){
+    var summary = orderSummaryBloc.state.data;
+    if(summary == null) return ;
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      enableDrag: false,
+      backgroundColor: context.colors.transparent,
+      builder: (_) {
+        return OrderQrBottomSheet(
+          orderNumber:summary.sectionOrders!.first.code,
+          status: summary.sectionOrders!.first.deliveryStatus,
+          totalPrice: summary.sectionOrders!.first.total,
+          orderId: summary.sectionOrders!.first.id,
+        );
+      },
+    );
+  }
+
+
 }

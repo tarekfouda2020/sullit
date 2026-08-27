@@ -50,6 +50,7 @@ class InstoreCartHelper {
   Future<void> addItemToCart({
     required int sellerId,
     required String sellerName,
+    String sellerImage = '',
     required InstoreCartItemModel item,
   }) async {
     InstoreCartModel? cart = getLocalCart();
@@ -60,6 +61,8 @@ class InstoreCartHelper {
         InstoreCartModel(
           sellerId: sellerId,
           sellerName: sellerName,
+          sellerImage: sellerImage,
+          hasBranches: false,
           subTotal: _calculateSubTotal(items),
           items: items,
         ),
@@ -73,6 +76,8 @@ class InstoreCartHelper {
         InstoreCartModel(
           sellerId: sellerId,
           sellerName: sellerName,
+          sellerImage: sellerImage,
+          hasBranches: false,
           subTotal: _calculateSubTotal(items),
           items: items,
         ),
@@ -88,6 +93,8 @@ class InstoreCartHelper {
       updatedItems[index] = existing.copyWith(qnt: existing.qnt + item.qnt);
       await _saveCart(
         cart.copyWith(
+          sellerName: sellerName.isNotEmpty ? sellerName : cart.sellerName,
+          sellerImage: sellerImage.isNotEmpty ? sellerImage : cart.sellerImage,
           subTotal: _calculateSubTotal(updatedItems),
           items: updatedItems,
         ),
@@ -98,6 +105,8 @@ class InstoreCartHelper {
     final updatedItems = [...cart.items, item];
     await _saveCart(
       cart.copyWith(
+        sellerName: sellerName.isNotEmpty ? sellerName : cart.sellerName,
+        sellerImage: sellerImage.isNotEmpty ? sellerImage : cart.sellerImage,
         subTotal: _calculateSubTotal(updatedItems),
         items: updatedItems,
       ),
@@ -153,5 +162,46 @@ class InstoreCartHelper {
     if (cart == null || cart.items.isEmpty) return false;
     log('instore cart sellerId: ${cart.sellerId}, current sellerId: $sellerId');
     return cart.sellerId != sellerId;
+  }
+
+  Future<void> saveSellerIfMissing({
+    required int sellerId,
+    required String sellerName,
+    required String sellerImage,
+    required bool hasBranches,
+  }) async {
+    final cart = getLocalCart();
+    if (cart == null || cart.items.isEmpty) {
+      await _saveCart(
+        InstoreCartModel(
+          sellerId: sellerId,
+          sellerName: sellerName,
+          sellerImage: sellerImage,
+          hasBranches: hasBranches,
+          subTotal: 0,
+          items: const [],
+        ),
+      );
+      return;
+    }
+
+    final needsSellerId = cart.sellerId == 0;
+    final needsName = cart.sellerName.isEmpty;
+    final needsImage = cart.sellerImage.isEmpty;
+    if (!needsSellerId &&
+        !needsName &&
+        !needsImage &&
+        cart.hasBranches == hasBranches) {
+      return;
+    }
+
+    await _saveCart(
+      cart.copyWith(
+        sellerId: needsSellerId ? sellerId : cart.sellerId,
+        sellerName: needsName ? sellerName : cart.sellerName,
+        sellerImage: needsImage ? sellerImage : cart.sellerImage,
+        hasBranches: hasBranches,
+      ),
+    );
   }
 }

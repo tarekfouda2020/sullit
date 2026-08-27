@@ -37,25 +37,46 @@ class OrderDetailsWidget extends StatelessWidget {
           gaps: Gaps.hGap4,
         ),
         Gaps.vGap12,
-        if(order?.isInStore == false)...[
-          OrderINfoItemWidget(
-            title: tr('address'),
-            describe: order?.shippingAddress ?? "",
-            gaps: Gaps.hGap4,
-            textHeight: 1.2,
-          ),
-          Gaps.vGap12,
-        ],
-        OrderINfoItemWidget(
-          title: tr('phone'),
-          describe: getIt<Utilities>().handleFullPhone(context, order?.customerPhone ?? ""),
-          gaps: Gaps.hGap4,
-        ),
-        Gaps.vGap12,
-        OrderINfoItemWidget(
-          title: tr('paymentMethod'),
-          describe: order?.paymentMethod ?? "",
-          gaps: Gaps.hGap4,
+
+        Row(
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  if(order?.isInStore == false)...[
+                    OrderINfoItemWidget(
+                      title: tr('address'),
+                      describe: order?.shippingAddress ?? "",
+                      gaps: Gaps.hGap4,
+                      textHeight: 1.2,
+                    ),
+                    Gaps.vGap12,
+                  ],
+                  OrderINfoItemWidget(
+                    title: tr('phone'),
+                    describe: getIt<Utilities>().handleFullPhone(context, order?.customerPhone ?? ""),
+                    gaps: Gaps.hGap4,
+                  ),
+                  Gaps.vGap12,
+                  OrderINfoItemWidget(
+                    title: tr('paymentMethod'),
+                    describe: order?.paymentMethod ?? "",
+                    gaps: Gaps.hGap4,
+                  ),
+                ],
+              ),
+            ),
+            if(order?.isInStore == true)
+            GestureDetector(
+              onTap:() => controller.showQrSheet(context),
+              child:SvgPicture.string(
+                getIt<BarcodeService>().generateQrCode(order?.id.toString() ?? ""),
+                width: 70,
+                height: 70,
+              ),
+
+            ),
+          ],
         ),
         Gaps.vGap10,
         if (controller.showChangePayOption())

@@ -8,14 +8,14 @@ class ScannerController {
   final TextEditingController barcodeTextController = TextEditingController();
 
   final List<InstoreCartItemModel> cartProducts = [];
+  final List<InstoreCartItemModel> pendingSheetItems = [];
+  ProductDetailsDomainModel? _pendingDetails;
 
   bool _isScanned = false;
 
   ScannerController() {
     syncLocalCart();
   }
-
-  // Helpers
 
   void _notifyChange() {
     refreshBloc.onUpdateData(!refreshBloc.state.data);
@@ -31,6 +31,63 @@ class ScannerController {
     _notifyChange();
   }
 
+  List<InstoreCartItemModel> get sheetItems => pendingSheetItems;
+
+  InstoreCartItemModel _toCartItem(
+    ProductDetailsDomainModel value,
+    Variant variant,
+  ) {
+    return InstoreCartItemModel(
+      id: value.product.id!,
+      variantId: variant.id!,
+      qnt: 1,
+      price: num.parse(variant.calculablePrice ?? '0'),
+      name: variant.name?.isNotEmpty == true
+          ? variant.name!
+          : value.product.name ?? '',
+      image: variant.image?.isNotEmpty == true
+          ? variant.image!
+          : value.product.thumbnailImage ?? '',
+      sellerName: value.product.shop?.name ?? '',
+    );
+  }
+
+  void _stageItem(ProductDetailsDomainModel value, Variant variant) {
+    final variantId = variant.id;
+    if (variantId == null) return;
+    _pendingDetails = value;
+    final index =
+        pendingSheetItems.indexWhere((e) => e.variantId == variantId);
+    if (index != -1) {
+      final existing = pendingSheetItems[index];
+      pendingSheetItems[index] = existing.copyWith(qnt: existing.qnt + 1);
+    } else {
+      pendingSheetItems.add(_toCartItem(value, variant));
+    }
+    _notifyChange();
+  }
+
+  Future<void> _commitPending() async {
+    final details = _pendingDetails;
+    if (details == null || pendingSheetItems.isEmpty) return;
+    for (final item in pendingSheetItems) {
+      await InstoreCartHelper.instance.addItemToCart(
+        sellerId: details.product.sellerId!,
+        sellerName: details.product.shop?.name ?? '',
+        sellerImage: details.product.shop?.logo ?? '',
+        item: item,
+      );
+    }
+    pendingSheetItems.clear();
+    _pendingDetails = null;
+    syncLocalCart();
+  }
+
+  void _discardPending() {
+    pendingSheetItems.clear();
+    _pendingDetails = null;
+  }
+
   // Cart
 
   Future<void> addOrUpdateItem(
@@ -40,34 +97,39 @@ class ScannerController {
     final variantId = variant.id;
     if (variantId == null) return;
 
-    final item = InstoreCartItemModel(
-      id: value.product.id!,
-      variantId: variantId,
-      qnt: 1,
-      price: num.parse(variant.calculablePrice ?? '0'),
-      name: variant.name?.isNotEmpty == true ? variant.name! : value.product.name ?? '',
-      image: variant.image?.isNotEmpty == true ? variant.image! : value.product.thumbnailImage ?? '',
-    );
-
     await InstoreCartHelper.instance.addItemToCart(
       sellerId: value.product.sellerId!,
       sellerName: value.product.shop?.name ?? '',
-      item: item,
+      sellerImage: value.product.shop?.logo ?? '',
+      item: _toCartItem(value, variant),
     );
 
     syncLocalCart();
   }
 
   Future<void> updateItemQty(int variantId, int newQty) async {
+    final pendingIndex =
+        pendingSheetItems.indexWhere((item) => item.variantId == variantId);
+    if (pendingIndex != -1) {
+      if (newQty < 1) {
+        pendingSheetItems.removeAt(pendingIndex);
+      } else {
+        pendingSheetItems[pendingIndex] =
+            pendingSheetItems[pendingIndex].copyWith(qnt: newQty);
+      }
+      _notifyChange();
+      return;
+    }
+
     if (newQty < 1) return;
 
-    final index = cartProducts.indexWhere(
+    int index = cartProducts.indexWhere(
       (item) => item.variantId == variantId,
     );
 
     if (index == -1) return;
 
-    final updatedItem = cartProducts[index].copyWith(
+    InstoreCartItemModel updatedItem = cartProducts[index].copyWith(
       qnt: newQty,
     );
 
@@ -78,12 +140,10 @@ class ScannerController {
     syncLocalCart();
   }
 
-  // Barcode
-
   String? detectBarcode(BarcodeCapture capture) {
     if (_isScanned) return null;
 
-    final barcode = capture.barcodes.firstOrNull?.rawValue;
+    String? barcode = capture.barcodes.firstOrNull?.rawValue;
 
     if (barcode == null || barcode.isEmpty) {
       return null;
@@ -98,8 +158,6 @@ class ScannerController {
     _isScanned = false;
   }
 
-  // Totals
-
   double totalPriceResult() {
     return cartProducts.fold(
       0,
@@ -107,14 +165,12 @@ class ScannerController {
     );
   }
 
-  double totalQntResult() {
+  int totalQntResult() {
     return cartProducts.fold(
       0,
       (sum, item) => sum + item.qnt,
     );
   }
-
-  // Barcode Text
 
   Future<void> submitBarcodeText(
     BuildContext context,
@@ -123,7 +179,7 @@ class ScannerController {
 
     if (sku.isEmpty) return;
 
-    await getProductWithSku(context, sku);
+    await submitBarcodeAndShowSheet(context);
 
     barcodeTextController.clear();
   }
@@ -145,6 +201,7 @@ class ScannerController {
         tr('productNotFound'),
         type: ToastType.error,
       );
+      _isScanned = false;
       return;
     }
 
@@ -169,45 +226,49 @@ class ScannerController {
     await addOrUpdateItem(value, variant!);
   }
 
-  // Product Details Sheet
-
   Future<void> submitBarcodeAndShowSheet(
     BuildContext context,
   ) async {
-    final sku = barcodeTextController.text.trim();
+    String sku = barcodeTextController.text.trim();
 
     if (sku.isEmpty) return;
 
-    final value = await _getProduct(context, sku);
+    ProductDetailsDomainModel? value = await _getProduct(context, sku);
 
     barcodeTextController.clear();
 
     if (!context.mounted || value == null) return;
 
-    final product = value.product;
+    Product product = value.product;
 
     if (_hasMultipleVariants(product)) {
-      await showVariantsSheet(context, value);
+      await showVariantsSheet(context, value, fromSearchField: true);
       return;
     }
 
-    final variant = product.variant;
+    Variant? variant = product.variant;
 
     if (variant?.id == null) return;
 
-    await addOrUpdateItem(value, variant!);
+    _stageItem(value, variant!);
 
     if (!context.mounted) return;
 
+    showAddedCartSheet(context);
+  }
+
+  void showAddedCartSheet(BuildContext context) async {
     await showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      backgroundColor: context.colors.transparent,
+      enableDrag: false,
+      backgroundColor: Colors.transparent,
       builder: (_) => ProductDetailsSheet(
         controller: this,
-        variantId: variant.id!,
       ),
     );
+    _discardPending();
+    _isScanned = false;
   }
 
   Future<ProductDetailsDomainModel?> _getProduct(
@@ -227,10 +288,7 @@ class ScannerController {
 
   // Variants
 
-  Future<void> showVariantsSheet(
-    BuildContext context,
-    ProductDetailsDomainModel value,
-  ) async {
+  Future<void> showVariantsSheet(BuildContext context, ProductDetailsDomainModel value,{bool fromSearchField = false}) async {
     await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -241,22 +299,14 @@ class ScannerController {
           onVariantSelected: (variant) async {
             Navigator.pop(context);
 
+            if (fromSearchField) {
+              _stageItem(value, variant);
+              if (!context.mounted) return;
+              showAddedCartSheet(context);
+              return;
+            }
+
             await addOrUpdateItem(value, variant);
-
-            if (!context.mounted) return;
-
-            final variantId = variant.id;
-
-            if (variantId == null) return;
-
-            await showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (_) => ProductDetailsSheet(
-                controller: this,
-                variantId: variantId,
-              ),
-            );
           },
         );
       },
@@ -265,15 +315,24 @@ class ScannerController {
     syncLocalCart();
   }
 
-  // Utils
-
   bool _hasMultipleVariants(Product product) {
-    return product.isMultiple == true && (product.variants?.isNotEmpty ?? false);
+    return product.isMultiple == true &&
+        (product.variants?.isNotEmpty ?? false);
   }
 
-  // Dispose
   void dispose() {
     scannerController.dispose();
     barcodeTextController.dispose();
+  }
+
+  Future<void> closeSheet(BuildContext context) async {
+    await _commitPending();
+    CustomToast.showSimpleToast(
+      msg: "Items added to your cart",
+      type: ToastType.success,
+      toastGravity: ToastGravity.BOTTOM,
+    );
+    Navigator.pop(context);
+    _isScanned = false;
   }
 }

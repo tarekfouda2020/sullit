@@ -27,6 +27,8 @@ mixin _$InstoreCartItemModel {
   num get price => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
+  @JsonKey(name: 'seller_name')
+  String get sellerName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,7 +48,8 @@ abstract class $InstoreCartItemModelCopyWith<$Res> {
       int qnt,
       num price,
       String name,
-      String image});
+      String image,
+      @JsonKey(name: 'seller_name') String sellerName});
 }
 
 /// @nodoc
@@ -69,6 +72,7 @@ class _$InstoreCartItemModelCopyWithImpl<$Res,
     Object? price = null,
     Object? name = null,
     Object? image = null,
+    Object? sellerName = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -95,6 +99,10 @@ class _$InstoreCartItemModelCopyWithImpl<$Res,
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      sellerName: null == sellerName
+          ? _value.sellerName
+          : sellerName // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -113,7 +121,8 @@ abstract class _$$_InstoreCartItemModelCopyWith<$Res>
       int qnt,
       num price,
       String name,
-      String image});
+      String image,
+      @JsonKey(name: 'seller_name') String sellerName});
 }
 
 /// @nodoc
@@ -133,6 +142,7 @@ class __$$_InstoreCartItemModelCopyWithImpl<$Res>
     Object? price = null,
     Object? name = null,
     Object? image = null,
+    Object? sellerName = null,
   }) {
     return _then(_$_InstoreCartItemModel(
       id: null == id
@@ -159,6 +169,10 @@ class __$$_InstoreCartItemModelCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      sellerName: null == sellerName
+          ? _value.sellerName
+          : sellerName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -172,7 +186,8 @@ class _$_InstoreCartItemModel extends _InstoreCartItemModel {
       required this.qnt,
       required this.price,
       required this.name,
-      required this.image})
+      required this.image,
+      @JsonKey(name: 'seller_name') this.sellerName = ''})
       : super._();
 
   factory _$_InstoreCartItemModel.fromJson(Map<String, dynamic> json) =>
@@ -191,10 +206,13 @@ class _$_InstoreCartItemModel extends _InstoreCartItemModel {
   final String name;
   @override
   final String image;
+  @override
+  @JsonKey(name: 'seller_name')
+  final String sellerName;
 
   @override
   String toString() {
-    return 'InstoreCartItemModel(id: $id, variantId: $variantId, qnt: $qnt, price: $price, name: $name, image: $image)';
+    return 'InstoreCartItemModel(id: $id, variantId: $variantId, qnt: $qnt, price: $price, name: $name, image: $image, sellerName: $sellerName)';
   }
 
   @override
@@ -208,13 +226,15 @@ class _$_InstoreCartItemModel extends _InstoreCartItemModel {
             (identical(other.qnt, qnt) || other.qnt == qnt) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.sellerName, sellerName) ||
+                other.sellerName == sellerName));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, variantId, qnt, price, name, image);
+      Object.hash(runtimeType, id, variantId, qnt, price, name, image, sellerName);
 
   @JsonKey(ignore: true)
   @override
@@ -238,7 +258,8 @@ abstract class _InstoreCartItemModel extends InstoreCartItemModel {
       required final int qnt,
       required final num price,
       required final String name,
-      required final String image}) = _$_InstoreCartItemModel;
+      required final String image,
+      @JsonKey(name: 'seller_name') final String sellerName}) = _$_InstoreCartItemModel;
   const _InstoreCartItemModel._() : super._();
 
   factory _InstoreCartItemModel.fromJson(Map<String, dynamic> json) =
@@ -257,6 +278,9 @@ abstract class _InstoreCartItemModel extends InstoreCartItemModel {
   String get name;
   @override
   String get image;
+  @override
+  @JsonKey(name: 'seller_name')
+  String get sellerName;
   @override
   @JsonKey(ignore: true)
   _$$_InstoreCartItemModelCopyWith<_$_InstoreCartItemModel> get copyWith =>

@@ -39,15 +39,22 @@ class BuildRestaurantCartItem extends StatelessWidget {
                         Expanded(
                           child: Text(
                             cartItem.name,
-                            style:
-                                AppTextStyle.s14_w600(color: context.colors.black)
-                                    .copyWith(height: 1.5),
+                            style: AppTextStyle.s14_w600(
+                                    color: context.colors.black)
+                                .copyWith(height: 1.5),
                           ),
                         ),
                         RestaurantCartFavIconWidget(
-                            cartItem: cartItem, controller: controller),
+                          cartItem: cartItem,
+                          controller: controller,
+                        ),
                       ],
                     ),
+                    if (cartItem.cartOptions?.isNotEmpty == true) ...[
+                      Gaps.vGap5,
+                      CartSheetItemOptionsWidget(
+                          cartOptions: cartItem.cartOptions!),
+                    ],
                     Gaps.vGap5,
                     RatingBar.builder(
                       initialRating: cartItem.rating,

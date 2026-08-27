@@ -15,6 +15,7 @@ import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/instore_cart_helper.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
+import 'package:flutter_tdd/core/helpers/location_service.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
@@ -35,6 +36,7 @@ import 'package:flutter_tdd/features/user/profile/presentation/pages/profile/wid
 import 'package:flutter_tdd/res.dart';
 
 import '../scanner_page/scanner_page_imports.dart';
+import '../scanner_page/widgets/imports.dart';
 
 part 'instore_cart_page.dart';
 part 'instore_cart_page_controller.dart';

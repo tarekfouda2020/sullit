@@ -3,8 +3,12 @@ part of 'product_details_widgets_imports.dart';
 class CartSheetItemWidget extends StatelessWidget {
   final GeneralCartItem item;
   final CartSheetController controller;
-  const CartSheetItemWidget(
-      {super.key, required this.item, required this.controller});
+
+  const CartSheetItemWidget({
+    super.key,
+    required this.item,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +53,10 @@ class CartSheetItemWidget extends StatelessWidget {
                         cartItem: item, controller: controller),
                   ],
                 ),
+                if (item.cartOptions?.isNotEmpty == true) ...[
+                  Gaps.vGap5,
+                  CartSheetItemOptionsWidget(cartOptions: item.cartOptions!),
+                ],
                 Gaps.vGap5,
                 RatingBar.builder(
                   initialRating: item.rating.toDouble(),

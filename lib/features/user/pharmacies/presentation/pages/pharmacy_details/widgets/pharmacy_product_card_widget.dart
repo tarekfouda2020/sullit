@@ -27,7 +27,6 @@ class PharmacyProductCardWidget extends BaseProductItem {
 class _PharmacyProductCardWidgetState extends BaseProductItemState<PharmacyProductCardWidget> {
   @override
   Widget build(BuildContext context) {
-    print("===>>>>> have options ${widget.productModel.haveOptions} =>>>>>");
     return Container(
       margin: widget.margin ?? const EdgeInsets.all(0),
       width: 160,
@@ -52,24 +51,15 @@ class _PharmacyProductCardWidgetState extends BaseProductItemState<PharmacyProdu
 
   @override
   Future<bool> handleFirstAddToCart(BuildContext context) async {
-    final product = widget.productModel;
+    ProductCard product = widget.productModel;
 
     if(product.haveOptions){
-      AutoRouter.of(context).push(
-        ProductDetailsRoute(
-          params: ProductDetailsPageRouteParams(
-            productId: product.id,
-            isFav: product.isWishlist,
-            fromSellerPage: widget.fromPharmPage,
-            branchId: widget.controller.selectedBranchId,
-          ),
-        ),
-      );
-      return false;
+      routeToDetails(context);
+      return true;
     }
 
     if ((product.addedQtyToCart ?? 0) > 0) {
-      return false;
+      return true;
     }
 
     enableAddToCartLoading.onUpdateData(true);

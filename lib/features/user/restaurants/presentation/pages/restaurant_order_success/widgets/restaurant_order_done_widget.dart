@@ -4,8 +4,11 @@ class RestaurantOrderDoneWidget extends StatelessWidget {
   final OrderSummaryDomainModel data;
   final RestaurantOrderSuccessController controller;
 
-  const RestaurantOrderDoneWidget(
-      {super.key, required this.data, required this.controller});
+  const RestaurantOrderDoneWidget({
+    super.key,
+    required this.data,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +46,8 @@ class RestaurantOrderDoneWidget extends StatelessWidget {
               child: Text(
                 textAlign: TextAlign.center,
                 "Thanks for your order, ${controller.summary.summary?.name ?? ""} \n We’ll get to work on your order right away. You’ll receive your receipt once the order is ready.",
-                style: AppTextStyle.s15_w500(color: context.colors.textColor).copyWith(
-                  height: 1.35
-                ),
+                style: AppTextStyle.s15_w500(color: context.colors.textColor)
+                    .copyWith(height: 1.35),
               ),
             ),
           Gaps.vGap20,
@@ -90,12 +92,13 @@ class RestaurantOrderDoneWidget extends StatelessWidget {
           ],
           _buildRow(context, "Date", data.summary?.orderDate ?? ""),
           Gaps.vGap10,
-          if (controller.firstSectionOrder?.requestedByLabel?.isNotEmpty == true) ...[
+          if (controller.firstSectionOrder?.requestedByLabel?.isNotEmpty ==
+              true) ...[
             _buildRow(context, "Requested By ",
                 controller.firstSectionOrder?.requestedByLabel ?? ""),
             Gaps.vGap10,
           ],
-          if(data.summary?.shippingAddress.isNotEmpty == true )...[
+          if (data.summary?.shippingAddress.isNotEmpty == true) ...[
             _buildRow(context, "Address", data.summary?.shippingAddress ?? ""),
             Gaps.vGap10,
           ],

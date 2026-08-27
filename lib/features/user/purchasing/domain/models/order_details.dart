@@ -1,5 +1,7 @@
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart_option.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/reviews.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/order_review.dart';
 
@@ -50,6 +52,7 @@ class OrderDetails extends BaseDomainModel {
   String? pickerNotes;
   String? instructions;
   String? insuranceCoveragePercentage;
+  final List<CartOption>? cartOptions;
 
   OrderDetails({
     required this.id,
@@ -72,7 +75,8 @@ class OrderDetails extends BaseDomainModel {
     this.pickerNotes,
     this.instructions,
     this.insuranceCoveragePercentage,
+    this.cartOptions,
   });
 
-  double get getPrice => double.parse(price);
+  double get getPrice => double.tryParse(price.cleanNumber.formatAmount()) ?? 0.0;
 }

@@ -54,7 +54,10 @@ class _InstoreConfirmBuyingState extends State<InstoreConfirmBuying> {
                 child: ListView(
                   children: [
                     Gaps.vGap13,
-                    InstoreOrderDetailsWidget(summary: state.data!),
+                    InstoreOrderDetailsWidget(
+                      summary: state.data!,
+                    controller: controller,
+                    ),
                     Gaps.vGap12,
                     CartPaymentSectionTitleWidget(
                       title: tr('products'),

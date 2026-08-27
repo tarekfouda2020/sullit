@@ -21,6 +21,7 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_option_value.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';

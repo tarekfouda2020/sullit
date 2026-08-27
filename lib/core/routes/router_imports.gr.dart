@@ -1225,9 +1225,16 @@ class AppRouter extends _i121.RootStackRouter {
       );
     },
     InstoreCartPageRoute.name: (routeData) {
+      final args = routeData.argsAs<InstoreCartPageRouteArgs>();
       return _i121.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i103.InstoreCartPage(),
+        child: _i103.InstoreCartPage(
+          key: args.key,
+          sellerId: args.sellerId,
+          sellerName: args.sellerName,
+          sellerImage: args.sellerImage,
+          hasBranches: args.hasBranches,
+        ),
         opaque: true,
       );
     },
@@ -4313,14 +4320,47 @@ class GiftCardDetailsRouteArgs {
 
 /// generated route for
 /// [_i103.InstoreCartPage]
-class InstoreCartPageRoute extends _i121.PageRouteInfo<void> {
-  const InstoreCartPageRoute()
-      : super(
+class InstoreCartPageRoute extends _i121.PageRouteInfo<InstoreCartPageRouteArgs> {
+  InstoreCartPageRoute({
+    _i124.Key? key,
+    required int sellerId,
+    required String sellerName,
+    required String sellerImage,
+    required bool hasBranches,
+  }) : super(
           InstoreCartPageRoute.name,
           path: '/instore-cart-page',
+          args: InstoreCartPageRouteArgs(
+            key: key,
+            sellerId: sellerId,
+            sellerName: sellerName,
+            sellerImage: sellerImage,
+            hasBranches: hasBranches,
+          ),
         );
 
   static const String name = 'InstoreCartPageRoute';
+}
+
+class InstoreCartPageRouteArgs {
+  const InstoreCartPageRouteArgs({
+    this.key,
+    required this.sellerId,
+    required this.sellerName,
+    required this.sellerImage,
+    required this.hasBranches,
+  });
+
+  final _i124.Key? key;
+  final int sellerId;
+  final String sellerName;
+  final String sellerImage;
+  final bool hasBranches;
+
+  @override
+  String toString() {
+    return 'InstoreCartPageRouteArgs{key: $key, sellerId: $sellerId, sellerName: $sellerName, sellerImage: $sellerImage, hasBranches: $hasBranches}';
+  }
 }
 
 /// generated route for

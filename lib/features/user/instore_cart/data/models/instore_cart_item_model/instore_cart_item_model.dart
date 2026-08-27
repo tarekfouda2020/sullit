@@ -15,6 +15,7 @@ class InstoreCartItemModel with _$InstoreCartItemModel {
     required num price,
     required String name,
     required String image,
+    @JsonKey(name: 'seller_name') @Default('') String sellerName,
   }) = _InstoreCartItemModel;
 
   factory InstoreCartItemModel.fromJson(

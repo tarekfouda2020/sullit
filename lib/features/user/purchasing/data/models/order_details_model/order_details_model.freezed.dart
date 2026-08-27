@@ -364,6 +364,9 @@ mixin _$OrderDetailsModel {
   String? get instructions => throw _privateConstructorUsedError;
   @JsonKey(name: 'insurance_coverage_percentage')
   String? get insuranceCoveragePercentage => throw _privateConstructorUsedError;
+  @JsonKey(name: 'options')
+  List<OrderDetailsOptionModel>? get cartOptions =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -395,7 +398,8 @@ abstract class $OrderDetailsModelCopyWith<$Res> {
       @JsonKey(name: 'picker_notes') String? pickerNotes,
       String? instructions,
       @JsonKey(name: 'insurance_coverage_percentage')
-      String? insuranceCoveragePercentage});
+      String? insuranceCoveragePercentage,
+      @JsonKey(name: 'options') List<OrderDetailsOptionModel>? cartOptions});
 
   $OrderProductModelCopyWith<$Res>? get product;
   $ReviewsModelCopyWith<$Res>? get review;
@@ -431,6 +435,7 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
     Object? pickerNotes = freezed,
     Object? instructions = freezed,
     Object? insuranceCoveragePercentage = freezed,
+    Object? cartOptions = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -501,6 +506,10 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
           ? _value.insuranceCoveragePercentage
           : insuranceCoveragePercentage // ignore: cast_nullable_to_non_nullable
               as String?,
+      cartOptions: freezed == cartOptions
+          ? _value.cartOptions
+          : cartOptions // ignore: cast_nullable_to_non_nullable
+              as List<OrderDetailsOptionModel>?,
     ) as $Val);
   }
 
@@ -555,7 +564,8 @@ abstract class _$$_OrderDetailsModelCopyWith<$Res>
       @JsonKey(name: 'picker_notes') String? pickerNotes,
       String? instructions,
       @JsonKey(name: 'insurance_coverage_percentage')
-      String? insuranceCoveragePercentage});
+      String? insuranceCoveragePercentage,
+      @JsonKey(name: 'options') List<OrderDetailsOptionModel>? cartOptions});
 
   @override
   $OrderProductModelCopyWith<$Res>? get product;
@@ -591,6 +601,7 @@ class __$$_OrderDetailsModelCopyWithImpl<$Res>
     Object? pickerNotes = freezed,
     Object? instructions = freezed,
     Object? insuranceCoveragePercentage = freezed,
+    Object? cartOptions = freezed,
   }) {
     return _then(_$_OrderDetailsModel(
       id: null == id
@@ -661,6 +672,10 @@ class __$$_OrderDetailsModelCopyWithImpl<$Res>
           ? _value.insuranceCoveragePercentage
           : insuranceCoveragePercentage // ignore: cast_nullable_to_non_nullable
               as String?,
+      cartOptions: freezed == cartOptions
+          ? _value._cartOptions
+          : cartOptions // ignore: cast_nullable_to_non_nullable
+              as List<OrderDetailsOptionModel>?,
     ));
   }
 }
@@ -687,8 +702,11 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
       @JsonKey(name: 'picker_notes') this.pickerNotes,
       this.instructions,
       @JsonKey(name: 'insurance_coverage_percentage')
-      this.insuranceCoveragePercentage})
-      : super._();
+      this.insuranceCoveragePercentage,
+      @JsonKey(name: 'options')
+      final List<OrderDetailsOptionModel>? cartOptions})
+      : _cartOptions = cartOptions,
+        super._();
 
   factory _$_OrderDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$$_OrderDetailsModelFromJson(json);
@@ -736,10 +754,20 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
   @override
   @JsonKey(name: 'insurance_coverage_percentage')
   final String? insuranceCoveragePercentage;
+  final List<OrderDetailsOptionModel>? _cartOptions;
+  @override
+  @JsonKey(name: 'options')
+  List<OrderDetailsOptionModel>? get cartOptions {
+    final value = _cartOptions;
+    if (value == null) return null;
+    if (_cartOptions is EqualUnmodifiableListView) return _cartOptions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'OrderDetailsModel(id: $id, product: $product, variation: $variation, quantity: $quantity, availableReturnQty: $availableReturnQty, deliveryType: $deliveryType, price: $price, tax: $tax, isAvailableReview: $isAvailableReview, msgCantReview: $msgCantReview, shippedBy: $shippedBy, soldByType: $soldByType, soldBy: $soldBy, review: $review, pickerNotes: $pickerNotes, instructions: $instructions, insuranceCoveragePercentage: $insuranceCoveragePercentage)';
+    return 'OrderDetailsModel(id: $id, product: $product, variation: $variation, quantity: $quantity, availableReturnQty: $availableReturnQty, deliveryType: $deliveryType, price: $price, tax: $tax, isAvailableReview: $isAvailableReview, msgCantReview: $msgCantReview, shippedBy: $shippedBy, soldByType: $soldByType, soldBy: $soldBy, review: $review, pickerNotes: $pickerNotes, instructions: $instructions, insuranceCoveragePercentage: $insuranceCoveragePercentage, cartOptions: $cartOptions)';
   }
 
   @override
@@ -776,7 +804,9 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
             (identical(other.insuranceCoveragePercentage,
                     insuranceCoveragePercentage) ||
                 other.insuranceCoveragePercentage ==
-                    insuranceCoveragePercentage));
+                    insuranceCoveragePercentage) &&
+            const DeepCollectionEquality()
+                .equals(other._cartOptions, _cartOptions));
   }
 
   @JsonKey(ignore: true)
@@ -799,7 +829,8 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
       review,
       pickerNotes,
       instructions,
-      insuranceCoveragePercentage);
+      insuranceCoveragePercentage,
+      const DeepCollectionEquality().hash(_cartOptions));
 
   @JsonKey(ignore: true)
   @override
@@ -837,7 +868,9 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
       @JsonKey(name: 'picker_notes') final String? pickerNotes,
       final String? instructions,
       @JsonKey(name: 'insurance_coverage_percentage')
-      final String? insuranceCoveragePercentage}) = _$_OrderDetailsModel;
+      final String? insuranceCoveragePercentage,
+      @JsonKey(name: 'options')
+      final List<OrderDetailsOptionModel>? cartOptions}) = _$_OrderDetailsModel;
   const _OrderDetailsModel._() : super._();
 
   factory _OrderDetailsModel.fromJson(Map<String, dynamic> json) =
@@ -887,7 +920,459 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
   @JsonKey(name: 'insurance_coverage_percentage')
   String? get insuranceCoveragePercentage;
   @override
+  @JsonKey(name: 'options')
+  List<OrderDetailsOptionModel>? get cartOptions;
+  @override
   @JsonKey(ignore: true)
   _$$_OrderDetailsModelCopyWith<_$_OrderDetailsModel> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+OrderDetailsOptionModel _$OrderDetailsOptionModelFromJson(
+    Map<String, dynamic> json) {
+  return _OrderDetailsOptionModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OrderDetailsOptionModel {
+  int get id => throw _privateConstructorUsedError;
+
+  /// Returns in order details only.
+  @JsonKey(name: 'option_id')
+  int? get optionId => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  List<OrderDetailsOptionValueModel> get values =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OrderDetailsOptionModelCopyWith<OrderDetailsOptionModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OrderDetailsOptionModelCopyWith<$Res> {
+  factory $OrderDetailsOptionModelCopyWith(OrderDetailsOptionModel value,
+          $Res Function(OrderDetailsOptionModel) then) =
+      _$OrderDetailsOptionModelCopyWithImpl<$Res, OrderDetailsOptionModel>;
+  @useResult
+  $Res call(
+      {int id,
+      @JsonKey(name: 'option_id') int? optionId,
+      String name,
+      List<OrderDetailsOptionValueModel> values});
+}
+
+/// @nodoc
+class _$OrderDetailsOptionModelCopyWithImpl<$Res,
+        $Val extends OrderDetailsOptionModel>
+    implements $OrderDetailsOptionModelCopyWith<$Res> {
+  _$OrderDetailsOptionModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? optionId = freezed,
+    Object? name = null,
+    Object? values = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      optionId: freezed == optionId
+          ? _value.optionId
+          : optionId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      values: null == values
+          ? _value.values
+          : values // ignore: cast_nullable_to_non_nullable
+              as List<OrderDetailsOptionValueModel>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_OrderDetailsOptionModelCopyWith<$Res>
+    implements $OrderDetailsOptionModelCopyWith<$Res> {
+  factory _$$_OrderDetailsOptionModelCopyWith(_$_OrderDetailsOptionModel value,
+          $Res Function(_$_OrderDetailsOptionModel) then) =
+      __$$_OrderDetailsOptionModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      @JsonKey(name: 'option_id') int? optionId,
+      String name,
+      List<OrderDetailsOptionValueModel> values});
+}
+
+/// @nodoc
+class __$$_OrderDetailsOptionModelCopyWithImpl<$Res>
+    extends _$OrderDetailsOptionModelCopyWithImpl<$Res,
+        _$_OrderDetailsOptionModel>
+    implements _$$_OrderDetailsOptionModelCopyWith<$Res> {
+  __$$_OrderDetailsOptionModelCopyWithImpl(_$_OrderDetailsOptionModel _value,
+      $Res Function(_$_OrderDetailsOptionModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? optionId = freezed,
+    Object? name = null,
+    Object? values = null,
+  }) {
+    return _then(_$_OrderDetailsOptionModel(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      optionId: freezed == optionId
+          ? _value.optionId
+          : optionId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      values: null == values
+          ? _value._values
+          : values // ignore: cast_nullable_to_non_nullable
+              as List<OrderDetailsOptionValueModel>,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_OrderDetailsOptionModel extends _OrderDetailsOptionModel {
+  const _$_OrderDetailsOptionModel(
+      {required this.id,
+      @JsonKey(name: 'option_id') this.optionId,
+      required this.name,
+      required final List<OrderDetailsOptionValueModel> values})
+      : _values = values,
+        super._();
+
+  factory _$_OrderDetailsOptionModel.fromJson(Map<String, dynamic> json) =>
+      _$$_OrderDetailsOptionModelFromJson(json);
+
+  @override
+  final int id;
+
+  /// Returns in order details only.
+  @override
+  @JsonKey(name: 'option_id')
+  final int? optionId;
+  @override
+  final String name;
+  final List<OrderDetailsOptionValueModel> _values;
+  @override
+  List<OrderDetailsOptionValueModel> get values {
+    if (_values is EqualUnmodifiableListView) return _values;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_values);
+  }
+
+  @override
+  String toString() {
+    return 'OrderDetailsOptionModel(id: $id, optionId: $optionId, name: $name, values: $values)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OrderDetailsOptionModel &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.optionId, optionId) ||
+                other.optionId == optionId) &&
+            (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality().equals(other._values, _values));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, optionId, name,
+      const DeepCollectionEquality().hash(_values));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OrderDetailsOptionModelCopyWith<_$_OrderDetailsOptionModel>
+      get copyWith =>
+          __$$_OrderDetailsOptionModelCopyWithImpl<_$_OrderDetailsOptionModel>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_OrderDetailsOptionModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _OrderDetailsOptionModel extends OrderDetailsOptionModel {
+  const factory _OrderDetailsOptionModel(
+          {required final int id,
+          @JsonKey(name: 'option_id') final int? optionId,
+          required final String name,
+          required final List<OrderDetailsOptionValueModel> values}) =
+      _$_OrderDetailsOptionModel;
+  const _OrderDetailsOptionModel._() : super._();
+
+  factory _OrderDetailsOptionModel.fromJson(Map<String, dynamic> json) =
+      _$_OrderDetailsOptionModel.fromJson;
+
+  @override
+  int get id;
+  @override
+
+  /// Returns in order details only.
+  @JsonKey(name: 'option_id')
+  int? get optionId;
+  @override
+  String get name;
+  @override
+  List<OrderDetailsOptionValueModel> get values;
+  @override
+  @JsonKey(ignore: true)
+  _$$_OrderDetailsOptionModelCopyWith<_$_OrderDetailsOptionModel>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+OrderDetailsOptionValueModel _$OrderDetailsOptionValueModelFromJson(
+    Map<String, dynamic> json) {
+  return _OrderDetailsOptionValueModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OrderDetailsOptionValueModel {
+  int get id => throw _privateConstructorUsedError;
+
+  /// Returns in order details only.
+  @JsonKey(name: 'option_value_id')
+  int? get optionValueId => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get price => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OrderDetailsOptionValueModelCopyWith<OrderDetailsOptionValueModel>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OrderDetailsOptionValueModelCopyWith<$Res> {
+  factory $OrderDetailsOptionValueModelCopyWith(
+          OrderDetailsOptionValueModel value,
+          $Res Function(OrderDetailsOptionValueModel) then) =
+      _$OrderDetailsOptionValueModelCopyWithImpl<$Res,
+          OrderDetailsOptionValueModel>;
+  @useResult
+  $Res call(
+      {int id,
+      @JsonKey(name: 'option_value_id') int? optionValueId,
+      String name,
+      String price});
+}
+
+/// @nodoc
+class _$OrderDetailsOptionValueModelCopyWithImpl<$Res,
+        $Val extends OrderDetailsOptionValueModel>
+    implements $OrderDetailsOptionValueModelCopyWith<$Res> {
+  _$OrderDetailsOptionValueModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? optionValueId = freezed,
+    Object? name = null,
+    Object? price = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      optionValueId: freezed == optionValueId
+          ? _value.optionValueId
+          : optionValueId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_OrderDetailsOptionValueModelCopyWith<$Res>
+    implements $OrderDetailsOptionValueModelCopyWith<$Res> {
+  factory _$$_OrderDetailsOptionValueModelCopyWith(
+          _$_OrderDetailsOptionValueModel value,
+          $Res Function(_$_OrderDetailsOptionValueModel) then) =
+      __$$_OrderDetailsOptionValueModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      @JsonKey(name: 'option_value_id') int? optionValueId,
+      String name,
+      String price});
+}
+
+/// @nodoc
+class __$$_OrderDetailsOptionValueModelCopyWithImpl<$Res>
+    extends _$OrderDetailsOptionValueModelCopyWithImpl<$Res,
+        _$_OrderDetailsOptionValueModel>
+    implements _$$_OrderDetailsOptionValueModelCopyWith<$Res> {
+  __$$_OrderDetailsOptionValueModelCopyWithImpl(
+      _$_OrderDetailsOptionValueModel _value,
+      $Res Function(_$_OrderDetailsOptionValueModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? optionValueId = freezed,
+    Object? name = null,
+    Object? price = null,
+  }) {
+    return _then(_$_OrderDetailsOptionValueModel(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      optionValueId: freezed == optionValueId
+          ? _value.optionValueId
+          : optionValueId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_OrderDetailsOptionValueModel extends _OrderDetailsOptionValueModel {
+  const _$_OrderDetailsOptionValueModel(
+      {required this.id,
+      @JsonKey(name: 'option_value_id') this.optionValueId,
+      required this.name,
+      required this.price})
+      : super._();
+
+  factory _$_OrderDetailsOptionValueModel.fromJson(Map<String, dynamic> json) =>
+      _$$_OrderDetailsOptionValueModelFromJson(json);
+
+  @override
+  final int id;
+
+  /// Returns in order details only.
+  @override
+  @JsonKey(name: 'option_value_id')
+  final int? optionValueId;
+  @override
+  final String name;
+  @override
+  final String price;
+
+  @override
+  String toString() {
+    return 'OrderDetailsOptionValueModel(id: $id, optionValueId: $optionValueId, name: $name, price: $price)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OrderDetailsOptionValueModel &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.optionValueId, optionValueId) ||
+                other.optionValueId == optionValueId) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.price, price) || other.price == price));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, optionValueId, name, price);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OrderDetailsOptionValueModelCopyWith<_$_OrderDetailsOptionValueModel>
+      get copyWith => __$$_OrderDetailsOptionValueModelCopyWithImpl<
+          _$_OrderDetailsOptionValueModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_OrderDetailsOptionValueModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _OrderDetailsOptionValueModel
+    extends OrderDetailsOptionValueModel {
+  const factory _OrderDetailsOptionValueModel(
+      {required final int id,
+      @JsonKey(name: 'option_value_id') final int? optionValueId,
+      required final String name,
+      required final String price}) = _$_OrderDetailsOptionValueModel;
+  const _OrderDetailsOptionValueModel._() : super._();
+
+  factory _OrderDetailsOptionValueModel.fromJson(Map<String, dynamic> json) =
+      _$_OrderDetailsOptionValueModel.fromJson;
+
+  @override
+  int get id;
+  @override
+
+  /// Returns in order details only.
+  @JsonKey(name: 'option_value_id')
+  int? get optionValueId;
+  @override
+  String get name;
+  @override
+  String get price;
+  @override
+  @JsonKey(ignore: true)
+  _$$_OrderDetailsOptionValueModelCopyWith<_$_OrderDetailsOptionValueModel>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -5,13 +5,8 @@ class ProductDetailsController implements CartSheetController {
   final GlobalKey<FormState> formKey = GlobalKey();
   final TextEditingController queryController = TextEditingController();
   final GenericBloc<int> qtyCubit = GenericBloc(1);
-  final Map<int, GenericBloc<List<int>>> optionsSelectionMap = {};
-  GenericBloc<List<int>> getSelectionBloc(int optionId) {
-    return optionsSelectionMap.putIfAbsent(
-      optionId,
-          () => GenericBloc<List<int>>(<int>[]),
-    );
-  }  final GenericBloc<int> selectedColorCubit = GenericBloc(0);
+  final Map<int, List<int>> _selectionOrder = {};
+  final GenericBloc<int> selectedColorCubit = GenericBloc(0);
   final GenericBloc<bool> showAppBarTitleCubit = GenericBloc(false);
   final GenericBloc<bool> showAllDescriptionCubit = GenericBloc(false);
   final GenericBloc<ProductDetailsDomainModel?> detailsCubit = GenericBloc(null);
@@ -109,7 +104,103 @@ class ProductDetailsController implements CartSheetController {
       if (resetQty) {
         _initVariants(context);
       }
+      _initProductOptions();
     }
+  }
+
+  void _initProductOptions() {
+    List<ProductOptionModel>? options = detailsCubit.state.data?.product.productOptions;
+    if (options == null) return;
+    options.sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+    _selectionOrder.clear();
+    for (ProductOptionModel group in options) {
+      group.values.sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+      if (group.isRequired) group.isSelected = true;
+      for (ProductOptionValue value in group.values) {
+        if (value.isDefault) value.isSelected = true;
+      }
+      if (group.values.any((v) => v.isSelected)) group.isSelected = true;
+      _selectionOrder[group.id] =
+          group.values.where((v) => v.isSelected).map((v) => v.id).toList();
+    }
+    detailsCubit.onUpdateData(detailsCubit.state.data);
+  }
+
+  void onToggleOptionGroup(ProductOptionModel group) {
+    if (group.isRequired) return;
+    group.isSelected = !group.isSelected;
+    detailsCubit.onUpdateData(detailsCubit.state.data);
+  }
+
+  void onOptionValueSelected(ProductOptionValue value) {
+    ProductOptionModel? parent = _parentOptionGroup(value.id);
+    if (parent == null) return;
+    parent.isSelected = true;
+    if (parent.isRadio) {
+      _selectRadio(parent, value);
+    } else {
+      _selectCheckbox(parent, value);
+    }
+    if (!parent.isRequired) {
+      parent.isSelected = parent.values.any((v) => v.isSelected);
+    }
+    detailsCubit.onUpdateData(detailsCubit.state.data);
+  }
+
+  ProductOptionModel? _parentOptionGroup(int valueId) {
+    List<ProductOptionModel>? options = detailsCubit.state.data?.product.productOptions;
+    if (options == null) return null;
+    for (ProductOptionModel group in options) {
+      if (group.values.any((v) => v.id == valueId)) return group;
+    }
+    return null;
+  }
+
+  void _selectRadio(ProductOptionModel parent, ProductOptionValue value) {
+    if (parent.isRequired && value.isSelected) return;
+    bool wasSelected = value.isSelected;
+    for (ProductOptionValue value in parent.values) {
+      value.isSelected = false;
+    }
+    value.isSelected = !wasSelected;
+  }
+
+  void _selectCheckbox(ProductOptionModel parent, ProductOptionValue value) {
+    List<int> order = _selectionOrder.putIfAbsent(
+      parent.id,
+      () => parent.values.where((value) => value.isSelected).map((val) => val.id).toList(),
+    );
+    if (value.isSelected) {
+      if (parent.isRequired &&
+          parent.values.where((value) => value.isSelected).length <= 1) {
+        return;
+      }
+      value.isSelected = false;
+      order.remove(value.id);
+      return;
+    }
+    if (parent.maxSelect != null && order.length >= parent.maxSelect!) {
+      int oldestId = order.removeAt(0);
+      for (ProductOptionValue value in parent.values) {
+        if (value.id == oldestId) value.isSelected = false;
+      }
+    }
+    value.isSelected = true;
+    order.add(value.id);
+  }
+
+  bool _validateEnabledOptions(BuildContext context) {
+    List<ProductOptionModel> options = detailsCubit.state.data?.product.productOptions ?? <ProductOptionModel>[];
+    for (ProductOptionModel group in options) {
+      if (!group.isRequired && !group.isSelected) continue;
+      if (group.values.any((v) => v.isSelected)) continue;
+      CustomToast.showSimpleToast(
+        msg: "Please choose options for ${group.name}",
+      );
+      _scrollToOptions();
+      return false;
+    }
+    return true;
   }
 
   // void _initVariantsOld(BuildContext context) {
@@ -316,6 +407,7 @@ class ProductDetailsController implements CartSheetController {
   }
 
   void onAddToCart(BuildContext context) {
+    if (!_validateEnabledOptions(context)) return;
     if (isRestaurantProduct) {
       onRestaurantToCart(context);
     } else if (isPharmProduct) {
@@ -353,20 +445,17 @@ class ProductDetailsController implements CartSheetController {
 
   List<ProductOptionModel> get getOptions {
     final product = detailsCubit.state.data!.product;
-    return (product.productOptions ?? <ProductOptionModel>[]).where((option) {
-      final selectedForThisOption = getSelectionBloc(option.id).state.data;
-      return option.values.any((v) => selectedForThisOption.contains(v.id));
-    }).toList();
+    return (product.productOptions ?? <ProductOptionModel>[])
+        .where((option) => option.isSelected)
+        .toList();
   }
   double _safePrice(String? value) {
     if (value == null) return 0.0;
-    return getIt<Utilities>().extractFormattedNumberToDouble(value) ?? 0.0;
+    return double.tryParse(value.cleanNumber) ?? 0.0;
   }
   Future<void> onRestaurantToCart(BuildContext context) async {
-    final product = detailsCubit.state.data!.product;
-    final params = await _restaurantCartParams();
-
-
+    Product product = detailsCubit.state.data!.product;
+    RestaurantCartParams params = await _restaurantCartParams();
     final result = await AddProductToCart().call(params);
 
     if (result.isNotEmpty) {
@@ -392,15 +481,9 @@ class ProductDetailsController implements CartSheetController {
 
   List<ProductOptionsParams> _addToCartOptions() {
     return getOptions.map((option) {
-      final selectedIds = getSelectionBloc(option.id).state.data;
-      final selectedValueIds = option.values
-          .where((value) => selectedIds.contains(value.id))
-          .map((value) => value.id)
-          .toList();
-
       return ProductOptionsParams(
         id: option.id,
-        optionsIds: selectedValueIds,
+        optionsIds: option.values.where((v) => v.isSelected).map((v) => v.id).toList(),
       );
     }).toList();
   }
@@ -698,7 +781,8 @@ class ProductDetailsController implements CartSheetController {
   }
 
   double getTotalPrice() {
-    var price = _safePrice(detailsCubit.state.data?.product.priceHighLowDiscount);
+    var variantPrice = detailsCubit.state.data?.product.variant?.calculablePrice;
+    var price = _safePrice(variantPrice);
     var qnt = qtyCubit.state.data;
     return qnt * price;
   }

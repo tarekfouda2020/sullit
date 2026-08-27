@@ -75,11 +75,11 @@ class InstoreCartItemWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "Sold By :",
+                      "${tr("soldBy")} :",
                       style: AppTextStyle.s12_w400(color: context.colors.textColor),
                     ),
                     Text(
-                      "Munch Corner",
+                      cartItem.sellerName,
                       style: AppTextStyle.s12_w600(color: context.colors.black),
                     ),
                   ],
