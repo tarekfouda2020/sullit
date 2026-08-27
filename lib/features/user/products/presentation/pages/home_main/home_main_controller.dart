@@ -607,7 +607,51 @@ class HomeMainController {
     );
   }
 
+  void routeToInstoreShopping(BuildContext context, ShopCardDomainModel shop) {
+    final sellerId = shop.userId;
+    if (InstoreCartHelper.instance.hasItemsFromDifferentSeller(sellerId)) {
+      final cart = InstoreCartHelper.instance.getLocalCart();
+      showDifferentSellerDialog(
+        context,
+        cartSellerName: cart?.sellerName ?? '',
+        shop: shop,
+      );
+      return;
+    }
+    AutoRouter.of(context).push(InstoreCartPageRoute(
+      sellerId: sellerId,
+      sellerName: shop.name,
+      sellerImage: shop.logo,
+      hasBranches: shop.hasBranches,
+    ));
+  }
 
-
-
+  void showDifferentSellerDialog(
+    BuildContext context, {
+    required String cartSellerName,
+    required ShopCardDomainModel shop,
+  }) {
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) {
+        return BuildDeleteDialog(
+          content: tr('instoreCartDifferentSeller')
+              .replaceAll('{seller}', cartSellerName),
+          onPressConfirm: () {
+            Navigator.of(dialogContext).pop();
+            InstoreCartHelper.instance.deleteAllItemsFromCart().then((_) {
+              if (context.mounted) {
+                AutoRouter.of(context).push(InstoreCartPageRoute(
+                  sellerId: shop.userId,
+                  sellerName: shop.name,
+                  sellerImage: shop.logo,
+                  hasBranches: shop.hasBranches,
+                ));
+              }
+            });
+          },
+        );
+      },
+    );
+  }
 }

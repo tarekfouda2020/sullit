@@ -27,6 +27,10 @@ class BuildHomeView extends StatelessWidget {
             InStoreShoppingBanner(
               storeName: homeDomainModel.inStoreShop?.name ?? "",
               image: homeDomainModel.inStoreShop?.logo ?? "",
+              onTap: () => controller.routeToInstoreShopping(
+                context,
+                homeDomainModel.inStoreShop!,
+              ),
             ),
             Gaps.vGap20,
             ShopTypeShortCutsWidget(

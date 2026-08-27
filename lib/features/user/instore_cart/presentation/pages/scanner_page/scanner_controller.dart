@@ -48,6 +48,7 @@ class ScannerController {
       image: variant.image?.isNotEmpty == true
           ? variant.image!
           : value.product.thumbnailImage ?? '',
+      sellerName: value.product.shop?.name ?? '',
     );
   }
 

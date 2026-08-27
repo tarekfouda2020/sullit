@@ -4,7 +4,13 @@ class InStoreShoppingBanner extends StatelessWidget {
   final VoidCallback? onTap;
   final String storeName;
   final String image;
-  const InStoreShoppingBanner({super.key, this.onTap, required this.storeName, required this.image,});
+
+  const InStoreShoppingBanner({
+    super.key,
+    this.onTap,
+    required this.storeName,
+    required this.image,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +23,11 @@ class InStoreShoppingBanner extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
-            colors: [context.colors.primary, context.colors.darkRed, context.colors.black],
+            colors: [
+              context.colors.primary,
+              context.colors.darkRed,
+              context.colors.black
+            ],
             stops: const [0.0, 0.55, 1.0],
           ),
         ),
@@ -30,7 +40,7 @@ class InStoreShoppingBanner extends StatelessWidget {
                 height: 48,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color:context.colors.white,
+                  color: context.colors.white,
                   border: Border.all(color: context.colors.white, width: 3),
                 ),
                 child: ClipOval(

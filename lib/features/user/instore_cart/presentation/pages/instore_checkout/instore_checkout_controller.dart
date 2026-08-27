@@ -37,7 +37,7 @@ class InstoreCheckoutController {
   }
 
   Future<bool> _fetchSummary({required bool keepSelection}) async {
-    final params = _buildPreviewParams();
+    final params = await _buildPreviewParams();
     if (params == null) return false;
 
     final previousTotal = summary?.total;
@@ -96,15 +96,25 @@ class InstoreCheckoutController {
     updatePaymentOptions();
   }
 
-  InstoreOrderPreviewParams? _buildPreviewParams() {
+  Future<InstoreOrderPreviewParams?> _buildPreviewParams() async {
     final cart = InstoreCartHelper.instance.getLocalCart();
     if (cart == null || cart.items.isEmpty) return null;
+
+    double? latitude;
+    double? longitude;
+    if (cart.hasBranches) {
+      final loc = await LocationService.instance.resolveUserLocation();
+      latitude = loc?.latitude;
+      longitude = loc?.longitude;
+    }
 
     return InstoreOrderPreviewParams(
       sellerId: cart.sellerId,
       couponCode: _appliedCouponCode,
       giftCardCode: _appliedGiftCardCode,
       loyaltyPointsApplied: _loyaltyPointsApplied,
+      latitude: latitude,
+      longitude: longitude,
       items: cart.items
           .map(
             (item) => InstoreCartParams(
@@ -408,8 +418,8 @@ class InstoreCheckoutController {
 
   String getTotal() => summary?.total ?? '0.00';
 
-  InstoreCreateOrderParams? buildCreateOrderParams() {
-    final preview = _buildPreviewParams();
+  Future<InstoreCreateOrderParams?> buildCreateOrderParams() async {
+    final preview = await _buildPreviewParams();
     if (preview == null || selectedPayment == null) return null;
 
     return InstoreCreateOrderParams(
@@ -438,7 +448,7 @@ class InstoreCheckoutController {
 
     if (!isWalletSelectedAndBalanceEnough()) return;
 
-    InstoreCreateOrderParams? params = buildCreateOrderParams();
+    InstoreCreateOrderParams? params = await buildCreateOrderParams();
     if (params == null) {
       CustomToast.showSimpleToast(
         msg: tr('choosePayment'),

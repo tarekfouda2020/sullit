@@ -1,14 +1,39 @@
 part of 'instore_cart_page_imports.dart';
 
 class InstoreCartPage extends StatefulWidget {
-  const InstoreCartPage({super.key});
+  final int sellerId;
+  final String sellerName;
+  final String sellerImage;
+  final bool hasBranches;
+
+  const InstoreCartPage({
+    super.key,
+    required this.sellerId,
+    required this.sellerName,
+    required this.sellerImage,
+    required this.hasBranches,
+  });
 
   @override
   State<InstoreCartPage> createState() => _InstoreCartPageState();
 }
 
 class _InstoreCartPageState extends State<InstoreCartPage> {
-  final InstoreCartPageController controller = InstoreCartPageController();
+  late final InstoreCartPageController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = InstoreCartPageController(
+      sellerId: widget.sellerId,
+      sellerName: widget.sellerName,
+      sellerImage: widget.sellerImage,
+      hasBranches: widget.hasBranches,
+    );
+    controller.saveSellerLocalIfMissing().then((_) {
+      if (mounted) controller.ensureLocationIfHasBranches(context);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +49,11 @@ class _InstoreCartPageState extends State<InstoreCartPage> {
               GenericState<List<InstoreCartItemModel>>>(
             bloc: controller.cartItemsBloc,
             builder: (context, _) {
-              final cart = InstoreCartHelper.instance.getLocalCart();
               return Container(
                 color: context.colors.white,
                 child: StoreHeaderWidget(
-                  sellerName: cart?.sellerName ?? '',
-                  sellerImage: cart?.sellerImage ?? '',
+                  sellerName: controller.headerName,
+                  sellerImage: controller.headerImage,
                   trailing: IconButton(
                     onPressed: () async => controller.routeToScanPage(context),
                     icon: SvgPicture.asset(

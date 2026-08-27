@@ -22,7 +22,7 @@ class SellerDetailsAppBar extends StatelessWidget {
           );
         },
       ),
-      expandedHeight: 550,
+      expandedHeight: 570,
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(
           padding: EdgeInsets.only(
@@ -46,17 +46,20 @@ class SellerDetailsAppBar extends StatelessWidget {
         ),
       ),
       bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(220),
+        preferredSize: const Size.fromHeight(250),
         child: Container(
           color: context.colors.white,
           child: Column(
             children: [
               Gaps.vGap10,
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: Dimens.paddingHorizontal15PX,
                 child: BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
-                    bloc: controller.shopCubit,
+                  bloc: controller.shopCubit,
                   builder: (context, state) {
+                    if (state.data == null) {
+                      return const InStoreShoppingBannerShimmerWidget();
+                    }
                     return InStoreShoppingBanner(
                       onTap: () => controller.routeToInstoreShopping(context),
                       storeName: state.data?.name ?? "",

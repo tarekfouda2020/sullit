@@ -12,6 +12,7 @@ import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
 import 'package:flutter_tdd/core/helpers/barcode_service.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/instore_cart_helper.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
@@ -31,6 +32,8 @@ import 'package:flutter_tdd/features/user/notifications/domain/entities/notify_e
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/pharmacies_list/pharmacies_list_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/product_details_page_route_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/home_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/shop_card_domain_model.dart';
+import 'package:flutter_tdd/features/user/profile/presentation/pages/profile/widgets/profile_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_sections.dart';

@@ -26,6 +26,8 @@ mixin _$InstoreCartModel {
   String get sellerName => throw _privateConstructorUsedError;
   @JsonKey(name: 'seller_image')
   String get sellerImage => throw _privateConstructorUsedError;
+  @JsonKey(name: 'has_branches')
+  bool get hasBranches => throw _privateConstructorUsedError;
   @JsonKey(name: 'sub_total')
   num get subTotal => throw _privateConstructorUsedError;
   List<InstoreCartItemModel> get items => throw _privateConstructorUsedError;
@@ -46,6 +48,7 @@ abstract class $InstoreCartModelCopyWith<$Res> {
       {@JsonKey(name: 'seller_id') int sellerId,
       @JsonKey(name: 'seller_name') String sellerName,
       @JsonKey(name: 'seller_image') String sellerImage,
+      @JsonKey(name: 'has_branches') bool hasBranches,
       @JsonKey(name: 'sub_total') num subTotal,
       List<InstoreCartItemModel> items});
 }
@@ -66,6 +69,7 @@ class _$InstoreCartModelCopyWithImpl<$Res, $Val extends InstoreCartModel>
     Object? sellerId = null,
     Object? sellerName = null,
     Object? sellerImage = null,
+    Object? hasBranches = null,
     Object? subTotal = null,
     Object? items = null,
   }) {
@@ -82,6 +86,10 @@ class _$InstoreCartModelCopyWithImpl<$Res, $Val extends InstoreCartModel>
           ? _value.sellerImage
           : sellerImage // ignore: cast_nullable_to_non_nullable
               as String,
+      hasBranches: null == hasBranches
+          ? _value.hasBranches
+          : hasBranches // ignore: cast_nullable_to_non_nullable
+              as bool,
       subTotal: null == subTotal
           ? _value.subTotal
           : subTotal // ignore: cast_nullable_to_non_nullable
@@ -106,6 +114,7 @@ abstract class _$$_InstoreCartModelCopyWith<$Res>
       {@JsonKey(name: 'seller_id') int sellerId,
       @JsonKey(name: 'seller_name') String sellerName,
       @JsonKey(name: 'seller_image') String sellerImage,
+      @JsonKey(name: 'has_branches') bool hasBranches,
       @JsonKey(name: 'sub_total') num subTotal,
       List<InstoreCartItemModel> items});
 }
@@ -124,6 +133,7 @@ class __$$_InstoreCartModelCopyWithImpl<$Res>
     Object? sellerId = null,
     Object? sellerName = null,
     Object? sellerImage = null,
+    Object? hasBranches = null,
     Object? subTotal = null,
     Object? items = null,
   }) {
@@ -140,6 +150,10 @@ class __$$_InstoreCartModelCopyWithImpl<$Res>
           ? _value.sellerImage
           : sellerImage // ignore: cast_nullable_to_non_nullable
               as String,
+      hasBranches: null == hasBranches
+          ? _value.hasBranches
+          : hasBranches // ignore: cast_nullable_to_non_nullable
+              as bool,
       subTotal: null == subTotal
           ? _value.subTotal
           : subTotal // ignore: cast_nullable_to_non_nullable
@@ -160,6 +174,7 @@ class _$_InstoreCartModel implements _InstoreCartModel {
       {@JsonKey(name: 'seller_id') required this.sellerId,
       @JsonKey(name: 'seller_name') this.sellerName = '',
       @JsonKey(name: 'seller_image') this.sellerImage = '',
+      @JsonKey(name: 'has_branches') this.hasBranches = false,
       @JsonKey(name: 'sub_total') required this.subTotal,
       required final List<InstoreCartItemModel> items})
       : _items = items;
@@ -177,6 +192,9 @@ class _$_InstoreCartModel implements _InstoreCartModel {
   @JsonKey(name: 'seller_image')
   final String sellerImage;
   @override
+  @JsonKey(name: 'has_branches')
+  final bool hasBranches;
+  @override
   @JsonKey(name: 'sub_total')
   final num subTotal;
   final List<InstoreCartItemModel> _items;
@@ -189,7 +207,7 @@ class _$_InstoreCartModel implements _InstoreCartModel {
 
   @override
   String toString() {
-    return 'InstoreCartModel(sellerId: $sellerId, sellerName: $sellerName, sellerImage: $sellerImage, subTotal: $subTotal, items: $items)';
+    return 'InstoreCartModel(sellerId: $sellerId, sellerName: $sellerName, sellerImage: $sellerImage, hasBranches: $hasBranches, subTotal: $subTotal, items: $items)';
   }
 
   @override
@@ -203,6 +221,8 @@ class _$_InstoreCartModel implements _InstoreCartModel {
                 other.sellerName == sellerName) &&
             (identical(other.sellerImage, sellerImage) ||
                 other.sellerImage == sellerImage) &&
+            (identical(other.hasBranches, hasBranches) ||
+                other.hasBranches == hasBranches) &&
             (identical(other.subTotal, subTotal) ||
                 other.subTotal == subTotal) &&
             const DeepCollectionEquality().equals(other._items, _items));
@@ -211,7 +231,7 @@ class _$_InstoreCartModel implements _InstoreCartModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, sellerId, sellerName,
-      sellerImage, subTotal, const DeepCollectionEquality().hash(_items));
+      sellerImage, hasBranches, subTotal, const DeepCollectionEquality().hash(_items));
 
   @JsonKey(ignore: true)
   @override
@@ -232,6 +252,7 @@ abstract class _InstoreCartModel implements InstoreCartModel {
       {@JsonKey(name: 'seller_id') required final int sellerId,
       @JsonKey(name: 'seller_name') final String sellerName,
       @JsonKey(name: 'seller_image') final String sellerImage,
+      @JsonKey(name: 'has_branches') final bool hasBranches,
       @JsonKey(name: 'sub_total') required final num subTotal,
       required final List<InstoreCartItemModel> items}) = _$_InstoreCartModel;
 
@@ -247,6 +268,9 @@ abstract class _InstoreCartModel implements InstoreCartModel {
   @override
   @JsonKey(name: 'seller_image')
   String get sellerImage;
+  @override
+  @JsonKey(name: 'has_branches')
+  bool get hasBranches;
   @override
   @JsonKey(name: 'sub_total')
   num get subTotal;
