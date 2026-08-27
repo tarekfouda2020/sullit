@@ -216,6 +216,7 @@ class ScannerController {
 
     if (_hasMultipleVariants(product)) {
       await showVariantsSheet(context, value);
+      _isScanned = false;
       return;
     }
 
