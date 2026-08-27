@@ -45,9 +45,7 @@ class PharmacyOrderProductItemWidget extends StatelessWidget {
                       ),
                       Gaps.vGap5,
                       if(orderDetails.cartOptions?.isNotEmpty == true)...[
-                        ...List.generate(orderDetails.cartOptions!.length, (index) {
-                          return CartSheetItemOptionsWidget(cartOptions: orderDetails.cartOptions!);
-                        },),
+                           CartSheetItemOptionsWidget(cartOptions: orderDetails.cartOptions!),
                       ],
                       Gaps.vGap5,
                       RatingBar.builder(

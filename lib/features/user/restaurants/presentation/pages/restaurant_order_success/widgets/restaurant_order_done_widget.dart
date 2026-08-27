@@ -114,7 +114,8 @@ class RestaurantOrderDoneWidget extends StatelessWidget {
             Gaps.vGap10,
           ],
           if (data.getTotalItems() > 0)
-            _buildRow(context, "Total Items", data.getTotalItems().toString()),
+            Gaps.vGap10,
+          _buildRow(context, "Total Items", data.getTotalItems().toString()),
           Gaps.vGap10,
           if (data.pharmNormalOrder) ...[
             _buildRow(

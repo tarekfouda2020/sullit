@@ -18,7 +18,7 @@ class OrderDetailsProductItemWidget extends StatelessWidget {
       children: [
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 15),
-          margin: const EdgeInsets.symmetric(vertical: 8),
+          margin: const EdgeInsets.symmetric(vertical: 8,horizontal: 18),
           decoration: CustomDecoration(
             thisColor: context.colors.white,
               boxBorder: Border.all(color: context.colors.gray3),
