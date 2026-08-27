@@ -54,8 +54,15 @@ class SellerDetailsAppBar extends StatelessWidget {
               Gaps.vGap10,
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: InStoreShoppingBanner(
-                  onTap: () => controller.routeToInstoreShopping(context),
+                child: BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
+                    bloc: controller.shopCubit,
+                  builder: (context, state) {
+                    return InStoreShoppingBanner(
+                      onTap: () => controller.routeToInstoreShopping(context),
+                      storeName: state.data?.name ?? "",
+                      image: state.data?.logo ?? "",
+                    );
+                  },
                 ),
               ),
               // BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(

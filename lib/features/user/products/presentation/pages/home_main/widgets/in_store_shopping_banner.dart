@@ -2,8 +2,9 @@ part of 'home_main_widgets_imports.dart';
 
 class InStoreShoppingBanner extends StatelessWidget {
   final VoidCallback? onTap;
-
-  const InStoreShoppingBanner({super.key, this.onTap,});
+  final String storeName;
+  final String image;
+  const InStoreShoppingBanner({super.key, this.onTap, required this.storeName, required this.image,});
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +33,13 @@ class InStoreShoppingBanner extends StatelessWidget {
                   color:context.colors.white,
                   border: Border.all(color: context.colors.white, width: 3),
                 ),
-                child: const ClipOval(
+                child: ClipOval(
                   child: CachedImage(
                     height: 48,
                     width: 48,
                     fit: BoxFit.contain,
                     haveRadius: false,
-                    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOb4vqD03bPxAnpDP6qqeWt_qmpnS9sWVjtszQ0oe4Q7AIzBDKedt9JKM&s=10",
+                    url: image,
                     boxShape: BoxShape.circle,
                   ),
                 ),
@@ -50,7 +51,7 @@ class InStoreShoppingBanner extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Are you at Mushrif Coop Store?',
+                      'Are you at ${storeName} Store?',
                       style: AppTextStyle.s12_w400(color: context.colors.white),
                     ),
                     Gaps.vGap8,

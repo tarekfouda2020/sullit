@@ -16,6 +16,7 @@ class HomeDomainModel extends BaseDomainModel {
   final List<Category> categories;
    List<OrdersListDomainModel> currentOrders;
   final FlashSale? flashSales;
+  final ShopCardDomainModel? inStoreShop;
   final List<ShopCardDomainModel> shop;
   final List<ShopCardDomainModel> topSellers;
   final List<ShopCardDomainModel> pharmacyShops;
@@ -30,13 +31,14 @@ class HomeDomainModel extends BaseDomainModel {
   final bool isAdminDiscount;
   final int discountRate;
 
-  HomeDomainModel({
+  HomeDomainModel( {
     required this.sliders,
     required this.bannersOne,
     required this.bannersTwo,
     required this.categories,
     required this.currentOrders,
     this.flashSales,
+    this.inStoreShop,
     required this.shop,
     required this.topSellers,
     // required this.mostPopular,

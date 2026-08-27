@@ -18,7 +18,18 @@ class ClearAllButtonWidget extends StatelessWidget {
         if (state.data.isEmpty) {
           return Center(
             child: GestureDetector(
-              onTap: ()=> controller.scanProduct(context),
+              onTap:() async {
+                final result = await AutoRouter.of(context).push(
+                  const ScannerPageRoute(),
+                );
+                if (!context.mounted || result == null) return;
+                if (result is String) {
+                  controller.getProductWithSku(context, result);
+                }
+                else if (result is List<InstoreCartItemModel>) {
+                  controller.syncLocalCart();
+                }
+              },
               child: Text(
                 tr('addMoreItems'),
                 style: AppTextStyle.s15_w500(
