@@ -34,7 +34,7 @@ class BuildTopSellersItem extends StatelessWidget {
             textAlign: TextAlign.center,
             topSellers.name,
             maxLines: 2,
-            style: AppTextStyle.s14_w400(color: context.colors.black),
+            style: AppTextStyle.s14_w600(color: context.colors.black),
           ),
         )
       ],
