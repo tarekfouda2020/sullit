@@ -233,8 +233,8 @@ class _$_InstoreCartItemModel extends _InstoreCartItemModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, variantId, qnt, price, name, image, sellerName);
+  int get hashCode => Object.hash(
+      runtimeType, id, variantId, qnt, price, name, image, sellerName);
 
   @JsonKey(ignore: true)
   @override
@@ -253,13 +253,14 @@ class _$_InstoreCartItemModel extends _InstoreCartItemModel {
 
 abstract class _InstoreCartItemModel extends InstoreCartItemModel {
   const factory _InstoreCartItemModel(
-      {required final int id,
-      @JsonKey(name: 'variant_id') required final int variantId,
-      required final int qnt,
-      required final num price,
-      required final String name,
-      required final String image,
-      @JsonKey(name: 'seller_name') final String sellerName}) = _$_InstoreCartItemModel;
+          {required final int id,
+          @JsonKey(name: 'variant_id') required final int variantId,
+          required final int qnt,
+          required final num price,
+          required final String name,
+          required final String image,
+          @JsonKey(name: 'seller_name') final String sellerName}) =
+      _$_InstoreCartItemModel;
   const _InstoreCartItemModel._() : super._();
 
   factory _InstoreCartItemModel.fromJson(Map<String, dynamic> json) =

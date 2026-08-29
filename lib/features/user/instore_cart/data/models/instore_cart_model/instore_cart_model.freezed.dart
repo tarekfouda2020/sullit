@@ -230,8 +230,14 @@ class _$_InstoreCartModel implements _InstoreCartModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, sellerId, sellerName,
-      sellerImage, hasBranches, subTotal, const DeepCollectionEquality().hash(_items));
+  int get hashCode => Object.hash(
+      runtimeType,
+      sellerId,
+      sellerName,
+      sellerImage,
+      hasBranches,
+      subTotal,
+      const DeepCollectionEquality().hash(_items));
 
   @JsonKey(ignore: true)
   @override

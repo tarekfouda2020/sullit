@@ -4320,7 +4320,8 @@ class GiftCardDetailsRouteArgs {
 
 /// generated route for
 /// [_i103.InstoreCartPage]
-class InstoreCartPageRoute extends _i121.PageRouteInfo<InstoreCartPageRouteArgs> {
+class InstoreCartPageRoute
+    extends _i121.PageRouteInfo<InstoreCartPageRouteArgs> {
   InstoreCartPageRoute({
     _i124.Key? key,
     required int sellerId,
@@ -4352,9 +4353,13 @@ class InstoreCartPageRouteArgs {
   });
 
   final _i124.Key? key;
+
   final int sellerId;
+
   final String sellerName;
+
   final String sellerImage;
+
   final bool hasBranches;
 
   @override

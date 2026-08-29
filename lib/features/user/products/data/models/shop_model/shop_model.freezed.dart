@@ -25,6 +25,8 @@ mixin _$ShopModel {
   int get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'has_branches')
   bool? get hasBranches => throw _privateConstructorUsedError;
+  @JsonKey(name: 'supports_in_store_shopping')
+  bool? get supportsInStoreShopping => throw _privateConstructorUsedError;
   @JsonKey(name: 'type')
   String get shopType => throw _privateConstructorUsedError;
   @JsonKey(name: 'type_label')
@@ -66,6 +68,8 @@ abstract class $ShopModelCopyWith<$Res> {
       {int id,
       @JsonKey(name: 'user_id') int userId,
       @JsonKey(name: 'has_branches') bool? hasBranches,
+      @JsonKey(name: 'supports_in_store_shopping')
+      bool? supportsInStoreShopping,
       @JsonKey(name: 'type') String shopType,
       @JsonKey(name: 'type_label') String shopTypeLabel,
       String name,
@@ -107,6 +111,7 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
     Object? id = null,
     Object? userId = null,
     Object? hasBranches = freezed,
+    Object? supportsInStoreShopping = freezed,
     Object? shopType = null,
     Object? shopTypeLabel = null,
     Object? name = null,
@@ -140,6 +145,10 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
       hasBranches: freezed == hasBranches
           ? _value.hasBranches
           : hasBranches // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      supportsInStoreShopping: freezed == supportsInStoreShopping
+          ? _value.supportsInStoreShopping
+          : supportsInStoreShopping // ignore: cast_nullable_to_non_nullable
               as bool?,
       shopType: null == shopType
           ? _value.shopType
@@ -248,6 +257,8 @@ abstract class _$$_ShopModelCopyWith<$Res> implements $ShopModelCopyWith<$Res> {
       {int id,
       @JsonKey(name: 'user_id') int userId,
       @JsonKey(name: 'has_branches') bool? hasBranches,
+      @JsonKey(name: 'supports_in_store_shopping')
+      bool? supportsInStoreShopping,
       @JsonKey(name: 'type') String shopType,
       @JsonKey(name: 'type_label') String shopTypeLabel,
       String name,
@@ -288,6 +299,7 @@ class __$$_ShopModelCopyWithImpl<$Res>
     Object? id = null,
     Object? userId = null,
     Object? hasBranches = freezed,
+    Object? supportsInStoreShopping = freezed,
     Object? shopType = null,
     Object? shopTypeLabel = null,
     Object? name = null,
@@ -321,6 +333,10 @@ class __$$_ShopModelCopyWithImpl<$Res>
       hasBranches: freezed == hasBranches
           ? _value.hasBranches
           : hasBranches // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      supportsInStoreShopping: freezed == supportsInStoreShopping
+          ? _value.supportsInStoreShopping
+          : supportsInStoreShopping // ignore: cast_nullable_to_non_nullable
               as bool?,
       shopType: null == shopType
           ? _value.shopType
@@ -414,6 +430,7 @@ class _$_ShopModel extends _ShopModel {
       {required this.id,
       @JsonKey(name: 'user_id') required this.userId,
       @JsonKey(name: 'has_branches') this.hasBranches,
+      @JsonKey(name: 'supports_in_store_shopping') this.supportsInStoreShopping,
       @JsonKey(name: 'type') required this.shopType,
       @JsonKey(name: 'type_label') required this.shopTypeLabel,
       required this.name,
@@ -450,6 +467,9 @@ class _$_ShopModel extends _ShopModel {
   @override
   @JsonKey(name: 'has_branches')
   final bool? hasBranches;
+  @override
+  @JsonKey(name: 'supports_in_store_shopping')
+  final bool? supportsInStoreShopping;
   @override
   @JsonKey(name: 'type')
   final String shopType;
@@ -514,7 +534,7 @@ class _$_ShopModel extends _ShopModel {
 
   @override
   String toString() {
-    return 'ShopModel(id: $id, userId: $userId, hasBranches: $hasBranches, shopType: $shopType, shopTypeLabel: $shopTypeLabel, name: $name, sliders: $sliders, insuranceCompanies: $insuranceCompanies, title: $title, description: $description, logo: $logo, packageInvalidAt: $packageInvalidAt, address: $address, email: $email, phone: $phone, facebook: $facebook, google: $google, twitter: $twitter, instagram: $instagram, youtube: $youtube, rating: $rating, follow: $follow, pickup: $pickup)';
+    return 'ShopModel(id: $id, userId: $userId, hasBranches: $hasBranches, supportsInStoreShopping: $supportsInStoreShopping, shopType: $shopType, shopTypeLabel: $shopTypeLabel, name: $name, sliders: $sliders, insuranceCompanies: $insuranceCompanies, title: $title, description: $description, logo: $logo, packageInvalidAt: $packageInvalidAt, address: $address, email: $email, phone: $phone, facebook: $facebook, google: $google, twitter: $twitter, instagram: $instagram, youtube: $youtube, rating: $rating, follow: $follow, pickup: $pickup)';
   }
 
   @override
@@ -526,6 +546,9 @@ class _$_ShopModel extends _ShopModel {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.hasBranches, hasBranches) ||
                 other.hasBranches == hasBranches) &&
+            (identical(
+                    other.supportsInStoreShopping, supportsInStoreShopping) ||
+                other.supportsInStoreShopping == supportsInStoreShopping) &&
             (identical(other.shopType, shopType) ||
                 other.shopType == shopType) &&
             (identical(other.shopTypeLabel, shopTypeLabel) ||
@@ -562,6 +585,7 @@ class _$_ShopModel extends _ShopModel {
         id,
         userId,
         hasBranches,
+        supportsInStoreShopping,
         shopType,
         shopTypeLabel,
         name,
@@ -603,6 +627,8 @@ abstract class _ShopModel extends ShopModel {
       {required final int id,
       @JsonKey(name: 'user_id') required final int userId,
       @JsonKey(name: 'has_branches') final bool? hasBranches,
+      @JsonKey(name: 'supports_in_store_shopping')
+      final bool? supportsInStoreShopping,
       @JsonKey(name: 'type') required final String shopType,
       @JsonKey(name: 'type_label') required final String shopTypeLabel,
       required final String name,
@@ -638,6 +664,9 @@ abstract class _ShopModel extends ShopModel {
   @override
   @JsonKey(name: 'has_branches')
   bool? get hasBranches;
+  @override
+  @JsonKey(name: 'supports_in_store_shopping')
+  bool? get supportsInStoreShopping;
   @override
   @JsonKey(name: 'type')
   String get shopType;

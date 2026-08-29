@@ -79,7 +79,7 @@ class _BuildProductItemState extends BaseProductItemState<BuildProductItem> {
     if (await handleFirstAddToCart(context)) return;
 
     var currentStockQnt = widget.productModel.variant?.currentStock ?? 0;
-    int qnt = widget.productModel.addedQtyToCart??0 + 1;
+    int qnt = (widget.productModel.addedQtyToCart ?? 0) + 1;
 
     if (handleMaxQtyGuard(qnt)) return;
 

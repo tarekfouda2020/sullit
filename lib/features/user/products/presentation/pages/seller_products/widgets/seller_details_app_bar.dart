@@ -7,22 +7,23 @@ class SellerDetailsAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
+    return BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
+      bloc: controller.shopCubit,
+      builder: (context, state) {
+        final shop = state.data;
+        final showInStoreBanner =
+            shop == null || shop.supportsInStoreShopping;
+        return SliverAppBar(
       backgroundColor: context.colors.white,
       pinned: true,
       elevation: 0,
       automaticallyImplyLeading: true,
       leading: const BackButton(color: Colors.black),
-      title: BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
-        bloc: controller.shopCubit,
-        builder: (context, state) {
-          return Text(
-            state.data?.name ?? "",
-            style: AppTextStyle.s20_w700(color: context.colors.black),
-          );
-        },
+      title: Text(
+        shop?.name ?? "",
+        style: AppTextStyle.s20_w700(color: context.colors.black),
       ),
-      expandedHeight: 570,
+      expandedHeight: showInStoreBanner ? 570 : 496,
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(
           padding: EdgeInsets.only(
@@ -31,22 +32,16 @@ class SellerDetailsAppBar extends StatelessWidget {
                   .top + kToolbarHeight,
               left: 16,
               right: 16),
-          child: BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
-            bloc: controller.shopCubit,
-            builder: (context, state) {
-              var shopModel = state.data;
-              return shopModel != null
-                  ? SellerCardWidget(
-                shop: shopModel.toShopCardDomainModel(),
-                openImage: true,
-              )
-                  : const SellerCardShimmerWidget();
-            },
-          ),
+          child: shop != null
+              ? SellerCardWidget(
+                  shop: shop.toShopCardDomainModel(),
+                  openImage: true,
+                )
+              : const SellerCardShimmerWidget(),
         ),
       ),
       bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(250),
+        preferredSize: Size.fromHeight(showInStoreBanner ? 250 : 190),
         child: Container(
           color: context.colors.white,
           child: Column(
@@ -54,19 +49,16 @@ class SellerDetailsAppBar extends StatelessWidget {
               Gaps.vGap10,
               Padding(
                 padding: Dimens.paddingHorizontal15PX,
-                child: BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
-                  bloc: controller.shopCubit,
-                  builder: (context, state) {
-                    if (state.data == null) {
-                      return const InStoreShoppingBannerShimmerWidget();
-                    }
-                    return InStoreShoppingBanner(
-                      onTap: () => controller.routeToInstoreShopping(context),
-                      storeName: state.data?.name ?? "",
-                      image: state.data?.logo ?? "",
-                    );
-                  },
-                ),
+                child: shop == null
+                    ? const InStoreShoppingBannerShimmerWidget()
+                    : shop.supportsInStoreShopping
+                        ? InStoreShoppingBanner(
+                            onTap: () =>
+                                controller.routeToInstoreShopping(context),
+                            storeName: shop.name ?? "",
+                            image: shop.logo ?? "",
+                          )
+                        : const SizedBox.shrink(),
               ),
               // BlocBuilder<GenericBloc<Shop?>, GenericState<Shop?>>(
               //   bloc: controller.shopCubit,
@@ -123,6 +115,8 @@ class SellerDetailsAppBar extends StatelessWidget {
           ),
         ),
       ),
+    );
+      },
     );
   }
 }

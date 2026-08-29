@@ -18,7 +18,7 @@ class BuildNotificationsItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(Res.newSplashImage, width: 45, height: 45),
+            Image.asset(Res.newAuthLogo, width: 45, height: 45),
             Gaps.hGap10,
             Expanded(
               child: Column(

@@ -86,7 +86,7 @@ class ProductCard extends BaseDomainModel {
     required this.soldByName,
     required this.categoryName,
     required this.brandName,
-    this.addedQtyToCart,
+    this.addedQtyToCart = 0,
     this.isAddedTCompare,
   });
 

@@ -30,6 +30,7 @@ class Shop extends BaseDomainModel {
   List<InsuranceCompany>? insuranceCompanies;
   bool isSelect = false;
   bool isSelected = false;
+  bool supportsInStoreShopping = false;
 
   Shop({
     required this.id,
@@ -57,6 +58,7 @@ class Shop extends BaseDomainModel {
     this.isSelect = false,
     required this.rating,
     required this.follow,
+     this.supportsInStoreShopping = false,
   });
 
   factory Shop.fromJson(Map<String, dynamic> json) {
@@ -81,6 +83,7 @@ class Shop extends BaseDomainModel {
       youtube: json['youtube'],
       rating: json['rating'],
       follow: json['follow'],
+      supportsInStoreShopping: json['supports_in_store_shopping'],
       sliders: (json['sliders'] as List?)?.map((e) => e.toString()).toList(),
     );
   }
@@ -91,6 +94,7 @@ class Shop extends BaseDomainModel {
     data['user_id'] = userId;
     data['seller_id'] = sellerId;
     data['type_label'] = typeLabel;
+    data['supports_in_store_shopping'] = supportsInStoreShopping;
     data['name'] = name;
     data['title'] = title;
     data['description'] = description;

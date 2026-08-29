@@ -512,7 +512,7 @@ class PharmacyDetailsController {
   Future<void> clearCart(BuildContext context) async {
     final token = await getIt<GetDeviceId>().deviceId;
     final params =
-        ClearCartParams(macAddress: token ?? "", type: CartTypeEnum.pharmacy);
+        ClearCartParams(macAddress: token ?? "", type: type ?? CartTypeEnum.pharmacy);
     await ClearCart().call(params).then((value) async {
       CustomToast.showSimpleToast(
           msg: "Your cart has been cleared successfully.",

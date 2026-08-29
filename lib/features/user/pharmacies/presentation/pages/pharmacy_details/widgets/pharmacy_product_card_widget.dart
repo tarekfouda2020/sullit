@@ -59,7 +59,7 @@ class _PharmacyProductCardWidgetState extends BaseProductItemState<PharmacyProdu
     }
 
     if ((product.addedQtyToCart ?? 0) > 0) {
-      return true;
+      return false;
     }
 
     enableAddToCartLoading.onUpdateData(true);
@@ -97,8 +97,8 @@ class _PharmacyProductCardWidgetState extends BaseProductItemState<PharmacyProdu
 
   @override
   Future<void> addToCart(BuildContext context) async {
-    if (handleOutOfStockGuard()) return;
-    final isFirstAdd = widget.productModel.addedQtyToCart == null ||
+    // if (handleOutOfStockGuard()) return;
+    bool isFirstAdd = widget.productModel.addedQtyToCart == null ||
         widget.productModel.addedQtyToCart == 0;
     final addedToCart = await handleFirstAddToCart(context);
     if (addedToCart) return;
@@ -107,7 +107,7 @@ class _PharmacyProductCardWidgetState extends BaseProductItemState<PharmacyProdu
       widget.controller.showAddToCartFailedDialog(this.context);
       return;
     }
-    final product = widget.productModel;
+    ProductCard product = widget.productModel;
     if (product is PharmacyProductCard &&
         widget.controller.cartBranchId != null &&
         widget.controller.cartBranchId != product.branch?.id) {
@@ -116,8 +116,8 @@ class _PharmacyProductCardWidgetState extends BaseProductItemState<PharmacyProdu
         return;
       }
     }
-    var currentStockQnt = widget.productModel.variant?.currentStock ?? 0;
-    int qnt = widget.productModel.addedQtyToCart! + 1;
+    int currentStockQnt = widget.productModel.variant?.currentStock ?? 0;
+    int qnt = (widget.productModel.addedQtyToCart ?? 0) + 1;
 
     if (handleMaxQtyGuard(qnt)) return;
 
@@ -141,7 +141,7 @@ class _PharmacyProductCardWidgetState extends BaseProductItemState<PharmacyProdu
       await deleteItemFromCart();
     } else {
       widget.productModel.addedQtyToCart =
-          widget.productModel.addedQtyToCart! - 1;
+          (widget.productModel.addedQtyToCart ?? 0) - 1;
       enableAddToCartLoading.onUpdateData(false);
       KeyedDebounceHelper.instance.start(
         key: productKey,

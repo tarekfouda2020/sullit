@@ -19,6 +19,7 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
     required int id,
     @JsonKey(name: 'user_id') required int userId,
     @JsonKey(name: 'has_branches')  bool? hasBranches,
+    @JsonKey(name: 'supports_in_store_shopping')  bool? supportsInStoreShopping,
     @JsonKey(name: 'type') required String shopType,
     @JsonKey(name: 'type_label') required String shopTypeLabel,
     required String name,
@@ -68,7 +69,7 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
       follow: follow,
       sliders: sliders,
       shopType: shopType,
-
+      supportsInStoreShopping: supportsInStoreShopping ?? false,
       hasBranches: hasBranches,
       insuranceCompanies:
           insuranceCompanies?.map((e) => e.toDomainModel()).toList(),
