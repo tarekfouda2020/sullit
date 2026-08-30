@@ -9,8 +9,8 @@ subprojects {
     afterEvaluate { project ->
         if (project.hasProperty('android')) {
             project.android {
-                compileSdkVersion 35
-                buildToolsVersion "35.0.0"
+                compileSdkVersion 36
+                buildToolsVersion "36.0.0"
                 
                 // Set namespace for plugins that don't have one
                 if (project.android.namespace == null) {
