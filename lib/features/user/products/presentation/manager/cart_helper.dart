@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +27,6 @@ import 'package:flutter_tdd/features/user/cart/domain/use_cases/update_cart_item
 import 'package:flutter_tdd/features/user/products/domain/entities/add_product_to_cart_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/variant_price_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
 import 'package:flutter_tdd/features/user/products/domain/use_cases/get_variant_price.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_sheet_controller.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_sheet_helper.dart';
@@ -148,7 +146,6 @@ class CartHelper {
       {required Function() onAddCartFunc,
       bool callCartData = true,
       CartTypeEnum type = CartTypeEnum.general}) async {
-    log("====>>>>> json is ${params.toJson()} ===== ");
     if (params.variantId == null) {
       CustomToast.showSimpleToast(msg: tr('variantNotFound'));
       return null;

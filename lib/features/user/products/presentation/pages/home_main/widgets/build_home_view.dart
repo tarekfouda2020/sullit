@@ -47,13 +47,15 @@ class BuildHomeView extends StatelessWidget {
             ),
             BuildTopCategories(categories: homeDomainModel.categories, controller: controller),
             PharmacyHomeSectionWidget(controller: controller),
-            Gaps.vGap16,
-            PharmSloganBannerWidget(
-              firstText: 'Have a prescription?  Get Started',
-              secondText: 'Upload Now  ',
-              onTap: () => controller.onPressAttachPrescription(context),
-            ),
-            Gaps.vGap16,
+            if(controller.homeCubit.state.data!.pharmacyShops.isNotEmpty)...[
+              Gaps.vGap16,
+              PharmSloganBannerWidget(
+                firstText: 'Have a prescription?  Get Started',
+                secondText: 'Upload Now  ',
+                onTap: () => controller.onPressAttachPrescription(context),
+              ),
+              Gaps.vGap16,
+            ],
             VipOffersFormWidget(controller: controller),
             Gaps.vGap16,
             VipOffersWidget(
@@ -61,17 +63,19 @@ class BuildHomeView extends StatelessWidget {
               buttonText: tr("seeOffers", context: context),
               margin: EdgeInsets.zero,
             ),
-            Gaps.vGap16,
-            BuildHeaderTitle(
-              title: 'Restaurants',
-              onTap: () => AutoRouter.of(context).push(
-                const RestaurantsRoute(),
+            if(controller.homeCubit.state.data!.restaurantShops.isNotEmpty)...[
+              Gaps.vGap16,
+              BuildHeaderTitle(
+                title: 'Restaurants',
+                onTap: () => AutoRouter.of(context).push(
+                  const RestaurantsRoute(),
+                ),
               ),
-            ),
-            Gaps.vGap8,
-            RestaurantItemWidget(
-              restaurantModel: homeDomainModel.restaurantShops,
-            ),
+              Gaps.vGap8,
+              RestaurantItemWidget(
+                restaurantModel: homeDomainModel.restaurantShops,
+              ),
+            ],
             // BuildPopularProducts(
             //   mostPopularProducts: homeDomainModel.mostPopular,
             // ),
