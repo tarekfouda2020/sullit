@@ -173,6 +173,8 @@ class OrderModel extends BaseApiModel<Orders> with _$OrderModel {
       pharmacyReply: pharmacyReply,
       branch: branch?.toDomainModel(),
       shop: shop?.toDomainModel(),
+      orderDetailHistories:
+          orderDetailHistories?.map((e) => e.toDomainModel()).toList(),
     );
   }
 }

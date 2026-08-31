@@ -898,6 +898,24 @@
   "keep_shopping": "خریداری جاری رکھیں",
   "proofOfDelivery": "ڈیلیوری کا ثبوت",
   "proofOfDeliverySubtitle": "یہ اس جگہ کی تصویر ہے جہاں آپ کا آرڈر چھوڑا گیا۔",
-  "viewPhoto": "تصویر دیکھیں"
-
+  "viewPhoto": "تصویر دیکھیں",
+  "groceries": "گروسری",
+  "pharmacies": "فارمیسیاں",
+  "restaurants": "ریستوران",
+  "haveAPrescriptionGetStarted": "نسخہ ہے؟ شروع کریں",
+  "uploadNow": "اب اپ لوڈ کریں",
+  "areYouAtStore": "کیا آپ {store} اسٹور پر ہیں؟",
+  "uploadPrescription": "نسخہ اپ لوڈ کریں",
+  "uploadPrescriptionSubtitle": "چیک آؤٹ کے دوران نسخہ اپ لوڈ کریں",
+  "healthInsurance": "صحت کا بیمہ",
+  "healthInsuranceSubtitle": "اپنے صحت انشورنس فراہم کنندہ کو منسلک کریں",
+  "trustedDelivery": "قابل اعتماد ڈیلیوری",
+  "trustedDeliverySubtitle": "درجہ حرارت کنٹرول شدہ تیز ڈیلیوری",
+  "attachPrescription": "نسخہ منسلک کریں",
+  "prescriptionReviewNote": "منتخب فارمیسی آپ کا نسخہ جائزہ لے گی۔ منظوری کے بعد آپ کو تصدیق ملے گی۔",
+  "chooseFromSavedPrescriptions": "محفوظ نسخوں میں سے منتخب کریں",
+  "savedPrescriptions": "محفوظ نسخے",
+  "noSavedPrescriptionsFound": "کوئی محفوظ نسخہ نہیں ملا",
+  "lastUse": "آخری استعمال : {date}",
+  "pleaseAttachPrescriptionFirst": "پہلے اپنا نسخہ منسلک کریں"
 }

@@ -17,7 +17,7 @@ class AttachPrescriptionSheetWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const BottomSheetHeaderWidget(title: "Attach Prescription"),
+          BottomSheetHeaderWidget(title: tr('attachPrescription')),
           Gaps.vGap20,
           CustomSharedPrescriptionFileCardWidget(
             prescriptionFileCubit: controller.prescriptionFileCubit,
@@ -27,13 +27,12 @@ class AttachPrescriptionSheetWidget extends StatelessWidget {
             onRemoveSavedPrescription: controller.onRemoveSelectedSavedPrescription,
           ),
           Gaps.vGap20,
-          const _WarningBullet(
-            text:
-                "Your prescription will be reviewed by the selected pharmacy. You will receive a confirmation once approved.",
+          _WarningBullet(
+            text: tr('prescriptionReviewNote'),
           ),
           Gaps.vGap20,
           DefaultButton(
-            title: "Choose From Saved Prescriptions",
+            title: tr('chooseFromSavedPrescriptions'),
             onTap: () => controller.onPressChooseFromSavedPrescriptions(context),
             color: context.colors.white,
             borderColor: context.colors.primary,
@@ -42,7 +41,7 @@ class AttachPrescriptionSheetWidget extends StatelessWidget {
           ),
           Gaps.vGap10,
           DefaultButton(
-            title: "Continue",
+            title: tr('continue'),
             onTap: () => controller.onPressContinuePrescription(context),
             margin: EdgeInsets.zero,
           ),

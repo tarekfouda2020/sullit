@@ -12,7 +12,7 @@ class ShopTypeShortCutsWidget extends StatelessWidget {
       children: [
         Expanded(
           child: CategoryCardWidget(
-            title: "Groceries",
+            title: tr('groceries'),
             image: Res.groceries,
             backgroundColor: context.colors.lightPink,
             textColor: context.colors.primary,
@@ -23,7 +23,7 @@ class ShopTypeShortCutsWidget extends StatelessWidget {
         ),
         Expanded(
           child: CategoryCardWidget(
-            title: "Pharmacies",
+            title: tr('pharmacies'),
             image: Res.pharmacies,
             backgroundColor: context.colors.lightBlue,
             textColor: context.colors.oceanBlue,
@@ -32,7 +32,7 @@ class ShopTypeShortCutsWidget extends StatelessWidget {
         ),
         Expanded(
           child: CategoryCardWidget(
-            title: "Restaurants",
+            title: tr('restaurants'),
             image: Res.restaurants,
             backgroundColor: context.colors.lightOrange2,
             textColor: context.colors.darkOrange,

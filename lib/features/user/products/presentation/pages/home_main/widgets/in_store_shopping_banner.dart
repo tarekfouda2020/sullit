@@ -61,12 +61,12 @@ class InStoreShoppingBanner extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Are you at ${storeName} Store?',
+                      tr('areYouAtStore').replaceAll('{store}', storeName),
                       style: AppTextStyle.s12_w400(color: context.colors.white),
                     ),
                     Gaps.vGap8,
                     Text(
-                      'In-store Shopping',
+                      tr('inStoreShopping'),
                       style: AppTextStyle.s22_w700(color: context.colors.white),
                     ),
                   ],

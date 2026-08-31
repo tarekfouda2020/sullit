@@ -12,7 +12,7 @@ class HomePharmaciesWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BuildHeaderTitle(
-            title: "Pharmacies",
+            title: tr('pharmacies'),
             onTap: () => controller.routeToPharmaciesList(context),
           ),
           SizedBox(

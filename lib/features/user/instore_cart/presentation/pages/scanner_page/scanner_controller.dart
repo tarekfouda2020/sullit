@@ -198,7 +198,7 @@ class ScannerController {
 
     getIt<LoadingHelper>().showLoadingDialog();
 
-    final value = await GetSkuProduct().call(sku);
+    ProductDetailsDomainModel? value = await GetSkuProduct().call(sku);
 
     getIt<LoadingHelper>().dismissDialog();
 
@@ -209,6 +209,7 @@ class ScannerController {
         tr('productNotFound'),
         type: ToastType.error,
       );
+      _isScanned = false;
       return;
     }
 

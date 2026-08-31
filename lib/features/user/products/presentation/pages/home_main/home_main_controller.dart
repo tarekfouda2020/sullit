@@ -509,7 +509,7 @@ class HomeMainController {
     if (prescriptionFileCubit.state.data.path.isEmpty &&
         selectedSavedPrescriptionCubit.state.data == null) {
       CustomToast.showSimpleToast(
-        msg: "Please attach your prescription first",
+        msg: tr('pleaseAttachPrescriptionFirst'),
       );
       return;
     }

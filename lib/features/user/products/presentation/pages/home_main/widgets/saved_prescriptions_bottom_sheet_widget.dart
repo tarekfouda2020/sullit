@@ -20,7 +20,7 @@ class SavedPrescriptionsBottomSheetWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const BottomSheetHeaderWidget(title: "Saved Prescriptions"),
+          BottomSheetHeaderWidget(title: tr('savedPrescriptions')),
           Gaps.vGap20,
           Flexible(
             child: BlocBuilder<GenericBloc<SavedPrescriptionModel?>,
@@ -47,7 +47,7 @@ class SavedPrescriptionsBottomSheetWidget extends StatelessWidget {
                       ),
                       noItemsFoundIndicatorBuilder: (context) => Center(
                         child: Text(
-                          "No saved prescriptions found",
+                          tr('noSavedPrescriptionsFound'),
                           style: AppTextStyle.s14_w400(color: context.colors.grey),
                         ),
                       ),
@@ -59,7 +59,7 @@ class SavedPrescriptionsBottomSheetWidget extends StatelessWidget {
           ),
           Gaps.vGap20,
           DefaultButton(
-            title: "Confirm",
+            title: tr('confirm'),
             onTap: () => Navigator.pop(context),
             margin: EdgeInsets.zero,
           ),

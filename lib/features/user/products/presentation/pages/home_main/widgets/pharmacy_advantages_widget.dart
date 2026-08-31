@@ -11,16 +11,16 @@ class PharmacyAdvantagesWidget extends StatelessWidget {
       children: [
         _advantageItem(context,
             icon: Res.medicRecipeIcon,
-            title: "Upload Prescription",
-            subTitle: "Upload medical prescription during checkout"),
+            title: tr('uploadPrescription'),
+            subTitle: tr('uploadPrescriptionSubtitle')),
         _advantageItem(context,
             icon: Res.healthShield,
-            title: "Health Insurance",
-            subTitle: "Connect your health insurance provider"),
+            title: tr('healthInsurance'),
+            subTitle: tr('healthInsuranceSubtitle')),
         _advantageItem(context,
             icon: Res.pharmacyDelivery,
-            title: "Trusted Delivery",
-            subTitle: "Temperature-controlled, fast delivery"),
+            title: tr('trustedDelivery'),
+            subTitle: tr('trustedDeliverySubtitle')),
       ],
     );
   }

@@ -11,6 +11,7 @@ subprojects {
             project.android {
                 compileSdkVersion 36
                 buildToolsVersion "36.0.0"
+                ndkVersion "28.2.13676358"
                 
                 // Set namespace for plugins that don't have one
                 if (project.android.namespace == null) {
@@ -29,6 +30,11 @@ subprojects {
                 
                 defaultConfig {
                     minSdkVersion 24
+                    externalNativeBuild {
+                        cmake {
+                            arguments "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
+                        }
+                    }
                 }
                 
                 compileOptions {

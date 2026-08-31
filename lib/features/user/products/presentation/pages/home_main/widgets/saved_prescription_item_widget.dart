@@ -59,7 +59,7 @@ class SavedPrescriptionItemWidget extends StatelessWidget {
                   ),
                   Gaps.vGap4,
                   Text(
-                    "Last Use : $lastUse",
+                    tr('lastUse').replaceAll('{date}', lastUse),
                     style: AppTextStyle.s12_w400(color: context.colors.textColor),
                   ),
                 ],

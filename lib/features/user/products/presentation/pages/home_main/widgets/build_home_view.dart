@@ -50,8 +50,8 @@ class BuildHomeView extends StatelessWidget {
             if(controller.homeCubit.state.data!.pharmacyShops.isNotEmpty)...[
               Gaps.vGap16,
               PharmSloganBannerWidget(
-                firstText: 'Have a prescription?  Get Started',
-                secondText: 'Upload Now  ',
+                firstText: tr('haveAPrescriptionGetStarted'),
+                secondText: tr('uploadNow'),
                 onTap: () => controller.onPressAttachPrescription(context),
               ),
               Gaps.vGap16,
@@ -66,7 +66,7 @@ class BuildHomeView extends StatelessWidget {
             if(controller.homeCubit.state.data!.restaurantShops.isNotEmpty)...[
               Gaps.vGap16,
               BuildHeaderTitle(
-                title: 'Restaurants',
+                title: tr('restaurants'),
                 onTap: () => AutoRouter.of(context).push(
                   const RestaurantsRoute(),
                 ),

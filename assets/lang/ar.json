@@ -920,7 +920,24 @@
   "proofOfDeliverySubtitle": "هذه صورة لمكان ترك طلبك.",
   "viewPhoto": "عرض الصورة",
   "addMoreItems": "أضف المزيد من المنتجات",
-  "instoreCartDifferentSeller": "لديك منتجات محفوظة من \"{seller}\". يرجى مسح السلة أولاً للتسوق من هذا المتجر."
-
-
+  "instoreCartDifferentSeller": "لديك منتجات محفوظة من \"{seller}\". يرجى مسح السلة أولاً للتسوق من هذا المتجر.",
+  "groceries": "البقالة",
+  "pharmacies": "الصيدليات",
+  "restaurants": "المطاعم",
+  "haveAPrescriptionGetStarted": "لديك وصفة طبية؟ ابدأ الآن",
+  "uploadNow": "ارفع الآن",
+  "areYouAtStore": "هل أنت في متجر {store}؟",
+  "uploadPrescription": "رفع الوصفة الطبية",
+  "uploadPrescriptionSubtitle": "ارفع الوصفة الطبية أثناء إتمام الطلب",
+  "healthInsurance": "التأمين الصحي",
+  "healthInsuranceSubtitle": "اربط مزود التأمين الصحي",
+  "trustedDelivery": "توصيل موثوق",
+  "trustedDeliverySubtitle": "توصيل سريع مع تحكم في درجة الحرارة",
+  "attachPrescription": "إرفاق الوصفة",
+  "prescriptionReviewNote": "ستراجع الصيدلية المختارة وصفتك الطبية. ستتلقى تأكيداً بعد الموافقة.",
+  "chooseFromSavedPrescriptions": "اختر من الوصفات المحفوظة",
+  "savedPrescriptions": "الوصفات المحفوظة",
+  "noSavedPrescriptionsFound": "لا توجد وصفات محفوظة",
+  "lastUse": "آخر استخدام : {date}",
+  "pleaseAttachPrescriptionFirst": "يرجى إرفاق الوصفة الطبية أولاً"
 }
