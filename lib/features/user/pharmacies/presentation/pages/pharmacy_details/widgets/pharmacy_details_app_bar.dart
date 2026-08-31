@@ -47,25 +47,23 @@ class PharmacyDetailsAppBar extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CachedImage(
-                                  url: shop?.logo ?? '',
-                                  height: 110.h,
-                                  fit: BoxFit.cover,
-                                  bgColor: context.colors.white,
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.all(16),
-                                  decoration: BoxDecoration(
-                                    color: context.colors.white,
-                                  ),
-                                  child: PharmacyInfoWidget(
-                                    pharmacy: shop!,
-                                  ),
-                                ),
-                              ],
+                            GestureDetector(
+                              onTap: () => AutoRouter.of(context).push(ImageZoomRoute(image: shop?.logo ?? '')),
+                              child: CachedImage(
+                                url: shop?.logo ?? '',
+                                height: 140.h,
+                                fit: BoxFit.cover,
+                                bgColor: context.colors.white,
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(left: 16,right: 16,top: 16),
+                              decoration: BoxDecoration(
+                                color: context.colors.white,
+                              ),
+                              child: PharmacyInfoWidget(
+                                pharmacy: shop!,
+                              ),
                             ),
                           if(controller.isPharmacy)...[
                             Gaps.vGap20,
@@ -88,7 +86,6 @@ class PharmacyDetailsAppBar extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
                            if(controller.isPharmacy)...[
                              Gaps.vGap5,
                              Padding(
@@ -133,7 +130,10 @@ class PharmacyDetailsAppBar extends StatelessWidget {
 
   double get getExpandedHeight {
     if(controller.isRestaurant){
-      return 500;
+      if(haveBranches){
+        return 470 + 56;
+      }
+      return 470;
     }
     double height =
         controller.categoriesPagingController.itemList?.isNotEmpty == true
@@ -148,7 +148,10 @@ class PharmacyDetailsAppBar extends StatelessWidget {
 
   double get sizeWhileScroll {
     if(controller.isRestaurant){
-      return kToolbarHeight + 50;
+      if(haveBranches){
+        return kToolbarHeight + 156;
+      }
+      return kToolbarHeight + 100;
     }
     double height =
         controller.categoriesPagingController.itemList?.isNotEmpty == true

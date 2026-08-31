@@ -15,7 +15,11 @@ class PharmacyCategoriesWidgets extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const PharmacyPageProductsSectionWidget(),
+             PharmacyPageProductsSectionWidget(title:
+             controller.isRestaurant
+                 ? tr("products")
+                 :tr("menu"),
+             ),
             Gaps.vGap12,
             PharmacyPageCategoriesWidget(
               controller: controller,

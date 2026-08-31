@@ -20,7 +20,7 @@ class RestaurantItemWidget extends StatelessWidget {
         child: Column(
           children: [
             CachedImage(
-                height: 95,
+                height: 130,
                 width: double.infinity,
                 url: shop.logo ,
                 fit: BoxFit.cover,

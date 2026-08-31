@@ -1,7 +1,8 @@
 part of 'widgets_imports.dart';
 
 class PharmacyPageProductsSectionWidget extends StatelessWidget {
-  const PharmacyPageProductsSectionWidget({super.key});
+  final String title;
+  const PharmacyPageProductsSectionWidget({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class PharmacyPageProductsSectionWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            tr("products"),
+            title,
             style: AppTextStyle.s16_w600(color: context.colors.black),
           ),
         ],
