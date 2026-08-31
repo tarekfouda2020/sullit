@@ -35,6 +35,8 @@ class GeneralCartItem extends BaseCartItemDomainModel {
   @override
   bool isWishlist;
   @override
+  bool isFresh;
+  @override
   bool hasSpecialLoyaltyPoints;
   @override
   String soldByType;
@@ -70,6 +72,7 @@ class GeneralCartItem extends BaseCartItemDomainModel {
     required this.minQty,
     required this.stockQty,
     required this.isWishlist,
+    required this.isFresh,
     required this.soldBy,
     required this.soldByType,
     required this.shopId,

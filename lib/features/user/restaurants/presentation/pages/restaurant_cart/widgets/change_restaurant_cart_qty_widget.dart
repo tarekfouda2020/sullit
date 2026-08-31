@@ -23,14 +23,6 @@ class _ChangeRestaurantCartQtyWidgetState
   }
 
   @override
-  void didUpdateWidget(covariant ChangeRestaurantCartQtyWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.cartItem.id == widget.cartItem.id) {
-      qtyCubit.onUpdateData(widget.cartItem.quantity);
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,

@@ -58,7 +58,7 @@ class RestaurantCartController {
 
   void whileOnIncreaseCount(BuildContext context, GeneralCartItem cartItem,
       String value, GenericBloc<int> qntCubit) {
-    if (qntCubit.state.data < cartItem.stockQty) {
+    if (qntCubit.state.data < cartItem.stockQty || cartItem.isFresh) {
       var newQty = qntCubit.state.data + 1;
       qntCubit.onUpdateData(newQty);
       DebounceHelper.instance.startSearch(

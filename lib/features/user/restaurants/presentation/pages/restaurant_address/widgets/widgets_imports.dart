@@ -24,6 +24,8 @@ import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_she
 import 'package:flutter_tdd/features/user/restaurants/presentation/pages/restaurant_address/restaurant_address_imports.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import '../../../../../cart/presentation/pages/shipping/widgets/shipping_widgets_imports.dart';
+
 part 'restaurant_address_item_widget.dart';
 part 'restaurant_address_list_widget.dart';
 part 'restaurant_address_buttons_widget.dart';

@@ -8,7 +8,7 @@ class RestaurantItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 90,
+      height: 116,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: restaurantModel.length,

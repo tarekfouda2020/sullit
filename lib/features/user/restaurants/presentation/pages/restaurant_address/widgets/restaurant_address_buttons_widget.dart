@@ -19,6 +19,16 @@ class RestaurantAddressButtonsWidget extends StatelessWidget {
           spacing: 20,
           children: [
             DefaultButton(
+              title: "+ ${tr("addNewAddress")}",
+              onTap: () => controller.onAddNewAddress(context),
+              color: context.colors.white,
+              textColor: context.colors.primary,
+              borderColor: context.colors.primary,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              margin: EdgeInsets.zero,
+            ),
+            DefaultButton(
               title: tr("proceedToCheckout"),
               onTap: () => controller.onPressProceed(context),
               color: context.colors.primary,

@@ -161,3 +161,4 @@ part 'restaurant_card_widget.dart';
 
 part 'shop_type_short_cuts_widget.dart';
 part 'restaurant_item_widget.dart';
+part'seller_card_section_widget.dart';

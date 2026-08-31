@@ -20,7 +20,7 @@ class ShippingAddressListWidget extends StatelessWidget {
               itemBuilder: (_, item, index) {
                 return BuildShippingAddressItem(
                   address: item,
-                  controller: controller,
+                  onTap: () => controller.onSelectAddress(context, item),
                 );
               },
               noItemsFoundIndicatorBuilder: (cxt) =>

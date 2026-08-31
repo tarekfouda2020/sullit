@@ -93,11 +93,13 @@ class BuildHomeView extends StatelessWidget {
             // ),
             if (homeDomainModel.bannersTwo.isNotEmpty) Gaps.vGap10,
             BuildBanners(banners: homeDomainModel.bannersTwo, controller: controller),
-            Gaps.vGap16,
+            if (homeDomainModel.bannersTwo.isNotEmpty) Gaps.vGap16,
             NewArrivalOffersFormWidget(controller: controller),
             if (controller.homeCubit.state.data?.shop.isNotEmpty == true)
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
+                padding: homeDomainModel.bannersTwo.isNotEmpty
+                    ? const EdgeInsets.symmetric(vertical: 16)
+                    : const EdgeInsetsDirectional.only(bottom: 16),
                 child: BuildHeaderTitle(
                   title: tr("sellers"),
                   onTap: () => AutoRouter.of(context).push(const BestSellersPageRoute()),

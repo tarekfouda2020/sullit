@@ -1,18 +1,17 @@
 part of 'shipping_widgets_imports.dart';
 
 class BuildShippingAddressItem extends StatelessWidget {
-  final ShippingController controller;
-
+final void Function() onTap;
   final AddressDomainModel address;
 
   const BuildShippingAddressItem(
-      {Key? key, required this.controller, required this.address})
+      {Key? key,  required this.onTap, required this.address})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => controller.onSelectAddress(context, address),
+      onTap: onTap,
       child: Container(
         margin: Dimens.marginBottom12,
         padding: EdgeInsetsDirectional.only(

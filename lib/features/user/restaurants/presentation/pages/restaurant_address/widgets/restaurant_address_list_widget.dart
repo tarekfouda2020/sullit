@@ -15,12 +15,13 @@ class RestaurantAddressListWidget extends StatelessWidget {
           child: PagedListView<int, AddressDomainModel>(
             pagingController: controller.pagingController,
             shrinkWrap: true,
+             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             builderDelegate: PagedChildBuilderDelegate<AddressDomainModel>(
               itemBuilder: (_, item, index) {
-                return RestaurantAddressItemWidget(
+                return BuildShippingAddressItem(
                   address: item,
-                  controller: controller,
+                  onTap: () => controller.onSelectAddress(context, item),
                 );
               },
               noItemsFoundIndicatorBuilder: (context) => Center(
