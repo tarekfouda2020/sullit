@@ -27,4 +27,8 @@ class SellerShipping extends BaseDomainModel {
     required this.ownerId,
     required this.deliveryMessage,
   });
+
+  bool get showDeliveryOption => true;
+
+  bool get showPickupOption => true;
 }

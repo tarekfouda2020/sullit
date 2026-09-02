@@ -21,7 +21,9 @@ class CartDomainModel extends BaseDomainModel {
   String? currencySymbol;
 
   String? minimumAmountMsg;
+
   double? minimumAmount;
+
   bool? minimumStatus;
 
   CartDomainModel({

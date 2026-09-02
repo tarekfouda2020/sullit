@@ -31,7 +31,6 @@ class LocationAddressData {
   }
 
   Future<void> getLocation(BuildContext context) async {
-    // Use locationWhenInUse specifically for iOS to avoid opening settings
     Permission locationPermission = Permission.locationWhenInUse;
     bool permissionGranted = await getIt<PermissionServices>()
         .requestPermission(locationPermission, context);

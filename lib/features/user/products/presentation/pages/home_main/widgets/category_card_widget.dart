@@ -13,19 +13,16 @@ class CategoryCardWidget extends StatelessWidget {
       required this.image,
       required this.backgroundColor,
       required this.textColor,
-      required this.onTap});
+      required this.onTap
+      });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 122,
         height: 122,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 8,
-        ),
+        padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: BorderRadius.circular(24),
@@ -43,7 +40,11 @@ class CategoryCardWidget extends StatelessWidget {
               ),
             ),
             Gaps.vGap5,
-            Text(title, style: AppTextStyle.s13_w500(color: textColor)),
+            Text(title,
+                overflow: TextOverflow.ellipsis,
+                style: AppTextStyle.s13_w500(color: textColor)
+            ),
+            Gaps.vGap5,
           ],
         ),
       ),

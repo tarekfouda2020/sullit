@@ -88,7 +88,9 @@ class SellerProductsController {
 
   void _getCategories() {
     getShopCategories(1, refresh: false);
+    getShopCategories(1);
     categoriesPagingController.addPageRequestListener((pageKey) {
+      getShopCategories(pageKey, refresh: false);
       getShopCategories(pageKey);
     });
   }
@@ -116,7 +118,7 @@ class SellerProductsController {
   }
 
   Future<void> getProducts(int page, {bool refresh = true}) async {
-    var params = _params(page, refresh);
+    SellerProductsParams params = _params(page, refresh);
     isLoadingNextPage.onUpdateData(page > 1);
     var result = await GetSellerProducts().call(params);
     isLoadingNextPage.onUpdateData(false);

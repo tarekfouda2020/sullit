@@ -30,10 +30,7 @@ class LocationService {
     GlobalState.instance.set(GlobalStateKeys.userLocation, location);
   }
 
-  String locationQuerySuffix() {
-    if (_userLocation == null) return '';
-    return '&latitude=${_userLocation!.latitude}&longitude=${_userLocation!.longitude}';
-  }
+
 
   Future<String> getAddress(LatLng latLng, {bool setCountryName = true}) async {
     try {
@@ -62,7 +59,6 @@ class LocationService {
   }
 
   Future<LatLng?> getCurrentLocationWithPermission(BuildContext context)async{
-    // Use locationWhenInUse for better iOS compatibility
      await getIt<PermissionServices>().requestPermission(Permission.locationWhenInUse, context);
     try {
       final Position position = await Geolocator.getCurrentPosition(locationSettings: const LocationSettings(

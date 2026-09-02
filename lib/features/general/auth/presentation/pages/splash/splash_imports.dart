@@ -19,9 +19,11 @@ import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
 import 'package:flutter_tdd/features/general/auth/presentation/manager/user_cubit/user_cubit.dart';
+import 'package:flutter_tdd/features/general/common/domain/entities/location_entity.dart';
 import 'package:flutter_tdd/features/user/base/data/enums/lang_type_enum.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter_tdd/core/services/deep_link_service.dart';

@@ -780,5 +780,9 @@
   "savedPrescriptions": "Saved Prescriptions",
   "noSavedPrescriptionsFound": "No saved prescriptions found",
   "lastUse": "Last Use : {date}",
-  "pleaseAttachPrescriptionFirst": "Please attach your prescription first"
+  "pleaseAttachPrescriptionFirst": "Please attach your prescription first",
+  "deliveryNotAvailableSwitchPickupOrAddress": "Delivery is not available for this address. Switch to pick-up or change the address.",
+  "deliveryNotAvailableChangeAddress": "Delivery is not available for this address. Please change the address.",
+  "pickupNotAvailableSwitchDeliveryOrAddress": "Pick-up is not available. Switch to delivery or change the address.",
+  "pickupNotAvailableChangeAddress": "Pick-up is not available. Please change the address."
 }

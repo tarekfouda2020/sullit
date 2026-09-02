@@ -10,8 +10,28 @@ class SplashController {
     // );
   }
 
+
+
+  // Future<void> getUserCurrentLocation(BuildContext context) async {
+  //   // final status = await Permission.locationWhenInUse.request();
+  //   // final granted = status.isGranted || status.isLimited;
+  //   // if (!granted) return false;
+  //
+  //   // final location = await locationService.getCurrentLocation();
+  //   // Permission locationPermission = Permission.locationWhenInUse;
+  //   // bool permissionGranted = await getIt<PermissionServices>()
+  //   //     .requestPermission(locationPermission, context);
+  //
+  //   final result = await AutoRouter.of(context).push(LocationAddressRoute(fromEdit: false));
+  //   if (result != null && result is LocationEntity) {
+  //     LatLng location = LatLng(result.lat, result.lng);
+  //     getIt<LocationService>().setUserLocation(location);
+  //   }
+  //   manipulateSaveData(context);
+  // }
+
+
   Future<void> manipulateSaveData(BuildContext context) async {
-    await getUserCurrentLocation(context);
     updateLang(context);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var strUser = prefs.get("user");
@@ -40,14 +60,7 @@ class SplashController {
 
 
 
-  Future<void> getUserCurrentLocation(BuildContext context) async {
-    final locationService = getIt<LocationService>();
-    LatLng location =
-        await locationService.getCurrentLocationWithPermission(context) ??
-            const LatLng(24.46, 54.38);
-    locationService.setUserLocation(location);
-    GlobalState.instance.set(GlobalStateKeys.userLocation, location);
-  }
+
 
 
   /// back-end lang code is different from local lang code

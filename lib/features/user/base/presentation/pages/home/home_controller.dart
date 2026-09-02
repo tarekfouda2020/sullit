@@ -16,8 +16,10 @@ class HomeController {
 
   bool showToast = false;
   int offersTabIndex = 0;
-  GenericBloc<CartDomainModel> get cartItemsBloc =>
-      getIt<CartHelper>().cartItemsBloc;
+  GenericBloc<CartDomainModel> get cartItemsBloc => getIt<CartHelper>().cartItemsBloc;
+
+  SaleTabsData saleTabsData = SaleTabsData();
+
   List<String> tabs = [
     Res.home,
     Res.category,
@@ -54,7 +56,6 @@ class HomeController {
         return;
       }
     }
-    locationService.setUserLocation(const LatLng(24.46, 54.38));
   }
 
   void _loadHome() {
@@ -263,7 +264,6 @@ class HomeController {
     }
   }
 
-  SaleTabsData saleTabsData = SaleTabsData();
 
   void getOffersData(
     BuildContext context,

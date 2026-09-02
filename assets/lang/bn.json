@@ -813,5 +813,9 @@
   "savedPrescriptions": "সংরক্ষিত প্রেসক্রিপশন",
   "noSavedPrescriptionsFound": "কোনো সংরক্ষিত প্রেসক্রিপশন পাওয়া যায়নি",
   "lastUse": "শেষ ব্যবহার : {date}",
-  "pleaseAttachPrescriptionFirst": "প্রথমে আপনার প্রেসক্রিপশন সংযুক্ত করুন"
+  "pleaseAttachPrescriptionFirst": "প্রথমে আপনার প্রেসক্রিপশন সংযুক্ত করুন",
+  "deliveryNotAvailableSwitchPickupOrAddress": "এই ঠিকানায় ডেলিভারি উপলব্ধ নয়। পিক-আপে যান অথবা ঠিকানা পরিবর্তন করুন।",
+  "deliveryNotAvailableChangeAddress": "এই ঠিকানায় ডেলিভারি উপলব্ধ নয়। অনুগ্রহ করে ঠিকানা পরিবর্তন করুন।",
+  "pickupNotAvailableSwitchDeliveryOrAddress": "পিক-আপ উপলব্ধ নয়। ডেলিভারিতে যান অথবা ঠিকানা পরিবর্তন করুন।",
+  "pickupNotAvailableChangeAddress": "পিক-আপ উপলব্ধ নয়। অনুগ্রহ করে ঠিকানা পরিবর্তন করুন।"
 }

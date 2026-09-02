@@ -33,7 +33,7 @@ class RestaurantDeliveryTypeItemWidget extends StatelessWidget {
           Row(
             spacing: 10,
             children: [
-              if (model.activeDelivery)
+              if (model.showDeliveryOption)
                 RestaurantDeliveryOptionWidget(
                   isSelected: model.deliveryType.isDelivery,
                   label: "Delivery",
@@ -42,7 +42,7 @@ class RestaurantDeliveryTypeItemWidget extends StatelessWidget {
                     onRefresh();
                   },
                 ),
-              if (model.activePickup)
+              if (model.showPickupOption)
                 RestaurantDeliveryOptionWidget(
                   isSelected: model.deliveryType.isPickUp,
                   label: "Pickup",
@@ -53,7 +53,7 @@ class RestaurantDeliveryTypeItemWidget extends StatelessWidget {
                 ),
             ],
           ),
-          if (model.activeDelivery || model.activePickup) Gaps.vGap15,
+          if (model.showDeliveryOption || model.showPickupOption) Gaps.vGap15,
           _buildInfoText(context),
         ],
       ),

@@ -9,8 +9,8 @@ class MembershipSubscribe extends StatefulWidget {
 }
 
 class _MembershipSubscribeState extends State<MembershipSubscribe> {
-  final MembershipSubscribeController controller =
-      MembershipSubscribeController();
+
+  final MembershipSubscribeController controller = MembershipSubscribeController();
 
   @override
   Widget build(BuildContext context) {

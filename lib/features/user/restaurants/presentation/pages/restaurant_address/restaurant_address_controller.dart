@@ -133,9 +133,25 @@ class RestaurantAddressController {
   }
 
   bool canConfirmShipping() {
-    return shippingDataCubit.state.data.every(
-      (e) => e.activeDelivery == true || e.activePickup == true,
-    );
+    for (SellerShipping e in shippingDataCubit.state.data) {
+      if (e.deliveryType.isDelivery && e.delivery == null) {
+        CustomToast.showSimpleToast(
+          msg: e.showPickupOption
+              ? tr('deliveryNotAvailableSwitchPickupOrAddress')
+              : tr('deliveryNotAvailableChangeAddress'),
+        );
+        return false;
+      }
+      if (e.deliveryType.isPickUp && e.pickup == null) {
+        CustomToast.showSimpleToast(
+          msg: e.showDeliveryOption
+              ? tr('pickupNotAvailableSwitchDeliveryOrAddress')
+              : tr('pickupNotAvailableChangeAddress'),
+        );
+        return false;
+      }
+    }
+    return true;
   }
 
   List<PharmacyShippingInfo> _shippingData(List<SellerShipping> data) {

@@ -917,5 +917,9 @@
   "savedPrescriptions": "محفوظ نسخے",
   "noSavedPrescriptionsFound": "کوئی محفوظ نسخہ نہیں ملا",
   "lastUse": "آخری استعمال : {date}",
-  "pleaseAttachPrescriptionFirst": "پہلے اپنا نسخہ منسلک کریں"
+  "pleaseAttachPrescriptionFirst": "پہلے اپنا نسخہ منسلک کریں",
+  "deliveryNotAvailableSwitchPickupOrAddress": "اس پتے پر ڈیلیوری دستیاب نہیں۔ پک اپ منتخب کریں یا پتہ تبدیل کریں۔",
+  "deliveryNotAvailableChangeAddress": "اس پتے پر ڈیلیوری دستیاب نہیں۔ براہ کرم پتہ تبدیل کریں۔",
+  "pickupNotAvailableSwitchDeliveryOrAddress": "پک اپ دستیاب نہیں۔ ڈیلیوری منتخب کریں یا پتہ تبدیل کریں۔",
+  "pickupNotAvailableChangeAddress": "پک اپ دستیاب نہیں۔ براہ کرم پتہ تبدیل کریں۔"
 }

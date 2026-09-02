@@ -34,7 +34,14 @@ class HomeMainController {
     homeController = controller;
     controller.searchController.clear();
     controller.visibleSearch.onUpdateData(false);
+    getAllBrands(refresh: false);
+    getAllBrands();
 
+  }
+
+
+
+  void getAllData(){
     getVipOffers(refresh: false);
     getVipOffers();
 
@@ -47,9 +54,6 @@ class HomeMainController {
     getOnSaleOffers(refresh: false);
     getOnSaleOffers();
 
-    getAllBrands(refresh: false);
-    getAllBrands();
-
     getProductSections();
     scrollController.addListener(scrollListener);
     savedPrescriptionsPagingController.addPageRequestListener((page) {
@@ -57,9 +61,10 @@ class HomeMainController {
     });
   }
 
+
   void scrollListener() {
     if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
-      getProductSections();
+      // getProductSections();
     }
   }
 
