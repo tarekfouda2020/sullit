@@ -363,7 +363,8 @@ class SellerProductsController {
     }
     final sellerName = shop?.name ?? '';
     final sellerImage = shop?.logo ?? '';
-    final hasBranches = shop?.hasBranches ?? false;
+    final hasBranches = false;
+    // final hasBranches = shop?.hasBranches ?? false;
     if (InstoreCartHelper.instance.hasItemsFromDifferentSeller(sellerId)) {
       final cart = InstoreCartHelper.instance.getLocalCart();
       showDifferentSellerDialog(

@@ -3,8 +3,12 @@ part of 'product_details_widgets_imports.dart';
 class BuildRelatedProducts extends StatelessWidget {
   final List<ProductCard> relatedProducts;
   final ProductDetailsController controller;
-  const BuildRelatedProducts(
-      {super.key, required this.relatedProducts, required this.controller});
+
+  const BuildRelatedProducts({
+    super.key,
+    required this.relatedProducts,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +45,8 @@ class BuildRelatedProducts extends StatelessWidget {
                         padding: Dimens.paddingHorizontal5PX,
                         child: BuildProductItem(
                           productModel: relatedProducts[index],
-                          fallbackBranchId: controller.branchId,
+                          fallbackBranchId: relatedProducts[index].branch?.id ??
+                              controller.branchId,
                           onPressDelete: () => controller.getCartItems(),
                           afterAddToCart: () =>
                               controller.calculateRemainingAmount(),

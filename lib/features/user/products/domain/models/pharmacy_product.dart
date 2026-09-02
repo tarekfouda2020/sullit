@@ -1,9 +1,6 @@
-import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
 
 class PharmacyProduct extends Product {
-  BranchDomainModel? branch;
-
   PharmacyProduct(
       {super.id,
       super.name,
@@ -55,7 +52,7 @@ class PharmacyProduct extends Product {
       super.hasSpecialLoyaltyPoints,
       super.maxQnt,
       super.isAddedTCompare = false,
-      this.branch,});
+      super.branch,});
 
   PharmacyProduct.fromJson(Map<String, dynamic> json) : super.fromJsonBase(json);
 }

@@ -944,5 +944,12 @@
   "deliveryNotAvailableSwitchPickupOrAddress": "التوصيل غير متاح لهذا العنوان. غيّر النوع إلى الاستلام أو غيّر العنوان.",
   "deliveryNotAvailableChangeAddress": "التوصيل غير متاح لهذا العنوان. يرجى تغيير العنوان.",
   "pickupNotAvailableSwitchDeliveryOrAddress": "الاستلام غير متاح. غيّر النوع إلى التوصيل أو غيّر العنوان.",
-  "pickupNotAvailableChangeAddress": "الاستلام غير متاح. يرجى تغيير العنوان."
+  "pickupNotAvailableChangeAddress": "الاستلام غير متاح. يرجى تغيير العنوان.",
+  "cartAddressChangesTitle": "تغييرات مطلوبة في السلة",
+  "cartAddressChangesDesc": "هذا العنوان سيغيّر بعض المنتجات في سلتك.",
+  "cartBranchChanged": "تم تغيير الفرع من {from} إلى {to}",
+  "cartRemovedItems": "منتجات محذوفة",
+  "cartUpdatedItems": "كميات محدّثة",
+  "cartItemQtyUpdated": "الكمية تغيّرت من {old} إلى {new}",
+  "changeAddress": "تغيير العنوان"
 }

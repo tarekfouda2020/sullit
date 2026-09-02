@@ -921,5 +921,12 @@
   "deliveryNotAvailableSwitchPickupOrAddress": "اس پتے پر ڈیلیوری دستیاب نہیں۔ پک اپ منتخب کریں یا پتہ تبدیل کریں۔",
   "deliveryNotAvailableChangeAddress": "اس پتے پر ڈیلیوری دستیاب نہیں۔ براہ کرم پتہ تبدیل کریں۔",
   "pickupNotAvailableSwitchDeliveryOrAddress": "پک اپ دستیاب نہیں۔ ڈیلیوری منتخب کریں یا پتہ تبدیل کریں۔",
-  "pickupNotAvailableChangeAddress": "پک اپ دستیاب نہیں۔ براہ کرم پتہ تبدیل کریں۔"
+  "pickupNotAvailableChangeAddress": "پک اپ دستیاب نہیں۔ براہ کرم پتہ تبدیل کریں۔",
+  "cartAddressChangesTitle": "کارٹ میں تبدیلی درکار ہے",
+  "cartAddressChangesDesc": "اس پتے سے آپ کے کارٹ کی کچھ اشیاء بدل جائیں گی۔",
+  "cartBranchChanged": "برانچ {from} سے {to} ہو گئی",
+  "cartRemovedItems": "حذف شدہ اشیاء",
+  "cartUpdatedItems": "تبدیل شدہ مقدار",
+  "cartItemQtyUpdated": "مقدار {old} سے {new} ہو گئی",
+  "changeAddress": "پتہ تبدیل کریں"
 }

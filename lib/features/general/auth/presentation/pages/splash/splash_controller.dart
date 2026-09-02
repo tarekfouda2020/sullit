@@ -4,31 +4,27 @@ part of 'splash_imports.dart';
 
 class SplashController {
   Future<void> initScreen(BuildContext context) async {
-    manipulateSaveData(context);
-    // PlaySoundHelper.instance.startSound(
-    //     afterSoundEnd: () => manipulateSaveData(context)
-    // );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      getUserCurrentLocation(context);
+    });
   }
 
-
-
-  // Future<void> getUserCurrentLocation(BuildContext context) async {
-  //   // final status = await Permission.locationWhenInUse.request();
-  //   // final granted = status.isGranted || status.isLimited;
-  //   // if (!granted) return false;
-  //
-  //   // final location = await locationService.getCurrentLocation();
-  //   // Permission locationPermission = Permission.locationWhenInUse;
-  //   // bool permissionGranted = await getIt<PermissionServices>()
-  //   //     .requestPermission(locationPermission, context);
-  //
-  //   final result = await AutoRouter.of(context).push(LocationAddressRoute(fromEdit: false));
-  //   if (result != null && result is LocationEntity) {
-  //     LatLng location = LatLng(result.lat, result.lng);
-  //     getIt<LocationService>().setUserLocation(location);
-  //   }
-  //   manipulateSaveData(context);
-  // }
+  Future<void> getUserCurrentLocation(BuildContext context) async {
+    final locationService = getIt<LocationService>();
+    final granted = await locationService.requestWhenInUsePermission();
+    if (granted) {
+      try {
+        final loc = await locationService.getCurrentLocation();
+        if (loc != null) {
+          locationService.setUserLocation(loc);
+        }
+      } catch (e) {
+        log("error is =>>>>>>> $e ========");
+      }
+    }
+    if (!context.mounted) return;
+    manipulateSaveData(context);
+  }
 
 
   Future<void> manipulateSaveData(BuildContext context) async {

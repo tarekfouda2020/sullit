@@ -88,6 +88,8 @@ class ProductDetailsController implements CartSheetController {
     var params = _detailsParams(refresh, productId);
     var result = await GetProductDetails().call(params);
     if (result != null) {
+      log("====>>> branch name ${result.branch?.name}<<<<<<=====");
+      branchId = result.product.branch?.id ?? branchId;
       !refresh ? result.product.isWishlist = isFav : null;
       result.product.variants?.sort((first, second) => second.sortOrder!.compareTo(first.sortOrder!));
       detailsCubit.onUpdateData(result);
@@ -415,7 +417,7 @@ class ProductDetailsController implements CartSheetController {
         context,
         qtyCubit.state.data,
         detailsCubit.state.data?.product.variant?.id,
-        branchId,
+        detailsCubit.state.data?.branch?.id,
         // onAddCartFunc: () => showCartSuccessDialog(context),
         onAddCartFunc: () {
           FacebookEventsHelper.instance.productAddToCart(
@@ -431,6 +433,7 @@ class ProductDetailsController implements CartSheetController {
         detailsCubit.state.data?.product.variant?.id,
         callCartData: true,
         type: getProductType,
+        branchId: branchId,
         // onAddCartFunc: () => showCartSuccessDialog(context),
         onAddCartFunc: () {
           FacebookEventsHelper.instance.productAddToCart(

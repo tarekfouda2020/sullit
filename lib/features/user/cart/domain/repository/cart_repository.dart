@@ -7,9 +7,11 @@ import 'package:flutter_tdd/features/user/cart/domain/entities/clear_cart_params
 import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
+import 'package:flutter_tdd/features/user/cart/domain/entities/preview_cart_address_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/store_cart_shipping_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/update_cart_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart_preview_address.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/coupon_response_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/delivery_instruction_model.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/gift_card_domain_model.dart';
@@ -23,6 +25,8 @@ import 'package:flutter_tdd/features/user/cart/data/models/fess_mechanism_model/
 abstract class CartRepository {
   Future<Either<Failure, CartDomainModel>> getCartItems(CartParams params);
   Future<Either<Failure, bool>> addCartAddress(AddCartAddressParams param);
+  Future<Either<Failure, CartPreviewAddress>> previewCartAddress(
+      PreviewCartAddressParams params);
   Future<Either<Failure, Shipping>> cartStoreShipping(
       StoreCartShippingParams params);
   Future<Either<Failure, CouponResponse>> applyCoupon(String param);

@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_branch_model/pharmacy_branch_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/variant_model/variant_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -46,6 +47,7 @@ class ProductCardModel extends BaseApiModel<ProductCard> with _$ProductCardModel
     @JsonKey(name: 'sold_by_name') required String soldByName,
     @JsonKey(name: 'category_name') required String categoryName,
     @JsonKey(name: 'brand_name') required String brandName,
+    PharmacyBranchModel? branch,
   }) = _ProductCardModel;
 
   factory ProductCardModel.fromJson(Map<String, dynamic> json) => _$ProductCardModelFromJson(json);
@@ -86,6 +88,7 @@ class ProductCardModel extends BaseApiModel<ProductCard> with _$ProductCardModel
       soldByName: soldByName,
       categoryName: categoryName,
       brandName: brandName,
+      branch: branch?.toDomainModel(),
     );
   }
 }

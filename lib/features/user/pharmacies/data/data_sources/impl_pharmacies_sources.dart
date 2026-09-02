@@ -56,6 +56,7 @@ class ImplPharmaciesSources extends PharmaciesSources {
     final model = HttpRequestModel(
       url: ApiNames.shopDetails(param.shopId),
       requestMethod: RequestMethod.get,
+      requestBody: param.toJson(),
       responseType: ResType.model,
       responseKey: (data) => data['data']['shop'],
       refresh: param.refresh,

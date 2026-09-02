@@ -2,6 +2,7 @@ import 'dart:convert';
 
 abstract class BaseAddProductToCartParams {
   int? variantId;
+  int? branchId;
   int quantity;
   String? macAddress;
   final bool showLoader;
@@ -10,6 +11,7 @@ abstract class BaseAddProductToCartParams {
     required this.variantId,
     required this.quantity,
     this.macAddress,
+    this.branchId,
     this.showLoader = true,
   });
 
@@ -17,6 +19,7 @@ abstract class BaseAddProductToCartParams {
         'variant_id': variantId,
         'quantity': quantity,
         'mac_address': macAddress,
+        if(branchId!= null) "branch_id": branchId
       };
 }
 
@@ -25,17 +28,17 @@ class AddProductToCartParams extends BaseAddProductToCartParams {
     required super.variantId,
     required super.quantity,
     super.macAddress,
+    super.branchId,
     super.showLoader = true,
   });
 }
 
 class PharmacyCartParams extends BaseAddProductToCartParams {
-  final int? branchId;
 
   PharmacyCartParams({
     required super.variantId,
     required super.quantity,
-    this.branchId,
+    super.branchId,
     super.macAddress,
     super.showLoader = true,
   });

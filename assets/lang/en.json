@@ -784,5 +784,12 @@
   "deliveryNotAvailableSwitchPickupOrAddress": "Delivery is not available for this address. Switch to pick-up or change the address.",
   "deliveryNotAvailableChangeAddress": "Delivery is not available for this address. Please change the address.",
   "pickupNotAvailableSwitchDeliveryOrAddress": "Pick-up is not available. Switch to delivery or change the address.",
-  "pickupNotAvailableChangeAddress": "Pick-up is not available. Please change the address."
+  "pickupNotAvailableChangeAddress": "Pick-up is not available. Please change the address.",
+  "cartAddressChangesTitle": "Cart changes required",
+  "cartAddressChangesDesc": "This address will change some items in your cart.",
+  "cartBranchChanged": "Branch changed from {from} to {to}",
+  "cartRemovedItems": "Removed items",
+  "cartUpdatedItems": "Updated quantities",
+  "cartItemQtyUpdated": "Quantity changed from {old} to {new}",
+  "changeAddress": "Change address"
 }

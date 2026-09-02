@@ -66,7 +66,7 @@ class _BuildProductItemState extends BaseProductItemState<BuildProductItem> {
         params: ProductDetailsPageRouteParams(
           productId: widget.productModel.id,
           isFav: widget.productModel.isWishlist,
-          branchId: widget.fallbackBranchId,
+          branchId: widget.productModel.branch?.id ?? widget.fallbackBranchId,
         ),
       ),
     );

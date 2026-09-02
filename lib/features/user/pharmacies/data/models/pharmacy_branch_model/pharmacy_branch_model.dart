@@ -17,10 +17,10 @@ class PharmacyBranchModel extends BaseApiModel<BranchDomainModel> with _$Pharmac
     required String latitude,
     required String longitude,
     @JsonKey(name: 'map_desc') required String mapDescription,
-    @JsonKey(name: 'is_default') required bool isDefault,
+    @JsonKey(name: 'is_default')  bool? isDefault,
     @JsonKey(name: 'distance_km') double? distanceKm,
-    required PharmacyBranchLocationModel state,
-    required PharmacyBranchLocationModel city,
+     PharmacyBranchLocationModel? state,
+     PharmacyBranchLocationModel? city,
   }) = _PharmacyBranchModel;
 
   factory PharmacyBranchModel.fromJson(Map<String, dynamic> json) =>
@@ -32,13 +32,13 @@ class PharmacyBranchModel extends BaseApiModel<BranchDomainModel> with _$Pharmac
       id: id,
       name: name,
       phone: phone,
-      state: state.toDomainModel(),
-      city: city.toDomainModel(),
+      state: state?.toDomainModel(),
+      city: city?.toDomainModel(),
       address: address,
       mapDescription: mapDescription,
       latitude: latitude,
       longitude: longitude,
-      isDefault: isDefault,
+      isDefault: isDefault ?? false,
       distanceKm: distanceKm,
     );
   }

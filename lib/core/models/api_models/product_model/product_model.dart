@@ -86,13 +86,10 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
       case ProductType.pharmacy:
         return _fillCommon(PharmacyProduct(branch: branch?.toDomainModel()));
       case ProductType.general:
-        return _fillCommon(NormalProduct());
+        return _fillCommon(NormalProduct(branch: branch?.toDomainModel()));
     }
   }
 
-  /// Populate every field shared across product subclasses. Subclass-specific
-  /// fields (e.g. `branch` on [PharmacyProduct]) must be passed to the
-  /// subclass constructor before calling this helper.
   T _fillCommon<T extends Product>(T p) {
     p.id = id;
     p.name = name;
@@ -143,6 +140,7 @@ class ProductModel extends BaseApiModel<Product> with _$ProductModel {
     p.maxQnt = maxQntPerOrder;
     p.prescriptionRequired = prescriptionRequired;
     p.insuranceEligible = insuranceEligible;
+    p.branch = branch?.toDomainModel();
     return p;
   }
 }

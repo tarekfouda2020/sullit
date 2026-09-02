@@ -36,7 +36,9 @@ class PharmacyAddressController {
       this.pharmacy,
       this.createOrderParams,
       this.preSelectedBranchId}) {
-    if (pharmacy?.hasBranches == true && preSelectedBranchId == null) {
+    if (havePrescription &&
+        pharmacy?.hasBranches == true &&
+        preSelectedBranchId == null) {
       getPharmacyBranches(1, refresh: false);
       branchesPagingController.addPageRequestListener((pageKey) {
         getPharmacyBranches(pageKey);
@@ -95,9 +97,9 @@ class PharmacyAddressController {
       // createPrescriptionOrder(context);
       //   getPrescriptionShippingInfo();
     }
-    else if(pharmacy?.hasBranches == true && preSelectedBranchId == null){
-     getBranches(context);
-   }
+    // else if(pharmacy?.hasBranches == true && preSelectedBranchId == null){
+    //  getBranches(context);
+    // }
   }
 
   void onAddNewAddress(BuildContext context) async {
@@ -166,13 +168,13 @@ class PharmacyAddressController {
   //   });
   // }
 
-  SellerShippingInfoParams _prescriptionShippingInfo() {
-    return SellerShippingInfoParams(
-      sellerId: pharmacy!.userId!,
-      addressId: selectedAddress!.id!,
-      branchId: effectiveBranchId,
-    );
-  }
+  // SellerShippingInfoParams _prescriptionShippingInfo() {
+  //   return SellerShippingInfoParams(
+  //     sellerId: pharmacy!.userId!,
+  //     addressId: selectedAddress!.id!,
+  //     branchId: effectiveBranchId,
+  //   );
+  // }
 
   Future<void> getShippingInfo(BuildContext context) async {
     var params = PharamcyShippingInfoParams(addressId: selectedAddress!.id!);
@@ -222,7 +224,6 @@ class PharmacyAddressController {
 
   Future<void> createPrescriptionOrder(BuildContext context) async {
     PharmacyCreateOrderParams params = _createInsurancePrescriptionParams();
-    log("====>>>>>>>>> params is ${params.toPrescriptionOrderJson()} =====");
     var result = await CreatePharmacyPrescriptionOrder().call(params);
     if (result != null) {
       AutoRouter.of(context)
@@ -235,6 +236,7 @@ class PharmacyAddressController {
     return PharmacyCheckoutParams(
       shippingInfo: _shippingData(data),
       addressId: selectedAddress!.id!,
+      sellerId: pharmacy?.userId,
     );
   }
 

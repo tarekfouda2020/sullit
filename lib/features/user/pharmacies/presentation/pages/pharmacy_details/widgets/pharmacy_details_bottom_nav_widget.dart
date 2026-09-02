@@ -57,7 +57,8 @@ class PharmacyDetailsBottomNavWidget extends StatelessWidget {
                   Visibility(
                     visible: controller.neededAmount() > 0,
                     child: Visibility(
-                      visible: controller.cartBranchId!= null &&  controller.cartBranchId == controller.selectedBranchId ,
+                      visible: true,
+                      // visible: controller.cartBranchId!= null &&  controller.cartBranchId == controller.selectedBranchId ,
                       child: Row(
                         children: [
                           Gaps.hGap32,

@@ -18,6 +18,7 @@ class ImplSearchDataSources extends SearchDataSources {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getSearchResult + params.paramToQuery(),
       requestMethod: RequestMethod.get,
+      requestBody: params.toJson(),
       responseType: ResType.model,
       refresh: params.refresh,
       responseKey: (data) => data['data'],

@@ -78,6 +78,7 @@ mixin _$ProductCardModel {
   String get categoryName => throw _privateConstructorUsedError;
   @JsonKey(name: 'brand_name')
   String get brandName => throw _privateConstructorUsedError;
+  PharmacyBranchModel? get branch => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -124,9 +125,11 @@ abstract class $ProductCardModelCopyWith<$Res> {
       @JsonKey(name: 'sold_by_type') String soldByType,
       @JsonKey(name: 'sold_by_name') String soldByName,
       @JsonKey(name: 'category_name') String categoryName,
-      @JsonKey(name: 'brand_name') String brandName});
+      @JsonKey(name: 'brand_name') String brandName,
+      PharmacyBranchModel? branch});
 
   $VariantModelCopyWith<$Res>? get variant;
+  $PharmacyBranchModelCopyWith<$Res>? get branch;
 }
 
 /// @nodoc
@@ -175,6 +178,7 @@ class _$ProductCardModelCopyWithImpl<$Res, $Val extends ProductCardModel>
     Object? soldByName = null,
     Object? categoryName = null,
     Object? brandName = null,
+    Object? branch = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -309,6 +313,10 @@ class _$ProductCardModelCopyWithImpl<$Res, $Val extends ProductCardModel>
           ? _value.brandName
           : brandName // ignore: cast_nullable_to_non_nullable
               as String,
+      branch: freezed == branch
+          ? _value.branch
+          : branch // ignore: cast_nullable_to_non_nullable
+              as PharmacyBranchModel?,
     ) as $Val);
   }
 
@@ -321,6 +329,18 @@ class _$ProductCardModelCopyWithImpl<$Res, $Val extends ProductCardModel>
 
     return $VariantModelCopyWith<$Res>(_value.variant!, (value) {
       return _then(_value.copyWith(variant: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PharmacyBranchModelCopyWith<$Res>? get branch {
+    if (_value.branch == null) {
+      return null;
+    }
+
+    return $PharmacyBranchModelCopyWith<$Res>(_value.branch!, (value) {
+      return _then(_value.copyWith(branch: value) as $Val);
     });
   }
 }
@@ -366,10 +386,13 @@ abstract class _$$_ProductCardModelCopyWith<$Res>
       @JsonKey(name: 'sold_by_type') String soldByType,
       @JsonKey(name: 'sold_by_name') String soldByName,
       @JsonKey(name: 'category_name') String categoryName,
-      @JsonKey(name: 'brand_name') String brandName});
+      @JsonKey(name: 'brand_name') String brandName,
+      PharmacyBranchModel? branch});
 
   @override
   $VariantModelCopyWith<$Res>? get variant;
+  @override
+  $PharmacyBranchModelCopyWith<$Res>? get branch;
 }
 
 /// @nodoc
@@ -416,6 +439,7 @@ class __$$_ProductCardModelCopyWithImpl<$Res>
     Object? soldByName = null,
     Object? categoryName = null,
     Object? brandName = null,
+    Object? branch = freezed,
   }) {
     return _then(_$_ProductCardModel(
       id: null == id
@@ -550,6 +574,10 @@ class __$$_ProductCardModelCopyWithImpl<$Res>
           ? _value.brandName
           : brandName // ignore: cast_nullable_to_non_nullable
               as String,
+      branch: freezed == branch
+          ? _value.branch
+          : branch // ignore: cast_nullable_to_non_nullable
+              as PharmacyBranchModel?,
     ));
   }
 }
@@ -596,7 +624,8 @@ class _$_ProductCardModel extends _ProductCardModel {
       @JsonKey(name: 'sold_by_type') required this.soldByType,
       @JsonKey(name: 'sold_by_name') required this.soldByName,
       @JsonKey(name: 'category_name') required this.categoryName,
-      @JsonKey(name: 'brand_name') required this.brandName})
+      @JsonKey(name: 'brand_name') required this.brandName,
+      this.branch})
       : _productOptions = productOptions,
         super._();
 
@@ -702,10 +731,12 @@ class _$_ProductCardModel extends _ProductCardModel {
   @override
   @JsonKey(name: 'brand_name')
   final String brandName;
+  @override
+  final PharmacyBranchModel? branch;
 
   @override
   String toString() {
-    return 'ProductCardModel(id: $id, name: $name, type: $type, typeLabel: $typeLabel, unit: $unit, barcode: $barcode, prescriptionRequired: $prescriptionRequired, insuranceEligible: $insuranceEligible, isFresh: $isFresh, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, loyaltyPoints: $loyaltyPoints, thumbnailImg: $thumbnailImg, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasVipOffer: $hasVipOffer, hasShareholderDiscount: $hasShareholderDiscount, hasDiscount: $hasDiscount, discount: $discount, productOptions: $productOptions, minQty: $minQty, maxQty: $maxQty, currencySymbol: $currencySymbol, variant: $variant, rating: $rating, isDigital: $isDigital, isWishlist: $isWishlist, sellerId: $sellerId, shopId: $shopId, soldByType: $soldByType, soldByName: $soldByName, categoryName: $categoryName, brandName: $brandName)';
+    return 'ProductCardModel(id: $id, name: $name, type: $type, typeLabel: $typeLabel, unit: $unit, barcode: $barcode, prescriptionRequired: $prescriptionRequired, insuranceEligible: $insuranceEligible, isFresh: $isFresh, hasSpecialLoyaltyPoints: $hasSpecialLoyaltyPoints, loyaltyPoints: $loyaltyPoints, thumbnailImg: $thumbnailImg, isMultiple: $isMultiple, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasVipOffer: $hasVipOffer, hasShareholderDiscount: $hasShareholderDiscount, hasDiscount: $hasDiscount, discount: $discount, productOptions: $productOptions, minQty: $minQty, maxQty: $maxQty, currencySymbol: $currencySymbol, variant: $variant, rating: $rating, isDigital: $isDigital, isWishlist: $isWishlist, sellerId: $sellerId, shopId: $shopId, soldByType: $soldByType, soldByName: $soldByName, categoryName: $categoryName, brandName: $brandName, branch: $branch)';
   }
 
   @override
@@ -768,7 +799,8 @@ class _$_ProductCardModel extends _ProductCardModel {
             (identical(other.categoryName, categoryName) ||
                 other.categoryName == categoryName) &&
             (identical(other.brandName, brandName) ||
-                other.brandName == brandName));
+                other.brandName == brandName) &&
+            (identical(other.branch, branch) || other.branch == branch));
   }
 
   @JsonKey(ignore: true)
@@ -807,7 +839,8 @@ class _$_ProductCardModel extends _ProductCardModel {
         soldByType,
         soldByName,
         categoryName,
-        brandName
+        brandName,
+        branch
       ]);
 
   @JsonKey(ignore: true)
@@ -864,8 +897,8 @@ abstract class _ProductCardModel extends ProductCardModel {
       @JsonKey(name: 'sold_by_type') required final String soldByType,
       @JsonKey(name: 'sold_by_name') required final String soldByName,
       @JsonKey(name: 'category_name') required final String categoryName,
-      @JsonKey(name: 'brand_name')
-      required final String brandName}) = _$_ProductCardModel;
+      @JsonKey(name: 'brand_name') required final String brandName,
+      final PharmacyBranchModel? branch}) = _$_ProductCardModel;
   const _ProductCardModel._() : super._();
 
   factory _ProductCardModel.fromJson(Map<String, dynamic> json) =
@@ -962,6 +995,8 @@ abstract class _ProductCardModel extends ProductCardModel {
   @override
   @JsonKey(name: 'brand_name')
   String get brandName;
+  @override
+  PharmacyBranchModel? get branch;
   @override
   @JsonKey(ignore: true)
   _$$_ProductCardModelCopyWith<_$_ProductCardModel> get copyWith =>

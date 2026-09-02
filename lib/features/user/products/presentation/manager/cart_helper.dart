@@ -120,13 +120,13 @@ class CartHelper {
     }
   }
 
-  Future<bool?> addProductToCart(BuildContext context, int qty, int? variantId,
-      {required Function() onAddCartFunc,
+  Future<bool?> addProductToCart(BuildContext context, int qty, int? variantId, {required Function() onAddCartFunc,
       bool showLoader = true,
       bool callCartData = true,
+      int? branchId,
         CartTypeEnum type = CartTypeEnum.general
       }) async {
-    var params = await _addToCartParams(variantId, qty, showLoader: showLoader);
+    var params = await _addToCartParams(variantId, qty, showLoader: showLoader, branchId: branchId);
     return _sendToCart(params,
         onAddCartFunc: onAddCartFunc, callCartData: callCartData, type: type);
   }
@@ -246,12 +246,14 @@ class CartHelper {
   }
 
   Future<AddProductToCartParams> _addToCartParams(int? variantId, int qty,
-      {bool showLoader = true}) async {
+      {bool showLoader = true, int? branchId}) async {
     return AddProductToCartParams(
         quantity: qty,
         variantId: variantId,
         macAddress: await getIt<GetDeviceId>().deviceId,
-        showLoader: showLoader);
+        showLoader: showLoader,
+        branchId: branchId
+    );
   }
 
   Future<PharmacyCartParams> _addPharmacyCartParams(

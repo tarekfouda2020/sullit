@@ -31,10 +31,11 @@ class GeneralProductBehavior implements ProductBehavior {
       qty,
       product.variant?.id,
       showLoader: false,
+      branchId: product.branch?.id,
       onAddCartFunc: () {
         FacebookEventsHelper.instance.productAddToCart(
           price: product.variant?.calculablePrice ?? '',
-          id: product.id!,
+          id: product.id,
         );
         if (bumpsCartCountLocally) {
           getIt<CartHelper>().updateCartCount(context, qty + existCount);

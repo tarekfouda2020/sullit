@@ -10,6 +10,10 @@ _$_ProductDetailsModel _$$_ProductDetailsModelFromJson(
         Map<String, dynamic> json) =>
     _$_ProductDetailsModel(
       product: ProductModel.fromJson(json['product'] as Map<String, dynamic>),
+      branch: json['branch'] == null
+          ? null
+          : PharmacyBranchModel.fromJson(
+              json['branch'] as Map<String, dynamic>),
       relatedProducts: (json['related_products'] as List<dynamic>)
           .map((e) => ProductCardModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -24,6 +28,7 @@ Map<String, dynamic> _$$_ProductDetailsModelToJson(
         _$_ProductDetailsModel instance) =>
     <String, dynamic>{
       'product': instance.product.toJson(),
+      'branch': instance.branch?.toJson(),
       'related_products':
           instance.relatedProducts.map((e) => e.toJson()).toList(),
       'top_products': instance.topProducts.map((e) => e.toJson()).toList(),

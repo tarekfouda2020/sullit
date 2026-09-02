@@ -166,10 +166,11 @@ class ImplPurchasingDataSources extends PurchasingDataSources {
   Future<Either<Failure, List<PaymentOptionModel>>> getOrderPaymentOptions(
       OrderPaymentOptionsParams param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.orderPaymentOptions + param.paramToQuery(),
+      url: ApiNames.orderPaymentOptions ,
       requestMethod: RequestMethod.get,
       refresh: param.refresh,
       responseType: ResType.list,
+      requestBody: param.toJson(),
       toJsonFunc: (json) => List<PaymentOptionModel>.from(
         json.map((e) => PaymentOptionModel.fromJson(e)),
       ),

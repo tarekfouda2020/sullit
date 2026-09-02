@@ -2,8 +2,6 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_bran
 import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 
 class PharmacyProductCard extends ProductCard {
-  BranchDomainModel? branch;
-
   PharmacyProductCard({
     required super.id,
     required super.name,
@@ -39,7 +37,7 @@ class PharmacyProductCard extends ProductCard {
     required super.brandName,
     super.addedQtyToCart,
     super.isAddedTCompare,
-    this.branch,
+    super.branch,
   });
 
   /// Wraps a plain [ProductCard] (as returned by the generic seller-products
@@ -85,7 +83,7 @@ class PharmacyProductCard extends ProductCard {
       brandName: card.brandName,
       addedQtyToCart: card.addedQtyToCart,
       isAddedTCompare: card.isAddedTCompare,
-      branch: branch,
+      branch: branch ?? card.branch,
     );
   }
 }

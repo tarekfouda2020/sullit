@@ -97,10 +97,10 @@ class PharmacyDetailsAppBar extends StatelessWidget {
                                ),
                              ),
                            ],
-                           if(controller.haveBranches)...[
-                             Gaps.vGap10,
-                             PickBranchWidget(controller: controller),
-                           ],
+                           // if(controller.haveBranches)...[
+                           //   Gaps.vGap10,
+                           //   PickBranchWidget(controller: controller),
+                           // ],
                             Gaps.vGap10,
                             PharmacyCategoriesWidgets(controller: controller),
                             PharmacyProductsSearchFieldWidget(
@@ -123,16 +123,16 @@ class PharmacyDetailsAppBar extends StatelessWidget {
     );
   }
 
-  bool get haveBranches => controller.haveBranches;
+  // bool get haveBranches => controller.haveBranches;
 
 
   static const double _bannerHeight = 90;
 
   double get getExpandedHeight {
     if(controller.isRestaurant){
-      if(haveBranches){
-        return 470 + 56;
-      }
+      // if(haveBranches){
+      //   return 470 + 56;
+      // }
       return 470;
     }
     double height =
@@ -140,17 +140,17 @@ class PharmacyDetailsAppBar extends StatelessWidget {
             ? 565
             : 495;
     height += _bannerHeight;
-    if (haveBranches) {
-      height += 56;
-    }
+    // if (haveBranches) {
+    //   height += 56;
+    // }
     return height;
   }
 
   double get sizeWhileScroll {
     if(controller.isRestaurant){
-      if(haveBranches){
-        return kToolbarHeight + 156;
-      }
+      // if(haveBranches){
+      //   return kToolbarHeight + 156;
+      // }
       return kToolbarHeight + 100;
     }
     double height =
@@ -158,9 +158,9 @@ class PharmacyDetailsAppBar extends StatelessWidget {
             ? 165
             : 90;
     height += _bannerHeight;
-    if (haveBranches) {
-      height += 56;
-    }
+    // if (haveBranches) {
+    //   height += 56;
+    // }
     return height;
   }
 }

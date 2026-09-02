@@ -74,7 +74,6 @@ class ApiNames {
   static String getSideSubCats(int id) => "categories/$id";
 
   static const String getBrands = "brands";
-  static const String brandDetails = "brands/";
   static const String getCategoryProducts = "search";
 
   //search urls
@@ -137,6 +136,7 @@ class ApiNames {
   //cart
   static const String cart = "cart";
   static const String addCartAddress = "cart/add-address";
+  static const String cartPreviewAddress = "cart/preview-address";
   static const String cartStoreShipping = "cart/store-shipping-info";
   static const String applyCoupon = "cart/apply-coupon";
   static const String cartShare = "cart/share";

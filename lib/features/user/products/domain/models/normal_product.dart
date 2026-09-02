@@ -51,7 +51,8 @@ class NormalProduct extends Product {
       super.addedQtyToCart = 0,
       super.hasSpecialLoyaltyPoints,
       super.maxQnt,
-      super.isAddedTCompare = false});
+      super.isAddedTCompare = false,
+      super.branch});
 
   NormalProduct.fromJson(Map<String, dynamic> json) : super.fromJsonBase(json);
 }

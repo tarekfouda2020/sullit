@@ -19,6 +19,9 @@ class PharmacyCheckoutParams {
   final List<File>? insuranceAttachments;
   final int? insuranceCompanyId;
 
+  /// send to api that get payment options in check-outPage
+  final int? sellerId;
+
 
   PharmacyCheckoutParams({
     this.type = CartTypeEnum.pharmacy,
@@ -31,6 +34,7 @@ class PharmacyCheckoutParams {
     this.prescriptionAttachments,
     this.insuranceAttachments,
     this.insuranceCompanyId,
+    this.sellerId,
   });
 
   Map<String, dynamic> toJson() {

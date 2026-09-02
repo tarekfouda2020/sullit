@@ -37,6 +37,8 @@ class HomeMainController {
     getAllBrands(refresh: false);
     getAllBrands();
 
+    getAllData();
+
   }
 
 

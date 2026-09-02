@@ -89,7 +89,7 @@ abstract class BaseProductItemState<T extends BaseProductItem> extends State<T> 
         context,
         product,
         product.minQty ?? 1,
-        fallbackBranchId: widget.fallbackBranchId,
+        fallbackBranchId: widget.fallbackBranchId ?? widget.productModel.branch?.id,
         afterAddToCart: afterAddToCartCallback,
       );
       return result ?? false;

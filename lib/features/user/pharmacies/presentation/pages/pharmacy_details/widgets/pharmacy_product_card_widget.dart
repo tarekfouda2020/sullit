@@ -68,8 +68,9 @@ class _PharmacyProductCardWidgetState extends BaseProductItemState<PharmacyProdu
       return await getIt<ProductsHelper>().addPharmacyProductToCart(
             context,
             product,
-            widget.fallbackBranchId ??
-                widget.controller.selectedBranchCubit.state.data?.id,
+            product.branch?.id,
+            // widget.fallbackBranchId ??
+            //     widget.controller.selectedBranchCubit.state.data?.id,
             afterAddToCart: afterAddToCartCallback,
           ) ??
           false;
@@ -87,7 +88,7 @@ class _PharmacyProductCardWidgetState extends BaseProductItemState<PharmacyProdu
           productId: product.id,
           isFav: product.isWishlist,
           fromSellerPage: widget.fromPharmPage,
-          branchId: widget.controller.selectedBranchId,
+          // branchId: widget.controller.selectedBranchId,
         ),
       ),
     );
@@ -107,15 +108,15 @@ class _PharmacyProductCardWidgetState extends BaseProductItemState<PharmacyProdu
       widget.controller.showAddToCartFailedDialog(this.context);
       return;
     }
-    ProductCard product = widget.productModel;
-    if (product is PharmacyProductCard &&
-        widget.controller.cartBranchId != null &&
-        widget.controller.cartBranchId != product.branch?.id) {
-      if (product.branch != null) {
-        widget.controller.showChangeBranchDialog(context, product.branch!);
-        return;
-      }
-    }
+    // ProductCard product = widget.productModel;
+    // if (product is PharmacyProductCard &&
+    //     widget.controller.cartBranchId != null &&
+    //     widget.controller.cartBranchId != product.branch?.id) {
+    //   if (product.branch != null) {
+    //     widget.controller.showChangeBranchDialog(context, product.branch!);
+    //     return;
+    //   }
+    // }
     int currentStockQnt = widget.productModel.variant?.currentStock ?? 0;
     int qnt = (widget.productModel.addedQtyToCart ?? 0) + 1;
 

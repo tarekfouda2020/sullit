@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_options.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/variant.dart';
 
@@ -36,6 +37,7 @@ class ProductCard extends BaseDomainModel {
   final String soldByName;
   final String categoryName;
   final String brandName;
+  BranchDomainModel? branch;
 
   int? addedQtyToCart;
   bool? isAddedTCompare;
@@ -86,6 +88,7 @@ class ProductCard extends BaseDomainModel {
     required this.soldByName,
     required this.categoryName,
     required this.brandName,
+    this.branch,
     this.addedQtyToCart = 0,
     this.isAddedTCompare,
   });
@@ -95,6 +98,7 @@ class ProductCard extends BaseDomainModel {
         'name': name,
         'type': type,
         'type_label': typeLabel,
+        "branch" : branch,
         'unit': unit,
         'barcode': barcode,
         'prescription_required': prescriptionRequired,

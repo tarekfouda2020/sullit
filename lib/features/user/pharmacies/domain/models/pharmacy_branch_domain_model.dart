@@ -4,8 +4,8 @@ class BranchDomainModel extends BaseDomainModel {
   final int id;
   final String name;
   final String phone;
-  final BranchLocationDomainModel state;
-  final BranchLocationDomainModel city;
+  final BranchLocationDomainModel? state;
+  final BranchLocationDomainModel? city;
   final String address;
   final String mapDescription;
   final String latitude;

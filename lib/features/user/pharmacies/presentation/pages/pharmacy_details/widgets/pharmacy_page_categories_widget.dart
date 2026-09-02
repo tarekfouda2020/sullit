@@ -30,7 +30,7 @@ class PharmacyPageCategoriesWidget extends StatelessWidget {
                       : 0,
                 ),
                 decoration: BoxDecoration(
-                  color: item.isSelect
+                  color: item.id == controller.selectedCategory?.id
                       ? context.colors.primary
                       : context.colors.gray3,
                   borderRadius: Dimens.borderRadius40PX,
@@ -39,7 +39,7 @@ class PharmacyPageCategoriesWidget extends StatelessWidget {
                   item.name,
                   maxLines: 2,
                   style: AppTextStyle.s14_w500(
-                    color: item.isSelect
+                    color: item.id == controller.selectedCategory?.id
                         ? context.colors.white
                         : context.colors.gray8,
                   ).copyWith(height: 1.3),

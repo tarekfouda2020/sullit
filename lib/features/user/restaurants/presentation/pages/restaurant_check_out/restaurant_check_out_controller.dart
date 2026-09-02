@@ -731,6 +731,7 @@ class RestaurantCheckOutController {
   OrderPaymentOptionsParams _params({bool refresh = true}){
     return OrderPaymentOptionsParams(
       refresh: refresh,
+      sellerId: checkoutParams?.sellerId,
     );
   }
 

@@ -2,6 +2,7 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
+import 'package:flutter_tdd/core/helpers/user_location_params.dart';
 import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
@@ -42,6 +43,7 @@ class ImplSaleRepository extends SaleDataSources {
     HttpRequestModel model = HttpRequestModel(
       url: "${ApiNames.getSaleDetails}$param",
       requestMethod: RequestMethod.get,
+      requestBody: UserLocationParams().toJson(),
       refresh: true,
       responseType: ResType.model,
       showLoader: true,
@@ -75,6 +77,7 @@ class ImplSaleRepository extends SaleDataSources {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getBestRated + param.getUrl(),
       requestMethod: RequestMethod.get,
+      requestBody: param.toJson(),
       refresh: param.paginateParams.refresh,
       responseType: ResType.list,
       showLoader: true,
@@ -92,6 +95,7 @@ class ImplSaleRepository extends SaleDataSources {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getNewArrival + param.getUrl(),
       requestMethod: RequestMethod.get,
+      requestBody: param.toJson(),
       refresh: param.paginateParams.refresh,
       responseType: ResType.list,
       showLoader: true,
@@ -109,6 +113,7 @@ class ImplSaleRepository extends SaleDataSources {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getOnSale + param.getUrl(),
       requestMethod: RequestMethod.get,
+      requestBody: param.toJson(),
       refresh: param.paginateParams.refresh,
       responseType: ResType.list,
       showLoader: true,
@@ -126,6 +131,7 @@ class ImplSaleRepository extends SaleDataSources {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.vipProducts + param.getUrl(),
       requestMethod: RequestMethod.get,
+      requestBody: param.toJson(),
       refresh: param.paginateParams.refresh,
       responseType: ResType.list,
       showLoader: true,
@@ -143,6 +149,7 @@ class ImplSaleRepository extends SaleDataSources {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.shareholderProducts + param.getUrl(),
       requestMethod: RequestMethod.get,
+      requestBody: param.toJson(),
       refresh: param.paginateParams.refresh,
       responseType: ResType.list,
       showLoader: true,

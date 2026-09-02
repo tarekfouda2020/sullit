@@ -817,5 +817,12 @@
   "deliveryNotAvailableSwitchPickupOrAddress": "এই ঠিকানায় ডেলিভারি উপলব্ধ নয়। পিক-আপে যান অথবা ঠিকানা পরিবর্তন করুন।",
   "deliveryNotAvailableChangeAddress": "এই ঠিকানায় ডেলিভারি উপলব্ধ নয়। অনুগ্রহ করে ঠিকানা পরিবর্তন করুন।",
   "pickupNotAvailableSwitchDeliveryOrAddress": "পিক-আপ উপলব্ধ নয়। ডেলিভারিতে যান অথবা ঠিকানা পরিবর্তন করুন।",
-  "pickupNotAvailableChangeAddress": "পিক-আপ উপলব্ধ নয়। অনুগ্রহ করে ঠিকানা পরিবর্তন করুন।"
+  "pickupNotAvailableChangeAddress": "পিক-আপ উপলব্ধ নয়। অনুগ্রহ করে ঠিকানা পরিবর্তন করুন।",
+  "cartAddressChangesTitle": "কার্টে পরিবর্তন প্রয়োজন",
+  "cartAddressChangesDesc": "এই ঠিকানায় আপনার কার্টের কিছু পণ্য বদলাবে।",
+  "cartBranchChanged": "শাখা {from} থেকে {to} হয়েছে",
+  "cartRemovedItems": "সরানো পণ্য",
+  "cartUpdatedItems": "পরিবর্তিত পরিমাণ",
+  "cartItemQtyUpdated": "পরিমাণ {old} থেকে {new} হয়েছে",
+  "changeAddress": "ঠিকানা পরিবর্তন করুন"
 }

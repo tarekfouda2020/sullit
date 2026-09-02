@@ -58,6 +58,15 @@ class LocationService {
     );
   }
 
+  Future<bool> requestWhenInUsePermission() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+    }
+    return permission == LocationPermission.whileInUse ||
+        permission == LocationPermission.always;
+  }
+
   Future<LatLng?> getCurrentLocationWithPermission(BuildContext context)async{
      await getIt<PermissionServices>().requestPermission(Permission.locationWhenInUse, context);
     try {

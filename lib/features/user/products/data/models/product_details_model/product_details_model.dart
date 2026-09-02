@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/core/models/api_models/product_model/product_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_branch_model/pharmacy_branch_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/product_card_model/product_card_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/product_queries_model/product_queries_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_details_domain_model.dart';
@@ -17,6 +18,7 @@ class ProductDetailsModel extends BaseApiModel<ProductDetailsDomainModel>
   @JsonSerializable(explicitToJson: true)
   const factory ProductDetailsModel({
     required ProductModel product,
+    @JsonKey(name: 'branch') PharmacyBranchModel? branch,
     @JsonKey(name: 'related_products')
     required List<ProductCardModel> relatedProducts,
     @JsonKey(name: 'top_products') required List<ProductCardModel> topProducts,
@@ -34,6 +36,7 @@ class ProductDetailsModel extends BaseApiModel<ProductDetailsDomainModel>
       relatedProducts: relatedProducts.map((e) => e.toDomainModel()).toList(),
       productQueries: productQueries.toDomainModel(),
       product: product.toDomainModel(),
+      branch: branch?.toDomainModel(),
     );
   }
 }

@@ -129,6 +129,7 @@ class RestaurantAddressController {
       type: CartTypeEnum.restaurant,
       shippingInfo: _shippingData(data),
       addressId: selectedAddress!.id!,
+      sellerId: restaurant!.userId,
     );
   }
 

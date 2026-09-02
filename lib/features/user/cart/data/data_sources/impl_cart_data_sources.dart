@@ -12,6 +12,7 @@ import 'package:flutter_tdd/core/http/models/http_request_model.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/user/cart/data/data_sources/cart_data_sources.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/cart_model/cart_model.dart';
+import 'package:flutter_tdd/features/user/cart/data/models/cart_preview_address_model/cart_preview_address_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/coupon_response_model/coupon_response_model.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/delivery_instruction/delivery_instruction.dart';
 import 'package:flutter_tdd/features/user/cart/data/models/fess_mechanism_model/fess_mechanism_model.dart';
@@ -26,6 +27,7 @@ import 'package:flutter_tdd/features/user/cart/domain/entities/clear_cart_params
 import 'package:flutter_tdd/features/user/cart/domain/entities/create_order_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/delete_cart_item_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
+import 'package:flutter_tdd/features/user/cart/domain/entities/preview_cart_address_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/store_cart_shipping_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/update_cart_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/entities/add_product_to_cart_params.dart';
@@ -63,6 +65,22 @@ class ImplCartDataSources extends CartDataSources {
       errorFunc: (data) => data["msg"],
     );
     return await GenericHttpImpl<bool>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, CartPreviewAddressModel>> previewCartAddress(
+      PreviewCartAddressParams params) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.cartPreviewAddress,
+      requestBody: params.toJson(),
+      requestMethod: RequestMethod.post,
+      responseType: ResType.model,
+      showLoader: true,
+      toJsonFunc: (json) => CartPreviewAddressModel.fromJson(json),
+      responseKey: (data) => data["data"],
+      errorFunc: (data) => data["msg"],
+    );
+    return await GenericHttpImpl<CartPreviewAddressModel>().call(model);
   }
 
   @override

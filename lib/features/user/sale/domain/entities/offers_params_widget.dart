@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/helpers/user_location_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
 
 class OffersParamsWidget {
@@ -5,12 +6,15 @@ class OffersParamsWidget {
   final String? keyword;
   final int? usePagination;
   final bool? isVipProducts;
+  final UserLocationParams userLocationParams;
+
   OffersParamsWidget({
     required this.paginateParams,
     this.keyword,
     this.isVipProducts = false,
     this.usePagination = 1,
-  });
+    UserLocationParams? userLocationParams,
+  }) : userLocationParams = userLocationParams ?? UserLocationParams();
 
   String getUrl() {
     String paginateHeader = paginateParams.paramsToQuery();
@@ -23,4 +27,6 @@ class OffersParamsWidget {
     }
     return url;
   }
+
+  Map<String, dynamic> toJson() => userLocationParams.toJson();
 }

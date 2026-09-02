@@ -5,6 +5,7 @@ import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/core/models/domain_models/brand_domain_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/color_domain_model.dart';
+import 'package:flutter_tdd/features/user/pharmacies/data/models/pharmacy_branch_model/pharmacy_branch_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_attributes_options.dart';
@@ -71,6 +72,7 @@ abstract class Product extends BaseDomainModel {
   int? addedQtyToCart;
   int? maxQnt;
   List<ProductOptionModel>? productOptions;
+  BranchDomainModel? branch;
 
   Product({this.id,
     this.name,
@@ -122,6 +124,7 @@ abstract class Product extends BaseDomainModel {
     this.hasSpecialLoyaltyPoints,
     this.maxQnt,
     this.productOptions,
+    this.branch,
     this.isAddedTCompare = false});
 
   Future<void> isAddedToCompare() async {
@@ -229,6 +232,11 @@ abstract class Product extends BaseDomainModel {
     brandName = json['brand_name'];
     hasVipOffer = json['has_vip_offer'];
     hasShareholderDiscount = json['has_shareholder_discount'];
+    if (json['branch'] != null) {
+      branch = PharmacyBranchModel.fromJson(
+        Map<String, dynamic>.from(json['branch'] as Map),
+      ).toDomainModel();
+    }
   }
 
   Map<String, dynamic> toJson() {

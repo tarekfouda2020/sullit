@@ -21,6 +21,8 @@ ProductDetailsModel _$ProductDetailsModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ProductDetailsModel {
   ProductModel get product => throw _privateConstructorUsedError;
+  @JsonKey(name: 'branch')
+  PharmacyBranchModel? get branch => throw _privateConstructorUsedError;
   @JsonKey(name: 'related_products')
   List<ProductCardModel> get relatedProducts =>
       throw _privateConstructorUsedError;
@@ -43,11 +45,13 @@ abstract class $ProductDetailsModelCopyWith<$Res> {
   @useResult
   $Res call(
       {ProductModel product,
+      @JsonKey(name: 'branch') PharmacyBranchModel? branch,
       @JsonKey(name: 'related_products') List<ProductCardModel> relatedProducts,
       @JsonKey(name: 'top_products') List<ProductCardModel> topProducts,
       @JsonKey(name: 'product_queries') ProductQueriesModel productQueries});
 
   $ProductModelCopyWith<$Res> get product;
+  $PharmacyBranchModelCopyWith<$Res>? get branch;
   $ProductQueriesModelCopyWith<$Res> get productQueries;
 }
 
@@ -65,6 +69,7 @@ class _$ProductDetailsModelCopyWithImpl<$Res, $Val extends ProductDetailsModel>
   @override
   $Res call({
     Object? product = null,
+    Object? branch = freezed,
     Object? relatedProducts = null,
     Object? topProducts = null,
     Object? productQueries = null,
@@ -74,6 +79,10 @@ class _$ProductDetailsModelCopyWithImpl<$Res, $Val extends ProductDetailsModel>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as ProductModel,
+      branch: freezed == branch
+          ? _value.branch
+          : branch // ignore: cast_nullable_to_non_nullable
+              as PharmacyBranchModel?,
       relatedProducts: null == relatedProducts
           ? _value.relatedProducts
           : relatedProducts // ignore: cast_nullable_to_non_nullable
@@ -99,6 +108,18 @@ class _$ProductDetailsModelCopyWithImpl<$Res, $Val extends ProductDetailsModel>
 
   @override
   @pragma('vm:prefer-inline')
+  $PharmacyBranchModelCopyWith<$Res>? get branch {
+    if (_value.branch == null) {
+      return null;
+    }
+
+    return $PharmacyBranchModelCopyWith<$Res>(_value.branch!, (value) {
+      return _then(_value.copyWith(branch: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $ProductQueriesModelCopyWith<$Res> get productQueries {
     return $ProductQueriesModelCopyWith<$Res>(_value.productQueries, (value) {
       return _then(_value.copyWith(productQueries: value) as $Val);
@@ -116,12 +137,15 @@ abstract class _$$_ProductDetailsModelCopyWith<$Res>
   @useResult
   $Res call(
       {ProductModel product,
+      @JsonKey(name: 'branch') PharmacyBranchModel? branch,
       @JsonKey(name: 'related_products') List<ProductCardModel> relatedProducts,
       @JsonKey(name: 'top_products') List<ProductCardModel> topProducts,
       @JsonKey(name: 'product_queries') ProductQueriesModel productQueries});
 
   @override
   $ProductModelCopyWith<$Res> get product;
+  @override
+  $PharmacyBranchModelCopyWith<$Res>? get branch;
   @override
   $ProductQueriesModelCopyWith<$Res> get productQueries;
 }
@@ -138,6 +162,7 @@ class __$$_ProductDetailsModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? product = null,
+    Object? branch = freezed,
     Object? relatedProducts = null,
     Object? topProducts = null,
     Object? productQueries = null,
@@ -147,6 +172,10 @@ class __$$_ProductDetailsModelCopyWithImpl<$Res>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as ProductModel,
+      branch: freezed == branch
+          ? _value.branch
+          : branch // ignore: cast_nullable_to_non_nullable
+              as PharmacyBranchModel?,
       relatedProducts: null == relatedProducts
           ? _value._relatedProducts
           : relatedProducts // ignore: cast_nullable_to_non_nullable
@@ -169,6 +198,7 @@ class __$$_ProductDetailsModelCopyWithImpl<$Res>
 class _$_ProductDetailsModel extends _ProductDetailsModel {
   const _$_ProductDetailsModel(
       {required this.product,
+      @JsonKey(name: 'branch') this.branch,
       @JsonKey(name: 'related_products')
       required final List<ProductCardModel> relatedProducts,
       @JsonKey(name: 'top_products')
@@ -183,6 +213,9 @@ class _$_ProductDetailsModel extends _ProductDetailsModel {
 
   @override
   final ProductModel product;
+  @override
+  @JsonKey(name: 'branch')
+  final PharmacyBranchModel? branch;
   final List<ProductCardModel> _relatedProducts;
   @override
   @JsonKey(name: 'related_products')
@@ -207,7 +240,7 @@ class _$_ProductDetailsModel extends _ProductDetailsModel {
 
   @override
   String toString() {
-    return 'ProductDetailsModel(product: $product, relatedProducts: $relatedProducts, topProducts: $topProducts, productQueries: $productQueries)';
+    return 'ProductDetailsModel(product: $product, branch: $branch, relatedProducts: $relatedProducts, topProducts: $topProducts, productQueries: $productQueries)';
   }
 
   @override
@@ -216,6 +249,7 @@ class _$_ProductDetailsModel extends _ProductDetailsModel {
         (other.runtimeType == runtimeType &&
             other is _$_ProductDetailsModel &&
             (identical(other.product, product) || other.product == product) &&
+            (identical(other.branch, branch) || other.branch == branch) &&
             const DeepCollectionEquality()
                 .equals(other._relatedProducts, _relatedProducts) &&
             const DeepCollectionEquality()
@@ -229,6 +263,7 @@ class _$_ProductDetailsModel extends _ProductDetailsModel {
   int get hashCode => Object.hash(
       runtimeType,
       product,
+      branch,
       const DeepCollectionEquality().hash(_relatedProducts),
       const DeepCollectionEquality().hash(_topProducts),
       productQueries);
@@ -251,6 +286,7 @@ class _$_ProductDetailsModel extends _ProductDetailsModel {
 abstract class _ProductDetailsModel extends ProductDetailsModel {
   const factory _ProductDetailsModel(
           {required final ProductModel product,
+          @JsonKey(name: 'branch') final PharmacyBranchModel? branch,
           @JsonKey(name: 'related_products')
           required final List<ProductCardModel> relatedProducts,
           @JsonKey(name: 'top_products')
@@ -265,6 +301,9 @@ abstract class _ProductDetailsModel extends ProductDetailsModel {
 
   @override
   ProductModel get product;
+  @override
+  @JsonKey(name: 'branch')
+  PharmacyBranchModel? get branch;
   @override
   @JsonKey(name: 'related_products')
   List<ProductCardModel> get relatedProducts;

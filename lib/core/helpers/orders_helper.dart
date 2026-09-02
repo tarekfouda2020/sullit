@@ -60,7 +60,7 @@ class OrdersHelper {
       }
     } catch (_) {}
     var result = await GetHome().call(
-      HomeParams.fromLocation(refresh: refresh, macAddress: macAddress),
+      HomeParams(refresh: refresh, macAddress: macAddress),
     );
     result?.currentOrders.removeWhere((element) => _isCurrentOrderSavedInLocal(element.id));
     homeCubit.onUpdateData(result);

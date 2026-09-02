@@ -42,7 +42,7 @@ class PharmacyDetailsController {
 
   LatLng? get savedLocation => GlobalState.instance.get(GlobalStateKeys.userLocation);
 
-  bool get haveBranches => pharmacyBloc.state.data?.hasBranches == true;
+  bool get haveBranches => false;
 
   int? get selectedBranchId => selectedBranchCubit.state.data?.id;
 
@@ -101,8 +101,9 @@ class PharmacyDetailsController {
 
   void _getPharmacyProducts() {
     getProducts(1, refresh: false);
-    // getProducts(1, refresh: true);
+    getProducts(1, refresh: true);
     productsPagingController.addPageRequestListener((pageKey) {
+      getProducts(pageKey,refresh: false);
       getProducts(pageKey);
     });
   }
@@ -177,7 +178,7 @@ class PharmacyDetailsController {
     var result = await GetSellerProducts().call(params);
     isLoadingNextPage.onUpdateData(false);
     // final branch = selectedBranchCubit.state.data;
-    final List<ProductCard> data = (result?.sectionProductModel.products ??
+     List<ProductCard> data = (result?.sectionProductModel.products ??
             <ProductCard>[]);
     final isLastPage = (data.length) < AppConstants.instance.paginationLimit;
     if (page == 1) {
@@ -195,13 +196,13 @@ class PharmacyDetailsController {
     var data = await GetShopDetails().call(
       ShopIdParams(shopId: pharmacyId!, refresh: fromRemote),
     );
-    if(data?.hasBranches == true){
-      _getBranches();
-    }else{
+    // if(data?.hasBranches == true){
+    //   _getBranches();
+    // }else{
       getCartItems(refresh: false);
       getCartItems();
       _getPharmacyProducts();
-    }
+    // }
     pharmacyBloc.onUpdateData(data);
   }
 
@@ -382,9 +383,9 @@ class PharmacyDetailsController {
     var pharmacyProducts = data.items
         ?.where((element) => element.shopId == getPharmacyId)
         .toList();
-     if(haveBranches){
-       pharmacyProducts = data.items?.where((element) => element.branchId == selectedBranchId).toList();
-     }
+     // if(haveBranches){
+     //   pharmacyProducts = data.items?.where((element) => element.branchId == selectedBranchId).toList();
+     // }
     data.calculableTotal = pharmacyProducts?.fold<double>(
         0, (sum, item) => sum + item.calculableTotal);
     cartItemsBloc.onUpdateData(data);
@@ -429,13 +430,13 @@ class PharmacyDetailsController {
           result = await AutoRouter.of(context)
               .push(RestaurantCartRoute(
             restaurantId: getPharmacyId!,
-            preSelectedBranchId: selectedBranchId,
+            // preSelectedBranchId: selectedBranchId,
           ));
         }else{
            result = await AutoRouter.of(context)
               .push(PharmacyCartRoute(
             pharmacyId: pharmacyBloc.state.data!.id!,
-            preSelectedBranchId: selectedBranchId,
+            // preSelectedBranchId: selectedBranchId,
           ));
         }
         refreshDataAfterRoute(result);
@@ -487,7 +488,8 @@ class PharmacyDetailsController {
       context: pageContext,
       builder: (dialogContext) => PharmacyAddToCartFailedDialog(
         pharmacyName: pharmacyName,
-        hasBranches: pharmacyBloc.state.data?.hasBranches == true,
+        hasBranches: false,
+        // hasBranches: pharmacyBloc.state.data?.hasBranches == true,
         onClearCart: () => clearCart(dialogContext),
         onGoToPharmacy: () {
           Navigator.pop(dialogContext);
@@ -607,7 +609,7 @@ class PharmacyDetailsController {
         paginateParams: _paginateParams(page, refresh),
         keyword: productSearchCtr.text.trim(),
         categoryId: selectedCategory?.id,
-        branchId: selectedBranchCubit.state.data?.id
+        // branchId: selectedBranchCubit.state.data?.id,
     );
   }
 
@@ -626,7 +628,7 @@ class PharmacyDetailsController {
     return CartParams(
       macAddress: token,
       refresh: refresh,
-      branchId: selectedBranchCubit.state.data?.id,
+      // branchId: selectedBranchCubit.state.data?.id,
       type: type ?? CartTypeEnum.pharmacy,
     );
   }

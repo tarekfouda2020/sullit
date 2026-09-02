@@ -84,19 +84,65 @@ class ShippingController {
         .where((element) => element.selected == true)
         .toList();
     if (selectedList.isNotEmpty) {
-      AddressDomainModel selectedAddress = selectedList.first;
-      AddCartAddressParams params = _addCartAddressParams(selectedAddress);
-      bool data = await AddCartAddress().call(params);
-      if (data) {
-        getIt<CartNavigateHelper>().selectedOrderAddress = selectedAddress;
-        CustomToast.showSimpleToast(
-            msg: tr('addressAdded'), type: ToastType.success);
-        getIt<CartNavigateHelper>()
-            .setStep(CartNavigateHelper.deliveryStepIndex, force: true);
-      }
+      await _previewThenSetAddress(context, selectedList);
     } else {
       CustomToast.showSimpleToast(msg: tr('pleaseSelAddress'));
       return;
+    }
+  }
+
+  Future<void> _previewThenSetAddress(
+    BuildContext context,
+    List<AddressDomainModel> selectedList,
+  ) async {
+    final addressId = selectedList.first.id;
+    if (addressId == null) {
+      CustomToast.showSimpleToast(msg: tr('pleaseSelAddress'));
+      return;
+    }
+    final preview = await PreviewCartAddress().call(
+      PreviewCartAddressParams(addressId: addressId),
+    );
+    if (preview == null) {
+      return;
+    }
+    if (preview.hasChanges) {
+      _showAddressChangesSheet(context, preview, selectedList);
+      return;
+    }
+    await _setShippinAddress(selectedList);
+  }
+
+  void _showAddressChangesSheet(
+    BuildContext context,
+    CartPreviewAddress preview,
+    List<AddressDomainModel> selectedList,
+  ) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (sheetContext) => CartPreviewAddressSheet(
+        preview: preview,
+        onConfirm: () {
+          Navigator.of(sheetContext).pop();
+          _setShippinAddress(selectedList);
+        },
+        onChangeAddress: () => Navigator.of(sheetContext).pop(),
+      ),
+    );
+  }
+
+  Future<void> _setShippinAddress(List<AddressDomainModel> selectedList) async {
+      AddressDomainModel selectedAddress = selectedList.first;
+    AddCartAddressParams params = _addCartAddressParams(selectedAddress);
+    bool data = await AddCartAddress().call(params);
+    if (data) {
+      getIt<CartNavigateHelper>().selectedOrderAddress = selectedAddress;
+      CustomToast.showSimpleToast(
+          msg: tr('addressAdded'), type: ToastType.success);
+      getIt<CartNavigateHelper>()
+          .setStep(CartNavigateHelper.deliveryStepIndex, force: true);
     }
   }
 

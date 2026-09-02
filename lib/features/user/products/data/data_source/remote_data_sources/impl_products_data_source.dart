@@ -2,6 +2,7 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
+import 'package:flutter_tdd/core/helpers/user_location_params.dart';
 import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
@@ -29,6 +30,7 @@ class ImplProductsDataSource extends ProductsDataSource {
       url: ApiNames.getHome + param.paramToQuery(),
       responseType: ResType.model,
       requestMethod: RequestMethod.get,
+      requestBody: param.toJson(),
       responseKey: (data) => data["data"],
       showLoader: false,
       refresh: param.refresh,
@@ -44,7 +46,7 @@ class ImplProductsDataSource extends ProductsDataSource {
       url: ApiNames.getProductDetails(param.id),
       responseType: ResType.model,
       requestMethod: RequestMethod.get,
-      requestBody: param.toJson().isNotEmpty ? param.toJson() : null,
+      requestBody: param.toJson(),
       responseKey: (data) => data["data"],
       showLoader: false,
       refresh: param.refresh,
@@ -59,6 +61,7 @@ class ImplProductsDataSource extends ProductsDataSource {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.getPopularProducts + param.paramToQuery(),
       requestMethod: RequestMethod.get,
+      requestBody: param.toJson(),
       refresh: param.refresh,
       responseType: ResType.list,
       showLoader: true,
@@ -163,6 +166,7 @@ class ImplProductsDataSource extends ProductsDataSource {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.skuSearch(param),
       requestMethod: RequestMethod.get,
+      requestBody: UserLocationParams().toJson(),
       responseType: ResType.model,
       responseKey: (data) => data["data"],
       toJsonFunc: (data) => ProductDetailsModel.fromJson(data),
@@ -176,6 +180,7 @@ class ImplProductsDataSource extends ProductsDataSource {
     HttpRequestModel model = HttpRequestModel(
         url: ApiNames.shopProducts(param.sellerId) + param.paramsToQuery(),
         requestMethod: RequestMethod.get,
+        requestBody: param.toJson(),
         responseType: ResType.model,
         responseKey: (data) => data['data'],
         toJsonFunc: (data) => SellerProductsModel.fromJson(data),

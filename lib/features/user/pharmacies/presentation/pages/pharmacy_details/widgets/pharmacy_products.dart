@@ -26,7 +26,7 @@ class PharmacyProducts extends StatelessWidget {
               controller: controller,
               showVipDiscount: item.hasVipOffer,
               productModel: item,
-              fallbackBranchId: controller.selectedBranchId,
+              // fallbackBranchId: controller.selectedBranchId,
               onFavRefresh: () => controller.onFavChanged(item),
               onPressDelete: () => controller.getCartItems(),
               afterAddToCart: () => controller.getCartItems(),

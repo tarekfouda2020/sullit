@@ -1,5 +1,5 @@
+import 'package:flutter_tdd/core/helpers/user_location_params.dart';
 import 'package:flutter_tdd/features/user/category/domain/entities/generic_paginate_params.dart';
-import 'package:flutter_tdd/features/user/category/presentation/manager/routes/routes.dart';
 
 class SellerProductsParams {
   final int sellerId;
@@ -12,18 +12,21 @@ class SellerProductsParams {
   final String? keyword;
   final int? categoryId;
   final int? branchId;
+  final UserLocationParams userLocationParams;
 
-  SellerProductsParams(
-      {required this.sellerId,
-      required this.paginateParams,
-      this.minPrice,
-      this.maxPrice,
-      this.brandId,
-      this.color,
-      this.keyword,
-      this.attributes,
-      this.branchId,
-      this.categoryId});
+  SellerProductsParams({
+    required this.sellerId,
+    required this.paginateParams,
+    this.minPrice,
+    this.maxPrice,
+    this.brandId,
+    this.color,
+    this.keyword,
+    this.attributes,
+    this.branchId,
+    this.categoryId,
+    UserLocationParams? userLocationParams,
+  }) : userLocationParams = userLocationParams ?? UserLocationParams();
 
   String paramsToQuery() {
     String header = paginateParams.paramsToQuery();
@@ -42,9 +45,11 @@ class SellerProductsParams {
     if (categoryId != null) {
       header = "$header&category_id=$categoryId";
     }
-    if(branchId!= null){
+    if (branchId != null) {
       header = "$header&branch_id=$branchId";
     }
     return header;
   }
+
+  Map<String, dynamic> toJson() => userLocationParams.toJson();
 }

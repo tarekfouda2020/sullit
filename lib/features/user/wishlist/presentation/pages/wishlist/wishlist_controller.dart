@@ -12,7 +12,7 @@ class WishlistController {
   }
 
   Future<void> getWishlist({bool refresh = true}) async {
-    var data = await GetWishlist()(refresh);
+    var data = await GetWishlist()(GetWishlistParams(refresh: refresh));
     pagingController.itemList = [];
     pagingController.appendLastPage(data);
   }

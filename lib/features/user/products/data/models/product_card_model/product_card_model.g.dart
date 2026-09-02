@@ -45,6 +45,10 @@ _$_ProductCardModel _$$_ProductCardModelFromJson(Map<String, dynamic> json) =>
       soldByName: json['sold_by_name'] as String,
       categoryName: json['category_name'] as String,
       brandName: json['brand_name'] as String,
+      branch: json['branch'] == null
+          ? null
+          : PharmacyBranchModel.fromJson(
+              json['branch'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ProductCardModelToJson(_$_ProductCardModel instance) =>
@@ -83,4 +87,5 @@ Map<String, dynamic> _$$_ProductCardModelToJson(_$_ProductCardModel instance) =>
       'sold_by_name': instance.soldByName,
       'category_name': instance.categoryName,
       'brand_name': instance.brandName,
+      'branch': instance.branch?.toJson(),
     };

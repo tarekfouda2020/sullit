@@ -3,7 +3,6 @@ import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/behavior/product_behavior.dart';
-import 'package:flutter_tdd/features/user/products/domain/models/pharmacy_product_card.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:injectable/injectable.dart';
@@ -24,8 +23,7 @@ class PharmacyProductBehavior implements ProductBehavior {
     int? fallbackBranchId,
     VoidCallback? afterAddToCart,
   }) async {
-    final resolvedBranchId = fallbackBranchId ??
-        (product is PharmacyProductCard ? product.branch?.id : null);
+    final resolvedBranchId = fallbackBranchId ?? product.branch?.id;
     return getIt<CartHelper>().addPharmacyProductToCart(
       context,
       qty,

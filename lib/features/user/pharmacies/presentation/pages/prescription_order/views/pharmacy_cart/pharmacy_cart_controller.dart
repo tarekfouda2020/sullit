@@ -188,7 +188,7 @@ class PharmacyCartController {
       AutoRouter.of(context).push(PharmacyAddressRoute(
         havePrescription: false,
         pharmacy: pharmacyBloc.state.data,
-        preSelectedBranchId: preSelectedBranchId,
+        preSelectedBranchId: cartData.firstCartBranchId,
       ));
     } else {
       CustomToast.showAuthDialog(context);

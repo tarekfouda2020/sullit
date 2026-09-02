@@ -1,14 +1,19 @@
 class OrderPaymentOptionsParams {
   final bool refresh;
   final int? orderId;
+  final int? sellerId;
 
   OrderPaymentOptionsParams({
     required this.refresh,
     this.orderId,
+    this.sellerId,
   });
 
-  String paramToQuery() {
-    if (orderId == null) return '';
-    return '?order_id=$orderId';
-  }
+
+  Map<String,dynamic> toJson() =>{
+    if(sellerId!=null) "sellerId":sellerId,
+    if(orderId!=null) "orderId":orderId,
+  };
+
+
 }

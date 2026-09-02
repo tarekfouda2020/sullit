@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
@@ -110,6 +111,10 @@ class CartDomainModel extends BaseDomainModel {
 
   List<GeneralCartItem> get currentCartItems =>
       cartType() == CartType.general ? items ?? [] : pharmacyItems ?? [];
+
+  int? get firstCartBranchId {
+   return currentCartItems.firstWhereOrNull((e) =>e.branchId != null)?.branchId;
+  }
 
   /// used in seller details page and in sellers ist in cart page that dose not reach th min amount
 

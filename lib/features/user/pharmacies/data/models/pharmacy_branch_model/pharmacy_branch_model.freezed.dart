@@ -29,11 +29,11 @@ mixin _$PharmacyBranchModel {
   @JsonKey(name: 'map_desc')
   String get mapDescription => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_default')
-  bool get isDefault => throw _privateConstructorUsedError;
+  bool? get isDefault => throw _privateConstructorUsedError;
   @JsonKey(name: 'distance_km')
   double? get distanceKm => throw _privateConstructorUsedError;
-  PharmacyBranchLocationModel get state => throw _privateConstructorUsedError;
-  PharmacyBranchLocationModel get city => throw _privateConstructorUsedError;
+  PharmacyBranchLocationModel? get state => throw _privateConstructorUsedError;
+  PharmacyBranchLocationModel? get city => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,13 +55,13 @@ abstract class $PharmacyBranchModelCopyWith<$Res> {
       String latitude,
       String longitude,
       @JsonKey(name: 'map_desc') String mapDescription,
-      @JsonKey(name: 'is_default') bool isDefault,
+      @JsonKey(name: 'is_default') bool? isDefault,
       @JsonKey(name: 'distance_km') double? distanceKm,
-      PharmacyBranchLocationModel state,
-      PharmacyBranchLocationModel city});
+      PharmacyBranchLocationModel? state,
+      PharmacyBranchLocationModel? city});
 
-  $PharmacyBranchLocationModelCopyWith<$Res> get state;
-  $PharmacyBranchLocationModelCopyWith<$Res> get city;
+  $PharmacyBranchLocationModelCopyWith<$Res>? get state;
+  $PharmacyBranchLocationModelCopyWith<$Res>? get city;
 }
 
 /// @nodoc
@@ -84,10 +84,10 @@ class _$PharmacyBranchModelCopyWithImpl<$Res, $Val extends PharmacyBranchModel>
     Object? latitude = null,
     Object? longitude = null,
     Object? mapDescription = null,
-    Object? isDefault = null,
+    Object? isDefault = freezed,
     Object? distanceKm = freezed,
-    Object? state = null,
-    Object? city = null,
+    Object? state = freezed,
+    Object? city = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -118,37 +118,45 @@ class _$PharmacyBranchModelCopyWithImpl<$Res, $Val extends PharmacyBranchModel>
           ? _value.mapDescription
           : mapDescription // ignore: cast_nullable_to_non_nullable
               as String,
-      isDefault: null == isDefault
+      isDefault: freezed == isDefault
           ? _value.isDefault
           : isDefault // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       distanceKm: freezed == distanceKm
           ? _value.distanceKm
           : distanceKm // ignore: cast_nullable_to_non_nullable
               as double?,
-      state: null == state
+      state: freezed == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
-              as PharmacyBranchLocationModel,
-      city: null == city
+              as PharmacyBranchLocationModel?,
+      city: freezed == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as PharmacyBranchLocationModel,
+              as PharmacyBranchLocationModel?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PharmacyBranchLocationModelCopyWith<$Res> get state {
-    return $PharmacyBranchLocationModelCopyWith<$Res>(_value.state, (value) {
+  $PharmacyBranchLocationModelCopyWith<$Res>? get state {
+    if (_value.state == null) {
+      return null;
+    }
+
+    return $PharmacyBranchLocationModelCopyWith<$Res>(_value.state!, (value) {
       return _then(_value.copyWith(state: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PharmacyBranchLocationModelCopyWith<$Res> get city {
-    return $PharmacyBranchLocationModelCopyWith<$Res>(_value.city, (value) {
+  $PharmacyBranchLocationModelCopyWith<$Res>? get city {
+    if (_value.city == null) {
+      return null;
+    }
+
+    return $PharmacyBranchLocationModelCopyWith<$Res>(_value.city!, (value) {
       return _then(_value.copyWith(city: value) as $Val);
     });
   }
@@ -170,15 +178,15 @@ abstract class _$$_PharmacyBranchModelCopyWith<$Res>
       String latitude,
       String longitude,
       @JsonKey(name: 'map_desc') String mapDescription,
-      @JsonKey(name: 'is_default') bool isDefault,
+      @JsonKey(name: 'is_default') bool? isDefault,
       @JsonKey(name: 'distance_km') double? distanceKm,
-      PharmacyBranchLocationModel state,
-      PharmacyBranchLocationModel city});
+      PharmacyBranchLocationModel? state,
+      PharmacyBranchLocationModel? city});
 
   @override
-  $PharmacyBranchLocationModelCopyWith<$Res> get state;
+  $PharmacyBranchLocationModelCopyWith<$Res>? get state;
   @override
-  $PharmacyBranchLocationModelCopyWith<$Res> get city;
+  $PharmacyBranchLocationModelCopyWith<$Res>? get city;
 }
 
 /// @nodoc
@@ -199,10 +207,10 @@ class __$$_PharmacyBranchModelCopyWithImpl<$Res>
     Object? latitude = null,
     Object? longitude = null,
     Object? mapDescription = null,
-    Object? isDefault = null,
+    Object? isDefault = freezed,
     Object? distanceKm = freezed,
-    Object? state = null,
-    Object? city = null,
+    Object? state = freezed,
+    Object? city = freezed,
   }) {
     return _then(_$_PharmacyBranchModel(
       id: null == id
@@ -233,22 +241,22 @@ class __$$_PharmacyBranchModelCopyWithImpl<$Res>
           ? _value.mapDescription
           : mapDescription // ignore: cast_nullable_to_non_nullable
               as String,
-      isDefault: null == isDefault
+      isDefault: freezed == isDefault
           ? _value.isDefault
           : isDefault // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       distanceKm: freezed == distanceKm
           ? _value.distanceKm
           : distanceKm // ignore: cast_nullable_to_non_nullable
               as double?,
-      state: null == state
+      state: freezed == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
-              as PharmacyBranchLocationModel,
-      city: null == city
+              as PharmacyBranchLocationModel?,
+      city: freezed == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as PharmacyBranchLocationModel,
+              as PharmacyBranchLocationModel?,
     ));
   }
 }
@@ -264,10 +272,10 @@ class _$_PharmacyBranchModel extends _PharmacyBranchModel {
       required this.latitude,
       required this.longitude,
       @JsonKey(name: 'map_desc') required this.mapDescription,
-      @JsonKey(name: 'is_default') required this.isDefault,
+      @JsonKey(name: 'is_default') this.isDefault,
       @JsonKey(name: 'distance_km') this.distanceKm,
-      required this.state,
-      required this.city})
+      this.state,
+      this.city})
       : super._();
 
   factory _$_PharmacyBranchModel.fromJson(Map<String, dynamic> json) =>
@@ -290,14 +298,14 @@ class _$_PharmacyBranchModel extends _PharmacyBranchModel {
   final String mapDescription;
   @override
   @JsonKey(name: 'is_default')
-  final bool isDefault;
+  final bool? isDefault;
   @override
   @JsonKey(name: 'distance_km')
   final double? distanceKm;
   @override
-  final PharmacyBranchLocationModel state;
+  final PharmacyBranchLocationModel? state;
   @override
-  final PharmacyBranchLocationModel city;
+  final PharmacyBranchLocationModel? city;
 
   @override
   String toString() {
@@ -349,18 +357,17 @@ class _$_PharmacyBranchModel extends _PharmacyBranchModel {
 
 abstract class _PharmacyBranchModel extends PharmacyBranchModel {
   const factory _PharmacyBranchModel(
-          {required final int id,
-          required final String name,
-          required final String phone,
-          required final String address,
-          required final String latitude,
-          required final String longitude,
-          @JsonKey(name: 'map_desc') required final String mapDescription,
-          @JsonKey(name: 'is_default') required final bool isDefault,
-          @JsonKey(name: 'distance_km') final double? distanceKm,
-          required final PharmacyBranchLocationModel state,
-          required final PharmacyBranchLocationModel city}) =
-      _$_PharmacyBranchModel;
+      {required final int id,
+      required final String name,
+      required final String phone,
+      required final String address,
+      required final String latitude,
+      required final String longitude,
+      @JsonKey(name: 'map_desc') required final String mapDescription,
+      @JsonKey(name: 'is_default') final bool? isDefault,
+      @JsonKey(name: 'distance_km') final double? distanceKm,
+      final PharmacyBranchLocationModel? state,
+      final PharmacyBranchLocationModel? city}) = _$_PharmacyBranchModel;
   const _PharmacyBranchModel._() : super._();
 
   factory _PharmacyBranchModel.fromJson(Map<String, dynamic> json) =
@@ -383,14 +390,14 @@ abstract class _PharmacyBranchModel extends PharmacyBranchModel {
   String get mapDescription;
   @override
   @JsonKey(name: 'is_default')
-  bool get isDefault;
+  bool? get isDefault;
   @override
   @JsonKey(name: 'distance_km')
   double? get distanceKm;
   @override
-  PharmacyBranchLocationModel get state;
+  PharmacyBranchLocationModel? get state;
   @override
-  PharmacyBranchLocationModel get city;
+  PharmacyBranchLocationModel? get city;
   @override
   @JsonKey(ignore: true)
   _$$_PharmacyBranchModelCopyWith<_$_PharmacyBranchModel> get copyWith =>

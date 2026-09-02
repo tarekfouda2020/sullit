@@ -50,6 +50,14 @@ post_install do |installer|
       
       # Fix for libswiftWebKit missing in iOS 18 simulator
       config.build_settings['EXCLUDED_SWIFT_LIBRARIES[sdk=*simulator*]'] = 'libswiftWebKit'
+
+      # permission_handler: location is compiled out unless this macro is set
+      defs = config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] || ['$(inherited)']
+      defs = [defs] unless defs.is_a?(Array)
+      unless defs.any? { |d| d.to_s.include?('PERMISSION_LOCATION') }
+        defs << 'PERMISSION_LOCATION=1'
+      end
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = defs
     end
   end
 end

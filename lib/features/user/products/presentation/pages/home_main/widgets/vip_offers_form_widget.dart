@@ -10,8 +10,8 @@ class VipOffersFormWidget extends StatelessWidget {
     return BlocBuilder<GenericBloc<List<ProductCard>>, GenericState<List<ProductCard>>>(
       bloc: controller.vipOffersCubit,
       builder: (context, state) {
-        int length = state.data.take(4).length;
         if (state is GenericUpdateState) {
+          int length = state.data.take(4).length;
           return Visibility(
             visible: state.data.isNotEmpty,
             child: SizedBox(

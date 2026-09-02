@@ -16,12 +16,16 @@ _$_PharmacyBranchModel _$$_PharmacyBranchModelFromJson(
       latitude: json['latitude'] as String,
       longitude: json['longitude'] as String,
       mapDescription: json['map_desc'] as String,
-      isDefault: json['is_default'] as bool,
+      isDefault: json['is_default'] as bool?,
       distanceKm: (json['distance_km'] as num?)?.toDouble(),
-      state: PharmacyBranchLocationModel.fromJson(
-          json['state'] as Map<String, dynamic>),
-      city: PharmacyBranchLocationModel.fromJson(
-          json['city'] as Map<String, dynamic>),
+      state: json['state'] == null
+          ? null
+          : PharmacyBranchLocationModel.fromJson(
+              json['state'] as Map<String, dynamic>),
+      city: json['city'] == null
+          ? null
+          : PharmacyBranchLocationModel.fromJson(
+              json['city'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_PharmacyBranchModelToJson(

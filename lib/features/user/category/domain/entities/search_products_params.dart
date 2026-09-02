@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/helpers/user_location_params.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 
 class SearchProductsParams extends BaseDomainModel {
@@ -12,6 +13,7 @@ class SearchProductsParams extends BaseDomainModel {
   final int currentPage;
   final int pageSize;
   final bool refresh;
+  final UserLocationParams userLocationParams;
 
   SearchProductsParams({
     this.searchKey,
@@ -25,7 +27,8 @@ class SearchProductsParams extends BaseDomainModel {
     this.pageSize = 12,
     this.refresh = true,
     this.sellerId,
-  });
+    UserLocationParams? userLocationParams,
+  }) : userLocationParams = userLocationParams ?? UserLocationParams();
 
   String paramsToQuery() {
     var url = "?paginate=$pageSize&page=$currentPage";
@@ -66,5 +69,6 @@ class SearchProductsParams extends BaseDomainModel {
           "selected_attribute_values[]": attributes,
         if (searchKey != null && searchKey?.isNotEmpty == true)
           "keyword": searchKey,
+        ...userLocationParams.toJson(),
       };
 }
