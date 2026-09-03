@@ -344,7 +344,7 @@ class SellerProductsController {
     getProducts(1);
   }
 
-  void onPressViewCart(BuildContext context, bool fromCart) {
+  Future<void> onPressViewCart(BuildContext context, bool fromCart) async{
     if (cartHaveSellerProduct() == false) {
       return;
     }
