@@ -951,5 +951,8 @@
   "cartRemovedItems": "منتجات محذوفة",
   "cartUpdatedItems": "كميات محدّثة",
   "cartItemQtyUpdated": "الكمية تغيّرت من {old} إلى {new}",
-  "changeAddress": "تغيير العنوان"
+  "changeAddress": "تغيير العنوان",
+  "cartSellerCleared": "سيتم إفراغ سلة هذا البائع. المنتجات غير متوفرة في الفرع الجديد.",
+  "cartSellerMinAmount": "هذا البائع يحتاج حد أدنى للطلب بقيمة ",
+  "cartAllSellersCleared": "ستصبح سلتك فارغة. المنتجات غير متوفرة في الفروع الجديدة. يرجى اختيار عنوان آخر."
 }

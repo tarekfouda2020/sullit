@@ -29,7 +29,8 @@ class PharmacyDetailsController {
   final GenericBloc<bool> showClearIcon = GenericBloc<bool>(false);
   final GenericBloc<bool> isLoadingNextPage = GenericBloc<bool>(false);
   final GenericBloc<bool> showAppBarTitle = GenericBloc<bool>(false);
-  final GenericBloc<BranchDomainModel?> selectedBranchCubit = GenericBloc<BranchDomainModel?>(null);
+  final GenericBloc<BranchDomainModel?> currentBranchInBackGroundCubit = GenericBloc<BranchDomainModel?>(null);
+   BranchDomainModel? currentBranchInBackGround ;
   GenericBloc<CartDomainModel> cartItemsBloc =
       GenericBloc<CartDomainModel>(CartDomainModel());
 
@@ -39,12 +40,10 @@ class PharmacyDetailsController {
   final GlobalKey productListKey = GlobalKey();
 
 
-
   LatLng? get savedLocation => GlobalState.instance.get(GlobalStateKeys.userLocation);
 
   bool get haveBranches => false;
 
-  int? get selectedBranchId => selectedBranchCubit.state.data?.id;
 
   int? get getPharmacyId => pharmacyBloc.state.data?.id ?? pharmacyId;
 
@@ -66,7 +65,11 @@ class PharmacyDetailsController {
     _setupScrollListener();
     _injectSelectedCategoryPlaceholder();
     if (pharmacyId != null) {
-      initData();
+      if (isRestaurant) {
+        initRestaurantData();
+      } else {
+        initPharmacyData();
+      }
     }
     // else if (pharmacy != null) {
     //   getCartItems(refresh: false);
@@ -77,10 +80,32 @@ class PharmacyDetailsController {
     // }
   }
 
-  void initData() {
+  void initPharmacyData() {
+    getCartItems(refresh: false);
+    getCartItems();
     _fetchShopDetails(fromRemote: false);
     _fetchShopDetails();
     _getCategories();
+    _getPharmacyProducts();
+  }
+
+  void initRestaurantData() {
+    getCartItems(refresh: false);
+    getCartItems();
+    _getCategories();
+    _loadRestaurantShopThenProducts();
+  }
+
+  Future<void> _loadRestaurantShopThenProducts() async {
+    await _fetchShopDetails(fromRemote: false);
+    await _fetchShopDetails();
+    if (pharmacyBloc.state.data?.hasBranches == true) {
+      await getPharmacyBranches(1, refresh: false);
+      await getPharmacyBranches(1, refresh: true);
+      branchesPagingController.addPageRequestListener((pageKey) {
+        getPharmacyBranches(pageKey);
+      });
+    }
     _getPharmacyProducts();
   }
 
@@ -108,16 +133,6 @@ class PharmacyDetailsController {
     });
   }
 
-
-  void _getBranches(){
-    if(savedLocation == null){
-      return ;
-    }
-    getPharmacyBranches(1,refresh: false);
-    branchesPagingController.addPageRequestListener((pageKey) {
-      getPharmacyBranches(pageKey);
-    });
-  }
 
   void _injectSelectedCategoryPlaceholder() {
     if (selectedCategoryId == null || selectedCategoryName == null) return;
@@ -199,9 +214,6 @@ class PharmacyDetailsController {
     // if(data?.hasBranches == true){
     //   _getBranches();
     // }else{
-      getCartItems(refresh: false);
-      getCartItems();
-      _getPharmacyProducts();
     // }
     pharmacyBloc.onUpdateData(data);
   }
@@ -210,14 +222,11 @@ class PharmacyDetailsController {
   Future<void> getPharmacyBranches(int page, {bool refresh = true}) async {
     PharmacyBranchesParams params = _branchesParams(page, refresh);
     List<BranchDomainModel> data = await GetPharmacyBranches().call(params);
+    currentBranchInBackGround = data.firstOrNull;
     BranchDomainModel? defaultBranch = data.firstWhereOrNull((branch) => branch.isDefault);
-    selectedBranchCubit.onUpdateData(defaultBranch);
+    currentBranchInBackGroundCubit.onUpdateData(defaultBranch);
     bool isLastPage = data.length < AppConstants.instance.paginationLimit;
     if (page == 1) {
-      if(defaultBranch != null && originalCartData == null){
-        getCartItems(refresh: false);
-        getCartItems();
-      }
       branchesPagingController.itemList = [];
     }
     if (isLastPage) {
@@ -421,6 +430,10 @@ class PharmacyDetailsController {
   }
 
   Future<void> onPressViewCart(BuildContext context) async {
+    if(currentBranchInBackGround?.isCurrentDayClosed == true){
+      CustomToast.showSimpleToast(msg: "${pharmacyBloc.state.data?.name} is not available for now");
+      return ;
+    }
     if (neededAmount() == 0) {
       if (fromCart) {
         AutoRouter.of(context).pop(true);
@@ -570,7 +583,7 @@ class PharmacyDetailsController {
       item.isSelected = false;
     }
     model.isSelected = true;
-    selectedBranchCubit.onUpdateData(model);
+    currentBranchInBackGroundCubit.onUpdateData(model);
     productsPagingController.refresh();
     getProducts(1,refresh: false);
     getProducts(1);
@@ -609,15 +622,12 @@ class PharmacyDetailsController {
         paginateParams: _paginateParams(page, refresh),
         keyword: productSearchCtr.text.trim(),
         categoryId: selectedCategory?.id,
-        // branchId: selectedBranchCubit.state.data?.id,
     );
   }
 
 
   PharmacyBranchesParams _branchesParams(int page, bool refresh) {
     return PharmacyBranchesParams(
-      latitude: savedLocation!.latitude,
-      longitude: savedLocation!.longitude,
       pharmacyId: pharmacyId!,
       formRemote: refresh,
       paginateParams: _paginateParams(page, refresh),

@@ -17,6 +17,18 @@ class BuildDeliveryItem extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         BuildDeliveryProducts(shippingModel: shippingModel),
+        if(!shippingModel.activeDelivery && !shippingModel.activePickup)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Text("${shippingModel.name} is not available for now",
+                  style: AppTextStyle.s15_w600(color: context.colors.black),
+                ),
+              ),
+            ],
+          )
+          else
         BuildDeliveryType(
           controller: controller,
           shipping: shippingModel,

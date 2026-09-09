@@ -10,18 +10,19 @@ class CartPreviewChangeItemWidget extends StatelessWidget {
     this.updatedItem,
   });
 
+  bool get isRemoved => removedItem != null;
+
+  String get title =>
+      isRemoved ? removedItem!.productName : updatedItem?.productName ?? '';
+
+  String get subtitle => isRemoved
+      ? removedItem!.reason
+      : tr('cartItemQtyUpdated')
+          .replaceAll('{old}', '${updatedItem?.oldQuantity ?? 0}')
+          .replaceAll('{new}', '${updatedItem?.quantity ?? 0}');
+
   @override
   Widget build(BuildContext context) {
-    final isRemoved = removedItem != null;
-    final title = isRemoved
-        ? removedItem!.productName
-        : updatedItem?.productName ?? '';
-    final subtitle = isRemoved
-        ? removedItem!.reason
-        : tr('cartItemQtyUpdated')
-            .replaceAll('{old}', '${updatedItem?.oldQuantity ?? 0}')
-            .replaceAll('{new}', '${updatedItem?.quantity ?? 0}');
-
     return Padding(
       padding: const EdgeInsets.only(bottom: Dimens.dp8),
       child: Row(
@@ -41,12 +42,12 @@ class CartPreviewChangeItemWidget extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: AppTextStyle.s14_w500(color: context.colors.black),
+                  style: AppTextStyle.s15_w500(color: context.colors.black),
                 ),
                 Gaps.vGap4,
                 Text(
                   subtitle,
-                  style: AppTextStyle.s12_w400(color: context.colors.textColor),
+                  style: AppTextStyle.s14_w400(color: context.colors.textColor),
                 ),
               ],
             ),

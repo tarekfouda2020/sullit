@@ -151,6 +151,8 @@ class _BuildProductItemState extends BaseProductItemState<BuildProductItem> {
       GeneralCartItem? cartProduct = cartProducts?.firstWhere(
           (element) => element.productId == widget.productModel.id);
       widget.productModel.addedQtyToCart = cartProduct?.quantity;
+    }else{
+      widget.productModel.addedQtyToCart = 0;
     }
   }
 

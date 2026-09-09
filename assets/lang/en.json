@@ -791,5 +791,8 @@
   "cartRemovedItems": "Removed items",
   "cartUpdatedItems": "Updated quantities",
   "cartItemQtyUpdated": "Quantity changed from {old} to {new}",
-  "changeAddress": "Change address"
+  "changeAddress": "Change address",
+  "cartSellerCleared": "This seller cart will be cleared. Products are not available in the new branch.",
+  "cartSellerMinAmount": "This seller needs a minimum order of ",
+  "cartAllSellersCleared": "Your cart will be empty. Products are not available in the changed branches. Please choose another address."
 }

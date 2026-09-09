@@ -9,4 +9,11 @@ class CartPreviewAddress extends BaseDomainModel {
     this.hasChanges = false,
     this.sellers = const [],
   });
+
+  bool get allCartsCleared =>
+      sellers.isNotEmpty && sellers.every((seller) => seller.cartHaveBeenCleared);
+
+  bool get canConfirm =>
+      !allCartsCleared &&
+      !sellers.any((seller) => !seller.hasPassMinAmount);
 }

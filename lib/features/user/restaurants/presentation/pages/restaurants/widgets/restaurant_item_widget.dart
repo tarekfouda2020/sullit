@@ -12,6 +12,7 @@ class RestaurantItemWidget extends StatelessWidget {
       type: CartTypeEnum.restaurant
       )),
       child: Container(
+        margin: const EdgeInsets.only(bottom: 15),
         decoration: BoxDecoration(
           color: context.colors.white,
           borderRadius: BorderRadius.circular(14),

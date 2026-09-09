@@ -53,6 +53,22 @@ class _PharmacyProductCardWidgetState extends BaseProductItemState<PharmacyProdu
   Future<bool> handleFirstAddToCart(BuildContext context) async {
     ProductCard product = widget.productModel;
 
+    var shopData = widget.controller.pharmacyBloc.state.data;
+    if(shopData?.hasBranches == true){
+      if(widget.controller.currentBranchInBackGround == null){
+        return false;
+      } else{
+        if(widget.controller.currentBranchInBackGround?.isCurrentDayClosed == true){
+          CustomToast.showSimpleToast(msg: " ${shopData?.name} is not available for now");
+          return true;
+        }
+      }
+    }
+    else if(shopData?.isShopNotOpen == true){
+      CustomToast.showSimpleToast(msg: " ${shopData?.name} is not available for now");
+      return true;
+    }
+
     if(product.haveOptions){
       routeToDetails(context);
       return true;

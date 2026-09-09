@@ -100,9 +100,8 @@ class ShippingController {
       CustomToast.showSimpleToast(msg: tr('pleaseSelAddress'));
       return;
     }
-    final preview = await PreviewCartAddress().call(
-      PreviewCartAddressParams(addressId: addressId),
-    );
+    PreviewCartAddressParams params = _previewCartAddressParams(addressId);
+    CartPreviewAddress? preview = await PreviewCartAddress().call(params);
     if (preview == null) {
       return;
     }
@@ -111,6 +110,10 @@ class ShippingController {
       return;
     }
     await _setShippinAddress(selectedList);
+  }
+
+  PreviewCartAddressParams _previewCartAddressParams(int addressId) {
+    return PreviewCartAddressParams(addressId: addressId);
   }
 
   void _showAddressChangesSheet(
@@ -129,9 +132,27 @@ class ShippingController {
           _setShippinAddress(selectedList);
         },
         onChangeAddress: () => Navigator.of(sheetContext).pop(),
+        onAddMoreItems: (seller) {
+          Navigator.of(sheetContext).pop();
+          if(seller.shopId != null){
+            AutoRouter.of(context).push(
+              SellerProductsPageRoute(shopId: seller.shopId!, fromCart: true),
+            );
+          }
+        },
       ),
     );
   }
+
+
+
+
+  // void onConfirmChanges( BuildContext context, CartPreviewAddress preview){
+  //   List<CartPreviewSeller> deletedSellersCarts = preview.sellers.where((element) => element.updated.isEmpty).toList();
+  //
+  // }
+
+
 
   Future<void> _setShippinAddress(List<AddressDomainModel> selectedList) async {
       AddressDomainModel selectedAddress = selectedList.first;

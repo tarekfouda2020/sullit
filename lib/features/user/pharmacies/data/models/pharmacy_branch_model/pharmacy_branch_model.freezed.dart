@@ -32,6 +32,11 @@ mixin _$PharmacyBranchModel {
   bool? get isDefault => throw _privateConstructorUsedError;
   @JsonKey(name: 'distance_km')
   double? get distanceKm => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_open')
+  bool? get isOpen => throw _privateConstructorUsedError;
+  @JsonKey(name: 'working_hours')
+  List<WorkingHoursModel>? get workingHours =>
+      throw _privateConstructorUsedError;
   PharmacyBranchLocationModel? get state => throw _privateConstructorUsedError;
   PharmacyBranchLocationModel? get city => throw _privateConstructorUsedError;
 
@@ -57,6 +62,8 @@ abstract class $PharmacyBranchModelCopyWith<$Res> {
       @JsonKey(name: 'map_desc') String mapDescription,
       @JsonKey(name: 'is_default') bool? isDefault,
       @JsonKey(name: 'distance_km') double? distanceKm,
+      @JsonKey(name: 'is_open') bool? isOpen,
+      @JsonKey(name: 'working_hours') List<WorkingHoursModel>? workingHours,
       PharmacyBranchLocationModel? state,
       PharmacyBranchLocationModel? city});
 
@@ -86,6 +93,8 @@ class _$PharmacyBranchModelCopyWithImpl<$Res, $Val extends PharmacyBranchModel>
     Object? mapDescription = null,
     Object? isDefault = freezed,
     Object? distanceKm = freezed,
+    Object? isOpen = freezed,
+    Object? workingHours = freezed,
     Object? state = freezed,
     Object? city = freezed,
   }) {
@@ -126,6 +135,14 @@ class _$PharmacyBranchModelCopyWithImpl<$Res, $Val extends PharmacyBranchModel>
           ? _value.distanceKm
           : distanceKm // ignore: cast_nullable_to_non_nullable
               as double?,
+      isOpen: freezed == isOpen
+          ? _value.isOpen
+          : isOpen // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      workingHours: freezed == workingHours
+          ? _value.workingHours
+          : workingHours // ignore: cast_nullable_to_non_nullable
+              as List<WorkingHoursModel>?,
       state: freezed == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -180,6 +197,8 @@ abstract class _$$_PharmacyBranchModelCopyWith<$Res>
       @JsonKey(name: 'map_desc') String mapDescription,
       @JsonKey(name: 'is_default') bool? isDefault,
       @JsonKey(name: 'distance_km') double? distanceKm,
+      @JsonKey(name: 'is_open') bool? isOpen,
+      @JsonKey(name: 'working_hours') List<WorkingHoursModel>? workingHours,
       PharmacyBranchLocationModel? state,
       PharmacyBranchLocationModel? city});
 
@@ -209,6 +228,8 @@ class __$$_PharmacyBranchModelCopyWithImpl<$Res>
     Object? mapDescription = null,
     Object? isDefault = freezed,
     Object? distanceKm = freezed,
+    Object? isOpen = freezed,
+    Object? workingHours = freezed,
     Object? state = freezed,
     Object? city = freezed,
   }) {
@@ -249,6 +270,14 @@ class __$$_PharmacyBranchModelCopyWithImpl<$Res>
           ? _value.distanceKm
           : distanceKm // ignore: cast_nullable_to_non_nullable
               as double?,
+      isOpen: freezed == isOpen
+          ? _value.isOpen
+          : isOpen // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      workingHours: freezed == workingHours
+          ? _value.workingHours
+          : workingHours // ignore: cast_nullable_to_non_nullable
+              as List<WorkingHoursModel>?,
       state: freezed == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -274,6 +303,8 @@ class _$_PharmacyBranchModel extends _PharmacyBranchModel {
       @JsonKey(name: 'map_desc') required this.mapDescription,
       @JsonKey(name: 'is_default') this.isDefault,
       @JsonKey(name: 'distance_km') this.distanceKm,
+      @JsonKey(name: 'is_open') this.isOpen,
+      @JsonKey(name: 'working_hours') this.workingHours,
       this.state,
       this.city})
       : super._();
@@ -303,13 +334,19 @@ class _$_PharmacyBranchModel extends _PharmacyBranchModel {
   @JsonKey(name: 'distance_km')
   final double? distanceKm;
   @override
+  @JsonKey(name: 'is_open')
+  final bool? isOpen;
+  @override
+  @JsonKey(name: 'working_hours')
+  final List<WorkingHoursModel>? workingHours;
+  @override
   final PharmacyBranchLocationModel? state;
   @override
   final PharmacyBranchLocationModel? city;
 
   @override
   String toString() {
-    return 'PharmacyBranchModel(id: $id, name: $name, phone: $phone, address: $address, latitude: $latitude, longitude: $longitude, mapDescription: $mapDescription, isDefault: $isDefault, distanceKm: $distanceKm, state: $state, city: $city)';
+    return 'PharmacyBranchModel(id: $id, name: $name, phone: $phone, address: $address, latitude: $latitude, longitude: $longitude, mapDescription: $mapDescription, isDefault: $isDefault, distanceKm: $distanceKm, isOpen: $isOpen, workingHours: $workingHours, state: $state, city: $city)';
   }
 
   @override
@@ -331,6 +368,9 @@ class _$_PharmacyBranchModel extends _PharmacyBranchModel {
                 other.isDefault == isDefault) &&
             (identical(other.distanceKm, distanceKm) ||
                 other.distanceKm == distanceKm) &&
+            (identical(other.isOpen, isOpen) || other.isOpen == isOpen) &&
+            (identical(other.workingHours, workingHours) ||
+                other.workingHours == workingHours) &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.city, city) || other.city == city));
   }
@@ -338,7 +378,8 @@ class _$_PharmacyBranchModel extends _PharmacyBranchModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, phone, address,
-      latitude, longitude, mapDescription, isDefault, distanceKm, state, city);
+      latitude, longitude, mapDescription, isDefault, distanceKm, isOpen,
+      workingHours, state, city);
 
   @JsonKey(ignore: true)
   @override
@@ -366,6 +407,9 @@ abstract class _PharmacyBranchModel extends PharmacyBranchModel {
       @JsonKey(name: 'map_desc') required final String mapDescription,
       @JsonKey(name: 'is_default') final bool? isDefault,
       @JsonKey(name: 'distance_km') final double? distanceKm,
+      @JsonKey(name: 'is_open') final bool? isOpen,
+      @JsonKey(name: 'working_hours')
+      final List<WorkingHoursModel>? workingHours,
       final PharmacyBranchLocationModel? state,
       final PharmacyBranchLocationModel? city}) = _$_PharmacyBranchModel;
   const _PharmacyBranchModel._() : super._();
@@ -394,6 +438,12 @@ abstract class _PharmacyBranchModel extends PharmacyBranchModel {
   @override
   @JsonKey(name: 'distance_km')
   double? get distanceKm;
+  @override
+  @JsonKey(name: 'is_open')
+  bool? get isOpen;
+  @override
+  @JsonKey(name: 'working_hours')
+  List<WorkingHoursModel>? get workingHours;
   @override
   PharmacyBranchLocationModel? get state;
   @override

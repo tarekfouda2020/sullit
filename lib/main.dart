@@ -21,7 +21,6 @@ void main() async {
   await Firebase.initializeApp();
   await HiveHelper.instance.init();
   await HiveHelper.instance.openBox<String>(HiveBoxesNames.instoreCart);
-  PlaySoundHelper.instance.initSound();
 
   final prefs = await SharedPreferences.getInstance();
   getIt.registerSingleton<SharedPreferences>(prefs);

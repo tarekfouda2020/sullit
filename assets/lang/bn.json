@@ -824,5 +824,9 @@
   "cartRemovedItems": "সরানো পণ্য",
   "cartUpdatedItems": "পরিবর্তিত পরিমাণ",
   "cartItemQtyUpdated": "পরিমাণ {old} থেকে {new} হয়েছে",
-  "changeAddress": "ঠিকানা পরিবর্তন করুন"
+  "changeAddress": "ঠিকানা পরিবর্তন করুন",
+  "addMoreItems": "আরও পণ্য যোগ করুন",
+  "cartSellerCleared": "এই বিক্রেতার কার্ট খালি হয়ে যাবে। নতুন শাখায় পণ্য নেই।",
+  "cartSellerMinAmount": "এই বিক্রেতার ন্যূনতম অর্ডার ",
+  "cartAllSellersCleared": "আপনার কার্ট খালি হয়ে যাবে। পরিবর্তিত শাখায় পণ্য নেই। অন্য ঠিকানা বেছে নিন।"
 }

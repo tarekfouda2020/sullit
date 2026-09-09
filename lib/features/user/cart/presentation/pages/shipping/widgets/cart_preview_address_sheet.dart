@@ -4,13 +4,17 @@ class CartPreviewAddressSheet extends StatelessWidget {
   final CartPreviewAddress preview;
   final VoidCallback onConfirm;
   final VoidCallback onChangeAddress;
+  final ValueChanged<CartPreviewSeller> onAddMoreItems;
 
   const CartPreviewAddressSheet({
     super.key,
     required this.preview,
     required this.onConfirm,
     required this.onChangeAddress,
+    required this.onAddMoreItems,
   });
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,17 +47,31 @@ class CartPreviewAddressSheet extends StatelessWidget {
                 itemCount: preview.sellers.length,
                 separatorBuilder: (_, __) => Gaps.vGap12,
                 itemBuilder: (context, index) {
+                  final seller = preview.sellers[index];
                   return CartPreviewSellerSectionWidget(
-                    seller: preview.sellers[index],
+                    seller: seller,
+                    onAddMoreItems: () => onAddMoreItems(seller),
                   );
                 },
               ),
             ),
             Gaps.vGap16,
+            if (_allCartsCleared) ...[
+              Text(
+                tr('cartAllSellersCleared'),
+                textAlign: TextAlign.center,
+                style: AppTextStyle.s14_w500(color: context.colors.redAccent),
+              ),
+              Gaps.vGap12,
+            ],
             DefaultButton(
               title: tr('confirm'),
               margin: EdgeInsets.zero,
-              onTap: onConfirm,
+              disabled: !_canConfirm,
+              color: _canConfirm
+                  ? context.colors.primary
+                  : context.colors.disableGray,
+              onTap: _canConfirm ? onConfirm : null,
             ),
             Gaps.vGap10,
             DefaultButton(
@@ -69,4 +87,10 @@ class CartPreviewAddressSheet extends StatelessWidget {
       ),
     );
   }
+
+
+  bool get _allCartsCleared => preview.allCartsCleared;
+
+  bool get _canConfirm => preview.canConfirm;
+
 }

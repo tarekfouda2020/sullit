@@ -256,12 +256,18 @@ class Orders extends BaseDomainModel {
    OrderTypeEnum orderTypeEnum() {
      if(shopType == "pharmacy") {
        return OrderTypeEnum.pharmacy ;
+     } else if (shopType == "restaurant") {
+       return OrderTypeEnum.restaurant ;
      }else{
        return OrderTypeEnum.merchant ;
      }
    }
 
    bool get  isPharmacy => orderTypeEnum() == OrderTypeEnum.pharmacy;
+
+   bool get  isRestaurantOrder => orderTypeEnum() == OrderTypeEnum.restaurant;
+
+   bool get  iMerchantOrder => orderTypeEnum() == OrderTypeEnum.merchant;
 
 
   bool get pharmNormalOrder {

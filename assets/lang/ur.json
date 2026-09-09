@@ -928,5 +928,9 @@
   "cartRemovedItems": "حذف شدہ اشیاء",
   "cartUpdatedItems": "تبدیل شدہ مقدار",
   "cartItemQtyUpdated": "مقدار {old} سے {new} ہو گئی",
-  "changeAddress": "پتہ تبدیل کریں"
+  "changeAddress": "پتہ تبدیل کریں",
+  "addMoreItems": "مزید اشیاء شامل کریں",
+  "cartSellerCleared": "اس بیچنے والے کی کارٹ خالی ہو جائے گی۔ نئی برانچ میں مصنوعات دستیاب نہیں۔",
+  "cartSellerMinAmount": "اس بیچنے والے کے لیے کم از کم آرڈر ",
+  "cartAllSellersCleared": "آپ کی کارٹ خالی ہو جائے گی۔ تبدیل شدہ برانچز میں مصنوعات دستیاب نہیں۔ براہ کرم دوسرا پتہ منتخب کریں۔"
 }

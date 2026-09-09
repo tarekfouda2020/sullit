@@ -13,6 +13,7 @@ _$_ShopModel _$$_ShopModelFromJson(Map<String, dynamic> json) => _$_ShopModel(
       supportsInStoreShopping: json['supports_in_store_shopping'] as bool?,
       shopType: json['type'] as String,
       shopTypeLabel: json['type_label'] as String,
+      isOpen: json['is_open'] as bool?,
       name: json['name'] as String,
       sliders:
           (json['sliders'] as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -37,6 +38,9 @@ _$_ShopModel _$$_ShopModelFromJson(Map<String, dynamic> json) => _$_ShopModel(
       pickup: json['pickup'] == null
           ? null
           : ShopPickupModel.fromJson(json['pickup'] as Map<String, dynamic>),
+      workingHours: (json['working_hours'] as List<dynamic>?)
+          ?.map((e) => WorkingHoursModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_ShopModelToJson(_$_ShopModel instance) =>
@@ -47,6 +51,7 @@ Map<String, dynamic> _$$_ShopModelToJson(_$_ShopModel instance) =>
       'supports_in_store_shopping': instance.supportsInStoreShopping,
       'type': instance.shopType,
       'type_label': instance.shopTypeLabel,
+      'is_open': instance.isOpen,
       'name': instance.name,
       'sliders': instance.sliders,
       'insurance_companies':
@@ -66,6 +71,28 @@ Map<String, dynamic> _$$_ShopModelToJson(_$_ShopModel instance) =>
       'rating': instance.rating,
       'follow': instance.follow,
       'pickup': instance.pickup?.toJson(),
+      'working_hours': instance.workingHours?.map((e) => e.toJson()).toList(),
+    };
+
+_$_WorkingHoursModel _$$_WorkingHoursModelFromJson(Map<String, dynamic> json) =>
+    _$_WorkingHoursModel(
+      id: (json['id'] as num).toInt(),
+      dayOfWeek: (json['day_of_week'] as num).toInt(),
+      dayLabel: json['day_label'] as String,
+      openTime: json['open_time'] as String,
+      closeTime: json['close_time'] as String,
+      isClosed: json['is_closed'] as bool,
+    );
+
+Map<String, dynamic> _$$_WorkingHoursModelToJson(
+        _$_WorkingHoursModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'day_of_week': instance.dayOfWeek,
+      'day_label': instance.dayLabel,
+      'open_time': instance.openTime,
+      'close_time': instance.closeTime,
+      'is_closed': instance.isClosed,
     };
 
 _$_ShopPickupModel _$$_ShopPickupModelFromJson(Map<String, dynamic> json) =>

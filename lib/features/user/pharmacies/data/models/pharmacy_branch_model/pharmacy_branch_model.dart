@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/pharmacy_branch_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/data/models/shop_model/shop_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'pharmacy_branch_model.freezed.dart';
@@ -9,6 +10,7 @@ part 'pharmacy_branch_model.g.dart';
 @freezed
 class PharmacyBranchModel extends BaseApiModel<BranchDomainModel> with _$PharmacyBranchModel {
   const PharmacyBranchModel._();
+  @JsonSerializable(explicitToJson: true)
    const factory PharmacyBranchModel({
     required int id,
     required String name,
@@ -19,6 +21,8 @@ class PharmacyBranchModel extends BaseApiModel<BranchDomainModel> with _$Pharmac
     @JsonKey(name: 'map_desc') required String mapDescription,
     @JsonKey(name: 'is_default')  bool? isDefault,
     @JsonKey(name: 'distance_km') double? distanceKm,
+    @JsonKey(name: 'is_open') bool? isOpen,
+    @JsonKey(name: 'working_hours') List<WorkingHoursModel>? workingHours,
      PharmacyBranchLocationModel? state,
      PharmacyBranchLocationModel? city,
   }) = _PharmacyBranchModel;
@@ -40,6 +44,8 @@ class PharmacyBranchModel extends BaseApiModel<BranchDomainModel> with _$Pharmac
       longitude: longitude,
       isDefault: isDefault ?? false,
       distanceKm: distanceKm,
+      isOpen: isOpen,
+      workingHours: workingHours?.map((e) => e.toDomainModel()).toList(),
     );
   }
 }

@@ -23,6 +23,8 @@ CartPreviewSellerModel _$CartPreviewSellerModelFromJson(
 mixin _$CartPreviewSellerModel {
   @JsonKey(name: "owner_id")
   int get ownerId => throw _privateConstructorUsedError;
+  @JsonKey(name: "shop_id")
+  int? get shopId => throw _privateConstructorUsedError;
   @JsonKey(name: "seller_name")
   String get sellerName => throw _privateConstructorUsedError;
   @JsonKey(name: "shop_name")
@@ -37,6 +39,14 @@ mixin _$CartPreviewSellerModel {
   bool get deliveryAvailable => throw _privateConstructorUsedError;
   @JsonKey(name: "delivery_message")
   String? get deliveryMessage => throw _privateConstructorUsedError;
+  @JsonKey(name: "minimum_order_amount_msg")
+  String get minimumAmountMsg => throw _privateConstructorUsedError;
+  @JsonKey(name: "minimum_order_amount")
+  dynamic get minimumAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: "minimum_order_amount_status")
+  bool get minimumStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: "items_count")
+  int get totalItemsCount => throw _privateConstructorUsedError;
   List<CartPreviewRemovedItemModel> get removed =>
       throw _privateConstructorUsedError;
   List<CartPreviewUpdatedItemModel> get updated =>
@@ -56,6 +66,7 @@ abstract class $CartPreviewSellerModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "owner_id") int ownerId,
+      @JsonKey(name: "shop_id") int? shopId,
       @JsonKey(name: "seller_name") String sellerName,
       @JsonKey(name: "shop_name") String shopName,
       @JsonKey(name: "branch_changed") bool branchChanged,
@@ -63,6 +74,10 @@ abstract class $CartPreviewSellerModelCopyWith<$Res> {
       @JsonKey(name: "to_branch") CartPreviewBranchModel? toBranch,
       @JsonKey(name: "delivery_available") bool deliveryAvailable,
       @JsonKey(name: "delivery_message") String? deliveryMessage,
+      @JsonKey(name: "minimum_order_amount_msg") String minimumAmountMsg,
+      @JsonKey(name: "minimum_order_amount") dynamic minimumAmount,
+      @JsonKey(name: "minimum_order_amount_status") bool minimumStatus,
+      @JsonKey(name: "items_count") int totalItemsCount,
       List<CartPreviewRemovedItemModel> removed,
       List<CartPreviewUpdatedItemModel> updated});
 
@@ -85,6 +100,7 @@ class _$CartPreviewSellerModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? ownerId = null,
+    Object? shopId = freezed,
     Object? sellerName = null,
     Object? shopName = null,
     Object? branchChanged = null,
@@ -92,6 +108,10 @@ class _$CartPreviewSellerModelCopyWithImpl<$Res,
     Object? toBranch = freezed,
     Object? deliveryAvailable = null,
     Object? deliveryMessage = freezed,
+    Object? minimumAmountMsg = null,
+    Object? minimumAmount = freezed,
+    Object? minimumStatus = null,
+    Object? totalItemsCount = null,
     Object? removed = null,
     Object? updated = null,
   }) {
@@ -100,6 +120,10 @@ class _$CartPreviewSellerModelCopyWithImpl<$Res,
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
               as int,
+      shopId: freezed == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as int?,
       sellerName: null == sellerName
           ? _value.sellerName
           : sellerName // ignore: cast_nullable_to_non_nullable
@@ -128,6 +152,22 @@ class _$CartPreviewSellerModelCopyWithImpl<$Res,
           ? _value.deliveryMessage
           : deliveryMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      minimumAmountMsg: null == minimumAmountMsg
+          ? _value.minimumAmountMsg
+          : minimumAmountMsg // ignore: cast_nullable_to_non_nullable
+              as String,
+      minimumAmount: freezed == minimumAmount
+          ? _value.minimumAmount
+          : minimumAmount // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      minimumStatus: null == minimumStatus
+          ? _value.minimumStatus
+          : minimumStatus // ignore: cast_nullable_to_non_nullable
+              as bool,
+      totalItemsCount: null == totalItemsCount
+          ? _value.totalItemsCount
+          : totalItemsCount // ignore: cast_nullable_to_non_nullable
+              as int,
       removed: null == removed
           ? _value.removed
           : removed // ignore: cast_nullable_to_non_nullable
@@ -174,6 +214,7 @@ abstract class _$$_CartPreviewSellerModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "owner_id") int ownerId,
+      @JsonKey(name: "shop_id") int? shopId,
       @JsonKey(name: "seller_name") String sellerName,
       @JsonKey(name: "shop_name") String shopName,
       @JsonKey(name: "branch_changed") bool branchChanged,
@@ -181,6 +222,10 @@ abstract class _$$_CartPreviewSellerModelCopyWith<$Res>
       @JsonKey(name: "to_branch") CartPreviewBranchModel? toBranch,
       @JsonKey(name: "delivery_available") bool deliveryAvailable,
       @JsonKey(name: "delivery_message") String? deliveryMessage,
+      @JsonKey(name: "minimum_order_amount_msg") String minimumAmountMsg,
+      @JsonKey(name: "minimum_order_amount") dynamic minimumAmount,
+      @JsonKey(name: "minimum_order_amount_status") bool minimumStatus,
+      @JsonKey(name: "items_count") int totalItemsCount,
       List<CartPreviewRemovedItemModel> removed,
       List<CartPreviewUpdatedItemModel> updated});
 
@@ -203,6 +248,7 @@ class __$$_CartPreviewSellerModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? ownerId = null,
+    Object? shopId = freezed,
     Object? sellerName = null,
     Object? shopName = null,
     Object? branchChanged = null,
@@ -210,6 +256,10 @@ class __$$_CartPreviewSellerModelCopyWithImpl<$Res>
     Object? toBranch = freezed,
     Object? deliveryAvailable = null,
     Object? deliveryMessage = freezed,
+    Object? minimumAmountMsg = null,
+    Object? minimumAmount = freezed,
+    Object? minimumStatus = null,
+    Object? totalItemsCount = null,
     Object? removed = null,
     Object? updated = null,
   }) {
@@ -218,6 +268,10 @@ class __$$_CartPreviewSellerModelCopyWithImpl<$Res>
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
               as int,
+      shopId: freezed == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as int?,
       sellerName: null == sellerName
           ? _value.sellerName
           : sellerName // ignore: cast_nullable_to_non_nullable
@@ -246,6 +300,22 @@ class __$$_CartPreviewSellerModelCopyWithImpl<$Res>
           ? _value.deliveryMessage
           : deliveryMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      minimumAmountMsg: null == minimumAmountMsg
+          ? _value.minimumAmountMsg
+          : minimumAmountMsg // ignore: cast_nullable_to_non_nullable
+              as String,
+      minimumAmount: freezed == minimumAmount
+          ? _value.minimumAmount
+          : minimumAmount // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      minimumStatus: null == minimumStatus
+          ? _value.minimumStatus
+          : minimumStatus // ignore: cast_nullable_to_non_nullable
+              as bool,
+      totalItemsCount: null == totalItemsCount
+          ? _value.totalItemsCount
+          : totalItemsCount // ignore: cast_nullable_to_non_nullable
+              as int,
       removed: null == removed
           ? _value._removed
           : removed // ignore: cast_nullable_to_non_nullable
@@ -264,6 +334,7 @@ class __$$_CartPreviewSellerModelCopyWithImpl<$Res>
 class _$_CartPreviewSellerModel extends _CartPreviewSellerModel {
   const _$_CartPreviewSellerModel(
       {@JsonKey(name: "owner_id") required this.ownerId,
+      @JsonKey(name: "shop_id") this.shopId,
       @JsonKey(name: "seller_name") required this.sellerName,
       @JsonKey(name: "shop_name") required this.shopName,
       @JsonKey(name: "branch_changed") required this.branchChanged,
@@ -271,6 +342,10 @@ class _$_CartPreviewSellerModel extends _CartPreviewSellerModel {
       @JsonKey(name: "to_branch") this.toBranch,
       @JsonKey(name: "delivery_available") required this.deliveryAvailable,
       @JsonKey(name: "delivery_message") this.deliveryMessage,
+      @JsonKey(name: "minimum_order_amount_msg") required this.minimumAmountMsg,
+      @JsonKey(name: "minimum_order_amount") required this.minimumAmount,
+      @JsonKey(name: "minimum_order_amount_status") required this.minimumStatus,
+      @JsonKey(name: "items_count") required this.totalItemsCount,
       final List<CartPreviewRemovedItemModel> removed = const [],
       final List<CartPreviewUpdatedItemModel> updated = const []})
       : _removed = removed,
@@ -283,6 +358,9 @@ class _$_CartPreviewSellerModel extends _CartPreviewSellerModel {
   @override
   @JsonKey(name: "owner_id")
   final int ownerId;
+  @override
+  @JsonKey(name: "shop_id")
+  final int? shopId;
   @override
   @JsonKey(name: "seller_name")
   final String sellerName;
@@ -304,6 +382,18 @@ class _$_CartPreviewSellerModel extends _CartPreviewSellerModel {
   @override
   @JsonKey(name: "delivery_message")
   final String? deliveryMessage;
+  @override
+  @JsonKey(name: "minimum_order_amount_msg")
+  final String minimumAmountMsg;
+  @override
+  @JsonKey(name: "minimum_order_amount")
+  final dynamic minimumAmount;
+  @override
+  @JsonKey(name: "minimum_order_amount_status")
+  final bool minimumStatus;
+  @override
+  @JsonKey(name: "items_count")
+  final int totalItemsCount;
   final List<CartPreviewRemovedItemModel> _removed;
   @override
   @JsonKey()
@@ -324,7 +414,7 @@ class _$_CartPreviewSellerModel extends _CartPreviewSellerModel {
 
   @override
   String toString() {
-    return 'CartPreviewSellerModel(ownerId: $ownerId, sellerName: $sellerName, shopName: $shopName, branchChanged: $branchChanged, fromBranch: $fromBranch, toBranch: $toBranch, deliveryAvailable: $deliveryAvailable, deliveryMessage: $deliveryMessage, removed: $removed, updated: $updated)';
+    return 'CartPreviewSellerModel(ownerId: $ownerId, shopId: $shopId, sellerName: $sellerName, shopName: $shopName, branchChanged: $branchChanged, fromBranch: $fromBranch, toBranch: $toBranch, deliveryAvailable: $deliveryAvailable, deliveryMessage: $deliveryMessage, minimumAmountMsg: $minimumAmountMsg, minimumAmount: $minimumAmount, minimumStatus: $minimumStatus, totalItemsCount: $totalItemsCount, removed: $removed, updated: $updated)';
   }
 
   @override
@@ -333,6 +423,7 @@ class _$_CartPreviewSellerModel extends _CartPreviewSellerModel {
         (other.runtimeType == runtimeType &&
             other is _$_CartPreviewSellerModel &&
             (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
+            (identical(other.shopId, shopId) || other.shopId == shopId) &&
             (identical(other.sellerName, sellerName) ||
                 other.sellerName == sellerName) &&
             (identical(other.shopName, shopName) ||
@@ -347,6 +438,14 @@ class _$_CartPreviewSellerModel extends _CartPreviewSellerModel {
                 other.deliveryAvailable == deliveryAvailable) &&
             (identical(other.deliveryMessage, deliveryMessage) ||
                 other.deliveryMessage == deliveryMessage) &&
+            (identical(other.minimumAmountMsg, minimumAmountMsg) ||
+                other.minimumAmountMsg == minimumAmountMsg) &&
+            const DeepCollectionEquality()
+                .equals(other.minimumAmount, minimumAmount) &&
+            (identical(other.minimumStatus, minimumStatus) ||
+                other.minimumStatus == minimumStatus) &&
+            (identical(other.totalItemsCount, totalItemsCount) ||
+                other.totalItemsCount == totalItemsCount) &&
             const DeepCollectionEquality().equals(other._removed, _removed) &&
             const DeepCollectionEquality().equals(other._updated, _updated));
   }
@@ -356,6 +455,7 @@ class _$_CartPreviewSellerModel extends _CartPreviewSellerModel {
   int get hashCode => Object.hash(
       runtimeType,
       ownerId,
+      shopId,
       sellerName,
       shopName,
       branchChanged,
@@ -363,6 +463,10 @@ class _$_CartPreviewSellerModel extends _CartPreviewSellerModel {
       toBranch,
       deliveryAvailable,
       deliveryMessage,
+      minimumAmountMsg,
+      const DeepCollectionEquality().hash(minimumAmount),
+      minimumStatus,
+      totalItemsCount,
       const DeepCollectionEquality().hash(_removed),
       const DeepCollectionEquality().hash(_updated));
 
@@ -384,6 +488,7 @@ class _$_CartPreviewSellerModel extends _CartPreviewSellerModel {
 abstract class _CartPreviewSellerModel extends CartPreviewSellerModel {
   const factory _CartPreviewSellerModel(
       {@JsonKey(name: "owner_id") required final int ownerId,
+      @JsonKey(name: "shop_id") final int? shopId,
       @JsonKey(name: "seller_name") required final String sellerName,
       @JsonKey(name: "shop_name") required final String shopName,
       @JsonKey(name: "branch_changed") required final bool branchChanged,
@@ -392,6 +497,13 @@ abstract class _CartPreviewSellerModel extends CartPreviewSellerModel {
       @JsonKey(name: "delivery_available")
       required final bool deliveryAvailable,
       @JsonKey(name: "delivery_message") final String? deliveryMessage,
+      @JsonKey(name: "minimum_order_amount_msg")
+      required final String minimumAmountMsg,
+      @JsonKey(name: "minimum_order_amount")
+      required final dynamic minimumAmount,
+      @JsonKey(name: "minimum_order_amount_status")
+      required final bool minimumStatus,
+      @JsonKey(name: "items_count") required final int totalItemsCount,
       final List<CartPreviewRemovedItemModel> removed,
       final List<CartPreviewUpdatedItemModel>
           updated}) = _$_CartPreviewSellerModel;
@@ -403,6 +515,9 @@ abstract class _CartPreviewSellerModel extends CartPreviewSellerModel {
   @override
   @JsonKey(name: "owner_id")
   int get ownerId;
+  @override
+  @JsonKey(name: "shop_id")
+  int? get shopId;
   @override
   @JsonKey(name: "seller_name")
   String get sellerName;
@@ -424,6 +539,18 @@ abstract class _CartPreviewSellerModel extends CartPreviewSellerModel {
   @override
   @JsonKey(name: "delivery_message")
   String? get deliveryMessage;
+  @override
+  @JsonKey(name: "minimum_order_amount_msg")
+  String get minimumAmountMsg;
+  @override
+  @JsonKey(name: "minimum_order_amount")
+  dynamic get minimumAmount;
+  @override
+  @JsonKey(name: "minimum_order_amount_status")
+  bool get minimumStatus;
+  @override
+  @JsonKey(name: "items_count")
+  int get totalItemsCount;
   @override
   List<CartPreviewRemovedItemModel> get removed;
   @override

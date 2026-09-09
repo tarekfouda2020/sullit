@@ -15,6 +15,7 @@ import 'package:flutter_tdd/features/user/addresses/domain/use_cases/get_address
 import 'package:flutter_tdd/features/user/cart/domain/entities/add_cart_address_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/preview_cart_address_params.dart';
 import 'package:flutter_tdd/features/user/cart/domain/models/cart_preview_address.dart';
+import 'package:flutter_tdd/features/user/cart/domain/models/cart_preview_seller.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/add_cart_address.dart';
 import 'package:flutter_tdd/features/user/cart/domain/use_cases/preview_cart_address.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/manager/helpers/cart_navigate_helper.dart';

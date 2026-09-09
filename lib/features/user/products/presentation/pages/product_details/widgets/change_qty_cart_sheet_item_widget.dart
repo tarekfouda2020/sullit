@@ -3,16 +3,19 @@ part of 'product_details_widgets_imports.dart';
 class ChangeQtyCartSheetItemWidget extends StatefulWidget {
   final GeneralCartItem cartItem;
   final CartSheetController controller;
-  const ChangeQtyCartSheetItemWidget(
-      {super.key, required this.cartItem, required this.controller});
+
+  const ChangeQtyCartSheetItemWidget({
+    super.key,
+    required this.cartItem,
+    required this.controller,
+  });
 
   @override
   State<ChangeQtyCartSheetItemWidget> createState() =>
       _ChangeQtyCartSheetItemWidgetState();
 }
 
-class _ChangeQtyCartSheetItemWidgetState
-    extends State<ChangeQtyCartSheetItemWidget> {
+class _ChangeQtyCartSheetItemWidgetState extends State<ChangeQtyCartSheetItemWidget> {
   final GenericBloc<int> qntCubit = GenericBloc(0);
 
   @override

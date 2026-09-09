@@ -17,6 +17,7 @@ class CartPreviewSellerModel extends BaseApiModel<CartPreviewSeller>
   @JsonSerializable(explicitToJson: true)
   const factory CartPreviewSellerModel({
     @JsonKey(name: "owner_id") required int ownerId,
+    @JsonKey(name: "shop_id")  int? shopId,
     @JsonKey(name: "seller_name") required String sellerName,
     @JsonKey(name: "shop_name") required String shopName,
     @JsonKey(name: "branch_changed") required bool branchChanged,
@@ -24,6 +25,10 @@ class CartPreviewSellerModel extends BaseApiModel<CartPreviewSeller>
     @JsonKey(name: "to_branch") CartPreviewBranchModel? toBranch,
     @JsonKey(name: "delivery_available") required bool deliveryAvailable,
     @JsonKey(name: "delivery_message") String? deliveryMessage,
+    @JsonKey(name: "minimum_order_amount_msg") required String minimumAmountMsg,
+    @JsonKey(name: "minimum_order_amount") required dynamic minimumAmount,
+    @JsonKey(name: "minimum_order_amount_status") required bool minimumStatus,
+    @JsonKey(name: "items_count") required int totalItemsCount,
     @Default([]) List<CartPreviewRemovedItemModel> removed,
     @Default([]) List<CartPreviewUpdatedItemModel> updated,
   }) = _CartPreviewSellerModel;
@@ -35,6 +40,7 @@ class CartPreviewSellerModel extends BaseApiModel<CartPreviewSeller>
   CartPreviewSeller toDomainModel() {
     return CartPreviewSeller(
       ownerId: ownerId,
+      shopId: shopId,
       sellerName: sellerName,
       shopName: shopName,
       branchChanged: branchChanged,
@@ -44,6 +50,12 @@ class CartPreviewSellerModel extends BaseApiModel<CartPreviewSeller>
       deliveryMessage: deliveryMessage,
       removed: removed.map((e) => e.toDomainModel()).toList(),
       updated: updated.map((e) => e.toDomainModel()).toList(),
+      minimumAmount: minimumAmount is String
+      ? minimumAmount
+          : "0" ,
+      minimumAmountMsg: minimumAmountMsg ,
+      minimumStatus: minimumStatus ,
+      totalItemsCount: totalItemsCount ,
     );
   }
 }

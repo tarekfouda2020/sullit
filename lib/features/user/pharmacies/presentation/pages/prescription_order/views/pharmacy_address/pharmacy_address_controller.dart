@@ -271,15 +271,7 @@ class PharmacyAddressController {
   }
 
   PharmacyBranchesParams _branchesParams(int page, bool refresh) {
-    LatLng? currentLocation =
-        GlobalState.instance.get(GlobalStateKeys.userLocation);
     return PharmacyBranchesParams(
-      latitude: double.tryParse(selectedAddress?.lat ?? "") ??
-          currentLocation?.latitude ??
-          0,
-      longitude: double.tryParse(selectedAddress?.lang ?? "") ??
-          currentLocation?.longitude ??
-          0,
       pharmacyId: pharmacy!.id!,
       formRemote: refresh,
       paginateParams: _paginateParams(page, refresh),

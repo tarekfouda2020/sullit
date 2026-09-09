@@ -22,7 +22,7 @@ class PickBranchWidget extends StatelessWidget {
           children: [
             Expanded(
               child: BlocBuilder<GenericBloc<BranchDomainModel?>, GenericState<BranchDomainModel?>>(
-                bloc: controller.selectedBranchCubit,
+                bloc: controller.currentBranchInBackGroundCubit,
                 builder: (context, state) {
                   return Text(
                     state.data?.name ?? "Select your branch",

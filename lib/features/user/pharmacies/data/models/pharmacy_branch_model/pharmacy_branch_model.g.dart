@@ -18,6 +18,10 @@ _$_PharmacyBranchModel _$$_PharmacyBranchModelFromJson(
       mapDescription: json['map_desc'] as String,
       isDefault: json['is_default'] as bool?,
       distanceKm: (json['distance_km'] as num?)?.toDouble(),
+      isOpen: json['is_open'] as bool?,
+      workingHours: (json['working_hours'] as List<dynamic>?)
+          ?.map((e) => WorkingHoursModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       state: json['state'] == null
           ? null
           : PharmacyBranchLocationModel.fromJson(
@@ -40,8 +44,10 @@ Map<String, dynamic> _$$_PharmacyBranchModelToJson(
       'map_desc': instance.mapDescription,
       'is_default': instance.isDefault,
       'distance_km': instance.distanceKm,
-      'state': instance.state,
-      'city': instance.city,
+      'is_open': instance.isOpen,
+      'working_hours': instance.workingHours?.map((e) => e.toJson()).toList(),
+      'state': instance.state?.toJson(),
+      'city': instance.city?.toJson(),
     };
 
 _$_PharmacyBranchLocationModel _$$_PharmacyBranchLocationModelFromJson(

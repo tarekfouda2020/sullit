@@ -308,6 +308,11 @@ class ProductDetailsController implements CartSheetController {
   }
 
   void increaseQty({bool isInit = false}) {
+    var data = detailsCubit.state.data;
+    if(data?.branch?.isCurrentDayClosed == true){
+      CustomToast.showSimpleToast(msg: "${data?.product.shop?.name} is not available for now");
+      return ;
+    }
     var variantPrice = detailsCubit.state.data?.product.variant;
     var price = _safePrice(variantPrice!.calculablePrice);
     price = price / qtyCubit.state.data;
@@ -409,6 +414,12 @@ class ProductDetailsController implements CartSheetController {
   }
 
   void onAddToCart(BuildContext context) {
+   var data = detailsCubit.state.data;
+    if(data?.branch?.isCurrentDayClosed == true){
+       CustomToast.showSimpleToast(msg: "${data?.product.shop?.name} is not available for now");
+       return ;
+    }
+
     if (!_validateEnabledOptions(context)) return;
     if (isRestaurantProduct) {
       onRestaurantToCart(context);
@@ -430,14 +441,14 @@ class ProductDetailsController implements CartSheetController {
       getIt<CartHelper>().addProductToCart(
         context,
         qtyCubit.state.data,
-        detailsCubit.state.data?.product.variant?.id,
+        data?.product.variant?.id,
         callCartData: true,
         type: getProductType,
         branchId: branchId,
         // onAddCartFunc: () => showCartSuccessDialog(context),
         onAddCartFunc: () {
           FacebookEventsHelper.instance.productAddToCart(
-              id: detailsCubit.state.data!.product.id!,
+              id: data!.product.id!,
               price: detailsCubit.state.data!.product.variant?.calculablePrice ?? "");
           showCartSuccessSheet(context);
         },

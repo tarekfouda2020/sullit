@@ -11,6 +11,7 @@ import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/features/user/cart/presentation/manager/helpers/cart_navigate_helper.dart';
+import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 import 'package:flutter_tdd/res.dart';
 
 class BuildCartStepper extends StatelessWidget {
@@ -111,6 +112,9 @@ class BuildCartStepper extends StatelessWidget {
       helper.setStep(targetStep, force: true);
     } else {
       helper.navigateToStep(targetStep);
+    }
+    if (helper.currentStep == CartNavigateHelper.cartStepIndex) {
+      getIt<CartHelper>().getCartItems(refresh: true);
     }
   }
 

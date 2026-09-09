@@ -64,6 +64,7 @@ class SellerProductsController {
     shopId = id;
     getCartData();
     getProducts(1, refresh: false);
+    getProducts(1);
     getBrands(1, refresh: false);
     pagingController.addPageRequestListener((pageKey) {
       getProducts(pageKey);
@@ -344,14 +345,15 @@ class SellerProductsController {
     getProducts(1);
   }
 
-  void onPressViewCart(BuildContext context, bool fromCart) {
+  Future<void> onPressViewCart(BuildContext context, bool fromCart) async{
     if (cartHaveSellerProduct() == false) {
       return;
     }
     if (fromCart == true) {
       AutoRouter.of(context).pop();
     } else {
-      AutoRouter.of(context).push(CartRoute());
+     await AutoRouter.of(context).push(CartRoute());
+     refreshDataAfterRoute();
     }
   }
 
@@ -363,7 +365,7 @@ class SellerProductsController {
     }
     final sellerName = shop?.name ?? '';
     final sellerImage = shop?.logo ?? '';
-    final hasBranches = false;
+    const hasBranches = false;
     // final hasBranches = shop?.hasBranches ?? false;
     if (InstoreCartHelper.instance.hasItemsFromDifferentSeller(sellerId)) {
       final cart = InstoreCartHelper.instance.getLocalCart();
@@ -416,6 +418,16 @@ class SellerProductsController {
       },
     );
   }
+
+
+
+
+  void refreshDataAfterRoute(){
+    pagingController.itemList = [
+      ...?pagingController.itemList,
+    ];
+  }
+
 
 
 }

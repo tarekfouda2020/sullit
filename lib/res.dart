@@ -162,7 +162,7 @@ class Res {
 
   static const String ramadanSplashGif = "assets/images/ramadan_gif_image.gif";
   static const String ramadanSplashImage = "assets/images/ramadan_splash.png";
-  static const String ramadanSplashSound = "assets/sounds/ramadan_sound.mp3";
+  static const String ramadanSplashSound = "";
 
 // ---------------------------Fonts-------------------------------------
   static const String notoSans = "assets/fonts/NotoSans.ttf";

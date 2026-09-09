@@ -3,6 +3,7 @@ import 'package:flutter_tdd/features/user/pharmacies/data/models/insurance_compa
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_category.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_pickup.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/working_hours.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'shop_model.freezed.dart';
@@ -22,6 +23,7 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
     @JsonKey(name: 'supports_in_store_shopping')  bool? supportsInStoreShopping,
     @JsonKey(name: 'type') required String shopType,
     @JsonKey(name: 'type_label') required String shopTypeLabel,
+    @JsonKey(name: 'is_open')  bool? isOpen,
     required String name,
     List<String>? sliders,
     @JsonKey(name: 'insurance_companies')
@@ -41,6 +43,7 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
     required double rating,
     required bool follow,
     ShopPickupModel? pickup,
+    @JsonKey(name: 'working_hours') List<WorkingHoursModel>? workingHours,
   }) = _ShopModel;
 
   factory ShopModel.fromJson(Map<String, dynamic> json) =>
@@ -51,6 +54,7 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
   Shop toDomainModel() {
     return Shop(
       id: id,
+      isOpen: isOpen,
       userId: userId,
       name: name,
       logo: logo,
@@ -74,6 +78,39 @@ class ShopModel extends BaseApiModel<Shop> with _$ShopModel {
       insuranceCompanies:
           insuranceCompanies?.map((e) => e.toDomainModel()).toList(),
       pickUp: pickup?.toDomainModel(),
+      workingHours: workingHours?.map((e) => e.toDomainModel()).toList(),
+    );
+  }
+}
+
+@freezed
+@immutable
+class WorkingHoursModel extends BaseApiModel<WorkingHours>
+    with _$WorkingHoursModel {
+  const WorkingHoursModel._();
+
+  @JsonSerializable(explicitToJson: true)
+  const factory WorkingHoursModel({
+    required int id,
+    @JsonKey(name: 'day_of_week') required int dayOfWeek,
+    @JsonKey(name: 'day_label') required String dayLabel,
+    @JsonKey(name: 'open_time') required String openTime,
+    @JsonKey(name: 'close_time') required String closeTime,
+    @JsonKey(name: 'is_closed') required bool isClosed,
+  }) = _WorkingHoursModel;
+
+  factory WorkingHoursModel.fromJson(Map<String, dynamic> json) =>
+      _$WorkingHoursModelFromJson(json);
+
+  @override
+  WorkingHours toDomainModel() {
+    return WorkingHours(
+      id: id,
+      dayOfWeek: dayOfWeek,
+      dayLabel: dayLabel,
+      openTime: openTime,
+      closeTime: closeTime,
+      isClosed: isClosed,
     );
   }
 }

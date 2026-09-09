@@ -1,4 +1,7 @@
+import 'package:collection/collection.dart';
+import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/working_hours.dart';
 
 class BranchDomainModel extends BaseDomainModel {
   final int id;
@@ -12,6 +15,8 @@ class BranchDomainModel extends BaseDomainModel {
   final String longitude;
   final bool isDefault;
   final double? distanceKm;
+  final bool? isOpen;
+  final List<WorkingHours>? workingHours;
   bool isSelected;
 
    BranchDomainModel({
@@ -26,8 +31,21 @@ class BranchDomainModel extends BaseDomainModel {
     required this.longitude,
     required this.isDefault,
     this.distanceKm,
+    this.isOpen,
+    this.workingHours,
      this.isSelected = false,
   });
+
+
+  WorkingHours? get getCurrentWorkingOursDat => workingHours?.firstWhereOrNull(
+        (e) => e.dayOfWeek == DateTimeHelper.currentDayNumber
+  );
+
+  bool get isCurrentDayAvailable => getCurrentWorkingOursDat?.isClosed == false;
+
+  bool get isCurrentDayClosed => getCurrentWorkingOursDat?.isClosed == true;
+
+
 }
 
 class BranchLocationDomainModel extends BaseDomainModel {

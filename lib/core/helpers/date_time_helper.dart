@@ -54,6 +54,8 @@ class DateTimeHelper {
     return days[date.weekday - 1];
   }
 
+  static int get currentDayNumber => DateTime.now().weekday % 7;
+
   static String getDate(String backendDate, {String? formatType}) {
     try {
       final context = getIt<GlobalContext>().context();

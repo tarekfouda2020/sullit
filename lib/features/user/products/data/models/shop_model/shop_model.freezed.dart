@@ -31,6 +31,8 @@ mixin _$ShopModel {
   String get shopType => throw _privateConstructorUsedError;
   @JsonKey(name: 'type_label')
   String get shopTypeLabel => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_open')
+  bool? get isOpen => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<String>? get sliders => throw _privateConstructorUsedError;
   @JsonKey(name: 'insurance_companies')
@@ -52,6 +54,9 @@ mixin _$ShopModel {
   double get rating => throw _privateConstructorUsedError;
   bool get follow => throw _privateConstructorUsedError;
   ShopPickupModel? get pickup => throw _privateConstructorUsedError;
+  @JsonKey(name: 'working_hours')
+  List<WorkingHoursModel>? get workingHours =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -72,6 +77,7 @@ abstract class $ShopModelCopyWith<$Res> {
       bool? supportsInStoreShopping,
       @JsonKey(name: 'type') String shopType,
       @JsonKey(name: 'type_label') String shopTypeLabel,
+      @JsonKey(name: 'is_open') bool? isOpen,
       String name,
       List<String>? sliders,
       @JsonKey(name: 'insurance_companies')
@@ -90,7 +96,8 @@ abstract class $ShopModelCopyWith<$Res> {
       String? youtube,
       double rating,
       bool follow,
-      ShopPickupModel? pickup});
+      ShopPickupModel? pickup,
+      @JsonKey(name: 'working_hours') List<WorkingHoursModel>? workingHours});
 
   $ShopPickupModelCopyWith<$Res>? get pickup;
 }
@@ -114,6 +121,7 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
     Object? supportsInStoreShopping = freezed,
     Object? shopType = null,
     Object? shopTypeLabel = null,
+    Object? isOpen = freezed,
     Object? name = null,
     Object? sliders = freezed,
     Object? insuranceCompanies = freezed,
@@ -132,6 +140,7 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
     Object? rating = null,
     Object? follow = null,
     Object? pickup = freezed,
+    Object? workingHours = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -158,6 +167,10 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
           ? _value.shopTypeLabel
           : shopTypeLabel // ignore: cast_nullable_to_non_nullable
               as String,
+      isOpen: freezed == isOpen
+          ? _value.isOpen
+          : isOpen // ignore: cast_nullable_to_non_nullable
+              as bool?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -230,6 +243,10 @@ class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
           ? _value.pickup
           : pickup // ignore: cast_nullable_to_non_nullable
               as ShopPickupModel?,
+      workingHours: freezed == workingHours
+          ? _value.workingHours
+          : workingHours // ignore: cast_nullable_to_non_nullable
+              as List<WorkingHoursModel>?,
     ) as $Val);
   }
 
@@ -261,6 +278,7 @@ abstract class _$$_ShopModelCopyWith<$Res> implements $ShopModelCopyWith<$Res> {
       bool? supportsInStoreShopping,
       @JsonKey(name: 'type') String shopType,
       @JsonKey(name: 'type_label') String shopTypeLabel,
+      @JsonKey(name: 'is_open') bool? isOpen,
       String name,
       List<String>? sliders,
       @JsonKey(name: 'insurance_companies')
@@ -279,7 +297,8 @@ abstract class _$$_ShopModelCopyWith<$Res> implements $ShopModelCopyWith<$Res> {
       String? youtube,
       double rating,
       bool follow,
-      ShopPickupModel? pickup});
+      ShopPickupModel? pickup,
+      @JsonKey(name: 'working_hours') List<WorkingHoursModel>? workingHours});
 
   @override
   $ShopPickupModelCopyWith<$Res>? get pickup;
@@ -302,6 +321,7 @@ class __$$_ShopModelCopyWithImpl<$Res>
     Object? supportsInStoreShopping = freezed,
     Object? shopType = null,
     Object? shopTypeLabel = null,
+    Object? isOpen = freezed,
     Object? name = null,
     Object? sliders = freezed,
     Object? insuranceCompanies = freezed,
@@ -320,6 +340,7 @@ class __$$_ShopModelCopyWithImpl<$Res>
     Object? rating = null,
     Object? follow = null,
     Object? pickup = freezed,
+    Object? workingHours = freezed,
   }) {
     return _then(_$_ShopModel(
       id: null == id
@@ -346,6 +367,10 @@ class __$$_ShopModelCopyWithImpl<$Res>
           ? _value.shopTypeLabel
           : shopTypeLabel // ignore: cast_nullable_to_non_nullable
               as String,
+      isOpen: freezed == isOpen
+          ? _value.isOpen
+          : isOpen // ignore: cast_nullable_to_non_nullable
+              as bool?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -418,6 +443,10 @@ class __$$_ShopModelCopyWithImpl<$Res>
           ? _value.pickup
           : pickup // ignore: cast_nullable_to_non_nullable
               as ShopPickupModel?,
+      workingHours: freezed == workingHours
+          ? _value._workingHours
+          : workingHours // ignore: cast_nullable_to_non_nullable
+              as List<WorkingHoursModel>?,
     ));
   }
 }
@@ -433,6 +462,7 @@ class _$_ShopModel extends _ShopModel {
       @JsonKey(name: 'supports_in_store_shopping') this.supportsInStoreShopping,
       @JsonKey(name: 'type') required this.shopType,
       @JsonKey(name: 'type_label') required this.shopTypeLabel,
+      @JsonKey(name: 'is_open') this.isOpen,
       required this.name,
       final List<String>? sliders,
       @JsonKey(name: 'insurance_companies')
@@ -451,9 +481,12 @@ class _$_ShopModel extends _ShopModel {
       required this.youtube,
       required this.rating,
       required this.follow,
-      this.pickup})
+      this.pickup,
+      @JsonKey(name: 'working_hours')
+      final List<WorkingHoursModel>? workingHours})
       : _sliders = sliders,
         _insuranceCompanies = insuranceCompanies,
+        _workingHours = workingHours,
         super._();
 
   factory _$_ShopModel.fromJson(Map<String, dynamic> json) =>
@@ -476,6 +509,9 @@ class _$_ShopModel extends _ShopModel {
   @override
   @JsonKey(name: 'type_label')
   final String shopTypeLabel;
+  @override
+  @JsonKey(name: 'is_open')
+  final bool? isOpen;
   @override
   final String name;
   final List<String>? _sliders;
@@ -531,10 +567,20 @@ class _$_ShopModel extends _ShopModel {
   final bool follow;
   @override
   final ShopPickupModel? pickup;
+  final List<WorkingHoursModel>? _workingHours;
+  @override
+  @JsonKey(name: 'working_hours')
+  List<WorkingHoursModel>? get workingHours {
+    final value = _workingHours;
+    if (value == null) return null;
+    if (_workingHours is EqualUnmodifiableListView) return _workingHours;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'ShopModel(id: $id, userId: $userId, hasBranches: $hasBranches, supportsInStoreShopping: $supportsInStoreShopping, shopType: $shopType, shopTypeLabel: $shopTypeLabel, name: $name, sliders: $sliders, insuranceCompanies: $insuranceCompanies, title: $title, description: $description, logo: $logo, packageInvalidAt: $packageInvalidAt, address: $address, email: $email, phone: $phone, facebook: $facebook, google: $google, twitter: $twitter, instagram: $instagram, youtube: $youtube, rating: $rating, follow: $follow, pickup: $pickup)';
+    return 'ShopModel(id: $id, userId: $userId, hasBranches: $hasBranches, supportsInStoreShopping: $supportsInStoreShopping, shopType: $shopType, shopTypeLabel: $shopTypeLabel, isOpen: $isOpen, name: $name, sliders: $sliders, insuranceCompanies: $insuranceCompanies, title: $title, description: $description, logo: $logo, packageInvalidAt: $packageInvalidAt, address: $address, email: $email, phone: $phone, facebook: $facebook, google: $google, twitter: $twitter, instagram: $instagram, youtube: $youtube, rating: $rating, follow: $follow, pickup: $pickup, workingHours: $workingHours)';
   }
 
   @override
@@ -553,6 +599,7 @@ class _$_ShopModel extends _ShopModel {
                 other.shopType == shopType) &&
             (identical(other.shopTypeLabel, shopTypeLabel) ||
                 other.shopTypeLabel == shopTypeLabel) &&
+            (identical(other.isOpen, isOpen) || other.isOpen == isOpen) &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._sliders, _sliders) &&
             const DeepCollectionEquality()
@@ -575,7 +622,9 @@ class _$_ShopModel extends _ShopModel {
             (identical(other.youtube, youtube) || other.youtube == youtube) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.follow, follow) || other.follow == follow) &&
-            (identical(other.pickup, pickup) || other.pickup == pickup));
+            (identical(other.pickup, pickup) || other.pickup == pickup) &&
+            const DeepCollectionEquality()
+                .equals(other._workingHours, _workingHours));
   }
 
   @JsonKey(ignore: true)
@@ -588,6 +637,7 @@ class _$_ShopModel extends _ShopModel {
         supportsInStoreShopping,
         shopType,
         shopTypeLabel,
+        isOpen,
         name,
         const DeepCollectionEquality().hash(_sliders),
         const DeepCollectionEquality().hash(_insuranceCompanies),
@@ -605,7 +655,8 @@ class _$_ShopModel extends _ShopModel {
         youtube,
         rating,
         follow,
-        pickup
+        pickup,
+        const DeepCollectionEquality().hash(_workingHours)
       ]);
 
   @JsonKey(ignore: true)
@@ -631,6 +682,7 @@ abstract class _ShopModel extends ShopModel {
       final bool? supportsInStoreShopping,
       @JsonKey(name: 'type') required final String shopType,
       @JsonKey(name: 'type_label') required final String shopTypeLabel,
+      @JsonKey(name: 'is_open') final bool? isOpen,
       required final String name,
       final List<String>? sliders,
       @JsonKey(name: 'insurance_companies')
@@ -650,7 +702,9 @@ abstract class _ShopModel extends ShopModel {
       required final String? youtube,
       required final double rating,
       required final bool follow,
-      final ShopPickupModel? pickup}) = _$_ShopModel;
+      final ShopPickupModel? pickup,
+      @JsonKey(name: 'working_hours')
+      final List<WorkingHoursModel>? workingHours}) = _$_ShopModel;
   const _ShopModel._() : super._();
 
   factory _ShopModel.fromJson(Map<String, dynamic> json) =
@@ -673,6 +727,9 @@ abstract class _ShopModel extends ShopModel {
   @override
   @JsonKey(name: 'type_label')
   String get shopTypeLabel;
+  @override
+  @JsonKey(name: 'is_open')
+  bool? get isOpen;
   @override
   String get name;
   @override
@@ -712,8 +769,277 @@ abstract class _ShopModel extends ShopModel {
   @override
   ShopPickupModel? get pickup;
   @override
+  @JsonKey(name: 'working_hours')
+  List<WorkingHoursModel>? get workingHours;
+  @override
   @JsonKey(ignore: true)
   _$$_ShopModelCopyWith<_$_ShopModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+WorkingHoursModel _$WorkingHoursModelFromJson(Map<String, dynamic> json) {
+  return _WorkingHoursModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WorkingHoursModel {
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'day_of_week')
+  int get dayOfWeek => throw _privateConstructorUsedError;
+  @JsonKey(name: 'day_label')
+  String get dayLabel => throw _privateConstructorUsedError;
+  @JsonKey(name: 'open_time')
+  String get openTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'close_time')
+  String get closeTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_closed')
+  bool get isClosed => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WorkingHoursModelCopyWith<WorkingHoursModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WorkingHoursModelCopyWith<$Res> {
+  factory $WorkingHoursModelCopyWith(
+          WorkingHoursModel value, $Res Function(WorkingHoursModel) then) =
+      _$WorkingHoursModelCopyWithImpl<$Res, WorkingHoursModel>;
+  @useResult
+  $Res call(
+      {int id,
+      @JsonKey(name: 'day_of_week') int dayOfWeek,
+      @JsonKey(name: 'day_label') String dayLabel,
+      @JsonKey(name: 'open_time') String openTime,
+      @JsonKey(name: 'close_time') String closeTime,
+      @JsonKey(name: 'is_closed') bool isClosed});
+}
+
+/// @nodoc
+class _$WorkingHoursModelCopyWithImpl<$Res, $Val extends WorkingHoursModel>
+    implements $WorkingHoursModelCopyWith<$Res> {
+  _$WorkingHoursModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? dayOfWeek = null,
+    Object? dayLabel = null,
+    Object? openTime = null,
+    Object? closeTime = null,
+    Object? isClosed = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      dayOfWeek: null == dayOfWeek
+          ? _value.dayOfWeek
+          : dayOfWeek // ignore: cast_nullable_to_non_nullable
+              as int,
+      dayLabel: null == dayLabel
+          ? _value.dayLabel
+          : dayLabel // ignore: cast_nullable_to_non_nullable
+              as String,
+      openTime: null == openTime
+          ? _value.openTime
+          : openTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      closeTime: null == closeTime
+          ? _value.closeTime
+          : closeTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      isClosed: null == isClosed
+          ? _value.isClosed
+          : isClosed // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_WorkingHoursModelCopyWith<$Res>
+    implements $WorkingHoursModelCopyWith<$Res> {
+  factory _$$_WorkingHoursModelCopyWith(_$_WorkingHoursModel value,
+          $Res Function(_$_WorkingHoursModel) then) =
+      __$$_WorkingHoursModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      @JsonKey(name: 'day_of_week') int dayOfWeek,
+      @JsonKey(name: 'day_label') String dayLabel,
+      @JsonKey(name: 'open_time') String openTime,
+      @JsonKey(name: 'close_time') String closeTime,
+      @JsonKey(name: 'is_closed') bool isClosed});
+}
+
+/// @nodoc
+class __$$_WorkingHoursModelCopyWithImpl<$Res>
+    extends _$WorkingHoursModelCopyWithImpl<$Res, _$_WorkingHoursModel>
+    implements _$$_WorkingHoursModelCopyWith<$Res> {
+  __$$_WorkingHoursModelCopyWithImpl(
+      _$_WorkingHoursModel _value, $Res Function(_$_WorkingHoursModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? dayOfWeek = null,
+    Object? dayLabel = null,
+    Object? openTime = null,
+    Object? closeTime = null,
+    Object? isClosed = null,
+  }) {
+    return _then(_$_WorkingHoursModel(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      dayOfWeek: null == dayOfWeek
+          ? _value.dayOfWeek
+          : dayOfWeek // ignore: cast_nullable_to_non_nullable
+              as int,
+      dayLabel: null == dayLabel
+          ? _value.dayLabel
+          : dayLabel // ignore: cast_nullable_to_non_nullable
+              as String,
+      openTime: null == openTime
+          ? _value.openTime
+          : openTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      closeTime: null == closeTime
+          ? _value.closeTime
+          : closeTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      isClosed: null == isClosed
+          ? _value.isClosed
+          : isClosed // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_WorkingHoursModel extends _WorkingHoursModel {
+  const _$_WorkingHoursModel(
+      {required this.id,
+      @JsonKey(name: 'day_of_week') required this.dayOfWeek,
+      @JsonKey(name: 'day_label') required this.dayLabel,
+      @JsonKey(name: 'open_time') required this.openTime,
+      @JsonKey(name: 'close_time') required this.closeTime,
+      @JsonKey(name: 'is_closed') required this.isClosed})
+      : super._();
+
+  factory _$_WorkingHoursModel.fromJson(Map<String, dynamic> json) =>
+      _$$_WorkingHoursModelFromJson(json);
+
+  @override
+  final int id;
+  @override
+  @JsonKey(name: 'day_of_week')
+  final int dayOfWeek;
+  @override
+  @JsonKey(name: 'day_label')
+  final String dayLabel;
+  @override
+  @JsonKey(name: 'open_time')
+  final String openTime;
+  @override
+  @JsonKey(name: 'close_time')
+  final String closeTime;
+  @override
+  @JsonKey(name: 'is_closed')
+  final bool isClosed;
+
+  @override
+  String toString() {
+    return 'WorkingHoursModel(id: $id, dayOfWeek: $dayOfWeek, dayLabel: $dayLabel, openTime: $openTime, closeTime: $closeTime, isClosed: $isClosed)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_WorkingHoursModel &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.dayOfWeek, dayOfWeek) ||
+                other.dayOfWeek == dayOfWeek) &&
+            (identical(other.dayLabel, dayLabel) ||
+                other.dayLabel == dayLabel) &&
+            (identical(other.openTime, openTime) ||
+                other.openTime == openTime) &&
+            (identical(other.closeTime, closeTime) ||
+                other.closeTime == closeTime) &&
+            (identical(other.isClosed, isClosed) ||
+                other.isClosed == isClosed));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, id, dayOfWeek, dayLabel, openTime, closeTime, isClosed);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_WorkingHoursModelCopyWith<_$_WorkingHoursModel> get copyWith =>
+      __$$_WorkingHoursModelCopyWithImpl<_$_WorkingHoursModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WorkingHoursModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WorkingHoursModel extends WorkingHoursModel {
+  const factory _WorkingHoursModel(
+          {required final int id,
+          @JsonKey(name: 'day_of_week') required final int dayOfWeek,
+          @JsonKey(name: 'day_label') required final String dayLabel,
+          @JsonKey(name: 'open_time') required final String openTime,
+          @JsonKey(name: 'close_time') required final String closeTime,
+          @JsonKey(name: 'is_closed') required final bool isClosed}) =
+      _$_WorkingHoursModel;
+  const _WorkingHoursModel._() : super._();
+
+  factory _WorkingHoursModel.fromJson(Map<String, dynamic> json) =
+      _$_WorkingHoursModel.fromJson;
+
+  @override
+  int get id;
+  @override
+  @JsonKey(name: 'day_of_week')
+  int get dayOfWeek;
+  @override
+  @JsonKey(name: 'day_label')
+  String get dayLabel;
+  @override
+  @JsonKey(name: 'open_time')
+  String get openTime;
+  @override
+  @JsonKey(name: 'close_time')
+  String get closeTime;
+  @override
+  @JsonKey(name: 'is_closed')
+  bool get isClosed;
+  @override
+  @JsonKey(ignore: true)
+  _$$_WorkingHoursModelCopyWith<_$_WorkingHoursModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

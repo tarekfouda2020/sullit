@@ -1,12 +1,14 @@
 part of 'shipping_widgets_imports.dart';
 
 class BuildShippingAddressItem extends StatelessWidget {
-final void Function() onTap;
+  final void Function() onTap;
   final AddressDomainModel address;
 
-  const BuildShippingAddressItem(
-      {Key? key,  required this.onTap, required this.address})
-      : super(key: key);
+  const BuildShippingAddressItem({
+    Key? key,
+    required this.onTap,
+    required this.address,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

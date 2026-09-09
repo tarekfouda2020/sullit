@@ -27,6 +27,7 @@ class SellerProductsList extends StatelessWidget {
               productModel: item,
               onFavRefresh: () => controller.onFavChanged(item),
               onPressDelete: () async => controller.getCartData(),
+              onRefresh: () => controller.refreshDataAfterRoute(),
             );
           },
           firstPageProgressIndicatorBuilder: (_) =>

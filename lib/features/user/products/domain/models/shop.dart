@@ -2,6 +2,7 @@ import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/pharmacies/domain/models/insurance_company.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_card_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_pickup.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/working_hours.dart';
 
 class Shop extends BaseDomainModel {
   int? id;
@@ -32,6 +33,9 @@ class Shop extends BaseDomainModel {
   bool isSelected = false;
   bool supportsInStoreShopping = false;
 
+  bool? isOpen;
+  List<WorkingHours>? workingHours;
+
   Shop({
     required this.id,
     required this.userId,
@@ -55,6 +59,8 @@ class Shop extends BaseDomainModel {
     this.shopType,
     this.typeLabel,
     this.pickUp,
+    this.isOpen,
+    this.workingHours,
     this.isSelect = false,
     required this.rating,
     required this.follow,
@@ -64,6 +70,7 @@ class Shop extends BaseDomainModel {
   factory Shop.fromJson(Map<String, dynamic> json) {
     return Shop(
       id: json['id'],
+      isOpen: json['is_open'],
       userId: json['user_id'],
       typeLabel: json['type_label'],
       sellerId: json['seller_id'],
@@ -85,12 +92,25 @@ class Shop extends BaseDomainModel {
       follow: json['follow'],
       supportsInStoreShopping: json['supports_in_store_shopping'],
       sliders: (json['sliders'] as List?)?.map((e) => e.toString()).toList(),
+      workingHours: (json['working_hours'] as List<Map<String,dynamic>>?)
+          ?.map((e ) {
+            return WorkingHours(
+              id: e['id'] as int,
+              dayOfWeek: e['day_of_week'] as int,
+              dayLabel: e['day_label'] as String,
+              openTime: e['open_time'] as String,
+              closeTime: e['close_time'] as String,
+              isClosed: e['is_closed'] as bool,
+            );
+      })
+          .toList(),
     );
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
+    data['is_open'] = isOpen;
     data['user_id'] = userId;
     data['seller_id'] = sellerId;
     data['type_label'] = typeLabel;
@@ -114,6 +134,12 @@ class Shop extends BaseDomainModel {
     data['type'] = shopType;
     return data;
   }
+
+
+
+  bool get isShopOpen => isOpen == true;
+
+  bool get isShopNotOpen => isOpen == false;
 
 
 

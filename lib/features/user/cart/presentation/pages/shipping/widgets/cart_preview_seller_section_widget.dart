@@ -2,11 +2,16 @@ part of 'shipping_widgets_imports.dart';
 
 class CartPreviewSellerSectionWidget extends StatelessWidget {
   final CartPreviewSeller seller;
+  final VoidCallback onAddMoreItems;
 
   const CartPreviewSellerSectionWidget({
     super.key,
     required this.seller,
+    required this.onAddMoreItems,
   });
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +43,13 @@ class CartPreviewSellerSectionWidget extends StatelessWidget {
               style: AppTextStyle.s14_w500(color: context.colors.redAccent),
             ),
           ],
+          if (seller.cartHaveBeenCleared) ...[
+            Gaps.vGap8,
+            Text(
+              tr('cartSellerCleared'),
+              style: AppTextStyle.s14_w500(color: context.colors.redAccent),
+            ),
+          ] ,
           if (seller.removed.isNotEmpty) ...[
             Gaps.vGap12,
             Text(
@@ -60,6 +72,40 @@ class CartPreviewSellerSectionWidget extends StatelessWidget {
               (item) => CartPreviewChangeItemWidget(updatedItem: item),
             ),
           ],
+          if ( !seller.cartHaveBeenCleared && !seller.hasPassMinAmount) ...[
+            Gaps.vGap8,
+            Text.rich(
+              TextSpan(
+                style: AppTextStyle.s14_w500(color: context.colors.primary).copyWith(
+                  height: 1.35
+                ),
+                children: [
+                  TextSpan(text: tr('cartSellerMinAmount')),
+                  TextSpan(
+                    text: AppTheme.dirhamIcon,
+                    style: AppTextStyle.s14_w700(color: context.colors.primary).copyWith(
+                      fontFamily: AppTheme.dirhamFontFamily
+                    ),
+                  ) ,
+                  TextSpan(
+                    text: " ${seller.minOrderAmount.toString()}",
+                    style: AppTextStyle.s14_w700(color: context.colors.primary),
+                  ),
+                ],
+              ),
+            ),
+            Gaps.vGap12,
+            DefaultButton(
+              title: tr('addMoreItems'),
+              margin: EdgeInsets.zero,
+              height: 35,
+              fontSize: 16,
+              color: context.colors.white,
+              textColor: context.colors.primary,
+              borderColor: context.colors.primary,
+              onTap: onAddMoreItems,
+            ),
+          ]
         ],
       ),
     );
@@ -78,4 +124,7 @@ class CartPreviewSellerSectionWidget extends StatelessWidget {
         .replaceAll('{from}', fromName)
         .replaceAll('{to}', toName);
   }
+
+
+
 }
