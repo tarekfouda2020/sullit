@@ -70,8 +70,10 @@ class SellerProductsPageState extends State<SellerProductsPage> {
                         child: DefaultButton(
                           title: tr("view_cart"),
                           margin: EdgeInsets.zero,
-                          onTap: () => controller.onPressViewCart(
-                              context, widget.fromCart!),
+                          onTap: () async {
+                            await controller.onPressViewCart(context, widget.fromCart!);
+                            controller.getCartData();
+                          },
                         ),
                       ),
                       Visibility(
