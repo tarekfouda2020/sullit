@@ -11,6 +11,8 @@ class ApiNames {
 
   // auth routes
   static const String login = "login";
+  static const String socialMediaLoginList = "social-media-login-list";
+  static const String socialLogin = "social-login";
   static const String savePublicKey = "users/";
   static const String updateUser = "users/";
   static const String register = "register";

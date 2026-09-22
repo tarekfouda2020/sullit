@@ -26,6 +26,7 @@ class UserModel extends BaseApiModel<UserDomainModel> with _$UserModel {
     @JsonKey(name: "phone_is_active") required bool isPhoneActive,
     @JsonKey(name: "email_is_active") required bool isEmailActive,
     @JsonKey(name: "has_valid_subscription") required bool hasValidSubscription,
+    @JsonKey(name: "has_password") required bool hasPassword,
     @JsonKey(name: "is_shareholder") required bool isShareHolder,
     @JsonKey(name: "address") AddressModel? address,
   }) = _UserModel;
@@ -50,6 +51,8 @@ class UserModel extends BaseApiModel<UserDomainModel> with _$UserModel {
         isEmailActive: isEmailActive,
         hasValidSubscription: hasValidSubscription,
         isShareHolder: isShareHolder,
-        address: address?.toDomainModel());
+        address: address?.toDomainModel(),
+        hasPassword: hasPassword,
+    );
   }
 }

@@ -4,7 +4,7 @@ publish_to: 'none'
 
 
 #android live
-version: 1.0.64+64
+version: 1.0.65+65
 
 
 #last ios version (test flight)
@@ -115,6 +115,8 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   simple_barcode_scanner: ^0.6.0
+  google_sign_in: ^7.2.0
+  sign_in_with_apple: ^7.0.1
   timeago:
   timezone:
   country_calling_code_picker:

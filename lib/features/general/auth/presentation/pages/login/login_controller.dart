@@ -3,6 +3,10 @@
 part of 'login_imports.dart';
 
 class LoginController {
+  LoginController() {
+    getSocialLogin();
+  }
+
   final GlobalKey<FormState> formKey = GlobalKey();
   final GlobalKey<CustomButtonState> btnKey = GlobalKey();
   final TextEditingController email = TextEditingController();
@@ -12,6 +16,8 @@ class LoginController {
   final GenericBloc<int> tabsCubit = GenericBloc(0);
   final GenericBloc<bool?> refreshValidationCubit = GenericBloc(null);
   final GenericBloc<int> switchEmailPhoneCubit = GenericBloc(0);
+  final GenericBloc<List<SocialMediaLogin>> socialMediaLoginCubit =
+      GenericBloc([]);
 
   List<String> tabs = [
     tr("login"),
@@ -22,6 +28,13 @@ class LoginController {
     tr("emailAddress"),
     tr("mobileNumber"),
   ];
+
+
+
+  void getSocialLogin(){
+    getSocialMediaLoginList(refresh: false);
+    getSocialMediaLoginList();
+  }
 
   void onSubmit(BuildContext context) async {
     if (formKey.currentState!.validate()) {
@@ -38,13 +51,7 @@ class LoginController {
       if (deviceId != null) {
         var params = await _setLoginParams(deviceId);
         var result = await SetLogin().call(params);
-        //btnKey.currentState?.animateReverse();
-        if (result?.key == "success") {
-          _cashAndRoute(context, result?.userData, result?.userData?.user);
-        }
-        if (result?.key == "needActive") {
-          _onNeedActive(context);
-        }
+        _handleLoginResult(context, result);
       }
     }
   }
@@ -127,4 +134,49 @@ class LoginController {
   void switchEmailAndPhone(int value) {
     switchEmailPhoneCubit.onUpdateData(value);
   }
+
+
+
+  Future<void> getSocialMediaLoginList({bool refresh = true}) async {
+    final data = await GetSocialMediaLoginList().call(refresh);
+    socialMediaLoginCubit.onUpdateData(data);
+  }
+
+  void _handleLoginResult(BuildContext context, UserLogin? result) {
+    if (result?.key == "success") {
+      _cashAndRoute(context, result?.userData, result?.userData?.user);
+    }
+    if (result?.key == "needActive") {
+      _onNeedActive(context);
+    }
+  }
+
+  Future<void> signWitGoogle(BuildContext context) async {
+    String? getAccessToken = await getIt<GoogleSignInHelper>().signIn();
+    if (getAccessToken == null || getAccessToken.isEmpty) {
+      return;
+    }
+    String? deviceId;
+    try {
+      deviceId = await getIt<GetDeviceId>().deviceId;
+    } catch (e) {
+      CustomToast.showSimpleToast(
+          msg: tr("somethingWentWrongDeviceInfo"), type: ToastType.error);
+      return;
+    }
+    if (deviceId == null) {
+      return;
+    }
+    final result = await SetSocialLogin().call(
+      SocialLoginParams(
+        socialProvider: "google",
+        accessToken: getAccessToken,
+        macAddress: deviceId,
+      ),
+    );
+    _handleLoginResult(context, result);
+  }
+
+
+
 }

@@ -2,19 +2,19 @@
   "project_info": {
     "project_number": "644512695362",
     "project_id": "suliit-c5356",
-    "storage_bucket": "suliit-c5356.appspot.com"
+    "storage_bucket": "suliit-c5356.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:644512695362:android:4063be41bed9a7900a99db",
+        "mobilesdk_app_id": "1:644512695362:android:f3586a4dbe0234fd0a99db",
         "android_client_info": {
-          "package_name": "ua.suliit.com"
+          "package_name": "ae.business.driver"
         }
       },
       "oauth_client": [
         {
-          "client_id": "644512695362-1u4f4oakmncf6nrimq6li7o2hfkbbv2i.apps.googleusercontent.com",
+          "client_id": "644512695362-53mpgnaiooj98l9tr82sgru217uoasms.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,8 +27,247 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "644512695362-1u4f4oakmncf6nrimq6li7o2hfkbbv2i.apps.googleusercontent.com",
+              "client_id": "644512695362-53mpgnaiooj98l9tr82sgru217uoasms.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "644512695362-0dlubqc361h717998scjhmqfr40f9vj5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "suliitpicker"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644512695362:android:13131edb48bcd3090a99db",
+        "android_client_info": {
+          "package_name": "ae.business.store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644512695362-53mpgnaiooj98l9tr82sgru217uoasms.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEMQQwHKc-RMVsUFHMZmzSGPAhdmyzl-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644512695362-53mpgnaiooj98l9tr82sgru217uoasms.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "644512695362-0dlubqc361h717998scjhmqfr40f9vj5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "suliitpicker"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644512695362:android:4063be41bed9a7900a99db",
+        "android_client_info": {
+          "package_name": "ua.suliit.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644512695362-15dqscrps19n4umhde4tcnn95qokmepc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ua.suliit.com",
+            "certificate_hash": "95af00222ca11856e31704a3f6a052df62a8d7c7"
+          }
+        },
+        {
+          "client_id": "644512695362-qc1583f45q9srdj4terp1ko8jntb7tgh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ua.suliit.com",
+            "certificate_hash": "7f8bb4066283294c1e4e7205bbeabb66fd339ee2"
+          }
+        },
+        {
+          "client_id": "644512695362-53mpgnaiooj98l9tr82sgru217uoasms.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEMQQwHKc-RMVsUFHMZmzSGPAhdmyzl-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644512695362-53mpgnaiooj98l9tr82sgru217uoasms.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "644512695362-0dlubqc361h717998scjhmqfr40f9vj5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "suliitpicker"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644512695362:android:8a76983c12bf96890a99db",
+        "android_client_info": {
+          "package_name": "ua.suliitdriver.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644512695362-53mpgnaiooj98l9tr82sgru217uoasms.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEMQQwHKc-RMVsUFHMZmzSGPAhdmyzl-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644512695362-53mpgnaiooj98l9tr82sgru217uoasms.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "644512695362-0dlubqc361h717998scjhmqfr40f9vj5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "suliitpicker"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644512695362:android:71b739aa60e5444e0a99db",
+        "android_client_info": {
+          "package_name": "ua.suliitpicker.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644512695362-53mpgnaiooj98l9tr82sgru217uoasms.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEMQQwHKc-RMVsUFHMZmzSGPAhdmyzl-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644512695362-53mpgnaiooj98l9tr82sgru217uoasms.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "644512695362-0dlubqc361h717998scjhmqfr40f9vj5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "suliitpicker"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644512695362:android:572cdc13c00514e10a99db",
+        "android_client_info": {
+          "package_name": "ua.suliitstore.app.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644512695362-53mpgnaiooj98l9tr82sgru217uoasms.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEMQQwHKc-RMVsUFHMZmzSGPAhdmyzl-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644512695362-53mpgnaiooj98l9tr82sgru217uoasms.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "644512695362-0dlubqc361h717998scjhmqfr40f9vj5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "suliitpicker"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644512695362:android:5524044bd4ead8510a99db",
+        "android_client_info": {
+          "package_name": "ua.suliitstore.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644512695362-53mpgnaiooj98l9tr82sgru217uoasms.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEMQQwHKc-RMVsUFHMZmzSGPAhdmyzl-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644512695362-53mpgnaiooj98l9tr82sgru217uoasms.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "644512695362-0dlubqc361h717998scjhmqfr40f9vj5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "suliitpicker"
+              }
             }
           ]
         }

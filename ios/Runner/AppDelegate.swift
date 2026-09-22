@@ -43,13 +43,18 @@ import FBSDKCoreKit
     open url: URL,
     options: [UIApplication.OpenURLOptionsKey: Any] = [:]
   ) -> Bool {
-    ApplicationDelegate.shared.application(
+    // Google Sign-In callback first (com.googleusercontent.apps.*).
+    // Facebook first can swallow / break the ASWebAuthenticationSession hop.
+    let googleOrFlutter = super.application(app, open: url, options: options)
+    if googleOrFlutter {
+      return true
+    }
+    return ApplicationDelegate.shared.application(
       app,
       open: url,
       sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
       annotation: options[UIApplication.OpenURLOptionsKey.annotation]
     )
-    return super.application(app, open: url, options: options)
   }
 
   // ✅ Handle Universal Links (https://...) — required for AEM Campaign ID tracking

@@ -343,9 +343,13 @@ class AppRouter extends _i121.RootStackRouter {
       );
     },
     RegisterRoute.name: (routeData) {
+      final args = routeData.argsAs<RegisterRouteArgs>();
       return _i121.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i6.Register(),
+        child: _i6.Register(
+          key: args.key,
+          loginController: args.loginController,
+        ),
         opaque: true,
       );
     },
@@ -2029,14 +2033,36 @@ class ForgetPasswordRoute extends _i121.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.Register]
-class RegisterRoute extends _i121.PageRouteInfo<void> {
-  const RegisterRoute()
-      : super(
+class RegisterRoute extends _i121.PageRouteInfo<RegisterRouteArgs> {
+  RegisterRoute({
+    _i124.Key? key,
+    required _i2.LoginController loginController,
+  }) : super(
           RegisterRoute.name,
           path: '/Register',
+          args: RegisterRouteArgs(
+            key: key,
+            loginController: loginController,
+          ),
         );
 
   static const String name = 'RegisterRoute';
+}
+
+class RegisterRouteArgs {
+  const RegisterRouteArgs({
+    this.key,
+    required this.loginController,
+  });
+
+  final _i124.Key? key;
+
+  final _i2.LoginController loginController;
+
+  @override
+  String toString() {
+    return 'RegisterRouteArgs{key: $key, loginController: $loginController}';
+  }
 }
 
 /// generated route for

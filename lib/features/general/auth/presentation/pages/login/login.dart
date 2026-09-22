@@ -71,6 +71,6 @@ class _LoginState extends State<Login> {
   Widget _body(GenericState<int> state) {
     return state.data == 0
         ? BuildLoginView(controller: loginController)
-        : const Register();
+        :  Register(loginController: loginController);
   }
 }

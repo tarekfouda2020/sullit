@@ -5,9 +5,11 @@ import 'package:flutter_tdd/features/general/auth/domain/entities/change_passwor
 import 'package:flutter_tdd/features/general/auth/domain/entities/code_verify_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/login_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/reset_password_params.dart';
+import 'package:flutter_tdd/features/general/auth/domain/entities/social_login_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/user_register_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/verify_phone_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/verify_reset_password_params.dart';
+import 'package:flutter_tdd/features/general/auth/domain/models/social_media_login.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_domain_model.dart';
 import 'package:flutter_tdd/features/general/auth/domain/models/user_login.dart';
 
@@ -38,4 +40,9 @@ abstract class AuthRepository {
   Future<Either<Failure, UserDomainModel>> emailVerify(CodeVerifyParams params);
 
   Future<Either<Failure, String>> changePassword(ChangePasswordParams params);
+
+  Future<Either<Failure, List<SocialMediaLogin>>> getSocialMediaLoginList(
+      bool refresh);
+
+  Future<Either<Failure, UserLogin>> socialLogin(SocialLoginParams params);
 }

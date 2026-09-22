@@ -23,16 +23,36 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.58</string>
+	<string>1.0.59</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb1981210759416763</string>
 				<string>sullit</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.644512695362-ja4kp085a2tgg9s3qudn47b7r9eekno4</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>suliit.ua</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>https</string>
 			</array>
 		</dict>
 	</array>
@@ -44,6 +64,8 @@
 	<string>f5411f6a11fd6c597c52450c957cf4bb</string>
 	<key>FacebookDisplayName</key>
 	<string>Sahlashop</string>
+	<key>GIDClientID</key>
+	<string>644512695362-ja4kp085a2tgg9s3qudn47b7r9eekno4.apps.googleusercontent.com</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>sms</string>
@@ -52,6 +74,10 @@
 		<string>fb-messenger-share-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
+		<string>google</string>
+		<string>googlechrome</string>
+		<string>googlechromes</string>
+		<string>googlechrome-x-callback</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -122,24 +148,9 @@
 	<true/>
 	<key>io.flutter.embedded_views_preview</key>
 	<true/>
-	<key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>https</string>
-            </array>
-            <key>CFBundleURLName</key>
-            <string>suliit.ua</string>
-        </dict>
-    </array>
-
-    <!-- Associated Domains for Universal Links -->
-    <key>com.apple.developer.associated-domains</key>
-    <array>
-        <string>applinks:mushrifcoop.com</string>
-    </array>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:mushrifcoop.com</string>
+	</array>
 </dict>
 </plist>

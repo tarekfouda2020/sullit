@@ -485,7 +485,7 @@ class ProductDetailsController implements CartSheetController {
     var macAddress = await getIt<GetDeviceId>().deviceId;
     final product = detailsCubit.state.data!.product;
     return RestaurantCartParams(
-    branchId: branchId,
+    branchId: detailsCubit.state.data!.branch?.id,
     variantId: product.variant?.id,
     quantity: qtyCubit.state.data,
     macAddress: macAddress,
@@ -659,7 +659,7 @@ class ProductDetailsController implements CartSheetController {
         AutoRouter.of(context).push(
            RestaurantCartRoute(
              restaurantId: detailsCubit.state.data?.product.shop?.id,
-             preSelectedBranchId: branchId,
+             preSelectedBranchId: branchId ?? detailsCubit.state.data!.branch?.id,
            ),
         );
       }
@@ -703,7 +703,7 @@ class ProductDetailsController implements CartSheetController {
   }
 
   ProductDetailsParams _detailsParams(bool refresh, int productId) {
-    return ProductDetailsParams(refresh: refresh, id: productId, branchId: branchId);
+    return ProductDetailsParams(refresh: refresh, id: productId);
   }
 
   SendQueryParams _sendQueryParams() {
@@ -719,7 +719,8 @@ class ProductDetailsController implements CartSheetController {
         id: detailsCubit.state.data!.product.id!,
         resellerId: isResale ? resellerId : null,
         variants: selectedVariants.join(','),
-        branchId: branchId);
+        branchId: branchId ?? detailsCubit.state.data!.branch?.id,
+    );
   }
 
   void calculateRemainingAmount() {

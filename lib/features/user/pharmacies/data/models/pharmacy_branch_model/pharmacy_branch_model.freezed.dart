@@ -275,7 +275,7 @@ class __$$_PharmacyBranchModelCopyWithImpl<$Res>
           : isOpen // ignore: cast_nullable_to_non_nullable
               as bool?,
       workingHours: freezed == workingHours
-          ? _value.workingHours
+          ? _value._workingHours
           : workingHours // ignore: cast_nullable_to_non_nullable
               as List<WorkingHoursModel>?,
       state: freezed == state
@@ -291,7 +291,8 @@ class __$$_PharmacyBranchModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_PharmacyBranchModel extends _PharmacyBranchModel {
   const _$_PharmacyBranchModel(
       {required this.id,
@@ -304,10 +305,12 @@ class _$_PharmacyBranchModel extends _PharmacyBranchModel {
       @JsonKey(name: 'is_default') this.isDefault,
       @JsonKey(name: 'distance_km') this.distanceKm,
       @JsonKey(name: 'is_open') this.isOpen,
-      @JsonKey(name: 'working_hours') this.workingHours,
+      @JsonKey(name: 'working_hours')
+      final List<WorkingHoursModel>? workingHours,
       this.state,
       this.city})
-      : super._();
+      : _workingHours = workingHours,
+        super._();
 
   factory _$_PharmacyBranchModel.fromJson(Map<String, dynamic> json) =>
       _$$_PharmacyBranchModelFromJson(json);
@@ -336,9 +339,17 @@ class _$_PharmacyBranchModel extends _PharmacyBranchModel {
   @override
   @JsonKey(name: 'is_open')
   final bool? isOpen;
+  final List<WorkingHoursModel>? _workingHours;
   @override
   @JsonKey(name: 'working_hours')
-  final List<WorkingHoursModel>? workingHours;
+  List<WorkingHoursModel>? get workingHours {
+    final value = _workingHours;
+    if (value == null) return null;
+    if (_workingHours is EqualUnmodifiableListView) return _workingHours;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final PharmacyBranchLocationModel? state;
   @override
@@ -369,17 +380,29 @@ class _$_PharmacyBranchModel extends _PharmacyBranchModel {
             (identical(other.distanceKm, distanceKm) ||
                 other.distanceKm == distanceKm) &&
             (identical(other.isOpen, isOpen) || other.isOpen == isOpen) &&
-            (identical(other.workingHours, workingHours) ||
-                other.workingHours == workingHours) &&
+            const DeepCollectionEquality()
+                .equals(other._workingHours, _workingHours) &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.city, city) || other.city == city));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, phone, address,
-      latitude, longitude, mapDescription, isDefault, distanceKm, isOpen,
-      workingHours, state, city);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      phone,
+      address,
+      latitude,
+      longitude,
+      mapDescription,
+      isDefault,
+      distanceKm,
+      isOpen,
+      const DeepCollectionEquality().hash(_workingHours),
+      state,
+      city);
 
   @JsonKey(ignore: true)
   @override

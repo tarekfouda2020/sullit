@@ -1,8 +1,12 @@
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
 import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/features/user/products/domain/behavior/product_behavior_x.dart';
+import 'package:flutter_tdd/features/user/products/domain/entities/product_details_page_route_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:flutter_tdd/features/user/products/presentation/manager/products_helper.dart';
 
@@ -76,8 +80,16 @@ abstract class BaseProductItemState<T extends BaseProductItem> extends State<T> 
 
   @protected
   Future<bool> handleFirstAddToCart(BuildContext context) async {
-    var product = widget.productModel;
-
+    ProductCard product = widget.productModel;
+    if(product.haveOptions){
+      AutoRouter.of(context).push(ProductDetailsRoute(
+          params: ProductDetailsPageRouteParams(
+            productId: product.id,
+            isFav: product.isWishlist,
+          )
+      ));
+      return true;
+    }
     if ((product.addedQtyToCart ?? 0) > 0) {
       return false;
     }

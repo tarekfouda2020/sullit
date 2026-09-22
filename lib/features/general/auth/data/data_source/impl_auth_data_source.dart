@@ -7,12 +7,14 @@ import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
 import 'package:flutter_tdd/core/usecases/use_case.dart';
 import 'package:flutter_tdd/features/general/auth/data/data_source/auth_data_source.dart';
+import 'package:flutter_tdd/features/general/auth/data/models/social_media_login_model/social_media_login_model.dart';
 import 'package:flutter_tdd/features/general/auth/data/models/user_login_model/user_login_model.dart';
 import 'package:flutter_tdd/features/general/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/change_password_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/code_verify_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/login_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/reset_password_params.dart';
+import 'package:flutter_tdd/features/general/auth/domain/entities/social_login_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/user_register_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/verify_phone_params.dart';
 import 'package:flutter_tdd/features/general/auth/domain/entities/verify_reset_password_params.dart';
@@ -198,5 +200,37 @@ class ImplAuthDataSource extends AuthDataSource {
       showLoader: false,
     );
     return await GenericHttpImpl<String>()(model);
+  }
+
+  @override
+  Future<Either<Failure, List<SocialMediaLoginModel>>> getSocialMediaLoginList(
+      bool refresh) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.socialMediaLoginList,
+      requestMethod: RequestMethod.get,
+      responseType: ResType.list,
+      refresh: refresh,
+      responseKey: (data) => data['data'],
+      toJsonFunc: (json) => List<SocialMediaLoginModel>.from(
+        json.map((e) => SocialMediaLoginModel.fromJson(e)),
+      ),
+    );
+    return await GenericHttpImpl<List<SocialMediaLoginModel>>()(model);
+  }
+
+  @override
+  Future<Either<Failure, UserLoginModel>> socialLogin(
+      SocialLoginParams params) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.socialLogin,
+      responseType: ResType.model,
+      requestMethod: RequestMethod.post,
+      responseKey: (data) => data,
+      requestBody: params.toJson(),
+      showLoader: true,
+      errorFunc: (data) => data["msg"],
+      toJsonFunc: (json) => UserLoginModel.fromJson(json),
+    );
+    return await GenericHttpImpl<UserLoginModel>()(model);
   }
 }
