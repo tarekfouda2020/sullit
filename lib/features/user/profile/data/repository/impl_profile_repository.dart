@@ -9,15 +9,26 @@ import 'package:flutter_tdd/features/user/profile/domain/entities/profile_params
 import 'package:flutter_tdd/features/user/profile/domain/repository/profile_repository.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../domain/entities/set_new_password_params.dart';
+
 @Injectable(as: ProfileRepository)
 class ImplProfileRepository extends ProfileRepository with ModelToDomain {
   var dataSources = getIt<ProfileDataSources>();
 
   @override
-  Future<Either<Failure, UserDomainModel>> updateProfile(
-      ProfileParams params) async {
+  Future<Either<Failure, UserDomainModel>> updateProfile(ProfileParams params) async {
     var result = await dataSources.updateProfile(params);
     return toDomainResult<UserDomainModel, UserModel>(result);
+  }
+
+  @override
+  Future<Either<Failure, String>> passwordSet(SetNewPasswordParams params) async {
+    return await dataSources.passwordSet(params);
+  }
+
+  @override
+  Future<Either<Failure, String>> passwordSetRequest(SetNewPasswordParams params) async {
+    return await dataSources.passwordSetRequest(params);
   }
 
   @override

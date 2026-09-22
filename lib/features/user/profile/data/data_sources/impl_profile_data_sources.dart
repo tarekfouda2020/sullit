@@ -10,6 +10,8 @@ import 'package:flutter_tdd/features/user/profile/data/data_sources/profile_data
 import 'package:flutter_tdd/features/user/profile/domain/entities/profile_params.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../domain/entities/set_new_password_params.dart';
+
 @Injectable(as: ProfileDataSources)
 class ImplProfileDataSources extends ProfileDataSources {
   @override
@@ -24,6 +26,34 @@ class ImplProfileDataSources extends ProfileDataSources {
       toJsonFunc: (json) => UserModel.fromJson(json),
     );
     return await GenericHttpImpl<UserModel>()(model);
+  }
+
+  @override
+  Future<Either<Failure, String>> passwordSetRequest(SetNewPasswordParams params) async {
+    final HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.passwordSetRequest,
+      responseType: ResType.type,
+      requestMethod: RequestMethod.post,
+      requestBody: params.toJson(),
+      responseKey: (data) => data["msg"],
+      showLoader: true,
+    );
+
+    return await GenericHttpImpl<String>()(model);
+  }
+
+  @override
+  Future<Either<Failure, String>> passwordSet(SetNewPasswordParams params) async {
+    final HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.passwordSet,
+      responseType: ResType.type,
+      requestMethod: RequestMethod.post,
+      requestBody: params.toJson(),
+      responseKey: (data) => data["msg"],
+      showLoader: true,
+    );
+
+    return await GenericHttpImpl<String>()(model);
   }
 
   @override

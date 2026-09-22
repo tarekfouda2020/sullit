@@ -8,7 +8,9 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
-  final ChangePasswordController controller = ChangePasswordController();
+  late final ChangePasswordController controller = ChangePasswordController(
+    hasPassword: context.read<UserCubit>().state.model?.hasPassword ?? false,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             ChangePasswordFormWidget(controller: controller),
             Gaps.vGap20,
             DefaultButton(
-              title: tr("confirmChange"),
+              title: controller.hasPassword == true ? tr("confirmChange") : "Confirm Password",
               onTap: () => controller.changePassword(context),
               color: context.colors.primary,
               textColor: context.colors.white,

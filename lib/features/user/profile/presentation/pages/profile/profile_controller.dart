@@ -8,8 +8,7 @@ class ProfileController {
   final GlobalKey<CustomButtonState> createBtnKey = GlobalKey();
   final GlobalKey<FormState> formKey = GlobalKey();
   final GenericBloc<File?> imageCubit = GenericBloc(null);
-  final GenericBloc<VipCurrentPlanDomainModel?> currentSubscriptionBloc =
-      GenericBloc(null);
+  final GenericBloc<VipCurrentPlanDomainModel?> currentSubscriptionBloc = GenericBloc(null);
   final GenericBloc<bool> isExpandCubit = GenericBloc<bool>(false);
 
   final TextEditingController nameController = TextEditingController();
@@ -20,8 +19,7 @@ class ProfileController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
   final GenericBloc<Country?> countryCubit = GenericBloc(null);
   final GenericBloc<bool> verifyPhoneCubit = GenericBloc(false);
 
@@ -48,8 +46,7 @@ class ProfileController {
     }
   }
 
-  Future<void> _initializeCountryFromUser(
-      BuildContext context, UserDomainModel? user) async {
+  Future<void> _initializeCountryFromUser(BuildContext context, UserDomainModel? user) async {
     countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
     return;
     // if (user?.countryCode != null && user!.countryCode!.isNotEmpty) {
@@ -177,16 +174,14 @@ class ProfileController {
       //     return;
       //   }
       // }
-      if (nameController.text.isNotEmpty &&
-          nameController.text.validateName() != null) {
+      if (nameController.text.isNotEmpty && nameController.text.validateName() != null) {
         CustomToast.showSnakeBar(
           tr("validateName"),
           type: ToastType.error,
         );
         return;
       }
-      if (emailController.text.isNotEmpty &&
-          emailController.text.validateEmail() != null) {
+      if (emailController.text.isNotEmpty && emailController.text.validateEmail() != null) {
         CustomToast.showSnakeBar(
           tr("mailValidation"),
           type: ToastType.error,
@@ -214,8 +209,7 @@ class ProfileController {
 
   bool isPhoneValid() {
     if (phoneController.text.isNotEmpty) {
-      return ((phoneController.text)).isValidUAEPhone(phoneController.text) ==
-          null;
+      return ((phoneController.text)).isValidUAEPhone(phoneController.text) == null;
     } else {
       return false;
     }
@@ -265,9 +259,7 @@ class ProfileController {
     return ProfileParams(
       name: isNameChanged(context) ? nameController.text : null,
       countryCode: countryCubit.state.data?.callingCode,
-      phone: isPhoneValid() && phoneController.text.isNotEmpty
-          ? phoneController.text
-          : null,
+      phone: isPhoneValid() && phoneController.text.isNotEmpty ? phoneController.text : null,
       image: isImageChanged() ? imageCubit.state.data : null,
       email: isEmailChanged(context) ? emailController.text : null,
     );
@@ -278,16 +270,29 @@ class ProfileController {
     getIt<AuthHelper>().onLogOut(context);
   }
 
-  void routeToChangePassword(BuildContext context) {
+  void routeToChangePassword(BuildContext context) async {
     String? email = context.read<UserCubit>().state.model?.email;
     if (email == null || email == "") {
       CustomToast.showSimpleToast(
-          msg: tr("add_email_to_change_password"),
-          type: ToastType.info,
-          toastGravity: ToastGravity.BOTTOM);
+          msg: tr("add_email_to_change_password"), type: ToastType.info, toastGravity: ToastGravity.BOTTOM);
       return;
     }
-    AutoRouter.of(context).push(const ChangePasswordRoute());
+
+    bool? hasPassword = context.read<UserCubit>().state.model?.hasPassword;
+
+    if (hasPassword == true) {
+      AutoRouter.of(context).push(const ChangePasswordRoute());
+      return;
+    }
+    if (hasPassword == false) {
+      final result = await PasswordSetRequest().call(
+        SetNewPasswordParams(email: email),
+      );
+
+      if (result != null) {
+        AutoRouter.of(context).push(const ChangePasswordRoute());
+      }
+    }
   }
 
   void onPressBack(BuildContext context, String? email) {

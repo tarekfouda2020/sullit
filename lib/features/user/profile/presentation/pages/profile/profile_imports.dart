@@ -32,6 +32,8 @@ import 'package:flutter_tdd/features/user/vip_subscribe/domain/use_case/get_curr
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../domain/entities/set_new_password_params.dart';
+import '../../../domain/use_cases/password_set_request.dart';
 import 'widgets/profile_widgets_imports.dart';
 
 part 'profile.dart';

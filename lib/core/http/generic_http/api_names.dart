@@ -33,6 +33,8 @@ class ApiNames {
   static const String changePassword = "update-password?_method=patch";
   // profile urls
   static const String updateProfile = "profile/update?_method=put";
+  static const String passwordSetRequest = "password/set-request";
+  static const String passwordSet = "password/set";
   static const String updateProfileEmail = "new-email";
   static const String getProfile = "profile";
 
