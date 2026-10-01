@@ -15,3 +15,5 @@ import '../../../../../../../res.dart';
 part 'search_header_widget.dart';
 
 part 'search_result_item_widget.dart';
+
+part 'app_bar_location_widget.dart';

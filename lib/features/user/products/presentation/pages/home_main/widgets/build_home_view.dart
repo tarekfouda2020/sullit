@@ -102,6 +102,7 @@ class BuildHomeView extends StatelessWidget {
                     controller: controller,
                     recentlyViewedProducts: homeDomainModel.recentlyViewedProducts,
                   ),
+                Gaps.vGap16,
                 Image.asset(
                   Res.specialOfferBanner,
                 ),

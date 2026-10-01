@@ -28,7 +28,8 @@ class _PriceComparisonPageState extends State<PriceComparisonPage> {
               children: [
                 const ComparisonHeaderWidget(
                   title: 'Price Comparison',
-                  subTitle: 'Comparing across 6 stores in Al Mushrif, Abu Dhabi',
+                  subTitle: 'Comparing across 6 stores in ',
+                  subTitleName: 'Al Mushrif, Abu Dhabi',
                 ),
                 Gaps.vGap20,
                 const ProductItemWidget(),
@@ -37,7 +38,8 @@ class _PriceComparisonPageState extends State<PriceComparisonPage> {
                 Gaps.vGap16,
                 const ComparisonHeaderWidget(
                   title: 'Prices near you',
-                  subTitle: 'Stores available in Al Mushrif, Abu Dhabi',
+                  subTitle: 'Stores available in ',
+                  subTitleName: 'Al Mushrif, Abu Dhabi',
                 ),
                 Gaps.vGap16,
                 SuggestionsProductItemWidget(

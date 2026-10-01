@@ -15,6 +15,7 @@ class SuggestionsProductItemWidget extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
+        border: Border.all(color: context.colors.borderColor),
         color: bgColor,
         borderRadius: BorderRadius.circular(16),
       ),
@@ -23,7 +24,7 @@ class SuggestionsProductItemWidget extends StatelessWidget {
         children: [
           isLowest
               ? Container(
-                  margin: const EdgeInsets.only(bottom: 12),
+                  margin: const EdgeInsets.only(bottom: 16),
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
                     color: context.colors.lightGreen,
@@ -119,7 +120,7 @@ class SuggestionsProductItemWidget extends StatelessWidget {
             ],
           ),
           Gaps.vGap12,
-          Gaps.line(context.colors.grey, 10.h),
+          Gaps.line(context.colors.gray4, 10.h),
           Gaps.vGap8,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

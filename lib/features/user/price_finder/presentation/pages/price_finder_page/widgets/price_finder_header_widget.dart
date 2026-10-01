@@ -20,7 +20,7 @@ class PriceFinderHeaderWidget extends StatelessWidget {
             style: AppTextStyle.s10_w700(color: context.colors.darkGreen),
           ),
         ),
-        Gaps.vGap12,
+        Gaps.vGap14,
         Text(
           'Price Finder',
           style: AppTextStyle.s22_w700(color: context.colors.black),

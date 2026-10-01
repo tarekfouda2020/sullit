@@ -11,7 +11,7 @@ class BuildHomeMainAppBar extends StatelessWidget {
       bloc: homeMainController.homeController.visibleSearch,
       builder: (context, state) {
         return Container(
-          padding: const EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 20),
+          padding: const EdgeInsetsDirectional.only(start: 20, end: 10, top: 10),
           color: context.colors.customBackground,
           child: Column(
             children: [

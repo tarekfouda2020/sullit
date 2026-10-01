@@ -16,7 +16,7 @@ class PriceFinderSearchCardWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         decoration: BoxDecoration(
           color: context.colors.white,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(13),
           boxShadow: [
             BoxShadow(
               color: context.colors.black.withValues(alpha: 0.05),

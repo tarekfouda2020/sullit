@@ -79,9 +79,20 @@ class SearchHeaderWidget extends StatelessWidget {
           ],
         ),
         Gaps.vGap12,
-        Text(
-          'Showing exact matches for Coca-Cola Original',
-          style: AppTextStyle.s14_w400(color: context.colors.textColor),
+        RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            style: AppTextStyle.s14_w400(color: context.colors.textColor),
+            children: [
+              const TextSpan(
+                text: 'Showing exact matches for ',
+              ),
+              TextSpan(
+                text: 'Coca-Cola Original',
+                style: AppTextStyle.s14_w400(color: context.colors.black),
+              ),
+            ],
+          ),
         ),
       ],
     );

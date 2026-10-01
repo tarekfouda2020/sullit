@@ -22,7 +22,7 @@ class _SearchScannerPageState extends State<SearchScannerPage> {
         padding: const EdgeInsets.only(
           right: 20,
           left: 20,
-          top: 20,
+          top: 24,
           bottom: 80,
         ),
         color: context.colors.black.withOpacity(.83),
