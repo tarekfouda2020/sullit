@@ -152,7 +152,9 @@ part 'attach_prescription_sheet_widget.dart';
 part 'saved_prescriptions_bottom_sheet_widget.dart';
 
 part 'saved_prescription_item_widget.dart';
+
 part 'in_store_shopping_banner.dart';
+
 part 'in_store_shopping_banner_shimmer_widget.dart';
 
 part 'category_card_widget.dart';
@@ -160,5 +162,15 @@ part 'category_card_widget.dart';
 part 'restaurant_card_widget.dart';
 
 part 'shop_type_short_cuts_widget.dart';
+
 part 'restaurant_item_widget.dart';
-part'seller_card_section_widget.dart';
+
+part 'seller_card_section_widget.dart';
+
+part 'ai_and_price_finder_card_widget.dart';
+
+part 'ai_and_price_finder_item_card_widget.dart';
+
+part 'continue_shopping_widget.dart';
+
+part 'your_orders_widget.dart';

@@ -25,7 +25,7 @@ abstract class AppColors {
 
   Color get primary;
 
-  Color get  lightPink3;
+  Color get lightPink3;
 
   Color get secondary;
 
@@ -43,6 +43,8 @@ abstract class AppColors {
 
   Color get darkPurple;
 
+  Color get darkGreen2;
+
   Color get background;
 
   Color get customBackground;
@@ -50,6 +52,8 @@ abstract class AppColors {
   Color get scaffoldBg;
 
   Color get disableGray;
+
+  Color get disableBlack;
 
   Color get gray;
 
@@ -89,6 +93,10 @@ abstract class AppColors {
 
   Color get lightPink;
 
+  Color get opacityPink;
+
+  Color get opacityGreen;
+
   Color get darkRed;
 
   Color get gold;
@@ -125,7 +133,15 @@ abstract class AppColors {
 
   Color get lightGreen;
 
+  Color get lightGreen3;
+
   Color get mainGreen;
+
+  Color get darkGreen;
+
+  Color get darkGreen3;
+
+  Color get darkGreen4;
 
   Color get harvest;
 

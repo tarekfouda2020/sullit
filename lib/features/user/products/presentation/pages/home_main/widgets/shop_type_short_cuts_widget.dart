@@ -41,6 +41,17 @@ class ShopTypeShortCutsWidget extends StatelessWidget {
             ),
           ),
         ),
+        // Expanded(
+        //   child: CategoryCardWidget(
+        //     title: tr('Retail'),
+        //     image: Res.retailImage,
+        //     backgroundColor: context.colors.lightGreen3,
+        //     textColor: context.colors.darkGreen,
+        //     onTap: () => AutoRouter.of(context).push(
+        //       const RestaurantsRoute(),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

@@ -13,12 +13,12 @@ class BuildTopSellers extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            tr("top_Seller"),
+            tr("Featured Sellers"),
             style: AppTextStyle.s16_w700(color: context.colors.black),
           ),
           Gaps.vGap8,
           SizedBox(
-            height: 140,
+            height: 120,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: topSellers.length,

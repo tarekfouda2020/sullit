@@ -10,6 +10,18 @@ class AppDarkColors extends AppColors {
   Color get secondary => const Color(0xff30e3a0);
 
   @override
+  Color get disableBlack => const Color(0xff0D1F1A);
+
+  @override
+  Color get darkGreen2 => const Color(0xff007A55);
+
+  @override
+  Color get darkGreen3 => const Color(0xff00D492);
+
+  @override
+  Color get darkGreen4 => const Color(0xff1A3B32);
+
+  @override
   Color get white => Colors.white;
 
   @override
@@ -118,8 +130,10 @@ class AppDarkColors extends AppColors {
 
   @override
   Color get gray4 => const Color(0xffDDDDDD);
+
   @override
   Color get lightPink3 => const Color(0xffFFE4E5);
+
   @override
   Color get gray5 => const Color(0xff515151);
 
@@ -140,6 +154,18 @@ class AppDarkColors extends AppColors {
 
   @override
   Color get green2 => const Color(0xff25A80D);
+
+  @override
+  Color get lightGreen3 => const Color(0xffE7F7ED);
+
+  @override
+  Color get darkGreen => const Color(0xff479000);
+
+  @override
+  Color get opacityGreen => const Color(0xffB8E5C9);
+
+  @override
+  Color get opacityPink => const Color(0xffFFB6B9);
 
   @override
   Color get lightRed => const Color(0xffE84144);
@@ -179,6 +205,7 @@ class AppDarkColors extends AppColors {
 
   @override
   Color get lightOrange2 => const Color(0xffFFE8D1);
+
   @override
   Color get lightGreen2 => const Color(0xffECFDF5);
 

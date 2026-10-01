@@ -2,6 +2,8 @@ import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
 import 'package:flutter_tdd/features/user/category/domain/models/category.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/banner_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product.dart';
+import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_card_domain_model.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/slider_domain_model.dart';
@@ -21,6 +23,8 @@ class HomeDomainModel extends BaseDomainModel {
   final List<ShopCardDomainModel> topSellers;
   final List<ShopCardDomainModel> pharmacyShops;
   final List<ShopCardDomainModel> restaurantShops;
+  final List<ProductCard> recentlyOrderedProducts;
+  final List<ProductCard> recentlyViewedProducts;
   // final List<Product> bestSellingProducts;
   // final List<Product> newestProducts;
   // final List<Product> featuredProducts;
@@ -48,6 +52,8 @@ class HomeDomainModel extends BaseDomainModel {
     // required this.newArrivals,
     // required this.bestRated,
     required this.cartCount,
+    required this.recentlyOrderedProducts,
+    required this.recentlyViewedProducts,
     required this.favCount,
     required this.isAdminDiscount,
     required this.discountRate,

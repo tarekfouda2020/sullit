@@ -97,6 +97,7 @@ class AppLightColors extends AppColors {
 
   @override
   Color get lightPink3 => const Color(0xffFFE4E5);
+
   @override
   Color get darkRed => const Color(0xff822426);
 
@@ -140,6 +141,9 @@ class AppLightColors extends AppColors {
   Color get green2 => const Color(0xff25A80D);
 
   @override
+  Color get darkGreen2 => const Color(0xff007A55);
+
+  @override
   Color get lightRed => const Color(0xffE84144);
 
   @override
@@ -152,7 +156,25 @@ class AppLightColors extends AppColors {
   Color get lightGreen => const Color(0xffEAFFEA);
 
   @override
+  Color get lightGreen3 => const Color(0xffE7F7ED);
+
+  @override
+  Color get darkGreen3 => const Color(0xff00D492);
+
+  @override
+  Color get darkGreen4 => const Color(0xff1A3B32);
+
+  @override
+  Color get disableBlack => const Color(0xff0D1F1A);
+
+  @override
+  Color get opacityGreen => const Color(0xffB8E5C9);
+
+  @override
   Color get mainGreen => const Color(0xff009900);
+
+  @override
+  Color get darkGreen => const Color(0xff479000);
 
   @override
   Color get harvest => const Color(0xffBD8F03);
@@ -162,6 +184,9 @@ class AppLightColors extends AppColors {
 
   @override
   Color get shadowPink => const Color(0xffFFCBCC);
+
+  @override
+  Color get opacityPink => const Color(0xffFFB6B9);
 
   @override
   Color get oceanBlue => const Color(0xff057599);

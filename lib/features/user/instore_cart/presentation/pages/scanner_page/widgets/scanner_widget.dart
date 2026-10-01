@@ -18,20 +18,29 @@ class ScannerWidget extends StatelessWidget {
       color: context.colors.black.withOpacity(.83),
       child: Column(
         children: [
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(30),
-              child: MobileScanner(
-                controller: controller.scannerController,
-                onDetect: (capture) {
-                  String? barcode = controller.detectBarcode(capture);
-                  if (barcode == null) return;
-                  if (!context.mounted) return;
-                  controller.getProductWithSku(context, barcode);
-                },
-              ),
-            ),
+          ScannerItemWidget(
+            scannerController: controller.scannerController,
+            detectBarcode: (BarcodeCapture capture) {
+              return controller.detectBarcode(capture);
+            },
+            getProductWithSku: (BuildContext context, String barcode) {
+              controller.getProductWithSku(context, barcode);
+            },
           ),
+          // Expanded(
+          //   child: ClipRRect(
+          //     borderRadius: BorderRadius.circular(30),
+          //     child: MobileScanner(
+          //       controller: controller.scannerController,
+          //       onDetect: (capture) {
+          //         String? barcode = controller.detectBarcode(capture);
+          //         if (barcode == null) return;
+          //         if (!context.mounted) return;
+          //         controller.getProductWithSku(context, barcode);
+          //       },
+          //     ),
+          //   ),
+          // ),
           Gaps.vGap20,
           GenericTextField(
             controller: controller.barcodeTextController,
