@@ -17,6 +17,7 @@ import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/get_device_id.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
+import 'package:flutter_tdd/core/helpers/apple_signin_helper.dart';
 import 'package:flutter_tdd/core/helpers/google_signin_helper.dart';
 import 'package:flutter_tdd/core/helpers/phone_helper.dart';
 import 'package:flutter_tdd/core/helpers/route_helpers/pending_navigation_service.dart';

@@ -94,6 +94,11 @@
                     android:scheme="https"
                     android:host="mushrifcoop.com"
                     android:pathPrefix="/products" />
+
+                <data
+                    android:scheme="https"
+                    android:host="mushrifcoop.com"
+                    android:pathPrefix="/shops" />
             </intent-filter>
             <intent-filter>
                 <action android:name="FLUTTER_NOTIFICATION_CLICK" />

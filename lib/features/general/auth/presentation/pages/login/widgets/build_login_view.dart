@@ -44,6 +44,8 @@ class BuildLoginView extends StatelessWidget {
                         onTap: () {
                           if (item.provider == "google") {
                             controller.signWitGoogle(context);
+                          } else if (item.provider == "apple") {
+                            controller.signWithApple(context);
                           }
                         },
                         child: CachedNetworkImage(

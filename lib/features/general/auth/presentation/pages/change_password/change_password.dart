@@ -8,9 +8,16 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
-  late final ChangePasswordController controller = ChangePasswordController(
-    hasPassword: context.read<UserCubit>().state.model?.hasPassword ?? false,
-  );
+  late final ChangePasswordController controller ;
+
+
+  @override
+  void initState() {
+    super.initState();
+    controller = ChangePasswordController(
+      hasPassword: context.read<UserCubit>().state.model?.hasPassword ?? false,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
