@@ -25,6 +25,13 @@ class PharmacyDetailsAppBar extends StatelessWidget {
                     automaticallyImplyLeading: true,
                     centerTitle: true,
                     leading: BackButton(color: context.colors.black),
+                    actions: [
+                      if (shop?.id != null)
+                        IconButton(
+                          icon: Icon(Icons.share, color: context.colors.black),
+                          onPressed: () => controller.onShareShop(context),
+                        ),
+                    ],
                     title: AnimatedOpacity(
                       opacity: titleState.data ? 1 : 0,
                       duration: const Duration(milliseconds: 100),
