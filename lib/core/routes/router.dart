@@ -43,7 +43,8 @@ part of 'router_imports.dart';
     ...loyaltyPointsRoute,
     ...bestSellersRoutes,
     ...pharmaciesRoute,
-    ...finderRoute
+    ...finderRoute,
+    ...aiChatRoute
   ],
 )
 class $AppRouter {}

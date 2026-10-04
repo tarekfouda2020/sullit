@@ -23,7 +23,6 @@ class AiAndPriceFinderItemCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 77,
       padding: const EdgeInsetsDirectional.only(start: 8, end: 10, top: 12, bottom: 12),
       decoration: BoxDecoration(
         color: bgColor,
@@ -49,7 +48,7 @@ class AiAndPriceFinderItemCardWidget extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  maxLines: 1,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: AppTextStyle.s14_w800(
                     color: context.colors.black,
