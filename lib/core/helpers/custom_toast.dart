@@ -35,7 +35,7 @@ class CustomToast {
   static void showAuthDialog(BuildContext context) {
     getIt<AuthGuard>().requireAuth(
         context: context,
-    pendingRoute: context.routeData.route.toPageRouteInfo()
+      pendingRoute: context.routeData.route.toPageRouteInfo()
     );
     showCupertinoDialog(
       context: context,

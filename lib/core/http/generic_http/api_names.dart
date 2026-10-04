@@ -172,6 +172,18 @@ class ApiNames {
 
   static String addTicketReply(int id) => "tickets/$id/replies/store";
 
+  static const String chatbotConversations = "chatbot/conversations";
+
+  static String chatbotConversation(String id) => "chatbot/conversations/$id";
+
+  static String chatbotEnd(String id) => "chatbot/conversations/$id/end";
+
+  static String chatbotMessages(String id) =>
+      "chatbot/conversations/$id/messages";
+
+  static String chatbotHandoff(String id) =>
+      "chatbot/conversations/$id/handoff";
+
   //PurchaseHistory
   static const String getPurchaseHistory = "orders/purchase-history";
   static const String getReturnOrders = "orders/return-orders";
