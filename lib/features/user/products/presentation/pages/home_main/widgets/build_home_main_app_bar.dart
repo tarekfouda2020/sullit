@@ -32,7 +32,7 @@ class BuildHomeMainAppBar extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              'Mahmoud',
+                              context.read<UserCubit>().state.model?.name ?? "Login",
                               style: AppTextStyle.s14_w800(
                                 color: context.colors.black,
                               ),
@@ -42,10 +42,13 @@ class BuildHomeMainAppBar extends StatelessWidget {
                           ],
                         )
                       else
-                        Text(
-                          'Login',
-                          style: AppTextStyle.s14_w800(
-                            color: context.colors.black,
+                        GestureDetector(
+                          onTap: () => homeMainController.goLogin(context),
+                          child: Text(
+                            'Login',
+                            style: AppTextStyle.s14_w800(
+                              color: context.colors.black,
+                            ),
                           ),
                         ),
                     ],
