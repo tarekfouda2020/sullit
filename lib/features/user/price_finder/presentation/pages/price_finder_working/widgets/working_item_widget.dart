@@ -7,15 +7,15 @@ class WorkingItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('Working ...', style: AppTextStyle.s24_w800(color: context.colors.black)),
+        Text(tr('working...'), style: AppTextStyle.s24_w800(color: context.colors.black)),
         Gaps.vGap10,
         RichText(
           textAlign: TextAlign.center,
           text: TextSpan(
             style: AppTextStyle.s12_w400(color: context.colors.textColor),
             children: [
-              const TextSpan(
-                text: 'Price comparison loaded for ',
+              TextSpan(
+                text: tr('priceComparisonLoadedFor'),
               ),
               TextSpan(
                 text: 'Al Mushrif, Abu Dhabi',

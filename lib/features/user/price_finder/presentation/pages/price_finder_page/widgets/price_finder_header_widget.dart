@@ -22,12 +22,12 @@ class PriceFinderHeaderWidget extends StatelessWidget {
         ),
         Gaps.vGap14,
         Text(
-          'Price Finder',
+          tr('priceFinder'),
           style: AppTextStyle.s22_w700(color: context.colors.black),
         ),
         Gaps.vGap6,
         Text(
-          'Find the best price for any product near you.',
+          tr('findTheBestPriceForAnyProductNearYou.'),
           style: AppTextStyle.s14_w400(color: context.colors.textColor),
         ),
       ],

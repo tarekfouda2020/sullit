@@ -8,6 +8,7 @@ import 'package:flutter_tdd/features/user/price_finder/presentation/pages/price_
 
 import '../../../../../../core/bloc/generic_cubit/generic_cubit.dart';
 import '../../../../../../core/constants/gaps.dart';
+import '../../../../../../core/localization/localization_methods.dart';
 import '../../../../../../core/routes/router_imports.gr.dart';
 import '../../../../../../core/widgets/CachedImage.dart';
 import '../../../../../../core/widgets/default_app_bar.dart';

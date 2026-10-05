@@ -24,7 +24,7 @@ class ScanFieldWidget extends StatelessWidget {
           width: 18,
         ),
         label: Text(
-          'Scan Barcode',
+          tr('scanBarcode'),
           style: AppTextStyle.s18_w700(color: context.colors.white),
         ),
       ),

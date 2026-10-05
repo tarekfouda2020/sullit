@@ -11,20 +11,20 @@ class AiAndPriceFinderCardWidget extends StatelessWidget {
         Expanded(
           child: GestureDetector(
             onTap: () {
-              if(context.isAuth){
+              if (context.isAuth) {
                 AutoRouter.of(context).push(const AiChatPageRoute());
-              }else{
+              } else {
                 CustomToast.showAuthDialog(context);
               }
             },
             child: AiAndPriceFinderItemCardWidget(
-            bgColor: context.colors.lightPink,
-            title: "Ask Sahla AI",
-            arrowColor: context.colors.primary,
-            bgIconColor: context.colors.opacityPink,
-            image: Res.aiIcon,
-            subTitle: "Your Personal Shopping\nAssistant",
-            iconPadding: 7,
+              bgColor: context.colors.lightPink,
+              title: tr("askSahlaAI"),
+              arrowColor: context.colors.primary,
+              bgIconColor: context.colors.opacityPink,
+              image: Res.aiIcon,
+              subTitle: tr("yourPersonalShoppingAssistant"),
+              iconPadding: 7,
             ),
           ),
         ),

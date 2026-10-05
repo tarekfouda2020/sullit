@@ -13,7 +13,7 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(
-        title: "Sahla Price Finder",
+        title: tr("sahlaPriceFinder"),
         bgColor: context.colors.white,
       ),
       body: Column(

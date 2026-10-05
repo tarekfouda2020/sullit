@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 
 import '../../../../../../../core/constants/gaps.dart';
+import '../../../../../../../core/localization/localization_methods.dart';
 import '../../../../../../../core/theme/text/app_text_style.dart';
 import '../../../../../../../core/widgets/CachedImage.dart';
 import '../price_finder_imports.dart';

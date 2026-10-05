@@ -63,16 +63,19 @@ class AiAndPriceFinderItemCardWidget extends StatelessWidget {
                         subTitle,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: AppTextStyle.s10_w400(
-                          color: context.colors.blackOpacity,
+                        style: AppTextStyle.s11_w400(
+                          color: context.colors.textColor,
                         ).copyWith(height: 1.3),
                       ),
                     ),
                     Gaps.hGap4,
-                    SvgPicture.asset(
-                      Res.arrowDetails,
-                      color: arrowColor,
-                    ),
+                    Transform.rotate(
+                      angle: context.isArabic ? pi : 0,
+                      child: SvgPicture.asset(
+                        Res.arrowDetails,
+                        color: arrowColor,
+                      ),
+                    )
                   ],
                 ),
               ],

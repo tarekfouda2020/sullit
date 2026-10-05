@@ -5,6 +5,7 @@ import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 
 import '../../../../../../../core/constants/gaps.dart';
+import '../../../../../../../core/localization/localization_methods.dart';
 import '../../../../../../../core/routes/router_imports.gr.dart';
 import '../../../../../../../core/theme/text/app_text_style.dart';
 import '../../../../../../../res.dart';

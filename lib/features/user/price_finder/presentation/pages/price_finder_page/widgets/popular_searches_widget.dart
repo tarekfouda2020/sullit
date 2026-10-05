@@ -11,7 +11,7 @@ class PopularSearchesWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Popular Searches',
+          tr('popularSearches'),
           style: AppTextStyle.s16_w700(color: context.colors.black),
         ),
         Gaps.vGap12,

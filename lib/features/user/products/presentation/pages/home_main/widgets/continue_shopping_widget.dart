@@ -16,8 +16,9 @@ class ContinueShoppingWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Gaps.vGap10,
           BuildHeaderTitle(
-            title: tr('Continue Shopping'),
+            title: tr('continueShopping'),
             onTap: () {
               // controller.changeCouponsTab(SaleTabType.newArrival, context);
               // controller.homeController.animateTabsPages(3, context);
