@@ -15,7 +15,7 @@ class _SearchScannerPageState extends State<SearchScannerPage> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(
-        title: "Sahla Price Finder",
+        title: tr("sahlaPriceFinder"),
         bgColor: context.colors.white,
       ),
       body: Container(
@@ -30,7 +30,7 @@ class _SearchScannerPageState extends State<SearchScannerPage> {
           children: [
             GenericTextField(
               controller: controller.barcodeTextController,
-              hint: 'Search By Barcode Number',
+              hint: tr('searchByBarcodeNumber'),
               suffixIcon: IconButton(
                 icon: Transform.scale(
                   scale: 0.75,

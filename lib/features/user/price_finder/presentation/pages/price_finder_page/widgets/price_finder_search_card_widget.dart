@@ -38,7 +38,7 @@ class PriceFinderSearchCardWidget extends StatelessWidget {
               ),
             ),
           ),
-          hint: "Search by product name or barcode",
+          hint: tr("searchByProductNameOrBarcode"),
           maxLength: 2,
           fieldTypes: FieldTypes.clickable,
           type: TextInputType.text,

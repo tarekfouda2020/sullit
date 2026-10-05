@@ -28,7 +28,7 @@ class _PriceFinderWorkingState extends State<PriceFinderWorking> with SingleTick
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(
-        title: 'Sahla Price Finder',
+        title: tr("sahlaPriceFinder"),
         bgColor: context.colors.white,
       ),
       body: SafeArea(

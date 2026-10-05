@@ -13,7 +13,7 @@ class _PriceComparisonPageState extends State<PriceComparisonPage> {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
       appBar: DefaultAppBar(
-        title: "Sahla Price Finder",
+        title: tr("sahlaPriceFinder"),
         bgColor: context.colors.white,
       ),
       body: Column(
@@ -26,8 +26,8 @@ class _PriceComparisonPageState extends State<PriceComparisonPage> {
                 vertical: 24,
               ),
               children: [
-                const ComparisonHeaderWidget(
-                  title: 'Price Comparison',
+                 ComparisonHeaderWidget(
+                  title: tr('Price Comparison'),
                   subTitle: 'Comparing across 6 stores in ',
                   subTitleName: 'Al Mushrif, Abu Dhabi',
                 ),

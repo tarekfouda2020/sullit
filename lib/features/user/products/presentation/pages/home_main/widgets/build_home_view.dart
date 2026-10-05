@@ -38,7 +38,7 @@ class BuildHomeView extends StatelessWidget {
                   enableBorderColor: context.colors.borderColor,
                   focusBorderColor: context.colors.borderColor,
                   hint: tr(
-                    'Search products, sellers & offers...',
+                    'searchProducts,Sellers&Offers...',
                     context: context,
                   ),
                   minHeight: 48,
@@ -82,7 +82,7 @@ class BuildHomeView extends StatelessWidget {
                 ),
                 Gaps.vGap16,
                 Text(
-                  tr("Shop By"),
+                  tr("shopBy"),
                   style: AppTextStyle.s16_w700(
                     color: context.colors.black,
                   ),
@@ -96,7 +96,6 @@ class BuildHomeView extends StatelessWidget {
                   currentOrders: homeDomainModel.currentOrders,
                   controller: controller,
                 ),
-                Gaps.vGap10,
                 if (context.isAuth == true)
                   ContinueShoppingWidget(
                     controller: controller,

@@ -21,7 +21,7 @@ class YourOrdersWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BuildHeaderTitle(
-            title: tr('Based on your orders'),
+            title: tr('basedOnYourOrders'),
             onTap: () {
               // controller.changeCouponsTab(
               //   SaleTabType.newArrival,

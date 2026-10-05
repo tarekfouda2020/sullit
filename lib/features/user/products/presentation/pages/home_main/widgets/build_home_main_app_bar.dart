@@ -22,30 +22,37 @@ class BuildHomeMainAppBar extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Good Evening',
+                        tr('goodEvening'),
                         style: AppTextStyle.s12_w400(
                           color: context.colors.textColor,
                         ),
                       ),
                       Gaps.vGap8,
-                      if (context.isAuth == true)
-                        Row(
-                          children: [
-                            Text(
-                              context.read<UserCubit>().state.model?.name ?? "Login",
-                              style: AppTextStyle.s14_w800(
-                                color: context.colors.black,
+                      if (context.isAuth)
+                        SizedBox(
+                          width: 102,
+                          child: Row(
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  context.read<UserCubit>().state.model?.name ?? tr("login"),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: AppTextStyle.s14_w800(
+                                    color: context.colors.black,
+                                  ).copyWith(height: 1.3),
+                                ),
                               ),
-                            ),
-                            Gaps.hGap5,
-                            SvgPicture.asset(Res.loginNameIcon),
-                          ],
+                              Gaps.hGap5,
+                              SvgPicture.asset(Res.loginNameIcon),
+                            ],
+                          ),
                         )
                       else
                         GestureDetector(
                           onTap: () => homeMainController.goLogin(context),
                           child: Text(
-                            'Login',
+                            tr('login'),
                             style: AppTextStyle.s14_w800(
                               color: context.colors.black,
                             ),
@@ -60,22 +67,33 @@ class BuildHomeMainAppBar extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () => homeMainController.goNotification(context),
-                    child: Container(
-                      height: 85,
-                      width: 85,
-                      padding: const EdgeInsetsGeometry.symmetric(horizontal: 10),
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(Res.notificationBg),
-                          fit: BoxFit.cover,
-                        ),
-                        shape: BoxShape.circle,
-                      ),
-                      alignment: Alignment.centerRight,
-                      child: SvgPicture.asset(
-                        Res.notification,
-                        height: 20,
-                        width: 20,
+                    child: SizedBox(
+                      height: 90,
+                      width: 90,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Image.asset(
+                            Res.notificationBg,
+                            width: 90,
+                            height: 90,
+                            fit: BoxFit.fill,
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional.centerEnd,
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.only(
+                                end: 15,
+                                top: 10,
+                              ),
+                              child: SvgPicture.asset(
+                                Res.notification,
+                                height: 20,
+                                width: 20,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

@@ -24,7 +24,7 @@ class SearchHeaderWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                hint: "Search by product name or barcode",
+                hint: tr("searchByProductNameOrBarcode"),
                 maxLength: 2,
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.text,
@@ -60,7 +60,7 @@ class SearchHeaderWidget extends StatelessWidget {
         Row(
           children: [
             Text(
-              'Search Results',
+             tr('searchResults'),
               style: AppTextStyle.s22_w700(color: context.colors.black),
             ),
             const Spacer(),
@@ -84,8 +84,8 @@ class SearchHeaderWidget extends StatelessWidget {
           text: TextSpan(
             style: AppTextStyle.s14_w400(color: context.colors.textColor),
             children: [
-              const TextSpan(
-                text: 'Showing exact matches for ',
+               TextSpan(
+                text: tr('showingExactMatchesFor'),
               ),
               TextSpan(
                 text: 'Coca-Cola Original',
