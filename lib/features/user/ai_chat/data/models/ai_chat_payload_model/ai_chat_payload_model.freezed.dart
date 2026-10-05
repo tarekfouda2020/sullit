@@ -26,7 +26,7 @@ mixin _$AiChatPayloadModel {
   @JsonKey(name: 'sub_total')
   String? get subTotal => throw _privateConstructorUsedError;
   @JsonKey(name: 'calculable_total')
-  String? get calculableTotal => throw _privateConstructorUsedError;
+  double? get calculableTotal => throw _privateConstructorUsedError;
   @JsonKey(name: 'currency_symbol')
   String? get currencySymbol => throw _privateConstructorUsedError;
   int? get returned => throw _privateConstructorUsedError;
@@ -68,7 +68,7 @@ abstract class $AiChatPayloadModelCopyWith<$Res> {
       String? action,
       List<AiChatCartItemModel>? items,
       @JsonKey(name: 'sub_total') String? subTotal,
-      @JsonKey(name: 'calculable_total') String? calculableTotal,
+      @JsonKey(name: 'calculable_total') double? calculableTotal,
       @JsonKey(name: 'currency_symbol') String? currencySymbol,
       int? returned,
       int? total,
@@ -146,7 +146,7 @@ class _$AiChatPayloadModelCopyWithImpl<$Res, $Val extends AiChatPayloadModel>
       calculableTotal: freezed == calculableTotal
           ? _value.calculableTotal
           : calculableTotal // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
       currencySymbol: freezed == currencySymbol
           ? _value.currencySymbol
           : currencySymbol // ignore: cast_nullable_to_non_nullable
@@ -264,7 +264,7 @@ abstract class _$$_AiChatPayloadModelCopyWith<$Res>
       String? action,
       List<AiChatCartItemModel>? items,
       @JsonKey(name: 'sub_total') String? subTotal,
-      @JsonKey(name: 'calculable_total') String? calculableTotal,
+      @JsonKey(name: 'calculable_total') double? calculableTotal,
       @JsonKey(name: 'currency_symbol') String? currencySymbol,
       int? returned,
       int? total,
@@ -343,7 +343,7 @@ class __$$_AiChatPayloadModelCopyWithImpl<$Res>
       calculableTotal: freezed == calculableTotal
           ? _value.calculableTotal
           : calculableTotal // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
       currencySymbol: freezed == currencySymbol
           ? _value.currencySymbol
           : currencySymbol // ignore: cast_nullable_to_non_nullable
@@ -466,7 +466,7 @@ class _$_AiChatPayloadModel extends _AiChatPayloadModel {
   final String? subTotal;
   @override
   @JsonKey(name: 'calculable_total')
-  final String? calculableTotal;
+  final double? calculableTotal;
   @override
   @JsonKey(name: 'currency_symbol')
   final String? currencySymbol;
@@ -619,7 +619,7 @@ abstract class _AiChatPayloadModel extends AiChatPayloadModel {
           final String? action,
           final List<AiChatCartItemModel>? items,
           @JsonKey(name: 'sub_total') final String? subTotal,
-          @JsonKey(name: 'calculable_total') final String? calculableTotal,
+          @JsonKey(name: 'calculable_total') final double? calculableTotal,
           @JsonKey(name: 'currency_symbol') final String? currencySymbol,
           final int? returned,
           final int? total,
@@ -653,7 +653,7 @@ abstract class _AiChatPayloadModel extends AiChatPayloadModel {
   String? get subTotal;
   @override
   @JsonKey(name: 'calculable_total')
-  String? get calculableTotal;
+  double? get calculableTotal;
   @override
   @JsonKey(name: 'currency_symbol')
   String? get currencySymbol;

@@ -23,6 +23,7 @@ class AiChatProductTileWidget extends StatelessWidget {
           border: Border.all(color: context.colors.borderColor),
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CachedImage(
@@ -39,7 +40,7 @@ class AiChatProductTileWidget extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: AppTextStyle.s12_w500(color: context.colors.black),
             ),
-            const Spacer(),
+            Gaps.vGap8,
             Text(
               item.priceText,
               style: AppTextStyle.s12_w600(color: context.colors.primary),

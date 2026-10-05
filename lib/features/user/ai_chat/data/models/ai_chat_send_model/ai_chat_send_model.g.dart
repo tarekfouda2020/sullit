@@ -11,10 +11,6 @@ _$_AiChatSendModel _$$_AiChatSendModelFromJson(Map<String, dynamic> json) =>
       conversationId: json['conversation_id'] as String,
       reply: json['reply'] as String,
       type: json['type'] as String,
-      payload: json['payload'] == null
-          ? null
-          : AiChatPayloadModel.fromJson(
-              json['payload'] as Map<String, dynamic>),
       handoffActive: json['handoff_active'] as bool,
     );
 
@@ -23,6 +19,5 @@ Map<String, dynamic> _$$_AiChatSendModelToJson(_$_AiChatSendModel instance) =>
       'conversation_id': instance.conversationId,
       'reply': instance.reply,
       'type': instance.type,
-      'payload': instance.payload?.toJson(),
       'handoff_active': instance.handoffActive,
     };

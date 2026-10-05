@@ -80,6 +80,7 @@ class AiChatDataSourceImpl extends AiChatDataSource {
       requestBody: params.toJson(),
       responseType: ResType.model,
       showLoader: false,
+      refresh: params.refresh,
       responseKey: (data) => data['data'],
       toJsonFunc: (json) => AiChatConversationModel.fromJson(json),
       errorFunc: (data) => data['msg'],

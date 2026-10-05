@@ -9,6 +9,7 @@ import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
+import 'package:flutter_tdd/features/user/ai_chat/data/enum/ai_chat_message_type.dart';
 import 'package:flutter_tdd/features/user/ai_chat/domain/entities/ai_chat_participant_params.dart';
 import 'package:flutter_tdd/features/user/ai_chat/domain/entities/get_ai_messages_params.dart';
 import 'package:flutter_tdd/features/user/ai_chat/domain/entities/handoff_form.dart';

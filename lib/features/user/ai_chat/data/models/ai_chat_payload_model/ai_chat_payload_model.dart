@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/features/user/ai_chat/domain/models/ai_chat_payload.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 
 import 'package:flutter_tdd/features/user/ai_chat/data/models/ai_chat_branch_model/ai_chat_branch_model.dart';
 import 'package:flutter_tdd/features/user/ai_chat/data/models/ai_chat_cart_item_model/ai_chat_cart_item_model.dart';
@@ -11,7 +12,7 @@ part 'ai_chat_payload_model.freezed.dart';
 part 'ai_chat_payload_model.g.dart';
 
 @freezed
-class AiChatPayloadModel with _$AiChatPayloadModel {
+class AiChatPayloadModel extends BaseApiModel<DetailAiChatPayload> with _$AiChatPayloadModel {
   const AiChatPayloadModel._();
 
   @JsonSerializable(explicitToJson: true)
@@ -22,7 +23,7 @@ class AiChatPayloadModel with _$AiChatPayloadModel {
     @JsonKey(name: 'sub_total')
     String? subTotal,
     @JsonKey(name: 'calculable_total')
-    String? calculableTotal,
+    double? calculableTotal,
     @JsonKey(name: 'currency_symbol')
     String? currencySymbol,
     int? returned,
@@ -50,12 +51,13 @@ class AiChatPayloadModel with _$AiChatPayloadModel {
   factory AiChatPayloadModel.fromJson(Map<String, dynamic> json) =>
       _$AiChatPayloadModelFromJson(json);
 
-  AiChatPayload toDomainModel() {
-    return AiChatPayload(
+  @override
+  DetailAiChatPayload toDomainModel() {
+    return DetailAiChatPayload(
       action: action,
       items: items?.map((item) => item.toDomainModel()).toList() ?? const [],
       subTotal: subTotal,
-      calculableTotal: calculableTotal,
+      calculableTotal: calculableTotal?.toStringAsFixed(2),
       currencySymbol: currencySymbol,
       returned: returned,
       total: total,

@@ -17,37 +17,45 @@ class AiChatSuggestionsWidget extends StatelessWidget {
       bloc: controller.handoffBloc,
       builder: (context, handoff) {
         if (handoff.data) return const SizedBox.shrink();
-        return SizedBox(
-          height: 40,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: Dimens.dp12),
-            itemCount: _prompts.length + 1,
-            separatorBuilder: (_, __) => Gaps.hGap8,
-            itemBuilder: (context, index) {
-              if (index == _prompts.length) {
-                return ActionChip(
-                  label: Text(
-                    'Talk to support',
-                    style: AppTextStyle.s12_w500(color: context.colors.primary),
-                  ),
-                  backgroundColor: context.colors.white,
-                  side: BorderSide(color: context.colors.borderColor),
-                  onPressed: () => controller.requestHuman(context),
-                );
-              }
-              final prompt = _prompts[index];
-              return ActionChip(
-                label: Text(
-                  prompt,
-                  style: AppTextStyle.s12_w400(color: context.colors.blackTextColor),
-                ),
-                backgroundColor: context.colors.white,
-                side: BorderSide(color: context.colors.borderColor),
-                onPressed: () => controller.send(prompt),
-              );
-            },
-          ),
+        return BlocBuilder<GenericBloc<List<AiChatMessage>>,
+            GenericState<List<AiChatMessage>>>(
+          bloc: controller.messagesBloc,
+          builder: (context, messages) {
+            return SizedBox(
+              height: Dimens.dp40,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: Dimens.dp16),
+                itemCount: _prompts.length + 1,
+                separatorBuilder: (_, __) => Gaps.hGap8,
+                itemBuilder: (context, index) {
+                  if (index == _prompts.length) {
+                    return ActionChip(
+                      label: Text(
+                        'Talk to support',
+                        style: AppTextStyle.s12_w500(color: context.colors.primary),
+                      ),
+                      backgroundColor: context.colors.lightPink,
+                      side: BorderSide(color: context.colors.lightPink2),
+                      onPressed: () => controller.requestHuman(context),
+                    );
+                  }
+                  final prompt = _prompts[index];
+                  return ActionChip(
+                    label: Text(
+                      prompt,
+                      style: AppTextStyle.s12_w400(
+                        color: context.colors.blackTextColor,
+                      ),
+                    ),
+                    backgroundColor: context.colors.white,
+                    side: BorderSide(color: context.colors.borderColor),
+                    onPressed: () => controller.send(prompt),
+                  );
+                },
+              ),
+            );
+          },
         );
       },
     );

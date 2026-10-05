@@ -24,7 +24,7 @@ mixin _$AiChatSendModel {
   String get conversationId => throw _privateConstructorUsedError;
   String get reply => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
-  AiChatPayloadModel? get payload => throw _privateConstructorUsedError;
+  BaseApiModel<AiChatPayload>? get payload => throw _privateConstructorUsedError;
   @JsonKey(name: 'handoff_active')
   bool get handoffActive => throw _privateConstructorUsedError;
 
@@ -44,10 +44,8 @@ abstract class $AiChatSendModelCopyWith<$Res> {
       {@JsonKey(name: 'conversation_id') String conversationId,
       String reply,
       String type,
-      AiChatPayloadModel? payload,
+      BaseApiModel<AiChatPayload>? payload,
       @JsonKey(name: 'handoff_active') bool handoffActive});
-
-  $AiChatPayloadModelCopyWith<$Res>? get payload;
 }
 
 /// @nodoc
@@ -85,24 +83,12 @@ class _$AiChatSendModelCopyWithImpl<$Res, $Val extends AiChatSendModel>
       payload: freezed == payload
           ? _value.payload
           : payload // ignore: cast_nullable_to_non_nullable
-              as AiChatPayloadModel?,
+              as BaseApiModel<AiChatPayload>?,
       handoffActive: null == handoffActive
           ? _value.handoffActive
           : handoffActive // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $AiChatPayloadModelCopyWith<$Res>? get payload {
-    if (_value.payload == null) {
-      return null;
-    }
-
-    return $AiChatPayloadModelCopyWith<$Res>(_value.payload!, (value) {
-      return _then(_value.copyWith(payload: value) as $Val);
-    });
   }
 }
 
@@ -118,11 +104,8 @@ abstract class _$$_AiChatSendModelCopyWith<$Res>
       {@JsonKey(name: 'conversation_id') String conversationId,
       String reply,
       String type,
-      AiChatPayloadModel? payload,
+      BaseApiModel<AiChatPayload>? payload,
       @JsonKey(name: 'handoff_active') bool handoffActive});
-
-  @override
-  $AiChatPayloadModelCopyWith<$Res>? get payload;
 }
 
 /// @nodoc
@@ -158,7 +141,7 @@ class __$$_AiChatSendModelCopyWithImpl<$Res>
       payload: freezed == payload
           ? _value.payload
           : payload // ignore: cast_nullable_to_non_nullable
-              as AiChatPayloadModel?,
+              as BaseApiModel<AiChatPayload>?,
       handoffActive: null == handoffActive
           ? _value.handoffActive
           : handoffActive // ignore: cast_nullable_to_non_nullable
@@ -190,7 +173,7 @@ class _$_AiChatSendModel extends _AiChatSendModel {
   @override
   final String type;
   @override
-  final AiChatPayloadModel? payload;
+  final BaseApiModel<AiChatPayload>? payload;
   @override
   @JsonKey(name: 'handoff_active')
   final bool handoffActive;
@@ -238,7 +221,7 @@ abstract class _AiChatSendModel extends AiChatSendModel {
       {@JsonKey(name: 'conversation_id') required final String conversationId,
       required final String reply,
       required final String type,
-      final AiChatPayloadModel? payload,
+      final BaseApiModel<AiChatPayload>? payload,
       @JsonKey(name: 'handoff_active')
       required final bool handoffActive}) = _$_AiChatSendModel;
   const _AiChatSendModel._() : super._();
@@ -254,7 +237,7 @@ abstract class _AiChatSendModel extends AiChatSendModel {
   @override
   String get type;
   @override
-  AiChatPayloadModel? get payload;
+  BaseApiModel<AiChatPayload>? get payload;
   @override
   @JsonKey(name: 'handoff_active')
   bool get handoffActive;

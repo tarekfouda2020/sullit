@@ -12,13 +12,15 @@ class AiChatBranchListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final branches = message.payload?.branches ?? const [];
+    final payload = message.payload;
+    if (payload is! BranchesPayload) return const SizedBox.shrink();
+    final branches = payload.branches;
     return AiChatSheetCardWidget(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            message.payload?.shop?.name ?? 'Branches',
+            payload.shop?.name ?? 'Branches',
             style: AppTextStyle.s14_w600(color: context.colors.black),
           ),
           Gaps.vGap8,
@@ -31,7 +33,7 @@ class AiChatBranchListWidget extends StatelessWidget {
               ),
             ),
           ),
-          if (message.payload?.viewAll != null)
+          if (payload.viewAll != null)
             TextButton(
               onPressed: () => controller.openViewAll(context, message),
               child: Text(

@@ -5,7 +5,85 @@ import 'package:flutter_tdd/features/user/ai_chat/domain/models/ai_chat_product_
 import 'package:flutter_tdd/features/user/ai_chat/domain/models/ai_chat_shop_card.dart';
 import 'package:flutter_tdd/features/user/ai_chat/domain/models/ai_chat_view_all.dart';
 
-class AiChatPayload extends BaseDomainModel {
+sealed class AiChatPayload extends BaseDomainModel {
+  const AiChatPayload();
+}
+
+class CartPayload extends AiChatPayload {
+  final String action;
+  final List<AiChatCartItem> items;
+  final String subTotal;
+  final double calculableTotal;
+  final String currencySymbol;
+  final int returned;
+  final String minimumOrderAmountMsg;
+  final bool minimumOrderAmountStatus;
+
+  const CartPayload({
+    required this.action,
+    required this.items,
+    required this.subTotal,
+    required this.calculableTotal,
+    required this.currencySymbol,
+    required this.returned,
+    required this.minimumOrderAmountMsg,
+    required this.minimumOrderAmountStatus,
+  });
+}
+
+class OrderPayload extends AiChatPayload {
+  final int id;
+  final String code;
+  final String deliveryStatus;
+  final String paymentStatusText;
+  final String total;
+  final String currencySymbol;
+  final String soldByName;
+  final String orderStatus;
+
+  const OrderPayload({
+    required this.id,
+    required this.code,
+    required this.deliveryStatus,
+    required this.paymentStatusText,
+    required this.total,
+    required this.currencySymbol,
+    required this.soldByName,
+    required this.orderStatus,
+  });
+}
+
+class ShopsPayload extends AiChatPayload {
+  final List<AiChatShopCard> shops;
+  final int total;
+  final int returned;
+  final AiChatViewAll? viewAll;
+
+  const ShopsPayload({
+    required this.shops,
+    required this.total,
+    required this.returned,
+    this.viewAll,
+  });
+}
+
+class BranchesPayload extends AiChatPayload {
+  final AiChatShopCard? shop;
+  final List<AiChatBranchCard> branches;
+  final int total;
+  final int returned;
+  final AiChatViewAll? viewAll;
+
+  const BranchesPayload({
+    this.shop,
+    required this.branches,
+    required this.total,
+    required this.returned,
+    this.viewAll,
+  });
+}
+
+class DetailAiChatPayload extends AiChatPayload {
   final String? action;
   final List<AiChatCartItem> items;
   final String? subTotal;
@@ -27,7 +105,7 @@ class AiChatPayload extends BaseDomainModel {
   final String? status;
   final String? statusLabel;
 
-  const AiChatPayload({
+  const DetailAiChatPayload({
     this.action,
     this.items = const [],
     this.subTotal,
@@ -49,4 +127,8 @@ class AiChatPayload extends BaseDomainModel {
     this.status,
     this.statusLabel,
   });
+}
+
+class UnknownPayload extends AiChatPayload {
+  const UnknownPayload();
 }

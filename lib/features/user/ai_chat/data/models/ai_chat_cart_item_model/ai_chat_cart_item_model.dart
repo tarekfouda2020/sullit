@@ -23,6 +23,10 @@ class AiChatCartItemModel with _$AiChatCartItemModel {
       _$AiChatCartItemModelFromJson(json);
 
   AiChatCartItem toDomainModel() {
-    return AiChatCartItem(id: id, quantity: quantity, name: name);
+    return AiChatCartItem(
+      id: id,
+      quantity: quantity ?? 0,
+      name: name ?? '',
+    );
   }
 }

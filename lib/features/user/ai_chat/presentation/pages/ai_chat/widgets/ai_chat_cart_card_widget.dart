@@ -13,13 +13,14 @@ class AiChatCartCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final payload = message.payload;
-    final items = payload?.items ?? const <AiChatCartItem>[];
+    if (payload is! CartPayload) return const SizedBox.shrink();
+    final items = payload.items;
     return AiChatSheetCardWidget(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Cart · ${payload?.action ?? 'view'}',
+            'Cart · ${payload.action.isEmpty ? 'view' : payload.action}',
             style: AppTextStyle.s14_w600(color: context.colors.black),
           ),
           Gaps.vGap8,
@@ -27,7 +28,7 @@ class AiChatCartCardWidget extends StatelessWidget {
             (item) => Padding(
               padding: const EdgeInsets.only(bottom: Dimens.dp6),
               child: Text(
-                '${item.quantity ?? 1} × ${item.name ?? ''}',
+                '${item.quantity} × ${item.name}',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: AppTextStyle.s12_w400(color: context.colors.blackTextColor),
@@ -36,7 +37,7 @@ class AiChatCartCardWidget extends StatelessWidget {
           ),
           Gaps.vGap8,
           Text(
-            '${payload?.calculableTotal ?? payload?.subTotal ?? ''} ${payload?.currencySymbol ?? ''}',
+            '${payload.calculableTotal == 0 ? payload.subTotal : payload.calculableTotal} ${payload.currencySymbol}',
             style: AppTextStyle.s14_w600(color: context.colors.primary),
           ),
           Gaps.vGap8,

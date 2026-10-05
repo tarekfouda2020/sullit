@@ -7,9 +7,13 @@ class AiChatHandoffCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final detail = payload;
+    final label = detail is DetailAiChatPayload
+        ? detail.statusLabel ?? detail.status ?? ''
+        : '';
     return AiChatSheetCardWidget(
       child: Text(
-        'Support · ${payload?.statusLabel ?? payload?.status ?? ''}',
+        'Support · $label',
         style: AppTextStyle.s13_w500(color: context.colors.black),
       ),
     );

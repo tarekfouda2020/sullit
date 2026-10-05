@@ -3,6 +3,9 @@ part of 'widgets_imports.dart';
 class AiChatHorizontalCardsWidget extends StatelessWidget {
   final List<AiChatProductCard> products;
   final List<AiChatShopCard> shops;
+  final int total;
+  final int returned;
+  final bool hasViewAll;
   final AiChatMessage message;
   final AiChatController controller;
 
@@ -10,6 +13,9 @@ class AiChatHorizontalCardsWidget extends StatelessWidget {
     super.key,
     this.products = const [],
     this.shops = const [],
+    this.total = 0,
+    this.returned = 0,
+    this.hasViewAll = false,
     required this.message,
     required this.controller,
   });
@@ -17,8 +23,6 @@ class AiChatHorizontalCardsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cards = shops.isNotEmpty ? shops.length : products.length;
-    final total = message.payload?.total ?? 0;
-    final returned = message.payload?.returned ?? 0;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -40,7 +44,7 @@ class AiChatHorizontalCardsWidget extends StatelessWidget {
             },
           ),
         ),
-        if (message.payload?.viewAll != null || total > returned) ...[
+        if (hasViewAll || total > returned) ...[
           Gaps.vGap8,
           TextButton(
             onPressed: () => controller.openViewAll(context, message),

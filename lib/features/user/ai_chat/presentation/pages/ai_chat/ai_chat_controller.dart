@@ -40,7 +40,12 @@ class AiChatController {
       return;
     }
     conversationId = conversation.id;
-    var historyParams = _messagesParams();
+    getMessages(refresh: false);
+    getMessages(refresh: true);
+  }
+
+  Future<void> getMessages({bool refresh = true})async{
+    var historyParams = _messagesParams(refresh: refresh);
     final history = await GetAiMessages().call(historyParams);
     messagesBloc.onUpdateData(history);
     handoffBloc.onUpdateData(
@@ -61,7 +66,7 @@ class AiChatController {
     }
     errorBloc.onUpdateData(null);
     input.clear();
-    final current = List<AiChatMessage>.from(messagesBloc.state.data);
+    var current = List<AiChatMessage>.from(messagesBloc.state.data);
     current.add(
       AiChatMessage(
         id: 'user-${DateTime.now().microsecondsSinceEpoch}',
@@ -81,25 +86,27 @@ class AiChatController {
       return;
     }
     var params = _sendParams(text);
-    final reply = await SendAiMessage().call(params);
+    var reply = await SendAiMessage().call(params);
     sendingBloc.onUpdateData(false);
     if (reply == null) {
       errorBloc.onUpdateData('Message failed. Try again.');
       return;
     }
-    final next = List<AiChatMessage>.from(messagesBloc.state.data)
-      ..add(reply.toMessage());
+    var next = List<AiChatMessage>.from(messagesBloc.state.data)..add(reply.toMessage());
     messagesBloc.onUpdateData(next);
-    if (reply.handoffActive || reply.type == 'handoff') {
+    if (reply.handoffActive || reply.type == AiChatMessageType.handoff) {
       handoffBloc.onUpdateData(_blocksInput(reply));
     }
     _scrollDown();
   }
 
   bool _blocksInput(AiChatReply reply) {
-    final status = reply.payload?.status;
+    final status = switch (reply.payload) {
+      DetailAiChatPayload(:final status) => status,
+      _ => null,
+    };
     if (status == 'closed' || status == 'returned_to_ai') return false;
-    return reply.handoffActive || reply.type == 'handoff';
+    return reply.handoffActive || reply.type == AiChatMessageType.handoff;
   }
 
   Future<void> endChat(BuildContext context) async {
@@ -171,11 +178,10 @@ class AiChatController {
     );
   }
 
-  void openOrder(BuildContext context, AiChatPayload payload) {
-    final id = payload.id;
-    if (id == null) return;
+  void openOrder(BuildContext context, OrderPayload payload) {
+    if (payload.id == 0) return;
     AutoRouter.of(context).push(
-      OrderDetailsPageRoute(isReturnedOrder: false, id: id),
+      OrderDetailsPageRoute(isReturnedOrder: false, id: payload.id),
     );
   }
 
@@ -184,18 +190,23 @@ class AiChatController {
   }
 
   void openViewAll(BuildContext context, AiChatMessage message) {
-    final keyword = message.payload?.viewAll?.query?.keyword ?? '';
+    final keyword = switch (message.payload) {
+      ShopsPayload(:final viewAll) => viewAll?.query?.keyword ?? '',
+      BranchesPayload(:final viewAll) => viewAll?.query?.keyword ?? '',
+      DetailAiChatPayload(:final viewAll) => viewAll?.query?.keyword ?? '',
+      _ => '',
+    };
     AutoRouter.of(context).push(SearchRoute(searchText: keyword));
   }
 
-  AiChatParticipantParams _participantParams() {
-    return AiChatParticipantParams(macAddress: macAddress);
+  AiChatParticipantParams _participantParams({bool refresh = true}) {
+    return AiChatParticipantParams(macAddress: macAddress, refresh: refresh);
   }
 
-  GetAiMessagesParams _messagesParams() {
+  GetAiMessagesParams _messagesParams({bool refresh = true}) {
     return GetAiMessagesParams(
       conversationId: conversationId ?? '',
-      participant: _participantParams(),
+      participant: _participantParams(refresh: refresh),
     );
   }
 

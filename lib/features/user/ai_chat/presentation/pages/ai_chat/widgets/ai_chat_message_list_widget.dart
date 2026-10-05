@@ -23,7 +23,7 @@ class AiChatMessageListWidget extends StatelessWidget {
             return BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
               bloc: controller.sendingBloc,
               builder: (context, sending) {
-                final count = state.data.length + (sending.data ? 1 : 0);
+                var count = state.data.length + (sending.data ? 1 : 0);
                 return ListView.separated(
                   controller: controller.scroll,
                   padding: const EdgeInsets.symmetric(
@@ -36,9 +36,14 @@ class AiChatMessageListWidget extends StatelessWidget {
                     if (index >= state.data.length) {
                       return const AiChatTypingWidget();
                     }
+                    final message = state.data[index];
+                    final last = index == state.data.length - 1;
                     return AiChatBubbleWidget(
-                      message: state.data[index],
+                      message: message,
                       controller: controller,
+                      writeOut: last &&
+                          !message.isUser &&
+                          message.id.startsWith('assistant-'),
                     );
                   },
                 );

@@ -1,7 +1,7 @@
 class AiChatParticipantParams {
   final String macAddress;
-
-  const AiChatParticipantParams({required this.macAddress});
+  final bool refresh;
+  const AiChatParticipantParams({required this.macAddress, this.refresh = true});
 
   Map<String, dynamic> toJson() => {'mac_address': macAddress};
 

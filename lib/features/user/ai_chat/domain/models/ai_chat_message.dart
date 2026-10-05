@@ -1,11 +1,12 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
+import 'package:flutter_tdd/features/user/ai_chat/data/enum/ai_chat_message_type.dart';
 import 'package:flutter_tdd/features/user/ai_chat/domain/models/ai_chat_payload.dart';
 
 class AiChatMessage extends BaseDomainModel {
   final String id;
   final bool isUser;
   final String text;
-  final String type;
+  final AiChatMessageType type;
   final AiChatPayload? payload;
   final bool handoffActive;
 
@@ -13,10 +14,10 @@ class AiChatMessage extends BaseDomainModel {
     required this.id,
     required this.isUser,
     required this.text,
-    this.type = 'text',
+    this.type = AiChatMessageType.text,
     this.payload,
     this.handoffActive = false,
   });
 
-  bool get hasCard => type != 'text' && payload != null;
+  bool get hasCard => type != AiChatMessageType.text && payload != null;
 }

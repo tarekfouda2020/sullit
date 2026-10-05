@@ -13,32 +13,50 @@ class AiChatCardsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (message.type) {
-      case 'product':
-        final product = message.payload?.product;
+      case AiChatMessageType.product:
+        final detail = message.payload;
+        if (detail is! DetailAiChatPayload) return const SizedBox.shrink();
+        AiChatProductCard? product = detail.product;
         if (product == null) return const SizedBox.shrink();
         return AiChatProductTileWidget(
           item: product,
           onTap: () => controller.openProduct(context, product),
         );
-      case 'products':
+      case AiChatMessageType.products:
+        final productsPayload = message.payload;
         return AiChatHorizontalCardsWidget(
-          products: message.payload?.products ?? const [],
+          products: productsPayload is DetailAiChatPayload
+              ? productsPayload.products
+              : const [],
+          total: productsPayload is DetailAiChatPayload
+              ? productsPayload.total ?? 0
+              : 0,
+          returned: productsPayload is DetailAiChatPayload
+              ? productsPayload.returned ?? 0
+              : 0,
+          hasViewAll: productsPayload is DetailAiChatPayload &&
+              productsPayload.viewAll != null,
           message: message,
           controller: controller,
         );
-      case 'shops':
+      case AiChatMessageType.shops:
+        final shopsPayload = message.payload;
         return AiChatHorizontalCardsWidget(
-          shops: message.payload?.shops ?? const [],
+          shops: shopsPayload is ShopsPayload ? shopsPayload.shops : const [],
+          total: shopsPayload is ShopsPayload ? shopsPayload.total : 0,
+          returned: shopsPayload is ShopsPayload ? shopsPayload.returned : 0,
+          hasViewAll:
+              shopsPayload is ShopsPayload && shopsPayload.viewAll != null,
           message: message,
           controller: controller,
         );
-      case 'branches':
+      case AiChatMessageType.branches:
         return AiChatBranchListWidget(message: message, controller: controller);
-      case 'cart':
+      case AiChatMessageType.cart:
         return AiChatCartCardWidget(message: message, controller: controller);
-      case 'order':
+      case AiChatMessageType.order:
         return AiChatOrderCardWidget(message: message, controller: controller);
-      case 'handoff':
+      case AiChatMessageType.handoff:
         return AiChatHandoffCardWidget(payload: message.payload);
       default:
         return const SizedBox.shrink();

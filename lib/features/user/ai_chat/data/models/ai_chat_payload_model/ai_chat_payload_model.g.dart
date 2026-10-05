@@ -15,7 +15,7 @@ _$_AiChatPayloadModel _$$_AiChatPayloadModelFromJson(
           ?.map((e) => AiChatCartItemModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       subTotal: json['sub_total'] as String?,
-      calculableTotal: json['calculable_total'] as String?,
+      calculableTotal: (json['calculable_total'] as num?)?.toDouble(),
       currencySymbol: json['currency_symbol'] as String?,
       returned: (json['returned'] as num?)?.toInt(),
       total: (json['total'] as num?)?.toInt(),

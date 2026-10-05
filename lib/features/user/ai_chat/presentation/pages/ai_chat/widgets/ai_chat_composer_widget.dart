@@ -11,12 +11,17 @@ class AiChatComposerWidget extends StatelessWidget {
       bloc: controller.handoffBloc,
       builder: (context, handoff) {
         return Container(
-          color: context.colors.white,
+          decoration: BoxDecoration(
+            color: context.colors.white,
+            border: Border(
+              top: BorderSide(color: context.colors.borderColor),
+            ),
+          ),
           padding: EdgeInsetsDirectional.fromSTEB(
             Dimens.dp12,
-            Dimens.dp8,
+            Dimens.dp10,
             Dimens.dp12,
-            Dimens.dp8 + MediaQuery.paddingOf(context).bottom,
+            Dimens.dp10 + MediaQuery.paddingOf(context).bottom,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,14 +42,18 @@ class AiChatComposerWidget extends StatelessWidget {
                 },
               ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Expanded(
                     child: GenericTextField(
                       fieldTypes: handoff.data
                           ? FieldTypes.disable
-                          : FieldTypes.normal,
-                      type: TextInputType.text,
-                      action: TextInputAction.send,
+                          : FieldTypes.rich,
+                      type: TextInputType.multiline,
+                      action: TextInputAction.newline,
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                      minLines: 1,
+                      max: 2,
                       controller: controller.input,
                       hint: handoff.data
                           ? 'Chat is with support'
@@ -54,10 +63,24 @@ class AiChatComposerWidget extends StatelessWidget {
                     ),
                   ),
                   Gaps.hGap8,
-                  IconButton(
-                    tooltip: 'Send',
-                    onPressed: handoff.data ? null : () => controller.send(),
-                    icon: Icon(Icons.send, color: context.colors.primary),
+                  Material(
+                    color: handoff.data
+                        ? context.colors.gray3
+                        : context.colors.primary,
+                    borderRadius: BorderRadius.circular(Dimens.dp12),
+                    child: InkWell(
+                      onTap: handoff.data ? null : () => controller.send(),
+                      borderRadius: BorderRadius.circular(Dimens.dp12),
+                      child: SizedBox(
+                        width: Dimens.dp40,
+                        height: Dimens.dp40,
+                        child: Icon(
+                          Icons.arrow_upward,
+                          color: context.colors.white,
+                          size: Dimens.dp20,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),

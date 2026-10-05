@@ -88,7 +88,6 @@ class ProductDetailsController implements CartSheetController {
     var params = _detailsParams(refresh, productId);
     var result = await GetProductDetails().call(params);
     if (result != null) {
-      log("====>>> branch name ${result.branch?.name}<<<<<<=====");
       branchId = result.product.branch?.id ?? branchId;
       !refresh ? result.product.isWishlist = isFav : null;
       result.product.variants?.sort((first, second) => second.sortOrder!.compareTo(first.sortOrder!));
@@ -783,8 +782,8 @@ class ProductDetailsController implements CartSheetController {
   }
 
   void onShareProduct(BuildContext context) {
-    final link = getIt<DeepLinkService>().generateProductLink(productId);
-    final productName = detailsCubit.state.data?.product.name ?? "Sahlashop Product";
+    var link = getIt<DeepLinkService>().generateProductLink(productId);
+    var productName = detailsCubit.state.data?.product.name ?? "Sahlashop Product";
     FacebookEventsHelper.instance.productShareEvent(
       productId: productId,
       productName: productName,
