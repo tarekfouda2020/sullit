@@ -43,7 +43,6 @@ class _SearchScannerPageState extends State<SearchScannerPage> {
               fieldTypes: FieldTypes.normal,
               type: TextInputType.number,
               action: TextInputAction.search,
-              // onSubmit: () =>(context),
               validate: (value) {},
             ),
             Gaps.vGap20,

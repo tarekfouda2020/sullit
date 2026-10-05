@@ -23,7 +23,7 @@ class AiAndPriceFinderItemCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsetsDirectional.only(start: 8, end: 10, top: 12, bottom: 12),
+      padding: const EdgeInsetsDirectional.only(start: 8, end: 10, top: 5, bottom: 5),
       decoration: BoxDecoration(
         color: bgColor,
         borderRadius: BorderRadius.circular(10),

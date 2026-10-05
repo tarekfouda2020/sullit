@@ -64,7 +64,7 @@ class SearchScannerController {
     }
 
     AutoRouter.of(context).push(
-      const SearchPageRoute(),
+      const PriceFinderWorkingRoute(),
     );
 
     _isScanned = false;

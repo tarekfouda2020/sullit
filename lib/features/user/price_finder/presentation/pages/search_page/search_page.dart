@@ -8,6 +8,21 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  final SearchPriceController controller = SearchPriceController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller.getPopularProducts(1);
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,22 +36,98 @@ class _SearchPageState extends State<SearchPage> {
         children: [
           const AppBarLocationWidget(),
           Expanded(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 16,
-              ),
-              children: [
-                const SearchHeaderWidget(),
-                Gaps.vGap24,
-                Column(
-                  spacing: 12,
-                  children: List.generate(
-                    2,
-                    (index) => const SearchResultItemWidget(),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              child: Column(
+                children: [
+                  SearchHeaderWidget(
+                    controller: controller,
                   ),
-                ),
-              ],
+                  Gaps.vGap24,
+                  Expanded(
+                    child: CustomRefreshIndicatorWidget(
+                      onRefresh: () async {
+                        controller.pagingController.refresh();
+                      },
+                      child: PagedListView<int, ProductCard>(
+                        pagingController: controller.pagingController,
+                        builderDelegate: PagedChildBuilderDelegate<ProductCard>(
+                          itemBuilder: (
+                            context,
+                            item,
+                            index,
+                          ) {
+                            return Padding(
+                              padding: const EdgeInsets.only(
+                                bottom: 12,
+                              ),
+                              child: SearchResultItemWidget(
+                                model: item,
+                              ),
+                            );
+                          },
+                          firstPageProgressIndicatorBuilder: (context) {
+                            return Column(
+                              children: List.generate(
+                                5,
+                                (index) => Padding(
+                                  padding: EdgeInsets.only(
+                                    bottom: index == 4 ? 0 : 12,
+                                  ),
+                                  child: const SearchResultShimmerWidget(),
+                                ),
+                              ),
+                            );
+                          },
+                          newPageProgressIndicatorBuilder: (context) => Center(
+                            child: SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                color: context.colors.primary,
+                              ),
+                            ),
+                          ),
+                          noItemsFoundIndicatorBuilder: (context) {
+                            return const Padding(
+                              padding: EdgeInsets.only(
+                                top: 40,
+                              ),
+                              child: Center(
+                                child: BuildEmptyDataView(),
+                              ),
+                            );
+                          },
+                          firstPageErrorIndicatorBuilder: (context) {
+                            return Padding(
+                              padding: const EdgeInsets.only(
+                                top: 40,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  tr("somethingWentWrong"),
+                                ),
+                              ),
+                            );
+                          },
+                          newPageErrorIndicatorBuilder: (context) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 20,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  tr("somethingWentWrong"),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
