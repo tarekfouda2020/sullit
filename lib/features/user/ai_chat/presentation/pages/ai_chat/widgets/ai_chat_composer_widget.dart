@@ -30,12 +30,12 @@ class AiChatComposerWidget extends StatelessWidget {
                 bloc: controller.errorBloc,
                 builder: (context, error) {
                   if (error.data == null || error.data!.isEmpty) {
-                    return const SizedBox.shrink();
+                    return Gaps.empty;
                   }
                   return Padding(
                     padding: const EdgeInsets.only(bottom: Dimens.dp8),
                     child: Text(
-                      error.data!,
+                      error.data ?? "",
                       style: AppTextStyle.s12_w400(color: context.colors.primary),
                     ),
                   );
