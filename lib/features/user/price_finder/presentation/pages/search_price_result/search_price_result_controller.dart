@@ -1,4 +1,4 @@
-part of 'search_imports.dart';
+part of 'search_price_result_imports.dart';
 
 class SearchPriceController {
   final TextEditingController searchFieldCtr = TextEditingController();
@@ -18,16 +18,20 @@ class SearchPriceController {
   }
 
   Future<void> getPopularProducts(int currentPage, {bool refresh = true}) async {
-    try {
-      final params = productsParams(currentPage, refresh);
-      final data = await GetCategoryProducts().call(params);
+    final params = productsParams(currentPage, refresh);
 
-      final isLastPage = data.length < pageSize;
-      if (isLastPage) {
-        pagingController.appendLastPage(data);
-      } else {
-        pagingController.appendPage(data, currentPage + 1);
-      }
+    final data = await GetCategoryProducts().call(params);
+
+    final isLastPage = data.length < AppConstants.instance.paginationLimit;
+
+    if (isLastPage) {
+      pagingController.appendLastPage(data);
+    } else {
+      pagingController.appendPage(
+        data,
+        currentPage + 1,
+      );
+    }
 
       productsBloc.onUpdateData(pagingController.itemList ?? []);
       searchKeyBloc.onUpdateData(searchFieldCtr.text.trim());
@@ -50,14 +54,10 @@ class SearchPriceController {
     pagingController.refresh();
   }
 
-  SearchProductsParams productsParams(
-    int page,
-    bool refresh,
-  ) {
+  SearchProductsParams productsParams(int page, bool refresh) {
     return SearchProductsParams(
       searchKey: searchFieldCtr.text.trim(),
       refresh: refresh,
-      pageSize: pageSize,
       currentPage: page,
     );
   }
@@ -81,6 +81,31 @@ class SearchPriceController {
     FocusScope.of(context).unfocus();
     callProductsSearch();
   }
+
+  void clearSearchField() {
+    searchFieldCtr.clear();
+
+    showClearIcon.onUpdateData(false);
+
+    pagingController.refresh();
+    getPopularProducts(1);
+  }
+
+  Future<void> refresh() async {
+    await getPopularProducts(1);
+  }
+
+
+
+  Future<void> fetchProductPrice(BuildContext context, int id) async {
+    final params = CreatePriceComparisonParams(productId: id);
+    final comparison = await CreatePriceComparison().call(params);
+    if (comparison == null || !context.mounted) return;
+
+    AutoRouter.of(context).push(const PriceFinderWorkingRoute());
+  }
+
+
 
   void dispose() {
     searchFieldCtr.dispose();

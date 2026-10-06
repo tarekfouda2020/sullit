@@ -31,38 +31,30 @@ class _PriceFinderWorkingState extends State<PriceFinderWorking> with SingleTick
         title: tr("sahlaPriceFinder"),
         bgColor: context.colors.white,
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 36,
-          ),
-          child: Column(
-            children: [
-              Gaps.vGap20,
-              AnimatedPriceIconWidget(
-                scaleAnimation: controller.scaleAnimation,
-              ),
-              Gaps.vGap26,
-              const WorkingItemWidget(),
-              Gaps.vGap20,
-              const ProductItemWidget(),
-              Gaps.vGap25,
-              BlocBuilder<GenericBloc<int>, GenericState<int>>(
-                bloc: controller.currentStep,
-                builder: (
-                  context,
-                  state,
-                ) {
-                  final currentStep = state.data ?? 0;
-
-                  return ComparisonStepWidget(
-                    controller: controller,
-                    currentStep: currentStep,
-                  );
-                },
-              ),
-            ],
-          ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 36),
+        child: Column(
+          children: [
+            Gaps.vGap20,
+            AnimatedPriceIconWidget(
+              scaleAnimation: controller.scaleAnimation,
+            ),
+            Gaps.vGap26,
+            const WorkingItemWidget(),
+            Gaps.vGap20,
+            const ProductItemWidget(),
+            Gaps.vGap25,
+            BlocBuilder<GenericBloc<int>, GenericState<int>>(
+              bloc: controller.currentStep,
+              builder: (context, state) {
+                int currentStep = state.data ;
+                return ComparisonStepWidget(
+                  controller: controller,
+                  currentStep: currentStep,
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

@@ -1,13 +1,21 @@
 // ignore_for_file: constant_identifier_names
 
 class ApiNames {
+
+
+  static const String url = "https://$domain/";
+
   ///staging
-  static const String baseUrl = "https://staging.mushrifcoop.com/api/v4/";
+   static const String domain = "staging.mushrifcoop.com";
+  static const String baseUrl = "${url}api/v4/";
 
   ///production
-  // static const String baseUrl = "https://admin.mushrifcoop.com/api/v4/";
+  //  static const String domain = "admin.mushrifcoop.com";
+  // static const String baseUrl = "${url}api/v4/";
 
   static const String iqUrl = "https://us1.locationiq.com/v1/";
+
+  static const String pusherAuthUrl = "${url}api/v4/broadcasting/auth";
 
   // auth routes
   static const String login = "login";
@@ -307,4 +315,6 @@ class ApiNames {
   static String deleteSavedPrescription(int id) => "prescriptions/$id/delete";
 
   static const String pharmacyOrderTerms = "pharmacy-order-terms";
+
+  static const String priceComparisons = "price-comparisons";
 }

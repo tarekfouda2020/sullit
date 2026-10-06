@@ -9,7 +9,7 @@ class PriceFinderSearchCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => AutoRouter.of(context).push(
-        const SearchPageRoute(),
+        const SearchPriceResultRoute(),
       ),
       child: Container(
         width: double.infinity,

@@ -23,7 +23,7 @@ class AiAndPriceFinderItemCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsetsDirectional.only(start: 8, end: 10, top: 5, bottom: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
       decoration: BoxDecoration(
         color: bgColor,
         borderRadius: BorderRadius.circular(10),
@@ -46,13 +46,15 @@ class AiAndPriceFinderItemCardWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppTextStyle.s14_w800(
-                    color: context.colors.black,
-                  ).copyWith(height: 1.3),
+                FittedBox(
+                  child: Text(
+                    title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyle.s14_w800(
+                      color: context.colors.black,
+                    ).copyWith(height: 1.3),
+                  ),
                 ),
                 Gaps.vGap3,
                 Row(

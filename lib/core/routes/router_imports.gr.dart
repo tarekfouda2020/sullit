@@ -212,7 +212,7 @@ import 'package:flutter_tdd/features/user/price_finder/presentation/pages/price_
     as _i121;
 import 'package:flutter_tdd/features/user/price_finder/presentation/pages/price_finder_working/price_finder_imports.dart'
     as _i124;
-import 'package:flutter_tdd/features/user/price_finder/presentation/pages/search_page/search_imports.dart'
+import 'package:flutter_tdd/features/user/price_finder/presentation/pages/search_price_result/search_price_result_imports.dart'
     as _i122;
 import 'package:flutter_tdd/features/user/price_finder/presentation/pages/search_scanner_page/search_scanner_imports.dart'
     as _i123;
@@ -1449,10 +1449,10 @@ class AppRouter extends _i127.RootStackRouter {
         opaque: true,
       );
     },
-    SearchPageRoute.name: (routeData) {
+    SearchPriceResultRoute.name: (routeData) {
       return _i127.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i122.SearchPage(),
+        child: const _i122.SearchPriceResult(),
         opaque: true,
       );
     },
@@ -1973,8 +1973,8 @@ class AppRouter extends _i127.RootStackRouter {
           path: '/price-finder-page',
         ),
         _i127.RouteConfig(
-          SearchPageRoute.name,
-          path: '/search-page',
+          SearchPriceResultRoute.name,
+          path: '/search-price-result',
         ),
         _i127.RouteConfig(
           SearchScannerPageRoute.name,
@@ -5039,15 +5039,15 @@ class PriceFinderPageRoute extends _i127.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i122.SearchPage]
-class SearchPageRoute extends _i127.PageRouteInfo<void> {
-  const SearchPageRoute()
+/// [_i122.SearchPriceResult]
+class SearchPriceResultRoute extends _i127.PageRouteInfo<void> {
+  const SearchPriceResultRoute()
       : super(
-          SearchPageRoute.name,
-          path: '/search-page',
+          SearchPriceResultRoute.name,
+          path: '/search-price-result',
         );
 
-  static const String name = 'SearchPageRoute';
+  static const String name = 'SearchPriceResultRoute';
 }
 
 /// generated route for
