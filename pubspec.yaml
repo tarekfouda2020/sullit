@@ -117,6 +117,7 @@ dependencies:
   simple_barcode_scanner: ^0.6.0
   google_sign_in: ^7.2.0
   sign_in_with_apple: ^7.0.1
+  dart_pusher_channels: ^1.2.3
   crypto: ^3.0.6
   timeago:
   timezone:
