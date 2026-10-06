@@ -13,8 +13,6 @@ class _SearchPriceResultState extends State<SearchPriceResult> {
   @override
   void initState() {
     super.initState();
-
-    controller.getPopularProducts(1);
   }
 
   @override

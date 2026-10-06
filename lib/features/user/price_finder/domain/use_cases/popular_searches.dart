@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import '../../../../../core/helpers/di.dart';
 import '../../../../../core/usecases/use_case.dart';
 import '../models/search_query.dart';
@@ -8,7 +10,10 @@ class PopularSearches extends UseCase<List<SearchQuery>, NoParams> {
   Future<List<SearchQuery>> call(NoParams params) async {
     final result = await getIt<PriceFinderRepository>().getPopularSearches();
     return result.fold(
-      (l) => [],
+      (l) {
+        debugPrint('PopularSearches error: $l');
+        return [];
+      },
       (r) => r,
     );
   }

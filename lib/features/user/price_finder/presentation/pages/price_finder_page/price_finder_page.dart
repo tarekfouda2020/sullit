@@ -11,6 +11,16 @@ class _PriceFinderPageState extends State<PriceFinderPage> {
   final PriceFinderController controller = PriceFinderController();
 
   @override
+  void initState() {
+    super.initState();
+    controller.getPopularSearches();
+  }
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,
@@ -34,7 +44,9 @@ class _PriceFinderPageState extends State<PriceFinderPage> {
                   controller: controller,
                 ),
                 Gaps.vGap24,
-                const PopularSearchesWidget(),
+                PopularSearchesWidget(
+                  controller: controller,
+                ),
               ],
             ),
           )
