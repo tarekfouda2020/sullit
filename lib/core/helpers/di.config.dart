@@ -203,11 +203,11 @@ import 'package:flutter_tdd/features/user/pharmacies/domain/repository/pharmacie
     as _i101;
 import 'package:flutter_tdd/features/user/price_finder/data/data_sources/impl_price_finder_data_source.dart'
     as _i108;
+import 'package:flutter_tdd/features/user/price_finder/data/data_sources/impl_price_finder_sources.dart'
+    as _i110;
 import 'package:flutter_tdd/features/user/price_finder/data/data_sources/price_finder_data_source.dart'
     as _i107;
-import 'package:flutter_tdd/features/user/price_finder/data/repository/impl_price_finder_repository.dart'
-    as _i110;
-import 'package:flutter_tdd/features/user/price_finder/domain/repository/price_finder_repository.dart'
+import 'package:flutter_tdd/features/user/price_finder/data/data_sources/price_finder_sources.dart'
     as _i109;
 import 'package:flutter_tdd/features/user/products/data/data_source/remote_data_sources/impl_products_data_source.dart'
     as _i113;
@@ -403,8 +403,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i106.Post>(() => _i106.Post());
     gh.factory<_i107.PriceFinderDataSource>(
         () => _i108.ImplPriceFinderDataSource());
-    gh.factory<_i109.PriceFinderRepository>(
-        () => _i110.ImplPriceFinderRepository());
+    gh.factory<_i109.PriceFinderSources>(() => _i110.ImplPriceFinderSources());
     gh.lazySingleton<_i111.ProductBehaviorRegistry>(
         () => _i111.ProductBehaviorRegistry(
               gh<_i65.GeneralProductBehavior>(),
