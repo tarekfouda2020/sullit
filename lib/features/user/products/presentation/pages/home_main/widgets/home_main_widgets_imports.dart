@@ -177,3 +177,4 @@ part 'ai_and_price_finder_item_card_widget.dart';
 part 'continue_shopping_widget.dart';
 
 part 'your_orders_widget.dart';
+part'search_product_field.dart';
