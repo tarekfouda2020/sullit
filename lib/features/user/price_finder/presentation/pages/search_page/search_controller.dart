@@ -9,8 +9,7 @@ class SearchPriceController {
 
   final PagingController<int, ProductCard> pagingController = PagingController(firstPageKey: 1);
 
-  int pageSize = 20;
-  int currentPageKey = 1;
+  int pageSize = 10;
 
   SearchPriceController() {
     pagingController.addPageRequestListener((pageKey) {
@@ -18,34 +17,37 @@ class SearchPriceController {
     });
   }
 
-  Future<void> getPopularProducts(
-    int currentPage, {
-    bool refresh = true,
-  }) async {
-    final params = productsParams(currentPage, refresh);
+  Future<void> getPopularProducts(int currentPage, {bool refresh = true}) async {
+    try {
+      final params = productsParams(currentPage, refresh);
+      final data = await GetCategoryProducts().call(params);
 
-    final data = await GetCategoryProducts().call(params);
+      final isLastPage = data.length < pageSize;
+      if (isLastPage) {
+        pagingController.appendLastPage(data);
+      } else {
+        pagingController.appendPage(data, currentPage + 1);
+      }
 
-    final isLastPage = data.length < pageSize;
-
-    if (isLastPage) {
-      pagingController.appendLastPage(data);
-    } else {
-      pagingController.appendPage(
-        data,
-        currentPage + 1,
-      );
+      productsBloc.onUpdateData(pagingController.itemList ?? []);
+      searchKeyBloc.onUpdateData(searchFieldCtr.text.trim());
+    } catch (e) {
+      pagingController.error = e;
     }
+  }
 
-    productsBloc.onUpdateData(
-      pagingController.itemList ?? [],
-    );
+  void callProductsSearch() {
+    pagingController.refresh();
+  }
 
-    currentPageKey = currentPage;
+  void clearSearchField() {
+    searchFieldCtr.clear();
+    showClearIcon.onUpdateData(false);
+    pagingController.refresh();
+  }
 
-    searchKeyBloc.onUpdateData(
-      searchFieldCtr.text.trim(),
-    );
+  Future<void> refresh() async {
+    pagingController.refresh();
   }
 
   SearchProductsParams productsParams(
@@ -75,27 +77,9 @@ class SearchPriceController {
     }
   }
 
-  void callProductsSearch() {
-    pagingController.refresh();
-    getPopularProducts(1);
-  }
-
   void onPressSearch(BuildContext context) {
     FocusScope.of(context).unfocus();
     callProductsSearch();
-  }
-
-  void clearSearchField() {
-    searchFieldCtr.clear();
-
-    showClearIcon.onUpdateData(false);
-
-    pagingController.refresh();
-    getPopularProducts(1);
-  }
-
-  Future<void> refresh() async {
-    await getPopularProducts(1);
   }
 
   void dispose() {

@@ -2,6 +2,10 @@
 
 part of 'cart_payload_model.dart';
 
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
 _$_CartPayloadModel _$$_CartPayloadModelFromJson(Map<String, dynamic> json) =>
     _$_CartPayloadModel(
       action: json['action'] as String?,

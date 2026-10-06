@@ -2,6 +2,10 @@
 
 part of 'shops_payload_model.dart';
 
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
 _$_ShopsPayloadModel _$$_ShopsPayloadModelFromJson(Map<String, dynamic> json) =>
     _$_ShopsPayloadModel(
       shops: (json['shops'] as List<dynamic>?)

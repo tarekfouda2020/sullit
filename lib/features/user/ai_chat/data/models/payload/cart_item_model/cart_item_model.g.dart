@@ -2,6 +2,10 @@
 
 part of 'cart_item_model.dart';
 
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
 _$_CartItemModel _$$_CartItemModelFromJson(Map<String, dynamic> json) =>
     _$_CartItemModel(
       id: (json['id'] as num?)?.toInt(),
