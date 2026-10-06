@@ -1,7 +1,12 @@
 part of 'imports.dart';
 
 class SearchHeaderWidget extends StatelessWidget {
-  const SearchHeaderWidget({super.key});
+  final SearchPriceController controller;
+
+  const SearchHeaderWidget({
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,23 +17,23 @@ class SearchHeaderWidget extends StatelessWidget {
           children: [
             Expanded(
               child: GenericTextField(
+                controller: controller.searchFieldCtr,
                 fillColor: context.colors.white,
                 suffixIcon: Padding(
-                  padding: const EdgeInsetsDirectional.only(
-                    end: 24,
-                  ),
+                  padding: const EdgeInsetsDirectional.only(end: 24),
                   child: Transform.scale(
                     scale: 0.75,
-                    child: SvgPicture.asset(
-                      Res.searchIcon,
-                    ),
+                    child: SvgPicture.asset(Res.searchIcon),
                   ),
                 ),
+                onChange: (value) => controller.whileWriting(value),
                 hint: tr("searchByProductNameOrBarcode"),
-                maxLength: 2,
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.text,
                 action: TextInputAction.search,
+                onSubmit: () {
+                  controller.onPressSearch(context);
+                },
                 validate: (value) {},
               ),
             ),
@@ -38,7 +43,10 @@ class SearchHeaderWidget extends StatelessWidget {
                 const SearchScannerPageRoute(),
               ),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 14),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 11,
+                  vertical: 14,
+                ),
                 decoration: BoxDecoration(
                   color: context.colors.lightGreen3,
                   borderRadius: BorderRadius.circular(12),
@@ -60,39 +68,67 @@ class SearchHeaderWidget extends StatelessWidget {
         Row(
           children: [
             Text(
-             tr('searchResults'),
-              style: AppTextStyle.s22_w700(color: context.colors.black),
+              tr('searchResults'),
+              style: AppTextStyle.s22_w700(
+                color: context.colors.black,
+              ),
             ),
             const Spacer(),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              decoration: BoxDecoration(
-                color: context.colors.lightGreen3,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: context.colors.darkGreen),
-              ),
-              child: Text(
-                '10 Items',
-                style: AppTextStyle.s10_w700(color: context.colors.darkGreen),
-              ),
+            BlocBuilder<GenericBloc<List<ProductCard>>, GenericState<List<ProductCard>>>(
+              bloc: controller.productsBloc,
+              builder: (context, state) {
+                final itemsCount = state.data.length;
+
+                return Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 5,
+                  ),
+                  decoration: BoxDecoration(
+                    color: context.colors.lightGreen3,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: context.colors.darkGreen,
+                    ),
+                  ),
+                  child: Text(
+                    '$itemsCount ${tr("items")}',
+                    style: AppTextStyle.s10_w700(
+                      color: context.colors.darkGreen,
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),
         Gaps.vGap12,
-        RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-            style: AppTextStyle.s14_w400(color: context.colors.textColor),
-            children: [
-               TextSpan(
-                text: tr('showingExactMatchesFor'),
+        BlocBuilder<GenericBloc<String>, GenericState<String>>(
+          bloc: controller.searchKeyBloc,
+          builder: (context, state) {
+            if (state.data.isEmpty) {
+              return const SizedBox.shrink();
+            }
+
+            return RichText(
+              text: TextSpan(
+                style: AppTextStyle.s14_w400(
+                  color: context.colors.textColor,
+                ),
+                children: [
+                  TextSpan(
+                    text: '${tr('showingExactMatchesFor')} ',
+                  ),
+                  TextSpan(
+                    text: state.data,
+                    style: AppTextStyle.s14_w400(
+                      color: context.colors.black,
+                    ),
+                  ),
+                ],
               ),
-              TextSpan(
-                text: 'Coca-Cola Original',
-                style: AppTextStyle.s14_w400(color: context.colors.black),
-              ),
-            ],
-          ),
+            );
+          },
         ),
       ],
     );

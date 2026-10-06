@@ -21,57 +21,8 @@ class BuildHomeView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GenericTextField(
-                  fieldTypes: FieldTypes.normal,
-                  hintStyle: AppTextStyle.s14_w400(
-                    color: context.colors.textColor,
-                  ),
-                  type: TextInputType.text,
-                  controller: controller.homeController.searchController,
-                  action: TextInputAction.search,
-                  radius: const BorderRadius.all(
-                    Radius.circular(30),
-                  ),
-                  validate: (value) {},
-                  autoFocus: false,
-                  fillColor: context.colors.white,
-                  enableBorderColor: context.colors.borderColor,
-                  focusBorderColor: context.colors.borderColor,
-                  hint: tr(
-                    'searchProducts,Sellers&Offers...',
-                    context: context,
-                  ),
-                  minHeight: 48,
-                  minWidth: 20,
-                  onSubmit: () => controller.routeToSearchPage(context),
-                  prefixIcon: GestureDetector(
-                    onTap: () => controller.routeToSearchPage(context),
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.only(
-                        start: 15,
-                      ),
-                      child: Transform.scale(
-                        scale: 0.9,
-                        child: SvgPicture.asset(
-                          Res.searchIcon,
-                        ),
-                      ),
-                    ),
-                  ),
-                  suffixIcon: Padding(
-                    padding: const EdgeInsetsDirectional.only(
-                      end: 16,
-                    ),
-                    child: GestureDetector(
-                      onTap: () => controller.scanProduct(context),
-                      child: Transform.scale(
-                        scale: 0.7,
-                        child: SvgPicture.asset(
-                          Res.qrScanIcon,
-                        ),
-                      ),
-                    ),
-                  ),
+                SearchProductField(
+                  controller: controller,
                 ),
                 Gaps.vGap16,
                 const AiAndPriceFinderCardWidget(),

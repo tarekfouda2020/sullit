@@ -1,3 +1,110 @@
 part of 'search_imports.dart';
 
-class SearchController {}
+class SearchPriceController {
+  final TextEditingController searchFieldCtr = TextEditingController();
+
+  final GenericBloc<List<ProductCard>> productsBloc = GenericBloc([]);
+  final GenericBloc<String> searchKeyBloc = GenericBloc('');
+  final GenericBloc<bool> showClearIcon = GenericBloc(false);
+
+  final PagingController<int, ProductCard> pagingController = PagingController(firstPageKey: 1);
+
+  int pageSize = 20;
+  int currentPageKey = 1;
+
+  SearchPriceController() {
+    pagingController.addPageRequestListener((pageKey) {
+      getPopularProducts(pageKey);
+    });
+  }
+
+  Future<void> getPopularProducts(
+    int currentPage, {
+    bool refresh = true,
+  }) async {
+    final params = productsParams(currentPage, refresh);
+
+    final data = await GetCategoryProducts().call(params);
+
+    final isLastPage = data.length < pageSize;
+
+    if (isLastPage) {
+      pagingController.appendLastPage(data);
+    } else {
+      pagingController.appendPage(
+        data,
+        currentPage + 1,
+      );
+    }
+
+    productsBloc.onUpdateData(
+      pagingController.itemList ?? [],
+    );
+
+    currentPageKey = currentPage;
+
+    searchKeyBloc.onUpdateData(
+      searchFieldCtr.text.trim(),
+    );
+  }
+
+  SearchProductsParams productsParams(
+    int page,
+    bool refresh,
+  ) {
+    return SearchProductsParams(
+      searchKey: searchFieldCtr.text.trim(),
+      refresh: refresh,
+      pageSize: pageSize,
+      currentPage: page,
+    );
+  }
+
+  void whileWriting(String value) {
+    DebounceHelper.instance.startSearch(
+      value: value,
+      onSearch: (val) {
+        callProductsSearch();
+      },
+    );
+
+    if (value.isNotEmpty) {
+      showClearIcon.onUpdateData(true);
+    } else {
+      showClearIcon.onUpdateData(false);
+    }
+  }
+
+  void callProductsSearch() {
+    pagingController.refresh();
+    getPopularProducts(1);
+  }
+
+  void onPressSearch(BuildContext context) {
+    FocusScope.of(context).unfocus();
+    callProductsSearch();
+  }
+
+  void clearSearchField() {
+    searchFieldCtr.clear();
+
+    showClearIcon.onUpdateData(false);
+
+    pagingController.refresh();
+    getPopularProducts(1);
+  }
+
+  Future<void> refresh() async {
+    await getPopularProducts(1);
+  }
+
+  void dispose() {
+    searchFieldCtr.dispose();
+
+    productsBloc.close();
+    searchKeyBloc.close();
+    showClearIcon.close();
+
+    pagingController.dispose();
+  }
+}

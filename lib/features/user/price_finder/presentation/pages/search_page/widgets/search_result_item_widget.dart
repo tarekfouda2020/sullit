@@ -1,7 +1,9 @@
 part of 'imports.dart';
 
 class SearchResultItemWidget extends StatelessWidget {
-  const SearchResultItemWidget({super.key});
+  final ProductCard model;
+
+  const SearchResultItemWidget({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -19,30 +21,35 @@ class SearchResultItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CachedImage(
-                url: "https://m.media-amazon.com/images/I/71TdTgvOwsL._AC_UF894,1000_QL80_.jpg",
+                url: model.thumbnailImg,
                 height: 52,
                 width: 52,
                 borderRadius: BorderRadius.circular(12),
               ),
               Gaps.hGap13,
-              Column(
-                spacing: 10,
-                children: [
-                  Text(
-                    "Coca-Cola Original",
-                    style: AppTextStyle.s18_w700(color: context.colors.black),
-                  ),
-                  Text(
-                    "1L Bottle • Soft Drinks",
-                    style: AppTextStyle.s14_w400(color: context.colors.black),
-                  ),
-                  Text(
-                    "Barcode:5449000014528",
-                    style: AppTextStyle.s12_w400(color: context.colors.textColor),
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 10,
+                  children: [
+                    Text(
+                      model.name,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTextStyle.s18_w700(color: context.colors.black).copyWith(height: 1.3),
+                    ),
+                    Text(
+                      model.unit,
+                      style: AppTextStyle.s14_w400(color: context.colors.black),
+                    ),
+                    Text(
+                      model.barcode,
+                      style: AppTextStyle.s12_w400(color: context.colors.textColor),
+                    ),
+                  ],
+                ),
               ),
-              const Spacer(),
+              Gaps.hGap12,
               Column(
                 spacing: 10,
                 children: [
@@ -51,11 +58,11 @@ class SearchResultItemWidget extends StatelessWidget {
                     style: AppTextStyle.s12_w400(color: context.colors.textColor),
                   ),
                   DirhamPrice(
-                    amount: "8.50",
+                    amount: model.priceHighLow,
                     textStyle: AppTextStyle.s18_w400(color: context.colors.primary),
-                  )
+                  ),
                 ],
-              )
+              ),
             ],
           ),
           DefaultButton(
