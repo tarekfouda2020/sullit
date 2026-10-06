@@ -89,13 +89,12 @@ class SearchPriceController {
   }
 
 
-
   Future<void> fetchProductPrice(BuildContext context, int id) async {
-    final params = CreatePriceComparisonParams(productId: id);
-    final comparison = await CreatePriceComparison().call(params);
+    CreatePriceComparisonParams params = CreatePriceComparisonParams(productId: id);
+    var comparison = await CreatePriceComparison().call(params);
     if (comparison == null || !context.mounted) return;
 
-    AutoRouter.of(context).push(const PriceFinderWorkingRoute());
+    AutoRouter.of(context).push( PriceFinderWorkingRoute(priceComparisonsId: comparison.id));
   }
 
 
