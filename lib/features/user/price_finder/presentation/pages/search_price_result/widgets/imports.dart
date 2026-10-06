@@ -18,7 +18,7 @@ import '../../../../../../../core/widgets/build_shimmer_item.dart';
 import '../../../../../../../core/widgets/dirham_price_widget.dart';
 import '../../../../../../../res.dart';
 import '../../../../../products/domain/models/product_card.dart';
-import '../search_imports.dart';
+import '../search_price_result_imports.dart';
 
 part 'search_header_widget.dart';
 

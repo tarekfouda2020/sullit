@@ -1,13 +1,13 @@
-part of 'search_imports.dart';
+part of 'search_price_result_imports.dart';
 
-class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
+class SearchPriceResult extends StatefulWidget {
+  const SearchPriceResult({super.key});
 
   @override
-  State<SearchPage> createState() => _SearchPageState();
+  State<SearchPriceResult> createState() => _SearchPriceResultState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _SearchPriceResultState extends State<SearchPriceResult> {
   final SearchPriceController controller = SearchPriceController();
 
   @override
@@ -39,30 +39,21 @@ class _SearchPageState extends State<SearchPage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
               child: Column(
+                spacing: 24,
                 children: [
-                  SearchHeaderWidget(
-                    controller: controller,
-                  ),
-                  Gaps.vGap24,
+                  SearchHeaderWidget(controller: controller),
                   Expanded(
                     child: CustomRefreshIndicatorWidget(
-                      onRefresh: () async {
-                        controller.pagingController.refresh();
-                      },
+                      onRefresh: () async => await controller.refresh(),
                       child: PagedListView<int, ProductCard>(
                         pagingController: controller.pagingController,
                         builderDelegate: PagedChildBuilderDelegate<ProductCard>(
-                          itemBuilder: (
-                            context,
-                            item,
-                            index,
-                          ) {
+                          itemBuilder: (context, item, index) {
                             return Padding(
-                              padding: const EdgeInsets.only(
-                                bottom: 12,
-                              ),
+                              padding: const EdgeInsets.only(bottom: 12),
                               child: SearchResultItemWidget(
                                 model: item,
+                                controller: controller,
                               ),
                             );
                           },

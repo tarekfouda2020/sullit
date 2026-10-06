@@ -2,8 +2,8 @@ part of 'imports.dart';
 
 class SearchResultItemWidget extends StatelessWidget {
   final ProductCard model;
-
-  const SearchResultItemWidget({super.key, required this.model});
+ final SearchPriceController controller;
+  const SearchResultItemWidget({super.key, required this.model, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,10 @@ class SearchResultItemWidget extends StatelessWidget {
       child: Column(
         spacing: 20,
         children: [
-          Row(
+          InkWell(
+            onTap: () => controller.fetchProductPrice(context, model.id),
+            borderRadius: BorderRadius.circular(12),
+            child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CachedImage(
@@ -65,14 +68,13 @@ class SearchResultItemWidget extends StatelessWidget {
               ),
             ],
           ),
+          ),
           DefaultButton(
             title: "Fetch Prices",
             color: context.colors.white,
             textColor: context.colors.darkGreen2,
             borderColor: context.colors.darkGreen2,
-            onTap: () => AutoRouter.of(context).push(
-              const PriceFinderWorkingRoute(),
-            ),
+            onTap: () => controller.fetchProductPrice(context,model.id),
           ),
         ],
       ),

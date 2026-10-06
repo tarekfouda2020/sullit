@@ -8,7 +8,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'ai_chat_send_model.freezed.dart';
 part 'ai_chat_send_model.g.dart';
 
-@freezed
+@Freezed(fromJson: false)
 class AiChatSendModel extends BaseApiModel<AiChatReply> with _$AiChatSendModel {
   const AiChatSendModel._();
 
@@ -23,7 +23,7 @@ class AiChatSendModel extends BaseApiModel<AiChatReply> with _$AiChatSendModel {
   }) = _AiChatSendModel;
 
   factory AiChatSendModel.fromJson(Map<String, dynamic> json) {
-    final base = _$AiChatSendModelFromJson(json);
+    final base = _$$_AiChatSendModelFromJson(json);
     final payload = AiChatPayloadParser.parse(
       type: base.type,
       payloadJson: json['payload'],

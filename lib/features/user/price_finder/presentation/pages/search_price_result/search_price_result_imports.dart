@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_tdd/core/constants/app_constants.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/custom_refresh_indicator_widget.dart';
-import 'package:flutter_tdd/features/user/price_finder/presentation/pages/search_page/widgets/imports.dart';
+import 'package:flutter_tdd/features/user/price_finder/presentation/pages/search_price_result/widgets/imports.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../../../core/bloc/generic_cubit/generic_cubit.dart';
@@ -20,8 +23,10 @@ import '../../../../category/domain/entities/price_range_params.dart';
 import '../../../../category/domain/entities/search_products_params.dart';
 import '../../../../category/domain/models/sub_category.dart';
 import '../../../../category/domain/use_cases/get_category_products.dart';
+import '../../../domain/entities/create_price_comparison_params.dart';
+import '../../../domain/use_cases/create_price_comparison.dart';
 import '../../../../products/domain/models/product_card.dart';
 import '../../../../products/domain/models/shop_card_domain_model.dart';
 
-part 'search_controller.dart';
-part 'search_page.dart';
+part 'search_price_result_controller.dart';
+part 'search_price_result.dart';

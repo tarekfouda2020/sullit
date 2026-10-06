@@ -2,6 +2,10 @@
 
 part of 'ai_payload_branch_model.dart';
 
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
 _$_AiPayloadBranchModel _$$_AiPayloadBranchModelFromJson(
         Map<String, dynamic> json) =>
     _$_AiPayloadBranchModel(
@@ -9,8 +13,8 @@ _$_AiPayloadBranchModel _$$_AiPayloadBranchModelFromJson(
           ? null
           : AiChatShopCardModel.fromJson(json['shop'] as Map<String, dynamic>),
       branches: (json['branches'] as List<dynamic>?)
-              ?.map((e) =>
-                  AiChatBranchModel.fromJson(e as Map<String, dynamic>))
+              ?.map(
+                  (e) => AiChatBranchModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <AiChatBranchModel>[],
       total: (json['total'] as num?)?.toInt(),

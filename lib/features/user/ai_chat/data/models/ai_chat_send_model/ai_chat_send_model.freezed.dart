@@ -14,21 +14,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-AiChatSendModel _$AiChatSendModelFromJson(Map<String, dynamic> json) {
-  return _AiChatSendModel.fromJson(json);
-}
-
 /// @nodoc
 mixin _$AiChatSendModel {
   @JsonKey(name: 'conversation_id')
   String get conversationId => throw _privateConstructorUsedError;
   String get reply => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
-  BaseApiModel<AiChatPayload>? get payload => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  BaseApiModel<AiChatPayload>? get payload =>
+      throw _privateConstructorUsedError;
   @JsonKey(name: 'handoff_active')
   bool get handoffActive => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AiChatSendModelCopyWith<AiChatSendModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -44,6 +41,7 @@ abstract class $AiChatSendModelCopyWith<$Res> {
       {@JsonKey(name: 'conversation_id') String conversationId,
       String reply,
       String type,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       BaseApiModel<AiChatPayload>? payload,
       @JsonKey(name: 'handoff_active') bool handoffActive});
 }
@@ -104,6 +102,7 @@ abstract class _$$_AiChatSendModelCopyWith<$Res>
       {@JsonKey(name: 'conversation_id') String conversationId,
       String reply,
       String type,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       BaseApiModel<AiChatPayload>? payload,
       @JsonKey(name: 'handoff_active') bool handoffActive});
 }
@@ -158,12 +157,9 @@ class _$_AiChatSendModel extends _AiChatSendModel {
       {@JsonKey(name: 'conversation_id') required this.conversationId,
       required this.reply,
       required this.type,
-      this.payload,
+      @JsonKey(includeFromJson: false, includeToJson: false) this.payload,
       @JsonKey(name: 'handoff_active') required this.handoffActive})
       : super._();
-
-  factory _$_AiChatSendModel.fromJson(Map<String, dynamic> json) =>
-      _$$_AiChatSendModelFromJson(json);
 
   @override
   @JsonKey(name: 'conversation_id')
@@ -173,6 +169,7 @@ class _$_AiChatSendModel extends _AiChatSendModel {
   @override
   final String type;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final BaseApiModel<AiChatPayload>? payload;
   @override
   @JsonKey(name: 'handoff_active')
@@ -197,7 +194,6 @@ class _$_AiChatSendModel extends _AiChatSendModel {
                 other.handoffActive == handoffActive));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, conversationId, reply, type, payload, handoffActive);
@@ -207,13 +203,6 @@ class _$_AiChatSendModel extends _AiChatSendModel {
   @pragma('vm:prefer-inline')
   _$$_AiChatSendModelCopyWith<_$_AiChatSendModel> get copyWith =>
       __$$_AiChatSendModelCopyWithImpl<_$_AiChatSendModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_AiChatSendModelToJson(
-      this,
-    );
-  }
 }
 
 abstract class _AiChatSendModel extends AiChatSendModel {
@@ -221,13 +210,11 @@ abstract class _AiChatSendModel extends AiChatSendModel {
       {@JsonKey(name: 'conversation_id') required final String conversationId,
       required final String reply,
       required final String type,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final BaseApiModel<AiChatPayload>? payload,
       @JsonKey(name: 'handoff_active')
       required final bool handoffActive}) = _$_AiChatSendModel;
   const _AiChatSendModel._() : super._();
-
-  factory _AiChatSendModel.fromJson(Map<String, dynamic> json) =
-      _$_AiChatSendModel.fromJson;
 
   @override
   @JsonKey(name: 'conversation_id')
@@ -237,6 +224,7 @@ abstract class _AiChatSendModel extends AiChatSendModel {
   @override
   String get type;
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   BaseApiModel<AiChatPayload>? get payload;
   @override
   @JsonKey(name: 'handoff_active')

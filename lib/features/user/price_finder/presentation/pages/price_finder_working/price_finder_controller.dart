@@ -40,12 +40,10 @@ class PriceFinderController {
     _timer = Timer.periodic(
       const Duration(seconds: 2),
       (_) {
-        final int step = currentStep.state.data ?? 0;
+         int step = currentStep.state.data;
 
         if (step < steps.length - 1) {
-          currentStep.onUpdateData(
-            step + 1,
-          );
+          currentStep.onUpdateData(step + 1);
         } else {
           _timer?.cancel();
 

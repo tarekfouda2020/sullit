@@ -1,4 +1,4 @@
-part of 'search_imports.dart';
+part of 'search_price_result_imports.dart';
 
 class SearchPriceController {
   final TextEditingController searchFieldCtr = TextEditingController();
@@ -9,8 +9,6 @@ class SearchPriceController {
 
   final PagingController<int, ProductCard> pagingController = PagingController(firstPageKey: 1);
 
-  int pageSize = 20;
-  int currentPageKey = 1;
 
   SearchPriceController() {
     pagingController.addPageRequestListener((pageKey) {
@@ -18,15 +16,12 @@ class SearchPriceController {
     });
   }
 
-  Future<void> getPopularProducts(
-    int currentPage, {
-    bool refresh = true,
-  }) async {
+  Future<void> getPopularProducts(int currentPage, {bool refresh = true}) async {
     final params = productsParams(currentPage, refresh);
 
     final data = await GetCategoryProducts().call(params);
 
-    final isLastPage = data.length < pageSize;
+    final isLastPage = data.length < AppConstants.instance.paginationLimit;
 
     if (isLastPage) {
       pagingController.appendLastPage(data);
@@ -41,21 +36,16 @@ class SearchPriceController {
       pagingController.itemList ?? [],
     );
 
-    currentPageKey = currentPage;
 
     searchKeyBloc.onUpdateData(
       searchFieldCtr.text.trim(),
     );
   }
 
-  SearchProductsParams productsParams(
-    int page,
-    bool refresh,
-  ) {
+  SearchProductsParams productsParams(int page, bool refresh) {
     return SearchProductsParams(
       searchKey: searchFieldCtr.text.trim(),
       refresh: refresh,
-      pageSize: pageSize,
       currentPage: page,
     );
   }
@@ -97,6 +87,18 @@ class SearchPriceController {
   Future<void> refresh() async {
     await getPopularProducts(1);
   }
+
+
+
+  Future<void> fetchProductPrice(BuildContext context, int id) async {
+    final params = CreatePriceComparisonParams(productId: id);
+    final comparison = await CreatePriceComparison().call(params);
+    if (comparison == null || !context.mounted) return;
+
+    AutoRouter.of(context).push(const PriceFinderWorkingRoute());
+  }
+
+
 
   void dispose() {
     searchFieldCtr.dispose();

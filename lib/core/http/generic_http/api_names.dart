@@ -314,4 +314,6 @@ class ApiNames {
   static String deleteSavedPrescription(int id) => "prescriptions/$id/delete";
 
   static const String pharmacyOrderTerms = "pharmacy-order-terms";
+
+  static const String priceComparisons = "price-comparisons";
 }

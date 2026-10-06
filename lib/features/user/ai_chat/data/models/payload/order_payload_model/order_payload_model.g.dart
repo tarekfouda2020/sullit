@@ -2,6 +2,10 @@
 
 part of 'order_payload_model.dart';
 
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
 _$_OrderPayloadModel _$$_OrderPayloadModelFromJson(Map<String, dynamic> json) =>
     _$_OrderPayloadModel(
       id: (json['id'] as num?)?.toInt(),
