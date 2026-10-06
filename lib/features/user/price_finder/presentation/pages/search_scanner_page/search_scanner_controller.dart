@@ -35,14 +35,8 @@ class SearchScannerController {
     barcodeTextController.clear();
   }
 
-  Future<void> getProductWithSku(
-    BuildContext context,
-    String sku,
-  ) async {
-    CustomToast.showSnakeBar(
-      "Product Scanned with code : $sku",
-      type: ToastType.success,
-    );
+  Future<void> getProductWithSku(BuildContext context, String sku) async {
+
 
     await Future.delayed(const Duration(milliseconds: 180));
 
@@ -52,8 +46,6 @@ class SearchScannerController {
 
     getIt<LoadingHelper>().dismissDialog();
 
-    if (!context.mounted) return;
-
     if (value == null) {
       CustomToast.showSnakeBar(
         tr('productNotFound'),
@@ -62,9 +54,12 @@ class SearchScannerController {
       _isScanned = false;
       return;
     }
+    CreatePriceComparisonParams params = CreatePriceComparisonParams(productId: value.product.id!);
+    var comparison = await CreatePriceComparison().call(params);
+    if (comparison == null || !context.mounted) return;
 
     AutoRouter.of(context).push(
-      const PriceFinderWorkingRoute(),
+       PriceFinderWorkingRoute(priceComparisonsId: comparison.id),
     );
 
     _isScanned = false;

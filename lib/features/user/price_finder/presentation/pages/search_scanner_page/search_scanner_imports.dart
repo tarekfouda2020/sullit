@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/features/user/price_finder/domain/entities/create_price_comparison_params.dart';
+import 'package:flutter_tdd/features/user/price_finder/domain/use_cases/create_price_comparison.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 import '../../../../../../core/constants/gaps.dart';

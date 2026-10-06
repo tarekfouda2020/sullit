@@ -206,6 +206,8 @@ import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/prescrip
     as _i117;
 import 'package:flutter_tdd/features/user/pharmacies/presentation/pages/saved_prescriptions/saved_prescriptions_imports.dart'
     as _i120;
+import 'package:flutter_tdd/features/user/price_finder/domain/models/price_comparison_domain_model.dart'
+    as _i148;
 import 'package:flutter_tdd/features/user/price_finder/presentation/pages/price_comparison_page/price_comparison_imports.dart'
     as _i125;
 import 'package:flutter_tdd/features/user/price_finder/presentation/pages/price_finder_page/price_finder_imports.dart'
@@ -1464,9 +1466,14 @@ class AppRouter extends _i127.RootStackRouter {
       );
     },
     PriceFinderWorkingRoute.name: (routeData) {
+      final args = routeData.argsAs<PriceFinderWorkingRouteArgs>();
       return _i127.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i124.PriceFinderWorking(),
+        child: _i124.PriceFinderWorking(
+          key: args.key,
+          initData: args.initData,
+          priceComparisonsId: args.priceComparisonsId,
+        ),
         opaque: true,
       );
     },
@@ -5064,14 +5071,42 @@ class SearchScannerPageRoute extends _i127.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i124.PriceFinderWorking]
-class PriceFinderWorkingRoute extends _i127.PageRouteInfo<void> {
-  const PriceFinderWorkingRoute()
-      : super(
+class PriceFinderWorkingRoute
+    extends _i127.PageRouteInfo<PriceFinderWorkingRouteArgs> {
+  PriceFinderWorkingRoute({
+    _i130.Key? key,
+    _i148.PriceComparisonDomainModel? initData,
+    required int priceComparisonsId,
+  }) : super(
           PriceFinderWorkingRoute.name,
           path: '/price-finder-working',
+          args: PriceFinderWorkingRouteArgs(
+            key: key,
+            initData: initData,
+            priceComparisonsId: priceComparisonsId,
+          ),
         );
 
   static const String name = 'PriceFinderWorkingRoute';
+}
+
+class PriceFinderWorkingRouteArgs {
+  const PriceFinderWorkingRouteArgs({
+    this.key,
+    this.initData,
+    required this.priceComparisonsId,
+  });
+
+  final _i130.Key? key;
+
+  final _i148.PriceComparisonDomainModel? initData;
+
+  final int priceComparisonsId;
+
+  @override
+  String toString() {
+    return 'PriceFinderWorkingRouteArgs{key: $key, initData: $initData, priceComparisonsId: $priceComparisonsId}';
+  }
 }
 
 /// generated route for

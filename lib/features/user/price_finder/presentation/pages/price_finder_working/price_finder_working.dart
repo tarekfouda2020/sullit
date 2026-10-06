@@ -1,7 +1,9 @@
 part of 'price_finder_imports.dart';
 
 class PriceFinderWorking extends StatefulWidget {
-  const PriceFinderWorking({super.key});
+  final PriceComparisonDomainModel? initData;
+  final int priceComparisonsId;
+  const PriceFinderWorking({super.key, this.initData, required this.priceComparisonsId});
 
   @override
   State<PriceFinderWorking> createState() => _PriceFinderWorkingState();
