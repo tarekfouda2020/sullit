@@ -9,7 +9,6 @@ class SearchPriceController {
 
   final PagingController<int, ProductCard> pagingController = PagingController(firstPageKey: 1);
 
-
   SearchPriceController() {
     pagingController.addPageRequestListener((pageKey) {
       getPopularProducts(pageKey);
@@ -17,29 +16,22 @@ class SearchPriceController {
   }
 
   Future<void> getPopularProducts(int currentPage, {bool refresh = true}) async {
-    final params = productsParams(currentPage, refresh);
+    try {
+      final params = productsParams(currentPage, refresh);
+      final data = await GetCategoryProducts().call(params);
 
-    final data = await GetCategoryProducts().call(params);
+      final isLastPage = data.length < AppConstants.instance.paginationLimit;
+      if (isLastPage) {
+        pagingController.appendLastPage(data);
+      } else {
+        pagingController.appendPage(data, currentPage + 1);
+      }
 
-    final isLastPage = data.length < AppConstants.instance.paginationLimit;
-
-    if (isLastPage) {
-      pagingController.appendLastPage(data);
-    } else {
-      pagingController.appendPage(
-        data,
-        currentPage + 1,
-      );
+      productsBloc.onUpdateData(pagingController.itemList ?? []);
+      searchKeyBloc.onUpdateData(searchFieldCtr.text.trim());
+    } catch (e) {
+      pagingController.error = e;
     }
-
-    productsBloc.onUpdateData(
-      pagingController.itemList ?? [],
-    );
-
-
-    searchKeyBloc.onUpdateData(
-      searchFieldCtr.text.trim(),
-    );
   }
 
   SearchProductsParams productsParams(int page, bool refresh) {
@@ -67,7 +59,6 @@ class SearchPriceController {
 
   void callProductsSearch() {
     pagingController.refresh();
-    getPopularProducts(1);
   }
 
   void onPressSearch(BuildContext context) {
@@ -77,17 +68,13 @@ class SearchPriceController {
 
   void clearSearchField() {
     searchFieldCtr.clear();
-
     showClearIcon.onUpdateData(false);
-
     pagingController.refresh();
-    getPopularProducts(1);
   }
 
   Future<void> refresh() async {
-    await getPopularProducts(1);
+    getPopularProducts(1);
   }
-
 
   Future<void> fetchProductPrice(BuildContext context, int id) async {
     CreatePriceComparisonParams params = CreatePriceComparisonParams(productId: id);
@@ -102,15 +89,11 @@ class SearchPriceController {
     );
   }
 
-
-
   void dispose() {
     searchFieldCtr.dispose();
-
     productsBloc.close();
     searchKeyBloc.close();
     showClearIcon.close();
-
     pagingController.dispose();
   }
 }

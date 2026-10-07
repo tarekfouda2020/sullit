@@ -8,6 +8,8 @@ import 'package:flutter_tdd/features/user/price_finder/data/models/price_compari
 import 'package:flutter_tdd/features/user/price_finder/domain/entities/create_price_comparison_params.dart';
 import 'package:injectable/injectable.dart';
 
+import '../models/search_query_model.dart';
+
 @Injectable(as: PriceFinderDataSource)
 class ImplPriceFinderDataSource extends PriceFinderDataSource {
   @override
@@ -24,5 +26,24 @@ class ImplPriceFinderDataSource extends PriceFinderDataSource {
     );
 
     return await GenericHttpImpl<PriceComparisonModel>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, List<SearchQueryModel>>> getPopularSearches() async {
+    final model = HttpRequestModel(
+      url: ApiNames.popularSearches,
+      requestMethod: RequestMethod.get,
+      responseType: ResType.list,
+      responseKey: (data) => data['data'],
+      showLoader: false,
+      refresh: true,
+      toJsonFunc: (json) => List<SearchQueryModel>.from(
+        json.map(
+          (e) => SearchQueryModel.fromJson(e),
+        ),
+      ),
+    );
+
+    return await GenericHttpImpl<List<SearchQueryModel>>().call(model);
   }
 }

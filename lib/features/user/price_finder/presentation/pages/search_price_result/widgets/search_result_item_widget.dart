@@ -42,12 +42,12 @@ class SearchResultItemWidget extends StatelessWidget {
                       style: AppTextStyle.s18_w700(color: context.colors.black).copyWith(height: 1.3),
                     ),
                     Text(
-                      model.unit,
-                      style: AppTextStyle.s14_w400(color: context.colors.black),
+                      "${model.unit} • ${model.categoryName}",
+                      style: AppTextStyle.s15_w400(color: context.colors.black),
                     ),
                     Text(
                       model.barcode,
-                      style: AppTextStyle.s12_w400(color: context.colors.textColor),
+                      style: AppTextStyle.s13_w400(color: context.colors.textColor),
                     ),
                   ],
                 ),
@@ -62,7 +62,7 @@ class SearchResultItemWidget extends StatelessWidget {
                   ),
                   DirhamPrice(
                     amount: model.priceHighLow,
-                    textStyle: AppTextStyle.s18_w400(color: context.colors.primary),
+                    textStyle: AppTextStyle.s18_w700(color: context.colors.primary),
                   ),
                 ],
               ),

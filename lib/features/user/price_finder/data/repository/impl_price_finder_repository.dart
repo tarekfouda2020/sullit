@@ -8,15 +8,21 @@ import 'package:flutter_tdd/features/user/price_finder/domain/entities/create_pr
 import 'package:flutter_tdd/features/user/price_finder/domain/models/price_comparison_domain_model.dart';
 import 'package:flutter_tdd/features/user/price_finder/domain/repository/price_finder_repository.dart';
 import 'package:injectable/injectable.dart';
+import '../../domain/models/search_query.dart';
+import '../models/search_query_model.dart';
 
 @Injectable(as: PriceFinderRepository)
 class ImplPriceFinderRepository extends PriceFinderRepository with ModelToDomain {
   final PriceFinderDataSource _dataSource = getIt<PriceFinderDataSource>();
 
   @override
-  Future<Either<Failure, PriceComparisonDomainModel>> createPriceComparison(
-    CreatePriceComparisonParams params,
-  ) async {
+  Future<Either<Failure, List<SearchQuery>>> getPopularSearches() async {
+    var result = await _dataSource.getPopularSearches();
+    return toDomainResultList<SearchQuery, SearchQueryModel>(result);
+  }
+
+  @override
+  Future<Either<Failure, PriceComparisonDomainModel>> createPriceComparison(CreatePriceComparisonParams params,) async {
     final result = await _dataSource.createPriceComparison(params);
     return toDomainResult<PriceComparisonDomainModel, PriceComparisonModel>(result);
   }
