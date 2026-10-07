@@ -4,16 +4,16 @@ import 'package:flutter_tdd/features/user/price_finder/domain/models/price_compa
 
 class PriceComparisonDomainModel extends BaseDomainModel {
   final int id;
-  final String status;
+  String status;
   final PriceComparisonProductDomainModel product;
-  final List<PriceComparisonStepDomainModel> steps;
-  final int storesCount;
-  final String? bestPrice;
-  final String? bestSavings;
+  List<PriceComparisonStepDomainModel> steps;
+  int storesCount;
+  String? bestPrice;
+  String? bestSavings;
   final String currencySymbol;
   final String channel;
   final String event;
-  final String? errorMessage;
+  String? errorMessage;
 
   PriceComparisonDomainModel({
     required this.id,
@@ -28,4 +28,43 @@ class PriceComparisonDomainModel extends BaseDomainModel {
     required this.event,
     this.errorMessage,
   });
+
+  bool get isCompleted => status == "completed";
+
+  bool isStepActive(int index) {
+    if (index < 0 || index >= steps.length) return false;
+    final step = steps[index];
+    if (step.isCompleted) return false;
+    if (index <= 0) return true;
+    return steps.take(index).every((item) => item.isCompleted);
+  }
+
+  void applyPusherPayload(Map<String, dynamic> json) {
+    final nextStatus = json['status'];
+    if (nextStatus is String) status = nextStatus;
+
+    final nextStoresCount = json['stores_count'];
+    if (nextStoresCount is int) storesCount = nextStoresCount;
+
+    if (json.containsKey('best_price')) {
+      bestPrice = json['best_price']?.toString();
+    }
+    if (json.containsKey('best_savings')) {
+      bestSavings = json['best_savings']?.toString();
+    }
+    if (json.containsKey('error_message')) {
+      errorMessage = json['error_message'] as String?;
+    }
+
+    final nextSteps = json['steps'];
+    if (nextSteps is List) {
+      steps = nextSteps
+          .map(
+            (step) => PriceComparisonStepDomainModel.fromJson(
+              Map<String, dynamic>.from(step as Map),
+            ),
+          )
+          .toList();
+    }
+  }
 }

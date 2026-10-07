@@ -59,7 +59,10 @@ class SearchScannerController {
     if (comparison == null || !context.mounted) return;
 
     AutoRouter.of(context).push(
-       PriceFinderWorkingRoute(priceComparisonsId: comparison.id),
+      PriceFinderWorkingRoute(
+        priceComparisonsId: comparison.id,
+        initData: comparison,
+      ),
     );
 
     _isScanned = false;

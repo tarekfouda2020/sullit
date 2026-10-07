@@ -10,4 +10,14 @@ class PriceComparisonStepDomainModel extends BaseDomainModel {
     required this.label,
     required this.status,
   });
+
+  factory PriceComparisonStepDomainModel.fromJson(Map<String, dynamic> json) {
+    return PriceComparisonStepDomainModel(
+      key: json['key'] as String,
+      label: json['label'] as String,
+      status: json['status'] as String,
+    );
+  }
+
+  bool get isCompleted => status == "completed";
 }

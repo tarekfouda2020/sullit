@@ -3,7 +3,6 @@ part of 'imports.dart';
 class PopularSearchesItemWidget extends StatelessWidget {
   final String name;
   final String category;
-
   const PopularSearchesItemWidget({super.key, required this.name, required this.category});
 
   @override

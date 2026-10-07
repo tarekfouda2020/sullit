@@ -10,11 +10,12 @@ class PriceFinderWorking extends StatefulWidget {
 }
 
 class _PriceFinderWorkingState extends State<PriceFinderWorking> with SingleTickerProviderStateMixin {
-  final PriceFinderController controller = PriceFinderController();
+  late final PriceFinderController controller;
 
   @override
   void initState() {
     super.initState();
+    controller = PriceFinderController(widget.initData?.id ?? widget.priceComparisonsId, widget.initData);
     controller.init(this, context);
   }
 
@@ -46,14 +47,15 @@ class _PriceFinderWorkingState extends State<PriceFinderWorking> with SingleTick
             Gaps.vGap20,
             const ProductItemWidget(),
             Gaps.vGap25,
-            BlocBuilder<GenericBloc<int>, GenericState<int>>(
-              bloc: controller.currentStep,
+            BlocBuilder<GenericBloc<PriceComparisonDomainModel?>,
+                GenericState<PriceComparisonDomainModel?>>(
+              bloc: controller.priceComparisonCubit,
               builder: (context, state) {
-                int currentStep = state.data ;
-                return ComparisonStepWidget(
-                  controller: controller,
-                  currentStep: currentStep,
-                );
+                final comparison = state.data;
+                if (comparison == null) {
+                  return const SizedBox.shrink();
+                }
+                return ComparisonStepWidget(comparison: comparison);
               },
             ),
           ],

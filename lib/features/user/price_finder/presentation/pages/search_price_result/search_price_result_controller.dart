@@ -94,7 +94,12 @@ class SearchPriceController {
     var comparison = await CreatePriceComparison().call(params);
     if (comparison == null || !context.mounted) return;
 
-    AutoRouter.of(context).push( PriceFinderWorkingRoute(priceComparisonsId: comparison.id));
+    AutoRouter.of(context).push(
+      PriceFinderWorkingRoute(
+        priceComparisonsId: comparison.id,
+        initData: comparison,
+      ),
+    );
   }
 
 

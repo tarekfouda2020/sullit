@@ -1,32 +1,27 @@
 part of 'imports.dart';
 
 class ComparisonStepWidget extends StatelessWidget {
-  final PriceFinderController controller;
-  final int currentStep;
+  final PriceComparisonDomainModel comparison;
 
-  const ComparisonStepWidget({super.key, required this.controller, required this.currentStep});
+  const ComparisonStepWidget({super.key, required this.comparison});
 
   @override
   Widget build(BuildContext context) {
+    final steps = comparison.steps;
+    if (steps.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     return Column(
       children: [
-        ComparisonItemStepWidget(
-          title: controller.steps[0],
-          isActive: currentStep == 0,
-          isCompleted: currentStep > 0,
-        ),
-        Gaps.vGap10,
-        ComparisonItemStepWidget(
-          title: controller.steps[1],
-          isActive: currentStep == 1,
-          isCompleted: currentStep > 1,
-        ),
-        Gaps.vGap10,
-        ComparisonItemStepWidget(
-          title: controller.steps[2],
-          isActive: currentStep == 2,
-          isCompleted: currentStep > 2,
-        ),
+        for (int index = 0; index < steps.length; index++) ...[
+          if (index > 0) Gaps.vGap10,
+          ComparisonItemStepWidget(
+            title: steps[index].label,
+            isActive: comparison.isStepActive(index),
+            isCompleted: steps[index].isCompleted,
+          ),
+        ],
       ],
     );
   }
