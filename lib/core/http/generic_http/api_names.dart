@@ -268,6 +268,7 @@ class ApiNames {
   static String payGiftCardSubscribe(int params) =>
       "gift-cards/$params/subscribe";
 
+  static String priceComparisonsResults(int id) => "price-comparisons/$id/results";
   /// vip subscriptions
   static const String subscriptionsPaymentMethods =
       "subscriptions/payment-methods";

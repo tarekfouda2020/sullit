@@ -1,27 +1,26 @@
-part of 'price_finder_imports.dart';
+part of 'price_finder_working_imports.dart';
 
-class PriceFinderController {
+class PriceFinderWorkingController {
   late final AnimationController animationController;
 
   late final Animation<double> scaleAnimation;
 
-  final GenericBloc<PriceComparisonDomainModel?> priceComparisonCubit =
-      GenericBloc<PriceComparisonDomainModel?>(null);
+  final GenericBloc<PriceComparisonDomainModel?> priceComparisonCubit = GenericBloc<PriceComparisonDomainModel?>(null);
 
   final int priceComparisonsId;
 
-  PriceFinderController(this.priceComparisonsId, PriceComparisonDomainModel? data) {
+  PriceFinderWorkingController(this.priceComparisonsId, PriceComparisonDomainModel? data) {
     priceComparisonCubit.onUpdateData(data);
   }
 
   void initPusher(BuildContext context) {
     getIt<PusherService>().subscribeToPusher(
       channelName: PusherChannelsNames.instance.priceComparison(priceComparisonsId),
-      onEvent: (event) => _onPusherEvent(context,event),
+      onEvent: (event) => _onPusherEvent(context, event),
     );
   }
 
-  void _onPusherEvent(BuildContext context,ChannelReadEvent event) {
+  void _onPusherEvent(BuildContext context, ChannelReadEvent event) {
     if (event.name != PusherEventsNames.instance.priceComparisonUpdated) return;
 
     try {
@@ -31,7 +30,7 @@ class PriceFinderController {
 
       current.applyPusherPayload(payload);
       priceComparisonCubit.onUpdateData(current);
-      if(current.isCompleted){
+      if (current.isCompleted) {
         _goToNextStep(context);
       }
     } catch (e) {
@@ -67,13 +66,13 @@ class PriceFinderController {
         curve: Curves.easeInOut,
       ),
     );
-
   }
-
 
   void _goToNextStep(BuildContext context) {
     AutoRouter.of(context).push(
-      const PriceComparisonPageRoute(),
+      PriceComparisonPageRoute(
+        id: priceComparisonsId,
+      ),
     );
   }
 

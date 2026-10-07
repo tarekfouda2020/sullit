@@ -1,7 +1,6 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../domain/models/search_query.dart';
+import '../../../domain/models/search_query.dart';
 
 part 'search_query_model.freezed.dart';
 

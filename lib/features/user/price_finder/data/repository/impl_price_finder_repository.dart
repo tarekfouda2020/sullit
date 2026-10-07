@@ -8,8 +8,10 @@ import 'package:flutter_tdd/features/user/price_finder/domain/entities/create_pr
 import 'package:flutter_tdd/features/user/price_finder/domain/models/price_comparison_domain_model.dart';
 import 'package:flutter_tdd/features/user/price_finder/domain/repository/price_finder_repository.dart';
 import 'package:injectable/injectable.dart';
+import '../../domain/models/price_finder_result.dart';
 import '../../domain/models/search_query.dart';
-import '../models/search_query_model.dart';
+import '../models/price_finder_result_model/price_finder_result_model.dart';
+import '../models/search_query_model/search_query_model.dart';
 
 @Injectable(as: PriceFinderRepository)
 class ImplPriceFinderRepository extends PriceFinderRepository with ModelToDomain {
@@ -22,8 +24,16 @@ class ImplPriceFinderRepository extends PriceFinderRepository with ModelToDomain
   }
 
   @override
-  Future<Either<Failure, PriceComparisonDomainModel>> createPriceComparison(CreatePriceComparisonParams params,) async {
+  Future<Either<Failure, PriceComparisonDomainModel>> createPriceComparison(
+    CreatePriceComparisonParams params,
+  ) async {
     final result = await _dataSource.createPriceComparison(params);
     return toDomainResult<PriceComparisonDomainModel, PriceComparisonModel>(result);
+  }
+
+  @override
+  Future<Either<Failure, PriceFinderResult>> getPriceResults(int id) async {
+    final result = await _dataSource.getPriceResults(id);
+    return toDomainResult<PriceFinderResult, PriceFinderResultModel>(result);
   }
 }

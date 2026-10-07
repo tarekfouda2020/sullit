@@ -8,7 +8,8 @@ import 'package:flutter_tdd/features/user/price_finder/data/models/price_compari
 import 'package:flutter_tdd/features/user/price_finder/domain/entities/create_price_comparison_params.dart';
 import 'package:injectable/injectable.dart';
 
-import '../models/search_query_model.dart';
+import '../models/price_finder_result_model/price_finder_result_model.dart';
+import '../models/search_query_model/search_query_model.dart';
 
 @Injectable(as: PriceFinderDataSource)
 class ImplPriceFinderDataSource extends PriceFinderDataSource {
@@ -45,5 +46,19 @@ class ImplPriceFinderDataSource extends PriceFinderDataSource {
     );
 
     return await GenericHttpImpl<List<SearchQueryModel>>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, PriceFinderResultModel>> getPriceResults(int id) async {
+    final model = HttpRequestModel(
+      url: ApiNames.priceComparisonsResults(id),
+      requestMethod: RequestMethod.get,
+      responseType: ResType.list,
+      responseKey: (data) => data['data'],
+      showLoader: false,
+      refresh: true,
+      toJsonFunc: (json) => PriceFinderResultModel.fromJson(json),
+    );
+    return await GenericHttpImpl<PriceFinderResultModel>().call(model);
   }
 }

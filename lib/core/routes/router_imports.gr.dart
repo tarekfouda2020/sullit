@@ -212,7 +212,7 @@ import 'package:flutter_tdd/features/user/price_finder/presentation/pages/price_
     as _i125;
 import 'package:flutter_tdd/features/user/price_finder/presentation/pages/price_finder_page/price_finder_imports.dart'
     as _i121;
-import 'package:flutter_tdd/features/user/price_finder/presentation/pages/price_finder_working/price_finder_imports.dart'
+import 'package:flutter_tdd/features/user/price_finder/presentation/pages/price_finder_working/price_finder_working_imports.dart'
     as _i124;
 import 'package:flutter_tdd/features/user/price_finder/presentation/pages/search_price_result/search_price_result_imports.dart'
     as _i122;
@@ -1478,9 +1478,13 @@ class AppRouter extends _i127.RootStackRouter {
       );
     },
     PriceComparisonPageRoute.name: (routeData) {
+      final args = routeData.argsAs<PriceComparisonPageRouteArgs>();
       return _i127.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i125.PriceComparisonPage(),
+        child: _i125.PriceComparisonPage(
+          key: args.key,
+          id: args.id,
+        ),
         opaque: true,
       );
     },
@@ -5111,14 +5115,37 @@ class PriceFinderWorkingRouteArgs {
 
 /// generated route for
 /// [_i125.PriceComparisonPage]
-class PriceComparisonPageRoute extends _i127.PageRouteInfo<void> {
-  const PriceComparisonPageRoute()
-      : super(
+class PriceComparisonPageRoute
+    extends _i127.PageRouteInfo<PriceComparisonPageRouteArgs> {
+  PriceComparisonPageRoute({
+    _i130.Key? key,
+    required int id,
+  }) : super(
           PriceComparisonPageRoute.name,
           path: '/price-comparison-page',
+          args: PriceComparisonPageRouteArgs(
+            key: key,
+            id: id,
+          ),
         );
 
   static const String name = 'PriceComparisonPageRoute';
+}
+
+class PriceComparisonPageRouteArgs {
+  const PriceComparisonPageRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final _i130.Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'PriceComparisonPageRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for
