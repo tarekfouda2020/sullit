@@ -1,18 +1,20 @@
 part of 'search_price_result_imports.dart';
 
 class SearchPriceResult extends StatefulWidget {
-  const SearchPriceResult({super.key});
+  final String? searchKey;
+  const SearchPriceResult({super.key, this.searchKey});
 
   @override
   State<SearchPriceResult> createState() => _SearchPriceResultState();
 }
 
 class _SearchPriceResultState extends State<SearchPriceResult> {
-  final SearchPriceController controller = SearchPriceController();
+  late final SearchPriceController controller;
 
   @override
   void initState() {
     super.initState();
+    controller = SearchPriceController(widget.searchKey);
   }
 
   @override
@@ -32,12 +34,11 @@ class _SearchPriceResultState extends State<SearchPriceResult> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const AppBarLocationWidget(),
+          // const AppBarLocationWidget(),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
               child: Column(
-                spacing: 24,
                 children: [
                   SearchHeaderWidget(controller: controller),
                   Expanded(
@@ -121,6 +122,7 @@ class _SearchPriceResultState extends State<SearchPriceResult> {
           ),
         ],
       ),
+      bottomNavigationBar:  ResumeComparisonButtonWidget(controller: controller),
     );
   }
 }

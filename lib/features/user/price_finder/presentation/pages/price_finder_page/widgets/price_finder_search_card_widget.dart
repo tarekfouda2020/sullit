@@ -1,15 +1,16 @@
 part of 'imports.dart';
 
 class PriceFinderSearchCardWidget extends StatelessWidget {
+  final PriceFinderController controller;
   const PriceFinderSearchCardWidget({
-    super.key,
+    super.key, required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => AutoRouter.of(context).push(
-        const SearchPriceResultRoute(),
+         SearchPriceResultRoute(),
       ),
       child: Container(
         width: double.infinity,
@@ -27,6 +28,7 @@ class PriceFinderSearchCardWidget extends StatelessWidget {
         ),
         child: GenericTextField(
           fillColor: context.colors.customBackground,
+          controller: controller.searchController,
           suffixIcon: Padding(
             padding: const EdgeInsetsDirectional.only(
               end: 24,

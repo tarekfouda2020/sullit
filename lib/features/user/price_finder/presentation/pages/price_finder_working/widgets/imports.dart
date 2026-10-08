@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/widgets/user_current_location_description_widget.dart';
 import 'package:flutter_tdd/features/user/price_finder/domain/models/price_comparison_domain_model.dart';
 import '../../../../../../../core/constants/gaps.dart';
 import '../../../../../../../core/localization/localization_methods.dart';

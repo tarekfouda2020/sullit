@@ -7,4 +7,6 @@ class GlobalState {
   dynamic set(dynamic key, dynamic value) => _data[key] = value;
 
   dynamic get(dynamic key) => _data[key];
+
+  dynamic remove(dynamic key) => _data.remove(key);
 }

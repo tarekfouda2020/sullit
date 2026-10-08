@@ -1,18 +1,16 @@
-part of 'imports.dart';
+part of 'widgets_imports.dart';
 
 class BestDealCardWidget extends StatelessWidget {
   final PriceFinderDeal deal;
-
-  const BestDealCardWidget({
-    super.key,
-    required this.deal,
-  });
+  final PriceComparisonController controller;
+  const BestDealCardWidget({super.key, required this.deal, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(18),
       child: Stack(
+        alignment: AlignmentDirectional.topEnd,
         children: [
           Positioned.fill(
             child: Container(
@@ -43,13 +41,10 @@ class BestDealCardWidget extends StatelessWidget {
               children: [
                 // Lowest price + Saving
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 5,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
                   decoration: BoxDecoration(
                     color: context.colors.disableBlack,
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: Dimens.borderRadius30PX,
                     border: Border.all(
                       color: context.colors.darkGreen2,
                     ),
@@ -130,7 +125,7 @@ class BestDealCardWidget extends StatelessWidget {
 
                 Gaps.vGap8,
 
-                // Price + Add to cart
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -140,28 +135,26 @@ class BestDealCardWidget extends StatelessWidget {
                         color: context.colors.darkGreen3,
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 13,
-                        vertical: 8,
-                      ),
-                      decoration: BoxDecoration(
-                        color: context.colors.darkGreen3,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            Res.shopIcon,
-                          ),
-                          Gaps.hGap8,
-                          Text(
-                            'Add to Cart',
-                            style: AppTextStyle.s12_w700(
-                              color: context.colors.black,
+                    GestureDetector(
+                      onTap: () => controller.addProductToCart(context, deal.variantId,deal.branchId),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: context.colors.darkGreen3,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(Res.shopIcon),
+                            Gaps.hGap8,
+                            Text(
+                              'Add to Cart',
+                              style: AppTextStyle.s12_w700(
+                                color: context.colors.black,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -217,7 +210,7 @@ class BestDealCardWidget extends StatelessWidget {
                                   ],
                                 ),
                                 Text(
-                                  '${deal.distanceKm.toStringAsFixed(1)} km away',
+                                  '${deal.distanceKm.toStringAsFixed(2)} km away',
                                   style: AppTextStyle.s11_w400(
                                     color: context.colors.darkGreen3,
                                   ),
@@ -228,21 +221,24 @@ class BestDealCardWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: context.colors.darkGreen4,
+                    GestureDetector(
+                      onTap: () => controller.openStoreDetails(context, deal.shopId),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: context.colors.darkGreen4,
+                          ),
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 10,
-                      ),
-                      child: Text(
-                        'View Store',
-                        style: AppTextStyle.s12_w700(
-                          color: context.colors.white,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 10,
+                        ),
+                        child: Text(
+                          'View Store',
+                          style: AppTextStyle.s12_w700(
+                            color: context.colors.white,
+                          ),
                         ),
                       ),
                     ),

@@ -14,4 +14,5 @@ class GlobalStateKeys {
   static String notificationGranted = "notification_granted";
   static String userLocation = "user_location";
   static String token = "token";
+  static String currentComparisonsId = "currentComparisonsId";
 }

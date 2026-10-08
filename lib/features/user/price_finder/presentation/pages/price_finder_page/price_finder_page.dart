@@ -38,7 +38,7 @@ class _PriceFinderPageState extends State<PriceFinderPage> {
               children: [
                 const PriceFinderHeaderWidget(),
                 Gaps.vGap16,
-                const PriceFinderSearchCardWidget(),
+                 PriceFinderSearchCardWidget(controller: controller),
                 Gaps.vGap16,
                 ScanFieldWidget(
                   controller: controller,

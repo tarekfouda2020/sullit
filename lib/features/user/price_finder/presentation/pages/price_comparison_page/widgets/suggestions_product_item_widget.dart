@@ -1,20 +1,9 @@
-part of 'imports.dart';
+part of 'widgets_imports.dart';
 
 class SuggestionsProductItemWidget extends StatelessWidget {
-  final Color bgColor;
-  final Color shopColor;
-  final Color shopIconColor;
-  final bool isLowest;
   final PriceFinderDeal deal;
-
-  const SuggestionsProductItemWidget({
-    super.key,
-    required this.bgColor,
-    required this.shopColor,
-    required this.isLowest,
-    required this.shopIconColor,
-    required this.deal,
-  });
+  final PriceComparisonController controller;
+  const SuggestionsProductItemWidget({super.key, required this.deal, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +14,7 @@ class SuggestionsProductItemWidget extends StatelessWidget {
         border: Border.all(
           color: context.colors.borderColor,
         ),
-        color: bgColor,
+        color: getBgColor(context),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -70,12 +59,12 @@ class SuggestionsProductItemWidget extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: shopColor,
+                  color: getShopColor(context),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: SvgPicture.asset(
                   Res.homeIcon,
-                  color: shopIconColor,
+                  colorFilter: ColorFilter.mode(getShopIconColor(context), BlendMode.srcIn),
                   height: 20,
                   width: 20,
                 ),
@@ -102,8 +91,8 @@ class SuggestionsProductItemWidget extends StatelessWidget {
                       initialRating: deal.rating.toDouble(),
                       minRating: 0,
                       direction: Axis.horizontal,
-                      allowHalfRating: false,
-                      itemCount: 5,
+                      allowHalfRating: true,
+                      itemCount: deal.rating,
                       itemSize: 12.sp,
                       ignoreGestures: true,
                       itemBuilder: (context, _) => Icon(
@@ -117,7 +106,7 @@ class SuggestionsProductItemWidget extends StatelessWidget {
                     Gaps.vGap4,
 
                     Text(
-                      '${deal.distanceKm.toStringAsFixed(1)} km away',
+                      '${deal.distanceKm.toStringAsFixed(2)} km away',
                       style: AppTextStyle.s12_w400(
                         color: context.colors.textColor,
                       ),
@@ -165,10 +154,7 @@ class SuggestionsProductItemWidget extends StatelessWidget {
 
           Gaps.vGap12,
 
-          Gaps.line(
-            context.colors.gray4,
-            10.h,
-          ),
+          Gaps.line(context.colors.gray4, 10.h),
 
           Gaps.vGap8,
 
@@ -176,7 +162,7 @@ class SuggestionsProductItemWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
-                onTap: () {},
+                onTap: () => controller.openStoreDetails(context, deal.shopId),
                 child: Row(
                   children: [
                     Text(
@@ -195,29 +181,29 @@ class SuggestionsProductItemWidget extends StatelessWidget {
                 ),
               ),
 
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 13,
-                  vertical: 8,
-                ),
-                decoration: BoxDecoration(
-                  color: context.colors.darkGreen2,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      Res.shopIcon,
-                      color: context.colors.white,
-                    ),
-                    Gaps.hGap8,
-                    Text(
-                      'Add to Cart',
-                      style: AppTextStyle.s12_w700(
-                        color: context.colors.white,
+              GestureDetector(
+                onTap: () => controller.addProductToCart(context, deal.variantId,deal.branchId!),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: context.colors.darkGreen2,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        Res.shopIcon,
+                        colorFilter: ColorFilter.mode(context.colors.white, BlendMode.srcIn),
                       ),
-                    ),
-                  ],
+                      Gaps.hGap8,
+                      Text(
+                        'Add to Cart',
+                        style: AppTextStyle.s12_w700(
+                          color: context.colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -225,5 +211,19 @@ class SuggestionsProductItemWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  bool get isLowest => deal.isLowest;
+
+  Color getBgColor(BuildContext context) {
+    return isLowest ? context.colors.lightGreen3 : context.colors.white;
+  }
+
+  Color getShopColor(BuildContext context) {
+    return isLowest ? context.colors.darkGreen2 : context.colors.customBackground;
+  }
+
+  Color getShopIconColor(BuildContext context) {
+    return isLowest ? context.colors.white : context.colors.black;
   }
 }

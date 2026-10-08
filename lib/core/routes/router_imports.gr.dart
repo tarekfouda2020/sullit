@@ -1452,9 +1452,14 @@ class AppRouter extends _i127.RootStackRouter {
       );
     },
     SearchPriceResultRoute.name: (routeData) {
+      final args = routeData.argsAs<SearchPriceResultRouteArgs>(
+          orElse: () => const SearchPriceResultRouteArgs());
       return _i127.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i122.SearchPriceResult(),
+        child: _i122.SearchPriceResult(
+          key: args.key,
+          searchKey: args.searchKey,
+        ),
         opaque: true,
       );
     },
@@ -5051,14 +5056,37 @@ class PriceFinderPageRoute extends _i127.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i122.SearchPriceResult]
-class SearchPriceResultRoute extends _i127.PageRouteInfo<void> {
-  const SearchPriceResultRoute()
-      : super(
+class SearchPriceResultRoute
+    extends _i127.PageRouteInfo<SearchPriceResultRouteArgs> {
+  SearchPriceResultRoute({
+    _i130.Key? key,
+    String? searchKey,
+  }) : super(
           SearchPriceResultRoute.name,
           path: '/search-price-result',
+          args: SearchPriceResultRouteArgs(
+            key: key,
+            searchKey: searchKey,
+          ),
         );
 
   static const String name = 'SearchPriceResultRoute';
+}
+
+class SearchPriceResultRouteArgs {
+  const SearchPriceResultRouteArgs({
+    this.key,
+    this.searchKey,
+  });
+
+  final _i130.Key? key;
+
+  final String? searchKey;
+
+  @override
+  String toString() {
+    return 'SearchPriceResultRouteArgs{key: $key, searchKey: $searchKey}';
+  }
 }
 
 /// generated route for

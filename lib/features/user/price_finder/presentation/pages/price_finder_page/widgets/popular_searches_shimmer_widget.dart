@@ -5,18 +5,10 @@ class PopularSearchesShimmerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.zero,
-      itemCount: 6,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 7,
-        mainAxisSpacing: 8,
-        mainAxisExtent: 60,
-      ),
-      itemBuilder: (context, index) {
+    return Wrap(
+      spacing: 7,
+      runSpacing: 8,
+      children: List.generate(4, (index) {
         return BuildShimmerItem(
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -36,7 +28,7 @@ class PopularSearchesShimmerWidget extends StatelessWidget {
             ),
           ),
         );
-      },
+      },),
     );
   }
 }

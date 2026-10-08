@@ -9,6 +9,8 @@ import '../models/search_query_model/search_query_model.dart';
 abstract class PriceFinderDataSource {
   Future<Either<Failure, PriceComparisonModel>> createPriceComparison(CreatePriceComparisonParams params);
 
+  Future<Either<Failure, PriceComparisonModel>> getPriceComparison(int id);
+
   Future<Either<Failure, List<SearchQueryModel>>> getPopularSearches();
 
   Future<Either<Failure, PriceFinderResultModel>> getPriceResults(int id);

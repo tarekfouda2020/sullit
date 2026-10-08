@@ -1,4 +1,4 @@
-part of 'imports.dart';
+part of 'widgets_imports.dart';
 
 class ProductItemWidget extends StatelessWidget {
   final PriceComparisonProductDomainModel product;

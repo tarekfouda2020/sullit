@@ -50,7 +50,9 @@ class _PriceFinderWorkingState extends State<PriceFinderWorking> with SingleTick
                   scaleAnimation: controller.scaleAnimation,
                 ),
                 Gaps.vGap26,
-                const WorkingItemWidget(),
+                Text(tr('working...'), style: AppTextStyle.s24_w800(color: context.colors.black)),
+                Gaps.vGap10,
+                const SearchingAreaNameWidget(),
                 Gaps.vGap20,
                 if (comparison != null)
                   ProductItemWidget(

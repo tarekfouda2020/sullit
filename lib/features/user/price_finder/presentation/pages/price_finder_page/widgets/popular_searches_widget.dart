@@ -1,9 +1,11 @@
 part of 'imports.dart';
 
 class PopularSearchesWidget extends StatelessWidget {
-  const PopularSearchesWidget({super.key, required this.controller});
 
   final PriceFinderController controller;
+
+  const PopularSearchesWidget({super.key, required this.controller});
+
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +31,12 @@ class PopularSearchesWidget extends StatelessWidget {
                   spacing: 7,
                   runSpacing: 8,
                   children: items.map((item) {
-                    return PopularSearchesItemWidget(
-                      name: item.query,
-                      category: item.categoryName ?? '',
+                    return GestureDetector(
+                      onTap: () => controller.onPopularTap(context, item),
+                      child: PopularSearchesItemWidget(
+                        name: item.query,
+                        category: item.categoryName ?? '',
+                      ),
                     );
                   }).toList(),
                 );

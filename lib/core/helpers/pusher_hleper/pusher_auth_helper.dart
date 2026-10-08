@@ -9,11 +9,7 @@ import 'package:injectable/injectable.dart';
 
 @lazySingleton
 class PusherAuthHelper {
-  Future<Map<dynamic, dynamic>> onAuthorizer(
-    String channelName,
-    String socketId,
-    dynamic options,
-  ) async {
+  Future<Map<dynamic, dynamic>> onAuthorizer(String channelName, String socketId, dynamic options) async {
     String token = GlobalState.instance.get(GlobalStateKeys.token);
     try {
       log("Pusher auth => channelName: $channelName, socketId: $socketId");

@@ -19,7 +19,18 @@ class PriceFinderController {
     popularLoadingBloc.close();
   }
 
-  void onSearch(BuildContext context, String value) {}
+  Future<void> fetchProductPrice(BuildContext context, int id) async {
+    CreatePriceComparisonParams params = CreatePriceComparisonParams(productId: id);
+    var comparison = await CreatePriceComparison().call(params);
+    if (comparison == null || !context.mounted) return;
+
+    AutoRouter.of(context).push(
+      PriceFinderWorkingRoute(
+        priceComparisonsId: comparison.id,
+        initData: comparison,
+      ),
+    );
+  }
 
   void onScanBarcode(BuildContext context) {
     AutoRouter.of(context).push(
@@ -27,9 +38,11 @@ class PriceFinderController {
     );
   }
 
-  void onPopularTap(BuildContext context, String name) {
-    searchController.text = name;
-    onSearch(context, name);
+  void onPopularTap(BuildContext context, SearchQuery model) {
+    searchController.text = model.query;
+    AutoRouter.of(context).push(
+      SearchPriceResultRoute(searchKey: searchController.text),
+    );
   }
 
   void onChangeLocation(BuildContext context) {}

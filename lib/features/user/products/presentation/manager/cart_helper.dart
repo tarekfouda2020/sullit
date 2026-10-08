@@ -44,12 +44,7 @@ class CartHelper {
   final GenericBloc<CartDomainModel> cartItemsBloc =
       GenericBloc(CartDomainModel());
 
-  void onSelectAttributes(
-      BuildContext context,
-      GenericBloc<Product?> productCubit,
-      List<ProductAttributesOptions> model,
-      int index,
-      int position) {
+  void onSelectAttributes(BuildContext context, GenericBloc<Product?> productCubit, List<ProductAttributesOptions> model, int index, int position) {
     List<String> selected = [];
     var optionItem = model[index];
     List<String> attributes = optionItem.selectedAttribute!;
@@ -71,8 +66,7 @@ class CartHelper {
     getVariantPrice(context, productCubit);
   }
 
-  Future<void> getVariantPrice(
-      BuildContext context, GenericBloc<Product?> productCubit) async {
+  Future<void> getVariantPrice(BuildContext context, GenericBloc<Product?> productCubit) async {
     var params = _variantPriceParams(productCubit.state.data!.id!);
     getIt<LoadingHelper>().showLoadingDialog();
     var result = await GetVariantPrice().call(params);

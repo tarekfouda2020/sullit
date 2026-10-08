@@ -318,4 +318,6 @@ class ApiNames {
   static const String pharmacyOrderTerms = "pharmacy-order-terms";
 
   static const String priceComparisons = "price-comparisons";
+
+  static String priceComparison(int id) => "price-comparisons/$id";
 }

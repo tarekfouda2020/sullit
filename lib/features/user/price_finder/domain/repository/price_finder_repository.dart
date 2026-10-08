@@ -14,4 +14,6 @@ abstract class PriceFinderRepository {
   Future<Either<Failure, PriceComparisonDomainModel>> createPriceComparison(
     CreatePriceComparisonParams params,
   );
+
+  Future<Either<Failure, PriceComparisonDomainModel>> getPriceComparison(int id);
 }

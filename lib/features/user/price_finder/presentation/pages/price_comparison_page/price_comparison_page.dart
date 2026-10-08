@@ -48,7 +48,7 @@ class _PriceComparisonPageState extends State<PriceComparisonPage> {
               ComparisonHeaderWidget(
                 title: tr('Price Comparison'),
                 subTitle: 'Comparing across ${result.offers.length} stores in ',
-                subTitleName: 'Al Mushrif, Abu Dhabi',
+                controller: controller,
               ),
               Gaps.vGap20,
               ProductItemWidget(
@@ -58,25 +58,20 @@ class _PriceComparisonPageState extends State<PriceComparisonPage> {
               if (result.bestDeal != null)
                 BestDealCardWidget(
                   deal: result.bestDeal!,
+                  controller: controller,
                 ),
               Gaps.vGap16,
-              const ComparisonHeaderWidget(
+               ComparisonHeaderWidget(
                 title: 'Prices near you',
                 subTitle: 'Stores available in ',
-                subTitleName: 'Al Mushrif, Abu Dhabi',
+                controller: controller,
               ),
               Gaps.vGap16,
               ...result.offers.map(
                 (offer) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 16),
-                    child: SuggestionsProductItemWidget(
-                      bgColor: offer.isLowest ? context.colors.lightGreen3 : context.colors.white,
-                      isLowest: offer.isLowest,
-                      shopColor: offer.isLowest ? context.colors.darkGreen2 : context.colors.customBackground,
-                      shopIconColor: offer.isLowest ? context.colors.white : context.colors.black,
-                      deal: offer,
-                    ),
+                    child: SuggestionsProductItemWidget(deal: offer, controller: controller),
                   );
                 },
               ),

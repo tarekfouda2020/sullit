@@ -11,6 +11,7 @@ class PriceFinderWorkingController {
 
   PriceFinderWorkingController(this.priceComparisonsId, PriceComparisonDomainModel? data) {
     priceComparisonCubit.onUpdateData(data);
+    GlobalState.instance.set(GlobalStateKeys.currentComparisonsId, priceComparisonsId);
   }
 
   void initPusher(BuildContext context) {
@@ -20,9 +21,12 @@ class PriceFinderWorkingController {
     );
   }
 
+  bool _hasEnded = false;
   void _onPusherEvent(BuildContext context, ChannelReadEvent event) {
     if (event.name != PusherEventsNames.instance.priceComparisonUpdated) return;
-
+    if(_hasEnded){
+      return ;
+    }
     try {
       var payload = _parseEventPayload(event.data);
       var current = priceComparisonCubit.state.data;
@@ -31,7 +35,10 @@ class PriceFinderWorkingController {
       current.applyPusherPayload(payload);
       priceComparisonCubit.onUpdateData(current);
       if (current.isCompleted) {
-        _goToNextStep(context);
+        _hasEnded = true;
+        Future.delayed(const Duration(milliseconds: 800), () {
+          _goToNextStep(context);
+        },);
       }
     } catch (e) {
       log('==>>> price comparison pusher error ${e.toString()} ===');
@@ -69,12 +76,15 @@ class PriceFinderWorkingController {
   }
 
   void _goToNextStep(BuildContext context) {
-    AutoRouter.of(context).push(
+    GlobalState.instance.remove(GlobalStateKeys.currentComparisonsId);
+    AutoRouter.of(context).replace(
       PriceComparisonPageRoute(
         id: priceComparisonsId,
       ),
     );
   }
+
+
 
   void dispose() {
     animationController.dispose();

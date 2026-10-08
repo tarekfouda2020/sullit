@@ -54,6 +54,8 @@
   "working...": "عمل ...",
   "showingExactMatchesFor": "عرض التطابقات التامة لـ",
   "priceComparisonLoadedFor": "تم تحميل مقارنة الأسعار لـ",
+  "newPriceComparisonWarning": "بدء جلب أسعار جديد سيلغي المقارنة الحالية. هل تريد المتابعة؟",
+  "resumePriceComparison": "عرض المقارنة النشطة",
   "searchByBarcodeNumber": "البحث برقم الباركود",
   "popularSearches": "عمليات البحث الشائعة",
   "scanBarcode": "مسح الرمز الشريطي",

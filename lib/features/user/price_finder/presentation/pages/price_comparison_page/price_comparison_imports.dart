@@ -1,7 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tdd/core/helpers/custom_toast.dart';
+import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
+import 'package:flutter_tdd/core/helpers/location_service.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/features/user/price_finder/presentation/pages/price_comparison_page/widgets/imports.dart';
+import 'package:flutter_tdd/features/user/price_finder/presentation/pages/price_comparison_page/widgets/widgets_imports.dart';
+import 'package:flutter_tdd/features/user/products/presentation/manager/cart_helper.dart';
 
 import '../../../../../../core/bloc/generic_cubit/generic_cubit.dart';
 import '../../../../../../core/constants/gaps.dart';

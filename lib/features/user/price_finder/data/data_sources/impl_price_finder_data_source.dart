@@ -30,6 +30,20 @@ class ImplPriceFinderDataSource extends PriceFinderDataSource {
   }
 
   @override
+  Future<Either<Failure, PriceComparisonModel>> getPriceComparison(int id) async {
+    final model = HttpRequestModel(
+      url: ApiNames.priceComparison(id),
+      requestMethod: RequestMethod.get,
+      responseType: ResType.model,
+      responseKey: (data) => data['data'],
+      showLoader: false,
+      toJsonFunc: (json) => PriceComparisonModel.fromJson(json),
+    );
+
+    return await GenericHttpImpl<PriceComparisonModel>().call(model);
+  }
+
+  @override
   Future<Either<Failure, List<SearchQueryModel>>> getPopularSearches() async {
     final model = HttpRequestModel(
       url: ApiNames.popularSearches,

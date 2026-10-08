@@ -32,6 +32,12 @@ class ImplPriceFinderRepository extends PriceFinderRepository with ModelToDomain
   }
 
   @override
+  Future<Either<Failure, PriceComparisonDomainModel>> getPriceComparison(int id) async {
+    final result = await _dataSource.getPriceComparison(id);
+    return toDomainResult<PriceComparisonDomainModel, PriceComparisonModel>(result);
+  }
+
+  @override
   Future<Either<Failure, PriceFinderResult>> getPriceResults(int id) async {
     final result = await _dataSource.getPriceResults(id);
     return toDomainResult<PriceFinderResult, PriceFinderResultModel>(result);
