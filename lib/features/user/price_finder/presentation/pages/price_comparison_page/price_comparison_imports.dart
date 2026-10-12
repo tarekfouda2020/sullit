@@ -15,6 +15,7 @@ import '../../../../../../core/helpers/di.dart';
 import '../../../../../../core/localization/localization_methods.dart';
 import '../../../../../../core/theme/text/app_text_style.dart';
 import '../../../../../../core/widgets/CachedImage.dart';
+import '../../../../../../core/widgets/build_empty_data_view.dart';
 import '../../../../../../core/widgets/default_app_bar.dart';
 import '../../../domain/models/price_finder_result.dart';
 import '../../../domain/use_cases/price_search_result.dart';

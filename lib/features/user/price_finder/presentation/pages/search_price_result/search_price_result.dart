@@ -2,6 +2,7 @@ part of 'search_price_result_imports.dart';
 
 class SearchPriceResult extends StatefulWidget {
   final String? searchKey;
+
   const SearchPriceResult({super.key, this.searchKey});
 
   @override
@@ -48,6 +49,7 @@ class _SearchPriceResultState extends State<SearchPriceResult> {
                         pagingController: controller.pagingController,
                         builderDelegate: PagedChildBuilderDelegate<ProductCard>(
                           itemBuilder: (context, item, index) {
+                            print("*****${item.isOutOfStock}====${item.name}***** ");
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 12),
                               child: SearchResultItemWidget(
@@ -122,7 +124,7 @@ class _SearchPriceResultState extends State<SearchPriceResult> {
           ),
         ],
       ),
-      bottomNavigationBar:  ResumeComparisonButtonWidget(controller: controller),
+      bottomNavigationBar: ResumeComparisonButtonWidget(controller: controller),
     );
   }
 }

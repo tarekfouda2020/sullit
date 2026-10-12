@@ -36,9 +36,13 @@ class _PriceComparisonPageState extends State<PriceComparisonPage> {
         bloc: controller.priceResultBloc,
         builder: (context, state) {
           final result = state.data;
+
           if (result == null) {
             return const PriceComparisonShimmerWidget();
           }
+
+          final offers = result.offers;
+
           return ListView(
             padding: const EdgeInsets.symmetric(
               horizontal: 20,
@@ -47,7 +51,7 @@ class _PriceComparisonPageState extends State<PriceComparisonPage> {
             children: [
               ComparisonHeaderWidget(
                 title: tr('Price Comparison'),
-                subTitle: 'Comparing across ${result.offers.length} stores in ',
+                subTitle: 'Comparing across ${offers.length} stores in ',
                 controller: controller,
               ),
               Gaps.vGap20,
@@ -59,22 +63,30 @@ class _PriceComparisonPageState extends State<PriceComparisonPage> {
                 BestDealCardWidget(
                   deal: result.bestDeal!,
                   controller: controller,
-                ),
+                )
+              else
+                const OutOfStockCardWidget(),
               Gaps.vGap16,
-               ComparisonHeaderWidget(
+              ComparisonHeaderWidget(
                 title: 'Prices near you',
                 subTitle: 'Stores available in ',
                 controller: controller,
               ),
               Gaps.vGap16,
-              ...result.offers.map(
-                (offer) {
-                  return Padding(
+              if (offers.isEmpty)
+                const Center(
+                  child: BuildEmptyDataView(),
+                )
+              else
+                ...offers.map(
+                  (offer) => Padding(
                     padding: const EdgeInsets.only(bottom: 16),
-                    child: SuggestionsProductItemWidget(deal: offer, controller: controller),
-                  );
-                },
-              ),
+                    child: SuggestionsProductItemWidget(
+                      deal: offer,
+                      controller: controller,
+                    ),
+                  ),
+                ),
             ],
           );
         },

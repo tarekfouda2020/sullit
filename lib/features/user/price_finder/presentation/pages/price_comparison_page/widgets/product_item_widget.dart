@@ -43,7 +43,7 @@ class ProductItemWidget extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: AppTextStyle.s18_w700(
                     color: context.colors.black,
-                  ),
+                  ).copyWith(height: 1.3),
                 ),
                 Text(
                   '${product.unit} • ${product.categoryName}',

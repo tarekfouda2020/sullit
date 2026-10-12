@@ -12,6 +12,7 @@ import 'package:flutter_tdd/core/widgets/user_current_location_description_widge
 import 'package:flutter_tdd/features/user/price_finder/presentation/pages/price_comparison_page/price_comparison_imports.dart';
 
 import '../../../../../../../core/constants/gaps.dart';
+import '../../../../../../../core/localization/localization_methods.dart';
 import '../../../../../../../core/theme/text/app_text_style.dart';
 import '../../../../../../../core/widgets/CachedImage.dart';
 import '../../../../../../../core/widgets/build_shimmer_item.dart';
@@ -28,4 +29,13 @@ part 'best_deal_card_widget.dart';
 part 'suggestions_product_item_widget.dart';
 
 part 'product_item_widget.dart';
-part'price_comparison_shimmer_widget.dart';
+
+part 'price_comparison_shimmer_widget.dart';
+
+part 'best_deal_card_item_widget.dart';
+
+part 'view_best_store_widget.dart';
+
+part 'best_price_item_widget.dart';
+
+part 'out_of_stock_card_widget.dart';
