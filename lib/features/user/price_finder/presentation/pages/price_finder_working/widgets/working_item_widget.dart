@@ -11,6 +11,7 @@ class SearchingAreaNameWidget extends StatelessWidget {
          tr('priceComparisonLoadedFor'),
             style: AppTextStyle.s12_w400(color: context.colors.textColor)
         ),
+        Gaps.hGap4,
         const Flexible(child: UserCurrentLocationDescriptionWidget()),
       ],
     );

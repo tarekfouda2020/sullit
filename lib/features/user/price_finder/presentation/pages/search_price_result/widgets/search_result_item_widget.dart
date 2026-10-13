@@ -16,7 +16,7 @@ class SearchResultItemWidget extends StatelessWidget {
         border: Border.all(color: context.colors.borderColor),
       ),
       child: Column(
-        spacing: 20,
+        spacing: 10,
         children: [
           InkWell(
             onTap: () => controller.fetchProductPrice(context, model.id),

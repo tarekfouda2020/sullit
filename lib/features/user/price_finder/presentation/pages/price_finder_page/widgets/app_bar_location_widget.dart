@@ -6,16 +6,13 @@ class AppBarLocationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsetsDirectional.symmetric(
-        horizontal: 20,
-        vertical: 12,
-      ),
+      padding: const EdgeInsetsDirectional.only(start: 20, end: 20, bottom: 16),
       decoration: BoxDecoration(
         color: context.colors.white,
         border: Border(
-          top: BorderSide(
+          bottom: BorderSide(
             color: context.colors.borderColor,
-            width: 0.5,
+            width: 1,
           ),
         ),
       ),

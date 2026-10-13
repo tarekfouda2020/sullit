@@ -8,6 +8,7 @@ import 'package:flutter_tdd/core/helpers/global_notification.dart';
 import 'package:flutter_tdd/core/helpers/google_signin_helper.dart';
 import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/features/user/products/data/data_source/locale_data_sources/compare_products_db.dart';
+import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'core/helpers/di.dart';
@@ -19,10 +20,32 @@ void main() async {
   await Firebase.initializeApp();
   await HiveHelper.instance.init();
   await HiveHelper.instance.openBox<String>(HiveBoxesNames.instoreCart);
+  final Logger logger = Logger(
+    printer: PrettyPrinter(
+      methodCount: 5,
+      errorMethodCount: 8,
+      lineLength: 120,
+      colors: true,
+      printEmojis: true,
+    ),
+  );
+  FlutterError.onError = (FlutterErrorDetails details) {
+    FlutterError.presentError(details);
 
+    const red = '\x1B[31m';
+    const bold = '\x1B[1m';
+    const reset = '\x1B[0m';
+
+    final message = '''
+$red$bold 
+ ${details.exceptionAsString()} 
+
+ $reset
+''';
+    logger.e(message);
+  };
   final prefs = await SharedPreferences.getInstance();
   getIt.registerSingleton<SharedPreferences>(prefs);
-
   await configureDependencies();
   getIt.registerSingleton(ComparedProductsDb());
   await getIt<GlobalNotification>().setupNotification();

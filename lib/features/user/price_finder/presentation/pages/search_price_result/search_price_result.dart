@@ -35,10 +35,9 @@ class _SearchPriceResultState extends State<SearchPriceResult> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // const AppBarLocationWidget(),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              padding: const EdgeInsetsDirectional.fromSTEB(20, 20, 20, 30),
               child: Column(
                 children: [
                   SearchHeaderWidget(controller: controller),
@@ -71,14 +70,8 @@ class _SearchPriceResultState extends State<SearchPriceResult> {
                               ),
                             );
                           },
-                          newPageProgressIndicatorBuilder: (context) => Center(
-                            child: SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(
-                                color: context.colors.primary,
-                              ),
-                            ),
+                          newPageProgressIndicatorBuilder: (context) => const Center(
+                            child: CircularProgressIndicator(),
                           ),
                           noItemsFoundIndicatorBuilder: (context) {
                             return const Padding(

@@ -37,7 +37,7 @@ class _PriceFinderPageState extends State<PriceFinderPage> {
               padding: const EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 24),
               children: [
                 const PriceFinderHeaderWidget(),
-                Gaps.vGap16,
+                Gaps.vGap18,
                  PriceFinderSearchCardWidget(controller: controller),
                 Gaps.vGap16,
                 ScanFieldWidget(

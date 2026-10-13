@@ -2,15 +2,17 @@ part of 'imports.dart';
 
 class PriceFinderSearchCardWidget extends StatelessWidget {
   final PriceFinderController controller;
+
   const PriceFinderSearchCardWidget({
-    super.key, required this.controller,
+    super.key,
+    required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => AutoRouter.of(context).push(
-         SearchPriceResultRoute(),
+        SearchPriceResultRoute(),
       ),
       child: Container(
         width: double.infinity,
@@ -34,12 +36,13 @@ class PriceFinderSearchCardWidget extends StatelessWidget {
               end: 24,
             ),
             child: Transform.scale(
-              scale: 0.75,
+              scale: 0.7,
               child: SvgPicture.asset(
                 Res.searchIcon,
               ),
             ),
           ),
+          hintStyle: AppTextStyle.s13_w400(color: context.colors.textColor),
           hint: tr("searchByProductNameOrBarcode"),
           maxLength: 2,
           fieldTypes: FieldTypes.clickable,

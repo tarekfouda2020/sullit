@@ -24,6 +24,7 @@ class ProductItemWidget extends StatelessWidget {
         ),
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           CachedImage(
             url: product.thumbnailImage,
@@ -32,7 +33,7 @@ class ProductItemWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(50),
           ),
           Gaps.hGap10,
-          Expanded(
+          Flexible(
             child: Text(
               product.name,
               maxLines: 1,
@@ -50,17 +51,13 @@ class ProductItemWidget extends StatelessWidget {
             ),
           ),
           Gaps.hGap10,
-          Flexible(
-            child: Text(
-              product.unit,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: AppTextStyle.s12_w400(
-                color: context.colors.textColor,
-              ),
+          Text(
+            product.unit,
+            maxLines: 1,
+            style: AppTextStyle.s12_w400(
+              color: context.colors.textColor,
             ),
           ),
-          Gaps.hGap9,
         ],
       ),
     );

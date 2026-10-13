@@ -22,11 +22,12 @@ class SearchHeaderWidget extends StatelessWidget {
                 suffixIcon: Padding(
                   padding: const EdgeInsetsDirectional.only(end: 24),
                   child: Transform.scale(
-                    scale: 0.75,
+                    scale: 0.7,
                     child: SvgPicture.asset(Res.searchIcon),
                   ),
                 ),
                 onChange: (value) => controller.whileWriting(value),
+                hintStyle: AppTextStyle.s13_w400(color: context.colors.textColor),
                 hint: tr("searchByProductNameOrBarcode"),
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.text,

@@ -25,7 +25,7 @@ class PriceFinderHeaderWidget extends StatelessWidget {
           tr('priceFinder'),
           style: AppTextStyle.s22_w700(color: context.colors.black),
         ),
-        Gaps.vGap6,
+        Gaps.vGap10,
         Text(
           tr('findTheBestPriceForAnyProductNearYou.'),
           style: AppTextStyle.s14_w400(color: context.colors.textColor),
