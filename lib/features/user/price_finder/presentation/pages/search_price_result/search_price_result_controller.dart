@@ -3,7 +3,7 @@ part of 'search_price_result_imports.dart';
 class SearchPriceController {
   final TextEditingController searchFieldCtr = TextEditingController();
 
-  final GenericBloc<List<ProductCard>> productsBloc = GenericBloc([]);
+  final GenericBloc<int> productsBloc = GenericBloc<int>(0);
   final GenericBloc<String> searchKeyBloc = GenericBloc('');
   final GenericBloc<bool> showClearIcon = GenericBloc(false);
   final GenericBloc<int?> savedComparisonIdBloc = GenericBloc<int?>(null);
@@ -36,22 +36,26 @@ class SearchPriceController {
     return null;
   }
 
-  Future<void> getPopularProducts(int currentPage, {bool refresh = true}) async {
+  Future<void> getPopularProducts(int page, {bool refresh = true}) async {
     try {
-      final params = productsParams(currentPage, refresh);
+      final params = productsParams(page, refresh);
       final data = await GetCategoryProducts().call(params);
 
       final isLastPage = data.length < AppConstants.instance.paginationLimit;
+      if (page == 1) {
+        pagingController.itemList = [];
+      }
       if (isLastPage) {
         pagingController.appendLastPage(data);
       } else {
-        pagingController.appendPage(data, currentPage + 1);
+        final nextPageKey = page + 1;
+        pagingController.appendPage(data, nextPageKey);
       }
 
-      productsBloc.onUpdateData(pagingController.itemList ?? []);
+      productsBloc.onUpdateData(pagingController.itemList?.length ?? 0);
       searchKeyBloc.onUpdateData(searchFieldCtr.text.trim());
     } catch (e) {
-      pagingController.error = e;
+      pagingController.error = "something went wrong try again later";
     }
   }
 
@@ -133,6 +137,10 @@ class SearchPriceController {
   }
 
   Future<void> fetchProductPrice(BuildContext context, int id) async {
+    if(!context.isAuth){
+      CustomToast.showAuthDialog(context);
+      return ;
+    }
     if (_hasActiveComparison()) {
       final confirmed = await showDialog<bool>(
         context: context,
@@ -164,12 +172,5 @@ class SearchPriceController {
     syncSavedComparisonId();
   }
 
-  void dispose() {
-    searchFieldCtr.dispose();
-    productsBloc.close();
-    searchKeyBloc.close();
-    showClearIcon.close();
-    savedComparisonIdBloc.close();
-    pagingController.dispose();
-  }
+
 }

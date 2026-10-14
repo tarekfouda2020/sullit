@@ -15,11 +15,7 @@ class _PriceFinderPageState extends State<PriceFinderPage> {
     super.initState();
     controller.getPopularSearches();
   }
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +27,7 @@ class _PriceFinderPageState extends State<PriceFinderPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const AppBarLocationWidget(),
+          // const AppBarLocationWidget(),
           Expanded(
             child: ListView(
               padding: const EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 24),

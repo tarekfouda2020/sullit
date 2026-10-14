@@ -1,3 +1,5 @@
+import 'package:flutter_tdd/features/user/best_sellers/data/enums/shop_type_enum.dart';
+
 class PriceFinderDeal {
   final String storeName;
   final int rating;
@@ -10,6 +12,8 @@ class PriceFinderDeal {
   final int? branchId;
   final int shopId;
   final String currencySymbol;
+  final ShopTypeEnum type;
+  final String typeLabel;
 
   PriceFinderDeal({
     required this.storeName,
@@ -23,5 +27,16 @@ class PriceFinderDeal {
     this.branchId,
     required this.shopId,
     required this.currencySymbol,
+    required this.type,
+    required this.typeLabel,
   });
+
+  static ShopTypeEnum shopTypeFromKey(String type) {
+    return switch (type) {
+      'merchant' => ShopTypeEnum.merchant,
+      'pharmacy' => ShopTypeEnum.pharmacy,
+      'restaurant' => ShopTypeEnum.restaurant,
+      _ => ShopTypeEnum.merchant,
+    };
+  }
 }

@@ -12,9 +12,6 @@ class InstoreVariantSheetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final variants = [...?productDetails.product.variants]
-      ..sort((a, b) => (b.sortOrder ?? 0).compareTo(a.sortOrder ?? 0));
-
     return Container(
       padding: const EdgeInsets.only(top: 29, left: 20, right: 20, bottom: 10),
       margin: const EdgeInsets.only(top: kToolbarHeight + 15),
@@ -52,4 +49,11 @@ class InstoreVariantSheetWidget extends StatelessWidget {
       ),
     );
   }
+
+
+
+  List<Variant> get variants => [...?productDetails.product.variants]
+    ..sort((a, b) => (b.sortOrder ?? 0).compareTo(a.sortOrder ?? 0));
+
+
 }

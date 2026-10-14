@@ -2,16 +2,15 @@
 
 class ApiNames {
 
+  static const String baseUrl = "${url}api/v4/";
 
   static const String url = "https://$domain/";
 
   ///staging
    static const String domain = "staging.mushrifcoop.com";
-  static const String baseUrl = "${url}api/v4/";
 
   ///production
   //  static const String domain = "admin.mushrifcoop.com";
-  // static const String baseUrl = "${url}api/v4/";
 
   static const String iqUrl = "https://us1.locationiq.com/v1/";
 

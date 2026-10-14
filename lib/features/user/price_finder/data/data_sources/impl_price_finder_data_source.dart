@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_dynamic_calls
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_tdd/core/errors/failures.dart';
 import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
@@ -14,10 +16,8 @@ import '../models/search_query_model/search_query_model.dart';
 @Injectable(as: PriceFinderDataSource)
 class ImplPriceFinderDataSource extends PriceFinderDataSource {
   @override
-  Future<Either<Failure, PriceComparisonModel>> createPriceComparison(
-    CreatePriceComparisonParams params,
-  ) async {
-    final model = HttpRequestModel(
+  Future<Either<Failure, PriceComparisonModel>> createPriceComparison(CreatePriceComparisonParams params) async {
+    var model = HttpRequestModel(
       url: ApiNames.priceComparisons + params.queryParams(),
       requestMethod: RequestMethod.post,
       responseType: ResType.model,
@@ -26,26 +26,27 @@ class ImplPriceFinderDataSource extends PriceFinderDataSource {
       toJsonFunc: (json) => PriceComparisonModel.fromJson(json),
     );
 
-    return await GenericHttpImpl<PriceComparisonModel>().call(model);
+    return await GenericHttpImpl<PriceComparisonModel>()(model);
   }
 
   @override
   Future<Either<Failure, PriceComparisonModel>> getPriceComparison(int id) async {
-    final model = HttpRequestModel(
+    var model = HttpRequestModel(
       url: ApiNames.priceComparison(id),
       requestMethod: RequestMethod.get,
       responseType: ResType.model,
       responseKey: (data) => data['data'],
       showLoader: false,
+      refresh: true,
       toJsonFunc: (json) => PriceComparisonModel.fromJson(json),
     );
 
-    return await GenericHttpImpl<PriceComparisonModel>().call(model);
+    return await GenericHttpImpl<PriceComparisonModel>()(model);
   }
 
   @override
   Future<Either<Failure, List<SearchQueryModel>>> getPopularSearches() async {
-    final model = HttpRequestModel(
+    var model = HttpRequestModel(
       url: ApiNames.popularSearches,
       requestMethod: RequestMethod.get,
       responseType: ResType.list,
@@ -59,12 +60,12 @@ class ImplPriceFinderDataSource extends PriceFinderDataSource {
       ),
     );
 
-    return await GenericHttpImpl<List<SearchQueryModel>>().call(model);
+    return await GenericHttpImpl<List<SearchQueryModel>>()(model);
   }
 
   @override
   Future<Either<Failure, PriceFinderResultModel>> getPriceResults(int id) async {
-    final model = HttpRequestModel(
+    var model = HttpRequestModel(
       url: ApiNames.priceComparisonsResults(id),
       requestMethod: RequestMethod.get,
       responseType: ResType.list,
@@ -73,6 +74,6 @@ class ImplPriceFinderDataSource extends PriceFinderDataSource {
       refresh: true,
       toJsonFunc: (json) => PriceFinderResultModel.fromJson(json),
     );
-    return await GenericHttpImpl<PriceFinderResultModel>().call(model);
+    return await GenericHttpImpl<PriceFinderResultModel>()(model);
   }
 }

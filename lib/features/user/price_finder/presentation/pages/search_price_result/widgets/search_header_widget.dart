@@ -67,6 +67,7 @@ class SearchHeaderWidget extends StatelessWidget {
         ),
         Gaps.vGap24,
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               tr('searchResults'),
@@ -74,12 +75,10 @@ class SearchHeaderWidget extends StatelessWidget {
                 color: context.colors.black,
               ),
             ),
-            const Spacer(),
-            BlocBuilder<GenericBloc<List<ProductCard>>, GenericState<List<ProductCard>>>(
+
+            BlocBuilder<GenericBloc<int>, GenericState<int>>(
               bloc: controller.productsBloc,
               builder: (context, state) {
-                final itemsCount = state.data.length;
-
                 return Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 10,
@@ -93,7 +92,7 @@ class SearchHeaderWidget extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    '$itemsCount ${tr("items")}',
+                    '${state.data} ${tr("items")}',
                     style: AppTextStyle.s10_w700(
                       color: context.colors.darkGreen,
                     ),

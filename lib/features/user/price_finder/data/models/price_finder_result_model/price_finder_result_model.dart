@@ -58,6 +58,8 @@ class PriceFinderDealModel with _$PriceFinderDealModel {
     @JsonKey(name: 'branch_id') int? branchId,
     @JsonKey(name: 'shop_id') required int shopId,
     @JsonKey(name: 'currency_symbol') required String currencySymbol,
+    required String type,
+    @JsonKey(name: 'type_label') required String typeLabel,
   }) = _PriceFinderDealModel;
 
   factory PriceFinderDealModel.fromJson(
@@ -78,6 +80,8 @@ class PriceFinderDealModel with _$PriceFinderDealModel {
       branchId: branchId,
       shopId: shopId,
       currencySymbol: currencySymbol,
+      type: PriceFinderDeal.shopTypeFromKey(type),
+      typeLabel: typeLabel,
     );
   }
 }

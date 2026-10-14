@@ -37,7 +37,7 @@ class _PriceFinderWorkingState extends State<PriceFinderWorking> with SingleTick
       body: BlocBuilder<GenericBloc<PriceComparisonDomainModel?>, GenericState<PriceComparisonDomainModel?>>(
         bloc: controller.priceComparisonCubit,
         builder: (context, state) {
-          final comparison = state.data;
+          PriceComparisonDomainModel? comparison = state.data;
 
           return Padding(
             padding: const EdgeInsets.symmetric(
@@ -50,7 +50,10 @@ class _PriceFinderWorkingState extends State<PriceFinderWorking> with SingleTick
                   scaleAnimation: controller.scaleAnimation,
                 ),
                 Gaps.vGap26,
-                Text(tr('working...'), style: AppTextStyle.s24_w800(color: context.colors.black)),
+                Text(
+                    tr('working...'),
+                    style: AppTextStyle.s24_w800(color: context.colors.black)
+                ),
                 Gaps.vGap10,
                 const Center(child: SearchingAreaNameWidget()),
                 Gaps.vGap20,

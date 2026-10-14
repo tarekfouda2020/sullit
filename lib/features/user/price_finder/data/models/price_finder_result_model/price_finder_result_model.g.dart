@@ -48,6 +48,8 @@ _$_PriceFinderDealModel _$$_PriceFinderDealModelFromJson(
       branchId: (json['branch_id'] as num?)?.toInt(),
       shopId: (json['shop_id'] as num).toInt(),
       currencySymbol: json['currency_symbol'] as String,
+      type: json['type'] as String,
+      typeLabel: json['type_label'] as String,
     );
 
 Map<String, dynamic> _$$_PriceFinderDealModelToJson(
@@ -64,4 +66,6 @@ Map<String, dynamic> _$$_PriceFinderDealModelToJson(
       'branch_id': instance.branchId,
       'shop_id': instance.shopId,
       'currency_symbol': instance.currencySymbol,
+      'type': instance.type,
+      'type_label': instance.typeLabel,
     };

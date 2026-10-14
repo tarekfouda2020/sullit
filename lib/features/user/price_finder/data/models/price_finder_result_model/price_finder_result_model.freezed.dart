@@ -321,6 +321,9 @@ mixin _$PriceFinderDealModel {
   int get shopId => throw _privateConstructorUsedError;
   @JsonKey(name: 'currency_symbol')
   String get currencySymbol => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  @JsonKey(name: 'type_label')
+  String get typeLabel => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -345,7 +348,9 @@ abstract class $PriceFinderDealModelCopyWith<$Res> {
       @JsonKey(name: 'variant_id') int variantId,
       @JsonKey(name: 'branch_id') int? branchId,
       @JsonKey(name: 'shop_id') int shopId,
-      @JsonKey(name: 'currency_symbol') String currencySymbol});
+      @JsonKey(name: 'currency_symbol') String currencySymbol,
+      String type,
+      @JsonKey(name: 'type_label') String typeLabel});
 }
 
 /// @nodoc
@@ -373,6 +378,8 @@ class _$PriceFinderDealModelCopyWithImpl<$Res,
     Object? branchId = freezed,
     Object? shopId = null,
     Object? currencySymbol = null,
+    Object? type = null,
+    Object? typeLabel = null,
   }) {
     return _then(_value.copyWith(
       storeName: null == storeName
@@ -419,6 +426,14 @@ class _$PriceFinderDealModelCopyWithImpl<$Res,
           ? _value.currencySymbol
           : currencySymbol // ignore: cast_nullable_to_non_nullable
               as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      typeLabel: null == typeLabel
+          ? _value.typeLabel
+          : typeLabel // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -442,7 +457,9 @@ abstract class _$$_PriceFinderDealModelCopyWith<$Res>
       @JsonKey(name: 'variant_id') int variantId,
       @JsonKey(name: 'branch_id') int? branchId,
       @JsonKey(name: 'shop_id') int shopId,
-      @JsonKey(name: 'currency_symbol') String currencySymbol});
+      @JsonKey(name: 'currency_symbol') String currencySymbol,
+      String type,
+      @JsonKey(name: 'type_label') String typeLabel});
 }
 
 /// @nodoc
@@ -467,6 +484,8 @@ class __$$_PriceFinderDealModelCopyWithImpl<$Res>
     Object? branchId = freezed,
     Object? shopId = null,
     Object? currencySymbol = null,
+    Object? type = null,
+    Object? typeLabel = null,
   }) {
     return _then(_$_PriceFinderDealModel(
       storeName: null == storeName
@@ -513,6 +532,14 @@ class __$$_PriceFinderDealModelCopyWithImpl<$Res>
           ? _value.currencySymbol
           : currencySymbol // ignore: cast_nullable_to_non_nullable
               as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      typeLabel: null == typeLabel
+          ? _value.typeLabel
+          : typeLabel // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -534,7 +561,9 @@ class _$_PriceFinderDealModel extends _PriceFinderDealModel
       @JsonKey(name: 'variant_id') required this.variantId,
       @JsonKey(name: 'branch_id') this.branchId,
       @JsonKey(name: 'shop_id') required this.shopId,
-      @JsonKey(name: 'currency_symbol') required this.currencySymbol})
+      @JsonKey(name: 'currency_symbol') required this.currencySymbol,
+      required this.type,
+      @JsonKey(name: 'type_label') required this.typeLabel})
       : super._();
 
   factory _$_PriceFinderDealModel.fromJson(Map<String, dynamic> json) =>
@@ -572,10 +601,15 @@ class _$_PriceFinderDealModel extends _PriceFinderDealModel
   @override
   @JsonKey(name: 'currency_symbol')
   final String currencySymbol;
+  @override
+  final String type;
+  @override
+  @JsonKey(name: 'type_label')
+  final String typeLabel;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PriceFinderDealModel(storeName: $storeName, rating: $rating, distanceKm: $distanceKm, price: $price, savings: $savings, isLowest: $isLowest, productId: $productId, variantId: $variantId, branchId: $branchId, shopId: $shopId, currencySymbol: $currencySymbol)';
+    return 'PriceFinderDealModel(storeName: $storeName, rating: $rating, distanceKm: $distanceKm, price: $price, savings: $savings, isLowest: $isLowest, productId: $productId, variantId: $variantId, branchId: $branchId, shopId: $shopId, currencySymbol: $currencySymbol, type: $type, typeLabel: $typeLabel)';
   }
 
   @override
@@ -593,7 +627,9 @@ class _$_PriceFinderDealModel extends _PriceFinderDealModel
       ..add(DiagnosticsProperty('variantId', variantId))
       ..add(DiagnosticsProperty('branchId', branchId))
       ..add(DiagnosticsProperty('shopId', shopId))
-      ..add(DiagnosticsProperty('currencySymbol', currencySymbol));
+      ..add(DiagnosticsProperty('currencySymbol', currencySymbol))
+      ..add(DiagnosticsProperty('type', type))
+      ..add(DiagnosticsProperty('typeLabel', typeLabel));
   }
 
   @override
@@ -618,7 +654,10 @@ class _$_PriceFinderDealModel extends _PriceFinderDealModel
                 other.branchId == branchId) &&
             (identical(other.shopId, shopId) || other.shopId == shopId) &&
             (identical(other.currencySymbol, currencySymbol) ||
-                other.currencySymbol == currencySymbol));
+                other.currencySymbol == currencySymbol) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.typeLabel, typeLabel) ||
+                other.typeLabel == typeLabel));
   }
 
   @JsonKey(ignore: true)
@@ -635,7 +674,9 @@ class _$_PriceFinderDealModel extends _PriceFinderDealModel
       variantId,
       branchId,
       shopId,
-      currencySymbol);
+      currencySymbol,
+      type,
+      typeLabel);
 
   @JsonKey(ignore: true)
   @override
@@ -665,8 +706,10 @@ abstract class _PriceFinderDealModel extends PriceFinderDealModel {
       @JsonKey(name: 'variant_id') required final int variantId,
       @JsonKey(name: 'branch_id') final int? branchId,
       @JsonKey(name: 'shop_id') required final int shopId,
-      @JsonKey(name: 'currency_symbol')
-      required final String currencySymbol}) = _$_PriceFinderDealModel;
+      @JsonKey(name: 'currency_symbol') required final String currencySymbol,
+      required final String type,
+      @JsonKey(name: 'type_label')
+      required final String typeLabel}) = _$_PriceFinderDealModel;
   const _PriceFinderDealModel._() : super._();
 
   factory _PriceFinderDealModel.fromJson(Map<String, dynamic> json) =
@@ -704,6 +747,11 @@ abstract class _PriceFinderDealModel extends PriceFinderDealModel {
   @override
   @JsonKey(name: 'currency_symbol')
   String get currencySymbol;
+  @override
+  String get type;
+  @override
+  @JsonKey(name: 'type_label')
+  String get typeLabel;
   @override
   @JsonKey(ignore: true)
   _$$_PriceFinderDealModelCopyWith<_$_PriceFinderDealModel> get copyWith =>

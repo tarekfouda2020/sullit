@@ -13,14 +13,11 @@ class PriceComparisonPage extends StatefulWidget {
 }
 
 class _PriceComparisonPageState extends State<PriceComparisonPage> {
-  late final PriceComparisonController controller;
+  late final PriceComparisonController controller = PriceComparisonController();
 
   @override
   void initState() {
     super.initState();
-
-    controller = PriceComparisonController();
-
     controller.getPriceResults(widget.id);
   }
 
@@ -35,14 +32,11 @@ class _PriceComparisonPageState extends State<PriceComparisonPage> {
       body: BlocBuilder<GenericBloc<PriceFinderResult?>, GenericState<PriceFinderResult?>>(
         bloc: controller.priceResultBloc,
         builder: (context, state) {
-          final result = state.data;
-
-          if (result == null) {
+          PriceFinderResult? result = state.data;
+          if (state is !GenericUpdateState) {
             return const PriceComparisonShimmerWidget();
           }
-
-          final offers = result.offers;
-
+          var offers = result!.offers;
           return ListView(
             padding: const EdgeInsets.symmetric(
               horizontal: 20,

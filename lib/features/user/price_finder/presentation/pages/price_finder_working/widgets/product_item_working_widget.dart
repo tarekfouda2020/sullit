@@ -11,11 +11,7 @@ class ProductItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(
-        horizontal: 10,
-        vertical: 8,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       decoration: BoxDecoration(
         color: context.colors.white,
         borderRadius: BorderRadius.circular(22),
@@ -25,6 +21,7 @@ class ProductItemWidget extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           CachedImage(
             url: product.thumbnailImage,
@@ -58,6 +55,7 @@ class ProductItemWidget extends StatelessWidget {
               color: context.colors.textColor,
             ),
           ),
+          Gaps.hGap10,
         ],
       ),
     );

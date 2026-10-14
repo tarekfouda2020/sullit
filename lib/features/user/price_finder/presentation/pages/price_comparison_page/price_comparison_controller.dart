@@ -21,8 +21,10 @@ class PriceComparisonController {
       onAddCartFunc: () {
         FacebookEventsHelper.instance.productAddToCart(
             id: data!.product.id,
-            price: data.product.name);
+            price: data.product.name
+        );
         CustomToast.showSimpleToast(msg: "Product Added to you cart",type: ToastType.success);
+        getIt<CartHelper>().updateCartCount(context, 1);
 
     },);
   }

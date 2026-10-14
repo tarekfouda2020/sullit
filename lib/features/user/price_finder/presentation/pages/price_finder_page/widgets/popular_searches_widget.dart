@@ -17,31 +17,28 @@ class PopularSearchesWidget extends StatelessWidget {
           style: AppTextStyle.s16_w700(color: context.colors.black),
         ),
         Gaps.vGap12,
-        BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
-          bloc: controller.popularLoadingBloc,
-          builder: (context, loadingState) {
-            if (loadingState.data) return const PopularSearchesShimmerWidget();
-
-            return BlocBuilder<GenericBloc<List<SearchQuery>>, GenericState<List<SearchQuery>>>(
-              bloc: controller.popularSearchesBloc,
-              builder: (context, state) {
-                final items = state.data;
-                if (items.isEmpty) return const SizedBox.shrink();
-                return Wrap(
-                  spacing: 7,
-                  runSpacing: 8,
-                  children: items.map((item) {
-                    return GestureDetector(
-                      onTap: () => controller.onPopularTap(context, item),
-                      child: PopularSearchesItemWidget(
-                        name: item.query,
-                        category: item.categoryName ?? '',
-                      ),
-                    );
-                  }).toList(),
-                );
-              },
-            );
+        BlocBuilder<GenericBloc<List<SearchQuery>>, GenericState<List<SearchQuery>>>(
+          bloc: controller.popularSearchesBloc,
+          builder: (context, state) {
+            if(state is GenericUpdateState){
+              if (state.data.isEmpty) return Gaps.empty;
+              return Wrap(
+                spacing: 7,
+                runSpacing: 8,
+                children: List.generate(state.data.length, (index) {
+                  SearchQuery item = state.data[index];
+                  return GestureDetector(
+                    onTap: () => controller.onPopularTap(context, item),
+                    child: PopularSearchesItemWidget(
+                      name: item.query,
+                      category: item.categoryName ?? '',
+                    ),
+                  );
+                },),
+              );
+            }else{
+              return  const PopularSearchesShimmerWidget();
+            }
           },
         ),
       ],

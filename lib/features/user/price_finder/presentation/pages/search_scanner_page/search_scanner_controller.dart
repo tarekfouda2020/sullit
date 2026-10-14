@@ -25,10 +25,8 @@ class SearchScannerController {
     _isScanned = false;
   }
 
-  Future<void> submitBarcodeText(
-    BuildContext context,
-  ) async {
-    final sku = barcodeTextController.text.trim();
+  Future<void> submitBarcodeText(BuildContext context) async {
+    String sku = barcodeTextController.text.trim();
 
     if (sku.isEmpty) return;
 
@@ -70,6 +68,5 @@ class SearchScannerController {
 
   void dispose() {
     scannerController.dispose();
-    barcodeTextController.dispose();
   }
 }

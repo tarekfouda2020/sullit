@@ -18,6 +18,8 @@ class UserLocationParams {
     return {
       "latitude": loc.latitude,
       "longitude": loc.longitude,
+      // "latitude": 30.852772,
+      // "longitude": 31.284331,
     };
   }
 }

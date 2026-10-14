@@ -15,119 +15,115 @@ class BuildHomeView extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-          child: SingleChildScrollView(
+          child: ListView(
             controller: controller.scrollController,
             padding: Dimens.paddingVertical10PXHorizontal20PX,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SearchProductField(
+            children: [
+              SearchProductField(
+                controller: controller,
+              ),
+              Gaps.vGap16,
+              const AiAndPriceFinderCardWidget(),
+              Gaps.vGap16,
+              BuildHomeSwiper(
+                slider: homeDomainModel.sliders,
+                controller: controller,
+              ),
+              Gaps.vGap16,
+              Text(
+                tr("shopBy"),
+                style: AppTextStyle.s16_w700(
+                  color: context.colors.black,
+                ),
+              ),
+              Gaps.vGap8,
+              ShopTypeShortCutsWidget(
+                controller: controller,
+              ),
+              Gaps.vGap20,
+              TrackSellerOrderWidget(
+                currentOrders: homeDomainModel.currentOrders,
+                controller: controller,
+              ),
+              if (context.isAuth == true)
+                ContinueShoppingWidget(
                   controller: controller,
+                  recentlyViewedProducts: homeDomainModel.recentlyViewedProducts,
                 ),
-                Gaps.vGap16,
-                const AiAndPriceFinderCardWidget(),
-                Gaps.vGap16,
-                BuildHomeSwiper(
-                  slider: homeDomainModel.sliders,
+              Gaps.vGap16,
+              Image.asset(
+                Res.specialOfferBanner,
+              ),
+              Gaps.vGap16,
+              OnSaleOffersFormWidget(
+                controller: controller,
+              ),
+              Gaps.vGap16,
+              Image.asset(
+                Res.offerLocationBanner,
+              ),
+              Gaps.vGap16,
+              BuildTopSellers(
+                topSellers: homeDomainModel.topSellers,
+              ),
+              if (context.isAuth == true) ...[
+                Gaps.vGap24,
+                YourOrdersWidget(
                   controller: controller,
+                  recentlyOrderedProducts: homeDomainModel.recentlyOrderedProducts,
                 ),
-                Gaps.vGap16,
-                Text(
-                  tr("shopBy"),
-                  style: AppTextStyle.s16_w700(
-                    color: context.colors.black,
-                  ),
-                ),
-                Gaps.vGap8,
-                ShopTypeShortCutsWidget(
-                  controller: controller,
-                ),
-                Gaps.vGap20,
-                TrackSellerOrderWidget(
-                  currentOrders: homeDomainModel.currentOrders,
-                  controller: controller,
-                ),
-                if (context.isAuth == true)
-                  ContinueShoppingWidget(
-                    controller: controller,
-                    recentlyViewedProducts: homeDomainModel.recentlyViewedProducts,
-                  ),
-                Gaps.vGap16,
-                Image.asset(
-                  Res.specialOfferBanner,
-                ),
-                Gaps.vGap16,
-                OnSaleOffersFormWidget(
-                  controller: controller,
-                ),
-                Gaps.vGap16,
-                Image.asset(
-                  Res.offerLocationBanner,
-                ),
-                Gaps.vGap16,
-                BuildTopSellers(
-                  topSellers: homeDomainModel.topSellers,
-                ),
-                if (context.isAuth == true) ...[
-                  Gaps.vGap24,
-                  YourOrdersWidget(
-                    controller: controller,
-                    recentlyOrderedProducts: homeDomainModel.recentlyOrderedProducts,
-                  ),
-                ],
-                PharmacyHomeSectionWidget(
-                  controller: controller,
-                ),
-                if (homeDomainModel.pharmacyShops.isNotEmpty) ...[
-                  Gaps.vGap16,
-                  PharmSloganBannerWidget(
-                    firstText: tr('haveAPrescriptionGetStarted'),
-                    secondText: tr('uploadNow'),
-                    onTap: () => controller.onPressAttachPrescription(context),
-                  ),
-                  Gaps.vGap16,
-                ],
-                VipOffersFormWidget(
-                  controller: controller,
-                ),
-                Gaps.vGap16,
-                if (homeDomainModel.bannersTwo.isNotEmpty) Gaps.vGap10,
-                BuildBanners(
-                  banners: homeDomainModel.bannersTwo,
-                  controller: controller,
-                ),
-                if (homeDomainModel.bannersTwo.isNotEmpty) Gaps.vGap16,
-                NewArrivalOffersFormWidget(
-                  controller: controller,
-                ),
-                if (homeDomainModel.shop.isNotEmpty)
-                  ProductSectionsFormWidget(
-                    controller: controller,
-                  ),
-                Gaps.vGap16,
-                BestRatedOffersFormWidget(
-                  controller: controller,
-                ),
-                if (homeDomainModel.flashSales != null)
-                  BuildDeals(
-                    flashSales: homeDomainModel.flashSales!,
-                    controller: controller,
-                  ),
-                Gaps.vGap20,
               ],
-            ),
+              PharmacyHomeSectionWidget(
+                controller: controller,
+              ),
+              if (homeDomainModel.pharmacyShops.isNotEmpty) ...[
+                Gaps.vGap16,
+                PharmSloganBannerWidget(
+                  firstText: tr('haveAPrescriptionGetStarted'),
+                  secondText: tr('uploadNow'),
+                  onTap: () => controller.onPressAttachPrescription(context),
+                ),
+                Gaps.vGap16,
+              ],
+              VipOffersFormWidget(
+                controller: controller,
+              ),
+              Gaps.vGap16,
+              if (homeDomainModel.bannersTwo.isNotEmpty) Gaps.vGap10,
+              BuildBanners(
+                banners: homeDomainModel.bannersTwo,
+                controller: controller,
+              ),
+              if (homeDomainModel.bannersTwo.isNotEmpty) Gaps.vGap16,
+              NewArrivalOffersFormWidget(
+                controller: controller,
+              ),
+              if (homeDomainModel.shop.isNotEmpty)
+                ProductSectionsFormWidget(
+                  controller: controller,
+                ),
+              Gaps.vGap16,
+              BestRatedOffersFormWidget(
+                controller: controller,
+              ),
+              if (homeDomainModel.flashSales != null)
+                BuildDeals(
+                  flashSales: homeDomainModel.flashSales!,
+                  controller: controller,
+                ),
+              Gaps.vGap20,
+            ],
           ),
         ),
-        Container(
-          color: context.colors.customBackground,
-          padding: const EdgeInsetsDirectional.fromSTEB(
-            20,
-            5,
-            20,
-            37,
-          ),
-          child: Image.asset(
-            Res.vipBanner,
+        if(!context.isShareHolder)
+        GestureDetector(
+          onTap: () => controller.onPressSeeOffers(context),
+          child: Container(
+            color: context.colors.customBackground,
+            padding: const EdgeInsetsDirectional.fromSTEB(20, 5, 20, 37),
+            child: Image.asset(
+              Res.vipBanner,
+            ),
           ),
         ),
       ],
