@@ -13,7 +13,7 @@ class UserLocationParams {
   }
 
   Map<String, dynamic> toJson() {
-    final loc = location;
+    LatLng? loc = location;
     if (loc == null) return {};
     return {
       "latitude": loc.latitude,
