@@ -47,15 +47,16 @@ class SearchResultItemWidget extends StatelessWidget {
                         style: AppTextStyle.s15_w400(color: context.colors.black),
                       ),
                       Text(
-                        model.barcode,
-                        style: AppTextStyle.s13_w400(color: context.colors.textColor),
+                        "Barcode : ${model.barcode}",
+                        style: AppTextStyle.s13_w500(color: context.colors.textColor),
                       ),
                     ],
                   ),
                 ),
                 Gaps.hGap12,
                 Column(
-                  spacing: 10,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 5,
                   children: [
                     Text(
                       "From",
@@ -63,7 +64,7 @@ class SearchResultItemWidget extends StatelessWidget {
                     ),
                     DirhamPrice(
                       amount: model.priceHighLow,
-                      textStyle: AppTextStyle.s18_w700(color: context.colors.primary),
+                      textStyle: AppTextStyle.s17_w800(color: context.colors.primary),
                     ),
                   ],
                 ),

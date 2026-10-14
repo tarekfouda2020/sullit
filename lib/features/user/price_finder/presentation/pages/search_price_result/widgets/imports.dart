@@ -8,7 +8,6 @@ import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/core/widgets/DefaultButton.dart';
 import 'package:flutter_tdd/core/widgets/custom_safe_are.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../../../../../core/bloc/generic_cubit/generic_cubit.dart';
 import '../../../../../../../core/constants/dimens.dart';
