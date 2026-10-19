@@ -34,10 +34,8 @@ class SearchScannerController {
   }
 
   Future<void> getProductWithSku(BuildContext context, String sku) async {
-
-
     await Future.delayed(const Duration(milliseconds: 180));
-
+    _isScanned = true;
     getIt<LoadingHelper>().showLoadingDialog();
 
     ProductDetailsDomainModel? value = await GetSkuProduct().call(sku);

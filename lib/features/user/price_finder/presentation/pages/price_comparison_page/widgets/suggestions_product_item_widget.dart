@@ -182,7 +182,7 @@ class SuggestionsProductItemWidget extends StatelessWidget {
               ),
 
               GestureDetector(
-                onTap: () => controller.addProductToCart(context, deal.variantId,deal.branchId!),
+                onTap: () => controller.addProductToCart(context, deal.variantId,deal.branchId),
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 8),
                   decoration: BoxDecoration(
