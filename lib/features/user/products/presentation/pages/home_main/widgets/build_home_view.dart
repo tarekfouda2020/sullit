@@ -115,17 +115,18 @@ class BuildHomeView extends StatelessWidget {
             ],
           ),
         ),
-        if(!context.isShareHolder)
-        GestureDetector(
-          onTap: () => controller.onPressSeeOffers(context),
-          child: Container(
-            color: context.colors.customBackground,
-            padding: const EdgeInsetsDirectional.fromSTEB(20, 5, 20, 37),
-            child: Image.asset(
-              Res.vipBanner,
+        if (!context.isShareHolder)
+          GestureDetector(
+            onTap: () => controller.onPressSeeOffers(context),
+            child: Container(
+              color: context.colors.customBackground,
+              padding: const EdgeInsetsDirectional.fromSTEB(20, 5, 20, 37),
+              child: Image.asset(
+                Res.vipBanner,
+              ),
             ),
+              // VipMemberShipItemWidget(),
           ),
-        ),
       ],
     );
   }

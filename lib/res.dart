@@ -35,6 +35,7 @@ class Res {
   static const String offerLocationBanner = "assets/images/offer_location_banner.png";
   static const String specialOfferBanner = "assets/images/special_offers_banner.png";
   static const String vipBanner = "assets/images/vip_member_banner.png";
+  static const String crownIcon = "assets/images/crown_icon.png";
   static const String splashLogo = "assets/images/splash_logo.png";
   static const String notificationBg = "assets/images/notification_bg.png";
   static const String appBarLogo = "assets/images/app_bar_logo.svg";
@@ -145,7 +146,7 @@ class Res {
   static const String crownHeadIcon = "assets/images/crown_head_icon.svg";
   static const String crownVipMark = "assets/images/crown_vip_mark.svg";
   static const String accountGoldIcon = "assets/images/account_icon.svg";
-  static const String crownIcon = "assets/images/crown_icon.svg";
+  // static const String crownIcon = "assets/images/crown_icon.svg";
   static const String shareHolderImage = "assets/images/shareholder.png";
 
   static const String billOffIcon = "assets/images/no_alarm.svg";

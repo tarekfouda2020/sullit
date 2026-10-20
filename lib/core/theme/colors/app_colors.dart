@@ -41,6 +41,8 @@ abstract class AppColors {
 
   Color get black;
 
+  Color get darkGold;
+
   Color get darkPurple;
 
   Color get darkGreen2;
