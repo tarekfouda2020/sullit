@@ -19,6 +19,13 @@ class SellerDetailsAppBar extends StatelessWidget {
       elevation: 0,
       automaticallyImplyLeading: true,
       leading: const BackButton(color: Colors.black),
+      actions: [
+        if (shop?.id != null)
+          IconButton(
+            icon: const Icon(Icons.share, color: Colors.black),
+            onPressed: () => controller.onShareShop(context),
+          ),
+      ],
       title: Text(
         shop?.name ?? "",
         style: AppTextStyle.s20_w700(color: context.colors.black),

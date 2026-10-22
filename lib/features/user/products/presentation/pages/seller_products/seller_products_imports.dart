@@ -7,6 +7,8 @@ import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/debounce_helper.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/services/deep_link_service.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:flutter_tdd/core/helpers/instore_cart_helper.dart';
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/core/models/domain_models/brand_domain_model.dart';

@@ -25,7 +25,7 @@ class ChangePasswordController {
           }
         });
       } else {
-        PasswordSet().call(
+         PasswordSet().call(
           SetNewPasswordParams(
             code: code.text,
             password: password.text,

@@ -428,6 +428,16 @@ class SellerProductsController {
     ];
   }
 
-
+  void onShareShop(BuildContext context) {
+    final shop = shopCubit.state.data;
+    if (shop?.id == null) return;
+    final link = getIt<DeepLinkService>()
+        .generateShopLink(shop!.id!, merchant: 1);
+    final shopName = shop.name ?? 'Shop';
+    Share.share(
+      'Check out this shop $shopName\n$link',
+      subject: shopName,
+    );
+  }
 
 }

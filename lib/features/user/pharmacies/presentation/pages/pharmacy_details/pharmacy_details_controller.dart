@@ -661,4 +661,16 @@ class PharmacyDetailsController {
     }
   }
 
+  void onShareShop(BuildContext context) {
+    final id = getPharmacyId;
+    if (id == null) return;
+    final merchant = isRestaurant ? 2 : 0;
+    final link = getIt<DeepLinkService>().generateShopLink(id, merchant: merchant);
+    final shopName = pharmacyBloc.state.data?.name ?? 'Shop';
+    Share.share(
+      'Check out this shop $shopName\n$link',
+      subject: shopName,
+    );
+  }
+
 }

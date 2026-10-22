@@ -17,8 +17,9 @@ class GoogleSignInHelper {
 
   /// iOS OAuth client from GoogleService-Info.plist CLIENT_ID.
   /// Do not pass a deleted Web client as serverClientId (Google 401 deleted_client).
+  /// Must match ios/Runner/GoogleService-Info.plist CLIENT_ID.
   static const String _iosClientId =
-      "644512695362-ja4kp085a2tgg9s3qudn47b7r9eekno4.apps.googleusercontent.com";
+      "644512695362-7laf2j8eppkgruj0kc4d8vi1dqo4mfug.apps.googleusercontent.com";
 
   Future<GoogleSignInAccount> get accountAuthorization async =>
       await _googleSignIn.authenticate(scopeHint: _scopes);

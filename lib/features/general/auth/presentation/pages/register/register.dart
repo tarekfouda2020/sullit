@@ -57,6 +57,8 @@ class _RegisterState extends State<Register> {
                         onTap: () {
                           if (item.provider == "google") {
                             widget.loginController.signWitGoogle(context);
+                          } else if (item.provider == "apple") {
+                            widget.loginController.signWithApple(context);
                           }
                         },
                         child: CachedNetworkImage(

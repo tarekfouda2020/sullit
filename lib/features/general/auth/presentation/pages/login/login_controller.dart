@@ -151,6 +151,32 @@ class LoginController {
     }
   }
 
+  Future<void> signWithApple(BuildContext context) async {
+    String? identityToken = await getIt<AppleSignInHelper>().signIn();
+    if (identityToken == null || identityToken.isEmpty) {
+      return;
+    }
+    String? deviceId;
+    try {
+      deviceId = await getIt<GetDeviceId>().deviceId;
+    } catch (e) {
+      CustomToast.showSimpleToast(
+          msg: tr("somethingWentWrongDeviceInfo"), type: ToastType.error);
+      return;
+    }
+    if (deviceId == null) {
+      return;
+    }
+    final result = await SetSocialLogin().call(
+      SocialLoginParams(
+        socialProvider: "apple",
+        accessToken: identityToken,
+        macAddress: deviceId,
+      ),
+    );
+    _handleLoginResult(context, result);
+  }
+
   Future<void> signWitGoogle(BuildContext context) async {
     String? getAccessToken = await getIt<GoogleSignInHelper>().signIn();
     if (getAccessToken == null || getAccessToken.isEmpty) {

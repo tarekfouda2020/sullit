@@ -42,7 +42,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.644512695362-ja4kp085a2tgg9s3qudn47b7r9eekno4</string>
+				<string>com.googleusercontent.apps.644512695362-7laf2j8eppkgruj0kc4d8vi1dqo4mfug</string>
 			</array>
 		</dict>
 		<dict>
@@ -57,7 +57,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>5</string>
+	<string>7</string>
 	<key>FacebookAppID</key>
 	<string>1981210759416763</string>
 	<key>FacebookClientToken</key>
@@ -65,7 +65,7 @@
 	<key>FacebookDisplayName</key>
 	<string>Sahlashop</string>
 	<key>GIDClientID</key>
-	<string>644512695362-ja4kp085a2tgg9s3qudn47b7r9eekno4.apps.googleusercontent.com</string>
+	<string>644512695362-7laf2j8eppkgruj0kc4d8vi1dqo4mfug.apps.googleusercontent.com</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>sms</string>
