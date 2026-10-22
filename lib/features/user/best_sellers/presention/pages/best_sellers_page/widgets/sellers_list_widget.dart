@@ -18,7 +18,7 @@ class SellersListWidget extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 12),
               child: SellerCardWidget(
                 shop: item,
-                onTap: () => AutoRouter.of(context).push(SellerProductsPageRoute(shopId: item.id)),
+                onTap: () => AutoRouter.of(context).push(SellerProductsPageRoute(shopId: item.id, shopUserId: item.userId)),
               ),
             );
           },

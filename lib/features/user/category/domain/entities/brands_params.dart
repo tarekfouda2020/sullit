@@ -1,6 +1,6 @@
 class BrandsParams {
   int paginate;
-
+  final int? shopId;
   int page;
 
   final String? keyword;
@@ -14,6 +14,7 @@ class BrandsParams {
     required this.page,
     this.keyword,
     this.categoryId,
+    this.shopId,
   });
 
   String toQuery() {
@@ -23,6 +24,9 @@ class BrandsParams {
     }
     if (categoryId != null) {
       url = "$url&category_id=$categoryId";
+    }
+    if (shopId != null) {
+      url = "$url&seller_id=$shopId";
     }
     return url;
   }

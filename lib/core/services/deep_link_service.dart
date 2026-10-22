@@ -136,14 +136,14 @@ class DeepLinkService {
           type: CartTypeEnum.pharmacy,
         ));
       case 1:
-        router.push(SellerProductsPageRoute(shopId: shopId));
+        router.push(SellerProductsPageRoute(shopId: shopId, shopUserId: 0));
       case 2:
         router.push(PharmacyDetailsRoute(
           pharmacyId: shopId,
           type: CartTypeEnum.restaurant,
         ));
       default:
-        router.push(SellerProductsPageRoute(shopId: shopId));
+        router.push(SellerProductsPageRoute(shopId: shopId, shopUserId: 0));
     }
   }
 

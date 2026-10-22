@@ -22,7 +22,7 @@ class SellersSectionWidget extends StatelessWidget {
             child: SellerCardWidget(
               shop: controller.homeCubit.state.data!.shop[index],
               onTap: () => AutoRouter.of(context).push(SellerProductsPageRoute(
-                shopId: controller.homeCubit.state.data!.shop[index].id,
+                shopId: controller.homeCubit.state.data!.shop[index].id, shopUserId: controller.homeCubit.state.data!.shop[index].userId,
               )),
             ),
           );

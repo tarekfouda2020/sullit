@@ -843,6 +843,7 @@ class AppRouter extends _i121.RootStackRouter {
           shopId: args.shopId,
           fromCart: args.fromCart,
           showInStore: args.showInStore,
+          shopUserId: args.shopUserId,
         ),
         opaque: true,
       );
@@ -3233,6 +3234,7 @@ class SellerProductsPageRoute
     required int shopId,
     bool? fromCart = false,
     bool showInStore = false,
+    required int shopUserId,
   }) : super(
           SellerProductsPageRoute.name,
           path: '/seller-products-page',
@@ -3241,6 +3243,7 @@ class SellerProductsPageRoute
             shopId: shopId,
             fromCart: fromCart,
             showInStore: showInStore,
+            shopUserId: shopUserId,
           ),
         );
 
@@ -3253,6 +3256,7 @@ class SellerProductsPageRouteArgs {
     required this.shopId,
     this.fromCart = false,
     this.showInStore = false,
+    required this.shopUserId,
   });
 
   final _i124.Key? key;
@@ -3263,9 +3267,11 @@ class SellerProductsPageRouteArgs {
 
   final bool showInStore;
 
+  final int shopUserId;
+
   @override
   String toString() {
-    return 'SellerProductsPageRouteArgs{key: $key, shopId: $shopId, fromCart: $fromCart, showInStore: $showInStore}';
+    return 'SellerProductsPageRouteArgs{key: $key, shopId: $shopId, fromCart: $fromCart, showInStore: $showInStore, shopUserId: $shopUserId}';
   }
 }
 

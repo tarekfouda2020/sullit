@@ -2,6 +2,7 @@ part of 'seller_products_imports.dart';
 
 class SellerProductsPage extends StatefulWidget {
   final int shopId;
+  final int shopUserId;
   final bool? fromCart;
   final bool showInStore;
   const SellerProductsPage({
@@ -9,6 +10,7 @@ class SellerProductsPage extends StatefulWidget {
     required this.shopId,
     this.fromCart = false,
      this.showInStore = false,
+    required this.shopUserId,
   });
 
   @override
@@ -20,9 +22,8 @@ class SellerProductsPageState extends State<SellerProductsPage> {
 
   @override
   void initState() {
-    controller =
-        SellerProductsController(widget.shopId);
     super.initState();
+    controller = SellerProductsController(widget.shopId,widget.shopUserId);
   }
 
   @override

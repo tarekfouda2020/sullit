@@ -26,7 +26,7 @@ class BuildTopSellers extends StatelessWidget {
                 return GestureDetector(
                     onTap: () => AutoRouter.of(context).push(
                         SellerProductsPageRoute(
-                            shopId: topSellers[index].id)),
+                            shopId: topSellers[index].id, shopUserId:topSellers[index].userId )),
                     child: Padding(
                       padding: const EdgeInsetsDirectional.only(end: 5),
                       child: BuildTopSellersItem(topSellers: topSellers[index]),

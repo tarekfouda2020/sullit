@@ -24,6 +24,7 @@ class SellerProductsController {
 
   SellerProductDomainModel? allSellerData;
   late final int shopId;
+  late final int shopUserId;
   BrandDomainModel? selectedBrand;
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -60,7 +61,7 @@ class SellerProductsController {
     }
   }
 
-  SellerProductsController(int id) {
+  SellerProductsController(int id, this.shopUserId) {
     shopId = id;
     getCartData();
     getProducts(1, refresh: false);
@@ -307,6 +308,7 @@ class SellerProductsController {
       refresh: refresh,
       page: page,
       keyword: brandsSearchCtr.text.trim(),
+      shopId: shopUserId,
     );
   }
 

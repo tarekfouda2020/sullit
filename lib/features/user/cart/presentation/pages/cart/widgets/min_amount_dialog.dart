@@ -4,6 +4,7 @@ class MinAmountDialog extends StatelessWidget {
   final MinAmountSellerDomain seller;
   final VoidCallback onDelete;
   final int? shopId;
+  final int? shopUserId;
   final CartController controller;
   const MinAmountDialog({
     super.key,
@@ -11,6 +12,7 @@ class MinAmountDialog extends StatelessWidget {
     required this.onDelete,
     required this.shopId,
     required this.controller,
+    required this.shopUserId,
   });
 
   @override
@@ -90,7 +92,7 @@ class MinAmountDialog extends StatelessWidget {
                       Navigator.pop(context);
                       if (shopId != null && shopId! > 0) {
                         AutoRouter.of(context)
-                            .push(SellerProductsPageRoute(shopId: shopId!));
+                            .push(SellerProductsPageRoute(shopId: shopId!, shopUserId: shopUserId!));
                       }
                     },
                   ),

@@ -748,7 +748,7 @@ class ProductDetailsController implements CartSheetController {
     remainingAmountBloc.onUpdateData((remain > 0 ? remain : 0.0).toStringAsFixed(2));
   }
 
-  Future<void> routeToSellerPage(BuildContext context, int id) async {
+  Future<void> routeToSellerPage(BuildContext context, int id,int userId) async {
     if (fromSellerPage) {
       AutoRouter.of(context).pop(true);
     } else {
@@ -756,7 +756,7 @@ class ProductDetailsController implements CartSheetController {
         await AutoRouter.of(context).push(PharmacyCategoriesRoute(pharmacyId: id));
         calculateRemainingAmount();
       } else {
-        await AutoRouter.of(context).push(SellerProductsPageRoute(shopId: id));
+        await AutoRouter.of(context).push(SellerProductsPageRoute(shopId: id, shopUserId: userId));
         calculateRemainingAmount();
       }
     }

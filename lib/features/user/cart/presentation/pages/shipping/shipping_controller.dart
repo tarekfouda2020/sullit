@@ -7,8 +7,7 @@ class ShippingController {
 
   final GenericBloc<bool> refreshCubit = GenericBloc<bool>(true);
 
-  final PagingController<int, AddressDomainModel> pagingController =
-      PagingController(firstPageKey: 1);
+  final PagingController<int, AddressDomainModel> pagingController = PagingController(firstPageKey: 1);
   int pageSize = 12;
 
   ShippingController() {
@@ -62,11 +61,9 @@ class ShippingController {
     }
   }
 
-  void onActiveAddress(
-      BuildContext context, AddressDomainModel address, String phone) async {
+  void onActiveAddress(BuildContext context, AddressDomainModel address, String phone) async {
     await SetResendVerifyCode().call(phone);
-    var result = await AutoRouter.of(context)
-        .push(ActiveAccountRoute(phoneOrEmail: address.fullPhone!));
+    var result = await AutoRouter.of(context).push(ActiveAccountRoute(phoneOrEmail: address.fullPhone!));
     if (result == true) {
       address.isActive = true;
       // addressesBloc.onUpdateData(addressesBloc.state.data);
@@ -80,9 +77,8 @@ class ShippingController {
       CustomToast.showAuthDialog(context);
       return;
     }
-    List<AddressDomainModel> selectedList = pagingController.itemList!
-        .where((element) => element.selected == true)
-        .toList();
+    List<AddressDomainModel> selectedList =
+        pagingController.itemList!.where((element) => element.selected == true).toList();
     if (selectedList.isNotEmpty) {
       await _previewThenSetAddress(context, selectedList);
     } else {
@@ -134,9 +130,9 @@ class ShippingController {
         onChangeAddress: () => Navigator.of(sheetContext).pop(),
         onAddMoreItems: (seller) {
           Navigator.of(sheetContext).pop();
-          if(seller.shopId != null){
+          if (seller.shopId != null) {
             AutoRouter.of(context).push(
-              SellerProductsPageRoute(shopId: seller.shopId!, fromCart: true),
+              SellerProductsPageRoute(shopId: seller.shopId!, fromCart: true, shopUserId: seller.ownerId),
             );
           }
         },
@@ -144,36 +140,26 @@ class ShippingController {
     );
   }
 
-
-
-
   // void onConfirmChanges( BuildContext context, CartPreviewAddress preview){
   //   List<CartPreviewSeller> deletedSellersCarts = preview.sellers.where((element) => element.updated.isEmpty).toList();
   //
   // }
 
-
-
   Future<void> _setShippinAddress(List<AddressDomainModel> selectedList) async {
-      AddressDomainModel selectedAddress = selectedList.first;
+    AddressDomainModel selectedAddress = selectedList.first;
     AddCartAddressParams params = _addCartAddressParams(selectedAddress);
     bool data = await AddCartAddress().call(params);
     if (data) {
       getIt<CartNavigateHelper>().selectedOrderAddress = selectedAddress;
-      CustomToast.showSimpleToast(
-          msg: tr('addressAdded'), type: ToastType.success);
-      getIt<CartNavigateHelper>()
-          .setStep(CartNavigateHelper.deliveryStepIndex, force: true);
+      CustomToast.showSimpleToast(msg: tr('addressAdded'), type: ToastType.success);
+      getIt<CartNavigateHelper>().setStep(CartNavigateHelper.deliveryStepIndex, force: true);
     }
   }
 
   void isSelectedAddressExistInList(List<AddressDomainModel> remoteData) {
-    AddressDomainModel? selectedAddress =
-        getIt<CartNavigateHelper>().selectedOrderAddress;
+    AddressDomainModel? selectedAddress = getIt<CartNavigateHelper>().selectedOrderAddress;
     if (selectedAddress != null) {
-      remoteData
-          .firstWhere((element) => element.id == selectedAddress.id)
-          .selected = true;
+      remoteData.firstWhere((element) => element.id == selectedAddress.id).selected = true;
     }
   }
 

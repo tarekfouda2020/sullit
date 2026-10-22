@@ -20,7 +20,7 @@ _$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
       isPhoneActive: json['phone_is_active'] as bool,
       isEmailActive: json['email_is_active'] as bool,
       hasValidSubscription: json['has_valid_subscription'] as bool,
-      hasPassword: json['has_password'] as bool,
+      hasPassword: json['has_password'] as bool?,
       isShareHolder: json['is_shareholder'] as bool,
       address: json['address'] == null
           ? null

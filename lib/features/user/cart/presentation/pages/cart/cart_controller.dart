@@ -279,10 +279,10 @@ class CartController {
     }
   }
 
-  void navigateToSeller(BuildContext context, int shopId) {
+  void navigateToSeller(BuildContext context, int shopId,int shopUserId) {
     Navigator.pop(context);
     AutoRouter.of(context)
-        .push(SellerProductsPageRoute(shopId: shopId, fromCart: true));
+        .push(SellerProductsPageRoute(shopId: shopId, fromCart: true, shopUserId:shopUserId ));
   }
 
   Future<UpdateCartItemParams> _updateCartItemParams(int qty, int id) async {

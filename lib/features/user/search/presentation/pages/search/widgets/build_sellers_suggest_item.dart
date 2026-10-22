@@ -36,7 +36,7 @@ class BuildSellersSuggestItem extends StatelessWidget {
         ...List.generate(
           shop.length,
           (index) => GestureDetector(
-            onTap: () => AutoRouter.of(context).push(SellerProductsPageRoute(shopId: shop[index].id!)),
+            onTap: () => AutoRouter.of(context).push(SellerProductsPageRoute(shopId: shop[index].id!, shopUserId:  shop[index].userId)),
             child: Padding(
               padding: Dimens.standardPadding,
               child: Text(

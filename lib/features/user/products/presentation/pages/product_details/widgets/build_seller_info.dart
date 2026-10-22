@@ -13,7 +13,7 @@ class BuildSellerInfo extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         if (shopModel != null) {
-          controller.routeToSellerPage(context, shopModel!.id);
+          controller.routeToSellerPage(context, shopModel!.id,shopModel!.userId);
         }
       },
       child: Container(

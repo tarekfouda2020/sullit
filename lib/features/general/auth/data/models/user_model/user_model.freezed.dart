@@ -47,7 +47,7 @@ mixin _$UserModel {
   @JsonKey(name: "has_valid_subscription")
   bool get hasValidSubscription => throw _privateConstructorUsedError;
   @JsonKey(name: "has_password")
-  bool get hasPassword => throw _privateConstructorUsedError;
+  bool? get hasPassword => throw _privateConstructorUsedError;
   @JsonKey(name: "is_shareholder")
   bool get isShareHolder => throw _privateConstructorUsedError;
   @JsonKey(name: "address")
@@ -78,7 +78,7 @@ abstract class $UserModelCopyWith<$Res> {
       @JsonKey(name: "phone_is_active") bool isPhoneActive,
       @JsonKey(name: "email_is_active") bool isEmailActive,
       @JsonKey(name: "has_valid_subscription") bool hasValidSubscription,
-      @JsonKey(name: "has_password") bool hasPassword,
+      @JsonKey(name: "has_password") bool? hasPassword,
       @JsonKey(name: "is_shareholder") bool isShareHolder,
       @JsonKey(name: "address") AddressModel? address});
 
@@ -111,7 +111,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? isPhoneActive = null,
     Object? isEmailActive = null,
     Object? hasValidSubscription = null,
-    Object? hasPassword = null,
+    Object? hasPassword = freezed,
     Object? isShareHolder = null,
     Object? address = freezed,
   }) {
@@ -168,10 +168,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.hasValidSubscription
           : hasValidSubscription // ignore: cast_nullable_to_non_nullable
               as bool,
-      hasPassword: null == hasPassword
+      hasPassword: freezed == hasPassword
           ? _value.hasPassword
           : hasPassword // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       isShareHolder: null == isShareHolder
           ? _value.isShareHolder
           : isShareHolder // ignore: cast_nullable_to_non_nullable
@@ -217,7 +217,7 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       @JsonKey(name: "phone_is_active") bool isPhoneActive,
       @JsonKey(name: "email_is_active") bool isEmailActive,
       @JsonKey(name: "has_valid_subscription") bool hasValidSubscription,
-      @JsonKey(name: "has_password") bool hasPassword,
+      @JsonKey(name: "has_password") bool? hasPassword,
       @JsonKey(name: "is_shareholder") bool isShareHolder,
       @JsonKey(name: "address") AddressModel? address});
 
@@ -249,7 +249,7 @@ class __$$_UserModelCopyWithImpl<$Res>
     Object? isPhoneActive = null,
     Object? isEmailActive = null,
     Object? hasValidSubscription = null,
-    Object? hasPassword = null,
+    Object? hasPassword = freezed,
     Object? isShareHolder = null,
     Object? address = freezed,
   }) {
@@ -306,10 +306,10 @@ class __$$_UserModelCopyWithImpl<$Res>
           ? _value.hasValidSubscription
           : hasValidSubscription // ignore: cast_nullable_to_non_nullable
               as bool,
-      hasPassword: null == hasPassword
+      hasPassword: freezed == hasPassword
           ? _value.hasPassword
           : hasPassword // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       isShareHolder: null == isShareHolder
           ? _value.isShareHolder
           : isShareHolder // ignore: cast_nullable_to_non_nullable
@@ -341,7 +341,7 @@ class _$_UserModel extends _UserModel {
       @JsonKey(name: "email_is_active") required this.isEmailActive,
       @JsonKey(name: "has_valid_subscription")
       required this.hasValidSubscription,
-      @JsonKey(name: "has_password") required this.hasPassword,
+      @JsonKey(name: "has_password") this.hasPassword,
       @JsonKey(name: "is_shareholder") required this.isShareHolder,
       @JsonKey(name: "address") this.address})
       : super._();
@@ -390,7 +390,7 @@ class _$_UserModel extends _UserModel {
   final bool hasValidSubscription;
   @override
   @JsonKey(name: "has_password")
-  final bool hasPassword;
+  final bool? hasPassword;
   @override
   @JsonKey(name: "is_shareholder")
   final bool isShareHolder;
@@ -486,7 +486,7 @@ abstract class _UserModel extends UserModel {
       @JsonKey(name: "email_is_active") required final bool isEmailActive,
       @JsonKey(name: "has_valid_subscription")
       required final bool hasValidSubscription,
-      @JsonKey(name: "has_password") required final bool hasPassword,
+      @JsonKey(name: "has_password") final bool? hasPassword,
       @JsonKey(name: "is_shareholder") required final bool isShareHolder,
       @JsonKey(name: "address") final AddressModel? address}) = _$_UserModel;
   const _UserModel._() : super._();
@@ -535,7 +535,7 @@ abstract class _UserModel extends UserModel {
   bool get hasValidSubscription;
   @override
   @JsonKey(name: "has_password")
-  bool get hasPassword;
+  bool? get hasPassword;
   @override
   @JsonKey(name: "is_shareholder")
   bool get isShareHolder;
