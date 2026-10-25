@@ -665,7 +665,11 @@ class PharmacyDetailsController {
     final id = getPharmacyId;
     if (id == null) return;
     final merchant = isRestaurant ? 2 : 0;
-    final link = getIt<DeepLinkService>().generateShopLink(id, merchant: merchant);
+    final link = getIt<DeepLinkService>().generateShopLink(
+      id,
+      merchant: merchant,
+      userId: pharmacyBloc.state.data?.userId,
+    );
     final shopName = pharmacyBloc.state.data?.name ?? 'Shop';
     Share.share(
       'Check out this shop $shopName\n$link',

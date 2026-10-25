@@ -4,7 +4,7 @@ part of 'login_imports.dart';
 
 class LoginController {
   LoginController() {
-    getSocialLogin();
+    // getSocialLogin();
   }
 
   final GlobalKey<FormState> formKey = GlobalKey();

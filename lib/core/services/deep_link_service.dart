@@ -66,7 +66,8 @@ class DeepLinkService {
         if (shopId != null) {
           final merchant =
               int.tryParse(uri.queryParameters['merchant'] ?? '1') ?? 1;
-          _navigateToShop(shopId, merchant);
+          final userId = int.tryParse(uri.queryParameters['use'] ?? '');
+          _navigateToShop(shopId, merchant, userId: userId);
         }
       }
     }
@@ -84,6 +85,7 @@ class DeepLinkService {
   String? pendingCartToken;
   int? pendingShopId;
   int? pendingShopMerchant;
+  int? pendingShopUserId;
 
   void setAppReady() {
     isAppReady = true;
@@ -96,9 +98,14 @@ class DeepLinkService {
       pendingCartToken = null;
     }
     if (pendingShopId != null && pendingShopMerchant != null) {
-      _navigateToShop(pendingShopId!, pendingShopMerchant!);
+      _navigateToShop(
+        pendingShopId!,
+        pendingShopMerchant!,
+        userId: pendingShopUserId,
+      );
       pendingShopId = null;
       pendingShopMerchant = null;
+      pendingShopUserId = null;
     }
   }
 
@@ -122,10 +129,11 @@ class DeepLinkService {
     getIt<CartHelper>().importCart(ctx, token);
   }
 
-  void _navigateToShop(int shopId, int merchant) {
+  void _navigateToShop(int shopId, int merchant, {int? userId}) {
     if (!isAppReady) {
       pendingShopId = shopId;
       pendingShopMerchant = merchant;
+      pendingShopUserId = userId;
       return;
     }
     final router = getIt<RouterHelper>().appRoute;
@@ -136,14 +144,20 @@ class DeepLinkService {
           type: CartTypeEnum.pharmacy,
         ));
       case 1:
-        router.push(SellerProductsPageRoute(shopId: shopId, shopUserId: 0));
+        router.push(SellerProductsPageRoute(
+          shopId: shopId,
+          shopUserId: userId ?? 0,
+        ));
       case 2:
         router.push(PharmacyDetailsRoute(
           pharmacyId: shopId,
           type: CartTypeEnum.restaurant,
         ));
       default:
-        router.push(SellerProductsPageRoute(shopId: shopId, shopUserId: 0));
+        router.push(SellerProductsPageRoute(
+          shopId: shopId,
+          shopUserId: userId ?? 0,
+        ));
     }
   }
 
@@ -153,8 +167,9 @@ class DeepLinkService {
   }
 
   /// `merchant`: 0 pharmacy, 1 seller/merchant shop, 2 restaurant
-  String generateShopLink(int shopId, {required int merchant}) {
-    return "${AppConstants.instance.baseShareLink}/shops/$shopId?platform=mobile&merchant=$merchant";
+  String generateShopLink(int shopId, {required int merchant, int? userId}) {
+    final userIdParam = userId != null ? '&use=$userId' : '';
+    return "${AppConstants.instance.baseShareLink}/shops/$shopId?platform=mobile&merchant=$merchant$userIdParam";
   }
 
   void dispose() {
