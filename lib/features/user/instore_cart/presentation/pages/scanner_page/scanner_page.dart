@@ -9,13 +9,9 @@ class ScannerPage extends StatefulWidget {
 }
 
 class _ScannerPageState extends State<ScannerPage> {
-  late final ScannerController controller;
+   final ScannerController controller = ScannerController();
 
-  @override
-  void initState() {
-    super.initState();
-    controller = ScannerController();
-  }
+
 
   @override
   void dispose() {
@@ -36,7 +32,7 @@ class _ScannerPageState extends State<ScannerPage> {
           BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
             bloc: controller.refreshBloc,
             builder: (context, _) {
-              final cart = InstoreCartHelper.instance.getLocalCart();
+              InstoreCartModel? cart = InstoreCartHelper.instance.getLocalCart();
               return StoreHeaderWidget(
                 sellerName: cart?.sellerName ?? '',
                 sellerImage: cart?.sellerImage ?? '',

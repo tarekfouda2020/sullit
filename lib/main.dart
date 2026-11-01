@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/errors/custom_flutter_error.dart';
 import 'package:flutter_tdd/core/helpers/facebook_events_helper.dart';
 import 'package:flutter_tdd/core/helpers/global_notification.dart';
 import 'package:flutter_tdd/core/helpers/google_signin_helper.dart';
@@ -19,10 +20,9 @@ void main() async {
   await Firebase.initializeApp();
   await HiveHelper.instance.init();
   await HiveHelper.instance.openBox<String>(HiveBoxesNames.instoreCart);
-
+  CustomFlutterError.instance.initFlutterError();
   final prefs = await SharedPreferences.getInstance();
   getIt.registerSingleton<SharedPreferences>(prefs);
-
   await configureDependencies();
   getIt.registerSingleton(ComparedProductsDb());
   await getIt<GlobalNotification>().setupNotification();

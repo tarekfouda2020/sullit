@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/user/category/data/models/category_model/category_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/banner_model/banner_model.dart';
+import 'package:flutter_tdd/features/user/products/data/models/product_card_model/product_card_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/shop_card_model/shop_card_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/shop_model/shop_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/slider_model/slider_model.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_tdd/features/user/products/domain/models/home_domain_mod
 import 'package:flutter_tdd/features/user/purchasing/data/models/orders_list_model/orders_list_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../../../core/models/api_models/product_model/product_model.dart';
 import '../../../../sale/data/models/flash_sale_model/flash_sale_model.dart';
 
 part 'home_model.freezed.dart';
@@ -31,6 +33,8 @@ class HomeModel extends BaseApiModel<HomeDomainModel> with _$HomeModel {
     @JsonKey(name: 'top_sellers') required List<ShopCardModel> topSellers,
     @JsonKey(name: 'pharmacy_shops') required List<ShopCardModel> pharmacyShops,
     @JsonKey(name: 'restaurant_shops') required List<ShopCardModel> restaurantShops,
+    @JsonKey(name: 'recently_viewed_products') required List<ProductCardModel> recentlyViewedProducts,
+    @JsonKey(name: 'recently_ordered_products') required List<ProductCardModel> recentlyOrderedProducts,
     @JsonKey(name: 'nearby_in_store_shop') required ShopCardModel? inStoreShop,
     // @JsonKey(name: 'best_selling_products')
     //     required List<ProductModel> bestSellingProducts,
@@ -46,8 +50,7 @@ class HomeModel extends BaseApiModel<HomeDomainModel> with _$HomeModel {
     @JsonKey(name: 'discount_rate') required int discountRate,
   }) = _HomeModel;
 
-  factory HomeModel.fromJson(Map<String, dynamic> json) =>
-      _$HomeModelFromJson(json);
+  factory HomeModel.fromJson(Map<String, dynamic> json) => _$HomeModelFromJson(json);
 
   @override
   HomeDomainModel toDomainModel() {
@@ -60,9 +63,9 @@ class HomeModel extends BaseApiModel<HomeDomainModel> with _$HomeModel {
       categories: categories.map((e) => e.toDomainModel()).toList(),
       currentOrders: currentOrders.map((e) => e.toDomainModel()).toList(),
       flashSales: flashSales?.toDomainModel(),
-        inStoreShop:inStoreShop?.toDomainModel(),
+      inStoreShop: inStoreShop?.toDomainModel(),
 
-        // featuredProducts: featuredProducts.map((e) => e.toDomainModel()).toList(),
+      // featuredProducts: featuredProducts.map((e) => e.toDomainModel()).toList(),
       // mostPopular: mostPopular.map((e) => e.toDomainModel()).toList(),
       // newestProducts: newestProducts.map((e) => e.toDomainModel()).toList(),
       // bestRated: bestRated.map((e) => e.toDomainModel()).toList(),
@@ -72,7 +75,9 @@ class HomeModel extends BaseApiModel<HomeDomainModel> with _$HomeModel {
       discountRate: discountRate,
       isAdminDiscount: isAdminDiscount,
       pharmacyShops: pharmacyShops.map((e) => e.toDomainModel()).toList(),
-        restaurantShops: restaurantShops.map((e) => e.toDomainModel()).toList()
+      restaurantShops: restaurantShops.map((e) => e.toDomainModel()).toList(),
+      recentlyOrderedProducts: recentlyOrderedProducts.map((e) => e.toDomainModel()).toList(),
+      recentlyViewedProducts: recentlyViewedProducts.map((e) => e.toDomainModel()).toList(),
     );
   }
 }

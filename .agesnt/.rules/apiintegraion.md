@@ -174,13 +174,35 @@ class FeatureRepositoryImpl extends FeatureRepository with ModelToDomain {
 
 ---
 
-### 2.5 Use Case Layer
+### 2.5 Params / Entities
 
 Path:
 
 ```
-domain/use_cases/
+domain/entities/{class_name}.dart
 ```
+
+Rules:
+
+* One public class per file.
+* File name matches the class in `snake_case`.
+* Never group multiple params classes in one file.
+
+### 2.6 Use Case Layer
+
+Path:
+
+```
+domain/use_cases/{use_case_name}.dart
+```
+
+Rules:
+
+* One use case class per file.
+* All use case files for a feature live in `domain/use_cases/`.
+* Params classes stay in `domain/entities/`, not inside the use case file.
+
+### 2.7 Use Case Shape
 
 ```dart
 class GetData implements UseCase<DomainModel, Params> {
@@ -198,7 +220,7 @@ class GetData implements UseCase<DomainModel, Params> {
 
 ---
 
-### 2.6 Controller Layer
+### 2.8 Controller Layer
 
 ```dart
 class FeatureController {

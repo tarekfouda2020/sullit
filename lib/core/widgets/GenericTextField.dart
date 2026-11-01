@@ -13,6 +13,7 @@ class GenericTextField extends StatelessWidget {
   final String? hint;
   final bool autoFocus;
   final int? max;
+  final int? minLines;
   final EdgeInsets? margin;
   final EdgeInsetsGeometry? contentPadding;
   final TextInputType type;
@@ -57,6 +58,7 @@ class GenericTextField extends StatelessWidget {
       this.onTab,
       this.radius,
       this.max,
+      this.minLines,
       this.textHeight,
       this.maxLength,
       this.suffixWidget,
@@ -120,6 +122,7 @@ class GenericTextField extends StatelessWidget {
           ],
       enabled: fieldTypes != FieldTypes.disable,
       autofillHints: getAutoFillHints(type),
+      minLines: minLines,
       maxLines: fieldTypes == FieldTypes.chat
           ? null
           : fieldTypes == FieldTypes.rich

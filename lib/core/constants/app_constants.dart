@@ -1,11 +1,13 @@
 class AppConstants {
-  AppConstants._();
+  const AppConstants._();
 
-  static AppConstants instance = AppConstants._();
+  static const AppConstants instance = AppConstants._();
 
-  String appId = "ua.suliit.com";
+  final String appId = "ua.suliit.com";
 
-  String iosAppId = "6473451976";
+  final  String iosAppId = "6473451976";
+
+  final String pusherApiKey = "038e26973cf919b7";
 
   /// Time in milliseconds
   final int debounceTimeInBackGround = 300;

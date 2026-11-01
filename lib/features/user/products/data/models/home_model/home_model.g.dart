@@ -37,6 +37,14 @@ _$_HomeModel _$$_HomeModelFromJson(Map<String, dynamic> json) => _$_HomeModel(
       restaurantShops: (json['restaurant_shops'] as List<dynamic>)
           .map((e) => ShopCardModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      recentlyViewedProducts:
+          (json['recently_viewed_products'] as List<dynamic>)
+              .map((e) => ProductCardModel.fromJson(e as Map<String, dynamic>))
+              .toList(),
+      recentlyOrderedProducts:
+          (json['recently_ordered_products'] as List<dynamic>)
+              .map((e) => ProductCardModel.fromJson(e as Map<String, dynamic>))
+              .toList(),
       inStoreShop: json['nearby_in_store_shop'] == null
           ? null
           : ShopCardModel.fromJson(
@@ -60,6 +68,10 @@ Map<String, dynamic> _$$_HomeModelToJson(_$_HomeModel instance) =>
       'pharmacy_shops': instance.pharmacyShops.map((e) => e.toJson()).toList(),
       'restaurant_shops':
           instance.restaurantShops.map((e) => e.toJson()).toList(),
+      'recently_viewed_products':
+          instance.recentlyViewedProducts.map((e) => e.toJson()).toList(),
+      'recently_ordered_products':
+          instance.recentlyOrderedProducts.map((e) => e.toJson()).toList(),
       'nearby_in_store_shop': instance.inStoreShop?.toJson(),
       'cart_count': instance.cartCount,
       'wishlist_count': instance.favCount,

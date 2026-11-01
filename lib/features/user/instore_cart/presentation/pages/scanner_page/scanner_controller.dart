@@ -236,9 +236,7 @@ class ScannerController {
     await addOrUpdateItem(value, variant!);
   }
 
-  Future<void> submitBarcodeAndShowSheet(
-    BuildContext context,
-  ) async {
+  Future<void> submitBarcodeAndShowSheet(BuildContext context) async {
     String sku = barcodeTextController.text.trim();
 
     if (sku.isEmpty) return;

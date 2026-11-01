@@ -13,10 +13,9 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: SearchDataSources)
 class ImplSearchDataSources extends SearchDataSources {
   @override
-  Future<Either<Failure, SearchResultsModel>> getSearchResult(
-      SearchResultParams params) async {
+  Future<Either<Failure, SearchResultsModel>> getSearchResult(SearchResultParams params) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.getSearchResult + params.paramToQuery(),
+      url: ApiNames.getSearchResult,
       requestMethod: RequestMethod.get,
       requestBody: params.toJson(),
       responseType: ResType.model,

@@ -50,7 +50,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../../../core/helpers/global_context.dart';
 import '../../../../../../core/helpers/helper_methods.dart';
+import '../../../../../../core/helpers/route_helpers/guard_route_helper.dart';
 import '../../../../../../core/models/domain_models/brand_domain_model.dart';
 import '../../../../../../core/widgets/my_scaffold.dart';
 import '../../../../category/domain/entities/brands_params.dart';

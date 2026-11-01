@@ -39,9 +39,7 @@ class BuildAuthDialog extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
               BuildContext ctx = getIt<GlobalContext>().context();
-              AutoRouter.of(ctx).push(
-                const LoginRoute(),
-              );
+              AutoRouter.of(ctx).push(const LoginRoute());
             },
           ),
         ],

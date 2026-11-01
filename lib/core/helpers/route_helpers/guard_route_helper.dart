@@ -11,11 +11,7 @@ import 'package:injectable/injectable.dart';
 class AuthGuard {
   final PendingNavigationService _pending = PendingNavigationService.instance;
 
-  bool requireAuth({
-    required BuildContext context,
-    PageRouteInfo? pendingRoute,
-    VoidCallback? onAuthenticated,
-  }) {
+  bool requireAuth({required BuildContext context, PageRouteInfo? pendingRoute, VoidCallback? onAuthenticated}) {
     bool isAuth = context.isAuth;
     if (isAuth) {
       onAuthenticated?.call();

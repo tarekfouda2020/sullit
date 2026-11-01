@@ -370,6 +370,13 @@ class HomeMainController {
     }
   }
 
+  Future<void> goLogin(BuildContext context) async {
+    BuildContext ctx = getIt<GlobalContext>().context();
+    AutoRouter.of(ctx).push(
+      const LoginRoute(),
+    );
+  }
+
   void onSwiperTapped(BuildContext context, SliderDomainModel model) {
     if (model.value == null || model.value?.trim().isEmpty == true) {
       return;

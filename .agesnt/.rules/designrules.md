@@ -42,6 +42,8 @@ Each page gets its own folder. Inside it:
 
 >  **Rule:** No small/inline widgets belong in `<page_name>.dart`. Every visual component must live in the `widgets/` subfolder.
 
+>  **Rule:** One class per Dart file. No private helper classes in the same file as another widget. Each class, including cards, tiles, skeletons, and empty states, gets its own file under `widgets/` and a `part` entry in `widgets_imports.dart`.
+
 ### Mock / Fake Data Models
 Place test/mock data models here:
 ```

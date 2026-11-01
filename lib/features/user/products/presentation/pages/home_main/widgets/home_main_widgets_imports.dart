@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_tdd/core/extensions/language_extension.dart';
+import 'package:flutter_tdd/core/helpers/custom_toast.dart';
 import 'package:flutter_tdd/features/user/cart/domain/entities/get_cart_items_params.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/shop_card_domain_model.dart';
 import 'package:flutter_tdd/features/user/purchasing/domain/models/orders_list_domain_model.dart';
@@ -55,6 +57,7 @@ import 'package:flutter_tdd/features/user/sale/domain/entities/timer_entity.dart
 import 'package:flutter_tdd/features/user/sale/domain/models/flash_sale.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../../../../../../general/auth/presentation/manager/user_cubit/user_cubit.dart';
 import '../../../../../category/presentation/pages/brands/widgets/brands_widgets_imports.dart';
 import 'package:flutter_tdd/features/user/sale/domain/entities/sale_tab_type.dart';
 import 'package:flutter_tdd/core/extensions/auth_extension.dart';
@@ -152,7 +155,9 @@ part 'attach_prescription_sheet_widget.dart';
 part 'saved_prescriptions_bottom_sheet_widget.dart';
 
 part 'saved_prescription_item_widget.dart';
+
 part 'in_store_shopping_banner.dart';
+
 part 'in_store_shopping_banner_shimmer_widget.dart';
 
 part 'category_card_widget.dart';
@@ -160,5 +165,19 @@ part 'category_card_widget.dart';
 part 'restaurant_card_widget.dart';
 
 part 'shop_type_short_cuts_widget.dart';
+
 part 'restaurant_item_widget.dart';
-part'seller_card_section_widget.dart';
+
+part 'seller_card_section_widget.dart';
+
+part 'ai_and_price_finder_card_widget.dart';
+
+part 'ai_and_price_finder_item_card_widget.dart';
+
+part 'continue_shopping_widget.dart';
+
+part 'your_orders_widget.dart';
+
+part'vip_member_ship_item_widget.dart';
+
+part'search_product_field.dart';

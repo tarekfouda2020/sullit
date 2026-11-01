@@ -38,7 +38,21 @@ class LocationService {
       if (address == null) {
         return "";
       }
-      var data = " ${setCountryName ? address.countryName ?? "" : ""}  ${address.city ?? ""}  ${address.region ?? ""}  ${address.streetAddress ?? ""}";
+      var data = "${setCountryName ? address.countryName ?? "" : ""} ${address.city ?? ""}  ${address.region ?? ""}  ${address.streetAddress ?? ""}";
+      return data;
+    } catch (e) {
+      log("=======>>>>>>>>>> error is $e end ============");
+      return "";
+    }
+  }
+
+  Future<String> getAddressCityAndRegion(LatLng latLng) async {
+    try {
+      final address = await getFullAddress(latLng, setCountryName: false);
+      if (address == null) {
+        return "";
+      }
+      var data = "${address.city ?? ""}, ${address.region ?? ""}";
       return data;
     } catch (e) {
       log("=======>>>>>>>>>> error is $e end ============");

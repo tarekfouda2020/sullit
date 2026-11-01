@@ -40,6 +40,12 @@ mixin _$HomeModel {
   List<ShopCardModel> get pharmacyShops => throw _privateConstructorUsedError;
   @JsonKey(name: 'restaurant_shops')
   List<ShopCardModel> get restaurantShops => throw _privateConstructorUsedError;
+  @JsonKey(name: 'recently_viewed_products')
+  List<ProductCardModel> get recentlyViewedProducts =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'recently_ordered_products')
+  List<ProductCardModel> get recentlyOrderedProducts =>
+      throw _privateConstructorUsedError;
   @JsonKey(name: 'nearby_in_store_shop')
   ShopCardModel? get inStoreShop =>
       throw _privateConstructorUsedError; // @JsonKey(name: 'best_selling_products')
@@ -81,6 +87,10 @@ abstract class $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'top_sellers') List<ShopCardModel> topSellers,
       @JsonKey(name: 'pharmacy_shops') List<ShopCardModel> pharmacyShops,
       @JsonKey(name: 'restaurant_shops') List<ShopCardModel> restaurantShops,
+      @JsonKey(name: 'recently_viewed_products')
+      List<ProductCardModel> recentlyViewedProducts,
+      @JsonKey(name: 'recently_ordered_products')
+      List<ProductCardModel> recentlyOrderedProducts,
       @JsonKey(name: 'nearby_in_store_shop') ShopCardModel? inStoreShop,
       @JsonKey(name: 'cart_count') int cartCount,
       @JsonKey(name: 'wishlist_count') int favCount,
@@ -114,6 +124,8 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
     Object? topSellers = null,
     Object? pharmacyShops = null,
     Object? restaurantShops = null,
+    Object? recentlyViewedProducts = null,
+    Object? recentlyOrderedProducts = null,
     Object? inStoreShop = freezed,
     Object? cartCount = null,
     Object? favCount = null,
@@ -161,6 +173,14 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
           ? _value.restaurantShops
           : restaurantShops // ignore: cast_nullable_to_non_nullable
               as List<ShopCardModel>,
+      recentlyViewedProducts: null == recentlyViewedProducts
+          ? _value.recentlyViewedProducts
+          : recentlyViewedProducts // ignore: cast_nullable_to_non_nullable
+              as List<ProductCardModel>,
+      recentlyOrderedProducts: null == recentlyOrderedProducts
+          ? _value.recentlyOrderedProducts
+          : recentlyOrderedProducts // ignore: cast_nullable_to_non_nullable
+              as List<ProductCardModel>,
       inStoreShop: freezed == inStoreShop
           ? _value.inStoreShop
           : inStoreShop // ignore: cast_nullable_to_non_nullable
@@ -227,6 +247,10 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
       @JsonKey(name: 'top_sellers') List<ShopCardModel> topSellers,
       @JsonKey(name: 'pharmacy_shops') List<ShopCardModel> pharmacyShops,
       @JsonKey(name: 'restaurant_shops') List<ShopCardModel> restaurantShops,
+      @JsonKey(name: 'recently_viewed_products')
+      List<ProductCardModel> recentlyViewedProducts,
+      @JsonKey(name: 'recently_ordered_products')
+      List<ProductCardModel> recentlyOrderedProducts,
       @JsonKey(name: 'nearby_in_store_shop') ShopCardModel? inStoreShop,
       @JsonKey(name: 'cart_count') int cartCount,
       @JsonKey(name: 'wishlist_count') int favCount,
@@ -260,6 +284,8 @@ class __$$_HomeModelCopyWithImpl<$Res>
     Object? topSellers = null,
     Object? pharmacyShops = null,
     Object? restaurantShops = null,
+    Object? recentlyViewedProducts = null,
+    Object? recentlyOrderedProducts = null,
     Object? inStoreShop = freezed,
     Object? cartCount = null,
     Object? favCount = null,
@@ -307,6 +333,14 @@ class __$$_HomeModelCopyWithImpl<$Res>
           ? _value._restaurantShops
           : restaurantShops // ignore: cast_nullable_to_non_nullable
               as List<ShopCardModel>,
+      recentlyViewedProducts: null == recentlyViewedProducts
+          ? _value._recentlyViewedProducts
+          : recentlyViewedProducts // ignore: cast_nullable_to_non_nullable
+              as List<ProductCardModel>,
+      recentlyOrderedProducts: null == recentlyOrderedProducts
+          ? _value._recentlyOrderedProducts
+          : recentlyOrderedProducts // ignore: cast_nullable_to_non_nullable
+              as List<ProductCardModel>,
       inStoreShop: freezed == inStoreShop
           ? _value.inStoreShop
           : inStoreShop // ignore: cast_nullable_to_non_nullable
@@ -351,6 +385,10 @@ class _$_HomeModel extends _HomeModel {
       required final List<ShopCardModel> pharmacyShops,
       @JsonKey(name: 'restaurant_shops')
       required final List<ShopCardModel> restaurantShops,
+      @JsonKey(name: 'recently_viewed_products')
+      required final List<ProductCardModel> recentlyViewedProducts,
+      @JsonKey(name: 'recently_ordered_products')
+      required final List<ProductCardModel> recentlyOrderedProducts,
       @JsonKey(name: 'nearby_in_store_shop') required this.inStoreShop,
       @JsonKey(name: 'cart_count') required this.cartCount,
       @JsonKey(name: 'wishlist_count') required this.favCount,
@@ -365,6 +403,8 @@ class _$_HomeModel extends _HomeModel {
         _topSellers = topSellers,
         _pharmacyShops = pharmacyShops,
         _restaurantShops = restaurantShops,
+        _recentlyViewedProducts = recentlyViewedProducts,
+        _recentlyOrderedProducts = recentlyOrderedProducts,
         super._();
 
   factory _$_HomeModel.fromJson(Map<String, dynamic> json) =>
@@ -454,6 +494,26 @@ class _$_HomeModel extends _HomeModel {
     return EqualUnmodifiableListView(_restaurantShops);
   }
 
+  final List<ProductCardModel> _recentlyViewedProducts;
+  @override
+  @JsonKey(name: 'recently_viewed_products')
+  List<ProductCardModel> get recentlyViewedProducts {
+    if (_recentlyViewedProducts is EqualUnmodifiableListView)
+      return _recentlyViewedProducts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_recentlyViewedProducts);
+  }
+
+  final List<ProductCardModel> _recentlyOrderedProducts;
+  @override
+  @JsonKey(name: 'recently_ordered_products')
+  List<ProductCardModel> get recentlyOrderedProducts {
+    if (_recentlyOrderedProducts is EqualUnmodifiableListView)
+      return _recentlyOrderedProducts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_recentlyOrderedProducts);
+  }
+
   @override
   @JsonKey(name: 'nearby_in_store_shop')
   final ShopCardModel? inStoreShop;
@@ -480,7 +540,7 @@ class _$_HomeModel extends _HomeModel {
 
   @override
   String toString() {
-    return 'HomeModel(sliders: $sliders, bannersOne: $bannersOne, bannersTwo: $bannersTwo, categories: $categories, currentOrders: $currentOrders, flashSales: $flashSales, shops: $shops, topSellers: $topSellers, pharmacyShops: $pharmacyShops, restaurantShops: $restaurantShops, inStoreShop: $inStoreShop, cartCount: $cartCount, favCount: $favCount, isAdminDiscount: $isAdminDiscount, discountRate: $discountRate)';
+    return 'HomeModel(sliders: $sliders, bannersOne: $bannersOne, bannersTwo: $bannersTwo, categories: $categories, currentOrders: $currentOrders, flashSales: $flashSales, shops: $shops, topSellers: $topSellers, pharmacyShops: $pharmacyShops, restaurantShops: $restaurantShops, recentlyViewedProducts: $recentlyViewedProducts, recentlyOrderedProducts: $recentlyOrderedProducts, inStoreShop: $inStoreShop, cartCount: $cartCount, favCount: $favCount, isAdminDiscount: $isAdminDiscount, discountRate: $discountRate)';
   }
 
   @override
@@ -506,6 +566,10 @@ class _$_HomeModel extends _HomeModel {
                 .equals(other._pharmacyShops, _pharmacyShops) &&
             const DeepCollectionEquality()
                 .equals(other._restaurantShops, _restaurantShops) &&
+            const DeepCollectionEquality().equals(
+                other._recentlyViewedProducts, _recentlyViewedProducts) &&
+            const DeepCollectionEquality().equals(
+                other._recentlyOrderedProducts, _recentlyOrderedProducts) &&
             (identical(other.inStoreShop, inStoreShop) ||
                 other.inStoreShop == inStoreShop) &&
             (identical(other.cartCount, cartCount) ||
@@ -532,6 +596,8 @@ class _$_HomeModel extends _HomeModel {
       const DeepCollectionEquality().hash(_topSellers),
       const DeepCollectionEquality().hash(_pharmacyShops),
       const DeepCollectionEquality().hash(_restaurantShops),
+      const DeepCollectionEquality().hash(_recentlyViewedProducts),
+      const DeepCollectionEquality().hash(_recentlyOrderedProducts),
       inStoreShop,
       cartCount,
       favCount,
@@ -569,6 +635,10 @@ abstract class _HomeModel extends HomeModel {
       required final List<ShopCardModel> pharmacyShops,
       @JsonKey(name: 'restaurant_shops')
       required final List<ShopCardModel> restaurantShops,
+      @JsonKey(name: 'recently_viewed_products')
+      required final List<ProductCardModel> recentlyViewedProducts,
+      @JsonKey(name: 'recently_ordered_products')
+      required final List<ProductCardModel> recentlyOrderedProducts,
       @JsonKey(name: 'nearby_in_store_shop')
       required final ShopCardModel? inStoreShop,
       @JsonKey(name: 'cart_count') required final int cartCount,
@@ -611,6 +681,12 @@ abstract class _HomeModel extends HomeModel {
   @override
   @JsonKey(name: 'restaurant_shops')
   List<ShopCardModel> get restaurantShops;
+  @override
+  @JsonKey(name: 'recently_viewed_products')
+  List<ProductCardModel> get recentlyViewedProducts;
+  @override
+  @JsonKey(name: 'recently_ordered_products')
+  List<ProductCardModel> get recentlyOrderedProducts;
   @override
   @JsonKey(name: 'nearby_in_store_shop')
   ShopCardModel? get inStoreShop;

@@ -4,6 +4,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/extensions/language_extension.dart';
 import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/lang_code_helper.dart';
@@ -136,7 +137,7 @@ class MembershipItemWidget extends StatelessWidget {
                       color: context.colors.textColor,
                       fontSize: FontSize(14),
                       fontWeight: FontWeight.w500,
-                      alignment: lang == LangCodeHelper.langAR
+                      alignment: context.isArabic
                           ? Alignment.centerLeft
                           : Alignment.centerRight,
                       margin: Margins.all(0),

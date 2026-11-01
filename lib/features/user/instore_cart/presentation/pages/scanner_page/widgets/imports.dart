@@ -23,6 +23,7 @@ import '../../../../../../../core/constants/gaps.dart';
 import '../../../../../../../core/theme/text/app_text_style.dart';
 import '../../../../../../../core/widgets/DefaultButton.dart';
 import '../../../../../../../core/widgets/dirham_price_widget.dart';
+import '../../../../../../../core/widgets/scanner_item_widget.dart';
 import '../scanner_page_imports.dart';
 
 part 'product_details_sheet.dart';

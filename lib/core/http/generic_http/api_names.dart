@@ -1,13 +1,20 @@
 // ignore_for_file: constant_identifier_names
 
 class ApiNames {
+
+  static const String baseUrl = "${url}api/v4/";
+
+  static const String url = "https://$domain/";
+
   ///staging
-  // static const String baseUrl = "https://staging.mushrifcoop.com/api/v4/";
+   static const String domain = "staging.mushrifcoop.com";
 
   ///production
-  static const String baseUrl = "https://admin.mushrifcoop.com/api/v4/";
+  //  static const String domain = "admin.mushrifcoop.com";
 
   static const String iqUrl = "https://us1.locationiq.com/v1/";
+
+  static const String pusherAuthUrl = "${url}api/v4/broadcasting/auth";
 
   // auth routes
   static const String login = "login";
@@ -172,10 +179,23 @@ class ApiNames {
 
   static String addTicketReply(int id) => "tickets/$id/replies/store";
 
+  static const String chatbotConversations = "chatbot/conversations";
+
+  static String chatbotConversation(String id) => "chatbot/conversations/$id";
+
+  static String chatbotEnd(String id) => "chatbot/conversations/$id/end";
+
+  static String chatbotMessages(String id) =>
+      "chatbot/conversations/$id/messages";
+
+  static String chatbotHandoff(String id) =>
+      "chatbot/conversations/$id/handoff";
+
   //PurchaseHistory
   static const String getPurchaseHistory = "orders/purchase-history";
   static const String getReturnOrders = "orders/return-orders";
   static const String orderPaymentOptions = "orders/payment-options";
+  static const String popularSearches = "popular-searches";
 
   static String changeOrderPayMethod(int id) => "orders/$id/change-pay";
 
@@ -247,6 +267,7 @@ class ApiNames {
   static String payGiftCardSubscribe(int params) =>
       "gift-cards/$params/subscribe";
 
+  static String priceComparisonsResults(int id) => "price-comparisons/$id/results";
   /// vip subscriptions
   static const String subscriptionsPaymentMethods =
       "subscriptions/payment-methods";
@@ -294,4 +315,8 @@ class ApiNames {
   static String deleteSavedPrescription(int id) => "prescriptions/$id/delete";
 
   static const String pharmacyOrderTerms = "pharmacy-order-terms";
+
+  static const String priceComparisons = "price-comparisons";
+
+  static String priceComparison(int id) => "price-comparisons/$id";
 }

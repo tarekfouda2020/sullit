@@ -26,18 +26,20 @@ class _HomeMainState extends State<HomeMain> {
           children: [
             BuildHomeMainAppBar(homeMainController: controller),
             // const BuildDiscountMsg(),
-            BlocBuilder<GenericBloc<HomeDomainModel?>, GenericState<HomeDomainModel?>>(
-              bloc: controller.homeCubit,
-              builder: (context, state) {
-                if (state is GenericUpdateState && state.data != null) {
-                  return BuildHomeView(
-                    homeDomainModel: state.data!,
-                    controller: controller,
-                  );
-                } else {
-                  return const BuildLoadingHomeView();
-                }
-              },
+            Expanded(
+              child: BlocBuilder<GenericBloc<HomeDomainModel?>, GenericState<HomeDomainModel?>>(
+                bloc: controller.homeCubit,
+                builder: (context, state) {
+                  if (state is GenericUpdateState && state.data != null) {
+                    return BuildHomeView(
+                      homeDomainModel: state.data!,
+                      controller: controller,
+                    );
+                  } else {
+                    return const BuildLoadingHomeView();
+                  }
+                },
+              ),
             ),
           ],
         ),
