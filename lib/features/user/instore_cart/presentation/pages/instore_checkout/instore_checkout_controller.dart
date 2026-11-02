@@ -100,21 +100,11 @@ class InstoreCheckoutController {
     final cart = InstoreCartHelper.instance.getLocalCart();
     if (cart == null || cart.items.isEmpty) return null;
 
-    double? latitude;
-    double? longitude;
-    if (cart.hasBranches) {
-      final loc = await LocationService.instance.resolveUserLocation();
-      latitude = loc?.latitude;
-      longitude = loc?.longitude;
-    }
-
     return InstoreOrderPreviewParams(
       sellerId: cart.sellerId,
       couponCode: _appliedCouponCode,
       giftCardCode: _appliedGiftCardCode,
       loyaltyPointsApplied: _loyaltyPointsApplied,
-      latitude: latitude,
-      longitude: longitude,
       items: cart.items
           .map(
             (item) => InstoreCartParams(

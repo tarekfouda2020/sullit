@@ -17,6 +17,7 @@ class SplashController {
         final loc = await locationService.getCurrentLocation();
         if (loc != null) {
           locationService.setUserLocation(loc);
+          locationService.setCountryCode();
         }
       } catch (e) {
         log("error is =>>>>>>> $e ========");

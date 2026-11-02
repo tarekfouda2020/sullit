@@ -1,29 +1,28 @@
 import 'dart:convert';
 
+import 'package:flutter_tdd/core/helpers/user_location_params.dart';
+
 class InstoreOrderPreviewParams {
   final int sellerId;
   final String? couponCode;
   final String? giftCardCode;
   final bool? loyaltyPointsApplied;
-  final double? latitude;
-  final double? longitude;
   final List<InstoreCartParams> items;
+  final UserLocationParams userLocationParams;
 
   InstoreOrderPreviewParams({
     required this.sellerId,
     required this.couponCode,
     required this.giftCardCode,
     required this.loyaltyPointsApplied,
-    this.latitude,
-    this.longitude,
     required this.items,
-  });
+    UserLocationParams? userLocationParams,
+  }): userLocationParams = userLocationParams ??  UserLocationParams();
 
   Map<String, dynamic> toJson() {
     return {
       "seller_id": sellerId,
-      "latitude": latitude,
-      "longitude": longitude,
+      ...userLocationParams.toJson(),
       "items": jsonEncode(items.map((e) => e.toJson()).toList()),
       if (couponCode != null && couponCode!.trim().isNotEmpty)
         "coupon_code": couponCode,

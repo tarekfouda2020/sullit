@@ -15,4 +15,5 @@ class GlobalStateKeys {
   static String userLocation = "user_location";
   static String token = "token";
   static String currentComparisonsId = "currentComparisonsId";
+  static String countryCode = "country_code";
 }
