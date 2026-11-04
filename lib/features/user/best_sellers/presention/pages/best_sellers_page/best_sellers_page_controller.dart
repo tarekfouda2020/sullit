@@ -39,20 +39,7 @@ class BestSellersPageController {
       pagingController.appendPage(data, nextPageKey);
     }
   }
-  Future<void> ensureUserLocation(BuildContext context) async {
-    if (getIt<LocationService>().userLocation != null) return;
 
-    final granted = await getIt<PermissionServices>().requestPermission(
-      Permission.location,
-      context,
-    );
-    if (!granted) return;
-
-    final location = await getIt<LocationService>().getCurrentLocation();
-    if (location != null) {
-      getIt<LocationService>().setUserLocation(location);
-    }
-  }
   void clearSearchField() {
     searchTxtController.clear();
     showClearIcon.onUpdateData(false);

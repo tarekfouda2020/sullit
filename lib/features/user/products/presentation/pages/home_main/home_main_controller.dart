@@ -12,7 +12,7 @@ class HomeMainController {
   final GenericBloc<List<ProductCard>> onSaleCubit = GenericBloc([]);
   final GenericBloc<List<ProductCard>> bestRatedCubit = GenericBloc([]);
   final GenericBloc<List<BrandDomainModel>> brandsCubit = GenericBloc([]);
-
+  final GenericBloc<bool> bannerOnTopCubit = GenericBloc(false);
   final GenericBloc<File> prescriptionFileCubit = GenericBloc<File>(File(""));
   final GenericBloc<SavedPrescriptionModel?> selectedSavedPrescriptionCubit =
       GenericBloc<SavedPrescriptionModel?>(null);
@@ -20,7 +20,6 @@ class HomeMainController {
       PagingController(firstPageKey: 1);
 
   GenericBloc<HomeDomainModel?> get homeCubit => OrdersHelper.instance.homeCubit;
-
   List<ProductSections> allSections = [];
   int currentPage = 1;
   int pageSize = 5;
@@ -37,12 +36,23 @@ class HomeMainController {
     getAllBrands(refresh: false);
     getAllBrands();
 
+    scrollController.addListener(onScroll);
+    savedPrescriptionsPagingController.addPageRequestListener((page) {
+      getSavedPrescriptions(page);
+    });
     getAllData();
-
   }
 
+  void onScroll() {
+    final sc = scrollController;
+    if (!sc.hasClients) return;
 
+    final onTop = sc.offset > 20;
 
+    if (onTop != bannerOnTopCubit.state.data) {
+      bannerOnTopCubit.onUpdateData(onTop);
+    }
+  }
   void getAllData(){
     getVipOffers(refresh: false);
     getVipOffers();

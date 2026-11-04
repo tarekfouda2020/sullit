@@ -53,6 +53,7 @@ class HomeController {
       final location = await locationService.getCurrentLocation();
       if (location != null) {
         locationService.setUserLocation(location);
+        locationService.setCountryCode();
         return;
       }
     }

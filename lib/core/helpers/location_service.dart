@@ -25,12 +25,19 @@ class LocationService {
 
   LatLng? get userLocation => _userLocation;
 
-  void setUserLocation(LatLng location) {
+
+  Future<void> setUserLocation(LatLng location) async {
     _userLocation = location;
     GlobalState.instance.set(GlobalStateKeys.userLocation, location);
   }
 
-
+  Future<void> setCountryCode()async{
+    String? code = await resolveCountryCode();
+    log("resolved country code => $code");
+    if (code != null) {
+      GlobalState.instance.set(GlobalStateKeys.countryCode, code);
+    }
+  }
 
   Future<String> getAddress(LatLng latLng, {bool setCountryName = true}) async {
     try {
@@ -111,15 +118,13 @@ class LocationService {
 
     if (granted) {
       if (cached != null) {
-        setUserLocation(cached);
-        GlobalState.instance.set(GlobalStateKeys.userLocation, cached);
+        await setUserLocation(cached);
         return cached;
       }
       try {
         final loc = await getCurrentLocation();
         if (loc != null) {
-          setUserLocation(loc);
-          GlobalState.instance.set(GlobalStateKeys.userLocation, loc);
+          await setUserLocation(loc);
         }
         return loc;
       } catch (_) {
@@ -130,12 +135,10 @@ class LocationService {
     if (context == null) return cached;
     final loc = await getCurrentLocationWithPermission(context);
     if (loc != null) {
-      setUserLocation(loc);
-      GlobalState.instance.set(GlobalStateKeys.userLocation, loc);
+      await setUserLocation(loc);
     }
     return loc;
   }
-
 
   Future<void> openGoogleMapsNavigation({
     required double latitude,
@@ -150,5 +153,19 @@ class LocationService {
     );
   }
 
+  Future<String?> resolveCountryCode() async {
+    try {
+      var location = _userLocation;
+      if(location == null){
+        return null;
+      }
+      final address = await getFullAddress(location);
+      log("country code from model => ${address?.countryCode}");
+      return address?.countryCode?.toUpperCase();
+    } catch (e) {
+      log("country code error: $e");
+      return null;
+    }
+  }
 
 }
