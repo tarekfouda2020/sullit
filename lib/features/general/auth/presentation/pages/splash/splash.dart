@@ -29,12 +29,6 @@ class _SplashState extends State<Splash> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    PlaySoundHelper.instance.stopSound();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.customBackground,

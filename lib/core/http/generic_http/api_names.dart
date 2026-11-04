@@ -7,10 +7,10 @@ class ApiNames {
   static const String url = "https://$domain/";
 
   ///staging
-  //  static const String domain = "staging.mushrifcoop.com";
+   static const String domain = "staging.mushrifcoop.com";
 
   ///production
-   static const String domain = "admin.mushrifcoop.com";
+  //  static const String domain = "admin.mushrifcoop.com";
 
   static const String iqUrl = "https://us1.locationiq.com/v1/";
 

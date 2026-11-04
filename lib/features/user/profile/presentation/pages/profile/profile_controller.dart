@@ -208,10 +208,11 @@ class ProfileController {
   }
 
   bool isPhoneValid() {
-    if (phoneController.text.isNotEmpty) {
-      return ((phoneController.text)).isValidUAEPhone(phoneController.text) == null;
+    var phone = phoneController.text;
+    if (phone.isNotEmpty) {
+      return true;
     } else {
-      return false;
+      return ((phone)).isValidUAEPhone(phone) == null;
     }
   }
 

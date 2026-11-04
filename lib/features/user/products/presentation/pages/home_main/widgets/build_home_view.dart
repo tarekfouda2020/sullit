@@ -1,6 +1,6 @@
 part of 'home_main_widgets_imports.dart';
 
-class BuildHomeView extends StatefulWidget {
+class BuildHomeView extends StatelessWidget {
   final HomeDomainModel homeDomainModel;
   final HomeMainController controller;
 
@@ -9,15 +9,6 @@ class BuildHomeView extends StatefulWidget {
     required this.homeDomainModel,
     required this.controller,
   });
-
-  @override
-  State<BuildHomeView> createState() => _BuildHomeViewState();
-}
-
-class _BuildHomeViewState extends State<BuildHomeView> {
-  HomeDomainModel get homeDomainModel => widget.homeDomainModel;
-
-  HomeMainController get controller => widget.controller;
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +117,7 @@ class _BuildHomeViewState extends State<BuildHomeView> {
                 ],
               ),
             ),
-            if (showBanner)
+            if (showBanner(context))
               BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
                 bloc: controller.bannerOnTopCubit,
                 builder: (context, state) {
@@ -136,11 +127,8 @@ class _BuildHomeViewState extends State<BuildHomeView> {
               ),
           ],
         ),
-        if (showBanner)
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
+        if (showBanner(context))
+          Positioned(top: 0, left: 0, right: 0,
             child: BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
               bloc: controller.bannerOnTopCubit,
               builder: (context, state) {
@@ -173,15 +161,13 @@ class _BuildHomeViewState extends State<BuildHomeView> {
         width: double.infinity,
         color: context.colors.customBackground,
         padding: EdgeInsetsDirectional.fromSTEB(
-          20,
-          onTop ? 10 : 5,
-          20,
-          onTop ? 10 : 37,
+          20, onTop ? 10 : 5,
+          20, onTop ? 10 : 37,
         ),
         child: Image.asset(Res.vipBanner),
       ),
     );
   }
 
-  bool get showBanner => !context.isShareHolder;
+  bool  showBanner(BuildContext context) => !context.isShareHolder;
 }

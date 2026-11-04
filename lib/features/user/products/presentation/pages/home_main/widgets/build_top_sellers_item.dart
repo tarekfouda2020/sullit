@@ -10,7 +10,7 @@ class BuildTopSellersItem extends StatelessWidget {
       children: [
         Container(
           width: 90,
-          height: 84,
+          height: 80,
           alignment: Alignment.center,
           decoration: BoxDecoration(
               color: context.colors.white,

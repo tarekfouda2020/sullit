@@ -32,7 +32,7 @@ class BuildProfileImage extends StatelessWidget {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         image: FileImage(state.data!),
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -75,6 +75,7 @@ class BuildProfileImage extends StatelessWidget {
                       width: 124,
                       haveRadius: false,
                       boxShape: BoxShape.circle,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),

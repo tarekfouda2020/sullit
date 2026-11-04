@@ -8,14 +8,15 @@ import '../../../helpers/global_state.dart';
 class DioHeader {
   Map<String, String> call() {
     String? token = GlobalState.instance.get(GlobalStateKeys.token);
-    // String? countryCode = GlobalState.instance.get(GlobalStateKeys.countryCode);
+    String? countryCode = GlobalState.instance.get(GlobalStateKeys.countryCode);
     String lang = GlobalState.instance.get(LangCodeHelper.langKey);
     return {
       "Content-Type": "application/json",
       'Accept': 'application/json',
       'App-Language': lang,
       if (token != null) 'Authorization': 'Bearer $token',
-      // if (countryCode != null) 'X-App-Country': "AE",
+      // if (countryCode != null) 'X-App-Country': countryCode,
+      if (countryCode != null) 'X-App-Country': "AE",
     };
   }
 }
