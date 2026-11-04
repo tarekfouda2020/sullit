@@ -31,8 +31,8 @@ class PriceComparisonController {
 
 
 
-  void openStoreDetails(BuildContext context, int shopId){
-    AutoRouter.of(context).push(SellerProductsPageRoute(shopId: shopId));
+  void openStoreDetails(BuildContext context, int shopId, int? sellerId){
+    AutoRouter.of(context).push(SellerProductsPageRoute(shopId: shopId, shopUserId: sellerId ?? shopId));
   }
 
 

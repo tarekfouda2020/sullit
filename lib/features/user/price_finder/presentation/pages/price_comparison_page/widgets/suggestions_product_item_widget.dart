@@ -162,7 +162,7 @@ class SuggestionsProductItemWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
-                onTap: () => controller.openStoreDetails(context, deal.shopId),
+                onTap: () => controller.openStoreDetails(context, deal.shopId, deal.sellerId),
                 child: Row(
                   children: [
                     Text(

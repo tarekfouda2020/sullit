@@ -57,6 +57,7 @@ class PriceFinderDealModel with _$PriceFinderDealModel {
     @JsonKey(name: 'variant_id') required int variantId,
     @JsonKey(name: 'branch_id') int? branchId,
     @JsonKey(name: 'shop_id') required int shopId,
+    @JsonKey(name: 'seller_id')  int? sellerId,
     @JsonKey(name: 'currency_symbol') required String currencySymbol,
     required String type,
     @JsonKey(name: 'type_label') required String typeLabel,
@@ -82,6 +83,7 @@ class PriceFinderDealModel with _$PriceFinderDealModel {
       currencySymbol: currencySymbol,
       type: PriceFinderDeal.shopTypeFromKey(type),
       typeLabel: typeLabel,
+      sellerId: sellerId
     );
   }
 }

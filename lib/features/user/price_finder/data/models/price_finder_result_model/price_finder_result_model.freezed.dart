@@ -319,6 +319,8 @@ mixin _$PriceFinderDealModel {
   int? get branchId => throw _privateConstructorUsedError;
   @JsonKey(name: 'shop_id')
   int get shopId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'seller_id')
+  int? get sellerId => throw _privateConstructorUsedError;
   @JsonKey(name: 'currency_symbol')
   String get currencySymbol => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
@@ -348,6 +350,7 @@ abstract class $PriceFinderDealModelCopyWith<$Res> {
       @JsonKey(name: 'variant_id') int variantId,
       @JsonKey(name: 'branch_id') int? branchId,
       @JsonKey(name: 'shop_id') int shopId,
+      @JsonKey(name: 'seller_id') int? sellerId,
       @JsonKey(name: 'currency_symbol') String currencySymbol,
       String type,
       @JsonKey(name: 'type_label') String typeLabel});
@@ -377,6 +380,7 @@ class _$PriceFinderDealModelCopyWithImpl<$Res,
     Object? variantId = null,
     Object? branchId = freezed,
     Object? shopId = null,
+    Object? sellerId = freezed,
     Object? currencySymbol = null,
     Object? type = null,
     Object? typeLabel = null,
@@ -422,6 +426,10 @@ class _$PriceFinderDealModelCopyWithImpl<$Res,
           ? _value.shopId
           : shopId // ignore: cast_nullable_to_non_nullable
               as int,
+      sellerId: freezed == sellerId
+          ? _value.sellerId
+          : sellerId // ignore: cast_nullable_to_non_nullable
+              as int?,
       currencySymbol: null == currencySymbol
           ? _value.currencySymbol
           : currencySymbol // ignore: cast_nullable_to_non_nullable
@@ -457,6 +465,7 @@ abstract class _$$_PriceFinderDealModelCopyWith<$Res>
       @JsonKey(name: 'variant_id') int variantId,
       @JsonKey(name: 'branch_id') int? branchId,
       @JsonKey(name: 'shop_id') int shopId,
+      @JsonKey(name: 'seller_id') int? sellerId,
       @JsonKey(name: 'currency_symbol') String currencySymbol,
       String type,
       @JsonKey(name: 'type_label') String typeLabel});
@@ -483,6 +492,7 @@ class __$$_PriceFinderDealModelCopyWithImpl<$Res>
     Object? variantId = null,
     Object? branchId = freezed,
     Object? shopId = null,
+    Object? sellerId = freezed,
     Object? currencySymbol = null,
     Object? type = null,
     Object? typeLabel = null,
@@ -528,6 +538,10 @@ class __$$_PriceFinderDealModelCopyWithImpl<$Res>
           ? _value.shopId
           : shopId // ignore: cast_nullable_to_non_nullable
               as int,
+      sellerId: freezed == sellerId
+          ? _value.sellerId
+          : sellerId // ignore: cast_nullable_to_non_nullable
+              as int?,
       currencySymbol: null == currencySymbol
           ? _value.currencySymbol
           : currencySymbol // ignore: cast_nullable_to_non_nullable
@@ -561,6 +575,7 @@ class _$_PriceFinderDealModel extends _PriceFinderDealModel
       @JsonKey(name: 'variant_id') required this.variantId,
       @JsonKey(name: 'branch_id') this.branchId,
       @JsonKey(name: 'shop_id') required this.shopId,
+      @JsonKey(name: 'seller_id') this.sellerId,
       @JsonKey(name: 'currency_symbol') required this.currencySymbol,
       required this.type,
       @JsonKey(name: 'type_label') required this.typeLabel})
@@ -599,6 +614,9 @@ class _$_PriceFinderDealModel extends _PriceFinderDealModel
   @JsonKey(name: 'shop_id')
   final int shopId;
   @override
+  @JsonKey(name: 'seller_id')
+  final int? sellerId;
+  @override
   @JsonKey(name: 'currency_symbol')
   final String currencySymbol;
   @override
@@ -609,7 +627,7 @@ class _$_PriceFinderDealModel extends _PriceFinderDealModel
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PriceFinderDealModel(storeName: $storeName, rating: $rating, distanceKm: $distanceKm, price: $price, savings: $savings, isLowest: $isLowest, productId: $productId, variantId: $variantId, branchId: $branchId, shopId: $shopId, currencySymbol: $currencySymbol, type: $type, typeLabel: $typeLabel)';
+    return 'PriceFinderDealModel(storeName: $storeName, rating: $rating, distanceKm: $distanceKm, price: $price, savings: $savings, isLowest: $isLowest, productId: $productId, variantId: $variantId, branchId: $branchId, shopId: $shopId, sellerId: $sellerId, currencySymbol: $currencySymbol, type: $type, typeLabel: $typeLabel)';
   }
 
   @override
@@ -627,6 +645,7 @@ class _$_PriceFinderDealModel extends _PriceFinderDealModel
       ..add(DiagnosticsProperty('variantId', variantId))
       ..add(DiagnosticsProperty('branchId', branchId))
       ..add(DiagnosticsProperty('shopId', shopId))
+      ..add(DiagnosticsProperty('sellerId', sellerId))
       ..add(DiagnosticsProperty('currencySymbol', currencySymbol))
       ..add(DiagnosticsProperty('type', type))
       ..add(DiagnosticsProperty('typeLabel', typeLabel));
@@ -653,6 +672,8 @@ class _$_PriceFinderDealModel extends _PriceFinderDealModel
             (identical(other.branchId, branchId) ||
                 other.branchId == branchId) &&
             (identical(other.shopId, shopId) || other.shopId == shopId) &&
+            (identical(other.sellerId, sellerId) ||
+                other.sellerId == sellerId) &&
             (identical(other.currencySymbol, currencySymbol) ||
                 other.currencySymbol == currencySymbol) &&
             (identical(other.type, type) || other.type == type) &&
@@ -674,6 +695,7 @@ class _$_PriceFinderDealModel extends _PriceFinderDealModel
       variantId,
       branchId,
       shopId,
+      sellerId,
       currencySymbol,
       type,
       typeLabel);
@@ -706,6 +728,7 @@ abstract class _PriceFinderDealModel extends PriceFinderDealModel {
       @JsonKey(name: 'variant_id') required final int variantId,
       @JsonKey(name: 'branch_id') final int? branchId,
       @JsonKey(name: 'shop_id') required final int shopId,
+      @JsonKey(name: 'seller_id') final int? sellerId,
       @JsonKey(name: 'currency_symbol') required final String currencySymbol,
       required final String type,
       @JsonKey(name: 'type_label')
@@ -744,6 +767,9 @@ abstract class _PriceFinderDealModel extends PriceFinderDealModel {
   @override
   @JsonKey(name: 'shop_id')
   int get shopId;
+  @override
+  @JsonKey(name: 'seller_id')
+  int? get sellerId;
   @override
   @JsonKey(name: 'currency_symbol')
   String get currencySymbol;

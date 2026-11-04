@@ -57,7 +57,7 @@ class ViewBestStoreWidget extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: () => controller.openStoreDetails(context, deal.shopId),
+          onTap: () => controller.openStoreDetails(context, deal.shopId, deal.sellerId),
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(

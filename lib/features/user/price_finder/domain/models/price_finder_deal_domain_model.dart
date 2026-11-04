@@ -11,6 +11,7 @@ class PriceFinderDeal {
   final int variantId;
   final int? branchId;
   final int shopId;
+  final int? sellerId;
   final String currencySymbol;
   final ShopTypeEnum type;
   final String typeLabel;
@@ -25,6 +26,7 @@ class PriceFinderDeal {
     required this.productId,
     required this.variantId,
     this.branchId,
+    this.sellerId,
     required this.shopId,
     required this.currencySymbol,
     required this.type,
