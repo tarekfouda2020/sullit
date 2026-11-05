@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/core/theme/themes/app_theme.dart';
 import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/features/user/products/domain/models/product_card.dart';
 
@@ -46,9 +47,15 @@ class _CurrentPrice extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        DirhamPrice(
-          amount: productModel.variant?.calculablePrice ?? "0.0",
+        Text("${productModel.variant?.calculablePrice ?? "0.0"} ${productModel.currencySymbol}",
+        style: AppTextStyle.s16_w400(color: context.colors.primary).copyWith(
+          fontFamily: AppTheme.dirhamFontFamily,
+          height: 1,
         ),
+        ),
+        // DirhamPrice(
+        //   amount: productModel.variant?.calculablePrice ?? "0.0",
+        // ),
         if (productModel.unit.isNotEmpty)
           Flexible(
             child: Text(
@@ -77,18 +84,26 @@ class _OriginalPrice extends StatelessWidget {
       visible: productModel.showPriceDiscount(showVipDiscount: showVipDiscount),
       child: Row(
         children: [
-          DirhamPrice(
-            amount: productModel.priceHighLow,
-            showMinus: true,
-            currencyOffset: 1,
-            color: context.colors.textColor,
-            textStyle: TextStyle(
-              overflow: TextOverflow.ellipsis,
-              decoration: TextDecoration.lineThrough,
-              decorationColor: context.colors.textColor,
-              decorationThickness: 1.2,
-            ),
+          Text("${productModel.priceHighLow} ${productModel.currencySymbol}",
+            style: TextStyle(
+                overflow: TextOverflow.ellipsis,
+                decoration: TextDecoration.lineThrough,
+                decorationColor: context.colors.textColor,
+                decorationThickness: 1.2,
+              )
           ),
+          // DirhamPrice(
+          //   amount: productModel.priceHighLow,
+          //   showMinus: true,
+          //   currencyOffset: 1,
+          //   color: context.colors.textColor,
+          //   textStyle: TextStyle(
+          //     overflow: TextOverflow.ellipsis,
+          //     decoration: TextDecoration.lineThrough,
+          //     decorationColor: context.colors.textColor,
+          //     decorationThickness: 1.2,
+          //   ),
+          // ),
           if (productModel.unit.isNotEmpty)
             Flexible(
               child: Text(
