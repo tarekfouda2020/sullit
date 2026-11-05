@@ -37,14 +37,28 @@ class BuildCartButtons extends StatelessWidget {
                       style: AppTextStyle.s12_w400(
                           color: context.colors.textColor)),
                   Gaps.vGap6,
-                  DirhamPrice(
-                    amount:
+                  // DirhamPrice(
+                  //   amount:
+                  //       cartModel.calculableTotal?.toStringAsFixed(2) ?? "0.00",
+                  //   currencyStyle:
+                  //       AppTextStyle.s18_w400(color: context.colors.primary),
+                  //   textStyle:
+                  //       AppTextStyle.s14_w600(color: context.colors.primary),
+                  //   currencyOffset: 0,
+                  // ),
+                  Row(
+                    children: [
+                      Text(
                         cartModel.calculableTotal?.toStringAsFixed(2) ?? "0.00",
-                    currencyStyle:
-                        AppTextStyle.s18_w400(color: context.colors.primary),
-                    textStyle:
-                        AppTextStyle.s14_w600(color: context.colors.primary),
-                    currencyOffset: 0,
+                        style: AppTextStyle.s14_w600(color: context.colors.primary),
+                      ),
+                      Gaps.hGap6,
+                      Text(
+                        cartModel.currencySymbol??"",
+                        style: AppTextStyle.s14_w600(color: context.colors.primary),
+                      ),
+
+                    ],
                   ),
                 ],
               ),

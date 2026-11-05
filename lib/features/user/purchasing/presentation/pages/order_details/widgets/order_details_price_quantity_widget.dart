@@ -24,15 +24,15 @@ class OrderDetailsPriceQuantityWidget extends StatelessWidget {
                       .copyWith(
                           decoration: TextDecoration.lineThrough),
                 ).withDirhamSymbol(),
-              DirhamPrice(
-                amount: _priceChanged()
-                    ? displayItem.history!.newPrice.formatAmount()
-                    : displayItem.price.toString().formatAmount(),
-                textStyle: AppTextStyle.s14_w600(
-                    color: context.colors.primary),
-                currencyStyle: AppTextStyle.s16_w400(
-                    color: context.colors.primary),
-              ),
+              // DirhamPrice(
+              //   amount: _priceChanged()
+              //       ? displayItem.history!.newPrice.formatAmount()
+              //       : displayItem.price.toString().formatAmount(),
+              //   textStyle: AppTextStyle.s14_w600(
+              //       color: context.colors.primary),
+              //   currencyStyle: AppTextStyle.s16_w400(
+              //       color: context.colors.primary),
+              // ),
             ],
           ),
         ),

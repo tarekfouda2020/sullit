@@ -47,6 +47,7 @@ class OrderDetails extends BaseDomainModel {
   Reviews? review;
   OrderReview? orderReview;
   String? shippedBy;
+  String? currencySymbol;
   bool? isSelected;
   GenericBloc<int>? qtyCubit;
   String? pickerNotes;
@@ -70,6 +71,7 @@ class OrderDetails extends BaseDomainModel {
     this.review,
     this.orderReview,
     this.shippedBy,
+    this.currencySymbol,
     this.isSelected = false,
     this.qtyCubit,
     this.pickerNotes,

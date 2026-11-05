@@ -3,45 +3,50 @@ part of 'home_main_widgets_imports.dart';
 class BuildHomeSwiper extends StatelessWidget {
   final List<SliderDomainModel> slider;
   final HomeMainController controller;
-  const BuildHomeSwiper({super.key, required this.slider, required this.controller});
+
+  const BuildHomeSwiper({
+    super.key,
+    required this.slider,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        if(slider.isNotEmpty)
         SizedBox(
           width: MediaQuery.sizeOf(context).width,
           height: 165,
-          child: Visibility(
-            visible: slider.length > 1,
-            replacement: CachedImage(
-              width: MediaQuery.sizeOf(context).width,
-              borderRadius: BorderRadius.circular(Dimens.dp30),
-              url: slider.first.photo,
-            ),
-            child: Swiper(
-              onIndexChanged: (index) {
-                controller.swiperIndexCubit.onUpdateData(index);
-              },
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () => controller.onSwiperTapped(context, slider[index]),
-                  child: CachedImage(
-                    width: MediaQuery.sizeOf(context).width,
-                    borderRadius: Dimens.borderRadius30PX,
-                    fit: BoxFit.fill,
-                    url: slider[index].photo,
-                  ),
-                );
-              },
-              itemCount: slider.length,
-              // pagination: const SwiperPagination(),
-              viewportFraction: 1.0,
-              // viewportFraction: 0.98,
-              scale: 0.95,
-              autoplay: true,
-            ),
-          ),
+          child: slider.length > 1
+              ? Swiper(
+                  onIndexChanged: (index) {
+                    controller.swiperIndexCubit.onUpdateData(index);
+                  },
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () => controller.onSwiperTapped(
+                        context,
+                        slider[index],
+                      ),
+                      child: CachedImage(
+                        width: MediaQuery.sizeOf(context).width,
+                        borderRadius: Dimens.borderRadius30PX,
+                        fit: BoxFit.fill,
+                        url: slider[index].photo,
+                      ),
+                    );
+                  },
+                  itemCount: slider.length,
+                  viewportFraction: 1.0,
+                  scale: 0.95,
+                  autoplay: true,
+                )
+              : CachedImage(
+                  width: MediaQuery.sizeOf(context).width,
+                  borderRadius: BorderRadius.circular(Dimens.dp30),
+                  url: slider.first.photo,
+                ),
         ),
         Gaps.vGap8,
         BlocBuilder<GenericBloc<int>, GenericState<int>>(

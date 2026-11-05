@@ -48,6 +48,7 @@ _$_OrderDetailsModel _$$_OrderDetailsModelFromJson(Map<String, dynamic> json) =>
       isAvailableReview: json['review_is_available'] as bool,
       msgCantReview: json['msg_cant_review'] as String,
       shippedBy: json['shipped_by'] as String?,
+      currencySymbol: json['currency_symbol'] as String?,
       soldByType: json['sold_by_type'] as String,
       soldBy: json['sold_by_name'] as String,
       review: json['review'] == null
@@ -77,6 +78,7 @@ Map<String, dynamic> _$$_OrderDetailsModelToJson(
       'review_is_available': instance.isAvailableReview,
       'msg_cant_review': instance.msgCantReview,
       'shipped_by': instance.shippedBy,
+      'currency_symbol': instance.currencySymbol,
       'sold_by_type': instance.soldByType,
       'sold_by_name': instance.soldBy,
       'review': instance.review?.toJson(),

@@ -3,8 +3,7 @@ part of 'delivery_widgets_imports.dart';
 class BuildDeliveryProductItem extends StatelessWidget {
   final GeneralCartItem cartItem;
 
-  const BuildDeliveryProductItem({Key? key, required this.cartItem})
-      : super(key: key);
+  const BuildDeliveryProductItem({Key? key, required this.cartItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,40 +26,59 @@ class BuildDeliveryProductItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text.rich(
-                  TextSpan(text: cartItem.name, children: [
-                    TextSpan(
-                        text: "   ${AppTheme.dirhamIcon}",
-                        style: AppTextStyle.s15_w400(
-                                color: context.colors.primary)
-                            .copyWith(fontFamily: AppTheme.dirhamFontFamily)),
-                    TextSpan(
-                        text: " ${cartItem.price}",
-                        style:
-                            AppTextStyle.s15_w500(color: context.colors.primary)
-                                .copyWith()),
-                  ]),
-                  style: AppTextStyle.s14_w400(color: context.colors.black)
-                      .copyWith(height: 1.3),
+                // Text.rich(
+                //   TextSpan(text: cartItem.name, children: [
+                //     TextSpan(
+                //         text: "   ${AppTheme.dirhamIcon}",
+                //         style: AppTextStyle.s15_w400(color: context.colors.primary)
+                //             .copyWith(fontFamily: AppTheme.dirhamFontFamily)),
+                //     TextSpan(
+                //         text: " ${cartItem.price}",
+                //         style: AppTextStyle.s15_w500(color: context.colors.primary).copyWith()),
+                //   ]),
+                //   style: AppTextStyle.s14_w400(color: context.colors.black).copyWith(height: 1.3),
+                // ),
+                Row(
+                  children: [
+                    Text(cartItem.name, style: AppTextStyle.s14_w400(color: context.colors.black)),
+                    Gaps.hGap6,
+                    Text(
+                      cartItem.price,
+                      style: AppTextStyle.s14_w600(color: context.colors.primary),
+                    ),
+                    Gaps.hGap6,
+                    Text(
+                      cartItem.currencySymbol,
+                      style: AppTextStyle.s14_w600(color: context.colors.primary),
+                    ),
+                  ],
                 ),
-                Gaps.vGap8,
-                Gaps.vGap5,
+                Gaps.vGap12,
                 Row(
                   spacing: 5,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text("${tr("total")} :",
-                        style:
-                            AppTextStyle.s14_w400(color: context.colors.black)),
-                    DirhamPrice(
-                      amount: cartItem.total,
-                      textStyle:
-                          AppTextStyle.s16_w400(color: context.colors.primary),
+                    Text("${tr("total")} :", style: AppTextStyle.s14_w400(color: context.colors.black)),
+                    // DirhamPrice(
+                    //   amount: cartItem.total,
+                    //   textStyle: AppTextStyle.s16_w400(color: context.colors.primary),
+                    // ),
+                    Row(
+                      children: [
+                        Text(
+                          cartItem.price,
+                          style: AppTextStyle.s14_w600(color: context.colors.primary),
+                        ),
+                        Gaps.hGap6,
+                        Text(
+                          cartItem.currencySymbol,
+                          style: AppTextStyle.s14_w600(color: context.colors.primary),
+                        ),
+                      ],
                     ),
                     const Spacer(),
                     Text("${tr("quantity")} : ${cartItem.quantity}",
-                        style:
-                            AppTextStyle.s14_w400(color: context.colors.black)),
+                        style: AppTextStyle.s14_w400(color: context.colors.black)),
                   ],
                 ),
               ],

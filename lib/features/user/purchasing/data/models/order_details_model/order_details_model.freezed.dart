@@ -354,6 +354,8 @@ mixin _$OrderDetailsModel {
   String get msgCantReview => throw _privateConstructorUsedError;
   @JsonKey(name: 'shipped_by')
   String? get shippedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'currency_symbol')
+  String? get currencySymbol => throw _privateConstructorUsedError;
   @JsonKey(name: 'sold_by_type')
   String get soldByType => throw _privateConstructorUsedError;
   @JsonKey(name: 'sold_by_name')
@@ -392,6 +394,7 @@ abstract class $OrderDetailsModelCopyWith<$Res> {
       @JsonKey(name: 'review_is_available') bool isAvailableReview,
       @JsonKey(name: 'msg_cant_review') String msgCantReview,
       @JsonKey(name: 'shipped_by') String? shippedBy,
+      @JsonKey(name: 'currency_symbol') String? currencySymbol,
       @JsonKey(name: 'sold_by_type') String soldByType,
       @JsonKey(name: 'sold_by_name') String soldBy,
       ReviewsModel? review,
@@ -429,6 +432,7 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
     Object? isAvailableReview = null,
     Object? msgCantReview = null,
     Object? shippedBy = freezed,
+    Object? currencySymbol = freezed,
     Object? soldByType = null,
     Object? soldBy = null,
     Object? review = freezed,
@@ -481,6 +485,10 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
       shippedBy: freezed == shippedBy
           ? _value.shippedBy
           : shippedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      currencySymbol: freezed == currencySymbol
+          ? _value.currencySymbol
+          : currencySymbol // ignore: cast_nullable_to_non_nullable
               as String?,
       soldByType: null == soldByType
           ? _value.soldByType
@@ -558,6 +566,7 @@ abstract class _$$_OrderDetailsModelCopyWith<$Res>
       @JsonKey(name: 'review_is_available') bool isAvailableReview,
       @JsonKey(name: 'msg_cant_review') String msgCantReview,
       @JsonKey(name: 'shipped_by') String? shippedBy,
+      @JsonKey(name: 'currency_symbol') String? currencySymbol,
       @JsonKey(name: 'sold_by_type') String soldByType,
       @JsonKey(name: 'sold_by_name') String soldBy,
       ReviewsModel? review,
@@ -595,6 +604,7 @@ class __$$_OrderDetailsModelCopyWithImpl<$Res>
     Object? isAvailableReview = null,
     Object? msgCantReview = null,
     Object? shippedBy = freezed,
+    Object? currencySymbol = freezed,
     Object? soldByType = null,
     Object? soldBy = null,
     Object? review = freezed,
@@ -648,6 +658,10 @@ class __$$_OrderDetailsModelCopyWithImpl<$Res>
           ? _value.shippedBy
           : shippedBy // ignore: cast_nullable_to_non_nullable
               as String?,
+      currencySymbol: freezed == currencySymbol
+          ? _value.currencySymbol
+          : currencySymbol // ignore: cast_nullable_to_non_nullable
+              as String?,
       soldByType: null == soldByType
           ? _value.soldByType
           : soldByType // ignore: cast_nullable_to_non_nullable
@@ -696,6 +710,7 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
       @JsonKey(name: 'review_is_available') required this.isAvailableReview,
       @JsonKey(name: 'msg_cant_review') required this.msgCantReview,
       @JsonKey(name: 'shipped_by') this.shippedBy,
+      @JsonKey(name: 'currency_symbol') this.currencySymbol,
       @JsonKey(name: 'sold_by_type') required this.soldByType,
       @JsonKey(name: 'sold_by_name') required this.soldBy,
       this.review,
@@ -739,6 +754,9 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
   @JsonKey(name: 'shipped_by')
   final String? shippedBy;
   @override
+  @JsonKey(name: 'currency_symbol')
+  final String? currencySymbol;
+  @override
   @JsonKey(name: 'sold_by_type')
   final String soldByType;
   @override
@@ -767,7 +785,7 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
 
   @override
   String toString() {
-    return 'OrderDetailsModel(id: $id, product: $product, variation: $variation, quantity: $quantity, availableReturnQty: $availableReturnQty, deliveryType: $deliveryType, price: $price, tax: $tax, isAvailableReview: $isAvailableReview, msgCantReview: $msgCantReview, shippedBy: $shippedBy, soldByType: $soldByType, soldBy: $soldBy, review: $review, pickerNotes: $pickerNotes, instructions: $instructions, insuranceCoveragePercentage: $insuranceCoveragePercentage, cartOptions: $cartOptions)';
+    return 'OrderDetailsModel(id: $id, product: $product, variation: $variation, quantity: $quantity, availableReturnQty: $availableReturnQty, deliveryType: $deliveryType, price: $price, tax: $tax, isAvailableReview: $isAvailableReview, msgCantReview: $msgCantReview, shippedBy: $shippedBy, currencySymbol: $currencySymbol, soldByType: $soldByType, soldBy: $soldBy, review: $review, pickerNotes: $pickerNotes, instructions: $instructions, insuranceCoveragePercentage: $insuranceCoveragePercentage, cartOptions: $cartOptions)';
   }
 
   @override
@@ -793,6 +811,8 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
                 other.msgCantReview == msgCantReview) &&
             (identical(other.shippedBy, shippedBy) ||
                 other.shippedBy == shippedBy) &&
+            (identical(other.currencySymbol, currencySymbol) ||
+                other.currencySymbol == currencySymbol) &&
             (identical(other.soldByType, soldByType) ||
                 other.soldByType == soldByType) &&
             (identical(other.soldBy, soldBy) || other.soldBy == soldBy) &&
@@ -811,26 +831,28 @@ class _$_OrderDetailsModel extends _OrderDetailsModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      product,
-      variation,
-      quantity,
-      availableReturnQty,
-      deliveryType,
-      price,
-      tax,
-      isAvailableReview,
-      msgCantReview,
-      shippedBy,
-      soldByType,
-      soldBy,
-      review,
-      pickerNotes,
-      instructions,
-      insuranceCoveragePercentage,
-      const DeepCollectionEquality().hash(_cartOptions));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        product,
+        variation,
+        quantity,
+        availableReturnQty,
+        deliveryType,
+        price,
+        tax,
+        isAvailableReview,
+        msgCantReview,
+        shippedBy,
+        currencySymbol,
+        soldByType,
+        soldBy,
+        review,
+        pickerNotes,
+        instructions,
+        insuranceCoveragePercentage,
+        const DeepCollectionEquality().hash(_cartOptions)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -862,6 +884,7 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
       required final bool isAvailableReview,
       @JsonKey(name: 'msg_cant_review') required final String msgCantReview,
       @JsonKey(name: 'shipped_by') final String? shippedBy,
+      @JsonKey(name: 'currency_symbol') final String? currencySymbol,
       @JsonKey(name: 'sold_by_type') required final String soldByType,
       @JsonKey(name: 'sold_by_name') required final String soldBy,
       final ReviewsModel? review,
@@ -903,6 +926,9 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
   @override
   @JsonKey(name: 'shipped_by')
   String? get shippedBy;
+  @override
+  @JsonKey(name: 'currency_symbol')
+  String? get currencySymbol;
   @override
   @JsonKey(name: 'sold_by_type')
   String get soldByType;

@@ -3,6 +3,7 @@ part of 'product_details_widgets_imports.dart';
 class CartSuccessSheetWidget extends StatefulWidget {
   final CartSheetController controller;
   final void Function()? onPressCheck;
+
   const CartSuccessSheetWidget({super.key, required this.controller, this.onPressCheck});
 
   @override
@@ -34,8 +35,7 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
           ),
           Gaps.vGap20,
           Flexible(
-            child: BlocBuilder<GenericBloc<CartDomainModel>,
-                GenericState<CartDomainModel>>(
+            child: BlocBuilder<GenericBloc<CartDomainModel>, GenericState<CartDomainModel>>(
               bloc: widget.controller.cartItemsBloc,
               builder: (context, state) {
                 if (state is GenericUpdateState) {
@@ -56,12 +56,9 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
-                            children: List.generate(
-                                (state.data.items ?? <GeneralCartItem>[])
-                                    .length, (index) {
+                            children: List.generate((state.data.items ?? <GeneralCartItem>[]).length, (index) {
                               return CartSheetItemWidget(
-                                item: (state.data.items ??
-                                    <GeneralCartItem>[])[index],
+                                item: (state.data.items ?? <GeneralCartItem>[])[index],
                                 controller: widget.controller,
                               );
                             }),
@@ -73,8 +70,7 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                         title: tr('returnToShop'),
                         onTap: () async {
                           Navigator.pop(context);
-                          await Future.delayed(
-                              const Duration(milliseconds: 300));
+                          await Future.delayed(const Duration(milliseconds: 300));
                           BuildContext ctx = getIt<GlobalContext>().context();
                           AutoRouter.of(ctx).pop();
                         },
@@ -90,9 +86,7 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                           opacity: state.data.minimumStatus == true ? 1 : 0.35,
                           child: DefaultButton(
                             title: "",
-                            onTap: state.data.minimumStatus == true
-                                ? () => checkOut(state.data)
-                                : () {},
+                            onTap: state.data.minimumStatus == true ? () => checkOut(state.data) : () {},
                             margin: EdgeInsets.zero,
                             customLabel: Row(
                               mainAxisSize: MainAxisSize.min,
@@ -100,16 +94,28 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                               children: [
                                 Text(
                                   "${tr('checkout')} : ",
-                                  style: AppTextStyle.s18_w700(
-                                      color: context.colors.white),
+                                  style: AppTextStyle.s18_w700(color: context.colors.white),
                                 ),
-                                Text(
-                                  state.data.subTotal ?? "",
-                                  style: AppTextStyle.s18_w700(
-                                      color: context.colors.white),
-                                ).withDirhamSymbol(
-                                    symbolStyle: AppTextStyle.s20_w300(
-                                        color: context.colors.white)),
+                                // Text(
+                                //   state.data.subTotal ?? "",
+                                //   style: AppTextStyle.s18_w700(
+                                //       color: context.colors.white),
+                                // ).withDirhamSymbol(
+                                //     symbolStyle: AppTextStyle.s20_w300(
+                                //         color: context.colors.white)),
+                                Row(
+                                  children: [
+                                    Text(
+                                      state.data.subTotal ?? "",
+                                      style: AppTextStyle.s18_w700(color: context.colors.white),
+                                    ),
+                                    Gaps.hGap6,
+                                    Text(
+                                      state.data.currencySymbol ?? "",
+                                      style: AppTextStyle.s20_w500(color: context.colors.white),
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
                           ),
@@ -180,12 +186,11 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
       return;
     }
 
-    if(widget.onPressCheck!= null){
+    if (widget.onPressCheck != null) {
       widget.onPressCheck!();
       return;
     }
 
-    AutoRouter.of(context).popAndPush(
-        CartRoute(initialIndex: CartNavigateHelper.shippingStepIndex));
+    AutoRouter.of(context).popAndPush(CartRoute(initialIndex: CartNavigateHelper.shippingStepIndex));
   }
 }

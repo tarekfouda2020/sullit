@@ -4,15 +4,13 @@ class BuildCartItem extends StatelessWidget {
   final GeneralCartItem cartItem;
   final CartController controller;
 
-  const BuildCartItem(
-      {super.key, required this.cartItem, required this.controller});
+  const BuildCartItem({super.key, required this.cartItem, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: Dimens.paddingVertical5PX,
-      padding: const EdgeInsetsDirectional.only(
-          end: 16, top: 16, bottom: 16, start: 5),
+      padding: const EdgeInsetsDirectional.only(end: 16, top: 16, bottom: 16, start: 5),
       decoration: CustomDecoration(
         myBoxShadow: const [],
         radius: Dimens.borderRadius12PX,
@@ -37,13 +35,10 @@ class BuildCartItem extends StatelessWidget {
                     Expanded(
                       child: Text(
                         cartItem.name,
-                        style:
-                            AppTextStyle.s14_w600(color: context.colors.black)
-                                .copyWith(height: 1.5),
+                        style: AppTextStyle.s14_w600(color: context.colors.black).copyWith(height: 1.5),
                       ),
                     ),
-                    CartFavIconWidget(
-                        cartItem: cartItem, controller: controller),
+                    CartFavIconWidget(cartItem: cartItem, controller: controller),
                   ],
                 ),
                 Gaps.vGap5,
@@ -63,12 +58,24 @@ class BuildCartItem extends StatelessWidget {
                   onRatingUpdate: (rating) {},
                 ),
                 Gaps.vGap5,
-                DirhamPrice(
-                  amount: cartItem.price,
-                  currencyStyle:
-                      AppTextStyle.s16_w400(color: context.colors.primary),
-                  textStyle:
-                      AppTextStyle.s14_w600(color: context.colors.primary),
+                // DirhamPrice(
+                //   amount: cartItem.price,
+                //   currencyStyle: AppTextStyle.s16_w400(color: context.colors.primary),
+                //   textStyle: AppTextStyle.s14_w600(color: context.colors.primary),
+                // ),
+                Row(
+                  children: [
+                    Text(
+                      cartItem.price,
+                      style: AppTextStyle.s14_w600(color: context.colors.primary),
+                    ),
+                    Gaps.hGap6,
+                    Text(
+                      cartItem.currencySymbol,
+                      style: AppTextStyle.s14_w600(color: context.colors.primary),
+                    ),
+
+                  ],
                 ),
                 Gaps.vGap6,
                 Row(
@@ -76,8 +83,7 @@ class BuildCartItem extends StatelessWidget {
                   children: [
                     Text(
                       "${tr("soldBy")} :",
-                      style: AppTextStyle.s12_w400(
-                          color: context.colors.textColor),
+                      style: AppTextStyle.s12_w400(color: context.colors.textColor),
                     ),
                     Gaps.hGap5,
                     Text(
