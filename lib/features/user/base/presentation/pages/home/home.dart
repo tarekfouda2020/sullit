@@ -15,6 +15,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    if (!controller.isCountryAvailable) return;
     controller.initBottomNavigation(this, widget.index);
     controller.initUserLocation(context);
     controller.getCartItems(context);
@@ -23,6 +24,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    if (!controller.isCountryAvailable) {
+      return const CountryNotAvailableView();
+    }
     return WillPopScope(
       onWillPop: () async => controller.onBack(context),
       child: DefaultTabController(
@@ -41,8 +45,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             ),
             bottomNavigationBar: BuildBottomNavBar(controller: controller),
             floatingActionButton: const CartButtonWidget(),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           ),
         ),
       ),

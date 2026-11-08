@@ -10,6 +10,7 @@ class SplashController {
   }
 
   Future<void> getUserCurrentLocation(BuildContext context) async {
+    await updateLang(context);
     final locationService = getIt<LocationService>();
     final granted = await locationService.requestWhenInUsePermission();
     if (granted) {
@@ -18,6 +19,7 @@ class SplashController {
         if (loc != null) {
           locationService.setUserLocation(loc);
           await locationService.setCountryCode();
+          await checkCountryAvailability();
         }
       } catch (e) {
         log("error is =>>>>>>> $e ========");
@@ -27,6 +29,22 @@ class SplashController {
     manipulateSaveData(context);
   }
 
+  Future<void> checkCountryAvailability() async {
+    final countryCode = GlobalState.instance.get(GlobalStateKeys.countryCode) as String?;
+
+    if (countryCode == null || countryCode.isEmpty) return;
+
+    try {
+      final isAvailable = await IsCountryAvailable().call(countryCode).timeout(const Duration(seconds: 5));
+
+      if (isAvailable != null) {
+        GlobalState.instance.set(GlobalStateKeys.isCountryAvailable, isAvailable);
+        log("country=$countryCode available=$isAvailable");
+      }
+    } catch (e, s) {
+      log("country availability error: $e\n$s");
+    }
+  }
 
   Future<void> manipulateSaveData(BuildContext context) async {
     updateLang(context);
@@ -55,11 +73,6 @@ class SplashController {
     }
   }
 
-
-
-
-
-
   /// back-end lang code is different from local lang code
   Future<void> updateLang(BuildContext context) async {
     await SharedPreferences.getInstance().then(
@@ -80,8 +93,7 @@ class SplashController {
         if (value == LangCodeHelper.langUR) {
           value = LangTypeEnum.urdu.getLangCode();
         }
-        GlobalState.instance
-            .set(LangCodeHelper.langKey, value ?? LangCodeHelper.langEN);
+        GlobalState.instance.set(LangCodeHelper.langKey, value ?? LangCodeHelper.langEN);
       },
     );
   }

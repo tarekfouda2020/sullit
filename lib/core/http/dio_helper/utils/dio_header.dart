@@ -9,7 +9,7 @@ class DioHeader {
   Map<String, String> call() {
     String? token = GlobalState.instance.get(GlobalStateKeys.token);
     String? countryCode = GlobalState.instance.get(GlobalStateKeys.countryCode);
-    String lang = GlobalState.instance.get(LangCodeHelper.langKey);
+    String lang = GlobalState.instance.get(LangCodeHelper.langKey) ?? LangCodeHelper.langEN;
     return {
       "Content-Type": "application/json",
       'Accept': 'application/json',

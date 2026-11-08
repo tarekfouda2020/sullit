@@ -52,5 +52,8 @@ import 'package:new_version_plus/new_version_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_tdd/core/extensions/auth_extension.dart';
 
+import '../../../../../../core/constants/local_storage_keys.dart';
+import '../../../../../../core/helpers/global_state.dart';
+
 part 'home.dart';
 part 'home_controller.dart';

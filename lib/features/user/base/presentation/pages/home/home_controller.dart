@@ -11,7 +11,7 @@ class HomeController {
   final GenericBloc<bool> visibleSearch = GenericBloc(false);
   final TextEditingController searchController = TextEditingController();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
+  bool get isCountryAvailable => GlobalState.instance.get(GlobalStateKeys.isCountryAvailable) as bool? ?? true;
   OrderCardDomainModel? _firstUnPaidOrder;
 
   bool showToast = false;

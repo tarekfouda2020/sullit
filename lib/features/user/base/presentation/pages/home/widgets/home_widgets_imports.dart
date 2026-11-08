@@ -32,3 +32,4 @@ part 'cart_button_widget.dart';
 part 'un_paid_order_sheet_widget.dart';
 
 part 'update_dialog_widget.dart';
+part'country_not_available_view_widget.dart';

@@ -9,6 +9,7 @@ import 'package:flutter_tdd/features/user/base/data/data_sources/base_data_sourc
 import 'package:flutter_tdd/features/user/base/data/models/lang_model/lang_model.dart';
 import 'package:flutter_tdd/features/user/products/data/models/shop_model/shop_model.dart';
 import 'package:injectable/injectable.dart';
+import 'package:flutter_tdd/features/user/base/data/models/country_model/country_model.dart';
 
 @Injectable(as: BaseDataSources)
 class ImplBaseDataSources extends BaseDataSources {
@@ -52,5 +53,19 @@ class ImplBaseDataSources extends BaseDataSources {
       responseKey: (data) => data["data"],
     );
     return await GenericHttpImpl<List<LangModel>>().call(model);
+  }
+
+  @override
+  Future<Either<Failure, List<CountryModel>>> getAvailableCountry() async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.getAvailableCountry,
+      requestMethod: RequestMethod.get,
+      responseType: ResType.list,
+      toJsonFunc: (json) => List<CountryModel>.from(
+        json.map((e) => CountryModel.fromJson(e)),
+      ),
+      responseKey: (data) => data["data"],
+    );
+    return await GenericHttpImpl<List<CountryModel>>().call(model);
   }
 }

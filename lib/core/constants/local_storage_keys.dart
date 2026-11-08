@@ -16,4 +16,5 @@ class GlobalStateKeys {
   static String token = "token";
   static String currentComparisonsId = "currentComparisonsId";
   static String countryCode = "country_code";
+  static String isCountryAvailable = "is_country_available";
 }

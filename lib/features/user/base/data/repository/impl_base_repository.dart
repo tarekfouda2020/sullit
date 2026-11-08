@@ -8,6 +8,8 @@ import 'package:flutter_tdd/features/user/base/domain/repository/base_repository
 import 'package:flutter_tdd/features/user/products/domain/models/merchant_shop_model.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../domain/models/country_domain_model.dart';
+
 @Injectable(as: BaseRepository)
 class ImplBaseRepository extends BaseRepository with ModelToDomain {
   var dataSources = getIt<BaseDataSources>();
@@ -28,6 +30,12 @@ class ImplBaseRepository extends BaseRepository with ModelToDomain {
   Future<Either<Failure, List<LangDomainModel>>> getLanguages(
       bool params) async {
     var result = await dataSources.getLanguages(params);
+    return toDomainResultList(result);
+  }
+
+  @override
+  Future<Either<Failure, List<CountryDomainModel>>> getAvailableCountry() async {
+    var result = await dataSources.getAvailableCountry();
     return toDomainResultList(result);
   }
 }

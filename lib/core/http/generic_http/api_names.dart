@@ -170,6 +170,7 @@ class ApiNames {
 
   ///general
   static const String getLanguages = "settings/languages";
+  static const String getAvailableCountry = "countries";
 
   //tickets
   static const String createTicket = "tickets/store";
