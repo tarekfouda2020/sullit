@@ -12,6 +12,7 @@ _$_WalletModel _$$_WalletModelFromJson(Map<String, dynamic> json) =>
       walletCredit: json['wallet_credit'] as String,
       rechargedHistory: WalletRechargeHistoryModel.fromJson(
           json['wallet_recharge_history'] as Map<String, dynamic>),
+      currencySymbol: json['currency_symbol'] as String?,
     );
 
 Map<String, dynamic> _$$_WalletModelToJson(_$_WalletModel instance) =>
@@ -19,4 +20,5 @@ Map<String, dynamic> _$$_WalletModelToJson(_$_WalletModel instance) =>
       'wallet_balance': instance.walletBalance,
       'wallet_credit': instance.walletCredit,
       'wallet_recharge_history': instance.rechargedHistory.toJson(),
+      'currency_symbol': instance.currencySymbol,
     };

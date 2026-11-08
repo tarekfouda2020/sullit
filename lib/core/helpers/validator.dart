@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/localization/localization_methods.dart';
 import 'package:flutter_tdd/features/user/classified_products/domain/models/video_provider.dart';
 import 'package:flutter_tdd/features/user/classified_products/presentaion/manager/helpers/video_url_validator.dart';
+import 'package:phone_numbers_parser/phone_numbers_parser.dart';
 
 extension Validator on String {
   String? noValidate() {
@@ -38,6 +39,22 @@ extension Validator on String {
       return tr("phoneValidation");
     }
 
+    return null;
+  }
+
+  String? isValidPhoneForCountry(String? isoCode) {
+    if (trim().isEmpty) {
+      return tr("fillField");
+    }
+    try {
+      final iso = IsoCode.values.byName((isoCode ?? 'AE').toUpperCase());
+      if (!PhoneNumber.parse(this, callerCountry: iso)
+          .isValid(type: PhoneNumberType.mobile)) {
+        return tr("phoneValidation");
+      }
+    } catch (_) {
+      return tr("phoneValidation");
+    }
     return null;
   }
 

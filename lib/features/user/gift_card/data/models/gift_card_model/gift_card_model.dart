@@ -22,6 +22,7 @@ class GiftCardModel extends BaseApiModel<GiftCardDomainModel>
     @JsonKey(name: "expired_at") String? expiredAt,
     @JsonKey(name: "expired_in_days") int? expiredInDays,
     @JsonKey(name: "is_expired") bool? isExpired,
+    @JsonKey(name: "currency_symbol") String? currencySymbol,
   }) = _GiftCardModel;
 
   factory GiftCardModel.fromJson(Map<String, dynamic> json) =>
@@ -39,6 +40,7 @@ class GiftCardModel extends BaseApiModel<GiftCardDomainModel>
       expiredAt: expiredAt,
       expiredInDays: expiredInDays,
       isExpired: isExpired,
+      currencySymbol: currencySymbol,
     );
   }
 }

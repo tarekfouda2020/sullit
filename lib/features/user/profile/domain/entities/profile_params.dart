@@ -16,7 +16,6 @@ class ProfileParams {
   });
 
   Map<String, dynamic> toJson() {
-    print("=======>>>>>>>>>>>>>>>>email in params = $email<<<<<<<<<<");
     return {
       if (name != null) "name": name,
       if (countryCode != null && phone != null) "country_code": countryCode,

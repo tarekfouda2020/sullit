@@ -26,32 +26,19 @@ class BuildDeliveryProductItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Text.rich(
-                //   TextSpan(text: cartItem.name, children: [
-                //     TextSpan(
-                //         text: "   ${AppTheme.dirhamIcon}",
-                //         style: AppTextStyle.s15_w400(color: context.colors.primary)
-                //             .copyWith(fontFamily: AppTheme.dirhamFontFamily)),
-                //     TextSpan(
-                //         text: " ${cartItem.price}",
-                //         style: AppTextStyle.s15_w500(color: context.colors.primary).copyWith()),
-                //   ]),
-                //   style: AppTextStyle.s14_w400(color: context.colors.black).copyWith(height: 1.3),
-                // ),
-                Row(
-                  children: [
-                    Text(cartItem.name, style: AppTextStyle.s14_w400(color: context.colors.black)),
-                    Gaps.hGap6,
-                    Text(
-                      cartItem.price,
-                      style: AppTextStyle.s14_w600(color: context.colors.primary),
-                    ),
-                    Gaps.hGap6,
-                    Text(
-                      cartItem.currencySymbol,
-                      style: AppTextStyle.s14_w600(color: context.colors.primary),
-                    ),
-                  ],
+                Text.rich(
+                  TextSpan(
+                    text: cartItem.name,
+                    style: AppTextStyle.s14_w400(color: context.colors.black),
+                    children: [
+                      TextSpan(
+                        text: "  ${cartItem.price} ${cartItem.currencySymbol}",
+                        style: AppTextStyle.s14_w600(color: context.colors.primary),
+                      ),
+                    ],
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 Gaps.vGap12,
                 Row(
@@ -59,10 +46,6 @@ class BuildDeliveryProductItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text("${tr("total")} :", style: AppTextStyle.s14_w400(color: context.colors.black)),
-                    // DirhamPrice(
-                    //   amount: cartItem.total,
-                    //   textStyle: AppTextStyle.s16_w400(color: context.colors.primary),
-                    // ),
                     Row(
                       children: [
                         Text(

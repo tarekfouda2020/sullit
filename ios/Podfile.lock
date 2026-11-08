@@ -31,8 +31,6 @@ PODS:
     - Flutter
   - simple_barcode_scanner (0.1.7):
     - Flutter
-  - sound_effect (0.1.2):
-    - Flutter
 
 DEPENDENCIES:
   - app_tracking_transparency (from `.symlinks/plugins/app_tracking_transparency/ios`)
@@ -48,7 +46,6 @@ DEPENDENCIES:
   - rate_my_app (from `.symlinks/plugins/rate_my_app/ios`)
   - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
   - simple_barcode_scanner (from `.symlinks/plugins/simple_barcode_scanner/ios`)
-  - sound_effect (from `.symlinks/plugins/sound_effect/ios`)
 
 SPEC REPOS:
   trunk:
@@ -82,8 +79,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sign_in_with_apple/ios"
   simple_barcode_scanner:
     :path: ".symlinks/plugins/simple_barcode_scanner/ios"
-  sound_effect:
-    :path: ".symlinks/plugins/sound_effect/ios"
 
 SPEC CHECKSUMS:
   app_tracking_transparency: 3d84f147f67ca82d3c15355c36b1fa6b66ca7c92
@@ -101,7 +96,6 @@ SPEC CHECKSUMS:
   rate_my_app: 65f698abb47b8359fd5de959fa0237208c024aab
   sign_in_with_apple: c5dcc141574c8c54d5ac99dd2163c0c72ad22418
   simple_barcode_scanner: f1217b91fbad5848d37fa6d794f443416fd3e44d
-  sound_effect: fa0600cdb9ebdc8ca14671fdc20418d7c223e92b
 
 PODFILE CHECKSUM: f484166ea10594280def083ae439caed320a5eb0
 

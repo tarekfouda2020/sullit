@@ -16,7 +16,8 @@ class PhoneInputAndVerify extends StatelessWidget {
           children: [
             BlocProvider.value(
               value: controller.countryCubit,
-              child: BlocBuilder<GenericBloc<Country?>, GenericState<Country?>>(
+              child: BlocBuilder<GenericBloc<CountryCode?>,
+                  GenericState<CountryCode?>>(
                 builder: (context, state) {
                   return Expanded(
                     flex: 2,
@@ -28,11 +29,12 @@ class PhoneInputAndVerify extends StatelessWidget {
                       action: TextInputAction.done,
                       // contentPadding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                       // contentPadding: const EdgeInsetsDirectional.only(start: 32,end: 0,top:16,bottom: 16 ),
-                      validate: (value) => value?.isValidUAEPhone(value),
+                      validate: (value) =>
+                          value?.isValidPhoneForCountry(state.data?.code),
                       hint: tr("phone"),
                       margin: Dimens.marginTop5,
                       // prefixIcon: _buildPrefixIcon(context, state),
-                      prefixIcon: PhoneFieldPrefixWidget(
+                      prefixIcon: CountryCodePrefixWidget(
                           countryCubit: controller.countryCubit),
                     ),
                   );

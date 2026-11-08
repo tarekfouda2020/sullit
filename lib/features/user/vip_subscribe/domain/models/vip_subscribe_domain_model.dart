@@ -15,6 +15,7 @@ class VipSubscribeDomainModel extends BaseDomainModel {
   bool isSelected = false;
   final bool? isExpired;
   final VipSubscribeDomainModel? subscription;
+  final String? currencySymbol;
 
   VipSubscribeDomainModel({
     required this.id,
@@ -31,5 +32,6 @@ class VipSubscribeDomainModel extends BaseDomainModel {
     this.expiresAt,
     this.expiredInDays,
     this.isExpired,
+    this.currencySymbol,
   });
 }

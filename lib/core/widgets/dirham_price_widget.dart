@@ -21,6 +21,10 @@ class DirhamPrice extends StatelessWidget {
   final CrossAxisAlignment? crossAxisAlignment;
   final double? currencyOffset;
 
+  /// Currency symbol returned by the API (e.g. "AED", "SAR"). When set, it is
+  /// shown as text instead of the hardcoded Dirham glyph.
+  final String? currencySymbolText;
+
   const DirhamPrice({
     Key? key,
     required this.amount,
@@ -36,6 +40,7 @@ class DirhamPrice extends StatelessWidget {
     this.showMinus = false,
     this.applySameStyle = true,
     this.applyDashSeperate = true,
+    this.currencySymbolText,
   }) : super(key: key);
 
   @override
@@ -53,23 +58,26 @@ class DirhamPrice extends StatelessWidget {
         crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          DirhamCurrencySymbol(
-            // size: currencySize ?? finalCurrencyStyle?.fontSize ?? size ?? Dimens.font_sp16,
-            // color: currencyColor ?? finalCurrencyStyle?.color ?? color ?? context.colors.primary,
-            // fontWeight: currencyFontWeight ?? finalCurrencyStyle?.fontWeight ?? FontWeight.w400,
-            useAlternativeSymbol: useAlternativeSymbol,
-            currencyOffset: currencyOffset,
-            textStyle: finalCurrencyStyle,
-          ),
-          if (showMinus == false) Gaps.hGap2,
           Flexible(
             child: Text(
               showMinus! ? "-${formattedAmount()}" : formattedAmount(),
               style: baseTextStyle.copyWith(
-                  // fontFamily: AppTheme.dirhamFontFamily,
+                // fontFamily: AppTheme.dirhamFontFamily,
                   height: 0),
             ),
           ),
+          if (showMinus == false) Gaps.hGap2,
+          if (currencySymbolText != null && currencySymbolText!.isNotEmpty)
+            Text(currencySymbolText!, style: finalCurrencyStyle)
+          else
+            DirhamCurrencySymbol(
+              // size: currencySize ?? finalCurrencyStyle?.fontSize ?? size ?? Dimens.font_sp16,
+              // color: currencyColor ?? finalCurrencyStyle?.color ?? color ?? context.colors.primary,
+              // fontWeight: currencyFontWeight ?? finalCurrencyStyle?.fontWeight ?? FontWeight.w400,
+              useAlternativeSymbol: useAlternativeSymbol,
+              currencyOffset: currencyOffset,
+              textStyle: finalCurrencyStyle,
+            ),
         ],
       ),
     );

@@ -24,6 +24,7 @@ _$_VipSubscribeModel _$$_VipSubscribeModelFromJson(Map<String, dynamic> json) =>
           ? null
           : VipSubscribeModel.fromJson(
               json['subscription'] as Map<String, dynamic>),
+      currencySymbol: json['currency_symbol'] as String?,
     );
 
 Map<String, dynamic> _$$_VipSubscribeModelToJson(
@@ -42,4 +43,5 @@ Map<String, dynamic> _$$_VipSubscribeModelToJson(
       'expired_in_days': instance.expiredInDays,
       'is_expired': instance.isExpired,
       'subscription': instance.subscription?.toJson(),
+      'currency_symbol': instance.currencySymbol,
     };

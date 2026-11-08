@@ -11,6 +11,7 @@ class GiftCardDomainModel extends BaseDomainModel {
   final String? expiredAt;
   final int? expiredInDays;
   final bool? isExpired;
+  final String? currencySymbol;
 
   GiftCardDomainModel({
     required this.id,
@@ -22,6 +23,7 @@ class GiftCardDomainModel extends BaseDomainModel {
     required this.expiredAt,
     required this.expiredInDays,
     required this.isExpired,
+    this.currencySymbol,
   });
 
   GiftCardDomainModel copyWith() {
@@ -35,6 +37,7 @@ class GiftCardDomainModel extends BaseDomainModel {
       expiredAt: expiredAt,
       expiredInDays: expiredInDays,
       isExpired: isExpired,
+      currencySymbol: currencySymbol,
     );
   }
 }

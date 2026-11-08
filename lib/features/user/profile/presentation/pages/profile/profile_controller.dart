@@ -20,7 +20,7 @@ class ProfileController {
   final TextEditingController addressController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController = TextEditingController();
-  final GenericBloc<Country?> countryCubit = GenericBloc(null);
+  final GenericBloc<CountryCode?> countryCubit = GenericBloc(null);
   final GenericBloc<bool> verifyPhoneCubit = GenericBloc(false);
 
   // final GenericBloc<bool> verifyEmailCubit = GenericBloc(false);
@@ -47,7 +47,9 @@ class ProfileController {
   }
 
   Future<void> _initializeCountryFromUser(BuildContext context, UserDomainModel? user) async {
-    countryCubit.onUpdateData(CountryPickerHelper.defaultCountrySync);
+    countryCubit.onUpdateData(CountryCode.fromCode('AE') ??
+        const CountryCode(
+            name: 'United Arab Emirates', code: 'AE', dialCode: '+971'));
     return;
     // if (user?.countryCode != null && user!.countryCode!.isNotEmpty) {
     //   try {
@@ -155,7 +157,6 @@ class ProfileController {
 
   Future<void> setEditProfile(BuildContext context) async {
     if (isDataChanged(context)) {
-      var params = _profileParams(context);
       // if (isEmailChanged(context)) {
       //   await SetEditProfileEmail().call(emailController.text);
       //   CustomToast.showSimpleToast(
@@ -195,6 +196,7 @@ class ProfileController {
         );
         return;
       }
+      var params = _profileParams(context);
       var data = await SetEditProfile().call(params);
       if (data != null) {
         _cashAndRoute(data, context);
@@ -209,11 +211,10 @@ class ProfileController {
 
   bool isPhoneValid() {
     var phone = phoneController.text;
-    if (phone.isNotEmpty) {
+    if (phone.isEmpty) {
       return true;
-    } else {
-      return ((phone)).isValidUAEPhone(phone) == null;
     }
+    return phone.isValidPhoneForCountry(countryCubit.state.data?.code) == null;
   }
 
   void onSaveUserData(BuildContext context) async {
@@ -259,7 +260,7 @@ class ProfileController {
   ProfileParams _profileParams(BuildContext context) {
     return ProfileParams(
       name: isNameChanged(context) ? nameController.text : null,
-      countryCode: countryCubit.state.data?.callingCode,
+      countryCode: countryCubit.state.data?.dialCode,
       phone: isPhoneValid() && phoneController.text.isNotEmpty ? phoneController.text : null,
       image: isImageChanged() ? imageCubit.state.data : null,
       email: isEmailChanged(context) ? emailController.text : null,

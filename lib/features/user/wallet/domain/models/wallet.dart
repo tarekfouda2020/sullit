@@ -5,11 +5,13 @@ class Wallet extends BaseDomainModel {
   String walletBalance;
   String walletCredit;
   WalletRechargeHistory rechargeHistory;
+  String? currencySymbol;
 
   Wallet({
     required this.walletBalance,
     required this.walletCredit,
     required this.rechargeHistory,
+    this.currencySymbol,
   });
 
   bool get haveWalletCredit {

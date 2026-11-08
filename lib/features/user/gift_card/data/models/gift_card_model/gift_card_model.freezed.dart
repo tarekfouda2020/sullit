@@ -33,6 +33,8 @@ mixin _$GiftCardModel {
   int? get expiredInDays => throw _privateConstructorUsedError;
   @JsonKey(name: "is_expired")
   bool? get isExpired => throw _privateConstructorUsedError;
+  @JsonKey(name: "currency_symbol")
+  String? get currencySymbol => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +57,8 @@ abstract class $GiftCardModelCopyWith<$Res> {
       @JsonKey(name: "validity_days") int validateDays,
       @JsonKey(name: "expired_at") String? expiredAt,
       @JsonKey(name: "expired_in_days") int? expiredInDays,
-      @JsonKey(name: "is_expired") bool? isExpired});
+      @JsonKey(name: "is_expired") bool? isExpired,
+      @JsonKey(name: "currency_symbol") String? currencySymbol});
 }
 
 /// @nodoc
@@ -80,6 +83,7 @@ class _$GiftCardModelCopyWithImpl<$Res, $Val extends GiftCardModel>
     Object? expiredAt = freezed,
     Object? expiredInDays = freezed,
     Object? isExpired = freezed,
+    Object? currencySymbol = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -118,6 +122,10 @@ class _$GiftCardModelCopyWithImpl<$Res, $Val extends GiftCardModel>
           ? _value.isExpired
           : isExpired // ignore: cast_nullable_to_non_nullable
               as bool?,
+      currencySymbol: freezed == currencySymbol
+          ? _value.currencySymbol
+          : currencySymbol // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -139,7 +147,8 @@ abstract class _$$_GiftCardModelCopyWith<$Res>
       @JsonKey(name: "validity_days") int validateDays,
       @JsonKey(name: "expired_at") String? expiredAt,
       @JsonKey(name: "expired_in_days") int? expiredInDays,
-      @JsonKey(name: "is_expired") bool? isExpired});
+      @JsonKey(name: "is_expired") bool? isExpired,
+      @JsonKey(name: "currency_symbol") String? currencySymbol});
 }
 
 /// @nodoc
@@ -162,6 +171,7 @@ class __$$_GiftCardModelCopyWithImpl<$Res>
     Object? expiredAt = freezed,
     Object? expiredInDays = freezed,
     Object? isExpired = freezed,
+    Object? currencySymbol = freezed,
   }) {
     return _then(_$_GiftCardModel(
       id: null == id
@@ -200,6 +210,10 @@ class __$$_GiftCardModelCopyWithImpl<$Res>
           ? _value.isExpired
           : isExpired // ignore: cast_nullable_to_non_nullable
               as bool?,
+      currencySymbol: freezed == currencySymbol
+          ? _value.currencySymbol
+          : currencySymbol // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -217,7 +231,8 @@ class _$_GiftCardModel extends _GiftCardModel {
       @JsonKey(name: "validity_days") required this.validateDays,
       @JsonKey(name: "expired_at") this.expiredAt,
       @JsonKey(name: "expired_in_days") this.expiredInDays,
-      @JsonKey(name: "is_expired") this.isExpired})
+      @JsonKey(name: "is_expired") this.isExpired,
+      @JsonKey(name: "currency_symbol") this.currencySymbol})
       : super._();
 
   factory _$_GiftCardModel.fromJson(Map<String, dynamic> json) =>
@@ -245,10 +260,13 @@ class _$_GiftCardModel extends _GiftCardModel {
   @override
   @JsonKey(name: "is_expired")
   final bool? isExpired;
+  @override
+  @JsonKey(name: "currency_symbol")
+  final String? currencySymbol;
 
   @override
   String toString() {
-    return 'GiftCardModel(id: $id, title: $title, code: $code, price: $price, value: $value, validateDays: $validateDays, expiredAt: $expiredAt, expiredInDays: $expiredInDays, isExpired: $isExpired)';
+    return 'GiftCardModel(id: $id, title: $title, code: $code, price: $price, value: $value, validateDays: $validateDays, expiredAt: $expiredAt, expiredInDays: $expiredInDays, isExpired: $isExpired, currencySymbol: $currencySymbol)';
   }
 
   @override
@@ -268,13 +286,15 @@ class _$_GiftCardModel extends _GiftCardModel {
             (identical(other.expiredInDays, expiredInDays) ||
                 other.expiredInDays == expiredInDays) &&
             (identical(other.isExpired, isExpired) ||
-                other.isExpired == isExpired));
+                other.isExpired == isExpired) &&
+            (identical(other.currencySymbol, currencySymbol) ||
+                other.currencySymbol == currencySymbol));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, code, price, value,
-      validateDays, expiredAt, expiredInDays, isExpired);
+      validateDays, expiredAt, expiredInDays, isExpired, currencySymbol);
 
   @JsonKey(ignore: true)
   @override
@@ -292,15 +312,17 @@ class _$_GiftCardModel extends _GiftCardModel {
 
 abstract class _GiftCardModel extends GiftCardModel {
   factory _GiftCardModel(
-      {required final int id,
-      required final String title,
-      final String? code,
-      required final String price,
-      required final String value,
-      @JsonKey(name: "validity_days") required final int validateDays,
-      @JsonKey(name: "expired_at") final String? expiredAt,
-      @JsonKey(name: "expired_in_days") final int? expiredInDays,
-      @JsonKey(name: "is_expired") final bool? isExpired}) = _$_GiftCardModel;
+          {required final int id,
+          required final String title,
+          final String? code,
+          required final String price,
+          required final String value,
+          @JsonKey(name: "validity_days") required final int validateDays,
+          @JsonKey(name: "expired_at") final String? expiredAt,
+          @JsonKey(name: "expired_in_days") final int? expiredInDays,
+          @JsonKey(name: "is_expired") final bool? isExpired,
+          @JsonKey(name: "currency_symbol") final String? currencySymbol}) =
+      _$_GiftCardModel;
   _GiftCardModel._() : super._();
 
   factory _GiftCardModel.fromJson(Map<String, dynamic> json) =
@@ -328,6 +350,9 @@ abstract class _GiftCardModel extends GiftCardModel {
   @override
   @JsonKey(name: "is_expired")
   bool? get isExpired;
+  @override
+  @JsonKey(name: "currency_symbol")
+  String? get currencySymbol;
   @override
   @JsonKey(ignore: true)
   _$$_GiftCardModelCopyWith<_$_GiftCardModel> get copyWith =>

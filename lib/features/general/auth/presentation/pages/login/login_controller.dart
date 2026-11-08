@@ -12,6 +12,10 @@ class LoginController {
   final TextEditingController email = TextEditingController();
   final TextEditingController phone = TextEditingController();
   final TextEditingController password = TextEditingController();
+  final GenericBloc<CountryCode?> countryCubit = GenericBloc<CountryCode?>(
+      CountryCode.fromCode('AE') ??
+          const CountryCode(
+              name: 'United Arab Emirates', code: 'AE', dialCode: '+971'));
   final GenericBloc<bool> passwordCubit = GenericBloc(false);
   final GenericBloc<int> tabsCubit = GenericBloc(0);
   final GenericBloc<bool?> refreshValidationCubit = GenericBloc(null);
@@ -50,6 +54,7 @@ class LoginController {
       }
       if (deviceId != null) {
         var params = await _setLoginParams(deviceId);
+        log("==>>>>> params ${params.toJson()}  =====");
         var result = await SetLogin().call(params);
         _handleLoginResult(context, result);
       }
@@ -107,8 +112,9 @@ class LoginController {
   }
 
   Future<LoginParams> _setLoginParams(String deviceId) async {
-    String emailOrPhone =
-        switchEmailPhoneCubit.state.data == 0 ? email.text : phone.text;
+    bool isPhone = switchEmailPhoneCubit.state.data == 1;
+    String code = countryCubit.state.data!.dialCode;
+    String emailOrPhone = isPhone ? "$code${phone.text}" : email.text;
     return LoginParams(
       emailOrPhone: emailOrPhone,
       password: password.text,

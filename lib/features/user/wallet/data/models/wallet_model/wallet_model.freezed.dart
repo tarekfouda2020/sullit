@@ -27,6 +27,8 @@ mixin _$WalletModel {
   @JsonKey(name: "wallet_recharge_history")
   WalletRechargeHistoryModel get rechargedHistory =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: "currency_symbol")
+  String? get currencySymbol => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +46,8 @@ abstract class $WalletModelCopyWith<$Res> {
       {@JsonKey(name: "wallet_balance") String walletBalance,
       @JsonKey(name: "wallet_credit") String walletCredit,
       @JsonKey(name: "wallet_recharge_history")
-      WalletRechargeHistoryModel rechargedHistory});
+      WalletRechargeHistoryModel rechargedHistory,
+      @JsonKey(name: "currency_symbol") String? currencySymbol});
 
   $WalletRechargeHistoryModelCopyWith<$Res> get rechargedHistory;
 }
@@ -65,6 +68,7 @@ class _$WalletModelCopyWithImpl<$Res, $Val extends WalletModel>
     Object? walletBalance = null,
     Object? walletCredit = null,
     Object? rechargedHistory = null,
+    Object? currencySymbol = freezed,
   }) {
     return _then(_value.copyWith(
       walletBalance: null == walletBalance
@@ -79,6 +83,10 @@ class _$WalletModelCopyWithImpl<$Res, $Val extends WalletModel>
           ? _value.rechargedHistory
           : rechargedHistory // ignore: cast_nullable_to_non_nullable
               as WalletRechargeHistoryModel,
+      currencySymbol: freezed == currencySymbol
+          ? _value.currencySymbol
+          : currencySymbol // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -104,7 +112,8 @@ abstract class _$$_WalletModelCopyWith<$Res>
       {@JsonKey(name: "wallet_balance") String walletBalance,
       @JsonKey(name: "wallet_credit") String walletCredit,
       @JsonKey(name: "wallet_recharge_history")
-      WalletRechargeHistoryModel rechargedHistory});
+      WalletRechargeHistoryModel rechargedHistory,
+      @JsonKey(name: "currency_symbol") String? currencySymbol});
 
   @override
   $WalletRechargeHistoryModelCopyWith<$Res> get rechargedHistory;
@@ -124,6 +133,7 @@ class __$$_WalletModelCopyWithImpl<$Res>
     Object? walletBalance = null,
     Object? walletCredit = null,
     Object? rechargedHistory = null,
+    Object? currencySymbol = freezed,
   }) {
     return _then(_$_WalletModel(
       walletBalance: null == walletBalance
@@ -138,6 +148,10 @@ class __$$_WalletModelCopyWithImpl<$Res>
           ? _value.rechargedHistory
           : rechargedHistory // ignore: cast_nullable_to_non_nullable
               as WalletRechargeHistoryModel,
+      currencySymbol: freezed == currencySymbol
+          ? _value.currencySymbol
+          : currencySymbol // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -149,7 +163,8 @@ class _$_WalletModel extends _WalletModel {
   const _$_WalletModel(
       {@JsonKey(name: "wallet_balance") required this.walletBalance,
       @JsonKey(name: "wallet_credit") required this.walletCredit,
-      @JsonKey(name: "wallet_recharge_history") required this.rechargedHistory})
+      @JsonKey(name: "wallet_recharge_history") required this.rechargedHistory,
+      @JsonKey(name: "currency_symbol") this.currencySymbol})
       : super._();
 
   factory _$_WalletModel.fromJson(Map<String, dynamic> json) =>
@@ -164,10 +179,13 @@ class _$_WalletModel extends _WalletModel {
   @override
   @JsonKey(name: "wallet_recharge_history")
   final WalletRechargeHistoryModel rechargedHistory;
+  @override
+  @JsonKey(name: "currency_symbol")
+  final String? currencySymbol;
 
   @override
   String toString() {
-    return 'WalletModel(walletBalance: $walletBalance, walletCredit: $walletCredit, rechargedHistory: $rechargedHistory)';
+    return 'WalletModel(walletBalance: $walletBalance, walletCredit: $walletCredit, rechargedHistory: $rechargedHistory, currencySymbol: $currencySymbol)';
   }
 
   @override
@@ -180,13 +198,15 @@ class _$_WalletModel extends _WalletModel {
             (identical(other.walletCredit, walletCredit) ||
                 other.walletCredit == walletCredit) &&
             (identical(other.rechargedHistory, rechargedHistory) ||
-                other.rechargedHistory == rechargedHistory));
+                other.rechargedHistory == rechargedHistory) &&
+            (identical(other.currencySymbol, currencySymbol) ||
+                other.currencySymbol == currencySymbol));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, walletBalance, walletCredit, rechargedHistory);
+  int get hashCode => Object.hash(runtimeType, walletBalance, walletCredit,
+      rechargedHistory, currencySymbol);
 
   @JsonKey(ignore: true)
   @override
@@ -207,7 +227,8 @@ abstract class _WalletModel extends WalletModel {
           {@JsonKey(name: "wallet_balance") required final String walletBalance,
           @JsonKey(name: "wallet_credit") required final String walletCredit,
           @JsonKey(name: "wallet_recharge_history")
-          required final WalletRechargeHistoryModel rechargedHistory}) =
+          required final WalletRechargeHistoryModel rechargedHistory,
+          @JsonKey(name: "currency_symbol") final String? currencySymbol}) =
       _$_WalletModel;
   const _WalletModel._() : super._();
 
@@ -223,6 +244,9 @@ abstract class _WalletModel extends WalletModel {
   @override
   @JsonKey(name: "wallet_recharge_history")
   WalletRechargeHistoryModel get rechargedHistory;
+  @override
+  @JsonKey(name: "currency_symbol")
+  String? get currencySymbol;
   @override
   @JsonKey(ignore: true)
   _$$_WalletModelCopyWith<_$_WalletModel> get copyWith =>

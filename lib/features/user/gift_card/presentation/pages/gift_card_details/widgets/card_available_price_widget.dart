@@ -22,6 +22,7 @@ class CardAvailablePrice extends StatelessWidget {
                 Gaps.hGap5,
                 DirhamPrice(
                   amount: state.data!.price,
+                  currencySymbolText: state.data!.currencySymbol,
                   textStyle:
                       AppTextStyle.s24_w700(color: context.colors.primary),
                 ),

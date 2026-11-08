@@ -27,6 +27,7 @@ class VipSubscribeModel extends BaseApiModel<VipSubscribeDomainModel>
     @JsonKey(name: "expired_in_days") int? expiredInDays,
     @JsonKey(name: "is_expired") bool? isExpired,
     @JsonKey(name: "subscription") VipSubscribeModel? subscription,
+    @JsonKey(name: "currency_symbol") String? currencySymbol,
 
     /// in subscription key the nullable variables dose not return
   }) = _VipSubscribeModel;
@@ -50,6 +51,7 @@ class VipSubscribeModel extends BaseApiModel<VipSubscribeDomainModel>
       startsAt: startsAt,
       byInvite: byInvite,
       inviteLabel: byInviteLabel,
+      currencySymbol: currencySymbol,
     );
   }
 }

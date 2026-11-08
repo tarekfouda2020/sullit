@@ -17,6 +17,7 @@ _$_GiftCardModel _$$_GiftCardModelFromJson(Map<String, dynamic> json) =>
       expiredAt: json['expired_at'] as String?,
       expiredInDays: (json['expired_in_days'] as num?)?.toInt(),
       isExpired: json['is_expired'] as bool?,
+      currencySymbol: json['currency_symbol'] as String?,
     );
 
 Map<String, dynamic> _$$_GiftCardModelToJson(_$_GiftCardModel instance) =>
@@ -30,4 +31,5 @@ Map<String, dynamic> _$$_GiftCardModelToJson(_$_GiftCardModel instance) =>
       'expired_at': instance.expiredAt,
       'expired_in_days': instance.expiredInDays,
       'is_expired': instance.isExpired,
+      'currency_symbol': instance.currencySymbol,
     };

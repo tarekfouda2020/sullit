@@ -57,11 +57,9 @@ class BuildWalletDetails extends StatelessWidget {
                 ),
                 Gaps.vGap10,
                 Text(
-                  wallet.walletBalance,
+                  "${wallet.walletBalance} ${wallet.currencySymbol}",
                   style: AppTextStyle.s24_w700(color: context.colors.primary),
-                ).withDirhamSymbol(
-                    symbolStyle:
-                        AppTextStyle.s26_w400(color: context.colors.primary)),
+                ),
               ],
             ),
         ],
@@ -82,7 +80,9 @@ class BuildWalletDetails extends StatelessWidget {
         Text(
           value,
           style: AppTextStyle.s18_w700(color: color),
-        ).withDirhamSymbol(symbolStyle: AppTextStyle.s20_w400(color: color)),
+        ).withDirhamSymbol(
+            symbolText: wallet.currencySymbol,
+            symbolStyle: AppTextStyle.s20_w400(color: color)),
       ],
     );
   }

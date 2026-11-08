@@ -40,6 +40,8 @@ mixin _$VipSubscribeModel {
   bool? get isExpired => throw _privateConstructorUsedError;
   @JsonKey(name: "subscription")
   VipSubscribeModel? get subscription => throw _privateConstructorUsedError;
+  @JsonKey(name: "currency_symbol")
+  String? get currencySymbol => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -66,7 +68,8 @@ abstract class $VipSubscribeModelCopyWith<$Res> {
       @JsonKey(name: "expires_at") String? expiresAt,
       @JsonKey(name: "expired_in_days") int? expiredInDays,
       @JsonKey(name: "is_expired") bool? isExpired,
-      @JsonKey(name: "subscription") VipSubscribeModel? subscription});
+      @JsonKey(name: "subscription") VipSubscribeModel? subscription,
+      @JsonKey(name: "currency_symbol") String? currencySymbol});
 
   $VipSubscribeModelCopyWith<$Res>? get subscription;
 }
@@ -97,6 +100,7 @@ class _$VipSubscribeModelCopyWithImpl<$Res, $Val extends VipSubscribeModel>
     Object? expiredInDays = freezed,
     Object? isExpired = freezed,
     Object? subscription = freezed,
+    Object? currencySymbol = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -151,6 +155,10 @@ class _$VipSubscribeModelCopyWithImpl<$Res, $Val extends VipSubscribeModel>
           ? _value.subscription
           : subscription // ignore: cast_nullable_to_non_nullable
               as VipSubscribeModel?,
+      currencySymbol: freezed == currencySymbol
+          ? _value.currencySymbol
+          : currencySymbol // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -188,7 +196,8 @@ abstract class _$$_VipSubscribeModelCopyWith<$Res>
       @JsonKey(name: "expires_at") String? expiresAt,
       @JsonKey(name: "expired_in_days") int? expiredInDays,
       @JsonKey(name: "is_expired") bool? isExpired,
-      @JsonKey(name: "subscription") VipSubscribeModel? subscription});
+      @JsonKey(name: "subscription") VipSubscribeModel? subscription,
+      @JsonKey(name: "currency_symbol") String? currencySymbol});
 
   @override
   $VipSubscribeModelCopyWith<$Res>? get subscription;
@@ -218,6 +227,7 @@ class __$$_VipSubscribeModelCopyWithImpl<$Res>
     Object? expiredInDays = freezed,
     Object? isExpired = freezed,
     Object? subscription = freezed,
+    Object? currencySymbol = freezed,
   }) {
     return _then(_$_VipSubscribeModel(
       id: null == id
@@ -272,6 +282,10 @@ class __$$_VipSubscribeModelCopyWithImpl<$Res>
           ? _value.subscription
           : subscription // ignore: cast_nullable_to_non_nullable
               as VipSubscribeModel?,
+      currencySymbol: freezed == currencySymbol
+          ? _value.currencySymbol
+          : currencySymbol // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -293,7 +307,8 @@ class _$_VipSubscribeModel extends _VipSubscribeModel {
       @JsonKey(name: "expires_at") this.expiresAt,
       @JsonKey(name: "expired_in_days") this.expiredInDays,
       @JsonKey(name: "is_expired") this.isExpired,
-      @JsonKey(name: "subscription") this.subscription})
+      @JsonKey(name: "subscription") this.subscription,
+      @JsonKey(name: "currency_symbol") this.currencySymbol})
       : super._();
 
   factory _$_VipSubscribeModel.fromJson(Map<String, dynamic> json) =>
@@ -332,10 +347,13 @@ class _$_VipSubscribeModel extends _VipSubscribeModel {
   @override
   @JsonKey(name: "subscription")
   final VipSubscribeModel? subscription;
+  @override
+  @JsonKey(name: "currency_symbol")
+  final String? currencySymbol;
 
   @override
   String toString() {
-    return 'VipSubscribeModel(id: $id, name: $name, duration: $duration, price: $price, days: $days, description: $description, byInvite: $byInvite, byInviteLabel: $byInviteLabel, startsAt: $startsAt, expiresAt: $expiresAt, expiredInDays: $expiredInDays, isExpired: $isExpired, subscription: $subscription)';
+    return 'VipSubscribeModel(id: $id, name: $name, duration: $duration, price: $price, days: $days, description: $description, byInvite: $byInvite, byInviteLabel: $byInviteLabel, startsAt: $startsAt, expiresAt: $expiresAt, expiredInDays: $expiredInDays, isExpired: $isExpired, subscription: $subscription, currencySymbol: $currencySymbol)';
   }
 
   @override
@@ -364,7 +382,9 @@ class _$_VipSubscribeModel extends _VipSubscribeModel {
             (identical(other.isExpired, isExpired) ||
                 other.isExpired == isExpired) &&
             (identical(other.subscription, subscription) ||
-                other.subscription == subscription));
+                other.subscription == subscription) &&
+            (identical(other.currencySymbol, currencySymbol) ||
+                other.currencySymbol == currencySymbol));
   }
 
   @JsonKey(ignore: true)
@@ -383,7 +403,8 @@ class _$_VipSubscribeModel extends _VipSubscribeModel {
       expiresAt,
       expiredInDays,
       isExpired,
-      subscription);
+      subscription,
+      currencySymbol);
 
   @JsonKey(ignore: true)
   @override
@@ -402,20 +423,21 @@ class _$_VipSubscribeModel extends _VipSubscribeModel {
 
 abstract class _VipSubscribeModel extends VipSubscribeModel {
   factory _VipSubscribeModel(
-      {required final int id,
-      required final String name,
-      required final String duration,
-      required final String price,
-      required final int days,
-      required final String description,
-      @JsonKey(name: "by_invite") final bool? byInvite,
-      @JsonKey(name: "by_invite_label") final String? byInviteLabel,
-      @JsonKey(name: "starts_at") final String? startsAt,
-      @JsonKey(name: "expires_at") final String? expiresAt,
-      @JsonKey(name: "expired_in_days") final int? expiredInDays,
-      @JsonKey(name: "is_expired") final bool? isExpired,
-      @JsonKey(name: "subscription")
-      final VipSubscribeModel? subscription}) = _$_VipSubscribeModel;
+          {required final int id,
+          required final String name,
+          required final String duration,
+          required final String price,
+          required final int days,
+          required final String description,
+          @JsonKey(name: "by_invite") final bool? byInvite,
+          @JsonKey(name: "by_invite_label") final String? byInviteLabel,
+          @JsonKey(name: "starts_at") final String? startsAt,
+          @JsonKey(name: "expires_at") final String? expiresAt,
+          @JsonKey(name: "expired_in_days") final int? expiredInDays,
+          @JsonKey(name: "is_expired") final bool? isExpired,
+          @JsonKey(name: "subscription") final VipSubscribeModel? subscription,
+          @JsonKey(name: "currency_symbol") final String? currencySymbol}) =
+      _$_VipSubscribeModel;
   _VipSubscribeModel._() : super._();
 
   factory _VipSubscribeModel.fromJson(Map<String, dynamic> json) =
@@ -454,6 +476,9 @@ abstract class _VipSubscribeModel extends VipSubscribeModel {
   @override
   @JsonKey(name: "subscription")
   VipSubscribeModel? get subscription;
+  @override
+  @JsonKey(name: "currency_symbol")
+  String? get currencySymbol;
   @override
   @JsonKey(ignore: true)
   _$$_VipSubscribeModelCopyWith<_$_VipSubscribeModel> get copyWith =>

@@ -122,6 +122,8 @@ dependencies:
   timezone:
   country_calling_code_picker:
     path: ./lib/core/package/country_calling_code_picker-2.0.1
+  fl_country_code_picker: ^0.1.9+1
+  phone_numbers_parser: ^9.0.29
 
   #country_phone_validator: ^1.0.1
   # flutter_sim_country_code removed; using locale-based detection

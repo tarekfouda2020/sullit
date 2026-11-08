@@ -97,20 +97,27 @@ extension DirhamTextExtension on Text {
     FontWeight? symbolWeight,
     TextStyle? symbolStyle,
     double? currencyOffset,
+    /// Currency symbol returned by the API (e.g. "AED", "SAR"). When set, it
+    /// is shown as text instead of the hardcoded Dirham glyph.
+    String? symbolText,
   }) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        DirhamCurrencySymbol(
-          // size: symbolSize ?? style?.fontSize ?? Dimens.font_sp16,
-          // color: symbolColor ?? AppColors.noContextInstance.primary,
-          // fontWeight: symbolWeight ?? style?.fontWeight ?? FontWeight.w400,
-          useAlternativeSymbol: useAlternativeSymbol,
-          textStyle: symbolStyle ?? style,
-          currencyOffset: currencyOffset,
-        ),
-        Gaps.hGap2,
         this,
+        Gaps.hGap2,
+        if (symbolText != null && symbolText.isNotEmpty)
+          Text(symbolText, style: symbolStyle ?? style)
+        else
+          DirhamCurrencySymbol(
+            // size: symbolSize ?? style?.fontSize ?? Dimens.font_sp16,
+            // color: symbolColor ?? AppColors.noContextInstance.primary,
+            // fontWeight: symbolWeight ?? style?.fontWeight ?? FontWeight.w400,
+            useAlternativeSymbol: useAlternativeSymbol,
+            textStyle: symbolStyle ?? style,
+            currencyOffset: currencyOffset,
+          ),
+
       ],
     );
   }
