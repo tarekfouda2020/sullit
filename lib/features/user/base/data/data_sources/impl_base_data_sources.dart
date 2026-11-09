@@ -75,7 +75,7 @@ class ImplBaseDataSources extends BaseDataSources {
       url: ApiNames.currency,
       requestMethod: RequestMethod.get,
       responseType: ResType.type,
-      responseKey: (data) => data['currency_symbol'],
+      responseKey: (data) => data['data']['currency_symbol'],
     );
     return await GenericHttpImpl<String>().call(model);
   }

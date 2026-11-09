@@ -81,12 +81,13 @@ class CartPreviewSellerSectionWidget extends StatelessWidget {
                 ),
                 children: [
                   TextSpan(text: tr('cartSellerMinAmount')),
-                  TextSpan(
-                    text: AppTheme.dirhamIcon,
-                    style: AppTextStyle.s14_w700(color: context.colors.primary).copyWith(
-                      fontFamily: AppTheme.dirhamFontFamily
+                  WidgetSpan(
+                    alignment: PlaceholderAlignment.middle,
+                    child: DirhamCurrencySymbol(
+                      textStyle:
+                          AppTextStyle.s14_w700(color: context.colors.primary),
                     ),
-                  ) ,
+                  ),
                   TextSpan(
                     text: " ${seller.minOrderAmount.toString()}",
                     style: AppTextStyle.s14_w700(color: context.colors.primary),
