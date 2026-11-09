@@ -8,4 +8,5 @@ abstract class BaseDataSources {
   Future<Either<Failure, List<ShopModel>>> getFollowing(bool params);
   Future<Either<Failure, List<LangModel>>> getLanguages(bool params);
   Future<Either<Failure, List<CountryModel>>> getAvailableCountry();
+  Future<Either<Failure, String>> getCurrency();
 }

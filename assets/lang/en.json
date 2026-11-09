@@ -5,7 +5,7 @@
   "phoneValidation": "Please enter a valid mobile phone",
   "confirmValidation": "Please enter the password identical",
   "AddressValidation": "Please enter the address",
-  "notAvailableInYourCountry": "Not Available In Your Country",
+  "notAvailableInYourCountry": "The app isn't available in your country yet",
   "selectLang": "Determine the application language ",
   "langEn": "English",
   "langAr": "Arabic ",

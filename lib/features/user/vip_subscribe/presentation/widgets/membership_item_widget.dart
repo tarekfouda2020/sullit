@@ -112,7 +112,6 @@ class MembershipItemWidget extends StatelessWidget {
                     children: [
                       DirhamPrice(
                         amount: model.price,
-                        currencySymbolText: model.currencySymbol,
                         textStyle: AppTextStyle.s22_w600(
                             color: context.colors.primary),
                         currencyStyle: AppTextStyle.s24_w400(

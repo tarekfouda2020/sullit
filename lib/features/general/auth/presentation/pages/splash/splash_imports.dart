@@ -26,6 +26,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_tdd/core/services/deep_link_service.dart';
 
 import '../../../../../user/base/domain/use_cases/get_available_country.dart';
+import '../../../../../user/base/domain/use_cases/get_currency.dart';
+import 'package:flutter_tdd/core/usecases/use_case.dart';
 
 part 'splash.dart';
 part 'splash_controller.dart';

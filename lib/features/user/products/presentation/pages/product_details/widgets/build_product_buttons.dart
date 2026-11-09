@@ -67,7 +67,7 @@ class BuildProductButtons extends StatelessWidget {
                                 ),
                                 Gaps.hGap6,
                                 Text(
-                                  detailsModel.product.currencySymbol ?? "",
+                                  CurrencyHelper.symbol,
                                   style: AppTextStyle.s14_w600(color: context.colors.primary),
                                 ),
                               ],

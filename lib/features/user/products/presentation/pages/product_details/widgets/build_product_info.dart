@@ -80,7 +80,7 @@ class BuildProductInfo extends StatelessWidget {
                       ),
                       Gaps.hGap6,
                       Text(
-                        productModel.currencySymbol??"",
+                        CurrencyHelper.symbol,
                         style: AppTextStyle.s22_w400(color: context.colors.primary),
                       ),
 

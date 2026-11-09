@@ -111,7 +111,7 @@ class _CartSuccessSheetWidgetState extends State<CartSuccessSheetWidget> {
                                     ),
                                     Gaps.hGap6,
                                     Text(
-                                      state.data.currencySymbol ?? "",
+                                      CurrencyHelper.symbol,
                                       style: AppTextStyle.s20_w500(color: context.colors.white),
                                     ),
                                   ],

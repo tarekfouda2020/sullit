@@ -37,7 +37,7 @@ class AiChatOrderCardWidget extends StatelessWidget {
             ),
             Gaps.vGap8,
             Text(
-              '${data.total} ${data.currencySymbol}',
+              '${data.total} ${CurrencyHelper.symbol}',
               style: AppTextStyle.s14_w600(color: context.colors.primary),
             ),
           ],

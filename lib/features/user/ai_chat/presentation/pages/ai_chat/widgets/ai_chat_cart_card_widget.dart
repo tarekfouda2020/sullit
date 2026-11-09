@@ -37,7 +37,7 @@ class AiChatCartCardWidget extends StatelessWidget {
           ),
           Gaps.vGap8,
           Text(
-            '${payload.calculableTotal == 0 ? payload.subTotal : payload.calculableTotal} ${payload.currencySymbol}',
+            '${payload.calculableTotal == 0 ? payload.subTotal : payload.calculableTotal} ${CurrencyHelper.symbol}',
             style: AppTextStyle.s14_w600(color: context.colors.primary),
           ),
           Gaps.vGap8,

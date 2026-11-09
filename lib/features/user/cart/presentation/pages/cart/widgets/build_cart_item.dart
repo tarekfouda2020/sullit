@@ -71,7 +71,7 @@ class BuildCartItem extends StatelessWidget {
                     ),
                     Gaps.hGap6,
                     Text(
-                      cartItem.currencySymbol,
+                      CurrencyHelper.symbol,
                       style: AppTextStyle.s14_w600(color: context.colors.primary),
                     ),
 

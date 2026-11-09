@@ -29,9 +29,11 @@ class HomeController {
   ];
 
   HomeController() {
-    checkIosTracking();
-    checkIfEmailExist();
-    getPurchasingHistory();
+    if(isCountryAvailable){
+      checkIosTracking();
+      checkIfEmailExist();
+      getPurchasingHistory();
+    }
   }
 
 

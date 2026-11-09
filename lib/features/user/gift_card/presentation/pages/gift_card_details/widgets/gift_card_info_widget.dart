@@ -26,7 +26,6 @@ class GiftCardInfoWidget extends StatelessWidget {
             if (!controller.isMyGiftCard && model.code != null) Gaps.hGap8,
             DirhamPrice(
               amount: model.price,
-              currencySymbolText: model.currencySymbol,
               textStyle: AppTextStyle.s30_w800(color: context.colors.gold),
               currencyStyle: AppTextStyle.s32_w400(color: context.colors.gold),
             ),
@@ -42,7 +41,6 @@ class GiftCardInfoWidget extends StatelessWidget {
             Gaps.hGap2,
             DirhamPrice(
               amount: model.value,
-              currencySymbolText: model.currencySymbol,
               textStyle: AppTextStyle.s18_w700(color: context.colors.gold),
               currencyStyle: AppTextStyle.s20_w400(color: context.colors.gold),
               currencyOffset: 0,

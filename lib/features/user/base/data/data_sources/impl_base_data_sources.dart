@@ -68,4 +68,15 @@ class ImplBaseDataSources extends BaseDataSources {
     );
     return await GenericHttpImpl<List<CountryModel>>().call(model);
   }
+
+  @override
+  Future<Either<Failure, String>> getCurrency() async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.currency,
+      requestMethod: RequestMethod.get,
+      responseType: ResType.type,
+      responseKey: (data) => data['currency_symbol'],
+    );
+    return await GenericHttpImpl<String>().call(model);
+  }
 }

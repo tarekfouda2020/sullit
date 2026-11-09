@@ -90,7 +90,7 @@ class CartSheetItemWidget extends StatelessWidget {
                     ),
                     Gaps.hGap6,
                     Text(
-                      item.currencySymbol,
+                      CurrencyHelper.symbol,
                       style: AppTextStyle.s16_w600(color: context.colors.primary),
                     ),
 

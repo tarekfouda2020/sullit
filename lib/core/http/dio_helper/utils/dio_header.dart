@@ -16,7 +16,7 @@ class DioHeader {
       'App-Language': lang,
       if (token != null) 'Authorization': 'Bearer $token',
       if (countryCode != null) 'X-App-Country': countryCode,
-      // if (countryCode != null) 'X-App-Country': "AE",
+      // if (countryCode != null) 'X-App-Country': "DZ",
     };
   }
 }

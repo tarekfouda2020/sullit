@@ -7,6 +7,7 @@ import 'package:flutter_tdd/core/widgets/multi_drop_down/bottom_sheet/bottom_she
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/helpers/currency_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';

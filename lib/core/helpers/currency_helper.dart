@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/constants/local_storage_keys.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:intl/intl.dart';
 
 /// Helper class for formatting currency values with UAE Dirham symbol
 class CurrencyHelper {
-  /// The standard Dirham symbol (u+e001)
+  static String get symbol =>
+      (GlobalState.instance.get(GlobalStateKeys.currencySymbol) as String?) ?? '';
+
   static const String dirhamSymbol = '\ue001';
 
-  /// The alternative Dirham symbol (u+e002)
   static const String dirhamSymbolAlt = '\ue002';
 
-  /// The font family for Dirham symbols
   static const String dirhamFontFamily = 'dirhamicon';
 
-  /// Format a number as currency with Dirham symbol
-  ///
-  /// [amount] - The amount to format
-  /// [showDecimals] - Whether to show decimal places
-  /// [decimalPlaces] - Number of decimal places to show
-  /// [useAlternativeSymbol] - Whether to use the alternative symbol
-  /// [locale] - The locale for formatting (defaults to 'en_AE')
+
   static String formatCurrency(
     double amount, {
     bool showDecimals = true,
@@ -35,13 +31,7 @@ class CurrencyHelper {
     return formatter.format(amount);
   }
 
-  /// Format a number as currency with custom symbol
-  ///
-  /// [amount] - The amount to format
-  /// [symbol] - The currency symbol to use
-  /// [showDecimals] - Whether to show decimal places
-  /// [decimalPlaces] - Number of decimal places to show
-  /// [locale] - The locale for formatting
+
   static String formatCurrencyWithSymbol(
     double amount, {
     required String symbol,
@@ -65,11 +55,7 @@ class CurrencyHelper {
   }
 
   /// Create a TextStyle for Dirham symbols
-  ///
-  /// [size] - Font size
-  /// [color] - Text color
-  /// [weight] - Font weight
-  /// [useAlternativeSymbol] - Whether to use the alternative symbol
+
   static TextStyle getDirhamTextStyle({
     double? size,
     Color? color,

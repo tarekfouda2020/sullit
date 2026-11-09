@@ -19,6 +19,7 @@ class SplashController {
         if (loc != null) {
           locationService.setUserLocation(loc);
           await locationService.setCountryCode();
+          fetchCurrency();
           await checkCountryAvailability();
         }
       } catch (e) {
@@ -35,7 +36,7 @@ class SplashController {
     if (countryCode == null || countryCode.isEmpty) return;
 
     try {
-      final isAvailable = await IsCountryAvailable().call(countryCode).timeout(const Duration(seconds: 5));
+      final isAvailable = await IsCountryAvailable().call(countryCode);
 
       if (isAvailable != null) {
         GlobalState.instance.set(GlobalStateKeys.isCountryAvailable, isAvailable);
@@ -43,6 +44,17 @@ class SplashController {
       }
     } catch (e, s) {
       log("country availability error: $e\n$s");
+    }
+  }
+
+  Future<void> fetchCurrency() async {
+    try {
+      final symbol = await GetCurrency().call(NoParams());
+      if (symbol != null && symbol.isNotEmpty) {
+        GlobalState.instance.set(GlobalStateKeys.currencySymbol, symbol);
+      }
+    } catch (e, s) {
+      log("currency error: $e\n$s");
     }
   }
 

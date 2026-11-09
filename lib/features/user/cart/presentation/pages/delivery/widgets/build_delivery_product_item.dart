@@ -32,7 +32,7 @@ class BuildDeliveryProductItem extends StatelessWidget {
                     style: AppTextStyle.s14_w400(color: context.colors.black),
                     children: [
                       TextSpan(
-                        text: "  ${cartItem.price} ${cartItem.currencySymbol}",
+                        text: "  ${cartItem.price} ${CurrencyHelper.symbol}",
                         style: AppTextStyle.s14_w600(color: context.colors.primary),
                       ),
                     ],
@@ -54,7 +54,7 @@ class BuildDeliveryProductItem extends StatelessWidget {
                         ),
                         Gaps.hGap6,
                         Text(
-                          cartItem.currencySymbol,
+                          CurrencyHelper.symbol,
                           style: AppTextStyle.s14_w600(color: context.colors.primary),
                         ),
                       ],

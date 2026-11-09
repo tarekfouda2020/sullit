@@ -38,4 +38,9 @@ class ImplBaseRepository extends BaseRepository with ModelToDomain {
     var result = await dataSources.getAvailableCountry();
     return toDomainResultList(result);
   }
+
+  @override
+  Future<Either<Failure, String>> getCurrency() async {
+    return await dataSources.getCurrency();
+  }
 }

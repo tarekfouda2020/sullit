@@ -13,4 +13,5 @@ abstract class BaseRepository {
 
   Future<Either<Failure, List<LangDomainModel>>> getLanguages(bool params);
   Future<Either<Failure, List<CountryDomainModel>>> getAvailableCountry();
+  Future<Either<Failure, String>> getCurrency();
 }

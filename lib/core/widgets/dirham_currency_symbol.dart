@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/helpers/currency_helper.dart';
 import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
@@ -70,6 +71,13 @@ class DirhamCurrencySymbol extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final apiSymbol = CurrencyHelper.symbol;
+    if (apiSymbol.isNotEmpty) {
+      return Text(
+        apiSymbol,
+        style: textStyle ?? AppTextStyle.s16_w400(color: context.colors.primary),
+      );
+    }
     return Transform.translate(
       offset: Offset(0, currencyOffset ?? 1),
       child: Text(
@@ -97,27 +105,17 @@ extension DirhamTextExtension on Text {
     FontWeight? symbolWeight,
     TextStyle? symbolStyle,
     double? currencyOffset,
-    /// Currency symbol returned by the API (e.g. "AED", "SAR"). When set, it
-    /// is shown as text instead of the hardcoded Dirham glyph.
-    String? symbolText,
   }) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         this,
         Gaps.hGap2,
-        if (symbolText != null && symbolText.isNotEmpty)
-          Text(symbolText, style: symbolStyle ?? style)
-        else
-          DirhamCurrencySymbol(
-            // size: symbolSize ?? style?.fontSize ?? Dimens.font_sp16,
-            // color: symbolColor ?? AppColors.noContextInstance.primary,
-            // fontWeight: symbolWeight ?? style?.fontWeight ?? FontWeight.w400,
-            useAlternativeSymbol: useAlternativeSymbol,
-            textStyle: symbolStyle ?? style,
-            currencyOffset: currencyOffset,
-          ),
-
+        DirhamCurrencySymbol(
+          useAlternativeSymbol: useAlternativeSymbol,
+          textStyle: symbolStyle ?? style,
+          currencyOffset: currencyOffset,
+        ),
       ],
     );
   }
